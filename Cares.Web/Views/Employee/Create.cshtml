@@ -1,0 +1,99 @@
+﻿@model Cares.Web.ViewModels.Employees.EmployeeViewModel
+
+
+@{
+    ViewBag.Title = @Cares.Web.Resources.Shared.Common.Create;
+}
+
+<h2>@Cares.Web.Resources.Shared.Common.Create</h2>
+
+@using (Html.BeginForm("Create",
+                        "Employee", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr/>
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Employee.Id)
+        <div class="form-group">
+            @Html.Label(@Cares.Web.Resources.Employees.Employee.DepartmentId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Employee.DepartmentId, new SelectList(Model.Departments, "Id", "Name"), @Cares.Web.Resources.Employees.Employee.SelectDepartment, new { id = "ddlCategries" })
+                @Html.ValidationMessageFor(model => model.Employee.DepartmentId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@Cares.Web.Resources.Employees.Employee.Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Employee.Name)
+                @Html.ValidationMessageFor(model => model.Employee.Name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UploadImage, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*<input name="UploadImage" type="file" accept=".jpg,.jpeg,.png"/>*@
+                @Html.TextBoxFor(model => model.UploadImage, new { type = "file", accept = ".jpg,.jpeg,.png" })
+                @Html.ValidationMessageFor(model => model.UploadImage)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@Cares.Web.Resources.Employees.Employee.DateOfBirth, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Employee.DateOfBirth)
+                @Html.ValidationMessageFor(model => model.Employee.DateOfBirth)
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.Label(@Cares.Web.Resources.Employees.Employee.Bio, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.TextAreaFor(model => model.Employee.Bio)
+                @Html.ValidationMessageFor(model => model.Employee.Bio)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="@Cares.Web.Resources.Shared.Common.Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink(@Cares.Web.Resources.Shared.Common.BackToList, "Index")
+</div>
+
+@if (ViewBag.MessageVM != null)
+{
+    <input type="hidden" id="Message" value="@ViewBag.MessageVM.Message" />
+    <input type="hidden" id="IsSaved" value="@ViewBag.MessageVM.IsSaved" />
+    <input type="hidden" id="IsUpdated" value="@ViewBag.MessageVM.IsUpdated" />
+    <input type="hidden" id="IsError" value="@ViewBag.MessageVM.IsError" />
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script src="/Scripts/jquery-ui-1.11.0.min.js"></script>
+<link rel="stylesheet" href="/Content/jquery-ui-1.11.0.min.css"/>
+<script src="/RichTextEditor/ckeditor.js"></script>
+
+<script>
+    $(document).ready(function () {
+        debugger 
+        $("#Employee_DateOfBirth").datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+    });
+    //CKEDITOR.inline('Employee_Bio');//inline editing
+    CKEDITOR.replace('Employee_Bio');
+</script>
