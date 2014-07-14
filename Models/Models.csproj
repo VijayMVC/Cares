@@ -97,10 +97,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\EmployeeByColumn.cs" />
+    <Compile Include="Common\FleetPoolByColumn.cs" />
     <Compile Include="Common\ProductByColumn.cs" />
     <Compile Include="DomainModels\Category.cs" />
     <Compile Include="DomainModels\Department.cs" />
     <Compile Include="DomainModels\Employee.cs" />
+    <Compile Include="DomainModels\FleetPool.cs" />
     <Compile Include="DomainModels\Product.cs" />
     <Compile Include="IdentityModels\ApplicationRights.cs" />
     <Compile Include="IdentityModels\ApplicationUser.cs" />
@@ -114,6 +116,7 @@
     <Compile Include="MenuModels\MenuRight.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestModels\EmployeeSearchRequest.cs" />
+    <Compile Include="RequestModels\FleetPoolSearchRequest.cs" />
     <Compile Include="RequestModels\GetPagedListRequest.cs" />
     <Compile Include="RequestModels\ProductSearchRequest.cs" />
     <Compile Include="ResponseModels\EmployeeResponse.cs" />
