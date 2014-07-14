@@ -282,6 +282,7 @@
     <Compile Include="ViewModels\Common\MessageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\BusinessPartner\Scripts\businessPartner.view.js" />
     <Content Include="Areas\Common\Scripts\confirmation.view.js" />
     <Content Include="Areas\Common\Scripts\confirmation.viewModel.js" />
     <Content Include="Areas\Common\Scripts\pagination.js" />
@@ -731,6 +732,7 @@
     <Content Include="Areas\BusinessPartner\Views\_ViewStart.cshtml" />
     <Content Include="Areas\BusinessPartner\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\BusinessPartner\Views\Home\Index.cshtml" />
+    <Content Include="Areas\BusinessPartner\Views\Home\_BusinessPartnerEditor.cshtml" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
