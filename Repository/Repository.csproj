@@ -120,7 +120,7 @@
     <Compile Include="Repositories\ApplicationUserRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\MenuRightRepository.cs" />
-    <Compile Include="Repositories\DepartmentRepository.cs" />    
+    <Compile Include="Repositories\DepartmentRepository.cs" />
     <Compile Include="Repositories\EmployeeRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="TypeRegistrations.cs" />
