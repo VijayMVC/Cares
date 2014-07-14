@@ -1,21 +1,23 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Interfaces.Repository;
 using Microsoft.Practices.Unity;
 using Models.DomainModels;
 using Repository.BaseRepository;
+
 namespace Repository.Repositories
 {
-    /// <summary>
-    /// Department Repository
-    /// </summary>
-    public sealed class DepartmentRepository: BaseRepository<Department>, IDepartmentRepository
+    public sealed class OperationRepository : BaseRepository<Operation>, IOperationRepository
     {
         #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>
-        public DepartmentRepository(IUnityContainer container)
+        public OperationRepository(IUnityContainer container)
             : base(container)
         {
 
@@ -23,11 +25,11 @@ namespace Repository.Repositories
         /// <summary>
         /// Primary database set
         /// </summary>
-        protected override IDbSet<Department> DbSet
+        protected override IDbSet<Operation> DbSet
         {
             get
             {
-                return db.Departments;
+                return db.Operations;
             }
         }
 
@@ -35,13 +37,12 @@ namespace Repository.Repositories
 
         #region Public
         /// <summary>
-        /// Get All Departments for User Domain Key
+        /// Get All Organization Groups for User Domain Key
         /// </summary>
-        public override IQueryable<Department> GetAll()
+        public override IQueryable<Operation> GetAll()
         {
-            return DbSet.Where(department => department.UserDomainKey == UserDomaingKey);
+            return DbSet.Where(operation => operation.UserDomainKey == UserDomaingKey);
         }
-
         #endregion
     }
 }

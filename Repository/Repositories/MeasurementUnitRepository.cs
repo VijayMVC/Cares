@@ -4,18 +4,16 @@ using Interfaces.Repository;
 using Microsoft.Practices.Unity;
 using Models.DomainModels;
 using Repository.BaseRepository;
+
 namespace Repository.Repositories
 {
-    /// <summary>
-    /// Department Repository
-    /// </summary>
-    public sealed class DepartmentRepository: BaseRepository<Department>, IDepartmentRepository
+    public sealed class MeasurementUnitRepository : BaseRepository<MeasurementUnit>, IMeasurementUnit
     {
         #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>
-        public DepartmentRepository(IUnityContainer container)
+        public MeasurementUnitRepository(IUnityContainer container)
             : base(container)
         {
 
@@ -23,11 +21,11 @@ namespace Repository.Repositories
         /// <summary>
         /// Primary database set
         /// </summary>
-        protected override IDbSet<Department> DbSet
+        protected override IDbSet<MeasurementUnit> DbSet
         {
             get
             {
-                return db.Departments;
+                return db.MeasurementUnits;
             }
         }
 
@@ -35,11 +33,11 @@ namespace Repository.Repositories
 
         #region Public
         /// <summary>
-        /// Get All Departments for User Domain Key
+        /// Get All Measurement Units for User Domain Key
         /// </summary>
-        public override IQueryable<Department> GetAll()
+        public override IQueryable<MeasurementUnit> GetAll()
         {
-            return DbSet.Where(department => department.UserDomainKey == UserDomaingKey);
+            return DbSet.Where(measurementUnit => measurementUnit.UserDomainKey == UserDomaingKey);
         }
 
         #endregion

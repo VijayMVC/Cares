@@ -1,5 +1,4 @@
-﻿
-using Models.DomainModels;
+﻿using Models.DomainModels;
 
 namespace Interfaces.Repository
 {

@@ -16,6 +16,8 @@ namespace Repository.BaseRepository
     public sealed class BaseDbContext : IdentityDbContext<ApplicationUser>
     {
         #region Private
+        // ReSharper disable once InconsistentNaming
+        // ReSharper disable once NotAccessedField.Local
         private IUnityContainer container;
         #endregion
         #region Protected
@@ -34,6 +36,21 @@ namespace Repository.BaseRepository
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             modelBuilder.Entity<Company>().HasKey(company => company.CompanyId);
             modelBuilder.Entity<Company>().Property(company => company.CompanyId)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            modelBuilder.Entity<Country>().HasKey(country => country.CountryId);
+            modelBuilder.Entity<Country>().Property(country => country.CountryId)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            modelBuilder.Entity<Department>().HasKey(department => department.DepartmentId);
+            modelBuilder.Entity<Department>().Property(department => department.DepartmentId)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            modelBuilder.Entity<Operation>().HasKey(operation => operation.OperationId);
+            modelBuilder.Entity<Operation>().Property(operation => operation.OperationId)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            modelBuilder.Entity<MeasurementUnit>().HasKey(ms => ms.MeasurementUnitId);
+            modelBuilder.Entity<MeasurementUnit>().Property(ms => ms.MeasurementUnitId)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            modelBuilder.Entity<BpRatingType>().HasKey(bprType => bprType.BpRatingTypeId);
+            modelBuilder.Entity<BpRatingType>().Property(bprType => bprType.BpRatingTypeId)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
         }
         #endregion
@@ -78,7 +95,6 @@ namespace Repository.BaseRepository
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Employee> Employees { get; set; } 
-        public DbSet<Department> Departments { get; set; }
         /// <summary>
         /// Companies DB Set
         /// </summary>
@@ -91,6 +107,26 @@ namespace Repository.BaseRepository
         /// Organization Groups DB Set
         /// </summary>
         public DbSet<OrgGroup> OrgGroups { get; set; }
+        /// <summary>
+        /// Countries DB Set
+        /// </summary>
+        public DbSet<Country> Countries { get; set; }
+        /// <summary>
+        /// Department DB Set
+        /// </summary>
+        public DbSet<Department> Departments { get; set; }
+        /// <summary>
+        /// Operation DB Set
+        /// </summary>
+        public DbSet<Operation> Operations { get; set; }
+        /// <summary>
+        /// Measurement Unit DB Set
+        /// </summary>
+        public DbSet<MeasurementUnit> MeasurementUnits { get; set; }
+        /// <summary>
+        /// Business Partner Rating Type DB Set
+        /// </summary>
+        public DbSet<BpRatingType> BpRatingTypes { get; set; }
 
         #endregion
     }
