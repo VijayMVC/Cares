@@ -26,6 +26,15 @@ namespace Repository.BaseRepository
             modelBuilder.Entity<Product>().HasKey(p => p.Id);
             modelBuilder.Entity<Product>().Property(c => c.Id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            modelBuilder.Entity<OrgGroup>().HasKey(org => org.OrgGroupId);
+            modelBuilder.Entity<OrgGroup>().Property(org => org.OrgGroupId)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            modelBuilder.Entity<BusinessSegment>().HasKey(bs => bs.BusinessSegmentId);
+            modelBuilder.Entity<BusinessSegment>().Property(bs => bs.BusinessSegmentId)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            modelBuilder.Entity<Company>().HasKey(company => company.CompanyId);
+            modelBuilder.Entity<Company>().Property(company => company.CompanyId)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
         }
         #endregion
         #region Constructor
@@ -70,6 +79,18 @@ namespace Repository.BaseRepository
         public DbSet<Category> Categories { get; set; }
         public DbSet<Employee> Employees { get; set; } 
         public DbSet<Department> Departments { get; set; }
+        /// <summary>
+        /// Companies DB Set
+        /// </summary>
+        public DbSet<Company> Companies { get; set; }
+        /// <summary>
+        /// Business Segments DB Set
+        /// </summary>
+        public DbSet<BusinessSegment> BusinessSegments { get; set; }
+        /// <summary>
+        /// Organization Groups DB Set
+        /// </summary>
+        public DbSet<OrgGroup> OrgGroups { get; set; }
 
         #endregion
     }

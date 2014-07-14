@@ -30,9 +30,14 @@ namespace Repository.Repositories
             }
         }
 
-        public IEnumerable<Department> GetAll()
+        public override IQueryable<Department> GetAll()
         {
-            return DbSet.ToList();
+            return DbSet;
+        }
+
+        IEnumerable<Department> IDepartmentRepository.GetAll()
+        {
+            return GetAll();
         }
     }
 }
