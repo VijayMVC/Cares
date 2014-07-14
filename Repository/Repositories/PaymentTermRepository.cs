@@ -5,18 +5,19 @@ using Microsoft.Practices.Unity;
 using Models.DomainModels;
 using Repository.BaseRepository;
 
+
 namespace Repository.Repositories
 {
     /// <summary>
-    /// Organization Group Repository
+    /// Payment Term Repository
     /// </summary>
-    public sealed class OrgGroupRepository : BaseRepository<OrgGroup>, IOrgGroupRepository
+    public sealed class PaymentTermRepository : BaseRepository<PaymentTerm>, IPaymentTermRepository
     {
         #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>
-        public OrgGroupRepository(IUnityContainer container)
+        public PaymentTermRepository(IUnityContainer container)
             : base(container)
         {
 
@@ -24,11 +25,11 @@ namespace Repository.Repositories
         /// <summary>
         /// Primary database set
         /// </summary>
-        protected override IDbSet<OrgGroup> DbSet
+        protected override IDbSet<PaymentTerm> DbSet
         {
             get
             {
-                return db.OrgGroups;
+                return db.PaymentTerms;
             }
         }
 
@@ -38,11 +39,11 @@ namespace Repository.Repositories
         /// <summary>
         /// Get All Organization Groups for User Domain Key
         /// </summary>
-        public override IQueryable<OrgGroup> GetAll()
+        public override IQueryable<PaymentTerm> GetAll()
         {
-            return DbSet.Where(orgGroup => orgGroup.UserDomainKey == UserDomaingKey);
+            return DbSet.Where(paymentTerm => paymentTerm.UserDomainKey == UserDomaingKey);
         }
         #endregion
-        
+
     }
 }

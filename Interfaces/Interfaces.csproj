@@ -70,6 +70,8 @@
     <Compile Include="Repository\IEmployeeRepository.cs" />
     <Compile Include="Repository\IOperationRepository.cs" />
     <Compile Include="Repository\IOrgGroupRepository.cs" />
+    <Compile Include="Repository\IPaymentTermRepository.cs" />
+    <Compile Include="Repository\IPricingStrategyRepository.cs" />
     <Compile Include="Repository\IProductRepository.cs" />
     <Compile Include="Repository\IRegionRepository.cs" />
   </ItemGroup>

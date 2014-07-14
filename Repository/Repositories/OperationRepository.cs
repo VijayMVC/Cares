@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Interfaces.Repository;
 using Microsoft.Practices.Unity;
 using Models.DomainModels;
@@ -11,6 +7,9 @@ using Repository.BaseRepository;
 
 namespace Repository.Repositories
 {
+    /// <summary>
+    /// Operation Repository
+    /// </summary>
     public sealed class OperationRepository : BaseRepository<Operation>, IOperationRepository
     {
         #region Constructor

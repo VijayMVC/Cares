@@ -58,6 +58,12 @@ namespace Repository.BaseRepository
             modelBuilder.Entity<Region>().HasKey(region => region.RegionId);
             modelBuilder.Entity<Region>().Property(region => region.RegionId)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            modelBuilder.Entity<PricingStrategy>().HasKey(ps => ps.PricingStrategyId);
+            modelBuilder.Entity<PricingStrategy>().Property(ps => ps.PricingStrategyId)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            modelBuilder.Entity<PaymentTerm>().HasKey(pTerm => pTerm.PaymentTermId);
+            modelBuilder.Entity<PaymentTerm>().Property(pTerm => pTerm.PaymentTermId)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
         }
         #endregion
         #region Constructor
@@ -141,6 +147,15 @@ namespace Repository.BaseRepository
         /// Regions DB Set
         /// </summary>
         public DbSet<Region> Regions { get; set; }
+        /// <summary>
+        /// PricingStrategy DB Set
+        /// </summary>
+        public DbSet<PricingStrategy> PricingStrategies { get; set; }
+        /// <summary>
+        /// PaymentTerm DB Set
+        /// </summary>
+        public DbSet<PaymentTerm> PaymentTerms { get; set; }
+
         
         public DbSet<BusinessPartner> BusinessPartners { get; set; }
 

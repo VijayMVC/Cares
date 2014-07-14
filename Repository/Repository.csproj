@@ -130,6 +130,8 @@
     <Compile Include="Repositories\EmployeeRepository.cs" />
     <Compile Include="Repositories\OperationRepository.cs" />
     <Compile Include="Repositories\OrgGroupRepository.cs" />
+    <Compile Include="Repositories\PaymentTermRepository.cs" />
+    <Compile Include="Repositories\PricingStrategyRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="Repositories\RegionRepository.cs" />
      <Compile Include="Repositories\BusinessPartnerRepository.cs" />
