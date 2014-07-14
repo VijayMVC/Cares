@@ -53,14 +53,16 @@
     <Compile Include="IServices\ILogger.cs" />
     <Compile Include="IServices\IMenuRightService.cs" />
     <Compile Include="IServices\IProductService.cs" />
+    <Compile Include="IServices\ITarrifTypeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IBaseRepository.cs" />
     <Compile Include="Repository\IApplicationUserRepository.cs" />
     <Compile Include="Repository\ICategoryRepository.cs" />
     <Compile Include="Repository\IMenuRightRepository.cs" />
-     <Compile Include="Repository\IDepartmentRepository.cs" />   
+    <Compile Include="Repository\IDepartmentRepository.cs" />
     <Compile Include="Repository\IEmployeeRepository.cs" />
     <Compile Include="Repository\IProductRepository.cs" />
+    <Compile Include="Repository\ITarrifTypeRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">

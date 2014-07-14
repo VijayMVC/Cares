@@ -70,6 +70,7 @@ namespace Repository.BaseRepository
         public DbSet<Category> Categories { get; set; }
         public DbSet<Employee> Employees { get; set; } 
         public DbSet<Department> Departments { get; set; }
+        public DbSet<TarrifType> TarrifTypes { get; set; }
 
         #endregion
     }
