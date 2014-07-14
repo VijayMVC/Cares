@@ -3,39 +3,31 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Models.DomainModels
 {
-    /// <summary>
-    /// Department Domain Model
-    /// </summary>
-    public class Department
+    public class Region
     {
         #region Persisted Properties
         /// <summary>
-        /// Department ID
+        /// Region ID
         /// </summary>
-        public int DepartmentId { get; set; }
+        public int RegionId { get; set; }
         /// <summary>
-        /// Department Code
+        /// Country ID
         /// </summary>
-        [StringLength(100)]
-        public string DepartmentCode { get; set; }
+        public int? CountryId { get; set; }
         /// <summary>
-        /// Department Code
+        /// Region Code
+        /// </summary>
+        public string RegionCode { get; set; }
+        /// <summary>
+        /// Region Name
         /// </summary>
         [StringLength(255)]
-        public string DepartmentName { get; set; }
+        public string RegionName { get; set; }
         /// <summary>
-        /// Department Description
+        /// Region Description
         /// </summary>
         [StringLength(500)]
-        public string DepartmentDescription { get; set; }
-        /// <summary>
-        /// Department Type ID
-        /// </summary>
-        public int DepartmentTypeId { get; set; }
-        /// <summary>
-        /// Company ID
-        /// </summary>
-        public int? CompanyId { get; set; }
+        public string RegionDescription { get; set; }
         /// <summary>
         /// Is Active
         /// </summary>
@@ -78,10 +70,11 @@ namespace Models.DomainModels
         #endregion
 
         #region Reference Properties
+
         /// <summary>
-        /// Company
+        /// Country
         /// </summary>
-        public virtual Company Company{ get; set; }
+        public virtual Country Country { get; set; }
 
         #endregion
     }

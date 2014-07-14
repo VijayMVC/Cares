@@ -10,7 +10,7 @@ namespace Repository.Repositories
     /// <summary>
     /// Organization Group Repository
     /// </summary>
-    class OrgGroupRepository : BaseRepository<OrgGroup>, IOrgGroupRepository
+    public sealed class OrgGroupRepository : BaseRepository<OrgGroup>, IOrgGroupRepository
     {
         #region Constructor
         /// <summary>

@@ -4,38 +4,34 @@ using System.ComponentModel.DataAnnotations;
 namespace Models.DomainModels
 {
     /// <summary>
-    /// Department Domain Model
+    /// Operation Domain Model
     /// </summary>
-    public class Department
+    public class Operation
     {
         #region Persisted Properties
+        /// <summary>
+        /// Operation ID
+        /// </summary>
+        public int OperationId { get; set; }
+        /// <summary>
+        /// Operation Code
+        /// </summary>
+        [StringLength(100)]
+        public string OperationCode { get; set; }
+        /// <summary>
+        /// Operation Name
+        /// </summary>
+        [StringLength(255)]
+        public string OperationName { get; set; }
+        /// <summary>
+        /// Operation Description
+        /// </summary>
+        [StringLength(500)]
+        public string OperationDescription { get; set; }
         /// <summary>
         /// Department ID
         /// </summary>
         public int DepartmentId { get; set; }
-        /// <summary>
-        /// Department Code
-        /// </summary>
-        [StringLength(100)]
-        public string DepartmentCode { get; set; }
-        /// <summary>
-        /// Department Code
-        /// </summary>
-        [StringLength(255)]
-        public string DepartmentName { get; set; }
-        /// <summary>
-        /// Department Description
-        /// </summary>
-        [StringLength(500)]
-        public string DepartmentDescription { get; set; }
-        /// <summary>
-        /// Department Type ID
-        /// </summary>
-        public int DepartmentTypeId { get; set; }
-        /// <summary>
-        /// Company ID
-        /// </summary>
-        public int? CompanyId { get; set; }
         /// <summary>
         /// Is Active
         /// </summary>
@@ -79,9 +75,9 @@ namespace Models.DomainModels
 
         #region Reference Properties
         /// <summary>
-        /// Company
+        /// Department Reference
         /// </summary>
-        public virtual Company Company{ get; set; }
+        public Department Department { get; set; }
 
         #endregion
     }

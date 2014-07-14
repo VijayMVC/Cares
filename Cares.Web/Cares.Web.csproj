@@ -245,7 +245,6 @@
     </Compile>
     <Compile Include="Helper\CultureHelper.cs" />
     <Compile Include="ModelMappers\CategoryMapper.cs" />
-    <Compile Include="ModelMappers\DepartmentMapper.cs" />
     <Compile Include="ModelMappers\BusinessPartnerMapper.cs" />
     <Compile Include="ModelMappers\BusinessPartnerResponseMapper.cs" />
     <Compile Include="ModelMappers\ProductResponseMapper.cs" />

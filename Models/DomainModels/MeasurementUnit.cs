@@ -4,38 +4,30 @@ using System.ComponentModel.DataAnnotations;
 namespace Models.DomainModels
 {
     /// <summary>
-    /// Department Domain Model
+    /// Measurement Unit Domain Model
     /// </summary>
-    public class Department
+    public class MeasurementUnit
     {
         #region Persisted Properties
         /// <summary>
-        /// Department ID
+        /// Measurement Unit ID
         /// </summary>
-        public int DepartmentId { get; set; }
+        public int MeasurementUnitId { get; set; }
         /// <summary>
-        /// Department Code
+        /// Measurement Unit Code
         /// </summary>
         [StringLength(100)]
-        public string DepartmentCode { get; set; }
+        public string MeasurementUnitCode { get; set; }
         /// <summary>
-        /// Department Code
+        /// Measurement Unit Name
         /// </summary>
         [StringLength(255)]
-        public string DepartmentName { get; set; }
+        public string MeasurementUnitName { get; set; }
         /// <summary>
-        /// Department Description
+        /// Measurement Unit Description
         /// </summary>
         [StringLength(500)]
-        public string DepartmentDescription { get; set; }
-        /// <summary>
-        /// Department Type ID
-        /// </summary>
-        public int DepartmentTypeId { get; set; }
-        /// <summary>
-        /// Company ID
-        /// </summary>
-        public int? CompanyId { get; set; }
+        public string MeasurementUnitDescription { get; set; }
         /// <summary>
         /// Is Active
         /// </summary>
@@ -74,14 +66,6 @@ namespace Models.DomainModels
         /// User Domain Key
         /// </summary>
         public long UserDomainKey { get; set; }
-
-        #endregion
-
-        #region Reference Properties
-        /// <summary>
-        /// Company
-        /// </summary>
-        public virtual Company Company{ get; set; }
 
         #endregion
     }

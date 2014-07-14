@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models.DomainModels
 {
@@ -12,15 +13,16 @@ namespace Models.DomainModels
         /// <summary>
         /// Company ID
         /// </summary>
-        public long CompanyId { get; set; }
+        public int CompanyId { get; set; }
         /// <summary>
         /// Parent Company
         /// </summary>
-        public long ParentCompanyId { get; set; }
+
+        public int? ParentCompanyId { get; set; }
         /// <summary>
         /// Organization Group ID
         /// </summary>
-        public long OrgGroupId { get; set; }
+        public int OrgGroupId { get; set; }
         /// <summary>
         /// Company Code
         /// </summary>
@@ -110,10 +112,19 @@ namespace Models.DomainModels
         #endregion
 
         #region Reference Properties
-
-        public Company ParentCompany { get; set; }
-
-
+        /// <summary>
+        /// Parent Company
+        /// </summary>
+        [ForeignKey("ParentCompanyId")]
+        public virtual Company ParentCompany { get; set; }
+        /// <summary>
+        /// Organization Group
+        /// </summary>
+        public virtual OrgGroup OrgGroup { get; set; }
+        /// <summary>
+        /// Business Segment
+        /// </summary>
+        public virtual BusinessSegment BusinessSegment { get; set; }
 
         #endregion
     }
