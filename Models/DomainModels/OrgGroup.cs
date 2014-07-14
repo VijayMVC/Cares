@@ -4,38 +4,34 @@ using System.ComponentModel.DataAnnotations;
 namespace Models.DomainModels
 {
     /// <summary>
-    /// Department Domain Model
+    /// Organization Group Domain Model
     /// </summary>
-    public class Department
+    public class OrgGroup
     {
         #region Persisted Properties
         /// <summary>
-        /// Department ID
+        /// Organization Group ID
         /// </summary>
-        public int DepartmentId { get; set; }
+        public int OrgGroupId { get; set; }
         /// <summary>
-        /// Department Code
+        /// Organization Group Code
         /// </summary>
         [StringLength(100)]
-        public string DepartmentCode { get; set; }
+        public string OrgGroupCode { get; set; }
         /// <summary>
-        /// Department Code
+        /// Organization Group Name
         /// </summary>
         [StringLength(255)]
-        public string DepartmentName { get; set; }
+        public string OrgGroupName { get; set; }
         /// <summary>
-        /// Department Description
+        /// Organization Group Description
         /// </summary>
         [StringLength(500)]
-        public string DepartmentDescription { get; set; }
+        public string OrgGroupDescription { get; set; }
         /// <summary>
-        /// Department Type ID
+        /// Row Version
         /// </summary>
-        public int DepartmentTypeId { get; set; }
-        /// <summary>
-        /// Company ID
-        /// </summary>
-        public int? CompanyId { get; set; }
+        public long RowVersion { get; set; }
         /// <summary>
         /// Is Active
         /// </summary>
@@ -75,13 +71,6 @@ namespace Models.DomainModels
         /// </summary>
         public long UserDomainKey { get; set; }
 
-        #endregion
-
-        #region Reference Properties
-        /// <summary>
-        /// Company
-        /// </summary>
-        public virtual Company Company{ get; set; }
 
         #endregion
     }

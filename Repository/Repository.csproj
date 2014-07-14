@@ -118,12 +118,24 @@
     <Compile Include="BaseRepository\BaseRespository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ApplicationUserRepository.cs" />
+    <Compile Include="Repositories\BpRatingTypeRepository.cs" />
+    <Compile Include="Repositories\BusinessLegalStatusRepository.cs" />
+    <Compile Include="Repositories\BusinessSegmentRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="Repositories\CompanyRepository.cs" />
+    <Compile Include="Repositories\CountryRepository.cs" />
+    <Compile Include="Repositories\MeasurementUnitRepository.cs" />
     <Compile Include="Repositories\MenuRightRepository.cs" />
     <Compile Include="Repositories\DepartmentRepository.cs" />
     <Compile Include="Repositories\EmployeeRepository.cs" />
+    <Compile Include="Repositories\OperationRepository.cs" />
+    <Compile Include="Repositories\OrgGroupRepository.cs" />
+    <Compile Include="Repositories\PaymentTermRepository.cs" />
+    <Compile Include="Repositories\PricingStrategyRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="Repositories\TarrifTypeRepository.cs" />
+    <Compile Include="Repositories\RegionRepository.cs" />
+     <Compile Include="Repositories\BusinessPartnerRepository.cs" />
     <Compile Include="TypeRegistrations.cs" />
   </ItemGroup>
   <ItemGroup>

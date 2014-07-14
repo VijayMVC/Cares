@@ -4,18 +4,19 @@ using Interfaces.Repository;
 using Microsoft.Practices.Unity;
 using Models.DomainModels;
 using Repository.BaseRepository;
+
 namespace Repository.Repositories
 {
     /// <summary>
-    /// Department Repository
+    /// Pricing Strategy Repository
     /// </summary>
-    public sealed class DepartmentRepository: BaseRepository<Department>, IDepartmentRepository
+    public sealed class PricingStrategyRepository : BaseRepository<PricingStrategy>, IPricingStrategyRepository
     {
         #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>
-        public DepartmentRepository(IUnityContainer container)
+        public PricingStrategyRepository(IUnityContainer container)
             : base(container)
         {
 
@@ -23,11 +24,11 @@ namespace Repository.Repositories
         /// <summary>
         /// Primary database set
         /// </summary>
-        protected override IDbSet<Department> DbSet
+        protected override IDbSet<PricingStrategy> DbSet
         {
             get
             {
-                return db.Departments;
+                return db.PricingStrategies;
             }
         }
 
@@ -35,11 +36,11 @@ namespace Repository.Repositories
 
         #region Public
         /// <summary>
-        /// Get All Departments for User Domain Key
+        /// Get All Measurement Units for User Domain Key
         /// </summary>
-        public override IQueryable<Department> GetAll()
+        public override IQueryable<PricingStrategy> GetAll()
         {
-            return DbSet.Where(department => department.UserDomainKey == UserDomaingKey);
+            return DbSet.Where(pricingStrategy => pricingStrategy.UserDomainKey == UserDomaingKey);
         }
 
         #endregion

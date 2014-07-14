@@ -4,18 +4,19 @@ using Interfaces.Repository;
 using Microsoft.Practices.Unity;
 using Models.DomainModels;
 using Repository.BaseRepository;
+
 namespace Repository.Repositories
 {
     /// <summary>
-    /// Department Repository
+    /// Organization Group Repository
     /// </summary>
-    public sealed class DepartmentRepository: BaseRepository<Department>, IDepartmentRepository
+    public sealed class OrgGroupRepository : BaseRepository<OrgGroup>, IOrgGroupRepository
     {
         #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>
-        public DepartmentRepository(IUnityContainer container)
+        public OrgGroupRepository(IUnityContainer container)
             : base(container)
         {
 
@@ -23,25 +24,25 @@ namespace Repository.Repositories
         /// <summary>
         /// Primary database set
         /// </summary>
-        protected override IDbSet<Department> DbSet
+        protected override IDbSet<OrgGroup> DbSet
         {
             get
             {
-                return db.Departments;
+                return db.OrgGroups;
             }
         }
 
         #endregion
-
+       
         #region Public
         /// <summary>
-        /// Get All Departments for User Domain Key
+        /// Get All Organization Groups for User Domain Key
         /// </summary>
-        public override IQueryable<Department> GetAll()
+        public override IQueryable<OrgGroup> GetAll()
         {
-            return DbSet.Where(department => department.UserDomainKey == UserDomaingKey);
+            return DbSet.Where(orgGroup => orgGroup.UserDomainKey == UserDomaingKey);
         }
-
         #endregion
+        
     }
 }

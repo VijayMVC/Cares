@@ -1,21 +1,23 @@
-﻿using System.Data.Entity;
+﻿
+using System.Data.Entity;
 using System.Linq;
 using Interfaces.Repository;
 using Microsoft.Practices.Unity;
 using Models.DomainModels;
 using Repository.BaseRepository;
+
 namespace Repository.Repositories
 {
     /// <summary>
-    /// Department Repository
+    /// Country Repository
     /// </summary>
-    public sealed class DepartmentRepository: BaseRepository<Department>, IDepartmentRepository
+    public sealed class CountryRepository : BaseRepository<Country>, ICountryRepository
     {
         #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>
-        public DepartmentRepository(IUnityContainer container)
+        public CountryRepository(IUnityContainer container)
             : base(container)
         {
 
@@ -23,11 +25,11 @@ namespace Repository.Repositories
         /// <summary>
         /// Primary database set
         /// </summary>
-        protected override IDbSet<Department> DbSet
+        protected override IDbSet<Country> DbSet
         {
             get
             {
-                return db.Departments;
+                return db.Countries;
             }
         }
 
@@ -35,11 +37,11 @@ namespace Repository.Repositories
 
         #region Public
         /// <summary>
-        /// Get All Departments for User Domain Key
+        /// Get All Business Segments for User Domain Key
         /// </summary>
-        public override IQueryable<Department> GetAll()
+        public override IQueryable<Country> GetAll()
         {
-            return DbSet.Where(department => department.UserDomainKey == UserDomaingKey);
+            return DbSet.Where(country => country.UserDomainKey == UserDomaingKey);
         }
 
         #endregion

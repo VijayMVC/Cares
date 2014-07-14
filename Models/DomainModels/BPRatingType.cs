@@ -4,38 +4,30 @@ using System.ComponentModel.DataAnnotations;
 namespace Models.DomainModels
 {
     /// <summary>
-    /// Department Domain Model
+    /// Business Partner Rating Type Domain Model
     /// </summary>
-    public class Department
+    public class BpRatingType
     {
         #region Persisted Properties
         /// <summary>
-        /// Department ID
+        /// Business Partner Rating Type ID
         /// </summary>
-        public int DepartmentId { get; set; }
+        public int BpRatingTypeId { get; set; }
         /// <summary>
-        /// Department Code
+        /// Business Partner Rating Type Code
         /// </summary>
         [StringLength(100)]
-        public string DepartmentCode { get; set; }
+        public string BpRatingTypeCode { get; set; }
         /// <summary>
-        /// Department Code
+        /// Business Partner Rating Type Name
         /// </summary>
         [StringLength(255)]
-        public string DepartmentName { get; set; }
+        public string BpRatingTypeName { get; set; }
         /// <summary>
-        /// Department Description
+        /// Business Partner Rating Type Description
         /// </summary>
         [StringLength(500)]
-        public string DepartmentDescription { get; set; }
-        /// <summary>
-        /// Department Type ID
-        /// </summary>
-        public int DepartmentTypeId { get; set; }
-        /// <summary>
-        /// Company ID
-        /// </summary>
-        public int? CompanyId { get; set; }
+        public string BpRatingTypeDescription { get; set; }
         /// <summary>
         /// Is Active
         /// </summary>
@@ -74,14 +66,6 @@ namespace Models.DomainModels
         /// User Domain Key
         /// </summary>
         public long UserDomainKey { get; set; }
-
-        #endregion
-
-        #region Reference Properties
-        /// <summary>
-        /// Company
-        /// </summary>
-        public virtual Company Company{ get; set; }
 
         #endregion
     }

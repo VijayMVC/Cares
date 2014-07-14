@@ -4,18 +4,20 @@ using Interfaces.Repository;
 using Microsoft.Practices.Unity;
 using Models.DomainModels;
 using Repository.BaseRepository;
+
+
 namespace Repository.Repositories
 {
     /// <summary>
-    /// Department Repository
+    /// Payment Term Repository
     /// </summary>
-    public sealed class DepartmentRepository: BaseRepository<Department>, IDepartmentRepository
+    public sealed class PaymentTermRepository : BaseRepository<PaymentTerm>, IPaymentTermRepository
     {
         #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>
-        public DepartmentRepository(IUnityContainer container)
+        public PaymentTermRepository(IUnityContainer container)
             : base(container)
         {
 
@@ -23,25 +25,25 @@ namespace Repository.Repositories
         /// <summary>
         /// Primary database set
         /// </summary>
-        protected override IDbSet<Department> DbSet
+        protected override IDbSet<PaymentTerm> DbSet
         {
             get
             {
-                return db.Departments;
+                return db.PaymentTerms;
             }
         }
 
         #endregion
-
+       
         #region Public
         /// <summary>
-        /// Get All Departments for User Domain Key
+        /// Get All Organization Groups for User Domain Key
         /// </summary>
-        public override IQueryable<Department> GetAll()
+        public override IQueryable<PaymentTerm> GetAll()
         {
-            return DbSet.Where(department => department.UserDomainKey == UserDomaingKey);
+            return DbSet.Where(paymentTerm => paymentTerm.UserDomainKey == UserDomaingKey);
         }
-
         #endregion
+
     }
 }

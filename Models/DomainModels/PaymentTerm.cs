@@ -4,38 +4,30 @@ using System.ComponentModel.DataAnnotations;
 namespace Models.DomainModels
 {
     /// <summary>
-    /// Department Domain Model
+    /// Payment Term Domain Model
     /// </summary>
-    public class Department
+    public class PaymentTerm
     {
         #region Persisted Properties
         /// <summary>
-        /// Department ID
+        /// PaymentTerm ID
         /// </summary>
-        public int DepartmentId { get; set; }
+        public int PaymentTermId { get; set; }
         /// <summary>
-        /// Department Code
+        /// PaymentTerm Code
         /// </summary>
         [StringLength(100)]
-        public string DepartmentCode { get; set; }
+        public string PaymentTermCode { get; set; }
         /// <summary>
-        /// Department Code
+        /// PaymentTerm Name
         /// </summary>
         [StringLength(255)]
-        public string DepartmentName { get; set; }
+        public string PaymentTermName { get; set; }
         /// <summary>
-        /// Department Description
+        /// PaymentTerm Description
         /// </summary>
         [StringLength(500)]
-        public string DepartmentDescription { get; set; }
-        /// <summary>
-        /// Department Type ID
-        /// </summary>
-        public int DepartmentTypeId { get; set; }
-        /// <summary>
-        /// Company ID
-        /// </summary>
-        public int? CompanyId { get; set; }
+        public string PaymentTermDescription { get; set; }
         /// <summary>
         /// Is Active
         /// </summary>
@@ -74,14 +66,6 @@ namespace Models.DomainModels
         /// User Domain Key
         /// </summary>
         public long UserDomainKey { get; set; }
-
-        #endregion
-
-        #region Reference Properties
-        /// <summary>
-        /// Company
-        /// </summary>
-        public virtual Company Company{ get; set; }
 
         #endregion
     }
