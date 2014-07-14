@@ -26,7 +26,7 @@ namespace Models.DomainModels
         /// <summary>
         /// Business Partner Rating Type Description
         /// </summary>
-        [StringLength(255)]
+        [StringLength(500)]
         public string BpRatingTypeDescription { get; set; }
         /// <summary>
         /// Is Active

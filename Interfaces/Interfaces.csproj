@@ -57,6 +57,7 @@
     <Compile Include="Repository\IBaseRepository.cs" />
     <Compile Include="Repository\IApplicationUserRepository.cs" />
     <Compile Include="Repository\IBpRatingTypeRepository.cs" />
+    <Compile Include="Repository\IBusinessLegalStatus.cs" />
     <Compile Include="Repository\IBusinessSegmentRepository.cs" />
     <Compile Include="Repository\ICategoryRepository.cs" />
     <Compile Include="Repository\ICompanyRepository.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Repository\IOperationRepository.cs" />
     <Compile Include="Repository\IOrgGroupRepository.cs" />
     <Compile Include="Repository\IProductRepository.cs" />
+    <Compile Include="Repository\IRegionRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">

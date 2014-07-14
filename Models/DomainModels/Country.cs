@@ -26,7 +26,7 @@ namespace Models.DomainModels
         /// <summary>
         /// Country Description
         /// </summary>
-        [StringLength(255)]
+        [StringLength(500)]
         public string CountryDescription { get; set; }
         /// <summary>
         /// Is Active

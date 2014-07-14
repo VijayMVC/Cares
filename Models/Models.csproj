@@ -99,6 +99,7 @@
     <Compile Include="Common\EmployeeByColumn.cs" />
     <Compile Include="Common\ProductByColumn.cs" />
     <Compile Include="DomainModels\BPRatingType.cs" />
+    <Compile Include="DomainModels\BusinessLegalStatus.cs" />
     <Compile Include="DomainModels\BusinessSegment.cs" />
     <Compile Include="DomainModels\Category.cs" />
     <Compile Include="DomainModels\Company.cs" />
@@ -109,6 +110,7 @@
     <Compile Include="DomainModels\Operation.cs" />
     <Compile Include="DomainModels\OrgGroup.cs" />
     <Compile Include="DomainModels\Product.cs" />
+    <Compile Include="DomainModels\Region.cs" />
     <Compile Include="IdentityModels\ApplicationRights.cs" />
     <Compile Include="IdentityModels\ApplicationUser.cs" />
     <Compile Include="IdentityModels\ViewModels\AccountViewModels.cs" />

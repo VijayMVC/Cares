@@ -52,6 +52,12 @@ namespace Repository.BaseRepository
             modelBuilder.Entity<BpRatingType>().HasKey(bprType => bprType.BpRatingTypeId);
             modelBuilder.Entity<BpRatingType>().Property(bprType => bprType.BpRatingTypeId)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            modelBuilder.Entity<BusinessLegalStatus>().HasKey(blStatus => blStatus.BusinessLegalStatusId);
+            modelBuilder.Entity<BusinessLegalStatus>().Property(blStatus => blStatus.BusinessLegalStatusId)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            modelBuilder.Entity<Region>().HasKey(region => region.RegionId);
+            modelBuilder.Entity<Region>().Property(region => region.RegionId)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
         }
         #endregion
         #region Constructor
@@ -127,6 +133,14 @@ namespace Repository.BaseRepository
         /// Business Partner Rating Type DB Set
         /// </summary>
         public DbSet<BpRatingType> BpRatingTypes { get; set; }
+        /// <summary>
+        /// Business Legal Status DB Set
+        /// </summary>
+        public DbSet<BusinessLegalStatus> BusinessLegalStatuses { get; set; }
+        /// <summary>
+        /// Regions DB Set
+        /// </summary>
+        public DbSet<Region> Regions { get; set; }
 
         #endregion
     }

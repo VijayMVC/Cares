@@ -26,7 +26,7 @@ namespace Models.DomainModels
         /// <summary>
         /// Measurement Unit Description
         /// </summary>
-        [StringLength(255)]
+        [StringLength(500)]
         public string MeasurementUnitDescription { get; set; }
         /// <summary>
         /// Is Active

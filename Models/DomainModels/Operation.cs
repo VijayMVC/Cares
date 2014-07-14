@@ -26,7 +26,7 @@ namespace Models.DomainModels
         /// <summary>
         /// Operation Description
         /// </summary>
-        [StringLength(255)]
+        [StringLength(500)]
         public string OperationDescription { get; set; }
         /// <summary>
         /// Department ID
