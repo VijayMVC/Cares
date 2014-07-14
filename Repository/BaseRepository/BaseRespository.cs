@@ -20,6 +20,11 @@ namespace Repository.BaseRepository
         #endregion
         #region Protected
 
+        /// <summary>that specifies the User's domain on the system
+        /// User Domain key 
+        /// </summary>
+        protected long UserDomaingKey { get { return 1; } }
+
         /// <summary>
         /// Primary database set
         /// </summary>
