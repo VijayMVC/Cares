@@ -8,15 +8,15 @@ using Repository.BaseRepository;
 namespace Repository.Repositories
 {
     /// <summary>
-    /// Organization Group Repository
+    /// Pricing Strategy Repository
     /// </summary>
-    public sealed class OrgGroupRepository : BaseRepository<OrgGroup>, IOrgGroupRepository
+    public sealed class PricingStrategyRepository : BaseRepository<PricingStrategy>, IPricingStrategyRepository
     {
         #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>
-        public OrgGroupRepository(IUnityContainer container)
+        public PricingStrategyRepository(IUnityContainer container)
             : base(container)
         {
 
@@ -24,25 +24,25 @@ namespace Repository.Repositories
         /// <summary>
         /// Primary database set
         /// </summary>
-        protected override IDbSet<OrgGroup> DbSet
+        protected override IDbSet<PricingStrategy> DbSet
         {
             get
             {
-                return db.OrgGroups;
+                return db.PricingStrategies;
             }
         }
 
         #endregion
-       
+
         #region Public
         /// <summary>
-        /// Get All Organization Groups for User Domain Key
+        /// Get All Measurement Units for User Domain Key
         /// </summary>
-        public override IQueryable<OrgGroup> GetAll()
+        public override IQueryable<PricingStrategy> GetAll()
         {
-            return DbSet.Where(orgGroup => orgGroup.UserDomainKey == UserDomaingKey);
+            return DbSet.Where(pricingStrategy => pricingStrategy.UserDomainKey == UserDomaingKey);
         }
+
         #endregion
-        
     }
 }

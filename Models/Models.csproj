@@ -109,6 +109,8 @@
     <Compile Include="DomainModels\MeasurementUnit.cs" />
     <Compile Include="DomainModels\Operation.cs" />
     <Compile Include="DomainModels\OrgGroup.cs" />
+    <Compile Include="DomainModels\PaymentTerm.cs" />
+    <Compile Include="DomainModels\PricingStrategy.cs" />
     <Compile Include="DomainModels\Product.cs" />
     <Compile Include="DomainModels\Region.cs" />
     <Compile Include="IdentityModels\ApplicationRights.cs" />
