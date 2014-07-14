@@ -16,6 +16,7 @@ namespace Repository.BaseRepository
     {
         #region Private
 
+// ReSharper disable once InconsistentNaming
         private readonly IUnityContainer container;
         #endregion
         #region Protected
@@ -57,14 +58,8 @@ namespace Repository.BaseRepository
         /// <summary>
         /// base Db Context
         /// </summary>
+        // ReSharper disable once InconsistentNaming
         public BaseDbContext db;
-        /// <summary>
-        /// Get all
-        /// </summary>
-        public virtual IQueryable<TDomainClass> GetAll(TDomainClass instance)
-        {
-            return DbSet.Find(instance) as IQueryable<TDomainClass>;
-        }
 
         /// <summary>
         /// Create object instance
@@ -92,7 +87,7 @@ namespace Repository.BaseRepository
         /// Get All Entites 
         /// </summary>
         /// <returns></returns>
-        public IQueryable<TDomainClass> GetAll()
+        public virtual IQueryable<TDomainClass> GetAll()
         {
             throw new NotImplementedException();
         }
