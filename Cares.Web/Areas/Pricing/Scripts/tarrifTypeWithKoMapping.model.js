@@ -39,10 +39,13 @@
 
         return {
           
-            tariffTypeId : self.TariffTypeId,
+            tariffTypeId: self.TariffTypeId,
+            measurementUnit:self.MeasurementUnit,
             tariffTypeCode: self.TariffTypeCode,
             tarrifTypeName: self.TariffTypeName,
-            pricingStrategyId: self.PricingStrategyId,
+            pricingScheme: self.PricingScheme,
+            companay: self.Companay,
+            operation: self.Operation,
             gracePeriod: self.GracePeriod,
             effectiveDate: self.EffectiveDate,
             durationFrom: self.DurationFrom,

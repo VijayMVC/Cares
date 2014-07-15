@@ -11,7 +11,7 @@ namespace Cares.Web.Models
         /// 
         /// </summary>
         public long TariffTypeId { get; set; }
-        public short MeasurementUnitId { get; set; }
+        public string MeasurementUnit { get; set; }
         public string TariffTypeCode { get; set; }
         public string TariffTypeName { get; set; }
         public string PricingScheme { get; set; }

@@ -1,5 +1,5 @@
-﻿
-using TarrifType = Cares.Web.Models.TarrifType;
+﻿using DomainModels = Models.DomainModels;
+using ApiModels = Cares.Web.Models;
 
 namespace Cares.Web.ModelMappers
 {
@@ -13,34 +13,35 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static TarrifType CreateFrom(this global::Models.DomainModels.TarrifType source)
+        public static ApiModels.TarrifType CreateFrom(this DomainModels.TarrifType source)
         {
-            return new TarrifType
+            return new ApiModels.TarrifType
             {
-        
+
                 TariffTypeId = source.TariffTypeId,
-                UserDomainKey = source.UserDomainKey,
-                OperationId = source.OperationId,
-                MeasurementUnitId = source.MeasurementUnitId,
+                Operation =
+                    source.Operation != null
+                        ? source.Operation.OperationCode + " - " + source.Operation.OperationName
+                        : string.Empty,
+                MeasurementUnit =
+                    source.MeasurementUnit != null
+                        ? source.MeasurementUnit.MeasurementUnitCode + " - " +
+                          source.MeasurementUnit.MeasurementUnitName
+                        : string.Empty,
                 TariffTypeCode = source.TariffTypeCode,
                 TariffTypeName = source.TariffTypeName,
-                TariffTypeDescription = source.TariffTypeDescription,
-                PricingStrategyId = source.PricingStrategyId,
+                PricingScheme =
+                    source.PricingStrategy != null
+                        ? source.PricingStrategy.PricingStrategyCode + " - " +
+                          source.PricingStrategy.PricingStrategyName
+                        : string.Empty,
                 DurationFrom = source.DurationFrom,
                 DurationTo = source.DurationTo,
                 GracePeriod = source.GracePeriod,
                 EffectiveDate = source.EffectiveDate,
-                RowVersion = source.RowVersion,
                 RevisionNumber = source.RevisionNumber,
-                ChildTariffTypeId = source.ChildTariffTypeId,
-                RecCreatedDt = source.RecCreatedDt,
-                RecLastUpdatedDt = source.RecLastUpdatedDt,
-                RecCreatedBy = source.RecCreatedBy,
-                IsActive = source.IsActive,
-                IsDeleted = source.IsDeleted,
-                IsPrivate = source.IsPrivate,
-                IsReadOnly = source.IsReadOnly
-                
+
+
             };
 
         }
@@ -48,36 +49,23 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create entity from web model
         /// </summary>
-        public static global::Models.DomainModels.TarrifType CreateFrom(this TarrifType source)
+        public static DomainModels.TarrifType CreateFrom(this ApiModels.TarrifType source)
         {
-            return new global::Models.DomainModels.TarrifType
+            return new DomainModels.TarrifType
             {
                 TariffTypeId = source.TariffTypeId,
-                UserDomainKey = source.UserDomainKey,
-                OperationId = source.OperationId,
-                MeasurementUnitId = source.MeasurementUnitId,
                 TariffTypeCode = source.TariffTypeCode,
                 TariffTypeName = source.TariffTypeName,
-                TariffTypeDescription = source.TariffTypeDescription,
-                PricingStrategyId = source.PricingStrategyId,
                 DurationFrom = source.DurationFrom,
                 DurationTo = source.DurationTo,
                 GracePeriod = source.GracePeriod,
                 EffectiveDate = source.EffectiveDate,
-                RowVersion = source.RowVersion,
-                RevisionNumber = source.RevisionNumber,
-                ChildTariffTypeId = source.ChildTariffTypeId,
-                RecCreatedDt = source.RecCreatedDt,
-                RecLastUpdatedDt = source.RecLastUpdatedDt,
-                RecCreatedBy = source.RecCreatedBy,
-                IsActive = source.IsActive,
-                IsDeleted = source.IsDeleted,
-                IsPrivate = source.IsPrivate,
-                IsReadOnly = source.IsReadOnly
+                RevisionNumber = source.RevisionNumber
+
             };
 
+            #endregion
         }
-
-        #endregion
     }
 }
+    
