@@ -1,8 +1,8 @@
 ﻿/*
     View for the Product. Used to keep the viewmodel clear of UI related logic
 */
-define("product/businessPartner.view",
-    ["jquery", "product/businessPartner.viewModel"], function ($, businessPartnerViewModel) {
+define("businessPartner/businessPartner.view",
+    ["jquery", "businessPartner/businessPartner.viewModel"], function ($, businessPartnerViewModel) {
 
         var ist = window.ist || {};
         
@@ -20,7 +20,7 @@ define("product/businessPartner.view",
                     }
                     
                     // Handle Sorting
-                    handleSorting("businessPartnerTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getbusinessPartners);
+                    handleSorting("businessPartnerTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getBusinessPartners);
                 };
 
             initialize();
