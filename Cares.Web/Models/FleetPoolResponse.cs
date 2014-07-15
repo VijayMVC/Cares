@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
 namespace Cares.Web.Models
 {
@@ -10,7 +7,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// FleetPools
         /// </summary>
-        public IEnumerable<FleetPool> Products { get; set; }
+        public IEnumerable<FleetPool> FleetPools { get; set; }
 
         /// <summary>
         /// FleetPool Total Count

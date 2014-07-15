@@ -261,12 +261,15 @@
     <Compile Include="ModelMappers\TarrifTypeMapper.cs" />
     <Compile Include="Models\BusinessPartner.cs" />
     <Compile Include="Models\BusinessPartnerResponse.cs" />
+    <Compile Include="Models\BusinessSegment.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\FleetPool.cs" />
     <Compile Include="Models\FleetPoolResponse.cs" />
     <Compile Include="Models\Operation.cs" />
+    <Compile Include="Models\OrgGroup.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductResponse.cs" />
     <Compile Include="Models\Region.cs" />

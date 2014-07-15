@@ -83,11 +83,11 @@ namespace Cares.Web.Models
         /// <summary>
         /// Operation
         /// </summary>
-        public virtual Operation Operation { get; set; }
+        public  Operation Operation { get; set; }
         /// <summary>
         /// Region
         /// </summary>
-        public virtual Region Region { get; set; }
+        public  Region Region { get; set; }
         #endregion
     }
 }
