@@ -221,13 +221,21 @@
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
     <Compile Include="Areas\Api\Controllers\FleetPoolController.cs" />
+    <Compile Include="Areas\Api\Controllers\BusinessPartnerBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\ProductBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\BusinessPartnerController.cs" />
     <Compile Include="Areas\Api\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Api\Controllers\TarrifTypeBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\TarrifTypeController.cs" />
+    <Compile Include="Areas\BusinessPartner\BusinessPartnerAreaRegistration.cs" />
+    <Compile Include="Areas\BusinessPartner\Controllers\HomeController.cs" />   
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
     <Compile Include="Areas\Fleet\Controllers\HomeController.cs" />
     <Compile Include="Areas\Fleet\FleetPoolAreaRegistration.cs" />
     <Compile Include="Areas\Product\Controllers\HomeController.cs" />
     <Compile Include="Areas\Product\ProductAreaRegistration.cs" />
+    <Compile Include="Areas\TarrifType\TarrifTypeAreaRegistration.cs" />
+    <Compile Include="Areas\TarrifType\Controllers\TarrifController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -245,16 +253,23 @@
     </Compile>
     <Compile Include="Helper\CultureHelper.cs" />
     <Compile Include="ModelMappers\CategoryMapper.cs" />
+    <Compile Include="ModelMappers\BusinessPartnerMapper.cs" />
+    <Compile Include="ModelMappers\DepartmentMapper.cs" />
     <Compile Include="ModelMappers\DepartmentMapper.cs" />
     <Compile Include="ModelMappers\FleetPoolMapper.cs" />
+    <Compile Include="ModelMappers\BusinessPartnerResponseMapper.cs" />
     <Compile Include="ModelMappers\ProductResponseMapper.cs" />
     <Compile Include="ModelMappers\ProductMapper.cs" />
+    <Compile Include="ModelMappers\TarrifTypeMapper.cs" />
+    <Compile Include="Models\BusinessPartner.cs" />
+    <Compile Include="Models\BusinessPartnerResponse.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\FleetPool.cs" />
     <Compile Include="Models\FleetPoolResponse.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductResponse.cs" />
+    <Compile Include="Models\TarrifType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Shared\Common.ar.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -282,6 +297,10 @@
     <Compile Include="ViewModels\Common\MessageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\BusinessPartner\Scripts\businessPartner.view.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\businessPartner.viewModel.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\businessPartner.dataservice.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\businessPartnerWithKoMapping.model.js" />
     <Content Include="Areas\Common\Scripts\confirmation.view.js" />
     <Content Include="Areas\Common\Scripts\confirmation.viewModel.js" />
     <Content Include="Areas\Common\Scripts\pagination.js" />
@@ -294,6 +313,11 @@
     <Content Include="Areas\Product\Scripts\product.model.js" />
     <Content Include="Areas\Product\Scripts\product.view.js" />
     <Content Include="Areas\Product\Scripts\product.viewModel.js" />
+    <Content Include="Areas\TarrifType\Scripts\tarrifType.dataservice.js" />
+    <Content Include="Areas\TarrifType\Scripts\tarrifType.model.js" />
+    <Content Include="Areas\TarrifType\Scripts\tarrifType.view.js" />
+    <Content Include="Areas\TarrifType\Scripts\tarrifType.viewModel.js" />
+    <Content Include="Areas\TarrifType\Scripts\tarrifTypeWithKoMapping.model.js" />
     <Content Include="asadtest.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -736,6 +760,15 @@
     <Content Include="Areas\Fleet\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Fleet\Views\web.config" />
     <Content Include="Areas\Fleet\Scripts\fleetPool.dataservice.js" />
+    <Content Include="Areas\TarrifType\Views\Tarrif\Index.cshtml" />
+    <Content Include="Areas\TarrifType\Views\web.config" />
+    <Content Include="Areas\TarrifType\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\TarrifType\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\BusinessPartner\Views\web.config" />
+    <Content Include="Areas\BusinessPartner\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\BusinessPartner\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\BusinessPartner\Views\Home\Index.cshtml" />
+    <Content Include="Areas\BusinessPartner\Views\Home\_BusinessPartnerEditor.cshtml" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
@@ -871,10 +904,12 @@
     <Folder Include="Areas\Api\Models\" />
     <Folder Include="Areas\Api\Views\FleetPool\" />
     <Folder Include="Areas\Api\Views\Shared\" />
+    <Folder Include="Areas\BusinessPartner\Models\" />
     <Folder Include="Areas\Common\Controllers\" />
     <Folder Include="Areas\Common\Models\" />
     <Folder Include="Areas\Fleet\Models\" />
     <Folder Include="Areas\Product\Models\" />
+    <Folder Include="Areas\TarrifType\Models\" />
     <Folder Include="Migrations\" />
     <Folder Include="Resources\Employees\" />
     <Folder Include="ViewModels\Employees\" />

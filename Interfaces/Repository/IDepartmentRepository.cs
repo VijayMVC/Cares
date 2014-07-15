@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
-using Models.DomainModels;
+﻿using Models.DomainModels;
 
 namespace Interfaces.Repository
 {
+    /// <summary>
+    /// Department Repository Interface
+    /// </summary>
     public interface IDepartmentRepository : IBaseRepository<Department, int>
     {
-        IEnumerable<Department> GetAll();
+
     }
 }

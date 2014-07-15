@@ -20,6 +20,8 @@ namespace Repository
             unityContainer.RegisterType<IEmployeeRepository, EmployeeRepository>();
             unityContainer.RegisterType<IDepartmentRepository, DepartmentRepository>();
             unityContainer.RegisterType<IFleetPoolRepository, FleetPoolRepository>();
+            unityContainer.RegisterType<ITarrifTypeRepository, TarrifTypeRepository>();
+            unityContainer.RegisterType<IBusinessPartnerRepository, BusinessPartnerRepository>();
             unityContainer.RegisterType<DbContext, BaseDbContext>(new HierarchicalLifetimeManager());
 
             //unityContainer.RegisterType<IUser, ApplicationUser>();

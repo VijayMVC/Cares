@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using Interfaces.Repository;
 using Microsoft.Practices.Unity;
@@ -7,6 +6,9 @@ using Models.DomainModels;
 using Repository.BaseRepository;
 namespace Repository.Repositories
 {
+    /// <summary>
+    /// Department Repository
+    /// </summary>
     public sealed class DepartmentRepository: BaseRepository<Department>, IDepartmentRepository
     {
         #region Constructor
@@ -16,9 +18,8 @@ namespace Repository.Repositories
         public DepartmentRepository(IUnityContainer container)
             : base(container)
         {
-        }
 
-        #endregion
+        }
         /// <summary>
         /// Primary database set
         /// </summary>
@@ -26,18 +27,21 @@ namespace Repository.Repositories
         {
             get
             {
-                return  db.Departments;
+                return db.Departments;
             }
         }
 
+        #endregion
+
+        #region Public
+        /// <summary>
+        /// Get All Departments for User Domain Key
+        /// </summary>
         public override IQueryable<Department> GetAll()
         {
-            return DbSet;
+            return DbSet.Where(department => department.UserDomainKey == UserDomaingKey);
         }
 
-        IEnumerable<Department> IDepartmentRepository.GetAll()
-        {
-            return GetAll();
-        }
+        #endregion
     }
 }

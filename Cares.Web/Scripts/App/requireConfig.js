@@ -7,9 +7,11 @@
         baseUrl: "/Scripts/App",
         waitSeconds: 20,
         paths: {
+            "businessPartner": "/Areas/BusinessPartner/Scripts",
             "product": "/Areas/Product/Scripts",
             "common": "/Areas/Common/Scripts",
             "Fleet": "/Areas/Fleet/Scripts"
+            "tarrifType": "/Areas/TarrifType/Scripts"
         }
 
     });

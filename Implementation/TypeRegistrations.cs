@@ -22,6 +22,7 @@ namespace Implementation
             unityContainer.RegisterType<IEmployeeService, EmployeeService>();
             unityContainer.RegisterType<IDepartmentService, DepartmentService>();
             unityContainer.RegisterType<IFleetPoolService, FleetPoolService>();
+            unityContainer.RegisterType<ITarrifTypeService, TarrifTypeService>();
             unityContainer.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>();
  	    
 
