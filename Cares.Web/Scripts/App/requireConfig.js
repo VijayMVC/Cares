@@ -9,7 +9,8 @@
         paths: {
             "businessPartner": "/Areas/BusinessPartner/Scripts",
             "product": "/Areas/Product/Scripts",
-            "common": "/Areas/Common/Scripts"
+            "common": "/Areas/Common/Scripts",
+            "tarrifType": "/Areas/TarrifType/Scripts"
         }
 
     });

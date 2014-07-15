@@ -54,6 +54,7 @@
     <Compile Include="IServices\IMenuRightService.cs" />
     <Compile Include="IServices\IBusinessPartnerService.cs" />
     <Compile Include="IServices\IProductService.cs" />
+    <Compile Include="IServices\ITarrifTypeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IBaseRepository.cs" />
     <Compile Include="Repository\IApplicationUserRepository.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Repository\IPaymentTermRepository.cs" />
     <Compile Include="Repository\IPricingStrategyRepository.cs" />
     <Compile Include="Repository\IProductRepository.cs" />
+    <Compile Include="Repository\ITarrifTypeRepository.cs" />
     <Compile Include="Repository\IRegionRepository.cs" />
   </ItemGroup>
   <ItemGroup>

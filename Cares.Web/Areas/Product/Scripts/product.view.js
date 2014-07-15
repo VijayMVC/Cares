@@ -8,28 +8,28 @@ define("product/product.view",
         
         // View 
         ist.product.view = (function (specifiedViewModel) {
-            var
-                // View model 
-                viewModel = specifiedViewModel,
-                // Binding root used with knockout
-                bindingRoot = $("#productBinding")[0],
-                // Initialize
-                initialize = function () {
-                    if (!bindingRoot) {
-                        return;
-                    }
+            //var
+            //    // View model 
+            //    viewModel = specifiedViewModel,
+            //    // Binding root used with knockout
+            //    bindingRoot = $("#productBinding")[0],
+            //    // Initialize
+            //    initialize = function () {
+            //        if (!bindingRoot) {
+            //            return;
+            //        }
                     
-                    // Handle Sorting
-                    handleSorting("productTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getProducts);
-                };
+            //        // Handle Sorting
+            //        handleSorting("productTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getTarrifType);
+            //    };
 
-            initialize();
+            //initialize();
 
            
-            return {
-                bindingRoot: bindingRoot,
-                viewModel: viewModel
-            };
+            //return {
+            //    bindingRoot: bindingRoot,
+            //    viewModel: viewModel
+            //};
         })(productViewModel);
 
         // Initialize the view model

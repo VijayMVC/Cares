@@ -127,6 +127,7 @@ namespace Repository.BaseRepository
         /// Department DB Set
         /// </summary>
         public DbSet<Department> Departments { get; set; }
+        public DbSet<TarrifType> TarrifTypes { get; set; }
         /// <summary>
         /// Operation DB Set
         /// </summary>

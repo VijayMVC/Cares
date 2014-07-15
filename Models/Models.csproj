@@ -100,6 +100,7 @@
     <Compile Include="DomainModels\BusinessPartner.cs" />
     <Compile Include="Common\EmployeeByColumn.cs" />
     <Compile Include="Common\ProductByColumn.cs" />
+    <Compile Include="Common\TarrifTypeByColumn.cs" />
     <Compile Include="DomainModels\BPRatingType.cs" />
     <Compile Include="DomainModels\BusinessLegalStatus.cs" />
     <Compile Include="DomainModels\BusinessSegment.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="DomainModels\PaymentTerm.cs" />
     <Compile Include="DomainModels\PricingStrategy.cs" />
     <Compile Include="DomainModels\Product.cs" />
+    <Compile Include="DomainModels\TarrifType.cs" />
     <Compile Include="DomainModels\Region.cs" />
     <Compile Include="IdentityModels\ApplicationRights.cs" />
     <Compile Include="IdentityModels\ApplicationUser.cs" />
@@ -130,9 +132,12 @@
     <Compile Include="RequestModels\GetPagedListRequest.cs" />
     <Compile Include="RequestModels\BusinessPartnerSearchRequest.cs" />
     <Compile Include="RequestModels\ProductSearchRequest.cs" />
+    <Compile Include="RequestModels\TarrifTypeRequest.cs" />
     <Compile Include="ResponseModels\EmployeeResponse.cs" />
     <Compile Include="ResponseModels\BusinessPartnerResponse.cs" />
     <Compile Include="ResponseModels\ProductResponse.cs" />
+    <Compile Include="ResponseModels\TarrifTypeBaseResponse.cs" />
+    <Compile Include="ResponseModels\TarrifTypeResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

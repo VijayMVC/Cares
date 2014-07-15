@@ -224,11 +224,15 @@
     <Compile Include="Areas\Api\Controllers\ProductBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessPartnerController.cs" />
     <Compile Include="Areas\Api\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Api\Controllers\TarrifTypeBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\TarrifTypeController.cs" />
     <Compile Include="Areas\BusinessPartner\BusinessPartnerAreaRegistration.cs" />
-    <Compile Include="Areas\BusinessPartner\Controllers\HomeController.cs" />
+    <Compile Include="Areas\BusinessPartner\Controllers\HomeController.cs" />   
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
     <Compile Include="Areas\Product\Controllers\HomeController.cs" />
     <Compile Include="Areas\Product\ProductAreaRegistration.cs" />
+    <Compile Include="Areas\TarrifType\TarrifTypeAreaRegistration.cs" />
+    <Compile Include="Areas\TarrifType\Controllers\TarrifController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -250,12 +254,14 @@
     <Compile Include="ModelMappers\BusinessPartnerResponseMapper.cs" />
     <Compile Include="ModelMappers\ProductResponseMapper.cs" />
     <Compile Include="ModelMappers\ProductMapper.cs" />
+    <Compile Include="ModelMappers\TarrifTypeMapper.cs" />
     <Compile Include="Models\BusinessPartner.cs" />
     <Compile Include="Models\BusinessPartnerResponse.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductResponse.cs" />
+    <Compile Include="Models\TarrifType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Shared\Common.ar.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -295,6 +301,11 @@
     <Content Include="Areas\Product\Scripts\product.model.js" />
     <Content Include="Areas\Product\Scripts\product.view.js" />
     <Content Include="Areas\Product\Scripts\product.viewModel.js" />
+    <Content Include="Areas\TarrifType\Scripts\tarrifType.dataservice.js" />
+    <Content Include="Areas\TarrifType\Scripts\tarrifType.model.js" />
+    <Content Include="Areas\TarrifType\Scripts\tarrifType.view.js" />
+    <Content Include="Areas\TarrifType\Scripts\tarrifType.viewModel.js" />
+    <Content Include="Areas\TarrifType\Scripts\tarrifTypeWithKoMapping.model.js" />
     <Content Include="asadtest.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -732,6 +743,10 @@
     <Content Include="Areas\Common\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Common\Views\Shared\_Pager.cshtml" />
     <Content Include="Areas\Product\Views\Home\_ProductEditor.cshtml" />
+    <Content Include="Areas\TarrifType\Views\Tarrif\Index.cshtml" />
+    <Content Include="Areas\TarrifType\Views\web.config" />
+    <Content Include="Areas\TarrifType\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\TarrifType\Views\_ViewStart.cshtml" />
     <Content Include="Areas\BusinessPartner\Views\web.config" />
     <Content Include="Areas\BusinessPartner\Views\_ViewStart.cshtml" />
     <Content Include="Areas\BusinessPartner\Views\Shared\_Layout.cshtml" />
@@ -875,6 +890,7 @@
     <Folder Include="Areas\Common\Controllers\" />
     <Folder Include="Areas\Common\Models\" />
     <Folder Include="Areas\Product\Models\" />
+    <Folder Include="Areas\TarrifType\Models\" />
     <Folder Include="Migrations\" />
     <Folder Include="Resources\Employees\" />
     <Folder Include="ViewModels\Employees\" />
@@ -941,7 +957,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>43063</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:43063/</IISUrl>
+          <IISUrl>http://localhost:43053/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
