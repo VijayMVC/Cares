@@ -121,6 +121,7 @@
     <Compile Include="Repositories\BusinessSegmentRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\CompanyRepository.cs" />
+    <Compile Include="Repositories\FleetPoolRepository.cs" />
     <Compile Include="Repositories\MenuRightRepository.cs" />
     <Compile Include="Repositories\DepartmentRepository.cs" />
     <Compile Include="Repositories\EmployeeRepository.cs" />

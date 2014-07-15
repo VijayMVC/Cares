@@ -1,10 +1,12 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
-namespace Models.DomainModels
+namespace Cares.Web.Models
 {
     /// <summary>
-    /// FleetPool Domail Model
+    /// FleetPool Model
     /// </summary>
     public class FleetPool
     {
@@ -20,17 +22,14 @@ namespace Models.DomainModels
         /// <summary>
         /// FleetPool Code
         /// </summary>
-        [StringLength(100)]
         public string FleetPoolCode { get; set; }
         /// <summary>
         /// FleetPool Name
         /// </summary>
-        [StringLength(255)]
         public string FleetPoolName { get; set; }
         /// <summary>
         /// FleetPool Description
         /// </summary>
-        [StringLength(500)]
         public string FleetPoolDescription { get; set; }
         /// <summary>
         /// Is FleetPool Active
@@ -63,7 +62,6 @@ namespace Models.DomainModels
         /// <summary>
         /// FleetPool Record Created By
         /// </summary>
-        [StringLength(100)]
         public string RecCreatedBy { get; set; }
         /// <summary>
         /// FleetPool Record Last Updated Date
@@ -72,7 +70,6 @@ namespace Models.DomainModels
         /// <summary>
         /// FleetPool Last Updated By
         /// </summary>
-        [StringLength(100)]
         public string RecLastUpdatedBy { get; set; }
         /// <summary>
         /// FleetPool Row Version

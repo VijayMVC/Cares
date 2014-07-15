@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Models.DomainModels;
 namespace Models.ResponseModels
 {
@@ -20,7 +16,7 @@ namespace Models.ResponseModels
         }
 
         /// <summary>
-        /// Products
+        /// Employees
         /// </summary>
         public IEnumerable<Employee> Employees { get; set; }
 

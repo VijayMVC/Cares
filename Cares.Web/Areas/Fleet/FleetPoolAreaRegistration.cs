@@ -1,22 +1,22 @@
 ﻿using System.Web.Mvc;
 
-namespace Cares.Web.Areas.FleetPool
+namespace Cares.Web.Areas.Fleet
 {
-    public class FleetPoolAreaRegistration : AreaRegistration 
+    public class FleetAreaRegistration : AreaRegistration 
     {
         public override string AreaName 
         {
             get 
             {
-                return "FleetPool";
+                return "Fleet";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
-                "FleetPool_default",
-                "FleetPool/{controller}/{action}/{id}",
+                "_Fleet_default",
+                "Fleet/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }

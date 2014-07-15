@@ -50,6 +50,7 @@
     <Compile Include="IServices\IDepartmentService.cs" />
     <Compile Include="IServices\IEmployeeService.cs" />
     <Compile Include="IServices\ICategoryService.cs" />
+    <Compile Include="IServices\IFleetPoolService.cs" />
     <Compile Include="IServices\ILogger.cs" />
     <Compile Include="IServices\IMenuRightService.cs" />
     <Compile Include="IServices\IProductService.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="Repository\IBusinessSegmentRepository.cs" />
     <Compile Include="Repository\ICategoryRepository.cs" />
     <Compile Include="Repository\ICompanyRepository.cs" />
+    <Compile Include="Repository\IFleetPoolRepository.cs" />
     <Compile Include="Repository\IMenuRightRepository.cs" />
     <Compile Include="Repository\IDepartmentRepository.cs" />
     <Compile Include="Repository\IEmployeeRepository.cs" />

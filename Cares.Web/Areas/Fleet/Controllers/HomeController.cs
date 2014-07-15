@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Cares.Web.Areas.FleetPool.Controllers
+namespace Cares.Web.Areas.Fleet.Controllers
 {
     public class HomeController : Controller
     {

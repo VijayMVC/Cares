@@ -220,11 +220,12 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
+    <Compile Include="Areas\Api\Controllers\FleetPoolController.cs" />
     <Compile Include="Areas\Api\Controllers\ProductBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\ProductController.cs" />
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
-    <Compile Include="Areas\FleetPool\Controllers\HomeController.cs" />
-    <Compile Include="Areas\FleetPool\FleetPoolAreaRegistration.cs" />
+    <Compile Include="Areas\Fleet\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Fleet\FleetPoolAreaRegistration.cs" />
     <Compile Include="Areas\Product\Controllers\HomeController.cs" />
     <Compile Include="Areas\Product\ProductAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -245,10 +246,13 @@
     <Compile Include="Helper\CultureHelper.cs" />
     <Compile Include="ModelMappers\CategoryMapper.cs" />
     <Compile Include="ModelMappers\DepartmentMapper.cs" />
+    <Compile Include="ModelMappers\FleetPoolMapper.cs" />
     <Compile Include="ModelMappers\ProductResponseMapper.cs" />
     <Compile Include="ModelMappers\ProductMapper.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\FleetPool.cs" />
+    <Compile Include="Models\FleetPoolResponse.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -281,6 +285,10 @@
     <Content Include="Areas\Common\Scripts\confirmation.view.js" />
     <Content Include="Areas\Common\Scripts\confirmation.viewModel.js" />
     <Content Include="Areas\Common\Scripts\pagination.js" />
+    <Content Include="Areas\Fleet\Scripts\fleetPool.viewModel.js" />
+    <Content Include="Areas\Fleet\Scripts\fleetPool.model.js" />
+    <Content Include="Areas\Fleet\Scripts\fleetPool.view.js" />
+    <Content Include="Areas\Fleet\Scripts\fleetPoolWithKoMapping.model.js" />
     <Content Include="Areas\Product\Scripts\product.dataservice.js" />
     <Content Include="Areas\Product\Scripts\productWithKoMapping.model.js" />
     <Content Include="Areas\Product\Scripts\product.model.js" />
@@ -723,7 +731,11 @@
     <Content Include="Areas\Common\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Common\Views\Shared\_Pager.cshtml" />
     <Content Include="Areas\Product\Views\Home\_ProductEditor.cshtml" />
-    <Content Include="Areas\FleetPool\Views\web.config" />
+    <Content Include="Areas\Fleet\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Fleet\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Fleet\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Fleet\Views\web.config" />
+    <Content Include="Areas\Fleet\Scripts\fleetPool.dataservice.js" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
@@ -857,12 +869,11 @@
   <ItemGroup>
     <Folder Include="App_Data\ProfileImages\" />
     <Folder Include="Areas\Api\Models\" />
+    <Folder Include="Areas\Api\Views\FleetPool\" />
     <Folder Include="Areas\Api\Views\Shared\" />
     <Folder Include="Areas\Common\Controllers\" />
     <Folder Include="Areas\Common\Models\" />
-    <Folder Include="Areas\FleetPool\Models\" />
-    <Folder Include="Areas\FleetPool\Views\Home\" />
-    <Folder Include="Areas\FleetPool\Views\Shared\" />
+    <Folder Include="Areas\Fleet\Models\" />
     <Folder Include="Areas\Product\Models\" />
     <Folder Include="Migrations\" />
     <Folder Include="Resources\Employees\" />
@@ -930,7 +941,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>43063</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:43063/</IISUrl>
+          <IISUrl>http://localhost:43065/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

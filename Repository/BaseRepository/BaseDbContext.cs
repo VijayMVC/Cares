@@ -91,6 +91,10 @@ namespace Repository.BaseRepository
         /// Organization Groups DB Set
         /// </summary>
         public DbSet<OrgGroup> OrgGroups { get; set; }
+        /// <summary>
+        /// FleetPool DbSet
+        /// </summary>
+        public DbSet<FleetPool> FleetPools { get; set; }
 
         #endregion
     }

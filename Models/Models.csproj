@@ -123,6 +123,7 @@
     <Compile Include="RequestModels\GetPagedListRequest.cs" />
     <Compile Include="RequestModels\ProductSearchRequest.cs" />
     <Compile Include="ResponseModels\EmployeeResponse.cs" />
+    <Compile Include="ResponseModels\FleetPoolResponse.cs" />
     <Compile Include="ResponseModels\ProductResponse.cs" />
   </ItemGroup>
   <ItemGroup>

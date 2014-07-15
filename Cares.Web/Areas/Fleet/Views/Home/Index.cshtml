@@ -1,0 +1,109 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row" id="rootBinding">
+    <div class="row searchFilterSection">
+        <div class="well">
+            <form class="form-horizontal" data-bind="submit: search">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <input type="text" class="form-control" placeholder="<Fleet Pool Code>" data-bind="value: searchFilter" />
+                    </div>
+                    <div class="col-xs-3">
+                        <input type="text" class="form-control" placeholder="<Fleet Pool Name>" data-bind="value: searchFilter" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3">
+                        <select class="form-control" data-bind="options: $root.categories, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Country>', value: countryFilter"></select>
+                    </div>
+                    <div class="col-xs-3">
+                        <select class="form-control" data-bind="options: $root.categories, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Region>', value: regionFilter"></select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3">
+                        <select class="form-control" data-bind="options: $root.categories, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Company>', value: countryFilter"></select>
+                    </div>
+                    <div class="col-xs-3">
+                        <select class="form-control" data-bind="options: $root.categories, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Department>', value: regionFilter"></select>
+                    </div>
+                    <div class="col-xs-3">
+                        <select class="form-control" data-bind="options: $root.categories, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Operation>', value: regionFilter"></select>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-info" data-bind="click: search">Reset</button>
+                <button type="submit" class="btn btn-success" data-bind="click: search">Search</button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="row searchFilterResultSection" data-bind="visible: !isProductEditorVisible()">
+        <div class="well">
+            <table id="resultTable" class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th> <span id="1">Fleet Pool Code<span class="icon-up"></span></span></th>
+                        <th> <span id="2">Fleet Pool Name<span></span></span></th>
+                        <th> <span id="3">Description<span></span></span></th>
+                        <th> <span id="4">Company<span></span></span></th>
+                        <th> <span id="5">Operation</span></th>
+                        <th> <span id="6">Country<span></span></span></th>
+                        <th> <span id="7">Region<span></span></span></th>
+                        <th> <span id="8">-<span></span></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- ko template: { name: templateToUse , foreach: products } -->
+                    <!-- /ko -->
+                </tbody>
+            </table>
+            @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
+        </div>
+    </div>
+    
+    <div class="row addEditSection" data-bind="visible: !isProductEditorVisible()">
+        <div class="well">
+            <form class="form-horizontal" data-bind="submit: search">
+                <button type="button" class="btn btn-primary" data-bind="click: search">Add</button>
+                <button type="submit" class="btn btn-warning" data-bind="click: search">Edit</button>
+                <div class="row">
+                    <div class="col-xs-3">
+                        <input type="text" class="form-control" placeholder="<Fleet Pool Code>" data-bind="value: searchFilter" />
+                    </div>
+                    <div class="col-xs-3">
+                        <input type="text" class="form-control" placeholder="<Fleet Pool Name>" data-bind="value: searchFilter" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3">
+                        <select class="form-control" data-bind="options: $root.categories, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Country>', value: countryFilter"></select>
+                    </div>
+                    <div class="col-xs-3">
+                        <select class="form-control" data-bind="options: $root.categories, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Region>', value: regionFilter"></select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3">
+                        <select class="form-control" data-bind="options: $root.categories, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Company>', value: countryFilter"></select>
+                    </div>
+                    <div class="col-xs-3">
+                        <select class="form-control" data-bind="options: $root.categories, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Department>', value: regionFilter"></select>
+                    </div>
+                    <div class="col-xs-3">
+                        <select class="form-control" data-bind="options: $root.categories, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Operation>', value: regionFilter"></select>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section inlinescripts
+{
+    <script type="text/javascript">
+        require(["Fleet/fleetPool.view", "common/confirmation.view"]);
+</script>
+
+}

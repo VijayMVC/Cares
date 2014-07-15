@@ -4,24 +4,25 @@
 
     // Product entity - Using Knockout Mapping
     // ReSharper disable InconsistentNaming
-    Product = function (data) {
+    FleetPool = function (data) {
         // ReSharper restore InconsistentNaming
         var // Reference to this object
-            self = {},
-            // 
+            self = {}
+            ,
+             
             mapping = {
                 // customize the creation of the name property so that it provides validation
-                Name: {
+                FleetPoolCode: {
                     create: function (options) {
                         return ko.observable(options.data).extend({ required: true });
                     }
                 },
-                Price: {
+                FleetPoolName: {
                     create: function (options) {
                         return ko.observable(options.data).extend({ required: true });
                     }
                 },
-                CategoryId: {
+                FleetPoolDescription: {
                     create: function (options) {
                         return ko.observable(options.data).extend({ required: true });
                     }
