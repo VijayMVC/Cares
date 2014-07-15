@@ -10,7 +10,7 @@
             "businessPartner": "/Areas/BusinessPartner/Scripts",
             "product": "/Areas/Product/Scripts",
             "common": "/Areas/Common/Scripts",
-            "Fleet": "/Areas/Fleet/Scripts"
+            "Fleet": "/Areas/Fleet/Scripts",
             "tarrifType": "/Areas/TarrifType/Scripts"
         }
 

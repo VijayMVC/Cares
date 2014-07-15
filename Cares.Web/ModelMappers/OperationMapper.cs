@@ -1,8 +1,11 @@
-﻿
-using Cares.Web.Models;
+﻿using ApiModel = Cares.Web.Models;
+using DomainModel = Models.DomainModels;
 
 namespace Cares.Web.ModelMappers
 {
+    /// <summary>
+    /// Operation Mapper
+    /// </summary>
     public static class OperationMapper
     {
         #region Public
@@ -10,9 +13,9 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static ApiModel.Operation CreateFrom(this Operation source)
+        public static ApiModel.Operation CreateFrom(this DomainModel.Operation source)
             {
-                return new ApiModel.Operation()
+                return new ApiModel.Operation
                 {
                     OperationId = source.OperationId,
                     OperationCode = source.OperationCode,
@@ -24,9 +27,9 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create entity from web model
         /// </summary>
-        public static Operation CreateFrom(this ApiModel.Operation source)
+        public static DomainModel.Operation CreateFrom(this ApiModel.Operation source)
         {
-            return new Operation()
+            return new DomainModel.Operation
             {
                 OperationId = source.OperationId,
                 OperationCode = source.OperationCode,

@@ -260,8 +260,7 @@
     <Compile Include="ModelMappers\OperationMapper.cs" />
     <Compile Include="ModelMappers\CompanyMapper.cs" />
     <Compile Include="ModelMappers\DepartmentMapper.cs" />
-    <Compile Include="ModelMappers\MeasurementUnitMapper.cs" />
-    <Compile Include="ModelMappers\OperationMapper.cs" />
+    <Compile Include="ModelMappers\MeasurementUnitMapper.cs" />   
     <Compile Include="ModelMappers\ProductResponseMapper.cs" />
     <Compile Include="ModelMappers\ProductMapper.cs" />
     <Compile Include="ModelMappers\RegionMapper.cs" />
