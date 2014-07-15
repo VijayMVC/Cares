@@ -57,9 +57,9 @@ namespace Repository.Repositories
             int fromRow = (productSearchRequest.PageNo - 1) * productSearchRequest.PageSize;
             int toRow = productSearchRequest.PageSize;
 
-            Expression<Func<Product, bool>> query = 
-                s => (!productSearchRequest.CategoryId.HasValue || s.CategoryId == productSearchRequest.CategoryId) &&
-                     (string.IsNullOrEmpty(productSearchRequest.SearchString) ||s.Name.Contains(productSearchRequest.SearchString));
+            Expression<Func<Product, bool>> query =
+                //(!productSearchRequest.CategoryId || s.CategoryId == productSearchRequest.CategoryId) &&
+                s => (string.IsNullOrEmpty(productSearchRequest.SearchString) ||s.Name.Contains(productSearchRequest.SearchString));
 
             IEnumerable<Product> products = productSearchRequest.IsAsc ? DbSet.Where(query).Include("Category")
                                             .OrderBy(productClause[productSearchRequest.ProductOrderBy]).Skip(fromRow).Take(toRow).ToList()

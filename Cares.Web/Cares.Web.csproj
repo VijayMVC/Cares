@@ -227,7 +227,7 @@
     <Compile Include="Areas\Api\Controllers\TarrifTypeBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\TarrifTypeController.cs" />
     <Compile Include="Areas\BusinessPartner\BusinessPartnerAreaRegistration.cs" />
-    <Compile Include="Areas\BusinessPartner\Controllers\HomeController.cs" />   
+    <Compile Include="Areas\BusinessPartner\Controllers\HomeController.cs" />
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
     <Compile Include="Areas\Product\Controllers\HomeController.cs" />
     <Compile Include="Areas\Product\ProductAreaRegistration.cs" />
@@ -255,7 +255,8 @@
     <Compile Include="ModelMappers\ProductResponseMapper.cs" />
     <Compile Include="ModelMappers\ProductMapper.cs" />
     <Compile Include="ModelMappers\TarrifTypeMapper.cs" />
-    <Compile Include="Models\BusinessPartner.cs" />
+    <Compile Include="Models\BusinessPartnerDetail.cs" />
+    <Compile Include="Models\BusinessPartnerListView.cs" />
     <Compile Include="Models\BusinessPartnerResponse.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Department.cs" />

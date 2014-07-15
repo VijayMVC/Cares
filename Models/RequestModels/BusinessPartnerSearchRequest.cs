@@ -9,6 +9,10 @@ namespace Models.RequestModels
     public class BusinessPartnerSearchRequest : GetPagedListRequest
     {
         /// <summary>
+        /// Filter Option (Individual/Company), 1 for Individual , 2 for Company
+        /// </summary>
+        public bool? SelectOption { get; set; }
+        /// <summary>
         /// BusinessPartner Order By
         /// </summary>
         public BusinessPartnerByColumn BusinessPartnerOrderBy

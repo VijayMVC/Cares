@@ -8,13 +8,18 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create  web api model from domain model
         /// </summary>
-        public static Models.BusinessPartner CreateFrom(this BusinessPartner source)
+        public static Models.BusinessPartnerListView CreateFrom(this BusinessPartner source)
         {
-            return new Models.BusinessPartner
+            return new Models.BusinessPartnerListView
             {
                 BusinessPartnerId = source.BusinessPartnerId,
                 BusinessPartnerName = source.BusinessPartnerName,
-                BusinessPartnerDesciption = source.BusinessPartnerDesciption
+                BusinessPartnerDesciption = source.BusinessPartnerDesciption,
+                IsIndividual = source.IsIndividual,          
+                BPRatingTypeCode = source.BPRatingType.BpRatingTypeCode,
+                BPRatingTypeName = source.BPRatingType.BpRatingTypeName,
+                CompanyCode = source.Company.CompanyCode,
+                CompanyName = source.Company.CompanyName
             };
            
         }
@@ -22,7 +27,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create domain model from  web api model
         /// </summary>
-        public static BusinessPartner CreateFrom(this Models.BusinessPartner source)
+        public static BusinessPartner CreateFrom(this Models.BusinessPartnerListView source)
         {
             return new BusinessPartner
             {
