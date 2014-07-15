@@ -1,5 +1,5 @@
-﻿using ApiModel = Cares.Web.Models;
-using Models.DomainModels;
+﻿
+using Cares.Web.Models;
 
 namespace Cares.Web.ModelMappers
 {

@@ -1,13 +1,9 @@
 ﻿
 using System.Collections.Generic;
-using Models.DomainModels;
 
-namespace Models.ResponseModels
+namespace Cares.Web.Models
 {
-    /// <summary>
-    /// Tarrif Type Base Response
-    /// </summary>
-    public sealed class TarrifTypeBaseResponse
+    public class TarrifTypeBaseResponse
     {
         #region Private
         #endregion
@@ -17,11 +13,11 @@ namespace Models.ResponseModels
         /// </summary>
         public TarrifTypeBaseResponse()
         {
-           Companies = new List<Company>();
-            MeasurementUnits = new List<MeasurementUnit>();
-            Departments = new List<Department>();
-            Operations = new List<Operation>();
-            TarrifTypes = new List<TarrifType>();
+            ResponseCompanies = new List<Company>();
+            ResponseMeasurementUnits = new List<MeasurementUnit>();
+            ResponseDepartments = new List<Department>();
+            ResponseOperations = new List<Operation>();
+            ResponseTarrifTypes = new List<TarrifType>();
         }
         #endregion
         #region Protected
@@ -30,23 +26,23 @@ namespace Models.ResponseModels
         /// <summary>
         /// Companies
         /// </summary>
-        public IEnumerable<Company> Companies { get; set; }
+        public IEnumerable<Company> ResponseCompanies { get; set; }
         /// <summary>
         /// Measurement Unit 
         /// </summary>
-        public IEnumerable<MeasurementUnit> MeasurementUnits { get; set; }
+        public IEnumerable<MeasurementUnit> ResponseMeasurementUnits { get; set; }
         /// <summary>
         /// Departments 
         /// </summary>
-        public IEnumerable<Department> Departments { get; set; }
+        public IEnumerable<Department> ResponseDepartments { get; set; }
         /// <summary>
         /// Operations 
         /// </summary>
-        public IEnumerable<Operation> Operations { get; set; }
+        public IEnumerable<Operation> ResponseOperations { get; set; }
         /// <summary>
         /// List of Tarriff Types
         /// </summary>
-        public IEnumerable<TarrifType> TarrifTypes { get; set; }
+        public IEnumerable<TarrifType> ResponseTarrifTypes { get; set; }
         /// <summary>
         /// Total Count
         /// </summary>

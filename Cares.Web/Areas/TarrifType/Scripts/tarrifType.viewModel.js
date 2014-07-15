@@ -79,9 +79,10 @@ define("tarrifType/tarrifType.viewModel",
                     // Map Tarrif Types - Server to Client
                     mapTarrifTypes = function (data) {
                         var tarrifTypeList = [];
-                        _.each(data.TarrifTypes, function (item) {
-                            var tarrifType = new model.TarrifType(item);
-                            tarrifTypeList.push(tarrifType);
+                        _.each(data.ServerTarrifTypes, function (item) {
+                           var tarrifType = new model.TarrifType(item);
+                           // tarrifTypeList.push(tarrifType);
+                           // alert(item);
                         });
 
                         ko.utils.arrayPushAll(tarrifTypes(), tarrifTypeList);
@@ -93,19 +94,19 @@ define("tarrifType/tarrifType.viewModel",
                             success: function (data) {
                                 //Company array
                                 companies.removeAll();
-                                ko.utils.arrayPushAll(companies(), data);
+                                ko.utils.arrayPushAll(companies(), data.ResponseCompanies);
                                 companies.valueHasMutated();
                                 //Measurement Units array
                                 measurementUnits.removeAll();
-                                ko.utils.arrayPushAll(measurementUnits(), data);
+                                ko.utils.arrayPushAll(measurementUnits(), data.ResponseMeasurementUnits);
                                 measurementUnits.valueHasMutated();
                                 //Departments array
                                 departments.removeAll();
-                                ko.utils.arrayPushAll(departments(), data);
+                                ko.utils.arrayPushAll(departments(), data.ResponseDepartments);
                                 departments.valueHasMutated();
                                 //Operations Array
                                 operations.removeAll();
-                                ko.utils.arrayPushAll(operations(), data);
+                                ko.utils.arrayPushAll(operations(), data.ResponseOperations);
                                 operations.valueHasMutated();
                             },
                             error: function () {
@@ -118,16 +119,13 @@ define("tarrifType/tarrifType.viewModel",
                         pager().reset();
                         getTarrifType();
                     },
-                    // Get t=Tarrif Types
+                    // Get Tarrif Types
                     getTarrifType = function () {
                         isLoadingTarrifTypes(true);
                         dataservice.getTarrifType({
-                            //SearchString: searchFilter(),
-                           // CategoryId: categoryFilter(),
-                           // PageSize: pager().pageSize(),
-                           // PageNo: pager().currentPage(),
-                           // SortBy: sortOn(),
-                          //  IsAsc: sortIsAsc()
+                            TarrifTypeCode: tarrifTypeCodeFilter(), CompanyId: companyFilter(), MeasurementUnitId: measurementUnitFilter(),
+                            TarrifTypeName: tarrifTypeNameFilter(),DepartmentId:departmentFilter(),OperationId:operationFilter(), PageSize: pager().pageSize(),
+                            PageNo: pager().currentPage(), SortBy: sortOn(), IsAsc: sortIsAsc()
                         }, {
                             success: function (data) {
                                 pager().totalCount(data.TotalCount);

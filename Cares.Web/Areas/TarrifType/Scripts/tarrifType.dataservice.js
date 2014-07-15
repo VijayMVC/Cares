@@ -20,7 +20,7 @@ define("tarrifType/tarrifType.dataservice", function () {
                     });
 
                     // Define request to get tarrif type base 
-                    amplify.request.define('getTarrifTypes', 'ajax', {
+                    amplify.request.define('getTarrifType', 'ajax', {
                         url: '/Api/TarrifType',
                         dataType: 'json',
                         type: 'GET'

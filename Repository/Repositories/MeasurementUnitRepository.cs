@@ -7,6 +7,9 @@ using Repository.BaseRepository;
 
 namespace Repository.Repositories
 {
+    /// <summary>
+    /// Measurement Unit Repository
+    /// </summary>
     public sealed class MeasurementUnitRepository : BaseRepository<MeasurementUnit>, IMeasurementUnit
     {
         #region Constructor
@@ -30,7 +33,6 @@ namespace Repository.Repositories
         }
 
         #endregion
-
         #region Public
         /// <summary>
         /// Get All Measurement Units for User Domain Key

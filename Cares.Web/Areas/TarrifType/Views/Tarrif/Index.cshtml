@@ -13,15 +13,15 @@
                     Tarrif Type Name  <input type="text" class="form-control" placeholder="<Tarrif Type Name >" data-bind="value: tarrifTypeNameFilter" />
                 </div>
                 <div class="col-xs-3">
-                    Company <select class="form-control" data-bind="options: $root.companies, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Company>', value: companyFilter"></select>
+                    Company <select class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyName', optionsValue: 'CompanyId', optionsCaption: '<Company>', value: companyFilter"></select>
                 </div>
                 <div class="col-xs-3">
-                    Measurement Unit <select class="form-control" data-bind="options: $root.companies, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Measurement Unit>', value: measurementUnitFilter"></select>
+                    Measurement Unit <select class="form-control" data-bind="options: $root.measurementUnits, optionsText: 'MeasurementUnitName', optionsValue: 'MeasurementUnitId', optionsCaption: '<Measurement Unit>', value: measurementUnitFilter"></select>
                 </div>
                 <div class="col-xs-3">
-                    Department <select class="form-control" data-bind="options: $root.companies, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Department>', value: departmentFilter"></select>
+                    Department <select class="form-control" data-bind="options: $root.departments, optionsText: 'DepartmentName', optionsValue: 'DepartmentId', optionsCaption: '<Department>', value: departmentFilter"></select>
                 </div> <div class="col-xs-3">
-                    Operation <select class="form-control" data-bind="options: $root.companies, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Operation>', value: operationFilter"></select>
+                    Operation <select class="form-control" data-bind="options: $root.operations, optionsText: 'OperationName', optionsValue: 'OperationId', optionsCaption: '<Operation>', value: operationFilter"></select>
                 </div>
                 <div class="btn-group" id="createButton">
                     <button type="button" class="btn btn-default" >Create New</button>

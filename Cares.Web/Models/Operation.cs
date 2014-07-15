@@ -1,10 +1,9 @@
 ﻿using System;
-using Cares.Web.Models;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Cares.Web.Models
-{/// <summary>
-    /// Operation Model
-    /// </summary>
+{
     public class Operation
     {
         #region Persisted Properties
@@ -19,6 +18,7 @@ namespace Cares.Web.Models
             /// <summary>
             /// Operation Name
             /// </summary>
+        [StringLength(255)]
             public string OperationName { get; set; }
         #endregion
     }

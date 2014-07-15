@@ -47,13 +47,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IServices\ICompanyService.cs" />
     <Compile Include="IServices\IDepartmentService.cs" />
     <Compile Include="IServices\IEmployeeService.cs" />
     <Compile Include="IServices\ICategoryService.cs" />
     <Compile Include="IServices\IFleetPoolService.cs" />
     <Compile Include="IServices\ILogger.cs" />
+    <Compile Include="IServices\IMeasurementUnitService.cs" />
     <Compile Include="IServices\IMenuRightService.cs" />
     <Compile Include="IServices\IBusinessPartnerService.cs" />
+    <Compile Include="IServices\IOperationService.cs" />
     <Compile Include="IServices\IProductService.cs" />
     <Compile Include="IServices\ITarrifTypeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
