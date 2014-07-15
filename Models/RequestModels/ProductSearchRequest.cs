@@ -5,7 +5,7 @@ namespace Models.RequestModels
 
     public class ProductSearchRequest : GetPagedListRequest
     {
-        public string CategoryId { get; set; }
+        public int? CategoryId { get; set; }
         
         /// <summary>
         /// Product Order By
