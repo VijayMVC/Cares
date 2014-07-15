@@ -83,5 +83,16 @@ namespace Models.DomainModels
         /// </summary>
         public long UserDomainKey { get; set; }
         #endregion
+
+        #region Reference Properties
+            /// <summary>
+            /// Operation
+            /// </summary>
+            public virtual Operation Operation { get; set; }
+            /// <summary>
+            /// Region
+            /// </summary>
+            public virtual Region Region { get; set; }
+        #endregion
     }
 }

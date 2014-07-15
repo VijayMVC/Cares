@@ -228,7 +228,7 @@
     <Compile Include="Areas\Api\Controllers\TarrifTypeBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\TarrifTypeController.cs" />
     <Compile Include="Areas\BusinessPartner\BusinessPartnerAreaRegistration.cs" />
-    <Compile Include="Areas\BusinessPartner\Controllers\HomeController.cs" />   
+    <Compile Include="Areas\BusinessPartner\Controllers\HomeController.cs" />
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
     <Compile Include="Areas\Fleet\Controllers\HomeController.cs" />
     <Compile Include="Areas\Fleet\FleetPoolAreaRegistration.cs" />
@@ -254,8 +254,6 @@
     <Compile Include="Helper\CultureHelper.cs" />
     <Compile Include="ModelMappers\CategoryMapper.cs" />
     <Compile Include="ModelMappers\BusinessPartnerMapper.cs" />
-    <Compile Include="ModelMappers\DepartmentMapper.cs" />
-    <Compile Include="ModelMappers\DepartmentMapper.cs" />
     <Compile Include="ModelMappers\FleetPoolMapper.cs" />
     <Compile Include="ModelMappers\BusinessPartnerResponseMapper.cs" />
     <Compile Include="ModelMappers\ProductResponseMapper.cs" />
@@ -264,11 +262,14 @@
     <Compile Include="Models\BusinessPartner.cs" />
     <Compile Include="Models\BusinessPartnerResponse.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\FleetPool.cs" />
     <Compile Include="Models\FleetPoolResponse.cs" />
+    <Compile Include="Models\Operation.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductResponse.cs" />
+    <Compile Include="Models\Region.cs" />
     <Compile Include="Models\TarrifType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Shared\Common.ar.Designer.cs">

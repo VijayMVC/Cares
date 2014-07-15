@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using Cares.Web.Models;
 
 namespace Cares.Web.Models
 {
@@ -79,6 +77,17 @@ namespace Cares.Web.Models
         /// FleetPool User Domain Key
         /// </summary>
         public long UserDomainKey { get; set; }
+        #endregion
+
+        #region Reference Properties
+        /// <summary>
+        /// Operation
+        /// </summary>
+        public virtual Operation Operation { get; set; }
+        /// <summary>
+        /// Region
+        /// </summary>
+        public virtual Region Region { get; set; }
         #endregion
     }
 }

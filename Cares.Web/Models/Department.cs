@@ -1,5 +1,8 @@
 ﻿namespace Cares.Web.Models
 {
+    /// <summary>
+    /// Department Model
+    /// </summary>
     public class Department
     {
         /// <summary>

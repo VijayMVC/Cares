@@ -22,16 +22,12 @@
         /// </summary>
         Company=4,
         /// <summary>
-        /// Operation Name
-        /// </summary>
-        Operation=5,
-        /// <summary>
         /// Country Name
         /// </summary>
-        Country=6,
+        Country=5,
         /// <summary>
         /// Region Name
         /// </summary>
-        Region=7
+        Region=6
     }
 }
