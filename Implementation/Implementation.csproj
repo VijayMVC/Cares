@@ -124,6 +124,7 @@
     <Compile Include="Services\BusinessPartnerService.cs" />
     <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Services\CompanyService.cs" />
+    <Compile Include="Services\FleetPoolService.cs" />
     <Compile Include="Services\LoggerService.cs" />
     <Compile Include="Services\MeasurementUnitService.cs" />
     <Compile Include="Services\MenuRightsService.cs" />

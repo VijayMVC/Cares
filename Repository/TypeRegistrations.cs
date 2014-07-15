@@ -15,8 +15,10 @@ namespace Repository
             unityContainer.RegisterType<ICategoryRepository, CategoryRepository>();
             unityContainer.RegisterType<IEmployeeRepository, EmployeeRepository>();
             unityContainer.RegisterType<IDepartmentRepository, DepartmentRepository>();
+            unityContainer.RegisterType<IFleetPoolRepository, FleetPoolRepository>();
             unityContainer.RegisterType<ITarrifTypeRepository, TarrifTypeRepository>();
             unityContainer.RegisterType<ICompanyRepository, CompanyRepository>();
+            unityContainer.RegisterType<IBusinessPartnerRepository, BusinessPartnerRepository>();
             unityContainer.RegisterType<IOperationRepository, OperationRepository>();
             unityContainer.RegisterType<IMeasurementUnit, MeasurementUnitRepository>();
             unityContainer.RegisterType<DbContext, BaseDbContext>(new HierarchicalLifetimeManager());

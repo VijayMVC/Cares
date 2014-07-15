@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Cares.Web.Models
 {
+    /// <summary>
+    /// Department Model
+    /// </summary>
     public class Department
     {
         #region Persisted Properties

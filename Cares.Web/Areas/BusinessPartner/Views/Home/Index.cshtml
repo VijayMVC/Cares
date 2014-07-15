@@ -15,11 +15,11 @@
                 <div class="btn-group" id="createButton">
                     <button type="button" class="btn btn-default" data-bind="click: createBusinessPartnerInForm">Create New</button>
                     @*<button class="btn dropdown-toggle" data-toggle="dropdown">
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#" data-bind="click: createProductInForm">Create Using Form</a></li>
-                    </ul>*@
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" data-bind="click: createProductInForm">Create Using Form</a></li>
+                        </ul>*@
                 </div>
                 <button type="submit" class="btn btn-success" data-bind="click: search">Search</button>
             </form>
@@ -32,8 +32,8 @@
                     <tr>
                         <th> <span id="1">Name<span class="icon-up"></span></span></th>
                         @*<th> <span id="2">Description<span></span></span></th>
-                        <th> <span id="3">Price<span></span></span></th>
-                        <th> <span id="4">Category<span></span></span></th>*@
+                            <th> <span id="3">Price<span></span></span></th>
+                            <th> <span id="4">Category<span></span></span></th>*@
                     </tr>
                 </thead>
                 <tbody>
@@ -51,7 +51,7 @@
     </script>
 
     <script id="editActionBusinessPartnerTemplate" type="text/html">
-        <a href="#" data-bind="click: $root.onEditBusinessPartnerInline" title="Edit Inline"><span class="glyphicon glyphicon-pencil"></span></a>
+        @*<a href="#" data-bind="click: $root.onEditBusinessPartnerInline" title="Edit Inline"><span class="glyphicon glyphicon-pencil"></span></a>*@
         <a href="#" data-bind="click: $root.onEditBusinessPartner" title="Edit in Form"><span class="glyphicon glyphicon-edit"></span></a>
     </script>
 
@@ -60,15 +60,15 @@
             <td class="col-md-2">
                 <input type="text" class="form-control" data-bind="value: name, validationTooltip: name" />
             </td>
-            <td class="col-md-2">
-                <input type="text" class="form-control" data-bind="value: description" />
-            </td>
-            <td class="col-md-2">
-                <input type="text" class="form-control" data-bind="value: price, validationTooltip: price" />
-            </td>
-            @*<td class="col-md-2">
-                <select class="form-control" data-bind="options: $root.categories, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Category>', value: categoryId, validationTooltip: categoryId"></select>
-            </td>*@
+          @*  <td class="col-md-2">
+        <input type="text" class="form-control" data-bind="value: description" />
+    </td>
+    <td class="col-md-2">
+        <input type="text" class="form-control" data-bind="value: price, validationTooltip: price" />
+    </td>
+    <td class="col-md-2">
+            <select class="form-control" data-bind="options: $root.categories, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Category>', value: categoryId, validationTooltip: categoryId"></select>
+        </td>*@
             <td><a href="#" data-bind="click: $root.onEditBusinessPartner" title="Edit in Form"><span class="glyphicon glyphicon-edit"></span></a></td>
             <td>
                 <!-- ko template: { name: 'deleteActionBusinessPartnerTemplate' } -->
@@ -81,8 +81,8 @@
         <tr data-bind="click: $root.selectBusinessPartner">
             <td data-bind="text: name"></td>
             @*<td data-bind="text: description"></td>
-            <td data-bind="text: price"></td>
-            <td data-bind="text: categoryName"></td>*@
+                <td data-bind="text: price"></td>
+                <td data-bind="text: categoryName"></td>*@
             <td>
                 <!-- ko template: { name: 'editActionBusinessPartnerTemplate' } -->
                 <!-- /ko -->
@@ -104,7 +104,7 @@
 @section inlinescripts
 {
     <script type="text/javascript">
-        require(["product/businessPartner.view", "common/confirmation.view"]);
+        require(["businessPartner/businessPartner.view", "common/confirmation.view"]);
     </script>
 }
 

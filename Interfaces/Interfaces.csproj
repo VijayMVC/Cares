@@ -51,6 +51,7 @@
     <Compile Include="IServices\IDepartmentService.cs" />
     <Compile Include="IServices\IEmployeeService.cs" />
     <Compile Include="IServices\ICategoryService.cs" />
+    <Compile Include="IServices\IFleetPoolService.cs" />
     <Compile Include="IServices\ILogger.cs" />
     <Compile Include="IServices\IMeasurementUnitService.cs" />
     <Compile Include="IServices\IMenuRightService.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Repository\IBusinessSegmentRepository.cs" />
     <Compile Include="Repository\ICategoryRepository.cs" />
     <Compile Include="Repository\ICompanyRepository.cs" />
+    <Compile Include="Repository\IFleetPoolRepository.cs" />
     <Compile Include="Repository\ICountryRepository.cs" />
     <Compile Include="Repository\IMeasurementUnit.cs" />
     <Compile Include="Repository\IMenuRightRepository.cs" />

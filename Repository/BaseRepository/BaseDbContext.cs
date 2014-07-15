@@ -120,8 +120,10 @@ namespace Repository.BaseRepository
         /// </summary>
         public DbSet<OrgGroup> OrgGroups { get; set; }
         /// <summary>
+        /// FleetPool DbSet
         /// Countries DB Set
         /// </summary>
+        public DbSet<FleetPool> FleetPools { get; set; }
         public DbSet<Country> Countries { get; set; }
         /// <summary>
         /// Department DB Set
