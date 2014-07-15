@@ -135,6 +135,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
@@ -226,7 +227,7 @@
     <Compile Include="Areas\Api\Controllers\TarrifTypeBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\TarrifTypeController.cs" />
     <Compile Include="Areas\BusinessPartner\BusinessPartnerAreaRegistration.cs" />
-    <Compile Include="Areas\BusinessPartner\Controllers\HomeController.cs" />   
+    <Compile Include="Areas\BusinessPartner\Controllers\HomeController.cs" />
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
     <Compile Include="Areas\Product\Controllers\HomeController.cs" />
     <Compile Include="Areas\Product\ProductAreaRegistration.cs" />
@@ -251,16 +252,26 @@
     <Compile Include="ModelMappers\CategoryMapper.cs" />
     <Compile Include="ModelMappers\BusinessPartnerMapper.cs" />
     <Compile Include="ModelMappers\BusinessPartnerResponseMapper.cs" />
+    <Compile Include="ModelMappers\CompanyMapper.cs" />
+    <Compile Include="ModelMappers\DepartmentMapper.cs" />
+    <Compile Include="ModelMappers\MeasurementUnitMapper.cs" />
+    <Compile Include="ModelMappers\OperationMapper.cs" />
     <Compile Include="ModelMappers\ProductResponseMapper.cs" />
     <Compile Include="ModelMappers\ProductMapper.cs" />
     <Compile Include="ModelMappers\TarrifTypeMapper.cs" />
+    <Compile Include="ModelMappers\TarrifTypeResponseMapper.cs" />
     <Compile Include="Models\BusinessPartner.cs" />
     <Compile Include="Models\BusinessPartnerResponse.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\MeasurementUnit.cs" />
+    <Compile Include="Models\Operation.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductResponse.cs" />
     <Compile Include="Models\TarrifType.cs" />
+    <Compile Include="Models\TarrifTypeBaseResponse.cs" />
+    <Compile Include="Models\TarrifTypeResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Shared\Common.ar.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -934,6 +945,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Product.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

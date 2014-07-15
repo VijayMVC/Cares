@@ -1,10 +1,9 @@
-﻿using System;
-using System.Net;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Http;
+using Cares.Web.ModelMappers;
+using Cares.Web.Models;
 using Interfaces.IServices;
-using Models.RequestModels;
-using Models.ResponseModels;
+
 
 namespace Cares.Web.Areas.Api.Controllers
 {
@@ -13,38 +12,43 @@ namespace Cares.Web.Areas.Api.Controllers
     /// </summary>
     public class TarrifTypeBaseController : ApiController
     {
-
         #region Private
-         private readonly ITarrifTypeService tarrifTypeService;
+        private readonly IDepartmentService departmentService;
+        private readonly ICompanyService companyService;
+        private readonly IMeasurementUnitService measurementUnitService;
+        private readonly IOperationService operation;
+        private readonly ITarrifTypeService tarrifTypeService;
         #endregion
         #region Constructors
-         /// <summary>
+        /// <summary>
         /// Constructor
         /// </summary>
-         public TarrifTypeBaseController(ITarrifTypeService tarrifTypeService)
+        public TarrifTypeBaseController(IOperationService operation, IDepartmentService departmentService, ICompanyService companyService,
+           IMeasurementUnitService measurementUnitService, ITarrifTypeService tarrifTypeService)
         {
-            if (tarrifTypeService == null)
-            {
-                throw new ArgumentNullException("tarrifTypeService");    
-            }
 
+            this.operation = operation;
+            this.departmentService = departmentService;
+            this.companyService = companyService;
+            this.measurementUnitService = measurementUnitService;
             this.tarrifTypeService = tarrifTypeService;
         }
         #endregion
         #region Public
-          // GET api/<controller>
-         public TarrifTypeBaseResponse Get(TarrifTypeRequest request)
+        // GET api/<controller>
+        public TarrifTypeBaseResponse Get()
         {
-            if (request == null || !ModelState.IsValid)
+            TarrifTypeBaseResponse tarrifTypeBaseResponse = new TarrifTypeBaseResponse()
             {
-                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
-            }
-
-            return tarrifTypeService.LoadAllTarrifTypes(request);
+                ResponseCompanies = companyService.LoadAll().AsEnumerable().Select(c => c.CreateFrom()),
+                ResponseMeasurementUnits = measurementUnitService.LoadAll().Select(m => m.CreateFrom()),
+                ResponseDepartments = departmentService.LoadAll().Select(d => d.CreateFrom()),
+                ResponseOperations = operation.LoadAll().Select(o => o.CreateFrom()),
+                ResponseTarrifTypes = tarrifTypeService.LoadAll().Select(t => t.CreateFrom())
+            };
+            
+            return tarrifTypeBaseResponse;
         }
         #endregion
-       
-
-     
     }
 }

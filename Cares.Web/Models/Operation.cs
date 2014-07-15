@@ -1,38 +1,33 @@
-﻿using System;
+﻿
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Cares.Web.Models
 {
-    public class Department
+    public class Operation
     {
         #region Persisted Properties
+        /// <summary>
+        /// Operation ID
+        /// </summary>
+        public int OperationId { get; set; }
+        /// <summary>
+        /// Operation Code
+        /// </summary>
+         public string OperationCode { get; set; }
+        /// <summary>
+        /// Operation Name
+        /// </summary>
+        [StringLength(255)]
+        public string OperationName { get; set; }
+        /// <summary>
+        /// Operation Description
+        /// </summary>
+         public string OperationDescription { get; set; }
         /// <summary>
         /// Department ID
         /// </summary>
         public int DepartmentId { get; set; }
-        /// <summary>
-        /// Department Code
-        /// </summary>
-        [StringLength(100)]
-        public string DepartmentCode { get; set; }
-        /// <summary>
-        /// Department Code
-        /// </summary>
-        [StringLength(255)]
-        public string DepartmentName { get; set; }
-        /// <summary>
-        /// Department Description
-        /// </summary>
-        [StringLength(500)]
-        public string DepartmentDescription { get; set; }
-        /// <summary>
-        /// Department Type ID
-        /// </summary>
-        public int DepartmentTypeId { get; set; }
-        /// <summary>
-        /// Company ID
-        /// </summary>
-        public int? CompanyId { get; set; }
         /// <summary>
         /// Is Active
         /// </summary>
@@ -56,8 +51,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100)]
-        public string RecCreatedBy { get; set; }
+          public string RecCreatedBy { get; set; }
         /// <summary>
         /// Record Last Updated Date
         /// </summary>
@@ -65,8 +59,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100)]
-        public string RecLastUpdatedBy { get; set; }
+         public string RecLastUpdatedBy { get; set; }
         /// <summary>
         /// User Domain Key
         /// </summary>
@@ -76,9 +69,9 @@ namespace Cares.Web.Models
 
         #region Reference Properties
         /// <summary>
-        /// Company
+        /// Department Reference
         /// </summary>
-        public virtual global::Models.DomainModels.Company Company { get; set; }
+        public Department Department { get; set; }
 
         #endregion
     }
