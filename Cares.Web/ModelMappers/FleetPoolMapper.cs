@@ -1,5 +1,5 @@
-﻿using Cares.Web.Models;
-
+﻿using ApiModel=Cares.Web.Models;
+using Models.DomainModels;
 namespace Cares.Web.ModelMappers
 {
     public static class FleetPoolMapper
@@ -9,21 +9,15 @@ namespace Cares.Web.ModelMappers
             /// <summary>
             ///  Create web model from entity
             /// </summary>
-            public static FleetPool CreateFrom(this global::Models.DomainModels.FleetPool source)
+            public static ApiModel.FleetPool CreateFrom(this FleetPool source)
             {
-                return new FleetPool
+                return new ApiModel.FleetPool
                 {
                     FleetPoolId = source.FleetPoolId,
                     FleetPoolCode = source.FleetPoolCode,
                     FleetPoolName = source.FleetPoolName,
-                    FleetPoolDescription = source.FleetPoolDescription,
-                    IsActive = source.IsActive,
-                    IsPrivate = source.IsPrivate,
-                    IsReadOnly = source.IsReadOnly,
-                    IsDeleted = source.IsDeleted,
-                    OperationId = source.OperationId,
-                    RegionId = source.RegionId,
-                    UserDomainKey = source.UserDomainKey
+                    Operation = source.Operation.CreateFrom(),
+                    Region = source.Region.CreateFrom()
                 };
             }
             #endregion
@@ -32,21 +26,15 @@ namespace Cares.Web.ModelMappers
             /// <summary>
             ///  Create entity from web model
             /// </summary>
-            public static global::Models.DomainModels.FleetPool CreateFrom(this FleetPool source)
+            public static FleetPool CreateFrom(this ApiModel.FleetPool source)
             {
-                return new global::Models.DomainModels.FleetPool
+                return new FleetPool
                 {
                     FleetPoolId = source.FleetPoolId,
                     FleetPoolCode = source.FleetPoolCode,
                     FleetPoolName = source.FleetPoolName,
-                    FleetPoolDescription = source.FleetPoolDescription,
-                    IsActive = source.IsActive,
-                    IsPrivate = source.IsPrivate,
-                    IsReadOnly = source.IsReadOnly,
-                    IsDeleted = source.IsDeleted,
-                    OperationId = source.OperationId,
-                    RegionId = source.RegionId,
-                    UserDomainKey = source.UserDomainKey
+                    Operation = source.Operation.CreateFrom(),
+                    Region = source.Region.CreateFrom()
                 };
             }
             #endregion

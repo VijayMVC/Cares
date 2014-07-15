@@ -256,8 +256,10 @@
     <Compile Include="ModelMappers\BusinessPartnerMapper.cs" />
     <Compile Include="ModelMappers\FleetPoolMapper.cs" />
     <Compile Include="ModelMappers\BusinessPartnerResponseMapper.cs" />
+    <Compile Include="ModelMappers\OperationMapper.cs" />
     <Compile Include="ModelMappers\ProductResponseMapper.cs" />
     <Compile Include="ModelMappers\ProductMapper.cs" />
+    <Compile Include="ModelMappers\RegionMapper.cs" />
     <Compile Include="ModelMappers\TarrifTypeMapper.cs" />
     <Compile Include="Models\BusinessPartner.cs" />
     <Compile Include="Models\BusinessPartnerResponse.cs" />
@@ -913,7 +915,6 @@
     <Folder Include="Areas\TarrifType\Models\" />
     <Folder Include="Migrations\" />
     <Folder Include="Resources\Employees\" />
-    <Folder Include="ViewModels\Employees\" />
     <Folder Include="Views\Menu\" />
   </ItemGroup>
   <ItemGroup>
