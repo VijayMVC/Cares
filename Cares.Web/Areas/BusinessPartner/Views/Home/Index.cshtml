@@ -2,42 +2,42 @@
     ViewBag.Title = "Index";
 }
 
-<div class="row" id="productBinding">
-    <div class="row searchFilterSection" data-bind="visible: !isProductEditorVisible()">
+<div class="row" id="businessPartnerBinding">
+    <div class="row searchFilterSection" data-bind="visible: !isBusinessPartnerEditorVisible()">
         <div class="well">
             <form class="form-horizontal" data-bind="submit: search">
                 <div class="col-xs-3">
                     <input type="text" class="form-control" placeholder="<Search>" data-bind="value: searchFilter" />
                 </div>
                 <div class="col-xs-3">
-                    <select class="form-control" data-bind="options: $root.categories, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Category>', value: categoryFilter"></select>
+                    @*<select class="form-control" data-bind="options: $root.categories, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Category>', value: categoryFilter"></select>*@
                 </div>
                 <div class="btn-group" id="createButton">
-                    <button type="button" class="btn btn-default" data-bind="click: createProduct">Create New</button>
-                    <button class="btn dropdown-toggle" data-toggle="dropdown">
+                    <button type="button" class="btn btn-default" data-bind="click: createBusinessPartnerInForm">Create New</button>
+                    @*<button class="btn dropdown-toggle" data-toggle="dropdown">
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
                         <li><a href="#" data-bind="click: createProductInForm">Create Using Form</a></li>
-                    </ul>
+                    </ul>*@
                 </div>
                 <button type="submit" class="btn btn-success" data-bind="click: search">Search</button>
             </form>
         </div>
     </div>
-    <div class="row searchFilterResultSection" data-bind="visible: !isProductEditorVisible()">
+    <div class="row searchFilterResultSection" data-bind="visible: !isBusinessPartnerEditorVisible()">
         <div class="well">
-            <table id="productTable" class="table table-condensed">
+            <table id="businessPartnerTable" class="table table-condensed">
                 <thead>
                     <tr>
                         <th> <span id="1">Name<span class="icon-up"></span></span></th>
-                        <th> <span id="2">Description<span></span></span></th>
+                        @*<th> <span id="2">Description<span></span></span></th>
                         <th> <span id="3">Price<span></span></span></th>
-                        <th> <span id="4">Category<span></span></span></th>
+                        <th> <span id="4">Category<span></span></span></th>*@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- ko template: { name: templateToUse , foreach: products } -->
+                    <!-- ko template: { name: templateToUse , foreach: businessPartners } -->
                     <!-- /ko -->
                 </tbody>
             </table>
@@ -46,17 +46,17 @@
     </div>
 
 
-    <script id="deleteActionProductTemplate" type="text/html">
-        <a href="#" data-bind="click: $root.onDeleteProduct" title="Delete Product"><span class="glyphicon glyphicon-remove"></span></a>
+    <script id="deleteActionBusinessPartnerTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onDeleteBusinessPartner" title="Delete Business Partner"><span class="glyphicon glyphicon-remove"></span></a>
     </script>
 
-    <script id="editActionProductTemplate" type="text/html">
-        <a href="#" data-bind="click: $root.onEditProductInline" title="Edit Inline"><span class="glyphicon glyphicon-pencil"></span></a>
-        <a href="#" data-bind="click: $root.onEditProduct" title="Edit in Form"><span class="glyphicon glyphicon-edit"></span></a>
+    <script id="editActionBusinessPartnerTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onEditBusinessPartnerInline" title="Edit Inline"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a href="#" data-bind="click: $root.onEditBusinessPartner" title="Edit in Form"><span class="glyphicon glyphicon-edit"></span></a>
     </script>
 
-    <script id="editProductTemplate" type="text/html">
-        <tr data-bind="css: { selectedRow: $data === $root.selectedProduct() }">
+    <script id="editBusinessPartnerTemplate" type="text/html">
+        <tr data-bind="css: { selectedRow: $data === $root.selectedBusinessPartner() }">
             <td class="col-md-2">
                 <input type="text" class="form-control" data-bind="value: name, validationTooltip: name" />
             </td>
@@ -66,35 +66,35 @@
             <td class="col-md-2">
                 <input type="text" class="form-control" data-bind="value: price, validationTooltip: price" />
             </td>
-            <td class="col-md-2">
+            @*<td class="col-md-2">
                 <select class="form-control" data-bind="options: $root.categories, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Category>', value: categoryId, validationTooltip: categoryId"></select>
-            </td>
-            <td><a href="#" data-bind="click: $root.onEditProduct" title="Edit in Form"><span class="glyphicon glyphicon-edit"></span></a></td>
+            </td>*@
+            <td><a href="#" data-bind="click: $root.onEditBusinessPartner" title="Edit in Form"><span class="glyphicon glyphicon-edit"></span></a></td>
             <td>
-                <!-- ko template: { name: 'deleteActionProductTemplate' } -->
+                <!-- ko template: { name: 'deleteActionBusinessPartnerTemplate' } -->
                 <!-- /ko -->
             </td>
         </tr>
     </script>
 
-    <script id="itemProductTemplate" type="text/html">
-        <tr data-bind="click: $root.selectProduct">
+    <script id="itemBusinessPartnerTemplate" type="text/html">
+        <tr data-bind="click: $root.selectBusinessPartner">
             <td data-bind="text: name"></td>
-            <td data-bind="text: description"></td>
+            @*<td data-bind="text: description"></td>
             <td data-bind="text: price"></td>
-            <td data-bind="text: categoryName"></td>
+            <td data-bind="text: categoryName"></td>*@
             <td>
-                <!-- ko template: { name: 'editActionProductTemplate' } -->
+                <!-- ko template: { name: 'editActionBusinessPartnerTemplate' } -->
                 <!-- /ko -->
             </td>
             <td>
-                <!-- ko template: { name: 'deleteActionProductTemplate' } -->
+                <!-- ko template: { name: 'deleteActionBusinessPartnerTemplate' } -->
                 <!-- /ko -->
             </td>
         </tr>
     </script>
 
-    @Html.Partial("_ProductEditor")
+    @Html.Partial("_BusinessPartnerEditor")
 
 </div>
 
@@ -104,7 +104,7 @@
 @section inlinescripts
 {
     <script type="text/javascript">
-        require(["product/product.view", "common/confirmation.view"]);
+        require(["product/businessPartner.view", "common/confirmation.view"]);
     </script>
 }
 
