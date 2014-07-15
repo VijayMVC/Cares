@@ -44,7 +44,7 @@ namespace Models.RequestModels
         /// <summary>
         /// Tarrif type Order By
         /// </summary>
-        public TarrifTypeByColumn TarrifTypeByColumn
+        public TarrifTypeByColumn TarrifTypeByOrder
         {
             get
             {

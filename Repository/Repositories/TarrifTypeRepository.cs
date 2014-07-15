@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using Interfaces.Repository;
 using Microsoft.Practices.Unity;
+using Models.Common;
 using Models.DomainModels;
 using Models.RequestModels;
 using Models.ResponseModels;
@@ -13,6 +16,13 @@ namespace Repository.Repositories
     public sealed class TarrifTypeRepository : BaseRepository<TarrifType>, ITarrifTypeRepository
     {
         #region Private
+        private readonly Dictionary<TarrifTypeByColumn, Func<TarrifType, object>> tarrifTypeClause =
+             new Dictionary<TarrifTypeByColumn, Func<TarrifType, object>>
+                    {
+                        { TarrifTypeByColumn.TariffTypeName, c => c.TariffTypeName },
+                        { TarrifTypeByColumn.TariffTypeCode, c => c.TariffTypeCode }
+                       
+                    };
         #endregion
         #region Constructors
         /// <summary>
@@ -49,8 +59,23 @@ namespace Repository.Repositories
 
         public TarrifTypeResponse GetTarrifTypes(TarrifTypeRequest tarrifTypeRequest)
         {
-            IEnumerable<TarrifType> tarrifTypes= DbSet.Where(p => p.UserDomainKey == UserDomaingKey);
-            return new TarrifTypeResponse { TarrifTypes = tarrifTypes, TotalCount = 10 };
+            int fromRow = (tarrifTypeRequest.PageNo - 1) * tarrifTypeRequest.PageSize;
+            int toRow = tarrifTypeRequest.PageSize;
+
+
+            Expression<Func<TarrifType, bool>> query =
+                s => (tarrifTypeRequest.OperationId >0 || s.OperationId == tarrifTypeRequest.OperationId) &&
+                    (tarrifTypeRequest.MeasurementUnitId > 0 || s.MeasurementUnitId == tarrifTypeRequest.MeasurementUnitId) &&
+                     (string.IsNullOrEmpty(tarrifTypeRequest.TarrifTypeCode) || s.TariffTypeCode.Contains(tarrifTypeRequest.TarrifTypeCode));
+
+            IEnumerable<TarrifType> tarrifTypes = tarrifTypeRequest.IsAsc ? DbSet.Where(query)
+                                            .OrderBy(tarrifTypeClause[tarrifTypeRequest.TarrifTypeByOrder]).Skip(fromRow).Take(toRow).ToList()
+                                            : DbSet.Where(query)
+                                                .OrderByDescending(tarrifTypeClause[tarrifTypeRequest.TarrifTypeByOrder]).Skip(fromRow).Take(toRow).ToList();
+
+         
+            //IEnumerable<TarrifType> tarrifTypes= DbSet.Where(p => p.UserDomainKey == UserDomaingKey);
+            return new TarrifTypeResponse { TarrifTypes = tarrifTypes, TotalCount = DbSet.Count(query) };
         }
         #endregion
 

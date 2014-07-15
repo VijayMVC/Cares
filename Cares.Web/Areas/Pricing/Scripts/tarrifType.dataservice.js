@@ -9,7 +9,7 @@ define("tarrifType/tarrifType.dataservice", function () {
             // True if initialized
             isInitialized = false,
             // Initialize
-            initialize = function() {
+            initialize = function () {
                 if (!isInitialized) {
 
                     // Define request to get tarrif type base 
@@ -28,7 +28,6 @@ define("tarrifType/tarrifType.dataservice", function () {
                     isInitialized = true;
                 }
             },
-
             // Get Tarrif type base
             getTarrifTypeBase = function (callbacks) {
                 initialize();
@@ -36,7 +35,7 @@ define("tarrifType/tarrifType.dataservice", function () {
                     resourceId: 'getTarrifTypeBase',
                     success: callbacks.success,
                     error: callbacks.error,
-                         });
+                });
             },   // Get Tarrif type 
             getTarrifType = function (params, callbacks) {
                 initialize();
@@ -48,11 +47,10 @@ define("tarrifType/tarrifType.dataservice", function () {
                 });
             };
 
-          
         return {
             getTarrifTypeBase: getTarrifTypeBase,
             getTarrifType: getTarrifType,
-           
+
         };
     })();
 

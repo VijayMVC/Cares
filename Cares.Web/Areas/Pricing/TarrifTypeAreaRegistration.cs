@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Cares.Web.Areas.TarrifType
+namespace Cares.Web.Areas.Pricing
 {
     public class TarrifTypeAreaRegistration : AreaRegistration 
     {
@@ -8,15 +8,15 @@ namespace Cares.Web.Areas.TarrifType
         {
             get 
             {
-                return "TarrifType";
+                return "Pricing";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
-                "TarrifType_default",
-                "TarrifType/{controller}/{action}/{id}",
+                "Pricing_default",
+                "Pricing/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }

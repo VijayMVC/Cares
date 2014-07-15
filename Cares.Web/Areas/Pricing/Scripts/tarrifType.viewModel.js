@@ -81,8 +81,8 @@ define("tarrifType/tarrifType.viewModel",
                         var tarrifTypeList = [];
                         _.each(data.ServerTarrifTypes, function (item) {
                            var tarrifType = new model.TarrifType(item);
-                           // tarrifTypeList.push(tarrifType);
-                           // alert(item);
+                           tarrifTypeList.push(tarrifType);
+                           
                         });
 
                         ko.utils.arrayPushAll(tarrifTypes(), tarrifTypeList);
