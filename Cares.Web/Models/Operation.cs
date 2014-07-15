@@ -1,12 +1,11 @@
-﻿using System;
-using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace Cares.Web.Models
+﻿namespace Cares.Web.Models
 {
+    /// <summary>
+    /// Operation Web Model
+    /// </summary>
     public class Operation
     {
-        #region Persisted Properties
+        #region Public Properties
         /// <summary>
         /// Operation ID
         /// </summary>
@@ -14,65 +13,11 @@ namespace Cares.Web.Models
         /// <summary>
         /// Operation Code
         /// </summary>
-         public string OperationCode { get; set; }
+        public string OperationCode { get; set; }
         /// <summary>
         /// Operation Name
-        /// </summary>
-        [StringLength(255)]
+        /// </summary>        
         public string OperationName { get; set; }
-        /// <summary>
-        /// Operation Description
-        /// </summary>
-         public string OperationDescription { get; set; }
-        /// <summary>
-        /// Department ID
-        /// </summary>
-        public int DepartmentId { get; set; }
-        /// <summary>
-        /// Is Active
-        /// </summary>
-        public bool IsActive { get; set; }
-        /// <summary>
-        /// Is Deleted
-        /// </summary>
-        public bool IsDeleted { get; set; }
-        /// <summary>
-        /// Is Private
-        /// </summary>
-        public bool IsPrivate { get; set; }
-        /// <summary>
-        /// Is Readonly
-        /// </summary>
-        public bool IsReadOnly { get; set; }
-        /// <summary>
-        /// Record Created Date
-        /// </summary>
-        public DateTime RecCreatedDt { get; set; }
-        /// <summary>
-        /// Record Created By
-        /// </summary>
-          public string RecCreatedBy { get; set; }
-        /// <summary>
-        /// Record Last Updated Date
-        /// </summary>
-        public DateTime RecLastUpdatedDt { get; set; }
-        /// <summary>
-        /// Record Last Updated By
-        /// </summary>
-         public string RecLastUpdatedBy { get; set; }
-        /// <summary>
-        /// User Domain Key
-        /// </summary>
-        public long UserDomainKey { get; set; }
-
-        #endregion
-
-        #region Reference Properties
-        /// <summary>
-        /// Department Reference
-        /// </summary>
-        public Department Department { get; set; }
-
         #endregion
     }
 }

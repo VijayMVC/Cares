@@ -1,37 +1,43 @@
-﻿
-using Cares.Web.Models;
+﻿using ApiModel = Cares.Web.Models;
+using DomainModel = Models.DomainModels;
 
 namespace Cares.Web.ModelMappers
 {
+    /// <summary>
+    /// Operation Mapper
+    /// </summary>
     public static class OperationMapper
     {
         #region Public
+        #region Entity To Model
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static Operation CreateFrom(this global::Models.DomainModels.Operation source)
-        {
-            return new Operation
+        public static ApiModel.Operation CreateFrom(this DomainModel.Operation source)
             {
-                OperationId = source.OperationId,
-                OperationName = source.OperationName,
-            };
-        }
+                return new ApiModel.Operation
+                {
+                    OperationId = source.OperationId,
+                    OperationCode = source.OperationCode,
+                    OperationName = source.OperationName
+                };
+            }
+        #endregion
+        #region Model To Entity
         /// <summary>
         ///  Create entity from web model
         /// </summary>
-        public static global::Models.DomainModels.Operation CreateFrom(this Operation source)
+        public static DomainModel.Operation CreateFrom(this ApiModel.Operation source)
         {
-            if (source != null)
+            return new DomainModel.Operation
             {
-                return new global::Models.DomainModels.Operation
-                {
-                    OperationId = source.OperationId,
-                OperationName = source.OperationName,
-                };
-            }
-            return new global::Models.DomainModels.Operation();
+                OperationId = source.OperationId,
+                OperationCode = source.OperationCode,
+                OperationName = source.OperationName
+            };
         }
+        
+        #endregion
         #endregion
     }
 }

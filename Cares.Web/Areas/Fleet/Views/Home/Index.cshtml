@@ -10,9 +10,6 @@
                     <div class="col-xs-3">
                         <input type="text" class="form-control" placeholder="<Fleet Pool Code>" data-bind="value: searchFilter" />
                     </div>
-                    <div class="col-xs-3">
-                        <input type="text" class="form-control" placeholder="<Fleet Pool Name>" data-bind="value: searchFilter" />
-                    </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-3">
@@ -22,17 +19,7 @@
                         <select class="form-control" data-bind="options: $root.categories, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Region>', value: regionFilter"></select>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-3">
-                        <select class="form-control" data-bind="options: $root.categories, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Company>', value: countryFilter"></select>
-                    </div>
-                    <div class="col-xs-3">
-                        <select class="form-control" data-bind="options: $root.categories, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Department>', value: regionFilter"></select>
-                    </div>
-                    <div class="col-xs-3">
-                        <select class="form-control" data-bind="options: $root.categories, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Operation>', value: regionFilter"></select>
-                    </div>
-                </div>
+                
                 <button type="button" class="btn btn-info" data-bind="click: search">Reset</button>
                 <button type="submit" class="btn btn-success" data-bind="click: search">Search</button>
             </form>

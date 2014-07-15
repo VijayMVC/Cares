@@ -257,12 +257,13 @@
     <Compile Include="ModelMappers\BusinessPartnerMapper.cs" />
     <Compile Include="ModelMappers\FleetPoolMapper.cs" />
     <Compile Include="ModelMappers\BusinessPartnerResponseMapper.cs" />
+    <Compile Include="ModelMappers\OperationMapper.cs" />
     <Compile Include="ModelMappers\CompanyMapper.cs" />
     <Compile Include="ModelMappers\DepartmentMapper.cs" />
-    <Compile Include="ModelMappers\MeasurementUnitMapper.cs" />
-    <Compile Include="ModelMappers\OperationMapper.cs" />
+    <Compile Include="ModelMappers\MeasurementUnitMapper.cs" />   
     <Compile Include="ModelMappers\ProductResponseMapper.cs" />
     <Compile Include="ModelMappers\ProductMapper.cs" />
+    <Compile Include="ModelMappers\RegionMapper.cs" />
     <Compile Include="ModelMappers\TarrifTypeMapper.cs" />
     <Compile Include="ModelMappers\TarrifTypeResponseMapper.cs" />
     <Compile Include="Models\BusinessPartner.cs" />
@@ -922,7 +923,6 @@
     <Folder Include="Areas\Product\Models\" />
     <Folder Include="Migrations\" />
     <Folder Include="Resources\Employees\" />
-    <Folder Include="ViewModels\Employees\" />
     <Folder Include="Views\Menu\" />
   </ItemGroup>
   <ItemGroup>
