@@ -11,7 +11,7 @@ namespace Repository.BaseRepository
     /// <summary>
     /// Base Repository
     /// </summary>
-    public abstract class BaseRepository<TDomainClass> : IBaseRepository<TDomainClass, int>
+    public abstract class BaseRepository<TDomainClass> : IBaseRepository<TDomainClass, long>
        where TDomainClass : class
     {
         #region Private
@@ -79,7 +79,7 @@ namespace Repository.BaseRepository
         /// <summary>
         /// Find Entity by Id
         /// </summary>
-        public TDomainClass Find(int id)
+        public TDomainClass Find(long id)
         {
             return DbSet.Find(id);
         }

@@ -7,7 +7,7 @@ namespace Interfaces.Repository
     /// <summary>
     /// Business Partner Repository Interface
     /// </summary>
-    public interface IBusinessPartnerRepository : IBaseRepository<BusinessPartner, int>
+    public interface IBusinessPartnerRepository : IBaseRepository<BusinessPartner, long>
     {
         /// <summary>
         /// Get All business partners

@@ -4,10 +4,10 @@ using Models.DomainModels;
 namespace Interfaces.IServices
 {
     /// <summary>
-    /// Company Service Interface
+    /// Pricing Strategy Interface
     /// </summary>
-    public interface ICompanyService
+    public interface IPricingStrategyService
     {
-        IQueryable<Company> LoadAll();
+        IQueryable<PricingStrategy> LoadAll();
     }
 }

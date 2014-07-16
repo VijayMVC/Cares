@@ -13,6 +13,9 @@ using Repository.BaseRepository;
 
 namespace Repository.Repositories
 {
+    /// <summary>
+    /// Tarrif Type Repository
+    /// </summary>
     public sealed class TarrifTypeRepository : BaseRepository<TarrifType>, ITarrifTypeRepository
     {
         #region Private
@@ -56,6 +59,11 @@ namespace Repository.Repositories
         {
             return DbSet.Where(p => p.UserDomainKey == UserDomaingKey);
         }
+        /// <summary>
+         /// Get All Tariff Types based on search crateria
+        /// </summary>
+        /// <param name="tarrifTypeRequest"></param>
+        /// <returns></returns>
 
         public TarrifTypeResponse GetTarrifTypes(TarrifTypeRequest tarrifTypeRequest)
         {
@@ -64,8 +72,8 @@ namespace Repository.Repositories
 
 
             Expression<Func<TarrifType, bool>> query =
-                s => (tarrifTypeRequest.OperationId >0 || s.OperationId == tarrifTypeRequest.OperationId) &&
-                    (tarrifTypeRequest.MeasurementUnitId > 0 || s.MeasurementUnitId == tarrifTypeRequest.MeasurementUnitId) &&
+                s => (!(tarrifTypeRequest.OperationId >0) || s.OperationId == tarrifTypeRequest.OperationId) &&
+                    (!(tarrifTypeRequest.MeasurementUnitId > 0) || s.MeasurementUnitId == tarrifTypeRequest.MeasurementUnitId) &&
                      (string.IsNullOrEmpty(tarrifTypeRequest.TarrifTypeCode) || s.TariffTypeCode.Contains(tarrifTypeRequest.TarrifTypeCode));
 
             IEnumerable<TarrifType> tarrifTypes = tarrifTypeRequest.IsAsc ? DbSet.Where(query)
@@ -74,9 +82,10 @@ namespace Repository.Repositories
                                                 .OrderByDescending(tarrifTypeClause[tarrifTypeRequest.TarrifTypeByOrder]).Skip(fromRow).Take(toRow).ToList();
 
          
-            //IEnumerable<TarrifType> tarrifTypes= DbSet.Where(p => p.UserDomainKey == UserDomaingKey);
-            return new TarrifTypeResponse { TarrifTypes = tarrifTypes, TotalCount = DbSet.Count(query) };
+             return new TarrifTypeResponse { TarrifTypes = tarrifTypes, TotalCount = DbSet.Count(query) };
         }
+
+
         #endregion
 
     }

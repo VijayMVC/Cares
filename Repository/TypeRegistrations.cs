@@ -21,6 +21,7 @@ namespace Repository
             unityContainer.RegisterType<IBusinessPartnerRepository, BusinessPartnerRepository>();
             unityContainer.RegisterType<IOperationRepository, OperationRepository>();
             unityContainer.RegisterType<IMeasurementUnit, MeasurementUnitRepository>();
+            unityContainer.RegisterType<IPricingStrategyRepository, PricingStrategyRepository>();
             unityContainer.RegisterType<DbContext, BaseDbContext>(new HierarchicalLifetimeManager());
 
             //unityContainer.RegisterType<IUser, ApplicationUser>();

@@ -5,7 +5,7 @@ namespace Interfaces.Repository
     /// <summary>
     /// Operation Repository Interface
     /// </summary>
-    public interface IOperationRepository : IBaseRepository<Operation, int>
+    public interface IOperationRepository : IBaseRepository<Operation, long>
     {
     }
 }

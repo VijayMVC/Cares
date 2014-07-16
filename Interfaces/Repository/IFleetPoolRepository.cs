@@ -11,7 +11,7 @@ namespace Interfaces.Repository
     /// <summary>
     /// FleetPool Repository
     /// </summary>
-    public interface IFleetPoolRepository:IBaseRepository<FleetPool,int>
+    public interface IFleetPoolRepository:IBaseRepository<FleetPool, long>
     {
         /// <summary>
         /// Get All FleetPools

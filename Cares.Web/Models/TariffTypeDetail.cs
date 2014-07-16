@@ -1,17 +1,16 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 
-namespace Models.DomainModels
-{    /// <summary>
-    /// Tarrif Type Domain Model
+namespace Cares.Web.Models
+{
+    /// <summary>
+    /// Tariff Type Detail Web Model
     /// </summary>
-    public class TarrifType
+    public class TariffTypeDetail
     {
-        #region Persisited Properties
+        #region Public Properties
         /// <summary>
         /// Tariff Type Id
         /// </summary>
-        [Key]
         public long TariffTypeId { get; set; }
         /// <summary>
         /// User Domain Key
@@ -32,18 +31,15 @@ namespace Models.DomainModels
         /// <summary>
         /// Tariff Type Code
         /// </summary>
-        [StringLength(100)]
-        public string TariffTypeCode { get; set; }
+          public string TariffTypeCode { get; set; }
         /// <summary>
         /// Tariff Type Name
         /// </summary>
-        [StringLength(255)]
-        public string TariffTypeName { get; set; }
+          public string TariffTypeName { get; set; }
         /// <summary>
         /// Tariff Type Description
         /// </summary>
-        [StringLength(500)]
-        public string TariffTypeDescription { get; set; }
+         public string TariffTypeDescription { get; set; }
         /// <summary>
         /// Pricing Strategy Id
         /// </summary>
@@ -87,13 +83,11 @@ namespace Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100)]
-        public string RecLastUpdatedBy { get; set; }
+           public string RecLastUpdatedBy { get; set; }
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100)]
-        public string RecCreatedBy { get; set; }
+         public string RecCreatedBy { get; set; }
         /// <summary>
         /// Is Active
         /// </summary>
@@ -110,27 +104,6 @@ namespace Models.DomainModels
         /// Is ReadOnly
         /// </summary>
         public bool IsReadOnly { get; set; }
-        #endregion
-        #region Reference Properties
-
-        /// <summary>
-        /// Operation
-        /// </summary>
-        public virtual Operation Operation { get; set; }
-
-        /// <summary>
-        /// Measurement UnitPricingStrategyId
-        /// </summary>
-        public virtual MeasurementUnit MeasurementUnit { get; set; }
-        /// <summary>
-        /// Company
-        /// </summary>
-        public virtual Company Company { get; set; }
-
-        /// <summary>
-        /// Pricing Strategy
-        /// </summary>
-        public virtual PricingStrategy PricingStrategy { get; set; }
         #endregion
     }
 }

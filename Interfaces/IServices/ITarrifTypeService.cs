@@ -15,11 +15,18 @@ namespace Interfaces.IServices
         /// </summary>
         /// <returns></returns>
         IEnumerable<TarrifType> LoadAll();
+
         /// <summary>
         /// Load tarrif type, based on search filters
         /// </summary>
         /// <param name="tarrifTypeRequest"></param>
         /// <returns></returns>
         TarrifTypeResponse LoadTarrifTypes(TarrifTypeRequest tarrifTypeRequest);
+
+        TarrifType FindTarrifType(long id);
+        bool AddTarrifType(TarrifType tarrifType);
+        bool UpdateTarrifType(TarrifType tarrifType);
+
+        TarrifTypeBaseResponse GetBaseData();
     }
 }

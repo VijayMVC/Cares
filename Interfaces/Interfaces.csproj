@@ -57,6 +57,7 @@
     <Compile Include="IServices\IMenuRightService.cs" />
     <Compile Include="IServices\IBusinessPartnerService.cs" />
     <Compile Include="IServices\IOperationService.cs" />
+    <Compile Include="IServices\IPricingStrategyService.cs" />
     <Compile Include="IServices\IProductService.cs" />
     <Compile Include="IServices\ITarrifTypeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

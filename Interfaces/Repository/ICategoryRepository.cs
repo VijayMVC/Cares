@@ -3,7 +3,7 @@ using Models.DomainModels;
 
 namespace Interfaces.Repository
 {
-    public interface ICategoryRepository : IBaseRepository<Category, int>
+    public interface ICategoryRepository : IBaseRepository<Category, long>
     {
         IEnumerable<Category> GetAllCategories();
     }

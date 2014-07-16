@@ -223,6 +223,7 @@
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
     <Compile Include="Areas\Api\Controllers\FleetPoolController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessPartnerBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\GetTariffDetailsController.cs" />
     <Compile Include="Areas\Api\Controllers\ProductBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessPartnerController.cs" />
     <Compile Include="Areas\Api\Controllers\ProductController.cs" />
@@ -260,7 +261,8 @@
     <Compile Include="ModelMappers\OperationMapper.cs" />
     <Compile Include="ModelMappers\CompanyMapper.cs" />
     <Compile Include="ModelMappers\DepartmentMapper.cs" />
-    <Compile Include="ModelMappers\MeasurementUnitMapper.cs" />   
+    <Compile Include="ModelMappers\MeasurementUnitMapper.cs" />
+    <Compile Include="ModelMappers\PricingStrategyMapper.cs" />
     <Compile Include="ModelMappers\ProductResponseMapper.cs" />
     <Compile Include="ModelMappers\ProductMapper.cs" />
     <Compile Include="ModelMappers\RegionMapper.cs" />
@@ -275,9 +277,11 @@
     <Compile Include="Models\FleetPool.cs" />
     <Compile Include="Models\MeasurementUnit.cs" />
     <Compile Include="Models\Operation.cs" />
+    <Compile Include="Models\PricingStrategy.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductResponse.cs" />
     <Compile Include="Models\Region.cs" />
+    <Compile Include="Models\TariffTypeDetail.cs" />
     <Compile Include="Models\TarrifType.cs" />
     <Compile Include="Models\TarrifTypeBaseResponse.cs" />
     <Compile Include="Models\TarrifTypeResponse.cs" />
@@ -780,6 +784,7 @@
     <Content Include="Areas\BusinessPartner\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\BusinessPartner\Views\Home\Index.cshtml" />
     <Content Include="Areas\BusinessPartner\Views\Home\_BusinessPartnerEditor.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tarrif\_TariffTypeEditor.cshtml" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />

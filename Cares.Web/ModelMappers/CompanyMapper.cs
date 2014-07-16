@@ -1,6 +1,4 @@
-﻿
-
-using Cares.Web.Models;
+﻿using Cares.Web.Models;
 
 namespace Cares.Web.ModelMappers
 {
