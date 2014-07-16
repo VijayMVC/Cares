@@ -5,7 +5,7 @@ using Models.ResponseModels;
 
 namespace Interfaces.Repository
 {
-    public interface IProductRepository : IBaseRepository<Product, int>
+    public interface IProductRepository : IBaseRepository<Product, long>
     {
         ProductResponse GetAllProducts(ProductSearchRequest productSearchRequest);
         IQueryable<Product> GetProductsByCategory(int catID);

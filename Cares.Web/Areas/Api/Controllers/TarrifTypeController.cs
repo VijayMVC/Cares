@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Net;
+using System.Web;
 using System.Web.Http;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
@@ -10,7 +12,7 @@ using DomainModels = Models.RequestModels;
 namespace Cares.Web.Areas.Api.Controllers
 {
     /// <summary>
-    /// Tarrif Type API Controller
+    /// Tarrif Type Api Controller
     /// </summary>
     public class TarrifTypeController : ApiController
     {
@@ -36,6 +38,31 @@ namespace Cares.Web.Areas.Api.Controllers
         public TarrifTypeResponse Get([FromUri] DomainModels.TarrifTypeRequest request)
         {
             return tarrifTypeService.LoadTarrifTypes((request)).CreateFrom();
+        }
+        /// <summary>
+        /// Update a Tarrif Type
+        /// </summary>
+        public void Post(TariffTypeDetail tarrifType)
+        {
+            if (tarrifType == null || !ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+
+           tarrifTypeService.UpdateTarrifType(tarrifType.CreateFrom());
+        }
+
+        /// <summary>
+        /// Add a Tarrif Type
+        /// </summary>
+        public void Put(TariffTypeDetail tarrifType)
+        {
+            if (tarrifType == null || !ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+
+            tarrifTypeService.AddTarrifType(tarrifType.CreateFrom());
         }
         #endregion
 

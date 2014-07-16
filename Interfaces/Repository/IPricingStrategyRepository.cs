@@ -5,7 +5,7 @@ namespace Interfaces.Repository
     /// <summary>
     /// Pricing Strategy Repository Interface
     /// </summary>
-    public interface IPricingStrategyRepository : IBaseRepository<PricingStrategy, int>
+    public interface IPricingStrategyRepository : IBaseRepository<PricingStrategy, long>
     {
 
     }

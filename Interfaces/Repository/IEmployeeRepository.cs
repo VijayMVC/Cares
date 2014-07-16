@@ -4,7 +4,7 @@ using Models.RequestModels;
 using Models.ResponseModels;
 namespace Interfaces.Repository
 {
-    public interface IEmployeeRepository : IBaseRepository<Employee, int>
+    public interface IEmployeeRepository : IBaseRepository<Employee, long>
     {
         EmployeeResponse GetAllEmployees(EmployeeSearchRequest searchRequest);
         IQueryable<Employee> GetEmployeesByDepartment(int depId);

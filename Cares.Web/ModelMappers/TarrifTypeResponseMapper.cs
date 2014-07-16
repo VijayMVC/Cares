@@ -1,8 +1,12 @@
 ﻿using System.Linq;
-using Cares.Web.Models;
+using DomainModels = Models.ResponseModels;
+using ApiModels = Cares.Web.Models;
 
 namespace Cares.Web.ModelMappers
 {
+    /// <summary>
+    /// Tarrif Type Response Mapper
+    /// </summary>
     public static class TarrifTypeResponseMapper
     {   
         #region Public
@@ -10,9 +14,9 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static TarrifTypeResponse CreateFrom(this global::Models.ResponseModels.TarrifTypeResponse source)
+        public static ApiModels.TarrifTypeResponse CreateFrom(this DomainModels.TarrifTypeResponse source)
         {
-            return new TarrifTypeResponse
+            return new ApiModels.TarrifTypeResponse
             {
                 TotalCount = source.TotalCount,
                 ServerTarrifTypes = source.TarrifTypes.Select(p => p.CreateFrom())

@@ -1,12 +1,12 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Cares.Web.Models
 {
+    /// <summary>
+    /// Tarrif Type Base Response Web Models
+    /// </summary>
     public class TarrifTypeBaseResponse
     {
-        #region Private
-        #endregion
         #region Constructors
         /// <summary>
         /// Constructor
@@ -17,10 +17,8 @@ namespace Cares.Web.Models
             ResponseMeasurementUnits = new List<MeasurementUnit>();
             ResponseDepartments = new List<Department>();
             ResponseOperations = new List<Operation>();
-            ResponseTarrifTypes = new List<TarrifType>();
+            ResponsePricingStrategies = new List<PricingStrategy>();
         }
-        #endregion
-        #region Protected
         #endregion
         #region Public
         /// <summary>
@@ -42,7 +40,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// List of Tarriff Types
         /// </summary>
-        public IEnumerable<TarrifType> ResponseTarrifTypes { get; set; }
+        public IEnumerable<PricingStrategy> ResponsePricingStrategies { get; set; }
         /// <summary>
         /// Total Count
         /// </summary>

@@ -12,12 +12,12 @@
             self,
             // Unique key
             tarrifTypeId = ko.observable(specifiedKey),
-            //User Domain Key
-            //userDomainKey = ko.observable(specifiedUserDomainKey),
-            // Operation ID
+             // Operation ID
             operationId = ko.observable(specifieOperationId).extend({ required: true }),
             // Measurement Unit ID
             measurementUnitId = ko.observable(specifiedMeasurementUnitId).extend({ required: true }),
+            //Company ID
+            companyId = ko.observable(specifiedMeasurementUnitId).extend({ required: true }),
             // Tariff Type Code 
             tariffTypeCode = ko.observable(specifiedtariffTypeCode).extend({ required: true }),
             // Tarrif Type Name
@@ -58,25 +58,7 @@
             isReadOnly = ko.observable(specifiedIsReadOnly),
             // Is Busy
             isBusy = ko.observable(false),
-           
-
-            // Category Name
-            categoryName = ko.computed(function () {
-                if (!categoryId()) {
-                    return "";
-                }
-                var categoryResult = categories.find(function (category) {
-                    return category.Id === categoryId();
-                });
-
-                return categoryResult ? categoryResult.Name : "";
-            }),
-            // Assign Categories
-            assignCategories = function (categoryList) {
-                categories.removeAll();
-                ko.utils.arrayPushAll(categories(), categoryList);
-                categories.valueHasMutated();
-            },
+            
             // Errors
             errors = ko.validation.group({
                // name: name,
@@ -147,8 +129,6 @@
             hasChanges: hasChanges,
             reset: reset,
             isBusy: isBusy,
-            assignCategories: assignCategories,
-            categoryName: categoryName,
             convertToServerData: convertToServerData
         };
         return self;

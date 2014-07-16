@@ -2,6 +2,9 @@
 
 namespace Cares.Web.Models
 {
+    /// <summary>
+    /// Tarrif Type Response Web Models
+    /// </summary>
     public class TarrifTypeResponse
     { 
         #region Private
@@ -19,7 +22,7 @@ namespace Cares.Web.Models
         #endregion
         #region Public
         /// <summary>
-        /// Tarrif Type
+        /// Tarrif Types
         /// </summary>
         public IEnumerable<TarrifType> ServerTarrifTypes { get; set; }
 
