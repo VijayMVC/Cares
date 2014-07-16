@@ -16,9 +16,11 @@ define("Fleet/fleetPool.viewModel",
                     // fleetPools
                     fleetPools = ko.observableArray([]),
                     // #endregion Arrays
+
                     // #region Busy Indicators
                     isLoadingData = ko.observable(false),
                     // #endregion Busy Indicators
+
                     // #region Observables
                     // Sort On
                     sortOn = ko.observable(1),
@@ -28,20 +30,7 @@ define("Fleet/fleetPool.viewModel",
                     isEditable = ko.observable(false),
                     // Pagination
                     pager = ko.observable(),
-                    // fleetPool Code
-                    fpCode = ko.observable(),
-                    // fleetPool Name
-                    fpName = ko.observable(),
-                    // fleetPool Country
-                    fpCountry = ko.observable(),
-                    // fleetPool Region
-                    fpRegion = ko.observable(),
-                    // fleetPool Company
-                    fpCompany = ko.observable(),
-                    // fleetPool Department
-                    fpDepartment = ko.observable(),
-                    // fleetPool Operation
-                    fpOperation = ko.observable(),
+                    //#endregion
                     
                     // #region Utility Functions
                     // Select a fleetPool
@@ -105,7 +94,7 @@ define("Fleet/fleetPool.viewModel",
                     // Create Item
                     createItem = function () {
                         var item = new model.Item({ Name: "", CategoryId: undefined, Price: "", Id: 0, Description: "" });
-                        item.assignCategories(categories());
+                        item.assignregions(regions());
                         items.splice(0, 0, item);
                         // Select the newly added item
                         selectedItem(item);
@@ -153,7 +142,7 @@ define("Fleet/fleetPool.viewModel",
                         var itemList = [];
                         _.each(data.Items, function (item) {
                             var item = new model.Item(item);
-                            item.assignCategories(categories());
+                            item.assignregions(regions());
                             itemList.push(item);
                         });
 
@@ -164,9 +153,9 @@ define("Fleet/fleetPool.viewModel",
                     getBase = function () {
                         dataservice.getItemBase({
                             success: function (data) {
-                                categories.removeAll();
-                                ko.utils.arrayPushAll(categories(), data);
-                                categories.valueHasMutated();
+                                regions.removeAll();
+                                ko.utils.arrayPushAll(regions(), data);
+                                regions.valueHasMutated();
                             },
                             error: function () {
                                 toastr.error("Failed to load base data");
@@ -217,7 +206,7 @@ define("Fleet/fleetPool.viewModel",
                         }
                         // Ignore additional properties
                         var mapping = {
-                            'ignore': ["categories", "categoryName", "assignCategories", "dirtyFlag", "hasChanges", "errors", "isValid",
+                            'ignore': ["regions", "regionName", "assignregions", "dirtyFlag", "hasChanges", "errors", "isValid",
                                 "reset"]
                         };
                         dataservice[method](ko.mapping.toJS(selectedItem(), mapping), {
@@ -241,18 +230,20 @@ define("Fleet/fleetPool.viewModel",
                 // #endregion Service Calls
 
                 return {
-                    // Observables
+                    // #region Observables
                     selectedItem: selectedItem,
                     isLoadingItems: isLoadingItems,
-                    categories: categories,
+                    regions: regions,
+                    operations: operations,
                     items: items,
                     totalPrice: totalPrice,
                     searchFilter: searchFilter,
                     categoryFilter: categoryFilter,
                     sortOn: sortOn,
                     sortIsAsc: sortIsAsc,
-                    // Observables
-                    // Utility Methods
+                    // #endregion Observables
+
+                    //#region Utility Methods
                     onSaveItem: onSaveItem,
                     createItem: createItem,
                     onDeleteItem: onDeleteItem,
@@ -268,7 +259,7 @@ define("Fleet/fleetPool.viewModel",
                     onCloseItemEditor: onCloseItemEditor,
                     isItemEditorVisible: isItemEditorVisible,
                     createItemInForm: createItemInForm
-                    // Utility Methods
+                    //#endregion Utility Methods
                 };
             })()
         };

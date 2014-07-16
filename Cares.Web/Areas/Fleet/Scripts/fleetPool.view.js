@@ -12,7 +12,7 @@ define("Fleet/fleetPool.view",
                 // View model 
                 viewModel = specifiedViewModel,
                 // Binding root used with knockout
-                bindingRoot = $("#rootBinding")[0],
+                bindingRoot = $("#fleetRootBinding")[0],
                 // Initialize
                 initialize = function () {
                     if (!bindingRoot) {
@@ -20,7 +20,7 @@ define("Fleet/fleetPool.view",
                     }
 
                     // Handle Sorting
-                    handleSorting("resultTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getProducts);
+                    //handleSorting("resultTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getProducts);
                 };
 
             initialize();

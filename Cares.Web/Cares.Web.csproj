@@ -221,6 +221,7 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
+    <Compile Include="Areas\Api\Controllers\FleetPoolBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\FleetPoolController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessPartnerBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\ProductBaseController.cs" />
@@ -260,7 +261,7 @@
     <Compile Include="ModelMappers\OperationMapper.cs" />
     <Compile Include="ModelMappers\CompanyMapper.cs" />
     <Compile Include="ModelMappers\DepartmentMapper.cs" />
-    <Compile Include="ModelMappers\MeasurementUnitMapper.cs" />   
+    <Compile Include="ModelMappers\MeasurementUnitMapper.cs" />
     <Compile Include="ModelMappers\ProductResponseMapper.cs" />
     <Compile Include="ModelMappers\ProductMapper.cs" />
     <Compile Include="ModelMappers\RegionMapper.cs" />
@@ -273,6 +274,8 @@
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\FleetPool.cs" />
+    <Compile Include="Models\FleetPoolBaseDataResponse.cs" />
+    <Compile Include="Models\FleetPoolResponse.cs" />
     <Compile Include="Models\MeasurementUnit.cs" />
     <Compile Include="Models\Operation.cs" />
     <Compile Include="Models\Product.cs" />
@@ -336,6 +339,9 @@
     <Content Include="Content\CSS\bootstrap-rtl.css" />
     <Content Include="Content\CSS\PagedList.css" />
     <Content Include="Content\CSS\spinner.gif" />
+    <Content Include="Content\Fleet.css">
+      <DependentUpon>Fleet.less</DependentUpon>
+    </Content>
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Images\arrow-down.png" />
     <Content Include="Content\Images\arrow-up.png" />
@@ -343,6 +349,9 @@
     <Content Include="Content\Images\edit.png" />
     <Content Include="Content\Images\spinner.gif" />
     <Content Include="Content\jquery-ui-1.11.0.min.css" />
+    <Content Include="Content\MainSite.css">
+      <DependentUpon>MainSite.less</DependentUpon>
+    </Content>
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -780,6 +789,8 @@
     <Content Include="Areas\BusinessPartner\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\BusinessPartner\Views\Home\Index.cshtml" />
     <Content Include="Areas\BusinessPartner\Views\Home\_BusinessPartnerEditor.cshtml" />
+    <Content Include="Content\MainSite.less" />
+    <Content Include="Content\Fleet.less" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
