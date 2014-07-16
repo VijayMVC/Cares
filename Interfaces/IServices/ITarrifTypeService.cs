@@ -1,17 +1,20 @@
-﻿using Models.RequestModels;
+﻿using System.Collections.Generic;
+using Models.DomainModels;
+using Models.RequestModels;
 using Models.ResponseModels;
 
 namespace Interfaces.IServices
 {
+    /// <summary>
+    /// Tarrif Type Service Interface
+    /// </summary>
     public interface ITarrifTypeService
     {
         /// <summary>
-        /// Load All Tarrif Types first time
-        /// tarrifTypeRequest, use for user domain key
+        /// Get All Tarrif Types
         /// </summary>
-        /// <param name="tarrifTypeRequest"></param>
         /// <returns></returns>
-        TarrifTypeBaseResponse LoadAllTarrifTypes(TarrifTypeRequest tarrifTypeRequest);
+        IEnumerable<TarrifType> LoadAll();
         /// <summary>
         /// Load tarrif type, based on search filters
         /// </summary>

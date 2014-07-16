@@ -3,17 +3,17 @@
     var
     // Tarrif Type entity
     // ReSharper disable InconsistentNaming
-    TarrifType = function (specifiedUserDomainKey, specifiedKey, specifieOperationId, specifiedMeasurementUnitId, specifiedtariffTypeCode, specifiedTarrifTypeName,
+    TarrifType = function (specifiedKey, specifieOperationId, specifiedMeasurementUnitId, specifiedtariffTypeCode, specifiedTarrifTypeName,
         specifiedTariffTypeDescription, specifiedPricingStrategyId, specifiedDurationFrom, specifiedDurationTo, specifiedGracePeriod, specifiedEffectiveDate,
         specifiedRevisionNumber, specifiedRowVersion, specifiedChildTariffTypeId, specifiedRecCreatedDt, specifiedRecLastUpdatedDt, specifiedRecLastUpdatedBy,
-         specifiedRecCreatedBy) {
+         specifiedRecCreatedBy, specifiedIsActive, specifiedIsDeleted, specifiedIsPrivate, specifiedIsReadOnly) {
         // ReSharper restore InconsistentNaming
         var // Reference to this object
             self,
             // Unique key
             tarrifTypeId = ko.observable(specifiedKey),
             //User Domain Key
-            userDomainKey = ko.observable(specifiedUserDomainKey),
+            //userDomainKey = ko.observable(specifiedUserDomainKey),
             // Operation ID
             operationId = ko.observable(specifieOperationId).extend({ required: true }),
             // Measurement Unit ID
@@ -49,13 +49,13 @@
             //Rec Created By
             recCreatedBy = ko.observable(specifiedRecCreatedBy),
             //IsActive
-            isActive = ko.observable(),
+            isActive = ko.observable(specifiedIsActive),
             //IsDeleted
-            isDeleted = ko.observable(),
+            isDeleted = ko.observable(specifiedIsDeleted),
              //IsPrivate
-            isPrivate = ko.observable(),
+            isPrivate = ko.observable(specifiedIsPrivate),
              //IsReadOnly
-            isReadOnly = ko.observable(),
+            isReadOnly = ko.observable(specifiedIsReadOnly),
             // Is Busy
             isBusy = ko.observable(false),
            
@@ -79,9 +79,9 @@
             },
             // Errors
             errors = ko.validation.group({
-                name: name,
-                price: price,
-                categoryId: categoryId
+               // name: name,
+               // price: price,
+               // categoryId: categoryId
             }),
             // Is Valid
             isValid = ko.computed(function () {
@@ -91,10 +91,10 @@
             // ReSharper disable InconsistentNaming
             dirtyFlag = new ko.dirtyFlag({
                 // ReSharper restore InconsistentNaming
-                name: name,
-                price: price,
-                categoryId: categoryId,
-                description: description
+               // name: name,
+               // price: price,
+               // categoryId: categoryId,
+               // description: description
             }),
             // Has Changes
             hasChanges = ko.computed(function () {
@@ -108,16 +108,16 @@
             convertToServerData = function () {
                 return {
                     Id: id(),
-                    Name: name(),
-                    Price: price(),
-                    CategoryId: categoryId(),
-                    Description: description()
+                   // Name: name(),
+                  //  Price: price(),
+                   // CategoryId: categoryId(),
+                   // Description: description()
                 };
             };
 
         self = {
             tarrifTypeId: tarrifTypeId,
-            userDomainKey: userDomainKey,
+            //userDomainKey: userDomainKey,
             operationId: operationId,
             measurementUnitId: measurementUnitId,
             tariffTypeCode: tariffTypeCode,

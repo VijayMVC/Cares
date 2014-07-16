@@ -7,10 +7,28 @@
     TarrifType = function (data) {
         // ReSharper restore InconsistentNaming
         var // Reference to this object
-            self = {};
-           
+            self = {},
+        mapping = {
+            // customize the creation of the name property so that it provides validation
+            TariffTypeId: {
+                create: function (options) {
+                    return ko.observable(options.data).extend({ required: true });
+                }
+            },
+            OperationId: {
+                create: function (options) {
+                    return ko.observable(options.data).extend({ required: true });
+                }
+            },
+            MeasurementUnitId: {
+                create: function (options) {
+                    return ko.observable(options.data).extend({ required: true });
+                }
+            }
+        };
+
         // Map data to self
-        ko.mapping.fromJS(data,self);
+        ko.mapping.fromJS(data, mapping,self);
 
         // Extend Product
         // Categoreis
@@ -53,10 +71,11 @@
         };
 
         return {
-                categoryId: self.CategoryId,
-            categoryName: self.categoryName,
-            assignCategories: self.assignCategories,
-            categories: self.categories,
+            tarrifTypeId: TariffTypeId,
+            //userDomainKey: userDomainKey,
+            operationId: OperationId,
+            measurementUnitId: MeasurementUnitId,
+           // categories: self.categories,
             hasChanges: self.hasChanges,
             reset: self.reset,
             errors: self.errors,

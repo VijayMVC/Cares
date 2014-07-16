@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using Interfaces.Repository;
 using Microsoft.Practices.Unity;
 using Models.DomainModels;
@@ -36,14 +38,19 @@ namespace Repository.Repositories
         #endregion
         #region Public
 
-        public TarrifTypeBaseResponse GetAllTarrifTypes(TarrifTypeRequest tarrifTypeRequest)
+        /// <summary>
+        /// Get All Tariff Types for User Domain Key
+        /// </summary>
+        /// <returns></returns>
+         public override IQueryable<TarrifType> GetAll()
         {
-            throw new System.NotImplementedException();
+            return DbSet.Where(p => p.UserDomainKey == UserDomaingKey);
         }
 
         public TarrifTypeResponse GetTarrifTypes(TarrifTypeRequest tarrifTypeRequest)
         {
-            throw new System.NotImplementedException();
+            IEnumerable<TarrifType> tarrifTypes= DbSet.Where(p => p.UserDomainKey == UserDomaingKey);
+            return new TarrifTypeResponse { TarrifTypes = tarrifTypes, TotalCount = 10 };
         }
         #endregion
 

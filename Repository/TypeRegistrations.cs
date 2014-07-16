@@ -1,10 +1,6 @@
 ﻿using System.Data.Entity;
-using System.Web.Mvc;
 using Interfaces.Repository;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Practices.Unity;
-using Models.IdentityModels;
 using Repository.BaseRepository;
 using Repository.Repositories;
 
@@ -19,8 +15,12 @@ namespace Repository
             unityContainer.RegisterType<ICategoryRepository, CategoryRepository>();
             unityContainer.RegisterType<IEmployeeRepository, EmployeeRepository>();
             unityContainer.RegisterType<IDepartmentRepository, DepartmentRepository>();
+            unityContainer.RegisterType<IFleetPoolRepository, FleetPoolRepository>();
             unityContainer.RegisterType<ITarrifTypeRepository, TarrifTypeRepository>();
+            unityContainer.RegisterType<ICompanyRepository, CompanyRepository>();
             unityContainer.RegisterType<IBusinessPartnerRepository, BusinessPartnerRepository>();
+            unityContainer.RegisterType<IOperationRepository, OperationRepository>();
+            unityContainer.RegisterType<IMeasurementUnit, MeasurementUnitRepository>();
             unityContainer.RegisterType<DbContext, BaseDbContext>(new HierarchicalLifetimeManager());
 
             //unityContainer.RegisterType<IUser, ApplicationUser>();

@@ -1,14 +1,23 @@
 ﻿namespace Cares.Web.Models
 {
+    /// <summary>
+    /// Department Model
+    /// </summary>
     public class Department
     {
+        #region Public Properties
         /// <summary>
-        /// Id
+        /// Department ID
         /// </summary>
-        public int Id { get; set; }
+        public int DepartmentId { get; set; }
         /// <summary>
-        /// Name
+        /// Department Code
         /// </summary>
-        public string Name { get; set; }
+        public string DepartmentCode { get; set; }
+        /// <summary>
+        /// Department Name
+        /// </summary>
+        public string DepartmentName { get; set; }
+        #endregion
     }
 }

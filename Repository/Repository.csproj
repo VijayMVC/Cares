@@ -123,6 +123,7 @@
     <Compile Include="Repositories\BusinessSegmentRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\CompanyRepository.cs" />
+    <Compile Include="Repositories\FleetPoolRepository.cs" />
     <Compile Include="Repositories\CountryRepository.cs" />
     <Compile Include="Repositories\MeasurementUnitRepository.cs" />
     <Compile Include="Repositories\MenuRightRepository.cs" />

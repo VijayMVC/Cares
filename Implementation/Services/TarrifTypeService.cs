@@ -1,5 +1,7 @@
-﻿using Interfaces.IServices;
+﻿using System.Collections.Generic;
+using Interfaces.IServices;
 using Interfaces.Repository;
+using Models.DomainModels;
 using Models.RequestModels;
 using Models.ResponseModels;
 
@@ -21,15 +23,10 @@ namespace Implementation.Services
         }
         #endregion
         #region Public
-        /// <summary>
-        /// Load All Tarrif Types first time
-        /// tarrifTypeRequest, use for user domain key
-        /// </summary>
-        /// <param name="tarrifTypeRequest"></param>
-        /// <returns></returns>
-        public TarrifTypeBaseResponse LoadAllTarrifTypes(TarrifTypeRequest tarrifTypeRequest)
+
+        public IEnumerable<TarrifType> LoadAll()
         {
-            return tarrifTypeReposiory.GetAllTarrifTypes(tarrifTypeRequest);
+            return tarrifTypeReposiory.GetAll();
         }
 
         /// <summary>

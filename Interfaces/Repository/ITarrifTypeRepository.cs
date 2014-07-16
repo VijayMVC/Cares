@@ -12,12 +12,6 @@ namespace Interfaces.Repository
     public interface ITarrifTypeRepository : IBaseRepository<TarrifType, int>
     {
         /// <summary>
-        /// Get all Tarrif types with respect to user domain key
-        /// </summary>
-        /// <param name="tarrifTypeRequest"></param>
-        /// <returns></returns>
-        TarrifTypeBaseResponse GetAllTarrifTypes(TarrifTypeRequest tarrifTypeRequest);
-        /// <summary>
         ///  Get all Tarrif types, based on filters
         /// </summary>
         /// <param name="tarrifTypeRequest"></param>

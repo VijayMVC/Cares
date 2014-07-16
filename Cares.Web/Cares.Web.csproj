@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -135,6 +135,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
@@ -220,6 +221,7 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
+    <Compile Include="Areas\Api\Controllers\FleetPoolController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessPartnerBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\ProductBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessPartnerController.cs" />
@@ -229,6 +231,8 @@
     <Compile Include="Areas\BusinessPartner\BusinessPartnerAreaRegistration.cs" />
     <Compile Include="Areas\BusinessPartner\Controllers\HomeController.cs" />
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
+    <Compile Include="Areas\Fleet\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Fleet\FleetPoolAreaRegistration.cs" />
     <Compile Include="Areas\Product\Controllers\HomeController.cs" />
     <Compile Include="Areas\Product\ProductAreaRegistration.cs" />
     <Compile Include="Areas\TarrifType\TarrifTypeAreaRegistration.cs" />
@@ -251,18 +255,34 @@
     <Compile Include="Helper\CultureHelper.cs" />
     <Compile Include="ModelMappers\CategoryMapper.cs" />
     <Compile Include="ModelMappers\BusinessPartnerMapper.cs" />
+    <Compile Include="ModelMappers\FleetPoolMapper.cs" />
     <Compile Include="ModelMappers\BusinessPartnerResponseMapper.cs" />
+    <Compile Include="ModelMappers\OperationMapper.cs" />
+    <Compile Include="ModelMappers\CompanyMapper.cs" />
+    <Compile Include="ModelMappers\DepartmentMapper.cs" />
+    <Compile Include="ModelMappers\MeasurementUnitMapper.cs" />   
     <Compile Include="ModelMappers\ProductResponseMapper.cs" />
     <Compile Include="ModelMappers\ProductMapper.cs" />
+    <Compile Include="ModelMappers\RegionMapper.cs" />
     <Compile Include="ModelMappers\TarrifTypeMapper.cs" />
-    <Compile Include="Models\BusinessPartnerDetail.cs" />
+     <Compile Include="Models\BusinessPartnerDetail.cs" />
+
+    <Compile Include="ModelMappers\TarrifTypeResponseMapper.cs" />
     <Compile Include="Models\BusinessPartnerListView.cs" />
     <Compile Include="Models\BusinessPartnerResponse.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\FleetPool.cs" />
+    <Compile Include="Models\MeasurementUnit.cs" />
+    <Compile Include="Models\Operation.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductResponse.cs" />
+    <Compile Include="Models\Region.cs" />
     <Compile Include="Models\TarrifType.cs" />
+    <Compile Include="Models\TarrifTypeBaseResponse.cs" />
+    <Compile Include="Models\TarrifTypeResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Shared\Common.ar.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -297,6 +317,10 @@
     <Content Include="Areas\Common\Scripts\confirmation.view.js" />
     <Content Include="Areas\Common\Scripts\confirmation.viewModel.js" />
     <Content Include="Areas\Common\Scripts\pagination.js" />
+    <Content Include="Areas\Fleet\Scripts\fleetPool.viewModel.js" />
+    <Content Include="Areas\Fleet\Scripts\fleetPool.model.js" />
+    <Content Include="Areas\Fleet\Scripts\fleetPool.view.js" />
+    <Content Include="Areas\Fleet\Scripts\fleetPoolWithKoMapping.model.js" />
     <Content Include="Areas\Product\Scripts\product.dataservice.js" />
     <Content Include="Areas\Product\Scripts\productWithKoMapping.model.js" />
     <Content Include="Areas\Product\Scripts\product.model.js" />
@@ -744,6 +768,11 @@
     <Content Include="Areas\Common\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Common\Views\Shared\_Pager.cshtml" />
     <Content Include="Areas\Product\Views\Home\_ProductEditor.cshtml" />
+    <Content Include="Areas\Fleet\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Fleet\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Fleet\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Fleet\Views\web.config" />
+    <Content Include="Areas\Fleet\Scripts\fleetPool.dataservice.js" />
     <Content Include="Areas\TarrifType\Views\Tarrif\Index.cshtml" />
     <Content Include="Areas\TarrifType\Views\web.config" />
     <Content Include="Areas\TarrifType\Views\Shared\_Layout.cshtml" />
@@ -886,15 +915,16 @@
   <ItemGroup>
     <Folder Include="App_Data\ProfileImages\" />
     <Folder Include="Areas\Api\Models\" />
+    <Folder Include="Areas\Api\Views\FleetPool\" />
     <Folder Include="Areas\Api\Views\Shared\" />
     <Folder Include="Areas\BusinessPartner\Models\" />
     <Folder Include="Areas\Common\Controllers\" />
     <Folder Include="Areas\Common\Models\" />
+    <Folder Include="Areas\Fleet\Models\" />
     <Folder Include="Areas\Product\Models\" />
     <Folder Include="Areas\TarrifType\Models\" />
     <Folder Include="Migrations\" />
     <Folder Include="Resources\Employees\" />
-    <Folder Include="ViewModels\Employees\" />
     <Folder Include="Views\Menu\" />
   </ItemGroup>
   <ItemGroup>
@@ -940,6 +970,9 @@
       <LastGenOutput>Product.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -958,7 +991,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>43063</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:43053/</IISUrl>
+          <IISUrl>http://localhost:43065/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
