@@ -11,22 +11,29 @@ namespace Models.Common
     public enum BusinessPartnerByColumn
     {
          /// <summary>
-        /// Name
+        /// Business Partner Id
         /// </summary>
-        Name = 1,
+        BusinessPartnerId = 1,
 
         /// <summary>
-        /// Description
+        /// Business Partner Name
         /// </summary>
-        Description = 2,
+        BusinessPartnerName = 2,
 
         /// <summary>
-        /// Price
+        /// Is Individual
         /// </summary>
-        Price = 3,
-         /// <summary>
-        /// CategoryName
+        IsIndividual = 3,
+        
+        /// <summary>
+        /// CompanyName
         /// </summary>
-        CategoryName = 4
+        CompanyName = 4,
+
+        /// <summary>
+        /// BP Rating TypeName
+        /// </summary>
+        BPRatingTypeName = 5,
+
     }
 }

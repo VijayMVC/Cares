@@ -113,9 +113,37 @@ namespace Models.DomainModels
         /// </summary>
         [Required]
         public long UserDomainKey { get; set; }
+        /// <summary>
+        /// Company Id
+        /// </summary>
+        [Required]
+        public int CompanyId { get; set; }
+        /// <summary>
+        /// Payment Term Id
+        /// </summary>
+        [Required]
+        public int PaymentTermId { get; set; }
+        /// <summary>
+        /// Business Partner Rating Type Id
+        /// </summary>
+        public int BPRatingTypeId { get; set; }
+        
+        
         #endregion
 
         #region Reference Properties
+        /// <summary>
+        /// Company reference
+        /// </summary>
+        public virtual Company Company { get; set; }
+        /// <summary>
+        /// Payment Term reference
+        /// </summary>
+        public virtual PaymentTerm PaymentTerm { get; set; }
+        /// <summary>
+        /// Business Partner Rating Type reference
+        /// </summary>
+        public virtual BpRatingType BPRatingType { get; set; }
 
         #endregion
     }

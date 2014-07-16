@@ -11,38 +11,86 @@
             // 
             mapping = {
                 // customize the creation of the name property so that it provides validation
-                Name: {
+                BusinessPartnerName: {
                     create: function (options) {
                         return ko.observable(options.data).extend({ required: true });
                     }
                 },
-                //Price: {
-                //    create: function (options) {
-                //        return ko.observable(options.data).extend({ required: true });
-                //    }
-                //},
-                //CategoryId: {
-                //    create: function (options) {
-                //        return ko.observable(options.data).extend({ required: true });
-                //    }
-                //}
+                BusinessPartnerDesciption: {
+                    create: function (options) {
+                        return ko.observable(options.data).extend({ required: true });
+                    }
+                },
+                IsIndividual: {
+                    create: function (options) {
+                        return ko.observable(options.data).extend({ required: true });
+                    }
+                },
+                BPRatingTypeCode: {
+                    create: function (options) {
+                        return ko.observable(options.data).extend({ required: true });
+                    }
+                },
+                BPRatingTypeName: {
+                    create: function (options) {
+                        return ko.observable(options.data).extend({ required: true });
+                    }
+                },
+                CompanyCode: {
+                    create: function (options) {
+                        return ko.observable(options.data).extend({ required: true });
+                    }
+                },
+                CompanyName: {
+                    create: function (options) {
+                        return ko.observable(options.data).extend({ required: true });
+                    }
+                }
             };
 
         // Map data to self
         ko.mapping.fromJS(data, mapping, self);
 
         // Extend BusinessPartner
+        // Is Individual Computed
+        self.isIndividualComputed = ko.computed(function() {
+            if (self.IsIndividual() == true) {
+                return "Individual";
+            } else {
+                return "Company";
+            }
+        });
+        // Company Computed
+        self.companyComputed = ko.computed(function () {
+            if (!self.CompanyName()) {
+               return "";
+            }
+            else {
+                return self.CompanyCode()+"-"+self.CompanyName();
+            }
+        });
+        // Rating Type Computed
+        self.BPRatingTypeComputed = ko.computed(function () {
+            if (!self.BPRatingTypeName()) {
+                return "";
+            }
+            else {
+                return self.BPRatingTypeCode() + "-" + self.BPRatingTypeName();
+            }
+        });
+        // Business Partner Id Computed
+        self.BusinessPartnerIdComputed = ko.computed(function () {
+            if (!self.BusinessPartnerId()) {
+                return "";
+            }
+            else {
+                return (self.IsIndividual() == true ? "I": "C") + "-" + self.BusinessPartnerId();
+            }
+        });
+        
+
         //// Categoreis
         //self.categories = ko.observableArray([]),
-        //// Category Name
-        //self.categoryName = ko.computed(function () {
-        //    if (!self.CategoryId()) {
-        //        return "";
-        //    }
-        //    var categoryResult = self.categories.find(function (category) {
-        //        return category.Id === self.CategoryId();
-        //    });
-
         //    return categoryResult ? categoryResult.Name : "";
         //}),
         //// Assign Categories
@@ -56,9 +104,6 @@
         //},
         // Errors
         self.errors = ko.validation.group({
-            name: self.Name,
-        //    price: self.Price,
-        //    categoryId: self.CategoryId
         }),
         // Is Valid
         self.isValid = ko.computed(function () {
@@ -68,10 +113,7 @@
         // ReSharper disable InconsistentNaming
         self.dirtyFlag = new ko.dirtyFlag({
             // ReSharper restore InconsistentNaming
-            name: self.Name,
-            //price: self.Price,
-            //categoryId: self.CategoryId,
-            description: self.Description
+           
         }),
         // Has Changes
         self.hasChanges = ko.computed(function () {
@@ -83,10 +125,12 @@
         };
 
         return {
-            name: self.Name,
-            id: self.Id,
-//            price: self.Price,
-            description: self.Description,
+            businessPartnerName: self.BusinessPartnerName,
+            businessPartnerId: self.BusinessPartnerIdComputed,
+            businessPartnerDesciption: self.BusinessPartnerDesciption,
+            isIndividual: self.isIndividualComputed,
+            bPRatingType: self.BPRatingTypeComputed,
+            company: self.companyComputed,
             //categoryId: self.CategoryId,
             //categoryName: self.categoryName,
             //assignCategories: self.assignCategories,

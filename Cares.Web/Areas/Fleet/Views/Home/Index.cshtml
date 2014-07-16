@@ -2,26 +2,26 @@
     ViewBag.Title = "Index";
 }
 
-<div class="row" id="rootBinding">
+<div class="row" id="fleetRootBinding">
     <div class="row searchFilterSection">
         <div class="well">
             <form class="form-horizontal" data-bind="submit: search">
                 <div class="row">
-                    <div class="col-xs-3">
+                    <div class="col-xs-2 float-left">
                         <input type="text" class="form-control" placeholder="<Fleet Pool Code>" data-bind="value: searchFilter" />
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-3">
+                    <div class="col-xs-2 float-left">
                         <select class="form-control" data-bind="options: $root.categories, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Country>', value: countryFilter"></select>
                     </div>
-                    <div class="col-xs-3">
+                    <div class="col-xs-2 float-left">
                         <select class="form-control" data-bind="options: $root.categories, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Region>', value: regionFilter"></select>
                     </div>
                 </div>
                 
-                <button type="button" class="btn btn-info" data-bind="click: search">Reset</button>
-                <button type="submit" class="btn btn-success" data-bind="click: search">Search</button>
+                <button type="button" class="btn btn-info float-left" data-bind="click: search">Reset</button>
+                <button type="submit" class="btn btn-success float-left" data-bind="click: search">Search</button>
             </form>
         </div>
     </div>

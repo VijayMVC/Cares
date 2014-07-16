@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Models.DomainModels;
 using Models.RequestModels;
 
@@ -14,10 +10,8 @@ namespace Interfaces.Repository
     public interface IFleetPoolRepository:IBaseRepository<FleetPool, long>
     {
         /// <summary>
-        /// Get All FleetPools
+        /// Search Fleet Pool Request
         /// </summary>
-        /// <param name="searchRequest"></param>
-        /// <returns></returns>
-        IQueryable<FleetPool> GetAll(FleetPoolSearchRequest searchRequest);
+        IEnumerable<FleetPool> SearchFleetPool(FleetPoolSearchRequest request, out int rowCount);
     }
 }

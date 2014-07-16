@@ -15,13 +15,13 @@ namespace Cares.Web.Models
         /// </summary>
         public BusinessPartnerResponse()
         {
-            BusinessPartners = new List<BusinessPartner>();
+            BusinessPartners = new List<BusinessPartnerListView>();
         }
 
         /// <summary>
         /// Business Partners
         /// </summary>
-        public IEnumerable<BusinessPartner> BusinessPartners { get; set; }
+        public IEnumerable<BusinessPartnerListView> BusinessPartners { get; set; }
 
         /// <summary>
         /// Total Count

@@ -15,25 +15,11 @@ namespace Cares.Web.ModelMappers
             {
                 RegionId = source.RegionId,
                 RegionCode = source.RegionCode,
-                RegionName = source.RegionName
+                RegionName = source.RegionName,
+                Country = source.Country != null ? source.Country.CountryCode + " - " + source.Country.CountryName : string.Empty
             };
         }
-        #endregion
-        #region Model To Entity
-        /// <summary>
-        ///  Create entity from web model
-        /// </summary>
-        public static Region CreateFrom(this ApiModel.Region source)
-        {
-            return new Region
-            {
-                RegionId = source.RegionId,
-                RegionCode = source.RegionCode,
-                RegionName = source.RegionName
-            };
-        }
-
-        #endregion
+        #endregion        
         #endregion
     }
 }

@@ -25,7 +25,11 @@ namespace Repository.Repositories
         private readonly Dictionary<BusinessPartnerByColumn, Func<BusinessPartner, object>> businessPartnerClause =
               new Dictionary<BusinessPartnerByColumn, Func<BusinessPartner, object>>
                     {
-                        { BusinessPartnerByColumn.Name, c => c.BusinessPartnerName }
+                        {BusinessPartnerByColumn.BusinessPartnerId, c => c.BusinessPartnerId},
+                        {BusinessPartnerByColumn.BusinessPartnerName, c => c.BusinessPartnerName},
+                        {BusinessPartnerByColumn.IsIndividual, c => c.IsIndividual},
+                        {BusinessPartnerByColumn.CompanyName, c => c.Company.CompanyName},
+                        {BusinessPartnerByColumn.BPRatingTypeName, c => c.BPRatingType.BpRatingTypeName}
                     };
         #endregion
 
@@ -61,7 +65,8 @@ namespace Repository.Repositories
             int toRow = businessPartnerSearchRequest.PageSize;
 
             Expression<Func<BusinessPartner, bool>> query =
-                s => (string.IsNullOrEmpty(businessPartnerSearchRequest.SearchString) || s.BusinessPartnerName.Contains(businessPartnerSearchRequest.SearchString));
+                s =>( (!(businessPartnerSearchRequest.SelectOption.HasValue) || s.IsIndividual == businessPartnerSearchRequest.SelectOption) && 
+                    (string.IsNullOrEmpty(businessPartnerSearchRequest.SearchString) || s.BusinessPartnerName.Contains(businessPartnerSearchRequest.SearchString)));
 
             IEnumerable<BusinessPartner> businesspartners = businessPartnerSearchRequest.IsAsc ? DbSet.Where(query)
                                             .OrderBy(businessPartnerClause[businessPartnerSearchRequest.BusinessPartnerOrderBy]).Skip(fromRow).Take(toRow).ToList()

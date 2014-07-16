@@ -1,8 +1,10 @@
-﻿using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Web;
 using System.Web.Http;
+using Cares.Web.ModelMappers;
+using Cares.Web.Models;
 using Interfaces.IServices;
+using Domain = Models.RequestModels;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
@@ -12,14 +14,14 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Get FleetPools
         /// </summary>
-        public IQueryable<global::Models.DomainModels.FleetPool> Get([FromUri] global::Models.RequestModels.FleetPoolSearchRequest request)
+        public FleetPoolResponse Get([FromUri] Domain.FleetPoolSearchRequest request)
         {
             if (request == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
 
-            return fleetPoolService.LoadAll(request);
+            return fleetPoolService.SerchFleetPool(request).CreateFrom();
         }
         #endregion
         #region Constructor
