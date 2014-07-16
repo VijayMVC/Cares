@@ -10,7 +10,7 @@
                     <input type="text" class="form-control" placeholder="<Search>" data-bind="value: searchFilter" />
                 </div>
                 <div class="col-xs-3">
-                    @*<select class="form-control" data-bind="options: $root.categories, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Category>', value: categoryFilter"></select>*@
+                    <select class="form-control" data-bind="options: $root.optionIndividualOrCompany, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<All>', value: selectFilter"></select>
                 </div>
                 <div class="btn-group" id="createButton">
                     <button type="button" class="btn btn-default" data-bind="click: createBusinessPartnerInForm">Create New</button>
@@ -30,14 +30,15 @@
             <table id="businessPartnerTable" class="table table-condensed">
                 <thead>
                     <tr>
-                        <th> <span id="1">Name<span class="icon-up"></span></span></th>
-                        @*<th> <span id="2">Description<span></span></span></th>
-                            <th> <span id="3">Price<span></span></span></th>
-                            <th> <span id="4">Category<span></span></span></th>*@
+                        <th> <span id="1">Customer #<span class="icon-up"></span></span></th>
+                        <th> <span id="2">BP Name<span></span></span></th>
+                        <th> <span id="3">Individual/Company<span></span></span></th>
+                        <th> <span id="4">Company<span></span></span></th>
+                        <th> <span id="5">Rating Type<span></span></span></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- ko template: { name: templateToUse , foreach: businessPartners } -->
+                    <!-- ko template: { name: 'itemBusinessPartnerTemplate' , foreach: businessPartners } -->
                     <!-- /ko -->
                 </tbody>
             </table>
@@ -58,7 +59,7 @@
     <script id="editBusinessPartnerTemplate" type="text/html">
         <tr data-bind="css: { selectedRow: $data === $root.selectedBusinessPartner() }">
             <td class="col-md-2">
-                <input type="text" class="form-control" data-bind="value: name, validationTooltip: name" />
+                <input type="text" class="form-control" data-bind="value: businessPartnerName, validationTooltip: businessPartnerName" />
             </td>
           @*  <td class="col-md-2">
         <input type="text" class="form-control" data-bind="value: description" />
@@ -79,10 +80,10 @@
 
     <script id="itemBusinessPartnerTemplate" type="text/html">
         <tr data-bind="click: $root.selectBusinessPartner">
-            <td data-bind="text: name"></td>
-            @*<td data-bind="text: description"></td>
-                <td data-bind="text: price"></td>
-                <td data-bind="text: categoryName"></td>*@
+            <td data-bind="text: businessPartnerId"></td>
+            <td data-bind="text: businessPartnerName"></td>
+            <td data-bind="text: isIndividual"></td>
+            <td data-bind="text: company"></td><td data-bind="text: bPRatingType"></td>
             <td>
                 <!-- ko template: { name: 'editActionBusinessPartnerTemplate' } -->
                 <!-- /ko -->

@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Models.DomainModels
@@ -37,5 +36,27 @@ namespace Models.DomainModels
         public bool IsDeleted { get; set; }
         public bool IsPrivate { get; set; }
         public bool IsReadOnly { get; set; }
+
+        #region Reference Properties
+
+        /// <summary>
+        /// Operation
+        /// </summary>
+        public virtual Operation Operation { get; set; }
+
+        /// <summary>
+        /// Measurement Unit
+        /// </summary>
+        public virtual MeasurementUnit MeasurementUnit { get; set; }
+        /// <summary>
+        /// Company
+        /// </summary>
+        public virtual Company Company { get; set; }
+
+        /// <summary>
+        /// Pricing Strategy
+        /// </summary>
+        public virtual PricingStrategy PricingStrategy { get; set; }
+        #endregion
     }
 }

@@ -27,6 +27,7 @@ namespace Implementation
             unityContainer.RegisterType<IMeasurementUnitService, MeasurementUnitService>();
             unityContainer.RegisterType<IOperationService, OperationService>();
             unityContainer.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>();
+             unityContainer.RegisterType<IBusinessPartnerService, BusinessPartnerService>();
  	    
 
         }

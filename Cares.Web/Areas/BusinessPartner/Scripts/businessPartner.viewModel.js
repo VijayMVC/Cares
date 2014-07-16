@@ -33,8 +33,8 @@ define("businessPartner/businessPartner.viewModel",
                     pager = ko.observable(),
                     // search filter
                     searchFilter = ko.observable(),
-                    // category Filter
-                    //categoryFilter = ko.observable(),
+                    // select Filter
+                    selectFilter = ko.observable(),
                     // est price total
                     //totalPrice = ko.computed(function () {
                     //    if (products().length === 0) {
@@ -42,12 +42,13 @@ define("businessPartner/businessPartner.viewModel",
                     //    }
                     //    var total = 0;
                     //    _.each(products(), function (product) {
-                    //        total += product.price();
+                    //        total += product.price();S
                     //    });
                     //    return total;
                     //}),
                     // #region Utility Functions
-                    // Select a Business Partner
+                    // Select filter option Individual or Company
+                    optionIndividualOrCompany = [{ Id: true, Name: 'Individual' },{Id : false, Name :  'Company'}],
                     selectBusinessPartner = function (businessPartner) {
                         if (selectedBusinessPartner() && selectedBusinessPartner().hasChanges()) {
                             onSaveBusinessPartner(businessPartner);
@@ -186,8 +187,7 @@ define("businessPartner/businessPartner.viewModel",
                         isLoadingBusinessPartners(true);
                         dataservice.getBusinessPartners({
                             SearchString: searchFilter(),
-                            //CategoryId: categoryFilter(),
-                            PageSize: pager().pageSize(),
+                            SelectOption: selectFilter(),  // 1 for Individual , 2 for Company
                             PageNo: pager().currentPage(), SortBy: sortOn(), IsAsc: sortIsAsc() 
                         }, {
                             success: function(data) {
@@ -253,7 +253,7 @@ define("businessPartner/businessPartner.viewModel",
                     businessPartners: businessPartners,
                     //totalPrice: totalPrice,
                     searchFilter: searchFilter,
-                    //categoryFilter: categoryFilter,
+                    selectFilter: selectFilter,
                     sortOn: sortOn,
                     sortIsAsc: sortIsAsc,
                     // Observables
@@ -272,7 +272,8 @@ define("businessPartner/businessPartner.viewModel",
                     showBusinessPartnerEditor: showBusinessPartnerEditor,
                     onCloseBusinessPartnerEditor: onCloseBusinessPartnerEditor,
                     isBusinessPartnerEditorVisible: isBusinessPartnerEditorVisible,
-                    createBusinessPartnerInForm: createBusinessPartnerInForm
+                    createBusinessPartnerInForm: createBusinessPartnerInForm,
+                    optionIndividualOrCompany: optionIndividualOrCompany
                     // Utility Methods
                 };
             })()
