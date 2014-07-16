@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Cares.Web.Areas.TarrifType.Controllers
+namespace Cares.Web.Areas.Pricing.Controllers
 {
     /// <summary>
     /// Tarrif Controller
