@@ -5,6 +5,7 @@ using System.Web.Http;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
 using Interfaces.IServices;
+using DomainModels=Models.RequestModels;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
@@ -38,7 +39,7 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Get all Bussiness Partner
         /// </summary>
-        public BusinessPartnerResponse Get([FromUri] global::Models.RequestModels.BusinessPartnerSearchRequest request)
+        public BusinessPartnerResponse Get([FromUri] DomainModels.BusinessPartnerSearchRequest request)
         {
             if (request == null || !ModelState.IsValid)
             {
@@ -48,43 +49,43 @@ namespace Cares.Web.Areas.Api.Controllers
             return businessPartnerService.LoadAllBusinessPartners(request).CreateFrom();
         }
 
-        ///// <summary>
-        ///// Update a product
-        ///// </summary>
-        //public void Post(Cares.Web.Models.Product product)
-        //{
-        //    if (product == null || !ModelState.IsValid)
-        //    {
-        //        throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
-        //    }
+        /// <summary>
+        /// Update a Business Partner
+        /// </summary>
+        public void Post(BusinessPartnerDetail businessPartner)
+        {
+            if (businessPartner == null || !ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
 
-        //    productService.Update(product.CreateFrom());
-        //}
+            businessPartnerService.UpdateBusinessPartner(businessPartner.CreateFrom());
+        }
 
-        ///// <summary>
-        ///// Adds a product
-        ///// </summary>
-        //public void Put(Cares.Web.Models.Product product)
-        //{
-        //    if (product == null || !ModelState.IsValid)
-        //    {
-        //        throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
-        //    }
+        /// <summary>
+        /// Adds a Business Partner
+        /// </summary>
+        public void Put(BusinessPartnerDetail businessPartner)
+        {
+            if (businessPartner == null || !ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
 
-        //    productService.AddProduct(product.CreateFrom());
-        //}
+            businessPartnerService.AddBusinessPartner(businessPartner.CreateFrom());
+        }
 
-        ///// <summary>
-        ///// Delete a Product
-        ///// </summary>
-        //public void Delete(Cares.Web.Models.Product product)
-        //{
-        //    if (product == null || !ModelState.IsValid)
-        //    {
-        //        throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
-        //    }
+        /// <summary>
+        /// Delete a Business Partner
+        /// </summary>
+        public void Delete(BusinessPartnerListView businessPartner)
+        {
+            if (businessPartner == null || !ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
 
-        //    productService.DeleteProduct(product.CreateFrom());
-        //}
+            businessPartnerService.DeleteBusinessPartner(businessPartner.CreateFrom());
+        }
     }
 }

@@ -77,9 +77,19 @@ define("Fleet/fleetPool.viewModel",
 
                         // Ask for confirmation
                         confirmation.afterProceed(function () {
-                            deleteFleetPool(item.id());
+                            deleteAsset(item.id());
                         });
                         confirmation.show();
+                    },
+                    deleteAsset = function (asset) {
+                        dataservice.deleteFleetPool(asset, {
+                            success: function () {
+                                toastr.success("Asset removed successfully");
+                            },
+                            error: function () {
+                                toastr.error("Failed to remove asset!");
+                            }
+                        });
                     },
                     onEditFleetPool = function() {
                     },

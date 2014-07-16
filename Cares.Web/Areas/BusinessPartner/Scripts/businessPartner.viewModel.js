@@ -20,7 +20,18 @@ define("businessPartner/businessPartner.viewModel",
                     // #region Busy Indicators
                     isLoadingBusinessPartners = ko.observable(false),
                     // #endregion Busy Indicators
+
+
                     // #region Observables
+                     // Companies Array
+                    companies = ko.observableArray([]),
+                     // Payment Terms Array 
+                    paymentTerms = ko.observableArray([]),
+                     // Business Partners Rating Types Array
+                    bpRatingTypes = ko.observableArray([]),
+                      // Business Legal Statuses Array
+                    businessLegalStatuses = ko.observableArray([]),
+                    
                     // Sort On
                     sortOn = ko.observable(1),
                     // Sort Order -  true means asc, false means desc
@@ -108,7 +119,7 @@ define("businessPartner/businessPartner.viewModel",
                     },
                     // Create Business Partner
                     createBusinessPartner = function () {
-                        var businessPartner = new model.BusinessPartner({ Name: "", CategoryId: undefined, Price: "", Id: 0, Description: "" });
+                        var businessPartner = new model.BusinessPartner({ BusinessPartnerName: "", BusinessPartnerId: 0, Description: "" });
                         //businessPartner.assignCategories(categories());
                         businessPartners.splice(0, 0, businessPartner);
                         // Select the newly added businessPartner
@@ -168,9 +179,25 @@ define("businessPartner/businessPartner.viewModel",
                     getBase = function () {
                         dataservice.getBusinessPartnerBase({
                             success: function (data) {
-                                //categories.removeAll();
-                                //ko.utils.arrayPushAll(categories(), data);
-                                //categories.valueHasMutated();
+                                //Company array
+                                companies.removeAll();
+                                ko.utils.arrayPushAll(companies(), data.ResponseCompanies);
+                                companies.valueHasMutated();
+                                
+                                // Payment Terms array
+                                paymentTerms.removeAll();
+                                ko.utils.arrayPushAll(paymentTerms(), data.ResponsePaymentTerms);
+                                paymentTerms.valueHasMutated();
+                                
+                                // Business Partner Rating Types array
+                                bpRatingTypes.removeAll();
+                                ko.utils.arrayPushAll(bpRatingTypes(), data.ResponseBPRatingTypes);
+                                bpRatingTypes.valueHasMutated();
+
+                                // Business Legal Statuses array
+                                businessLegalStatuses.removeAll();
+                                ko.utils.arrayPushAll(businessLegalStatuses(), data.ResponseBusinessLegalStatuses);
+                                businessLegalStatuses.valueHasMutated();
                             },
                             error: function () {
                                 toastr.error("Failed to load base data");
@@ -257,6 +284,10 @@ define("businessPartner/businessPartner.viewModel",
                     sortOn: sortOn,
                     sortIsAsc: sortIsAsc,
                     // Observables
+                    companies: companies,
+                    paymentTerms: paymentTerms,
+                    bpRatingTypes: bpRatingTypes,
+                    businessLegalStatuses:businessLegalStatuses,
                     // Utility Methods
                     onSaveBusinessPartner: onSaveBusinessPartner,
                     createBusinessPartner: createBusinessPartner,

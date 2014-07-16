@@ -100,7 +100,7 @@ define("Fleet/fleetPool.dataservice", function () {
         deleteFleetPool = function(param, callbacks) {
             initialize();
             return amplify.request({
-                resourceId: 'deletedeleteFleetPool',
+                resourceId: 'deleteFleetPool',
                 success: callbacks.success,
                 error: callbacks.error,
                 data: param

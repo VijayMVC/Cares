@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -224,6 +224,7 @@
     <Compile Include="Areas\Api\Controllers\FleetPoolBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\FleetPoolController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessPartnerBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\GetTariffDetailsController.cs" />
     <Compile Include="Areas\Api\Controllers\ProductBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessPartnerController.cs" />
     <Compile Include="Areas\Api\Controllers\ProductController.cs" />
@@ -256,21 +257,27 @@
     <Compile Include="Helper\CultureHelper.cs" />
     <Compile Include="ModelMappers\CategoryMapper.cs" />
     <Compile Include="ModelMappers\BusinessPartnerMapper.cs" />
+    <Compile Include="ModelMappers\BPRatingTypeMapper.cs" />
+    <Compile Include="ModelMappers\BusinessLegalStatusMapper.cs" />
+    <Compile Include="ModelMappers\PaymentTermMapper.cs" />
     <Compile Include="ModelMappers\FleetPoolMapper.cs" />
     <Compile Include="ModelMappers\BusinessPartnerResponseMapper.cs" />
     <Compile Include="ModelMappers\OperationMapper.cs" />
     <Compile Include="ModelMappers\CompanyMapper.cs" />
     <Compile Include="ModelMappers\DepartmentMapper.cs" />
     <Compile Include="ModelMappers\MeasurementUnitMapper.cs" />
+    <Compile Include="ModelMappers\PricingStrategyMapper.cs" />
     <Compile Include="ModelMappers\ProductResponseMapper.cs" />
     <Compile Include="ModelMappers\ProductMapper.cs" />
     <Compile Include="ModelMappers\RegionMapper.cs" />
     <Compile Include="ModelMappers\TarrifTypeMapper.cs" />
-     <Compile Include="Models\BusinessPartnerDetail.cs" />
-
+    <Compile Include="Models\BusinessPartnerDetail.cs" />
     <Compile Include="ModelMappers\TarrifTypeResponseMapper.cs" />
     <Compile Include="Models\BusinessPartnerListView.cs" />
     <Compile Include="Models\BusinessPartnerResponse.cs" />
+    <Compile Include="Models\BpRatingType.cs" />
+    <Compile Include="Models\BusinessLegalStatus.cs" />
+    <Compile Include="Models\PaymentTerm.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Country.cs" />
@@ -280,10 +287,13 @@
     <Compile Include="Models\FleetPoolResponse.cs" />
     <Compile Include="Models\MeasurementUnit.cs" />
     <Compile Include="Models\Operation.cs" />
+    <Compile Include="Models\PricingStrategy.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductResponse.cs" />
     <Compile Include="Models\Region.cs" />
+    <Compile Include="Models\TariffTypeDetail.cs" />
     <Compile Include="Models\TarrifType.cs" />
+    <Compile Include="Models\BusinessPartnerBaseResponse.cs" />
     <Compile Include="Models\TarrifTypeBaseResponse.cs" />
     <Compile Include="Models\TarrifTypeResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -791,6 +801,7 @@
     <Content Include="Areas\BusinessPartner\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\BusinessPartner\Views\Home\Index.cshtml" />
     <Content Include="Areas\BusinessPartner\Views\Home\_BusinessPartnerEditor.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tarrif\_TariffTypeEditor.cshtml" />
     <Content Include="Content\MainSite.less" />
     <Content Include="Content\Fleet.less" />
     <None Include="Scripts\amplify-vsdoc.js" />

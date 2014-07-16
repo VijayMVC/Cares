@@ -7,7 +7,7 @@ namespace Interfaces.Repository
     /// <summary>
     /// Business Partner Repository Interface
     /// </summary>
-    public interface IBusinessPartnerRepository : IBaseRepository<BusinessPartner, int>
+    public interface IBusinessPartnerRepository : IBaseRepository<BusinessPartner, long>
     {
         /// <summary>
         /// Get All business partners
@@ -15,5 +15,12 @@ namespace Interfaces.Repository
         /// <param name="businessPartnerSearchRequest"></param>
         /// <returns></returns>
         BusinessPartnerResponse GetAllBusinessPartners(BusinessPartnerSearchRequest businessPartnerSearchRequest);
+        /// <summary>
+        /// Get Asset by Name and Id
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        BusinessPartner GetBusinessPartnerByName(string name, int id);
     }
 }

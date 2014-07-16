@@ -9,7 +9,6 @@ namespace Cares.Web.ModelMappers
     public static class TarrifTypeMapper
     {
         #region Public
-
         /// <summary>
         ///  Create web model from entity
         /// </summary>
@@ -45,27 +44,29 @@ namespace Cares.Web.ModelMappers
             };
 
         }
-
         /// <summary>
         ///  Create entity from web model
         /// </summary>
-        public static DomainModels.TarrifType CreateFrom(this ApiModels.TarrifType source)
+        public static DomainModels.TarrifType CreateFrom(this ApiModels.TariffTypeDetail source)
         {
             return new DomainModels.TarrifType
             {
                 TariffTypeId = source.TariffTypeId,
                 TariffTypeCode = source.TariffTypeCode,
                 TariffTypeName = source.TariffTypeName,
+                TariffTypeDescription = source.TariffTypeDescription,
+                CompanyId = source.CompanyId,
+                OperationId = source.OperationId,
+                MeasurementUnitId = source.MeasurementUnitId,
                 DurationFrom = source.DurationFrom,
                 DurationTo = source.DurationTo,
                 GracePeriod = source.GracePeriod,
                 EffectiveDate = source.EffectiveDate,
-                RevisionNumber = source.RevisionNumber
-
+                PricingStrategyId = source.PricingStrategyId
             };
 
-            #endregion
+
         }
+        #endregion
     }
 }
-    

@@ -10,7 +10,7 @@ namespace Interfaces.Repository
     /// <summary>
     /// Company Repository Interface
     /// </summary>
-    public interface ICompanyRepository : IBaseRepository<Company, int>
+    public interface ICompanyRepository : IBaseRepository<Company, long>
     {
 
     }

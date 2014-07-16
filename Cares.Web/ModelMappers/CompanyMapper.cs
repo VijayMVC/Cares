@@ -1,5 +1,5 @@
 ﻿
-
+using DomainModels = Models.DomainModels;
 using Cares.Web.Models;
 
 namespace Cares.Web.ModelMappers
@@ -13,7 +13,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static Company CreateFrom(this global::Models.DomainModels.Company source)
+        public static Company CreateFrom(this DomainModels.Company source)
         {
             return new Company
             {
@@ -24,17 +24,17 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create entity from web model
         /// </summary>
-        public static global::Models.DomainModels.Company CreateFrom(this Company source)
+        public static DomainModels.Company CreateFrom(this Company source)
         {
             if (source != null)
             {
-                return new global::Models.DomainModels.Company
+                return new DomainModels.Company
                 {
                     CompanyId = source.CompanyId,
                     CompanyName = source.CompanyName,
                 };
             }
-            return new global::Models.DomainModels.Company();
+            return new DomainModels.Company();
         }
         #endregion
     }

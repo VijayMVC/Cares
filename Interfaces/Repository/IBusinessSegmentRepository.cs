@@ -5,7 +5,7 @@ namespace Interfaces.Repository
     /// <summary>
     /// Business Segment Repository Interface
     /// </summary>
-    public interface IBusinessSegmentRepository : IBaseRepository<BusinessSegment, int>
+    public interface IBusinessSegmentRepository : IBaseRepository<BusinessSegment, long>
     {
 
     }

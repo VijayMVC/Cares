@@ -9,7 +9,7 @@ namespace Interfaces.Repository
     /// <summary>
     /// Tarrif Type Reposiory interface
     /// </summary>
-    public interface ITarrifTypeRepository : IBaseRepository<TarrifType, int>
+    public interface ITarrifTypeRepository : IBaseRepository<TarrifType, long>
     {
         /// <summary>
         ///  Get all Tarrif types, based on filters

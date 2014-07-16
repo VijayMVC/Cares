@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Web;
 using System.Web.Http;
 using Cares.Web.ModelMappers;
@@ -30,14 +31,14 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Delete a FleetPool
         /// </summary>
-        public void Delete(int fleetPoolId)
+        public void Delete(Object fleetPoolId)
         {
-            if (fleetPoolId<1 || !ModelState.IsValid)
+            if ( !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
 
-            fleetPoolService.DeleteFleetPool(fleetPoolId);
+            fleetPoolService.DeleteFleetPool(2);
         }
         #endregion
         #region Constructor
