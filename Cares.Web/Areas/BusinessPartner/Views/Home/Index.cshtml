@@ -52,33 +52,10 @@
     </script>
 
     <script id="editActionBusinessPartnerTemplate" type="text/html">
-        @*<a href="#" data-bind="click: $root.onEditBusinessPartnerInline" title="Edit Inline"><span class="glyphicon glyphicon-pencil"></span></a>*@
         <a href="#" data-bind="click: $root.onEditBusinessPartner" title="Edit in Form"><span class="glyphicon glyphicon-edit"></span></a>
     </script>
 
-    <script id="editBusinessPartnerTemplate" type="text/html">
-        <tr data-bind="css: { selectedRow: $data === $root.selectedBusinessPartner() }">
-            <td class="col-md-2">
-                <input type="text" class="form-control" data-bind="value: businessPartnerName, validationTooltip: businessPartnerName" />
-            </td>
-          @*  <td class="col-md-2">
-        <input type="text" class="form-control" data-bind="value: description" />
-    </td>
-    <td class="col-md-2">
-        <input type="text" class="form-control" data-bind="value: price, validationTooltip: price" />
-    </td>
-    <td class="col-md-2">
-            <select class="form-control" data-bind="options: $root.categories, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Category>', value: categoryId, validationTooltip: categoryId"></select>
-        </td>*@
-            <td><a href="#" data-bind="click: $root.onEditBusinessPartner" title="Edit in Form"><span class="glyphicon glyphicon-edit"></span></a></td>
-            <td>
-                <!-- ko template: { name: 'deleteActionBusinessPartnerTemplate' } -->
-                <!-- /ko -->
-            </td>
-        </tr>
-    </script>
-
-    <script id="itemBusinessPartnerTemplate" type="text/html">
+   <script id="itemBusinessPartnerTemplate" type="text/html">
         <tr data-bind="click: $root.selectBusinessPartner">
             <td data-bind="text: businessPartnerId"></td>
             <td data-bind="text: businessPartnerName"></td>

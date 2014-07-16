@@ -28,8 +28,9 @@ namespace Implementation
             unityContainer.RegisterType<IOperationService, OperationService>();
             unityContainer.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>();
              unityContainer.RegisterType<IBusinessPartnerService, BusinessPartnerService>();
- 	    
-
+             unityContainer.RegisterType<IPaymentTermService, PaymentTermService>();
+             unityContainer.RegisterType<IBPRatingTypeService, BPRatingTypeService>();
+             unityContainer.RegisterType<IBusinessLegalStatusService, BusinessLegalStatusService>();
         }
     }
 }

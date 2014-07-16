@@ -45,6 +45,26 @@
                     create: function (options) {
                         return ko.observable(options.data).extend({ required: true });
                     }
+                },
+                CompanyId: {
+                    create: function (options) {
+                        return ko.observable(options.data).extend({ required: true });
+                    }
+                },
+                PaymentTermId: {
+                        create: function (options) {
+                            return ko.observable(options.data).extend({ required: true });
+                        }
+                },
+                BPRatingTypeId: {
+                        create: function (options) {
+                            return ko.observable(options.data).extend({ required: true });
+                        }
+                },
+                BusinessLegalStatusId: {
+                    create: function (options) {
+                        return ko.observable(options.data).extend({ required: true });
+                    }
                 }
             };
 
@@ -104,6 +124,8 @@
         //},
         // Errors
         self.errors = ko.validation.group({
+            businessPartnerName: self.BusinessPartnerName,
+            companyId: self.CompanyId
         }),
         // Is Valid
         self.isValid = ko.computed(function () {
@@ -113,7 +135,14 @@
         // ReSharper disable InconsistentNaming
         self.dirtyFlag = new ko.dirtyFlag({
             // ReSharper restore InconsistentNaming
-           
+            businessPartnerName: self.BusinessPartnerName,
+            businessPartnerDesciption: self.BusinessPartnerDesciption,
+            //isSystemGuarantor: self.IsSystemGuarantor,
+            //systemGuarantorId: self.SystemGuarantorId,
+            //nonSystemGuarantor: self.NonSystemGuarantor,
+            //dealingEmployeeId: self.DealingEmployeeId,
+            //businessPartnerEmailAddress: self.BusinessPartnerEmailAddress,
+            //businessPartnerIsValid: self.businessPartnerIsValid
         }),
         // Has Changes
         self.hasChanges = ko.computed(function () {
@@ -131,10 +160,16 @@
             isIndividual: self.isIndividualComputed,
             bPRatingType: self.BPRatingTypeComputed,
             company: self.companyComputed,
-            //categoryId: self.CategoryId,
-            //categoryName: self.categoryName,
-            //assignCategories: self.assignCategories,
-            //categories: self.categories,
+            companyId: self.CompanyId !== undefined ? self.CompanyId : ko.observable(),
+            paymentTermId: self.PaymentTermId !== undefined ? self.PaymentTermId : ko.observable(),
+            bPRatingTypeId: self.BPRatingTypeId !== undefined ? self.BPRatingTypeId : ko.observable(),
+            businessLegalStatusId: self.BusinessLegalStatusId !== undefined ? self.BusinessLegalStatusId : ko.observable(),
+            isSystemGuarantor: self.IsSystemGuarantor !== undefined ? self.IsSystemGuarantor : ko.observable(),
+            systemGuarantorId: self.SystemGuarantorId !== undefined ? self.SystemGuarantorId : ko.observable(),
+            nonSystemGuarantor: self.NonSystemGuarantor !== undefined ? self.NonSystemGuarantor : ko.observable(),
+            dealingEmployeeId: self.DealingEmployeeId !== undefined ? self.DealingEmployeeId : ko.observable(),
+            businessPartnerEmailAddress: self.BusinessPartnerEmailAddress !== undefined ? self.BusinessPartnerEmailAddress : ko.observable(),
+            businessPartnerIsValid: self.businessPartnerIsValid !== undefined ? self.businessPartnerIsValid : ko.observable(),
             hasChanges: self.hasChanges,
             reset: self.reset,
             errors: self.errors,
