@@ -5,7 +5,7 @@ namespace Interfaces.Repository
     /// <summary>
     /// Business Legal Status Repository Interface
     /// </summary>
-    public interface IBusinessLegalStatus : IBaseRepository<BusinessLegalStatus, long>
+    public interface IBusinessLegalStatusRepository : IBaseRepository<BusinessLegalStatus, long>
     {
 
     }
