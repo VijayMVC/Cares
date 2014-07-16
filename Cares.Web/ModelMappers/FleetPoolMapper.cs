@@ -36,10 +36,10 @@ namespace Cares.Web.ModelMappers
         public static ApiModel.FleetPoolBaseDataResponse CreateFrom(this FleetPoolBaseDataResponse source)
         {
             return new ApiModel.FleetPoolBaseDataResponse
-            {
-                Operations = source.Operations.Select(operation => operation.CreateFrom()),
-                Regions = source.Regions.Select(region => region.CreateFrom()),
-            };
+             {
+                 Operations = source.Operations.Select(operation => operation.CreateFrom()),
+                 Regions = source.Regions.Select(region => region.CreateFrom())
+             };
         }
         #endregion
 

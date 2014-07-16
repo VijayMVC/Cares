@@ -6,7 +6,11 @@
     public class FleetPoolSearchRequest : GetPagedListRequest
     {
         /// <summary>
-        /// Region
+        /// FleetPool Code
+        /// </summary>
+        public string FleetPoolCode { get; set; }  
+        /// <summary>
+        /// Region Id
         /// </summary>
         public int? RegionId { get; set; }
         /// <summary>

@@ -8,6 +8,9 @@ using Domain = Models.RequestModels;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
+    /// <summary>
+    /// Fleet Pool Api Controller
+    /// </summary>
     public class FleetPoolController : ApiController
     {
         #region Public
@@ -22,6 +25,19 @@ namespace Cares.Web.Areas.Api.Controllers
             }
 
             return fleetPoolService.SerchFleetPool(request).CreateFrom();
+        }
+
+        /// <summary>
+        /// Delete a FleetPool
+        /// </summary>
+        public void Delete(int fleetPoolId)
+        {
+            if (fleetPoolId<1 || !ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+
+            fleetPoolService.DeleteFleetPool(fleetPoolId);
         }
         #endregion
         #region Constructor

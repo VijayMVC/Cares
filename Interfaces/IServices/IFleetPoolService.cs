@@ -1,4 +1,5 @@
-﻿using Models.RequestModels;
+﻿using Models.DomainModels;
+using Models.RequestModels;
 using Models.ResponseModels;
 
 namespace Interfaces.IServices
@@ -17,5 +18,11 @@ namespace Interfaces.IServices
         /// Load Fleet Pool Base Data
         /// </summary>
         FleetPoolBaseDataResponse LoadFleetPoolBaseData();
+
+        /// <summary>
+        /// Dalete Fleet Pool
+        /// </summary>
+        /// <param name="id"></param>
+        void DeleteFleetPool(int id);
     }
 }

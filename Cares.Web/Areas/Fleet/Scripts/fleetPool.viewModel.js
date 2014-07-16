@@ -1,265 +1,147 @@
 ﻿/*
-    Module with the view model for the Item
+    Module with the view model for the FleetPool
 */
 define("Fleet/fleetPool.viewModel",
-    ["jquery", "amplify", "ko", "Fleet/fleetPool.dataservice", "Fleet/fleetPoolWithKoMapping.model", "common/confirmation.viewModel", "common/pagination"],
+    ["jquery", "amplify", "ko", "Fleet/fleetPool.dataservice", "Fleet/fleetPool.model", "common/confirmation.viewModel", "common/pagination"],
     function ($, amplify, ko, dataservice, model, confirmation, pagination) {
 
         var ist = window.ist || {};
         ist.fleetPool = {
             viewModel: (function () {
-                var// the view 
+                var // the view 
                     view,
-                    // Active Item
-                    selectedItem = ko.observable(),
+                    // Active FleetPool
+                    selectedFleetPool = ko.observable(),
                     // #region Arrays
                     // fleetPools
                     fleetPools = ko.observableArray([]),
                     // #endregion Arrays
-
+                    // Regions
+                    regionsList = ko.observableArray([]),
+                    // Operations
+                    operationsList = ko.observableArray([]),
+                    // FleetPool Code
+                    fleetPoolSeachFilter = ko.observable(),
+                    //Operation Filter
+                    operationFilter = ko.observable(),
+                    // region Filter
+                    regionFilter = ko.observable(),
                     // #region Busy Indicators
-                    isLoadingData = ko.observable(false),
-                    // #endregion Busy Indicators
-
-                    // #region Observables
+                    isLoadingFleetPools = ko.observable(false),
+                    //Is Edit visible
+                    isFleetPoolEditorVisible = ko.observable(false),
                     // Sort On
                     sortOn = ko.observable(1),
                     // Sort Order -  true means asc, false means desc
                     sortIsAsc = ko.observable(true),
-                    // Is Editable
-                    isEditable = ko.observable(false),
                     // Pagination
                     pager = ko.observable(),
-                    //#endregion
-                    
-                    // #region Utility Functions
-                    // Select a fleetPool
-                    selectItem = function (item) {
-                        if (selectedItem() && selectedItem().hasChanges()) {
-                            onSaveItem(item);
-                            return;
-                        }
-                        if (selectedItem() !== item) {
-                            selectedItem(item);
-                        }
-                        isEditable(false);
+                    // Get Fleet Pool Base Data
+                    getFleetPoolBaseData = function(callBack) {
+                        dataservice.getFleetPoolBasedata(null, {
+                            success: function(data) {
+                                operationsList.removeAll();
+                                ko.utils.arrayPushAll(operationsList(), data.Operations);
+                                operationsList.valueHasMutated();
+
+                                regionsList.removeAll();
+                                ko.utils.arrayPushAll(regionsList(), data.Regions);
+                                regionsList.valueHasMutated();
+
+                                if (callBack && callBack === 'function') {
+                                    callBack()();
+                                };
+                            },
+                            error: function(data, error) {
+
+                                toastr.error("Failed to load base data.");
+                            }
+                        });
                     },
-                    // Edit a Item
-                    onEditItemInline = function (item, e) {
-                        selectItem(item);
-                        isEditable(true);
-                        e.stopImmediatePropagation();
+                    //search Fleet Pools
+                    search = function () {
+                        pager().reset();
+                        getFleetPools();
                     },
-                    // Edit a Item - In a Form
-                    onEditItem = function (item, e) {
-                        selectItem(item);
-                        showItemEditor();
-                        e.stopImmediatePropagation();
+                    reset=function() {
+                        fleetPoolSeachFilter(undefined);
+                        regionFilter(undefined);
+                        operationFilter(undefined);
+                        search();   
                     },
-                    // Show Item Editor
-                    showItemEditor = function () {
-                        isItemEditorVisible(true);
-                    },
-                    // close Item Editor
-                    onCloseItemEditor = function () {
-                        if (selectedItem().hasChanges()) {
-                            confirmation.messageText("Do you want to save changes?");
-                            confirmation.afterProceed(onSaveItem);
-                            confirmation.afterCancel(function () {
-                                selectedItem().reset();
-                                closeItemEditor();
-                            });
-                            confirmation.show();
-                            return;
-                        }
-                        closeItemEditor();
-                    },
-                    // close Item Editor
-                    closeItemEditor = function () {
-                        isItemEditorVisible(false);
-                    },
-                    // Delete a item
-                    onDeleteItem = function (item) {
+                    onDeleteFleetPool = function (item) {
                         if (!item.id()) {
-                            items.remove(item);
+                            fleetPools.remove(item);
                             return;
                         }
 
                         // Ask for confirmation
                         confirmation.afterProceed(function () {
-                            deleteItem(item);
+                            deleteFleetPool(item.id());
                         });
                         confirmation.show();
                     },
-                    // Create Item
-                    createItem = function () {
-                        var item = new model.Item({ Name: "", CategoryId: undefined, Price: "", Id: 0, Description: "" });
-                        item.assignregions(regions());
-                        items.splice(0, 0, item);
-                        // Select the newly added item
-                        selectedItem(item);
+                    onEditFleetPool = function() {
                     },
-                    // Create Item - In Form
-                    createItemInForm = function () {
-                        createItem();
-                        showItemEditor();
-                    },
-                    // Save Item
-                    onSaveItem = function (item) {
-                        if (doBeforeSelect()) {
-                            // Commits and Selects the Row
-                            saveItem(item);
-                        }
-                    },
-                    // Do Before Logic
-                    doBeforeSelect = function () {
-                        var flag = true;
-                        if (!selectedItem().isValid()) {
-                            selectedItem().errors.showAllMessages();
-                            flag = false;
-                        }
-                        return flag;
-                    },
-                    // Initialize the view model
-                    initialize = function (specifiedView) {
-                        view = specifiedView;
+                    // Map Tarrif Types - Server to Client
+                    mapFleetPools = function (data) {
+                        var fleetPoolList = [];
+                        _.each(data.FleetPools, function (item) {
+                            var fleetPool = model.FleetPool.Create(item);
+                            fleetPoolList.push(fleetPool);
 
-                        ko.applyBindings(view.viewModel, view.bindingRoot);
-
-                        //getBase();
-
-                        // Set Pager
-                        pager(pagination.Pagination({}, items, getItems));
-
-                        getItems();
-                    },
-                    // Template Chooser
-                    templateToUse = function (item) {
-                        return (item === selectedItem() ? 'editItemTemplate' : 'itemItemTemplate');
-                    },
-                    // Map Items - Server to Client
-                    mapItems = function (data) {
-                        var itemList = [];
-                        _.each(data.Items, function (item) {
-                            var item = new model.Item(item);
-                            item.assignregions(regions());
-                            itemList.push(item);
                         });
 
-                        ko.utils.arrayPushAll(items(), itemList);
-                        items.valueHasMutated();
+                        ko.utils.arrayPushAll(fleetPools(), fleetPoolList);
+                        fleetPools.valueHasMutated();
                     },
-                    // Get Base
-                    getBase = function () {
-                        dataservice.getItemBase({
-                            success: function (data) {
-                                regions.removeAll();
-                                ko.utils.arrayPushAll(regions(), data);
-                                regions.valueHasMutated();
-                            },
-                            error: function () {
-                                toastr.error("Failed to load base data");
-                            }
-                        });
-                    },
-                    // Search 
-                    search = function () {
-                        pager().reset();
-                        getItems();
-                    },
-                    // Get Items
-                    getItems = function () {
-                        isLoadingItems(true);
-                        dataservice.getItems({
-                            SearchString: searchFilter(), CategoryId: categoryFilter(), PageSize: pager().pageSize(),
+                    // Get FleetPools 
+                    getFleetPools = function() {
+                        isLoadingFleetPools(true);
+                        dataservice.getFleetPools({
+                            FleetPoolCode: fleetPoolSeachFilter(), RegionId: regionFilter(), OperationId: operationFilter(), PageSize: pager().pageSize(),
                             PageNo: pager().currentPage(), SortBy: sortOn(), IsAsc: sortIsAsc()
                         }, {
-                            success: function (data) {
+                            success: function(data) {
                                 pager().totalCount(data.TotalCount);
-                                items.removeAll();
-                                mapItems(data);
-                                isLoadingItems(false);
+                                fleetPools.removeAll();
+                                mapFleetPools(data);
+                                isLoadingFleetPools(false);
                             },
-                            error: function () {
-                                isLoadingItems(false);
-                                toastr.error("Failed to load items!");
+                            error: function() {
+                                isLoadingFleetPools(false);
+                                toastr.error("Failed to load fleetPools!");
                             }
                         });
                     },
-                    // Delete Item
-                    deleteItem = function (item) {
-                        dataservice.deleteItem(item.convertToServerData(), {
-                            success: function () {
-                                items.remove(item);
-                                toastr.success("Item removed successfully");
-                            },
-                            error: function () {
-                                toastr.error("Failed to remove item!");
-                            }
-                        });
-                    },
-                    // Save Item
-                    saveItem = function (item) {
-                        var method = "updateItem";
-                        if (!selectedItem().id()) {
-                            method = "createItem";
-                        }
-                        // Ignore additional properties
-                        var mapping = {
-                            'ignore': ["regions", "regionName", "assignregions", "dirtyFlag", "hasChanges", "errors", "isValid",
-                                "reset"]
-                        };
-                        dataservice[method](ko.mapping.toJS(selectedItem(), mapping), {
-                            success: function () {
-                                // Reset Changes
-                                selectedItem().reset();
-                                // If Item is specified then select it
-                                if (item) {
-                                    selectItem(item);
-                                }
-                                if (isItemEditorVisible) {
-                                    closeItemEditor();
-                                }
-                                toastr.success("Item saved successfully");
-                            },
-                            error: function () {
-                                toastr.error('Failed to save item!');
-                            }
-                        });
+                    
+                    // Initialize the view model
+                    initialize = function(specifiedView) {
+                        view = specifiedView;
+                        ko.applyBindings(view.viewModel, view.bindingRoot);
+                        getFleetPoolBaseData(getFleetPools);
+                        // Set Pager
+                        pager(pagination.Pagination({}, fleetPools, getFleetPools));
                     };
-                // #endregion Service Calls
-
                 return {
-                    // #region Observables
-                    selectedItem: selectedItem,
-                    isLoadingItems: isLoadingItems,
-                    regions: regions,
-                    operations: operations,
-                    items: items,
-                    totalPrice: totalPrice,
-                    searchFilter: searchFilter,
-                    categoryFilter: categoryFilter,
+                    isLoadingFleetPools: isLoadingFleetPools,
                     sortOn: sortOn,
                     sortIsAsc: sortIsAsc,
-                    // #endregion Observables
-
-                    //#region Utility Methods
-                    onSaveItem: onSaveItem,
-                    createItem: createItem,
-                    onDeleteItem: onDeleteItem,
-                    initialize: initialize,
-                    templateToUse: templateToUse,
-                    selectItem: selectItem,
-                    search: search,
-                    getItems: getItems,
                     pager: pager,
-                    onEditItemInline: onEditItemInline,
-                    onEditItem: onEditItem,
-                    showItemEditor: showItemEditor,
-                    onCloseItemEditor: onCloseItemEditor,
-                    isItemEditorVisible: isItemEditorVisible,
-                    createItemInForm: createItemInForm
-                    //#endregion Utility Methods
+                    initialize: initialize,
+                    regionsList: regionsList,
+                    operationsList: operationsList,
+                    fleetPools: fleetPools,
+                    selectedFleetPool: selectedFleetPool,
+                    fleetPoolSeachFilter: fleetPoolSeachFilter,
+                    operationFilter: operationFilter,
+                    regionFilter: regionFilter,
+                    search: search,
+                    reset:reset,
+                    isFleetPoolEditorVisible: isFleetPoolEditorVisible,
+
+                    onDeleteFleetPool: onDeleteFleetPool,
+                    onEditFleetPool: onEditFleetPool
                 };
             })()
         };

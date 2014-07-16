@@ -1,5 +1,6 @@
-﻿.float-left {
+﻿.searchButton {
+  margin-left: 5px;
+}
+.float-left {
   float: left;
-  margin-left: 10px;
-  margin-top: 10px;
 }

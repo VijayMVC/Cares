@@ -51,11 +51,11 @@ namespace Models.DomainModels
         /// <summary>
         /// Operation ID
         /// </summary>
-        public long OperationId { get; set; }
+        public int OperationId { get; set; }
         /// <summary>
         /// Region ID
         /// </summary>
-        public short RegionId { get; set; }
+        public int RegionId { get; set; }
         /// <summary>
         /// FleetPool Record Created Date
         /// </summary>

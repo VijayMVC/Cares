@@ -16,7 +16,7 @@ namespace Cares.Web.Areas.Api.Controllers
         #region Public
 
         /// <summary>
-        /// Get Fleet Pool Bae Data 
+        /// Get Fleet Pool Base Data 
         /// </summary>
         public FleetPoolBaseDataResponse Get()
         {
@@ -24,7 +24,8 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return fleetPoolService.LoadFleetPoolBaseData().CreateFrom();
+            var abc = fleetPoolService.LoadFleetPoolBaseData().CreateFrom();
+            return abc;
         }
         #endregion
 
