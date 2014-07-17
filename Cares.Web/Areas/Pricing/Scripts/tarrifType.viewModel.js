@@ -163,9 +163,21 @@ define("tarrifType/tarrifType.viewModel",
                      // Save Tariff Type
                     onSaveTariffType = function (tariffType) {
                         if (doBeforeSelect()) {
-                            // Commits and Selects the Row
-                            saveTariffType(tariffType);
+                            if (selectedTarrifType().tarrifTypeId() > 0) {
+                                var date = new Date();
+                                if (selectedTarrifType().effectiveDate() >= date) {
+                                    // Commits and Selects the Row
+                                    saveTariffType(tariffType);
+                                } else {
+                                    toastr.error('Effective Date must be a current or future date.');
+                                }
+                            } else {
+                                // Commits and Selects the Row
+                                saveTariffType(tariffType);
+                            }
+                           
                         }
+                       
                     },
                      // close Tariff Type Editor
                     closeTariffTypeEditor = function () {

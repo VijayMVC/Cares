@@ -10,7 +10,6 @@ using Models.DomainModels;
 using Models.RequestModels;
 using Models.ResponseModels;
 using Repository.BaseRepository;
-
 namespace Repository.Repositories
 {
     /// <summary>
@@ -50,21 +49,19 @@ namespace Repository.Repositories
         }
         #endregion
         #region Public
-
         /// <summary>
         /// Get All Tariff Types for User Domain Key
         /// </summary>
         /// <returns></returns>
-         public override IQueryable<TarrifType> GetAll()
+        public override IQueryable<TarrifType> GetAll()
         {
             return DbSet.Where(p => p.UserDomainKey == UserDomaingKey);
         }
         /// <summary>
-         /// Get All Tariff Types based on search crateria
+        /// Get All Tariff Types based on search crateria
         /// </summary>
         /// <param name="tarrifTypeRequest"></param>
         /// <returns></returns>
-
         public TarrifTypeResponse GetTarrifTypes(TarrifTypeRequest tarrifTypeRequest)
         {
             int fromRow = (tarrifTypeRequest.PageNo - 1) * tarrifTypeRequest.PageSize;
@@ -72,7 +69,7 @@ namespace Repository.Repositories
 
 
             Expression<Func<TarrifType, bool>> query =
-                s => (!(tarrifTypeRequest.OperationId >0) || s.OperationId == tarrifTypeRequest.OperationId) &&
+                s => (!(tarrifTypeRequest.OperationId > 0) || s.OperationId == tarrifTypeRequest.OperationId) &&
                     (!(tarrifTypeRequest.MeasurementUnitId > 0) || s.MeasurementUnitId == tarrifTypeRequest.MeasurementUnitId) &&
                      (string.IsNullOrEmpty(tarrifTypeRequest.TarrifTypeCode) || s.TariffTypeCode.Contains(tarrifTypeRequest.TarrifTypeCode));
 
@@ -81,16 +78,9 @@ namespace Repository.Repositories
                                             : DbSet.Where(query)
                                                 .OrderByDescending(tarrifTypeClause[tarrifTypeRequest.TarrifTypeByOrder]).Skip(fromRow).Take(toRow).ToList();
 
-         
-             return new TarrifTypeResponse { TarrifTypes = tarrifTypes, TotalCount = DbSet.Count(query) };
+
+            return new TarrifTypeResponse { TarrifTypes = tarrifTypes, TotalCount = DbSet.Count(query) };
         }
-
-
-        //public override TarrifType Find(long id)
-        //{
-        //    DbSet.Where(tariff => tariff.TariffTypeId == id).Include(tariff => tariff.Operation).Include(tariff => tariff.Operation.)
-        //}
-
         #endregion
 
     }

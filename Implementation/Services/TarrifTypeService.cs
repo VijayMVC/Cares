@@ -31,7 +31,7 @@ namespace Implementation.Services
             this.measurementUnit = measurementUnit;
             this.pricingStrategyRepository = pricingStrategyRepository;
             this.tarrifTypeRepository = tarrifTypeRepository;
-            
+
         }
         #endregion
         #region Public
@@ -47,9 +47,8 @@ namespace Implementation.Services
                 PricingStrategies = pricingStrategyRepository.GetAll()
 
             };
-           
-        }
 
+        }
         public IEnumerable<TarrifType> LoadAll()
         {
             return tarrifTypeRepository.GetAll();
@@ -79,7 +78,6 @@ namespace Implementation.Services
         /// <returns></returns>
         public TarrifType AddTarrifType(TarrifType tarrifType)
         {
-            
             tarrifTypeRepository.Add(tarrifType);
             tarrifTypeRepository.SaveChanges();
             return tarrifTypeRepository.Find(tarrifType.TariffTypeId);
@@ -91,8 +89,16 @@ namespace Implementation.Services
         /// <returns></returns>
         public bool UpdateTarrifType(TarrifType tarrifType)
         {
+            
+            TarrifType tarrifObj = tarrifType;
+             tarrifObj.TariffTypeId = 0;
+            tarrifTypeRepository.Add(tarrifObj);
+            tarrifTypeRepository.SaveChanges();
+            tarrifType.ChildTariffTypeId=tarrifObj.TariffTypeId;
+            tarrifType.RevisionNumber = tarrifType.RevisionNumber + 1;
             tarrifTypeRepository.Update(tarrifType);
             tarrifTypeRepository.SaveChanges();
+
             return true;
 
         }

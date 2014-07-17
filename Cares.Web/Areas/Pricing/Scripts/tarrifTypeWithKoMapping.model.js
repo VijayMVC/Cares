@@ -72,15 +72,6 @@
             recLastUpdatedBy = ko.observable(),
             //Rec Created By
             recCreatedBy = ko.observable(),
-            //IsActive
-            isActive = ko.observable(),
-            //IsDeleted
-            isDeleted = ko.observable(),
-            //IsPrivate
-            isPrivate = ko.observable(),
-            //IsReadOnly
-            isReadOnly = ko.observable(),
-            // Is Busy
             isBusy = ko.observable(false),
 
             // Errors
@@ -148,11 +139,7 @@
             recLastUpdatedDt: recLastUpdatedDt,
             recLastUpdatedBy: recLastUpdatedBy,
             recCreatedBy: recCreatedBy,
-            isActive: isActive,
-            isDeleted: isDeleted,
-            isPrivate: isPrivate,
-            isReadOnly: isReadOnly,
-
+           
             errors: errors,
             isValid: isValid,
             dirtyFlag: dirtyFlag,
@@ -179,6 +166,7 @@
         result.GracePeriod = tariffTypeObj().gracePeriod();
         result.EffectiveDate = tariffTypeObj().effectiveDate() === undefined || tariffTypeObj().effectiveDate() === null ? undefined : moment(tariffTypeObj().effectiveDate()).format(ist.utcFormat);
         result.PricingStrategyId = tariffTypeObj().pricingStrategyId();
+        result.RevisionNumber = tariffTypeObj().revisionNumber();
         return result;
     };
     //Server To Client Mapper
@@ -197,6 +185,7 @@
         tarrifType.gracePeriod(source.GracePeriod === null ? undefined : source.GracePeriod);
         tarrifType.effectiveDate(source.EffectiveDate !== null ? moment(source.EffectiveDate, ist.utcFormat).toDate() : undefined);
         tarrifType.pricingStrategyId(source.PricingStrategyId === null ? undefined : source.PricingStrategyId);
+        tarrifType.revisionNumber(source.RevisionNumber === null ? undefined : source.RevisionNumber);
         return tarrifType;
     };
 

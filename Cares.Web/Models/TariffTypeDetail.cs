@@ -60,7 +60,10 @@ namespace Cares.Web.Models
         /// Effective Date
         /// </summary>
         public DateTime EffectiveDate { get; set; }
-
+        /// <summary>
+        /// Revision Number
+        /// </summary>
+        public long RevisionNumber { get; set; }
         #endregion
     }
 }
