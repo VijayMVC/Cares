@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Models.DomainModels;
 
 namespace Models.ResponseModels
@@ -17,11 +16,11 @@ namespace Models.ResponseModels
         /// </summary>
         public TarrifTypeBaseResponse()
         {
-           Companies = new List<Company>();
+            Companies = new List<Company>();
             MeasurementUnits = new List<MeasurementUnit>();
             Departments = new List<Department>();
             Operations = new List<Operation>();
-            TarrifTypes = new List<TarrifType>();
+            PricingStrategies = new List<PricingStrategy>();
         }
         #endregion
         #region Protected
@@ -44,13 +43,10 @@ namespace Models.ResponseModels
         /// </summary>
         public IEnumerable<Operation> Operations { get; set; }
         /// <summary>
-        /// List of Tarriff Types
+        /// List of Pricing Strategies
         /// </summary>
-        public IEnumerable<TarrifType> TarrifTypes { get; set; }
-        /// <summary>
-        /// Total Count
-        /// </summary>
-        public int TotalCount { get; set; }
+        public IEnumerable<PricingStrategy> PricingStrategies { get; set; }
+  
         #endregion
     }
 }

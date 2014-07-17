@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Web.Http;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
@@ -14,7 +13,7 @@ namespace Cares.Web.Areas.Api.Controllers
         private readonly ITarrifTypeService tarrifTypeService;
 
         #region Private
-      
+
         #endregion
         #region Constructors
         /// <summary>
@@ -31,8 +30,7 @@ namespace Cares.Web.Areas.Api.Controllers
         // GET api/<controller>
         public TarrifTypeBaseResponse Get()
         {
-            //TODO
-            return null;//tarrifTypeService.GetBaseData();
+            return tarrifTypeService.GetBaseData().CreateFrom();
         }
         #endregion
     }

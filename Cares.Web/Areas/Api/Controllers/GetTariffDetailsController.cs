@@ -5,7 +5,6 @@ using System.Web.Http;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
 using Interfaces.IServices;
-
 namespace Cares.Web.Areas.Api.Controllers
 {
     /// <summary>
@@ -13,7 +12,6 @@ namespace Cares.Web.Areas.Api.Controllers
     /// </summary>
     public class GetTariffDetailsController : ApiController
     {
-
         #region Private
         private readonly ITarrifTypeService tarrifTypeService;
         #endregion
@@ -32,19 +30,17 @@ namespace Cares.Web.Areas.Api.Controllers
         }
         #endregion
         #region Public
-       /// <summary>
-       /// Get Tariff Type By Id
-       /// </summary>
+        /// <summary>
+        /// Get Detail Tariff Type By Id
+        /// </summary>
         /// <param name="id"></param>
-       /// <returns></returns>
-        public TarrifType Get(long id)
+        /// <returns></returns>
+        public TariffTypeDetail Get(long id)
         {
-            return tarrifTypeService.FindTarrifType(id).CreateFrom();
+            return tarrifTypeService.FindTarrifType(id).CreateFromDetail();
         }
-      
+
         #endregion
-
-
 
     }
 }

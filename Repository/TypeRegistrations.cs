@@ -22,7 +22,7 @@ namespace Repository
             unityContainer.RegisterType<IOperationRepository, OperationRepository>();
             unityContainer.RegisterType<IMeasurementUnit, MeasurementUnitRepository>();
             unityContainer.RegisterType<IPricingStrategyRepository, PricingStrategyRepository>();
-            unityContainer.RegisterType<DbContext, BaseDbContext>(new HierarchicalLifetimeManager());
+            unityContainer.RegisterType<DbContext, BaseDbContext>();
 
             //unityContainer.RegisterType<IUser, ApplicationUser>();
         }
