@@ -82,7 +82,10 @@ namespace Implementation.Services
             
             tarrifTypeRepository.Add(tarrifType);
             tarrifTypeRepository.SaveChanges();
-            return tarrifTypeRepository.Find(tarrifType.TariffTypeId);
+            var tarrif = tarrifTypeRepository.Find(tarrifType.TariffTypeId);
+            // TODO: Sample Loading Dependencies
+            tarrifTypeRepository.LoadDependencies(tarrif);
+            return tarrif;
         }
         /// <summary>
         /// Update Tariff Type
