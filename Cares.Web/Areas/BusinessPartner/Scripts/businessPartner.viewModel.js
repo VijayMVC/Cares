@@ -62,6 +62,7 @@ define("businessPartner/businessPartner.viewModel",
                   
                     // Edit a Business Partner - In a Form
                     onEditBusinessPartner = function (businessPartner, e) {
+
                         selectBusinessPartner(businessPartner);
                         showBusinessPartnerEditor();
                         e.stopImmediatePropagation();

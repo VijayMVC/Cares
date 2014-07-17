@@ -17,8 +17,8 @@ namespace Cares.Web.ModelMappers
                 BusinessPartnerName = source.BusinessPartnerName,
                 BusinessPartnerDesciption = source.BusinessPartnerDesciption,
                 IsIndividual = source.IsIndividual,          
-                BPRatingTypeCode = source.BPRatingType.BpRatingTypeCode,
-                BPRatingTypeName = source.BPRatingType.BpRatingTypeName,
+                BPRatingTypeCode = source.BPRatingType != null ? source.BPRatingType.BpRatingTypeCode : "",
+                BPRatingTypeName = source.BPRatingType != null ? source.BPRatingType.BpRatingTypeName : "",
                 CompanyCode = source.Company.CompanyCode,
                 CompanyName = source.Company.CompanyName
             };
@@ -45,12 +45,12 @@ namespace Cares.Web.ModelMappers
         {
             return new BusinessPartner
             {
-                BusinessPartnerId = source.BusinessPartnerId.HasValue ? (long)source.BusinessPartnerId :0,
+                BusinessPartnerId = source.BusinessPartnerId.HasValue ? (long)source.BusinessPartnerId : 0,
                 BusinessPartnerName = source.BusinessPartnerName,
                 BusinessPartnerDesciption = source.BusinessPartnerDesciption,
                 IsIndividual = source.IsIndividual,
                 IsSystemGuarantor = source.IsSystemGuarantor,
-                SystemGuarantorId = source.SystemGuarantorId.HasValue ?source.SystemGuarantorId : 0,
+                SystemGuarantorId = source.SystemGuarantorId,
                 PaymentTermId = source.PaymentTermId,
                 BPRatingTypeId = source.BPRatingTypeId,
                 DealingEmployeeId = source.DealingEmployeeId,

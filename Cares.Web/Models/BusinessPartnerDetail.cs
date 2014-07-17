@@ -54,7 +54,7 @@
         /// <summary>
         /// Business Partner Rating Type Id
         /// </summary>
-        public int BPRatingTypeId { get; set; }
+        public int? BPRatingTypeId { get; set; }
         /// <summary>
         /// System Guarantor ID
         /// </summary>
