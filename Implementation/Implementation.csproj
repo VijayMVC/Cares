@@ -121,6 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Identity\IdentityOperation.cs" />
+    <Compile Include="Services\BusinessPartnerBaseDataService.cs" />
     <Compile Include="Services\BusinessPartnerService.cs" />
     <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Services\BPRatingTypeService.cs" />

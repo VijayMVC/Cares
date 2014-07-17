@@ -13,38 +13,46 @@ namespace Implementation.Services
     public class TarrifTypeService : ITarrifTypeService
     {
         #region Private
-        private readonly ITarrifTypeRepository tarrifTypeReposiory;
-        private readonly IDepartmentService departmentService;
-        private readonly ICompanyService companyService;
-        private readonly IMeasurementUnitService measurementUnitService;
-        private readonly IOperationService operation;
-        private readonly ITarrifTypeService tarrifTypeService;
-        private readonly IPricingStrategyService pricingStrategyService;
+        private readonly IDepartmentRepository departmentRepository;
+        private readonly ICompanyRepository companyRepository;
+        private readonly IMeasurementUnit measurementUnit;
+        private readonly IOperationRepository operationRepository;
+        private readonly IPricingStrategyRepository pricingStrategyRepository;
+        private readonly ITarrifTypeRepository tarrifTypeRepository;
+
         #endregion
         #region Constructors
-        public TarrifTypeService(ITarrifTypeRepository tarrifTypeReposiory, IOperationService operation, IDepartmentService departmentService, ICompanyService companyService,
-           IMeasurementUnitService measurementUnitService, ITarrifTypeService tarrifTypeService, IPricingStrategyService pricingStrategyService)
+        public TarrifTypeService(IDepartmentRepository departmentRepository, ICompanyRepository companyRepository, IMeasurementUnit measurementUnit,
+           IOperationRepository operationRepository, IPricingStrategyRepository pricingStrategyRepository, ITarrifTypeRepository tarrifTypeRepository)
         {
-            this.operation = operation;
-            this.departmentService = departmentService;
-            this.companyService = companyService;
-            this.measurementUnitService = measurementUnitService;
-            this.tarrifTypeService = tarrifTypeService;
-            this.pricingStrategyService = pricingStrategyService;
-            this.tarrifTypeReposiory = tarrifTypeReposiory;
+            this.operationRepository = operationRepository;
+            this.departmentRepository = departmentRepository;
+            this.companyRepository = companyRepository;
+            this.measurementUnit = measurementUnit;
+            this.pricingStrategyRepository = pricingStrategyRepository;
+            this.tarrifTypeRepository = tarrifTypeRepository;
+            
         }
         #endregion
         #region Public
 
         public TarrifTypeBaseResponse GetBaseData()
         {
-            //TODO: 
-            return null;
+            return new TarrifTypeBaseResponse
+            {
+                Companies = companyRepository.GetAll(),
+                MeasurementUnits = measurementUnit.GetAll(),
+                Departments = departmentRepository.GetAll(),
+                Operations = operationRepository.GetAll(),
+                PricingStrategies = pricingStrategyRepository.GetAll()
+
+            };
+           
         }
 
         public IEnumerable<TarrifType> LoadAll()
         {
-            return tarrifTypeReposiory.GetAll();
+            return tarrifTypeRepository.GetAll();
         }
         /// <summary>
         /// Load tarrif type, based on search filters
@@ -53,7 +61,7 @@ namespace Implementation.Services
         /// <returns></returns>
         public TarrifTypeResponse LoadTarrifTypes(TarrifTypeRequest tarrifTypeRequest)
         {
-            return tarrifTypeReposiory.GetTarrifTypes(tarrifTypeRequest);
+            return tarrifTypeRepository.GetTarrifTypes(tarrifTypeRequest);
         }
         /// <summary>
         /// Find Tariff Type By Id
@@ -62,18 +70,19 @@ namespace Implementation.Services
         /// <returns></returns>
         public TarrifType FindTarrifType(long id)
         {
-            return tarrifTypeReposiory.Find(id);
+            return tarrifTypeRepository.Find(id);
         }
         /// <summary>
         /// Add Tariff Type
         /// </summary>
         /// <param name="tarrifType"></param>
         /// <returns></returns>
-        public bool AddTarrifType(TarrifType tarrifType)
+        public TarrifType AddTarrifType(TarrifType tarrifType)
         {
-            tarrifTypeReposiory.Add(tarrifType);
-            tarrifTypeReposiory.SaveChanges();
-            return true;
+            
+            tarrifTypeRepository.Add(tarrifType);
+            tarrifTypeRepository.SaveChanges();
+            return tarrifTypeRepository.Find(tarrifType.TariffTypeId);
         }
         /// <summary>
         /// Update Tariff Type
@@ -82,8 +91,8 @@ namespace Implementation.Services
         /// <returns></returns>
         public bool UpdateTarrifType(TarrifType tarrifType)
         {
-            tarrifTypeReposiory.Update(tarrifType);
-            tarrifTypeReposiory.SaveChanges();
+            tarrifTypeRepository.Update(tarrifType);
+            tarrifTypeRepository.SaveChanges();
             return true;
 
         }

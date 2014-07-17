@@ -73,5 +73,12 @@ namespace Repository.Repositories
         {
             return DbSet.Where(x => x.DepartmentId == Id).AsQueryable();
         }
+        /// <summary>
+        /// Get All Employees for User Domain Key
+        /// </summary>
+        public override IQueryable<Employee> GetAll()
+        {
+            return DbSet.Where(employee => employee.UserDomainKey == UserDomaingKey);
+        }
     }
 }

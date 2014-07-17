@@ -86,6 +86,11 @@ namespace Repository.Repositories
         }
 
 
+        //public override TarrifType Find(long id)
+        //{
+        //    DbSet.Where(tariff => tariff.TariffTypeId == id).Include(tariff => tariff.Operation).Include(tariff => tariff.Operation.)
+        //}
+
         #endregion
 
     }

@@ -79,7 +79,7 @@ namespace Repository.BaseRepository
         /// <summary>
         /// Find Entity by Id
         /// </summary>
-        public TDomainClass Find(long id)
+        public virtual TDomainClass Find(long id)
         {
             return DbSet.Find(id);
         }

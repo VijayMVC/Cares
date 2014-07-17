@@ -13,9 +13,9 @@
         ko.mapping.fromJS(data, null, self);
 
         return {
-          
+
             tariffTypeId: self.TariffTypeId,
-            measurementUnit:self.MeasurementUnit,
+            measurementUnit: self.MeasurementUnit,
             tariffTypeCode: self.TariffTypeCode,
             tarrifTypeName: self.TariffTypeName,
             pricingScheme: self.PricingScheme,
@@ -29,60 +29,57 @@
         };
     };
 
-    var TarrifTypeDetail = function (specifiedKey, specifieOperationId, specifiedMeasurementUnitId, specifiedDepartmentId, specifiedtariffTypeCode, specifiedTarrifTypeName,
-        specifiedTariffTypeDescription, specifiedPricingStrategyId, specifiedDurationFrom, specifiedDurationTo, specifiedGracePeriod, specifiedEffectiveDate,
-        specifiedRevisionNumber, specifiedRowVersion, specifiedChildTariffTypeId, specifiedRecCreatedDt, specifiedRecLastUpdatedDt, specifiedRecLastUpdatedBy,
-        specifiedRecCreatedBy, specifiedIsActive, specifiedIsDeleted, specifiedIsPrivate, specifiedIsReadOnly) {
+    var TarrifTypeDetail = function () {
         // ReSharper restore InconsistentNaming
         var // Reference to this object
             // Unique key
-            tarrifTypeId = ko.observable(specifiedKey || null),
+            tarrifTypeId = ko.observable(),
             // Operation ID
-            operationId = ko.observable(specifieOperationId).extend({ required: true }),
+            operationId = ko.observable().extend({ required: true }),
             // Measurement Unit ID
-            measurementUnitId = ko.observable(specifiedMeasurementUnitId).extend({ required: true }),
+            measurementUnitId = ko.observable().extend({ required: true }),
             //Company ID
             companyId = ko.observable().extend({ required: true }),
              //Department ID
-            departmentId = ko.observable(specifiedDepartmentId).extend({ required: true }),
+            departmentId = ko.observable().extend({ required: true }),
             // Tariff Type Code 
-            tariffTypeCode = ko.observable(specifiedtariffTypeCode).extend({ required: true }),
+            tariffTypeCode = ko.observable().extend({ required: true }),
             // Tarrif Type Name
-            tarrifTypeName = ko.observable(specifiedTarrifTypeName),
+            tarrifTypeName = ko.observable(),
             //Tariff Type Description
-            tariffTypeDescription = ko.observable(specifiedTariffTypeDescription),
+            tariffTypeDescription = ko.observable(),
             //Pricing Strategy ID
-            pricingStrategyId = ko.observable(specifiedPricingStrategyId).extend({ required: true }),
+            pricingStrategyId = ko.observable().extend({ required: true }),
             //Duration From
-            durationFrom = ko.observable(specifiedDurationFrom).extend({ required: true }),
+            durationFrom = ko.observable().extend({ required: true, number: true }),
             //Duration To
-            durationTo = ko.observable(specifiedDurationTo).extend({ required: true }),
+            durationTo = ko.observable().extend({ required: true, number: true }),
             //Grace Period
-            gracePeriod = ko.observable(specifiedGracePeriod).extend({ required: true }),
+            gracePeriod = ko.observable().extend({ required: true, number: true }),
             //Effective Date
-            effectiveDate = ko.observable(specifiedEffectiveDate).extend({ required: true }),
+            effectiveDate = ko.observable().extend({ date: true, required: true, }),
             //Revision Number
-            revisionNumber = ko.observable(specifiedRevisionNumber),
+            revisionNumber = ko.observable(),
             //Row Version
-            rowVersion = ko.observable(specifiedRowVersion),
+            rowVersion = ko.observable(),
             //ChildTariffTypeID
-            childTariffTypeId = ko.observable(specifiedChildTariffTypeId),
+            childTariffTypeId = ko.observable(),
             //Rec Created Date
-            recCreatedDt = ko.observable(specifiedRecCreatedDt),
+            recCreatedDt = ko.observable(),
             //RecLast Updated Date
-            recLastUpdatedDt = ko.observable(specifiedRecLastUpdatedDt),
+            recLastUpdatedDt = ko.observable(),
             //Rec Last Updated By
-            recLastUpdatedBy = ko.observable(specifiedRecLastUpdatedBy),
+            recLastUpdatedBy = ko.observable(),
             //Rec Created By
-            recCreatedBy = ko.observable(specifiedRecCreatedBy),
+            recCreatedBy = ko.observable(),
             //IsActive
-            isActive = ko.observable(specifiedIsActive),
+            isActive = ko.observable(),
             //IsDeleted
-            isDeleted = ko.observable(specifiedIsDeleted),
+            isDeleted = ko.observable(),
             //IsPrivate
-            isPrivate = ko.observable(specifiedIsPrivate),
+            isPrivate = ko.observable(),
             //IsReadOnly
-            isReadOnly = ko.observable(specifiedIsReadOnly),
+            isReadOnly = ko.observable(),
             // Is Busy
             isBusy = ko.observable(false),
 
@@ -127,24 +124,15 @@
             reset = function () {
                 dirtyFlag.reset();
             },
-            // Convert to server
-            convertToServerData = function () {
-                return {
-                   // Id: id(),
-                    // Name: name(),
-                    //  Price: price(),
-                    // CategoryId: categoryId(),
-                    // Description: description()
-                };
-            };
+
 
         self = {
             tarrifTypeId: tarrifTypeId,
             //userDomainKey: userDomainKey,
             operationId: operationId,
             measurementUnitId: measurementUnitId,
-            departmentId:departmentId,
-            companyId:companyId,
+            departmentId: departmentId,
+            companyId: companyId,
             tariffTypeCode: tariffTypeCode,
             tarrifTypeName: tarrifTypeName,
             tariffTypeDescription: tariffTypeDescription,
@@ -175,8 +163,47 @@
         };
         return self;
     };
+    //Client To Server Mapper
+    var TariffTypeServerMapper = function (tariffTypeObj) {
+        var result = {};
+        result.TariffTypeId = tariffTypeObj().tarrifTypeId() === undefined || tariffTypeObj().tarrifTypeId() === null ? 0 : tariffTypeObj().tarrifTypeId();
+        result.TariffTypeCode = tariffTypeObj().tariffTypeCode() === undefined || tariffTypeObj().tariffTypeCode() === null ? 0 : tariffTypeObj().tariffTypeCode();
+        result.TariffTypeName = tariffTypeObj().tarrifTypeName();
+        result.TariffTypeDescription = tariffTypeObj().tariffTypeDescription();
+        result.CompanyId = tariffTypeObj().companyId();
+        result.DepartmentId = tariffTypeObj().departmentId();
+        result.OperationId = tariffTypeObj().operationId();
+        result.MeasurementUnitId = tariffTypeObj().measurementUnitId();
+        result.DurationFrom = tariffTypeObj().durationFrom();
+        result.DurationTo = tariffTypeObj().durationTo();
+        result.GracePeriod = tariffTypeObj().gracePeriod();
+        result.EffectiveDate = tariffTypeObj().effectiveDate() === undefined || tariffTypeObj().effectiveDate() === null ? undefined : moment(tariffTypeObj().effectiveDate()).format(ist.utcFormat);
+        result.PricingStrategyId = tariffTypeObj().pricingStrategyId();
+        return result;
+    };
+    //Server To Client Mapper
+    var TariffTypeClientMapper = function (source) {
+        var tarrifType = new TarrifTypeDetail();
+        tarrifType.tarrifTypeId(source.TariffTypeId === null ? undefined : source.TariffTypeId);
+        tarrifType.tariffTypeCode(source.TariffTypeCode === null ? undefined : source.TariffTypeCode);
+        tarrifType.tarrifTypeName(source.TariffTypeName === null ? undefined : source.TariffTypeName);
+        tarrifType.tariffTypeDescription(source.TariffTypeDescription === null ? undefined : source.TariffTypeDescription);
+        tarrifType.companyId(source.CompanyId === null ? undefined : source.CompanyId);
+        tarrifType.departmentId(source.DepartmentId === null ? undefined : source.DepartmentId);
+        tarrifType.operationId(source.OperationId === null ? undefined : source.OperationId);
+        tarrifType.measurementUnitId(source.MeasurementUnitId === null ? undefined : source.MeasurementUnitId);
+        tarrifType.durationFrom(source.DurationFrom === null ? undefined : source.DurationFrom);
+        tarrifType.durationTo(source.DurationTo === null ? undefined : source.DurationTo);
+        tarrifType.gracePeriod(source.GracePeriod === null ? undefined : source.GracePeriod);
+        tarrifType.effectiveDate(source.EffectiveDate !== null ? moment(source.EffectiveDate, ist.utcFormat).toDate() : undefined);
+        tarrifType.pricingStrategyId(source.PricingStrategyId === null ? undefined : source.PricingStrategyId);
+        return tarrifType;
+    };
+
     return {
         TarrifType: TarrifType,
-        TarrifTypeDetail: TarrifTypeDetail
+        TarrifTypeDetail: TarrifTypeDetail,
+        TariffTypeServerMapper: TariffTypeServerMapper,
+        TariffTypeClientMapper: TariffTypeClientMapper
     };
 });

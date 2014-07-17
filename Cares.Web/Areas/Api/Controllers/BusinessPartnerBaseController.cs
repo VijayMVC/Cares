@@ -34,11 +34,11 @@ namespace Cares.Web.Areas.Api.Controllers
 
         #region Public
         /// <summary>
-        /// Get Base Data
+        /// Get Business Partner Base Data
         /// </summary>
-        public BusinessPartnerBaseDataResponse Get()
+        public BusinessPartnerBaseResponse Get()
         {
-            BusinessPartnerBaseDataResponse response = businessPartnerBaseDataService.LoadAll();
+            BusinessPartnerBaseResponse response = businessPartnerBaseDataService.LoadAll().CreateFrom();
             return response;
         }
         #endregion

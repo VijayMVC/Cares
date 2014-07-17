@@ -1,4 +1,5 @@
-﻿<div class="well col-md-12" id="productEditor" data-bind="visible: isTarrifTypeEditorVisible, with: selectedTarrifType" style="display: none;">
+﻿<h3>Tariff Type Add/Edit</h3>
+<div class="well col-md-12" id="tariffTypeEditor" data-bind="visible: isTarrifTypeEditorVisible, with: selectedTarrifType" style="display: none;">
     <h2 class="sectionHeader">
         <span><a href="#" class="custom-link" id="link-action">< Back</a></span>
         <span>Tariff Type Editor</span>
@@ -48,17 +49,17 @@
         <div class="form-group">
             <label for="tariffTypeEndTo" class="control-label col-sm-2">End To *</label>
             <div class="col-md-3">
-                <input type="text" class="form-control" id="tariffTypeEndTo" data-bind="value: durationTo, validationTooltip: durationTo" />
+                <input type="text" placeholder="<End To>" class="form-control" id="tariffTypeEndTo" data-bind="value: durationTo, validationTooltip: durationTo" />
             </div>
             <label for="tariffTypeGraceCode" class="control-label col-sm-2">Grace Period *</label>
             <div class="col-md-3">
-                <input type="text" class="form-control" id="tariffTypeGraceCode" data-bind="value: gracePeriod, validationTooltip: gracePeriod" />
+                <input type="text" placeholder="<Grace Period>" class="form-control" id="tariffTypeGraceCode" data-bind="value: gracePeriod, validationTooltip: gracePeriod" />
             </div>
         </div>
         <div class="form-group">
             <label for="tariffTypeEffectiveDate" class="control-label col-sm-2">Effective start Date *</label>
             <div class="col-md-3">
-                <input type="text" class="form-control" id="tariffTypeEffectiveDate" data-bind="datepicker: effectiveDate, validationTooltip: effectiveDate" />
+                <input type="text" placeholder="<Effective start Date>" class="form-control" id="tariffTypeEffectiveDate" data-bind="datepicker: effectiveDate, validationTooltip: effectiveDate" />
             </div>
             <label for="tariffTypepricingStrategies" class="control-label col-sm-2">Pricing Strategy *</label>
             <div class="col-md-3">

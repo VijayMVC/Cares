@@ -39,16 +39,16 @@ namespace Implementation.Services
         #region Public
         public BusinessPartnerBaseDataResponse LoadAll()
         {
-            return new BusinessPartnerBaseDataResponse()
-                   {
-                       ResponseCompanies =  companyRepository.GetAll(),
-                       ResponsePaymentTerms = paymentTermRepository.GetAll(),
-                       ResponseBusinessLegalStatuses = businessLegalStatusRepository.GetAll(),
-                       ResponseBPRatingTypes = bpRatingTypeRepository.GetAll(),
-                       ResponseBusinessPartners = businessPartnerRepository.GetAll(),
-                       ResponseDealingEmployees = employeeRepository.GetAll()
-                   };
+            BusinessPartnerBaseDataResponse response = new BusinessPartnerBaseDataResponse();
 
+            response.ResponseCompanies = companyRepository.GetAll();
+            response.ResponsePaymentTerms = paymentTermRepository.GetAll();
+            response.ResponseBusinessLegalStatuses = businessLegalStatusRepository.GetAll();
+            response.ResponseBPRatingTypes = bpRatingTypeRepository.GetAll();
+            response.ResponseBusinessPartners = businessPartnerRepository.GetAll();
+            response.ResponseDealingEmployees = employeeRepository.GetAll();
+
+            return response;
         }
         #endregion
     }

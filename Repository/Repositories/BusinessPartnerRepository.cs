@@ -85,11 +85,20 @@ namespace Repository.Repositories
         {
             return DbSet.FirstOrDefault(businessPartner => businessPartner.BusinessPartnerName == name && businessPartner.BusinessPartnerId == id);
         }
+        /// <summary>
+        /// Get All BusinessPartner for User Domain Key
+        /// </summary>
+        public override IQueryable<BusinessPartner> GetAll()
+        {
+            return DbSet.Where(businessPartner => businessPartner.UserDomainKey == UserDomaingKey).Include(x=>x.Company).Include(x=>x.BPRatingType);
+        }
 
         #endregion
 
 
 
-      
+
+
+       
     }
 }

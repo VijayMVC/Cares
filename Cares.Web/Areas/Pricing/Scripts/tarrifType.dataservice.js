@@ -20,7 +20,7 @@ define("tarrifType/tarrifType.dataservice", function () {
                     });
                     // Define request to get tarrif type by id 
                     amplify.request.define('getTarrifTypeById', 'ajax', {
-                        url: '/Api/ GetTariffDetails',
+                        url: '/Api/GetTariffDetails',
                         dataType: 'json',
                         type: 'GET'
                     });

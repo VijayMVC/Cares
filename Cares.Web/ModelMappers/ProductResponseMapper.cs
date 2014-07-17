@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using ProductResponse = Cares.Web.Models.ProductResponse;
-
 namespace Cares.Web.ModelMappers
 {
     /// <summary>

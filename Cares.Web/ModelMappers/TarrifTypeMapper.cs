@@ -62,11 +62,38 @@ namespace Cares.Web.ModelMappers
                 DurationTo = source.DurationTo,
                 GracePeriod = source.GracePeriod,
                 EffectiveDate = source.EffectiveDate,
-                PricingStrategyId = source.PricingStrategyId
+                PricingStrategyId = source.PricingStrategyId,
+                RecCreatedDt = System.DateTime.Now,
+                RecLastUpdatedDt = System.DateTime.Now,
             };
 
 
         }
+        /// <summary>
+        ///  Create Detail web model from entity
+        /// </summary>
+        public static ApiModels.TariffTypeDetail CreateFromDetail(this DomainModels.TarrifType source)
+        {
+            return new ApiModels.TariffTypeDetail
+            {
+                TariffTypeId = source.TariffTypeId,
+                TariffTypeCode = source.TariffTypeCode,
+                TariffTypeName = source.TariffTypeName,
+                TariffTypeDescription = source.TariffTypeDescription,
+                CompanyId = source.CompanyId,
+                OperationId = source.OperationId,
+                DepartmentId=source.Operation.DepartmentId,
+                MeasurementUnitId = source.MeasurementUnitId,
+                DurationFrom = source.DurationFrom,
+                DurationTo = source.DurationTo,
+                GracePeriod = source.GracePeriod,
+                EffectiveDate = source.EffectiveDate,
+                PricingStrategyId = source.PricingStrategyId,
+
+            };
+
+        }
+       
         #endregion
     }
 }

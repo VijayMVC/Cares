@@ -38,13 +38,9 @@ namespace Cares.Web.Models
         /// </summary>
         public IEnumerable<Operation> ResponseOperations { get; set; }
         /// <summary>
-        /// List of Tarriff Types
+        /// Pricing Strategies
         /// </summary>
         public IEnumerable<PricingStrategy> ResponsePricingStrategies { get; set; }
-        /// <summary>
-        /// Total Count
-        /// </summary>
-        public int TotalCount { get; set; }
         #endregion
     }
 }
