@@ -116,6 +116,7 @@
   <ItemGroup>
     <Compile Include="BaseRepository\BaseDbContext.cs" />
     <Compile Include="BaseRepository\BaseRespository.cs" />
+    <Compile Include="BaseRepository\PropertyReference.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ApplicationUserRepository.cs" />
     <Compile Include="Repositories\BpRatingTypeRepository.cs" />
@@ -136,7 +137,7 @@
     <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="Repositories\TarrifTypeRepository.cs" />
     <Compile Include="Repositories\RegionRepository.cs" />
-     <Compile Include="Repositories\BusinessPartnerRepository.cs" />
+    <Compile Include="Repositories\BusinessPartnerRepository.cs" />
     <Compile Include="TypeRegistrations.cs" />
   </ItemGroup>
   <ItemGroup>
