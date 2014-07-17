@@ -5,6 +5,7 @@ using System.Web.Http;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
 using Interfaces.IServices;
+using Models.ResponseModels;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
@@ -14,38 +15,20 @@ namespace Cares.Web.Areas.Api.Controllers
     public class BusinessPartnerBaseController : ApiController
     {
         #region Private
-        private readonly ICompanyService companyService;
-        private readonly IPaymentTermService paymentTermService;
-        private readonly IBPRatingTypeService bPRatingTypeService;
-        private readonly IBusinessLegalStatusService businessLegalStatusService;
+        private readonly IBusinessPartnerBaseDataService businessPartnerBaseDataService;
         #endregion
 
         #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>
-        public BusinessPartnerBaseController(ICompanyService companyService, IPaymentTermService paymentTermService, IBPRatingTypeService bPRatingTypeService, IBusinessLegalStatusService businessLegalStatusService)
+        public BusinessPartnerBaseController(IBusinessPartnerBaseDataService businessPartnerBaseDataService)
         {
-            if (companyService == null)
+            if (businessPartnerBaseDataService == null)
             {
-                throw new ArgumentNullException("companyService");
+                throw new ArgumentNullException("businessPartnerBaseDataService");
             }
-            if (paymentTermService == null)
-            {
-                throw new ArgumentNullException("paymentTermService");
-            }
-            if (bPRatingTypeService == null)
-            {
-                throw new ArgumentNullException("bPRatingTypeService");
-            }
-            if (businessLegalStatusService == null)
-            {
-                throw new ArgumentNullException("businessLegalStatusService");
-            }
-            this.companyService = companyService;
-            this.paymentTermService = paymentTermService;
-            this.bPRatingTypeService = bPRatingTypeService;
-            this.businessLegalStatusService = businessLegalStatusService;
+            this.businessPartnerBaseDataService = businessPartnerBaseDataService;
         }
         #endregion
 
@@ -53,15 +36,9 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Get Base Data
         /// </summary>
-        public BusinessPartnerBaseResponse Get()
+        public BusinessPartnerBaseDataResponse Get()
         {
-            BusinessPartnerBaseResponse response = new BusinessPartnerBaseResponse()
-                                                   {
-                                                       ResponseCompanies = companyService.LoadAll().AsEnumerable().Select(c => c.CreateFrom()),
-                                                       ResponsePaymentTerms = paymentTermService.LoadAll().AsEnumerable().Select(c => c.CreateFrom()),
-                                                       ResponseBPRatingTypes = bPRatingTypeService.LoadAll().AsEnumerable().Select(c => c.CreateFrom()),
-                                                       ResponseBusinessLegalStatuses = businessLegalStatusService.LoadAll().AsEnumerable().Select(c=>c.CreateFrom())
-                                                   };
+            BusinessPartnerBaseDataResponse response = businessPartnerBaseDataService.LoadAll();
             return response;
         }
         #endregion

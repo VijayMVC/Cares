@@ -22,22 +22,7 @@ namespace Cares.Web.Models
         #region Protected
         #endregion
         #region Public
-        /// <summary>
-        /// Companies
-        /// </summary>
-        public IEnumerable<Company> ResponseCompanies { get; set; }
-        /// <summary>
-        /// Payment Terms
-        /// </summary>
-        public IEnumerable<PaymentTerm> ResponsePaymentTerms { get; set; }
-        /// <summary>
-        /// Business Partner Payment Types 
-        /// </summary>
-        public IEnumerable<BpRatingType> ResponseBPRatingTypes { get; set; }
-        /// <summary>
-        /// Departments 
-        /// </summary>
-        public IEnumerable<BusinessLegalStatus> ResponseBusinessLegalStatuses { get; set; }
+      
         #endregion
     }
 }
