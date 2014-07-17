@@ -13,27 +13,57 @@ namespace Cares.Web.Areas.Api.Controllers
     /// </summary>
     public class BusinessPartnerBaseController : ApiController
     {
-        private readonly ICategoryService categoryService;
+        #region Private
+        private readonly ICompanyService companyService;
+        private readonly IPaymentTermService paymentTermService;
+        private readonly IBPRatingTypeService bPRatingTypeService;
+        private readonly IBusinessLegalStatusService businessLegalStatusService;
+        #endregion
 
+        #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>
-        public BusinessPartnerBaseController(ICategoryService categoryService)
+        public BusinessPartnerBaseController(ICompanyService companyService, IPaymentTermService paymentTermService, IBPRatingTypeService bPRatingTypeService, IBusinessLegalStatusService businessLegalStatusService)
         {
-            if (categoryService == null)
+            if (companyService == null)
             {
-                throw new ArgumentNullException("categoryService");
+                throw new ArgumentNullException("companyService");
             }
-   
-            this.categoryService = categoryService;
+            if (paymentTermService == null)
+            {
+                throw new ArgumentNullException("paymentTermService");
+            }
+            if (bPRatingTypeService == null)
+            {
+                throw new ArgumentNullException("bPRatingTypeService");
+            }
+            if (businessLegalStatusService == null)
+            {
+                throw new ArgumentNullException("businessLegalStatusService");
+            }
+            this.companyService = companyService;
+            this.paymentTermService = paymentTermService;
+            this.bPRatingTypeService = bPRatingTypeService;
+            this.businessLegalStatusService = businessLegalStatusService;
         }
+        #endregion
 
+        #region Public
         /// <summary>
         /// Get Base Data
         /// </summary>
-        public IEnumerable<Category> Get()
+        public BusinessPartnerBaseResponse Get()
         {
-            return categoryService.LoadAllCategories().Select(c => c.CreateFrom());
+            BusinessPartnerBaseResponse response = new BusinessPartnerBaseResponse()
+                                                   {
+                                                       ResponseCompanies = companyService.LoadAll().AsEnumerable().Select(c => c.CreateFrom()),
+                                                       ResponsePaymentTerms = paymentTermService.LoadAll().AsEnumerable().Select(c => c.CreateFrom()),
+                                                       ResponseBPRatingTypes = bPRatingTypeService.LoadAll().AsEnumerable().Select(c => c.CreateFrom()),
+                                                       ResponseBusinessLegalStatuses = businessLegalStatusService.LoadAll().AsEnumerable().Select(c=>c.CreateFrom())
+                                                   };
+            return response;
         }
+        #endregion
     }
 }

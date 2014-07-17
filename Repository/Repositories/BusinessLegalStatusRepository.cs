@@ -7,7 +7,7 @@ using Repository.BaseRepository;
 
 namespace Repository.Repositories
 {
-    public sealed class BusinessLegalStatusRepository : BaseRepository<BusinessLegalStatus>, IBusinessLegalStatus
+    public sealed class BusinessLegalStatusRepository : BaseRepository<BusinessLegalStatus>, IBusinessLegalStatusRepository
     {
         #region Constructor
         /// <summary>

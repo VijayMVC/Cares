@@ -257,6 +257,9 @@
     <Compile Include="Helper\CultureHelper.cs" />
     <Compile Include="ModelMappers\CategoryMapper.cs" />
     <Compile Include="ModelMappers\BusinessPartnerMapper.cs" />
+    <Compile Include="ModelMappers\BPRatingTypeMapper.cs" />
+    <Compile Include="ModelMappers\BusinessLegalStatusMapper.cs" />
+    <Compile Include="ModelMappers\PaymentTermMapper.cs" />
     <Compile Include="ModelMappers\FleetPoolMapper.cs" />
     <Compile Include="ModelMappers\BusinessPartnerResponseMapper.cs" />
     <Compile Include="ModelMappers\OperationMapper.cs" />
@@ -273,6 +276,9 @@
     <Compile Include="ModelMappers\TarrifTypeResponseMapper.cs" />
     <Compile Include="Models\BusinessPartnerListView.cs" />
     <Compile Include="Models\BusinessPartnerResponse.cs" />
+    <Compile Include="Models\BpRatingType.cs" />
+    <Compile Include="Models\BusinessLegalStatus.cs" />
+    <Compile Include="Models\PaymentTerm.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Country.cs" />
@@ -288,6 +294,7 @@
     <Compile Include="Models\Region.cs" />
     <Compile Include="Models\TariffTypeDetail.cs" />
     <Compile Include="Models\TarrifType.cs" />
+    <Compile Include="Models\BusinessPartnerBaseResponse.cs" />
     <Compile Include="Models\TarrifTypeBaseResponse.cs" />
     <Compile Include="Models\TarrifTypeResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

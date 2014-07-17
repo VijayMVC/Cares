@@ -1,4 +1,5 @@
-﻿using Models.RequestModels;
+﻿using Models.DomainModels;
+using Models.RequestModels;
 using Models.ResponseModels;
 
 namespace Interfaces.IServices
@@ -14,12 +15,23 @@ namespace Interfaces.IServices
         /// <param name="businessPartnerSearchRequest"></param>
         /// <returns></returns>
         BusinessPartnerResponse LoadAllBusinessPartners(BusinessPartnerSearchRequest businessPartnerSearchRequest);
-        
-        //Product FindProduct(int id);
-        //IEnumerable<Product> FindProductsByCategory(int catId); 
-        //void DeleteProduct(Product product);
-        //bool AddProduct(Product product);
-        //bool Update(Product product);//,Category category
+        /// <summary>
+        /// Delete businsess partner
+        /// </summary>
+        /// <param name="businessPartner"></param>
+        void DeleteBusinessPartner(BusinessPartner businessPartner);
+        /// <summary>
+        /// Add business partner
+        /// </summary>
+        /// <param name="businessPartner"></param>
+        /// <returns></returns>
+        bool AddBusinessPartner(BusinessPartner businessPartner);
+        /// <summary>
+        /// Update business partner
+        /// </summary>
+        /// <param name="businessPartner"></param>
+        /// <returns></returns>
+        bool UpdateBusinessPartner(BusinessPartner businessPartner);
 
     }
 }

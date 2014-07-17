@@ -47,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IServices\IBPRatingTypeService.cs" />
+    <Compile Include="IServices\IBusinessLegalStatusService.cs" />
+    <Compile Include="IServices\IPaymentTermService.cs" />
     <Compile Include="IServices\ICompanyService.cs" />
     <Compile Include="IServices\IDepartmentService.cs" />
     <Compile Include="IServices\IEmployeeService.cs" />
@@ -65,7 +68,7 @@
     <Compile Include="Repository\IApplicationUserRepository.cs" />
     <Compile Include="Repository\IBpRatingTypeRepository.cs" />
     <Compile Include="Repository\IBusinessPartnerRepository.cs" />
-    <Compile Include="Repository\IBusinessLegalStatus.cs" />
+    <Compile Include="Repository\IBusinessLegalStatusRepository.cs" />
     <Compile Include="Repository\IBusinessSegmentRepository.cs" />
     <Compile Include="Repository\ICategoryRepository.cs" />
     <Compile Include="Repository\ICompanyRepository.cs" />

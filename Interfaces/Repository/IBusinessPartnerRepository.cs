@@ -15,5 +15,12 @@ namespace Interfaces.Repository
         /// <param name="businessPartnerSearchRequest"></param>
         /// <returns></returns>
         BusinessPartnerResponse GetAllBusinessPartners(BusinessPartnerSearchRequest businessPartnerSearchRequest);
+        /// <summary>
+        /// Get Asset by Name and Id
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        BusinessPartner GetBusinessPartnerByName(string name, int id);
     }
 }

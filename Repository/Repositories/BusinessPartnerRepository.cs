@@ -75,8 +75,21 @@ namespace Repository.Repositories
 
             return new BusinessPartnerResponse { BusinessPartners = businesspartners, TotalCount = DbSet.Count(query) };
         }
+        /// <summary>
+        /// Get business partner by name and id
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public BusinessPartner GetBusinessPartnerByName(string name, int id)
+        {
+            return DbSet.FirstOrDefault(businessPartner => businessPartner.BusinessPartnerName == name && businessPartner.BusinessPartnerId == id);
+        }
 
         #endregion
 
+
+
+      
     }
 }

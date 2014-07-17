@@ -25,9 +25,22 @@ namespace Cares.Web.ModelMappers
         }
 
         /// <summary>
-        ///  Create domain model from  web api model
+        ///  Create domain model from  web api listview model
         /// </summary>
         public static BusinessPartner CreateFrom(this Models.BusinessPartnerListView source)
+        {
+            return new BusinessPartner
+            {
+                BusinessPartnerId = source.BusinessPartnerId,
+                BusinessPartnerName = source.BusinessPartnerName,
+                BusinessPartnerDesciption = source.BusinessPartnerDesciption
+            };
+        }
+
+        /// <summary>
+        ///  Create domain model from  web api detail model
+        /// </summary>
+        public static BusinessPartner CreateFrom(this Models.BusinessPartnerDetail source)
         {
             return new BusinessPartner
             {

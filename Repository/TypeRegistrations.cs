@@ -21,10 +21,13 @@ namespace Repository
             unityContainer.RegisterType<IBusinessPartnerRepository, BusinessPartnerRepository>();
             unityContainer.RegisterType<IOperationRepository, OperationRepository>();
             unityContainer.RegisterType<IMeasurementUnit, MeasurementUnitRepository>();
+            unityContainer.RegisterType<IPaymentTermRepository, PaymentTermRepository>();
             unityContainer.RegisterType<IPricingStrategyRepository, PricingStrategyRepository>();
             unityContainer.RegisterType<DbContext, BaseDbContext>();
+            unityContainer.RegisterType<IBpRatingTypeRepository ,BpRatingTypeRepository>();
+            unityContainer.RegisterType<IBusinessLegalStatusRepository, BusinessLegalStatusRepository>();
 
-            //unityContainer.RegisterType<IUser, ApplicationUser>();
+            unityContainer.RegisterType<DbContext, BaseDbContext>(new HierarchicalLifetimeManager());
         }
     }
 }

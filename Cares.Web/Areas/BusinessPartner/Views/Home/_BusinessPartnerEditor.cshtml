@@ -1,36 +1,79 @@
-﻿@*<div class="well col-md-12" id="productEditor" data-bind="visible: isProductEditorVisible, with: selectedProduct" style="display: none;">
-    <h2 class="sectionHeader">
-        <span><a href="#" class="custom-link" id="link-action" data-bind="click: $root.onCloseProductEditor">< Back</a></span>
-        <span>Product Editor</span>
-    </h2>
+﻿<div class="well col-md-12" id="productEditor" data-bind="visible: isBusinessPartnerEditorVisible, with: selectedBusinessPartner" style="display: none;">
     <form class="form-horizontal">
+        <h2 class="sectionHeader">
+            <span><a href="#" class="custom-link" id="link-action" data-bind="click: $root.onCloseBusinessPartnerEditor">< Back</a></span>
+            <span>Business Partner Editor</span>
+            <button class="btn" id="saveBtn" data-bind="click: $root.onSaveBusinessPartner, enable: hasChanges, css: { 'btn-warning': hasChanges }">Save</button>
+        </h2>   
         <div class="form-group">
-            <label for="productName" class="control-label col-sm-2">Name</label>
-            <div class="col-md-3">
-                <input type="text" class="form-control" placeholder="<Name>" id="productName" data-bind="value: name, validationTooltip: name" />
+            <label for="businessPartnerId" class="control-label col-sm-2">Customer #</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="<Customer #>" id="businessPartnerId" data-bind="value: businessPartnerId" />
+            </div>
+       
+            <label for="businessPartnerName" class="control-label col-sm-2">Business Partner Name</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="<Name>" id="businessPartnerName" data-bind="value: businessPartnerName, validationTooltip: businessPartnerName" />
+            </div>
+      
+            <label for="companies" class="control-label col-sm-2">Company</label>
+            <div class="col-md-2">
+                <select id="companies" class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyName', optionsValue: 'CompanyId', optionsCaption: '<Company>', value: companyId"></select>
             </div>
         </div>
         <div class="form-group">
-            <label for="productDescription" class="control-label col-sm-2">Description</label>
-            <div class="col-md-3">
-                <input type="text" placeholder="<Description>" class="form-control" id="productDescription" data-bind="value: description" />
+            <label for="paymentTerms" class="control-label col-sm-2">Payment Term</label>
+            <div class="col-md-2">
+                <select id="paymentTerms" class="form-control" data-bind="options: $root.paymentTerms, optionsText: 'PaymentTermName', optionsValue: 'PaymentTermId', optionsCaption: '<Payment Term>', value: paymentTermId"></select>
+            </div>
+            <label for="businessLegalStatuses" class="control-label col-sm-2">Legal Status</label>
+            <div class="col-md-2">
+                <select id="businessLegalStatuses" class="form-control" data-bind="options: $root.businessLegalStatuses, optionsText: 'BusinessLegalStatusName', optionsValue: 'BusinessLegalStatusId', optionsCaption: '<Business Legal Status>', value: businessLegalStatusId"></select>
+            </div>
+            <label for="isIndividual" class="control-label col-sm-2">Is Individual</label>
+            <div class="col-md-2">
+                <input type="checkbox" class="form-control" id="isIndividual" data-bind="value: isIndividual">
             </div>
         </div>
         <div class="form-group">
-            <label for="productPrice" class="control-label col-sm-2">Price</label>
-            <div class="col-md-3">
-                <input type="text" placeholder="<Price>" class="form-control" id="productPrice" data-bind="value: price, validationTooltip: price" />
+            <label for="isSystemGuarantor" class="control-label col-sm-2">Is System Guarantor</label>
+            <div class="col-md-2">
+                <input type="checkbox" class="form-control" id="isSystemGuarantor" data-bind="value: isSystemGuarantor">
+            </div>
+
+            <label for="" class="control-label col-sm-2">System Guarantor</label>
+            <div class="col-md-2">
+     
+            </div>
+            <label for="nonSystemGuarantor" class="control-label col-sm-2">External System Guarantor </label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="<External System Guarantor>" id="nonSystemGuarantor" data-bind="value: nonSystemGuarantor" />
             </div>
         </div>
         <div class="form-group">
-            <label for="productCategory" class="control-label col-sm-2">Category</label>
-            <div class="col-md-3">
-                <select id="productCategory" class="form-control" data-bind="options: $root.categories, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Category>', value: categoryId, validationTooltip: categoryId"></select>
+            <label for="businessPartnerEmailAddress" class="control-label col-sm-2">Dealing Employee</label>
+            <div class="col-md-2">
+            </div>
+
+            <label for="bPRatingTypes" class="control-label col-sm-2">Rating Type</label>
+            <div class="col-md-2">
+                <select id="bPRatingTypes" class="form-control" data-bind="options: $root.bpRatingTypes, optionsText: 'BpRatingTypeName', optionsValue: 'BpRatingTypeId', optionsCaption: '<BP Rating Type>', value: bPRatingTypeId"></select>
+
+            </div>
+            <label for="businessPartnerEmailAddress" class="control-label col-sm-2">Email</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="<Email>" id="businessPartnerEmailAddress" data-bind="value: businessPartnerEmailAddress" />
             </div>
         </div>
         <div class="form-group">
-            <button class="btn" id="saveBtn" data-bind="click: $root.onSaveProduct, enable: hasChanges, css: { 'btn-warning': hasChanges }">Save</button>
+            <label for="businessPartnerDesciption" class="control-label col-sm-2">Description</label>
+            <div class="col-md-2">
+                <textarea class="form-control" rows="2" placeholder="<Description>" id="businessPartnerDesciption" data-bind="value: businessPartnerDesciption"></textarea>
+            </div>
         </div>
+        <h2 class="sectionHeader">
+             <span>Details</span>
+        </h2> 
     </form>
-</div>*@
+</div>
 
