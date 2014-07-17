@@ -86,12 +86,24 @@ namespace Repository.Repositories
         }
 
 
-        //public override TarrifType Find(long id)
-        //{
-        //    DbSet.Where(tariff => tariff.TariffTypeId == id).Include(tariff => tariff.Operation).Include(tariff => tariff.Operation.)
-        //}
+        public void LoadDependencies(TarrifType tarrifType)
+        {            
+            LoadProperty<TarrifType>(tarrifType, "Operation");
+            LoadProperty(tarrifType, () => tarrifType.Operation);
+        }
+        
+        public override TarrifType Find(long id)
+        {
+            //return DbSet.Include(tarrifType => tarrifType.Operation.Department).FirstOrDefault(tarrifType => tarrifType.TariffTypeId == id);
+            return
+                DbSet.Include(tarrifType => tarrifType.Operation)
+                    .Include(tarrifType => tarrifType.Operation.Department)
+                    .FirstOrDefault(tarrifType => tarrifType.TariffTypeId == id);
+        }
 
         #endregion
+
+
 
     }
 }

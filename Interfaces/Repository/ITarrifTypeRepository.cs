@@ -1,6 +1,4 @@
-﻿
-using System.Linq;
-using Models.DomainModels;
+﻿using Models.DomainModels;
 using Models.RequestModels;
 using Models.ResponseModels;
 
@@ -17,5 +15,10 @@ namespace Interfaces.Repository
         /// <param name="tarrifTypeRequest"></param>
         /// <returns></returns>
         TarrifTypeResponse GetTarrifTypes(TarrifTypeRequest tarrifTypeRequest);
+
+        /// <summary>
+        /// Load Dependencies
+        /// </summary>
+        void LoadDependencies(TarrifType tarrifType);
     }
 }
