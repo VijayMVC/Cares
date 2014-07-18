@@ -39,25 +39,25 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Update a Tarrif Type
         /// </summary>
-        public void Post(TariffTypeDetail tarrifType)
+        public TarrifType Post(TariffTypeDetail tarrifType)
         {
             if (tarrifType == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
 
-            tarrifTypeService.UpdateTarrifType(tarrifType.CreateFrom());
+            return tarrifTypeService.UpdateTarrifType(tarrifType.CreateFrom()).CreateFrom();
         }
         /// <summary>
         /// Add a Tarrif Type
         /// </summary>
-        public TariffTypeDetail Put(TariffTypeDetail tarrifType)
+        public TarrifType Put(TariffTypeDetail tarrifType)
         {
             if (tarrifType == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return tarrifTypeService.AddTarrifType(tarrifType.CreateFrom()).CreateFromDetail();
+            return tarrifTypeService.AddTarrifType(tarrifType.CreateFrom()).CreateFrom();
 
         }
         #endregion

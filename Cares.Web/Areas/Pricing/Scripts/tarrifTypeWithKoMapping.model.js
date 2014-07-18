@@ -1,7 +1,5 @@
 ﻿define(["ko", "underscore", "underscore-ko"], function (ko) {
-
     var
-
     // Tarrif Type entity - Using Knockout Mapping
     // ReSharper disable InconsistentNaming
     TarrifType = function (data) {
@@ -13,22 +11,21 @@
         ko.mapping.fromJS(data, null, self);
 
         return {
-
             tariffTypeId: self.TariffTypeId,
             measurementUnit: self.MeasurementUnit,
             tariffTypeCode: self.TariffTypeCode,
             tarrifTypeName: self.TariffTypeName,
             pricingScheme: self.PricingScheme,
-            companay: self.Companay,
+            company: self.Company,
             operation: self.Operation,
             gracePeriod: self.GracePeriod,
             effectiveDate: self.EffectiveDate,
             durationFrom: self.DurationFrom,
             revisionNumber: self.RevisionNumber,
-            durationTo: self.DurationTo
+            durationTo: self.DurationTo,
+            
         };
     };
-
     var TarrifTypeDetail = function () {
         // ReSharper restore InconsistentNaming
         var // Reference to this object
@@ -72,15 +69,6 @@
             recLastUpdatedBy = ko.observable(),
             //Rec Created By
             recCreatedBy = ko.observable(),
-            //IsActive
-            isActive = ko.observable(),
-            //IsDeleted
-            isDeleted = ko.observable(),
-            //IsPrivate
-            isPrivate = ko.observable(),
-            //IsReadOnly
-            isReadOnly = ko.observable(),
-            // Is Busy
             isBusy = ko.observable(false),
 
             // Errors
@@ -148,10 +136,6 @@
             recLastUpdatedDt: recLastUpdatedDt,
             recLastUpdatedBy: recLastUpdatedBy,
             recCreatedBy: recCreatedBy,
-            isActive: isActive,
-            isDeleted: isDeleted,
-            isPrivate: isPrivate,
-            isReadOnly: isReadOnly,
 
             errors: errors,
             isValid: isValid,
@@ -166,19 +150,20 @@
     //Client To Server Mapper
     var TariffTypeServerMapper = function (tariffTypeObj) {
         var result = {};
-        result.TariffTypeId = tariffTypeObj().tarrifTypeId() === undefined || tariffTypeObj().tarrifTypeId() === null ? 0 : tariffTypeObj().tarrifTypeId();
-        result.TariffTypeCode = tariffTypeObj().tariffTypeCode() === undefined || tariffTypeObj().tariffTypeCode() === null ? 0 : tariffTypeObj().tariffTypeCode();
-        result.TariffTypeName = tariffTypeObj().tarrifTypeName();
-        result.TariffTypeDescription = tariffTypeObj().tariffTypeDescription();
-        result.CompanyId = tariffTypeObj().companyId();
-        result.DepartmentId = tariffTypeObj().departmentId();
-        result.OperationId = tariffTypeObj().operationId();
-        result.MeasurementUnitId = tariffTypeObj().measurementUnitId();
-        result.DurationFrom = tariffTypeObj().durationFrom();
-        result.DurationTo = tariffTypeObj().durationTo();
-        result.GracePeriod = tariffTypeObj().gracePeriod();
-        result.EffectiveDate = tariffTypeObj().effectiveDate() === undefined || tariffTypeObj().effectiveDate() === null ? undefined : moment(tariffTypeObj().effectiveDate()).format(ist.utcFormat);
-        result.PricingStrategyId = tariffTypeObj().pricingStrategyId();
+        result.TariffTypeId = tariffTypeObj.tarrifTypeId() === undefined || tariffTypeObj.tarrifTypeId() === null ? 0 : tariffTypeObj.tarrifTypeId();
+        result.TariffTypeCode = tariffTypeObj.tariffTypeCode() === undefined || tariffTypeObj.tariffTypeCode() === null ? 0 : tariffTypeObj.tariffTypeCode();
+        result.TariffTypeName = tariffTypeObj.tarrifTypeName();
+        result.TariffTypeDescription = tariffTypeObj.tariffTypeDescription();
+        result.CompanyId = tariffTypeObj.companyId();
+        result.DepartmentId = tariffTypeObj.departmentId();
+        result.OperationId = tariffTypeObj.operationId();
+        result.MeasurementUnitId = tariffTypeObj.measurementUnitId();
+        result.DurationFrom = tariffTypeObj.durationFrom();
+        result.DurationTo = tariffTypeObj.durationTo();
+        result.GracePeriod = tariffTypeObj.gracePeriod();
+        result.EffectiveDate = tariffTypeObj.effectiveDate() === undefined || tariffTypeObj.effectiveDate() === null ? undefined : moment(tariffTypeObj.effectiveDate()).format(ist.utcFormat);
+        result.PricingStrategyId = tariffTypeObj.pricingStrategyId();
+        result.RevisionNumber = tariffTypeObj.revisionNumber();
         return result;
     };
     //Server To Client Mapper
@@ -197,13 +182,19 @@
         tarrifType.gracePeriod(source.GracePeriod === null ? undefined : source.GracePeriod);
         tarrifType.effectiveDate(source.EffectiveDate !== null ? moment(source.EffectiveDate, ist.utcFormat).toDate() : undefined);
         tarrifType.pricingStrategyId(source.PricingStrategyId === null ? undefined : source.PricingStrategyId);
+        tarrifType.revisionNumber(source.RevisionNumber === null ? undefined : source.RevisionNumber);
+        tarrifType.recCreatedBy(source.CreatedBy === null ? undefined : source.CreatedBy);
+        tarrifType.recLastUpdatedBy(source.ModifiedBy === null ? undefined : source.ModifiedBy);
+        tarrifType.recLastUpdatedDt(source.ModifiedDate === null ? undefined : source.ModifiedDate);
         return tarrifType;
     };
+  
 
     return {
         TarrifType: TarrifType,
         TarrifTypeDetail: TarrifTypeDetail,
         TariffTypeServerMapper: TariffTypeServerMapper,
-        TariffTypeClientMapper: TariffTypeClientMapper
+        TariffTypeClientMapper: TariffTypeClientMapper,
+       
     };
 });

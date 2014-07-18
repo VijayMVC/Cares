@@ -1,5 +1,4 @@
 ﻿using System;
-
 namespace Cares.Web.Models
 {
     /// <summary>
@@ -60,7 +59,22 @@ namespace Cares.Web.Models
         /// Effective Date
         /// </summary>
         public DateTime EffectiveDate { get; set; }
-
+        /// <summary>
+        /// Revision Number
+        /// </summary>
+        public long RevisionNumber { get; set; }
+        /// <summary>
+        /// Created By
+        /// </summary>
+        public string CreatedBy { get; set; }
+        /// <summary>
+        /// Modified By
+        /// </summary>
+        public string ModifiedBy { get; set; }
+        /// <summary>
+        /// Modified Date
+        /// </summary>
+        public DateTime ModifiedDate { get; set; }
         #endregion
     }
 }

@@ -56,7 +56,7 @@
     </script>
 
     <script id="editProductTemplate" type="text/html">
-       <tr data-bind="css: { selectedRow: $data === $root.selectedProduct() }">
+        <tr data-bind="css: { selectedRow: $data === $root.selectedProduct() }">
             <td class="col-md-2">
                 <input type="text" class="form-control" data-bind="value: name, validationTooltip: name" />
             </td>
@@ -78,7 +78,7 @@
     </script>
 
     <script id="itemProductTemplate" type="text/html">
-        <tr data-bind="click: $root.selectProduct">
+        <tr data-bind="css: { selectedRow: $data === $root.selectedProduct() }">
             <td data-bind="text: name"></td>
             <td data-bind="text: description"></td>
             <td data-bind="text: price"></td>

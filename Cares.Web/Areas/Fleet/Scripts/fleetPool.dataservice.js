@@ -9,15 +9,23 @@ define("Fleet/fleetPool.dataservice", function () {
             // True if initialized
             isInitialized = false,
             // Initialize
-            initialize = function () {
+            initialize = function() {
                 if (!isInitialized) {
 
-                    // Define request to get products
-                    amplify.request.define('get', 'ajax', {
+                    // Define request to get FleetPool Base data
+                    amplify.request.define('getFleetPoolBasedata', 'ajax', {
+                        url: '/Api/FleetPoolBase',
+                        dataType: 'json',
+                        type: 'GET'
+                    });
+
+                    // Define request to get FleetPools
+                    amplify.request.define('getFleetPools', 'ajax', {
                         url: '/Api/FleetPool',
                         dataType: 'json',
                         type: 'GET'
                     });
+
 
                     //// Define request to save product
                     //amplify.request.define('createProduct', 'ajax', {
@@ -33,38 +41,38 @@ define("Fleet/fleetPool.dataservice", function () {
                     //    type: 'POST'
                     //});
 
-                    //// Define request to delete product
-                    //amplify.request.define('deleteProduct', 'ajax', {
-                    //    url: '/Api/FleetPool',
-                    //    dataType: 'json',
-                    //    type: 'DELETE'
-                    //});
+                    // Define request to delete FleetPool
+                    amplify.request.define('deleteFleetPool', 'ajax', {
+                        url: '/Api/FleetPool',
+                        dataType: 'json',
+                        type: 'DELETE'
+                    });
 
                     isInitialized = true;
                 }
             },
 
-            // Get Products
-            getProducts = function (params, callbacks) {
+            // Get Fleet Pool Base Data
+            getFleetPoolBasedata = function(params, callbacks) {
                 initialize();
                 return amplify.request({
-                    resourceId: 'get',
+                    resourceId: 'getFleetPoolBasedata',
                     success: callbacks.success,
                     error: callbacks.error,
                     data: params
                 });
-            }
-            //,
+            },
 
-            //// Get Product Base
-            //getProductBase = function (callbacks) {
-            //    initialize();
-            //    return amplify.request({
-            //        resourceId: 'getProductBase',
-            //        success: callbacks.success,
-            //        error: callbacks.error
-            //    });
-            //},
+            ///get Fleet Pools
+            getFleetPools = function(params, callbacks) {
+                initialize();
+                return amplify.request({
+                    resourceId: 'getFleetPools',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: params
+                });
+            },
 
             //// Create Product
             //createProduct = function (param, callbacks) {
@@ -88,25 +96,21 @@ define("Fleet/fleetPool.dataservice", function () {
             //    });
             //},
 
-            //// save Forecast
-            //deleteProduct = function (param, callbacks) {
-            //    initialize();
-            //    return amplify.request({
-            //        resourceId: 'deleteProduct',
-            //        success: callbacks.success,
-            //        error: callbacks.error,
-            //        data: param
-            //    });
-        //}
-        ;
-
+            // save Forecast
+        deleteFleetPool = function(param, callbacks) {
+            initialize();
+            return amplify.request({
+                resourceId: 'deleteFleetPool',
+                success: callbacks.success,
+                error: callbacks.error,
+                data: param
+            });
+        };
 
         return {
-            getProducts: getProducts,
-            //createProduct: createProduct,
-            //updateProduct: updateProduct,
-            //deleteProduct: deleteProduct,
-            //getProductBase: getProductBase
+            getFleetPoolBasedata: getFleetPoolBasedata,
+            getFleetPools: getFleetPools,
+            deleteFleetPool: deleteFleetPool
         };
     })();
 

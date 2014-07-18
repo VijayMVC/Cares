@@ -41,7 +41,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- ko template: { name: templateToUse , foreach: tarrifTypes } -->
+                    <!-- ko template: { name: 'itemTarrifTypeTemplate' , foreach: tarrifTypes } -->
                     <!-- /ko -->
                 </tbody>
             </table>
@@ -57,7 +57,7 @@
             <td data-bind="text: tariffTypeCode"></td>
             <td data-bind="text: tarrifTypeName"></td>
             <td data-bind="text: pricingScheme"></td>
-            <td data-bind="text: companay"></td>
+            <td data-bind="text: company"></td>
             <td data-bind="text: operation"></td>
             <td data-bind="text: measurementUnit"></td>
             <td data-bind="text: durationFrom"></td>
@@ -75,7 +75,6 @@
     @Html.Partial("_TariffTypeEditor")
 
 </div>
-
 <!-- ko stopBinding: true -->
 @Html.Partial("~/Areas/Common/Views/Shared/_ConfirmationDialog.cshtml")
 <!-- /ko -->

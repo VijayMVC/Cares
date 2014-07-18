@@ -31,7 +31,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Companay
         /// </summary>
-        public string Companay { get; set; }
+        public string Company { get; set; }
         /// <summary>
         /// Operation
         /// </summary>

@@ -25,7 +25,7 @@ namespace Interfaces.IServices
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        TarrifType FindTarrifType(long id);
+        TariffTypeDetailResponse FindDetailById(long id);
         /// <summary>
         /// Add Tarrif Type
         /// </summary>
@@ -37,11 +37,13 @@ namespace Interfaces.IServices
         /// </summary>
         /// <param name="tarrifType"></param>
         /// <returns></returns>
-        bool UpdateTarrifType(TarrifType tarrifType);
+        TarrifType UpdateTarrifType(TarrifType tarrifType);
         /// <summary>
         /// Get All Base Data
         /// </summary>
         /// <returns></returns>
         TarrifTypeBaseResponse GetBaseData();
+
+       
     }
 }

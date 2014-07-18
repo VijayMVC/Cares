@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using Interfaces.IServices;
 using Interfaces.Repository;
@@ -38,7 +39,21 @@ namespace Implementation.Services
                 Regions = regionRepository.GetAll()
             };
         }
+        public void DeleteFleetPool(int id)
+        {
+            FleetPool dbVersion = FindFleetPool(id);
+            if (dbVersion == null)
+            {
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, "FleetPool with Id {0} not found!", id));
+            }
 
+            fleetPoolRepository.Delete(dbVersion);
+            fleetPoolRepository.SaveChanges();
+        }
+        public FleetPool FindFleetPool(int id)
+        {
+            return fleetPoolRepository.Find(id);
+        }
         #endregion
 
         #region Constructor

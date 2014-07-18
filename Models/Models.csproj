@@ -142,6 +142,7 @@
     <Compile Include="ResponseModels\FleetPoolResponse.cs" />
     <Compile Include="ResponseModels\BusinessPartnerResponse.cs" />
     <Compile Include="ResponseModels\ProductResponse.cs" />
+    <Compile Include="ResponseModels\TariffTypeDetailResponse.cs" />
     <Compile Include="ResponseModels\TarrifTypeBaseResponse.cs" />
     <Compile Include="ResponseModels\TarrifTypeResponse.cs" />
   </ItemGroup>

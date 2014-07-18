@@ -35,9 +35,9 @@ namespace Cares.Web.Areas.Api.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public TariffTypeDetail Get(long id)
-        {
-            return tarrifTypeService.FindTarrifType(id).CreateFromDetail();
+        public TariffTypeDetailResponse Get(long id)
+        {  
+           return tarrifTypeService.FindDetailById(id).CreateFrom();
         }
 
         #endregion

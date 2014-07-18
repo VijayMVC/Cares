@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using DomainModels = Models.ResponseModels;
 using ApiModels = Cares.Web.Models;
-
 namespace Cares.Web.ModelMappers
 {
     /// <summary>

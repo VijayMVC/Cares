@@ -1,7 +1,8 @@
-﻿<h3>Tariff Type Add/Edit</h3>
-<div class="well col-md-12" id="tariffTypeEditor" data-bind="visible: isTarrifTypeEditorVisible, with: selectedTarrifType" style="display: none;">
+﻿
+<div class="well col-md-12" id="tariffTypeEditor" data-bind="visible: isTarrifTypeEditorVisible, with: addTarrifType" style="display: none;">
+    <h3>Tariff Type Add/Edit</h3>
     <h2 class="sectionHeader">
-        <span><a href="#" class="custom-link" id="link-action">< Back</a></span>
+        <span><a href="#" class="custom-link" id="link-action" data-bind="click: $root.closeTariffTypeEditor">< Back</a></span>
         <span>Tariff Type Editor</span>
     </h2>
     <form class="form-horizontal">
@@ -71,5 +72,43 @@
             <button class="btn" id="saveBtn" data-bind="click: $root.onSaveTariffType, enable: hasChanges, css: { 'btn-warning': hasChanges }">Save</button>
         </div>
     </form>
-</div>
+    <br />
+    <h2 class="sectionHeader">
+        <span>Tariff Revisions</span>
+    </h2>
+    <table id="tarrifTypeRevisions" class="table table-condensed ">
+        <thead>
+            <tr>
+                <th> <span id="1">Tariff Type Code<span class="icon-up"></span></span></th>
+                <th> <span id="2">Tariff Type Name<span></span></span></th>
+                <th> <span id="3">Duration From<span></span></span></th>
+                <th> <span id="4">Duration To<span></span></span></th>
+                <th> <span id="5">Grace Period<span></span></span></th>
+                <th> <span id="6">Effective Date<span></span></span></th>
+                <th> <span id="7">Revision<span></span></span></th>
+                <th> <span id="8">Create dBy<span></span></span></th>
+                <th> <span id="9">Modified By<span></span></span></th>
+                <th> <span id="10">Modified Date<span></span></span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- ko template: { name: $root.templateToUseForRevision , foreach: $root.revisions } -->
+            <!-- /ko -->
+        </tbody>
+    </table>
+    <script id="itemTarrifTypeRevisionTemplate" type="text/html">
+        <tr>
+            <td data-bind="text: TariffTypeCode"></td>
+            <td data-bind="text: TariffTypeName"></td>
+            <td data-bind="text: DurationFrom"></td>
+            <td data-bind="text: DurationTo"></td>
+            <td data-bind="text: GracePeriod"></td>
+            <td data-bind="text: EffectiveDate"></td>
+            <td data-bind="text: RevisionNumber"></td>
+            <td data-bind="text: CreatedBy"></td>
+            <td data-bind="text: ModifiedBy"></td>
+            <td data-bind="text: ModifiedDate"></td>
 
+        </tr>
+    </script>
+</div>
