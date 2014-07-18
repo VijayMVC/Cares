@@ -36,10 +36,6 @@ namespace Models.DomainModels
         [Required]
         public bool IsSystemGuarantor { get; set; }
         /// <summary>
-        /// System Guarantor ID
-        /// </summary>
-        public long SystemGuarantorId { get; set; }
-        /// <summary>
         /// Non System Guarantor
         /// </summary>
         [StringLength(500)]
@@ -47,11 +43,8 @@ namespace Models.DomainModels
         /// <summary>
         /// Individual Check
         /// </summary>
+        [Required]
         public bool IsIndividual { get; set; }
-        /// <summary>
-        /// Dealing Employee Id
-        /// </summary>
-        public long DealingEmployeeId { get; set; }
         /// <summary>
         /// Row Version
         /// </summary>
@@ -86,6 +79,7 @@ namespace Models.DomainModels
         /// Record Created By
         /// </summary>
         [Required]
+        [StringLength(100)]
         public string RecCreatedBy { get; set; }
         /// <summary>
         /// Record Last Updated Date
@@ -113,12 +107,25 @@ namespace Models.DomainModels
         /// </summary>
         [Required]
         public long UserDomainKey { get; set; }
+        
         /// <summary>
         /// Company Id
         /// </summary>
         [Required]
         public int CompanyId { get; set; }
         /// <summary>
+        /// System Guarantor ID
+        /// </summary>
+        public long? SystemGuarantorId { get; set; }
+        /// <summary>
+        /// Business Legal Status Id
+        /// </summary>
+        public int? BusinessLegalStatusId { get; set; }
+        /// <summary>
+        /// Dealing Employee Id
+        /// </summary>
+        public long? DealingEmployeeId { get; set; }
+          /// <summary>
         /// Payment Term Id
         /// </summary>
         [Required]
@@ -126,9 +133,8 @@ namespace Models.DomainModels
         /// <summary>
         /// Business Partner Rating Type Id
         /// </summary>
-        public int BPRatingTypeId { get; set; }
-        
-        
+        public int? BPRatingTypeId { get; set; }
+    
         #endregion
 
         #region Reference Properties
@@ -137,6 +143,10 @@ namespace Models.DomainModels
         /// </summary>
         public virtual Company Company { get; set; }
         /// <summary>
+        /// System Guarantor
+        /// </summary>
+        public virtual BusinessPartner SystemGuarantor { get; set; }
+        /// <summary>
         /// Payment Term reference
         /// </summary>
         public virtual PaymentTerm PaymentTerm { get; set; }
@@ -144,7 +154,15 @@ namespace Models.DomainModels
         /// Business Partner Rating Type reference
         /// </summary>
         public virtual BpRatingType BPRatingType { get; set; }
-
+        /// <summary>
+        /// Business Legal Status
+        /// </summary>
+        public virtual BusinessLegalStatus BusinessLegalStatus { get; set; }
+        /// <summary>
+        /// Dealing Employee
+        /// </summary>
+        public virtual Employee DealingEmployee { get; set; }
+        
         #endregion
     }
 }

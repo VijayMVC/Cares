@@ -6,9 +6,6 @@ using Cares.Web.ModelMappers;
 using Cares.Web.Models;
 using Interfaces.IServices;
 using DomainModels = Models.RequestModels;
-
-
-
 namespace Cares.Web.Areas.Api.Controllers
 {
     /// <summary>
@@ -49,20 +46,19 @@ namespace Cares.Web.Areas.Api.Controllers
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
 
-           tarrifTypeService.UpdateTarrifType(tarrifType.CreateFrom());
+            tarrifTypeService.UpdateTarrifType(tarrifType.CreateFrom());
         }
-
         /// <summary>
         /// Add a Tarrif Type
         /// </summary>
-        public void Put(TariffTypeDetail tarrifType)
+        public TariffTypeDetail Put(TariffTypeDetail tarrifType)
         {
             if (tarrifType == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
+            return tarrifTypeService.AddTarrifType(tarrifType.CreateFrom()).CreateFromDetail();
 
-            tarrifTypeService.AddTarrifType(tarrifType.CreateFrom());
         }
         #endregion
 

@@ -25,10 +25,9 @@ namespace Repository
             unityContainer.RegisterType<IPaymentTermRepository, PaymentTermRepository>();
             unityContainer.RegisterType<IPricingStrategyRepository, PricingStrategyRepository>();
             unityContainer.RegisterType<IRegionRepository, RegionRepository>();
+            unityContainer.RegisterType<DbContext, BaseDbContext>();
             unityContainer.RegisterType<IBpRatingTypeRepository ,BpRatingTypeRepository>();
             unityContainer.RegisterType<IBusinessLegalStatusRepository, BusinessLegalStatusRepository>();
-
-            unityContainer.RegisterType<DbContext, BaseDbContext>(new HierarchicalLifetimeManager());
         }
     }
 }

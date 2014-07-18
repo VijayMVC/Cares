@@ -136,6 +136,7 @@
     <Compile Include="RequestModels\BusinessPartnerSearchRequest.cs" />
     <Compile Include="RequestModels\ProductSearchRequest.cs" />
     <Compile Include="RequestModels\TarrifTypeRequest.cs" />
+    <Compile Include="ResponseModels\BusinessPartnerBaseDataResponse.cs" />
     <Compile Include="ResponseModels\EmployeeResponse.cs" />
     <Compile Include="ResponseModels\FleetPoolBaseDataResponse.cs" />
     <Compile Include="ResponseModels\FleetPoolResponse.cs" />

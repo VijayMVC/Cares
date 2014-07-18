@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Linq.Expressions;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Practices.Unity;
 using Models.DomainModels;
@@ -71,6 +72,29 @@ namespace Repository.BaseRepository
         public BaseDbContext()
         {            
         }
+        /// <summary>
+        /// Eager load property
+        /// </summary>
+        public void LoadProperty<T>(object entity, string propertyName, bool isCollection = false)
+        {
+            if (!isCollection)
+            {
+                Entry(entity).Reference(propertyName).Load();
+            }
+            else
+            {
+                Entry(entity).Collection(propertyName).Load();
+            }
+        }
+        /// <summary>
+        /// Eager load property
+        /// </summary>
+        public void LoadProperty<T>(object entity, Expression<Func<T>> propertyExpression, bool isCollection = false)
+        {
+            string propertyName = PropertyReference.GetPropertyName(propertyExpression);
+            LoadProperty<T>(entity, propertyName, isCollection);
+        }
+
         #endregion
         #region Public
 

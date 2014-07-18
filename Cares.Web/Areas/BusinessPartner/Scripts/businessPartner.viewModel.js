@@ -2,8 +2,8 @@
     Module with the view model for the businessPartner
 */
 define("businessPartner/businessPartner.viewModel",
-    ["jquery", "amplify", "ko", "businessPartner/businessPartner.dataservice", "businessPartner/businessPartnerWithKoMapping.model", "common/confirmation.viewModel", "common/pagination"],
-    function ($, amplify, ko, dataservice, model, confirmation, pagination) {
+    ["jquery", "amplify", "ko", "businessPartner/businessPartner.dataservice", "businessPartner/businessPartnerWithKoMapping.model", "businessPartner/businessPartner.model", "common/confirmation.viewModel", "common/pagination"],
+    function ($, amplify, ko, dataservice, listmodel,detailmodel, confirmation, pagination) {
 
         var ist = window.ist || {};
         ist.businessPartner = {
@@ -46,18 +46,7 @@ define("businessPartner/businessPartner.viewModel",
                     searchFilter = ko.observable(),
                     // select Filter
                     selectFilter = ko.observable(),
-                    // est price total
-                    //totalPrice = ko.computed(function () {
-                    //    if (products().length === 0) {
-                    //        return 0;
-                    //    }
-                    //    var total = 0;
-                    //    _.each(products(), function (product) {
-                    //        total += product.price();S
-                    //    });
-                    //    return total;
-                    //}),
-                    // #region Utility Functions
+                   // #region Utility Functions
                     // Select filter option Individual or Company
                     optionIndividualOrCompany = [{ Id: true, Name: 'Individual' },{Id : false, Name :  'Company'}],
                     selectBusinessPartner = function (businessPartner) {
@@ -70,14 +59,10 @@ define("businessPartner/businessPartner.viewModel",
                         }
                         isEditable(false);
                     },
-                    //// Edit a BusinessPartner
-                    //onEditProductInline = function(product, e) {
-                    //    selectProduct(product);
-                    //    isEditable(true);
-                    //    e.stopImmediatePropagation();
-                    //},
+                  
                     // Edit a Business Partner - In a Form
                     onEditBusinessPartner = function (businessPartner, e) {
+
                         selectBusinessPartner(businessPartner);
                         showBusinessPartnerEditor();
                         e.stopImmediatePropagation();
@@ -119,9 +104,10 @@ define("businessPartner/businessPartner.viewModel",
                     },
                     // Create Business Partner
                     createBusinessPartner = function () {
-                        var businessPartner = new model.BusinessPartner({ BusinessPartnerName: "", BusinessPartnerId: 0, Description: "" });
+                        var businessPartner = new detailmodel.BusinessPartner.Create();
+
                         //businessPartner.assignCategories(categories());
-                        businessPartners.splice(0, 0, businessPartner);
+                        //businessPartners.splice(0, 0, businessPartner);
                         // Select the newly added businessPartner
                         selectedBusinessPartner(businessPartner);
                     },
@@ -167,7 +153,7 @@ define("businessPartner/businessPartner.viewModel",
                     mapBusinessPartners = function (data) {
                         var businessPartnerList = [];
                         _.each(data.BusinessPartners, function (item) {
-                            var businessPartner = new model.BusinessPartner(item);
+                            var businessPartner = new listmodel.BusinessPartner(item);
                             //product.assignCategories(categories());
                             businessPartnerList.push(businessPartner);
                         });
@@ -244,15 +230,10 @@ define("businessPartner/businessPartner.viewModel",
                     // Save Business Partner
                     saveBusinessPartner = function (businessPartner) {
                         var method = "updateBusinessPartner";
-                        if (!selectedBusinessPartner().id()) {
+                        if (!selectedBusinessPartner().businessPartnerId()) {
                             method = "createBusinessPartner";
                         }
-                        // Ignore additional properties
-                        var mapping = {
-                            'ignore': ["categories", "categoryName", "assignCategories", "dirtyFlag", "hasChanges", "errors", "isValid",
-                                "reset"]
-                        }; 
-                        dataservice[method](ko.mapping.toJS(selectedBusinessPartner(), mapping), {
+                        dataservice[method](ko.mapping.toJS(selectedBusinessPartner().convertToServerData()), {
                             success: function () {
                                 // Reset Changes
                                 selectedBusinessPartner().reset();
@@ -263,6 +244,7 @@ define("businessPartner/businessPartner.viewModel",
                                 if (isBusinessPartnerEditorVisible) {
                                     closeBusinessPartnerEditor();
                                 }
+                                getBusinessPartners();
                                 toastr.success("Business Partner saved successfully");
                             },
                             error: function () {

@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Linq.Expressions;
 using Interfaces.Repository;
 using Microsoft.Practices.Unity;
 
@@ -79,7 +80,7 @@ namespace Repository.BaseRepository
         /// <summary>
         /// Find Entity by Id
         /// </summary>
-        public TDomainClass Find(long id)
+        public virtual TDomainClass Find(long id)
         {
             return DbSet.Find(id);
         }
@@ -119,6 +120,20 @@ namespace Repository.BaseRepository
         public virtual void Update(TDomainClass instance)
         {
             DbSet.AddOrUpdate(instance);
+        }
+        /// <summary>
+        /// Eager Load Property
+        /// </summary>
+        public void LoadProperty<T>(object entity, string propertyName, bool isCollection = false)
+        {
+            db.LoadProperty<T>(entity, propertyName, isCollection);
+        }
+        /// <summary>
+        /// Eager load property
+        /// </summary>
+        public void LoadProperty<T>(object entity, Expression<Func<T>> propertyExpression, bool isCollection = false)
+        {
+            db.LoadProperty(entity, propertyExpression, isCollection);
         }
         #endregion
     }
