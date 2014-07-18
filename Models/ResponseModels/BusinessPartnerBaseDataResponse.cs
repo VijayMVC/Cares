@@ -1,29 +1,16 @@
-﻿
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using Models.DomainModels;
 
-namespace Cares.Web.Models
+namespace Models.ResponseModels
 {
-    public class BusinessPartnerBaseResponse
+    /// <summary>
+    /// Business Parnter Base Data Domain Model
+    /// </summary>
+    public class BusinessPartnerBaseDataResponse
     {
-        #region Private
-        #endregion
-        //#region Constructors
-        ///// <summary>
-        ///// Constructor
-        ///// </summary>
-        //public BusinessPartnerBaseResponse()
-        //{
-        //    ResponseCompanies = new List<Company>();
-        //    ResponsePaymentTerms = new List<PaymentTerm>();
-        //    ResponseBPRatingTypes = new List<BpRatingType>();
-        //    ResponseBusinessLegalStatuses = new List<BusinessLegalStatus>();
-        //    ResponseBusinessPartners = new List<BusinessPartnerListView>();
-        //    ResponseDealingEmployees = new List<Employee>();
-        //}
-        //#endregion
-        #region Protected
-        #endregion
-        #region Public
+        #region Public Properties
         /// <summary>
         /// Companies
         /// </summary>
@@ -43,11 +30,12 @@ namespace Cares.Web.Models
         /// <summary>
         /// System Guarnator 
         /// </summary>
-        public IEnumerable<BusinessPartnerListView> ResponseBusinessPartners { get; set; }
+        public IEnumerable<BusinessPartner> ResponseBusinessPartners { get; set; }
         /// <summary>
         /// Dealing Employees 
         /// </summary>
         public IEnumerable<Employee> ResponseDealingEmployees { get; set; }
+   
         #endregion
     }
 }

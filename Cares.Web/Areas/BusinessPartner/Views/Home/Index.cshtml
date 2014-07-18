@@ -55,12 +55,14 @@
         <a href="#" data-bind="click: $root.onEditBusinessPartner" title="Edit in Form"><span class="glyphicon glyphicon-edit"></span></a>
     </script>
 
-   <script id="itemBusinessPartnerTemplate" type="text/html">
+    <script id="itemBusinessPartnerTemplate" type="text/html">
+       @*<tr data-bind="click: $root.selectBusinessPartner, css: { selectedRow: $data === $root.selectedBusinessPartner() }">*@
         <tr data-bind="click: $root.selectBusinessPartner">
-            <td data-bind="text: businessPartnerId"></td>
+        <td data-bind="text: businessPartnerId"></td>
             <td data-bind="text: businessPartnerName"></td>
             <td data-bind="text: isIndividual"></td>
-            <td data-bind="text: company"></td><td data-bind="text: bPRatingType"></td>
+            <td data-bind="text: company"></td>
+            <td data-bind="text: bPRatingType"></td>
             <td>
                 <!-- ko template: { name: 'editActionBusinessPartnerTemplate' } -->
                 <!-- /ko -->

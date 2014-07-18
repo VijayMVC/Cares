@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Cares.Web.Models
+﻿namespace Cares.Web.Models
 {
     /// <summary>
     /// Business Partner Api Detail Model
@@ -14,7 +9,11 @@ namespace Cares.Web.Models
         /// <summary>
         /// Business Partner Id
         /// </summary>
-        public long BusinessPartnerId { get; set; }
+        public long? BusinessPartnerId { get; set; }
+        /// <summary>
+        /// Business Partner Code
+        /// </summary>
+        public string BusinessPartnerCode { get; set; }
         /// <summary>
         /// Business Partner Name
         /// </summary>
@@ -23,30 +22,19 @@ namespace Cares.Web.Models
         /// Business Partnere descritpion
         /// </summary>
         public string BusinessPartnerDesciption { get; set; }
-        /// <summary>
-        /// Individual Check
-        /// </summary>
-        public bool IsIndividual { get; set; }
-        /// <summary>
-        /// Business Partner Code
-        /// </summary>
-        public string BusinessPartnerCode { get; set; }
-        /// <summary>
+         /// <summary>
         /// System Guarantor Check
         /// </summary>
         public bool IsSystemGuarantor { get; set; }
         /// <summary>
-        /// System Guarantor ID
-        /// </summary>
-        public long SystemGuarantorId { get; set; }
-        /// <summary>
         /// Non System Guarantor
         /// </summary>
-        public string NonSystemGuarantor { get; set; }
+        public string NonSystemGuarantor { get; set; } 
         /// <summary>
-        /// Dealing Employee Id
+        /// Individual Check
         /// </summary>
-        public long DealingEmployeeId { get; set; }
+        public bool IsIndividual { get; set; }
+        
         /// <summary>
         /// Business Partner Email Address
         /// </summary>
@@ -66,7 +54,20 @@ namespace Cares.Web.Models
         /// <summary>
         /// Business Partner Rating Type Id
         /// </summary>
-        public int BPRatingTypeId { get; set; }
+        public int? BPRatingTypeId { get; set; }
+        /// <summary>
+        /// System Guarantor ID
+        /// </summary>
+        public long? SystemGuarantorId { get; set; }
+        /// <summary>
+        /// Dealing Employee Id
+        /// </summary>
+        public long? DealingEmployeeId { get; set; }
+        /// <summary>
+        /// Business Legal Status Id
+        /// </summary>
+        public int? BusinessLegalStatusId { get; set; }
+
         #endregion
     }
 }

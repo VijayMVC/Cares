@@ -8,84 +8,76 @@
             <form class="form-horizontal" data-bind="submit: search">
                 <div class="row">
                     <div class="col-xs-2 float-left">
-                        <input type="text" class="form-control" placeholder="<Fleet Pool Code>" data-bind="value: searchFilter" />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-2 float-left">
-                        <select class="form-control" data-bind="options: $root.categories, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Country>', value: countryFilter"></select>
+                        <input type="text" class="form-control" placeholder="<Fleet Pool>" data-bind="value: fleetPoolSeachFilter" />
                     </div>
                     <div class="col-xs-2 float-left">
-                        <select class="form-control" data-bind="options: $root.categories, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Region>', value: regionFilter"></select>
+                        <select class="form-control" data-bind="options: $root.regionsList, optionsText: 'RegionCode', optionsValue: 'RegionId', optionsCaption: '<Region>', value: regionFilter"></select>
+                    </div>
+                    <div class="col-xs-2 float-left">
+                        <select class="form-control" data-bind="options: $root.operationsList, optionsText: 'OperationCode', optionsValue: 'OperationId', optionsCaption: '<Operation>', value: operationFilter"></select>
+                    </div>
+                    <div class="col-xs-3 float-left">
+                        <button type="button" class="btn btn-info float-left" data-bind="click: reset">Reset</button>
+                        <button type="submit" class="btn btn-success float-left searchButton" data-bind="click: search">Search</button>
                     </div>
                 </div>
-                
-                <button type="button" class="btn btn-info float-left" data-bind="click: search">Reset</button>
-                <button type="submit" class="btn btn-success float-left" data-bind="click: search">Search</button>
+
+
             </form>
         </div>
     </div>
     
-    <div class="row searchFilterResultSection" data-bind="visible: !isProductEditorVisible()">
+    <div class="row searchFilterResultSection" data-bind="visible: !isFleetPoolEditorVisible()">
         <div class="well">
             <table id="resultTable" class="table table-condensed">
                 <thead>
                     <tr>
-                        <th> <span id="1">Fleet Pool Code<span class="icon-up"></span></span></th>
-                        <th> <span id="2">Fleet Pool Name<span></span></span></th>
-                        <th> <span id="3">Description<span></span></span></th>
-                        <th> <span id="4">Company<span></span></span></th>
-                        <th> <span id="5">Operation</span></th>
-                        <th> <span id="6">Country<span></span></span></th>
-                        <th> <span id="7">Region<span></span></span></th>
-                        <th> <span id="8">-<span></span></span></th>
+                        <th> <span id="1">Code<span class="icon-up"></span></span></th>
+                        <th> <span id="2">Name<span></span></span></th>
+                        <th> <span id="3">Operation</span></th>
+                        <th> <span id="4">Country<span></span></span></th>
+                        <th> <span id="5">Region<span></span></span></th>
+                        <th> <span ></span></th>
+                        <th> <span ></span></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- ko template: { name: templateToUse , foreach: products } -->
+                    <!-- ko template: { name: 'fleetPoolFilterResultTemplate' , foreach: fleetPools } -->
                     <!-- /ko -->
                 </tbody>
             </table>
             @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
         </div>
     </div>
-    
-    <div class="row addEditSection" data-bind="visible: !isProductEditorVisible()">
-        <div class="well">
-            <form class="form-horizontal" data-bind="submit: search">
-                <button type="button" class="btn btn-primary" data-bind="click: search">Add</button>
-                <button type="submit" class="btn btn-warning" data-bind="click: search">Edit</button>
-                <div class="row">
-                    <div class="col-xs-3">
-                        <input type="text" class="form-control" placeholder="<Fleet Pool Code>" data-bind="value: searchFilter" />
-                    </div>
-                    <div class="col-xs-3">
-                        <input type="text" class="form-control" placeholder="<Fleet Pool Name>" data-bind="value: searchFilter" />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-3">
-                        <select class="form-control" data-bind="options: $root.categories, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Country>', value: countryFilter"></select>
-                    </div>
-                    <div class="col-xs-3">
-                        <select class="form-control" data-bind="options: $root.categories, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Region>', value: regionFilter"></select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-3">
-                        <select class="form-control" data-bind="options: $root.categories, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Company>', value: countryFilter"></select>
-                    </div>
-                    <div class="col-xs-3">
-                        <select class="form-control" data-bind="options: $root.categories, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Department>', value: regionFilter"></select>
-                    </div>
-                    <div class="col-xs-3">
-                        <select class="form-control" data-bind="options: $root.categories, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Operation>', value: regionFilter"></select>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+    <script id="deleteActionFleetPoolTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onDeleteFleetPool" title="Delete Fleet Pool"><span class="glyphicon glyphicon-remove"></span></a>
+    </script>
+
+    <script id="editActionFleetPoolTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onEditFleetPool" title="Edit in Form"><span class="glyphicon glyphicon-edit"></span></a>
+    </script>
+    <script id="fleetPoolFilterResultTemplate" type="text/html">
+        <tr>
+            <td data-bind="text: code"></td>
+            <td data-bind="text: name"></td> 
+            <td data-bind="text: operation"></td>
+            <td data-bind="text: country"></td>
+            <td data-bind="text: region"></td>
+            <td>
+                <!-- ko template: { name: 'editActionFleetPoolTemplate' } -->
+                <!-- /ko -->
+            </td>
+            <td>
+                <!-- ko template: { name: 'deleteActionFleetPoolTemplate' } -->
+                <!-- /ko -->
+            </td>
+        </tr>
+    </script>        
 </div>
+
+<!-- ko stopBinding: true -->
+@Html.Partial("~/Areas/Common/Views/Shared/_ConfirmationDialog.cshtml")
+<!-- /ko -->
 
 @section inlinescripts
 {

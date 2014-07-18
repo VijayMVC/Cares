@@ -20,7 +20,7 @@ define("Fleet/fleetPool.view",
                     }
 
                     // Handle Sorting
-                    //handleSorting("resultTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getProducts);
+                    handleSorting("resultTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getFleetPools);
                 };
 
             initialize();

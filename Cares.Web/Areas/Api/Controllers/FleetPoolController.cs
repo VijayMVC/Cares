@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Web;
 using System.Web.Http;
 using Cares.Web.ModelMappers;
@@ -8,6 +9,9 @@ using Domain = Models.RequestModels;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
+    /// <summary>
+    /// Fleet Pool Api Controller
+    /// </summary>
     public class FleetPoolController : ApiController
     {
         #region Public
@@ -22,6 +26,19 @@ namespace Cares.Web.Areas.Api.Controllers
             }
 
             return fleetPoolService.SerchFleetPool(request).CreateFrom();
+        }
+
+        /// <summary>
+        /// Delete a FleetPool
+        /// </summary>
+        public void Delete(Object fleetPoolId)
+        {
+            if ( !ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+
+            fleetPoolService.DeleteFleetPool(2);
         }
         #endregion
         #region Constructor

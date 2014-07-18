@@ -27,18 +27,18 @@ namespace Repository.Repositories
             rowCount =
                 DbSet.Count(
                     fleet =>
-                        (string.IsNullOrEmpty(request.SearchString) ||
-                         fleet.FleetPoolCode.Contains(request.SearchString) ||
-                         fleet.FleetPoolName.Contains(request.SearchString))
+                        (string.IsNullOrEmpty(request.FleetPoolCode) ||
+                         fleet.FleetPoolCode.Contains(request.FleetPoolCode) ||
+                         fleet.FleetPoolName.Contains(request.FleetPoolCode))
                          && (!request.RegionId.HasValue || fleet.RegionId == request.RegionId.Value)
                          && (!request.OperationId.HasValue || fleet.OperationId == request.OperationId.Value));
 
             return DbSet.Where(fleet =>
-                (string.IsNullOrEmpty(request.SearchString) ||
-                 fleet.FleetPoolCode.Contains(request.SearchString) ||
-                 fleet.FleetPoolName.Contains(request.SearchString))
+                (string.IsNullOrEmpty(request.FleetPoolCode) ||
+                 fleet.FleetPoolCode.Contains(request.FleetPoolCode) ||
+                 fleet.FleetPoolName.Contains(request.FleetPoolCode))
                 && (!request.RegionId.HasValue || fleet.RegionId == request.RegionId.Value)
-                && (!request.OperationId.HasValue || fleet.OperationId == request.OperationId.Value)).Skip(fromRow).Take(toRow).ToList();
+                && (!request.OperationId.HasValue || fleet.OperationId == request.OperationId.Value)).OrderBy(x=>x.FleetPoolCode).Skip(fromRow).Take(toRow).ToList();
         }
         #endregion
 
