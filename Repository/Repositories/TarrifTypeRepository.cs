@@ -55,7 +55,7 @@ namespace Repository.Repositories
         /// <returns></returns>
         public override IQueryable<TarrifType> GetAll()
         {
-            return DbSet.Where(p => p.UserDomainKey == UserDomaingKey);
+            return DbSet.Where(p => p.UserDomainKey == UserDomaingKey && p.ChildTariffTypeId==0);
         }
         /// <summary>
         /// Get All Tariff Types based on search crateria
@@ -85,15 +85,24 @@ namespace Repository.Repositories
         {            
             LoadProperty<TarrifType>(tarrifType, "Operation");
             LoadProperty(tarrifType, () => tarrifType.Operation);
+            LoadProperty(tarrifType, () => tarrifType.MeasurementUnit);
+            LoadProperty(tarrifType, () => tarrifType.PricingStrategy);
         }
         
         public override TarrifType Find(long id)
         {
-            //return DbSet.Include(tarrifType => tarrifType.Operation.Department).FirstOrDefault(tarrifType => tarrifType.TariffTypeId == id);
-            return
+              return
                 DbSet.Include(tarrifType => tarrifType.Operation)
                     .Include(tarrifType => tarrifType.Operation.Department)
                     .FirstOrDefault(tarrifType => tarrifType.TariffTypeId == id);
+        }
+
+        public TarrifType GetRevison(long id)
+        {
+            return
+              DbSet.Include(tarrifType => tarrifType.Operation)
+                  .Include(tarrifType => tarrifType.Operation.Department)
+                  .FirstOrDefault(tarrifType => tarrifType.ChildTariffTypeId == id);
         }
         #endregion
 

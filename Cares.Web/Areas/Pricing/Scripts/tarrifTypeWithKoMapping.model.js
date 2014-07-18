@@ -1,7 +1,5 @@
 ﻿define(["ko", "underscore", "underscore-ko"], function (ko) {
-
     var
-
     // Tarrif Type entity - Using Knockout Mapping
     // ReSharper disable InconsistentNaming
     TarrifType = function (data) {
@@ -13,7 +11,6 @@
         ko.mapping.fromJS(data, null, self);
 
         return {
-
             tariffTypeId: self.TariffTypeId,
             measurementUnit: self.MeasurementUnit,
             tariffTypeCode: self.TariffTypeCode,
@@ -25,10 +22,10 @@
             effectiveDate: self.EffectiveDate,
             durationFrom: self.DurationFrom,
             revisionNumber: self.RevisionNumber,
-            durationTo: self.DurationTo
+            durationTo: self.DurationTo,
+            
         };
     };
-
     var TarrifTypeDetail = function () {
         // ReSharper restore InconsistentNaming
         var // Reference to this object
@@ -139,7 +136,7 @@
             recLastUpdatedDt: recLastUpdatedDt,
             recLastUpdatedBy: recLastUpdatedBy,
             recCreatedBy: recCreatedBy,
-           
+
             errors: errors,
             isValid: isValid,
             dirtyFlag: dirtyFlag,
@@ -186,6 +183,9 @@
         tarrifType.effectiveDate(source.EffectiveDate !== null ? moment(source.EffectiveDate, ist.utcFormat).toDate() : undefined);
         tarrifType.pricingStrategyId(source.PricingStrategyId === null ? undefined : source.PricingStrategyId);
         tarrifType.revisionNumber(source.RevisionNumber === null ? undefined : source.RevisionNumber);
+        tarrifType.recCreatedBy(source.CreatedBy === null ? undefined : source.CreatedBy);
+        tarrifType.recLastUpdatedBy(source.ModifiedBy === null ? undefined : source.ModifiedBy);
+        tarrifType.recLastUpdatedDt(source.ModifiedDate === null ? undefined : source.ModifiedDate);
         return tarrifType;
     };
 

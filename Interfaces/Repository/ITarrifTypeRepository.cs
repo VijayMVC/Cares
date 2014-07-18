@@ -20,5 +20,11 @@ namespace Interfaces.Repository
         /// Load Dependencies
         /// </summary>
         void LoadDependencies(TarrifType tarrifType);
+        /// <summary>
+        /// Get Revisions
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        TarrifType GetRevison(long id);
     }
 }

@@ -65,6 +65,7 @@ namespace Cares.Web.ModelMappers
                 PricingStrategyId = source.PricingStrategyId,
                 RecCreatedDt = System.DateTime.Now,
                 RecLastUpdatedDt = System.DateTime.Now,
+                RevisionNumber = source.RevisionNumber
             };
 
 
@@ -89,8 +90,10 @@ namespace Cares.Web.ModelMappers
                 GracePeriod = source.GracePeriod,
                 EffectiveDate = source.EffectiveDate,
                 PricingStrategyId = source.PricingStrategyId,
-                RevisionNumber=source.RevisionNumber
-
+                RevisionNumber=source.RevisionNumber,
+                CreatedBy=source.RecCreatedBy,
+                ModifiedBy=source.RecCreatedBy,
+                ModifiedDate=source.RecLastUpdatedDt
             };
 
         }

@@ -64,6 +64,18 @@ namespace Cares.Web.Models
         /// Revision Number
         /// </summary>
         public long RevisionNumber { get; set; }
+        /// <summary>
+        /// Created By
+        /// </summary>
+        public string CreatedBy { get; set; }
+        /// <summary>
+        /// Modified By
+        /// </summary>
+        public string ModifiedBy { get; set; }
+        /// <summary>
+        /// Modified Date
+        /// </summary>
+        public DateTime ModifiedDate { get; set; }
         #endregion
     }
 }

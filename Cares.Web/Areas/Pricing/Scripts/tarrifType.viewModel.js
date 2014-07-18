@@ -12,6 +12,8 @@ define("tarrifType/tarrifType.viewModel",
                     view,
                     // Active Tarrif Type
                     selectedTarrifType = ko.observable(),
+                     // Add Or Edit Tariff Type
+                    selectedTarrifTypeCopy = ko.observable(),
                       // #region Arrays
                     //Tarrif Types
                     tarrifTypes = ko.observableArray([]),
@@ -23,6 +25,8 @@ define("tarrifType/tarrifType.viewModel",
                     measurementUnits = ko.observableArray([]),
                     // Departments
                     departments = ko.observableArray([]),
+                    //Revision List
+                     revisions = ko.observableArray([]),
                     //For Edit, Tariff Type Id
                     selectedTariffTypeId = ko.observable(),
                     // Operations
@@ -55,16 +59,16 @@ define("tarrifType/tarrifType.viewModel",
                     //Operation Filter
                     operationFilter = ko.observable(),
                     // #region Utility Functions
-                    // Select a tarrif Type
-                    selectTarrifType = function (tarrifType) {
-                        if (selectedTarrifType() && selectedTarrifType().hasChanges()) {
-                            return;
-                        }
-                        if (selectedTarrifType() !== tarrifType) {
-                            selectedTarrifType(tarrifType);
-                        }
-                        isEditable(false);
-                    },
+                    //// Select a tarrif Type
+                    //selectTarrifType = function (tarrifType) {
+                    //    if (selectedTarrifType() && selectedTarrifType().hasChanges()) {
+                    //        return;
+                    //    }
+                    //    if (selectedTarrifType() !== tarrifType) {
+                    //        selectedTarrifType(tarrifType);
+                    //    }
+                    //    isEditable(false);
+                    //},
                     // Initialize the view model
                     initialize = function (specifiedView) {
                         view = specifiedView;
@@ -78,6 +82,9 @@ define("tarrifType/tarrifType.viewModel",
                     templateToUse = function (tarrifType) {
                         return (tarrifType === selectedTarrifType() ? '' : 'itemTarrifTypeTemplate');
                     },
+                     templateToUseForRevision = function () {
+                         return 'itemTarrifTypeRevisionTemplate';
+                     },
                     // Map Tarrif Types - Server to Client
                     mapTarrifTypes = function (data) {
                         var tarrifTypeList = [];
@@ -193,14 +200,16 @@ define("tarrifType/tarrifType.viewModel",
                         dataservice[method](model.TariffTypeServerMapper(selectedTarrifType), {
                             success: function (data) {
                                 var tarrifType = new model.TarrifType(data);
-                                tarrifTypes.splice(0, 0, tarrifType);
-                                // Reset Changes
-                                selectedTarrifType().reset();
-                                // If Tariff Type is specified then select it
-                                if (tariffType) {
-                                    selectTarrifType(tariffType);
+                                if (selectedTarrifType().tarrifTypeId()>0) {
+                                   // selectedTarrifType(tarrifType);
+                                    closeTariffTypeEditor();
+                                } else {
+                                  tarrifTypes.splice(0, 0, tarrifType);
+                                 
                                 }
-                                if (isTarrifTypeEditorVisible) {
+                                 // Reset Changes
+                                selectedTarrifType().reset();
+                              if (isTarrifTypeEditorVisible) {
                                     closeTariffTypeEditor();
                                 }
 
@@ -240,7 +249,10 @@ define("tarrifType/tarrifType.viewModel",
 
                         }, {
                             success: function (data) {
-                                selectedTarrifType(model.TariffTypeClientMapper(data));
+                                selectedTarrifType(model.TariffTypeClientMapper(data.TarrifType));
+                                revisions.removeAll();
+                                ko.utils.arrayPushAll(revisions(), data.TarrifTypeRevisions);
+                                revisions.valueHasMutated();
                                 isLoadingTarrifTypes(false);
                             },
                             error: function () {
@@ -258,12 +270,14 @@ define("tarrifType/tarrifType.viewModel",
                 return {
                     // Observables
                     selectedTarrifType: selectedTarrifType,
+                    //addTarrifType:addTarrifType,
                     selectedTariffTypeId: selectedTariffTypeId,
                     tarrifTypes: tarrifTypes,
                     companies: companies,
                     measurementUnits: measurementUnits,
                     departments: departments,
                     operations: operations,
+                    revisions: revisions,
                     pricingStrategies: pricingStrategies,
                     isLoadingTarrifTypes: isLoadingTarrifTypes,
                     sortOn: sortOn,
@@ -279,7 +293,8 @@ define("tarrifType/tarrifType.viewModel",
                     // Utility Methods
                     initialize: initialize,
                     templateToUse: templateToUse,
-                    selectTarrifType: selectTarrifType,
+                    templateToUseForRevision:templateToUseForRevision,
+                   // selectTarrifType: selectTarrifType,
                     search: search,
                     getTarrifType: getTarrifType,
                     getBase: getBase,

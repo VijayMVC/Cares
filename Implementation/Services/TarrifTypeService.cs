@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity.ModelConfiguration.Configuration;
 using Interfaces.IServices;
 using Interfaces.Repository;
 using Models.DomainModels;
@@ -67,9 +68,21 @@ namespace Implementation.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public TarrifType FindTarrifType(long id)
+        public TariffTypeDetailResponse FindDetailById(long id)
         {
-            return tarrifTypeRepository.Find(id);
+            List<TarrifType> revisionList = new List<TarrifType>();
+            var tarrifType = tarrifTypeRepository.Find(id);
+            if (tarrifType != null && tarrifType.RevisionNumber > 0)
+            {
+                var tempId = tarrifType.TariffTypeId;
+                for (int i = 0; i < tarrifType.RevisionNumber; i++)
+                {
+                    var tariffRevision = tarrifTypeRepository.GetRevison(tempId);
+                    tempId = tariffRevision.TariffTypeId;
+                    revisionList.Add(tariffRevision);
+                }
+            }
+            return new TariffTypeDetailResponse { TarrifType = tarrifType, TarrifTypeRevisions = revisionList };
         }
         /// <summary>
         /// Add Tariff Type
@@ -90,19 +103,22 @@ namespace Implementation.Services
         /// </summary>
         /// <param name="tarrifType"></param>
         /// <returns></returns>
-        public bool UpdateTarrifType(TarrifType tarrifType)
+        public TarrifType UpdateTarrifType(TarrifType tarrifType)
         {
-            
-            TarrifType tarrifObj = tarrifType;
-             tarrifObj.TariffTypeId = 0;
-            tarrifTypeRepository.Add(tarrifObj);
-            tarrifTypeRepository.SaveChanges();
-            tarrifType.ChildTariffTypeId=tarrifObj.TariffTypeId;
+            long oldRecordId = tarrifType.TariffTypeId;
+            tarrifType.TariffTypeId = 0;
             tarrifType.RevisionNumber = tarrifType.RevisionNumber + 1;
-            tarrifTypeRepository.Update(tarrifType);
+            tarrifTypeRepository.Add(tarrifType);
+            tarrifTypeRepository.SaveChanges();
+            TarrifType oldTariffRecord = tarrifTypeRepository.Find(oldRecordId);
+            oldTariffRecord.ChildTariffTypeId = tarrifType.TariffTypeId;
             tarrifTypeRepository.SaveChanges();
 
-            return true;
+            // var tarrif = tarrifTypeRepository.Find(tarrifType.TariffTypeId);
+            tarrifTypeRepository.LoadDependencies(tarrifType);
+            return tarrifType;
+
+
 
         }
 
