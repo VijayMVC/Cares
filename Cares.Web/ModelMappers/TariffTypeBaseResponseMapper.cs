@@ -3,6 +3,9 @@ using Cares.Web.Models;
 using DomainResponseModels = Models.ResponseModels;
 namespace Cares.Web.ModelMappers
 {
+    /// <summary>
+    /// Tariff Type Base Response Mapper
+    /// </summary>
     public static class TariffTypeBaseResponseMapper
     {
         #region Public

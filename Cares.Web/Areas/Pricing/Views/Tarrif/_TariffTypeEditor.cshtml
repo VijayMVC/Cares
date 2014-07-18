@@ -1,5 +1,5 @@
 ﻿
-<div class="well col-md-12" id="tariffTypeEditor" data-bind="visible: isTarrifTypeEditorVisible, with: selectedTarrifType" style="display: none;">
+<div class="well col-md-12" id="tariffTypeEditor" data-bind="visible: isTarrifTypeEditorVisible, with: addTarrifType" style="display: none;">
     <h3>Tariff Type Add/Edit</h3>
     <h2 class="sectionHeader">
         <span><a href="#" class="custom-link" id="link-action" data-bind="click: $root.closeTariffTypeEditor">< Back</a></span>
@@ -72,10 +72,10 @@
             <button class="btn" id="saveBtn" data-bind="click: $root.onSaveTariffType, enable: hasChanges, css: { 'btn-warning': hasChanges }">Save</button>
         </div>
     </form>
-    <br/>
+    <br />
     <h2 class="sectionHeader">
         <span>Tariff Revisions</span>
-      </h2>
+    </h2>
     <table id="tarrifTypeRevisions" class="table table-condensed ">
         <thead>
             <tr>
@@ -88,6 +88,7 @@
                 <th> <span id="7">Revision<span></span></span></th>
                 <th> <span id="8">Create dBy<span></span></span></th>
                 <th> <span id="9">Modified By<span></span></span></th>
+                <th> <span id="10">Modified Date<span></span></span></th>
             </tr>
         </thead>
         <tbody>
@@ -107,7 +108,7 @@
             <td data-bind="text: CreatedBy"></td>
             <td data-bind="text: ModifiedBy"></td>
             <td data-bind="text: ModifiedDate"></td>
-            
+
         </tr>
     </script>
 </div>

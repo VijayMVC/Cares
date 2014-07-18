@@ -1,5 +1,4 @@
 ﻿using System;
-
 namespace Cares.Web.Models
 {
     /// <summary>

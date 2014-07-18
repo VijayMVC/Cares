@@ -77,9 +77,12 @@ namespace Implementation.Services
                 var tempId = tarrifType.TariffTypeId;
                 for (int i = 0; i < tarrifType.RevisionNumber; i++)
                 {
-                    var tariffRevision = tarrifTypeRepository.GetRevison(tempId);
-                    tempId = tariffRevision.TariffTypeId;
-                    revisionList.Add(tariffRevision);
+                    if (tempId > 0)
+                    {
+                        var tariffRevision = tarrifTypeRepository.GetRevison(tempId);
+                        tempId = tariffRevision != null ? tariffRevision.TariffTypeId : 0;
+                        revisionList.Add(tariffRevision);
+                    }
                 }
             }
             return new TariffTypeDetailResponse { TarrifType = tarrifType, TarrifTypeRevisions = revisionList };

@@ -86,8 +86,13 @@ namespace Repository.Repositories
             LoadProperty(tarrifType, () => tarrifType.Operation);
             LoadProperty(tarrifType, () => tarrifType.MeasurementUnit);
             LoadProperty(tarrifType, () => tarrifType.PricingStrategy);
+            LoadProperty(tarrifType, () => tarrifType.Company);
         }
-
+        /// <summary>
+        /// Find By Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public override TarrifType Find(long id)
         {
             return
@@ -95,7 +100,11 @@ namespace Repository.Repositories
                   .Include(tarrifType => tarrifType.Operation.Department)
                   .FirstOrDefault(tarrifType => tarrifType.TariffTypeId == id);
         }
-
+        /// <summary>
+        /// Get Revision
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public TarrifType GetRevison(long id)
         {
             return

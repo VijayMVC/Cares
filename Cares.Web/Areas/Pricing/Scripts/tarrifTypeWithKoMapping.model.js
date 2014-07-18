@@ -16,7 +16,7 @@
             tariffTypeCode: self.TariffTypeCode,
             tarrifTypeName: self.TariffTypeName,
             pricingScheme: self.PricingScheme,
-            companay: self.Companay,
+            company: self.Company,
             operation: self.Operation,
             gracePeriod: self.GracePeriod,
             effectiveDate: self.EffectiveDate,
@@ -150,20 +150,20 @@
     //Client To Server Mapper
     var TariffTypeServerMapper = function (tariffTypeObj) {
         var result = {};
-        result.TariffTypeId = tariffTypeObj().tarrifTypeId() === undefined || tariffTypeObj().tarrifTypeId() === null ? 0 : tariffTypeObj().tarrifTypeId();
-        result.TariffTypeCode = tariffTypeObj().tariffTypeCode() === undefined || tariffTypeObj().tariffTypeCode() === null ? 0 : tariffTypeObj().tariffTypeCode();
-        result.TariffTypeName = tariffTypeObj().tarrifTypeName();
-        result.TariffTypeDescription = tariffTypeObj().tariffTypeDescription();
-        result.CompanyId = tariffTypeObj().companyId();
-        result.DepartmentId = tariffTypeObj().departmentId();
-        result.OperationId = tariffTypeObj().operationId();
-        result.MeasurementUnitId = tariffTypeObj().measurementUnitId();
-        result.DurationFrom = tariffTypeObj().durationFrom();
-        result.DurationTo = tariffTypeObj().durationTo();
-        result.GracePeriod = tariffTypeObj().gracePeriod();
-        result.EffectiveDate = tariffTypeObj().effectiveDate() === undefined || tariffTypeObj().effectiveDate() === null ? undefined : moment(tariffTypeObj().effectiveDate()).format(ist.utcFormat);
-        result.PricingStrategyId = tariffTypeObj().pricingStrategyId();
-        result.RevisionNumber = tariffTypeObj().revisionNumber();
+        result.TariffTypeId = tariffTypeObj.tarrifTypeId() === undefined || tariffTypeObj.tarrifTypeId() === null ? 0 : tariffTypeObj.tarrifTypeId();
+        result.TariffTypeCode = tariffTypeObj.tariffTypeCode() === undefined || tariffTypeObj.tariffTypeCode() === null ? 0 : tariffTypeObj.tariffTypeCode();
+        result.TariffTypeName = tariffTypeObj.tarrifTypeName();
+        result.TariffTypeDescription = tariffTypeObj.tariffTypeDescription();
+        result.CompanyId = tariffTypeObj.companyId();
+        result.DepartmentId = tariffTypeObj.departmentId();
+        result.OperationId = tariffTypeObj.operationId();
+        result.MeasurementUnitId = tariffTypeObj.measurementUnitId();
+        result.DurationFrom = tariffTypeObj.durationFrom();
+        result.DurationTo = tariffTypeObj.durationTo();
+        result.GracePeriod = tariffTypeObj.gracePeriod();
+        result.EffectiveDate = tariffTypeObj.effectiveDate() === undefined || tariffTypeObj.effectiveDate() === null ? undefined : moment(tariffTypeObj.effectiveDate()).format(ist.utcFormat);
+        result.PricingStrategyId = tariffTypeObj.pricingStrategyId();
+        result.RevisionNumber = tariffTypeObj.revisionNumber();
         return result;
     };
     //Server To Client Mapper
@@ -188,11 +188,13 @@
         tarrifType.recLastUpdatedDt(source.ModifiedDate === null ? undefined : source.ModifiedDate);
         return tarrifType;
     };
+  
 
     return {
         TarrifType: TarrifType,
         TarrifTypeDetail: TarrifTypeDetail,
         TariffTypeServerMapper: TariffTypeServerMapper,
-        TariffTypeClientMapper: TariffTypeClientMapper
+        TariffTypeClientMapper: TariffTypeClientMapper,
+       
     };
 });

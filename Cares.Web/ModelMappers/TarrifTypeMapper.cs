@@ -22,6 +22,10 @@ namespace Cares.Web.ModelMappers
                     source.Operation != null
                         ? source.Operation.OperationCode + " - " + source.Operation.OperationName
                         : string.Empty,
+                Company =
+            source.Company != null
+                ? source.Company.CompanyCode + " - " + source.Company.CompanyName
+                : string.Empty,
                 MeasurementUnit =
                     source.MeasurementUnit != null
                         ? source.MeasurementUnit.MeasurementUnitCode + " - " +
@@ -65,7 +69,8 @@ namespace Cares.Web.ModelMappers
                 PricingStrategyId = source.PricingStrategyId,
                 RecCreatedDt = System.DateTime.Now,
                 RecLastUpdatedDt = System.DateTime.Now,
-                RevisionNumber = source.RevisionNumber
+                RevisionNumber = source.RevisionNumber,
+                RecCreatedBy = "Cares"
             };
 
 
@@ -83,21 +88,21 @@ namespace Cares.Web.ModelMappers
                 TariffTypeDescription = source.TariffTypeDescription,
                 CompanyId = source.CompanyId,
                 OperationId = source.OperationId,
-                DepartmentId=source.Operation.DepartmentId,
+                DepartmentId = source.Operation.DepartmentId,
                 MeasurementUnitId = source.MeasurementUnitId,
                 DurationFrom = source.DurationFrom,
                 DurationTo = source.DurationTo,
                 GracePeriod = source.GracePeriod,
                 EffectiveDate = source.EffectiveDate,
                 PricingStrategyId = source.PricingStrategyId,
-                RevisionNumber=source.RevisionNumber,
-                CreatedBy=source.RecCreatedBy,
-                ModifiedBy=source.RecCreatedBy,
-                ModifiedDate=source.RecLastUpdatedDt
+                RevisionNumber = source.RevisionNumber,
+                CreatedBy = source.RecCreatedBy,
+                ModifiedBy = source.RecCreatedBy,
+                ModifiedDate = source.RecLastUpdatedDt
             };
 
         }
-       
+
         #endregion
     }
 }
