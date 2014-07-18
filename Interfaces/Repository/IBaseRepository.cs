@@ -41,12 +41,21 @@ namespace Interfaces.Repository
         /// <summary>
         /// Get all
         /// </summary>
-        /// <returns></returns>
         IQueryable<TDomainClass> GetAll();
 
         /// <summary>
         /// Save changes
         /// </summary>
         void SaveChanges();
+
+        /// <summary>
+        /// User Domain Key
+        /// </summary>
+        long UserDomainKey { get;}
+
+        /// <summary>
+        /// Logged in user identity
+        /// </summary>
+        string LoggedInUserIdentity { get; set; }
     }
 }
