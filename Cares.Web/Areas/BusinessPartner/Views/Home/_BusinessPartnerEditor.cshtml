@@ -13,7 +13,7 @@
        
             <label for="businessPartnerName" class="control-label col-sm-2">Business Partner Name</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" placeholder="<Name>" id="businessPartnerName" data-bind="value: businessPartnerName" />
+                <input type="text" class="form-control" placeholder="<Name>" id="businessPartnerName" data-bind="value: businessPartnerName, valueUpdate: 'keyup'" />
             </div>
       
             <label for="companies" class="control-label col-sm-2">Company *</label>
@@ -32,13 +32,13 @@
             </div>
             <label for="isIndividual" class="control-label col-sm-2">Is Individual *</label>
             <div class="col-md-2">
-                <input type="checkbox" class="form-control" id="isIndividual" data-bind="value: isIndividual, validationTooltip:isIndividual">
+                <input type="checkbox" class="form-control" id="isIndividual" data-bind="checked: isIndividual">
             </div>
         </div>
         <div class="form-group">
             <label for="isSystemGuarantor" class="control-label col-sm-2">Is System Guarantor *</label>
             <div class="col-md-2">
-                <input type="checkbox" class="form-control" id="isSystemGuarantor" data-bind="value: isSystemGuarantor, validationTooltip: isSystemGuarantor">
+                <input type="checkbox" class="form-control" id="isSystemGuarantor" data-bind="checked: isSystemGuarantor">
             </div>
 
             <label for="respBusinessPartners" class="control-label col-sm-2">System Guarantor</label>
@@ -48,7 +48,7 @@
             </div>
             <label for="nonSystemGuarantor" class="control-label col-sm-2">External System Guarantor </label>
             <div class="col-md-2">
-                <input type="text" class="form-control" placeholder="<External System Guarantor>" id="nonSystemGuarantor" data-bind="value: nonSystemGuarantor" />
+                <input type="text" class="form-control" placeholder="<External System Guarantor>" id="nonSystemGuarantor" data-bind="value: nonSystemGuarantor, valueUpdate: 'keyup'" />
             </div>
         </div>
         <div class="form-group">
@@ -64,13 +64,13 @@
             </div>
             <label for="businessPartnerEmailAddress" class="control-label col-sm-2">Email</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" placeholder="<Email>" id="businessPartnerEmailAddress" data-bind="value: businessPartnerEmailAddress" />
+                <input type="text" class="form-control" placeholder="<Email>" id="businessPartnerEmailAddress" data-bind="value: businessPartnerEmailAddress, valueUpdate: 'keyup'" />
             </div>
         </div>
         <div class="form-group">
             <label for="businessPartnerDesciption" class="control-label col-sm-2">Description</label>
             <div class="col-md-2">
-                <textarea class="form-control" rows="2" placeholder="<Description>" id="businessPartnerDesciption" data-bind="value: businessPartnerDesciption"></textarea>
+                <textarea class="form-control" rows="2" placeholder="<Description>" id="businessPartnerDesciption" data-bind="value: businessPartnerDesciption, valueUpdate: 'keyup'"></textarea>
             </div>
         </div>
         <h2 class="sectionHeader">

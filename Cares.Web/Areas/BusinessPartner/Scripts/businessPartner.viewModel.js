@@ -60,8 +60,8 @@ define("businessPartner/businessPartner.viewModel",
                         //    onSaveBusinessPartner(businessPartner);
                         //    return;
                         //}
-                        if (selectedBusinessPartner() !== businessPartner) {
-                            selectedBusinessPartner(businessPartner);
+                        if (listSelectedBusinessPartner() !== businessPartner) {
+                            listSelectedBusinessPartner(businessPartner);
                         }
                         //isEditable(false);
                     },
@@ -82,6 +82,7 @@ define("businessPartner/businessPartner.viewModel",
                         }, {
                             success: function (data) {
                                 selectedBusinessPartner(model.BusinessPartnerClientMapper(data));
+                                selectedBusinessPartner().reset();
                                 isLoadingBusinessPartners(false);
                             },
                             error: function () {
@@ -141,13 +142,13 @@ define("businessPartner/businessPartner.viewModel",
                     },
                     // Save BusinessPartner
                     onSaveBusinessPartner = function (businessPartner) {
-                        if (doBeforeSelect()) {
+                        if (doBeforeSave()) {
                             // Commits and Selects the Row
                             saveBusinessPartner(businessPartner);
                         }
                     },
                     // Do Before Logic
-                    doBeforeSelect = function() {
+                    doBeforeSave = function() {
                         var flag = true;
                         if (!selectedBusinessPartner().isValid()) {
                             selectedBusinessPartner().errors.showAllMessages();
