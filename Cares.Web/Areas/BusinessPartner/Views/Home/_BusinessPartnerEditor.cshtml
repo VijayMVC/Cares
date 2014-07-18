@@ -41,9 +41,10 @@
                 <input type="checkbox" class="form-control" id="isSystemGuarantor" data-bind="value: isSystemGuarantor, validationTooltip: isSystemGuarantor">
             </div>
 
-            <label for="" class="control-label col-sm-2">System Guarantor</label>
+            <label for="respBusinessPartners" class="control-label col-sm-2">System Guarantor</label>
             <div class="col-md-2">
-     
+                <select id="dealingEmployees" class="form-control" data-bind="options: $root.respBusinessPartners, optionsText: 'BusinessPartnerName', optionsValue: 'BusinessPartnerId', optionsCaption: '<System Guarantor>', value: systemGuarantorId"></select>
+
             </div>
             <label for="nonSystemGuarantor" class="control-label col-sm-2">External System Guarantor </label>
             <div class="col-md-2">
@@ -51,9 +52,10 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="businessPartnerEmailAddress" class="control-label col-sm-2">Dealing Employee</label>
+            <label for="dealingEmployees" class="control-label col-sm-2">Dealing Employee</label>
             <div class="col-md-2">
-            </div>
+                <select id="dealingEmployees" class="form-control" data-bind="options: $root.dealingEmployees, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Dealing Employee>', value: dealingEmployeeId"></select>
+ </div>
 
             <label for="bPRatingTypes" class="control-label col-sm-2">Rating Type</label>
             <div class="col-md-2">

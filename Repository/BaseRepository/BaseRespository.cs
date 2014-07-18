@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Linq.Expressions;
 using Interfaces.Repository;
@@ -97,7 +99,24 @@ namespace Repository.BaseRepository
         /// </summary>
         public void SaveChanges()
         {
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                // Retrieve the error messages as a list of strings.
+                List<string> errorMessages = new List<string>();
+                foreach (DbEntityValidationResult validationResult in ex.EntityValidationErrors)
+                {
+                    string entityName = validationResult.Entry.Entity.GetType().Name;
+                    foreach (DbValidationError error in validationResult.ValidationErrors)
+                    {
+                        errorMessages.Add(entityName + "." + error.PropertyName + ": " + error.ErrorMessage);
+                    }
+                }
+                int i = 0;
+            }
         }
         /// <summary>
         /// Delete an entry

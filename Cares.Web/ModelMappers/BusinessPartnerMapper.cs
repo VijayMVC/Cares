@@ -1,4 +1,5 @@
 ﻿using System;
+using Cares.Web.Models;
 using Models.DomainModels;
 namespace Cares.Web.ModelMappers
 {
@@ -7,7 +8,7 @@ namespace Cares.Web.ModelMappers
         #region Public
 
         /// <summary>
-        ///  Create  web api model from domain model
+        ///  Create listview web api model from domain model
         /// </summary>
         public static Models.BusinessPartnerListView CreateFrom(this BusinessPartner source)
         {
@@ -23,6 +24,31 @@ namespace Cares.Web.ModelMappers
                 CompanyName = source.Company.CompanyName
             };
            
+        }
+
+        /// <summary>
+        ///  Create detail web api model from domain model
+        /// </summary>
+        public static Models.BusinessPartnerDetail CreateApiDetailFromDomainModel(this BusinessPartner source)
+        {
+            return new Models.BusinessPartnerDetail
+            {
+                BusinessPartnerId = source.BusinessPartnerId,
+                BusinessPartnerName = source.BusinessPartnerName,
+                BusinessPartnerDesciption = source.BusinessPartnerDesciption,
+                IsIndividual = source.IsIndividual,
+                BusinessLegalStatusId = source.BusinessLegalStatusId,
+                PaymentTermId = source.PaymentTermId,
+                BPRatingTypeId = source.BPRatingTypeId,
+                BusinessPartnerCode = source.BusinessPartnerCode,
+                BusinessPartnerEmailAddress = source.BusinessPartnerEmailAddress,
+                BusinessPartnerIsValid = source.BusinessPartnerIsValid,
+                CompanyId = source.CompanyId,
+                DealingEmployeeId = source.DealingEmployeeId,
+                IsSystemGuarantor = source.IsSystemGuarantor,
+                NonSystemGuarantor = source.NonSystemGuarantor,
+                SystemGuarantorId = source.SystemGuarantorId
+            };
         }
 
         /// <summary>
@@ -48,6 +74,8 @@ namespace Cares.Web.ModelMappers
                 BusinessPartnerId = source.BusinessPartnerId.HasValue ? (long)source.BusinessPartnerId : 0,
                 BusinessPartnerName = source.BusinessPartnerName,
                 BusinessPartnerDesciption = source.BusinessPartnerDesciption,
+                BusinessLegalStatusId = source.BusinessLegalStatusId,
+                NonSystemGuarantor = source.NonSystemGuarantor,
                 IsIndividual = source.IsIndividual,
                 IsSystemGuarantor = source.IsSystemGuarantor,
                 SystemGuarantorId = source.SystemGuarantorId,
@@ -56,17 +84,7 @@ namespace Cares.Web.ModelMappers
                 DealingEmployeeId = source.DealingEmployeeId,
                 CompanyId = source.CompanyId,
                 BusinessPartnerIsValid = true,
-                BusinessPartnerCode = "BP-Screen",
-                BusinessPartnerEmailAddress = source.BusinessPartnerEmailAddress,
-                IsActive = true,
-                IsDeleted = false,
-                IsPrivate = false,
-                IsReadOnly = false,
-                RecCreatedDt = DateTime.Now,
-                RecLastUpdatedDt = DateTime.Now,
-                RecCreatedBy = "zain",
-                RecLastUpdatedBy = "zain",
-                RowVersion = 0
+                BusinessPartnerEmailAddress = source.BusinessPartnerEmailAddress
             };
         }
 

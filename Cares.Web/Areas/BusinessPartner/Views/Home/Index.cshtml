@@ -56,8 +56,8 @@
     </script>
 
     <script id="itemBusinessPartnerTemplate" type="text/html">
-       @*<tr data-bind="click: $root.selectBusinessPartner, css: { selectedRow: $data === $root.selectedBusinessPartner() }">*@
-        <tr data-bind="click: $root.selectBusinessPartner">
+       <tr data-bind="click: $root.selectBusinessPartner, css: { selectedRow: $data === $root.listSelectedBusinessPartner() }">
+        @*<tr data-bind="click: $root.selectBusinessPartner">*@
         <td data-bind="text: businessPartnerId"></td>
             <td data-bind="text: businessPartnerName"></td>
             <td data-bind="text: isIndividual"></td>

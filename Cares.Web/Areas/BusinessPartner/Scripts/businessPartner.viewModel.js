@@ -2,8 +2,8 @@
     Module with the view model for the businessPartner
 */
 define("businessPartner/businessPartner.viewModel",
-    ["jquery", "amplify", "ko", "businessPartner/businessPartner.dataservice", "businessPartner/businessPartnerWithKoMapping.model", "businessPartner/businessPartner.model", "common/confirmation.viewModel", "common/pagination"],
-    function ($, amplify, ko, dataservice, listmodel,detailmodel, confirmation, pagination) {
+    ["jquery", "amplify", "ko", "businessPartner/businessPartner.dataservice", "businessPartner/businessPartnerWithKoMapping.model", "common/confirmation.viewModel", "common/pagination"],
+    function ($, amplify, ko, dataservice, model, confirmation, pagination) {
 
         var ist = window.ist || {};
         ist.businessPartner = {
@@ -12,6 +12,8 @@ define("businessPartner/businessPartner.viewModel",
                     view,
                     // Active BusinessPartner
                     selectedBusinessPartner = ko.observable(),
+                     // listview selected BusinessPartner
+                    listSelectedBusinessPartner = ko.observable(),
                     // #region Arrays
                     // BusinessPartners
                     businessPartners = ko.observableArray([]),
@@ -31,7 +33,11 @@ define("businessPartner/businessPartner.viewModel",
                     bpRatingTypes = ko.observableArray([]),
                       // Business Legal Statuses Array
                     businessLegalStatuses = ko.observableArray([]),
-                    
+                      // Response Business  Partners Array
+                    respBusinessPartners = ko.observableArray([]),
+                      // Business Legal Statuses Array
+                    dealingEmployees = ko.observableArray([]),
+
                     // Sort On
                     sortOn = ko.observable(1),
                     // Sort Order -  true means asc, false means desc
@@ -50,22 +56,39 @@ define("businessPartner/businessPartner.viewModel",
                     // Select filter option Individual or Company
                     optionIndividualOrCompany = [{ Id: true, Name: 'Individual' },{Id : false, Name :  'Company'}],
                     selectBusinessPartner = function (businessPartner) {
-                        if (selectedBusinessPartner() && selectedBusinessPartner().hasChanges()) {
-                            onSaveBusinessPartner(businessPartner);
-                            return;
-                        }
+                        //if (selectedBusinessPartner()) {
+                        //    onSaveBusinessPartner(businessPartner);
+                        //    return;
+                        //}
                         if (selectedBusinessPartner() !== businessPartner) {
                             selectedBusinessPartner(businessPartner);
                         }
-                        isEditable(false);
+                        //isEditable(false);
                     },
-                  
+                     //For Edit, Tariff Type Id
+                    selectedBusinessPartnerId = ko.observable(),
                     // Edit a Business Partner - In a Form
                     onEditBusinessPartner = function (businessPartner, e) {
+                        selectedBusinessPartnerId(businessPartner.businessPartnerId().split('-')[1]);
+                        getBusinessPartnerById(selectedBusinessPartnerId());
 
-                        selectBusinessPartner(businessPartner);
                         showBusinessPartnerEditor();
                         e.stopImmediatePropagation();
+                    },
+                    getBusinessPartnerById = function (businessPartnerId) {
+                        isLoadingBusinessPartners(true);
+                        dataservice.getBusinessPartnerById({
+                            id: businessPartnerId
+                        }, {
+                            success: function (data) {
+                                selectedBusinessPartner(model.BusinessPartnerClientMapper(data));
+                                isLoadingBusinessPartners(false);
+                            },
+                            error: function () {
+                                isLoadingBusinessPartners(false);
+                                toastr.error("Error!");
+                            }
+                        });
                     },
                     // Show BusinessPartner Editor
                     showBusinessPartnerEditor = function () {
@@ -104,7 +127,7 @@ define("businessPartner/businessPartner.viewModel",
                     },
                     // Create Business Partner
                     createBusinessPartner = function () {
-                        var businessPartner = new detailmodel.BusinessPartner.Create();
+                        var businessPartner = new model.BusinessPartnerDetail.Create();
 
                         //businessPartner.assignCategories(categories());
                         //businessPartners.splice(0, 0, businessPartner);
@@ -153,7 +176,7 @@ define("businessPartner/businessPartner.viewModel",
                     mapBusinessPartners = function (data) {
                         var businessPartnerList = [];
                         _.each(data.BusinessPartners, function (item) {
-                            var businessPartner = new listmodel.BusinessPartner(item);
+                            var businessPartner = new model.BusinessPartner(item);
                             //product.assignCategories(categories());
                             businessPartnerList.push(businessPartner);
                         });
@@ -184,6 +207,17 @@ define("businessPartner/businessPartner.viewModel",
                                 businessLegalStatuses.removeAll();
                                 ko.utils.arrayPushAll(businessLegalStatuses(), data.ResponseBusinessLegalStatuses);
                                 businessLegalStatuses.valueHasMutated();
+                                
+                                // Business Legal Statuses array
+                                respBusinessPartners.removeAll();
+                                ko.utils.arrayPushAll(respBusinessPartners(), data.ResponseBusinessPartners);
+                                respBusinessPartners.valueHasMutated();
+
+                                // Business Legal Statuses array
+                                dealingEmployees.removeAll();
+                                ko.utils.arrayPushAll(dealingEmployees(), data.ResponseDealingEmployees);
+                                dealingEmployees.valueHasMutated();
+                                
                             },
                             error: function () {
                                 toastr.error("Failed to load base data");
@@ -233,7 +267,7 @@ define("businessPartner/businessPartner.viewModel",
                         if (!selectedBusinessPartner().businessPartnerId()) {
                             method = "createBusinessPartner";
                         }
-                        dataservice[method](ko.mapping.toJS(selectedBusinessPartner().convertToServerData()), {
+                        dataservice[method](model.BusinessPartnerServerMapper(selectedBusinessPartner()), {
                             success: function () {
                                 // Reset Changes
                                 selectedBusinessPartner().reset();
@@ -269,7 +303,9 @@ define("businessPartner/businessPartner.viewModel",
                     companies: companies,
                     paymentTerms: paymentTerms,
                     bpRatingTypes: bpRatingTypes,
-                    businessLegalStatuses:businessLegalStatuses,
+                    businessLegalStatuses: businessLegalStatuses,
+                    respBusinessPartners: respBusinessPartners,
+                    dealingEmployees:dealingEmployees,
                     // Utility Methods
                     onSaveBusinessPartner: onSaveBusinessPartner,
                     createBusinessPartner: createBusinessPartner,
@@ -286,7 +322,8 @@ define("businessPartner/businessPartner.viewModel",
                     onCloseBusinessPartnerEditor: onCloseBusinessPartnerEditor,
                     isBusinessPartnerEditorVisible: isBusinessPartnerEditorVisible,
                     createBusinessPartnerInForm: createBusinessPartnerInForm,
-                    optionIndividualOrCompany: optionIndividualOrCompany
+                    optionIndividualOrCompany: optionIndividualOrCompany,
+                    listSelectedBusinessPartner: listSelectedBusinessPartner
                     // Utility Methods
                 };
             })()

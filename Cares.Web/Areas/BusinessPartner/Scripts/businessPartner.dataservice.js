@@ -47,6 +47,14 @@ define("businessPartner/businessPartner.dataservice", function () {
                         type: 'DELETE'
                     });
 
+                    
+                    // Define request to get Business Partner by Id
+                    amplify.request.define('getBusinessPartnerById', 'ajax', {
+                        url: '/Api/GetBusinessPartnerDetails',
+                        dataType: 'json',
+                        type: 'GET'
+                    });
+
                     isInitialized = true;
                 }
             },
@@ -103,15 +111,25 @@ define("businessPartner/businessPartner.dataservice", function () {
                     error: callbacks.error,
                     data: param
                 });
-            };
-
+            },
+        // get Business Partner by id
+        getBusinessPartnerById = function (param, callbacks) {
+            initialize();
+            return amplify.request({
+                resourceId: 'getBusinessPartnerById',
+                success: callbacks.success,
+                error: callbacks.error,
+                data: param
+            });
+        };
 
         return {
             getBusinessPartners: getBusinessPartners,
             createBusinessPartner: createBusinessPartner,
             updateBusinessPartner: updateBusinessPartner,
             deleteBusinessPartner: deleteBusinessPartner,
-            getBusinessPartnerBase: getBusinessPartnerBase  
+            getBusinessPartnerBase: getBusinessPartnerBase,
+            getBusinessPartnerById:getBusinessPartnerById
         };
     })();
 

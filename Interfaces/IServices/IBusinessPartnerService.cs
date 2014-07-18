@@ -32,6 +32,10 @@ namespace Interfaces.IServices
         /// <param name="businessPartner"></param>
         /// <returns></returns>
         bool UpdateBusinessPartner(BusinessPartner businessPartner);
-
+        /// <summary>
+        /// Get business partnere by Id
+        /// </summary>
+        BusinessPartner FindBusinessPartnerById(long id);
+      
     }
 }
