@@ -186,11 +186,7 @@ define("tarrifType/tarrifType.viewModel",
                         }
                        
                     },
-                     // close Tariff Type Editor
-                    closeTariffTypeEditor = function () {
-                        isTarrifTypeEditorVisible(false);
-                    },
-                     // Save Tariff Type
+                       // Save Tariff Type
                     saveTariffType = function (tariffType) {
                         var method = "updateTarrifType";
                         if (!selectedTarrifType().tarrifTypeId()) {
@@ -261,11 +257,15 @@ define("tarrifType/tarrifType.viewModel",
                             }
                         });
                     },
-                    // Show Product Editor
+                     // close Product Editor
+                    closeTariffTypeEditor = function () {
+                        isTarrifTypeEditorVisible(false);
+                    },
+                    // Show Tariff Type Editor
                     showTariffTypeEditor = function () {
                         isTarrifTypeEditorVisible(true);
                     };
-                // #endregion Service Calls
+                    // #endregion Service Calls
 
                 return {
                     // Observables
@@ -308,6 +308,7 @@ define("tarrifType/tarrifType.viewModel",
                     saveTariffType: saveTariffType,
                     getTarrifTypeById: getTarrifTypeById,
                     closeTariffTypeEditor: closeTariffTypeEditor,
+                   
                     // Utility Methods
                 };
             })()

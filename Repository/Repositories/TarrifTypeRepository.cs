@@ -55,7 +55,7 @@ namespace Repository.Repositories
         /// <returns></returns>
         public override IQueryable<TarrifType> GetAll()
         {
-            return DbSet.Where(p => p.UserDomainKey == UserDomaingKey && p.ChildTariffTypeId==0);
+            return DbSet.Where(p => p.UserDomainKey == UserDomaingKey && p.ChildTariffTypeId == 0);
         }
         /// <summary>
         /// Get All Tariff Types based on search crateria
@@ -66,12 +66,11 @@ namespace Repository.Repositories
         {
             int fromRow = (tarrifTypeRequest.PageNo - 1) * tarrifTypeRequest.PageSize;
             int toRow = tarrifTypeRequest.PageSize;
-
-
             Expression<Func<TarrifType, bool>> query =
-                s => (!(tarrifTypeRequest.OperationId > 0) || s.OperationId == tarrifTypeRequest.OperationId) &&
-                    (!(tarrifTypeRequest.MeasurementUnitId > 0) || s.MeasurementUnitId == tarrifTypeRequest.MeasurementUnitId) &&
-                     (string.IsNullOrEmpty(tarrifTypeRequest.TarrifTypeCode) || s.TariffTypeCode.Contains(tarrifTypeRequest.TarrifTypeCode));
+                            s => ((!(tarrifTypeRequest.OperationId > 0) || s.OperationId == tarrifTypeRequest.OperationId) &&
+                                (!(tarrifTypeRequest.MeasurementUnitId > 0) || s.MeasurementUnitId == tarrifTypeRequest.MeasurementUnitId) &&
+                                 (string.IsNullOrEmpty(tarrifTypeRequest.TarrifTypeCode) || s.TariffTypeCode.Contains(tarrifTypeRequest.TarrifTypeCode)))&&
+                                 (s.ChildTariffTypeId==0);
 
             IEnumerable<TarrifType> tarrifTypes = tarrifTypeRequest.IsAsc ? DbSet.Where(query)
                                             .OrderBy(tarrifTypeClause[tarrifTypeRequest.TarrifTypeByOrder]).Skip(fromRow).Take(toRow).ToList()
@@ -82,19 +81,19 @@ namespace Repository.Repositories
             return new TarrifTypeResponse { TarrifTypes = tarrifTypes, TotalCount = DbSet.Count(query) };
         }
         public void LoadDependencies(TarrifType tarrifType)
-        {            
+        {
             LoadProperty<TarrifType>(tarrifType, "Operation");
             LoadProperty(tarrifType, () => tarrifType.Operation);
             LoadProperty(tarrifType, () => tarrifType.MeasurementUnit);
             LoadProperty(tarrifType, () => tarrifType.PricingStrategy);
         }
-        
+
         public override TarrifType Find(long id)
         {
-              return
-                DbSet.Include(tarrifType => tarrifType.Operation)
-                    .Include(tarrifType => tarrifType.Operation.Department)
-                    .FirstOrDefault(tarrifType => tarrifType.TariffTypeId == id);
+            return
+              DbSet.Include(tarrifType => tarrifType.Operation)
+                  .Include(tarrifType => tarrifType.Operation.Department)
+                  .FirstOrDefault(tarrifType => tarrifType.TariffTypeId == id);
         }
 
         public TarrifType GetRevison(long id)
