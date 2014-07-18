@@ -17,29 +17,25 @@ namespace Cares.Web.Models
         /// </summary>
         public long BusinessPartnerId { get; set; }
         /// <summary>
+        /// Business Partner List Id
+        /// </summary>
+        public string BusinessPartnerListId { get; set; }
+        /// <summary>
+        /// Business Partner List view Name
+        /// </summary>
+        public string BusinessPartnerListName { get; set; }
+        /// <summary>
         /// Business Partner Name
         /// </summary>
         public string BusinessPartnerName { get; set; }
         /// <summary>
-        /// Business Partnere descritpion
-        /// </summary>
-        public string BusinessPartnerDesciption { get; set; }
-        /// <summary>
         /// Individual Check
         /// </summary>
-        public bool IsIndividual { get; set; }
-        /// <summary>
-        /// Business Partner Rating Type Code
-        /// </summary>
-        public string BPRatingTypeCode { get; set; }
+        public string IsIndividual { get; set; }
         /// <summary>
         /// Business Partner Rating Type Name
         /// </summary>
         public string BPRatingTypeName { get; set; }
-        /// <summary>
-        /// Company Code
-        /// </summary>
-        public string CompanyCode { get; set; }
         /// <summary>
         /// Compnay Name
         /// </summary>

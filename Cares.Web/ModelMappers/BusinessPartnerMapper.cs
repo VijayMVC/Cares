@@ -15,13 +15,12 @@ namespace Cares.Web.ModelMappers
             return new Models.BusinessPartnerListView
             {
                 BusinessPartnerId = source.BusinessPartnerId,
-                BusinessPartnerName = source.BusinessPartnerName,
-                BusinessPartnerDesciption = source.BusinessPartnerDesciption,
-                IsIndividual = source.IsIndividual,          
-                BPRatingTypeCode = source.BPRatingType != null ? source.BPRatingType.BpRatingTypeCode : "",
-                BPRatingTypeName = source.BPRatingType != null ? source.BPRatingType.BpRatingTypeName : "",
-                CompanyCode = source.Company.CompanyCode,
-                CompanyName = source.Company.CompanyName
+                BusinessPartnerListId = (source.IsIndividual ? "I" : "C") + "-" + source.BusinessPartnerId,
+                BusinessPartnerListName = source.BusinessPartnerName,
+                BusinessPartnerName = (source.IsIndividual ? "I" : "C") + "-" + source.BusinessPartnerId + '-' + source.BusinessPartnerName,
+                IsIndividual = source.IsIndividual ? "Individual" : "Company",
+                BPRatingTypeName = source.BPRatingType != null ? source.BPRatingType.BpRatingTypeCode+'-'+source.BPRatingType.BpRatingTypeName : "",
+                CompanyName = source.Company.CompanyCode +'-'+source.Company.CompanyName
             };
            
         }
@@ -60,7 +59,6 @@ namespace Cares.Web.ModelMappers
             {
                 BusinessPartnerId = source.BusinessPartnerId,
                 BusinessPartnerName = source.BusinessPartnerName,
-                BusinessPartnerDesciption = source.BusinessPartnerDesciption
             };
         }
 

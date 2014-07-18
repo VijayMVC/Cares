@@ -12,50 +12,14 @@
         // Map data to self
         ko.mapping.fromJS(data, null, self);
 
-        // Extend BusinessPartner
-        // Is Individual Computed
-        self.isIndividualComputed = ko.computed(function() {
-            if (self.IsIndividual() == true) {
-                return "Individual";
-            } else {
-                return "Company";
-            }
-        });
-        // Company Computed
-        self.companyComputed = ko.computed(function () {
-            if (!self.CompanyName()) {
-               return "";
-            }
-            else {
-                return self.CompanyCode()+"-"+self.CompanyName();
-            }
-        });
-        // Rating Type Computed
-        self.BPRatingTypeComputed = ko.computed(function () {
-            if (!self.BPRatingTypeName()) {
-                return "";
-            }
-            else {
-                return self.BPRatingTypeCode() + "-" + self.BPRatingTypeName();
-            }
-        });
-        // Business Partner Id Computed
-        self.BusinessPartnerIdComputed = ko.computed(function () {
-            if (!self.BusinessPartnerId()) {
-                return "";
-            }
-            else {
-                return (self.IsIndividual() == true ? "I": "C") + "-" + self.BusinessPartnerId();
-            }
-        });
-       
         return {
+            businessPartnerListId:self.BusinessPartnerListId,
+            businessPartnerListName:self.BusinessPartnerListName,
             businessPartnerName: self.BusinessPartnerName,
-            businessPartnerId: self.BusinessPartnerIdComputed,
-            businessPartnerDesciption: self.BusinessPartnerDesciption,
-            isIndividual: self.isIndividualComputed,
-            bPRatingType: self.BPRatingTypeComputed,
-            company: self.companyComputed,
+            businessPartnerId: self.BusinessPartnerId,
+            isIndividual: self.IsIndividual,
+            bPRatingType: self.BPRatingTypeName,
+            company: self.CompanyName
         };
     };
     

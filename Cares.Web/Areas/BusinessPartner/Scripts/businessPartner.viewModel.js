@@ -69,7 +69,7 @@ define("businessPartner/businessPartner.viewModel",
                     selectedBusinessPartnerId = ko.observable(),
                     // Edit a Business Partner - In a Form
                     onEditBusinessPartner = function (businessPartner, e) {
-                        selectedBusinessPartnerId(businessPartner.businessPartnerId().split('-')[1]);
+                        selectedBusinessPartnerId(businessPartner.businessPartnerListId().split('-')[1]);
                         getBusinessPartnerById(selectedBusinessPartnerId());
 
                         showBusinessPartnerEditor();

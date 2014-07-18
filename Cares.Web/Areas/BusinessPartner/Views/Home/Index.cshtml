@@ -14,12 +14,6 @@
                 </div>
                 <div class="btn-group" id="createButton">
                     <button type="button" class="btn btn-default" data-bind="click: createBusinessPartnerInForm">Create New</button>
-                    @*<button class="btn dropdown-toggle" data-toggle="dropdown">
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#" data-bind="click: createProductInForm">Create Using Form</a></li>
-                        </ul>*@
                 </div>
                 <button type="submit" class="btn btn-success" data-bind="click: search">Search</button>
             </form>
@@ -57,10 +51,9 @@
 
     <script id="itemBusinessPartnerTemplate" type="text/html">
        <tr data-bind="click: $root.selectBusinessPartner, css: { selectedRow: $data === $root.listSelectedBusinessPartner() }">
-        @*<tr data-bind="click: $root.selectBusinessPartner">*@
-        <td data-bind="text: businessPartnerId"></td>
-            <td data-bind="text: businessPartnerName"></td>
-            <td data-bind="text: isIndividual"></td>
+           <td data-bind="text: businessPartnerListId"></td>
+           <td data-bind="text: businessPartnerListName"></td>
+           <td data-bind="text: isIndividual"></td>
             <td data-bind="text: company"></td>
             <td data-bind="text: bPRatingType"></td>
             <td>
