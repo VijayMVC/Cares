@@ -55,7 +55,7 @@ namespace Repository.Repositories
         /// <returns></returns>
         public override IQueryable<TarrifType> GetAll()
         {
-            return DbSet.Where(p => p.UserDomainKey == UserDomaingKey && p.ChildTariffTypeId == 0);
+            return DbSet.Where(p => p.UserDomainKey == UserDomainKey && p.ChildTariffTypeId == 0);
         }
         /// <summary>
         /// Get All Tariff Types based on search crateria

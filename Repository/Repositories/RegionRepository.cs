@@ -37,7 +37,7 @@ namespace Repository.Repositories
         /// </summary>
         public override IQueryable<Region> GetAll()
         {
-            return DbSet.Where(region => region.UserDomainKey == UserDomaingKey);
+            return DbSet.Where(region => region.UserDomainKey == UserDomainKey);
         }
 
         #endregion

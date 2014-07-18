@@ -40,7 +40,7 @@ namespace Repository.Repositories
         /// </summary>
         public override IQueryable<OrgGroup> GetAll()
         {
-            return DbSet.Where(orgGroup => orgGroup.UserDomainKey == UserDomaingKey);
+            return DbSet.Where(orgGroup => orgGroup.UserDomainKey == UserDomainKey);
         }
         #endregion
         

@@ -37,7 +37,7 @@ namespace Repository.Repositories
         /// </summary>
         public override IQueryable<BusinessLegalStatus> GetAll()
         {
-            return DbSet.Where(businessLegalStatus => businessLegalStatus.UserDomainKey == UserDomaingKey);
+            return DbSet.Where(businessLegalStatus => businessLegalStatus.UserDomainKey == UserDomainKey);
         }
 
         #endregion

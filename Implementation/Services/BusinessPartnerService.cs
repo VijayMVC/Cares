@@ -70,15 +70,15 @@ namespace Implementation.Services
             if (ValidateBusinessPartner(businessPartner))
             {
                 businessPartner.BusinessPartnerCode = "BP-Screen";
-                businessPartner.UserDomainKey = 1;
+                businessPartner.UserDomainKey = businessPartnerRepository.UserDomainKey;
                 businessPartner.IsActive = true;
                 businessPartner.IsDeleted = false;
                 businessPartner.IsPrivate = false;
                 businessPartner.IsReadOnly = false;
                 businessPartner.RecCreatedDt = DateTime.Now;
                 businessPartner.RecLastUpdatedDt = DateTime.Now;
-                businessPartner.RecCreatedBy = "zain";
-                businessPartner.RecLastUpdatedBy = "zain";
+                businessPartner.RecCreatedBy = businessPartnerRepository.LoggedInUserIdentity;
+                businessPartner.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
                 businessPartner.RowVersion = 0;
 
                 businessPartnerRepository.Add(businessPartner);

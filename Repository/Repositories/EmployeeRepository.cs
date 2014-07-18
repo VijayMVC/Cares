@@ -78,7 +78,7 @@ namespace Repository.Repositories
         /// </summary>
         public override IQueryable<Employee> GetAll()
         {
-            return DbSet.Where(employee => employee.UserDomainKey == UserDomaingKey);
+            return DbSet.Where(employee => employee.UserDomainKey == UserDomainKey);
         }
     }
 }

@@ -37,7 +37,7 @@ namespace Repository.Repositories
         /// </summary>
         public override IQueryable<BpRatingType> GetAll()
         {
-            return DbSet.Where(bpRatingType => bpRatingType.UserDomainKey == UserDomaingKey);
+            return DbSet.Where(bpRatingType => bpRatingType.UserDomainKey == UserDomainKey);
         }
 
         #endregion

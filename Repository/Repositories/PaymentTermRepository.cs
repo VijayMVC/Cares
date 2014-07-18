@@ -41,7 +41,7 @@ namespace Repository.Repositories
         /// </summary>
         public override IQueryable<PaymentTerm> GetAll()
         {
-            return DbSet.Where(paymentTerm => paymentTerm.UserDomainKey == UserDomaingKey);
+            return DbSet.Where(paymentTerm => paymentTerm.UserDomainKey == UserDomainKey);
         }
         #endregion
 
