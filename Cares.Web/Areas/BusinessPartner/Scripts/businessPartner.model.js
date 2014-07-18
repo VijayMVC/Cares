@@ -81,7 +81,7 @@
                 reset = function() {
                     dirtyFlag.reset();
                 },
-                // Convert to server
+                // Convert Client to server
                 convertToServerData = function() {
                     return {                        
                         BusinessPartnerId: businessPartnerId(),
@@ -99,7 +99,28 @@
                         SystemGuarantorId: systemGuarantorId(),
                         DealingEmployeeId: dealingEmployeeId(),
                     };
+                },
+                // Convert Server to Client
+                convertToClientData = function (source) { 
+                    var businessPartner = new BusinessPartner();
+                    businessPartner.businessPartnerId(source.businessPartnerId === null ? undefined : source.businessPartnerId);
+                    businessPartner.businessPartnerName(source.businessPartnerName === null ? undefined : source.businessPartnerName);
+                    businessPartner.businessPartnerDesciption(source.businessPartnerDesciption === null ? undefined : source.businessPartnerDesciption);
+                    businessPartner.isIndividual(source.isIndividual === null ? undefined : source.isIndividual);
+                    businessPartner.isSystemGuarantor(source.isSystemGuarantor === null ? undefined : source.isSystemGuarantor);
+                    businessPartner.nonSystemGuarantor(source.nonSystemGuarantor === null ? undefined : source.nonSystemGuarantor);
+                    businessPartner.businessPartnerEmailAddress(source.businessPartnerEmailAddress === null ? undefined : source.businessPartnerEmailAddress);
+                    businessPartner.businessPartnerIsValid(source.businessPartnerIsValid === null ? undefined : source.businessPartnerIsValid);
+                    businessPartner.companyId(source.companyId === null ? undefined : source.companyId);
+                    businessPartner.paymentTermId(source.paymentTermId === null ? undefined : source.paymentTermId);
+                    businessPartner.bPRatingTypeId(source.bPRatingTypeId === null ? undefined : source.bPRatingTypeId);
+                    businessPartner.bPRatingTypeusinessLegalStatusId(source.businessLegalStatusId === null ? undefined : source.businessLegalStatusId);
+                    businessPartner.systemGuarantorId(source.systemGuarantorId === null ? undefined : source.systemGuarantorId);
+                    businessPartner.dealingEmployeeId(source.DealingEmployeeId === null ? undefined : source.DealingEmployeeId);
+                    return businessPartner;
                 };
+
+
 
             self = {
                 businessPartnerId: businessPartnerId,
@@ -123,7 +144,8 @@
                 reset: reset,
                 isBusy: isBusy,
              
-                convertToServerData: convertToServerData
+                convertToServerData: convertToServerData,
+                convertToClientData: convertToClientData
             };
             return self;
         };

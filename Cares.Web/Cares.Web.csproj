@@ -224,6 +224,7 @@
     <Compile Include="Areas\Api\Controllers\FleetPoolBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\FleetPoolController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessPartnerBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\GetBusinessPartnerDetailsController.cs" />
     <Compile Include="Areas\Api\Controllers\GetTariffDetailsController.cs" />
     <Compile Include="Areas\Api\Controllers\ProductBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessPartnerController.cs" />

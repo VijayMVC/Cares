@@ -92,7 +92,13 @@ namespace Repository.Repositories
         {
             return DbSet.Where(businessPartner => businessPartner.UserDomainKey == UserDomaingKey).Include(x=>x.Company).Include(x=>x.BPRatingType);
         }
-
+        /// <summary>
+        /// Get BusinessPartner by Id
+        /// </summary>
+        public BusinessPartner GetById(long id)
+        {
+            return DbSet.Where(businessPartner => businessPartner.UserDomainKey == UserDomaingKey && businessPartner.BusinessPartnerId == id).Include(x => x.Company).Include(x => x.BPRatingType).FirstOrDefault();
+        }
         #endregion
 
 

@@ -7,64 +7,10 @@
     BusinessPartner = function (data) {
         // ReSharper restore InconsistentNaming
         var // Reference to this object
-            self = {},
+            self = {};
             // 
-            mapping = {
-                // customize the creation of the name property so that it provides validation
-                BusinessPartnerName: {
-                    create: function (options) {
-                        return ko.observable(options.data).extend({ required: true });
-                    }
-                },
-                BusinessPartnerDesciption: {
-                    create: function (options) {
-                        return ko.observable(options.data).extend({ required: true });
-                    }
-                },
-                IsIndividual: {
-                    create: function (options) {
-                        return ko.observable(options.data).extend({ required: true });
-                    }
-                },
-                BPRatingTypeName: {
-                    create: function (options) {
-                        return ko.observable(options.data).extend({ required: true });
-                    }
-                },
-                CompanyCode: {
-                    create: function (options) {
-                        return ko.observable(options.data).extend({ required: true });
-                    }
-                },
-                CompanyName: {
-                    create: function (options) {
-                        return ko.observable(options.data).extend({ required: true });
-                    }
-                },
-                //CompanyId: {
-                //    create: function (options) {
-                //        return ko.observable(options.data).extend({ required: true });
-                //    }
-                //},
-                //PaymentTermId: {
-                //        create: function (options) {
-                //            return ko.observable(options.data).extend({ required: true });
-                //        }
-                //},
-                //BPRatingTypeId: {
-                //        create: function (options) {
-                //            return ko.observable(options.data).extend({ required: true });
-                //        }
-                //},
-                //BusinessLegalStatusId: {
-                //    create: function (options) {
-                //        return ko.observable(options.data).extend({ required: true });
-                //    }
-                //}
-            };
-
         // Map data to self
-        ko.mapping.fromJS(data, mapping, self);
+        ko.mapping.fromJS(data, null, self);
 
         // Extend BusinessPartner
         // Is Individual Computed
@@ -102,52 +48,7 @@
                 return (self.IsIndividual() == true ? "I": "C") + "-" + self.BusinessPartnerId();
             }
         });
-        
-
-        //// Categoreis
-        //self.categories = ko.observableArray([]),
-        //    return categoryResult ? categoryResult.Name : "";
-        //}),
-        //// Assign Categories
-        //self.assignCategories = function (categoryList) {
-        //    self.categories.removeAll();
-        //    if (!categoryList) {
-        //        return;
-        //    }
-        //    ko.utils.arrayPushAll(self.categories(), categoryList);
-        //    self.categories.valueHasMutated();
-        //},
-        // Errors
-        self.errors = ko.validation.group({
-            businessPartnerName: self.BusinessPartnerName
-            
-        }),
-        // Is Valid
-        self.isValid = ko.computed(function () {
-            return self.errors().length === 0;
-        }),
-        // True if the booking has been changed
-        // ReSharper disable InconsistentNaming
-        self.dirtyFlag = new ko.dirtyFlag({
-            // ReSharper restore InconsistentNaming
-            businessPartnerName: self.BusinessPartnerName,
-            businessPartnerDesciption: self.BusinessPartnerDesciption
-            //isSystemGuarantor: self.IsSystemGuarantor,
-            //systemGuarantorId: self.SystemGuarantorId,
-            //nonSystemGuarantor: self.NonSystemGuarantor,
-            //dealingEmployeeId: self.DealingEmployeeId,
-            //businessPartnerEmailAddress: self.BusinessPartnerEmailAddress,
-            //businessPartnerIsValid: self.businessPartnerIsValid
-        }),
-        // Has Changes
-        self.hasChanges = ko.computed(function () {
-            return self.dirtyFlag.isDirty();
-        }),
-        // Reset
-        self.reset = function () {
-            self.dirtyFlag.reset();
-        };
-
+       
         return {
             businessPartnerName: self.BusinessPartnerName,
             businessPartnerId: self.BusinessPartnerIdComputed,
@@ -155,24 +56,154 @@
             isIndividual: self.isIndividualComputed,
             bPRatingType: self.BPRatingTypeComputed,
             company: self.companyComputed,
-            //companyId: self.CompanyId !== undefined ? self.CompanyId : ko.observable(),
-            //paymentTermId: self.PaymentTermId !== undefined ? self.PaymentTermId : ko.observable(),
-            //bPRatingTypeId: self.BPRatingTypeId !== undefined ? self.BPRatingTypeId : ko.observable(),
-            //businessLegalStatusId: self.BusinessLegalStatusId !== undefined ? self.BusinessLegalStatusId : ko.observable(),
-            //isSystemGuarantor: self.IsSystemGuarantor !== undefined ? self.IsSystemGuarantor : ko.observable(),
-            //systemGuarantorId: self.SystemGuarantorId !== undefined ? self.SystemGuarantorId : ko.observable(),
-            //nonSystemGuarantor: self.NonSystemGuarantor !== undefined ? self.NonSystemGuarantor : ko.observable(),
-            //dealingEmployeeId: self.DealingEmployeeId !== undefined ? self.DealingEmployeeId : ko.observable(),
-            //businessPartnerEmailAddress: self.BusinessPartnerEmailAddress !== undefined ? self.BusinessPartnerEmailAddress : ko.observable(),
-            //businessPartnerIsValid: self.businessPartnerIsValid !== undefined ? self.businessPartnerIsValid : ko.observable(),
-            hasChanges: self.hasChanges,
-            reset: self.reset,
-            errors: self.errors,
-            isValid: self.isValid
         };
+    };
+    
+    var
+   // Business Partner entity
+   // ReSharper disable InconsistentNaming
+   BusinessPartnerDetail = function (specifiedKey, specifiedBPName, specifiedDescription, specifiedisIndividual,
+       specifiedisSystemGuarantor, specifiednonSystemGuarantor, specifiedbusinessPartnerEmailAddress,
+       specifiedbusinessPartnerIsValid, specifiedCompany, specifiedPaymentTerm, specifiedBPRatigType,
+   specifiedBusinessLegalStatus, specifiedSystemGuarantor, specifiedDealingEmployee) {
+       // ReSharper restore InconsistentNaming
+       var // Reference to this object
+           self,
+           // Unique key
+           businessPartnerId = ko.observable(specifiedKey),
+           // Busiess Partner Name
+           businessPartnerName = ko.observable(specifiedBPName),
+           // Busiess Partner Description
+           businessPartnerDesciption = ko.observable(specifiedDescription),
+           // Is individual or company
+           isIndividual = ko.observable(specifiedisIndividual).extend({ required: true }),
+           // Is System Guarantor
+           isSystemGuarantor = ko.observable(specifiedisSystemGuarantor).extend({ required: true }),
+           // Non System Guarantor
+           nonSystemGuarantor = ko.observable(specifiednonSystemGuarantor),
+           // Business Partner Email Address
+           businessPartnerEmailAddress = ko.observable(specifiedbusinessPartnerEmailAddress),
+           // Company Id
+           companyId = ko.observable(specifiedCompany).extend({ required: true }),
+           // Payment Term Id
+           paymentTermId = ko.observable(specifiedPaymentTerm).extend({ required: true }),
+           // Business Partner Rating Type Id
+           bPRatingTypeId = ko.observable(specifiedBPRatigType),
+           // Business Legal Status Id
+           businessLegalStatusId = ko.observable(specifiedBusinessLegalStatus),
+           // System Guarantor Id
+           systemGuarantorId = ko.observable(specifiedSystemGuarantor),
+           // Dealing Employee Id
+           dealingEmployeeId = ko.observable(specifiedDealingEmployee),
+           // Is Busy
+           isBusy = ko.observable(false),
+           // Errors
+           errors = ko.validation.group({
+               isIndividual: isIndividual,
+               isSystemGuarantor: isSystemGuarantor,
+               companyId: companyId,
+               paymentTermId: paymentTermId
+           }),
+           // Is Valid
+           isValid = ko.computed(function() {
+               return errors().length === 0;
+           }),
+           // True if the booking has been changed
+           // ReSharper disable InconsistentNaming
+           dirtyFlag = new ko.dirtyFlag({
+               // ReSharper restore InconsistentNaming
+               businessPartnerId: businessPartnerId,
+               businessPartnerName: businessPartnerName,
+               businessPartnerDesciption: businessPartnerDesciption,
+               isIndividual: isIndividual,
+               isSystemGuarantor: isSystemGuarantor,
+               nonSystemGuarantor: nonSystemGuarantor,
+               businessPartnerEmailAddress: businessPartnerEmailAddress,
+               companyId: companyId,
+               paymentTermId: paymentTermId,
+               bPRatingTypeId: bPRatingTypeId,
+               businessLegalStatusId: businessLegalStatusId,
+               systemGuarantorId: systemGuarantorId,
+               dealingEmployeeId: dealingEmployeeId
+           }),
+           // Has Changes
+           hasChanges = ko.computed(function() {
+               return dirtyFlag.isDirty();
+           }),
+           // Reset
+           reset = function() {
+               dirtyFlag.reset();
+           };
+       self = {
+           businessPartnerId: businessPartnerId,
+           businessPartnerName: businessPartnerName,
+           businessPartnerDesciption: businessPartnerDesciption,
+           isIndividual: isIndividual,
+           isSystemGuarantor: isSystemGuarantor,
+           nonSystemGuarantor: nonSystemGuarantor,
+           businessPartnerEmailAddress: businessPartnerEmailAddress,
+           companyId: companyId,
+           paymentTermId: paymentTermId,
+           bPRatingTypeId: bPRatingTypeId,
+           businessLegalStatusId: businessLegalStatusId,
+           systemGuarantorId: systemGuarantorId,
+           dealingEmployeeId: dealingEmployeeId,
+           errors: errors,
+           isValid: isValid,
+           dirtyFlag: dirtyFlag,
+           hasChanges: hasChanges,
+           reset: reset,
+           isBusy: isBusy
+       };
+       return self;
+   };
+
+    // BusinessPartnerDetail Factory
+    BusinessPartnerDetail.Create = function () {
+        return new BusinessPartnerDetail("", "", "", false, false, "", "", false, undefined, undefined, undefined, undefined, undefined);
+    };
+    
+    // Convert Client to server
+    var BusinessPartnerServerMapper = function(clientData) {
+        var result = {};
+        result.BusinessPartnerId = clientData.businessPartnerId();
+        result.BusinessPartnerName = clientData.businessPartnerName();
+        result.BusinessPartnerDesciption = clientData.businessPartnerDesciption();
+        result.IsIndividual = clientData.isIndividual();
+        result.IsSystemGuarantor = clientData.isSystemGuarantor();
+        result.NonSystemGuarantor = clientData.nonSystemGuarantor();
+        result.BusinessPartnerEmailAddress = clientData.businessPartnerEmailAddress();
+        result.CompanyId = clientData.companyId();
+        result.PaymentTermId = clientData.paymentTermId();
+        result.BPRatingTypeId = clientData.bPRatingTypeId();
+        result.BusinessLegalStatusId = clientData.businessLegalStatusId();
+        result.SystemGuarantorId = clientData.systemGuarantorId();
+        result.DealingEmployeeId = clientData.dealingEmployeeId();
+        return result;
+    };
+    // Convert Server to Client
+    var BusinessPartnerClientMapper = function (serverData) {
+        var businessPartner = new BusinessPartnerDetail();
+        businessPartner.businessPartnerId(serverData.BusinessPartnerId === null ? undefined : serverData.BusinessPartnerId);
+        businessPartner.businessPartnerName(serverData.BusinessPartnerName === null ? undefined : serverData.BusinessPartnerName);
+        businessPartner.businessPartnerDesciption(serverData.BusinessPartnerDesciption === null ? undefined : serverData.BusinessPartnerDesciption);
+        businessPartner.isIndividual(serverData.IsIndividual === null ? undefined : serverData.IsIndividual);
+        businessPartner.isSystemGuarantor(serverData.IsSystemGuarantor === null ? undefined : serverData.IsSystemGuarantor);
+        businessPartner.nonSystemGuarantor(serverData.NonSystemGuarantor === null ? undefined : serverData.NonSystemGuarantor);
+        businessPartner.businessPartnerEmailAddress(serverData.BusinessPartnerEmailAddress === null ? undefined : serverData.BusinessPartnerEmailAddress);
+        businessPartner.companyId(serverData.CompanyId === null ? undefined : serverData.CompanyId);
+        businessPartner.paymentTermId(serverData.PaymentTermId === null ? undefined : serverData.PaymentTermId);
+        businessPartner.bPRatingTypeId(serverData.BPRatingTypeId === null ? undefined : serverData.BPRatingTypeId);
+        businessPartner.businessLegalStatusId(serverData.BusinessLegalStatusId === null ? undefined : serverData.BusinessLegalStatusId);
+        businessPartner.systemGuarantorId(serverData.SystemGuarantorId === null ? undefined : serverData.SystemGuarantorId);
+        businessPartner.dealingEmployeeId(serverData.DealingEmployeeId === null ? undefined : serverData.DealingEmployeeId);
+        return businessPartner;
     };
 
     return {
-        BusinessPartner: BusinessPartner
+        BusinessPartner: BusinessPartner,
+        BusinessPartnerDetail: BusinessPartnerDetail,
+        BusinessPartnerClientMapper: BusinessPartnerClientMapper,
+        BusinessPartnerServerMapper: BusinessPartnerServerMapper
     };
 });

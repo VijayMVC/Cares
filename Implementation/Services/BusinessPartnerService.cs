@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using FaceSharp.Api.Objects;
 using Interfaces.IServices;
 using Interfaces.Repository;
 using Models.DomainModels;
@@ -68,6 +69,18 @@ namespace Implementation.Services
         {
             if (ValidateBusinessPartner(businessPartner))
             {
+                businessPartner.BusinessPartnerCode = "BP-Screen";
+                businessPartner.UserDomainKey = 1;
+                businessPartner.IsActive = true;
+                businessPartner.IsDeleted = false;
+                businessPartner.IsPrivate = false;
+                businessPartner.IsReadOnly = false;
+                businessPartner.RecCreatedDt = DateTime.Now;
+                businessPartner.RecLastUpdatedDt = DateTime.Now;
+                businessPartner.RecCreatedBy = "zain";
+                businessPartner.RecLastUpdatedBy = "zain";
+                businessPartner.RowVersion = 0;
+
                 businessPartnerRepository.Add(businessPartner);
                 businessPartnerRepository.SaveChanges();
                 return true;
@@ -96,14 +109,40 @@ namespace Implementation.Services
             {
                 businessPartnerDbVersion.BusinessPartnerName = businessPartner.BusinessPartnerName;
                 businessPartnerDbVersion.BusinessPartnerDesciption = businessPartner.BusinessPartnerDesciption;
-                
+                businessPartnerDbVersion.IsSystemGuarantor = businessPartner.IsSystemGuarantor;
+                businessPartnerDbVersion.NonSystemGuarantor = businessPartner.NonSystemGuarantor;
+                businessPartnerDbVersion.IsIndividual = businessPartner.IsIndividual;
+                businessPartnerDbVersion.BusinessPartnerEmailAddress = businessPartner.BusinessPartnerEmailAddress;
+                businessPartnerDbVersion.CompanyId = businessPartner.CompanyId;
+                businessPartnerDbVersion.SystemGuarantorId = businessPartner.SystemGuarantorId;
+                businessPartnerDbVersion.BusinessLegalStatusId = businessPartner.BusinessLegalStatusId;
+                businessPartnerDbVersion.DealingEmployeeId = businessPartner.DealingEmployeeId;
+                businessPartnerDbVersion.PaymentTermId = businessPartner.PaymentTermId;
+                businessPartnerDbVersion.BPRatingTypeId = businessPartner.BPRatingTypeId;
+
+                businessPartnerDbVersion.RecLastUpdatedDt = DateTime.Now;
+                businessPartnerDbVersion.RecCreatedBy = "zain";
+                businessPartnerDbVersion.RowVersion = businessPartnerDbVersion.RowVersion + 1;
+
                 businessPartnerRepository.SaveChanges();
                 return true;
             }
+
             return false;
         }
-
+        /// <summary>
+        /// Get Business Partner by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public BusinessPartner FindBusinessPartnerById(long id)
+        {
+            return businessPartnerRepository.GetById(id);
+        }
         #endregion
 
+
+
+        
     }
 }
