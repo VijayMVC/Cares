@@ -21,19 +21,10 @@ namespace Repository.BaseRepository
         private readonly IUnityContainer container;
         #endregion
         #region Protected
-
-        /// <summary>that specifies the User's domain on the system
-        /// User Domain key 
-        /// </summary>
-        protected long UserDomaingKey { get { return 1; } }
-
         /// <summary>
         /// Primary database set
         /// </summary>
         protected abstract IDbSet<TDomainClass> DbSet { get; }
-
-        
-
 
         #endregion
         #region Constructor
@@ -105,7 +96,6 @@ namespace Repository.BaseRepository
         public virtual void Delete(TDomainClass instance)
         {
             DbSet.Remove(instance);
-
         }
         /// <summary>
         /// Add an entry
@@ -135,6 +125,15 @@ namespace Repository.BaseRepository
         {
             db.LoadProperty(entity, propertyExpression, isCollection);
         }
+        /// <summary>that specifies the User's domain on the system
+        /// User Domain key 
+        /// </summary>        
+        public long UserDomainKey { get { return 1; } }
+        /// <summary>
+        /// Logged in User Identity
+        /// </summary>
+        public string LoggedInUserIdentity { get; set; }
+
         #endregion
     }
 }
