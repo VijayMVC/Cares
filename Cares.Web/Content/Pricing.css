@@ -1,4 +1,46 @@
-﻿#tarrifTypeBinding .ttypesearchButton {
+﻿#tarrifTypeBinding table thead tr .ttypesearchButton {
   margin-left: 5px;
+}
+#tarrifTypeBinding table thead tr .tarrifTypeCode {
+  width: 10%;
+}
+#tarrifTypeBinding table thead tr .tarrifTypeName {
+  width: 15%;
+}
+#tarrifTypeBinding table thead tr .pricingScheme {
+  width: 15%;
+}
+#tarrifTypeBinding table thead tr .operation {
+  width: 15%;
+}
+#tarrifTypeBinding table thead tr .measurementUnit {
+  width: 15%;
+}
+#tarrifTypeBinding table thead tr .from {
+  width: 7%;
+}
+#tarrifTypeBinding table thead tr .to {
+  width: 8%;
+}
+#tarrifTypeBinding table thead tr .gracePeriod {
+  width: 5%;
+}
+#tarrifTypeBinding table thead tr .effectiveDate {
+  width: 5%;
+}
+#tarrifTypeBinding table thead tr .revision {
+  width: 5%;
+}
+#tarrifTypeBinding #tariffTypeEditor {
+  margin-top: 15px;
+}
+#tarrifTypeBinding #tariffTypeEditor .detailsContainer {
+  width: 100%;
+}
+#tarrifTypeBinding #tariffTypeEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
 }
 /*# sourceMappingURL=Pricing.css.map */

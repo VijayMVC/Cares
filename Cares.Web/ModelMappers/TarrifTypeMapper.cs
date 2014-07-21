@@ -98,7 +98,8 @@ namespace Cares.Web.ModelMappers
                 RevisionNumber = source.RevisionNumber,
                 CreatedBy = source.RecCreatedBy,
                 ModifiedBy = source.RecCreatedBy,
-                ModifiedDate = source.RecLastUpdatedDt
+                ModifiedDate = source.RecLastUpdatedDt,
+                CreatedDate = source.RecCreatedDt
             };
 
         }
