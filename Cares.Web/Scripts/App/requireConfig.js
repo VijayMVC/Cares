@@ -11,7 +11,8 @@
             "product": "/Areas/Product/Scripts",
             "common": "/Areas/Common/Scripts",
             "Fleet": "/Areas/Fleet/Scripts",
-            "tarrifType": "/Areas/Pricing/Scripts"
+            "tarrifType": "/Areas/Pricing/Scripts",
+            "tariffRate": "/Areas/Pricing/Scripts"
         }
 
     });

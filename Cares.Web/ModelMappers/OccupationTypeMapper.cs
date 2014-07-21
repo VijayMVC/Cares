@@ -18,8 +18,8 @@ namespace Cares.Web.ModelMappers
                 return new ApiModel.OccupationType
                 {
                     OccupationTypeId = source.OccupationTypeId,
-                    OccupationTypeCode = source.OccupationTypeCode,
-                    OccupationTypeName = source.OccupationTypeCode
+                    OccupationTypeName = source.OccupationTypeName,
+                    OccupationTypeCode = source.OccupationTypeCode
                 };
             }
         #endregion
@@ -32,8 +32,8 @@ namespace Cares.Web.ModelMappers
             return new DomainModel.OccupationType
             {
                 OccupationTypeId = source.OccupationTypeId,
-                OccupationTypeCode = source.OccupationTypeCode,
-                OccupationTypeName = source.OccupationTypeCode
+                OccupationTypeName = source.OccupationTypeName,
+                OccupationTypeCode = source.OccupationTypeCode
             };
         }
         

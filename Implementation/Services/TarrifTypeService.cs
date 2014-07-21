@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration.Configuration;
 using Interfaces.IServices;
 using Interfaces.Repository;
 using Models.DomainModels;
@@ -96,8 +95,7 @@ namespace Implementation.Services
         {
             tarrifTypeRepository.Add(tarrifType);
             tarrifTypeRepository.SaveChanges();
-            var tarrif = tarrifTypeRepository.Find(tarrifType.TariffTypeId);
-            // TODO: Sample Loading Dependencies
+            TarrifType tarrif = tarrifTypeRepository.Find(tarrifType.TariffTypeId);
             tarrifTypeRepository.LoadDependencies(tarrif);
             return tarrif;
         }
@@ -116,17 +114,9 @@ namespace Implementation.Services
             TarrifType oldTariffRecord = tarrifTypeRepository.Find(oldRecordId);
             oldTariffRecord.ChildTariffTypeId = tarrifType.TariffTypeId;
             tarrifTypeRepository.SaveChanges();
-
-            // var tarrif = tarrifTypeRepository.Find(tarrifType.TariffTypeId);
             tarrifTypeRepository.LoadDependencies(tarrifType);
             return tarrifType;
-
-
-
         }
-
-
         #endregion
-
     }
 }

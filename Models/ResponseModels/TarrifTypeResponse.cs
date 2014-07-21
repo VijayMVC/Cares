@@ -1,6 +1,4 @@
-﻿
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Models.DomainModels;
 
 namespace Models.ResponseModels
@@ -10,8 +8,6 @@ namespace Models.ResponseModels
     /// </summary>
     public sealed class TarrifTypeResponse
     {
-        #region Private
-        #endregion
         #region Constructors
         /// <summary>
         /// Constructor
@@ -20,8 +16,6 @@ namespace Models.ResponseModels
         {
             TarrifTypes = new List<TarrifType>();
         }
-        #endregion
-        #region Protected
         #endregion
         #region Public
         /// <summary>

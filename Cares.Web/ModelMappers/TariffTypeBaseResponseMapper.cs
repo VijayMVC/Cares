@@ -22,8 +22,6 @@ namespace Cares.Web.ModelMappers
                 ResponseDepartments = source.Departments.Select(d => d.CreateFrom()),
                 ResponseOperations = source.Operations.Select(o => o.CreateFrom()),
                 ResponsePricingStrategies = source.PricingStrategies.Select(p => p.CreateFrom()),
-
-
             };
         }
 

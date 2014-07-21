@@ -67,6 +67,7 @@
     <Compile Include="IServices\IOperationService.cs" />
     <Compile Include="IServices\IPricingStrategyService.cs" />
     <Compile Include="IServices\IProductService.cs" />
+    <Compile Include="IServices\ITariffRateService.cs" />
     <Compile Include="IServices\ITarrifTypeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IBaseRepository.cs" />
@@ -81,6 +82,8 @@
     <Compile Include="Repository\ICompanyRepository.cs" />
     <Compile Include="Repository\IFleetPoolRepository.cs" />
     <Compile Include="Repository\ICountryRepository.cs" />
+    <Compile Include="Repository\IHireGroupRepository.cs" />
+    <Compile Include="Repository\IHireGroupDetailRepository.cs" />
     <Compile Include="Repository\IMeasurementUnit.cs" />
     <Compile Include="Repository\IMenuRightRepository.cs" />
     <Compile Include="Repository\IDepartmentRepository.cs" />
@@ -91,8 +94,14 @@
     <Compile Include="Repository\IPaymentTermRepository.cs" />
     <Compile Include="Repository\IPricingStrategyRepository.cs" />
     <Compile Include="Repository\IProductRepository.cs" />
+    <Compile Include="Repository\IStandardRateMain.cs" />
+    <Compile Include="Repository\IStandardRateRepository.cs" />
+    <Compile Include="Repository\IStandardRateMainRepository.cs" />
     <Compile Include="Repository\ITarrifTypeRepository.cs" />
     <Compile Include="Repository\IRegionRepository.cs" />
+    <Compile Include="Repository\IVehicleCategoryRepository.cs" />
+    <Compile Include="Repository\IVehicleMakeRepository.cs" />
+    <Compile Include="Repository\IVehicleModelRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">
