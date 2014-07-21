@@ -8,6 +8,10 @@ namespace Interfaces.IServices
     /// </summary>
     public interface ICompanyService
     {
+        /// <summary>
+        /// Load all companies
+        /// </summary>
+        /// <returns></returns>
         IQueryable<Company> LoadAll();
     }
 }

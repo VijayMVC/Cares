@@ -18,7 +18,7 @@ namespace Cares.Web.ModelMappers
             return new Company
             {
                 CompanyId = source.CompanyId,
-                CompanyName = source.CompanyName,
+                CompanyName = source.CompanyCode+"-" +source.CompanyName,
             };
         }
         /// <summary>

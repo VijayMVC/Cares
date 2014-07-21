@@ -15,6 +15,10 @@ namespace Models.DomainModels
         [Key]
         public long HireGroupDetailId { get; set; }
         /// <summary>
+        /// User Domain Key
+        /// </summary>
+        public long UserDomainKey { get; set; }
+        /// <summary>
         /// Hire Group ID
         /// </summary>
         public long HireGroupId { get; set; }
@@ -73,6 +77,24 @@ namespace Models.DomainModels
         /// </summary>
         public long RowVersion { get; set; }
 
+        #endregion
+        #region Reference Properties
+        /// <summary>
+        /// Hire Group
+        /// </summary>
+        public virtual HireGroup Hire { get; set; }
+        /// <summary>
+        /// Vehicle Category
+        /// </summary>
+        public virtual VehicleCategory VehicleCategory { get; set; }
+        /// <summary>
+        /// Vehicle Make
+        /// </summary>
+        public virtual VehicleMake VehicleMake { get; set; }
+        /// <summary>
+        /// Vehicle Model
+        /// </summary>
+        public virtual VehicleModel VehicleModel { get; set; }
         #endregion
     }
 }

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.ComponentModel.DataAnnotations;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Models.DomainModels
 {    /// <summary>
@@ -133,7 +131,7 @@ namespace Models.DomainModels
         /// Pricing Strategy
         /// </summary>
         public virtual PricingStrategy PricingStrategy { get; set; }
-        
+
         #endregion
     }
 }

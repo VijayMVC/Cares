@@ -70,7 +70,7 @@ namespace Repository.BaseRepository
         #endregion
         #region Constructor
         public BaseDbContext()
-        {            
+        {
         }
         /// <summary>
         /// Eager load property
@@ -98,7 +98,7 @@ namespace Repository.BaseRepository
         #endregion
         #region Public
 
-        public BaseDbContext(string connectionString,IUnityContainer container)
+        public BaseDbContext(string connectionString, IUnityContainer container)
             : base(connectionString)
         {
             this.container = container;
@@ -128,10 +128,10 @@ namespace Repository.BaseRepository
         /// </summary>
         public DbSet<Menu> Menus { get; set; }
         #endregion
-        
+
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Employee> Employees { get; set; } 
+        public DbSet<Employee> Employees { get; set; }
         /// <summary>
         /// Companies DB Set
         /// </summary>
@@ -184,8 +184,32 @@ namespace Repository.BaseRepository
         /// </summary>
         public DbSet<PaymentTerm> PaymentTerms { get; set; }
 
-        
+
+        public DbSet<VehicleModel> VehicleModels { get; set; }
+        public DbSet<VehicleCategory> VehicleCategories { get; set; }
+        public DbSet<VehicleMake> VehicleMakes { get; set; }
+        public DbSet<HireGroup> HireGroups { get; set; }
+        public DbSet<HireGroupDetail> HireGroupDetails { get; set; }
+        public DbSet<StandardRate> StandardRates { get; set; }
+        public DbSet<StandardRateMain> StandardRateMains { get; set; }
+        /// <summary>
+        /// Business Partner Db Set
+           /// </summary>
+
         public DbSet<BusinessPartner> BusinessPartners { get; set; }
+        /// <summary>
+        /// Business Partner Individuals Db Set
+        /// </summary>
+        public DbSet<BusinessPartnerIndividual> BusinessPartnerIndividuals { get; set; }
+        /// <summary>
+        /// Occupation Types Db Set
+        /// </summary>
+        public DbSet<OccupationType> OccupationTypes { get; set; }
+        /// <summary>
+        /// Business Partner Companies
+        /// </summary>
+        public DbSet<BusinessPartnerCompany> BusinessPartnerCompanies { get; set; }
+
 
 
         #endregion

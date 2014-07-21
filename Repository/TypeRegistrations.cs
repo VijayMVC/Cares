@@ -28,6 +28,19 @@ namespace Repository
             unityContainer.RegisterType<DbContext, BaseDbContext>();
             unityContainer.RegisterType<IBpRatingTypeRepository ,BpRatingTypeRepository>();
             unityContainer.RegisterType<IBusinessLegalStatusRepository, BusinessLegalStatusRepository>();
+            unityContainer.RegisterType<IVehicleCategoryRepository, VehicleCategoryRepository>();
+            unityContainer.RegisterType<IVehicleMakeRepository, VehicleMakeRepository>();
+            unityContainer.RegisterType<IVehicleModelRepository, VehicleModelRepository>();
+            unityContainer.RegisterType<IHireGroupRepository, HireGroupRepository>();
+            unityContainer.RegisterType<IHireGroupDetailRepository, HireGroupDetailRpository>();
+            unityContainer.RegisterType<IStandardRateRepository, StandardRateRepository>();
+              unityContainer.RegisterType<IBusinessPartnerIndividualRepository, BusinessPartnerIndividaulRepository>();
+            unityContainer.RegisterType<IOccupationTypeRepository, OccupationTypeRepository>();
+            unityContainer.RegisterType<IBusinessPartnerCompanyRepository, BusinessPartnerCompanyRepository>();
+            unityContainer.RegisterType<ICountryRepository, CountryRepository>();
+
+
+            unityContainer.RegisterType<IStandardRateMainRepository, StandardRateMainRepository>();
         }
     }
 }

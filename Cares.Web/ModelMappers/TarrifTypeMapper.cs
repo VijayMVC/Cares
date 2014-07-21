@@ -103,7 +103,19 @@ namespace Cares.Web.ModelMappers
             };
 
         }
+        /// <summary>
+        ///  Create web model from entity
+        /// </summary>
+        public static ApiModels.TarrifType CreateFromForTariffRate(this DomainModels.TarrifType source)
+        {
+            return new ApiModels.TarrifType
+            {
 
+                TariffTypeId = source.TariffTypeId,
+                TariffTypeName = source.TariffTypeCode + "-" + source.TariffTypeName,
+            };
+
+        }
         #endregion
     }
 }

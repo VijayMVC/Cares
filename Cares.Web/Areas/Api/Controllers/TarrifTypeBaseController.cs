@@ -12,10 +12,8 @@ namespace Cares.Web.Areas.Api.Controllers
     /// </summary>
     public class TarrifTypeBaseController : ApiController
     {
-        private readonly ITarrifTypeService tarrifTypeService;
-
         #region Private
-
+        private readonly ITarrifTypeService tarrifTypeService;
         #endregion
         #region Constructors
         /// <summary>

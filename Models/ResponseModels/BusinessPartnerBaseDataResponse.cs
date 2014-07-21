@@ -35,6 +35,18 @@ namespace Models.ResponseModels
         /// Dealing Employees 
         /// </summary>
         public IEnumerable<Employee> ResponseDealingEmployees { get; set; }
+        /// <summary>
+        /// Occupation Types
+        /// </summary>
+        public IEnumerable<OccupationType> ResponseOccupationTypes { get; set; }
+        /// <summary>
+        /// Business Partner Companies 
+        /// </summary>
+        public IEnumerable<BusinessPartnerCompany> ResponseBusinessPartnerCompanies { get; set; }
+        /// <summary>
+        /// Passport Countries
+        /// </summary>
+        public IEnumerable<Country> ResponsePassportCountries { get; set; }
    
         #endregion
     }

@@ -15,6 +15,10 @@ namespace Models.DomainModels
         [Key]
         public short VehicleCategoryId { get; set; }
         /// <summary>
+        /// User Domain Key
+        /// </summary>
+        public long UserDomainKey { get; set; }
+        /// <summary>
         /// Vehicle Category Code
         /// </summary>
         [StringLength(100)]

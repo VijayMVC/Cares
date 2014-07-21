@@ -14,6 +14,10 @@ namespace Models.DomainModels
         /// </summary>
         public long HireGroupId { get; set; }
         /// <summary>
+        /// User Domain Key
+        /// </summary>
+        public long UserDomainKey { get; set; }
+        /// <summary>
         /// Parent Hire Group ID
         /// </summary>
         [Key]

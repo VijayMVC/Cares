@@ -15,6 +15,10 @@ namespace Models.DomainModels
         [Key]
         public long StandardRtMainId { get; set; }
         /// <summary>
+        /// User Domain Key
+        /// </summary>
+        public long UserDomainKey { get; set; }
+        /// <summary>
         /// Standard Rate Main Code
         /// </summary>
         [StringLength(100)]
