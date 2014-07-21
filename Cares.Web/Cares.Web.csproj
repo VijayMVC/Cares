@@ -262,6 +262,9 @@
     <Compile Include="ModelMappers\BPRatingTypeMapper.cs" />
     <Compile Include="ModelMappers\BusinessLegalStatusMapper.cs" />
     <Compile Include="ModelMappers\EmployeeMapper.cs" />
+    <Compile Include="ModelMappers\BusinessPartnerCompanyMapper.cs" />
+    <Compile Include="ModelMappers\OccupationTypeMapper.cs" />
+    <Compile Include="ModelMappers\CountryMapper.cs" />
     <Compile Include="ModelMappers\PaymentTermMapper.cs" />
     <Compile Include="ModelMappers\FleetPoolMapper.cs" />
     <Compile Include="ModelMappers\BusinessPartnerResponseBaseDataMapper.cs" />
@@ -283,6 +286,8 @@
     <Compile Include="Models\BpRatingType.cs" />
     <Compile Include="Models\BusinessLegalStatus.cs" />
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\BusinessPartnerCompany.cs" />
+    <Compile Include="Models\OccupationType.cs" />
     <Compile Include="Models\PaymentTerm.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Company.cs" />

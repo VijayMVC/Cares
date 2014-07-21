@@ -76,6 +76,159 @@
         <h2 class="sectionHeader">
              <span>Details</span>
         </h2> 
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="active"><a href="#individualinfo" role="tab" data-toggle="tab">Individual Info.</a></li>
+            <li><a href="#companyinfo" role="tab" data-toggle="tab">Company Info.</a></li>
+            <li><a href="#bptype" role="tab" data-toggle="tab">BP Type.</a></li>
+            <li><a href="#bpphone" role="tab" data-toggle="tab">BP Phone.</a></li>
+            <li><a href="#bpaddress" role="tab" data-toggle="tab">BP Address.</a></li>
+            <li><a href="#marketingchannel" role="tab" data-toggle="tab">Marketing Channel.</a></li>
+            <li><a href="#bprelationships" role="tab" data-toggle="tab">BP Relationships.</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane active" id="individualinfo">
+                <div class="form-group">
+                    <label for="individualinfofirstname" class="control-label col-sm-2">First Name *</label>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="" id="individualinfofirstname" data-bind="value: businessPartnerId, enable :false" />
+                    </div>
+
+                    <label for="individualinfomiddlename" class="control-label col-sm-2">Middle Name</label>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="<Name>" id="individualinfomiddlename" data-bind="value: businessPartnerName, valueUpdate: 'keyup'" />
+                    </div>
+
+                    <label for="individualinfolastname" class="control-label col-sm-2">Last Name *</label>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="<Name>" id="individualinfolastname" data-bind="value: businessPartnerName, valueUpdate: 'keyup'" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="individualinfoinitials" class="control-label col-sm-2">Initials</label>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="" id="individualinfoinitials" data-bind="value: businessPartnerId, enable :false" />
+                    </div>
+
+                    <label for="individualinfomiddlename" class="control-label col-sm-2">Gender</label>
+                    <div class="col-md-2">
+                        <select id="dealingEmployees" class="form-control" data-bind="options: $root.dealingEmployees, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Dealing Employee>', value: dealingEmployeeId"></select>
+                    </div>
+
+                    <label for="individualinfolastname" class="control-label col-sm-2">Marital Status</label>
+                    <div class="col-md-2">
+                        <select id="dealingEmployees" class="form-control" data-bind="options: $root.dealingEmployees, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Dealing Employee>', value: dealingEmployeeId"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="individualinfooccupationtype" class="control-label col-sm-2">Occupation Type</label>
+                    <div class="col-md-2">
+                        <select id="dealingEmployees" class="form-control" data-bind="options: $root.dealingEmployees, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Dealing Employee>', value: dealingEmployeeId"></select>
+                    </div>
+
+                    <label for="individualinfomiddlename" class="control-label col-sm-2">Date of Birth *</label>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="<Start From>" id="tariffTypeStartFrom" data-bind="value: durationFrom, validationTooltip: durationFrom" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="individualinfonicnumber" class="control-label col-sm-2">NIC Number</label>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="" id="individualinfonicnumber" data-bind="value: businessPartnerId, enable :false" />
+                    </div>
+                    <label for="individualinfomiddlename" class="control-label col-sm-2">NIC Expiry Date</label>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="<Start From>" id="tariffTypeStartFrom" data-bind="value: durationFrom, validationTooltip: durationFrom" />
+                    </div>
+
+
+                </div>
+                <div class="form-group">
+                    <label for="individualinfoiqamanumber" class="control-label col-sm-2">Iqama Number</label>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="" id="individualinfoiqamanumber" data-bind="value: businessPartnerId, enable :false" />
+                    </div>
+
+                    <label for="individualinfomiddlename" class="control-label col-sm-2">Iqama Expiry Date</label>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="<Start From>" id="tariffTypeStartFrom" data-bind="value: durationFrom, validationTooltip: durationFrom" />
+                    </div>
+
+
+                </div>
+                <div class="form-group">
+                    <label for="individualinfopassportnumber" class="control-label col-sm-2">Passport Number</label>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="" id="individualinfopassportnumber" data-bind="value: businessPartnerId, enable :false" />
+                    </div>
+
+                    <label for="individualinfomiddlename" class="control-label col-sm-2">Passport Expiry Date</label>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="<Start From>" id="tariffTypeStartFrom" data-bind="value: durationFrom, validationTooltip: durationFrom" />
+                    </div>
+                    <label for="individualinfopassportnumber" class="control-label col-sm-2">Passport Country</label>
+                    <div class="col-md-2">
+                        <select id="dealingEmployees" class="form-control" data-bind="options: $root.dealingEmployees, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Dealing Employee>', value: dealingEmployeeId"></select>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="individualinfolicencenumber" class="control-label col-sm-2">Licence Number</label>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="" id="individualinfolicencenumber" data-bind="value: businessPartnerId, enable :false" />
+                    </div>
+
+                    <label for="individualinfomiddlename" class="control-label col-sm-2">Licence Expiry Date</label>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="<Start From>" id="tariffTypeStartFrom" data-bind="value: durationFrom, validationTooltip: durationFrom" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="individualinfotaxregistrationcode" class="control-label col-sm-2">Tax Registration Code </label>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="" id="individualinfotaxregistrationcode" data-bind="value: businessPartnerId, enable :false" />
+                    </div>
+
+                    <label for="individualinfotaxnumber" class="control-label col-sm-2">Tax Number</label>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="" id="individualinfotaxnumber" data-bind="value: businessPartnerId, enable :false" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="individualinfoisCompanyExternal" class="control-label col-sm-2">Is Company External? </label>
+                    <div class="col-md-2">
+                        <input type="checkbox" class="form-control" id="individualinfoisCompanyExternal" data-bind="checked: isCompanyExternal">
+                    </div>
+                    <label for="individualinfotaxnumber" class="control-label col-sm-2">BP Company</label>
+                    <div class="col-md-2">
+                        <select id="dealingEmployees" class="form-control" data-bind="options: $root.dealingEmployees, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Dealing Employee>', value: dealingEmployeeId"></select>
+                    </div>
+                    <label for="individualinfoexternalcompanyname" class="control-label col-sm-2">External Company Name</label>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="" id="individualinfoexternalcompanyname" data-bind="value: businessPartnerId, enable :false" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="individualinfocompanyphone" class="control-label col-sm-2">Company Phone</label>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="" id="individualinfocompanyphone" data-bind="value: businessPartnerId, enable :false" />
+                    </div>
+
+                    <label for="individualinfocompanyaddress" class="control-label col-sm-2">Company Address</label>
+                    <div class="col-md-2">
+                        <textarea class="form-control" rows="2" placeholder="<Description>" id="individualinfocompanyaddress" data-bind="value: businessPartnerDesciption, valueUpdate: 'keyup'"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="companyinfo">...</div>
+            <div class="tab-pane" id="bptype">...</div>
+            <div class="tab-pane" id="bpphone">...</div>
+            <div class="tab-pane" id="bpaddress">...</div>
+            <div class="tab-pane" id="marketingchannel">...</div>
+            <div class="tab-pane" id="bprelationships">...</div>
+        </div>
     </form>
 </div>
 

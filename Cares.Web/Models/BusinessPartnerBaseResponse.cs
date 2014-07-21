@@ -7,22 +7,10 @@ namespace Cares.Web.Models
     {
         #region Private
         #endregion
-        //#region Constructors
-        ///// <summary>
-        ///// Constructor
-        ///// </summary>
-        //public BusinessPartnerBaseResponse()
-        //{
-        //    ResponseCompanies = new List<Company>();
-        //    ResponsePaymentTerms = new List<PaymentTerm>();
-        //    ResponseBPRatingTypes = new List<BpRatingType>();
-        //    ResponseBusinessLegalStatuses = new List<BusinessLegalStatus>();
-        //    ResponseBusinessPartners = new List<BusinessPartnerListView>();
-        //    ResponseDealingEmployees = new List<Employee>();
-        //}
-        //#endregion
+
         #region Protected
         #endregion
+
         #region Public
         /// <summary>
         /// Companies
@@ -48,6 +36,19 @@ namespace Cares.Web.Models
         /// Dealing Employees 
         /// </summary>
         public IEnumerable<Employee> ResponseDealingEmployees { get; set; }
+        /// <summary>
+        /// Occupation Types
+        /// </summary>
+        public IEnumerable<OccupationType> ResponseOccupationTypes { get; set; }
+        /// <summary>
+        /// Business Partner Companies 
+        /// </summary>
+        public IEnumerable<BusinessPartnerCompany> ResponseBusinessPartnerCompanies { get; set; }
+        /// <summary>
+        /// Passport Countries
+        /// </summary>
+        public IEnumerable<Country> ResponsePassportCountries { get; set; }
+
         #endregion
     }
 }

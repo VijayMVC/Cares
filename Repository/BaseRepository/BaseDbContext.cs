@@ -183,9 +183,23 @@ namespace Repository.BaseRepository
         /// PaymentTerm DB Set
         /// </summary>
         public DbSet<PaymentTerm> PaymentTerms { get; set; }
-
-        
+        /// <summary>
+        /// Business Partner Db Set
+        /// </summary>
         public DbSet<BusinessPartner> BusinessPartners { get; set; }
+        /// <summary>
+        /// Business Partner Individuals Db Set
+        /// </summary>
+        public DbSet<BusinessPartnerIndividual> BusinessPartnerIndividuals { get; set; }
+        /// <summary>
+        /// Occupation Types Db Set
+        /// </summary>
+        public DbSet<OccupationType> OccupationTypes { get; set; }
+        /// <summary>
+        /// Business Partner Companies
+        /// </summary>
+        public DbSet<BusinessPartnerCompany> BusinessPartnerCompanies { get; set; }
+
 
 
         #endregion

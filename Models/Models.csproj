@@ -97,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\BusinessPartnerByColumn.cs" />
+    <Compile Include="DomainModels\BusinessPartnerIndividual.cs" />
     <Compile Include="DomainModels\BusinessPartner.cs" />
     <Compile Include="Common\EmployeeByColumn.cs" />
     <Compile Include="Common\FleetPoolByColumn.cs" />
@@ -104,6 +105,8 @@
     <Compile Include="Common\TarrifTypeByColumn.cs" />
     <Compile Include="DomainModels\BPRatingType.cs" />
     <Compile Include="DomainModels\BusinessLegalStatus.cs" />
+    <Compile Include="DomainModels\BusinessPartnerCompany.cs" />
+    <Compile Include="DomainModels\OccupationType.cs" />
     <Compile Include="DomainModels\BusinessSegment.cs" />
     <Compile Include="DomainModels\Category.cs" />
     <Compile Include="DomainModels\Company.cs" />
