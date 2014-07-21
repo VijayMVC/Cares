@@ -18,7 +18,7 @@ namespace Cares.Web.ModelMappers
             return new Department
             {
                 DepartmentId = source.DepartmentId,
-                DepartmentName = source.DepartmentName,
+                DepartmentName = source.DepartmentCode+"-"+source.DepartmentName,
             };
         }
 

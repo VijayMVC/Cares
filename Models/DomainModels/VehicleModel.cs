@@ -14,6 +14,10 @@ namespace Models.DomainModels
         [Key]
         public short VehicleModeld { get; set; }
         /// <summary>
+        /// User Domain Key
+        /// </summary>
+        public long UserDomainKey { get; set; }
+        /// <summary>
         /// Vehicl eModel Code
         /// </summary>
         [StringLength(100)]

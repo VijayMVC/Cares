@@ -138,6 +138,7 @@
     <Compile Include="Services\PricingStrategyService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\TariffRateService.cs" />
     <Compile Include="Services\TarrifTypeService.cs" />
     <Compile Include="TypeRegistrations.cs" />
   </ItemGroup>

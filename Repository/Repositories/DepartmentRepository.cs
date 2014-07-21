@@ -9,7 +9,7 @@ namespace Repository.Repositories
     /// <summary>
     /// Department Repository
     /// </summary>
-    public sealed class DepartmentRepository: BaseRepository<Department>, IDepartmentRepository
+    public sealed class DepartmentRepository : BaseRepository<Department>, IDepartmentRepository
     {
         #region Constructor
         /// <summary>
@@ -32,7 +32,6 @@ namespace Repository.Repositories
         }
 
         #endregion
-
         #region Public
         /// <summary>
         /// Get All Departments for User Domain Key

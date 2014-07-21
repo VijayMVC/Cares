@@ -8,8 +8,6 @@ namespace Models.ResponseModels
     /// </summary>
     public sealed class TarrifTypeBaseResponse
     {
-        #region Private
-        #endregion
         #region Constructors
         /// <summary>
         /// Constructor
@@ -22,8 +20,6 @@ namespace Models.ResponseModels
             Operations = new List<Operation>();
             PricingStrategies = new List<PricingStrategy>();
         }
-        #endregion
-        #region Protected
         #endregion
         #region Public
         /// <summary>
@@ -46,7 +42,7 @@ namespace Models.ResponseModels
         /// List of Pricing Strategies
         /// </summary>
         public IEnumerable<PricingStrategy> PricingStrategies { get; set; }
-  
+
         #endregion
     }
 }

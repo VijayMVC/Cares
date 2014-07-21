@@ -15,6 +15,10 @@ namespace Models.DomainModels
         [Key]
         public short VehicleMakeId { get; set; }
         /// <summary>
+        /// User Domain Key
+        /// </summary>
+        public long UserDomainKey { get; set; }
+        /// <summary>
         /// Vehicle Make Code
         /// </summary>
         [StringLength(100)]

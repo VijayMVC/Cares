@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Models.DomainModels
 {
@@ -11,7 +12,12 @@ namespace Models.DomainModels
         /// <summary>
         /// Standard Rate ID
         /// </summary>
+        [Key]
         public long StandardRtId { get; set; }
+        /// <summary>
+        /// User Domain Key
+        /// </summary>
+        public long UserDomainKey { get; set; }
         /// <summary>
         /// Child Standard Rate ID
         /// </summary>
