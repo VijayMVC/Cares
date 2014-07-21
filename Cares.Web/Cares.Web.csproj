@@ -362,6 +362,9 @@
     <Content Include="Content\Fleet.css">
       <DependentUpon>Fleet.less</DependentUpon>
     </Content>
+    <Content Include="Content\Fleet.min.css">
+      <DependentUpon>Fleet.css</DependentUpon>
+    </Content>
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Images\arrow-down.png" />
     <Content Include="Content\Images\arrow-up.png" />
@@ -372,7 +375,16 @@
     <Content Include="Content\MainSite.css">
       <DependentUpon>MainSite.less</DependentUpon>
     </Content>
+    <Content Include="Content\MainSite.min.css">
+      <DependentUpon>MainSite.css</DependentUpon>
+    </Content>
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\Pricing.css">
+      <DependentUpon>Pricing.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Pricing.min.css">
+      <DependentUpon>Pricing.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -812,6 +824,17 @@
     <Content Include="Areas\Pricing\Views\Tarrif\_TariffTypeEditor.cshtml" />
     <Content Include="Content\MainSite.less" />
     <Content Include="Content\Fleet.less" />
+    <Content Include="Content\Pricing.less" />
+    <Content Include="Content\Pricing.css.map">
+      <DependentUpon>Pricing.css</DependentUpon>
+    </Content>
+    <Content Include="Content\MainSite.css.map">
+      <DependentUpon>MainSite.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Fleet.css.map">
+      <DependentUpon>Fleet.css</DependentUpon>
+    </Content>
+    <Content Include="Areas\Pricing\Views\Tarrif\TariffRate.cshtml" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />

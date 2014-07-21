@@ -12,6 +12,11 @@ namespace Cares.Web.Areas.Pricing.Controllers
         public ActionResult Index()
         {
             return View();
+        }//
+        // GET: /Tarrif/TariffRate/
+        public ActionResult TariffRate()
+        {
+            return View();
         }
 	}
 }

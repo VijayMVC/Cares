@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Net;
+using System.Web;
 using System.Web.Http;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
@@ -30,6 +32,10 @@ namespace Cares.Web.Areas.Api.Controllers
         // GET api/<controller>
         public TarrifTypeBaseResponse Get()
         {
+            if (!ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
             return tarrifTypeService.GetBaseData().CreateFrom();
         }
         #endregion
