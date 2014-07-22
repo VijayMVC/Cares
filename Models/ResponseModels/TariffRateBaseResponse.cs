@@ -21,6 +21,7 @@ namespace Models.ResponseModels
             VehicleCategories = new List<VehicleCategory>();
             VehicleMakes = new List<VehicleMake>();
             VehicleModels = new List<VehicleModel>();
+            TariffTypes = new List<TarrifType>();
         }
         #endregion
         #region Public

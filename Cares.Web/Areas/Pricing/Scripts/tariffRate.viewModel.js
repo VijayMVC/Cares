@@ -10,71 +10,77 @@ define("tariffRate/tariffRate.viewModel",
             viewModel: (function () {
                 var // the view 
                     view,
-                // Active Tarrif Rate
-                selectedTarrifRate = ko.observable(),
-                //For Edit, Tariff Rate Id
+                    test = ko.observable("test"),
+                    // Active Tarrif Rate
+                    selectedTarrifRate = ko.observable(),
+                    //For Edit, Tariff Rate Id
                     selectedTariffRateId = ko.observable(),
-                // Add Or Edit Tariff Rate
-                    addTarrifType = ko.observable(),
-                // #region Arrays
-                //Tarrif Rates
+                    // Add Or Edit Tariff Rate
+                    addTariffRate = ko.observable(),
+                    // #region Arrays
+                    //Tarrif Rates
                     tarrifRates = ko.observableArray([]),
-                // Companies
+                    // Companies
                     companies = ko.observableArray([]),
-                // Departments
+                    // Departments
                     departments = ko.observableArray([]),
-                // Operations
+                    // Operations
                     operations = ko.observableArray([]),
-                //Tariff Types
+                    //Tariff Types
                     tariffTypes = ko.observableArray([]),
-                //Hire Groups
+                    //Hire Groups
                     hireGroups = ko.observableArray([]),
-                //Vehicle Make
+                    //Vehicle Make
                     vehicleMakes = ko.observableArray([]),
-                //Vehicle Models
+                    //Vehicle Models
                     vehicleModels = ko.observableArray([]),
-                //Vehicle Categories
+                    //Vehicle Categories
                     vehicleCategories = ko.observableArray([]),
-                //Model Years
+                    //Model Years
                     modelYears = ko.observableArray([]),
-                // #endregion Arrays
-                // #region Busy Indicators
+                    //Tariff Rates
+                    tariffRates = ko.observableArray([]),
+
+                    // #endregion Arrays
+                    // #region Busy Indicators
                     isLoadingTariffRates = ko.observable(false),
-                // #endregion Busy Indicators
-                // #region Observables
-                // Sort On
+                    // #endregion Busy Indicators
+                    // #region Observables
+                    // Sort On
                     sortOn = ko.observable(1),
-                // Sort Order -  true means asc, false means desc
+                    // Sort Order -  true means asc, false means desc
                     sortIsAsc = ko.observable(true),
-                // Is Tarrif Rate Editor Visible
-                    isTarrifRateEditorVisible = ko.observable(false),
-                // Is Editable
+                    // Is Tariff Rate Editor Visible
+                    isTariffRateEditorVisible = ko.observable(false),
+                    // Is Editable
                     isEditable = ko.observable(false),
-                // Pagination
+                    // Pagination
                     pager = ko.observable(),
-                // Tarrif Rate Code filter
-                    tarrifRateCodeFilter = ko.observable(),
-                //Tarrif Rate Name  Filter
-                    tarrifRateNameFilter = ko.observable(),
-                // Company Filter
+                    // Tariff Rate Code filter
+                    tariffRateCodeFilter = ko.observable(),
+                    //Tariff Rate Name  Filter
+                    tariffRateNameFilter = ko.observable(),
+                    // Company Filter
                     companyFilter = ko.observable(),
-                //Department Filter
+                    //Department Filter
                     departmentFilter = ko.observable(),
-                //Operation Filter
+                    //Operation Filter
                     operationFilter = ko.observable(),
-                //Tariff Type Filter
+                    //Tariff Type Filter
                     tariffTypeFilter = ko.observable(),
-                // #region Utility Functions
-                // Initialize the view model
+                    //Search String
+                    searchFilter = ko.observable(),
+                    // #region Utility Functions
+                    // Initialize the view model
                     initialize = function (specifiedView) {
                         view = specifiedView;
                         ko.applyBindings(view.viewModel, view.bindingRoot);
                         getBase();
                         // Set Pager
-                        //pager(pagination.Pagination({}, tarrifTypes, getTarrifType));
-                        //getTarrifType();
+                        pager(pagination.Pagination({}, tariffRates, getTariffRates));
+                        getTariffRates();
                     },
-                // Get Base
+                    // Get Base
                     getBase = function () {
                         dataservice.getTariffRateBase({
                             success: function (data) {
@@ -117,10 +123,99 @@ define("tariffRate/tariffRate.viewModel",
                             }
                         });
                     },
-                // Search 
+                    // Search 
                     search = function () {
                         pager().reset();
-                        //getTarrifRate();
+                        getTariffRates();
+                    },
+                     // close Tariff Rate Editor
+                    closeTariffRateEditor = function () {
+                        isTariffRateEditorVisible(false);
+                    },
+                    // Show Tariff Type Editor
+                    showTariffRateEditor = function () {
+                        isTariffRateEditorVisible(true);
+                    },
+                     //Create Tariff Type Rate
+                    createTariffRate = function () {
+                        var tariffRate = new model.TariffRateDetail();
+                        // Select the newly added Tariff Rate
+                        addTariffRate(tariffRate);
+                        showTariffRateEditor();
+                    },
+                     // Save Tariff Rate
+                    onSaveTariffRate = function (tariffType) {
+                        //if (doBeforeSelect()) {
+                        //    if (addTarrifType().tarrifTypeId() > 0) {
+                        //        var date = new Date();
+                        //        if (addTarrifType().effectiveDate() >= date) {
+                        //            // Commits and Selects the Row
+                        //            saveTariffType(tariffType);
+                        //        } else {
+                        //            toastr.error('Effective Date must be a current or future date.');
+                        //        }
+                        //    } else {
+                        //        // Commits and Selects the Row
+                        //        saveTariffType(tariffType);
+                        //    }
+
+                        //}
+
+                    },
+                     // Delete a product
+                    onDeleteTariffRate = function (tariffRate) {
+                        if (!tariffRate.tariffRateId()) {
+                            //products.remove(product);
+                            return;
+                        }
+
+                        // Ask for confirmation
+                        confirmation.afterProceed(function () {
+                           // deleteProduct(product);
+                        });
+                        confirmation.show();
+                    },
+                    hireGroupRate = function (tariffRate) {
+                        //Ask for hire Group Dialog 
+                        hireGroupDialogVm.afterProceed(function () {
+                            
+                         });
+                        hireGroupDialogVm.show();
+                     },
+
+                    // Map Tariff Rates - Server to Client
+                    mapTarrifRates = function (data) {
+                    var tariffRateList = [];
+                    _.each(data.TariffRates, function (item) {
+                        var tariffRate = new model.TariffRateClientMapper(item);
+                        tariffRateList.push(tariffRate);
+                    });
+                    ko.utils.arrayPushAll(tariffRates(), tariffRateList);
+                    tariffRates.valueHasMutated();
+                },
+                    // Get Tariff Rates
+                    getTariffRates = function () {
+                        isLoadingTariffRates(true);
+                        dataservice.getTariffRate({
+                            SearchString: searchFilter(),
+                            TariffTypeId: tariffTypeFilter,
+                            OperationId: operationFilter(),
+                            PageSize: pager().pageSize(),
+                            PageNo: pager().currentPage(),
+                            SortBy: sortOn(),
+                            IsAsc: sortIsAsc()
+                        }, {
+                            success: function (data) {
+                                pager().totalCount(data.TotalCount);
+                                tariffRates.removeAll();
+                                mapTarrifRates(data);
+                                isLoadingTariffRates(false);
+                            },
+                            error: function () {
+                                isLoadingTariffRates(false);
+                                toastr.error("Failed to load Tariff rates!");
+                            }
+                        });
                     };
                 // #endregion Service Calls
 
@@ -128,13 +223,13 @@ define("tariffRate/tariffRate.viewModel",
                     // Observables
 
                     selectedTarrifRate: selectedTarrifRate,
+                    addTariffRate: addTariffRate,
                     selectedTariffRateId: selectedTariffRateId,
-                    addTarrifType: addTarrifType,
                     isLoadingTariffRates: isLoadingTariffRates,
                     sortOn: sortOn,
                     sortIsAsc: sortIsAsc,
                     isEditable: isEditable,
-                    isTarrifRateEditorVisible: isTarrifRateEditorVisible,
+                    isTariffRateEditorVisible: isTariffRateEditorVisible,
                     //Arrays
                     tariffTypes: tariffTypes,
                     companies: companies,
@@ -146,19 +241,29 @@ define("tariffRate/tariffRate.viewModel",
                     vehicleModels: vehicleModels,
                     vehicleCategories: vehicleCategories,
                     modelYears: modelYears,
+                    tariffRates: tariffRates,
                     //Filters
-                    tarrifRateCodeFilter: tarrifRateCodeFilter,
+                    tariffRateCodeFilter: tariffRateCodeFilter,
                     companyFilter: companyFilter,
                     departmentFilter: departmentFilter,
                     operationFilter: operationFilter,
-                    tarrifRateNameFilter: tarrifRateNameFilter,
+                    tariffRateNameFilter: tariffRateNameFilter,
                     tariffTypeFilter: tariffTypeFilter,
+                    searchFilter: searchFilter,
                     // Utility Methods
                     initialize: initialize,
                     search: search,
-                    // getTarrifRate: getTarrifRate,
+                    getTariffRates: getTariffRates,
+                    mapTarrifRates: mapTarrifRates,
                     getBase: getBase,
                     pager: pager,
+                    closeTariffRateEditor: closeTariffRateEditor,
+                    showTariffRateEditor: showTariffRateEditor,
+                    createTariffRate: createTariffRate,
+                    onSaveTariffRate: onSaveTariffRate,
+                    onDeleteTariffRate: onDeleteTariffRate,
+                    hireGroupRate: hireGroupRate,
+                    test: test
                     // Utility Methods
 
                 };

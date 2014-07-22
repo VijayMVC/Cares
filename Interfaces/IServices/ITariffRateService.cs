@@ -1,4 +1,5 @@
-﻿using Models.ResponseModels;
+﻿using Models.RequestModels;
+using Models.ResponseModels;
 
 namespace Interfaces.IServices
 {
@@ -12,5 +13,6 @@ namespace Interfaces.IServices
         /// </summary>
         /// <returns></returns>
         TariffRateBaseResponse GetBaseData();
+        TariffRateResponse LoadTariffRates(TariffRateRequest tariffRateRequest);
     }
 }

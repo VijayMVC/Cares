@@ -54,7 +54,8 @@ define("tarrifType/tarrifType.dataservice", function () {
                     success: callbacks.success,
                     error: callbacks.error,
                 });
-            }, // Get Tarrif type 
+            },
+            // Get Tarrif type 
             getTarrifType = function(params, callbacks) {
                 initialize();
                 return amplify.request({

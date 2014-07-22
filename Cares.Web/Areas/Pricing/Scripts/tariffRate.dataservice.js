@@ -11,10 +11,16 @@ define("tariffRate/tariffRate.dataservice", function () {
             // Initialize
             initialize = function() {
                 if (!isInitialized) {
-                    
+
                     // Define request to get Tariff Rate base 
                     amplify.request.define('getTariffRateBase', 'ajax', {
                         url: '/Api/TariffRateBase',
+                        dataType: 'json',
+                        type: 'GET'
+                    });
+                    // Define request to get tarrif type  
+                    amplify.request.define('getTariffRate', 'ajax', {
+                        url: '/Api/TariffRate',
                         dataType: 'json',
                         type: 'GET'
                     });
@@ -23,19 +29,28 @@ define("tariffRate/tariffRate.dataservice", function () {
                 }
             },
             // Get Tariff Rate base
-            getTariffRateBase = function (callbacks) {
+            getTariffRateBase = function(callbacks) {
                 initialize();
                 return amplify.request({
                     resourceId: 'getTariffRateBase',
                     success: callbacks.success,
                     error: callbacks.error,
                 });
-            };// Get Tariff Rate 
-          
+            },
 
+            // Get Tariff Rates 
+            getTariffRate = function(params, callbacks) {
+                initialize();
+                return amplify.request({
+                    resourceId: 'getTariffRate',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: params
+                });
+            };
         return {
             getTariffRateBase: getTariffRateBase,
-          
+            getTariffRate: getTariffRate
         };
     })();
 

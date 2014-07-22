@@ -1,5 +1,6 @@
 ﻿using Interfaces.IServices;
 using Interfaces.Repository;
+using Models.RequestModels;
 using Models.ResponseModels;
 
 namespace Implementation.Services
@@ -18,12 +19,13 @@ namespace Implementation.Services
         private readonly IVehicleCategoryRepository vehicleCategoryRepository;
         private readonly IHireGroupRepository hireGroupRepository;
         private readonly ITarrifTypeRepository tarrifTypeRepository;
+        private readonly IStandardRateMainRepository standardRateMainRepository;
 
         #endregion
         #region Constructors
         public TariffRateService(IDepartmentRepository departmentRepository, ICompanyRepository companyRepository, IOperationRepository operationRepository,
             IVehicleModelRepository vehicleModelRepository, IVehicleMakeRepository vehicleMakeRepository, IVehicleCategoryRepository vehicleCategoryRepository,
-            IHireGroupRepository hireGroupRepository, ITarrifTypeRepository tarrifTypeRepository)
+            IHireGroupRepository hireGroupRepository, ITarrifTypeRepository tarrifTypeRepository, IStandardRateMainRepository standardRateMainRepository)
         {
             this.operationRepository = operationRepository;
             this.departmentRepository = departmentRepository;
@@ -33,6 +35,8 @@ namespace Implementation.Services
             this.vehicleCategoryRepository = vehicleCategoryRepository;
             this.hireGroupRepository = hireGroupRepository;
             this.tarrifTypeRepository = tarrifTypeRepository;
+            this.standardRateMainRepository = standardRateMainRepository;
+
 
         }
         #endregion
@@ -52,6 +56,12 @@ namespace Implementation.Services
                 TariffTypes = tarrifTypeRepository.GetAll(),
             };
         }
+
+        public TariffRateResponse LoadTariffRates(TariffRateRequest tariffRateRequest)
+        {
+            return standardRateMainRepository.GetTariffRates(tariffRateRequest);
+        }
+
         #endregion
     }
 }
