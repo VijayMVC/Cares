@@ -162,7 +162,10 @@ namespace Models.DomainModels
         /// Dealing Employee
         /// </summary>
         public virtual Employee DealingEmployee { get; set; }
-        
+        /// <summary>
+        /// Business Partnet Individual Info
+        /// </summary>
+        public virtual BusinessPartnerIndividual BusinessPartnerIndividual { get; set; }
         #endregion
     }
 }

@@ -37,7 +37,9 @@
    specifiedIndividualDateOfBirth, specifiedIndividualOccupationTypeId, specifiedIndividualIsCompanyExternal,
    specifiedIndividualCompanyName, specifiedIndividualCompanyAddress, specifiedIndividualCompanyPhone,
    specifiedIndividualBusinessPartnerCompnayId, specifiedIndividualNicExpiryDate, specifiedIndividualPassportExpiryDate,
-   specifiedIndividualPassportCountryId, specifiedIndividualIqamaNo, specifiedIndividualIqamaExpiryDate) {
+   specifiedIndividualPassportCountryId, specifiedIndividualIqamaNo, specifiedIndividualIqamaExpiryDate,
+   specifiedBusinessPartnerCompanyCode, specifiedBusinessPartnerCompanyName, specifiedBusinessPartnerCompanyEstablishedSince,
+   specifiedBusinessPartnerCompanySwiftCode, specifiedBusinessPartnerCompanyAccountNumber, specifiedBusinessPartnerCompanyBusinessSegmentId) {
        
        // ReSharper restore InconsistentNaming
        var // Reference to this object
@@ -122,7 +124,19 @@
             // Individual Iqama Expiry Date
            individualIqamaExpiryDate = ko.observable(specifiedIndividualIqamaExpiryDate),
            
-
+           // Business Partner Company Code
+           businessPartnerCompanyCode = ko.observable(specifiedBusinessPartnerCompanyCode),
+           // Business Partner Company Name
+           businessPartnerCompanyName = ko.observable(specifiedBusinessPartnerCompanyName),
+           // Business Partner Company Established Since
+           businessPartnerCompanyEstablishedSince = ko.observable(specifiedBusinessPartnerCompanyEstablishedSince),
+           // Business Partner Company Swift Code
+           businessPartnerCompanySwiftCode = ko.observable(specifiedBusinessPartnerCompanySwiftCode),
+           // Business Partner Company Account Number
+           businessPartnerCompanyAccountNumber = ko.observable(specifiedBusinessPartnerCompanyAccountNumber),
+           // Business Partner Company Established Since
+           businessPartnerCompanyBusinessSegmentId = ko.observable(specifiedBusinessPartnerCompanyBusinessSegmentId),
+           
            // Is Busy
            isBusy = ko.observable(false),
            // Errors
@@ -183,7 +197,14 @@
                individualPassportExpiryDate: individualPassportExpiryDate,
                individualPassportCountryId: individualPassportCountryId,
                individualIqamaNo: individualIqamaNo,
-               individualIqamaExpiryDate: individualIqamaExpiryDate
+               individualIqamaExpiryDate: individualIqamaExpiryDate,
+               
+               businessPartnerCompanyCode:businessPartnerCompanyCode,
+               businessPartnerCompanyName:businessPartnerCompanyName,
+               businessPartnerCompanyEstablishedSince: businessPartnerCompanyEstablishedSince,
+               businessPartnerCompanySwiftCode: businessPartnerCompanySwiftCode,
+               businessPartnerCompanyAccountNumber: businessPartnerCompanyAccountNumber,
+               businessPartnerCompanyBusinessSegmentId: businessPartnerCompanyBusinessSegmentId
            }),
            // Has Changes
            hasChanges = ko.computed(function() {

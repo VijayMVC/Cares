@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models.DomainModels
 {
@@ -9,12 +10,19 @@ namespace Models.DomainModels
     public class BusinessPartnerIndividual
     {
         #region Persisted Properties
+
         /// <summary>
         /// Business Partner Id
         /// </summary>
-        [Required]
         [Key]
+        [ForeignKey("BusinessPartner")]
         public long BusinessPartnerId { get; set; }
+
+        ///// <summary>
+        ///// Business Partner Individual Id
+        ///// </summary>
+        //[Required]
+        //public long BusinessPartnerIndividualId { get; set; }
         /// <summary>
         /// Individual First Name
         /// </summary>
@@ -108,6 +116,8 @@ namespace Models.DomainModels
         /// Individual Business Partner Company Id
         /// </summary>
         public int BusinessPartnerCompnayId { get; set; }
+
+        
       /// <summary>
         /// Row Version
         /// </summary>
@@ -199,6 +209,13 @@ namespace Models.DomainModels
         /// </summary>
         public virtual Country PassportCountry { get; set; }
         
+        /// <summary>
+        /// Business Partner
+        /// </summary>
+        [Required]
+        public virtual BusinessPartner BusinessPartner { get; set; }
+
+
         #endregion
     }
 }

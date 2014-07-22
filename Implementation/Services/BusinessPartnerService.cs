@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using FaceSharp.Api.Objects;
 using Interfaces.IServices;
 using Interfaces.Repository;
 using Models.DomainModels;
@@ -16,16 +15,17 @@ namespace Implementation.Services
     {
         #region Private
         private readonly IBusinessPartnerRepository businessPartnerRepository;
+        private readonly IBusinessPartnerIndividualRepository businessPartnerIndividualRepository;
         #endregion
 
         #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>
-        public BusinessPartnerService(IBusinessPartnerRepository businessPartnerRepository)
+        public BusinessPartnerService(IBusinessPartnerRepository businessPartnerRepository, IBusinessPartnerIndividualRepository businessPartnerIndividualRepository)
         {
             this.businessPartnerRepository = businessPartnerRepository;
-
+            this.businessPartnerIndividualRepository = businessPartnerIndividualRepository;
         }
         #endregion
 
