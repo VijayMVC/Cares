@@ -5,10 +5,18 @@
     TarrifType = function (data) {
         // ReSharper restore InconsistentNaming
         var // Reference to this object
-            self = {};
+            self = {},
+            mapping = {
+                // customize the creation of the name property so that it provides validation
+                EffectiveDate: {
+                    create: function (options) {
+                        return ko.observable(moment(options.data).format(ist.datePattern));
+                    }
+                }
+            };
 
         // Map data to self
-        ko.mapping.fromJS(data, null, self);
+        ko.mapping.fromJS(data, mapping, self);
 
         return {
             tariffTypeId: self.TariffTypeId,
@@ -69,7 +77,26 @@
             recLastUpdatedBy = ko.observable(),
             //Rec Created By
             recCreatedBy = ko.observable(),
+            // Is busy
             isBusy = ko.observable(false),
+            //String valued formatted date
+            formattedEffectiveDate = ko.computed({
+                read: function(){
+                    return moment(effectiveDate()).format(ist.datePattern);
+                }
+            }),
+            //string valued formatted created date
+            formattedCreatedDate = ko.computed({
+                read: function () {
+                    return moment(recCreatedDt()).format(ist.datePattern);
+                }
+            }),
+            //string valued formatted last updated date
+            formattedModifiedDate = ko.computed({
+                read: function () {
+                    return moment(recLastUpdatedDt()).format(ist.datePattern);
+                }
+            }),
 
             // Errors
             errors = ko.validation.group({
@@ -143,7 +170,9 @@
             hasChanges: hasChanges,
             reset: reset,
             isBusy: isBusy,
-            //convertToServerData: convertToServerData
+            formattedEffectiveDate: formattedEffectiveDate,
+            formattedModifiedDate: formattedModifiedDate,
+            formattedCreatedDate: formattedCreatedDate
         };
         return self;
     };
@@ -184,6 +213,7 @@
         tarrifType.pricingStrategyId(source.PricingStrategyId === null ? undefined : source.PricingStrategyId);
         tarrifType.revisionNumber(source.RevisionNumber === null ? undefined : source.RevisionNumber);
         tarrifType.recCreatedBy(source.CreatedBy === null ? undefined : source.CreatedBy);
+        tarrifType.recCreatedDt(source.ModifiedDate === null ? undefined : source.CreatedDate);
         tarrifType.recLastUpdatedBy(source.ModifiedBy === null ? undefined : source.ModifiedBy);
         tarrifType.recLastUpdatedDt(source.ModifiedDate === null ? undefined : source.ModifiedDate);
         return tarrifType;

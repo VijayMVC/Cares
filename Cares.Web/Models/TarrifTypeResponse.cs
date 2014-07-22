@@ -7,8 +7,7 @@ namespace Cares.Web.Models
     /// </summary>
     public class TarrifTypeResponse
     { 
-        #region Private
-        #endregion
+        
         #region Constructors
         /// <summary>
         /// Constructor
@@ -18,8 +17,7 @@ namespace Cares.Web.Models
             ServerTarrifTypes = new List<TarrifType>();
         }
         #endregion
-        #region Protected
-        #endregion
+        
         #region Public
         /// <summary>
         /// Tarrif Types

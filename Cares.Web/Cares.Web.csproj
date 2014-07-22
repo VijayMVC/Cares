@@ -389,6 +389,8 @@
       <DependentUpon>Fleet.css</DependentUpon>
     </Content>
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Images\arrow-up-small.png" />
+    <Content Include="Content\Images\up-arrow-small.png" />
     <Content Include="Content\Images\arrow-down.png" />
     <Content Include="Content\Images\arrow-up.png" />
     <Content Include="Content\Images\delete.png" />

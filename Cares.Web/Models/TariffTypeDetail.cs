@@ -75,6 +75,11 @@ namespace Cares.Web.Models
         /// Modified Date
         /// </summary>
         public DateTime ModifiedDate { get; set; }
+
+        /// <summary>
+        /// Created Date
+        /// </summary>
+        public DateTime CreatedDate { get; set; }
         #endregion
     }
 }
