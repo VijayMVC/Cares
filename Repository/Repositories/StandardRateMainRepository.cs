@@ -75,6 +75,15 @@ namespace Repository.Repositories
 
             return new TariffRateResponse { TariffRates = tariffRates, TotalCount = DbSet.Count(query) };
         }
+        /// <summary>
+        /// Find By Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public override StandardRateMain Find(long id)
+        {
+            return DbSet.FirstOrDefault(standardRateMain => standardRateMain.StandardRtMainId == id);
+        }
         #endregion
     }
 }

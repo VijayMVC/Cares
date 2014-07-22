@@ -41,6 +41,44 @@ namespace Cares.Web.Areas.Api.Controllers
             }
             return tariffRateService.LoadTariffRates((request)).CreateFrom();
         }
+        /// <summary>
+        /// Update a Tariff Rate
+        /// </summary>
+        public void Post(StandardRateMain standardRateMain)
+        {
+            if (standardRateMain == null || !ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+
+            tariffRateService.Update(standardRateMain.CreateFrom());
+        }
+
+        /// <summary>
+        /// Adds a Tariff Rate
+        /// </summary>
+        public void Put(StandardRateMain standardRateMain)
+        {
+            if (standardRateMain == null || !ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+
+            tariffRateService.AddTariffRate(standardRateMain.CreateFrom());
+        }
+
+        /// <summary>
+        /// Delete a Tariff Rate
+        /// </summary>
+        public void Delete(StandardRateMain standardRateMain)
+        {
+            if (standardRateMain == null || !ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+
+            tariffRateService.DeleteTariffRate(standardRateMain.CreateFrom());
+        }
         #endregion
     }
 }

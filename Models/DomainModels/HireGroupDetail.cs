@@ -10,7 +10,7 @@ namespace Models.DomainModels
     {
         #region Persisted Properties
         /// <summary>
-        /// Vehicle Make ID
+        /// Hire Group Detail Id
         /// </summary>
         [Key]
         public long HireGroupDetailId { get; set; }
@@ -82,7 +82,7 @@ namespace Models.DomainModels
         /// <summary>
         /// Hire Group
         /// </summary>
-        public virtual HireGroup Hire { get; set; }
+        public virtual HireGroup HireGroup { get; set; }
         /// <summary>
         /// Vehicle Category
         /// </summary>

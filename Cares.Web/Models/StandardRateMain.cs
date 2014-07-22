@@ -33,6 +33,16 @@ namespace Cares.Web.Models
         /// End Date
         /// </summary>
         public DateTime EndDt { get; set; }
+        /// <summary>
+        /// Operation Id
+        /// </summary>
+        public long OperationId { get; set; }
+        /// <summary>
+        /// Tariff Type ID
+        /// </summary>
+        public long TariffTypeId { get; set; }
+
+        
         #endregion
     }
 }

@@ -69,8 +69,8 @@ namespace Repository.Repositories
             Expression<Func<TarrifType, bool>> query =
                             s => ((!(tarrifTypeRequest.OperationId > 0) || s.OperationId == tarrifTypeRequest.OperationId) &&
                                 (!(tarrifTypeRequest.MeasurementUnitId > 0) || s.MeasurementUnitId == tarrifTypeRequest.MeasurementUnitId) &&
-                                 (string.IsNullOrEmpty(tarrifTypeRequest.TarrifTypeCode) || s.TariffTypeCode.Contains(tarrifTypeRequest.TarrifTypeCode)))&&
-                                 (s.ChildTariffTypeId==0);
+                                 (string.IsNullOrEmpty(tarrifTypeRequest.TarrifTypeCode) || s.TariffTypeCode.Contains(tarrifTypeRequest.TarrifTypeCode))) &&
+                                 (s.ChildTariffTypeId == 0);
 
             IEnumerable<TarrifType> tarrifTypes = tarrifTypeRequest.IsAsc ? DbSet.Where(query)
                                             .OrderBy(tarrifTypeClause[tarrifTypeRequest.TarrifTypeByOrder]).Skip(fromRow).Take(toRow).ToList()
@@ -113,8 +113,5 @@ namespace Repository.Repositories
                   .FirstOrDefault(tarrifType => tarrifType.ChildTariffTypeId == id);
         }
         #endregion
-
-
-
     }
 }
