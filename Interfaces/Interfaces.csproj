@@ -94,7 +94,6 @@
     <Compile Include="Repository\IPaymentTermRepository.cs" />
     <Compile Include="Repository\IPricingStrategyRepository.cs" />
     <Compile Include="Repository\IProductRepository.cs" />
-    <Compile Include="Repository\IStandardRateMain.cs" />
     <Compile Include="Repository\IStandardRateRepository.cs" />
     <Compile Include="Repository\IStandardRateMainRepository.cs" />
     <Compile Include="Repository\ITarrifTypeRepository.cs" />

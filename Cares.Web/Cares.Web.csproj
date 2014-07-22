@@ -228,10 +228,12 @@
     <Compile Include="Areas\Api\Controllers\BusinessPartnerBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\GetBusinessPartnerDetailsController.cs" />
     <Compile Include="Areas\Api\Controllers\GetTariffDetailsController.cs" />
+    <Compile Include="Areas\Api\Controllers\GetTariffRateDetailController.cs" />
     <Compile Include="Areas\Api\Controllers\ProductBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessPartnerController.cs" />
     <Compile Include="Areas\Api\Controllers\ProductController.cs" />
     <Compile Include="Areas\Api\Controllers\TariffRateBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\TariffRateController.cs" />
     <Compile Include="Areas\Api\Controllers\TarrifTypeBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\TarrifTypeController.cs" />
     <Compile Include="Areas\BusinessPartner\BusinessPartnerAreaRegistration.cs" />
@@ -265,6 +267,7 @@
     <Compile Include="ModelMappers\BusinessPartnerMapper.cs" />
     <Compile Include="ModelMappers\BPRatingTypeMapper.cs" />
     <Compile Include="ModelMappers\BusinessLegalStatusMapper.cs" />
+    <Compile Include="ModelMappers\HireGroupDetailMapper.cs" />
     <Compile Include="ModelMappers\OccupationTypeMapper.cs" />
     <Compile Include="ModelMappers\CountryMapper.cs" />
     <Compile Include="ModelMappers\EmployeeMapper.cs" />
@@ -281,7 +284,10 @@
     <Compile Include="ModelMappers\ProductResponseMapper.cs" />
     <Compile Include="ModelMappers\ProductMapper.cs" />
     <Compile Include="ModelMappers\RegionMapper.cs" />
+    <Compile Include="ModelMappers\StandardRateMainMapper.cs" />
     <Compile Include="ModelMappers\TariffRateBaseResponseMapper.cs" />
+    <Compile Include="ModelMappers\TariffRateDetailResponseMapper.cs" />
+    <Compile Include="ModelMappers\TariffRateResponseMapper.cs" />
     <Compile Include="ModelMappers\TariffTypeBaseResponseMapper.cs" />
     <Compile Include="ModelMappers\TarrifTypeDetailResponseMapper.cs" />
     <Compile Include="ModelMappers\TarrifTypeMapper.cs" />
@@ -298,6 +304,7 @@
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\HireGroup.cs" />
     <Compile Include="Models\BusinessPartnerCompany.cs" />
+    <Compile Include="Models\HireGroupDetail.cs" />
     <Compile Include="Models\OccupationType.cs" />
     <Compile Include="Models\PaymentTerm.cs" />
     <Compile Include="Models\Category.cs" />
@@ -313,7 +320,10 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductResponse.cs" />
     <Compile Include="Models\Region.cs" />
+    <Compile Include="Models\StandardRateMain.cs" />
     <Compile Include="Models\TariffRateBaseResponse.cs" />
+    <Compile Include="Models\TariffRateDetailResponse.cs" />
+    <Compile Include="Models\TariffRateResponse.cs" />
     <Compile Include="Models\TariffTypeDetail.cs" />
     <Compile Include="Models\TariffTypeDetailResponse.cs" />
     <Compile Include="Models\TarrifType.cs" />
@@ -380,8 +390,17 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CSS\architecture.css" />
+    <Content Include="Content\CSS\architecture.min.css">
+      <DependentUpon>architecture.css</DependentUpon>
+    </Content>
     <Content Include="Content\CSS\bootstrap-rtl.css" />
+    <Content Include="Content\CSS\bootstrap-rtl.min.css">
+      <DependentUpon>bootstrap-rtl.css</DependentUpon>
+    </Content>
     <Content Include="Content\CSS\PagedList.css" />
+    <Content Include="Content\CSS\PagedList.min.css">
+      <DependentUpon>PagedList.css</DependentUpon>
+    </Content>
     <Content Include="Content\CSS\spinner.gif" />
     <Content Include="Content\Fleet.css">
       <DependentUpon>Fleet.less</DependentUpon>
@@ -405,11 +424,17 @@
       <DependentUpon>MainSite.css</DependentUpon>
     </Content>
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\PagedList.min.css">
+      <DependentUpon>PagedList.css</DependentUpon>
+    </Content>
     <Content Include="Content\Pricing.css">
       <DependentUpon>Pricing.less</DependentUpon>
     </Content>
     <Content Include="Content\Pricing.min.css">
       <DependentUpon>Pricing.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.min.css">
+      <DependentUpon>Site.css</DependentUpon>
     </Content>
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -426,23 +451,77 @@
     <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
     <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery-ui.min.css">
+      <DependentUpon>jquery-ui.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.min.css">
+      <DependentUpon>jquery.ui.accordion.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.min.css">
+      <DependentUpon>jquery.ui.all.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.min.css">
+      <DependentUpon>jquery.ui.autocomplete.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.min.css">
+      <DependentUpon>jquery.ui.base.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.min.css">
+      <DependentUpon>jquery.ui.button.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.min.css">
+      <DependentUpon>jquery.ui.core.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.min.css">
+      <DependentUpon>jquery.ui.datepicker.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.min.css">
+      <DependentUpon>jquery.ui.dialog.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.menu.css" />
+    <Content Include="Content\themes\base\jquery.ui.menu.min.css">
+      <DependentUpon>jquery.ui.menu.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.min.css">
+      <DependentUpon>jquery.ui.progressbar.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.min.css">
+      <DependentUpon>jquery.ui.resizable.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.min.css">
+      <DependentUpon>jquery.ui.selectable.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.min.css">
+      <DependentUpon>jquery.ui.slider.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.spinner.css" />
+    <Content Include="Content\themes\base\jquery.ui.spinner.min.css">
+      <DependentUpon>jquery.ui.spinner.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.min.css">
+      <DependentUpon>jquery.ui.tabs.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.min.css">
+      <DependentUpon>jquery.ui.theme.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.tooltip.css" />
+    <Content Include="Content\themes\base\jquery.ui.tooltip.min.css">
+      <DependentUpon>jquery.ui.tooltip.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\minified\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -861,6 +940,9 @@
       <DependentUpon>Fleet.css</DependentUpon>
     </Content>
     <Content Include="Areas\Pricing\Views\Tarrif\TariffRate.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tarrif\_TariffRateEditor.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tarrif\_HireGroupRateDialog.cshtml" />
+    <Content Include="Content\TariffRate.less" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />

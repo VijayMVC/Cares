@@ -166,7 +166,7 @@ define("tarrifType/tarrifType.viewModel",
                     createTariffType = function () {
                         var tariffType = new model.TarrifTypeDetail();
                           // Select the newly added tariffType
-                        addTarrifType(tariffType);
+                            addTarrifType(tariffType);
                     },
                      // Save Tariff Type
                     onSaveTariffType = function (tariffType) {

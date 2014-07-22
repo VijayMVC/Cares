@@ -9,6 +9,10 @@ namespace Models.RequestModels
     public class TariffRateRequest : GetPagedListRequest
     {
         /// <summary>
+        /// Tariff Type Id
+        /// </summary>
+        public string TariffTypeId { get; set; }
+        /// <summary>
         /// Tariff Rate Code
         /// </summary>
         public string TariffRateCode { get; set; }
