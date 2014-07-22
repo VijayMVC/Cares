@@ -50,6 +50,10 @@
     <Compile Include="IServices\IBPRatingTypeService.cs" />
     <Compile Include="IServices\IBusinessLegalStatusService.cs" />
     <Compile Include="IServices\IBusinessPartnerBaseDataService.cs" />
+    <Compile Include="IServices\IBusinessPartnerIndividualService.cs" />
+    <Compile Include="IServices\IBusinessPartnerCompanyService.cs" />
+    <Compile Include="IServices\ICountryService.cs" />
+    <Compile Include="IServices\IOccupationTypeService.cs" />
     <Compile Include="IServices\IPaymentTermService.cs" />
     <Compile Include="IServices\ICompanyService.cs" />
     <Compile Include="IServices\IDepartmentService.cs" />
@@ -69,10 +73,12 @@
     <Compile Include="Repository\IBaseRepository.cs" />
     <Compile Include="Repository\IApplicationUserRepository.cs" />
     <Compile Include="Repository\IBpRatingTypeRepository.cs" />
+    <Compile Include="Repository\IBusinessPartnerCompanyRepository.cs" />
     <Compile Include="Repository\IBusinessPartnerRepository.cs" />
     <Compile Include="Repository\IBusinessLegalStatusRepository.cs" />
     <Compile Include="Repository\IBusinessSegmentRepository.cs" />
     <Compile Include="Repository\ICategoryRepository.cs" />
+    <Compile Include="Repository\IBusinessPartnerIndividualRepository.cs" />
     <Compile Include="Repository\ICompanyRepository.cs" />
     <Compile Include="Repository\IFleetPoolRepository.cs" />
     <Compile Include="Repository\ICountryRepository.cs" />
@@ -82,6 +88,7 @@
     <Compile Include="Repository\IMenuRightRepository.cs" />
     <Compile Include="Repository\IDepartmentRepository.cs" />
     <Compile Include="Repository\IEmployeeRepository.cs" />
+    <Compile Include="Repository\IOccupationTypeRepository.cs" />
     <Compile Include="Repository\IOperationRepository.cs" />
     <Compile Include="Repository\IOrgGroupRepository.cs" />
     <Compile Include="Repository\IPaymentTermRepository.cs" />

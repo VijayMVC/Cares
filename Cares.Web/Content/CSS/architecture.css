@@ -109,9 +109,12 @@ div#spinner
 /* Common */
 
 .searchFilterSection {
-    margin-top: 20px;
+    margin-top: 10px;
 }
-
+.hr {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
 .searchFilterResultSection {
     margin-top: 10px;
 }
@@ -123,14 +126,21 @@ div#spinner
 .selectedRow {
     background: silver;
 }
-
+.well {
+    margin-bottom: 0;
+    padding: 12px;
+}
+.form-group {
+    margin-bottom: 8px;
+}
 .icon-up {
-    background-image: url('/Content/images/arrow-up.png');
+    background-image: url('/Content/images/arrow-up-small.png');
     background-repeat: no-repeat;
     background-position: center;
     width: 12px;
     height: 12px;
     display: inline-block;
+    
 }
 
 .icon-down {

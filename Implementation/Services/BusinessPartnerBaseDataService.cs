@@ -18,6 +18,11 @@ namespace Implementation.Services
         private readonly IBpRatingTypeRepository bpRatingTypeRepository;
         private readonly IBusinessPartnerRepository businessPartnerRepository;
         private readonly IEmployeeRepository employeeRepository;
+
+        private readonly IOccupationTypeRepository occupationTypeRepository;
+        private readonly IBusinessPartnerCompanyRepository businessPartnerCompanyRepository;
+        private readonly ICountryRepository passportCountryRepository;
+
         #endregion
         #region Constructor
 
@@ -26,7 +31,10 @@ namespace Implementation.Services
             , IBusinessLegalStatusRepository businessLegalStatusRepository
             , IBpRatingTypeRepository bpRatingTypeRepository
             , IBusinessPartnerRepository businessPartnerRepository
-            ,IEmployeeRepository employeeRepository)
+            ,IEmployeeRepository employeeRepository
+            , IOccupationTypeRepository occupationTypeRepository
+            , IBusinessPartnerCompanyRepository businessPartnerCompanyRepository
+            , ICountryRepository passportCountryRepository)
         {
             this.companyRepository = companyRepository;
             this.paymentTermRepository = paymentTermRepository;
@@ -34,6 +42,9 @@ namespace Implementation.Services
             this.bpRatingTypeRepository = bpRatingTypeRepository;
             this.businessPartnerRepository = businessPartnerRepository;
             this.employeeRepository = employeeRepository;
+            this.occupationTypeRepository = occupationTypeRepository;
+            this.businessPartnerCompanyRepository = businessPartnerCompanyRepository;
+            this.passportCountryRepository = passportCountryRepository;
         }
         #endregion
         #region Public
@@ -47,6 +58,9 @@ namespace Implementation.Services
             response.ResponseBPRatingTypes = bpRatingTypeRepository.GetAll();
             response.ResponseBusinessPartners = businessPartnerRepository.GetAll();
             response.ResponseDealingEmployees = employeeRepository.GetAll();
+            response.ResponseOccupationTypes = occupationTypeRepository.GetAll();
+            response.ResponseBusinessPartnerCompanies = businessPartnerCompanyRepository.GetAll();
+            response.ResponsePassportCountries = passportCountryRepository.GetAll();
 
             return response;
         }

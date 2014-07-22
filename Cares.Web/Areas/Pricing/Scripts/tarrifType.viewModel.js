@@ -46,6 +46,8 @@ define("tarrifType/tarrifType.viewModel",
                     isEditable = ko.observable(false),
                     // Pagination
                     pager = ko.observable(),
+                    // Show Filter Section
+                    filterSectionVisilble = ko.observable(false),
                     // Tarrif Type Code filter
                     tarrifTypeCodeFilter = ko.observable(),
                     // Company Filter
@@ -204,7 +206,7 @@ define("tarrifType/tarrifType.viewModel",
                                     selectedTarrifType().company(data.Company),
                                     selectedTarrifType().operation(data.Operation),
                                     selectedTarrifType().gracePeriod(data.GracePeriod),
-                                    selectedTarrifType().effectiveDate(data.EffectiveDate),
+                                    selectedTarrifType().effectiveDate(moment(data.EffectiveDate).format(ist.datePattern)),                                    
                                     selectedTarrifType().durationFrom(data.DurationFrom),
                                     selectedTarrifType().revisionNumber(data.RevisionNumber),
                                     selectedTarrifType().durationTo(data.DurationTo),
@@ -258,8 +260,11 @@ define("tarrifType/tarrifType.viewModel",
                             success: function (data) {
                                 addTarrifType(model.TariffTypeClientMapper(data.TarrifType));
                                 revisions.removeAll();
-                                ko.utils.arrayPushAll(revisions(), data.TarrifTypeRevisions);
-                                revisions.valueHasMutated();
+                                _.each(data.TarrifTypeRevisions, function (item) {
+                                    revisions.push(new model.TariffTypeClientMapper(item));
+                                });
+                                //ko.utils.arrayPushAll(revisions(), data.TarrifTypeRevisions);
+                                //revisions.valueHasMutated();
                                 isLoadingTarrifTypes(false);
                             },
                             error: function () {
@@ -267,6 +272,14 @@ define("tarrifType/tarrifType.viewModel",
                                 toastr.error("Error!");
                             }
                         });
+                    },
+                    // Collapase filter section
+                    collapseFilterSection = function() {
+                        filterSectionVisilble(false);
+                    },
+                    //Show filter section
+                    showFilterSection = function () {
+                        filterSectionVisilble(true);
                     },
                      // close Product Editor
                     closeTariffTypeEditor = function () {
@@ -319,7 +332,9 @@ define("tarrifType/tarrifType.viewModel",
                     saveTariffType: saveTariffType,
                     getTarrifTypeById: getTarrifTypeById,
                     closeTariffTypeEditor: closeTariffTypeEditor,
-
+                    filterSectionVisilble: filterSectionVisilble,
+                    collapseFilterSection: collapseFilterSection,
+                    showFilterSection: showFilterSection
                     // Utility Methods
                 };
             })()

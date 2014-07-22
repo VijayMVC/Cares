@@ -34,6 +34,12 @@ namespace Repository
             unityContainer.RegisterType<IHireGroupRepository, HireGroupRepository>();
             unityContainer.RegisterType<IHireGroupDetailRepository, HireGroupDetailRpository>();
             unityContainer.RegisterType<IStandardRateRepository, StandardRateRepository>();
+              unityContainer.RegisterType<IBusinessPartnerIndividualRepository, BusinessPartnerIndividaulRepository>();
+            unityContainer.RegisterType<IOccupationTypeRepository, OccupationTypeRepository>();
+            unityContainer.RegisterType<IBusinessPartnerCompanyRepository, BusinessPartnerCompanyRepository>();
+            unityContainer.RegisterType<ICountryRepository, CountryRepository>();
+
+
             unityContainer.RegisterType<IStandardRateMainRepository, StandardRateMainRepository>();
         }
     }

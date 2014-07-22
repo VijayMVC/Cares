@@ -10,9 +10,11 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/Bundle/BaseLibs")
+    
     @Scripts.Render("~/bundles/bootstrap" + (Cares.Web.Helper.CultureHelper.IsRighToLeft() ? "-rtl" : ""))
     <script src="~/Scripts/App/requireConfig.js"></script>
     <script src="~/Scripts/App/architecture.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Content/MainSite.css" />
 
 
 </head>
@@ -40,8 +42,7 @@
         @RenderBody()
         <div id="spinner">
         </div>
-        <hr />
-        <hr />
+        <hr />        
         <footer>
             <p>&copy; @DateTime.Now.Year - CaReS</p>
         </footer>

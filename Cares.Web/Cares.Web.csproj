@@ -265,8 +265,11 @@
     <Compile Include="ModelMappers\BusinessPartnerMapper.cs" />
     <Compile Include="ModelMappers\BPRatingTypeMapper.cs" />
     <Compile Include="ModelMappers\BusinessLegalStatusMapper.cs" />
+    <Compile Include="ModelMappers\OccupationTypeMapper.cs" />
+    <Compile Include="ModelMappers\CountryMapper.cs" />
     <Compile Include="ModelMappers\EmployeeMapper.cs" />
     <Compile Include="ModelMappers\HireGroupMapper.cs" />
+    <Compile Include="ModelMappers\BusinessPartnerCompanyMapper.cs" />
     <Compile Include="ModelMappers\PaymentTermMapper.cs" />
     <Compile Include="ModelMappers\FleetPoolMapper.cs" />
     <Compile Include="ModelMappers\BusinessPartnerResponseBaseDataMapper.cs" />
@@ -287,6 +290,7 @@
     <Compile Include="ModelMappers\VehicleCategoryMapper.cs" />
     <Compile Include="ModelMappers\VehicleMakesMapper.cs" />
     <Compile Include="ModelMappers\VehicleModelMapper.cs" />
+    <Compile Include="Models\BusinessPartnerIndividual.cs" />
     <Compile Include="Models\BusinessPartnerDetail.cs" />
     <Compile Include="ModelMappers\TarrifTypeResponseMapper.cs" />
     <Compile Include="Models\BusinessPartnerListView.cs" />
@@ -295,6 +299,8 @@
     <Compile Include="Models\BusinessLegalStatus.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\HireGroup.cs" />
+    <Compile Include="Models\BusinessPartnerCompany.cs" />
+    <Compile Include="Models\OccupationType.cs" />
     <Compile Include="Models\PaymentTerm.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Company.cs" />
@@ -388,6 +394,8 @@
       <DependentUpon>Fleet.css</DependentUpon>
     </Content>
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Images\arrow-up-small.png" />
+    <Content Include="Content\Images\up-arrow-small.png" />
     <Content Include="Content\Images\arrow-down.png" />
     <Content Include="Content\Images\arrow-up.png" />
     <Content Include="Content\Images\delete.png" />

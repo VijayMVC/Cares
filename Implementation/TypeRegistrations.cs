@@ -33,7 +33,12 @@ namespace Implementation
              unityContainer.RegisterType<IBPRatingTypeService, BPRatingTypeService>();
              unityContainer.RegisterType<IBusinessLegalStatusService, BusinessLegalStatusService>();
              unityContainer.RegisterType<IBusinessPartnerBaseDataService, BusinessPartnerBaseDataService>();
-             unityContainer.RegisterType<ITariffRateService, TariffRateService>();
+             unityContainer.RegisterType<ITariffRateService, TariffRateService>();         
+                  unityContainer.RegisterType<IBusinessPartnerCompanyService, BusinessPartnerCompanyService>();
+
+             unityContainer.RegisterType<IBusinessPartnerIndividualService, BusinessPartnerIndividualService>();
+             unityContainer.RegisterType<IOccupationTypeService, OccupationTypeService>();
+             unityContainer.RegisterType<ICountryService, CountryService>();
         }
     }
 }

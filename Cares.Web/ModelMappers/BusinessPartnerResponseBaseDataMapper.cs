@@ -21,7 +21,10 @@ namespace Cares.Web.ModelMappers
                 ResponseBusinessPartners = source.ResponseBusinessPartners.Select(x => x.CreateFrom()),
                 ResponseCompanies = source.ResponseCompanies.Select(x => x.CreateFrom()),
                 ResponseDealingEmployees = source.ResponseDealingEmployees.Select(x=>x.CreateFrom()),
-                ResponseBusinessLegalStatuses = source.ResponseBusinessLegalStatuses.Select(x => x.CreateFrom())
+                ResponseBusinessLegalStatuses = source.ResponseBusinessLegalStatuses.Select(x => x.CreateFrom()),
+                ResponseBusinessPartnerCompanies = source.ResponseBusinessPartnerCompanies.Select(x => x.CreateFrom()),
+                ResponseOccupationTypes = source.ResponseOccupationTypes.Select(x => x.CreateFrom()),
+                ResponsePassportCountries = source.ResponsePassportCountries.Select(x => x.CreateFrom()),
             };
         }
         #endregion
