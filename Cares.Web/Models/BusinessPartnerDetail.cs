@@ -6,6 +6,8 @@
     public sealed class BusinessPartnerDetail
     {
         #region Public Properties
+
+        #region Business Partner Properties
         /// <summary>
         /// Business Partner Id
         /// </summary>
@@ -67,6 +69,13 @@
         /// Business Legal Status Id
         /// </summary>
         public int? BusinessLegalStatusId { get; set; }
+
+        #endregion
+
+        /// <summary>
+        /// Business Partner Individual 
+        /// </summary>
+        public BusinessPartnerIndividual BusinessPartnerIndividual { get; set; }
 
         #endregion
     }

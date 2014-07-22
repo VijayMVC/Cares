@@ -1,6 +1,4 @@
-﻿using System;
-using Cares.Web.Models;
-using Models.DomainModels;
+﻿using Models.DomainModels;
 namespace Cares.Web.ModelMappers
 {
     public static class BusinessPartnerMapper
