@@ -1,4 +1,5 @@
 ﻿using System;
+using Models.DomainModels;
 
 namespace Cares.Web.Models
 {
@@ -9,7 +10,10 @@ namespace Cares.Web.Models
     {
         #region Public Properties
         
-        public long BusinessPartnerId { get; set; }
+        /// <summary>
+        /// Business Partner Company Id
+        /// </summary>
+        public long BusinessPartnerCompanyId { get; set; }
         /// <summary>
         /// Business Partner Company Code
         /// </summary>
@@ -34,6 +38,11 @@ namespace Cares.Web.Models
         /// Business Segment ID
         /// </summary>
         public int BusinessSegmentId { get; set; }
+        /// <summary>
+        /// Business Partner Id
+        /// </summary>
+        public long BusinessPartnerId { get; set; }
+
  
         #endregion
     }

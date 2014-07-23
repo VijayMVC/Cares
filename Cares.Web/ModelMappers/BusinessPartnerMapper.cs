@@ -80,7 +80,9 @@ namespace Cares.Web.ModelMappers
                 DealingEmployeeId = source.DealingEmployeeId,
                 CompanyId = source.CompanyId,
                 BusinessPartnerIsValid = true,
-                BusinessPartnerEmailAddress = source.BusinessPartnerEmailAddress
+                BusinessPartnerEmailAddress = source.BusinessPartnerEmailAddress,
+                BusinessPartnerIndividual = source.BusinessPartnerIndividual.CreateFrom()
+
             };
         }
 

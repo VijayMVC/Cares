@@ -17,7 +17,7 @@ namespace Cares.Web.ModelMappers
             {
                 return new ApiModel.BusinessPartnerCompany
                 {
-                    BusinessPartnerId = source.BusinessPartnerId,
+                    BusinessPartnerCompanyId = source.BusinessPartnerCompanyId,
                     BusinessPartnerCompanyCode = source.BusinessPartnerCompanyCode,
                     BusinessPartnerCompanyName = source.BusinessPartnerCompanyName
                 };
@@ -31,7 +31,7 @@ namespace Cares.Web.ModelMappers
         {
             return new DomainModel.BusinessPartnerCompany
             {
-                BusinessPartnerId = source.BusinessPartnerId,
+                BusinessPartnerCompanyId = source.BusinessPartnerCompanyId,
                 BusinessPartnerCompanyCode = source.BusinessPartnerCompanyCode,
                 BusinessPartnerCompanyName = source.BusinessPartnerCompanyName
             };

@@ -9,12 +9,11 @@ namespace Models.DomainModels
     public class BusinessPartnerCompany
     {
         #region Persisted Properties
+
         /// <summary>
-        /// Business Partner Id
+        /// Business Partner Company Id
         /// </summary>
-        [Required]
-        [Key]
-        public long BusinessPartnerId { get; set; }
+        public long BusinessPartnerCompanyId { get; set; }
         /// <summary>
         /// Business Partner Company Code
         /// </summary>
@@ -86,7 +85,12 @@ namespace Models.DomainModels
         /// User Domain Key
         /// </summary>
         public long UserDomainKey { get; set; }
-        
+        /// <summary>
+        /// Business Partner Id
+        /// </summary>
+        [Required]
+        public long BusinessPartnerId { get; set; }
+
         #endregion
 
         #region Reference Properties
@@ -94,6 +98,11 @@ namespace Models.DomainModels
         /// Business Segment
         /// </summary>
         public virtual BusinessSegment BusinessSegment { get; set; }
+
+        ///// <summary>
+        ///// Business Partner
+        ///// </summary>
+        //public virtual BusinessPartner BusinessPartner { get; set; }
 
         #endregion
     }
