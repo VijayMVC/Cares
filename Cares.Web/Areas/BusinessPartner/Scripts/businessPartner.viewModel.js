@@ -147,7 +147,7 @@ define("businessPartner/businessPartner.viewModel",
                     },
                     // Create Business Partner
                     createBusinessPartner = function () {
-                        var businessPartner = new model.BusinessPartnerDetail.Create();
+                        var businessPartner = model.BusinessPartnerDetail.Create();
 
                         //businessPartner.assignCategories(categories());
                         //businessPartners.splice(0, 0, businessPartner);
@@ -171,6 +171,7 @@ define("businessPartner/businessPartner.viewModel",
                         var flag = true;
                         if (!selectedBusinessPartner().isValid()) {
                             selectedBusinessPartner().errors.showAllMessages();
+                            selectedBusinessPartner().businessPartnerIndividual().errors.showAllMessages();
                             flag = false;
                         }
                         return flag;

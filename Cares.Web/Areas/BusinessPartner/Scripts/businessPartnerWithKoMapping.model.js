@@ -29,22 +29,11 @@
    BusinessPartnerDetail = function (specifiedKey, specifiedBPName, specifiedDescription, specifiedisIndividual,
    specifiedisSystemGuarantor, specifiednonSystemGuarantor, specifiedbusinessPartnerEmailAddress,
    specifiedbusinessPartnerIsValid, specifiedCompany, specifiedPaymentTerm, specifiedBPRatigType,
-   specifiedBusinessLegalStatus, specifiedSystemGuarantor, specifiedDealingEmployee,
-   specifiedIndividualFirstName, specifiedIndividualMiddleName, specifiedIndividualLastName,
-   specifiedIndividualInitials, specifiedIndividualLiscenseNumber, specifiedIndividualLiscenseExpiryDate,
-   specifiedIndividualGenderStatus, specifiedIndividualPassportNumber, specifiedIndividualNicNumber,
-   specifiedIndividualMaritalStatusCode, specifiedIndividualTaxRegisterationCode, specifiedIndividualTaxNumber,
-   specifiedIndividualDateOfBirth, specifiedIndividualOccupationTypeId, specifiedIndividualIsCompanyExternal,
-   specifiedIndividualCompanyName, specifiedIndividualCompanyAddress, specifiedIndividualCompanyPhone,
-   specifiedIndividualBusinessPartnerCompnayId, specifiedIndividualNicExpiryDate, specifiedIndividualPassportExpiryDate,
-   specifiedIndividualPassportCountryId, specifiedIndividualIqamaNo, specifiedIndividualIqamaExpiryDate,
-   specifiedBusinessPartnerCompanyCode, specifiedBusinessPartnerCompanyName, specifiedBusinessPartnerCompanyEstablishedSince,
-   specifiedBusinessPartnerCompanySwiftCode, specifiedBusinessPartnerCompanyAccountNumber, specifiedBusinessPartnerCompanyBusinessSegmentId) {
-       
+   specifiedBusinessLegalStatus, specifiedSystemGuarantor, specifiedDealingEmployee)
+   { 
        // ReSharper restore InconsistentNaming
        var // Reference to this object
-           self,
-           
+           self,           
            // Main Top Section 
            // Unique key
            businessPartnerId = ko.observable(specifiedKey),
@@ -73,70 +62,9 @@
            // Dealing Employee Id
            dealingEmployeeId = ko.observable(specifiedDealingEmployee),
            
+           // Business Partner Individual
+           businessPartnerIndividual = ko.observable(BusinessPartnerIndividual.Create()),
 
-           // First tab - Individual Info
-           // Individual First Name
-           individualFirstName = ko.observable(specifiedIndividualFirstName).extend({ required: true }),
-           // Individual Middle Name
-           individualMiddleName = ko.observable(specifiedIndividualMiddleName),
-            // Individual Last Name
-           individualLastName = ko.observable(specifiedIndividualLastName).extend({ required: true }),
-            // Individual Initials
-           individualInitials = ko.observable(specifiedIndividualInitials),
-            // Individual Liscense Number
-           individualLiscenseNumber = ko.observable(specifiedIndividualLiscenseNumber),
-           // Individual Liscense Expiry Date
-           individualLiscenseExpiryDate = ko.observable(specifiedIndividualLiscenseExpiryDate),
-           // Individual Gender Status
-           individualGenderStatus = ko.observable(specifiedIndividualGenderStatus),
-           // Individual Passport Number
-           individualPassportNumber = ko.observable(specifiedIndividualPassportNumber),
-           // Individual Nic Number
-           individualNicNumber = ko.observable(specifiedIndividualNicNumber),
-           // Individual Marital Status Code
-           individualMaritalStatusCode = ko.observable(specifiedIndividualMaritalStatusCode),
-           // Individual Tax Registration Code
-           individualTaxRegisterationCode = ko.observable(specifiedIndividualTaxRegisterationCode),
-           // Individual Tax Number
-           individualTaxNumber = ko.observable(specifiedIndividualTaxNumber),
-           // Individual Date Of Birth
-           individualDateOfBirth = ko.observable(specifiedIndividualDateOfBirth).extend({ required: true }),
-           // Individual Occupation Type Id
-           individualOccupationTypeId = ko.observable(specifiedIndividualOccupationTypeId),
-           // Individual IsCompanyExternal
-           individualIsCompanyExternal = ko.observable(specifiedIndividualIsCompanyExternal),
-           // Individual Company Name
-           individualCompanyName = ko.observable(specifiedIndividualCompanyName),
-           // Individual Company Address
-           individualCompanyAddress = ko.observable(specifiedIndividualCompanyAddress),
-           // Individual Company Phone
-           individualCompanyPhone = ko.observable(specifiedIndividualCompanyPhone),
-           // Individual Business Partner Compnay Id
-           individualBusinessPartnerCompnayId = ko.observable(specifiedIndividualBusinessPartnerCompnayId),
-           // Individual Nic Expiry Date
-           individualNicExpiryDate = ko.observable(specifiedIndividualNicExpiryDate),
-           // Individual Passport Expiry Date
-           individualPassportExpiryDate = ko.observable(specifiedIndividualPassportExpiryDate),
-            // Individual Passport Country Id
-           individualPassportCountryId = ko.observable(specifiedIndividualPassportCountryId),
-           // Individual Iqama No
-           individualIqamaNo = ko.observable(specifiedIndividualIqamaNo),
-            // Individual Iqama Expiry Date
-           individualIqamaExpiryDate = ko.observable(specifiedIndividualIqamaExpiryDate),
-           
-           // Business Partner Company Code
-           businessPartnerCompanyCode = ko.observable(specifiedBusinessPartnerCompanyCode),
-           // Business Partner Company Name
-           businessPartnerCompanyName = ko.observable(specifiedBusinessPartnerCompanyName),
-           // Business Partner Company Established Since
-           businessPartnerCompanyEstablishedSince = ko.observable(specifiedBusinessPartnerCompanyEstablishedSince),
-           // Business Partner Company Swift Code
-           businessPartnerCompanySwiftCode = ko.observable(specifiedBusinessPartnerCompanySwiftCode),
-           // Business Partner Company Account Number
-           businessPartnerCompanyAccountNumber = ko.observable(specifiedBusinessPartnerCompanyAccountNumber),
-           // Business Partner Company Established Since
-           businessPartnerCompanyBusinessSegmentId = ko.observable(specifiedBusinessPartnerCompanyBusinessSegmentId),
-           
            // Is Busy
            isBusy = ko.observable(false),
            // Errors
@@ -144,14 +72,11 @@
                isIndividual: isIndividual,
                isSystemGuarantor: isSystemGuarantor,
                companyId: companyId,
-               paymentTermId: paymentTermId,
-               individualFirstName: individualFirstName,
-               individualLastName: individualLastName,
-               individualDateOfBirth: individualDateOfBirth
+               paymentTermId: paymentTermId
            }),
            // Is Valid
            isValid = ko.computed(function() {
-               return errors().length === 0;
+               return errors().length === 0 && businessPartnerIndividual().errors().length === 0;
            }),
            // True if the booking has been changed
            // ReSharper disable InconsistentNaming
@@ -172,39 +97,6 @@
                businessLegalStatusId: businessLegalStatusId,
                systemGuarantorId: systemGuarantorId,
                dealingEmployeeId: dealingEmployeeId,
-               
-               // First Tab Controls
-               individualFirstName: individualFirstName,
-               individualMiddleName: individualMiddleName,
-               individualLastName: individualLastName,
-               individualInitials: individualInitials,
-               individualLiscenseNumber: individualLiscenseNumber,
-               individualLiscenseExpiryDate: individualLiscenseExpiryDate,
-               individualGenderStatus: individualGenderStatus,
-               individualPassportNumber: individualPassportNumber,
-               individualNicNumber: individualNicNumber,
-               individualMaritalStatusCode: individualMaritalStatusCode,
-               individualTaxRegisterationCode: individualTaxRegisterationCode,
-               individualTaxNumber: individualTaxNumber,
-               individualDateOfBirth: individualDateOfBirth,
-               individualOccupationTypeId: individualOccupationTypeId,
-               individualIsCompanyExternal: individualIsCompanyExternal,
-               individualCompanyName: individualCompanyName,
-               individualCompanyAddress: individualCompanyAddress,
-               individualCompanyPhone: individualCompanyPhone,
-               individualBusinessPartnerCompnayId: individualBusinessPartnerCompnayId,
-               individualNicExpiryDate: individualNicExpiryDate,
-               individualPassportExpiryDate: individualPassportExpiryDate,
-               individualPassportCountryId: individualPassportCountryId,
-               individualIqamaNo: individualIqamaNo,
-               individualIqamaExpiryDate: individualIqamaExpiryDate,
-               
-               businessPartnerCompanyCode:businessPartnerCompanyCode,
-               businessPartnerCompanyName:businessPartnerCompanyName,
-               businessPartnerCompanyEstablishedSince: businessPartnerCompanyEstablishedSince,
-               businessPartnerCompanySwiftCode: businessPartnerCompanySwiftCode,
-               businessPartnerCompanyAccountNumber: businessPartnerCompanyAccountNumber,
-               businessPartnerCompanyBusinessSegmentId: businessPartnerCompanyBusinessSegmentId
            }),
            // Has Changes
            hasChanges = ko.computed(function() {
@@ -229,32 +121,8 @@
            businessLegalStatusId: businessLegalStatusId,
            systemGuarantorId: systemGuarantorId,
            dealingEmployeeId: dealingEmployeeId,
-           
-           // First Tab Controls
-           individualFirstName: individualFirstName,
-           individualMiddleName: individualMiddleName,
-           individualLastName: individualLastName,
-           individualInitials: individualInitials,
-           individualLiscenseNumber: individualLiscenseNumber,
-           individualLiscenseExpiryDate: individualLiscenseExpiryDate,
-           individualGenderStatus: individualGenderStatus,
-           individualPassportNumber: individualPassportNumber,
-           individualNicNumber: individualNicNumber,
-           individualMaritalStatusCode: individualMaritalStatusCode,
-           individualTaxRegisterationCode: individualTaxRegisterationCode,
-           individualTaxNumber: individualTaxNumber,
-           individualDateOfBirth: individualDateOfBirth,
-           individualOccupationTypeId: individualOccupationTypeId,
-           individualIsCompanyExternal: individualIsCompanyExternal,
-           individualCompanyName: individualCompanyName,
-           individualCompanyAddress: individualCompanyAddress,
-           individualCompanyPhone: individualCompanyPhone,
-           individualBusinessPartnerCompnayId: individualBusinessPartnerCompnayId,
-           individualNicExpiryDate: individualNicExpiryDate,
-           individualPassportExpiryDate: individualPassportExpiryDate,
-           individualPassportCountryId: individualPassportCountryId,
-           individualIqamaNo: individualIqamaNo,
-           individualIqamaExpiryDate:individualIqamaExpiryDate,
+              
+           businessPartnerIndividual:businessPartnerIndividual,
 
            errors: errors,
            isValid: isValid,
@@ -266,9 +134,172 @@
        return self;
    };
 
+    var
+// Business Partner entity
+// ReSharper disable InconsistentNaming
+BusinessPartnerIndividual = function (
+specifiedIndividualFirstName, specifiedIndividualMiddleName, specifiedIndividualLastName,
+specifiedIndividualInitials, specifiedIndividualLiscenseNumber, specifiedIndividualLiscenseExpiryDate,
+specifiedIndividualGenderStatus, specifiedIndividualPassportNumber, specifiedIndividualNicNumber,
+specifiedIndividualMaritalStatusCode, specifiedIndividualTaxRegisterationCode, specifiedIndividualTaxNumber,
+specifiedIndividualDateOfBirth, specifiedIndividualOccupationTypeId, specifiedIndividualIsCompanyExternal,
+specifiedIndividualCompanyName, specifiedIndividualCompanyAddress, specifiedIndividualCompanyPhone,
+specifiedIndividualBusinessPartnerCompnayId, specifiedIndividualNicExpiryDate, specifiedIndividualPassportExpiryDate,
+specifiedIndividualPassportCountryId, specifiedIndividualIqamaNo, specifiedIndividualIqamaExpiryDate
+    ) {
+
+    // ReSharper restore InconsistentNaming
+    var // Reference to this object
+        // First tab - Individual Info
+        // Individual First Name
+        individualFirstName = ko.observable(specifiedIndividualFirstName).extend({ required: true }),
+        // Individual Middle Name
+        individualMiddleName = ko.observable(specifiedIndividualMiddleName),
+         // Individual Last Name
+        individualLastName = ko.observable(specifiedIndividualLastName).extend({ required: true }),
+         // Individual Initials
+        individualInitials = ko.observable(specifiedIndividualInitials),
+         // Individual Liscense Number
+        individualLiscenseNumber = ko.observable(specifiedIndividualLiscenseNumber),
+        // Individual Liscense Expiry Date
+        individualLiscenseExpiryDate = ko.observable(specifiedIndividualLiscenseExpiryDate),
+        // Individual Gender Status
+        individualGenderStatus = ko.observable(specifiedIndividualGenderStatus),
+        // Individual Passport Number
+        individualPassportNumber = ko.observable(specifiedIndividualPassportNumber),
+        // Individual Nic Number
+        individualNicNumber = ko.observable(specifiedIndividualNicNumber),
+        // Individual Marital Status Code
+        individualMaritalStatusCode = ko.observable(specifiedIndividualMaritalStatusCode),
+        // Individual Tax Registration Code
+        individualTaxRegisterationCode = ko.observable(specifiedIndividualTaxRegisterationCode),
+        // Individual Tax Number
+        individualTaxNumber = ko.observable(specifiedIndividualTaxNumber),
+        // Individual Date Of Birth
+        individualDateOfBirth = ko.observable(specifiedIndividualDateOfBirth).extend({ required: true }),
+        // Individual Occupation Type Id
+        individualOccupationTypeId = ko.observable(specifiedIndividualOccupationTypeId),
+        // Individual IsCompanyExternal
+        individualIsCompanyExternal = ko.observable(specifiedIndividualIsCompanyExternal),
+        // Individual Company Name
+        individualCompanyName = ko.observable(specifiedIndividualCompanyName),
+        // Individual Company Address
+        individualCompanyAddress = ko.observable(specifiedIndividualCompanyAddress),
+        // Individual Company Phone
+        individualCompanyPhone = ko.observable(specifiedIndividualCompanyPhone),
+        // Individual Business Partner Compnay Id
+        individualBusinessPartnerCompnayId = ko.observable(specifiedIndividualBusinessPartnerCompnayId),
+        // Individual Nic Expiry Date
+        individualNicExpiryDate = ko.observable(specifiedIndividualNicExpiryDate),
+        // Individual Passport Expiry Date
+        individualPassportExpiryDate = ko.observable(specifiedIndividualPassportExpiryDate),
+         // Individual Passport Country Id
+        individualPassportCountryId = ko.observable(specifiedIndividualPassportCountryId),
+        // Individual Iqama No
+        individualIqamaNo = ko.observable(specifiedIndividualIqamaNo),
+         // Individual Iqama Expiry Date
+        individualIqamaExpiryDate = ko.observable(specifiedIndividualIqamaExpiryDate),
+        
+        // Is Busy
+        isBusy = ko.observable(false),
+        // Errors
+        errors = ko.validation.group({
+            individualFirstName: individualFirstName,
+            individualLastName: individualLastName,
+            individualDateOfBirth: individualDateOfBirth
+        }),
+        // Is Valid
+        isValid = ko.computed(function () {
+            return errors().length === 0;
+        }),
+        // True if the booking has been changed
+        // ReSharper disable InconsistentNaming
+        dirtyFlag = new ko.dirtyFlag({
+            // ReSharper restore InconsistentNaming
+
+            // First Tab Controls
+            individualFirstName: individualFirstName,
+            individualMiddleName: individualMiddleName,
+            individualLastName: individualLastName,
+            individualInitials: individualInitials,
+            individualLiscenseNumber: individualLiscenseNumber,
+            individualLiscenseExpiryDate: individualLiscenseExpiryDate,
+            individualGenderStatus: individualGenderStatus,
+            individualPassportNumber: individualPassportNumber,
+            individualNicNumber: individualNicNumber,
+            individualMaritalStatusCode: individualMaritalStatusCode,
+            individualTaxRegisterationCode: individualTaxRegisterationCode,
+            individualTaxNumber: individualTaxNumber,
+            individualDateOfBirth: individualDateOfBirth,
+            individualOccupationTypeId: individualOccupationTypeId,
+            individualIsCompanyExternal: individualIsCompanyExternal,
+            individualCompanyName: individualCompanyName,
+            individualCompanyAddress: individualCompanyAddress,
+            individualCompanyPhone: individualCompanyPhone,
+            individualBusinessPartnerCompnayId: individualBusinessPartnerCompnayId,
+            individualNicExpiryDate: individualNicExpiryDate,
+            individualPassportExpiryDate: individualPassportExpiryDate,
+            individualPassportCountryId: individualPassportCountryId,
+            individualIqamaNo: individualIqamaNo,
+            individualIqamaExpiryDate: individualIqamaExpiryDate
+
+        }),
+        // Has Changes
+        hasChanges = ko.computed(function () {
+            return dirtyFlag.isDirty();
+        }),
+        // Reset
+        reset = function () {
+            dirtyFlag.reset();
+        };
+    return {
+   
+        // First Tab Controls
+        individualFirstName: individualFirstName,
+        individualMiddleName: individualMiddleName,
+        individualLastName: individualLastName,
+        individualInitials: individualInitials,
+        individualLiscenseNumber: individualLiscenseNumber,
+        individualLiscenseExpiryDate: individualLiscenseExpiryDate,
+        individualGenderStatus: individualGenderStatus,
+        individualPassportNumber: individualPassportNumber,
+        individualNicNumber: individualNicNumber,
+        individualMaritalStatusCode: individualMaritalStatusCode,
+        individualTaxRegisterationCode: individualTaxRegisterationCode,
+        individualTaxNumber: individualTaxNumber,
+        individualDateOfBirth: individualDateOfBirth,
+        individualOccupationTypeId: individualOccupationTypeId,
+        individualIsCompanyExternal: individualIsCompanyExternal,
+        individualCompanyName: individualCompanyName,
+        individualCompanyAddress: individualCompanyAddress,
+        individualCompanyPhone: individualCompanyPhone,
+        individualBusinessPartnerCompnayId: individualBusinessPartnerCompnayId,
+        individualNicExpiryDate: individualNicExpiryDate,
+        individualPassportExpiryDate: individualPassportExpiryDate,
+        individualPassportCountryId: individualPassportCountryId,
+        individualIqamaNo: individualIqamaNo,
+        individualIqamaExpiryDate: individualIqamaExpiryDate,
+
+        errors: errors,
+        isValid: isValid,
+        dirtyFlag: dirtyFlag,
+        hasChanges: hasChanges,
+        reset: reset,
+        isBusy: isBusy
+    };
+};
+
+
     // BusinessPartnerDetail Factory
     BusinessPartnerDetail.Create = function () {
         return new BusinessPartnerDetail("", "", "", false, false, "", "", false, undefined, undefined, undefined, undefined, undefined);
+    };
+    
+    // BusinessPartnerDetail Factory
+    BusinessPartnerIndividual.Create = function () {
+        return new BusinessPartnerIndividual("", "", "", "", "", moment().toDate(), "", "", "", "", "", "", moment().toDate(), undefined,false, "", "", ""
+            , undefined, moment().toDate(), moment().toDate(), undefined,
+            "", moment().toDate());
     };
     
     // Convert Client to server
@@ -290,34 +321,48 @@
         result.SystemGuarantorId = clientData.systemGuarantorId();
         result.DealingEmployeeId = clientData.dealingEmployeeId();
         
-        // First  tab : Individual Info
-        result.IndividualFirstName = clientData.individualFirstName();
-        result.IndividualMiddleName = clientData.individualMiddleName();
-        result.IndividualLastName = clientData.individualLastName();
-        result.IndividualInitials = clientData.individualInitials();
-        result.IndividualLiscenseNumber = clientData.individualLiscenseNumber();
-        result.IndividualLiscenseExpiryDate = clientData.individualLiscenseExpiryDate() === undefined ? undefined : moment(clientData.individualLiscenseExpiryDate()).format(ist.utcFormat);
-        result.IndividualGenderStatus = clientData.individualGenderStatus();
-        result.IndividualPassportNumber = clientData.individualPassportNumber();
-        result.IndividualNicNumber = clientData.individualNicNumber();
-        result.IndividualMaritalStatusCode = clientData.individualMaritalStatusCode();
-        result.IndividualTaxRegisterationCode = clientData.individualTaxRegisterationCode();
-        result.IndividualTaxNumber = clientData.individualTaxNumber();
-        result.IndividualDateOfBirth = clientData.individualDateOfBirth() === undefined ? undefined : moment(clientData.individualDateOfBirth()).format(ist.utcFormat);
-        result.IndividualOccupationTypeId = clientData.individualOccupationTypeId();
-        result.IndividualIsCompanyExternal = clientData.individualIsCompanyExternal();
-        result.IndividualCompanyName = clientData.individualCompanyName();
-        result.IndividualCompanyAddress = clientData.individualCompanyAddress();
-        result.IndividualCompanyPhone = clientData.individualCompanyPhone();
-        result.IndividualBusinessPartnerCompnayId = clientData.individualBusinessPartnerCompnayId();
-        result.IndividualNicExpiryDate = clientData.individualNicExpiryDate() === undefined ? undefined : moment(clientData.individualNicExpiryDate()).format(ist.utcFormat);
-        result.IndividualPassportExpiryDate = clientData.individualPassportExpiryDate() === undefined ? undefined : moment(clientData.individualPassportExpiryDate()).format(ist.utcFormat);
-        result.IndividualPassportCountryId = clientData.individualPassportCountryId();
-        result.IndividualIqamaNo = clientData.individualIqamaNo();
-        result.IndividualIqamaExpiryDate = clientData.individualIqamaExpiryDate() === undefined ? undefined : moment(clientData.individualIqamaExpiryDate()).format(ist.utcFormat);
-        
+        // convert chlid object data 
+        // from client to server
+        result.BusinessPartnerIndividual = BusinessPartnerIndividualServerMapper(clientData);
+
         return result;
     };
+
+    // Convert Client to server
+    var BusinessPartnerIndividualServerMapper = function (clientData) {
+        var result = {};
+
+        // First  tab : Individual Info
+        result.businessPartnerId = clientData.businessPartnerId() === undefined ? undefined : clientData.businessPartnerId();
+        result.FirstName = clientData.businessPartnerIndividual().individualFirstName();
+        result.MiddleName = clientData.businessPartnerIndividual().individualMiddleName();
+        result.LastName = clientData.businessPartnerIndividual().individualLastName();
+        result.Initials = clientData.businessPartnerIndividual().individualInitials();
+        result.LiscenseNumber = clientData.businessPartnerIndividual().individualLiscenseNumber();
+        result.LiscenseExpiryDate = clientData.businessPartnerIndividual().individualLiscenseExpiryDate() === undefined ? undefined : moment(clientData.businessPartnerIndividual().individualLiscenseExpiryDate()).format(ist.utcFormat);
+        result.GenderStatus = clientData.businessPartnerIndividual().individualGenderStatus();
+        result.PassportNumber = clientData.businessPartnerIndividual().individualPassportNumber();
+        result.NicNumber = clientData.businessPartnerIndividual().individualNicNumber();
+        result.MaritalStatusCode = clientData.businessPartnerIndividual().individualMaritalStatusCode();
+        result.TaxRegisterationCode = clientData.businessPartnerIndividual().individualTaxRegisterationCode();
+        result.TaxNumber = clientData.businessPartnerIndividual().individualTaxNumber();
+        result.DateOfBirth = clientData.businessPartnerIndividual().individualDateOfBirth() === undefined ? undefined : moment(clientData.businessPartnerIndividual().individualDateOfBirth()).format(ist.utcFormat);
+        result.OccupationTypeId = clientData.businessPartnerIndividual().individualOccupationTypeId();
+        result.IsCompanyExternal = clientData.businessPartnerIndividual().individualIsCompanyExternal();
+        result.CompanyName = clientData.businessPartnerIndividual().individualCompanyName();
+        result.CompanyAddress = clientData.businessPartnerIndividual().individualCompanyAddress();
+        result.CompanyPhone = clientData.businessPartnerIndividual().individualCompanyPhone();
+        result.BusinessPartnerCompnayId = clientData.businessPartnerIndividual().individualBusinessPartnerCompnayId();
+        result.NicExpiryDate = clientData.businessPartnerIndividual().individualNicExpiryDate() === undefined ? undefined : moment(clientData.businessPartnerIndividual().individualNicExpiryDate()).format(ist.utcFormat);
+        result.PassportExpiryDate = clientData.businessPartnerIndividual().individualPassportExpiryDate() === undefined ? undefined : moment(clientData.businessPartnerIndividual().individualPassportExpiryDate()).format(ist.utcFormat);
+        result.PassportCountryId = clientData.businessPartnerIndividual().individualPassportCountryId();
+        result.IqamaNo = clientData.businessPartnerIndividual().individualIqamaNo();
+        result.IqamaExpiryDate = clientData.businessPartnerIndividual().individualIqamaExpiryDate() === undefined ? undefined : moment(clientData.businessPartnerIndividual().individualIqamaExpiryDate()).format(ist.utcFormat);
+
+        return result;
+    };
+
+
     // Convert Server to Client
     var BusinessPartnerClientMapper = function (serverData) {
         
@@ -338,39 +383,58 @@
         businessPartner.systemGuarantorId(serverData.SystemGuarantorId === null ? undefined : serverData.SystemGuarantorId);
         businessPartner.dealingEmployeeId(serverData.DealingEmployeeId === null ? undefined : serverData.DealingEmployeeId);
 
-        // First Tab : Individual
-        businessPartner.individualFirstName(serverData.IndividualFirstName=== null ? undefined : serverData.IndividualFirstName);
-        businessPartner.individualMiddleName(serverData.IndividualMiddleName=== null ? undefined : serverData.IndividualMiddleName);
-        businessPartner.individualLastName(serverData.IndividualLastName=== null ? undefined : serverData.IndividualLastName);
-        businessPartner.individualInitials(serverData.IndividualInitials=== null ? undefined : serverData.IndividualInitials);
-        businessPartner.individualLiscenseNumber(serverData.IndividualLiscenseNumber=== null ? undefined : serverData.IndividualLiscenseNumber);
-        businessPartner.individualLiscenseExpiryDate(serverData.IndividualLiscenseExpiryDate=== null ? undefined : serverData.IndividualLiscenseExpiryDate);
-        businessPartner.individualGenderStatus(serverData.IndividualGenderStatus=== null ? undefined : serverData.IndividualGenderStatus);
-        businessPartner.individualPassportNumber(serverData.IndividualPassportNumber=== null ? undefined : serverData.IndividualPassportNumber);
-        businessPartner.individualNicNumber(serverData.IndividualNicNumber=== null ? undefined : serverData.IndividualNicNumber);
-        businessPartner.individualMaritalStatusCode(serverData.IndividualMaritalStatusCode=== null ? undefined : serverData.IndividualMaritalStatusCode);
-        businessPartner.individualTaxRegisterationCode(serverData.IndividualTaxRegisterationCode=== null ? undefined : serverData.IndividualTaxRegisterationCode);
-        businessPartner.individualTaxNumber(serverData.IndividualTaxNumber=== null ? undefined : serverData.IndividualTaxNumber);
-        businessPartner.individualDateOfBirth(serverData.IndividualDateOfBirth=== null ? undefined : serverData.IndividualDateOfBirth);
-        businessPartner.individualOccupationTypeId(serverData.IndividualOccupationTypeId=== null ? undefined : serverData.IndividualOccupationTypeId);
-        businessPartner.individualIsCompanyExternal(serverData.IndividualIsCompanyExternal=== null ? undefined : serverData.IndividualIsCompanyExternal);
-        businessPartner.individualCompanyName(serverData.IndividualCompanyName=== null ? undefined : serverData.IndividualCompanyName);
-        businessPartner.individualCompanyAddress(serverData.IndividualCompanyAddress=== null ? undefined : serverData.IndividualCompanyAddress);
-        businessPartner.individualCompanyPhone(serverData.IndividualCompanyPhone=== null ? undefined : serverData.IndividualCompanyPhone);
-        businessPartner.individualBusinessPartnerCompnayId(serverData.IndividualBusinessPartnerCompnayId=== null ? undefined : serverData.IndividualBusinessPartnerCompnayId);
-        businessPartner.individualNicExpiryDate(serverData.IndividualNicExpiryDate=== null ? undefined : serverData.IndividualNicExpiryDate);
-        businessPartner.individualPassportExpiryDate(serverData.IndividualPassportExpiryDate=== null ? undefined : serverData.IndividualPassportExpiryDate);
-        businessPartner.individualPassportCountryId(serverData.IndividualPassportCountryId=== null ? undefined : serverData.IndividualPassportCountryId);
-        businessPartner.individualIqamaNo(serverData.IndividualIqamaNo=== null ? undefined : serverData.IndividualIqamaNo);
-        businessPartner.individualIqamaExpiryDate(serverData.IndividualIqamaExpiryDate === null ? undefined : serverData.IndividualIqamaExpiryDate);
-
+        // First tab : Individual
+        businessPartner.businessPartnerIndividual(BusinessPartnerIndividualClientMapper(serverData));
+        
         return businessPartner;
+    };
+
+    // Convert Server to Client
+    var BusinessPartnerIndividualClientMapper = function (serverData) {
+
+        if (serverData.BusinessPartnerIndividual != null || serverData.BusinessPartnerIndividual != undefined) {
+
+            var businessPartnerIndividual = new BusinessPartnerIndividual();
+
+            // First Tab : Individual
+            businessPartnerIndividual.individualFirstName(serverData.BusinessPartnerIndividual.FirstName === null ? undefined : serverData.BusinessPartnerIndividual.FirstName);
+            businessPartnerIndividual.individualMiddleName(serverData.BusinessPartnerIndividual.MiddleName === null ? undefined : serverData.BusinessPartnerIndividual.MiddleName);
+            businessPartnerIndividual.individualLastName(serverData.BusinessPartnerIndividual.LastName === null ? undefined : serverData.BusinessPartnerIndividual.LastName);
+            businessPartnerIndividual.individualInitials(serverData.BusinessPartnerIndividual.Initials === null ? undefined : serverData.BusinessPartnerIndividual.Initials);
+            businessPartnerIndividual.individualLiscenseNumber(serverData.BusinessPartnerIndividual.LiscenseNumber === null ? undefined : serverData.BusinessPartnerIndividual.LiscenseNumber);
+            businessPartnerIndividual.individualLiscenseExpiryDate(serverData.BusinessPartnerIndividual.LiscenseExpiryDate === null ? undefined : serverData.BusinessPartnerIndividual.LiscenseExpiryDate);
+            businessPartnerIndividual.individualGenderStatus(serverData.BusinessPartnerIndividual.GenderStatus === null ? undefined : serverData.BusinessPartnerIndividual.GenderStatus);
+            businessPartnerIndividual.individualPassportNumber(serverData.BusinessPartnerIndividual.PassportNumber === null ? undefined : serverData.BusinessPartnerIndividual.PassportNumber);
+            businessPartnerIndividual.individualNicNumber(serverData.BusinessPartnerIndividual.NicNumber === null ? undefined : serverData.BusinessPartnerIndividual.NicNumber);
+            businessPartnerIndividual.individualMaritalStatusCode(serverData.BusinessPartnerIndividual.MaritalStatusCode === null ? undefined : serverData.BusinessPartnerIndividual.MaritalStatusCode);
+            businessPartnerIndividual.individualTaxRegisterationCode(serverData.BusinessPartnerIndividual.TaxRegisterationCode === null ? undefined : serverData.BusinessPartnerIndividual.TaxRegisterationCode);
+            businessPartnerIndividual.individualTaxNumber(serverData.BusinessPartnerIndividual.TaxNumber === null ? undefined : serverData.BusinessPartnerIndividual.TaxNumber);
+            businessPartnerIndividual.individualDateOfBirth(serverData.BusinessPartnerIndividual.DateOfBirth === null ? undefined : serverData.BusinessPartnerIndividual.DateOfBirth);
+            businessPartnerIndividual.individualOccupationTypeId(serverData.BusinessPartnerIndividual.OccupationTypeId === null ? undefined : serverData.BusinessPartnerIndividual.OccupationTypeId);
+            businessPartnerIndividual.individualIsCompanyExternal(serverData.BusinessPartnerIndividual.IsCompanyExternal === null ? undefined : serverData.BusinessPartnerIndividual.IsCompanyExternal);
+            businessPartnerIndividual.individualCompanyName(serverData.BusinessPartnerIndividual.CompanyName === null ? undefined : serverData.BusinessPartnerIndividual.CompanyName);
+            businessPartnerIndividual.individualCompanyAddress(serverData.BusinessPartnerIndividual.CompanyAddress === null ? undefined : serverData.BusinessPartnerIndividual.CompanyAddress);
+            businessPartnerIndividual.individualCompanyPhone(serverData.BusinessPartnerIndividual.CompanyPhone === null ? undefined : serverData.BusinessPartnerIndividual.CompanyPhone);
+            businessPartnerIndividual.individualBusinessPartnerCompnayId(serverData.BusinessPartnerIndividual.BusinessPartnerCompnayId === null ? undefined : serverData.BusinessPartnerIndividual.BusinessPartnerCompnayId);
+            businessPartnerIndividual.individualNicExpiryDate(serverData.BusinessPartnerIndividual.NicExpiryDate === null ? undefined : serverData.BusinessPartnerIndividual.NicExpiryDate);
+            businessPartnerIndividual.individualPassportExpiryDate(serverData.BusinessPartnerIndividual.PassportExpiryDate === null ? undefined : serverData.BusinessPartnerIndividual.PassportExpiryDate);
+            businessPartnerIndividual.individualPassportCountryId(serverData.BusinessPartnerIndividual.PassportCountryId === null ? undefined : serverData.BusinessPartnerIndividual.PassportCountryId);
+            businessPartnerIndividual.individualIqamaNo(serverData.BusinessPartnerIndividual.IqamaNo === null ? undefined : serverData.BusinessPartnerIndividual.IqamaNo);
+            businessPartnerIndividual.individualIqamaExpiryDate(serverData.BusinessPartnerIndividual.IqamaExpiryDate === null ? undefined : serverData.BusinessPartnerIndividual.IqamaExpiryDate);
+
+            return businessPartnerIndividual;
+        } else {
+            return undefined;
+        }
     };
 
     return {
         BusinessPartner: BusinessPartner,
         BusinessPartnerDetail: BusinessPartnerDetail,
         BusinessPartnerClientMapper: BusinessPartnerClientMapper,
-        BusinessPartnerServerMapper: BusinessPartnerServerMapper
+        BusinessPartnerServerMapper: BusinessPartnerServerMapper,
+        BusinessPartnerIndividualServerMapper: BusinessPartnerIndividualServerMapper,
+        BusinessPartnerIndividual: BusinessPartnerIndividual,
+        BusinessPartnerIndividualClientMapper:BusinessPartnerIndividualClientMapper
     };
 });

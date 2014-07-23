@@ -151,7 +151,7 @@ namespace Repository.BaseRepository
         /// <summary>
         /// Logged in User Identity
         /// </summary>
-        public string LoggedInUserIdentity { get; set; }
+        public string LoggedInUserIdentity { get { return "cares"; }  }
 
         #endregion
     }
