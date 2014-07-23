@@ -12,7 +12,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Business Partner Id
         /// </summary>
-        public long BusinessPartnerId { get; set; }
+        public long? BusinessPartnerId { get; set; }
         /// <summary>
         /// Individual First Name
         /// </summary>
@@ -36,7 +36,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Individual License Expiry Date
         /// </summary>
-        public DateTime LiscenseExpiryDate { get; set; }
+        public DateTime? LiscenseExpiryDate { get; set; }
         /// <summary>
         /// Individual Gender Status
         /// </summary>
@@ -68,7 +68,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Individual Occupation Type Id
         /// </summary>
-        public int OccupationTypeId { get; set; }
+        public int? OccupationTypeId { get; set; }
         /// <summary>
         /// Individual Is Company External
         /// </summary>
@@ -88,19 +88,19 @@ namespace Cares.Web.Models
         /// <summary>
         /// Individual Business Partner Company Id
         /// </summary>
-        public int BusinessPartnerCompnayId { get; set; }
+        public long? BusinessPartnerCompnayId { get; set; }
         /// <summary>
         /// Individual Nic Expiry date
         /// </summary>
-        public DateTime NicExpiryDate { get; set; }
+        public DateTime? NicExpiryDate { get; set; }
         /// <summary>
         /// Individual Passport Expiry date
         /// </summary>
-        public DateTime PassportExpiryDate { get; set; }
+        public DateTime? PassportExpiryDate { get; set; }
         /// <summary>
         /// Individual Passport Country Id
         /// </summary>
-        public int PassportCountryId { get; set; }
+        public int? PassportCountryId { get; set; }
         /// <summary>
         /// Individual Iqama No
         /// </summary>
@@ -108,7 +108,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Inidividual Iqama expiry date
         /// </summary>
-        public DateTime IqamaExpiryDate { get; set; }
+        public DateTime? IqamaExpiryDate { get; set; }
 
 
         #endregion

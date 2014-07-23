@@ -18,11 +18,6 @@ namespace Models.DomainModels
         [ForeignKey("BusinessPartner")]
         public long BusinessPartnerId { get; set; }
 
-        ///// <summary>
-        ///// Business Partner Individual Id
-        ///// </summary>
-        //[Required]
-        //public long BusinessPartnerIndividualId { get; set; }
         /// <summary>
         /// Individual First Name
         /// </summary>
@@ -53,7 +48,7 @@ namespace Models.DomainModels
         /// <summary>
         /// Individual License Expiry Date
         /// </summary>
-        public DateTime LiscenseExpiryDate { get; set; }
+        public DateTime? LiscenseExpiryDate { get; set; }
         /// <summary>
         /// Individual Gender Status
         /// </summary>
@@ -91,7 +86,8 @@ namespace Models.DomainModels
         /// <summary>
         /// Individual Occupation Type Id
         /// </summary>
-        public int OccupationTypeId { get; set; }
+        [ForeignKey("OccupationType")]
+        public int? OccupationTypeId { get; set; }
         /// <summary>
         /// Individual Is Company External
         /// </summary>
@@ -115,34 +111,14 @@ namespace Models.DomainModels
         /// <summary>
         /// Individual Business Partner Company Id
         /// </summary>
-        public int BusinessPartnerCompnayId { get; set; }
-
+        [ForeignKey("BusinessPartnerCompany")]
+        public long? BusinessPartnerCompnayId { get; set; }
         
-      /// <summary>
+        /// <summary>
         /// Row Version
         /// </summary>
         [Required]
         public long RowVersion { get; set; }
-        ///// <summary>
-        ///// Is Active
-        ///// </summary>
-        //[Required]
-        //public bool IsActive { get; set; }
-        ///// <summary>
-        ///// Is Deleted
-        ///// </summary>
-        //[Required]
-        //public bool IsDeleted { get; set; }
-        ///// <summary>
-        ///// Is Private
-        ///// </summary>
-        //[Required]
-        //public bool IsPrivate { get; set; }
-        ///// <summary>
-        ///// Is Readonly
-        ///// </summary>
-        //[Required]
-        //public bool IsReadOnly { get; set; }
         /// <summary>
         /// Record Created Date
         /// </summary>
@@ -168,11 +144,11 @@ namespace Models.DomainModels
         /// <summary>
         /// Individual Nic Expiry date
         /// </summary>
-        public DateTime NicExpiryDate { get; set; }
+        public DateTime? NicExpiryDate { get; set; }
         /// <summary>
         /// Individual Passport Expiry date
         /// </summary>
-        public DateTime PassportExpiryDate { get; set; }
+        public DateTime? PassportExpiryDate { get; set; }
         /// <summary>
         /// User Domain Key
         /// </summary>
@@ -181,7 +157,8 @@ namespace Models.DomainModels
         /// <summary>
         /// Individual Passport Country Id
         /// </summary>
-        public int PassportCountryId { get; set; }
+        [ForeignKey("PassportCountry")]
+        public int? PassportCountryId { get; set; }
         /// <summary>
         /// Individual Iqama No
         /// </summary>
@@ -190,7 +167,7 @@ namespace Models.DomainModels
         /// <summary>
         /// Inidividual Iqama expiry date
         /// </summary>
-        public DateTime IqamaExpiryDate { get; set; }
+        public DateTime? IqamaExpiryDate { get; set; }
     
         #endregion
 

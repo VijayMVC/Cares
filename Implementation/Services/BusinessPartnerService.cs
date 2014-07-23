@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using Castle.MicroKernel.Registration;
 using Interfaces.IServices;
 using Interfaces.Repository;
 using Models.DomainModels;
@@ -16,6 +17,7 @@ namespace Implementation.Services
         #region Private
         private readonly IBusinessPartnerRepository businessPartnerRepository;
         private readonly IBusinessPartnerIndividualRepository businessPartnerIndividualRepository;
+
         #endregion
 
         #region Constructor
@@ -24,9 +26,12 @@ namespace Implementation.Services
         /// </summary>
         public BusinessPartnerService(IBusinessPartnerRepository businessPartnerRepository, IBusinessPartnerIndividualRepository businessPartnerIndividualRepository)
         {
+            if (businessPartnerIndividualRepository == null)
+                throw new ArgumentNullException("businessPartnerIndividualRepository");
             this.businessPartnerRepository = businessPartnerRepository;
             this.businessPartnerIndividualRepository = businessPartnerIndividualRepository;
         }
+
         #endregion
 
         #region Public
@@ -69,6 +74,7 @@ namespace Implementation.Services
         {
             if (ValidateBusinessPartner(businessPartner))
             {
+                //set master (business partner) properties
                 businessPartner.BusinessPartnerCode = "BP-Screen";
                 businessPartner.UserDomainKey = businessPartnerRepository.UserDomainKey;
                 businessPartner.IsActive = true;
@@ -81,6 +87,16 @@ namespace Implementation.Services
                 businessPartner.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
                 businessPartner.RowVersion = 0;
 
+                //set child (business partner individual) properties
+                businessPartner.BusinessPartnerIndividual.RecCreatedBy =
+                    businessPartner.BusinessPartnerIndividual.RecLastUpdatedBy =
+                        businessPartnerRepository.LoggedInUserIdentity;
+                businessPartner.BusinessPartnerIndividual.RecCreatedDt =
+                    businessPartner.BusinessPartnerIndividual.RecLastUpdatedDt =
+                        DateTime.Now;
+                businessPartner.BusinessPartnerIndividual.UserDomainKey = businessPartnerRepository.UserDomainKey;
+              
+                // save data
                 businessPartnerRepository.Add(businessPartner);
                 businessPartnerRepository.SaveChanges();
                 return true;
@@ -107,6 +123,7 @@ namespace Implementation.Services
             BusinessPartner businessPartnerDbVersion = FindBusinessPartner((int)businessPartner.BusinessPartnerId);
             if (businessPartnerDbVersion != null)
             {
+                // set master(business partner) properties
                 businessPartnerDbVersion.BusinessPartnerName = businessPartner.BusinessPartnerName;
                 businessPartnerDbVersion.BusinessPartnerDesciption = businessPartner.BusinessPartnerDesciption;
                 businessPartnerDbVersion.IsSystemGuarantor = businessPartner.IsSystemGuarantor;
@@ -119,11 +136,40 @@ namespace Implementation.Services
                 businessPartnerDbVersion.DealingEmployeeId = businessPartner.DealingEmployeeId;
                 businessPartnerDbVersion.PaymentTermId = businessPartner.PaymentTermId;
                 businessPartnerDbVersion.BPRatingTypeId = businessPartner.BPRatingTypeId;
-
                 businessPartnerDbVersion.RecLastUpdatedDt = DateTime.Now;
-                businessPartnerDbVersion.RecCreatedBy = "zain";
+                businessPartnerDbVersion.RecCreatedBy = businessPartnerRepository.LoggedInUserIdentity;
                 businessPartnerDbVersion.RowVersion = businessPartnerDbVersion.RowVersion + 1;
 
+                //set child (buiness partner individual properties)
+                // if child not exist then add
+                if (businessPartnerDbVersion.BusinessPartnerIndividual == null)
+                {
+                    BusinessPartnerIndividual childModel = new BusinessPartnerIndividual();
+                    childModel.BusinessPartnerId = businessPartnerDbVersion.BusinessPartnerId;
+                    childModel.FirstName = businessPartner.BusinessPartnerIndividual.FirstName;
+                    childModel.LastName = businessPartner.BusinessPartnerIndividual.LastName;
+                    childModel.DateOfBirth = businessPartner.BusinessPartnerIndividual.DateOfBirth;
+                    childModel.RowVersion = 0;
+                    childModel.RecCreatedBy = businessPartnerRepository.LoggedInUserIdentity;
+                    childModel.RecCreatedDt = DateTime.Now;
+
+                    businessPartnerDbVersion.BusinessPartnerIndividual = childModel;
+                }
+                // else update existing record
+                else
+                {
+                    businessPartnerDbVersion.BusinessPartnerIndividual.BusinessPartnerId = businessPartner.BusinessPartnerIndividual.BusinessPartnerId;
+                    businessPartnerDbVersion.BusinessPartnerIndividual.FirstName = businessPartner.BusinessPartnerIndividual.FirstName;
+                    businessPartnerDbVersion.BusinessPartnerIndividual.LastName = businessPartner.BusinessPartnerIndividual.LastName;
+                    businessPartnerDbVersion.BusinessPartnerIndividual.DateOfBirth = businessPartner.BusinessPartnerIndividual.DateOfBirth;
+                    businessPartnerDbVersion.BusinessPartnerIndividual.RowVersion =
+                        businessPartnerDbVersion.BusinessPartnerIndividual.RowVersion + 1;
+
+                }
+                businessPartnerDbVersion.BusinessPartnerIndividual.RecLastUpdatedDt = DateTime.Now;
+                businessPartnerDbVersion.BusinessPartnerIndividual.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
+
+                // save changes
                 businessPartnerRepository.SaveChanges();
                 return true;
             }
