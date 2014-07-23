@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Web;
 using System.Web.Http;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
@@ -21,7 +23,7 @@ namespace Cares.Web.Areas.Api.Controllers
         /// </summary>
         public GetTariffRateDetailController(ITariffRateService tariffRateService)
         {
-            if (tariffRateService == null)
+            if (tariffRateService == null && !ModelState.IsValid)
             {
                 throw new ArgumentNullException("tariffRateService");
             }
@@ -37,6 +39,10 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <returns></returns>
         public TariffRateDetailResponse Get(long id)
         {
+            if (!ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
             return tariffRateService.FindTariffRateById(id).CreateFrom();
         }
 

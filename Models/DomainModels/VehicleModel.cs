@@ -12,7 +12,7 @@ namespace Models.DomainModels
         /// Vehicle Mode ld
         /// </summary>
         [Key]
-        public short VehicleModeld { get; set; }
+        public short VehicleModelId { get; set; }
         /// <summary>
         /// User Domain Key
         /// </summary>

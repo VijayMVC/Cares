@@ -35,7 +35,7 @@ namespace Cares.Web.Areas.Api.Controllers
         // GET api/<controller>
         public TariffRateResponse Get([FromUri] DomainModels.TariffRateRequest request)
         {
-            if (request==null && !ModelState.IsValid)
+            if (request == null && !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
@@ -44,27 +44,27 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Update a Tariff Rate
         /// </summary>
-        public void Post(StandardRateMain standardRateMain)
+        public StandardRateMain Post(StandardRateMain standardRateMain)
         {
             if (standardRateMain == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
 
-            tariffRateService.Update(standardRateMain.CreateFrom());
+            return tariffRateService.Update(standardRateMain.CreateFrom()).CreateFrom();
         }
 
         /// <summary>
         /// Adds a Tariff Rate
         /// </summary>
-        public void Put(StandardRateMain standardRateMain)
+        public StandardRateMain Put(StandardRateMain standardRateMain)
         {
             if (standardRateMain == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
 
-            tariffRateService.AddTariffRate(standardRateMain.CreateFrom());
+            return tariffRateService.AddTariffRate(standardRateMain.CreateFrom()).CreateFrom();
         }
 
         /// <summary>
@@ -76,8 +76,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-
-            tariffRateService.DeleteTariffRate(standardRateMain.CreateFrom());
+            tariffRateService.DeleteTariffRate(tariffRateService.Find(standardRateMain.StandardRtMainId));
         }
         #endregion
     }

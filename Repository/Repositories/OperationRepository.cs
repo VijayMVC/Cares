@@ -40,7 +40,7 @@ namespace Repository.Repositories
         /// </summary>
         public override IQueryable<Operation> GetAll()
         {
-            return DbSet.Where(operation => operation.UserDomainKey == UserDomainKey);
+            return DbSet.Where(operation => operation.UserDomainKey == UserDomainKey && operation.Department.DepartmentType=="Sale");
         }
         #endregion
     }
