@@ -43,4 +43,10 @@
   margin-bottom: 20px;
   margin-top: 10px;
 }
+#tariffRateBinding #tariffRateEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
 /*# sourceMappingURL=Pricing.css.map */

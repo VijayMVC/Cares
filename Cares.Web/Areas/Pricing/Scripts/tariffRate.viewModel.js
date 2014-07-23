@@ -10,11 +10,12 @@ define("tariffRate/tariffRate.viewModel",
             viewModel: (function () {
                 var // the view 
                     view,
-                    test = ko.observable("test"),
-                    // Active Tarrif Rate
+                     // Active Tarrif Rate
                     selectedTarrifRate = ko.observable(),
                     //For Edit, Tariff Rate Id
                     selectedTariffRateId = ko.observable(),
+                     //Selected Hire Group
+                    selectedHireGroup = ko.observable(),
                     // Add Or Edit Tariff Rate
                     addTariffRate = ko.observable(),
                     // #region Arrays
@@ -40,7 +41,7 @@ define("tariffRate/tariffRate.viewModel",
                     modelYears = ko.observableArray([]),
                     //Tariff Rates
                     tariffRates = ko.observableArray([]),
-
+                   
                     // #endregion Arrays
                     // #region Busy Indicators
                     isLoadingTariffRates = ko.observable(false),
@@ -128,6 +129,17 @@ define("tariffRate/tariffRate.viewModel",
                         pager().reset();
                         getTariffRates();
                     },
+                    // Template Chooser
+                    templateToUse = function (hireGroup) {
+                        return (hireGroup === selectedHireGroup() ? 'editHireGroupTemplate' : 'itemHireGroupTemplate');
+                    },
+                    // Select a Hire Group
+                    selectHireGroup = function (hireGroup) {
+                        if (selectedHireGroup() !== hireGroup) {
+                            selectedHireGroup(hireGroup);
+                        }
+                        isEditable(true);
+                    },
                      // close Tariff Rate Editor
                     closeTariffRateEditor = function () {
                         isTariffRateEditorVisible(false);
@@ -162,37 +174,69 @@ define("tariffRate/tariffRate.viewModel",
                         //}
 
                     },
-                     // Delete a product
+                     // Delete a Tariff Rate
                     onDeleteTariffRate = function (tariffRate) {
                         if (!tariffRate.tariffRateId()) {
-                            //products.remove(product);
+                            tariffRates.remove(tariffRate);
                             return;
                         }
-
                         // Ask for confirmation
                         confirmation.afterProceed(function () {
-                           // deleteProduct(product);
+                            deleteTariffRate(tariffRate);
                         });
                         confirmation.show();
                     },
-                    hireGroupRate = function (tariffRate) {
-                        //Ask for hire Group Dialog 
-                        hireGroupDialogVm.afterProceed(function () {
-                            
-                         });
-                        hireGroupDialogVm.show();
-                     },
+                    // Delete Tariff Rate
+                    deleteTariffRate = function (tariffRate) {
+                        dataservice.deleteTariffRate(tariffRate, {
+                        success: function () {
+                            products.remove(tariffRate);
+                            toastr.success("Tariff Rate removed successfully");
+                        },
+                        error: function () {
+                            toastr.error("Failed to remove Tariff Rate!");
+                        }
+                    });
+                    },
+                     //Edit Tariff Rate
+                    onEditTariffRate = function (tariffRate, e) {
+                        selectedTariffRateId(tariffRate.tariffRateId());
+                        selectedTarrifRate(tariffRate);
+                        getTariffRateById();
+                        showTariffRateEditor();
+                        e.stopImmediatePropagation();
+                    },
+                     //Get Tariff Rate By Id
+                    getTariffRateById = function () {
+                        isLoadingTariffRates(true);
+                        dataservice.getTariffRateById({
+                            id: selectedTariffRateId()
 
+                        }, {
+                            success: function (data) {
+                                addTariffRate(model.TariffRateDetailClientMapper(data.StandardRateMain));
+                                hireGroups.removeAll();
+                                _.each(data.HireGroupDetails, function (item) {
+                                    hireGroups.push(new model.HireGroupClientMapper(item));
+                                });
+                                isLoadingTariffRates(false);
+                            },
+                            error: function () {
+                                isLoadingTariffRates(false);
+                                toastr.error("Error!");
+                            }
+                        });
+                    },
                     // Map Tariff Rates - Server to Client
                     mapTarrifRates = function (data) {
-                    var tariffRateList = [];
-                    _.each(data.TariffRates, function (item) {
-                        var tariffRate = new model.TariffRateClientMapper(item);
-                        tariffRateList.push(tariffRate);
-                    });
-                    ko.utils.arrayPushAll(tariffRates(), tariffRateList);
-                    tariffRates.valueHasMutated();
-                },
+                        var tariffRateList = [];
+                        _.each(data.TariffRates, function (item) {
+                            var tariffRate = new model.TariffRateClientMapper(item);
+                            tariffRateList.push(tariffRate);
+                        });
+                        ko.utils.arrayPushAll(tariffRates(), tariffRateList);
+                        tariffRates.valueHasMutated();
+                    },
                     // Get Tariff Rates
                     getTariffRates = function () {
                         isLoadingTariffRates(true);
@@ -230,6 +274,7 @@ define("tariffRate/tariffRate.viewModel",
                     sortIsAsc: sortIsAsc,
                     isEditable: isEditable,
                     isTariffRateEditorVisible: isTariffRateEditorVisible,
+                    selectedHireGroup:selectedHireGroup,
                     //Arrays
                     tariffTypes: tariffTypes,
                     companies: companies,
@@ -262,8 +307,11 @@ define("tariffRate/tariffRate.viewModel",
                     createTariffRate: createTariffRate,
                     onSaveTariffRate: onSaveTariffRate,
                     onDeleteTariffRate: onDeleteTariffRate,
-                    hireGroupRate: hireGroupRate,
-                    test: test
+                    onEditTariffRate: onEditTariffRate,
+                    getTariffRateById: getTariffRateById,
+                    templateToUse: templateToUse,
+                    selectHireGroup: selectHireGroup,
+
                     // Utility Methods
 
                 };

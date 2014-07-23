@@ -62,7 +62,6 @@ namespace Implementation.Services
         {
             return standardRateMainRepository.GetTariffRates(tariffRateRequest);
         }
-
         public TariffRateDetailResponse FindTariffRateById(long id)
         {
             StandardRateMain standardRateMain = standardRateMainRepository.Find(id);

@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 using Models.DomainModels;
 
 namespace Models.ResponseModels
@@ -15,6 +15,6 @@ namespace Models.ResponseModels
         /// <summary>
         /// Hire Group Details List
         /// </summary>
-        public IQueryable<HireGroupDetail> HireGroupDetails { get; set; }
+        public IEnumerable<HireGroupDetail> HireGroupDetails { get; set; }
     }
 }

@@ -29,9 +29,9 @@ namespace Models.DomainModels
         [StringLength(500)]
         public string DepartmentDescription { get; set; }
         /// <summary>
-        /// Department Type ID
+        /// Department Type 
         /// </summary>
-        public int DepartmentTypeId { get; set; }
+        public string DepartmentType { get; set; }
         /// <summary>
         /// Company ID
         /// </summary>

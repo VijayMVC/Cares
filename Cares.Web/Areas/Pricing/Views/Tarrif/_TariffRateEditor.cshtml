@@ -1,10 +1,9 @@
 ﻿<div class="well col-md-12" id="tariffRateEditor" data-bind="visible: isTariffRateEditorVisible, with: addTariffRate" style="display: none;">
     <div class="detailsContainer">
         <h3 class="page-header detailsHeaderSection">Tariff Rate Details</h3>
-        <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onSaveTariffRate">Save</button>
+        <button class="btn btn-info" id="saveBtn" data-bind="click: $root.onSaveTariffRate">Save</button>
         <button class="btn btn-default" id="saveBtn" data-bind="click: $root.closeTariffRateEditor">Cancel</button>
     </div>
-
     <form class="form-horizontal">
         <div class="form-group">
             <label for="tariffRateCode" class="control-label h5 col-sm-2">Tariff Rate Code *</label>
@@ -34,7 +33,7 @@
                 <input type="text" placeholder="<Effective start Date>" class="form-control" id="startEffectiveDate" data-bind="datepicker: startEffectiveDate, validationTooltip: startEffectiveDate" />
             </div>
         </div>
-       
+
         <div class="form-group">
             <label for="endTypeEffectiveDate" class="control-label h5 col-sm-2">End Effective Date *</label>
             <div class="col-md-2">
@@ -43,5 +42,80 @@
         </div>
 
     </form>
-
+    <div class="panel panel-info">
+        <div class="panel-heading">Hire Group Rate</div>
+        <table id="hireGroupRate" class="table table-condensed">
+            <thead>
+                <tr>
+                    <th> <span id="3"><span></span></span></th>
+                    <th> <span id="4">Hire<br />Group<span></span></span></th>
+                    <th> <span id="5">Vehicle<br />Make<span></span></span></th>
+                    <th> <span id="6">Vehicle<br />Model<span></span></span></th>
+                    <th> <span id="7">Vehicle<br />Category<span></span></span></th>
+                    <th> <span id="8">Model<br />Year<span></span></span></th>
+                    <th> <span id="8">Allowed<br />Mileage<span></span></span></th>
+                    <th> <span id="9">Excess<br />Mileage Charge<span></span></span></th>
+                    <th> <span id="10">Standard<br />Rate<span></span></span></th>
+                    <th> <span id="11">Start<br />Date<span></span></span></th>
+                    <th> <span id="12">End<br />Date<span></span></span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- ko template: { name: $root.templateToUse , foreach: $root.hireGroups } -->
+                <!-- /ko -->
+            </tbody>
+        </table>
+        <script id="editHireGroupTemplate" type="text/html">
+            <tr data-bind="css: { selectedRow: $data === $root.selectedHireGroup() }">
+                <td class="col-md-2">
+                    <input type="checkbox" data-bind="checked: isChecked" />
+                </td>
+                <td class="col-md-2">
+                    <span data-bind="text: hireGroup"></span>
+                </td>
+                <td class="col-md-2">
+                    <span data-bind="text: vehicleMake"></span>
+                </td>
+                <td class="col-md-2">
+                    <span data-bind="text: vehicleModel"></span>
+                </td>
+                <td class="col-md-2">
+                    <span data-bind="text: vehicleCategory"></span>
+                </td>
+                <td class="col-md-2">
+                    <span data-bind="text: modelYear"></span>
+                </td>
+                <td class="col-md-2">
+                    <input type="text" data-bind="value: allowMileage, validationTooltip: allowMileage" />
+                </td>
+                <td class="col-md-2">
+                    <input type="text"  data-bind="value: excessMileageCharge, validationTooltip: excessMileageCharge" />
+                </td>
+                <td class="col-md-2">
+                    <input type="text" data-bind="value: standardRate, validationTooltip: standardRate" />
+                </td>
+                <td class="col-md-2">
+                    <input type="text" data-bind="datepicker: startDate, validationTooltip: startDate" />
+                </td>
+                <td class="col-md-2">
+                    <input type="text" data-bind="datepicker: endDate, validationTooltip: endDate" />
+                </td>
+            </tr>
+        </script>
+        <script id="itemHireGroupTemplate" type="text/html">
+            <tr data-bind="click: $root.selectHireGroup, css: { selectedRow: $data === $root.selectedHireGroup() }">
+                <td><input type="checkbox" data-bind="checked: isChecked" /></td>
+                <td data-bind="text: hireGroup"></td>
+                <td data-bind="text: vehicleMake"></td>
+                <td data-bind="text: vehicleModel"></td>
+                <td data-bind="text: vehicleCategory"></td>
+                <td data-bind="text: modelYear"></td>
+                <td data-bind="text: allowMileage"></td>
+                <td data-bind="text: excessMileageCharge"></td>
+                <td data-bind="text: standardRate"></td>
+                @*<td data-bind="text: startDate"></td>
+                    <td data-bind="text: endDate"></td>*@
+            </tr>
+        </script>
+    </div>
 </div>

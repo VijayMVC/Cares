@@ -9,7 +9,7 @@ define("tariffRate/tariffRate.dataservice", function () {
             // True if initialized
             isInitialized = false,
             // Initialize
-            initialize = function() {
+            initialize = function () {
                 if (!isInitialized) {
 
                     // Define request to get Tariff Rate base 
@@ -26,7 +26,7 @@ define("tariffRate/tariffRate.dataservice", function () {
                     });
                     // Define request to save Tariff Rate
                     amplify.request.define('createTariffRate', 'ajax', {
-                        url: '/Api/TariffRate',
+                        url: '/Api/GetTariffRateDetail',
                         dataType: 'json',
                         type: 'PUT'
                     });
@@ -37,7 +37,12 @@ define("tariffRate/tariffRate.dataservice", function () {
                         dataType: 'json',
                         type: 'POST'
                     });
-
+                    // Define request to get tarrif Rate by id 
+                    amplify.request.define('getTariffRateById', 'ajax', {
+                        url: '/Api/GetTariffRateDetail',
+                        dataType: 'json',
+                        type: 'GET'
+                    });
                     // Define request to delete Tariff Rate
                     amplify.request.define('deleteTariffRate', 'ajax', {
                         url: '/Api/TariffRate',
@@ -48,7 +53,7 @@ define("tariffRate/tariffRate.dataservice", function () {
                 }
             },
             // Get Tariff Rate base
-            getTariffRateBase = function(callbacks) {
+            getTariffRateBase = function (callbacks) {
                 initialize();
                 return amplify.request({
                     resourceId: 'getTariffRateBase',
@@ -56,9 +61,8 @@ define("tariffRate/tariffRate.dataservice", function () {
                     error: callbacks.error,
                 });
             },
-
-            // Get Tariff Rates 
-            getTariffRate = function(params, callbacks) {
+             // Get Tariff Rates 
+            getTariffRate = function (params, callbacks) {
                 initialize();
                 return amplify.request({
                     resourceId: 'getTariffRate',
@@ -77,7 +81,6 @@ define("tariffRate/tariffRate.dataservice", function () {
                     data: param
                 });
             },
-
             // Update a Product
             updateTariffRate = function (param, callbacks) {
                 initialize();
@@ -88,7 +91,16 @@ define("tariffRate/tariffRate.dataservice", function () {
                     data: param
                 });
             },
-
+             // Get Tarrif type bby id 
+            getTariffRateById = function (param, callbacks) {
+                initialize();
+                return amplify.request({
+                    resourceId: 'getTariffRateById',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: param
+                });
+            },
             // Delete
             deleteTariffRate = function (param, callbacks) {
                 initialize();
@@ -104,7 +116,8 @@ define("tariffRate/tariffRate.dataservice", function () {
             getTariffRate: getTariffRate,
             createTariffRate: createTariffRate,
             updateTariffRate: updateTariffRate,
-            deleteTariffRate: deleteTariffRate
+            deleteTariffRate: deleteTariffRate,
+            getTariffRateById: getTariffRateById
         };
     })();
 

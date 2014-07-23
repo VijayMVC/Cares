@@ -27,6 +27,7 @@
         };
         return self;
     };
+// ReSharper disable once InconsistentNaming
     var TariffRateDetail = function () {
         // ReSharper restore InconsistentNaming
         var // Reference to this object
@@ -51,7 +52,7 @@
             errors = ko.validation.group({
                 tariffRateCode: tariffRateCode,
                 operationId: operationId,
-                tariffTypeId:tariffTypeId,
+                tariffTypeId: tariffTypeId,
                 startEffectiveDate: startEffectiveDate,
                 endEffectiveDate: endEffectiveDate,
             }),
@@ -87,7 +88,7 @@
             tariffRateName: tariffRateName,
             description: description,
             operationId: operationId,
-            tariffTypeId:tariffTypeId,
+            tariffTypeId: tariffTypeId,
             startEffectiveDate: startEffectiveDate,
             endEffectiveDate: endEffectiveDate,
 
@@ -101,8 +102,54 @@
         };
         return self;
     };
+    var HireGroupDetail = function () {
+        // ReSharper restore InconsistentNaming
+        var // Reference to this object
+           // Unique key
+            hireGroupDetailId = ko.observable(),
+             // Hire Group
+            hireGroup = ko.observable(),
+            //Vehicle Make
+            vehicleMake = ko.observable(),
+            //Vehicle Model
+             vehicleModel = ko.observable(),
+             //Vehicle Category
+             vehicleCategory = ko.observable(),
+            //Model Year
+            modelYear = ko.observable(),
+            //Allow Mileage
+            allowMileage = ko.observable(),
+            //Excess Mileage Charge
+            excessMileageCharge = ko.observable(),
+            //Standard Rate
+            standardRate = ko.observable(),
+            //Start Date
+            startDate = ko.observable(),
+            //End Date
+            endDate = ko.observable(),
+            //Is Checked
+            isChecked = ko.observable(true),
+            
+        self = {
+            hireGroupDetailId: hireGroupDetailId,
+            hireGroup: hireGroup,
+            vehicleMake: vehicleMake,
+            vehicleModel: vehicleModel,
+            vehicleCategory: vehicleCategory,
+            modelYear: modelYear,
+            allowMileage: allowMileage,
+            excessMileageCharge: excessMileageCharge,
+            standardRate: standardRate,
+            startDate: startDate,
+            endDate: endDate,
+            isChecked: isChecked
+
+        };
+        return self;
+    };
 
     //Server To Client Mapper
+// ReSharper disable once InconsistentNaming
     var TariffRateClientMapper = function (source) {
         var tariffRate = new TariffRate();
         tariffRate.tariffRateId(source.StandardRtMainId === null ? undefined : source.StandardRtMainId);
@@ -110,10 +157,38 @@
         tariffRate.tariffRateName(source.StandardRtMainName === null ? undefined : source.StandardRtMainName);
         return tariffRate;
     };
-
+    // ReSharper disable once InconsistentNaming
+    var TariffRateDetailClientMapper = function (source) {
+        var tariffRate = new TariffRateDetail();
+        tariffRate.tariffRateId(source.StandardRtMainId === null ? undefined : source.StandardRtMainId);
+        tariffRate.tariffRateCode(source.StandardRtMainCode === null ? undefined : source.StandardRtMainCode);
+        tariffRate.tariffRateName(source.StandardRtMainName === null ? undefined : source.StandardRtMainName);
+        return tariffRate;
+    };
+    //Server To Client Mapper
+// ReSharper disable once InconsistentNaming
+    var HireGroupClientMapper = function (source) {
+        var hireGroupDetail = new HireGroupDetail();
+        hireGroupDetail.hireGroupDetailId(source.HireGroupDetailId === null ? undefined : source.HireGroupDetailId);
+        hireGroupDetail.hireGroup(source.HireGroup === null ? undefined : source.HireGroup);
+        hireGroupDetail.vehicleMake(source.VehicleMake === null ? undefined : source.VehicleMake);
+        hireGroupDetail.vehicleModel(source.VehicleModel === null ? undefined : source.VehicleModel);
+        hireGroupDetail.vehicleCategory(source.VehicleCategory === null ? undefined : source.VehicleCategory);
+        hireGroupDetail.modelYear(source.ModelYear === null ? undefined : source.ModelYear);
+        hireGroupDetail.allowMileage(source.AllowMileage === null ? undefined : source.AllowMileage);
+        hireGroupDetail.excessMileageCharge(source.ExcessMileageCharge === null ? undefined : source.ExcessMileageCharge);
+        hireGroupDetail.standardRate(source.StandardRate === null ? undefined : source.StandardRate);
+        hireGroupDetail.startDate(source.StartDate !== null ? moment(source.StartDate, ist.utcFormat).toDate() : undefined);
+        hireGroupDetail.endDate(source.EndDate !== null ? moment(source.EndDate, ist.utcFormat).toDate() : undefined);
+        hireGroupDetail.isChecked(true);
+        return hireGroupDetail;
+    };
     return {
         TariffRate: TariffRate,
         TariffRateDetail: TariffRateDetail,
         TariffRateClientMapper: TariffRateClientMapper,
+        HireGroupDetail: HireGroupDetail,
+        HireGroupClientMapper: HireGroupClientMapper,
+        TariffRateDetailClientMapper: TariffRateDetailClientMapper
     };
 });
