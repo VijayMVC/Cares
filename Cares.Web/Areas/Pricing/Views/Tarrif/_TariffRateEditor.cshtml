@@ -8,11 +8,11 @@
         <div class="form-group">
             <label for="tariffRateCode" class="control-label h5 col-sm-2">Tariff Rate Code *</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" placeholder="<Tariff Type Code>" id="tariffRateCode" data-bind="value: tariffRateCode, validationTooltip: tariffRateCode" />
+                <input type="text" class="form-control" placeholder="<Tariff Rate Code>" id="tariffRateCode" data-bind="value: tariffRateCode, validationTooltip: tariffRateCode" />
             </div>
             <label for="tariffRateName" class="control-label h5 col-sm-2">Tariff Rate Name</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" placeholder="<Tariff Type Name>" id="tariffRateName" data-bind="value: tariffRateName, validationTooltip: tariffRateName" />
+                <input type="text" class="form-control" placeholder="<Tariff Rate Name>" id="tariffRateName" data-bind="value: tariffRateName, validationTooltip: tariffRateName" />
             </div>
             <label for="description" class="control-label h5 col-sm-2">Description</label>
             <div class="col-md-2">
@@ -30,20 +30,45 @@
             </div>
             <label for="startEffectiveDate" class="control-label h5 col-sm-2">Start Effective Date *</label>
             <div class="col-md-2">
-                <input type="text" placeholder="<Effective start Date>" class="form-control" id="startEffectiveDate" data-bind="datepicker: startEffectiveDate, validationTooltip: startEffectiveDate" />
+                <input type="text" placeholder="<Start Effective Date>" class="form-control" id="startEffectiveDate" data-bind="datepicker: startEffectiveDate, validationTooltip: startEffectiveDate" />
             </div>
         </div>
 
         <div class="form-group">
             <label for="endTypeEffectiveDate" class="control-label h5 col-sm-2">End Effective Date *</label>
             <div class="col-md-2">
-                <input type="text" placeholder="<Effective start Date>" class="form-control" id="endTypeEffectiveDate" data-bind="datepicker: endEffectiveDate, validationTooltip: endEffectiveDate" />
+                <input type="text" placeholder="<End Effective Date>" class="form-control" id="endTypeEffectiveDate" data-bind="datepicker: endEffectiveDate, validationTooltip: endEffectiveDate" />
             </div>
         </div>
 
     </form>
+    <div class="row ">
+        <h3 class="page-header float-left pageHeaderSection"></h3>
+        <div class="header-toolsSection">
+            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !$root.filterSectionVisilble(), click: $root.showFilterSection" title="Show Filters" style="display: none"></a>
+        </div>
+    </div>
+    <div class="row searchFilterSection" data-bind="visible: $root.filterSectionVisilble()" style="display: none">
+        <div class=" well">
+            <form class="form-horizontal" data-bind="submit: $root.search">
+                <div class="col-xs-3">
+                    <select class="form-control" data-bind="options: $root.hireGroups, optionsText: 'HireGroupName', optionsValue: 'HireGroupId', optionsCaption: '<Hire Groups>', value: $root.hireGroupFilter "></select>
+                </div>
+                <div class="col-xs-3">
+                    <select class="form-control" data-bind="options: $root.vehicleMakes, optionsText: 'VehicleMakeName', optionsValue: 'VehicleMakeId', optionsCaption: '<Vehicle Make>', value: $root.vehicleMakeFilter "></select>
+                </div>
+                <div class="col-xs-3">
+                    <select class="form-control" data-bind="options: $root.vehicleModels, optionsText: 'VehicleModelName', optionsValue: 'VehicleModeld', optionsCaption: '<Vehicle Model>', value: $root.vehicleModelFilter "></select>
+                </div>
+                <div class="col-xs-3">
+                    <select class="form-control" data-bind="options: $root.vehicleCategories, optionsText: 'VehicleCategoryName', optionsValue: 'VehicleCategoryId', optionsCaption: '<Vehicle Category>', value: $root.vehicleCategoryFilter "></select>
+                </div>
+                <button type="submit" class="btn btn-success" data-bind="click: $root.search">Search</button>
+                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: $root.collapseFilterSection" title="Hide Section"></a>
+            </form>
+        </div>
+    </div>
     <div class="panel panel-info">
-        <div class="panel-heading">Hire Group Rate</div>
         <table id="hireGroupRate" class="table table-condensed">
             <thead>
                 <tr>
@@ -61,14 +86,15 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- ko template: { name: $root.templateToUse , foreach: $root.hireGroups } -->
+                <!-- ko template: { name: $root.templateToUse , foreach: $root.hireGroupDetails } -->
                 <!-- /ko -->
             </tbody>
         </table>
         <script id="editHireGroupTemplate" type="text/html">
             <tr data-bind="css: { selectedRow: $data === $root.selectedHireGroup() }">
                 <td class="col-md-2">
-                    <input type="checkbox" data-bind="checked: isChecked" />
+                    @*<input type="checkbox" data-bind="checked: isChecked" />*@
+                    <input type="checkbox" data-bind="attr: { value: hireGroupDetailId }, checked: $root.selectedHireGroupList">
                 </td>
                 <td class="col-md-2">
                     <span data-bind="text: hireGroup"></span>
@@ -89,7 +115,7 @@
                     <input type="text" data-bind="value: allowMileage, validationTooltip: allowMileage" />
                 </td>
                 <td class="col-md-2">
-                    <input type="text"  data-bind="value: excessMileageCharge, validationTooltip: excessMileageCharge" />
+                    <input type="text" data-bind="value: excessMileageCharge, validationTooltip: excessMileageCharge" />
                 </td>
                 <td class="col-md-2">
                     <input type="text" data-bind="value: standardRate, validationTooltip: standardRate" />
@@ -113,8 +139,8 @@
                 <td data-bind="text: allowMileage"></td>
                 <td data-bind="text: excessMileageCharge"></td>
                 <td data-bind="text: standardRate"></td>
-                @*<td data-bind="text: startDate"></td>
-                    <td data-bind="text: endDate"></td>*@
+                <td data-bind="text: startDate"></td>
+                <td data-bind="text: endDate"></td>
             </tr>
         </script>
     </div>

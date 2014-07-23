@@ -62,11 +62,25 @@ namespace Implementation.Services
         {
             return standardRateMainRepository.GetTariffRates(tariffRateRequest);
         }
+        /// <summary>
+        /// FindTariffRateById
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Tariff Rate Detail Response</returns>
         public TariffRateDetailResponse FindTariffRateById(long id)
         {
             StandardRateMain standardRateMain = standardRateMainRepository.Find(id);
             var hireGroupDetails = hireGroupDetailRepository.GetAll();
             return new TariffRateDetailResponse { StandardRateMain = standardRateMain, HireGroupDetails = hireGroupDetails };
+        }
+       /// <summary>
+        /// Find Standard Rate Main
+       /// </summary>
+       /// <param name="id"></param>
+       /// <returns></returns>
+        public StandardRateMain Find(long id)
+        {
+            return standardRateMainRepository.Find(id);
         }
         /// <summary>
         /// Add Tariff Rate
@@ -75,6 +89,8 @@ namespace Implementation.Services
         /// <returns></returns>
         public StandardRateMain AddTariffRate(StandardRateMain standardRateMain)
         {
+            standardRateMain.RecCreatedDt = System.DateTime.Now;
+            standardRateMain.RecLastUpdatedDt = System.DateTime.Now;
             standardRateMainRepository.Add(standardRateMain);
             tarrifTypeRepository.SaveChanges();
             return standardRateMain;

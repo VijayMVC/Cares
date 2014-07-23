@@ -1,11 +1,17 @@
 ﻿@{
     ViewBag.Title = "Index";
 }
-Operation Show that related to sale department
 
-<div class="row" id="tariffRateBinding">
-    <div class="row searchFilterSection">
-        <div class="well">
+<div class="row" id="tariffRateBinding" >
+    <div class="row " data-bind="visible: !isTariffRateEditorVisible()">
+        <h3 class="page-header float-left pageHeaderSection">Tariff Rates</h3>
+        <div class="header-toolsSection">
+            <a href="#" class="label label-default create-new-icon" data-bind="click: createTariffRate" title="Create New Tariff">NEW</a>
+            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title="Show Filters" style="display: none"></a>
+        </div>
+    </div>
+    <div class="row searchFilterSection" data-bind="visible: !isTariffRateEditorVisible() && filterSectionVisilble()" style="display: none">
+        <div class=" well">
             <form class="form-horizontal" data-bind="submit: search">
                 <div class="col-xs-3">
                     <input type="text" class="form-control" placeholder="<Search>" data-bind="value: searchFilter" />
@@ -17,13 +23,10 @@ Operation Show that related to sale department
                     <select class="form-control" data-bind="options: $root.tariffTypes, optionsText: 'TariffTypeName', optionsValue: 'TariffTypeId', optionsCaption: '<Tariff Types>', value: tariffTypeFilter"></select>
                 </div>
                 <button type="submit" class="btn btn-success" data-bind="click: search">Search</button>
-                <div class="btn-group" id="createButton">
-                    <button type="button" data-bind="click:createTariffRate" class=" btn btn-default">Create New</button>
-                </div>
+                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection" title="Hide Section"></a>
             </form>
         </div>
     </div>
-
     <div class="row searchFilterResultSection" data-bind="visible: !isTariffRateEditorVisible()">
         <div class="well">
             <table id="tariffRateTable" class="table table-condensed">
@@ -54,7 +57,7 @@ Operation Show that related to sale department
         <a href="#" data-bind="click: $root.onDeleteTariffRate" title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
     </script>
     <script id="itemTariffRateTemplate" type="text/html">
-        <tr>
+        <tr >
             <td data-bind="text: tariffRateCode"></td>
             <td data-bind="text: tariffRateName"></td>
             <td>

@@ -21,8 +21,9 @@ namespace Interfaces.IServices
         /// <returns></returns>
         TariffRateResponse LoadTariffRates(TariffRateRequest tariffRateRequest);
         TariffRateDetailResponse FindTariffRateById(long id);
-         void DeleteTariffRate(StandardRateMain standardRateMain);
-         StandardRateMain AddTariffRate(StandardRateMain standardRateMain);
-         StandardRateMain Update(StandardRateMain standardRateMain);
+        StandardRateMain Find(long id);
+        void DeleteTariffRate(StandardRateMain standardRateMain);
+        StandardRateMain AddTariffRate(StandardRateMain standardRateMain);
+        StandardRateMain Update(StandardRateMain standardRateMain);
     }
 }

@@ -26,7 +26,7 @@ define("tariffRate/tariffRate.dataservice", function () {
                     });
                     // Define request to save Tariff Rate
                     amplify.request.define('createTariffRate', 'ajax', {
-                        url: '/Api/GetTariffRateDetail',
+                        url: '/Api/TariffRate',
                         dataType: 'json',
                         type: 'PUT'
                     });
