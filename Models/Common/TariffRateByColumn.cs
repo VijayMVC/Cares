@@ -9,5 +9,13 @@
         /// Tariff Rate Code
         /// </summary>
         TariffRateCode = 1,
+        /// <summary>
+        /// Tariff Rate Name
+        /// </summary>
+        TariffRateName = 2,
+        /// <summary>
+        /// Operation
+        /// </summary>
+        Operation = 3,
     }
 }

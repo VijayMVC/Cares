@@ -96,6 +96,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonTypes\DepartmentType.cs" />
     <Compile Include="Common\BusinessPartnerByColumn.cs" />
     <Compile Include="Common\TariffRateByColumn.cs" />
     <Compile Include="DomainModels\BusinessPartnerIndividual.cs" />
@@ -155,6 +156,7 @@
     <Compile Include="ResponseModels\BusinessPartnerResponse.cs" />
     <Compile Include="ResponseModels\ProductResponse.cs" />
     <Compile Include="ResponseModels\TariffRateBaseResponse.cs" />
+    <Compile Include="ResponseModels\TariffRateContent.cs" />
     <Compile Include="ResponseModels\TariffRateDetailResponse.cs" />
     <Compile Include="ResponseModels\TariffRateResponse.cs" />
     <Compile Include="ResponseModels\TariffTypeDetailResponse.cs" />

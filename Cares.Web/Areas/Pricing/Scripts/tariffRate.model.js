@@ -13,15 +13,34 @@
             tariffRateCode = ko.observable(),
             // Tarrif Type Name
             tariffRateName = ko.observable(),
+            // Tariff Rate Description
+            tariffRateDescription = ko.observable(),
             //Start From
             startEffectiveDate = ko.observable(),
             //End To
             endEffectiveDate = ko.observable(),
+            //Tariff Type Code Name
+            tariffTypeCodeName = ko.observable(),
+            //Tariff Type Id
+            tariffTypeId = ko.observable(),
+            //OperationCodeName
+            operationCodeName = ko.observable(),
+            // Formatted Start Date for grid
+            formattedStartDate = ko.computed({
+                read: function() {
+                    return moment(startEffectiveDate()).format(ist.datePattern);
+                }
+            }),
+            // Formatted End Date for grid
+            formattedEndDate = ko.computed({
+                read: function () {
+                    return moment(endEffectiveDate()).format(ist.datePattern);
+                }
+            }),
         // Convert to server
         convertToServerData = function () {
             return {
-                StandardRtMainId: tariffRateId(),
-                
+                StandardRtMainId: tariffRateId(),                
             };
         };
         self = {
@@ -30,7 +49,13 @@
             tariffRateName: tariffRateName,
             startEffectiveDate: startEffectiveDate,
             endEffectiveDate: endEffectiveDate,
-            convertToServerData: convertToServerData
+            convertToServerData: convertToServerData,
+            tariffTypeCodeName: tariffTypeCodeName,
+            tariffTypeId: tariffTypeId,
+            operationCodeName: operationCodeName,
+            tariffRateDescription: tariffRateDescription,
+            formattedStartDate: formattedStartDate,
+            formattedEndDate: formattedEndDate
         };
         return self;
     };
@@ -162,6 +187,12 @@
         tariffRate.tariffRateId(source.StandardRtMainId === null ? undefined : source.StandardRtMainId);
         tariffRate.tariffRateCode(source.StandardRtMainCode === null ? undefined : source.StandardRtMainCode);
         tariffRate.tariffRateName(source.StandardRtMainName === null ? undefined : source.StandardRtMainName);
+        tariffRate.tariffRateDescription(source.StandardRtMainDescription === null ? undefined : source.StandardRtMainDescription);
+        tariffRate.startEffectiveDate(source.StartDt === null ? undefined : source.StartDt);
+        tariffRate.endEffectiveDate(source.EndDt === null ? undefined : source.EndDt);
+        tariffRate.tariffTypeCodeName(source.TariffTypeCodeName === null ? undefined : source.TariffTypeCodeName);
+        tariffRate.tariffTypeId(source.TariffTypeId === null ? undefined : source.tariffTypeId);
+        tariffRate.operationCodeName(source.OperationCodeName === null ? undefined : source.OperationCodeName);
         return tariffRate;
     };
     // ReSharper disable once InconsistentNaming

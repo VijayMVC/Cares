@@ -32,10 +32,8 @@
             <table id="tariffRateTable" class="table table-condensed">
                 <thead>
                     <tr>
-                        <th> <span id="1">Tariff Rate Code<span class="icon-up"></span></span></th>
-                        <th> <span id="2">Tariff Rate Name<span></span></span></th>
-                        <th> <span id="4">Description<span></span></span></th>
-                        <th> <span id="5">Company<span></span></span></th>
+                        <th> <span id="1">Code<span class="icon-up"></span></span></th>
+                        <th> <span id="2">Name<span></span></span></th>                                                
                         <th> <span id="6">Operation<span></span></span></th>
                         <th> <span id="7">Tariff Type<span></span></span></th>
                         <th> <span id="8">Start Effective Date<span></span></span></th>
@@ -57,9 +55,13 @@
         <a href="#" data-bind="click: $root.onDeleteTariffRate" title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
     </script>
     <script id="itemTariffRateTemplate" type="text/html">
-        <tr >
+        <tr>
             <td data-bind="text: tariffRateCode"></td>
             <td data-bind="text: tariffRateName"></td>
+            <td data-bind="text: operationCodeName"></td>
+            <td data-bind="text: tariffTypeCodeName"></td>
+            <td data-bind="text: formattedStartDate"></td>
+            <td data-bind="text: formattedEndDate"></td>
             <td>
                 <!-- ko template: { name: 'editActionTariffRateTemplate' } -->
                 <!-- /ko -->
