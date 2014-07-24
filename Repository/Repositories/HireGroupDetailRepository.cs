@@ -74,7 +74,7 @@ namespace Repository.Repositories
                      (!(hireGroupDetailRequest.VehicleModelId > 0) ||
                       s.VehicleModelId == hireGroupDetailRequest.VehicleModelId) &&
                        (!(hireGroupDetailRequest.VehicleCategoryId > 0) ||
-                      s.VehicleCategoryId == hireGroupDetailRequest.VehicleCategoryId));
+                      s.VehicleCategoryId == hireGroupDetailRequest.VehicleCategoryId)&&s.StandardRate.HireGroupDetailId==s.HireGroupDetailId);
 
             IEnumerable<HireGroupDetail> hireGroupDetails = hireGroupDetailRequest.IsAsc ? DbSet.Where(query)
                                             .OrderBy(hireGroupDetailClause[hireGroupDetailRequest.TarrifTypeByOrder]).Skip(fromRow).Take(toRow).ToList()
