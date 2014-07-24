@@ -65,6 +65,9 @@
            // Business Partner Individual
            businessPartnerIndividual = ko.observable(BusinessPartnerIndividual.Create()),
 
+           // Business Partner Company
+           businessPartnerCompany = ko.observable(BusinessPartnerCompany.Create()),
+
            // Is Busy
            isBusy = ko.observable(false),
            // Errors
@@ -76,7 +79,9 @@
            }),
            // Is Valid
            isValid = ko.computed(function() {
-               return errors().length === 0 && businessPartnerIndividual().errors().length === 0;
+               return errors().length === 0
+                   && businessPartnerIndividual().errors().length === 0
+                   && businessPartnerCompany().errors().length === 0;
            }),
            // True if the booking has been changed
            // ReSharper disable InconsistentNaming
@@ -122,7 +127,8 @@
            systemGuarantorId: systemGuarantorId,
            dealingEmployeeId: dealingEmployeeId,
               
-           businessPartnerIndividual:businessPartnerIndividual,
+           businessPartnerIndividual: businessPartnerIndividual,
+           businessPartnerCompany:businessPartnerCompany,
 
            errors: errors,
            isValid: isValid,
@@ -135,7 +141,7 @@
    };
 
     var
-// Business Partner entity
+// Business Partner Individual entity
 // ReSharper disable InconsistentNaming
 BusinessPartnerIndividual = function (
 specifiedIndividualFirstName, specifiedIndividualMiddleName, specifiedIndividualLastName,
@@ -289,20 +295,95 @@ specifiedIndividualPassportCountryId, specifiedIndividualIqamaNo, specifiedIndiv
     };
 };
 
+    var
+  // Business Partner Company entity
+  // ReSharper disable InconsistentNaming
+  BusinessPartnerCompany = function (specifiedBusinessPartnerCompanyCode, specifiedBusinessPartnerCompanyName,
+  specifiedEstablishedSince, specifiedSwiftCode, specifiedisAccountNumber, specifiedBusinessSegmentId) {
+      // ReSharper restore InconsistentNaming
+      var // Reference to this object
+          self,
+          // Main Top Section 
+          // Business Partner Company Code
+          businessPartnerCompanyCode = ko.observable(specifiedBusinessPartnerCompanyCode).extend({ required: true }),
+          // Busiess Partner Company Name
+          businessPartnerCompanyName = ko.observable(specifiedBusinessPartnerCompanyName),
+          // Established Since
+          businessPartnerCompanyEstablishedSince = ko.observable(specifiedEstablishedSince),
+          // Swift Code
+          businessPartnerCompanySwiftCode = ko.observable(specifiedSwiftCode),
+          // Account Number
+          businessPartnerCompanyAccountNumber = ko.observable(specifiedisAccountNumber),
+          // Non System Guarantor
+          businessPartnerCompanyBusinessSegmentId = ko.observable(specifiedBusinessSegmentId),
+          
+          // Is Busy
+          isBusy = ko.observable(false),
+          // Errors
+          errors = ko.validation.group({
+              businessPartnerCompanyCode: businessPartnerCompanyCode
+          }),
+          // Is Valid
+          isValid = ko.computed(function () {
+              return errors().length === 0;
+          }),
+          // True if the booking has been changed
+          // ReSharper disable InconsistentNaming
+          dirtyFlag = new ko.dirtyFlag({
+
+              // ReSharper restore InconsistentNaming
+              businessPartnerCompanyCode: businessPartnerCompanyCode,
+              businessPartnerCompanyName: businessPartnerCompanyName,
+              businessPartnerCompanyEstablishedSince: businessPartnerCompanyEstablishedSince,
+              businessPartnerCompanySwiftCode: businessPartnerCompanySwiftCode,
+              businessPartnerCompanyAccountNumber: businessPartnerCompanyAccountNumber,
+              businessPartnerCompanyBusinessSegmentId: businessPartnerCompanyBusinessSegmentId
+          }),
+          // Has Changes
+          hasChanges = ko.computed(function () {
+              return dirtyFlag.isDirty();
+          }),
+          // Reset
+          reset = function () {
+              dirtyFlag.reset();
+          };
+      self = {
+          businessPartnerCompanyCode: businessPartnerCompanyCode,
+          businessPartnerCompanyName: businessPartnerCompanyName,
+          businessPartnerCompanyEstablishedSince: businessPartnerCompanyEstablishedSince,
+          businessPartnerCompanySwiftCode: businessPartnerCompanySwiftCode,
+          businessPartnerCompanyAccountNumber: businessPartnerCompanyAccountNumber,
+          businessPartnerCompanyBusinessSegmentId: businessPartnerCompanyBusinessSegmentId,
+          
+          errors: errors,
+          isValid: isValid,
+          dirtyFlag: dirtyFlag,
+          hasChanges: hasChanges,
+          reset: reset,
+          isBusy: isBusy
+      };
+      return self;
+  };
+
 
     // BusinessPartnerDetail Factory
     BusinessPartnerDetail.Create = function () {
         return new BusinessPartnerDetail("", "", "", false, false, "", "", false, undefined, undefined, undefined, undefined, undefined);
     };
     
-    // BusinessPartnerDetail Factory
+    // BusinessPartnerIndividual Factory
     BusinessPartnerIndividual.Create = function () {
-        return new BusinessPartnerIndividual("", "", "", "", "", moment().toDate(), "", "", "", "", "", "", moment().toDate(), undefined,false, "", "", ""
-            , undefined, moment().toDate(), moment().toDate(), undefined,
-            "", moment().toDate());
+        return new BusinessPartnerIndividual("", "", "", "", "", undefined, "", "", "", "", "", "", undefined, undefined, false, "", "", ""
+            , undefined, undefined, undefined, undefined,
+            "", undefined);
+    };
+
+    // BusinessPartnerCompany Factory
+    BusinessPartnerCompany.Create = function() {
+        return new BusinessPartnerCompany("", "", undefined, "", "", undefined);
     };
     
-    // Convert Client to server
+    // Convert (Business Partner) Client to server
     var BusinessPartnerServerMapper = function(clientData) {
         var result = {};
 
@@ -321,14 +402,18 @@ specifiedIndividualPassportCountryId, specifiedIndividualIqamaNo, specifiedIndiv
         result.SystemGuarantorId = clientData.systemGuarantorId();
         result.DealingEmployeeId = clientData.dealingEmployeeId();
         
-        // convert chlid object data 
+        // individual tab
         // from client to server
         result.BusinessPartnerIndividual = BusinessPartnerIndividualServerMapper(clientData);
+
+        // company tab
+        // from client to server
+        result.BusinessPartnerCompany = BusinessPartnerCompanyServerMapper(clientData);
 
         return result;
     };
 
-    // Convert Client to server
+    // Convert (Business Partner Individual) Client to server
     var BusinessPartnerIndividualServerMapper = function (clientData) {
         var result = {};
 
@@ -339,31 +424,44 @@ specifiedIndividualPassportCountryId, specifiedIndividualIqamaNo, specifiedIndiv
         result.LastName = clientData.businessPartnerIndividual().individualLastName();
         result.Initials = clientData.businessPartnerIndividual().individualInitials();
         result.LiscenseNumber = clientData.businessPartnerIndividual().individualLiscenseNumber();
-        result.LiscenseExpiryDate = clientData.businessPartnerIndividual().individualLiscenseExpiryDate() === undefined ? undefined : moment(clientData.businessPartnerIndividual().individualLiscenseExpiryDate()).format(ist.utcFormat);
+        result.LiscenseExpiryDate = clientData.businessPartnerIndividual().individualLiscenseExpiryDate() === undefined ? undefined : moment(clientData.businessPartnerIndividual().individualLiscenseExpiryDate()).format(ist.utcFormat) + "Z";
         result.GenderStatus = clientData.businessPartnerIndividual().individualGenderStatus();
         result.PassportNumber = clientData.businessPartnerIndividual().individualPassportNumber();
         result.NicNumber = clientData.businessPartnerIndividual().individualNicNumber();
         result.MaritalStatusCode = clientData.businessPartnerIndividual().individualMaritalStatusCode();
         result.TaxRegisterationCode = clientData.businessPartnerIndividual().individualTaxRegisterationCode();
         result.TaxNumber = clientData.businessPartnerIndividual().individualTaxNumber();
-        result.DateOfBirth = clientData.businessPartnerIndividual().individualDateOfBirth() === undefined ? undefined : moment(clientData.businessPartnerIndividual().individualDateOfBirth()).format(ist.utcFormat);
+        result.DateOfBirth = clientData.businessPartnerIndividual().individualDateOfBirth() === undefined ? undefined : moment(clientData.businessPartnerIndividual().individualDateOfBirth()).format(ist.utcFormat) + "Z";
         result.OccupationTypeId = clientData.businessPartnerIndividual().individualOccupationTypeId();
         result.IsCompanyExternal = clientData.businessPartnerIndividual().individualIsCompanyExternal();
         result.CompanyName = clientData.businessPartnerIndividual().individualCompanyName();
         result.CompanyAddress = clientData.businessPartnerIndividual().individualCompanyAddress();
         result.CompanyPhone = clientData.businessPartnerIndividual().individualCompanyPhone();
         result.BusinessPartnerCompnayId = clientData.businessPartnerIndividual().individualBusinessPartnerCompnayId();
-        result.NicExpiryDate = clientData.businessPartnerIndividual().individualNicExpiryDate() === undefined ? undefined : moment(clientData.businessPartnerIndividual().individualNicExpiryDate()).format(ist.utcFormat);
-        result.PassportExpiryDate = clientData.businessPartnerIndividual().individualPassportExpiryDate() === undefined ? undefined : moment(clientData.businessPartnerIndividual().individualPassportExpiryDate()).format(ist.utcFormat);
+        result.NicExpiryDate = clientData.businessPartnerIndividual().individualNicExpiryDate() === undefined ? undefined : moment(clientData.businessPartnerIndividual().individualNicExpiryDate()).format(ist.utcFormat) + "Z";
+        result.PassportExpiryDate = clientData.businessPartnerIndividual().individualPassportExpiryDate() === undefined ? undefined : moment(clientData.businessPartnerIndividual().individualPassportExpiryDate()).format(ist.utcFormat) + "Z";
         result.PassportCountryId = clientData.businessPartnerIndividual().individualPassportCountryId();
         result.IqamaNo = clientData.businessPartnerIndividual().individualIqamaNo();
-        result.IqamaExpiryDate = clientData.businessPartnerIndividual().individualIqamaExpiryDate() === undefined ? undefined : moment(clientData.businessPartnerIndividual().individualIqamaExpiryDate()).format(ist.utcFormat);
+        result.IqamaExpiryDate = clientData.businessPartnerIndividual().individualIqamaExpiryDate() === undefined ? undefined : moment(clientData.businessPartnerIndividual().individualIqamaExpiryDate()).format(ist.utcFormat) + "Z";
 
         return result;
     };
+    
+    // Convert (Business Partner Company) Client to server
+    var BusinessPartnerCompanyServerMapper = function (clientData) {
+        var result = {};
+        // Second  tab : Company Info
+        result.BusinessPartnerId = clientData.businessPartnerId() === undefined ? undefined : clientData.businessPartnerId();
+        result.BusinessPartnerCompanyCode = clientData.businessPartnerCompany().businessPartnerCompanyCode();
+        result.BusinessPartnerCompanyName = clientData.businessPartnerCompany().businessPartnerCompanyName();
+        result.EstablishedSince = clientData.businessPartnerCompany().businessPartnerCompanyEstablishedSince() === undefined ? undefined : moment(clientData.businessPartnerCompany().businessPartnerCompanyEstablishedSince()).format(ist.utcFormat);
+        result.SwiftCode = clientData.businessPartnerCompany().businessPartnerCompanySwiftCode();
+        result.AccountNumber = clientData.businessPartnerCompany().businessPartnerCompanyAccountNumber();
+        result.BusinessSegmentId = clientData.businessPartnerCompany().businessPartnerCompanyBusinessSegmentId() === undefined ? undefined : clientData.businessPartnerCompany().businessPartnerCompanyBusinessSegmentId();
+        return result;
+    };
 
-
-    // Convert Server to Client
+    // Convert (Business Partner) Server to Client
     var BusinessPartnerClientMapper = function (serverData) {
         
         var businessPartner = new BusinessPartnerDetail();
@@ -383,13 +481,16 @@ specifiedIndividualPassportCountryId, specifiedIndividualIqamaNo, specifiedIndiv
         businessPartner.systemGuarantorId(serverData.SystemGuarantorId === null ? undefined : serverData.SystemGuarantorId);
         businessPartner.dealingEmployeeId(serverData.DealingEmployeeId === null ? undefined : serverData.DealingEmployeeId);
 
-        // First tab : Individual
+        // First tab : Individual Info
         businessPartner.businessPartnerIndividual(BusinessPartnerIndividualClientMapper(serverData));
         
+        // Second tab : Company Info
+        businessPartner.businessPartnerCompany(BusinessPartnerCompanyClientMapper(serverData));
+
         return businessPartner;
     };
 
-    // Convert Server to Client
+    // Convert (Business Partner Individual) Server to Client
     var BusinessPartnerIndividualClientMapper = function (serverData) {
 
         if (serverData.BusinessPartnerIndividual != null || serverData.BusinessPartnerIndividual != undefined) {
@@ -402,27 +503,45 @@ specifiedIndividualPassportCountryId, specifiedIndividualIqamaNo, specifiedIndiv
             businessPartnerIndividual.individualLastName(serverData.BusinessPartnerIndividual.LastName === null ? undefined : serverData.BusinessPartnerIndividual.LastName);
             businessPartnerIndividual.individualInitials(serverData.BusinessPartnerIndividual.Initials === null ? undefined : serverData.BusinessPartnerIndividual.Initials);
             businessPartnerIndividual.individualLiscenseNumber(serverData.BusinessPartnerIndividual.LiscenseNumber === null ? undefined : serverData.BusinessPartnerIndividual.LiscenseNumber);
-            businessPartnerIndividual.individualLiscenseExpiryDate(serverData.BusinessPartnerIndividual.LiscenseExpiryDate === null ? undefined : serverData.BusinessPartnerIndividual.LiscenseExpiryDate);
+            businessPartnerIndividual.individualLiscenseExpiryDate(serverData.BusinessPartnerIndividual.LiscenseExpiryDate === null ? undefined : moment(serverData.BusinessPartnerIndividual.LiscenseExpiryDate).toDate());
             businessPartnerIndividual.individualGenderStatus(serverData.BusinessPartnerIndividual.GenderStatus === null ? undefined : serverData.BusinessPartnerIndividual.GenderStatus);
             businessPartnerIndividual.individualPassportNumber(serverData.BusinessPartnerIndividual.PassportNumber === null ? undefined : serverData.BusinessPartnerIndividual.PassportNumber);
             businessPartnerIndividual.individualNicNumber(serverData.BusinessPartnerIndividual.NicNumber === null ? undefined : serverData.BusinessPartnerIndividual.NicNumber);
             businessPartnerIndividual.individualMaritalStatusCode(serverData.BusinessPartnerIndividual.MaritalStatusCode === null ? undefined : serverData.BusinessPartnerIndividual.MaritalStatusCode);
             businessPartnerIndividual.individualTaxRegisterationCode(serverData.BusinessPartnerIndividual.TaxRegisterationCode === null ? undefined : serverData.BusinessPartnerIndividual.TaxRegisterationCode);
             businessPartnerIndividual.individualTaxNumber(serverData.BusinessPartnerIndividual.TaxNumber === null ? undefined : serverData.BusinessPartnerIndividual.TaxNumber);
-            businessPartnerIndividual.individualDateOfBirth(serverData.BusinessPartnerIndividual.DateOfBirth === null ? undefined : serverData.BusinessPartnerIndividual.DateOfBirth);
+            businessPartnerIndividual.individualDateOfBirth(serverData.BusinessPartnerIndividual.DateOfBirth === null ? undefined : moment(serverData.BusinessPartnerIndividual.DateOfBirth).toDate());
             businessPartnerIndividual.individualOccupationTypeId(serverData.BusinessPartnerIndividual.OccupationTypeId === null ? undefined : serverData.BusinessPartnerIndividual.OccupationTypeId);
             businessPartnerIndividual.individualIsCompanyExternal(serverData.BusinessPartnerIndividual.IsCompanyExternal === null ? undefined : serverData.BusinessPartnerIndividual.IsCompanyExternal);
             businessPartnerIndividual.individualCompanyName(serverData.BusinessPartnerIndividual.CompanyName === null ? undefined : serverData.BusinessPartnerIndividual.CompanyName);
             businessPartnerIndividual.individualCompanyAddress(serverData.BusinessPartnerIndividual.CompanyAddress === null ? undefined : serverData.BusinessPartnerIndividual.CompanyAddress);
             businessPartnerIndividual.individualCompanyPhone(serverData.BusinessPartnerIndividual.CompanyPhone === null ? undefined : serverData.BusinessPartnerIndividual.CompanyPhone);
             businessPartnerIndividual.individualBusinessPartnerCompnayId(serverData.BusinessPartnerIndividual.BusinessPartnerCompnayId === null ? undefined : serverData.BusinessPartnerIndividual.BusinessPartnerCompnayId);
-            businessPartnerIndividual.individualNicExpiryDate(serverData.BusinessPartnerIndividual.NicExpiryDate === null ? undefined : serverData.BusinessPartnerIndividual.NicExpiryDate);
-            businessPartnerIndividual.individualPassportExpiryDate(serverData.BusinessPartnerIndividual.PassportExpiryDate === null ? undefined : serverData.BusinessPartnerIndividual.PassportExpiryDate);
+            businessPartnerIndividual.individualNicExpiryDate(serverData.BusinessPartnerIndividual.NicExpiryDate === null ? undefined : moment(serverData.BusinessPartnerIndividual.NicExpiryDate).toDate());
+            businessPartnerIndividual.individualPassportExpiryDate(serverData.BusinessPartnerIndividual.PassportExpiryDate === null ? undefined : moment(serverData.BusinessPartnerIndividual.PassportExpiryDate).toDate());
             businessPartnerIndividual.individualPassportCountryId(serverData.BusinessPartnerIndividual.PassportCountryId === null ? undefined : serverData.BusinessPartnerIndividual.PassportCountryId);
             businessPartnerIndividual.individualIqamaNo(serverData.BusinessPartnerIndividual.IqamaNo === null ? undefined : serverData.BusinessPartnerIndividual.IqamaNo);
-            businessPartnerIndividual.individualIqamaExpiryDate(serverData.BusinessPartnerIndividual.IqamaExpiryDate === null ? undefined : serverData.BusinessPartnerIndividual.IqamaExpiryDate);
+            businessPartnerIndividual.individualIqamaExpiryDate(serverData.BusinessPartnerIndividual.IqamaExpiryDate === null ? undefined : moment(serverData.BusinessPartnerIndividual.IqamaExpiryDate).toDate());
 
             return businessPartnerIndividual;
+        } else {
+            return undefined;
+        }
+    };
+
+    // Convert (Business Partner Company) Server to Client
+    var BusinessPartnerCompanyClientMapper = function (serverData) {
+
+        if (serverData.BusinessPartnerCompany != null || serverData.BusinessPartnerCompany != undefined) {
+            var businessPartnerCompany = new BusinessPartnerCompany();
+            // Second Tab : Individual
+            businessPartnerCompany.businessPartnerCompanyCode(serverData.BusinessPartnerCompany.BusinessPartnerCompanyCode === null ? undefined : serverData.BusinessPartnerCompany.BusinessPartnerCompanyCode);
+            businessPartnerCompany.businessPartnerCompanyName(serverData.BusinessPartnerCompany.BusinessPartnerCompanyName === null ? undefined : serverData.BusinessPartnerCompany.BusinessPartnerCompanyName);
+            businessPartnerCompany.businessPartnerCompanyEstablishedSince(serverData.BusinessPartnerCompany.EstablishedSince === null ? undefined : moment(serverData.BusinessPartnerCompany.EstablishedSince).format(ist.datePattern));
+            businessPartnerCompany.businessPartnerCompanySwiftCode(serverData.BusinessPartnerCompany.SwiftCode === null ? undefined : serverData.BusinessPartnerCompany.SwiftCode);
+            businessPartnerCompany.businessPartnerCompanyAccountNumber(serverData.BusinessPartnerCompany.AccountNumber === null ? undefined : serverData.BusinessPartnerCompany.AccountNumber);
+            businessPartnerCompany.businessPartnerCompanyBusinessSegmentId(serverData.BusinessPartnerCompany.BusinessSegmentId === null ? undefined : serverData.BusinessPartnerCompany.BusinessSegmentId);
+            return businessPartnerCompany;
         } else {
             return undefined;
         }
@@ -433,8 +552,13 @@ specifiedIndividualPassportCountryId, specifiedIndividualIqamaNo, specifiedIndiv
         BusinessPartnerDetail: BusinessPartnerDetail,
         BusinessPartnerClientMapper: BusinessPartnerClientMapper,
         BusinessPartnerServerMapper: BusinessPartnerServerMapper,
-        BusinessPartnerIndividualServerMapper: BusinessPartnerIndividualServerMapper,
+        
         BusinessPartnerIndividual: BusinessPartnerIndividual,
-        BusinessPartnerIndividualClientMapper:BusinessPartnerIndividualClientMapper
+        BusinessPartnerIndividualServerMapper: BusinessPartnerIndividualServerMapper,
+        BusinessPartnerIndividualClientMapper: BusinessPartnerIndividualClientMapper,
+
+        BusinessPartnerCompany: BusinessPartnerCompany,
+        BusinessPartnerCompanyClientMapper: BusinessPartnerCompanyClientMapper,
+        BusinessPartnerCompanyServerMapper:BusinessPartnerCompanyServerMapper
     };
 });

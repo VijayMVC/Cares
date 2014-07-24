@@ -1,7 +1,5 @@
-﻿using System.Linq;
-using Interfaces.IServices;
+﻿using Interfaces.IServices;
 using Interfaces.Repository;
-using Models.DomainModels;
 using Models.ResponseModels;
 
 namespace Implementation.Services
@@ -23,6 +21,8 @@ namespace Implementation.Services
         private readonly IBusinessPartnerCompanyRepository businessPartnerCompanyRepository;
         private readonly ICountryRepository passportCountryRepository;
 
+        private readonly IBusinessSegmentRepository businessSegmentRepository;
+
         #endregion
         #region Constructor
 
@@ -34,7 +34,8 @@ namespace Implementation.Services
             ,IEmployeeRepository employeeRepository
             , IOccupationTypeRepository occupationTypeRepository
             , IBusinessPartnerCompanyRepository businessPartnerCompanyRepository
-            , ICountryRepository passportCountryRepository)
+            , ICountryRepository passportCountryRepository
+            , IBusinessSegmentRepository businessSegmentRepository)
         {
             this.companyRepository = companyRepository;
             this.paymentTermRepository = paymentTermRepository;
@@ -45,6 +46,7 @@ namespace Implementation.Services
             this.occupationTypeRepository = occupationTypeRepository;
             this.businessPartnerCompanyRepository = businessPartnerCompanyRepository;
             this.passportCountryRepository = passportCountryRepository;
+            this.businessSegmentRepository = businessSegmentRepository;
         }
         #endregion
         #region Public
@@ -61,7 +63,7 @@ namespace Implementation.Services
             response.ResponseOccupationTypes = occupationTypeRepository.GetAll();
             response.ResponseBusinessPartnerCompanies = businessPartnerCompanyRepository.GetAll();
             response.ResponsePassportCountries = passportCountryRepository.GetAll();
-
+            response.ResponseBusinessSegments =  businessSegmentRepository.GetAll();
             return response;
         }
         #endregion

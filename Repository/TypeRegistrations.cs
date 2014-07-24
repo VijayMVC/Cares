@@ -38,6 +38,7 @@ namespace Repository
             unityContainer.RegisterType<IOccupationTypeRepository, OccupationTypeRepository>();
             unityContainer.RegisterType<IBusinessPartnerCompanyRepository, BusinessPartnerCompanyRepository>();
             unityContainer.RegisterType<ICountryRepository, CountryRepository>();
+            unityContainer.RegisterType<IBusinessSegmentRepository, BusinessSegmentRepository>();
 
 
             unityContainer.RegisterType<IStandardRateMainRepository, StandardRateMainRepository>();

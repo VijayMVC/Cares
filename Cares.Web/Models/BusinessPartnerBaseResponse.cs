@@ -48,7 +48,10 @@ namespace Cares.Web.Models
         /// Passport Countries
         /// </summary>
         public IEnumerable<Country> ResponsePassportCountries { get; set; }
-
+        /// <summary>
+        /// Business Segments
+        /// </summary>
+        public IEnumerable<BusinessSegment> ResponseBusinessSegments { get; set; }
         #endregion
     }
 }

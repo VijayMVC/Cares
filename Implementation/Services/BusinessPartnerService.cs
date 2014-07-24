@@ -16,20 +16,15 @@ namespace Implementation.Services
     {
         #region Private
         private readonly IBusinessPartnerRepository businessPartnerRepository;
-        private readonly IBusinessPartnerIndividualRepository businessPartnerIndividualRepository;
-
         #endregion
 
         #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>
-        public BusinessPartnerService(IBusinessPartnerRepository businessPartnerRepository, IBusinessPartnerIndividualRepository businessPartnerIndividualRepository)
+        public BusinessPartnerService(IBusinessPartnerRepository businessPartnerRepository)
         {
-            if (businessPartnerIndividualRepository == null)
-                throw new ArgumentNullException("businessPartnerIndividualRepository");
             this.businessPartnerRepository = businessPartnerRepository;
-            this.businessPartnerIndividualRepository = businessPartnerIndividualRepository;
         }
 
         #endregion
@@ -40,7 +35,7 @@ namespace Implementation.Services
         /// </summary>
         public BusinessPartnerResponse LoadAllBusinessPartners(BusinessPartnerSearchRequest businessPartnerSearchRequest)
         {
-           return businessPartnerRepository.GetAllBusinessPartners(businessPartnerSearchRequest);
+            return businessPartnerRepository.GetAllBusinessPartners(businessPartnerSearchRequest);
         }
         /// <summary>
         /// Find business partner by Id
@@ -95,7 +90,16 @@ namespace Implementation.Services
                     businessPartner.BusinessPartnerIndividual.RecLastUpdatedDt =
                         DateTime.Now;
                 businessPartner.BusinessPartnerIndividual.UserDomainKey = businessPartnerRepository.UserDomainKey;
-              
+
+                //set child (business partner company) properties
+                businessPartner.BusinessPartnerCompany.RecCreatedBy =
+                    businessPartner.BusinessPartnerCompany.RecLastUpdatedBy =
+                        businessPartnerRepository.LoggedInUserIdentity;
+                businessPartner.BusinessPartnerCompany.RecCreatedDt =
+                    businessPartner.BusinessPartnerCompany.RecLastUpdatedDt =
+                        DateTime.Now;
+                businessPartner.BusinessPartnerCompany.UserDomainKey = businessPartnerRepository.UserDomainKey;
+
                 // save data
                 businessPartnerRepository.Add(businessPartner);
                 businessPartnerRepository.SaveChanges();
@@ -136,38 +140,62 @@ namespace Implementation.Services
                 businessPartnerDbVersion.DealingEmployeeId = businessPartner.DealingEmployeeId;
                 businessPartnerDbVersion.PaymentTermId = businessPartner.PaymentTermId;
                 businessPartnerDbVersion.BPRatingTypeId = businessPartner.BPRatingTypeId;
+                
                 businessPartnerDbVersion.RecLastUpdatedDt = DateTime.Now;
                 businessPartnerDbVersion.RecCreatedBy = businessPartnerRepository.LoggedInUserIdentity;
                 businessPartnerDbVersion.RowVersion = businessPartnerDbVersion.RowVersion + 1;
 
                 //set child (buiness partner individual properties)
-                // if child not exist then add
-                if (businessPartnerDbVersion.BusinessPartnerIndividual == null)
-                {
-                    BusinessPartnerIndividual childModel = new BusinessPartnerIndividual();
-                    childModel.BusinessPartnerId = businessPartnerDbVersion.BusinessPartnerId;
-                    childModel.FirstName = businessPartner.BusinessPartnerIndividual.FirstName;
-                    childModel.LastName = businessPartner.BusinessPartnerIndividual.LastName;
-                    childModel.DateOfBirth = businessPartner.BusinessPartnerIndividual.DateOfBirth;
-                    childModel.RowVersion = 0;
-                    childModel.RecCreatedBy = businessPartnerRepository.LoggedInUserIdentity;
-                    childModel.RecCreatedDt = DateTime.Now;
+                businessPartnerDbVersion.BusinessPartnerIndividual.BusinessPartnerId = businessPartner.BusinessPartnerIndividual.BusinessPartnerId;
+                businessPartnerDbVersion.BusinessPartnerIndividual.FirstName = businessPartner.BusinessPartnerIndividual.FirstName;
+                businessPartnerDbVersion.BusinessPartnerIndividual.MiddleName = businessPartner.BusinessPartnerIndividual.MiddleName;
+                businessPartnerDbVersion.BusinessPartnerIndividual.LastName = businessPartner.BusinessPartnerIndividual.LastName;
+                businessPartnerDbVersion.BusinessPartnerIndividual.Initials = businessPartner.BusinessPartnerIndividual.Initials;
+                businessPartnerDbVersion.BusinessPartnerIndividual.GenderStatus = businessPartner.BusinessPartnerIndividual.GenderStatus;
+                businessPartnerDbVersion.BusinessPartnerIndividual.MaritalStatusCode = businessPartner.BusinessPartnerIndividual.MaritalStatusCode;
+                businessPartnerDbVersion.BusinessPartnerIndividual.OccupationTypeId = businessPartner.BusinessPartnerIndividual.OccupationTypeId;
+                businessPartnerDbVersion.BusinessPartnerIndividual.LastName = businessPartner.BusinessPartnerIndividual.LastName;
+                businessPartnerDbVersion.BusinessPartnerIndividual.DateOfBirth = businessPartner.BusinessPartnerIndividual.DateOfBirth;
+                businessPartnerDbVersion.BusinessPartnerIndividual.NicNumber = businessPartner.BusinessPartnerIndividual.NicNumber;
+                businessPartnerDbVersion.BusinessPartnerIndividual.NicExpiryDate = businessPartner.BusinessPartnerIndividual.NicExpiryDate;
+                businessPartnerDbVersion.BusinessPartnerIndividual.IqamaNo = businessPartner.BusinessPartnerIndividual.IqamaNo;
+                businessPartnerDbVersion.BusinessPartnerIndividual.IqamaExpiryDate = businessPartner.BusinessPartnerIndividual.IqamaExpiryDate;
+                businessPartnerDbVersion.BusinessPartnerIndividual.PassportNumber = businessPartner.BusinessPartnerIndividual.PassportNumber;
+                businessPartnerDbVersion.BusinessPartnerIndividual.PassportExpiryDate = businessPartner.BusinessPartnerIndividual.PassportExpiryDate;
+                businessPartnerDbVersion.BusinessPartnerIndividual.PassportCountryId = businessPartner.BusinessPartnerIndividual.PassportCountryId;
+                businessPartnerDbVersion.BusinessPartnerIndividual.LiscenseNumber = businessPartner.BusinessPartnerIndividual.LiscenseNumber;
+                businessPartnerDbVersion.BusinessPartnerIndividual.LiscenseExpiryDate = businessPartner.BusinessPartnerIndividual.LiscenseExpiryDate;
+                businessPartnerDbVersion.BusinessPartnerIndividual.TaxRegisterationCode = businessPartner.BusinessPartnerIndividual.TaxRegisterationCode;
+                businessPartnerDbVersion.BusinessPartnerIndividual.TaxNumber = businessPartner.BusinessPartnerIndividual.TaxNumber;
+                businessPartnerDbVersion.BusinessPartnerIndividual.IsCompanyExternal = businessPartner.BusinessPartnerIndividual.IsCompanyExternal;
+                businessPartnerDbVersion.BusinessPartnerIndividual.BusinessPartnerCompnayId = businessPartner.BusinessPartnerIndividual.BusinessPartnerCompnayId;
+                businessPartnerDbVersion.BusinessPartnerIndividual.CompanyName = businessPartner.BusinessPartnerIndividual.CompanyName;
+                businessPartnerDbVersion.BusinessPartnerIndividual.CompanyPhone = businessPartner.BusinessPartnerIndividual.CompanyPhone;
+                businessPartnerDbVersion.BusinessPartnerIndividual.CompanyAddress = businessPartner.BusinessPartnerIndividual.CompanyAddress;
 
-                    businessPartnerDbVersion.BusinessPartnerIndividual = childModel;
-                }
-                // else update existing record
-                else
-                {
-                    businessPartnerDbVersion.BusinessPartnerIndividual.BusinessPartnerId = businessPartner.BusinessPartnerIndividual.BusinessPartnerId;
-                    businessPartnerDbVersion.BusinessPartnerIndividual.FirstName = businessPartner.BusinessPartnerIndividual.FirstName;
-                    businessPartnerDbVersion.BusinessPartnerIndividual.LastName = businessPartner.BusinessPartnerIndividual.LastName;
-                    businessPartnerDbVersion.BusinessPartnerIndividual.DateOfBirth = businessPartner.BusinessPartnerIndividual.DateOfBirth;
-                    businessPartnerDbVersion.BusinessPartnerIndividual.RowVersion =
-                        businessPartnerDbVersion.BusinessPartnerIndividual.RowVersion + 1;
-
-                }
+                businessPartnerDbVersion.BusinessPartnerIndividual.RowVersion = businessPartnerDbVersion.BusinessPartnerIndividual.RowVersion + 1;
                 businessPartnerDbVersion.BusinessPartnerIndividual.RecLastUpdatedDt = DateTime.Now;
                 businessPartnerDbVersion.BusinessPartnerIndividual.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
+
+                //set child (buiness partner company properties)
+                businessPartnerDbVersion.BusinessPartnerCompany.BusinessPartnerId = businessPartner.BusinessPartnerId;
+                businessPartnerDbVersion.BusinessPartnerCompany.BusinessPartnerCompanyCode =
+                    businessPartner.BusinessPartnerCompany.BusinessPartnerCompanyCode;
+                businessPartnerDbVersion.BusinessPartnerCompany.BusinessPartnerCompanyName =
+                    businessPartner.BusinessPartnerCompany.BusinessPartnerCompanyName;
+                businessPartnerDbVersion.BusinessPartnerCompany.BusinessSegmentId =
+                    businessPartner.BusinessPartnerCompany.BusinessSegmentId;
+                businessPartnerDbVersion.BusinessPartnerCompany.AccountNumber =
+                    businessPartner.BusinessPartnerCompany.AccountNumber;
+                businessPartnerDbVersion.BusinessPartnerCompany.EstablishedSince =
+                    businessPartner.BusinessPartnerCompany.EstablishedSince;
+                businessPartnerDbVersion.BusinessPartnerCompany.SwiftCode =
+                    businessPartner.BusinessPartnerCompany.SwiftCode;
+
+                businessPartnerDbVersion.BusinessPartnerCompany.RowVersion =
+                    businessPartnerDbVersion.BusinessPartnerCompany.RowVersion + 1;
+                businessPartnerDbVersion.BusinessPartnerCompany.RecLastUpdatedDt = DateTime.Now;
+                businessPartnerDbVersion.BusinessPartnerCompany.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
 
                 // save changes
                 businessPartnerRepository.SaveChanges();
@@ -189,6 +217,6 @@ namespace Implementation.Services
 
 
 
-        
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models.DomainModels
 {
@@ -11,9 +12,17 @@ namespace Models.DomainModels
         #region Persisted Properties
 
         /// <summary>
-        /// Business Partner Company Id
+        /// Business Partner Id
         /// </summary>
-        public long BusinessPartnerCompanyId { get; set; }
+        [Key]
+        [ForeignKey("BusinessPartner")]
+        public long BusinessPartnerId { get; set; }
+
+        ///// <summary>
+        ///// Business Partner Company Id
+        ///// </summary>
+        //public long BusinessPartnerCompanyId { get; set; }
+        
         /// <summary>
         /// Business Partner Company Code
         /// </summary>
@@ -28,7 +37,7 @@ namespace Models.DomainModels
         /// <summary>
         /// Established Since
         /// </summary>
-        public DateTime EstablishedSince { get; set; }
+        public DateTime? EstablishedSince { get; set; }
         /// <summary>
         /// Business Partner Company Swift Code
         /// </summary>
@@ -42,27 +51,11 @@ namespace Models.DomainModels
         /// <summary>
         /// Business Segment ID
         /// </summary>
-        public int BusinessSegmentId { get; set; }
+        public int? BusinessSegmentId { get; set; }
         /// <summary>
         /// Row Version
         /// </summary>
         public long RowVersion { get; set; }
-        ///// <summary>
-        ///// Is Active
-        ///// </summary>
-        //public bool IsActive { get; set; }
-        ///// <summary>
-        ///// Is Deleted
-        ///// </summary>
-        //public bool IsDeleted { get; set; }
-        ///// <summary>
-        ///// Is Private
-        ///// </summary>
-        //public bool IsPrivate { get; set; }
-        ///// <summary>
-        ///// Is Readonly
-        ///// </summary>
-        //public bool IsReadOnly { get; set; }
         /// <summary>
         /// Record Created Date
         /// </summary>
@@ -70,6 +63,7 @@ namespace Models.DomainModels
         /// <summary>
         /// Record Created By
         /// </summary>
+        [Required]
         [StringLength(100)]
         public string RecCreatedBy { get; set; }
         /// <summary>
@@ -79,18 +73,14 @@ namespace Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
+        [Required]
         [StringLength(100)]
         public string RecLastUpdatedBy { get; set; }
         /// <summary>
         /// User Domain Key
         /// </summary>
         public long UserDomainKey { get; set; }
-        /// <summary>
-        /// Business Partner Id
-        /// </summary>
-        [Required]
-        public long BusinessPartnerId { get; set; }
-
+     
         #endregion
 
         #region Reference Properties
@@ -99,10 +89,11 @@ namespace Models.DomainModels
         /// </summary>
         public virtual BusinessSegment BusinessSegment { get; set; }
 
-        ///// <summary>
-        ///// Business Partner
-        ///// </summary>
-        //public virtual BusinessPartner BusinessPartner { get; set; }
+        /// <summary>
+        /// Business Partner
+        /// </summary>
+        [Required]
+        public virtual BusinessPartner BusinessPartner { get; set; }
 
         #endregion
     }

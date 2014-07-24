@@ -89,6 +89,7 @@
 
         <!-- Tab panes -->
         <div class="tab-content">
+            <!-- first tab - indidvidual-->
             <div class="tab-pane active" id="individualinfo" data-bind="with: businessPartnerIndividual">
                 <div class="form-group">
                     <label for="individualinfofirstname" class="control-label col-sm-2">First Name *</label>
@@ -223,40 +224,42 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-pane" id="companyinfo">
+            <!-- second tab - Company-->
+            <div class="tab-pane" id="companyinfo" data-bind="with : businessPartnerCompany">
                 <div class="form-group">
-                    <label for="individualinfofirstname" class="control-label col-sm-2">Company Code *</label>
+                    <label for="businessPartnerCompanyCode" class="control-label col-sm-2">Company Code *</label>
                     <div class="col-md-2">
-                  @*      <input type="text" class="form-control" placeholder="<Compnay Code>" id="individualinfofirstname" data-bind="value: individualFirstName, valueUpdate: 'keyup'" />*@
+                        <input type="text" class="form-control" placeholder="<Compnay Code>" id="businessPartnerCompanyCode" data-bind="value: businessPartnerCompanyCode, valueUpdate: 'keyup',validationTooltip: businessPartnerCompanyCode" />
                     </div>
 
-                    <label for="individualinfomiddlename" class="control-label col-sm-2">Company Name</label>
+                    <label for="businessPartnerCompanyName" class="control-label col-sm-2">Company Name</label>
                     <div class="col-md-2">
-                  @*      <input type="text" class="form-control" placeholder="<Company Name>" id="individualinfomiddlename" data-bind="value: individualMiddleName, valueUpdate: 'keyup'" />*@
+                        <input type="text" class="form-control" placeholder="<Company Name>" id="businessPartnerCompanyName" data-bind="value: businessPartnerCompanyName, valueUpdate: 'keyup'" />
                     </div>
 
-                    <label for="individualinfolastname" class="control-label col-sm-2">Swift Code</label>
+                    <label for="businessPartnerCompanySwiftCode" class="control-label col-sm-2">Swift Code</label>
                     <div class="col-md-2">
-                  @*      <input type="text" class="form-control" placeholder="<Swift Code>" id="individualinfolastname" data-bind="value: individualLastName, valueUpdate: 'keyup',validationTooltip: individualLastName" />*@
+                        <input type="text" class="form-control" placeholder="<Swift Code>" id="businessPartnerCompanySwiftCode" data-bind="value: businessPartnerCompanySwiftCode, valueUpdate: 'keyup'" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="individualinfofirstname" class="control-label col-sm-2">Establised Since</label>
+                    <label for="businessPartnerCompanyEstablishedSince" class="control-label col-sm-2">Establised Since</label>
                     <div class="col-md-2">
-                  @*      <input type="text" class="form-control" placeholder="<Established Since>" id="individualLiscenseExpiryDate" data-bind="datepicker: individualLiscenseExpiryDate" />*@
+                        <input type="text" class="form-control" placeholder="<Established Since>" id="businessPartnerCompanyEstablishedSince" data-bind="datepicker: businessPartnerCompanyEstablishedSince" />
                     </div>
 
-                    <label for="individualinfomiddlename" class="control-label col-sm-2">Account Number</label>
+                    <label for="businessPartnerCompanyAccountNumber" class="control-label col-sm-2">Account Number</label>
                     <div class="col-md-2">
-                 @*       <input type="text" class="form-control" placeholder="<Account Number>" id="individualinfomiddlename" data-bind="value: individualMiddleName, valueUpdate: 'keyup'" />*@
+                        <input type="text" class="form-control" placeholder="<Account Number>" id="businessPartnerCompanyAccountNumber" data-bind="value: businessPartnerCompanyAccountNumber, valueUpdate: 'keyup'" />
                     </div>
 
                     <label for="individualinfolastname" class="control-label col-sm-2">Business Segment</label>
                     <div class="col-md-2">
-                  @*      <select id="businessPartnerCompanies" class="form-control" data-bind="options: $root.businessPartnerCompanies, optionsText: 'BusinessPartnerCompanyName', optionsValue: 'BusinessPartnerCompanyId', optionsCaption: '<Business Segment>', value: individualBusinessPartnerCompnayId"></select>*@
+                        <select id="businessSegments" class="form-control" data-bind="options: $root.businessSegments, optionsText: 'BusinessSegmentName', optionsValue: 'BusinessSegmentId', optionsCaption: '<Business Segment>',value : businessPartnerCompanyBusinessSegmentId"></select>
                     </div>
                 </div>
             </div>
+            <!-- third tab - Business Partner Type (BP Type)-->
             <div class="tab-pane" id="bptype">
                 <div class="form-group">
                     <label for="individualinfofirstname" class="control-label col-sm-2">Establised Since</label>
@@ -269,9 +272,9 @@
                @*         <input type="text" class="form-control" placeholder="<Account Number>" id="individualinfomiddlename" data-bind="value: individualMiddleName, valueUpdate: 'keyup'" />*@
                     </div>
 
-                    <label for="individualinfolastname" class="control-label col-sm-2">Business Segment</label>
+                    <label for="businessSegments" class="control-label col-sm-2">Business Segment</label>
                     <div class="col-md-2">
-                @*        <select id="businessPartnerCompanies" class="form-control" data-bind="options: $root.businessPartnerCompanies, optionsText: 'BusinessPartnerCompanyName', optionsValue: 'BusinessPartnerCompanyId', optionsCaption: '<Business Segment>', value: individualBusinessPartnerCompnayId"></select>*@
+                        @*<select id="businessSegments" class="form-control" data-bind="options: $root.businessSegments, optionsText: 'BusinessSegmentName', optionsValue: 'BusinessSegmentId', optionsCaption: '<Business Segment>'"></select>*@
                     </div>
                 </div>
             </div>

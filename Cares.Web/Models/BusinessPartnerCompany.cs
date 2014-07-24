@@ -11,9 +11,9 @@ namespace Cares.Web.Models
         #region Public Properties
         
         /// <summary>
-        /// Business Partner Company Id
+        /// Business Partner Id
         /// </summary>
-        public long BusinessPartnerCompanyId { get; set; }
+        public long? BusinessPartnerId { get; set; }
         /// <summary>
         /// Business Partner Company Code
         /// </summary>
@@ -25,7 +25,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Established Since
         /// </summary>
-        public DateTime EstablishedSince { get; set; }
+        public DateTime? EstablishedSince { get; set; }
         /// <summary>
         /// Business Partner Company Swift Code
         /// </summary>
@@ -37,12 +37,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Business Segment ID
         /// </summary>
-        public int BusinessSegmentId { get; set; }
-        /// <summary>
-        /// Business Partner Id
-        /// </summary>
-        public long BusinessPartnerId { get; set; }
-
+        public int? BusinessSegmentId { get; set; }
  
         #endregion
     }
