@@ -166,6 +166,11 @@ namespace Models.DomainModels
         /// Business Partnet Individual Info
         /// </summary>
         public virtual BusinessPartnerIndividual BusinessPartnerIndividual { get; set; }
+        /// <summary>
+        /// Business Partnet Company Info
+        /// </summary>
+        public virtual BusinessPartnerCompany BusinessPartnerCompany { get; set; }
+
         #endregion
     }
 }

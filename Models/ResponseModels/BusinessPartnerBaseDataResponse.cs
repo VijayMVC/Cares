@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
 using Models.DomainModels;
 
 namespace Models.ResponseModels
@@ -47,7 +45,11 @@ namespace Models.ResponseModels
         /// Passport Countries
         /// </summary>
         public IEnumerable<Country> ResponsePassportCountries { get; set; }
-   
+        /// <summary>
+        /// Business Segments
+        /// </summary>
+        public IEnumerable<BusinessSegment> ResponseBusinessSegments { get; set; }
+
         #endregion
     }
 }

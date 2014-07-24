@@ -77,6 +77,12 @@
         /// </summary>
         public BusinessPartnerIndividual BusinessPartnerIndividual { get; set; }
 
+        /// <summary>
+        /// Business Partner Company 
+        /// </summary>
+        public BusinessPartnerCompany BusinessPartnerCompany { get; set; }
+
+
         #endregion
     }
 }

@@ -1,7 +1,8 @@
 ﻿// Global Variable
 var ist = {
     datePattern: "DD/MM/YY",
-    shortDatePattern : "dd-M-yy",
+    shortDatePattern: "dd-M-yy",
+    customShortDatePattern: "dd-mm-yy",
     timePattern: "HH:mm",
     dateTimePattern: "DD/MM/YY HH:mm",
     dateTimeWithSecondsPattern: "DD/MM/YY HH:mm:ss",
@@ -113,7 +114,7 @@ require(["ko", "knockout-validation"], function (ko) {
             var options = allBindingsAccessor().datepickerOptions || {};
             // ReSharper restore DuplicatingLocalDeclaration
             $(element).datepicker(options);
-            $(element).datepicker("option", "dateFormat", ist.shortDatePattern);
+            $(element).datepicker("option", "dateFormat", options.dateFormat || ist.customShortDatePattern);
             //handle the field changing
             ko.utils.registerEventHandler(element, "change", function () {
                 var observable = valueAccessor();

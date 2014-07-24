@@ -39,11 +39,13 @@ define("businessPartner/businessPartner.viewModel",
                     dealingEmployees = ko.observableArray([]),
                        // Business Partner Companies Array
                     businessPartnerCompanies = ko.observableArray([]),
-                       // Passport Countries Array
+                    // Passport Countries Array
                     passportCountries = ko.observableArray([]),
-                       // Occupation Types Array
+                    // Occupation Types Array
                     occupationTypes = ko.observableArray([]),
-                    
+                    // Business Segments Array
+                    businessSegments = ko.observableArray([]),
+
                     // Sort On
                     sortOn = ko.observable(1),
                     // Sort Order -  true means asc, false means desc
@@ -172,6 +174,7 @@ define("businessPartner/businessPartner.viewModel",
                         if (!selectedBusinessPartner().isValid()) {
                             selectedBusinessPartner().errors.showAllMessages();
                             selectedBusinessPartner().businessPartnerIndividual().errors.showAllMessages();
+                            selectedBusinessPartner().businessPartnerCompany().errors.showAllMessages();
                             flag = false;
                         }
                         return flag;
@@ -254,6 +257,11 @@ define("businessPartner/businessPartner.viewModel",
                                 ko.utils.arrayPushAll(occupationTypes(), data.ResponseOccupationTypes);
                                 occupationTypes.valueHasMutated();
                                 
+                                // Business Segments array
+                                businessSegments.removeAll();
+                                ko.utils.arrayPushAll(businessSegments(), data.ResponseBusinessSegments);
+                                businessSegments.valueHasMutated();
+
                             },
                             error: function () {
                                 toastr.error("Failed to load base data");
@@ -333,6 +341,7 @@ define("businessPartner/businessPartner.viewModel",
                     selectFilter: selectFilter,
                     sortOn: sortOn,
                     sortIsAsc: sortIsAsc,
+
                     // Observables Arrays
                     companies: companies,
                     paymentTerms: paymentTerms,
@@ -342,7 +351,9 @@ define("businessPartner/businessPartner.viewModel",
                     dealingEmployees: dealingEmployees,
                     businessPartnerCompanies: businessPartnerCompanies,
                     passportCountries: passportCountries,
-                    occupationTypes:occupationTypes,
+                    occupationTypes: occupationTypes,
+                    businessSegments:businessSegments,
+
                     // Utility Methods
                     onSaveBusinessPartner: onSaveBusinessPartner,
                     createBusinessPartner: createBusinessPartner,
