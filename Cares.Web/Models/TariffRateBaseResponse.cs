@@ -4,24 +4,9 @@ namespace Cares.Web.Models
 {
     /// <summary>
     /// Tariff Rate Base Web Response 
-    /// </summary>
+    /// </summary>    
     public class TariffRateBaseResponse
     {  
-        #region Constructors
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public TariffRateBaseResponse()
-        {
-            Companies = new List<Company>();
-            Departments = new List<Department>();
-            Operations = new List<Operation>();
-            HireGroups = new List<HireGroup>();
-            VehicleCategories = new List<VehicleCategory>();
-            VehicleMakes = new List<VehicleMake>();
-            VehicleModels = new List<VehicleModel>();
-        }
-        #endregion
         #region Public
         /// <summary>
         /// Companies

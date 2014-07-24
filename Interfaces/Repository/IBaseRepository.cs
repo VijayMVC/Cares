@@ -56,6 +56,6 @@ namespace Interfaces.Repository
         /// <summary>
         /// Logged in user identity
         /// </summary>
-        string LoggedInUserIdentity { get; set; }
+        string LoggedInUserIdentity { get; }
     }
 }

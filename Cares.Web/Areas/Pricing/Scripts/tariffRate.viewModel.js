@@ -93,10 +93,10 @@ define("tariffRate/tariffRate.viewModel",
                     initialize = function (specifiedView) {
                         view = specifiedView;
                         ko.applyBindings(view.viewModel, view.bindingRoot);
-                        getBase();
+                        getBase(getTariffRates);
                         // Set Pager
                         pager(pagination.Pagination({}, tariffRates, getTariffRates));
-                        getTariffRates();
+                        
                     },
                      // Collapase filter section
                     collapseFilterSection = function () {
@@ -107,7 +107,7 @@ define("tariffRate/tariffRate.viewModel",
                         filterSectionVisilble(true);
                     },
                     // Get Base
-                    getBase = function () {
+                    getBase = function (callBack) {
                         dataservice.getTariffRateBase({
                             success: function (data) {
                                 //Company array
@@ -143,6 +143,9 @@ define("tariffRate/tariffRate.viewModel",
                                 ko.utils.arrayPushAll(tariffTypes(), data.TariffTypes);
                                 tariffTypes.valueHasMutated();
 
+                                if (callBack && typeof callBack === 'function') {
+                                    callBack();
+                                }
                             },
                             error: function () {
                                 toastr.error("Failed to load base data");

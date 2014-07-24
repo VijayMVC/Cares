@@ -44,7 +44,8 @@ namespace Cares.Web.ModelMappers
                 DealingEmployeeId = source.DealingEmployeeId,
                 IsSystemGuarantor = source.IsSystemGuarantor,
                 NonSystemGuarantor = source.NonSystemGuarantor,
-                SystemGuarantorId = source.SystemGuarantorId
+                SystemGuarantorId = source.SystemGuarantorId,
+                BusinessPartnerIndividual = source.BusinessPartnerIndividual.CreateFrom()
             };
         }
 

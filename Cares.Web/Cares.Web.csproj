@@ -287,7 +287,6 @@
     <Compile Include="ModelMappers\StandardRateMainMapper.cs" />
     <Compile Include="ModelMappers\TariffRateBaseResponseMapper.cs" />
     <Compile Include="ModelMappers\TariffRateDetailResponseMapper.cs" />
-    <Compile Include="ModelMappers\TariffRateResponseMapper.cs" />
     <Compile Include="ModelMappers\TariffTypeBaseResponseMapper.cs" />
     <Compile Include="ModelMappers\TarrifTypeDetailResponseMapper.cs" />
     <Compile Include="ModelMappers\TarrifTypeMapper.cs" />
@@ -323,7 +322,6 @@
     <Compile Include="Models\StandardRateMain.cs" />
     <Compile Include="Models\TariffRateBaseResponse.cs" />
     <Compile Include="Models\TariffRateDetailResponse.cs" />
-    <Compile Include="Models\TariffRateResponse.cs" />
     <Compile Include="Models\TariffTypeDetail.cs" />
     <Compile Include="Models\TariffTypeDetailResponse.cs" />
     <Compile Include="Models\TarrifType.cs" />

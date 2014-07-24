@@ -2,6 +2,7 @@
 using System.Linq;
 using Interfaces.Repository;
 using Microsoft.Practices.Unity;
+using Models.CommonTypes;
 using Models.DomainModels;
 using Repository.BaseRepository;
 
@@ -40,7 +41,7 @@ namespace Repository.Repositories
         /// </summary>
         public override IQueryable<Operation> GetAll()
         {
-            return DbSet.Where(operation => operation.UserDomainKey == UserDomainKey && operation.Department.DepartmentType=="Sale");
+            return DbSet.Where(operation => operation.UserDomainKey == UserDomainKey && operation.Department.DepartmentType == DepartmentTypes.Sales);
         }
         #endregion
     }

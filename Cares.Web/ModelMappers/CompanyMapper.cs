@@ -21,21 +21,6 @@ namespace Cares.Web.ModelMappers
                 CompanyName = source.CompanyCode+"-" +source.CompanyName,
             };
         }
-        /// <summary>
-        ///  Create entity from web model
-        /// </summary>
-        public static DomainModels.Company CreateFrom(this Company source)
-        {
-            if (source != null)
-            {
-                return new DomainModels.Company
-                {
-                    CompanyId = source.CompanyId,
-                    CompanyName = source.CompanyName,
-                };
-            }
-            return new DomainModels.Company();
-        }
         #endregion
     }
 }

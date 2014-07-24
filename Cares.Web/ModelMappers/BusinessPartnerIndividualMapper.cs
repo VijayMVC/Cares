@@ -19,7 +19,7 @@ namespace Cares.Web.ModelMappers
                 {
                     BusinessPartnerId = source.BusinessPartnerId,
                     FirstName = source.FirstName,
-                    LastName =  source.LastName,
+                    LastName = source.LastName,
                     GenderStatus = source.GenderStatus,
                     Initials = source.Initials,
                     IqamaExpiryDate = source.IqamaExpiryDate,
@@ -27,7 +27,21 @@ namespace Cares.Web.ModelMappers
                     CompanyAddress = source.CompanyAddress,
                     CompanyPhone = source.CompanyPhone,
                     BusinessPartnerCompnayId = source.BusinessPartnerCompnayId,
-                    CompanyName   = source.CompanyName
+                    CompanyName = source.CompanyName,
+                    TaxRegisterationCode = source.TaxRegisterationCode,
+                    TaxNumber = source.TaxNumber,
+                    PassportNumber = source.PassportNumber,
+                    PassportExpiryDate = source.PassportExpiryDate,
+                    PassportCountryId = source.PassportCountryId,
+                    OccupationTypeId = source.OccupationTypeId,
+                    NicNumber = source.NicNumber,
+                    NicExpiryDate = source.LiscenseExpiryDate,
+                    LiscenseNumber = source.LiscenseNumber,
+                    LiscenseExpiryDate = source.LiscenseExpiryDate,
+                    MiddleName = source.MiddleName,
+                    MaritalStatusCode = source.MaritalStatusCode,
+                    IsCompanyExternal = source.IsCompanyExternal,
+                    IqamaNo = source.IqamaNo
                 };
             }
         #endregion
@@ -39,7 +53,7 @@ namespace Cares.Web.ModelMappers
         {
             return new DomainModel.BusinessPartnerIndividual
             {
-                BusinessPartnerId = source.BusinessPartnerId,
+                BusinessPartnerId =source.BusinessPartnerId != null ? (long)source.BusinessPartnerId: 0,
                 FirstName = source.FirstName,
                 LastName = source.LastName,
                 GenderStatus = source.GenderStatus,
@@ -49,7 +63,21 @@ namespace Cares.Web.ModelMappers
                 CompanyAddress = source.CompanyAddress,
                 CompanyPhone = source.CompanyPhone,
                 BusinessPartnerCompnayId = source.BusinessPartnerCompnayId,
-                CompanyName = source.CompanyName
+                CompanyName = source.CompanyName,
+                TaxRegisterationCode = source.TaxRegisterationCode,
+                TaxNumber = source.TaxNumber,
+                PassportNumber = source.PassportNumber,
+                PassportExpiryDate = source.PassportExpiryDate,
+                PassportCountryId = source.PassportCountryId,
+                OccupationTypeId = source.OccupationTypeId,
+                NicNumber = source.NicNumber,
+                NicExpiryDate = source.LiscenseExpiryDate,
+                LiscenseNumber = source.LiscenseNumber,
+                LiscenseExpiryDate = source.LiscenseExpiryDate,
+                MiddleName = source.MiddleName,
+                MaritalStatusCode = source.MaritalStatusCode,
+                IsCompanyExternal = source.IsCompanyExternal,
+                IqamaNo = source.IqamaNo
             };
         }
         
