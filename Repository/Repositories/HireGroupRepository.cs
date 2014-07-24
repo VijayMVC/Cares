@@ -3,6 +3,8 @@ using System.Linq;
 using Interfaces.Repository;
 using Microsoft.Practices.Unity;
 using Models.DomainModels;
+using Models.RequestModels;
+using Models.ResponseModels;
 using Repository.BaseRepository;
 
 namespace Repository.Repositories
@@ -41,6 +43,12 @@ namespace Repository.Repositories
         {
             return DbSet.Where(hireGroup => hireGroup.UserDomainKey == UserDomainKey && hireGroup.ParentHireGroupId == 0);
         }
+
+        public TariffRateDetailResponse GetHireGroupDetails(TariffRateDetailRequest tariffRateDetailRequest)
+        {
+            throw new System.NotImplementedException();
+        }
+
         #endregion
     }
 }

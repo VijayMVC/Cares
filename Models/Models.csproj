@@ -97,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\BusinessPartnerByColumn.cs" />
+    <Compile Include="Common\HireGroupDetailByColumn.cs" />
     <Compile Include="Common\TariffRateByColumn.cs" />
     <Compile Include="DomainModels\BusinessPartnerIndividual.cs" />
     <Compile Include="DomainModels\BusinessPartner.cs" />
@@ -146,6 +147,7 @@
     <Compile Include="RequestModels\GetPagedListRequest.cs" />
     <Compile Include="RequestModels\BusinessPartnerSearchRequest.cs" />
     <Compile Include="RequestModels\ProductSearchRequest.cs" />
+    <Compile Include="RequestModels\TariffRateDetailRequest.cs" />
     <Compile Include="RequestModels\TariffRateRequest.cs" />
     <Compile Include="RequestModels\TarrifTypeRequest.cs" />
     <Compile Include="ResponseModels\BusinessPartnerBaseDataResponse.cs" />

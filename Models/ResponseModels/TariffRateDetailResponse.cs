@@ -16,5 +16,9 @@ namespace Models.ResponseModels
         /// Hire Group Details List
         /// </summary>
         public IEnumerable<HireGroupDetail> HireGroupDetails { get; set; }
+        /// <summary>
+        /// Total Count
+        /// </summary>
+        public int TotalCount { get; set; }
     }
 }

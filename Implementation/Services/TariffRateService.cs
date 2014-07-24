@@ -63,13 +63,13 @@ namespace Implementation.Services
             return standardRateMainRepository.GetTariffRates(tariffRateRequest);
         }
         /// <summary>
-        /// FindTariffRateById
+        /// Find Tariff Rate
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="tariffRateDetailRequest"></param>
         /// <returns>Tariff Rate Detail Response</returns>
-        public TariffRateDetailResponse FindTariffRateById(long id)
+        public TariffRateDetailResponse FindTariffRateById(TariffRateDetailRequest tariffRateDetailRequest)
         {
-            StandardRateMain standardRateMain = standardRateMainRepository.Find(id);
+            StandardRateMain standardRateMain = standardRateMainRepository.Find(tariffRateDetailRequest.Id);
             var hireGroupDetails = hireGroupDetailRepository.GetAll();
             return new TariffRateDetailResponse { StandardRateMain = standardRateMain, HireGroupDetails = hireGroupDetails };
         }

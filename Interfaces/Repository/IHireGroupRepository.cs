@@ -1,4 +1,6 @@
 ﻿using Models.DomainModels;
+using Models.RequestModels;
+using Models.ResponseModels;
 
 namespace Interfaces.Repository
 {
@@ -7,5 +9,6 @@ namespace Interfaces.Repository
     /// </summary>
     public interface IHireGroupRepository : IBaseRepository<HireGroup, long>
     {
+        TariffRateDetailResponse GetHireGroupDetails(TariffRateDetailRequest tariffRateDetailRequest);
     }
 }

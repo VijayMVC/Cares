@@ -1,5 +1,4 @@
-﻿
-using Models.Common;
+﻿using Models.Common;
 using Models.DomainModels;
 
 namespace Models.RequestModels

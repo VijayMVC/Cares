@@ -50,7 +50,7 @@
     </div>
     <div class="row searchFilterSection" data-bind="visible: $root.filterSectionVisilble()" style="display: none">
         <div class=" well">
-            <form class="form-horizontal" data-bind="submit: $root.search">
+            <form class="form-horizontal" data-bind="submit: $root.searchHireGroups">
                 <div class="col-xs-3">
                     <select class="form-control" data-bind="options: $root.hireGroups, optionsText: 'HireGroupName', optionsValue: 'HireGroupId', optionsCaption: '<Hire Groups>', value: $root.hireGroupFilter "></select>
                 </div>
@@ -63,7 +63,7 @@
                 <div class="col-xs-3">
                     <select class="form-control" data-bind="options: $root.vehicleCategories, optionsText: 'VehicleCategoryName', optionsValue: 'VehicleCategoryId', optionsCaption: '<Vehicle Category>', value: $root.vehicleCategoryFilter "></select>
                 </div>
-                <button type="submit" class="btn btn-success" data-bind="click: $root.search">Search</button>
+                <button type="submit" class="btn btn-success" data-bind="click: $root.searchHireGroups">Search</button>
                 <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: $root.collapseFilterSection" title="Hide Section"></a>
             </form>
         </div>
@@ -90,6 +90,7 @@
                 <!-- /ko -->
             </tbody>
         </table>
+        @*@Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")*@
         <script id="editHireGroupTemplate" type="text/html">
             <tr data-bind="css: { selectedRow: $data === $root.selectedHireGroup() }">
                 <td class="col-md-2">

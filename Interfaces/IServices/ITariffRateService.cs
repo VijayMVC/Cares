@@ -20,7 +20,7 @@ namespace Interfaces.IServices
         /// <param name="tariffRateRequest"></param>
         /// <returns></returns>
         TariffRateResponse LoadTariffRates(TariffRateRequest tariffRateRequest);
-        TariffRateDetailResponse FindTariffRateById(long id);
+        TariffRateDetailResponse FindTariffRateById(TariffRateDetailRequest tariffRateDetailRequest);
         StandardRateMain Find(long id);
         void DeleteTariffRate(StandardRateMain standardRateMain);
         StandardRateMain AddTariffRate(StandardRateMain standardRateMain);
