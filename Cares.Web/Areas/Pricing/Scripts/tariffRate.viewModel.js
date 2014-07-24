@@ -46,7 +46,7 @@ define("tariffRate/tariffRate.viewModel",
                     //Tariff Rates
                     tariffRates = ko.observableArray([]),
                     //Selected Hire Group Array
-                    selectedHireGroupList= ko.observableArray(),
+                    selectedHireGroupList = ko.observableArray(),
                     // #endregion Arrays
                     // #region Busy Indicators
                     isLoadingTariffRates = ko.observable(false),
@@ -56,12 +56,18 @@ define("tariffRate/tariffRate.viewModel",
                     sortOn = ko.observable(1),
                     // Sort Order -  true means asc, false means desc
                     sortIsAsc = ko.observable(true),
+                    // Sort On Hiregroup
+                    sortOnHg = ko.observable(1),
+                    // Sort Order -  true means asc, false means desc
+                    sortIsAscHg = ko.observable(true),
                     // Is Tariff Rate Editor Visible
                     isTariffRateEditorVisible = ko.observable(false),
                     // Is Editable
                     isEditable = ko.observable(false),
                     // Pagination
                     pager = ko.observable(),
+                    // Pagination For Hire Group
+                    editorPager = ko.observable(),
                     // Tariff Rate Code filter
                     tariffRateCodeFilter = ko.observable(),
                     //Tariff Rate Name  Filter
@@ -77,7 +83,7 @@ define("tariffRate/tariffRate.viewModel",
                     //Search String
                     searchFilter = ko.observable(),
                     //Hire Group Filter
-                    hireGroupFilter = ko.observable(),
+                    hireGroupFilter = ko.observable(null),
                     //Vehicle Make Filter
                     vehicleMakeFilter = ko.observable(),
                     //Vehicle Model Filter
@@ -93,10 +99,15 @@ define("tariffRate/tariffRate.viewModel",
                     initialize = function (specifiedView) {
                         view = specifiedView;
                         ko.applyBindings(view.viewModel, view.bindingRoot);
-                        getBase(getTariffRates);
+                        getBase();
                         // Set Pager
-                        pager(pagination.Pagination({}, tariffRates, getTariffRates));
-                        
+                        pager(new pagination.Pagination({}, tariffRates, getTariffRates));
+
+                        // Set Pager
+                        editorPager(new pagination.Pagination({}, hireGroupDetails, getHireGroupDetails));
+
+                        getTariffRates();
+
                     },
                      // Collapase filter section
                     collapseFilterSection = function () {
@@ -157,33 +168,36 @@ define("tariffRate/tariffRate.viewModel",
                         pager().reset();
                         getTariffRates();
                     },
-                      searchHireGroups = function () {
-                         // pager().reset();
+                    //Search Hire Group
+                    searchHireGroups = function () {
+                          editorPager().reset();
                           getHireGroupDetails();
-                      },
-
-                     getHireGroupDetails = function () {
+                    },
+                    //Get Hire Group
+                    getHireGroupDetails = function () {
                          isLoadingTariffRates(true);
-                         dataservice.getHireGroups({
-                             HireGroupFilter: hireGroupFilter,
-                             VehicleMakeFilter: vehicleMakeFilter,
-                             VehicleModelFilter: vehicleModelFilter,
-                             VehicleCategoryFilter: vehicleCategoryFilter,
-                             ModelYearFilter: modelYearFilter,
-                             PageSize: pager().pageSize(),
-                             PageNo: pager().currentPage(),
-                             SortBy: sortOn(),
-                             IsAsc: sortIsAsc()
+                         dataservice.getHireGroupDetails({
+                             HireGroupId: hireGroupFilter(),
+                             VehicleMakeId: vehicleMakeFilter(),
+                             VehicleModelId: vehicleModelFilter(),
+                             VehicleCategoryId: vehicleCategoryFilter(),
+                             ModelYear: modelYearFilter(),
+                             PageSize: editorPager().pageSize(),
+                             PageNo: editorPager().currentPage(),
+                             SortBy: sortOnHg(),
+                             IsAsc: sortIsAscHg()
                          }, {
                              success: function (data) {
-                                 pager().totalCount(data.TotalCount);
-                                 tariffRates.removeAll();
-                                 mapTarrifRates(data);
+                                 hireGroupDetails.removeAll();
+                                 editorPager().totalCount(data.TotalCount);
+                                 _.each(data.HireGroupDetails, function (item) {
+                                     hireGroupDetails.push(new model.HireGroupClientMapper(item));
+                                 });
                                  isLoadingTariffRates(false);
                              },
                              error: function () {
                                  isLoadingTariffRates(false);
-                                 toastr.error("Failed to load Tariff rates!");
+                                 toastr.error("Failed to load Hire Group Rates!");
                              }
                          });
                      },
@@ -209,9 +223,11 @@ define("tariffRate/tariffRate.viewModel",
                      //Create Tariff Type Rate
                     createTariffRate = function () {
                         hireGroupDetails.removeAll();
-                        var tariffRate = new model.TariffRateDetail();
+                        var tariffRate = new model.TariffRate();
                         // Select the newly added Tariff Rate
+                        selectedTarrifRate(tariffRate);
                         addTariffRate(tariffRate);
+                        getHireGroupDetails();
                         showTariffRateEditor();
                     },
                      // Save Tariff Rate
@@ -277,33 +293,10 @@ define("tariffRate/tariffRate.viewModel",
                     onEditTariffRate = function (tariffRate, e) {
                         selectedTariffRateId(tariffRate.tariffRateId());
                         selectedTarrifRate(tariffRate);
-                       // pager(pagination.Pagination({}, hireGroupDetails, getTariffRates));
-                        getTariffRateById();
+                        addTariffRate(selectedTarrifRate());
+                        getHireGroupDetails();
                         showTariffRateEditor();
                         e.stopImmediatePropagation();
-                    },
-                     //Get Tariff Rate By Id
-                    getTariffRateById = function () {
-                        isLoadingTariffRates(true);
-                        dataservice.getTariffRateById({
-                            id: selectedTariffRateId()
-
-                        }, {
-                            success: function (data) {
-                                addTariffRate(model.TariffRateDetailClientMapper(data.StandardRateMain));
-                                hireGroupDetails.removeAll();
-                                _.each(data.HireGroupDetails, function (item) {
-                                    hireGroupDetails.push(new model.HireGroupClientMapper(item));
-                                });
-                                // pager(pagination.Pagination({}, hireGroupDetails, getTariffRates));
-                                //pager().totalCount(10);
-                                isLoadingTariffRates(false);
-                            },
-                            error: function () {
-                                isLoadingTariffRates(false);
-                                toastr.error("Error!");
-                            }
-                        });
                     },
                     // Map Tariff Rates - Server to Client
                     mapTarrifRates = function (data) {
@@ -349,6 +342,8 @@ define("tariffRate/tariffRate.viewModel",
                     isLoadingTariffRates: isLoadingTariffRates,
                     sortOn: sortOn,
                     sortIsAsc: sortIsAsc,
+                    sortOnHg: sortOnHg,
+                    sortIsAscHg: sortIsAscHg,
                     isEditable: isEditable,
                     isTariffRateEditorVisible: isTariffRateEditorVisible,
                     selectedHireGroup: selectedHireGroup,
@@ -366,7 +361,7 @@ define("tariffRate/tariffRate.viewModel",
                     vehicleCategories: vehicleCategories,
                     modelYears: modelYears,
                     tariffRates: tariffRates,
-                    selectedHireGroupList:selectedHireGroupList,
+                    selectedHireGroupList: selectedHireGroupList,
                     //Filters
                     tariffRateCodeFilter: tariffRateCodeFilter,
                     companyFilter: companyFilter,
@@ -388,19 +383,20 @@ define("tariffRate/tariffRate.viewModel",
                     mapTarrifRates: mapTarrifRates,
                     getBase: getBase,
                     pager: pager,
+                    editorPager: editorPager,
                     closeTariffRateEditor: closeTariffRateEditor,
                     showTariffRateEditor: showTariffRateEditor,
                     createTariffRate: createTariffRate,
                     onSaveTariffRate: onSaveTariffRate,
                     onDeleteTariffRate: onDeleteTariffRate,
                     onEditTariffRate: onEditTariffRate,
-                    getTariffRateById: getTariffRateById,
                     templateToUse: templateToUse,
                     selectHireGroup: selectHireGroup,
                     collapseFilterSection: collapseFilterSection,
                     showFilterSection: showFilterSection,
                     saveTariffRate: saveTariffRate,
                     searchHireGroups: searchHireGroups,
+                    getHireGroupDetails: getHireGroupDetails
                     // Utility Methods
 
                 };

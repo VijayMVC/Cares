@@ -1,10 +1,10 @@
-﻿<div class="well col-md-12" id="tariffRateEditor" data-bind="visible: isTariffRateEditorVisible, with: addTariffRate" style="display: none;">
+﻿<div class="well col-md-12" id="tariffRateEditor" data-bind="visible: isTariffRateEditorVisible" style="display: none;">
     <div class="detailsContainer">
         <h3 class="page-header detailsHeaderSection">Tariff Rate Details</h3>
         <button class="btn btn-info" id="saveBtn" data-bind="click: $root.onSaveTariffRate">Save</button>
         <button class="btn btn-default" id="saveBtn" data-bind="click: $root.closeTariffRateEditor">Cancel</button>
     </div>
-    <form class="form-horizontal">
+    <form class="form-horizontal" data-bind="with: addTariffRate">
         <div class="form-group">
             <label for="tariffRateCode" class="control-label h5 col-sm-2">Tariff Rate Code *</label>
             <div class="col-md-2">
@@ -16,7 +16,7 @@
             </div>
             <label for="description" class="control-label h5 col-sm-2">Description</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" placeholder="<Description>" id="description" data-bind="value: description, validationTooltip: description" />
+                <input type="text" class="form-control" placeholder="<Description>" id="description" data-bind="value: tariffRateDescription, validationTooltip: tariffRateDescription" />
             </div>
         </div>
         <div class="form-group">
@@ -68,29 +68,31 @@
             </form>
         </div>
     </div>
-    <div class="panel panel-info">
+    <div class="panel panel-info searchFilterResultSection">
         <table id="hireGroupRate" class="table table-condensed">
             <thead>
                 <tr>
-                    <th> <span id="3"><span></span></span></th>
-                    <th> <span id="4">Hire<br />Group<span></span></span></th>
-                    <th> <span id="5">Vehicle<br />Make<span></span></span></th>
-                    <th> <span id="6">Vehicle<br />Model<span></span></span></th>
-                    <th> <span id="7">Vehicle<br />Category<span></span></span></th>
-                    <th> <span id="8">Model<br />Year<span></span></span></th>
-                    <th> <span id="8">Allowed<br />Mileage<span></span></span></th>
-                    <th> <span id="9">Excess<br />Mileage Charge<span></span></span></th>
-                    <th> <span id="10">Standard<br />Rate<span></span></span></th>
-                    <th> <span id="11">Start<br />Date<span></span></span></th>
-                    <th> <span id="12">End<br />Date<span></span></span></th>
+                    <th> <span></span></th>
+                    <th> <span id="1">Hire<br />Group<span class="icon-up"></span></span></th>
+                    <th> <span id="2">Vehicle<br />Make<span></span></span></th>
+                    <th> <span id="3">Vehicle<br />Model<span></span></span></th>
+                    <th> <span id="4">Vehicle<br />Category<span></span></span></th>
+                    <th> <span id="5">Model<br />Year<span></span></span></th>
+                    <th> <span id="6">Allowed<br />Mileage<span></span></span></th>
+                    <th> <span id="7">Excess<br />Mileage Charge<span></span></span></th>
+                    <th> <span id="8">Standard<br />Rate<span></span></span></th>
+                    <th> <span id="9">Start<br />Date<span></span></span></th>
+                    <th> <span id="10">End<br />Date<span></span></span></th>
                 </tr>
             </thead>
             <tbody>
-                <!-- ko template: { name: $root.templateToUse , foreach: $root.hireGroupDetails } -->
+                <!-- ko template: { name: templateToUse , foreach: hireGroupDetails } -->
                 <!-- /ko -->
             </tbody>
         </table>
-        @*@Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")*@
+        <!-- ko with: editorPager -->
+        @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
+        <!-- /ko -->
         <script id="editHireGroupTemplate" type="text/html">
             <tr data-bind="css: { selectedRow: $data === $root.selectedHireGroup() }">
                 <td class="col-md-2">

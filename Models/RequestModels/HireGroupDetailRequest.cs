@@ -1,21 +1,12 @@
-﻿
-
-using Models.Common;
+﻿using Models.Common;
 
 namespace Models.RequestModels
 {
     /// <summary>
-    /// Tariff Rate Detail Request
+    /// Hire Group Detail Request
     /// </summary>
-    public sealed class TariffRateDetailRequest:GetPagedListRequest
-    {
-        /// <summary>
-        /// Standard Rate Main Id
-        /// </summary>
-        public long StandardRtMainId { get; set; }
-        /// <summary>
-        /// User Domain Key
-        /// </summary>
+    public sealed class HireGroupDetailRequest : GetPagedListRequest
+    {   
          /// <summary>
         /// Hire Group ID
         /// </summary>

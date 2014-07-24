@@ -25,9 +25,12 @@
             tariffTypeId = ko.observable(),
             //OperationCodeName
             operationCodeName = ko.observable(),
+            //Operation Id
+            operationId = ko.observable(),
+
             // Formatted Start Date for grid
             formattedStartDate = ko.computed({
-                read: function() {
+                read: function () {
                     return moment(startEffectiveDate()).format(ist.datePattern);
                 }
             }),
@@ -37,49 +40,12 @@
                     return moment(endEffectiveDate()).format(ist.datePattern);
                 }
             }),
-        // Convert to server
-        convertToServerData = function () {
-            return {
-                StandardRtMainId: tariffRateId(),                
-            };
-        };
-        self = {
-            tariffRateId: tariffRateId,
-            tariffRateCode: tariffRateCode,
-            tariffRateName: tariffRateName,
-            startEffectiveDate: startEffectiveDate,
-            endEffectiveDate: endEffectiveDate,
-            convertToServerData: convertToServerData,
-            tariffTypeCodeName: tariffTypeCodeName,
-            tariffTypeId: tariffTypeId,
-            operationCodeName: operationCodeName,
-            tariffRateDescription: tariffRateDescription,
-            formattedStartDate: formattedStartDate,
-            formattedEndDate: formattedEndDate
-        };
-        return self;
-    };
-    // ReSharper disable once InconsistentNaming
-    var TariffRateDetail = function () {
-        // ReSharper restore InconsistentNaming
-        var // Reference to this object
-           // Unique key
-            tariffRateId = ko.observable(),
-            // Tariff Rate Code 
-            tariffRateCode = ko.observable().extend({ required: true }),
-            // Tarrif Type Name
-            tariffRateName = ko.observable(),
-            //Description
-            description = ko.observable(),
-            //Operation Id
-             operationId = ko.observable(),
-             //Tariff Type Id
-             tariffTypeId = ko.observable(),
-            //Start From
-            startEffectiveDate = ko.observable().extend({ required: true }),
-            //End To
-            endEffectiveDate = ko.observable().extend({ required: true }),
-            isBusy = ko.observable(false),
+            // Convert to server
+            convertToServerData = function () {
+                return {
+                    StandardRtMainId: tariffRateId(),
+                };
+            },
             // Errors
             errors = ko.validation.group({
                 tariffRateCode: tariffRateCode,
@@ -97,7 +63,7 @@
             dirtyFlag = new ko.dirtyFlag({
                 tariffRateCode: tariffRateCode,
                 tariffRateName: tariffRateName,
-                description: description,
+                tariffRateDescription: tariffRateDescription,
                 operationId: operationId,
                 startEffectiveDate: startEffectiveDate,
                 endEffectiveDate: endEffectiveDate,
@@ -111,29 +77,32 @@
             // Reset
             reset = function () {
                 dirtyFlag.reset();
-            },
-
+            };
 
         self = {
             tariffRateId: tariffRateId,
             tariffRateCode: tariffRateCode,
             tariffRateName: tariffRateName,
-            description: description,
-            operationId: operationId,
-            tariffTypeId: tariffTypeId,
             startEffectiveDate: startEffectiveDate,
             endEffectiveDate: endEffectiveDate,
-
+            convertToServerData: convertToServerData,
+            tariffTypeCodeName: tariffTypeCodeName,
+            tariffTypeId: tariffTypeId,
+            operationCodeName: operationCodeName,
+            tariffRateDescription: tariffRateDescription,
+            formattedStartDate: formattedStartDate,
+            formattedEndDate: formattedEndDate,
+            operationId: operationId,
             errors: errors,
             isValid: isValid,
             dirtyFlag: dirtyFlag,
             hasChanges: hasChanges,
             reset: reset,
-            isBusy: isBusy
-
+            
         };
         return self;
     };
+
     var HireGroupDetail = function () {
         // ReSharper restore InconsistentNaming
         var // Reference to this object
@@ -193,30 +162,24 @@
         tariffRate.tariffTypeCodeName(source.TariffTypeCodeName === null ? undefined : source.TariffTypeCodeName);
         tariffRate.tariffTypeId(source.TariffTypeId === null ? undefined : source.tariffTypeId);
         tariffRate.operationCodeName(source.OperationCodeName === null ? undefined : source.OperationCodeName);
+        tariffRate.operationId(source.OperationId === null ? undefined : source.OperationId);
         return tariffRate;
     };
-    // ReSharper disable once InconsistentNaming
-    var TariffRateDetailClientMapper = function (source) {
-        var tariffRate = new TariffRateDetail();
-        tariffRate.tariffRateId(source.StandardRtMainId === null ? undefined : source.StandardRtMainId);
-        tariffRate.tariffRateCode(source.StandardRtMainCode === null ? undefined : source.StandardRtMainCode);
-        tariffRate.tariffRateName(source.StandardRtMainName === null ? undefined : source.StandardRtMainName);
-        return tariffRate;
-    };
+
     //Client To Server Mapper
-// ReSharper disable once InconsistentNaming
+    // ReSharper disable once InconsistentNaming
     var TariffRateServerMapper = function (source) {
         var result = {};
-        result.StandardRtMainId = source.tariffRateId() === undefined  ? 0 : source.tariffRateId();
-        result.TariffTypeCode = source.tariffRateCode() === undefined  ? null : source.tariffRateCode();
-        result.StandardRtMainCode = source.tariffRateCode() === undefined  ? null : source.tariffRateCode();
-        result.StandardRtMainDescription = source.description() === undefined ? null : source.description();
+        result.StandardRtMainId = source.tariffRateId() === undefined ? 0 : source.tariffRateId();
+        result.TariffTypeCode = source.tariffRateCode() === undefined ? null : source.tariffRateCode();
+        result.StandardRtMainCode = source.tariffRateCode() === undefined ? null : source.tariffRateCode();
+        result.StandardRtMainDescription = source.tariffRateDescription() === undefined ? null : source.tariffRateDescription();
         result.StandardRtMainName = source.tariffRateName() === undefined ? null : source.tariffRateName();
         result.StartDt = source.startEffectiveDate() === undefined || source.startEffectiveDate() === null ? undefined : moment(source.startEffectiveDate()).format(ist.utcFormat);
         result.EndDt = source.endEffectiveDate() === undefined || source.endEffectiveDate() === null ? undefined : moment(source.endEffectiveDate()).format(ist.utcFormat);
         result.OperationId = source.operationId();
         result.TariffTypeId = source.tariffTypeId();
-         return result;
+        return result;
     };
     //Server To Client Mapper
     // ReSharper disable once InconsistentNaming
@@ -238,11 +201,9 @@
     };
     return {
         TariffRate: TariffRate,
-        TariffRateDetail: TariffRateDetail,
         TariffRateClientMapper: TariffRateClientMapper,
         HireGroupDetail: HireGroupDetail,
         HireGroupClientMapper: HireGroupClientMapper,
-        TariffRateDetailClientMapper: TariffRateDetailClientMapper,
         TariffRateServerMapper: TariffRateServerMapper
     };
 });

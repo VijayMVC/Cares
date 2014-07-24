@@ -1,12 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Models.DomainModels;
 
 namespace Models.ResponseModels
 {
-    class HireGroupDetailResponse
+    /// <summary>
+    /// Tariff Rate Detail Response
+    /// </summary>
+    public class HireGroupDetailResponse
     {
+            /// <summary>
+        /// Hire Group Details List
+        /// </summary>
+        public IEnumerable<HireGroupDetail> HireGroupDetails { get; set; }
+        /// <summary>
+        /// Total Count
+        /// </summary>
+        public int TotalCount { get; set; }
     }
 }

@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace Models.ResponseModels
-{
-    /// <summary>
-    /// Tariff Rate Domain Response Model
+namespace Cares.Web.Models
+{/// <summary>
+    /// Tariff Rate Web Response Model
     /// </summary>
     public sealed class TariffRateResponse
     {

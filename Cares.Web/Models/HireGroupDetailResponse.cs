@@ -1,17 +1,12 @@
 ﻿using System.Collections.Generic;
-using Models.DomainModels;
 
-namespace Models.ResponseModels
+namespace Cares.Web.Models
 {
     /// <summary>
-    /// Tariff Rate Detail Response
+    /// Hire Group Detail Web Response
     /// </summary>
-    public class TariffRateDetailResponse
+    public class HireGroupDetailResponse
     {
-        /// <summary>
-        /// Standard Rate Main
-        /// </summary>
-        public StandardRateMain StandardRateMain { get; set; }
         /// <summary>
         /// Hire Group Details List
         /// </summary>

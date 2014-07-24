@@ -11,7 +11,7 @@ namespace Cares.Web.ModelMappers
             /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static Models.HireGroupDetail CreateFromForDetail(this DomainModels.HireGroupDetail source)
+        public static Models.HireGroupDetail CreateFrom(this DomainModels.HireGroupDetail source)
         {
             return new Models.HireGroupDetail
             {

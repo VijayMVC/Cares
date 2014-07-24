@@ -12,7 +12,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Tariff Rate Detail Api Controller
     /// </summary>
-    public class GetTariffRateDetailController : ApiController
+    public class GetHireGroupDetailController : ApiController
     {
          #region Private
         private readonly ITariffRateService tariffRateService;
@@ -21,7 +21,7 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public GetTariffRateDetailController(ITariffRateService tariffRateService)
+        public GetHireGroupDetailController(ITariffRateService tariffRateService)
         {
             if (tariffRateService == null && !ModelState.IsValid)
             {
@@ -33,17 +33,17 @@ namespace Cares.Web.Areas.Api.Controllers
         #endregion
         #region Public
         /// <summary>
-        /// Get Detail Tariff Type
+        /// Get Hire group Detail
         /// </summary>
-        /// <param name="tariffRateDetailRequest"></param>
+        /// <param name="hireGroupDetailRequest"></param>
         /// <returns></returns>
-        public TariffRateDetailResponse Get(DomainRequestModel.TariffRateDetailRequest  tariffRateDetailRequest)
+        public HireGroupDetailResponse Get([FromUri]DomainRequestModel.HireGroupDetailRequest hireGroupDetailRequest)
         {
             if (!ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return tariffRateService.FindTariffRateById(tariffRateDetailRequest).CreateFrom();
+            return tariffRateService.GetHireGroupDetails(hireGroupDetailRequest).CreateFromHireGroupDetail();
         }
 
         #endregion

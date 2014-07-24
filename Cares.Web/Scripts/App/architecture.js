@@ -252,7 +252,7 @@ function handleSorting(tableId, sortOn, sortAsc, callback) {
         var sortBy = e.target.id;
         var targetEl = $(e.target).children("span")[0];
         // Remove other header sorting
-        _.each($('.searchFilterResultSection table thead tr th span'), function (item) {
+        _.each($('#' + tableId + ' thead tr th span'), function (item) {
             if (item.parentElement !== e.target) {
                 item.className = '';
             }

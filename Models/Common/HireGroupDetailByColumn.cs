@@ -10,5 +10,17 @@
         /// Vehicle Make ID
         /// </summary>
         VehicleMakeId = 2,
+        /// <summary>
+        /// Vehicle Make Id
+        /// </summary>
+        VehicleModelId = 3,
+        /// <summary>
+        /// Vehicle Category Id
+        /// </summary>
+        VehicleCategoryId = 4,
+        /// <summary>
+        /// Model Year
+        /// </summary>
+        ModelYear = 5
     }
 }
