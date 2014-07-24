@@ -5,6 +5,7 @@ using System.Web.Http;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
 using Interfaces.IServices;
+using Models.ResponseModels;
 using DomainModels = Models.RequestModels;
 
 namespace Cares.Web.Areas.Api.Controllers
@@ -39,7 +40,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return tariffRateService.LoadTariffRates((request)).CreateFrom();
+            return tariffRateService.LoadTariffRates((request));
         }
         /// <summary>
         /// Update a Tariff Rate

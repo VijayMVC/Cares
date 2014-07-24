@@ -14,14 +14,14 @@ namespace Models.ResponseModels
         /// </summary>
         public TariffRateResponse()
         {
-            TariffRates = new List<StandardRateMain>();
+            TariffRates = new List<TariffRateContent>();
         }
         #endregion
         #region Public
         /// <summary>
         /// Tarrif Rates
         /// </summary>
-        public IEnumerable<StandardRateMain> TariffRates { get; set; }
+        public IEnumerable<TariffRateContent> TariffRates { get; set; }
 
         /// <summary>
         /// Total Count

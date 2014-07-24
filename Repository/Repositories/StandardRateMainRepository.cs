@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Linq.Expressions;
 using Interfaces.Repository;
 using Microsoft.Practices.Unity;
 using Models.Common;
@@ -19,13 +18,13 @@ namespace Repository.Repositories
     public sealed class StandardRateMainRepository : BaseRepository<StandardRateMain>, IStandardRateMainRepository
     {
         #region Private
-        private readonly Dictionary<TariffRateByColumn, Func<StandardRateMain, object>> tariffRateClause =
-             new Dictionary<TariffRateByColumn, Func<StandardRateMain, object>>
+        private readonly Dictionary<TariffRateByColumn, Func<TariffRateContent, object>> tariffRateClause =
+             new Dictionary<TariffRateByColumn, Func<TariffRateContent, object>>
                     {
                         { TariffRateByColumn.TariffRateCode, c => c.StandardRtMainCode },
-                        
-                       
+                        { TariffRateByColumn.Operation, c => c.OperationCodeName }
                     };
+
         #endregion
         #region Constructor
         /// <summary>
@@ -59,21 +58,41 @@ namespace Repository.Repositories
         /// <summary>
         /// Get All Tariff Rates based on search crateria
         /// </summary>
-        /// <param name="tariffRateRequest"></param>
-        /// <returns></returns>
         public TariffRateResponse GetTariffRates(TariffRateRequest tariffRateRequest)
         {
             int fromRow = (tariffRateRequest.PageNo - 1) * tariffRateRequest.PageSize;
             int toRow = tariffRateRequest.PageSize;
-            Expression<Func<StandardRateMain, bool>> query =
-                            s => ((!(tariffRateRequest.Id > 0) || s.StandardRtMainId == tariffRateRequest.Id));
 
-            IEnumerable<StandardRateMain> tariffRates = tariffRateRequest.IsAsc ? DbSet.Where(query)
-                                            .OrderBy(tariffRateClause[tariffRateRequest.TariffRateByOrder]).Skip(fromRow).Take(toRow).ToList()
-                                            : DbSet.Where(query)
-                                                .OrderByDescending(tariffRateClause[tariffRateRequest.TariffRateByOrder]).Skip(fromRow).Take(toRow).ToList();
+            var getTariffRateQuery = from tariffRate in DbSet
+                join tariffType in db.TarrifTypes on tariffRate.TariffTypeCode equals tariffType.TariffTypeCode
+                where
+                    ((!tariffRateRequest.OperationId.HasValue ||
+                      tariffType.OperationId == tariffRateRequest.OperationId.Value) &&
+                     (!tariffRateRequest.TariffTypeId.HasValue ||
+                      tariffType.TariffTypeId == tariffRateRequest.TariffTypeId))
+                select new TariffRateContent
+                {                    
+                    StandardRtMainId = tariffRate.StandardRtMainId,
+                    StandardRtMainCode = tariffRate.StandardRtMainCode,
+                    StandardRtMainName = tariffRate.StandardRtMainName,
+                    StandardRtMainDescription = tariffRate.StandardRtMainDescription,
+                    StartDt = tariffRate.StartDt,
+                    EndDt = tariffRate.EndDt,
+                    TariffTypeId = tariffType.TariffTypeId,
+                    TariffTypeCodeName = tariffType.TariffTypeCode + " - " + tariffType.TariffTypeName,                    
+                    OperationId = tariffType.OperationId,
+                    OperationCodeName = tariffType.Operation.OperationCode + " - " + tariffType.Operation.OperationName,                    
+                };
 
-            return new TariffRateResponse { TariffRates = tariffRates, TotalCount = DbSet.Count(query) };
+            IEnumerable<TariffRateContent> tariffRates = tariffRateRequest.IsAsc
+                ? getTariffRateQuery.OrderBy(tariffRateClause[tariffRateRequest.TariffRateByOrder])
+                    .Skip(fromRow)
+                    .Take(toRow)
+                : getTariffRateQuery.OrderByDescending(tariffRateClause[tariffRateRequest.TariffRateByOrder])
+                    .Skip(fromRow)
+                    .Take(toRow);
+
+            return new TariffRateResponse { TariffRates = tariffRates, TotalCount = getTariffRateQuery.Count() };
         }
         /// <summary>
         /// Find By Id
