@@ -49,6 +49,10 @@ namespace Models.ResponseModels
         /// Business Segments
         /// </summary>
         public IEnumerable<BusinessSegment> ResponseBusinessSegments { get; set; }
+        /// <summary>
+        /// Business Partner SubTypes
+        /// </summary>
+        public IEnumerable<BusinessPartnerSubType> ResponseBusinessPartnerSubTypes { get; set; }
 
         #endregion
     }

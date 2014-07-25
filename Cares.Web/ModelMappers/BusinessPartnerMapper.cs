@@ -129,7 +129,8 @@ namespace Cares.Web.ModelMappers
                 ResponseBusinessPartnerCompanies = source.ResponseBusinessPartnerCompanies.Select(x => x.CreateFrom()),
                 ResponseOccupationTypes = source.ResponseOccupationTypes.Select(x => x.CreateFrom()),
                 ResponsePassportCountries = source.ResponsePassportCountries.Select(x => x.CreateFrom()),
-                ResponseBusinessSegments = source.ResponseBusinessSegments.Select(x => x.CreateFrom())
+                ResponseBusinessSegments = source.ResponseBusinessSegments.Select(x => x.CreateFrom()),
+                ResponseBusinessPartnerSubTypes = source.ResponseBusinessPartnerSubTypes.Select(x=>x.CreateFrom())
             };
         }
         #endregion
@@ -245,5 +246,36 @@ namespace Cares.Web.ModelMappers
         }
 
         #endregion
+
+        #region Business Partner SubType Mappers
+
+        /// <summary>
+        ///  Create web model from entity
+        /// </summary>
+        public static ApiModel.BusinessPartnerSubType CreateFrom(this DomainModel.BusinessPartnerSubType source)
+        {
+            return new ApiModel.BusinessPartnerSubType
+            {
+                BusinessPartnerSubTypeId = source.BusinessPartnerSubTypeId,
+                BusinessPartnerSubTypeCode = source.BusinessPartnerSubTypeCode,
+                BusinessPartnerSubTypeName = source.BusinessPartnerSubTypeName
+            };
+        }
+
+        /// <summary>
+        ///  Create entity from web model
+        /// </summary>
+        public static DomainModel.BusinessPartnerSubType CreateFrom(this ApiModel.BusinessPartnerSubType source)
+        {
+            return new DomainModel.BusinessPartnerSubType
+            {
+                BusinessPartnerSubTypeId = source.BusinessPartnerSubTypeId,
+                BusinessPartnerSubTypeCode = source.BusinessPartnerSubTypeCode,
+                BusinessPartnerSubTypeName = source.BusinessPartnerSubTypeName
+            };
+        }
+
+        #endregion
+
     }
 }

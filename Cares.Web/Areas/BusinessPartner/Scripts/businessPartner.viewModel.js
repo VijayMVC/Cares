@@ -1,10 +1,9 @@
 ﻿/*
-    Module with the view model for the businessPartner
+    Module with the view model for the Business Partner
 */
 define("businessPartner/businessPartner.viewModel",
     ["jquery", "amplify", "ko", "businessPartner/businessPartner.dataservice", "businessPartner/businessPartnerWithKoMapping.model", "common/confirmation.viewModel", "common/pagination"],
     function ($, amplify, ko, dataservice, model, confirmation, pagination) {
-
         var ist = window.ist || {};
         ist.businessPartner = {
             viewModel: (function () {
@@ -22,8 +21,6 @@ define("businessPartner/businessPartner.viewModel",
                     // #region Busy Indicators
                     isLoadingBusinessPartners = ko.observable(false),
                     // #endregion Busy Indicators
-
-
                     // #region Observables
                      // Companies Array
                     companies = ko.observableArray([]),
@@ -45,7 +42,8 @@ define("businessPartner/businessPartner.viewModel",
                     occupationTypes = ko.observableArray([]),
                     // Business Segments Array
                     businessSegments = ko.observableArray([]),
-
+                     // Business Partner SubType Array
+                    businessPartnerSubTypes = ko.observableArray([]),
                     // Sort On
                     sortOn = ko.observable(1),
                     // Sort Order -  true means asc, false means desc
@@ -58,14 +56,16 @@ define("businessPartner/businessPartner.viewModel",
                     searchFilter = ko.observable(),
                     // select Filter
                     selectFilter = ko.observable(),
-                   // #region Utility Functions
+                    // business partner Type from date
+                    businessPartnerTypeFromDate = ko.observable(),
+                    // business partner type to date
+                    businessPartnerTypeToDate = ko.observable(),
 
+                   // #region Utility Functions
                     // Select filter option Individual or Company list
                     optionIndividualOrCompany = [{ Id: true, Name: 'Individual' },{Id : false, Name :  'Company'}],
-
                     // Select Gender list
                     optionGenderList = [{ Id: 'M', Name: 'Male' }, { Id: 'F', Name: 'Female' }],
-
                     // Select Martial Status list
                     optionMaritalStatusList = [
                         { Id: 'M', Name: 'Married' },
@@ -74,17 +74,11 @@ define("businessPartner/businessPartner.viewModel",
                          { Id: 'D', Name: 'Divorced' },
                          { Id: 'W', Name: 'Widowed' }
                     ],
-
-
+                    // Select business partner
                     selectBusinessPartner = function (businessPartner) {
-                        //if (selectedBusinessPartner()) {
-                        //    onSaveBusinessPartner(businessPartner);
-                        //    return;
-                        //}
                         if (listSelectedBusinessPartner() !== businessPartner) {
                             listSelectedBusinessPartner(businessPartner);
                         }
-                        //isEditable(false);
                     },
                      //For Edit, Tariff Type Id
                     selectedBusinessPartnerId = ko.observable(),
@@ -92,10 +86,10 @@ define("businessPartner/businessPartner.viewModel",
                     onEditBusinessPartner = function (businessPartner, e) {
                         selectedBusinessPartnerId(businessPartner.businessPartnerListId().split('-')[1]);
                         getBusinessPartnerById(selectedBusinessPartnerId());
-
                         showBusinessPartnerEditor();
                         e.stopImmediatePropagation();
                     },
+                    // get business partner by id
                     getBusinessPartnerById = function (businessPartnerId) {
                         isLoadingBusinessPartners(true);
                         dataservice.getBusinessPartnerById({
@@ -140,7 +134,6 @@ define("businessPartner/businessPartner.viewModel",
                             businessPartners.remove(businessPartner);
                             return;
                         }
-
                         // Ask for confirmation
                         confirmation.afterProceed(function() {
                             deleteBusinessPartner(businessPartner);
@@ -150,10 +143,6 @@ define("businessPartner/businessPartner.viewModel",
                     // Create Business Partner
                     createBusinessPartner = function () {
                         var businessPartner = model.BusinessPartnerDetail.Create();
-
-                        //businessPartner.assignCategories(categories());
-                        //businessPartners.splice(0, 0, businessPartner);
-                        // Select the newly added businessPartner
                         selectedBusinessPartner(businessPartner);
                     },
                     // Create BusinessPartner - In Form
@@ -182,29 +171,19 @@ define("businessPartner/businessPartner.viewModel",
                     // Initialize the view model
                     initialize = function(specifiedView) {
                         view = specifiedView;
-
                         ko.applyBindings(view.viewModel, view.bindingRoot);
-
                         getBase();
-
                         // Set Pager
                         pager(pagination.Pagination({}, businessPartners, getBusinessPartners));
-
                         getBusinessPartners();
-                    },
-                    // Template Chooser
-                    templateToUse = function (businessPartner) {
-                        return (businessPartner === selectedBusinessPartner() ? 'editBusinessPartnerTemplate' : 'itemBusinessPartnerTemplate');
                     },
                     // Map BusinessPartners - Server to Client
                     mapBusinessPartners = function (data) {
                         var businessPartnerList = [];
                         _.each(data.BusinessPartners, function (item) {
                             var businessPartner = new model.BusinessPartner(item);
-                            //product.assignCategories(categories());
                             businessPartnerList.push(businessPartner);
-                        });
-                        
+                        });                  
                         ko.utils.arrayPushAll(businessPartners(), businessPartnerList);
                         businessPartners.valueHasMutated();
                     },
@@ -216,52 +195,46 @@ define("businessPartner/businessPartner.viewModel",
                                 companies.removeAll();
                                 ko.utils.arrayPushAll(companies(), data.ResponseCompanies);
                                 companies.valueHasMutated();
-                                
                                 // Payment Terms array
                                 paymentTerms.removeAll();
                                 ko.utils.arrayPushAll(paymentTerms(), data.ResponsePaymentTerms);
                                 paymentTerms.valueHasMutated();
-                                
                                 // Business Partner Rating Types array
                                 bpRatingTypes.removeAll();
                                 ko.utils.arrayPushAll(bpRatingTypes(), data.ResponseBPRatingTypes);
                                 bpRatingTypes.valueHasMutated();
-
                                 // Business Legal Statuses array
                                 businessLegalStatuses.removeAll();
                                 ko.utils.arrayPushAll(businessLegalStatuses(), data.ResponseBusinessLegalStatuses);
                                 businessLegalStatuses.valueHasMutated();
-                                
                                 // Business Legal Statuses array
                                 respBusinessPartners.removeAll();
                                 ko.utils.arrayPushAll(respBusinessPartners(), data.ResponseBusinessPartners);
                                 respBusinessPartners.valueHasMutated();
-
                                 // Business Legal Statuses array
                                 dealingEmployees.removeAll();
                                 ko.utils.arrayPushAll(dealingEmployees(), data.ResponseDealingEmployees);
                                 dealingEmployees.valueHasMutated();
-                                
                                 // Business Partner Companies array
                                 businessPartnerCompanies.removeAll();
                                 ko.utils.arrayPushAll(businessPartnerCompanies(), data.ResponseBusinessPartnerCompanies);
                                 businessPartnerCompanies.valueHasMutated();
-                                
                                 // Passport Countries array
                                 passportCountries.removeAll();
                                 ko.utils.arrayPushAll(passportCountries(), data.ResponsePassportCountries);
                                 passportCountries.valueHasMutated();
-                                
                                 // Occupation Types array
                                 occupationTypes.removeAll();
                                 ko.utils.arrayPushAll(occupationTypes(), data.ResponseOccupationTypes);
                                 occupationTypes.valueHasMutated();
-                                
                                 // Business Segments array
                                 businessSegments.removeAll();
                                 ko.utils.arrayPushAll(businessSegments(), data.ResponseBusinessSegments);
                                 businessSegments.valueHasMutated();
-
+                                // Business Partner SubType array
+                                businessPartnerSubTypes.removeAll();
+                                ko.utils.arrayPushAll(businessPartnerSubTypes(), data.ResponseBusinessPartnerSubTypes);
+                                businessPartnerSubTypes.valueHasMutated();
                             },
                             error: function () {
                                 toastr.error("Failed to load base data");
@@ -331,17 +304,15 @@ define("businessPartner/businessPartner.viewModel",
                         });
                     };
                 // #endregion Service Calls
-
                 return {
                     // Observables
                     selectedBusinessPartner: selectedBusinessPartner,
                     isLoadingBusinessPartners: isLoadingBusinessPartners,
-                 businessPartners: businessPartners,
-                   searchFilter: searchFilter,
+                    businessPartners: businessPartners,
+                    searchFilter: searchFilter,
                     selectFilter: selectFilter,
                     sortOn: sortOn,
                     sortIsAsc: sortIsAsc,
-
                     // Observables Arrays
                     companies: companies,
                     paymentTerms: paymentTerms,
@@ -352,14 +323,13 @@ define("businessPartner/businessPartner.viewModel",
                     businessPartnerCompanies: businessPartnerCompanies,
                     passportCountries: passportCountries,
                     occupationTypes: occupationTypes,
-                    businessSegments:businessSegments,
-
+                    businessSegments: businessSegments,
+                    businessPartnerSubTypes:businessPartnerSubTypes,
                     // Utility Methods
                     onSaveBusinessPartner: onSaveBusinessPartner,
                     createBusinessPartner: createBusinessPartner,
                     onDeleteBusinessPartner: onDeleteBusinessPartner,
                     initialize: initialize,
-                    templateToUse: templateToUse,
                     selectBusinessPartner: selectBusinessPartner,
                     search: search,
                     getBusinessPartners: getBusinessPartners,
@@ -370,10 +340,11 @@ define("businessPartner/businessPartner.viewModel",
                     isBusinessPartnerEditorVisible: isBusinessPartnerEditorVisible,
                     createBusinessPartnerInForm: createBusinessPartnerInForm,
                     optionIndividualOrCompany: optionIndividualOrCompany,
-                    listSelectedBusinessPartner: listSelectedBusinessPartner,
-                    
+                    listSelectedBusinessPartner: listSelectedBusinessPartner,      
                     optionGenderList: optionGenderList,
-                    optionMaritalStatusList:optionMaritalStatusList
+                    optionMaritalStatusList: optionMaritalStatusList,
+                    businessPartnerTypeFromDate: businessPartnerTypeFromDate,
+                    businessPartnerTypeToDate: businessPartnerTypeToDate
                     // Utility Methods
                 };
             })()

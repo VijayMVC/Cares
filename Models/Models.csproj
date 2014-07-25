@@ -99,6 +99,7 @@
     <Compile Include="CommonTypes\DepartmentType.cs" />
     <Compile Include="Common\BusinessPartnerByColumn.cs" />
     <Compile Include="Common\TariffRateByColumn.cs" />
+    <Compile Include="DomainModels\BusinessPartnerInType.cs" />
     <Compile Include="DomainModels\BusinessPartnerIndividual.cs" />
     <Compile Include="DomainModels\BusinessPartner.cs" />
     <Compile Include="Common\EmployeeByColumn.cs" />
@@ -108,6 +109,8 @@
     <Compile Include="DomainModels\BPRatingType.cs" />
     <Compile Include="DomainModels\BusinessLegalStatus.cs" />
     <Compile Include="DomainModels\BusinessPartnerCompany.cs" />
+    <Compile Include="DomainModels\BusinessPartnerMainType.cs" />
+    <Compile Include="DomainModels\BusinessPartnerSubType.cs" />
     <Compile Include="DomainModels\OccupationType.cs" />
     <Compile Include="DomainModels\BusinessSegment.cs" />
     <Compile Include="DomainModels\Category.cs" />

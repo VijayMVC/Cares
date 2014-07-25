@@ -1,7 +1,8 @@
-﻿define(["ko", "underscore", "underscore-ko"], function (ko) {
-
+﻿/*
+    Client Models and Mappers for Business Partner and its childs
+*/
+define(["ko", "underscore", "underscore-ko"], function (ko) {
     var
-
     // BusinessPartner entity - Using Knockout Mapping
     // ReSharper disable InconsistentNaming
     BusinessPartner = function (data) {
@@ -21,8 +22,7 @@
             bPRatingType: self.BPRatingTypeName,
             company: self.CompanyName
         };
-    };
-    
+    };   
     var
    // Business Partner entity
    // ReSharper disable InconsistentNaming
@@ -60,14 +60,11 @@
            // System Guarantor Id
            systemGuarantorId = ko.observable(specifiedSystemGuarantor),
            // Dealing Employee Id
-           dealingEmployeeId = ko.observable(specifiedDealingEmployee),
-           
+           dealingEmployeeId = ko.observable(specifiedDealingEmployee),     
            // Business Partner Individual
            businessPartnerIndividual = ko.observable(BusinessPartnerIndividual.Create()),
-
            // Business Partner Company
            businessPartnerCompany = ko.observable(BusinessPartnerCompany.Create()),
-
            // Is Busy
            isBusy = ko.observable(false),
            // Errors
@@ -87,7 +84,6 @@
            // ReSharper disable InconsistentNaming
            dirtyFlag = new ko.dirtyFlag({
                // ReSharper restore InconsistentNaming
-
                // Main top section
                businessPartnerId: businessPartnerId,
                businessPartnerName: businessPartnerName,
@@ -102,6 +98,8 @@
                businessLegalStatusId: businessLegalStatusId,
                systemGuarantorId: systemGuarantorId,
                dealingEmployeeId: dealingEmployeeId,
+               businessPartnerIndividual: businessPartnerIndividual,
+               businessPartnerCompany: businessPartnerCompany
            }),
            // Has Changes
            hasChanges = ko.computed(function() {
@@ -126,10 +124,8 @@
            businessLegalStatusId: businessLegalStatusId,
            systemGuarantorId: systemGuarantorId,
            dealingEmployeeId: dealingEmployeeId,
-              
            businessPartnerIndividual: businessPartnerIndividual,
            businessPartnerCompany:businessPartnerCompany,
-
            errors: errors,
            isValid: isValid,
            dirtyFlag: dirtyFlag,
@@ -139,19 +135,18 @@
        };
        return self;
    };
-
     var
-// Business Partner Individual entity
-// ReSharper disable InconsistentNaming
-BusinessPartnerIndividual = function (
-specifiedIndividualFirstName, specifiedIndividualMiddleName, specifiedIndividualLastName,
-specifiedIndividualInitials, specifiedIndividualLiscenseNumber, specifiedIndividualLiscenseExpiryDate,
-specifiedIndividualGenderStatus, specifiedIndividualPassportNumber, specifiedIndividualNicNumber,
-specifiedIndividualMaritalStatusCode, specifiedIndividualTaxRegisterationCode, specifiedIndividualTaxNumber,
-specifiedIndividualDateOfBirth, specifiedIndividualOccupationTypeId, specifiedIndividualIsCompanyExternal,
-specifiedIndividualCompanyName, specifiedIndividualCompanyAddress, specifiedIndividualCompanyPhone,
-specifiedIndividualBusinessPartnerCompnayId, specifiedIndividualNicExpiryDate, specifiedIndividualPassportExpiryDate,
-specifiedIndividualPassportCountryId, specifiedIndividualIqamaNo, specifiedIndividualIqamaExpiryDate
+    // Business Partner Individual entity
+    // ReSharper disable InconsistentNaming
+    BusinessPartnerIndividual = function (
+    specifiedIndividualFirstName, specifiedIndividualMiddleName, specifiedIndividualLastName,
+    specifiedIndividualInitials, specifiedIndividualLiscenseNumber, specifiedIndividualLiscenseExpiryDate,
+    specifiedIndividualGenderStatus, specifiedIndividualPassportNumber, specifiedIndividualNicNumber,
+    specifiedIndividualMaritalStatusCode, specifiedIndividualTaxRegisterationCode, specifiedIndividualTaxNumber,
+    specifiedIndividualDateOfBirth, specifiedIndividualOccupationTypeId, specifiedIndividualIsCompanyExternal,
+    specifiedIndividualCompanyName, specifiedIndividualCompanyAddress, specifiedIndividualCompanyPhone,
+    specifiedIndividualBusinessPartnerCompnayId, specifiedIndividualNicExpiryDate, specifiedIndividualPassportExpiryDate,
+    specifiedIndividualPassportCountryId, specifiedIndividualIqamaNo, specifiedIndividualIqamaExpiryDate
     ) {
 
     // ReSharper restore InconsistentNaming
@@ -294,7 +289,6 @@ specifiedIndividualPassportCountryId, specifiedIndividualIqamaNo, specifiedIndiv
         isBusy: isBusy
     };
 };
-
     var
   // Business Partner Company entity
   // ReSharper disable InconsistentNaming
@@ -315,8 +309,7 @@ specifiedIndividualPassportCountryId, specifiedIndividualIqamaNo, specifiedIndiv
           // Account Number
           businessPartnerCompanyAccountNumber = ko.observable(specifiedisAccountNumber),
           // Non System Guarantor
-          businessPartnerCompanyBusinessSegmentId = ko.observable(specifiedBusinessSegmentId),
-          
+          businessPartnerCompanyBusinessSegmentId = ko.observable(specifiedBusinessSegmentId),     
           // Is Busy
           isBusy = ko.observable(false),
           // Errors
@@ -330,7 +323,6 @@ specifiedIndividualPassportCountryId, specifiedIndividualIqamaNo, specifiedIndiv
           // True if the booking has been changed
           // ReSharper disable InconsistentNaming
           dirtyFlag = new ko.dirtyFlag({
-
               // ReSharper restore InconsistentNaming
               businessPartnerCompanyCode: businessPartnerCompanyCode,
               businessPartnerCompanyName: businessPartnerCompanyName,
@@ -354,7 +346,6 @@ specifiedIndividualPassportCountryId, specifiedIndividualIqamaNo, specifiedIndiv
           businessPartnerCompanySwiftCode: businessPartnerCompanySwiftCode,
           businessPartnerCompanyAccountNumber: businessPartnerCompanyAccountNumber,
           businessPartnerCompanyBusinessSegmentId: businessPartnerCompanyBusinessSegmentId,
-          
           errors: errors,
           isValid: isValid,
           dirtyFlag: dirtyFlag,
@@ -364,29 +355,22 @@ specifiedIndividualPassportCountryId, specifiedIndividualIqamaNo, specifiedIndiv
       };
       return self;
   };
-
-
     // BusinessPartnerDetail Factory
     BusinessPartnerDetail.Create = function () {
         return new BusinessPartnerDetail("", "", "", false, false, "", "", false, undefined, undefined, undefined, undefined, undefined);
     };
-    
     // BusinessPartnerIndividual Factory
-    BusinessPartnerIndividual.Create = function () {
-        return new BusinessPartnerIndividual("", "", "", "", "", undefined, "", "", "", "", "", "", undefined, undefined, false, "", "", ""
-            , undefined, undefined, undefined, undefined,
+    BusinessPartnerIndividual.Create = function() {
+        return new BusinessPartnerIndividual("", "", "", "", "", undefined, "", "", "", "", "", "", undefined, undefined, false, "", "", "", undefined, undefined, undefined, undefined,
             "", undefined);
     };
-
     // BusinessPartnerCompany Factory
     BusinessPartnerCompany.Create = function() {
         return new BusinessPartnerCompany("", "", undefined, "", "", undefined);
     };
-    
     // Convert (Business Partner) Client to server
     var BusinessPartnerServerMapper = function(clientData) {
         var result = {};
-
         // Main top section
         result.BusinessPartnerId = clientData.businessPartnerId();
         result.BusinessPartnerName = clientData.businessPartnerName();
@@ -401,22 +385,17 @@ specifiedIndividualPassportCountryId, specifiedIndividualIqamaNo, specifiedIndiv
         result.BusinessLegalStatusId = clientData.businessLegalStatusId();
         result.SystemGuarantorId = clientData.systemGuarantorId();
         result.DealingEmployeeId = clientData.dealingEmployeeId();
-        
         // individual tab
         // from client to server
         result.BusinessPartnerIndividual = BusinessPartnerIndividualServerMapper(clientData);
-
         // company tab
         // from client to server
         result.BusinessPartnerCompany = BusinessPartnerCompanyServerMapper(clientData);
-
         return result;
     };
-
     // Convert (Business Partner Individual) Client to server
     var BusinessPartnerIndividualServerMapper = function (clientData) {
         var result = {};
-
         // First  tab : Individual Info
         result.businessPartnerId = clientData.businessPartnerId() === undefined ? undefined : clientData.businessPartnerId();
         result.FirstName = clientData.businessPartnerIndividual().individualFirstName();
@@ -443,10 +422,8 @@ specifiedIndividualPassportCountryId, specifiedIndividualIqamaNo, specifiedIndiv
         result.PassportCountryId = clientData.businessPartnerIndividual().individualPassportCountryId();
         result.IqamaNo = clientData.businessPartnerIndividual().individualIqamaNo();
         result.IqamaExpiryDate = clientData.businessPartnerIndividual().individualIqamaExpiryDate() === undefined ? undefined : moment(clientData.businessPartnerIndividual().individualIqamaExpiryDate()).format(ist.utcFormat) + "Z";
-
         return result;
     };
-    
     // Convert (Business Partner Company) Client to server
     var BusinessPartnerCompanyServerMapper = function (clientData) {
         var result = {};
@@ -454,18 +431,15 @@ specifiedIndividualPassportCountryId, specifiedIndividualIqamaNo, specifiedIndiv
         result.BusinessPartnerId = clientData.businessPartnerId() === undefined ? undefined : clientData.businessPartnerId();
         result.BusinessPartnerCompanyCode = clientData.businessPartnerCompany().businessPartnerCompanyCode();
         result.BusinessPartnerCompanyName = clientData.businessPartnerCompany().businessPartnerCompanyName();
-        result.EstablishedSince = clientData.businessPartnerCompany().businessPartnerCompanyEstablishedSince() === undefined ? undefined : moment(clientData.businessPartnerCompany().businessPartnerCompanyEstablishedSince()).format(ist.utcFormat);
+        result.EstablishedSince = clientData.businessPartnerCompany().businessPartnerCompanyEstablishedSince() === undefined ? undefined : moment(clientData.businessPartnerCompany().businessPartnerCompanyEstablishedSince()).format(ist.utcFormat) + "Z";;
         result.SwiftCode = clientData.businessPartnerCompany().businessPartnerCompanySwiftCode();
         result.AccountNumber = clientData.businessPartnerCompany().businessPartnerCompanyAccountNumber();
         result.BusinessSegmentId = clientData.businessPartnerCompany().businessPartnerCompanyBusinessSegmentId() === undefined ? undefined : clientData.businessPartnerCompany().businessPartnerCompanyBusinessSegmentId();
         return result;
     };
-
     // Convert (Business Partner) Server to Client
-    var BusinessPartnerClientMapper = function (serverData) {
-        
+    var BusinessPartnerClientMapper = function(serverData) {
         var businessPartner = new BusinessPartnerDetail();
-        
         // Main Top Section
         businessPartner.businessPartnerId(serverData.BusinessPartnerId === null ? undefined : serverData.BusinessPartnerId);
         businessPartner.businessPartnerName(serverData.BusinessPartnerName === null ? undefined : serverData.BusinessPartnerName);
@@ -480,23 +454,16 @@ specifiedIndividualPassportCountryId, specifiedIndividualIqamaNo, specifiedIndiv
         businessPartner.businessLegalStatusId(serverData.BusinessLegalStatusId === null ? undefined : serverData.BusinessLegalStatusId);
         businessPartner.systemGuarantorId(serverData.SystemGuarantorId === null ? undefined : serverData.SystemGuarantorId);
         businessPartner.dealingEmployeeId(serverData.DealingEmployeeId === null ? undefined : serverData.DealingEmployeeId);
-
         // First tab : Individual Info
         businessPartner.businessPartnerIndividual(BusinessPartnerIndividualClientMapper(serverData));
-        
         // Second tab : Company Info
         businessPartner.businessPartnerCompany(BusinessPartnerCompanyClientMapper(serverData));
-
         return businessPartner;
     };
-
     // Convert (Business Partner Individual) Server to Client
     var BusinessPartnerIndividualClientMapper = function (serverData) {
-
         if (serverData.BusinessPartnerIndividual != null || serverData.BusinessPartnerIndividual != undefined) {
-
             var businessPartnerIndividual = new BusinessPartnerIndividual();
-
             // First Tab : Individual
             businessPartnerIndividual.individualFirstName(serverData.BusinessPartnerIndividual.FirstName === null ? undefined : serverData.BusinessPartnerIndividual.FirstName);
             businessPartnerIndividual.individualMiddleName(serverData.BusinessPartnerIndividual.MiddleName === null ? undefined : serverData.BusinessPartnerIndividual.MiddleName);
@@ -522,22 +489,19 @@ specifiedIndividualPassportCountryId, specifiedIndividualIqamaNo, specifiedIndiv
             businessPartnerIndividual.individualPassportCountryId(serverData.BusinessPartnerIndividual.PassportCountryId === null ? undefined : serverData.BusinessPartnerIndividual.PassportCountryId);
             businessPartnerIndividual.individualIqamaNo(serverData.BusinessPartnerIndividual.IqamaNo === null ? undefined : serverData.BusinessPartnerIndividual.IqamaNo);
             businessPartnerIndividual.individualIqamaExpiryDate(serverData.BusinessPartnerIndividual.IqamaExpiryDate === null ? undefined : moment(serverData.BusinessPartnerIndividual.IqamaExpiryDate).toDate());
-
             return businessPartnerIndividual;
         } else {
             return undefined;
         }
     };
-
     // Convert (Business Partner Company) Server to Client
     var BusinessPartnerCompanyClientMapper = function (serverData) {
-
         if (serverData.BusinessPartnerCompany != null || serverData.BusinessPartnerCompany != undefined) {
             var businessPartnerCompany = new BusinessPartnerCompany();
             // Second Tab : Individual
             businessPartnerCompany.businessPartnerCompanyCode(serverData.BusinessPartnerCompany.BusinessPartnerCompanyCode === null ? undefined : serverData.BusinessPartnerCompany.BusinessPartnerCompanyCode);
             businessPartnerCompany.businessPartnerCompanyName(serverData.BusinessPartnerCompany.BusinessPartnerCompanyName === null ? undefined : serverData.BusinessPartnerCompany.BusinessPartnerCompanyName);
-            businessPartnerCompany.businessPartnerCompanyEstablishedSince(serverData.BusinessPartnerCompany.EstablishedSince === null ? undefined : moment(serverData.BusinessPartnerCompany.EstablishedSince).format(ist.datePattern));
+            businessPartnerCompany.businessPartnerCompanyEstablishedSince(serverData.BusinessPartnerCompany.EstablishedSince === null ? undefined : moment(serverData.BusinessPartnerCompany.EstablishedSince).toDate());
             businessPartnerCompany.businessPartnerCompanySwiftCode(serverData.BusinessPartnerCompany.SwiftCode === null ? undefined : serverData.BusinessPartnerCompany.SwiftCode);
             businessPartnerCompany.businessPartnerCompanyAccountNumber(serverData.BusinessPartnerCompany.AccountNumber === null ? undefined : serverData.BusinessPartnerCompany.AccountNumber);
             businessPartnerCompany.businessPartnerCompanyBusinessSegmentId(serverData.BusinessPartnerCompany.BusinessSegmentId === null ? undefined : serverData.BusinessPartnerCompany.BusinessSegmentId);
@@ -546,17 +510,14 @@ specifiedIndividualPassportCountryId, specifiedIndividualIqamaNo, specifiedIndiv
             return undefined;
         }
     };
-
     return {
         BusinessPartner: BusinessPartner,
         BusinessPartnerDetail: BusinessPartnerDetail,
         BusinessPartnerClientMapper: BusinessPartnerClientMapper,
         BusinessPartnerServerMapper: BusinessPartnerServerMapper,
-        
         BusinessPartnerIndividual: BusinessPartnerIndividual,
         BusinessPartnerIndividualServerMapper: BusinessPartnerIndividualServerMapper,
         BusinessPartnerIndividualClientMapper: BusinessPartnerIndividualClientMapper,
-
         BusinessPartnerCompany: BusinessPartnerCompany,
         BusinessPartnerCompanyClientMapper: BusinessPartnerCompanyClientMapper,
         BusinessPartnerCompanyServerMapper:BusinessPartnerCompanyServerMapper
