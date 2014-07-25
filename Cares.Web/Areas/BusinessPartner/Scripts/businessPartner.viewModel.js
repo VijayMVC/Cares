@@ -140,6 +140,19 @@ define("businessPartner/businessPartner.viewModel",
                         });
                         confirmation.show();
                     },
+                    // Delete a BusinessPartner In Type
+                    onDeleteBusinessPartnerInType = function (businessPartnerInType) {
+                        //if (!businessPartnerInType.businessPartnerInTypeId()) {
+                            selectedBusinessPartner().businessPartnerInTypes.remove(businessPartnerInType);
+                            return;
+                        //}
+                    },
+                    // Add a BusinessPartner In Type
+                    onAddBusinessPartnerInType = function () {
+                        //var businessPartnerInType = model.BusinessPartnerInType.Create();
+                        //selectedBusinessPartner().businessPartnerInTypes.push(businessPartnerInType);
+                        //selectedBusinessPartner().businessPartnerInTypes.valueHasMutated();
+                    },
                     // Create Business Partner
                     createBusinessPartner = function () {
                         var businessPartner = model.BusinessPartnerDetail.Create();
@@ -344,7 +357,9 @@ define("businessPartner/businessPartner.viewModel",
                     optionGenderList: optionGenderList,
                     optionMaritalStatusList: optionMaritalStatusList,
                     businessPartnerTypeFromDate: businessPartnerTypeFromDate,
-                    businessPartnerTypeToDate: businessPartnerTypeToDate
+                    businessPartnerTypeToDate: businessPartnerTypeToDate,
+                    onDeleteBusinessPartnerInType: onDeleteBusinessPartnerInType,
+                    onAddBusinessPartnerInType: onAddBusinessPartnerInType
                     // Utility Methods
                 };
             })()

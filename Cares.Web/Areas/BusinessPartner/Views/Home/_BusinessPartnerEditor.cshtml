@@ -279,7 +279,7 @@
                         <select id="TypesbPRatingTypes" class="form-control" data-bind="options: $root.bpRatingTypes, optionsText: 'BpRatingTypeName', optionsValue: 'BpRatingTypeId', optionsCaption: '<BP Rating Type>'"></select>
                     </div>
                     <div class="col-md-2">
-                        <button class="btn btn-sm pull-right" id="businessPartnerInTypesSave" >Add To List</button>
+                        <button class="btn btn-sm pull-right" id="businessPartnerInTypesSave" data-bind="click: $root.onAddBusinessPartnerInType">Add To List</button>
                     </div>
 
 
@@ -326,5 +326,5 @@
     </tr>
 </script>
 <script id="deleteActionBusinessPartnerInTypeTemplate" type="text/html">
-    <a href="#" data-bind="click: $root.onDeleteBusinessPartner" title="Delete Business Partner InType"><span class="glyphicon glyphicon-remove"></span></a>
+    <a href="#" data-bind="click: $root.onDeleteBusinessPartnerInType" title="Delete Business Partner InType"><span class="glyphicon glyphicon-remove"></span></a>
 </script>
