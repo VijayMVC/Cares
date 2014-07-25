@@ -4,7 +4,6 @@
 define("tarrifType/tarrifType.viewModel",
     ["jquery", "amplify", "ko", "tarrifType/tarrifType.dataservice", "tarrifType/tarrifTypeWithKoMapping.model", "common/confirmation.viewModel", "common/pagination"],
     function ($, amplify, ko, dataservice, model, confirmation, pagination) {
-
         var ist = window.ist || {};
         ist.tarrifType = {
             viewModel: (function () {
@@ -12,7 +11,7 @@ define("tarrifType/tarrifType.viewModel",
                     view,
                     // Active Tarrif Type
                     selectedTarrifType = ko.observable(),
-                     // Add Or Edit Tariff Type
+                     //Add Or Edit Tariff Type
                     addTarrifType = ko.observable(),
                     // #region Arrays
                     //Tarrif Types
@@ -26,7 +25,7 @@ define("tarrifType/tarrifType.viewModel",
                     // Departments
                     departments = ko.observableArray([]),
                     //Revision List
-                     revisions = ko.observableArray([]),
+                    revisions = ko.observableArray([]),
                     //For Edit, Tariff Type Id
                     selectedTariffTypeId = ko.observable(),
                     // Operations
@@ -42,9 +41,7 @@ define("tarrifType/tarrifType.viewModel",
                     sortIsAsc = ko.observable(true),
                     // Is Tarrif Type Editor Visible
                     isTarrifTypeEditorVisible = ko.observable(false),
-                    // Is Editable
-                    isEditable = ko.observable(false),
-                    // Pagination
+                     // Pagination
                     pager = ko.observable(),
                     // Show Filter Section
                     filterSectionVisilble = ko.observable(false),
@@ -61,16 +58,9 @@ define("tarrifType/tarrifType.viewModel",
                     //Operation Filter
                     operationFilter = ko.observable(),
                     // #region Utility Functions
-                    //// Select a tarrif Type
+                    // Select a tarrif Type
                     selectTarrifType = function (tarrifType) {
                         selectedTarrifType(tarrifType);
-                       //if (selectedTarrifType() && selectedTarrifType().hasChanges()) {
-                       //     return;
-                       // }
-                       // if (selectedTarrifType() !== tarrifType) {
-                       //     selectedTarrifType(tarrifType);
-                       //}
-                       // isEditable(false);
                     },
                     // Initialize the view model
                     initialize = function (specifiedView) {
@@ -81,13 +71,10 @@ define("tarrifType/tarrifType.viewModel",
                         pager(pagination.Pagination({}, tarrifTypes, getTarrifType));
                         getTarrifType();
                     },
-                    // Template Chooser
-                    templateToUse = function (tarrifType) {
-                        return (tarrifType === selectedTarrifType() ? '' : 'itemTarrifTypeTemplate');
-                    },
+                    //Template For Revision List
                     templateToUseForRevision = function () {
-                         return 'itemTarrifTypeRevisionTemplate';
-                     },
+    return 'itemTarrifTypeRevisionTemplate';
+},
                     // Map Tarrif Types - Server to Client
                     mapTarrifTypes = function (data) {
                         var tarrifTypeList = [];
@@ -96,7 +83,6 @@ define("tarrifType/tarrifType.viewModel",
                             tarrifTypeList.push(tarrifType);
 
                         });
-
                         ko.utils.arrayPushAll(tarrifTypes(), tarrifTypeList);
                         tarrifTypes.valueHasMutated();
                     },
@@ -165,12 +151,12 @@ define("tarrifType/tarrifType.viewModel",
                      // Create Tariff Type
                     createTariffType = function () {
                         var tariffType = new model.TarrifTypeDetail();
-                          // Select the newly added tariffType
-                            addTarrifType(tariffType);
+                        // Select the newly added tariffType
+                        addTarrifType(tariffType);
                     },
                      // Save Tariff Type
                     onSaveTariffType = function (tariffType) {
-                        if (doBeforeSelect()) {
+                        if (doBeforeSave()) {
                             if (addTarrifType().tarrifTypeId() > 0) {
                                 var date = new Date();
                                 if (addTarrifType().effectiveDate() >= date) {
@@ -206,7 +192,7 @@ define("tarrifType/tarrifType.viewModel",
                                     selectedTarrifType().company(data.Company),
                                     selectedTarrifType().operation(data.Operation),
                                     selectedTarrifType().gracePeriod(data.GracePeriod),
-                                    selectedTarrifType().effectiveDate(moment(data.EffectiveDate).format(ist.datePattern)),                                    
+                                    selectedTarrifType().effectiveDate(moment(data.EffectiveDate).format(ist.datePattern)),
                                     selectedTarrifType().durationFrom(data.DurationFrom),
                                     selectedTarrifType().revisionNumber(data.RevisionNumber),
                                     selectedTarrifType().durationTo(data.DurationTo),
@@ -229,7 +215,7 @@ define("tarrifType/tarrifType.viewModel",
                         });
                     },
                     // Do Before Logic
-                    doBeforeSelect = function () {
+                    doBeforeSave = function () {
                         var flag = true;
                         if (!addTarrifType().isValid()) {
                             addTarrifType().errors.showAllMessages();
@@ -263,8 +249,7 @@ define("tarrifType/tarrifType.viewModel",
                                 _.each(data.TarrifTypeRevisions, function (item) {
                                     revisions.push(new model.TariffTypeClientMapper(item));
                                 });
-                                //ko.utils.arrayPushAll(revisions(), data.TarrifTypeRevisions);
-                                //revisions.valueHasMutated();
+
                                 isLoadingTarrifTypes(false);
                             },
                             error: function () {
@@ -274,7 +259,7 @@ define("tarrifType/tarrifType.viewModel",
                         });
                     },
                     // Collapase filter section
-                    collapseFilterSection = function() {
+                    collapseFilterSection = function () {
                         filterSectionVisilble(false);
                     },
                     //Show filter section
@@ -306,7 +291,6 @@ define("tarrifType/tarrifType.viewModel",
                     isLoadingTarrifTypes: isLoadingTarrifTypes,
                     sortOn: sortOn,
                     sortIsAsc: sortIsAsc,
-                    isEditable: isEditable,
                     tarrifTypeCodeFilter: tarrifTypeCodeFilter,
                     companyFilter: companyFilter,
                     measurementUnitFilter: measurementUnitFilter,

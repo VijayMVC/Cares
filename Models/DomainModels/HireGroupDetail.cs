@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models.DomainModels
 {
@@ -21,6 +23,7 @@ namespace Models.DomainModels
         /// <summary>
         /// Hire Group ID
         /// </summary>
+        [ForeignKey("HireGroup")]
         public long HireGroupId { get; set; }
         /// <summary>
         /// Vehicle Category ID
@@ -98,7 +101,7 @@ namespace Models.DomainModels
         /// <summary>
         /// Stanadard Rate 
         /// </summary>
-        public virtual StandardRate StandardRate { get; set; }
+        public virtual ICollection<StandardRate> StandardRate { get; set; }
         #endregion
     }
 }

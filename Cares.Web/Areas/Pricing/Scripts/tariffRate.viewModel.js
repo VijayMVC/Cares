@@ -1,10 +1,9 @@
 ﻿/*
-    Module with the view model for the Tarrif type
+    Module with the view model for the Tarrif Rate
 */
 define("tariffRate/tariffRate.viewModel",
     ["jquery", "amplify", "ko", "tariffRate/tariffRate.dataservice", "tariffRate/tariffRate.model", "common/confirmation.viewModel", "common/pagination"],
     function ($, amplify, ko, dataservice, model, confirmation, pagination) {
-
         var ist = window.ist || {};
         ist.tariffRate = {
             viewModel: (function () {
@@ -12,6 +11,8 @@ define("tariffRate/tariffRate.viewModel",
                     view,
                      // Active Tarrif Rate
                     selectedTarrifRate = ko.observable(),
+                    //Active Tarrif Rate Copy 
+                    selectedTarrifRateCopy = ko.observable(),
                     //For Edit, Tariff Rate Id
                     selectedTariffRateId = ko.observable(),
                      //Selected Hire Group
@@ -92,9 +93,7 @@ define("tariffRate/tariffRate.viewModel",
                     vehicleCategoryFilter = ko.observable(),
                     //Model Year Filter
                     modelYearFilter = ko.observable(),
-
-
-                    // #region Utility Functions
+                     // #region Utility Functions
                     // Initialize the view model
                     initialize = function (specifiedView) {
                         view = specifiedView;
@@ -170,37 +169,27 @@ define("tariffRate/tariffRate.viewModel",
                     },
                     //Search Hire Group
                     searchHireGroups = function () {
-                          editorPager().reset();
-                          getHireGroupDetails();
+                        editorPager().reset();
+                        getHireGroupDetails();
                     },
                     //Get Hire Group
                     getHireGroupDetails = function () {
-                         isLoadingTariffRates(true);
-                         dataservice.getHireGroupDetails({
-                             HireGroupId: hireGroupFilter(),
-                             VehicleMakeId: vehicleMakeFilter(),
-                             VehicleModelId: vehicleModelFilter(),
-                             VehicleCategoryId: vehicleCategoryFilter(),
-                             ModelYear: modelYearFilter(),
-                             PageSize: editorPager().pageSize(),
-                             PageNo: editorPager().currentPage(),
-                             SortBy: sortOnHg(),
-                             IsAsc: sortIsAscHg()
-                         }, {
-                             success: function (data) {
-                                 hireGroupDetails.removeAll();
-                                 editorPager().totalCount(data.TotalCount);
-                                 _.each(data.HireGroupDetails, function (item) {
-                                     hireGroupDetails.push(new model.HireGroupClientMapper(item));
-                                 });
-                                 isLoadingTariffRates(false);
-                             },
-                             error: function () {
-                                 isLoadingTariffRates(false);
-                                 toastr.error("Failed to load Hire Group Rates!");
-                             }
-                         });
-                     },
+                        isLoadingTariffRates(true);
+                        dataservice.getHireGroupDetails({
+                            success: function (data) {
+                                hireGroupDetails.removeAll();
+                                editorPager().totalCount(data.TotalCount);
+                                _.each(data.HireGroupDetails, function (item) {
+                                    hireGroupDetails.push(new model.HireGroupClientMapper(item));
+                                });
+                                isLoadingTariffRates(false);
+                            },
+                            error: function () {
+                                isLoadingTariffRates(false);
+                                toastr.error("Failed to load Hire Group Rates!");
+                            }
+                        });
+                    },
                     // Template Chooser
                     templateToUse = function (hireGroup) {
                         return (hireGroup === selectedHireGroup() ? 'editHireGroupTemplate' : 'itemHireGroupTemplate');
@@ -214,6 +203,8 @@ define("tariffRate/tariffRate.viewModel",
                     },
                      // close Tariff Rate Editor
                     closeTariffRateEditor = function () {
+                        selectedTarrifRate(selectedTarrifRateCopy());
+                        addTariffRate(selectedTarrifRateCopy());
                         isTariffRateEditorVisible(false);
                     },
                     // Show Tariff Type Editor
@@ -232,7 +223,7 @@ define("tariffRate/tariffRate.viewModel",
                     },
                      // Save Tariff Rate
                     onSaveTariffRate = function (tariffRate) {
-                        if (doBeforeSelect()) {
+                        if (doBeforeSave()) {
                             saveTariffRate(tariffRate);
                         }
                     },
@@ -257,7 +248,7 @@ define("tariffRate/tariffRate.viewModel",
                         });
                     },
                       // Do Before Logic
-                    doBeforeSelect = function () {
+                    doBeforeSave = function () {
                         var flag = true;
                         if (!addTariffRate().isValid()) {
                             addTariffRate().errors.showAllMessages();
@@ -293,6 +284,7 @@ define("tariffRate/tariffRate.viewModel",
                     onEditTariffRate = function (tariffRate, e) {
                         selectedTariffRateId(tariffRate.tariffRateId());
                         selectedTarrifRate(tariffRate);
+                        selectedTarrifRateCopy(model.TariffRateCoppier(selectedTarrifRate()));
                         addTariffRate(selectedTarrifRate());
                         getHireGroupDetails();
                         showTariffRateEditor();
@@ -337,6 +329,7 @@ define("tariffRate/tariffRate.viewModel",
                 return {
                     // Observables
                     selectedTarrifRate: selectedTarrifRate,
+                    selectedTarrifRateCopy: selectedTarrifRateCopy,
                     addTariffRate: addTariffRate,
                     selectedTariffRateId: selectedTariffRateId,
                     isLoadingTariffRates: isLoadingTariffRates,
@@ -375,7 +368,6 @@ define("tariffRate/tariffRate.viewModel",
                     vehicleModelFilter: vehicleModelFilter,
                     vehicleCategoryFilter: vehicleCategoryFilter,
                     modelYearFilter: modelYearFilter,
-
                     // Utility Methods
                     initialize: initialize,
                     search: search,

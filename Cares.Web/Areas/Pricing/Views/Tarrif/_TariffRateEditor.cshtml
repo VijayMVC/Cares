@@ -1,10 +1,11 @@
 ﻿<div class="well col-md-12" id="tariffRateEditor" data-bind="visible: isTariffRateEditorVisible" style="display: none;">
     <div class="detailsContainer">
         <h3 class="page-header detailsHeaderSection">Tariff Rate Details</h3>
-        <button class="btn btn-info" id="saveBtn" data-bind="click: $root.onSaveTariffRate">Save</button>
+      
         <button class="btn btn-default" id="saveBtn" data-bind="click: $root.closeTariffRateEditor">Cancel</button>
     </div>
-    <form class="form-horizontal" data-bind="with: addTariffRate">
+    <form class="form-horizontal" data-bind="with: $root.selectedTarrifRate">
+        <button class="btn btn-info" id="saveBtn" data-bind="click: $root.onSaveTariffRate">Save</button>
         <div class="form-group">
             <label for="tariffRateCode" class="control-label h5 col-sm-2">Tariff Rate Code *</label>
             <div class="col-md-2">
@@ -121,7 +122,7 @@
                     <input type="text" data-bind="value: excessMileageCharge, validationTooltip: excessMileageCharge" />
                 </td>
                 <td class="col-md-2">
-                    <input type="text" data-bind="value: standardRate, validationTooltip: standardRate" />
+                    <input type="text" data-bind="value: standardRt, validationTooltip: standardRt" />
                 </td>
                 <td class="col-md-2">
                     <input type="text" data-bind="datepicker: startDate, validationTooltip: startDate" />
@@ -141,7 +142,7 @@
                 <td data-bind="text: modelYear"></td>
                 <td data-bind="text: allowMileage"></td>
                 <td data-bind="text: excessMileageCharge"></td>
-                <td data-bind="text: standardRate"></td>
+                <td data-bind="text: standardRt"></td>
                 <td data-bind="text: startDate"></td>
                 <td data-bind="text: endDate"></td>
             </tr>

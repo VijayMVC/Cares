@@ -1,7 +1,10 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using Interfaces.Repository;
 using Microsoft.Practices.Unity;
+using Models.Common;
 using Models.DomainModels;
 using Repository.BaseRepository;
 
@@ -10,7 +13,7 @@ namespace Repository.Repositories
     /// <summary>
     /// Standard Rate Repository
     /// </summary>
-    public sealed class StandardRateRepository : BaseRepository<StandardRate>,IStandardRateRepository
+    public sealed class StandardRateRepository : BaseRepository<StandardRate>, IStandardRateRepository
     {
         #region Constructor
         /// <summary>

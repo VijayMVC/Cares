@@ -30,7 +30,7 @@ define("tariffRate/tariffRate.dataservice", function () {
                         dataType: 'json',
                         type: 'PUT'
                     });
-                    
+
                     // Define request to update Tariff rate
                     amplify.request.define('updateTariffRate', 'ajax', {
                         url: '/Api/TariffRate',
@@ -92,13 +92,12 @@ define("tariffRate/tariffRate.dataservice", function () {
                 });
             },
              // Get Tarrif type bby id 
-            getHireGroupDetails = function (param, callbacks) {
+            getHireGroupDetails = function (callbacks) {
                 initialize();
                 return amplify.request({
                     resourceId: 'getHireGroupDetails',
                     success: callbacks.success,
-                    error: callbacks.error,
-                    data: param
+                    error: callbacks.error
                 });
             },
             // Delete

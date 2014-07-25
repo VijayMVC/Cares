@@ -10,6 +10,6 @@ namespace Interfaces.Repository
     /// </summary>
     public interface IHireGroupDetailRepository: IBaseRepository<HireGroupDetail, long>
     {
-        HireGroupDetailResponse GetHireGroupDetails(HireGroupDetailRequest hireGroupDetailRequest);
+        HireGroupDetailResponse GetHireGroupDetailsForTariffRate();
     }
 }

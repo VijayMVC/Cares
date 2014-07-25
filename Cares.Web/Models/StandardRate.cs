@@ -3,9 +3,9 @@
 namespace Cares.Web.Models
 {
     /// <summary>
-    /// Hire Group Detail Web Model
+    /// Standard Rate Web Models
     /// </summary>
-    public class HireGroupDetail
+    public class StandardRate
     {
         /// <summary>
         /// Hire Group Detail Id
@@ -34,15 +34,15 @@ namespace Cares.Web.Models
         /// <summary>
         /// Allow Mileage
         /// </summary>
-        public float AllowMileage { get; set; }
+        public short AllowMileage { get; set; }
         /// <summary>
         /// Excess Mileage Charge
         /// </summary>
-        public float ExcessMileageCharge { get; set; }
+        public short ExcessMileageCharge { get; set; }
         /// <summary>
         /// Standard Rate
         /// </summary>
-        public float StandardRt { get; set; }
+        public short StandardRateValue { get; set; }
         /// <summary>
         /// Start Date
         /// </summary>
@@ -51,6 +51,7 @@ namespace Cares.Web.Models
         /// End Date
         /// </summary>
         public DateTime EndDate { get; set; }
-
+        
+     
     }
 }

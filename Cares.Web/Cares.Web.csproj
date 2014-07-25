@@ -317,6 +317,7 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductResponse.cs" />
     <Compile Include="Models\Region.cs" />
+    <Compile Include="Models\StandardRate.cs" />
     <Compile Include="Models\StandardRateMain.cs" />
     <Compile Include="Models\TariffRateBaseResponse.cs" />
     <Compile Include="Models\TariffRateContent.cs" />

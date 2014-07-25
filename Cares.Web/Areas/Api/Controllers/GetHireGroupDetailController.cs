@@ -33,17 +33,16 @@ namespace Cares.Web.Areas.Api.Controllers
         #endregion
         #region Public
         /// <summary>
-        /// Get Hire group Detail
+        /// Get Hire group Detail For Tariff Rate
         /// </summary>
-        /// <param name="hireGroupDetailRequest"></param>
         /// <returns></returns>
-        public HireGroupDetailResponse Get([FromUri]DomainRequestModel.HireGroupDetailRequest hireGroupDetailRequest)
+        public HireGroupDetailResponse Get()
         {
             if (!ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return tariffRateService.GetHireGroupDetails(hireGroupDetailRequest).CreateFromHireGroupDetail();
+            return tariffRateService.GetHireGroupDetailsForTariffRate().CreateFromHireGroupDetail();
         }
 
         #endregion

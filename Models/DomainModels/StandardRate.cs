@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models.DomainModels
 {
@@ -69,6 +70,7 @@ namespace Models.DomainModels
         /// <summary>
         /// Hire Group Detail ID
         /// </summary>
+        [ForeignKey("HireGroupDetail")]
         public long HireGroupDetailId { get; set; }
         /// <summary>
         /// Standard Rate End Date
@@ -78,7 +80,12 @@ namespace Models.DomainModels
         /// Standard Rate Start Date
         /// </summary>
         public DateTime StandardRtStartDt { get; set; }
-
+        #endregion
+        #region Reference Properties
+        /// <summary>
+        /// Hire Group Detail
+        /// </summary>
+        public virtual HireGroupDetail HireGroupDetail { get; set; }
         #endregion
     }
 }

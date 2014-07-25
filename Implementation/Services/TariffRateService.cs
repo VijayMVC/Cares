@@ -22,12 +22,14 @@ namespace Implementation.Services
         private readonly ITarrifTypeRepository tarrifTypeRepository;
         private readonly IStandardRateMainRepository standardRateMainRepository;
         private readonly IHireGroupDetailRepository hireGroupDetailRepository;
+        private readonly IStandardRateRepository standardRateRepository;
 
         #endregion
         #region Constructors
         public TariffRateService(IDepartmentRepository departmentRepository, ICompanyRepository companyRepository, IOperationRepository operationRepository,
             IVehicleModelRepository vehicleModelRepository, IVehicleMakeRepository vehicleMakeRepository, IVehicleCategoryRepository vehicleCategoryRepository,
-            IHireGroupRepository hireGroupRepository, ITarrifTypeRepository tarrifTypeRepository, IStandardRateMainRepository standardRateMainRepository, IHireGroupDetailRepository hireGroupDetailRepository)
+            IHireGroupRepository hireGroupRepository, ITarrifTypeRepository tarrifTypeRepository, IStandardRateMainRepository standardRateMainRepository,
+            IHireGroupDetailRepository hireGroupDetailRepository, IStandardRateRepository standardRateRepository)
         {
             this.operationRepository = operationRepository;
             this.departmentRepository = departmentRepository;
@@ -39,6 +41,7 @@ namespace Implementation.Services
             this.tarrifTypeRepository = tarrifTypeRepository;
             this.standardRateMainRepository = standardRateMainRepository;
             this.hireGroupDetailRepository = hireGroupDetailRepository;
+            this.standardRateRepository = standardRateRepository;
 
 
         }
@@ -65,11 +68,10 @@ namespace Implementation.Services
         /// <summary>
         ///Get Hire Group Detail List
         /// </summary>
-        /// <param name="hireGroupDetailRequest"></param>
         /// <returns>Hire Group Detail Response</returns>
-        public HireGroupDetailResponse GetHireGroupDetails(HireGroupDetailRequest hireGroupDetailRequest)
+        public HireGroupDetailResponse GetHireGroupDetailsForTariffRate()
         {
-            return hireGroupDetailRepository.GetHireGroupDetails(hireGroupDetailRequest);
+            return hireGroupDetailRepository.GetHireGroupDetailsForTariffRate();
         }
         /// <summary>
         /// Find Standard Rate Main
@@ -90,7 +92,7 @@ namespace Implementation.Services
             standardRateMain.RecCreatedDt = System.DateTime.Now;
             standardRateMain.RecLastUpdatedDt = System.DateTime.Now;
             standardRateMainRepository.Add(standardRateMain);
-            tarrifTypeRepository.SaveChanges();
+            standardRateMainRepository.SaveChanges();
 
         }
         /// <summary>
@@ -100,6 +102,8 @@ namespace Implementation.Services
         /// <returns></returns>
         public void Update(StandardRateMain standardRateMain)
         {
+            standardRateMain.RecCreatedDt = System.DateTime.Now;
+            standardRateMain.RecLastUpdatedDt = System.DateTime.Now;
             standardRateMainRepository.Update(standardRateMain);
             standardRateMainRepository.SaveChanges(); ;
 
