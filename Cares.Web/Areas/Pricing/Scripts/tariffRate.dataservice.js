@@ -30,16 +30,16 @@ define("tariffRate/tariffRate.dataservice", function () {
                         dataType: 'json',
                         type: 'PUT'
                     });
-
+                    
                     // Define request to update Tariff rate
                     amplify.request.define('updateTariffRate', 'ajax', {
                         url: '/Api/TariffRate',
                         dataType: 'json',
                         type: 'POST'
                     });
-                    // Define request to get tarrif Rate by id 
-                    amplify.request.define('getTariffRateById', 'ajax', {
-                        url: '/Api/GetTariffRateDetail',
+                    // Define request to get Hire Group detail
+                    amplify.request.define('getHireGroupDetails', 'ajax', {
+                        url: '/Api/GetHireGroupDetail',
                         dataType: 'json',
                         type: 'GET'
                     });
@@ -92,10 +92,10 @@ define("tariffRate/tariffRate.dataservice", function () {
                 });
             },
              // Get Tarrif type bby id 
-            getTariffRateById = function (param, callbacks) {
+            getHireGroupDetails = function (param, callbacks) {
                 initialize();
                 return amplify.request({
-                    resourceId: 'getTariffRateById',
+                    resourceId: 'getHireGroupDetails',
                     success: callbacks.success,
                     error: callbacks.error,
                     data: param
@@ -117,7 +117,7 @@ define("tariffRate/tariffRate.dataservice", function () {
             createTariffRate: createTariffRate,
             updateTariffRate: updateTariffRate,
             deleteTariffRate: deleteTariffRate,
-            getTariffRateById: getTariffRateById
+            getHireGroupDetails: getHireGroupDetails
         };
     })();
 

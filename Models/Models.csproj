@@ -98,6 +98,7 @@
   <ItemGroup>
     <Compile Include="CommonTypes\DepartmentType.cs" />
     <Compile Include="Common\BusinessPartnerByColumn.cs" />
+    <Compile Include="Common\HireGroupDetailByColumn.cs" />
     <Compile Include="Common\TariffRateByColumn.cs" />
     <Compile Include="DomainModels\BusinessPartnerInType.cs" />
     <Compile Include="DomainModels\BusinessPartnerIndividual.cs" />
@@ -150,6 +151,7 @@
     <Compile Include="RequestModels\GetPagedListRequest.cs" />
     <Compile Include="RequestModels\BusinessPartnerSearchRequest.cs" />
     <Compile Include="RequestModels\ProductSearchRequest.cs" />
+    <Compile Include="RequestModels\HireGroupDetailRequest.cs" />
     <Compile Include="RequestModels\TariffRateRequest.cs" />
     <Compile Include="RequestModels\TarrifTypeRequest.cs" />
     <Compile Include="ResponseModels\BusinessPartnerBaseDataResponse.cs" />
@@ -160,7 +162,7 @@
     <Compile Include="ResponseModels\ProductResponse.cs" />
     <Compile Include="ResponseModels\TariffRateBaseResponse.cs" />
     <Compile Include="ResponseModels\TariffRateContent.cs" />
-    <Compile Include="ResponseModels\TariffRateDetailResponse.cs" />
+    <Compile Include="ResponseModels\HireGroupDetailResponse.cs" />
     <Compile Include="ResponseModels\TariffRateResponse.cs" />
     <Compile Include="ResponseModels\TariffTypeDetailResponse.cs" />
     <Compile Include="ResponseModels\TarrifTypeBaseResponse.cs" />

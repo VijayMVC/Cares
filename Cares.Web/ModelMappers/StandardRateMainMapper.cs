@@ -1,4 +1,5 @@
 ﻿using DomainModels = Models.DomainModels;
+using ResponseModel = Models.ResponseModels;
 using ApiModels = Cares.Web.Models;
 
 namespace Cares.Web.ModelMappers
@@ -12,34 +13,23 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity For List
         /// </summary>
-        public static ApiModels.StandardRateMain CreateFrom(this DomainModels.StandardRateMain source)
+        public static ApiModels.TariffRateContent CreateFrom(this ResponseModel.TariffRateContent source)
         {
-            return new ApiModels.StandardRateMain
+            return new ApiModels.TariffRateContent
             {
                 StandardRtMainId = source.StandardRtMainId,
                 StandardRtMainCode = source.StandardRtMainCode,
                 StandardRtMainName = source.StandardRtMainName,
                 StartDt = source.StartDt,
-                EndDt = source.EndDt
+                EndDt = source.EndDt,
+                TariffTypeCodeName=source.TariffTypeCodeName,
+                StandardRtMainDescription = source.StandardRtMainDescription,
+                OperationId = source.OperationId,
+                TariffTypeId = source.TariffTypeId,
+                OperationCodeName = source.OperationCodeName,
             };
         }
-        /// <summary>
-        ///  Create web model from entity
-        /// </summary>
-        public static ApiModels.StandardRateMain CreateFromForDetail(this DomainModels.StandardRateMain source)
-        {
-            return new ApiModels.StandardRateMain
-            {
-                StandardRtMainId = source.StandardRtMainId,
-                StandardRtMainCode = source.StandardRtMainCode,
-                StandardRtMainName = source.StandardRtMainName,
-                StandardRtMainDescription =source.StandardRtMainDescription,
-                //OperationId = source.
-                //TariffTypeId=
-                StartDt = source.StartDt,
-                EndDt = source.EndDt
-            };
-        }
+        
         /// <summary>
         ///  Create entity from web model
         /// </summary>
@@ -51,8 +41,6 @@ namespace Cares.Web.ModelMappers
                 StandardRtMainCode = source.StandardRtMainCode,
                 StandardRtMainName = source.StandardRtMainName,
                 StandardRtMainDescription = source.StandardRtMainDescription,
-                //OperationId = source.
-                //TariffTypeId=
                 StartDt = source.StartDt,
                 EndDt = source.EndDt
             };

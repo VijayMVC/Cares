@@ -130,7 +130,7 @@
     <Compile Include="Repositories\CompanyRepository.cs" />
     <Compile Include="Repositories\FleetPoolRepository.cs" />
     <Compile Include="Repositories\CountryRepository.cs" />
-    <Compile Include="Repositories\HireGroupDetailRpository.cs" />
+    <Compile Include="Repositories\HireGroupDetailRepository.cs" />
     <Compile Include="Repositories\HireGroupRepository.cs" />
     <Compile Include="Repositories\MeasurementUnitRepository.cs" />
     <Compile Include="Repositories\MenuRightRepository.cs" />

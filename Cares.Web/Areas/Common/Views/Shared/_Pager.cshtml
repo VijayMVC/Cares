@@ -1,5 +1,4 @@
-﻿<!-- ko with: pager -->
-<div data-bind="if: pagerWithLimit().length > 0">
+﻿<div data-bind="if: pagerWithLimit().length > 0">
     <ul class="pagination">
         <li><a href="#" data-bind="click: previousPage">Prev</a></li>
         <!-- ko if: showBackPageDotLink -->
@@ -19,5 +18,4 @@
 <div class="searchCount">
     <span data-bind="text: filteredTotalContents"></span>
 </div>
-<!-- /ko -->
 

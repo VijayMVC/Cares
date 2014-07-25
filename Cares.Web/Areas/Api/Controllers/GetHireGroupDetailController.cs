@@ -1,18 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Web;
 using System.Web.Http;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
 using Interfaces.IServices;
+using DomainRequestModel=Models.RequestModels;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
     /// <summary>
     /// Tariff Rate Detail Api Controller
     /// </summary>
-    public class GetTariffRateDetailController : ApiController
+    public class GetHireGroupDetailController : ApiController
     {
          #region Private
         private readonly ITariffRateService tariffRateService;
@@ -21,7 +21,7 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public GetTariffRateDetailController(ITariffRateService tariffRateService)
+        public GetHireGroupDetailController(ITariffRateService tariffRateService)
         {
             if (tariffRateService == null && !ModelState.IsValid)
             {
@@ -33,17 +33,17 @@ namespace Cares.Web.Areas.Api.Controllers
         #endregion
         #region Public
         /// <summary>
-        /// Get Detail Tariff Type By Id
+        /// Get Hire group Detail
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="hireGroupDetailRequest"></param>
         /// <returns></returns>
-        public TariffRateDetailResponse Get(long id)
+        public HireGroupDetailResponse Get([FromUri]DomainRequestModel.HireGroupDetailRequest hireGroupDetailRequest)
         {
             if (!ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return tariffRateService.FindTariffRateById(id).CreateFrom();
+            return tariffRateService.GetHireGroupDetails(hireGroupDetailRequest).CreateFromHireGroupDetail();
         }
 
         #endregion

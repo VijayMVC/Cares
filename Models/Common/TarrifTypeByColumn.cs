@@ -1,5 +1,4 @@
-﻿
-namespace Models.Common
+﻿namespace Models.Common
 {
     /// <summary>
     /// Tarrif Type By Column
@@ -9,49 +8,49 @@ namespace Models.Common
         /// <summary>
         /// Tariff Type Code
         /// </summary>
-        TariffTypeCode=1,
+        TariffTypeCode = 1,
         /// <summary>
         /// Tariff Type Name
         /// </summary>
-        TariffTypeName=2,
+        TariffTypeName = 2,
         /// <summary>
         /// Tariff Type Description
         /// </summary>
-        TariffTypeDescription=3,
+        TariffTypeDescription = 3,
         /// <summary>
         /// Pricing Strategy Id
         /// </summary>
-        PricingStrategyId=4,
-        
+        PricingStrategyId = 4,
+
         //CompanyID=5,
         /// <summary>
         /// Operation Id
         /// </summary>
-        OperationId=6,
+        OperationId = 6,
         /// <summary>
         /// Measurement Unit Id
         /// </summary>
-        MeasurementUnitId=7,
+        MeasurementUnitId = 7,
         /// <summary>
         /// Duration From
         /// </summary>
-        DurationFrom=8,
+        DurationFrom = 8,
         /// <summary>
         /// Duration To
         /// </summary>
-        DurationTo=9,
+        DurationTo = 9,
         /// <summary>
         /// Grace Period
         /// </summary>
-        GracePeriod=10,
+        GracePeriod = 10,
         /// <summary>
         /// Effective Date
         /// </summary>
-        EffectiveDate=11,
+        EffectiveDate = 11,
         /// <summary>
         /// Revision Number
         /// </summary>
-        RevisionNumber=12
+        RevisionNumber = 12
 
 
     }

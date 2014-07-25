@@ -63,21 +63,19 @@ namespace Implementation.Services
             return standardRateMainRepository.GetTariffRates(tariffRateRequest);
         }
         /// <summary>
-        /// FindTariffRateById
+        ///Get Hire Group Detail List
+        /// </summary>
+        /// <param name="hireGroupDetailRequest"></param>
+        /// <returns>Hire Group Detail Response</returns>
+        public HireGroupDetailResponse GetHireGroupDetails(HireGroupDetailRequest hireGroupDetailRequest)
+        {
+            return hireGroupDetailRepository.GetHireGroupDetails(hireGroupDetailRequest);
+        }
+        /// <summary>
+        /// Find Standard Rate Main
         /// </summary>
         /// <param name="id"></param>
-        /// <returns>Tariff Rate Detail Response</returns>
-        public TariffRateDetailResponse FindTariffRateById(long id)
-        {
-            StandardRateMain standardRateMain = standardRateMainRepository.Find(id);
-            var hireGroupDetails = hireGroupDetailRepository.GetAll();
-            return new TariffRateDetailResponse { StandardRateMain = standardRateMain, HireGroupDetails = hireGroupDetails };
-        }
-       /// <summary>
-        /// Find Standard Rate Main
-       /// </summary>
-       /// <param name="id"></param>
-       /// <returns></returns>
+        /// <returns></returns>
         public StandardRateMain Find(long id)
         {
             return standardRateMainRepository.Find(id);
@@ -87,24 +85,24 @@ namespace Implementation.Services
         /// </summary>
         /// <param name="standardRateMain"></param>
         /// <returns></returns>
-        public StandardRateMain AddTariffRate(StandardRateMain standardRateMain)
+        public void AddTariffRate(StandardRateMain standardRateMain)
         {
             standardRateMain.RecCreatedDt = System.DateTime.Now;
             standardRateMain.RecLastUpdatedDt = System.DateTime.Now;
             standardRateMainRepository.Add(standardRateMain);
             tarrifTypeRepository.SaveChanges();
-            return standardRateMain;
+
         }
         /// <summary>
         /// Update Tariff Rate
         /// </summary>
         /// <param name="standardRateMain"></param>
         /// <returns></returns>
-        public StandardRateMain Update(StandardRateMain standardRateMain)
+        public void Update(StandardRateMain standardRateMain)
         {
             standardRateMainRepository.Update(standardRateMain);
             standardRateMainRepository.SaveChanges(); ;
-            return standardRateMain;
+
         }
         /// <summary>
         /// Delete Tariff Rate

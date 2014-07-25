@@ -20,7 +20,10 @@ define("tariffRate/tariffRate.view",
                     }
 
                     // Handle Sorting
-                    //handleSorting("tarrifTypeTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getTarrifType);
+                    handleSorting("tariffRateTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getTariffRates);
+
+                    // Handle Sorting
+                    handleSorting("hireGroupRate", viewModel.sortOnHg, viewModel.sortIsAscHg, viewModel.getHireGroupDetails);
                 };
             initialize();
             return {

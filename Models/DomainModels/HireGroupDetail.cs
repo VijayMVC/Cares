@@ -95,6 +95,10 @@ namespace Models.DomainModels
         /// Vehicle Model
         /// </summary>
         public virtual VehicleModel VehicleModel { get; set; }
+        /// <summary>
+        /// Stanadard Rate 
+        /// </summary>
+        public virtual StandardRate StandardRate { get; set; }
         #endregion
     }
 }
