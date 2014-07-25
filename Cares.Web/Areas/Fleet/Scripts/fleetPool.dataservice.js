@@ -61,10 +61,12 @@ define("Fleet/fleetPool.dataservice", function () {
                     error: callbacks.error,
                     data: params
                 });
+                debugger;
             },
 
             ///get Fleet Pools
-            getFleetPools = function(params, callbacks) {
+            getFleetPools = function (params, callbacks) {
+                debugger;
                 initialize();
                 return amplify.request({
                     resourceId: 'getFleetPools',

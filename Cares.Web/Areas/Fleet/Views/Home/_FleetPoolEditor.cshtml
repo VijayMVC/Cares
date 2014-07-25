@@ -1,0 +1,46 @@
+﻿
+<div class="well col-md-12" id="tariffTypeEditor" data-bind="visible: isFleetPoolEditorVisible" style="display: none;">
+    <div class="float-left detailsContainer">
+       
+
+        <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onSaveFleetPool">Save</button>
+        <button class="btn btn-default" id="saveBtn" data-bind="click: $root.closeFleetPoolEditor">Cancel</button>
+    </div>
+    <br />
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="tariffTypeCode" class="control-label h5 col-sm-2">Fleet Pool Code *</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="<Tariff Type Code>" id="tariffTypeCode"  />
+            </div>
+            <label for="tariffTypeName" class="control-label h5 col-sm-2">Fleet Pool Name</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="<Tariff Type Name>" id="tariffTypeName" />
+            </div>
+            <label for="tariffTypeDescription" class="control-label h5 col-sm-2">Description</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="<Description>" id="tariffTypeDescription" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2" >Operation *</label>
+            <div class="col-xs-2 float-left">
+                <select class="form-control" data-bind="options: $root.operationsList, optionsText: 'OperationCode', optionsValue: 'OperationId', optionsCaption: '<Operation>', value: operationFilter"></select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">Region *</label>
+            <div class="col-xs-2 float-left">
+                <select class="form-control" data-bind="options: $root.regionsList, optionsText: 'RegionCode', optionsValue: 'RegionId', optionsCaption: '<Region>', value: regionFilter"></select>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+
+        </div>
+    </form>
+   
+
+</div>

@@ -16,7 +16,7 @@ namespace Implementation.Services
     {
         #region Public
         /// <summary>
-        /// Load All Fleet Pools
+        /// Load All Fleet Pools meeting criteria
         /// </summary>
         public FleetPoolResponse SerchFleetPool(FleetPoolSearchRequest searchRequest)
         {
@@ -28,6 +28,7 @@ namespace Implementation.Services
             };
         }
 
+
         /// <summary>
         /// Load Fleet Pool Base Data
         /// </summary>
@@ -35,10 +36,12 @@ namespace Implementation.Services
         {
             return new FleetPoolBaseDataResponse
             {
-                Operations = operationRepository.GetAll(),
-                Regions = regionRepository.GetAll()
+                Operations = operationRepository.GetSalesOperation(),
+                Regions = regionRepository.GetAll(),
+                Countries = countryRepository.GetAll()
             };
         }
+
         public void DeleteFleetPool(int id)
         {
             FleetPool dbVersion = FindFleetPool(id);
@@ -73,10 +76,26 @@ namespace Implementation.Services
 
         #endregion
 
-        #region Private
-        private readonly IFleetPoolRepository fleetPoolRepository;
-        private readonly IRegionRepository regionRepository;
+       #region Private
+       
         private readonly IOperationRepository operationRepository;
+        private readonly ICountryRepository countryRepository;
+        private readonly IRegionRepository regionRepository;
+         private readonly IFleetPoolRepository fleetPoolRepository;
+
+        #endregion
+
+        #region Constructors
+
+        public FleetPoolService(
+            IOperationRepository operationRepository, ICountryRepository countryRepository,
+            IRegionRepository regionRepository, IFleetPoolRepository fleetPoolRepository)
+        {
+            this.operationRepository = operationRepository;
+            this.countryRepository = countryRepository;
+            this.regionRepository = regionRepository;
+            this.fleetPoolRepository = fleetPoolRepository;
+        }
 
         #endregion
     }

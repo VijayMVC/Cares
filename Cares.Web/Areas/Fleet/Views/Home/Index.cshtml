@@ -19,10 +19,9 @@
                     <div class="col-xs-3 float-left">
                         <button type="button" class="btn btn-info float-left" data-bind="click: reset">Reset</button>
                         <button type="submit" class="btn btn-success float-left searchButton" data-bind="click: search">Search</button>
+                        <button type="submit" class="btn btn-primary" data-bind="click:createFleetForm">New</button>
                     </div>
                 </div>
-
-
             </form>
         </div>
     </div>
@@ -72,12 +71,16 @@
                 <!-- /ko -->
             </td>
         </tr>
-    </script>        
+    </script>    
+    @Html.Partial("_FleetPoolEditor")
+
+    
 </div>
 
 <!-- ko stopBinding: true -->
 @Html.Partial("~/Areas/Common/Views/Shared/_ConfirmationDialog.cshtml")
 <!-- /ko -->
+
 
 @section inlinescripts
 {

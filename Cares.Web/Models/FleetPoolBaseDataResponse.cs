@@ -18,6 +18,12 @@ namespace Cares.Web.Models
         /// </summary>
         public IEnumerable<Operation> Operations { get; set; }
 
+
+        /// <summary>
+        ///countires
+        /// </summary>
+        public IEnumerable<Country> Countries { get; set; }
+
         #endregion
     }
 }

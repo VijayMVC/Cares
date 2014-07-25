@@ -17,7 +17,7 @@ namespace Repository.Repositories
         #region Public
 
         /// <summary>
-        /// SearchFleet Pool
+        /// SearchFleet Pool for the given parameters by user
         /// </summary>
         public IEnumerable<FleetPool> SearchFleetPool(FleetPoolSearchRequest request, out int rowCount)
         {
@@ -27,9 +27,7 @@ namespace Repository.Repositories
             rowCount =
                 DbSet.Count(
                     fleet =>
-                        (string.IsNullOrEmpty(request.FleetPoolCode) ||
-                         fleet.FleetPoolCode.Contains(request.FleetPoolCode) ||
-                         fleet.FleetPoolName.Contains(request.FleetPoolCode))
+                        (string.IsNullOrEmpty(request.FleetPoolCode) || fleet.FleetPoolCode.Contains(request.FleetPoolCode) ||fleet.FleetPoolName.Contains(request.FleetPoolCode))
                          && (!request.RegionId.HasValue || fleet.RegionId == request.RegionId.Value)
                          && (!request.OperationId.HasValue || fleet.OperationId == request.OperationId.Value));
 

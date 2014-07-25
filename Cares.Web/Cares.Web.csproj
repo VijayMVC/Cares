@@ -941,6 +941,7 @@
     <Content Include="Areas\Pricing\Views\Tarrif\_TariffRateEditor.cshtml" />
     <Content Include="Areas\Pricing\Views\Tarrif\_HireGroupRateDialog.cshtml" />
     <Content Include="Content\TariffRate.less" />
+    <Content Include="Areas\Fleet\Views\Home\_FleetPoolEditor.cshtml" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />

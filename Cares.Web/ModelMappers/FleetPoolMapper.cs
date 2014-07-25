@@ -38,7 +38,8 @@ namespace Cares.Web.ModelMappers
             return new ApiModel.FleetPoolBaseDataResponse
              {
                  Operations = source.Operations.Select(operation => operation.CreateFrom()),
-                 Regions = source.Regions.Select(region => region.CreateFrom())
+                 Regions = source.Regions.Select(region => region.CreateFrom()),
+                 Countries = source.Countries.Select(country=>country.CreateFrom())
              };
         }
         #endregion
