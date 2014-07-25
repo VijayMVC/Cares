@@ -52,7 +52,8 @@ namespace Cares.Web.ModelMappers
                 NonSystemGuarantor = source.NonSystemGuarantor,
                 SystemGuarantorId = source.SystemGuarantorId,
                 BusinessPartnerIndividual = source.BusinessPartnerIndividual.CreateFrom(),
-                BusinessPartnerCompany = source.BusinessPartnerCompany.CreateFrom()
+                BusinessPartnerCompany = source.BusinessPartnerCompany.CreateFrom(),
+                BusinessPartnerInTypes = source.BusinessPartnerInTypes.Select(x=>x.CreateFrom())
             };
         }
 
@@ -277,5 +278,42 @@ namespace Cares.Web.ModelMappers
 
         #endregion
 
+        #region Business Partner InType Mappers
+
+        /// <summary>
+        ///  Create web model from entity
+        /// </summary>
+        public static ApiModel.BusinessPartnerInType CreateFrom(this DomainModel.BusinessPartnerInType source)
+        {
+            return new ApiModel.BusinessPartnerInType
+            {
+                BusinessPartnerInTypeId = source.BusinessPartnerInTypeId,
+                BusinessPartnerInTypeDescription = source.BusinessPartnerInTypeDescription,
+                BusinessPartnerSubTypeId = source.BusinessPartnerSubTypeId,
+                FromDate = source.FromDate,
+                ToDate = source.ToDate,
+                BusinessPartnerId = source.BusinessPartnerId,
+                BpRatingTypeId = source.BpRatingTypeId
+            };
+        }
+
+        /// <summary>
+        ///  Create entity from web model
+        /// </summary>
+        public static DomainModel.BusinessPartnerInType CreateFrom(this ApiModel.BusinessPartnerInType source)
+        {
+            return new DomainModel.BusinessPartnerInType
+            {
+                BusinessPartnerInTypeId = source.BusinessPartnerInTypeId,
+                BusinessPartnerInTypeDescription = source.BusinessPartnerInTypeDescription,
+                BusinessPartnerSubTypeId = source.BusinessPartnerSubTypeId,
+                FromDate = source.FromDate,
+                ToDate = source.ToDate,
+                BusinessPartnerId = source.BusinessPartnerId,
+                BpRatingTypeId = source.BpRatingTypeId
+           };
+        }
+
+        #endregion
     }
 }
