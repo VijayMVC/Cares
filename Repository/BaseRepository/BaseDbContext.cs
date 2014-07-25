@@ -194,8 +194,7 @@ namespace Repository.BaseRepository
         public DbSet<StandardRateMain> StandardRateMains { get; set; }
         /// <summary>
         /// Business Partner Db Set
-           /// </summary>
-
+        /// </summary>
         public DbSet<BusinessPartner> BusinessPartners { get; set; }
         /// <summary>
         /// Business Partner Individuals Db Set
@@ -206,11 +205,17 @@ namespace Repository.BaseRepository
         /// </summary>
         public DbSet<OccupationType> OccupationTypes { get; set; }
         /// <summary>
-        /// Business Partner Companies
+        /// Business Partner Companies DbSet
         /// </summary>
         public DbSet<BusinessPartnerCompany> BusinessPartnerCompanies { get; set; }
-
-
+        /// <summary>
+        /// Business Partner SubType DbSet
+        /// </summary>
+        public DbSet<BusinessPartnerSubType> BusinessPartnerSubTypes { get; set; }
+        /// <summary>
+        /// Business Partner InType DbSet
+        /// </summary>
+        public DbSet<BusinessPartnerInType> BusinessPartnerInTypes { get; set; }
 
         #endregion
     }

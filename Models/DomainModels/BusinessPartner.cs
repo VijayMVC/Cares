@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Models.DomainModels
@@ -167,9 +168,13 @@ namespace Models.DomainModels
         /// </summary>
         public virtual BusinessPartnerIndividual BusinessPartnerIndividual { get; set; }
         /// <summary>
-        /// Business Partnet Company Info
+        /// Business Partner Company Info
         /// </summary>
         public virtual BusinessPartnerCompany BusinessPartnerCompany { get; set; }
+        /// <summary>
+        /// Business Partner In Types collection
+        /// </summary>
+        public virtual ICollection<BusinessPartnerInType> BusinessPartnerInTypes { get; set; }
 
         #endregion
     }

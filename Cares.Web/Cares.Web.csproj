@@ -290,6 +290,8 @@
     <Compile Include="ModelMappers\VehicleCategoryMapper.cs" />
     <Compile Include="ModelMappers\VehicleMakesMapper.cs" />
     <Compile Include="ModelMappers\VehicleModelMapper.cs" />
+    <Compile Include="Models\BusinessPartnerInType.cs" />
+    <Compile Include="Models\BusinessPartnerSubType.cs" />
     <Compile Include="Models\BusinessSegment.cs" />
     <Compile Include="Models\BusinessPartnerIndividual.cs" />
     <Compile Include="Models\BusinessPartnerDetail.cs" />

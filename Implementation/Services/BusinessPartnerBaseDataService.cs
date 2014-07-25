@@ -10,19 +10,21 @@ namespace Implementation.Services
     public class BusinessPartnerBaseDataService : IBusinessPartnerBaseDataService
     {
         #region Private
+        // For Business Partner Main
         private readonly ICompanyRepository companyRepository;
         private readonly IPaymentTermRepository paymentTermRepository;
         private readonly IBusinessLegalStatusRepository businessLegalStatusRepository;
         private readonly IBpRatingTypeRepository bpRatingTypeRepository;
         private readonly IBusinessPartnerRepository businessPartnerRepository;
         private readonly IEmployeeRepository employeeRepository;
-
+        // For Individual Tab
         private readonly IOccupationTypeRepository occupationTypeRepository;
         private readonly IBusinessPartnerCompanyRepository businessPartnerCompanyRepository;
         private readonly ICountryRepository passportCountryRepository;
-
+        // For Company
         private readonly IBusinessSegmentRepository businessSegmentRepository;
-
+        // For Business Patner type
+        private readonly IBusinessPartnerSubTypeRepository businessPartnerSubTypeRepository;
         #endregion
         #region Constructor
 
@@ -35,7 +37,8 @@ namespace Implementation.Services
             , IOccupationTypeRepository occupationTypeRepository
             , IBusinessPartnerCompanyRepository businessPartnerCompanyRepository
             , ICountryRepository passportCountryRepository
-            , IBusinessSegmentRepository businessSegmentRepository)
+            , IBusinessSegmentRepository businessSegmentRepository,
+            IBusinessPartnerSubTypeRepository businessPartnerSubTypeRepository)
         {
             this.companyRepository = companyRepository;
             this.paymentTermRepository = paymentTermRepository;
@@ -47,6 +50,7 @@ namespace Implementation.Services
             this.businessPartnerCompanyRepository = businessPartnerCompanyRepository;
             this.passportCountryRepository = passportCountryRepository;
             this.businessSegmentRepository = businessSegmentRepository;
+            this.businessPartnerSubTypeRepository = businessPartnerSubTypeRepository;
         }
         #endregion
         #region Public
@@ -64,6 +68,7 @@ namespace Implementation.Services
             response.ResponseBusinessPartnerCompanies = businessPartnerCompanyRepository.GetAll();
             response.ResponsePassportCountries = passportCountryRepository.GetAll();
             response.ResponseBusinessSegments =  businessSegmentRepository.GetAll();
+            response.ResponseBusinessPartnerSubTypes = businessPartnerSubTypeRepository.GetAll();
             return response;
         }
         #endregion

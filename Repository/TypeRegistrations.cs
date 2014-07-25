@@ -39,7 +39,8 @@ namespace Repository
             unityContainer.RegisterType<IBusinessPartnerCompanyRepository, BusinessPartnerCompanyRepository>();
             unityContainer.RegisterType<ICountryRepository, CountryRepository>();
             unityContainer.RegisterType<IBusinessSegmentRepository, BusinessSegmentRepository>();
-
+            unityContainer.RegisterType<IBusinessPartnerInTypeRepository, BusinessPartnerInTypeRepository>();
+            unityContainer.RegisterType<IBusinessPartnerSubTypeRepository, BusinessPartnerSubTypeRepository>();
 
             unityContainer.RegisterType<IStandardRateMainRepository, StandardRateMainRepository>();
         }

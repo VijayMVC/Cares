@@ -52,7 +52,8 @@ namespace Cares.Web.ModelMappers
                 NonSystemGuarantor = source.NonSystemGuarantor,
                 SystemGuarantorId = source.SystemGuarantorId,
                 BusinessPartnerIndividual = source.BusinessPartnerIndividual.CreateFrom(),
-                BusinessPartnerCompany = source.BusinessPartnerCompany.CreateFrom()
+                BusinessPartnerCompany = source.BusinessPartnerCompany.CreateFrom(),
+                BusinessPartnerInTypes = source.BusinessPartnerInTypes.Select(x=>x.CreateFrom())
             };
         }
 
@@ -129,7 +130,8 @@ namespace Cares.Web.ModelMappers
                 ResponseBusinessPartnerCompanies = source.ResponseBusinessPartnerCompanies.Select(x => x.CreateFrom()),
                 ResponseOccupationTypes = source.ResponseOccupationTypes.Select(x => x.CreateFrom()),
                 ResponsePassportCountries = source.ResponsePassportCountries.Select(x => x.CreateFrom()),
-                ResponseBusinessSegments = source.ResponseBusinessSegments.Select(x => x.CreateFrom())
+                ResponseBusinessSegments = source.ResponseBusinessSegments.Select(x => x.CreateFrom()),
+                ResponseBusinessPartnerSubTypes = source.ResponseBusinessPartnerSubTypes.Select(x=>x.CreateFrom())
             };
         }
         #endregion
@@ -242,6 +244,74 @@ namespace Cares.Web.ModelMappers
                 EstablishedSince = source.EstablishedSince,
                 SwiftCode = source.SwiftCode
             };
+        }
+
+        #endregion
+
+        #region Business Partner SubType Mappers
+
+        /// <summary>
+        ///  Create web model from entity
+        /// </summary>
+        public static ApiModel.BusinessPartnerSubType CreateFrom(this DomainModel.BusinessPartnerSubType source)
+        {
+            return new ApiModel.BusinessPartnerSubType
+            {
+                BusinessPartnerSubTypeId = source.BusinessPartnerSubTypeId,
+                BusinessPartnerSubTypeCode = source.BusinessPartnerSubTypeCode,
+                BusinessPartnerSubTypeName = source.BusinessPartnerSubTypeName
+            };
+        }
+
+        /// <summary>
+        ///  Create entity from web model
+        /// </summary>
+        public static DomainModel.BusinessPartnerSubType CreateFrom(this ApiModel.BusinessPartnerSubType source)
+        {
+            return new DomainModel.BusinessPartnerSubType
+            {
+                BusinessPartnerSubTypeId = source.BusinessPartnerSubTypeId,
+                BusinessPartnerSubTypeCode = source.BusinessPartnerSubTypeCode,
+                BusinessPartnerSubTypeName = source.BusinessPartnerSubTypeName
+            };
+        }
+
+        #endregion
+
+        #region Business Partner InType Mappers
+
+        /// <summary>
+        ///  Create web model from entity
+        /// </summary>
+        public static ApiModel.BusinessPartnerInType CreateFrom(this DomainModel.BusinessPartnerInType source)
+        {
+            return new ApiModel.BusinessPartnerInType
+            {
+                BusinessPartnerInTypeId = source.BusinessPartnerInTypeId,
+                BusinessPartnerInTypeDescription = source.BusinessPartnerInTypeDescription,
+                BusinessPartnerSubTypeId = source.BusinessPartnerSubTypeId,
+                FromDate = source.FromDate,
+                ToDate = source.ToDate,
+                BusinessPartnerId = source.BusinessPartnerId,
+                BpRatingTypeId = source.BpRatingTypeId
+            };
+        }
+
+        /// <summary>
+        ///  Create entity from web model
+        /// </summary>
+        public static DomainModel.BusinessPartnerInType CreateFrom(this ApiModel.BusinessPartnerInType source)
+        {
+            return new DomainModel.BusinessPartnerInType
+            {
+                BusinessPartnerInTypeId = source.BusinessPartnerInTypeId,
+                BusinessPartnerInTypeDescription = source.BusinessPartnerInTypeDescription,
+                BusinessPartnerSubTypeId = source.BusinessPartnerSubTypeId,
+                FromDate = source.FromDate,
+                ToDate = source.ToDate,
+                BusinessPartnerId = source.BusinessPartnerId,
+                BpRatingTypeId = source.BpRatingTypeId
+           };
         }
 
         #endregion
