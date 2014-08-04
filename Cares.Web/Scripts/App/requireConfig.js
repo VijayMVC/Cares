@@ -12,7 +12,8 @@
             "common": "/Areas/Common/Scripts",
             "Fleet": "/Areas/Fleet/Scripts",
             "tarrifType": "/Areas/Pricing/Scripts",
-            "tariffRate": "/Areas/Pricing/Scripts"
+            "tariffRate": "/Areas/Pricing/Scripts",
+            "rentalAgreement": "/Areas/RentalAgreement/Scripts"
         }
 
     });

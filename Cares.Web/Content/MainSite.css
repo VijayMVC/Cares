@@ -46,6 +46,29 @@
   margin-bottom: 20px;
   margin-top: 10px;
 }
+#rentalAgreementBinding #raPanels {
+  width: 24.5%;
+  float: left;
+}
+#rentalAgreementBinding #raMain {
+  width: 49.5%;
+  float: left;
+  margin-left: .5%;
+  margin-right: .5%;
+}
+#rentalAgreementBinding #raMain #vehicle {
+  margin-top: .5%;
+}
+#rentalAgreementBinding #raMain input,
+#rentalAgreementBinding #raMain select,
+#rentalAgreementBinding #raMain textarea {
+  max-width: 100%;
+}
+#rentalAgreementBinding #raBilling {
+  width: 24.5%;
+  float: left;
+  min-height: 343px;
+}
 .float-left {
   float: left;
 }
@@ -66,4 +89,11 @@
 .header-toolsSection {
   margin-top: 20px;
 }
-/*# sourceMappingURL=MainSite.css.map */
+/* For Fluid Layout */
+@media (min-width: 1200px) {
+  .container-fluid {
+    max-width: 100%;
+    margin: 10px;
+  }
+}
+/* For Fluid Layout */

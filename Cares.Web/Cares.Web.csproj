@@ -241,6 +241,8 @@
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
     <Compile Include="Areas\Fleet\Controllers\HomeController.cs" />
     <Compile Include="Areas\Fleet\FleetPoolAreaRegistration.cs" />
+    <Compile Include="Areas\RentalAgreement\Controllers\HomeController.cs" />
+    <Compile Include="Areas\RentalAgreement\RentalAgreementAreaRegistration.cs" />
     <Compile Include="Areas\Product\Controllers\HomeController.cs" />
     <Compile Include="Areas\Product\ProductAreaRegistration.cs" />
     <Compile Include="Areas\Pricing\TarrifTypeAreaRegistration.cs" />
@@ -282,7 +284,6 @@
     <Compile Include="ModelMappers\ProductMapper.cs" />
     <Compile Include="ModelMappers\RegionMapper.cs" />
     <Compile Include="ModelMappers\StandardRateMainMapper.cs" />
-    <Compile Include="ModelMappers\TariffRateBaseResponseMapper.cs" />
     <Compile Include="ModelMappers\TariffRateMapper.cs" />
     <Compile Include="ModelMappers\TariffTypeBaseResponseMapper.cs" />
     <Compile Include="ModelMappers\TarrifTypeDetailResponseMapper.cs" />
@@ -376,6 +377,11 @@
     <Content Include="Areas\Pricing\Scripts\tariffRate.model.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.view.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.viewModel.js" />
+    <Content Include="Areas\RentalAgreement\Scripts\Mocks\rentalAgreement.dataservice.js" />
+    <Content Include="Areas\RentalAgreement\Scripts\rentalAgreement.dataservice.js" />
+    <Content Include="Areas\RentalAgreement\Scripts\rentalAgreement.model.js" />
+    <Content Include="Areas\RentalAgreement\Scripts\rentalAgreement.view.js" />
+    <Content Include="Areas\RentalAgreement\Scripts\rentalAgreement.viewModel.js" />
     <Content Include="Areas\Product\Scripts\product.dataservice.js" />
     <Content Include="Areas\Product\Scripts\productWithKoMapping.model.js" />
     <Content Include="Areas\Product\Scripts\product.model.js" />
@@ -427,11 +433,17 @@
     <Content Include="Content\PagedList.min.css">
       <DependentUpon>PagedList.css</DependentUpon>
     </Content>
+    <Content Include="Content\RentalAgreement.css">
+      <DependentUpon>RentalAgreement.less</DependentUpon>
+    </Content>
     <Content Include="Content\Pricing.css">
       <DependentUpon>Pricing.less</DependentUpon>
     </Content>
     <Content Include="Content\Pricing.min.css">
       <DependentUpon>Pricing.css</DependentUpon>
+    </Content>
+    <Content Include="Content\RentalAgreement.min.css">
+      <DependentUpon>RentalAgreement.css</DependentUpon>
     </Content>
     <Content Include="Content\Site.min.css">
       <DependentUpon>Site.css</DependentUpon>
@@ -943,6 +955,11 @@
     <Content Include="Areas\Pricing\Views\Tarrif\_TariffRateEditor.cshtml" />
     <Content Include="Areas\Pricing\Views\Tarrif\_HireGroupRateDialog.cshtml" />
     <Content Include="Content\TariffRate.less" />
+    <Content Include="Areas\RentalAgreement\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\RentalAgreement\Views\Home\Index.cshtml" />
+    <Content Include="Areas\RentalAgreement\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\RentalAgreement\Views\web.config" />
+    <Content Include="Content\RentalAgreement.less" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
@@ -1084,6 +1101,7 @@
     <Folder Include="Areas\Fleet\Models\" />
     <Folder Include="Areas\Pricing\Models\" />
     <Folder Include="Areas\Product\Models\" />
+    <Folder Include="Areas\RentalAgreement\Models\" />
     <Folder Include="Migrations\" />
     <Folder Include="Resources\Employees\" />
     <Folder Include="Views\Menu\" />
