@@ -282,7 +282,6 @@
     <Compile Include="ModelMappers\ProductMapper.cs" />
     <Compile Include="ModelMappers\RegionMapper.cs" />
     <Compile Include="ModelMappers\StandardRateMainMapper.cs" />
-    <Compile Include="ModelMappers\TariffRateBaseResponseMapper.cs" />
     <Compile Include="ModelMappers\TariffRateMapper.cs" />
     <Compile Include="ModelMappers\TariffTypeBaseResponseMapper.cs" />
     <Compile Include="ModelMappers\TarrifTypeDetailResponseMapper.cs" />

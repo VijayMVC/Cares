@@ -1,7 +1,7 @@
 ﻿<div class="well col-md-12" id="tariffRateEditor" data-bind="visible: isTariffRateEditorVisible" style="display: none;">
     <div class="detailsContainer">
         <h3 class="page-header detailsHeaderSection">Tariff Rate Details</h3>
-      
+
         <button class="btn btn-default" id="saveBtn" data-bind="click: $root.closeTariffRateEditor">Cancel</button>
     </div>
     <form class="form-horizontal" data-bind="with: $root.selectedTarrifRate">
@@ -98,7 +98,8 @@
             <tr data-bind="css: { selectedRow: $data === $root.selectedHireGroup() }">
                 <td class="col-md-2">
                     @*<input type="checkbox" data-bind="checked: isChecked" />*@
-                    <input type="checkbox" data-bind="attr: { value: hireGroupDetailId }, checked: $root.selectedHireGroupList">
+                    @*<input type="checkbox" data-bind="attr: { value: hireGroupDetailId }, checked: $root.selectedHireGroupList">*@
+                    <input type="checkbox" data-bind="attr: { value: hireGroupDetailId }, checked: $root.isCheck">
                 </td>
                 <td class="col-md-2">
                     <span data-bind="text: hireGroup"></span>
@@ -134,7 +135,9 @@
         </script>
         <script id="itemHireGroupTemplate" type="text/html">
             <tr data-bind="click: $root.selectHireGroup, css: { selectedRow: $data === $root.selectedHireGroup() }">
-                <td><input type="checkbox" data-bind="checked: isChecked" /></td>
+                @*<td><input type="checkbox" data-bind="checked: root.isCheck()" /></td>*@
+                <td><input type="checkbox" data-bind="checked: $root.selectedTarrifRate().tariffRateId===1" /></td>
+                <span data-bind="text: selectedCountry() ? selectedCountry().countryPopulation : 'unknown'"></span>
                 <td data-bind="text: hireGroup"></td>
                 <td data-bind="text: vehicleMake"></td>
                 <td data-bind="text: vehicleModel"></td>

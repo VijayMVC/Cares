@@ -130,8 +130,6 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             startDate = ko.observable(),
             //End Date
             endDate = ko.observable(),
-            //Is Checked
-            isChecked = ko.observable(true),
 
         self = {
             hireGroupDetailId: hireGroupDetailId,
@@ -144,8 +142,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             excessMileageCharge: excessMileageCharge,
             standardRt: standardRt,
             startDate: startDate,
-            endDate: endDate,
-            isChecked: isChecked
+            endDate: endDate
 
         };
         return self;
@@ -171,15 +168,15 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
     var TariffRateCoppier = function (source) {
         var tariffRate = new TariffRate();
         tariffRate.tariffRateId(source.tariffRateId() === null ? undefined : source.tariffRateId());
-        tariffRate.tariffRateCode(source.tariffRateCode === null ? undefined : source.tariffRateCode());
+        tariffRate.tariffRateCode(source.tariffRateCode() === null ? undefined : source.tariffRateCode());
         tariffRate.tariffRateName(source.tariffRateName() === null ? undefined : source.tariffRateName());
-        tariffRate.tariffRateDescription(source.StandardRtMainDescription === null ? undefined : source.StandardRtMainDescription);
-        tariffRate.startEffectiveDate(source.StartDt === null ? undefined : source.StartDt);
-        tariffRate.endEffectiveDate(source.EndDt === null ? undefined : source.EndDt);
-        tariffRate.tariffTypeCodeName(source.TariffTypeCodeName === null ? undefined : source.TariffTypeCodeName);
-        tariffRate.tariffTypeId(source.TariffTypeId === null ? undefined : source.tariffTypeId);
-        tariffRate.operationCodeName(source.OperationCodeName === null ? undefined : source.OperationCodeName);
-        tariffRate.operationId(source.OperationId === null ? undefined : source.OperationId);
+        tariffRate.tariffRateDescription(source.tariffRateDescription() === null ? undefined : source.tariffRateDescription());
+        tariffRate.startEffectiveDate(source.startEffectiveDate() === null ? undefined : source.startEffectiveDate());
+        tariffRate.endEffectiveDate(source.endEffectiveDate() === null ? undefined : source.endEffectiveDate());
+        tariffRate.tariffTypeCodeName(source.tariffTypeCodeName() === null ? undefined : source.tariffTypeCodeName());
+        tariffRate.tariffTypeId(source.tariffTypeId() === null ? undefined : source.tariffTypeId());
+        tariffRate.operationCodeName(source.operationCodeName() === null ? undefined : source.operationCodeName());
+        tariffRate.operationId(source.operationId() === null ? undefined : source.operationId());
         return tariffRate;
     };
     //Client To Server Mapper
@@ -195,6 +192,24 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.EndDt = source.endEffectiveDate() === undefined || source.endEffectiveDate() === null ? undefined : moment(source.endEffectiveDate()).format(ist.utcFormat);
         result.OperationId = source.operationId();
         result.TariffTypeId = source.tariffTypeId();
+        result.HireGroupDetailsInStandardRtMain = [];
+        //_.each(clientData.businessPartnerInTypes(), function (item) {
+        //    result.HireGroupDetailsInStandardRtMain.push(HireGroupServerMapper(item));
+        //});
+
+        return result;
+    };
+    //Client To Server Mapper
+    // ReSharper disable once InconsistentNaming
+    var HireGroupServerMapper = function (source) {
+        var result = {};
+        result.HireGroupDetailId = source.hireGroupDetailId() === undefined ? 0 : source.hireGroupDetailId();
+        result.AllowMileage = source.allowMileage() === undefined ? null : source.allowMileage();
+        result.ExcessMileageCharge = source.excessMileageCharge() === undefined ? null : source.excessMileageCharge();
+        result.ExcessMileageCharge = source.tariffRateDescription() === undefined ? null : source.tariffRateDescription();
+        result.StandardRt = source.standardRt() === undefined ? null : source.standardRt();
+        result.StartDate = source.startDate() === undefined || source.startDate() === null ? undefined : moment(source.startDate()).format(ist.utcFormat);
+        result.EndDt = source.endDate() === undefined || source.endDate() === null ? undefined : moment(source.endDate()).format(ist.utcFormat);
         return result;
     };
     //Server To Client Mapper
@@ -212,7 +227,6 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         hireGroupDetail.standardRt(source.StandardRt === null ? undefined : source.StandardRt);
         hireGroupDetail.startDate(source.StartDate !== null ? moment(source.StartDate).format(ist.datePattern) : undefined);
         hireGroupDetail.endDate(source.EndDate !== null ? moment(source.EndDate).format(ist.datePattern) : undefined);
-        hireGroupDetail.isChecked(true);
         return hireGroupDetail;
     };
     return {
@@ -221,6 +235,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         HireGroupDetail: HireGroupDetail,
         HireGroupClientMapper: HireGroupClientMapper,
         TariffRateServerMapper: TariffRateServerMapper,
-        TariffRateCoppier: TariffRateCoppier
+        TariffRateCoppier: TariffRateCoppier,
+        HireGroupServerMapper: HireGroupServerMapper
     };
 });

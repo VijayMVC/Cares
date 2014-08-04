@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Cares.Web.Models
 {
@@ -41,8 +42,10 @@ namespace Cares.Web.Models
         /// Tariff Type ID
         /// </summary>
         public long TariffTypeId { get; set; }
-
-        
+        /// <summary>
+        /// List of selected hire group detail for Add/Edit
+        /// </summary>
+        List<HireGroupDetail> HireGroupDetailsInStandardRtMain { get; set; }
         #endregion
     }
 }
