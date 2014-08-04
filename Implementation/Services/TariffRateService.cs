@@ -91,6 +91,7 @@ namespace Implementation.Services
         {
             standardRateMain.RecCreatedDt = System.DateTime.Now;
             standardRateMain.RecLastUpdatedDt = System.DateTime.Now;
+            standardRateMain.UserDomainKey = standardRateMainRepository.UserDomainKey;
             standardRateMainRepository.Add(standardRateMain);
             standardRateMainRepository.SaveChanges();
 

@@ -203,8 +203,16 @@ define("tariffRate/tariffRate.viewModel",
                     },
                      // close Tariff Rate Editor
                     closeTariffRateEditor = function () {
-                        selectedTarrifRate(selectedTarrifRateCopy());
-                        addTariffRate(selectedTarrifRateCopy());
+                        selectedTarrifRate().tariffRateCode(selectedTarrifRateCopy().tariffRateCode());
+                        selectedTarrifRate().tariffRateName(selectedTarrifRateCopy().tariffRateName());
+                        selectedTarrifRate().tariffRateDescription(selectedTarrifRateCopy().tariffRateDescription());
+                        selectedTarrifRate().tariffRateCode(selectedTarrifRateCopy().tariffRateCode());
+                        selectedTarrifRate().startEffectiveDate(selectedTarrifRateCopy().startEffectiveDate());
+                        selectedTarrifRate().endEffectiveDate(selectedTarrifRateCopy().endEffectiveDate());
+                        selectedTarrifRate().tariffTypeCodeName(selectedTarrifRateCopy().tariffTypeCodeName());
+                        selectedTarrifRate().tariffTypeId(selectedTarrifRateCopy().tariffTypeId());
+                        selectedTarrifRate().operationCodeName(selectedTarrifRateCopy().operationCodeName());
+                        selectedTarrifRate().operationId(selectedTarrifRateCopy().operationId());
                         isTariffRateEditorVisible(false);
                     },
                     // Show Tariff Type Editor
@@ -285,7 +293,7 @@ define("tariffRate/tariffRate.viewModel",
                         selectedTariffRateId(tariffRate.tariffRateId());
                         selectedTarrifRate(tariffRate);
                         selectedTarrifRateCopy(model.TariffRateCoppier(selectedTarrifRate()));
-                        addTariffRate(selectedTarrifRate());
+                        // addTariffRate(selectedTarrifRate());
                         getHireGroupDetails();
                         showTariffRateEditor();
                         e.stopImmediatePropagation();
@@ -300,6 +308,17 @@ define("tariffRate/tariffRate.viewModel",
                         ko.utils.arrayPushAll(tariffRates(), tariffRateList);
                         tariffRates.valueHasMutated();
                     },
+                    //Check whether Hire group selected
+                    isCheck = ko.computed(function () {
+                        if (this.hireGroupDetails === undefined)
+                            return 0;
+                        for (var i = 0; i < this.hireGroupDetails().length; i++) {
+                            if (this.hireGroupDetails()[i].hireGroupDetailId() === selectedTarrifRate().tariffRateId()) {
+                                return true;
+                            }
+                        };
+                        return false;
+                    },this),
                     // Get Tariff Rates
                     getTariffRates = function () {
                         isLoadingTariffRates(true);
@@ -341,6 +360,7 @@ define("tariffRate/tariffRate.viewModel",
                     isTariffRateEditorVisible: isTariffRateEditorVisible,
                     selectedHireGroup: selectedHireGroup,
                     filterSectionVisilble: filterSectionVisilble,
+                    isCheck:isCheck,
                     //Arrays
                     tariffTypes: tariffTypes,
                     companies: companies,
