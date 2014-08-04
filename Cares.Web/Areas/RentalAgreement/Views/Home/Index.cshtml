@@ -1,0 +1,175 @@
+﻿@{
+    ViewBag.Title = "Index";
+    ViewBag.FluidLayout = true;
+}
+
+<div class="row" id="rentalAgreementBinding">
+    <div id="raPanels">
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            Vehicle
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Plate Number</th>
+                                    <th>Hire Group</th>
+                                    <th>Make</th>
+                                    <th>Model</th>
+                                    <th>Model Year</th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: vehicles">
+                                <tr>
+                                    <td data-bind="text: PlateNumber"></td>
+                                    <td data-bind="text: HireGroup"></td>
+                                    <td data-bind="text: VehicleMake"></td>
+                                    <td data-bind="text: VehicleModel"></td>
+                                    <td data-bind="text: ModelYear"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                            Extras
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="panel-body">
+
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                            Drivers
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse">
+                    <div class="panel-body">
+
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                            Discounts
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseFour" class="panel-collapse collapse">
+                    <div class="panel-body">
+
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                            Damages
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseFive" class="panel-collapse collapse">
+                    <div class="panel-body">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="raMain">
+        <form id="ra" class="well form-horizontal">
+            <h4>Rental Agreement</h4>
+            <div class="form-group">
+                @*<label for="rentalAgreementNumber" class="control-label col-sm-2">RA #</label>*@
+                <div class="col-md-3">
+                    <input type="text" class="form-control" placeholder="<RA #>" id="rentalAgreementNumber" />
+                </div>
+                @*<label for="rentalAgreementBookingNumber" class="control-label col-sm-2">Booking #</label>*@
+                <div class="col-md-3">
+                    <input type="text" class="form-control" placeholder="<Booking No>" id="rentalAgreementBookingNumber" />
+                </div>
+            </div>
+            <div class="form-group">
+                @*<label for="rentalAgreementDuration" class="control-label col-sm-2">Rental Duration</label>*@
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="<Days>" id="rentalAgreementDuration" />
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="<Hours>" id="rentalAgreementHours" />
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="<Mins>" id="rentalAgreementMins" />
+                </div>
+            </div>
+            <div class="form-group">
+                @*<label for="rentalAgreementStartDate" class="control-label col-sm-2">Start Date/Time</label>*@
+                <div class="col-md-3">
+                    <input type="text" class="form-control" placeholder="<Start Date>" id="rentalAgreementStartDate" />
+                </div>
+                @*<label for="rentalAgreementEndDate" class="control-label col-sm-2">End Date/Time</label>*@
+                <div class="col-md-3">
+                    <input type="text" class="form-control" placeholder="<End Date>" id="rentalAgreementEndDate" />
+                </div>
+                @*<label for="rentalAgreementPaymentTerm" class="control-label col-sm-2">Payment Term</label>*@
+                <div class="col-md-3">
+                    <select class="form-control" id="rentalAgreementPaymentTerm" data-bind="options: paymentTerms, optionsCaption: '<Payment Term>', optionsText: 'Name', optionsValue: 'Id'"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                @*<label for="rentalAgreementOperation" class="control-label col-sm-2">Operation</label>*@
+                <div class="col-md-3">
+                    <select class="form-control" id="rentalAgreementOperation" data-bind="options: operations, optionsCaption: '<Operation>', optionsText: 'Name', optionsValue: 'Id'"></select>
+                </div>
+                @*<label for="rentalAgreementOutLocation" class="control-label col-sm-2">Out Location</label>*@
+                <div class="col-md-3">
+                    <select class="form-control" id="rentalAgreementOutLocation" data-bind="options: locations, optionsCaption: '<Out Location>', optionsText: 'Name', optionsValue: 'Id'"></select>
+                </div>
+                @*<label for="rentalAgreementReturnLocation" class="control-label col-sm-2">Return Location</label>*@
+                <div class="col-md-3">
+                    <select class="form-control" id="rentalAgreementReturnLocation" data-bind="options: locations, optionsCaption: '<Return Location>', optionsText: 'Name', optionsValue: 'Id'"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-9">
+                    <input type="text" class="form-control" placeholder="<Hire Group>" id="rentalAgreementHireGroup" />
+                </div>
+            </div>
+
+        </form>
+        <form id="vehicle" class="well form-horizontal">
+            <h4>Vehicle</h4>
+        </form>
+    </div>
+    <div class="well" id="raBilling">
+        <h4>Billing</h4>
+    </div>
+</div>
+
+@section inlinescripts
+{
+    <script type="text/javascript">
+        require(["rentalAgreement/rentalAgreement.view"]);
+    </script>
+}
