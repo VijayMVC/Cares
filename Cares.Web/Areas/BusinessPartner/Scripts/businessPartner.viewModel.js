@@ -60,7 +60,11 @@ define("businessPartner/businessPartner.viewModel",
                     businessPartnerTypeFromDate = ko.observable(),
                     // business partner type to date
                     businessPartnerTypeToDate = ko.observable(),
-
+                    // business partner type selected sub type
+                    businessPartnerTypeSelectedSubTypeId = ko.observable(),
+                    // business partner type selected bp rating
+                    businessPartnerTypeSelecedBpRating = ko.observable(),
+                
                    // #region Utility Functions
                     // Select filter option Individual or Company list
                     optionIndividualOrCompany = [{ Id: true, Name: 'Individual' },{Id : false, Name :  'Company'}],
@@ -149,9 +153,15 @@ define("businessPartner/businessPartner.viewModel",
                     },
                     // Add a BusinessPartner In Type
                     onAddBusinessPartnerInType = function () {
-                        //var businessPartnerInType = model.BusinessPartnerInType.Create();
-                        //selectedBusinessPartner().businessPartnerInTypes.push(businessPartnerInType);
-                        //selectedBusinessPartner().businessPartnerInTypes.valueHasMutated();
+                        var businessPartnerInType =model.BusinessPartnerInType(undefined, '', businessPartnerTypeFromDate(), businessPartnerTypeToDate(), selectedBusinessPartner().businessPartnerId, businessPartnerTypeSelectedSubTypeId(), businessPartnerTypeSelecedBpRating());
+                        selectedBusinessPartner().businessPartnerInTypes.push(businessPartnerInType);
+                        selectedBusinessPartner().businessPartnerInTypes.valueHasMutated();
+
+                        // emplty input fields
+                        businessPartnerTypeFromDate(undefined);
+                        businessPartnerTypeToDate(undefined);
+                        businessPartnerTypeSelectedSubTypeId(undefined);
+                        businessPartnerTypeSelecedBpRating(undefined);
                     },
                     // Create Business Partner
                     createBusinessPartner = function () {
@@ -359,7 +369,9 @@ define("businessPartner/businessPartner.viewModel",
                     businessPartnerTypeFromDate: businessPartnerTypeFromDate,
                     businessPartnerTypeToDate: businessPartnerTypeToDate,
                     onDeleteBusinessPartnerInType: onDeleteBusinessPartnerInType,
-                    onAddBusinessPartnerInType: onAddBusinessPartnerInType
+                    onAddBusinessPartnerInType: onAddBusinessPartnerInType,
+                    businessPartnerTypeSelectedSubTypeId: businessPartnerTypeSelectedSubTypeId,
+                    businessPartnerTypeSelecedBpRating:businessPartnerTypeSelecedBpRating
                     // Utility Methods
                 };
             })()

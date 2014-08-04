@@ -88,7 +88,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Business Partner InTypes 
         /// </summary>
-        public IEnumerable<BusinessPartnerInType> BusinessPartnerInTypes { get; set; }
+        public List<BusinessPartnerInType> BusinessPartnerInTypes { get; set; }
 
         #endregion
     }

@@ -260,9 +260,9 @@
             <!-- third tab - Business Partner Type (BP Type)-->
             <div class="tab-pane" id="bptype">
                 <div class="form-group">
-                    <label for="BpTypebPRatingTypes" class="control-label col-sm-2">BP Sub Type *</label>
+                    <label for="BpTypebusinessPartnerSubTypes" class="control-label col-sm-2">BP Sub Type *</label>
                     <div class="col-md-2">
-                        <select id="BpTypebPRatingTypes" class="form-control" data-bind="options: $root.businessPartnerSubTypes, optionsText: 'BusinessPartnerSubTypeName', optionsValue: 'BusinessPartnerSubTypeId', optionsCaption: '<BP Sub Type>'"></select>
+                        <select id="BpTypebusinessPartnerSubTypes" class="form-control" data-bind="options: $root.businessPartnerSubTypes, optionsText: 'BusinessPartnerSubTypeName', optionsValue: 'BusinessPartnerSubTypeId', optionsCaption: '<BP Sub Type>',value : $root.businessPartnerTypeSelectedSubTypeId"></select>
                     </div>
                     <label for="businessPartnerTypeFromDate" class="control-label col-sm-2">From Date</label>
                     <div class="col-md-2">
@@ -276,7 +276,7 @@
                 <div class="form-group">
                     <label for="TypesbPRatingTypes" class="control-label col-sm-2">Rating Type</label>
                     <div class="col-md-2">
-                        <select id="TypesbPRatingTypes" class="form-control" data-bind="options: $root.bpRatingTypes, optionsText: 'BpRatingTypeName', optionsValue: 'BpRatingTypeId', optionsCaption: '<BP Rating Type>'"></select>
+                        <select id="TypesbPRatingTypes" class="form-control" data-bind="options: $root.bpRatingTypes, optionsText: 'BpRatingTypeName', optionsValue: 'BpRatingTypeId', optionsCaption: '<BP Rating Type>',value : $root.businessPartnerTypeSelecedBpRating"></select>
                     </div>
                     <div class="col-md-2">
                         <button class="btn btn-sm pull-right" id="businessPartnerInTypesSave" data-bind="click: $root.onAddBusinessPartnerInType">Add To List</button>

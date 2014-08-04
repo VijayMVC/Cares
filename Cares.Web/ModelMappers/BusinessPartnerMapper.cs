@@ -53,7 +53,7 @@ namespace Cares.Web.ModelMappers
                 SystemGuarantorId = source.SystemGuarantorId,
                 BusinessPartnerIndividual = source.BusinessPartnerIndividual.CreateFrom(),
                 BusinessPartnerCompany = source.BusinessPartnerCompany.CreateFrom(),
-                BusinessPartnerInTypes = source.BusinessPartnerInTypes.Select(x=>x.CreateFrom())
+                BusinessPartnerInTypes = source.BusinessPartnerInTypes.Select(x=>x.CreateFrom()).ToList()
             };
         }
 
@@ -91,7 +91,8 @@ namespace Cares.Web.ModelMappers
                 BusinessPartnerIsValid = true,
                 BusinessPartnerEmailAddress = source.BusinessPartnerEmailAddress,
                 BusinessPartnerIndividual = source.BusinessPartnerIndividual.CreateFrom(),
-                BusinessPartnerCompany =  source.BusinessPartnerCompany.CreateFrom()
+                BusinessPartnerCompany =  source.BusinessPartnerCompany.CreateFrom(),
+                BusinessPartnerInTypes = source.BusinessPartnerInTypes.Select(x=>x.CreateFrom()).ToList()
             };
         }
 
@@ -292,7 +293,7 @@ namespace Cares.Web.ModelMappers
                 BusinessPartnerSubTypeId = source.BusinessPartnerSubTypeId,
                 FromDate = source.FromDate,
                 ToDate = source.ToDate,
-                BusinessPartnerId = source.BusinessPartnerId,
+                BusinessPartnerId = source.BusinessPartnerId > 0 ? (long)source.BusinessPartnerId : 0,
                 BpRatingTypeId = source.BpRatingTypeId
             };
         }
@@ -304,7 +305,7 @@ namespace Cares.Web.ModelMappers
         {
             return new DomainModel.BusinessPartnerInType
             {
-                BusinessPartnerInTypeId = source.BusinessPartnerInTypeId,
+                BusinessPartnerInTypeId =source.BusinessPartnerInTypeId != null ? (long) source.BusinessPartnerInTypeId : 0,
                 BusinessPartnerInTypeDescription = source.BusinessPartnerInTypeDescription,
                 BusinessPartnerSubTypeId = source.BusinessPartnerSubTypeId,
                 FromDate = source.FromDate,

@@ -12,7 +12,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Business Partner In Type Id
         /// </summary>
-        public long BusinessPartnerInTypeId { get; set; }
+        public long? BusinessPartnerInTypeId { get; set; }
         /// <summary>
         /// Business Partner In Type Description
         /// </summary>

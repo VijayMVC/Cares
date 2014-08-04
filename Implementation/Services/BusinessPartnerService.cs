@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Castle.MicroKernel.Registration;
 using Interfaces.IServices;
 using Interfaces.Repository;
@@ -70,6 +72,7 @@ namespace Implementation.Services
             if (ValidateBusinessPartner(businessPartner))
             {
                 //set master (business partner) properties
+                #region Business Partner
                 businessPartner.BusinessPartnerCode = "BP-Screen";
                 businessPartner.UserDomainKey = businessPartnerRepository.UserDomainKey;
                 businessPartner.IsActive = true;
@@ -81,8 +84,10 @@ namespace Implementation.Services
                 businessPartner.RecCreatedBy = businessPartnerRepository.LoggedInUserIdentity;
                 businessPartner.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
                 businessPartner.RowVersion = 0;
+                #endregion
 
                 //set child (business partner individual) properties
+                #region Business Partner Individual
                 businessPartner.BusinessPartnerIndividual.RecCreatedBy =
                     businessPartner.BusinessPartnerIndividual.RecLastUpdatedBy =
                         businessPartnerRepository.LoggedInUserIdentity;
@@ -90,8 +95,10 @@ namespace Implementation.Services
                     businessPartner.BusinessPartnerIndividual.RecLastUpdatedDt =
                         DateTime.Now;
                 businessPartner.BusinessPartnerIndividual.UserDomainKey = businessPartnerRepository.UserDomainKey;
+                #endregion
 
                 //set child (business partner company) properties
+                #region Business Partner Company
                 businessPartner.BusinessPartnerCompany.RecCreatedBy =
                     businessPartner.BusinessPartnerCompany.RecLastUpdatedBy =
                         businessPartnerRepository.LoggedInUserIdentity;
@@ -99,6 +106,16 @@ namespace Implementation.Services
                     businessPartner.BusinessPartnerCompany.RecLastUpdatedDt =
                         DateTime.Now;
                 businessPartner.BusinessPartnerCompany.UserDomainKey = businessPartnerRepository.UserDomainKey;
+                #endregion
+
+                //set child (business partner intypes) properties
+                #region Business Partner Intypes
+                // set user domain key
+                foreach (BusinessPartnerInType item in businessPartner.BusinessPartnerInTypes)
+                {
+                    item.UserDomainKey = businessPartnerRepository.UserDomainKey;
+                }
+                #endregion
 
                 // save data
                 businessPartnerRepository.Add(businessPartner);
@@ -127,7 +144,8 @@ namespace Implementation.Services
             BusinessPartner businessPartnerDbVersion = FindBusinessPartner((int)businessPartner.BusinessPartnerId);
             if (businessPartnerDbVersion != null)
             {
-                // set master(business partner) properties
+                //set master(business partner) properties
+                #region Business Partner
                 businessPartnerDbVersion.BusinessPartnerName = businessPartner.BusinessPartnerName;
                 businessPartnerDbVersion.BusinessPartnerDesciption = businessPartner.BusinessPartnerDesciption;
                 businessPartnerDbVersion.IsSystemGuarantor = businessPartner.IsSystemGuarantor;
@@ -144,8 +162,10 @@ namespace Implementation.Services
                 businessPartnerDbVersion.RecLastUpdatedDt = DateTime.Now;
                 businessPartnerDbVersion.RecCreatedBy = businessPartnerRepository.LoggedInUserIdentity;
                 businessPartnerDbVersion.RowVersion = businessPartnerDbVersion.RowVersion + 1;
+                #endregion
 
                 //set child (buiness partner individual properties)
+                #region Business Partner Individual
                 businessPartnerDbVersion.BusinessPartnerIndividual.BusinessPartnerId = businessPartner.BusinessPartnerIndividual.BusinessPartnerId;
                 businessPartnerDbVersion.BusinessPartnerIndividual.FirstName = businessPartner.BusinessPartnerIndividual.FirstName;
                 businessPartnerDbVersion.BusinessPartnerIndividual.MiddleName = businessPartner.BusinessPartnerIndividual.MiddleName;
@@ -172,12 +192,14 @@ namespace Implementation.Services
                 businessPartnerDbVersion.BusinessPartnerIndividual.CompanyName = businessPartner.BusinessPartnerIndividual.CompanyName;
                 businessPartnerDbVersion.BusinessPartnerIndividual.CompanyPhone = businessPartner.BusinessPartnerIndividual.CompanyPhone;
                 businessPartnerDbVersion.BusinessPartnerIndividual.CompanyAddress = businessPartner.BusinessPartnerIndividual.CompanyAddress;
-
+               
                 businessPartnerDbVersion.BusinessPartnerIndividual.RowVersion = businessPartnerDbVersion.BusinessPartnerIndividual.RowVersion + 1;
                 businessPartnerDbVersion.BusinessPartnerIndividual.RecLastUpdatedDt = DateTime.Now;
                 businessPartnerDbVersion.BusinessPartnerIndividual.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
+                #endregion
 
                 //set child (buiness partner company properties)
+                #region Business Partner Company
                 businessPartnerDbVersion.BusinessPartnerCompany.BusinessPartnerId = businessPartner.BusinessPartnerId;
                 businessPartnerDbVersion.BusinessPartnerCompany.BusinessPartnerCompanyCode =
                     businessPartner.BusinessPartnerCompany.BusinessPartnerCompanyCode;
@@ -196,6 +218,41 @@ namespace Implementation.Services
                     businessPartnerDbVersion.BusinessPartnerCompany.RowVersion + 1;
                 businessPartnerDbVersion.BusinessPartnerCompany.RecLastUpdatedDt = DateTime.Now;
                 businessPartnerDbVersion.BusinessPartnerCompany.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
+                #endregion 
+
+                //set child (business partner intypes)
+                #region Business Partner InTypes
+               
+                //add new items
+                foreach (BusinessPartnerInType itemInType in businessPartner.BusinessPartnerInTypes)
+                {
+                    if (businessPartnerDbVersion.BusinessPartnerInTypes.All(x => x.BusinessPartnerInTypeId != itemInType.BusinessPartnerInTypeId))
+                    {
+                       // set user domain key
+                       itemInType.UserDomainKey = businessPartnerRepository.UserDomainKey;
+                       businessPartnerDbVersion.BusinessPartnerInTypes.Add(itemInType);
+                    }
+                }
+                //find missing items
+                List<BusinessPartnerInType> missingItems= new List<BusinessPartnerInType>();
+                foreach (BusinessPartnerInType dbversionItemInType in  businessPartnerDbVersion.BusinessPartnerInTypes)
+                {
+                    if (businessPartner.BusinessPartnerInTypes.All(x => x.BusinessPartnerInTypeId != dbversionItemInType.BusinessPartnerInTypeId))
+                    {
+                        missingItems.Add(dbversionItemInType);
+                    }
+                }
+                //remove missing items
+                foreach (BusinessPartnerInType missingBusinessPartnerInType in missingItems)
+                {
+                    BusinessPartnerInType dbVersionMissingItem =businessPartnerDbVersion.BusinessPartnerInTypes.First(x => x.BusinessPartnerInTypeId == missingBusinessPartnerInType.BusinessPartnerInTypeId);
+                    if (dbVersionMissingItem.BusinessPartnerInTypeId > 0)
+                        businessPartnerDbVersion.BusinessPartnerInTypes.Remove(dbVersionMissingItem);
+                }
+                    
+             
+
+                #endregion
 
                 // save changes
                 businessPartnerRepository.SaveChanges();

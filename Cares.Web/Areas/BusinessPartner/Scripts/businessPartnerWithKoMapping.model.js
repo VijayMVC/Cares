@@ -101,7 +101,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
                systemGuarantorId: systemGuarantorId,
                dealingEmployeeId: dealingEmployeeId,
                businessPartnerIndividual: businessPartnerIndividual,
-               businessPartnerCompany: businessPartnerCompany,       
+               businessPartnerCompany: businessPartnerCompany,
+               businessPartnerInTypes: businessPartnerInTypes
            }),
            // Has Changes
            hasChanges = ko.computed(function() {
@@ -367,19 +368,19 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
      var // Reference to this object
          self,
          // Main Top Section 
-         // Business Partner Company Code
+         // Business Partner In Type Id
          businessPartnerInTypeId = ko.observable(specifiedBusinessPartnerInTypeId),
-         // Busiess Partner Company Name
+         // Busiess Partner In Type Description
          businessPartnerInTypeDescription = ko.observable(specifiedBusinessPartnerInTypeDescription),
-         // Established Since
+         // Business Partner In Type From Date
          fromDate = ko.observable(specifiedfromDate),
-         // Swift Code
+         // Business Partner In Type To Date 
          toDate = ko.observable(specifiedtoDate),
-         // Account Number
+         // Business Partner Id
          businessPartnerId = ko.observable(specifiedbusinessPartnerId),
-         // Non System Guarantor
+         // Business Partner Sub Type Id
          businessPartnerSubTypeId = ko.observable(specifiedbusinessPartnerSubTypeId),
-          // Non System Guarantor
+         // Business Partner Rating Type Id
          bpRatingTypeId = ko.observable(specifiedbpRatingTypeId),
          // Is Busy
          isBusy = ko.observable(false),
@@ -463,6 +464,12 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         // company tab
         // from client to server
         result.BusinessPartnerCompany = BusinessPartnerCompanyServerMapper(clientData);
+        // businesspartner type tab
+        // from client to server
+        result.BusinessPartnerInTypes = [];
+        _.each(clientData.businessPartnerInTypes(), function (item) {
+            result.BusinessPartnerInTypes.push(BusinessPartnerInTypeServerMapper(item));
+        });
         return result;
     };
     // Convert (Business Partner Individual) Client to server
@@ -503,12 +510,27 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.BusinessPartnerId = clientData.businessPartnerId() === undefined ? undefined : clientData.businessPartnerId();
         result.BusinessPartnerCompanyCode = clientData.businessPartnerCompany().businessPartnerCompanyCode();
         result.BusinessPartnerCompanyName = clientData.businessPartnerCompany().businessPartnerCompanyName();
-        result.EstablishedSince = clientData.businessPartnerCompany().businessPartnerCompanyEstablishedSince() === undefined ? undefined : moment(clientData.businessPartnerCompany().businessPartnerCompanyEstablishedSince()).format(ist.utcFormat) + "Z";;
+        result.EstablishedSince = clientData.businessPartnerCompany().businessPartnerCompanyEstablishedSince() === undefined ? undefined : moment(clientData.businessPartnerCompany().businessPartnerCompanyEstablishedSince()).format(ist.utcFormat) + "Z";
         result.SwiftCode = clientData.businessPartnerCompany().businessPartnerCompanySwiftCode();
         result.AccountNumber = clientData.businessPartnerCompany().businessPartnerCompanyAccountNumber();
         result.BusinessSegmentId = clientData.businessPartnerCompany().businessPartnerCompanyBusinessSegmentId() === undefined ? undefined : clientData.businessPartnerCompany().businessPartnerCompanyBusinessSegmentId();
         return result;
     };
+    // Convert (BusinessPartner InType ) Client to Server
+    var BusinessPartnerInTypeServerMapper = function (item) {
+        var result = {};
+        // Third Tab : Business Partner In Type
+        result.BusinessPartnerInTypeId = item.businessPartnerInTypeId() === undefined ? undefined : item.businessPartnerInTypeId();
+        result.BusinessPartnerInTypeDescription = item.businessPartnerInTypeDescription() === undefined ? undefined : item.businessPartnerInTypeDescription();
+        result.FromDate = item.fromDate() === undefined ? undefined : moment(item.fromDate()).format(ist.utcFormat) + "Z";
+        result.ToDate = item.toDate() === undefined ? undefined : moment(item.toDate()).format(ist.utcFormat) + "Z";
+        result.BusinessPartnerId = item.businessPartnerId() === undefined ? undefined : item.businessPartnerId;
+        result.BusinessPartnerSubTypeId = item.businessPartnerSubTypeId() === undefined ? undefined : item.businessPartnerSubTypeId();
+        result.BpRatingTypeId = item.bpRatingTypeId() === undefined ? undefined : item.bpRatingTypeId();
+        return result;
+    };
+
+
     // Convert (Business Partner) Server to Client
     var BusinessPartnerClientMapper = function(serverData) {
         var businessPartner = new BusinessPartnerDetail();
@@ -531,8 +553,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         // Second tab : Company Info
         businessPartner.businessPartnerCompany(BusinessPartnerCompanyClientMapper(serverData));
         // third tab : BusinessPartner InTypes
-        // businessPartner.businessPartnerInTypes(BusinessPartnerInTypesClientMapper(serverData));
-        _.each(serverData.BusinessPartnerInTypes, function (item) {
+         _.each(serverData.BusinessPartnerInTypes, function (item) {
             businessPartner.businessPartnerInTypes.push(BusinessPartnerInTypeClientMapper(item));
         });
         return businessPartner;
@@ -612,5 +633,6 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         BusinessPartnerCompanyClientMapper: BusinessPartnerCompanyClientMapper,
         BusinessPartnerCompanyServerMapper: BusinessPartnerCompanyServerMapper,
         BusinessPartnerInType: BusinessPartnerInType,
+        BusinessPartnerInTypeServerMapper:BusinessPartnerInTypeServerMapper
     };
 });
