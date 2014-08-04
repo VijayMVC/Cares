@@ -55,12 +55,11 @@
             <label for="dealingEmployees" class="control-label col-sm-2">Dealing Employee</label>
             <div class="col-md-2">
                 <select id="dealingEmployees" class="form-control" data-bind="options: $root.dealingEmployees, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Dealing Employee>', value: dealingEmployeeId"></select>
- </div>
+            </div>
 
             <label for="bPRatingTypes" class="control-label col-sm-2">Rating Type</label>
             <div class="col-md-2">
                 <select id="bPRatingTypes" class="form-control" data-bind="options: $root.bpRatingTypes, optionsText: 'BpRatingTypeName', optionsValue: 'BpRatingTypeId', optionsCaption: '<BP Rating Type>', value: bPRatingTypeId"></select>
-
             </div>
             <label for="businessPartnerEmailAddress" class="control-label col-sm-2">Email</label>
             <div class="col-md-2">
@@ -74,7 +73,7 @@
             </div>
         </div>
         <h2 class="sectionHeader">
-             <span>Details</span>
+            <span>Details</span>
         </h2> 
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
@@ -86,9 +85,9 @@
             <li><a href="#marketingchannel" role="tab" data-toggle="tab">Marketing Channel.</a></li>
             <li><a href="#bprelationships" role="tab" data-toggle="tab">BP Relationships.</a></li>
         </ul>
-
         <!-- Tab panes -->
         <div class="tab-content">
+            <!-- first tab - indidvidual-->
             <div class="tab-pane active" id="individualinfo" data-bind="with: businessPartnerIndividual">
                 <div class="form-group">
                     <label for="individualinfofirstname" class="control-label col-sm-2">First Name *</label>
@@ -223,56 +222,87 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-pane" id="companyinfo">
+            <!-- second tab - Company-->
+            <div class="tab-pane" id="companyinfo" data-bind="with : businessPartnerCompany">
                 <div class="form-group">
-                    <label for="individualinfofirstname" class="control-label col-sm-2">Company Code *</label>
+                    <label for="businessPartnerCompanyCode" class="control-label col-sm-2">Company Code *</label>
                     <div class="col-md-2">
-                  @*      <input type="text" class="form-control" placeholder="<Compnay Code>" id="individualinfofirstname" data-bind="value: individualFirstName, valueUpdate: 'keyup'" />*@
+                        <input type="text" class="form-control" placeholder="<Compnay Code>" id="businessPartnerCompanyCode" data-bind="value: businessPartnerCompanyCode, valueUpdate: 'keyup',validationTooltip: businessPartnerCompanyCode" />
                     </div>
 
-                    <label for="individualinfomiddlename" class="control-label col-sm-2">Company Name</label>
+                    <label for="businessPartnerCompanyName" class="control-label col-sm-2">Company Name</label>
                     <div class="col-md-2">
-                  @*      <input type="text" class="form-control" placeholder="<Company Name>" id="individualinfomiddlename" data-bind="value: individualMiddleName, valueUpdate: 'keyup'" />*@
+                        <input type="text" class="form-control" placeholder="<Company Name>" id="businessPartnerCompanyName" data-bind="value: businessPartnerCompanyName, valueUpdate: 'keyup'" />
                     </div>
 
-                    <label for="individualinfolastname" class="control-label col-sm-2">Swift Code</label>
+                    <label for="businessPartnerCompanySwiftCode" class="control-label col-sm-2">Swift Code</label>
                     <div class="col-md-2">
-                  @*      <input type="text" class="form-control" placeholder="<Swift Code>" id="individualinfolastname" data-bind="value: individualLastName, valueUpdate: 'keyup',validationTooltip: individualLastName" />*@
+                        <input type="text" class="form-control" placeholder="<Swift Code>" id="businessPartnerCompanySwiftCode" data-bind="value: businessPartnerCompanySwiftCode, valueUpdate: 'keyup'" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="individualinfofirstname" class="control-label col-sm-2">Establised Since</label>
+                    <label for="businessPartnerCompanyEstablishedSince" class="control-label col-sm-2">Establised Since</label>
                     <div class="col-md-2">
-                  @*      <input type="text" class="form-control" placeholder="<Established Since>" id="individualLiscenseExpiryDate" data-bind="datepicker: individualLiscenseExpiryDate" />*@
+                        <input type="text" class="form-control" placeholder="<Established Since>" id="businessPartnerCompanyEstablishedSince" data-bind="datepicker: businessPartnerCompanyEstablishedSince" />
                     </div>
 
-                    <label for="individualinfomiddlename" class="control-label col-sm-2">Account Number</label>
+                    <label for="businessPartnerCompanyAccountNumber" class="control-label col-sm-2">Account Number</label>
                     <div class="col-md-2">
-                 @*       <input type="text" class="form-control" placeholder="<Account Number>" id="individualinfomiddlename" data-bind="value: individualMiddleName, valueUpdate: 'keyup'" />*@
+                        <input type="text" class="form-control" placeholder="<Account Number>" id="businessPartnerCompanyAccountNumber" data-bind="value: businessPartnerCompanyAccountNumber, valueUpdate: 'keyup'" />
                     </div>
 
                     <label for="individualinfolastname" class="control-label col-sm-2">Business Segment</label>
                     <div class="col-md-2">
-                  @*      <select id="businessPartnerCompanies" class="form-control" data-bind="options: $root.businessPartnerCompanies, optionsText: 'BusinessPartnerCompanyName', optionsValue: 'BusinessPartnerCompanyId', optionsCaption: '<Business Segment>', value: individualBusinessPartnerCompnayId"></select>*@
+                        <select id="businessSegments" class="form-control" data-bind="options: $root.businessSegments, optionsText: 'BusinessSegmentName', optionsValue: 'BusinessSegmentId', optionsCaption: '<Business Segment>',value : businessPartnerCompanyBusinessSegmentId"></select>
                     </div>
                 </div>
             </div>
+            <!-- third tab - Business Partner Type (BP Type)-->
             <div class="tab-pane" id="bptype">
                 <div class="form-group">
-                    <label for="individualinfofirstname" class="control-label col-sm-2">Establised Since</label>
+                    <label for="BpTypebPRatingTypes" class="control-label col-sm-2">BP Sub Type *</label>
                     <div class="col-md-2">
-               @*         <input type="text" class="form-control" placeholder="<Established Since>" id="individualLiscenseExpiryDate" data-bind="datepicker: individualLiscenseExpiryDate" />*@
+                        <select id="BpTypebPRatingTypes" class="form-control" data-bind="options: $root.businessPartnerSubTypes, optionsText: 'BusinessPartnerSubTypeName', optionsValue: 'BusinessPartnerSubTypeId', optionsCaption: '<BP Sub Type>'"></select>
+                    </div>
+                    <label for="businessPartnerTypeFromDate" class="control-label col-sm-2">From Date</label>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="<From Date>" id="businessPartnerTypeFromDate" data-bind="datepicker: $root.businessPartnerTypeFromDate" />
+                    </div>
+                    <label for="businessPartnerTypeToDate" class="control-label col-sm-2">To Date</label>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="<To Date>" id="businessPartnerTypeToDate" data-bind="datepicker: $root.businessPartnerTypeToDate" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="TypesbPRatingTypes" class="control-label col-sm-2">Rating Type</label>
+                    <div class="col-md-2">
+                        <select id="TypesbPRatingTypes" class="form-control" data-bind="options: $root.bpRatingTypes, optionsText: 'BpRatingTypeName', optionsValue: 'BpRatingTypeId', optionsCaption: '<BP Rating Type>'"></select>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-sm pull-right" id="businessPartnerInTypesSave" data-bind="click: $root.onAddBusinessPartnerInType">Add To List</button>
                     </div>
 
-                    <label for="individualinfomiddlename" class="control-label col-sm-2">Account Number</label>
-                    <div class="col-md-2">
-               @*         <input type="text" class="form-control" placeholder="<Account Number>" id="individualinfomiddlename" data-bind="value: individualMiddleName, valueUpdate: 'keyup'" />*@
-                    </div>
 
-                    <label for="individualinfolastname" class="control-label col-sm-2">Business Segment</label>
-                    <div class="col-md-2">
-                @*        <select id="businessPartnerCompanies" class="form-control" data-bind="options: $root.businessPartnerCompanies, optionsText: 'BusinessPartnerCompanyName', optionsValue: 'BusinessPartnerCompanyId', optionsCaption: '<Business Segment>', value: individualBusinessPartnerCompnayId"></select>*@
+                </div>
+                <div class="form-group">
+                    @*<div class="row searchFilterResultSection" >*@
+                    <div class=" col-md-8 well">
+                        <table id="businessPartnerInTypesTable" class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th> <span id="1">BP SubType<span class="icon-up"></span></span></th>
+                                    <th> <span id="2">Rating Type<span></span></span></th>
+                                    <th> <span id="3">From Date<span></span></span></th>
+                                    <th> <span id="4">To Date<span></span></span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- ko template: { name: 'itemBusinessPartnerInTypeTemplate' , foreach: businessPartnerInTypes } -->
+                                <!-- /ko -->
+                            </tbody>
+                        </table>
                     </div>
+                    @*</div>*@
                 </div>
             </div>
             <div class="tab-pane" id="bpphone">...</div>
@@ -283,3 +313,18 @@
     </form>
 </div>
 
+<script id="itemBusinessPartnerInTypeTemplate" type="text/html">
+    <tr>
+        <td data-bind="text: businessPartnerSubTypeId"></td>
+        <td data-bind="text: bpRatingTypeId"></td>
+        <td data-bind="dateString: fromDate, datePattern: 'MM/DD/YYYY'"></td>
+        <td data-bind="dateString: toDate, datePattern: 'MM/DD/YYYY'"></td>
+        <td>
+            <!-- ko template: { name: 'deleteActionBusinessPartnerInTypeTemplate' } -->
+            <!-- /ko -->
+        </td>
+    </tr>
+</script>
+<script id="deleteActionBusinessPartnerInTypeTemplate" type="text/html">
+    <a href="#" data-bind="click: $root.onDeleteBusinessPartnerInType" title="Delete Business Partner InType"><span class="glyphicon glyphicon-remove"></span></a>
+</script>

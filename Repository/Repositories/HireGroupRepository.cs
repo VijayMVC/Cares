@@ -3,6 +3,8 @@ using System.Linq;
 using Interfaces.Repository;
 using Microsoft.Practices.Unity;
 using Models.DomainModels;
+using Models.RequestModels;
+using Models.ResponseModels;
 using Repository.BaseRepository;
 
 namespace Repository.Repositories

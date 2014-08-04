@@ -1,4 +1,7 @@
-﻿namespace Cares.Web.Models
+﻿using System.Collections;
+using System.Collections.Generic;
+
+namespace Cares.Web.Models
 {
     /// <summary>
     /// Business Partner Api Detail Model
@@ -76,6 +79,16 @@
         /// Business Partner Individual 
         /// </summary>
         public BusinessPartnerIndividual BusinessPartnerIndividual { get; set; }
+
+        /// <summary>
+        /// Business Partner Company 
+        /// </summary>
+        public BusinessPartnerCompany BusinessPartnerCompany { get; set; }
+
+        /// <summary>
+        /// Business Partner InTypes 
+        /// </summary>
+        public IEnumerable<BusinessPartnerInType> BusinessPartnerInTypes { get; set; }
 
         #endregion
     }

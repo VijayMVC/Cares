@@ -7,5 +7,6 @@ namespace Interfaces.Repository
     /// </summary>
     public interface IHireGroupRepository : IBaseRepository<HireGroup, long>
     {
+        
     }
 }

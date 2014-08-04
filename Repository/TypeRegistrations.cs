@@ -32,13 +32,15 @@ namespace Repository
             unityContainer.RegisterType<IVehicleMakeRepository, VehicleMakeRepository>();
             unityContainer.RegisterType<IVehicleModelRepository, VehicleModelRepository>();
             unityContainer.RegisterType<IHireGroupRepository, HireGroupRepository>();
-            unityContainer.RegisterType<IHireGroupDetailRepository, HireGroupDetailRpository>();
+            unityContainer.RegisterType<IHireGroupDetailRepository, HireGroupDetailRepository>();
             unityContainer.RegisterType<IStandardRateRepository, StandardRateRepository>();
               unityContainer.RegisterType<IBusinessPartnerIndividualRepository, BusinessPartnerIndividaulRepository>();
             unityContainer.RegisterType<IOccupationTypeRepository, OccupationTypeRepository>();
             unityContainer.RegisterType<IBusinessPartnerCompanyRepository, BusinessPartnerCompanyRepository>();
             unityContainer.RegisterType<ICountryRepository, CountryRepository>();
-
+            unityContainer.RegisterType<IBusinessSegmentRepository, BusinessSegmentRepository>();
+            unityContainer.RegisterType<IBusinessPartnerInTypeRepository, BusinessPartnerInTypeRepository>();
+            unityContainer.RegisterType<IBusinessPartnerSubTypeRepository, BusinessPartnerSubTypeRepository>();
 
             unityContainer.RegisterType<IStandardRateMainRepository, StandardRateMainRepository>();
         }

@@ -5,7 +5,7 @@ using System.Web.Http;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
 using Interfaces.IServices;
-using Models.ResponseModels;
+//using Models.ResponseModels;
 using DomainModels = Models.RequestModels;
 
 namespace Cares.Web.Areas.Api.Controllers
@@ -40,32 +40,33 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return tariffRateService.LoadTariffRates((request));
+            return tariffRateService.LoadTariffRates((request)).CreateFrom();
         }
         /// <summary>
         /// Update a Tariff Rate
         /// </summary>
-        public StandardRateMain Post(StandardRateMain standardRateMain)
+        public void Post(StandardRateMain standardRateMain)
         {
             if (standardRateMain == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
 
-            return tariffRateService.Update(standardRateMain.CreateFrom()).CreateFrom();
+            tariffRateService.Update(standardRateMain.CreateFrom());
+
         }
 
         /// <summary>
         /// Adds a Tariff Rate
         /// </summary>
-        public StandardRateMain Put(StandardRateMain standardRateMain)
+        public void Put(StandardRateMain standardRateMain)
         {
             if (standardRateMain == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
 
-            return tariffRateService.AddTariffRate(standardRateMain.CreateFrom()).CreateFrom();
+            tariffRateService.AddTariffRate(standardRateMain.CreateFrom());
         }
 
         /// <summary>

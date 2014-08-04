@@ -49,7 +49,9 @@
                         <!-- /ko -->
                     </tbody>
                 </table>
-                @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
+                <!-- ko with: pager -->
+                    @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
+                <!-- /ko -->
             </div>
         </div>
         <script id="editActionTarrifTypeTemplate" type="text/html">

@@ -89,10 +89,7 @@ define("Fleet/fleetPool.viewModel",
 
                 };
                 var showFleetPoolEditor = function () {
-                       debugger;
                        isFleetPoolEditorVisible(true);
-                  //     document.getElementById('fleetEditor').style.display = 'none';
-
                 };
 
                 var onDeleteFleetPool = function(item) {

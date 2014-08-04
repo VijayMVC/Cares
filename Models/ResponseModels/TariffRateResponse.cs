@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Models.DomainModels;
 
 namespace Models.ResponseModels
 {

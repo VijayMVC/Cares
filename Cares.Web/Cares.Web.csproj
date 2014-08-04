@@ -228,7 +228,7 @@
     <Compile Include="Areas\Api\Controllers\BusinessPartnerBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\GetBusinessPartnerDetailsController.cs" />
     <Compile Include="Areas\Api\Controllers\GetTariffDetailsController.cs" />
-    <Compile Include="Areas\Api\Controllers\GetTariffRateDetailController.cs" />
+    <Compile Include="Areas\Api\Controllers\GetHireGroupDetailController.cs" />
     <Compile Include="Areas\Api\Controllers\ProductBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessPartnerController.cs" />
     <Compile Include="Areas\Api\Controllers\ProductController.cs" />
@@ -261,8 +261,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\CultureHelper.cs" />
-    <Compile Include="ModelMappers\BusinessPartnerIndividualMapper.cs" />
-    <Compile Include="ModelMappers\BusinessPartnerResponseMapper.cs" />
+    <Compile Include="ModelMappers\BusinessSegmentMapper.cs" />
     <Compile Include="ModelMappers\CategoryMapper.cs" />
     <Compile Include="ModelMappers\BusinessPartnerMapper.cs" />
     <Compile Include="ModelMappers\BPRatingTypeMapper.cs" />
@@ -272,10 +271,8 @@
     <Compile Include="ModelMappers\CountryMapper.cs" />
     <Compile Include="ModelMappers\EmployeeMapper.cs" />
     <Compile Include="ModelMappers\HireGroupMapper.cs" />
-    <Compile Include="ModelMappers\BusinessPartnerCompanyMapper.cs" />
     <Compile Include="ModelMappers\PaymentTermMapper.cs" />
     <Compile Include="ModelMappers\FleetPoolMapper.cs" />
-    <Compile Include="ModelMappers\BusinessPartnerResponseBaseDataMapper.cs" />
     <Compile Include="ModelMappers\OperationMapper.cs" />
     <Compile Include="ModelMappers\CompanyMapper.cs" />
     <Compile Include="ModelMappers\DepartmentMapper.cs" />
@@ -286,13 +283,16 @@
     <Compile Include="ModelMappers\RegionMapper.cs" />
     <Compile Include="ModelMappers\StandardRateMainMapper.cs" />
     <Compile Include="ModelMappers\TariffRateBaseResponseMapper.cs" />
-    <Compile Include="ModelMappers\TariffRateDetailResponseMapper.cs" />
+    <Compile Include="ModelMappers\TariffRateMapper.cs" />
     <Compile Include="ModelMappers\TariffTypeBaseResponseMapper.cs" />
     <Compile Include="ModelMappers\TarrifTypeDetailResponseMapper.cs" />
     <Compile Include="ModelMappers\TarrifTypeMapper.cs" />
     <Compile Include="ModelMappers\VehicleCategoryMapper.cs" />
     <Compile Include="ModelMappers\VehicleMakesMapper.cs" />
     <Compile Include="ModelMappers\VehicleModelMapper.cs" />
+    <Compile Include="Models\BusinessPartnerInType.cs" />
+    <Compile Include="Models\BusinessPartnerSubType.cs" />
+    <Compile Include="Models\BusinessSegment.cs" />
     <Compile Include="Models\BusinessPartnerIndividual.cs" />
     <Compile Include="Models\BusinessPartnerDetail.cs" />
     <Compile Include="ModelMappers\TarrifTypeResponseMapper.cs" />
@@ -319,9 +319,12 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductResponse.cs" />
     <Compile Include="Models\Region.cs" />
+    <Compile Include="Models\StandardRate.cs" />
     <Compile Include="Models\StandardRateMain.cs" />
     <Compile Include="Models\TariffRateBaseResponse.cs" />
-    <Compile Include="Models\TariffRateDetailResponse.cs" />
+    <Compile Include="Models\TariffRateContent.cs" />
+    <Compile Include="Models\HireGroupDetailResponse.cs" />
+    <Compile Include="Models\TariffRateResponse.cs" />
     <Compile Include="Models\TariffTypeDetail.cs" />
     <Compile Include="Models\TariffTypeDetailResponse.cs" />
     <Compile Include="Models\TarrifType.cs" />
@@ -362,7 +365,6 @@
     <Content Include="Areas\BusinessPartner\Scripts\businessPartner.viewModel.js" />
     <Content Include="Areas\BusinessPartner\Scripts\businessPartner.dataservice.js" />
     <Content Include="Areas\BusinessPartner\Scripts\businessPartnerWithKoMapping.model.js" />
-    <Content Include="Areas\BusinessPartner\Scripts\businessPartner.model.js" />
     <Content Include="Areas\Common\Scripts\confirmation.view.js" />
     <Content Include="Areas\Common\Scripts\confirmation.viewModel.js" />
     <Content Include="Areas\Common\Scripts\pagination.js" />
