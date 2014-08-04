@@ -31,9 +31,8 @@ namespace Models.DomainModels
         /// <summary>
         /// Business Partner Id
         /// </summary>
-        [Required]
         [ForeignKey("BusinessPartner")]
-        public long BusinessPartnerId { get; set; }
+        public long? BusinessPartnerId { get; set; }
         /// <summary>
         /// Business Partner Sub Type Id
         /// </summary>
