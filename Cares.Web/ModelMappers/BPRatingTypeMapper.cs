@@ -18,7 +18,8 @@ namespace Cares.Web.ModelMappers
             return new BpRatingType
             {
                 BpRatingTypeId = source.BpRatingTypeId,
-                BpRatingTypeName = source.BpRatingTypeName
+                BpRatingTypeName = source.BpRatingTypeCode +'-'+ source.BpRatingTypeName,
+                BpRatingTypeCustomId = source.BpRatingTypeId.ToString() + '-' + source.BpRatingTypeCode + '-' + source.BpRatingTypeName
             };
         }
         /// <summary>

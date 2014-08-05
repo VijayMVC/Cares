@@ -13,6 +13,10 @@ namespace Cares.Web.Models
         /// </summary>
         public int BusinessPartnerSubTypeId { get; set; }
         /// <summary>
+        /// BusinessPartner SubType Custom ID
+        /// </summary>
+        public string BusinessPartnerSubTypeCustomId { get; set; }
+        /// <summary>
         /// BusinessPartner SubType Code
         /// </summary>
         [StringLength(100)]

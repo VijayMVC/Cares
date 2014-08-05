@@ -259,51 +259,53 @@
             </div>
             <!-- third tab - Business Partner Type (BP Type)-->
             <div class="tab-pane" id="bptype">
-                <div class="form-group">
-                    <label for="BpTypebPRatingTypes" class="control-label col-sm-2">BP Sub Type *</label>
-                    <div class="col-md-2">
-                        <select id="BpTypebPRatingTypes" class="form-control" data-bind="options: $root.businessPartnerSubTypes, optionsText: 'BusinessPartnerSubTypeName', optionsValue: 'BusinessPartnerSubTypeId', optionsCaption: '<BP Sub Type>'"></select>
-                    </div>
-                    <label for="businessPartnerTypeFromDate" class="control-label col-sm-2">From Date</label>
-                    <div class="col-md-2">
-                        <input type="text" class="form-control" placeholder="<From Date>" id="businessPartnerTypeFromDate" data-bind="datepicker: $root.businessPartnerTypeFromDate" />
-                    </div>
-                    <label for="businessPartnerTypeToDate" class="control-label col-sm-2">To Date</label>
-                    <div class="col-md-2">
-                        <input type="text" class="form-control" placeholder="<To Date>" id="businessPartnerTypeToDate" data-bind="datepicker: $root.businessPartnerTypeToDate" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="TypesbPRatingTypes" class="control-label col-sm-2">Rating Type</label>
-                    <div class="col-md-2">
-                        <select id="TypesbPRatingTypes" class="form-control" data-bind="options: $root.bpRatingTypes, optionsText: 'BpRatingTypeName', optionsValue: 'BpRatingTypeId', optionsCaption: '<BP Rating Type>'"></select>
-                    </div>
-                    <div class="col-md-2">
-                        <button class="btn btn-sm pull-right" id="businessPartnerInTypesSave" data-bind="click: $root.onAddBusinessPartnerInType">Add To List</button>
-                    </div>
+               
+                    <div data-bind="with:businessPartnerInTypeNew">
+                        <div class="form-group">
+                            <label for="BpTypebusinessPartnerSubTypes" class="control-label col-sm-2">BP Sub Type *</label>
+                            <div class="col-md-2">
+                                <select id="BpTypebusinessPartnerSubTypes" class="form-control" data-bind="options: $root.businessPartnerSubTypes, optionsText: 'BusinessPartnerSubTypeName', optionsValue: 'BusinessPartnerSubTypeCustomId', optionsCaption: '<BP Sub Type>',value : businessPartnerSubTypeId"></select>
+                            </div>
+                            <label for="businessPartnerTypeFromDate" class="control-label col-sm-2">From Date</label>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" placeholder="<From Date>" id="businessPartnerTypeFromDate" data-bind="datepicker: fromDate" />
+                            </div>
+                            <label for="businessPartnerTypeToDate" class="control-label col-sm-2">To Date</label>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" placeholder="<To Date>" id="businessPartnerTypeToDate" data-bind="datepicker: toDate" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="TypesbPRatingTypes" class="control-label col-sm-2">Rating Type</label>
+                            <div class="col-md-2">
+                                <select id="TypesbPRatingTypes" class="form-control" data-bind="options: $root.bpRatingTypes, optionsText: 'BpRatingTypeName', optionsValue: 'BpRatingTypeCustomId', optionsCaption: '<BP Rating Type>',value : bpRatingTypeId"></select>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-sm pull-right" id="businessPartnerInTypesSave" data-bind="click: $root.onAddBusinessPartnerInType">Add To List</button>
+                            </div>
 
 
-                </div>
-                <div class="form-group">
-                    @*<div class="row searchFilterResultSection" >*@
-                    <div class=" col-md-8 well">
-                        <table id="businessPartnerInTypesTable" class="table table-condensed">
-                            <thead>
-                                <tr>
-                                    <th> <span id="1">BP SubType<span class="icon-up"></span></span></th>
-                                    <th> <span id="2">Rating Type<span></span></span></th>
-                                    <th> <span id="3">From Date<span></span></span></th>
-                                    <th> <span id="4">To Date<span></span></span></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- ko template: { name: 'itemBusinessPartnerInTypeTemplate' , foreach: businessPartnerInTypes } -->
-                                <!-- /ko -->
-                            </tbody>
-                        </table>
+                        </div>
                     </div>
-                    @*</div>*@
-                </div>
+                    <div class="form-group">
+                        <div class=" col-md-8 well">
+                            <table id="businessPartnerInTypesTable" class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th> <span id="1">BP SubType<span></span></span></th>
+                                        <th> <span id="2">Rating Type<span></span></span></th>
+                                        <th> <span id="3">From Date<span></span></span></th>
+                                        <th> <span id="4">To Date<span></span></span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- ko template: { name: 'itemBusinessPartnerInTypeTemplate' , foreach: businessPartnerInTypes } -->
+                                    <!-- /ko -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+               
             </div>
             <div class="tab-pane" id="bpphone">...</div>
             <div class="tab-pane" id="bpaddress">...</div>
@@ -315,8 +317,8 @@
 
 <script id="itemBusinessPartnerInTypeTemplate" type="text/html">
     <tr>
-        <td data-bind="text: businessPartnerSubTypeId"></td>
-        <td data-bind="text: bpRatingTypeId"></td>
+        <td data-bind="text: businessPartnerSubTypeName"></td>
+        <td data-bind="text: bpRatingTypeName"></td>
         <td data-bind="dateString: fromDate, datePattern: 'MM/DD/YYYY'"></td>
         <td data-bind="dateString: toDate, datePattern: 'MM/DD/YYYY'"></td>
         <td>

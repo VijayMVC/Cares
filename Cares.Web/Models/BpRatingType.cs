@@ -11,6 +11,10 @@
         /// </summary>
         public int BpRatingTypeId { get; set; }
         /// <summary>
+        /// Business Partner Rating Type Custom ID 
+        /// </summary>
+        public string BpRatingTypeCustomId { get; set; }
+        /// <summary>
         /// Business Partner Rating Type Code
         /// </summary>
         public string BpRatingTypeCode { get; set; }

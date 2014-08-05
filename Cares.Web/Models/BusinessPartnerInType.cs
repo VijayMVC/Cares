@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Drawing.Printing;
 
 namespace Cares.Web.Models
 {
@@ -12,7 +13,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Business Partner In Type Id
         /// </summary>
-        public long BusinessPartnerInTypeId { get; set; }
+        public long? BusinessPartnerInTypeId { get; set; }
         /// <summary>
         /// Business Partner In Type Description
         /// </summary>
@@ -28,15 +29,23 @@ namespace Cares.Web.Models
         /// <summary>
         /// Business Partner Id
         /// </summary>
-        public long BusinessPartnerId { get; set; }
+        public long? BusinessPartnerId { get; set; }
         /// <summary>
         /// Business Partner Sub Type Id
         /// </summary>
         public int BusinessPartnerSubTypeId { get; set; }
         /// <summary>
+        /// Business Partner Sub Type Name
+        /// </summary>
+        public string BusinessPartnerSubTypeName { get; set; }
+        /// <summary>
         /// Business Partner Rating Type Id
         /// </summary>
         public int? BpRatingTypeId { get; set; }
+        /// <summary>
+        /// Business Partner Rating Type Name
+        /// </summary>
+        public string BpRatingTypeName { get; set; }
           
         #endregion
 
