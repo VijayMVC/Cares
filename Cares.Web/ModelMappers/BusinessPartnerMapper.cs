@@ -132,7 +132,8 @@ namespace Cares.Web.ModelMappers
                 ResponseOccupationTypes = source.ResponseOccupationTypes.Select(x => x.CreateFrom()),
                 ResponsePassportCountries = source.ResponsePassportCountries.Select(x => x.CreateFrom()),
                 ResponseBusinessSegments = source.ResponseBusinessSegments.Select(x => x.CreateFrom()),
-                ResponseBusinessPartnerSubTypes = source.ResponseBusinessPartnerSubTypes.Select(x=>x.CreateFrom())
+                ResponseBusinessPartnerSubTypes = source.ResponseBusinessPartnerSubTypes.Select(x=>x.CreateFrom()),
+                ResponsePhoneTypes = source.ResponsePhoneTypes.Select(x=>x.CreateFrom())
             };
         }
         #endregion

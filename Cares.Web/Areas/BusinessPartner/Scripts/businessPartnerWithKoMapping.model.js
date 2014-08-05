@@ -68,7 +68,11 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
            // Business Partner InTypes
            businessPartnerInTypes = ko.observableArray([]),
            // New Business Partner InType
-           businessPartnerInTypeNew= ko.observable(BusinessPartnerInType.Create()),
+           businessPartnerInTypeNew = ko.observable(BusinessPartnerInType.Create()),
+            // Business Partner PhoneNumbers
+           businessPartnerPhoneNumbers = ko.observableArray([]),
+           // New Business Partner Phone Number
+           businessPartnerPhoneNumberNew = ko.observable(BusinessPartnerPhone.Create()),
            // Is Busy
            isBusy = ko.observable(false),
            // Errors
@@ -104,7 +108,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
                dealingEmployeeId: dealingEmployeeId,
                businessPartnerIndividual: businessPartnerIndividual,
                businessPartnerCompany: businessPartnerCompany,
-               businessPartnerInTypes: businessPartnerInTypes
+               businessPartnerInTypes: businessPartnerInTypes,
+               businessPartnerPhoneNumbers:businessPartnerPhoneNumbers
            }),
            // Has Changes
            hasChanges = ko.computed(function() {
@@ -132,7 +137,9 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
            businessPartnerIndividual: businessPartnerIndividual,
            businessPartnerCompany:businessPartnerCompany,
            businessPartnerInTypes:businessPartnerInTypes,
-           businessPartnerInTypeNew:businessPartnerInTypeNew,
+           businessPartnerInTypeNew: businessPartnerInTypeNew,
+           businessPartnerPhoneNumbers: businessPartnerPhoneNumbers,
+           businessPartnerPhoneNumberNew:businessPartnerPhoneNumberNew,
            errors: errors,
            isValid: isValid,
            dirtyFlag: dirtyFlag,
@@ -363,38 +370,32 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
       return self;
   };
     var
- // Business Partner InType entity
+ // Business Partner Phone entity
  // ReSharper disable InconsistentNaming
-    BusinessPartnerInType = function (specifiedBusinessPartnerInTypeId, specifiedBusinessPartnerInTypeDescription,
-    specifiedfromDate, specifiedtoDate, specifiedbusinessPartnerId, specifiedbusinessPartnerSubTypeId, specifiedbusinessPartnerSubTypeName,
-    specifiedbpRatingTypeId, specifiedbpRatingTypeName) {
+    BusinessPartnerPhone = function (specifiedPhoneId, specifiedIsDefault,
+    specifiedPhoneNumber, specifiedbusinessPartnerId, specifiedPhoneTypeId, specifiedPhoneTypeName) {
      // ReSharper restore InconsistentNaming
      var // Reference to this object
          self,
          // Main Top Section 
-         // Business Partner In Type Id
-         businessPartnerInTypeId = ko.observable(specifiedBusinessPartnerInTypeId),
-         // Busiess Partner In Type Description
-         businessPartnerInTypeDescription = ko.observable(specifiedBusinessPartnerInTypeDescription),
-         // Business Partner In Type From Date
-         fromDate = ko.observable(specifiedfromDate),
-         // Business Partner In Type To Date 
-         toDate = ko.observable(specifiedtoDate),
+         // Phone Id
+         phoneId = ko.observable(specifiedPhoneId),
+         // Is Default
+         isDefault = ko.observable(specifiedIsDefault),
+         // Phone Number
+         phoneNumber = ko.observable(specifiedPhoneNumber).extend({ required: true }),
          // Business Partner Id
          businessPartnerId = ko.observable(specifiedbusinessPartnerId),
-         // Business Partner Sub Type Id
-         businessPartnerSubTypeId = ko.observable(specifiedbusinessPartnerSubTypeId).extend({ required: true }),
-          // Business Partner Sub Type Name
-         businessPartnerSubTypeName = ko.observable(specifiedbusinessPartnerSubTypeName),
-         // Business Partner Rating Type Id
-         bpRatingTypeId = ko.observable(specifiedbpRatingTypeId),
-           // Business Partner Rating Type Name
-         bpRatingTypeName = ko.observable(specifiedbpRatingTypeName),
+         // Phone Type Id
+         phoneTypeId = ko.observable(specifiedPhoneTypeId).extend({ required: true }),
+          // Phone Type Name
+         phoneTypeName = ko.observable(specifiedPhoneTypeName),
          // Is Busy
          isBusy = ko.observable(false),
          // Errors
          errors = ko.validation.group({
-             businessPartnerSubTypeId:businessPartnerSubTypeId
+             phoneTypeId: phoneTypeId,
+             phoneNumber:phoneNumber
          }),
          // Is Valid
          isValid = ko.computed(function () {
@@ -404,14 +405,12 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
          // ReSharper disable InconsistentNaming
          dirtyFlag = new ko.dirtyFlag({
              // ReSharper restore InconsistentNaming
-             businessPartnerInTypeId: businessPartnerInTypeId,
-             businessPartnerInTypeDescription: businessPartnerInTypeDescription,
-             fromDate: fromDate,
-             toDate: toDate,
-             businessPartnerId: businessPartnerId,
-             businessPartnerSubTypeId: businessPartnerSubTypeId,
-             bpRatingTypeId: bpRatingTypeId
-         }),
+             phoneId: phoneId,
+             isDefault: isDefault,
+             phoneNumber: phoneNumber,
+             phoneTypeId: phoneTypeId,
+             businessPartnerId: businessPartnerId
+        }),
          // Has Changes
          hasChanges = ko.computed(function () {
              return dirtyFlag.isDirty();
@@ -421,15 +420,12 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
              dirtyFlag.reset();
          };
      self = {
-         businessPartnerInTypeId: businessPartnerInTypeId,
-         businessPartnerInTypeDescription: businessPartnerInTypeDescription,
-         fromDate: fromDate,
-         toDate: toDate,
+         phoneId: phoneId,
+         isDefault: isDefault,
+         phoneNumber: phoneNumber,
+         phoneTypeId: phoneTypeId,
+         phoneTypeName:phoneTypeName,
          businessPartnerId: businessPartnerId,
-         businessPartnerSubTypeId: businessPartnerSubTypeId,
-         businessPartnerSubTypeName:businessPartnerSubTypeName,
-         bpRatingTypeId: bpRatingTypeId,
-         bpRatingTypeName : bpRatingTypeName,
          errors: errors,
          isValid: isValid,
          dirtyFlag: dirtyFlag,
@@ -438,7 +434,84 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
          isBusy: isBusy
      };
      return self;
- };
+    };
+    var
+    // Business Partner InType entity
+    // ReSharper disable InconsistentNaming
+    BusinessPartnerInType = function (specifiedBusinessPartnerInTypeId, specifiedBusinessPartnerInTypeDescription,
+    specifiedfromDate, specifiedtoDate, specifiedbusinessPartnerId, specifiedbusinessPartnerSubTypeId, specifiedbusinessPartnerSubTypeName,
+    specifiedbpRatingTypeId, specifiedbpRatingTypeName) {
+    // ReSharper restore InconsistentNaming
+    var // Reference to this object
+        self,
+        // Main Top Section 
+        // Business Partner In Type Id
+        businessPartnerInTypeId = ko.observable(specifiedBusinessPartnerInTypeId),
+        // Busiess Partner In Type Description
+        businessPartnerInTypeDescription = ko.observable(specifiedBusinessPartnerInTypeDescription),
+        // Business Partner In Type From Date
+        fromDate = ko.observable(specifiedfromDate),
+        // Business Partner In Type To Date 
+        toDate = ko.observable(specifiedtoDate),
+        // Business Partner Id
+        businessPartnerId = ko.observable(specifiedbusinessPartnerId),
+        // Business Partner Sub Type Id
+        businessPartnerSubTypeId = ko.observable(specifiedbusinessPartnerSubTypeId).extend({ required: true }),
+         // Business Partner Sub Type Name
+        businessPartnerSubTypeName = ko.observable(specifiedbusinessPartnerSubTypeName),
+        // Business Partner Rating Type Id
+        bpRatingTypeId = ko.observable(specifiedbpRatingTypeId),
+          // Business Partner Rating Type Name
+        bpRatingTypeName = ko.observable(specifiedbpRatingTypeName),
+        // Is Busy
+        isBusy = ko.observable(false),
+        // Errors
+        errors = ko.validation.group({
+            businessPartnerSubTypeId: businessPartnerSubTypeId
+        }),
+        // Is Valid
+        isValid = ko.computed(function () {
+            return errors().length === 0;
+        }),
+        // True if the booking has been changed
+        // ReSharper disable InconsistentNaming
+        dirtyFlag = new ko.dirtyFlag({
+            // ReSharper restore InconsistentNaming
+            businessPartnerInTypeId: businessPartnerInTypeId,
+            businessPartnerInTypeDescription: businessPartnerInTypeDescription,
+            fromDate: fromDate,
+            toDate: toDate,
+            businessPartnerId: businessPartnerId,
+            businessPartnerSubTypeId: businessPartnerSubTypeId,
+            bpRatingTypeId: bpRatingTypeId
+        }),
+        // Has Changes
+        hasChanges = ko.computed(function () {
+            return dirtyFlag.isDirty();
+        }),
+        // Reset
+        reset = function () {
+            dirtyFlag.reset();
+        };
+    self = {
+        businessPartnerInTypeId: businessPartnerInTypeId,
+        businessPartnerInTypeDescription: businessPartnerInTypeDescription,
+        fromDate: fromDate,
+        toDate: toDate,
+        businessPartnerId: businessPartnerId,
+        businessPartnerSubTypeId: businessPartnerSubTypeId,
+        businessPartnerSubTypeName: businessPartnerSubTypeName,
+        bpRatingTypeId: bpRatingTypeId,
+        bpRatingTypeName: bpRatingTypeName,
+        errors: errors,
+        isValid: isValid,
+        dirtyFlag: dirtyFlag,
+        hasChanges: hasChanges,
+        reset: reset,
+        isBusy: isBusy
+    };
+    return self;
+};
     // BusinessPartnerDetail Factory
     BusinessPartnerDetail.Create = function () {
         return new BusinessPartnerDetail("", "", "", false, false, "", "", false, undefined, undefined, undefined, undefined, undefined);
@@ -455,6 +528,9 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
     // BusinessPartnerInType Factory
     BusinessPartnerInType.Create = function () {
         return new BusinessPartnerInType(undefined, "", undefined, undefined, undefined, undefined, "", undefined, "");
+    };
+    BusinessPartnerPhone.Create = function() {
+        return new BusinessPartnerPhone(undefined, undefined, undefined, undefined, undefined,undefined);
     };
     // Convert (Business Partner) Client to server
     var BusinessPartnerServerMapper = function(clientData) {
@@ -651,6 +727,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         BusinessPartnerCompanyClientMapper: BusinessPartnerCompanyClientMapper,
         BusinessPartnerCompanyServerMapper: BusinessPartnerCompanyServerMapper,
         BusinessPartnerInType: BusinessPartnerInType,
-        BusinessPartnerInTypeServerMapper:BusinessPartnerInTypeServerMapper
+        BusinessPartnerInTypeServerMapper: BusinessPartnerInTypeServerMapper,
+        BusinessPartnerPhone: BusinessPartnerPhone
     };
 });

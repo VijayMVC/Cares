@@ -25,6 +25,8 @@ namespace Implementation.Services
         private readonly IBusinessSegmentRepository businessSegmentRepository;
         // For Business Patner type
         private readonly IBusinessPartnerSubTypeRepository businessPartnerSubTypeRepository;
+        // For Phone tab
+        private readonly IPhoneTypeRepository phoneTypeRepository;
         #endregion
         #region Constructor
 
@@ -38,7 +40,8 @@ namespace Implementation.Services
             , IBusinessPartnerCompanyRepository businessPartnerCompanyRepository
             , ICountryRepository passportCountryRepository
             , IBusinessSegmentRepository businessSegmentRepository,
-            IBusinessPartnerSubTypeRepository businessPartnerSubTypeRepository)
+            IBusinessPartnerSubTypeRepository businessPartnerSubTypeRepository,
+            IPhoneTypeRepository phoneTypeRepository)
         {
             this.companyRepository = companyRepository;
             this.paymentTermRepository = paymentTermRepository;
@@ -51,6 +54,7 @@ namespace Implementation.Services
             this.passportCountryRepository = passportCountryRepository;
             this.businessSegmentRepository = businessSegmentRepository;
             this.businessPartnerSubTypeRepository = businessPartnerSubTypeRepository;
+            this.phoneTypeRepository = phoneTypeRepository;
         }
         #endregion
         #region Public
@@ -69,6 +73,7 @@ namespace Implementation.Services
             response.ResponsePassportCountries = passportCountryRepository.GetAll();
             response.ResponseBusinessSegments =  businessSegmentRepository.GetAll();
             response.ResponseBusinessPartnerSubTypes = businessPartnerSubTypeRepository.GetAll();
+            response.ResponsePhoneTypes = phoneTypeRepository.GetAll();
             return response;
         }
         #endregion

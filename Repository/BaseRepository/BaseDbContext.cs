@@ -216,6 +216,10 @@ namespace Repository.BaseRepository
         /// Business Partner InType DbSet
         /// </summary>
         public DbSet<BusinessPartnerInType> BusinessPartnerInTypes { get; set; }
+        /// <summary>
+        /// Phone Type
+        /// </summary>
+        public DbSet<PhoneType> PhoneTypes { get; set; }
 
         #endregion
     }

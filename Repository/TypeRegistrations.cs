@@ -41,6 +41,7 @@ namespace Repository
             unityContainer.RegisterType<IBusinessSegmentRepository, BusinessSegmentRepository>();
             unityContainer.RegisterType<IBusinessPartnerInTypeRepository, BusinessPartnerInTypeRepository>();
             unityContainer.RegisterType<IBusinessPartnerSubTypeRepository, BusinessPartnerSubTypeRepository>();
+            unityContainer.RegisterType<IPhoneTypeRepository, PhoneTypeRepository>();
 
             unityContainer.RegisterType<IStandardRateMainRepository, StandardRateMainRepository>();
         }

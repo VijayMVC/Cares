@@ -44,6 +44,8 @@ define("businessPartner/businessPartner.viewModel",
                     businessSegments = ko.observableArray([]),
                      // Business Partner SubType Array
                     businessPartnerSubTypes = ko.observableArray([]),
+                     // Phone Types Array
+                    phoneTypes = ko.observableArray([]),
                     // Sort On
                     sortOn = ko.observable(1),
                     // Sort Order -  true means asc, false means desc
@@ -174,6 +176,22 @@ define("businessPartner/businessPartner.viewModel",
                             return undefined;
                         }
                     }),
+                    // business partner phone selected phone type id computed
+                    businessPartnerPhoneSelecedPhoneTypeIdComputed = ko.computed(function() {
+                        if (selectedBusinessPartner() != undefined && selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId() != undefined && selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId().split('-').length == 3)
+                            return selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId().split('-')[0];
+                        else {
+                            return undefined;
+                        }
+                    }),
+                    // business partner phone selected phone type name computed
+                    businessPartnerPhoneSelecedPhoneTypeNameComputed = ko.computed(function () {
+                        if (selectedBusinessPartner() != undefined && selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId() != undefined && selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId().split('-').length == 3)
+                            return selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId().split('-')[1] + '-' + selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId().split('-')[2];
+                        else {
+                            return undefined;
+                        }
+                    }),
                      // Do Before Add BusinessPartner InType Item
                     doBeforeAddItem = function () {
                         var flag = true;
@@ -193,6 +211,27 @@ define("businessPartner/businessPartner.viewModel",
 
                             // emplty input fields
                             selectedBusinessPartner().businessPartnerInTypeNew(model.BusinessPartnerInType(undefined, '', undefined, undefined, undefined, undefined, undefined, undefined, undefined));
+                        }
+                    },
+                    // Do Before Add BusinessPartner Phone Item
+                    doBeforeAddPhoneItem = function () {
+                        var flag = true;
+                        if (!selectedBusinessPartner().businessPartnerPhoneNumberNew().isValid()) {
+                            selectedBusinessPartner().businessPartnerPhoneNumberNew().errors.showAllMessages();
+                            flag = false;
+                        }
+                        return flag;
+                    },
+                    // Add a BusinessPartner Phone
+                    onAddBusinessPartnerPhone = function () {
+                        // check validation error before add
+                        if (doBeforeAddPhoneItem()) {
+                            var businessPartnerPhone = model.BusinessPartnerPhone(undefined, selectedBusinessPartner().isDefault(), selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneNumber(), selectedBusinessPartner().businessPartnerId(), businessPartnerPhoneSelecedPhoneTypeIdComputed(), businessPartnerPhoneSelecedPhoneTypeNameComputed());
+                            selectedBusinessPartner().businessPartnerPhoneNumbers.push(businessPartnerPhone);
+                            selectedBusinessPartner().businessPartnerPhoneNumbers.valueHasMutated();
+
+                            // emplty input fields
+                            selectedBusinessPartner().businessPartnerPhoneNumberNew(model.BusinessPartnerPhone(undefined,undefined,undefined,undefined,undefined));
                         }
                     },
                     // Create Business Partner
@@ -290,6 +329,10 @@ define("businessPartner/businessPartner.viewModel",
                                 businessPartnerSubTypes.removeAll();
                                 ko.utils.arrayPushAll(businessPartnerSubTypes(), data.ResponseBusinessPartnerSubTypes);
                                 businessPartnerSubTypes.valueHasMutated();
+                                // Phone Types array
+                                phoneTypes.removeAll();
+                                ko.utils.arrayPushAll(phoneTypes(), data.ResponsePhoneTypes);
+                                phoneTypes.valueHasMutated();
                             },
                             error: function () {
                                 toastr.error("Failed to load base data");
@@ -379,7 +422,8 @@ define("businessPartner/businessPartner.viewModel",
                     passportCountries: passportCountries,
                     occupationTypes: occupationTypes,
                     businessSegments: businessSegments,
-                    businessPartnerSubTypes:businessPartnerSubTypes,
+                    businessPartnerSubTypes: businessPartnerSubTypes,
+                    phoneTypes:phoneTypes,
                     // Utility Methods
                     onSaveBusinessPartner: onSaveBusinessPartner,
                     createBusinessPartner: createBusinessPartner,
@@ -400,6 +444,8 @@ define("businessPartner/businessPartner.viewModel",
                     optionMaritalStatusList: optionMaritalStatusList,
                     onDeleteBusinessPartnerInType: onDeleteBusinessPartnerInType,
                     onAddBusinessPartnerInType: onAddBusinessPartnerInType,
+                    doBeforeAddPhoneItem: doBeforeAddPhoneItem,
+                    onAddBusinessPartnerPhone:onAddBusinessPartnerPhone
                     // Utility Methods
                 };
             })()
