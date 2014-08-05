@@ -66,6 +66,11 @@ namespace Models.DomainModels
         /// Business Partner Rating Type
         /// </summary>
         public virtual BpRatingType BpRatingType { get; set; }
+
+        /// <summary>
+        /// Business Partner Sub Type
+        /// </summary>
+        public virtual BusinessPartnerSubType BusinessPartnerSubType { get; set; }
         
         #endregion
     }

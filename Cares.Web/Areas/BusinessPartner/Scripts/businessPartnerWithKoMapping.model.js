@@ -66,7 +66,9 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
            // Business Partner Company
            businessPartnerCompany = ko.observable(BusinessPartnerCompany.Create()),
            // Business Partner InTypes
-           businessPartnerInTypes=ko.observableArray([]),
+           businessPartnerInTypes = ko.observableArray([]),
+           // New Business Partner InType
+           businessPartnerInTypeNew= ko.observable(BusinessPartnerInType.Create()),
            // Is Busy
            isBusy = ko.observable(false),
            // Errors
@@ -130,6 +132,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
            businessPartnerIndividual: businessPartnerIndividual,
            businessPartnerCompany:businessPartnerCompany,
            businessPartnerInTypes:businessPartnerInTypes,
+           businessPartnerInTypeNew:businessPartnerInTypeNew,
            errors: errors,
            isValid: isValid,
            dirtyFlag: dirtyFlag,
@@ -363,7 +366,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
  // Business Partner InType entity
  // ReSharper disable InconsistentNaming
     BusinessPartnerInType = function (specifiedBusinessPartnerInTypeId, specifiedBusinessPartnerInTypeDescription,
-    specifiedfromDate, specifiedtoDate, specifiedbusinessPartnerId, specifiedbusinessPartnerSubTypeId, specifiedbpRatingTypeId) {
+    specifiedfromDate, specifiedtoDate, specifiedbusinessPartnerId, specifiedbusinessPartnerSubTypeId, specifiedbusinessPartnerSubTypeName,
+    specifiedbpRatingTypeId, specifiedbpRatingTypeName) {
      // ReSharper restore InconsistentNaming
      var // Reference to this object
          self,
@@ -379,13 +383,18 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
          // Business Partner Id
          businessPartnerId = ko.observable(specifiedbusinessPartnerId),
          // Business Partner Sub Type Id
-         businessPartnerSubTypeId = ko.observable(specifiedbusinessPartnerSubTypeId),
+         businessPartnerSubTypeId = ko.observable(specifiedbusinessPartnerSubTypeId).extend({ required: true }),
+          // Business Partner Sub Type Name
+         businessPartnerSubTypeName = ko.observable(specifiedbusinessPartnerSubTypeName),
          // Business Partner Rating Type Id
          bpRatingTypeId = ko.observable(specifiedbpRatingTypeId),
+           // Business Partner Rating Type Name
+         bpRatingTypeName = ko.observable(specifiedbpRatingTypeName),
          // Is Busy
          isBusy = ko.observable(false),
          // Errors
          errors = ko.validation.group({
+             businessPartnerSubTypeId:businessPartnerSubTypeId
          }),
          // Is Valid
          isValid = ko.computed(function () {
@@ -418,7 +427,9 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
          toDate: toDate,
          businessPartnerId: businessPartnerId,
          businessPartnerSubTypeId: businessPartnerSubTypeId,
+         businessPartnerSubTypeName:businessPartnerSubTypeName,
          bpRatingTypeId: bpRatingTypeId,
+         bpRatingTypeName : bpRatingTypeName,
          errors: errors,
          isValid: isValid,
          dirtyFlag: dirtyFlag,
@@ -440,6 +451,10 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
     // BusinessPartnerCompany Factory
     BusinessPartnerCompany.Create = function() {
         return new BusinessPartnerCompany("", "", undefined, "", "", undefined);
+    };
+    // BusinessPartnerInType Factory
+    BusinessPartnerInType.Create = function () {
+        return new BusinessPartnerInType(undefined, "", undefined, undefined, undefined, undefined, "", undefined, "");
     };
     // Convert (Business Partner) Client to server
     var BusinessPartnerServerMapper = function(clientData) {
@@ -524,12 +539,13 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.BusinessPartnerInTypeDescription = item.businessPartnerInTypeDescription() === undefined ? undefined : item.businessPartnerInTypeDescription();
         result.FromDate = item.fromDate() === undefined ? undefined : moment(item.fromDate()).format(ist.utcFormat) + "Z";
         result.ToDate = item.toDate() === undefined ? undefined : moment(item.toDate()).format(ist.utcFormat) + "Z";
-        result.BusinessPartnerId = item.businessPartnerId() === undefined ? undefined : item.businessPartnerId;
+        result.BusinessPartnerId = item.businessPartnerId() === undefined ? undefined : item.businessPartnerId();
         result.BusinessPartnerSubTypeId = item.businessPartnerSubTypeId() === undefined ? undefined : item.businessPartnerSubTypeId();
+        result.BusinessPartnerSubTypeName = item.businessPartnerSubTypeName() === undefined ? undefined : item.businessPartnerSubTypeName();
         result.BpRatingTypeId = item.bpRatingTypeId() === undefined ? undefined : item.bpRatingTypeId();
+        result.BpRatingTypeName = item.bpRatingTypeName() === undefined ? undefined : item.bpRatingTypeName();
         return result;
     };
-
 
     // Convert (Business Partner) Server to Client
     var BusinessPartnerClientMapper = function(serverData) {
@@ -618,7 +634,9 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             businessPartnerInType.toDate(item.toDate === null ? undefined :moment(item.toDate).toDate());
             businessPartnerInType.businessPartnerId(item.BusinessPartnerId === null ? undefined : item.BusinessPartnerId);
             businessPartnerInType.businessPartnerSubTypeId(item.BusinessPartnerSubTypeId === null ? undefined : item.BusinessPartnerSubTypeId);
+            businessPartnerInType.businessPartnerSubTypeName(item.BusinessPartnerSubTypeName === null ? undefined : item.BusinessPartnerSubTypeName);
             businessPartnerInType.bpRatingTypeId(item.BpRatingTypeId === null ? undefined : item.BpRatingTypeId);
+            businessPartnerInType.bpRatingTypeName(item.BpRatingTypeName === null ? undefined : item.BpRatingTypeName);
             return businessPartnerInType;
     };
     return {

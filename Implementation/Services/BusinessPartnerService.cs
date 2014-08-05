@@ -226,7 +226,7 @@ namespace Implementation.Services
                 //add new items
                 foreach (BusinessPartnerInType itemInType in businessPartner.BusinessPartnerInTypes)
                 {
-                    if (businessPartnerDbVersion.BusinessPartnerInTypes.All(x => x.BusinessPartnerInTypeId != itemInType.BusinessPartnerInTypeId))
+                    if (businessPartnerDbVersion.BusinessPartnerInTypes.All(x => x.BusinessPartnerInTypeId != itemInType.BusinessPartnerInTypeId) || itemInType.BusinessPartnerInTypeId == 0)
                     {
                        // set user domain key
                        itemInType.UserDomainKey = businessPartnerRepository.UserDomainKey;

@@ -260,7 +260,8 @@ namespace Cares.Web.ModelMappers
             {
                 BusinessPartnerSubTypeId = source.BusinessPartnerSubTypeId,
                 BusinessPartnerSubTypeCode = source.BusinessPartnerSubTypeCode,
-                BusinessPartnerSubTypeName = source.BusinessPartnerSubTypeName
+                BusinessPartnerSubTypeName = source.BusinessPartnerSubTypeCode +'-'+ source.BusinessPartnerSubTypeName,
+                BusinessPartnerSubTypeCustomId = source.BusinessPartnerSubTypeId.ToString() + '-' + source.BusinessPartnerSubTypeCode + '-' + source.BusinessPartnerSubTypeName
             };
         }
 
@@ -287,15 +288,24 @@ namespace Cares.Web.ModelMappers
         public static ApiModel.BusinessPartnerInType CreateFrom(this DomainModel.BusinessPartnerInType source)
         {
             return new ApiModel.BusinessPartnerInType
-            {
-                BusinessPartnerInTypeId = source.BusinessPartnerInTypeId,
-                BusinessPartnerInTypeDescription = source.BusinessPartnerInTypeDescription,
-                BusinessPartnerSubTypeId = source.BusinessPartnerSubTypeId,
-                FromDate = source.FromDate,
-                ToDate = source.ToDate,
-                BusinessPartnerId = source.BusinessPartnerId > 0 ? (long)source.BusinessPartnerId : 0,
-                BpRatingTypeId = source.BpRatingTypeId
-            };
+                   {
+                       BusinessPartnerInTypeId = source.BusinessPartnerInTypeId,
+                       BusinessPartnerInTypeDescription = source.BusinessPartnerInTypeDescription,
+                       BusinessPartnerSubTypeId = source.BusinessPartnerSubTypeId,
+                       BusinessPartnerSubTypeName =
+                           source.BusinessPartnerSubType != null
+                               ? (source.BusinessPartnerSubType.BusinessPartnerSubTypeCode + '-' +
+                                  source.BusinessPartnerSubType.BusinessPartnerSubTypeName)
+                               : string.Empty,
+                       FromDate = source.FromDate,
+                       ToDate = source.ToDate,
+                       BusinessPartnerId = source.BusinessPartnerId > 0 ? (long) source.BusinessPartnerId : 0,
+                       BpRatingTypeId = source.BpRatingTypeId,
+                       BpRatingTypeName =
+                           source.BpRatingType != null
+                               ? (source.BpRatingType.BpRatingTypeCode + '-' + source.BpRatingType.BpRatingTypeName)
+                               : string.Empty
+                   };
         }
 
         /// <summary>

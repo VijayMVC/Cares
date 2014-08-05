@@ -56,16 +56,7 @@ define("businessPartner/businessPartner.viewModel",
                     searchFilter = ko.observable(),
                     // select Filter
                     selectFilter = ko.observable(),
-                    // business partner Type from date
-                    businessPartnerTypeFromDate = ko.observable(),
-                    // business partner type to date
-                    businessPartnerTypeToDate = ko.observable(),
-                    // business partner type selected sub type
-                    businessPartnerTypeSelectedSubTypeId = ko.observable(),
-                    // business partner type selected bp rating
-                    businessPartnerTypeSelecedBpRating = ko.observable(),
-                
-                   // #region Utility Functions
+                    // #region Utility Functions
                     // Select filter option Individual or Company list
                     optionIndividualOrCompany = [{ Id: true, Name: 'Individual' },{Id : false, Name :  'Company'}],
                     // Select Gender list
@@ -151,17 +142,58 @@ define("businessPartner/businessPartner.viewModel",
                             return;
                         //}
                     },
+                    // business partner InType selected subtype id computed
+                    businessPartnerTypeSelectedSubTypeIdComputed = ko.computed(function () {
+                        if (selectedBusinessPartner() != undefined && selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId() != undefined && selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId().split('-').length == 3)
+                            return selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId().split('-')[0];
+                        else {
+                            return undefined;
+                        }
+                    }),
+                    // business partner intype selected subtype name computed
+                    businessPartnerTypeSelectedSubTypeNameComputed = ko.computed(function () {
+                        if (selectedBusinessPartner() != undefined && selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId() != undefined && selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId().split('-').length == 3)
+                            return selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId().split('-')[1] + '-' + selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId().split('-')[2];
+                        else {
+                            return undefined;
+                        }
+                    }),
+                    // business partner intype selected rating id computed
+                    businessPartnerTypeSelecedBpRatingIdComputed = ko.computed(function() {
+                        if (selectedBusinessPartner() != undefined && selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId() != undefined && selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId().split('-').length == 3)
+                            return selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId().split('-')[0];
+                        else {
+                            return undefined;
+                        }
+                    }),
+                    // business partner intype selected rating name computed
+                    businessPartnerTypeSelecedBpRatingNameComputed = ko.computed(function () {
+                        if (selectedBusinessPartner() != undefined && selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId() != undefined && selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId().split('-').length == 3)
+                            return selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId().split('-')[1] + '-' + selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId().split('-')[2];
+                        else {
+                            return undefined;
+                        }
+                    }),
+                     // Do Before Add BusinessPartner InType Item
+                    doBeforeAddItem = function () {
+                        var flag = true;
+                        if (!selectedBusinessPartner().businessPartnerInTypeNew().isValid()) {
+                            selectedBusinessPartner().businessPartnerInTypeNew().errors.showAllMessages();
+                            flag = false;
+                        }
+                        return flag;
+                    },
                     // Add a BusinessPartner In Type
                     onAddBusinessPartnerInType = function () {
-                        var businessPartnerInType =model.BusinessPartnerInType(undefined, '', businessPartnerTypeFromDate(), businessPartnerTypeToDate(), selectedBusinessPartner().businessPartnerId, businessPartnerTypeSelectedSubTypeId(), businessPartnerTypeSelecedBpRating());
-                        selectedBusinessPartner().businessPartnerInTypes.push(businessPartnerInType);
-                        selectedBusinessPartner().businessPartnerInTypes.valueHasMutated();
+                        // check validation error before add
+                        if (doBeforeAddItem()) {
+                            var businessPartnerInType = model.BusinessPartnerInType(undefined, '', selectedBusinessPartner().businessPartnerInTypeNew().fromDate(), selectedBusinessPartner().businessPartnerInTypeNew().fromDate(), selectedBusinessPartner().businessPartnerId(), businessPartnerTypeSelectedSubTypeIdComputed(), businessPartnerTypeSelectedSubTypeNameComputed(), businessPartnerTypeSelecedBpRatingIdComputed(), businessPartnerTypeSelecedBpRatingNameComputed());
+                            selectedBusinessPartner().businessPartnerInTypes.push(businessPartnerInType);
+                            selectedBusinessPartner().businessPartnerInTypes.valueHasMutated();
 
-                        // emplty input fields
-                        businessPartnerTypeFromDate(undefined);
-                        businessPartnerTypeToDate(undefined);
-                        businessPartnerTypeSelectedSubTypeId(undefined);
-                        businessPartnerTypeSelecedBpRating(undefined);
+                            // emplty input fields
+                            selectedBusinessPartner().businessPartnerInTypeNew(model.BusinessPartnerInType(undefined, '', undefined, undefined, undefined, undefined, undefined, undefined, undefined));
+                        }
                     },
                     // Create Business Partner
                     createBusinessPartner = function () {
@@ -366,12 +398,8 @@ define("businessPartner/businessPartner.viewModel",
                     listSelectedBusinessPartner: listSelectedBusinessPartner,      
                     optionGenderList: optionGenderList,
                     optionMaritalStatusList: optionMaritalStatusList,
-                    businessPartnerTypeFromDate: businessPartnerTypeFromDate,
-                    businessPartnerTypeToDate: businessPartnerTypeToDate,
                     onDeleteBusinessPartnerInType: onDeleteBusinessPartnerInType,
                     onAddBusinessPartnerInType: onAddBusinessPartnerInType,
-                    businessPartnerTypeSelectedSubTypeId: businessPartnerTypeSelectedSubTypeId,
-                    businessPartnerTypeSelecedBpRating:businessPartnerTypeSelecedBpRating
                     // Utility Methods
                 };
             })()
