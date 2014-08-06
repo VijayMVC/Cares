@@ -19,7 +19,16 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     paymentTerms = ko.observableArray([]),
                     // Vehicles
                     vehicles = ko.observableArray([]),
+                    // Selected Vehicle
+                    selectedVehicle = ko.observable({ PlateNumber: "", HireGroup: "", VehicleMake: "" }),
                     // #endregion Arrays
+                    // #region Utility Functions
+                    selectVehicle = function(vehicle) {
+                        if (selectedVehicle() !== vehicle) {
+                            selectedVehicle(vehicle);
+                        }    
+                    },
+                    // #endregion Utility Functions
                     // #region Observables
                     // Initialize the view model
                     initialize = function(specifiedView) {
@@ -68,9 +77,11 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     locations: locations,
                     vehicles: vehicles,
                     paymentTerms: paymentTerms,
+                    selectedVehicle: selectedVehicle,
                     // Observables
                     // Utility Methods
-                    initialize: initialize
+                    initialize: initialize,
+                    selectVehicle: selectVehicle
                     // Utility Methods
                 };
             })()

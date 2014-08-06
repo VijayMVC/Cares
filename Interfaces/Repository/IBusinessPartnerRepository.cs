@@ -1,4 +1,6 @@
-﻿using Models.DomainModels;
+﻿using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
+using Models.DomainModels;
 using Models.RequestModels;
 using Models.ResponseModels;
 
@@ -28,7 +30,5 @@ namespace Interfaces.Repository
         /// <param name="id"></param>
         /// <returns></returns>
         BusinessPartner GetById(long id);
-
-        void SaveChanges();
     }
 }

@@ -29,7 +29,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Business Partner Id
         /// </summary>
-        public long? BusinessPartnerId { get; set; }
+        public long BusinessPartnerId { get; set; }
         /// <summary>
         /// Business Partner Sub Type Id
         /// </summary>
