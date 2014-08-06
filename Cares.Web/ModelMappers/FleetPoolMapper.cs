@@ -1,7 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using Models.RequestModels;
 using Models.ResponseModels;
 using ApiModel=Cares.Web.Models;
-using Models.DomainModels;
+using DomainMOdels=Models.DomainModels;
 namespace Cares.Web.ModelMappers
 {
     /// <summary>
@@ -14,16 +16,23 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static ApiModel.FleetPool CreateFrom(this FleetPool source)
+        public static ApiModel.FleetPool CreateFrom(this DomainMOdels.FleetPool source)
         {
             return new ApiModel.FleetPool
-            {
-                FleetPoolId = source.FleetPoolId,
-                FleetPoolCode = source.FleetPoolCode,
-                FleetPoolName = source.FleetPoolName,
-                Operation = source.Operation.CreateFrom(),
-                Region = source.Region.CreateFrom()
-            };
+                   {
+                       FleetPoolId = source.FleetPoolId,
+                       FleetPoolCode = source.FleetPoolCode,
+                       FleetPoolName = source.FleetPoolName,
+                       ApproximateVehiclesAsgnd = source.ApproximateVehiclesAsgnd,
+                       Description = source.FleetPoolDescription,
+                       OperationId = source.Operation.OperationId,
+                       OperationName = source.Operation.OperationName,
+                       RegionId = source.Region.RegionId,
+                       RegionName = source.Region.RegionName,
+                       CountryId = source.Region.CountryId,
+                       CountryName = source.Region.Country.CountryName,
+                       
+                   };
         }
         #endregion     
         #endregion
@@ -44,6 +53,7 @@ namespace Cares.Web.ModelMappers
         }
         #endregion
 
+
         #region FleetPoolResponse
 
         /// <summary>
@@ -59,5 +69,6 @@ namespace Cares.Web.ModelMappers
         }
 
         #endregion
+
     }
 }

@@ -19,7 +19,7 @@ namespace Cares.Web.ModelMappers
                 {
                     OperationId = source.OperationId,
                     OperationCode = source.OperationCode,
-                    OperationName = source.OperationCode+"-"+ source.OperationName
+                    OperationName = source.OperationName
                 }; 
             }
         #endregion

@@ -1,6 +1,7 @@
 ﻿using Models.DomainModels;
 using Models.RequestModels;
 using Models.ResponseModels;
+using System;
 
 namespace Interfaces.IServices
 {
@@ -22,7 +23,11 @@ namespace Interfaces.IServices
         /// <summary>
         /// Dalete Fleet Pool
         /// </summary>
-        /// <param name="id"></param>
         void DeleteFleetPool(int id);
+
+        /// <summary>
+        /// Add new FleetPools
+        /// </summary>
+        FleetPool AddNewFleetPool(FleetPool fleetPool);
     }
 }

@@ -24,7 +24,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            var abc = fleetPoolService.LoadFleetPoolBaseData().CreateFrom();
+            FleetPoolBaseDataResponse abc = fleetPoolService.LoadFleetPoolBaseData().CreateFrom();
             return abc;
         }
         #endregion

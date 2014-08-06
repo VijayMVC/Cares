@@ -27,8 +27,19 @@ namespace Implementation.Services
                 TotalCount = rowCount
             };
         }
-
-
+        /// <summary>
+        /// Add new FleetPools
+        /// </summary>
+        public FleetPool AddNewFleetPool(FleetPool fleetPool) //later
+        {
+            fleetPool.RecCreatedBy = fleetPoolRepository.LoggedInUserIdentity;
+            fleetPool.RecCreatedDt = DateTime.Now;
+            fleetPool.RecLastUpdatedBy = fleetPoolRepository.LoggedInUserIdentity;
+            fleetPool.RecLastUpdatedDt = DateTime.Now;
+            FleetPool result = fleetPoolRepository.AddNewFleetPool(fleetPool);
+            fleetPoolRepository.SaveChanges();
+            return result;
+        }
         /// <summary>
         /// Load Fleet Pool Base Data
         /// </summary>
@@ -41,7 +52,9 @@ namespace Implementation.Services
                 Countries = countryRepository.GetAll()
             };
         }
-
+        /// <summary>
+        /// Delete FleetPool
+        /// </summary>
         public void DeleteFleetPool(int id)
         {
             FleetPool dbVersion = FindFleetPool(id);
@@ -49,10 +62,12 @@ namespace Implementation.Services
             {
                 throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, "FleetPool with Id {0} not found!", id));
             }
-
             fleetPoolRepository.Delete(dbVersion);
             fleetPoolRepository.SaveChanges();
         }
+        /// <summary>
+        /// Find FleetPool by id
+        /// </summary>
         public FleetPool FindFleetPool(int id)
         {
             return fleetPoolRepository.Find(id);

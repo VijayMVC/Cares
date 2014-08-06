@@ -3,7 +3,7 @@
     var
     // FleetPool entity
     // ReSharper disable InconsistentNaming
-    FleetPool = function (specifiedId,specifiedCode, specifiedName, specifiedOperationName, specifiedRegionName, specifiedCountry) {
+    FleetPool = function (specifiedId, specifiedCode, specifiedName, specifiedOperationName, specifiedRegionName, specifiedOperationId, specifiedCountryId, specifiedRegionId, specifiedvehicleasigned,specifieddescription) {
         // ReSharper restore InconsistentNaming
         var 
             // Unique key id
@@ -13,12 +13,14 @@
             // Name
             name = ko.observable(specifiedName).extend({ required: true }),
             //Operation Name
-            operation = ko.observable(specifiedOperationName),
-            //Region Name
-            region = ko.observable(specifiedRegionName),
-            //Country
-            country=ko.observable(specifiedCountry),
-            // Errors
+            operationName = ko.observable(specifiedOperationName),
+            operationId = ko.observable(specifiedOperationId),
+            countryName = ko.observable(specifiedOperationName),
+            countryId = ko.observable(specifiedCountryId),
+            regionId = ko.observable(specifiedRegionId),
+            regionName = ko.observable(specifiedRegionName),
+            vehiclesAssigned = ko.observable(specifiedvehicleasigned),
+            description = ko.observable(specifieddescription),
             errors = ko.validation.group({
                 name: name
             }),
@@ -33,9 +35,14 @@
                 id:id,
                 name: name,
                 code: code,
-                operation: operation,
-                region: region,
-                country:country
+                operationId: operationId,
+                operationName:operationName,
+                regionId: regionId,
+                regionName:regionName,
+                countryId: countryId,
+                countryName: countryName,
+                vehiclesAssigned: vehiclesAssigned,
+                description: description
             }),
             // Has Changes
             hasChanges = ko.computed(function () {
@@ -59,15 +66,20 @@
             id:id,
             code: code,
             name: name,
-            operation: operation,
-            region: region,
-            country:country,
+            operationId: operationId,
+            operationName:operationName,
+            regionId: regionId,
+            regionName:countryName,
+            countryId: countryId,
+            countryName:countryName,
             errors: errors,
             isValid: isValid,
             dirtyFlag: dirtyFlag,
             hasChanges: hasChanges,
             reset: reset,
-            convertToServerData: convertToServerData
+            convertToServerData: convertToServerData,
+            description: description,
+            vehiclesAssigned: vehiclesAssigned
           
         };
     };
@@ -80,12 +92,14 @@
            code = ko.observable(undefined),
            // Name
            name = ko.observable(undefined).extend({ required: true }),
-           //Operation Name
-           operation = ko.observable(undefined),
-           //Region Name
-           region = ko.observable(undefined),
-           //Country
-           country = ko.observable(undefined),
+           operationName = ko.observable(undefined),
+            operationId = ko.observable(undefined),
+            countryName = ko.observable(undefined),
+            countryId = ko.observable(undefined),
+            regionId = ko.observable(undefined),
+            regionName = ko.observable(undefined),
+          vehiclesAssigned = ko.observable(undefined),
+            description = ko.observable(undefined),
            // Errors
            errors = ko.validation.group({
                name: name
@@ -101,9 +115,14 @@
                id: id,
                name: name,
                code: code,
-               operation: operation,
-               region: region,
-               country: country
+               operationName: operationName,
+               operationId: operationId,
+               countryName: countryName,
+               countryId: countryId,
+               regionId: regionId,
+               regionName: regionName,
+               description: description,
+               vehiclesAssigned: vehiclesAssigned
            }),
            // Has Changes
            hasChanges = ko.computed(function () {
@@ -128,28 +147,51 @@
             id: id,
             code: code,
             name: name,
-            operation: operation,
-            region: region,
-            country: country,
+            operationName: operationName,
+            operationId: operationId,
+            countryName: countryName,
+            countryId: countryId,
+            regionId: regionId,
+            regionName: regionName,
+            description: description,
+            vehiclesAssigned: vehiclesAssigned,
             errors: errors,
             isValid: isValid,
             dirtyFlag: dirtyFlag,
             hasChanges: hasChanges,
             reset: reset,
-            convertToServerData: convertToServerData
+            convertToServerData: convertToServerData 
 
         };
     };
 
+    var fleetPoolServertoClinetMapper = function (source) {
+
+        var fleetPool = new FleetPoolDetail();
+        fleetPool.id(source.FleetPoolId);
+        fleetPool.name(source.FleetPoolName);
+        fleetPool.code(source.FleetPoolCode);
+        fleetPool.regionName(source.RegionName);
+        fleetPool.regionId(source.RegionId);
+        fleetPool.countryName(source.CountryName);
+        fleetPool.operationName(source.OperationName);
+        fleetPool.countryId(source.CountryId);
+        fleetPool.operationId(source.OperationId);
+        fleetPool.description(source.Description);
+        fleetPool.vehiclesAssigned(source.ApproximateVehiclesAsgnd);
+
+        return fleetPool;
+    };
 
     // FleetPool Factory
     FleetPool.Create = function (source) {
-        return new FleetPool(source.FleetPoolId,source.FleetPoolCode, source.FleetPoolName, source.Operation.OperationName, source.Region.RegionName, source.Region.Country);
+        return new FleetPool(source.FleetPoolId,source.FleetPoolCode, source.FleetPoolName, source.operationName ,source.regionName,source.countryId,source.countryName,source.operationId);
     };
 
     return {
         FleetPool: FleetPool,
-        FleetPoolDetail: FleetPoolDetail
+        FleetPoolDetail: FleetPoolDetail,
+        fleetPoolServertoClinetMapper: fleetPoolServertoClinetMapper
 
     };
 });

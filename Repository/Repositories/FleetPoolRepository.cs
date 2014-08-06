@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using Interfaces.Repository;
@@ -15,7 +16,16 @@ namespace Repository.Repositories
     public sealed class FleetPoolRepository : BaseRepository<FleetPool>, IFleetPoolRepository
     {
         #region Public
-
+        /// <summary>
+        /// Add new FleetPools
+        /// </summary>
+        public FleetPool AddNewFleetPool(FleetPool fleet)
+        {
+                FleetPool fleetPool = DbSet.Add(fleet);
+                LoadProperty(fleetPool, () => fleetPool.Operation);
+                LoadProperty(fleetPool, () => fleetPool.Region);
+                return fleetPool;
+        }
         /// <summary>
         /// SearchFleet Pool for the given parameters by user
         /// </summary>

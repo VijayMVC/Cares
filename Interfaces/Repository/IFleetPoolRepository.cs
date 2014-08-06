@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Models.DomainModels;
 using Models.RequestModels;
 
@@ -13,5 +14,9 @@ namespace Interfaces.Repository
         /// Search Fleet Pool Request
         /// </summary>
         IEnumerable<FleetPool> SearchFleetPool(FleetPoolSearchRequest request, out int rowCount);
+        /// <summary>
+        /// Add new FleetPools
+        /// </summary>
+        FleetPool AddNewFleetPool(FleetPool request);
     }
 }
