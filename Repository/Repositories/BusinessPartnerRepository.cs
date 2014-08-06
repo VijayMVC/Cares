@@ -110,14 +110,6 @@ namespace Repository.Repositories
         }
         #endregion
 
-        /// <summary>
-        /// Save Changes
-        /// </summary>
-        public void SaveChanges(List<BusinessPartnerInType> businessPartnerInTypes)
-        {
-            businessPartnerInTypes.ForEach(bp => db.BusinessPartnerInTypes.Remove(bp));
-            SaveChanges();
-        }
 
     }
 }

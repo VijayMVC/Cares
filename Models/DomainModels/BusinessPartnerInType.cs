@@ -13,7 +13,7 @@ namespace Models.DomainModels
         /// <summary>
         /// Business Partner In Type Id
         /// </summary>
-        [Required]
+        [Key, Column(Order = 2), DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long BusinessPartnerInTypeId { get; set; }
         /// <summary>
         /// Business Partner In Type Description
@@ -31,7 +31,7 @@ namespace Models.DomainModels
         /// <summary>
         /// Business Partner Id
         /// </summary>
-        [ForeignKey("BusinessPartner")]
+        [Key, ForeignKey("BusinessPartner"), Column(Order = 1)]
         public long BusinessPartnerId { get; set; }
         /// <summary>
         /// Business Partner Sub Type Id

@@ -259,7 +259,7 @@ namespace Implementation.Services
                 #endregion
 
                 // save changes
-                businessPartnerRepository.SaveChanges(missingItems);
+                businessPartnerRepository.SaveChanges();
                 return true;
             }
 

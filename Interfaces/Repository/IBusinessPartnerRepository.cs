@@ -12,11 +12,6 @@ namespace Interfaces.Repository
     public interface IBusinessPartnerRepository : IBaseRepository<BusinessPartner, long>
     {
         /// <summary>
-        /// Save Changes
-        /// </summary>
-        void SaveChanges(List<BusinessPartnerInType> businessPartnerInTypes);
-
-        /// <summary>
         /// Get All business partners
         /// </summary>
         /// <param name="businessPartnerSearchRequest"></param>
