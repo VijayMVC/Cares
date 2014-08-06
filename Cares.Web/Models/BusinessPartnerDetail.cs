@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Cares.Web.Models
 {
@@ -27,19 +26,19 @@ namespace Cares.Web.Models
         /// Business Partnere descritpion
         /// </summary>
         public string BusinessPartnerDesciption { get; set; }
-         /// <summary>
+        /// <summary>
         /// System Guarantor Check
         /// </summary>
         public bool IsSystemGuarantor { get; set; }
         /// <summary>
         /// Non System Guarantor
         /// </summary>
-        public string NonSystemGuarantor { get; set; } 
+        public string NonSystemGuarantor { get; set; }
         /// <summary>
         /// Individual Check
         /// </summary>
         public bool IsIndividual { get; set; }
-        
+
         /// <summary>
         /// Business Partner Email Address
         /// </summary>
@@ -72,23 +71,26 @@ namespace Cares.Web.Models
         /// Business Legal Status Id
         /// </summary>
         public int? BusinessLegalStatusId { get; set; }
-
         #endregion
 
+        #region Reference Properties
         /// <summary>
         /// Business Partner Individual 
         /// </summary>
         public BusinessPartnerIndividual BusinessPartnerIndividual { get; set; }
-
         /// <summary>
         /// Business Partner Company 
         /// </summary>
         public BusinessPartnerCompany BusinessPartnerCompany { get; set; }
-
         /// <summary>
         /// Business Partner InTypes 
         /// </summary>
-        public IEnumerable<BusinessPartnerInType> BusinessPartnerInTypes { get; set; }
+        public List<BusinessPartnerInType> BusinessPartnerInTypes { get; set; }
+        /// <summary>
+        /// Business Partner Phones 
+        /// </summary>
+        public List<Phone> BusinessPartnerPhoneNumbers { get; set; }
+        #endregion
 
         #endregion
     }

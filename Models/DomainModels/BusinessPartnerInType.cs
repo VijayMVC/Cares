@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models.DomainModels
 {
@@ -12,7 +13,7 @@ namespace Models.DomainModels
         /// <summary>
         /// Business Partner In Type Id
         /// </summary>
-        [Required]
+        [Key, Column(Order = 2), DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long BusinessPartnerInTypeId { get; set; }
         /// <summary>
         /// Business Partner In Type Description
@@ -30,7 +31,7 @@ namespace Models.DomainModels
         /// <summary>
         /// Business Partner Id
         /// </summary>
-        [Required]
+        [Key, ForeignKey("BusinessPartner"), Column(Order = 1)]
         public long BusinessPartnerId { get; set; }
         /// <summary>
         /// Business Partner Sub Type Id
@@ -65,6 +66,11 @@ namespace Models.DomainModels
         /// Business Partner Rating Type
         /// </summary>
         public virtual BpRatingType BpRatingType { get; set; }
+
+        /// <summary>
+        /// Business Partner Sub Type
+        /// </summary>
+        public virtual BusinessPartnerSubType BusinessPartnerSubType { get; set; }
         
         #endregion
     }

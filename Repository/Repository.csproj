@@ -125,6 +125,7 @@
     <Compile Include="Repositories\BusinessPartnerSubTypeRepository.cs" />
     <Compile Include="Repositories\BusinessPartnerIndividualRepository.cs" />
     <Compile Include="Repositories\BusinessPartnerCompanyRepository.cs" />
+    <Compile Include="Repositories\PhoneTypeRepository.cs" />
     <Compile Include="Repositories\BusinessSegmentRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\CompanyRepository.cs" />

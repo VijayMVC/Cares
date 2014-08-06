@@ -44,6 +44,8 @@ define("businessPartner/businessPartner.viewModel",
                     businessSegments = ko.observableArray([]),
                      // Business Partner SubType Array
                     businessPartnerSubTypes = ko.observableArray([]),
+                     // Phone Types Array
+                    phoneTypes = ko.observableArray([]),
                     // Sort On
                     sortOn = ko.observable(1),
                     // Sort Order -  true means asc, false means desc
@@ -56,12 +58,7 @@ define("businessPartner/businessPartner.viewModel",
                     searchFilter = ko.observable(),
                     // select Filter
                     selectFilter = ko.observable(),
-                    // business partner Type from date
-                    businessPartnerTypeFromDate = ko.observable(),
-                    // business partner type to date
-                    businessPartnerTypeToDate = ko.observable(),
-
-                   // #region Utility Functions
+                    // #region Utility Functions
                     // Select filter option Individual or Company list
                     optionIndividualOrCompany = [{ Id: true, Name: 'Individual' },{Id : false, Name :  'Company'}],
                     // Select Gender list
@@ -142,16 +139,103 @@ define("businessPartner/businessPartner.viewModel",
                     },
                     // Delete a BusinessPartner In Type
                     onDeleteBusinessPartnerInType = function (businessPartnerInType) {
-                        //if (!businessPartnerInType.businessPartnerInTypeId()) {
-                            selectedBusinessPartner().businessPartnerInTypes.remove(businessPartnerInType);
+                           selectedBusinessPartner().businessPartnerInTypes.remove(businessPartnerInType);
                             return;
-                        //}
+                    },
+                    // Delete a BusinessPartner Phone Item
+                    onDeleteBusinessPartnerPhone = function (businessPartnerPhone) {
+                        selectedBusinessPartner().businessPartnerPhoneNumbers.remove(businessPartnerPhone);
+                        return;
+                    },
+                    // business partner InType selected subtype id computed
+                    businessPartnerTypeSelectedSubTypeIdComputed = ko.computed(function () {
+                        if (selectedBusinessPartner() != undefined && selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId() != undefined && selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId().split('-').length == 3)
+                            return selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId().split('-')[0];
+                        else {
+                            return undefined;
+                        }
+                    }),
+                    // business partner intype selected subtype name computed
+                    businessPartnerTypeSelectedSubTypeNameComputed = ko.computed(function () {
+                        if (selectedBusinessPartner() != undefined && selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId() != undefined && selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId().split('-').length == 3)
+                            return selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId().split('-')[1] + '-' + selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId().split('-')[2];
+                        else {
+                            return undefined;
+                        }
+                    }),
+                    // business partner intype selected rating id computed
+                    businessPartnerTypeSelecedBpRatingIdComputed = ko.computed(function() {
+                        if (selectedBusinessPartner() != undefined && selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId() != undefined && selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId().split('-').length == 3)
+                            return selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId().split('-')[0];
+                        else {
+                            return undefined;
+                        }
+                    }),
+                    // business partner intype selected rating name computed
+                    businessPartnerTypeSelecedBpRatingNameComputed = ko.computed(function () {
+                        if (selectedBusinessPartner() != undefined && selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId() != undefined && selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId().split('-').length == 3)
+                            return selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId().split('-')[1] + '-' + selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId().split('-')[2];
+                        else {
+                            return undefined;
+                        }
+                    }),
+                    // business partner phone selected phone type id computed
+                    businessPartnerPhoneSelecedPhoneTypeIdComputed = ko.computed(function() {
+                        if (selectedBusinessPartner() != undefined && selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId() != undefined && selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId().split('-').length == 3)
+                            return selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId().split('-')[0];
+                        else {
+                            return undefined;
+                        }
+                    }),
+                    // business partner phone selected phone type name computed
+                    businessPartnerPhoneSelecedPhoneTypeNameComputed = ko.computed(function () {
+                        if (selectedBusinessPartner() != undefined && selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId() != undefined && selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId().split('-').length == 3)
+                            return selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId().split('-')[1] + '-' + selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId().split('-')[2];
+                        else {
+                            return undefined;
+                        }
+                    }),
+                     // Do Before Add BusinessPartner InType Item
+                    doBeforeAddItem = function () {
+                        var flag = true;
+                        if (!selectedBusinessPartner().businessPartnerInTypeNew().isValid()) {
+                            selectedBusinessPartner().businessPartnerInTypeNew().errors.showAllMessages();
+                            flag = false;
+                        }
+                        return flag;
                     },
                     // Add a BusinessPartner In Type
                     onAddBusinessPartnerInType = function () {
-                        //var businessPartnerInType = model.BusinessPartnerInType.Create();
-                        //selectedBusinessPartner().businessPartnerInTypes.push(businessPartnerInType);
-                        //selectedBusinessPartner().businessPartnerInTypes.valueHasMutated();
+                        // check validation error before add
+                        if (doBeforeAddItem()) {
+                            var businessPartnerInType = model.BusinessPartnerInType(undefined, '', selectedBusinessPartner().businessPartnerInTypeNew().fromDate(), selectedBusinessPartner().businessPartnerInTypeNew().fromDate(), selectedBusinessPartner().businessPartnerId(), businessPartnerTypeSelectedSubTypeIdComputed(), businessPartnerTypeSelectedSubTypeNameComputed(), businessPartnerTypeSelecedBpRatingIdComputed(), businessPartnerTypeSelecedBpRatingNameComputed());
+                            selectedBusinessPartner().businessPartnerInTypes.push(businessPartnerInType);
+                            selectedBusinessPartner().businessPartnerInTypes.valueHasMutated();
+
+                            // emplty input fields
+                            selectedBusinessPartner().businessPartnerInTypeNew(model.BusinessPartnerInType(undefined, '', undefined, undefined, undefined, undefined, undefined, undefined, undefined));
+                        }
+                    },
+                    // Do Before Add BusinessPartner Phone Item
+                    doBeforeAddPhoneItem = function () {
+                        var flag = true;
+                        if (!selectedBusinessPartner().businessPartnerPhoneNumberNew().isValid()) {
+                            selectedBusinessPartner().businessPartnerPhoneNumberNew().errors.showAllMessages();
+                            flag = false;
+                        }
+                        return flag;
+                    },
+                    // Add a BusinessPartner Phone
+                    onAddBusinessPartnerPhone = function () {
+                        // check validation error before add
+                        if (doBeforeAddPhoneItem()) {
+                            var businessPartnerPhone = model.BusinessPartnerPhone(undefined, selectedBusinessPartner().businessPartnerPhoneNumberNew().isDefault(), selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneNumber(), selectedBusinessPartner().businessPartnerId(), businessPartnerPhoneSelecedPhoneTypeIdComputed(), businessPartnerPhoneSelecedPhoneTypeNameComputed());
+                            selectedBusinessPartner().businessPartnerPhoneNumbers.push(businessPartnerPhone);
+                            selectedBusinessPartner().businessPartnerPhoneNumbers.valueHasMutated();
+
+                            // emplty input fields
+                            selectedBusinessPartner().businessPartnerPhoneNumberNew(model.BusinessPartnerPhone(undefined,false,undefined,undefined,undefined));
+                        }
                     },
                     // Create Business Partner
                     createBusinessPartner = function () {
@@ -248,6 +332,10 @@ define("businessPartner/businessPartner.viewModel",
                                 businessPartnerSubTypes.removeAll();
                                 ko.utils.arrayPushAll(businessPartnerSubTypes(), data.ResponseBusinessPartnerSubTypes);
                                 businessPartnerSubTypes.valueHasMutated();
+                                // Phone Types array
+                                phoneTypes.removeAll();
+                                ko.utils.arrayPushAll(phoneTypes(), data.ResponsePhoneTypes);
+                                phoneTypes.valueHasMutated();
                             },
                             error: function () {
                                 toastr.error("Failed to load base data");
@@ -337,7 +425,8 @@ define("businessPartner/businessPartner.viewModel",
                     passportCountries: passportCountries,
                     occupationTypes: occupationTypes,
                     businessSegments: businessSegments,
-                    businessPartnerSubTypes:businessPartnerSubTypes,
+                    businessPartnerSubTypes: businessPartnerSubTypes,
+                    phoneTypes:phoneTypes,
                     // Utility Methods
                     onSaveBusinessPartner: onSaveBusinessPartner,
                     createBusinessPartner: createBusinessPartner,
@@ -356,10 +445,11 @@ define("businessPartner/businessPartner.viewModel",
                     listSelectedBusinessPartner: listSelectedBusinessPartner,      
                     optionGenderList: optionGenderList,
                     optionMaritalStatusList: optionMaritalStatusList,
-                    businessPartnerTypeFromDate: businessPartnerTypeFromDate,
-                    businessPartnerTypeToDate: businessPartnerTypeToDate,
                     onDeleteBusinessPartnerInType: onDeleteBusinessPartnerInType,
-                    onAddBusinessPartnerInType: onAddBusinessPartnerInType
+                    onAddBusinessPartnerInType: onAddBusinessPartnerInType,
+                    doBeforeAddPhoneItem: doBeforeAddPhoneItem,
+                    onAddBusinessPartnerPhone: onAddBusinessPartnerPhone,
+                    onDeleteBusinessPartnerPhone: onDeleteBusinessPartnerPhone
                     // Utility Methods
                 };
             })()

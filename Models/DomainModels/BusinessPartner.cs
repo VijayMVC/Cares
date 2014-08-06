@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-
 namespace Models.DomainModels
 {
     /// <summary>
@@ -108,7 +107,7 @@ namespace Models.DomainModels
         /// </summary>
         [Required]
         public long UserDomainKey { get; set; }
-        
+
         /// <summary>
         /// Company Id
         /// </summary>
@@ -126,7 +125,7 @@ namespace Models.DomainModels
         /// Dealing Employee Id
         /// </summary>
         public long? DealingEmployeeId { get; set; }
-          /// <summary>
+        /// <summary>
         /// Payment Term Id
         /// </summary>
         [Required]
@@ -135,7 +134,7 @@ namespace Models.DomainModels
         /// Business Partner Rating Type Id
         /// </summary>
         public int? BPRatingTypeId { get; set; }
-    
+
         #endregion
 
         #region Reference Properties
@@ -175,6 +174,10 @@ namespace Models.DomainModels
         /// Business Partner In Types collection
         /// </summary>
         public virtual ICollection<BusinessPartnerInType> BusinessPartnerInTypes { get; set; }
+        /// <summary>
+        /// Business Partner In Types Phones
+        /// </summary>
+        public virtual ICollection<Phone> BusinessPartnerPhoneNumbers { get; set; }
 
         #endregion
     }
