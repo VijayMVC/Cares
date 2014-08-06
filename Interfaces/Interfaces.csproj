@@ -94,6 +94,7 @@
     <Compile Include="Repository\IOccupationTypeRepository.cs" />
     <Compile Include="Repository\IOperationRepository.cs" />
     <Compile Include="Repository\IOrgGroupRepository.cs" />
+    <Compile Include="Repository\IPhoneTypeRepository.cs" />
     <Compile Include="Repository\IPaymentTermRepository.cs" />
     <Compile Include="Repository\IPricingStrategyRepository.cs" />
     <Compile Include="Repository\IProductRepository.cs" />
