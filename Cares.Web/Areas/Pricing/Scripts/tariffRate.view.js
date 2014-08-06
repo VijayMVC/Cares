@@ -1,5 +1,5 @@
 ﻿/*
-    View for the Tariff Type. Used to keep the viewmodel clear of UI related logic
+    View for the Tariff Rate. Used to keep the viewmodel clear of UI related logic
 */
 define("tariffRate/tariffRate.view",
     ["jquery", "tariffRate/tariffRate.viewModel"], function ($, tariffViewModel) {
@@ -18,7 +18,6 @@ define("tariffRate/tariffRate.view",
                     if (!bindingRoot) {
                         return;
                     }
-
                     // Handle Sorting
                     handleSorting("tariffRateTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getTariffRates);
 

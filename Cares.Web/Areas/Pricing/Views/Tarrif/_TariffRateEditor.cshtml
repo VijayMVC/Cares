@@ -91,15 +91,11 @@
                 <!-- /ko -->
             </tbody>
         </table>
-        <!-- ko with: editorPager -->
-        @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
-        <!-- /ko -->
+      
         <script id="editHireGroupTemplate" type="text/html">
             <tr data-bind="css: { selectedRow: $data === $root.selectedHireGroup() }">
                 <td class="col-md-2">
-                    @*<input type="checkbox" data-bind="checked: isChecked" />*@
-                    @*<input type="checkbox" data-bind="attr: { value: hireGroupDetailId }, checked: $root.selectedHireGroupList">*@
-                    <input type="checkbox" data-bind="attr: { value: hireGroupDetailId }, checked: $root.isCheck">
+                    <input type="checkbox" data-bind="checked: isChecked, disable :isChecked() && (virtualHireGroupDetailId()!=0) " />
                 </td>
                 <td class="col-md-2">
                     <span data-bind="text: hireGroup"></span>
@@ -135,9 +131,7 @@
         </script>
         <script id="itemHireGroupTemplate" type="text/html">
             <tr data-bind="click: $root.selectHireGroup, css: { selectedRow: $data === $root.selectedHireGroup() }">
-                @*<td><input type="checkbox" data-bind="checked: root.isCheck()" /></td>*@
-                <td><input type="checkbox" data-bind="checked: $root.selectedTarrifRate().tariffRateId===1" /></td>
-                <span data-bind="text: selectedCountry() ? selectedCountry().countryPopulation : 'unknown'"></span>
+                <td><input type="checkbox" data-bind="checked: isChecked, disable :isChecked() && (virtualHireGroupDetailId()!=0)" /></td>
                 <td data-bind="text: hireGroup"></td>
                 <td data-bind="text: vehicleMake"></td>
                 <td data-bind="text: vehicleModel"></td>
@@ -146,8 +140,8 @@
                 <td data-bind="text: allowMileage"></td>
                 <td data-bind="text: excessMileageCharge"></td>
                 <td data-bind="text: standardRt"></td>
-                <td data-bind="text: startDate"></td>
-                <td data-bind="text: endDate"></td>
+                <td data-bind="dateString: startDate"></td>
+                <td data-bind="dateString: endDate"></td>
             </tr>
         </script>
     </div>

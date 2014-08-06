@@ -41,7 +41,6 @@ namespace Repository.Repositories
         {
             return DbSet.Where(vehicleModel => vehicleModel.UserDomainKey == UserDomainKey);
         }
-
         #endregion
     }
 }

@@ -1,7 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 using Models.DomainModels;
-using Models.RequestModels;
-using Models.ResponseModels;
+
 
 namespace Interfaces.Repository
 {
@@ -10,6 +9,10 @@ namespace Interfaces.Repository
     /// </summary>
     public interface IHireGroupDetailRepository: IBaseRepository<HireGroupDetail, long>
     {
-        HireGroupDetailResponse GetHireGroupDetailsForTariffRate();
+        /// <summary>
+        /// Get Hire Group Details For Tarif fRate
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<HireGroupDetail> GetHireGroupDetailsForTariffRate();
     }
 }

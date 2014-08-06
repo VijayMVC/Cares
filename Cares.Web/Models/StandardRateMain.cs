@@ -4,11 +4,14 @@ using System.Collections.Generic;
 namespace Cares.Web.Models
 {
     /// <summary>
-    /// Standard Rate Main Web Models
+    /// Standard Rate Main Web Models with Selected hire groups
     /// </summary>
     public class StandardRateMain
     {
         #region Public Properties
+        /// <summary>
+        /// Standard Rt Main Id
+        /// </summary>
         public long StandardRtMainId { get; set; }
           /// <summary>
         /// Standard Rate Main Code
@@ -45,7 +48,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// List of selected hire group detail for Add/Edit
         /// </summary>
-        List<HireGroupDetail> HireGroupDetailsInStandardRtMain { get; set; }
+        public List<StandardRate> HireGroupDetailsInStandardRtMain { get; set; }
         #endregion
     }
 }

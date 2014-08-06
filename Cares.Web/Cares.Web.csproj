@@ -282,6 +282,7 @@
     <Compile Include="ModelMappers\ProductMapper.cs" />
     <Compile Include="ModelMappers\RegionMapper.cs" />
     <Compile Include="ModelMappers\StandardRateMainMapper.cs" />
+    <Compile Include="ModelMappers\StandardRateMapper.cs" />
     <Compile Include="ModelMappers\TariffRateMapper.cs" />
     <Compile Include="ModelMappers\TariffTypeBaseResponseMapper.cs" />
     <Compile Include="ModelMappers\TarrifTypeDetailResponseMapper.cs" />
@@ -302,7 +303,7 @@
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\HireGroup.cs" />
     <Compile Include="Models\BusinessPartnerCompany.cs" />
-    <Compile Include="Models\HireGroupDetail.cs" />
+    <Compile Include="Models\HireGroupDetailContent.cs" />
     <Compile Include="Models\OccupationType.cs" />
     <Compile Include="Models\PaymentTerm.cs" />
     <Compile Include="Models\Category.cs" />
