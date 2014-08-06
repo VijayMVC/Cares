@@ -32,7 +32,7 @@ namespace Models.DomainModels
         /// Business Partner Id
         /// </summary>
         [ForeignKey("BusinessPartner")]
-        public long? BusinessPartnerId { get; set; }
+        public long BusinessPartnerId { get; set; }
         /// <summary>
         /// Business Partner Sub Type Id
         /// </summary>

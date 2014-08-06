@@ -8,6 +8,7 @@ using Interfaces.Repository;
 using Models.DomainModels;
 using Models.RequestModels;
 using Models.ResponseModels;
+using Repository.Repositories;
 
 namespace Implementation.Services
 {
@@ -18,6 +19,7 @@ namespace Implementation.Services
     {
         #region Private
         private readonly IBusinessPartnerRepository businessPartnerRepository;
+
         #endregion
 
         #region Constructor
@@ -245,9 +247,11 @@ namespace Implementation.Services
                 //remove missing items
                 foreach (BusinessPartnerInType missingBusinessPartnerInType in missingItems)
                 {
-                    BusinessPartnerInType dbVersionMissingItem =businessPartnerDbVersion.BusinessPartnerInTypes.First(x => x.BusinessPartnerInTypeId == missingBusinessPartnerInType.BusinessPartnerInTypeId);
+                    BusinessPartnerInType dbVersionMissingItem = businessPartnerDbVersion.BusinessPartnerInTypes.First(x => x.BusinessPartnerInTypeId == missingBusinessPartnerInType.BusinessPartnerInTypeId);
                     if (dbVersionMissingItem.BusinessPartnerInTypeId > 0)
+                    {
                         businessPartnerDbVersion.BusinessPartnerInTypes.Remove(dbVersionMissingItem);
+                    }
                 }
                     
              
@@ -255,7 +259,7 @@ namespace Implementation.Services
                 #endregion
 
                 // save changes
-                businessPartnerRepository.SaveChanges();
+                businessPartnerRepository.SaveChanges(missingItems);
                 return true;
             }
 
