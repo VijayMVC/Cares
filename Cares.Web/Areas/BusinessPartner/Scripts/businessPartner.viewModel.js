@@ -222,6 +222,17 @@ define("businessPartner/businessPartner.viewModel",
                         if (!selectedBusinessPartner().businessPartnerPhoneNumberNew().isValid()) {
                             selectedBusinessPartner().businessPartnerPhoneNumberNew().errors.showAllMessages();
                             flag = false;
+                        } else {
+                            // check if isdefault true entry already there
+                            var isDefaultAlreadyThere = false;
+                            _.each(selectedBusinessPartner().businessPartnerPhoneNumbers(), function(item) {
+                                if (item.isDefault() == true)
+                                    isDefaultAlreadyThere = true;
+                            });
+                            if (isDefaultAlreadyThere) {
+                                toastr.info("Default record already there!");
+                                return false;
+                            }
                         }
                         return flag;
                     },
@@ -232,7 +243,7 @@ define("businessPartner/businessPartner.viewModel",
                             var businessPartnerPhone = model.BusinessPartnerPhone(undefined, selectedBusinessPartner().businessPartnerPhoneNumberNew().isDefault(), selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneNumber(), selectedBusinessPartner().businessPartnerId(), businessPartnerPhoneSelecedPhoneTypeIdComputed(), businessPartnerPhoneSelecedPhoneTypeNameComputed());
                             selectedBusinessPartner().businessPartnerPhoneNumbers.push(businessPartnerPhone);
                             selectedBusinessPartner().businessPartnerPhoneNumbers.valueHasMutated();
-
+                            
                             // emplty input fields
                             selectedBusinessPartner().businessPartnerPhoneNumberNew(model.BusinessPartnerPhone(undefined,false,undefined,undefined,undefined));
                         }
