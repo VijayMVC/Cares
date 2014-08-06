@@ -28,5 +28,7 @@ namespace Interfaces.Repository
         /// <param name="id"></param>
         /// <returns></returns>
         BusinessPartner GetById(long id);
+
+        void SaveChanges();
     }
 }

@@ -128,6 +128,7 @@
     <Compile Include="DomainModels\PhoneType.cs" />
     <Compile Include="DomainModels\PaymentTerm.cs" />
     <Compile Include="DomainModels\PricingStrategy.cs" />
+    <Compile Include="DomainModels\Phone.cs" />
     <Compile Include="DomainModels\Product.cs" />
     <Compile Include="DomainModels\StandardRate.cs" />
     <Compile Include="DomainModels\StandardRateMain.cs" />

@@ -139,10 +139,13 @@ define("businessPartner/businessPartner.viewModel",
                     },
                     // Delete a BusinessPartner In Type
                     onDeleteBusinessPartnerInType = function (businessPartnerInType) {
-                        //if (!businessPartnerInType.businessPartnerInTypeId()) {
-                            selectedBusinessPartner().businessPartnerInTypes.remove(businessPartnerInType);
+                           selectedBusinessPartner().businessPartnerInTypes.remove(businessPartnerInType);
                             return;
-                        //}
+                    },
+                    // Delete a BusinessPartner Phone Item
+                    onDeleteBusinessPartnerPhone = function (businessPartnerPhone) {
+                        selectedBusinessPartner().businessPartnerPhoneNumbers.remove(businessPartnerPhone);
+                        return;
                     },
                     // business partner InType selected subtype id computed
                     businessPartnerTypeSelectedSubTypeIdComputed = ko.computed(function () {
@@ -226,12 +229,12 @@ define("businessPartner/businessPartner.viewModel",
                     onAddBusinessPartnerPhone = function () {
                         // check validation error before add
                         if (doBeforeAddPhoneItem()) {
-                            var businessPartnerPhone = model.BusinessPartnerPhone(undefined, selectedBusinessPartner().isDefault(), selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneNumber(), selectedBusinessPartner().businessPartnerId(), businessPartnerPhoneSelecedPhoneTypeIdComputed(), businessPartnerPhoneSelecedPhoneTypeNameComputed());
+                            var businessPartnerPhone = model.BusinessPartnerPhone(undefined, selectedBusinessPartner().businessPartnerPhoneNumberNew().isDefault(), selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneNumber(), selectedBusinessPartner().businessPartnerId(), businessPartnerPhoneSelecedPhoneTypeIdComputed(), businessPartnerPhoneSelecedPhoneTypeNameComputed());
                             selectedBusinessPartner().businessPartnerPhoneNumbers.push(businessPartnerPhone);
                             selectedBusinessPartner().businessPartnerPhoneNumbers.valueHasMutated();
 
                             // emplty input fields
-                            selectedBusinessPartner().businessPartnerPhoneNumberNew(model.BusinessPartnerPhone(undefined,undefined,undefined,undefined,undefined));
+                            selectedBusinessPartner().businessPartnerPhoneNumberNew(model.BusinessPartnerPhone(undefined,false,undefined,undefined,undefined));
                         }
                     },
                     // Create Business Partner
@@ -445,7 +448,8 @@ define("businessPartner/businessPartner.viewModel",
                     onDeleteBusinessPartnerInType: onDeleteBusinessPartnerInType,
                     onAddBusinessPartnerInType: onAddBusinessPartnerInType,
                     doBeforeAddPhoneItem: doBeforeAddPhoneItem,
-                    onAddBusinessPartnerPhone:onAddBusinessPartnerPhone
+                    onAddBusinessPartnerPhone: onAddBusinessPartnerPhone,
+                    onDeleteBusinessPartnerPhone: onDeleteBusinessPartnerPhone
                     // Utility Methods
                 };
             })()

@@ -65,7 +65,7 @@ namespace Repository.Repositories
             int toRow = businessPartnerSearchRequest.PageSize;
 
             Expression<Func<BusinessPartner, bool>> query =
-                s =>( (!(businessPartnerSearchRequest.SelectOption.HasValue) || s.IsIndividual == businessPartnerSearchRequest.SelectOption) && 
+                s => ((!(businessPartnerSearchRequest.SelectOption.HasValue) || s.IsIndividual == businessPartnerSearchRequest.SelectOption) &&
                     (string.IsNullOrEmpty(businessPartnerSearchRequest.SearchString) || s.BusinessPartnerName.Contains(businessPartnerSearchRequest.SearchString)));
 
             IEnumerable<BusinessPartner> businesspartners = businessPartnerSearchRequest.IsAsc ? DbSet.Where(query)
@@ -90,7 +90,7 @@ namespace Repository.Repositories
         /// </summary>
         public override IQueryable<BusinessPartner> GetAll()
         {
-            return DbSet.Where(businessPartner => businessPartner.UserDomainKey == UserDomainKey).Include(x=>x.Company).Include(x=>x.BPRatingType);
+            return DbSet.Where(businessPartner => businessPartner.UserDomainKey == UserDomainKey).Include(x => x.Company).Include(x => x.BPRatingType);
         }
         /// <summary>
         /// Get BusinessPartner by Id
@@ -98,21 +98,17 @@ namespace Repository.Repositories
         public BusinessPartner GetById(long id)
         {
             return DbSet.Where(businessPartner => businessPartner.UserDomainKey == UserDomainKey && businessPartner.BusinessPartnerId == id)
-                .Include(x=>x.BusinessPartnerIndividual)
-                .Include(x=>x.BusinessPartnerCompany)
-                .Include(x=>x.BusinessPartnerInTypes)
-                .Include(x=>x.BusinessPartnerInTypes.Select(y=>y.BpRatingType))
-                .Include(x=>x.BusinessPartnerInTypes.Select(y=>y.BusinessPartnerSubType))
+                .Include(x => x.BusinessPartnerIndividual)
+                .Include(x => x.BusinessPartnerCompany)
+                .Include(x => x.BusinessPartnerInTypes)
+                .Include(x => x.BusinessPartnerInTypes.Select(y => y.BpRatingType))
+                .Include(x => x.BusinessPartnerInTypes.Select(y => y.BusinessPartnerSubType))
+                .Include(x => x.BusinessPartnerPhoneNumbers)
+                .Include(x => x.BusinessPartnerPhoneNumbers.Select(y => y.PhoneType))
                 .Include(x => x.Company)
                 .Include(x => x.BPRatingType)
                 .FirstOrDefault();
         }
         #endregion
-
-
-
-
-
-       
     }
 }

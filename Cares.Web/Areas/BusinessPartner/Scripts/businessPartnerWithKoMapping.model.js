@@ -529,8 +529,9 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
     BusinessPartnerInType.Create = function () {
         return new BusinessPartnerInType(undefined, "", undefined, undefined, undefined, undefined, "", undefined, "");
     };
+    // Business Partner Phone Factory
     BusinessPartnerPhone.Create = function() {
-        return new BusinessPartnerPhone(undefined, undefined, undefined, undefined, undefined,undefined);
+        return new BusinessPartnerPhone(undefined, false, undefined, undefined, undefined,undefined);
     };
     // Convert (Business Partner) Client to server
     var BusinessPartnerServerMapper = function(clientData) {
@@ -560,6 +561,12 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.BusinessPartnerInTypes = [];
         _.each(clientData.businessPartnerInTypes(), function (item) {
             result.BusinessPartnerInTypes.push(BusinessPartnerInTypeServerMapper(item));
+        });
+        // businesspartner phone tab
+        // from client to server
+        result.BusinessPartnerPhoneNumbers = [];
+        _.each(clientData.businessPartnerPhoneNumbers(), function (item) {
+            result.BusinessPartnerPhoneNumbers.push(BusinessPartnerPhoneServerMapper(item));
         });
         return result;
     };
@@ -622,6 +629,17 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.BpRatingTypeName = item.bpRatingTypeName() === undefined ? undefined : item.bpRatingTypeName();
         return result;
     };
+    // Convert (BusinessPartner Phone ) Client to Server
+    var BusinessPartnerPhoneServerMapper = function (item) {
+        var result = {};
+        // Third Tab : Business Partner Phone
+        result.PhoneId = item.phoneId() === undefined ? undefined : item.phoneId();
+        result.IsDefault = item.isDefault() === undefined ? undefined : item.isDefault();
+        result.PhoneNumber = item.phoneNumber() === undefined ? undefined : item.phoneNumber();
+        result.BusinessPartnerId = item.businessPartnerId() === undefined ? undefined : item.businessPartnerId();
+        result.PhoneTypeId = item.phoneTypeId() === undefined ? undefined : item.phoneTypeId();
+        return result;
+    };
 
     // Convert (Business Partner) Server to Client
     var BusinessPartnerClientMapper = function(serverData) {
@@ -647,7 +665,11 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         // third tab : BusinessPartner InTypes
          _.each(serverData.BusinessPartnerInTypes, function (item) {
             businessPartner.businessPartnerInTypes.push(BusinessPartnerInTypeClientMapper(item));
-        });
+         });
+        // fourth tab : BusinessPartner Phones
+         _.each(serverData.BusinessPartnerPhoneNumbers, function (item) {
+             businessPartner.businessPartnerPhoneNumbers.push(BusinessPartnerPhoneClientMapper(item));
+         });
         return businessPartner;
     };
     // Convert (Business Partner Individual) Server to Client
@@ -714,6 +736,18 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             businessPartnerInType.bpRatingTypeId(item.BpRatingTypeId === null ? undefined : item.BpRatingTypeId);
             businessPartnerInType.bpRatingTypeName(item.BpRatingTypeName === null ? undefined : item.BpRatingTypeName);
             return businessPartnerInType;
+    };  
+    // Convert (Business Partner Phone ) Server to Client
+    var BusinessPartnerPhoneClientMapper = function (item) {
+        var businessPartnerPhone = new BusinessPartnerPhone();
+        // Third Tab : Business Partner Phone
+        businessPartnerPhone.phoneId(item.PhoneId === undefined ? undefined : item.PhoneId);
+        businessPartnerPhone.isDefault(item.IsDefault === undefined ? undefined : item.IsDefault);
+        businessPartnerPhone.phoneNumber(item.PhoneNumber === undefined ? undefined : item.PhoneNumber);
+        businessPartnerPhone.businessPartnerId(item.BusinessPartnerId === undefined ? undefined : item.BusinessPartnerId);
+        businessPartnerPhone.phoneTypeId(item.PhoneTypeId === undefined ? undefined : item.PhoneTypeId);
+        businessPartnerPhone.phoneTypeName(item.PhoneTypeName === undefined ? undefined : item.PhoneTypeName);
+        return businessPartnerPhone;
     };
     return {
         BusinessPartner: BusinessPartner,
@@ -728,6 +762,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         BusinessPartnerCompanyServerMapper: BusinessPartnerCompanyServerMapper,
         BusinessPartnerInType: BusinessPartnerInType,
         BusinessPartnerInTypeServerMapper: BusinessPartnerInTypeServerMapper,
-        BusinessPartnerPhone: BusinessPartnerPhone
+        BusinessPartnerPhone: BusinessPartnerPhone,
+        BusinessPartnerPhoneServerMapper: BusinessPartnerPhoneServerMapper,
+        BusinessPartnerPhoneClientMapper: BusinessPartnerPhoneClientMapper
     };
 });

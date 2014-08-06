@@ -281,6 +281,7 @@
     <Compile Include="ModelMappers\DepartmentMapper.cs" />
     <Compile Include="ModelMappers\MeasurementUnitMapper.cs" />
     <Compile Include="ModelMappers\PricingStrategyMapper.cs" />
+    <Compile Include="ModelMappers\PhoneMapper.cs" />
     <Compile Include="ModelMappers\ProductResponseMapper.cs" />
     <Compile Include="ModelMappers\ProductMapper.cs" />
     <Compile Include="ModelMappers\RegionMapper.cs" />
@@ -302,6 +303,7 @@
     <Compile Include="Models\BusinessPartnerResponse.cs" />
     <Compile Include="Models\BpRatingType.cs" />
     <Compile Include="Models\BusinessLegalStatus.cs" />
+    <Compile Include="Models\Phone.cs" />
     <Compile Include="Models\PhoneType.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\HireGroup.cs" />
