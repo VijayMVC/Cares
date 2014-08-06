@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using Castle.MicroKernel.Registration;
 using Interfaces.IServices;
 using Interfaces.Repository;
 using Models.DomainModels;
@@ -119,6 +118,24 @@ namespace Implementation.Services
                 }
                 #endregion
 
+                //set child (business partner phones) properties
+                #region Business Partner Phones
+                // set properties
+                foreach (Phone item in businessPartner.BusinessPartnerPhoneNumbers)
+                {
+                    item.IsActive = true;
+                    item.IsDeleted = false;
+                    item.IsPrivate = false;
+                    item.IsReadOnly = false;
+                    item.RecCreatedDt = DateTime.Now;
+                    item.RecLastUpdatedDt = DateTime.Now;
+                    item.RecCreatedBy = businessPartnerRepository.LoggedInUserIdentity;
+                    item.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
+                    item.RowVersion = 0;
+                    item.UserDomainKey = businessPartnerRepository.UserDomainKey;
+                }
+                #endregion
+
                 // save data
                 businessPartnerRepository.Add(businessPartner);
                 businessPartnerRepository.SaveChanges();
@@ -160,7 +177,7 @@ namespace Implementation.Services
                 businessPartnerDbVersion.DealingEmployeeId = businessPartner.DealingEmployeeId;
                 businessPartnerDbVersion.PaymentTermId = businessPartner.PaymentTermId;
                 businessPartnerDbVersion.BPRatingTypeId = businessPartner.BPRatingTypeId;
-                
+
                 businessPartnerDbVersion.RecLastUpdatedDt = DateTime.Now;
                 businessPartnerDbVersion.RecCreatedBy = businessPartnerRepository.LoggedInUserIdentity;
                 businessPartnerDbVersion.RowVersion = businessPartnerDbVersion.RowVersion + 1;
@@ -194,7 +211,7 @@ namespace Implementation.Services
                 businessPartnerDbVersion.BusinessPartnerIndividual.CompanyName = businessPartner.BusinessPartnerIndividual.CompanyName;
                 businessPartnerDbVersion.BusinessPartnerIndividual.CompanyPhone = businessPartner.BusinessPartnerIndividual.CompanyPhone;
                 businessPartnerDbVersion.BusinessPartnerIndividual.CompanyAddress = businessPartner.BusinessPartnerIndividual.CompanyAddress;
-               
+
                 businessPartnerDbVersion.BusinessPartnerIndividual.RowVersion = businessPartnerDbVersion.BusinessPartnerIndividual.RowVersion + 1;
                 businessPartnerDbVersion.BusinessPartnerIndividual.RecLastUpdatedDt = DateTime.Now;
                 businessPartnerDbVersion.BusinessPartnerIndividual.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
@@ -220,24 +237,23 @@ namespace Implementation.Services
                     businessPartnerDbVersion.BusinessPartnerCompany.RowVersion + 1;
                 businessPartnerDbVersion.BusinessPartnerCompany.RecLastUpdatedDt = DateTime.Now;
                 businessPartnerDbVersion.BusinessPartnerCompany.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
-                #endregion 
+                #endregion
 
                 //set child (business partner intypes)
                 #region Business Partner InTypes
-               
                 //add new items
                 foreach (BusinessPartnerInType itemInType in businessPartner.BusinessPartnerInTypes)
                 {
                     if (businessPartnerDbVersion.BusinessPartnerInTypes.All(x => x.BusinessPartnerInTypeId != itemInType.BusinessPartnerInTypeId) || itemInType.BusinessPartnerInTypeId == 0)
                     {
-                       // set user domain key
-                       itemInType.UserDomainKey = businessPartnerRepository.UserDomainKey;
-                       businessPartnerDbVersion.BusinessPartnerInTypes.Add(itemInType);
+                        // set user domain key
+                        itemInType.UserDomainKey = businessPartnerRepository.UserDomainKey;
+                        businessPartnerDbVersion.BusinessPartnerInTypes.Add(itemInType);
                     }
                 }
                 //find missing items
-                List<BusinessPartnerInType> missingItems= new List<BusinessPartnerInType>();
-                foreach (BusinessPartnerInType dbversionItemInType in  businessPartnerDbVersion.BusinessPartnerInTypes)
+                List<BusinessPartnerInType> missingItems = new List<BusinessPartnerInType>();
+                foreach (BusinessPartnerInType dbversionItemInType in businessPartnerDbVersion.BusinessPartnerInTypes)
                 {
                     if (businessPartner.BusinessPartnerInTypes.All(x => x.BusinessPartnerInTypeId != dbversionItemInType.BusinessPartnerInTypeId))
                     {
@@ -253,9 +269,46 @@ namespace Implementation.Services
                         businessPartnerDbVersion.BusinessPartnerInTypes.Remove(dbVersionMissingItem);
                     }
                 }
-                    
-             
 
+                #endregion
+
+                //set child (business partner phones)
+                #region Business Partner Phones
+                //add new phone items
+                foreach (Phone phone in businessPartner.BusinessPartnerPhoneNumbers)
+                {
+                    if (businessPartnerDbVersion.BusinessPartnerPhoneNumbers.All(x => x.PhoneId != phone.PhoneId) || phone.PhoneId == 0)
+                    {
+                        // set properties
+                        phone.IsActive = true;
+                        phone.IsDeleted = false;
+                        phone.IsPrivate = false;
+                        phone.IsReadOnly = false;
+                        phone.RecCreatedDt = DateTime.Now;
+                        phone.RecLastUpdatedDt = DateTime.Now;
+                        phone.RecCreatedBy = businessPartnerRepository.LoggedInUserIdentity;
+                        phone.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
+                        phone.RowVersion = 0;
+                        phone.UserDomainKey = businessPartnerRepository.UserDomainKey;
+                        businessPartnerDbVersion.BusinessPartnerPhoneNumbers.Add(phone);
+                    }
+                }
+                //find missing phone items
+                List<Phone> missingPhoneItems = new List<Phone>();
+                foreach (Phone dbversionPhoneItem in businessPartnerDbVersion.BusinessPartnerPhoneNumbers)
+                {
+                    if (businessPartner.BusinessPartnerPhoneNumbers.All(x => x.PhoneId != dbversionPhoneItem.PhoneId))
+                    {
+                        missingPhoneItems.Add(dbversionPhoneItem);
+                    }
+                }
+                //remove missing phone items
+                foreach (Phone missingBusinessPartnerPhone in missingPhoneItems)
+                {
+                    Phone dbVersionMissingPhoneItem = businessPartnerDbVersion.BusinessPartnerPhoneNumbers.First(x => x.PhoneId == missingBusinessPartnerPhone.PhoneId);
+                    if (dbVersionMissingPhoneItem.PhoneId > 0)
+                        businessPartnerDbVersion.BusinessPartnerPhoneNumbers.Remove(dbVersionMissingPhoneItem);
+                }
                 #endregion
 
                 // save changes
@@ -275,9 +328,5 @@ namespace Implementation.Services
             return businessPartnerRepository.GetById(id);
         }
         #endregion
-
-
-
-
     }
 }

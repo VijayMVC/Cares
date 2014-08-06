@@ -335,10 +335,9 @@
                         <table id="businessPartnerPhonesTable" class="table table-condensed">
                             <thead>
                                 <tr>
-                                    <th> <span id="1">BP SubType<span></span></span></th>
-                                    <th> <span id="2">Rating Type<span></span></span></th>
-                                    <th> <span id="3">From Date<span></span></span></th>
-                                    <th> <span id="4">To Date<span></span></span></th>
+                                    <th> <span id="1">Phone Type<span></span></span></th>
+                                    <th> <span id="2">Phone #<span></span></span></th>
+                                    <th> <span id="3">Is Default<span></span></span></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -379,11 +378,11 @@
         <td data-bind="text: phoneNumber"></td>
         <td data-bind="text: isDefault"></td>
          <td>
-            <!-- ko template: { name: 'deleteActionBusinessPartnerInTypeTemplate' } -->
+            <!-- ko template: { name: 'deleteActionBusinessPartnerPhoneTemplate' } -->
             <!-- /ko -->
         </td>
     </tr>
 </script>
 <script id="deleteActionBusinessPartnerPhoneTemplate" type="text/html">
-    <a href="#" data-bind="click: $root.onDeleteBusinessPartnerInType" title="Delete Business Partner InType"><span class="glyphicon glyphicon-remove"></span></a>
+    <a href="#" data-bind="click: $root.onDeleteBusinessPartnerPhone" title="Delete Business Partner Phone"><span class="glyphicon glyphicon-remove"></span></a>
 </script>
