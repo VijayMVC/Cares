@@ -6,6 +6,9 @@ namespace Cares.Web.Models
     /// </summary>
     public sealed class TariffRateContent
     {
+        /// <summary>
+        /// Standard Rate Main Id
+        /// </summary>
         public long StandardRtMainId { get; set; }
         /// <summary>
         /// Standard Rate Main Code

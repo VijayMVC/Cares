@@ -43,8 +43,6 @@ namespace Cares.Web.ModelMappers
                 GracePeriod = source.GracePeriod,
                 EffectiveDate = source.EffectiveDate,
                 RevisionNumber = source.RevisionNumber,
-
-
             };
 
         }

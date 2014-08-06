@@ -35,7 +35,6 @@ namespace Repository.Repositories
         }
 
         #endregion
-
         #region Public
         /// <summary>
         /// Get All Organization Groups for User Domain Key

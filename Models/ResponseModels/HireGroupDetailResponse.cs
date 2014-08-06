@@ -8,13 +8,18 @@ namespace Models.ResponseModels
     /// </summary>
     public class HireGroupDetailResponse
     {
-            /// <summary>
+         /// <summary>
         /// Hire Group Details List
         /// </summary>
-        public IEnumerable<HireGroupDetail> HireGroupDetails { get; set; }
+        public IEnumerable<HireGroupDetail> HireGroupDetails { get; set; } 
         /// <summary>
-        /// Total Count
+        /// Standard Rates List
         /// </summary>
-        public int TotalCount { get; set; }
+        public IEnumerable<StandardRate> StandardRates { get; set; }
+        /// <summary>
+        /// Standard Rates Id
+        /// </summary>
+        public long StandardRateId { get; set; } 
+       
     }
 }

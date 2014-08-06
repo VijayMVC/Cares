@@ -1,5 +1,6 @@
 ﻿
 using System.Collections.Generic;
+using Models.DomainModels;
 
 namespace Cares.Web.Models
 {
@@ -56,6 +57,10 @@ namespace Cares.Web.Models
         /// Business Partner SubTypes
         /// </summary>
         public IEnumerable<BusinessPartnerSubType> ResponseBusinessPartnerSubTypes { get; set; }
+        /// <summary>
+        /// Phone Types
+        /// </summary>
+        public IEnumerable<PhoneType> ResponsePhoneTypes { get; set; }
         #endregion
     }
 }

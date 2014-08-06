@@ -8,9 +8,18 @@ namespace Cares.Web.Models
     public class StandardRate
     {
         /// <summary>
+        /// Standard Rate Id
+        /// </summary>
+        public long StandardRtId { get; set; }
+        /// <summary>
         /// Hire Group Detail Id
         /// </summary>
         public long HireGroupDetailId { get; set; }
+       
+        /// <summary>
+        /// Child Standard Rate ID
+        /// </summary>
+        public long ChildStandardRtId { get; set; }
         /// <summary>
         /// Hire Group
         /// </summary>
@@ -34,15 +43,15 @@ namespace Cares.Web.Models
         /// <summary>
         /// Allow Mileage
         /// </summary>
-        public short AllowMileage { get; set; }
+        public int AllowMileage { get; set; }
         /// <summary>
         /// Excess Mileage Charge
         /// </summary>
-        public short ExcessMileageCharge { get; set; }
+        public float ExcessMileageCharge { get; set; }
         /// <summary>
         /// Standard Rate
         /// </summary>
-        public short StandardRateValue { get; set; }
+        public float StandardRt { get; set; }
         /// <summary>
         /// Start Date
         /// </summary>
@@ -50,8 +59,11 @@ namespace Cares.Web.Models
         /// <summary>
         /// End Date
         /// </summary>
-        public DateTime EndDate { get; set; }
-        
+        public DateTime EndDt { get; set; }
+        /// <summary>
+        /// Standard rate main id
+        /// </summary>
+        public long StandardRtMainId { get; set; }
      
     }
 }

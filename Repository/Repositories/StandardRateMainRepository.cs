@@ -68,8 +68,8 @@ namespace Repository.Repositories
                 where
                     ((!tariffRateRequest.OperationId.HasValue ||
                       tariffType.OperationId == tariffRateRequest.OperationId.Value) &&
-                     (!tariffRateRequest.TariffTypeId.HasValue ||
-                      tariffType.TariffTypeId == tariffRateRequest.TariffTypeId))
+                     (!tariffRateRequest.TariffRateId.HasValue ||
+                      tariffType.TariffTypeId == tariffRateRequest.TariffRateId))
                 select new TariffRateContent
                 {                    
                     StandardRtMainId = tariffRate.StandardRtMainId,

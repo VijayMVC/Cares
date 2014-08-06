@@ -10,9 +10,9 @@ namespace Repository.Repositories
     /// <summary>
     /// Vehicle Category Repository
     /// </summary>
-    public class VehicleCategoryRepository: BaseRepository<VehicleCategory>, IVehicleCategoryRepository
+    public class VehicleCategoryRepository : BaseRepository<VehicleCategory>, IVehicleCategoryRepository
     {
-          #region Constructor
+        #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>
@@ -41,7 +41,6 @@ namespace Repository.Repositories
         {
             return DbSet.Where(vehicleModel => vehicleModel.UserDomainKey == UserDomainKey);
         }
-
         #endregion
     }
 }

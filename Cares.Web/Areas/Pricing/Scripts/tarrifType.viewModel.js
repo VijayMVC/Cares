@@ -73,8 +73,8 @@ define("tarrifType/tarrifType.viewModel",
                     },
                     //Template For Revision List
                     templateToUseForRevision = function () {
-    return 'itemTarrifTypeRevisionTemplate';
-},
+                        return 'itemTarrifTypeRevisionTemplate';
+                    },
                     // Map Tarrif Types - Server to Client
                     mapTarrifTypes = function (data) {
                         var tarrifTypeList = [];
@@ -300,7 +300,6 @@ define("tarrifType/tarrifType.viewModel",
                     // Observables
                     // Utility Methods
                     initialize: initialize,
-                    templateToUse: templateToUse,
                     templateToUseForRevision: templateToUseForRevision,
                     selectTarrifType: selectTarrifType,
                     search: search,

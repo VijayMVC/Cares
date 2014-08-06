@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using Interfaces.Repository;
 using Microsoft.Practices.Unity;
-using Models.Common;
 using Models.DomainModels;
 using Repository.BaseRepository;
 
@@ -44,7 +42,22 @@ namespace Repository.Repositories
         {
             return DbSet.Where(vehicleModel => vehicleModel.UserDomainKey == UserDomainKey);
         }
+        public IEnumerable<StandardRate> GetStandardRateForTariffRate(long standardRtMainId)
+        {
+            return DbSet.Where(s => s.UserDomainKey == UserDomainKey && s.StandardRtMainId == standardRtMainId && s.ChildStandardRtId == 0);
 
+        }
+        /// <summary>
+        /// Find by hire group and standard rate main id
+        /// </summary>
+        /// <param name="standardRtMainId"></param>
+        /// <param name="hireGroupDetailId"></param>
+        /// <returns></returns>
+        public IEnumerable<StandardRate> FindByHireGroupId(long standardRtMainId, long hireGroupDetailId)
+        {
+            return DbSet.Where(s => s.UserDomainKey == UserDomainKey && s.StandardRtMainId == standardRtMainId && s.ChildStandardRtId == 0 && s.HireGroupDetailId == hireGroupDetailId);
+
+        }
         #endregion
     }
 }

@@ -53,7 +53,10 @@ namespace Models.ResponseModels
         /// Business Partner SubTypes
         /// </summary>
         public IEnumerable<BusinessPartnerSubType> ResponseBusinessPartnerSubTypes { get; set; }
-
+        /// <summary>
+        /// Phone Types
+        /// </summary>
+        public IEnumerable<PhoneType> ResponsePhoneTypes { get; set; }
         #endregion
     }
 }

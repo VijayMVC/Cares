@@ -23,7 +23,7 @@ namespace Models.DomainModels
         /// <summary>
         /// Hire Group ID
         /// </summary>
-        [ForeignKey("HireGroup")]
+        //[ForeignKey("HireGroup")]
         public long HireGroupId { get; set; }
         /// <summary>
         /// Vehicle Category ID
@@ -98,10 +98,10 @@ namespace Models.DomainModels
         /// Vehicle Model
         /// </summary>
         public virtual VehicleModel VehicleModel { get; set; }
-        /// <summary>
-        /// Stanadard Rate 
-        /// </summary>
-        public virtual ICollection<StandardRate> StandardRate { get; set; }
+        ///// <summary>
+        ///// Stanadard Rate 
+        ///// </summary>
+        //public virtual ICollection<StandardRate> StandardRate { get; set; }
         #endregion
     }
 }

@@ -69,6 +69,7 @@
     <Compile Include="IServices\IOperationService.cs" />
     <Compile Include="IServices\IPricingStrategyService.cs" />
     <Compile Include="IServices\IProductService.cs" />
+    <Compile Include="IServices\IStandardRateService.cs" />
     <Compile Include="IServices\ITariffRateService.cs" />
     <Compile Include="IServices\ITarrifTypeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Repository\IOccupationTypeRepository.cs" />
     <Compile Include="Repository\IOperationRepository.cs" />
     <Compile Include="Repository\IOrgGroupRepository.cs" />
+    <Compile Include="Repository\IPhoneTypeRepository.cs" />
     <Compile Include="Repository\IPaymentTermRepository.cs" />
     <Compile Include="Repository\IPricingStrategyRepository.cs" />
     <Compile Include="Repository\IProductRepository.cs" />

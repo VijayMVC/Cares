@@ -23,10 +23,10 @@ namespace Cares.Web.ModelMappers
                 BusinessPartnerListName = source.BusinessPartnerName,
                 BusinessPartnerName = (source.IsIndividual ? "I" : "C") + "-" + source.BusinessPartnerId + '-' + source.BusinessPartnerName,
                 IsIndividual = source.IsIndividual ? "Individual" : "Company",
-                BPRatingTypeName = source.BPRatingType != null ? source.BPRatingType.BpRatingTypeCode+'-'+source.BPRatingType.BpRatingTypeName : "",
-                CompanyName = source.Company.CompanyCode +'-'+source.Company.CompanyName
+                BPRatingTypeName = source.BPRatingType != null ? source.BPRatingType.BpRatingTypeCode + '-' + source.BPRatingType.BpRatingTypeName : "",
+                CompanyName = source.Company.CompanyCode + '-' + source.Company.CompanyName
             };
-           
+
         }
 
         /// <summary>
@@ -53,7 +53,8 @@ namespace Cares.Web.ModelMappers
                 SystemGuarantorId = source.SystemGuarantorId,
                 BusinessPartnerIndividual = source.BusinessPartnerIndividual.CreateFrom(),
                 BusinessPartnerCompany = source.BusinessPartnerCompany.CreateFrom(),
-                BusinessPartnerInTypes = source.BusinessPartnerInTypes.Select(x=>x.CreateFrom())
+                BusinessPartnerInTypes = source.BusinessPartnerInTypes.Select(x => x.CreateFrom()).ToList(),
+                BusinessPartnerPhoneNumbers = source.BusinessPartnerPhoneNumbers.Select(x => x.CreateFrom()).ToList()
             };
         }
 
@@ -91,7 +92,9 @@ namespace Cares.Web.ModelMappers
                 BusinessPartnerIsValid = true,
                 BusinessPartnerEmailAddress = source.BusinessPartnerEmailAddress,
                 BusinessPartnerIndividual = source.BusinessPartnerIndividual.CreateFrom(),
-                BusinessPartnerCompany =  source.BusinessPartnerCompany.CreateFrom()
+                BusinessPartnerCompany = source.BusinessPartnerCompany.CreateFrom(),
+                BusinessPartnerInTypes = source.BusinessPartnerInTypes.Select(x => x.CreateFrom()).ToList(),
+                BusinessPartnerPhoneNumbers = source.BusinessPartnerPhoneNumbers.Select(x => x.CreateFrom()).ToList()
             };
         }
 
@@ -131,7 +134,8 @@ namespace Cares.Web.ModelMappers
                 ResponseOccupationTypes = source.ResponseOccupationTypes.Select(x => x.CreateFrom()),
                 ResponsePassportCountries = source.ResponsePassportCountries.Select(x => x.CreateFrom()),
                 ResponseBusinessSegments = source.ResponseBusinessSegments.Select(x => x.CreateFrom()),
-                ResponseBusinessPartnerSubTypes = source.ResponseBusinessPartnerSubTypes.Select(x=>x.CreateFrom())
+                ResponseBusinessPartnerSubTypes = source.ResponseBusinessPartnerSubTypes.Select(x => x.CreateFrom()),
+                ResponsePhoneTypes = source.ResponsePhoneTypes.Select(x => x.CreateFrom())
             };
         }
         #endregion
@@ -172,7 +176,7 @@ namespace Cares.Web.ModelMappers
                 IqamaNo = source.IqamaNo
             };
         }
-        
+
         /// <summary>
         ///  Create entity from web model
         /// </summary>
@@ -207,11 +211,11 @@ namespace Cares.Web.ModelMappers
                 IqamaNo = source.IqamaNo
             };
         }
-      
+
         #endregion
 
         #region Business Partner Company Mappers
-      
+
         /// <summary>
         ///  Create web model from entity
         /// </summary>
@@ -228,7 +232,7 @@ namespace Cares.Web.ModelMappers
                 SwiftCode = source.SwiftCode
             };
         }
-      
+
         /// <summary>
         ///  Create entity from web model
         /// </summary>
@@ -259,7 +263,8 @@ namespace Cares.Web.ModelMappers
             {
                 BusinessPartnerSubTypeId = source.BusinessPartnerSubTypeId,
                 BusinessPartnerSubTypeCode = source.BusinessPartnerSubTypeCode,
-                BusinessPartnerSubTypeName = source.BusinessPartnerSubTypeName
+                BusinessPartnerSubTypeName = source.BusinessPartnerSubTypeCode + '-' + source.BusinessPartnerSubTypeName,
+                BusinessPartnerSubTypeCustomId = source.BusinessPartnerSubTypeId.ToString() + '-' + source.BusinessPartnerSubTypeCode + '-' + source.BusinessPartnerSubTypeName
             };
         }
 
@@ -286,15 +291,24 @@ namespace Cares.Web.ModelMappers
         public static ApiModel.BusinessPartnerInType CreateFrom(this DomainModel.BusinessPartnerInType source)
         {
             return new ApiModel.BusinessPartnerInType
-            {
-                BusinessPartnerInTypeId = source.BusinessPartnerInTypeId,
-                BusinessPartnerInTypeDescription = source.BusinessPartnerInTypeDescription,
-                BusinessPartnerSubTypeId = source.BusinessPartnerSubTypeId,
-                FromDate = source.FromDate,
-                ToDate = source.ToDate,
-                BusinessPartnerId = source.BusinessPartnerId,
-                BpRatingTypeId = source.BpRatingTypeId
-            };
+                   {
+                       BusinessPartnerInTypeId = source.BusinessPartnerInTypeId,
+                       BusinessPartnerInTypeDescription = source.BusinessPartnerInTypeDescription,
+                       BusinessPartnerSubTypeId = source.BusinessPartnerSubTypeId,
+                       BusinessPartnerSubTypeName =
+                           source.BusinessPartnerSubType != null
+                               ? (source.BusinessPartnerSubType.BusinessPartnerSubTypeCode + '-' +
+                                  source.BusinessPartnerSubType.BusinessPartnerSubTypeName)
+                               : string.Empty,
+                       FromDate = source.FromDate,
+                       ToDate = source.ToDate,
+                       BusinessPartnerId = source.BusinessPartnerId > 0 ? (long)source.BusinessPartnerId : 0,
+                       BpRatingTypeId = source.BpRatingTypeId,
+                       BpRatingTypeName =
+                           source.BpRatingType != null
+                               ? (source.BpRatingType.BpRatingTypeCode + '-' + source.BpRatingType.BpRatingTypeName)
+                               : string.Empty
+                   };
         }
 
         /// <summary>
@@ -304,14 +318,14 @@ namespace Cares.Web.ModelMappers
         {
             return new DomainModel.BusinessPartnerInType
             {
-                BusinessPartnerInTypeId = source.BusinessPartnerInTypeId,
+                BusinessPartnerInTypeId = source.BusinessPartnerInTypeId != null ? (long)source.BusinessPartnerInTypeId : 0,
                 BusinessPartnerInTypeDescription = source.BusinessPartnerInTypeDescription,
                 BusinessPartnerSubTypeId = source.BusinessPartnerSubTypeId,
                 FromDate = source.FromDate,
                 ToDate = source.ToDate,
                 BusinessPartnerId = source.BusinessPartnerId,
                 BpRatingTypeId = source.BpRatingTypeId
-           };
+            };
         }
 
         #endregion

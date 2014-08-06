@@ -140,9 +140,6 @@ namespace Implementation.Services
             return businessPartnerInTypeRepository.GetById(id);
         }
         #endregion
-
-
-
-        
+ 
     }
 }

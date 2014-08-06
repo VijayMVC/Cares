@@ -40,6 +40,7 @@ namespace Cares.Web.ModelMappers
                 StandardRtMainId = source.StandardRtMainId,
                 StandardRtMainCode = source.StandardRtMainCode,
                 StandardRtMainName = source.StandardRtMainName,
+                TariffTypeCode= source.TariffTypeId.ToString(),
                 StandardRtMainDescription = source.StandardRtMainDescription,
                 StartDt = source.StartDt,
                 EndDt = source.EndDt
