@@ -198,12 +198,19 @@ namespace Implementation.Services
         {
             return standardRateRepository.FindByHireGroupId(standardRtMainId, hireGroupDetailId);
         }
-
+        /// <summary>
+        /// Find By Tariff Type Code
+        /// </summary>
+        /// <param name="tariffTypeCode"></param>
+        /// <returns></returns>
         public IEnumerable<StandardRateMain> FindByTariffTypeCode(string tariffTypeCode)
         {
             return standardRateMainRepository.FindByTariffTypeCode(tariffTypeCode);
         }
-
+        public TarrifType FindTariffTypeById(long id)
+        {
+            return tarrifTypeRepository.Find(id);
+        }
         #endregion
     }
 }

@@ -268,7 +268,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         hireGroupDetail.hireGroup(source.HireGroup === null ? undefined : source.HireGroup);
         hireGroupDetail.vehicleMake(source.VehicleMake === null ? undefined : source.VehicleMake);
         hireGroupDetail.vehicleModel(source.VehicleModel === null ? undefined : source.VehicleModel);
-        hireGroupDetail.revisionNumber(source.RevisionNumber === null ? undefined : source.RevisionNumber);
+       // hireGroupDetail.revisionNumber(source.RevisionNumber === null ? 0 : source.RevisionNumber);
+        hireGroupDetail.revisionNumber(0);
         hireGroupDetail.vehicleCategory(source.VehicleCategory === null ? undefined : source.VehicleCategory);
         hireGroupDetail.modelYear(source.ModelYear === null ? undefined : source.ModelYear);
         hireGroupDetail.allowMileage(source.AllowMileage === null || source.AllowMileage === 0 ? undefined : source.AllowMileage);

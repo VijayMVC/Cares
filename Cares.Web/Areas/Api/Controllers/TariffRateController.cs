@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Http;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
 using Interfaces.IServices;
-using DomainModels = Models.RequestModels;
-
+using DomainRequestModels = Models.RequestModels;
+using DomainModels = Models.DomainModels;
 namespace Cares.Web.Areas.Api.Controllers
 {
     /// <summary>
@@ -35,7 +37,7 @@ namespace Cares.Web.Areas.Api.Controllers
         #endregion
         #region Public
         // GET api/<controller>
-        public TariffRateSearchResponse Get([FromUri] DomainModels.TariffRateRequest request)
+        public TariffRateSearchResponse Get([FromUri] DomainRequestModels.TariffRateRequest request)
         {
             if (request == null && !ModelState.IsValid)
             {
@@ -46,13 +48,14 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Update a Tariff Rate
         /// </summary>
-        public TariffRateContent Post(StandardRateMain standardRateMain)
+        public void Post(StandardRateMain standardRateMain)
         {
             if (standardRateMain == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            TariffRateContent tariffRateContent = tariffRateService.Update(standardRateMain.CreateFrom()).CreateFrom();
+            StandardRateValidation(standardRateMain, false);
+            //TariffRateContent tariffRateContent = tariffRateService.Update(standardRateMain.CreateFrom()).CreateFrom();
             if (standardRateMain.HireGroupDetailsInStandardRtMain != null)
             {
                 foreach (var standardRate in standardRateMain.HireGroupDetailsInStandardRtMain)
@@ -61,7 +64,7 @@ namespace Cares.Web.Areas.Api.Controllers
                     tariffRateService.AddStandardRate(standardRate.CreateFrom());
                 }
             }
-            return tariffRateContent;
+            //return tariffRateContent;
         }
 
         /// <summary>
@@ -69,21 +72,12 @@ namespace Cares.Web.Areas.Api.Controllers
         /// </summary>
         public TariffRateContent Put(StandardRateMain standardRateMain)
         {
-            DateTime a, b, c, d;
+
             if (standardRateMain == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-
-            a = Convert.ToDateTime(standardRateMain.StartDt);
-            b = Convert.ToDateTime(standardRateMain.EndDt);
-            if (a.Date < System.DateTime.Now.Date)
-               // throw new CaresBusinessException("Pricing-InvalidStartDate", null);
-            if (b.Date < a.Date)
-               // throw new CaresBusinessException("Pricing-InvalidEndDate", null);
-
-            tariffRateService.FindByTariffTypeCode(standardRateMain.TariffTypeCode);
-
+            StandardRateValidation(standardRateMain, true);
             TariffRateContent tariffRateContent = tariffRateService.AddTariffRate(standardRateMain.CreateFrom()).CreateFrom();
             if (standardRateMain.HireGroupDetailsInStandardRtMain != null)
             {
@@ -106,6 +100,64 @@ namespace Cares.Web.Areas.Api.Controllers
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
             tariffRateService.DeleteTariffRate(tariffRateService.Find(standardRateMain.StandardRtMainId));
+        }
+        /// <summary>
+        /// Standard Rate Validation
+        /// </summary>
+        /// <param name="standardRateMain"></param>
+        /// <param name="addFlag"></param>
+        private void StandardRateValidation(StandardRateMain standardRateMain, bool addFlag)
+        {
+            DateTime a, b, c, d;
+            a = Convert.ToDateTime(standardRateMain.StartDt);
+            b = Convert.ToDateTime(standardRateMain.EndDt);
+            if (addFlag)
+            {
+                if (a.Date < DateTime.Now.Date)
+                    throw new Exception();
+                //throw new CaresBusinessException("Pricing-InvalidStartDate", null);
+                if (b.Date < a.Date)
+                    throw new Exception();
+                //throw new CaresBusinessException("Pricing-InvalidEndDate", null);
+                DomainModels.TarrifType tarrifType = tariffRateService.FindTariffTypeById(standardRateMain.TariffTypeId);
+                IEnumerable<DomainModels.StandardRateMain> oStRateMain = tariffRateService.FindByTariffTypeCode(tarrifType.TariffTypeCode).Select(s => s);
+                foreach (var rateMain in oStRateMain)
+                {
+                    c = rateMain.StartDt;
+                    d = rateMain.EndDt;
+
+                    if ((a <= c) && ((d) <= (b)))
+                        throw new Exception();
+                    //throw new CaresBusinessException("Pricing-ExistingStandardRtOverlaps", null);
+                    if ((c <= a) && ((b) <= (d)))
+                        throw new Exception();
+                    //throw new CaresBusinessException("Pricing-CurrentStandardRtOverlaps", null);
+                    if ((c <= a) && (a <= (d)) && ((d) <= (b)))
+                        throw new Exception();
+                    //throw new CaresBusinessException("Pricing-StartStandardRtDurationOverlaps", null);
+                    if ((a <= c) && (c <= (b)) && ((b) <= (d)))
+                        throw new Exception();
+                    //throw new CaresBusinessException("Pricing-EndStandardRtDurationOverlaps", null);
+                }
+            }
+            if (standardRateMain.HireGroupDetailsInStandardRtMain != null)
+            {
+                foreach (var standardRate in standardRateMain.HireGroupDetailsInStandardRtMain)
+                {
+                    c = Convert.ToDateTime(standardRate.StartDate);
+                    d = Convert.ToDateTime(standardRate.EndDt);
+                    if (c.Date < DateTime.Now.Date || d.Date < DateTime.Now.Date)
+                        throw new Exception();
+                    // throw new CaresBusinessException("Pricing-StRateInvalidEffectiveDates", null);
+                    if (d < c)
+                        throw new Exception();
+                    //throw new CaresBusinessException("Pricing-StRateInvalidEndDate", null);
+                    if (c < a || d > b)
+                        throw new Exception();
+                    //throw new CaresBusinessException("Pricing-StRateInvalidRangeEffectiveDate", null);
+                }
+            }
+
         }
         #endregion
     }

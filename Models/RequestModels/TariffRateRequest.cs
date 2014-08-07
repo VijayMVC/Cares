@@ -10,7 +10,7 @@ namespace Models.RequestModels
         /// <summary>
         /// Tariff Rate Id
         /// </summary>
-        public int? TariffRateId { get; set; }        
+        public int? TariffTypeId { get; set; }        
         /// <summary>
         /// Operation Id
         /// </summary>
