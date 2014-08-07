@@ -45,7 +45,8 @@ namespace Cares.Implementation.Services
         /// </summary>
         public FleetPoolBaseDataResponse LoadFleetPoolBaseData()
         {
-            throw new CaresException("My Message");
+            //TODO: Sample exception to be thrown. Uncomment to see the behavior
+            //throw new CaresException("This is cares business exception");  
             return new FleetPoolBaseDataResponse
             {
                 Operations = operationRepository.GetSalesOperation(),
