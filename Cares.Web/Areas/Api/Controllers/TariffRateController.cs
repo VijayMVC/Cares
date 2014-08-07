@@ -35,7 +35,7 @@ namespace Cares.Web.Areas.Api.Controllers
         #endregion
         #region Public
         // GET api/<controller>
-        public TariffRateSearchResponse Get([FromUri] DomainModels.TariffRateRequest request)
+        public TariffRateSearchResponse Get([FromUri] TariffRateRequest request)
         {
             if (request == null && !ModelState.IsValid)
             {

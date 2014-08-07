@@ -1,5 +1,6 @@
-﻿using Cares.Models.DomainModels;
-using DomainResponseModel = Models.ResponseModels;
+﻿using System.Linq;
+using Cares.Models.DomainModels;
+using DomainResponseModel = Cares.Models.ResponseModels;
 using ApiModels = Cares.Web.Models;
 
 namespace Cares.Web.ModelMappers

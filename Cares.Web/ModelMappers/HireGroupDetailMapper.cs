@@ -1,4 +1,5 @@
-﻿using Cares.Web.Models;
+﻿using Cares.Models.DomainModels;
+using Cares.Web.Models;
 
 namespace Cares.Web.ModelMappers
 {
