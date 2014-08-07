@@ -25,7 +25,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Company ID
         /// </summary>
-        public long CompanyId { get; set; }
+        public long? CompanyId { get; set; }
         /// <summary>
         ///Hire Group Name
         /// </summary>

@@ -14,5 +14,11 @@ namespace Cares.Interfaces.Repository
         ///  Get all Tarrif Rates, based on filters
         /// </summary>
         TariffRateResponse GetTariffRates(TariffRateRequest tariffRateRequest);
+        /// <summary>
+        /// Find By Tariff Type Code
+        /// </summary>
+        /// <param name="tariffTypeCode"></param>
+        /// <returns></returns>
+        IEnumerable<StandardRateMain> FindByTariffTypeCode(string tariffTypeCode);
     }
 }

@@ -12,9 +12,9 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         /// Create web model from entity
         /// </summary>
-        public static TariffRateResponse CreateFrom(this Cares.Models.ResponseModels.TariffRateResponse source)
+        public static TariffRateSearchResponse CreateFrom(this DomainResponseModels.TariffRateResponse source)
         {
-            return new TariffRateResponse
+            return new TariffRateSearchResponse
             {
                 TariffRates = source.TariffRates.Select(company => company.CreateFrom()),
                 TotalCount = source.TotalCount
@@ -44,6 +44,7 @@ namespace Cares.Web.ModelMappers
                         hireGroupDetail.StartDate = standardRate.StartDate;
                         hireGroupDetail.EndDate = standardRate.EndDt;
                         hireGroupDetail.IsChecked = true;
+                        hireGroupDetail.RevisionNumber = standardRate.RevisionNumber;
                     }
                 }
                 hireGroupDetails.Add(hireGroupDetail);

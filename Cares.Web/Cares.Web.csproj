@@ -290,8 +290,6 @@
     <Compile Include="ModelMappers\StandardRateMainMapper.cs" />
     <Compile Include="ModelMappers\StandardRateMapper.cs" />
     <Compile Include="ModelMappers\TariffRateMapper.cs" />
-    <Compile Include="ModelMappers\TariffTypeBaseResponseMapper.cs" />
-    <Compile Include="ModelMappers\TarrifTypeDetailResponseMapper.cs" />
     <Compile Include="ModelMappers\TarrifTypeMapper.cs" />
     <Compile Include="ModelMappers\VehicleCategoryMapper.cs" />
     <Compile Include="ModelMappers\VehicleMakesMapper.cs" />
@@ -301,7 +299,6 @@
     <Compile Include="Models\BusinessSegment.cs" />
     <Compile Include="Models\BusinessPartnerIndividual.cs" />
     <Compile Include="Models\BusinessPartnerDetail.cs" />
-    <Compile Include="ModelMappers\TarrifTypeResponseMapper.cs" />
     <Compile Include="Models\BusinessPartnerListView.cs" />
     <Compile Include="Models\BusinessPartnerResponse.cs" />
     <Compile Include="Models\BpRatingType.cs" />
@@ -335,13 +332,13 @@
     <Compile Include="Models\TariffRateBaseResponse.cs" />
     <Compile Include="Models\TariffRateContent.cs" />
     <Compile Include="Models\HireGroupDetailResponse.cs" />
-    <Compile Include="Models\TariffRateResponse.cs" />
+    <Compile Include="Models\TariffRateSearchResponse.cs" />
     <Compile Include="Models\TariffTypeDetail.cs" />
     <Compile Include="Models\TariffTypeDetailResponse.cs" />
     <Compile Include="Models\TarrifType.cs" />
     <Compile Include="Models\BusinessPartnerBaseResponse.cs" />
     <Compile Include="Models\TarrifTypeBaseResponse.cs" />
-    <Compile Include="Models\TarrifTypeResponse.cs" />
+    <Compile Include="Models\TarrifTypeSearchResponse.cs" />
     <Compile Include="Models\VehicleCategory.cs" />
     <Compile Include="Models\VehicleMake.cs" />
     <Compile Include="Models\VehicleModel.cs" />
@@ -425,6 +422,7 @@
       <DependentUpon>Fleet.css</DependentUpon>
     </Content>
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Images\arrow-down-small.png" />
     <Content Include="Content\Images\arrow-up-small.png" />
     <Content Include="Content\Images\up-arrow-small.png" />
     <Content Include="Content\Images\arrow-down.png" />

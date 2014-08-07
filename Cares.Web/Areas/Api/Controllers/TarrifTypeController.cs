@@ -33,7 +33,7 @@ namespace Cares.Web.Areas.Api.Controllers
         #endregion
         #region Public
         // GET api/<controller>
-        public TarrifTypeResponse Get([FromUri] TarrifTypeRequest request)
+        public TarrifTypeSearchResponse Get([FromUri] DomainModels.TarrifTypeRequest request)
         {
             return tarrifTypeService.LoadTarrifTypes((request)).CreateFrom();
         }

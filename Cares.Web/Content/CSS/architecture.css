@@ -144,7 +144,7 @@ div#spinner
 }
 
 .icon-down {
-    background-image: url('/Content/images/arrow-down.png');
+    background-image: url('/Content/images/arrow-down-small.png');
     background-repeat: no-repeat;
     background-position: center;
     width: 12px;

@@ -137,6 +137,7 @@ namespace Cares.Implementation.Services
             {
                 long oldRecordId = standardRate.StandardRtId;
                 standardRate.StandardRtId = 0;
+                standardRate.RevisionNumber = standardRate.RevisionNumber+1;
                 standardRateRepository.Add(standardRate);
                 standardRateRepository.SaveChanges();
                 StandardRate oldStandardRate = standardRateRepository.Find(oldRecordId);
@@ -197,6 +198,12 @@ namespace Cares.Implementation.Services
         {
             return standardRateRepository.FindByHireGroupId(standardRtMainId, hireGroupDetailId);
         }
+
+        public IEnumerable<StandardRateMain> FindByTariffTypeCode(string tariffTypeCode)
+        {
+            return standardRateMainRepository.FindByTariffTypeCode(tariffTypeCode);
+        }
+
         #endregion
     }
 }

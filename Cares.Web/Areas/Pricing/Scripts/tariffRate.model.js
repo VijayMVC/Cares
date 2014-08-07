@@ -6,106 +6,105 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         //Tariff Rate entity
         // ReSharper disable InconsistentNaming
      TariffRate = function () {
-            // ReSharper restore InconsistentNaming
-            var // Reference to this object
-                self,
-                // Unique key
-                tariffRateId = ko.observable(),
-                // Tariff Rate Code 
-                tariffRateCode = ko.observable().extend({ required: true }),
-                // Tarrif Type Name
-                tariffRateName = ko.observable(),
-                // Tariff Rate Description
-                tariffRateDescription = ko.observable(),
-                //Start From
-                startEffectiveDate = ko.observable().extend({ required: true }),
-                //End To
-                endEffectiveDate = ko.observable().extend({ required: true }),
-                //Tariff Type Code Name
-                tariffTypeCodeName = ko.observable(),
-                //Tariff Type Id
-                tariffTypeId = ko.observable().extend({ required: true }),
-                //OperationCodeName
-                operationCodeName = ko.observable(),
-                //Operation Id
-                operationId = ko.observable(),
-                //Hire Group Details In Standard Rate
-                hireGroupDetailsInStandardRtMain = ko.observableArray([]),
-                // Formatted Start Date for grid
-                formattedStartDate = ko.computed({
-                    read: function () {
-                        return moment(startEffectiveDate()).format(ist.datePattern);
-                    }
-                }),
-                // Formatted End Date for grid
-                formattedEndDate = ko.computed({
-                    read: function () {
-                        return moment(endEffectiveDate()).format(ist.datePattern);
-                    }
-                }),
-                // Convert to server
-                convertToServerData = function () {
-                    return {
-                        StandardRtMainId: tariffRateId(),
-                    };
-                },
-                // Errors
-                errors = ko.validation.group({
-                    tariffRateCode: tariffRateCode,
-                    operationId: operationId,
-                    tariffTypeId: tariffTypeId,
-                    startEffectiveDate: startEffectiveDate,
-                    endEffectiveDate: endEffectiveDate,
-                }),
-                // Is Valid
-                isValid = ko.computed(function () {
-                    return errors().length === 0;
-                }),
-                // True if the booking has been changed
-                // ReSharper disable InconsistentNaming
-                dirtyFlag = new ko.dirtyFlag({
-                    tariffRateCode: tariffRateCode,
-                    tariffRateName: tariffRateName,
-                    tariffRateDescription: tariffRateDescription,
-                    operationId: operationId,
-                    startEffectiveDate: startEffectiveDate,
-                    endEffectiveDate: endEffectiveDate,
-                    tariffTypeId: tariffTypeId,
+         // ReSharper restore InconsistentNaming
+         var // Reference to this object
+             self,
+             // Unique key
+             tariffRateId = ko.observable(),
+             // Tariff Rate Code 
+             tariffRateCode = ko.observable().extend({ required: true }),
+             // Tarrif Type Name
+             tariffRateName = ko.observable(),
+             // Tariff Rate Description
+             tariffRateDescription = ko.observable(),
+             //Start From
+             startEffectiveDate = ko.observable().extend({ required: true }),
+             //End To
+             endEffectiveDate = ko.observable().extend({ required: true }),
+             //Tariff Type Code Name
+             tariffTypeCodeName = ko.observable(),
+             //Tariff Type Id
+             tariffTypeId = ko.observable().extend({ required: true }),
+             //OperationCodeName
+             operationCodeName = ko.observable(),
+             //Operation Id
+             operationId = ko.observable().extend({ required: true }),
+             //Hire Group Details In Standard Rate
+             hireGroupDetailsInStandardRtMain = ko.observableArray([]),
+             // Formatted Start Date for grid
+             formattedStartDate = ko.computed({
+                 read: function () {
+                     return moment(startEffectiveDate()).format(ist.datePattern);
+                 }
+             }),
+             // Formatted End Date for grid
+             formattedEndDate = ko.computed({
+                 read: function () {
+                     return moment(endEffectiveDate()).format(ist.datePattern);
+                 }
+             }),
+             // Convert to server
+             convertToServerData = function () {
+                 return {
+                     StandardRtMainId: tariffRateId(),
+                 };
+             },
+             // Errors
+             errors = ko.validation.group({
+                 tariffRateCode: tariffRateCode,
+                 operationId: operationId,
+                 tariffTypeId: tariffTypeId,
+                 startEffectiveDate: startEffectiveDate,
+                 endEffectiveDate: endEffectiveDate,
+             }),
+             // Is Valid
+             isValid = ko.computed(function () {
+                 return errors().length === 0;
+             }),
+             // True if the booking has been changed
+             // ReSharper disable InconsistentNaming
+             dirtyFlag = new ko.dirtyFlag({
+                 tariffRateCode: tariffRateCode,
+                 tariffRateName: tariffRateName,
+                 tariffRateDescription: tariffRateDescription,
+                 operationId: operationId,
+                 startEffectiveDate: startEffectiveDate,
+                 endEffectiveDate: endEffectiveDate,
+                 tariffTypeId: tariffTypeId,
+             }),
+             // Has Changes
+             hasChanges = ko.computed(function () {
+                 return dirtyFlag.isDirty();
+             }),
+             // Reset
+             reset = function () {
+                 dirtyFlag.reset();
+             };
 
-                }),
-                // Has Changes
-                hasChanges = ko.computed(function () {
-                    return dirtyFlag.isDirty();
-                }),
-                // Reset
-                reset = function () {
-                    dirtyFlag.reset();
-                };
+         self = {
+             tariffRateId: tariffRateId,
+             tariffRateCode: tariffRateCode,
+             tariffRateName: tariffRateName,
+             startEffectiveDate: startEffectiveDate,
+             endEffectiveDate: endEffectiveDate,
+             convertToServerData: convertToServerData,
+             tariffTypeCodeName: tariffTypeCodeName,
+             tariffTypeId: tariffTypeId,
+             operationCodeName: operationCodeName,
+             tariffRateDescription: tariffRateDescription,
+             formattedStartDate: formattedStartDate,
+             formattedEndDate: formattedEndDate,
+             operationId: operationId,
+             errors: errors,
+             isValid: isValid,
+             dirtyFlag: dirtyFlag,
+             hasChanges: hasChanges,
+             reset: reset,
+             hireGroupDetailsInStandardRtMain: hireGroupDetailsInStandardRtMain
 
-            self = {
-                tariffRateId: tariffRateId,
-                tariffRateCode: tariffRateCode,
-                tariffRateName: tariffRateName,
-                startEffectiveDate: startEffectiveDate,
-                endEffectiveDate: endEffectiveDate,
-                convertToServerData: convertToServerData,
-                tariffTypeCodeName: tariffTypeCodeName,
-                tariffTypeId: tariffTypeId,
-                operationCodeName: operationCodeName,
-                tariffRateDescription: tariffRateDescription,
-                formattedStartDate: formattedStartDate,
-                formattedEndDate: formattedEndDate,
-                operationId: operationId,
-                errors: errors,
-                isValid: isValid,
-                dirtyFlag: dirtyFlag,
-                hasChanges: hasChanges,
-                reset: reset,
-                hireGroupDetailsInStandardRtMain: hireGroupDetailsInStandardRtMain
-
-            };
-            return self;
-        };
+         };
+         return self;
+     };
     //Hire Group Deatil
     var HireGroupDetail = function () {
         // ReSharper restore InconsistentNaming
@@ -128,6 +127,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
              vehicleCategory = ko.observable(),
             //Model Year
             modelYear = ko.observable(),
+            //Revision Number
+            revisionNumber = ko.observable(),
             //Allow Mileage
             allowMileage = ko.observable().extend({ required: true, number: true }),
             //Excess Mileage Charge
@@ -137,7 +138,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             //Start Date
             startDate = ko.observable().extend({ required: true }),
             //End Date
-            endDate = ko.observable().extend({ required: true}),
+            endDate = ko.observable().extend({ required: true }),
             //Check whether it is selected against Tariff Rate
             isChecked = ko.observable(false),
               // Errors
@@ -168,8 +169,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
                 },
         self = {
             hireGroupDetailId: hireGroupDetailId,
-            virtualHireGroupDetailId:virtualHireGroupDetailId,
-            standardRateMainId:standardRateMainId,
+            virtualHireGroupDetailId: virtualHireGroupDetailId,
+            standardRateMainId: standardRateMainId,
             excessMileageCharge: excessMileageCharge,
             standardRtId: standardRtId,
             hireGroup: hireGroup,
@@ -177,6 +178,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             vehicleModel: vehicleModel,
             vehicleCategory: vehicleCategory,
             modelYear: modelYear,
+            revisionNumber: revisionNumber,
             allowMileage: allowMileage,
             standardRt: standardRt,
             startDate: startDate,
@@ -249,6 +251,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.HireGroupDetailId = source.hireGroupDetailId() === undefined ? 0 : source.hireGroupDetailId();
         result.StandardRtId = source.standardRtId() === undefined ? 0 : source.standardRtId();
         result.AllowMileage = source.allowMileage() === undefined ? null : source.allowMileage();
+        result.RevisionNumber = source.revisionNumber() === undefined ? null : source.revisionNumber();
         result.ExcessMileageCharge = source.excessMileageCharge() === undefined ? null : source.excessMileageCharge();
         result.StandardRt = source.standardRt() === undefined ? null : source.standardRt();
         result.StartDate = source.startDate() === undefined || source.startDate() === null ? undefined : moment(source.startDate()).format(ist.utcFormat);
@@ -265,6 +268,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         hireGroupDetail.hireGroup(source.HireGroup === null ? undefined : source.HireGroup);
         hireGroupDetail.vehicleMake(source.VehicleMake === null ? undefined : source.VehicleMake);
         hireGroupDetail.vehicleModel(source.VehicleModel === null ? undefined : source.VehicleModel);
+        hireGroupDetail.revisionNumber(source.RevisionNumber === null ? undefined : source.RevisionNumber);
         hireGroupDetail.vehicleCategory(source.VehicleCategory === null ? undefined : source.VehicleCategory);
         hireGroupDetail.modelYear(source.ModelYear === null ? undefined : source.ModelYear);
         hireGroupDetail.allowMileage(source.AllowMileage === null || source.AllowMileage === 0 ? undefined : source.AllowMileage);

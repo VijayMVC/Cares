@@ -35,7 +35,7 @@ namespace Cares.Web.Areas.Api.Controllers
         #endregion
         #region Public
         // GET api/<controller>
-        public TariffRateResponse Get([FromUri] TariffRateRequest request)
+        public TariffRateSearchResponse Get([FromUri] DomainModels.TariffRateRequest request)
         {
             if (request == null && !ModelState.IsValid)
             {
@@ -69,17 +69,27 @@ namespace Cares.Web.Areas.Api.Controllers
         /// </summary>
         public TariffRateContent Put(StandardRateMain standardRateMain)
         {
+            DateTime a, b, c, d;
             if (standardRateMain == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
+
+            a = Convert.ToDateTime(standardRateMain.StartDt);
+            b = Convert.ToDateTime(standardRateMain.EndDt);
+            if (a.Date < System.DateTime.Now.Date)
+               // throw new CaresBusinessException("Pricing-InvalidStartDate", null);
+            if (b.Date < a.Date)
+               // throw new CaresBusinessException("Pricing-InvalidEndDate", null);
+
+            tariffRateService.FindByTariffTypeCode(standardRateMain.TariffTypeCode);
+
             TariffRateContent tariffRateContent = tariffRateService.AddTariffRate(standardRateMain.CreateFrom()).CreateFrom();
             if (standardRateMain.HireGroupDetailsInStandardRtMain != null)
             {
                 foreach (var standardRate in standardRateMain.HireGroupDetailsInStandardRtMain)
                 {
                     standardRate.StandardRtMainId = tariffRateContent.StandardRtMainId;
-                    // i
                     tariffRateService.AddStandardRate(standardRate.CreateFrom());
                 }
             }

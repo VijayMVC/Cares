@@ -72,7 +72,6 @@ namespace Cares.Models.DomainModels
         public long UserDomainKey { get; set; }
 
         #endregion
-
         #region Reference Properties
         /// <summary>
         /// Department Reference

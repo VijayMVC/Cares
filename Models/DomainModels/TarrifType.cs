@@ -25,7 +25,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Measurement Unit Id
         /// </summary>
-        public int MeasurementUnitId { get; set; }
+        public int? MeasurementUnitId { get; set; }
         /// <summary>
         /// Company Id
         /// </summary>
