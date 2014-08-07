@@ -62,5 +62,11 @@ namespace Interfaces.IServices
         /// <param name="hireGroupDetailId"></param>
         /// <returns></returns>
         IEnumerable<StandardRate> FindStandardRate(long standardRtMainId, long hireGroupDetailId);
+        /// <summary>
+        /// Find By Tariff Type Code
+        /// </summary>
+        /// <param name="tariffTypeCode"></param>
+        /// <returns></returns>
+        IEnumerable<StandardRateMain> FindByTariffTypeCode(string tariffTypeCode);
     }
 }

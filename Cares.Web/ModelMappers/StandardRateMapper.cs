@@ -24,6 +24,7 @@ namespace Cares.Web.ModelMappers
                 StandardRtEndDt = source.EndDt,
                 StandardRtStartDt=source.StartDate,
                 HireGroupDetailId = source.HireGroupDetailId,
+                RevisionNumber = source.RevisionNumber,
                 
             };
         }
@@ -43,7 +44,7 @@ namespace Cares.Web.ModelMappers
                 StandardRt = source.StandardRt,
                 EndDt = source.StandardRtEndDt,
                 StartDate = source.StandardRtStartDt,
-               
+                RevisionNumber=source.RevisionNumber
 
             };
         }

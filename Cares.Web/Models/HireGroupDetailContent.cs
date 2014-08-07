@@ -63,6 +63,9 @@ namespace Cares.Web.Models
         /// Selected hire group for standard rate main
         /// </summary>
         public bool IsChecked { get; set; }
-
+        /// <summary>
+        /// Standard Rate Revision Number
+        /// </summary>
+        public long RevisionNumber { get; set; }
     }
 }

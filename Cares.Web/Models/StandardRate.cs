@@ -64,6 +64,10 @@ namespace Cares.Web.Models
         /// Standard rate main id
         /// </summary>
         public long StandardRtMainId { get; set; }
+        /// <summary>
+        /// Revision Number
+        /// </summary>
+        public long RevisionNumber { get; set; }
      
     }
 }

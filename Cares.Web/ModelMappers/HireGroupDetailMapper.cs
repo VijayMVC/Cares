@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using Cares.Web.Models;
+﻿using Cares.Web.Models;
 using DomainModels = Models.DomainModels;
 
 namespace Cares.Web.ModelMappers

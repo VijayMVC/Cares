@@ -9,36 +9,36 @@
         <div class="form-group">
             <label for="tariffRateCode" class="control-label h5 col-sm-2">Tariff Rate Code *</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" placeholder="<Tariff Rate Code>" id="tariffRateCode" data-bind="value: tariffRateCode, validationTooltip: tariffRateCode" />
+                <input type="text" class="form-control" placeholder="<Tariff Rate Code>" id="tariffRateCode" data-bind="value: tariffRateCode, validationTooltip: tariffRateCode, disable :(tariffRateId()!=undefined)" />
             </div>
             <label for="tariffRateName" class="control-label h5 col-sm-2">Tariff Rate Name</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" placeholder="<Tariff Rate Name>" id="tariffRateName" data-bind="value: tariffRateName, validationTooltip: tariffRateName" />
+                <input type="text" class="form-control" placeholder="<Tariff Rate Name>" id="tariffRateName" data-bind="value: tariffRateName, validationTooltip: tariffRateName, disable :(tariffRateId()!=undefined)" />
             </div>
             <label for="description" class="control-label h5 col-sm-2">Description</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" placeholder="<Description>" id="description" data-bind="value: tariffRateDescription, validationTooltip: tariffRateDescription" />
+                <input type="text" class="form-control" placeholder="<Description>" id="description" data-bind="value: tariffRateDescription, validationTooltip: tariffRateDescription, disable :(tariffRateId()!=undefined)" />
             </div>
         </div>
         <div class="form-group">
             <label for="operation" class="control-label h5 col-sm-2">Operation *</label>
             <div class="col-md-2">
-                <select id="operation" class="form-control" data-bind="options: $root.operations, optionsText: 'OperationName', optionsValue: 'OperationId', optionsCaption: '<Operation>' , value: operationId, validationTooltip: operationId"></select>
+                <select id="operation" class="form-control" data-bind="options: $root.operations, optionsText: 'OperationName', optionsValue: 'OperationId', optionsCaption: '<Operation>' , value: operationId, validationTooltip: operationId, disable :(tariffRateId()!=undefined)"></select>
             </div>
             <label for="tariffType" class="control-label h5 col-sm-2">Tariff Type *</label>
             <div class="col-xs-2">
-                <select id="tariffType" class="form-control" data-bind="options: $root.tariffTypes, optionsText: 'TariffTypeName', optionsValue: 'TariffTypeId', optionsCaption: '<Tariff Types>', value: tariffTypeId"></select>
+                <select id="tariffType" class="form-control" data-bind="options: $root.tariffTypes, optionsText: 'TariffTypeName', optionsValue: 'TariffTypeId', optionsCaption: '<Tariff Types>', value: tariffTypeId, disable :(tariffRateId()!=undefined)"></select>
             </div>
             <label for="startEffectiveDate" class="control-label h5 col-sm-2">Start Effective Date *</label>
             <div class="col-md-2">
-                <input type="text" placeholder="<Start Effective Date>" class="form-control" id="startEffectiveDate" data-bind="datepicker: startEffectiveDate, validationTooltip: startEffectiveDate" />
+                <input type="text" placeholder="<Start Effective Date>" class="form-control" id="startEffectiveDate" data-bind="datepicker: startEffectiveDate, validationTooltip: startEffectiveDate, disable :(tariffRateId()!=undefined)" />
             </div>
         </div>
 
         <div class="form-group">
             <label for="endTypeEffectiveDate" class="control-label h5 col-sm-2">End Effective Date *</label>
             <div class="col-md-2">
-                <input type="text" placeholder="<End Effective Date>" class="form-control" id="endTypeEffectiveDate" data-bind="datepicker: endEffectiveDate, validationTooltip: endEffectiveDate" />
+                <input type="text" placeholder="<End Effective Date>" class="form-control" id="endTypeEffectiveDate" data-bind="datepicker: endEffectiveDate, validationTooltip: endEffectiveDate, disable :(tariffRateId()!=undefined)" />
             </div>
         </div>
 
@@ -84,6 +84,7 @@
                     <th> <span id="8">Standard<br />Rate<span></span></span></th>
                     <th> <span id="9">Start<br />Date<span></span></span></th>
                     <th> <span id="10">End<br />Date<span></span></span></th>
+                    <th> <span id="11">Revision<br />Number<span></span></span></th>
                 </tr>
             </thead>
             <tbody>
@@ -126,6 +127,9 @@
                 </td>
                 <td class="col-md-2">
                     <input type="text" data-bind="datepicker: endDate, validationTooltip: endDate" />
+                </td> 
+                <td class="col-md-2">
+                    <span data-bind="text: revisionNumber"></span>
                 </td>
             </tr>
         </script>
@@ -142,6 +146,7 @@
                 <td data-bind="text: standardRt"></td>
                 <td data-bind="dateString: startDate"></td>
                 <td data-bind="dateString: endDate"></td>
+                <td data-bind="dateString: revisionNumber"></td>
             </tr>
         </script>
     </div>

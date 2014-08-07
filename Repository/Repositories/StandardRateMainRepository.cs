@@ -103,6 +103,15 @@ namespace Repository.Repositories
         {
             return DbSet.FirstOrDefault(standardRateMain => standardRateMain.StandardRtMainId == id);
         }
+        /// <summary>
+        /// Find By Tariff Type Code
+        /// </summary>
+        /// <param name="tariffTypeCode"></param>
+        /// <returns></returns>
+        public IEnumerable<StandardRateMain>  FindByTariffTypeCode(string tariffTypeCode)
+        {
+            return DbSet.Where(standardRateMain => standardRateMain.TariffTypeCode == tariffTypeCode);
+        }
         #endregion
     }
 }
