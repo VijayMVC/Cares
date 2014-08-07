@@ -2,10 +2,10 @@
 using System.Net;
 using System.Web;
 using System.Web.Http;
+using Cares.Interfaces.IServices;
+using Cares.Models.RequestModels;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
-using Interfaces.IServices;
-using Domain = Models.RequestModels;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
@@ -15,10 +15,23 @@ namespace Cares.Web.Areas.Api.Controllers
     public class FleetPoolController : ApiController
     {
         #region Public
+
+        /// <summary>
+        /// Dalete Fleet Pool
+        /// </summary>
+        public void Delete(FleetPool fleetPool)
+        {
+            if (!ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+           fleetPoolService.DeleteFleetPool(Convert.ToInt32( fleetPool.FleetPoolId));
+        }
+
         /// <summary>
         /// Get FleetPools
         /// </summary>
-        public FleetPoolResponse Get([FromUri] Domain.FleetPoolSearchRequest request)
+        public FleetPoolResponse Get([FromUri] FleetPoolSearchRequest request)
         {
             if (request == null || !ModelState.IsValid)
             {
@@ -27,19 +40,30 @@ namespace Cares.Web.Areas.Api.Controllers
 
             return fleetPoolService.SerchFleetPool(request).CreateFrom();
         }
-
         /// <summary>
-        /// Delete a FleetPool
+        /// Add new FleetPools
         /// </summary>
-        public void Delete(Object fleetPoolId)
+        public FleetPool Post(Cares.Models.DomainModels.FleetPool fleetPool) 
         {
-            if ( !ModelState.IsValid)
+            if (fleetPool == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-
-            fleetPoolService.DeleteFleetPool(2);
+          return  fleetPoolService.AddNewFleetPool(fleetPool).CreateFrom();
         }
+
+        /// <summary>
+        /// update FleetPools
+        /// </summary>
+        public FleetPool Put(Cares.Models.DomainModels.FleetPool fleetPool)
+        {
+            if (fleetPool == null || !ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+            return fleetPoolService.UpdateFleetPool(fleetPool).CreateFrom();
+        }
+       
         #endregion
         #region Constructor
 
@@ -49,9 +73,7 @@ namespace Cares.Web.Areas.Api.Controllers
         }
         #endregion
         #region Private
-
         private readonly IFleetPoolService fleetPoolService;
-
         #endregion
     }
 }

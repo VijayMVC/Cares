@@ -1,7 +1,7 @@
-﻿using Models.MenuModels;
-using System.Linq;
+﻿using System.Linq;
+using Cares.Models.MenuModels;
 
-namespace Interfaces.IServices
+namespace Cares.Interfaces.IServices
 {
     /// <summary>
     /// Interface for Menu Rights Service

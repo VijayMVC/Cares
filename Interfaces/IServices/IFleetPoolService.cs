@@ -1,8 +1,8 @@
-﻿using Models.DomainModels;
-using Models.RequestModels;
-using Models.ResponseModels;
+﻿using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
+using Cares.Models.ResponseModels;
 
-namespace Interfaces.IServices
+namespace Cares.Interfaces.IServices
 {
     /// <summary>
     /// FleetPool Interface
@@ -13,16 +13,21 @@ namespace Interfaces.IServices
         /// Load All FleetPools
         /// </summary>
         FleetPoolResponse SerchFleetPool(FleetPoolSearchRequest searchRequest);
-
         /// <summary>
         /// Load Fleet Pool Base Data
         /// </summary>
         FleetPoolBaseDataResponse LoadFleetPoolBaseData();
-
         /// <summary>
         /// Dalete Fleet Pool
         /// </summary>
-        /// <param name="id"></param>
         void DeleteFleetPool(int id);
+        /// <summary>
+        /// Add new FleetPools
+        /// </summary>
+        FleetPool AddNewFleetPool(FleetPool fleetPool);
+        /// <summary>
+        /// update fleetpool 
+        /// </summary>
+        FleetPool UpdateFleetPool(FleetPool request);
     }
 }

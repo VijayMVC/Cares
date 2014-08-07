@@ -1,6 +1,6 @@
-﻿using Models.Common;
+﻿using Cares.Models.Common;
 
-namespace Models.RequestModels
+namespace Cares.Models.RequestModels
 {
     /// <summary>
     /// Tariff Rate Request Domain Model
@@ -8,7 +8,7 @@ namespace Models.RequestModels
     public class TariffRateRequest : GetPagedListRequest
     {
         /// <summary>
-        /// Tariff Type Id
+        /// Tariff Rate Id
         /// </summary>
         public int? TariffTypeId { get; set; }        
         /// <summary>

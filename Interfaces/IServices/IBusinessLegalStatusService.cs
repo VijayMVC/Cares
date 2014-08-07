@@ -1,9 +1,7 @@
 ﻿using System.Linq;
-using Models.DomainModels;
-using Models.RequestModels;
-using Models.ResponseModels;
+using Cares.Models.DomainModels;
 
-namespace Interfaces.IServices
+namespace Cares.Interfaces.IServices
 {
     /// <summary>
     /// Business Legal Status Service Interface
@@ -14,6 +12,5 @@ namespace Interfaces.IServices
         /// Get all business legal status records
         /// </summary>
         IQueryable<BusinessLegalStatus> LoadAll();
-
     }
 }

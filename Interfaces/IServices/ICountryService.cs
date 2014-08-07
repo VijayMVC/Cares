@@ -1,7 +1,7 @@
 ﻿using System.Linq;
-using Models.DomainModels;
+using Cares.Models.DomainModels;
 
-namespace Interfaces.IServices
+namespace Cares.Interfaces.IServices
 {
     /// <summary>
     /// Country Service Interface
@@ -11,7 +11,6 @@ namespace Interfaces.IServices
         /// <summary>
         /// Load all countries
         /// </summary>
-        /// <returns></returns>
         IQueryable<Country> LoadAll();
     }
 }

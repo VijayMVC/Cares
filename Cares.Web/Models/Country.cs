@@ -13,6 +13,10 @@ namespace Cares.Web.Models
             /// </summary>
             public short CountryId { get; set; }
             /// <summary>
+            /// Country Custom ID
+            /// </summary>
+            public string CountryCustomId { get; set; }
+            /// <summary>
             /// Country Code
             /// </summary>
             public string CountryCode { get; set; }

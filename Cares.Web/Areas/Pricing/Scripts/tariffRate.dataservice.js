@@ -92,12 +92,13 @@ define("tariffRate/tariffRate.dataservice", function () {
                 });
             },
              // Get Tarrif type bby id 
-            getHireGroupDetails = function (callbacks) {
+            getHireGroupDetails = function (params,callbacks) {
                 initialize();
                 return amplify.request({
                     resourceId: 'getHireGroupDetails',
                     success: callbacks.success,
-                    error: callbacks.error
+                    error: callbacks.error,
+                    data: params
                 });
             },
             // Delete

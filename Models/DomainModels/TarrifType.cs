@@ -2,7 +2,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Models.DomainModels
+
+namespace Cares.Models.DomainModels
 {    /// <summary>
     /// Tarrif Type Domain Model
     /// </summary>
@@ -25,7 +26,7 @@ namespace Models.DomainModels
         /// <summary>
         /// Measurement Unit Id
         /// </summary>
-        public int MeasurementUnitId { get; set; }
+        public int? MeasurementUnitId { get; set; }
         
         /// <summary>
         /// Tariff Type Code

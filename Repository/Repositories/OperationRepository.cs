@@ -1,12 +1,12 @@
 ﻿using System.Data.Entity;
 using System.Linq;
-using Interfaces.Repository;
+using Cares.Interfaces.Repository;
+using Cares.Models.CommonTypes;
+using Cares.Models.DomainModels;
+using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
-using Models.CommonTypes;
-using Models.DomainModels;
-using Repository.BaseRepository;
 
-namespace Repository.Repositories
+namespace Cares.Repository.Repositories
 {
     /// <summary>
     /// Operation Repository
@@ -42,6 +42,12 @@ namespace Repository.Repositories
         {
             return DbSet.Where(operation => operation.UserDomainKey == UserDomainKey && operation.Department.DepartmentType.DepartmentTypeName == DepartmentTypes.Sales);
         }
+
+        public IQueryable<Operation> GetSalesOperation()
+        {
+            return DbSet.Where(operation => operation.Department.DepartmentType.DepartmentTypeName == DepartmentTypes.Sales);
+        }
+
         #endregion
     }
 }

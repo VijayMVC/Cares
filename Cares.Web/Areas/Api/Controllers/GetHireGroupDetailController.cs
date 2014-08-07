@@ -2,10 +2,9 @@
 using System.Net;
 using System.Web;
 using System.Web.Http;
+using Cares.Interfaces.IServices;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
-using Interfaces.IServices;
-using DomainRequestModel=Models.RequestModels;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
@@ -14,7 +13,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// </summary>
     public class GetHireGroupDetailController : ApiController
     {
-         #region Private
+        #region Private
         private readonly ITariffRateService tariffRateService;
         #endregion
         #region Constructors
@@ -36,13 +35,13 @@ namespace Cares.Web.Areas.Api.Controllers
         /// Get Hire group Detail For Tariff Rate
         /// </summary>
         /// <returns></returns>
-        public HireGroupDetailResponse Get()
+        public HireGroupDetailResponse Get([FromUri]StandardRateMain standardRateMain)
         {
             if (!ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return tariffRateService.GetHireGroupDetailsForTariffRate().CreateFromHireGroupDetail();
+            return tariffRateService.GetHireGroupDetailsForTariffRate(standardRateMain.StandardRtMainId).CreateFromHireGroupDetail();
         }
 
         #endregion

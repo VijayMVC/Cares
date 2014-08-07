@@ -1,5 +1,5 @@
 ﻿
-namespace WebBase.Mvc
+namespace Cares.WebBase.Mvc
 {
     public static class LoggerCategories
     {

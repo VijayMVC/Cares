@@ -1,5 +1,5 @@
 ﻿
-namespace Models.IdentityModels
+namespace Cares.Models.IdentityModels
 {
     public static class ApplicationRights
     {

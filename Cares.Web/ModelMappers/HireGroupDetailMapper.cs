@@ -1,7 +1,5 @@
-﻿using System;
-using System.Linq;
+﻿using Cares.Models.DomainModels;
 using Cares.Web.Models;
-using DomainModels = Models.DomainModels;
 
 namespace Cares.Web.ModelMappers
 {
@@ -14,21 +12,10 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static Models.HireGroupDetail CreateFrom(this DomainModels.HireGroupDetail source)
+        public static HireGroupDetailContent CreateFrom(this HireGroupDetail source)
         {
-            //float t = source.StandardRate != null
-            //    ? float.Parse(source.StandardRate.Where(
-            //            x => x.HireGroupDetailId == source.HireGroupDetailId && x.ChildStandardRtId == 0)
-            //            .Select(x => x.ExcessMileageChrg).SingleOrDefault()
-            //            .ToString()!=null?source.StandardRate.Where(
-            //            x => x.HireGroupDetailId == source.HireGroupDetailId && x.ChildStandardRtId == 0)
-            //            .Select(x => x.ExcessMileageChrg).SingleOrDefault()
-            //            .ToString():string.Empty )
-            //    : 0;
-            //var nn = (source.StandardRate.Where(
-            //    x => x.HireGroupDetailId == source.HireGroupDetailId && x.ChildStandardRtId == 0)
-            //    .Select(x => x.ExcessMileageChrg).SingleOrDefault()).ToString();
-            return new HireGroupDetail
+           
+            return new HireGroupDetailContent
             {
                 HireGroupDetailId = source.HireGroupDetailId,
                 HireGroup = source.HireGroup != null
@@ -43,35 +30,8 @@ namespace Cares.Web.ModelMappers
                 VehicleCategory = source.VehicleCategory != null
                         ? source.VehicleCategory.VehicleCategoryCode + " - " + source.VehicleCategory.VehicleCategoryName
                         : string.Empty,
-                ModelYear = source.ModelYear,
-                AllowMileage = source.StandardRate != null
-                ? float.Parse(source.StandardRate.Where(
-                        x => x.HireGroupDetailId == source.HireGroupDetailId && x.ChildStandardRtId == 0)
-                        .Select(x => x.AllowedMileage).SingleOrDefault()
-                        .ToString() != null ? source.StandardRate.Where(
-                        x => x.HireGroupDetailId == source.HireGroupDetailId && x.ChildStandardRtId == 0)
-                        .Select(x => x.AllowedMileage).SingleOrDefault()
-                        .ToString() : string.Empty) : 0,
-                ExcessMileageCharge = source.StandardRate != null
-                ? float.Parse(source.StandardRate.Where(
-                        x => x.HireGroupDetailId == source.HireGroupDetailId && x.ChildStandardRtId == 0)
-                        .Select(x => x.ExcessMileageChrg).SingleOrDefault()
-                        .ToString()!=null?source.StandardRate.Where(
-                        x => x.HireGroupDetailId == source.HireGroupDetailId && x.ChildStandardRtId == 0)
-                        .Select(x => x.ExcessMileageChrg).SingleOrDefault()
-                        .ToString():string.Empty ):0,
-                StandardRt = source.StandardRate != null
-                ? float.Parse(source.StandardRate.Where(
-                        x => x.HireGroupDetailId == source.HireGroupDetailId && x.ChildStandardRtId == 0)
-                        .Select(x => x.StandardRt).SingleOrDefault()
-                        .ToString()!=null?source.StandardRate.Where(
-                        x => x.HireGroupDetailId == source.HireGroupDetailId && x.ChildStandardRtId == 0)
-                        .Select(x => x.StandardRt).SingleOrDefault()
-                        .ToString():string.Empty )
-                : 0,
-               
-                StartDate = source.StandardRate != null?source.StandardRate.Where(x => x.HireGroupDetailId == source.HireGroupDetailId && x.ChildStandardRtId == 0).Select(x => x.StandardRtStartDt).SingleOrDefault():DateTime.Now,
-                EndDate = source.StandardRate != null ? source.StandardRate.Where(x => x.HireGroupDetailId == source.HireGroupDetailId && x.ChildStandardRtId == 0).Select(x => x.StandardRtEndDt).SingleOrDefault() : DateTime.Now,
+                ModelYear = source.ModelYear, 
+                
             };
         }
         #endregion

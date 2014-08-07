@@ -1,6 +1,6 @@
-﻿using Models.DomainModels;
+﻿using Cares.Models.DomainModels;
 
-namespace Interfaces.IServices
+namespace Cares.Interfaces.IServices
 {
     /// <summary>
     /// Business Partner InType Service Interface

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Models.DomainModels;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Models.DomainModels
+namespace Cares.Models.DomainModels
 {
     /// <summary>
     /// Business Parnter Domain Model
@@ -214,10 +215,13 @@ namespace Models.DomainModels
         public virtual ICollection<BusinessPartnerInType> BusinessPartnerInTypes { get; set; }
         
         /// <summary>
-        /// Business Partner In Types Phones
+        /// Business Partner Phones
         /// </summary>
         public virtual ICollection<Phone> BusinessPartnerPhoneNumbers { get; set; }
-
+        /// <summary>
+        /// Business Partner Address List
+        /// </summary>
+        public virtual ICollection<Address> BusinessPartnerAddressList { get; set; }
         #endregion
     }
 }

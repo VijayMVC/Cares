@@ -1,7 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-namespace Models.DomainModels
+
+namespace Cares.Models.DomainModels
 {
     /// <summary>
     /// Phone Domain Model

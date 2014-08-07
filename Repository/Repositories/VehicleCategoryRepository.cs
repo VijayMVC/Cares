@@ -1,18 +1,18 @@
 ﻿using System.Data.Entity;
 using System.Linq;
-using Interfaces.Repository;
+using Cares.Interfaces.Repository;
+using Cares.Models.DomainModels;
+using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
-using Models.DomainModels;
-using Repository.BaseRepository;
 
-namespace Repository.Repositories
+namespace Cares.Repository.Repositories
 {
     /// <summary>
     /// Vehicle Category Repository
     /// </summary>
-    public class VehicleCategoryRepository: BaseRepository<VehicleCategory>, IVehicleCategoryRepository
+    public class VehicleCategoryRepository : BaseRepository<VehicleCategory>, IVehicleCategoryRepository
     {
-          #region Constructor
+        #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>
@@ -41,7 +41,6 @@ namespace Repository.Repositories
         {
             return DbSet.Where(vehicleModel => vehicleModel.UserDomainKey == UserDomainKey);
         }
-
         #endregion
     }
 }

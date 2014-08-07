@@ -2,9 +2,10 @@
 using System.Net;
 using System.Web;
 using System.Web.Http;
+using Cares.Interfaces.IServices;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
-using Interfaces.IServices;
+using Cares.WebBase.Mvc;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
@@ -18,13 +19,14 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Get Fleet Pool Base Data 
         /// </summary>
+        [ApiException]
         public FleetPoolBaseDataResponse Get()
         {
             if (!ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            var abc = fleetPoolService.LoadFleetPoolBaseData().CreateFrom();
+            FleetPoolBaseDataResponse abc = fleetPoolService.LoadFleetPoolBaseData().CreateFrom();
             return abc;
         }
         #endregion

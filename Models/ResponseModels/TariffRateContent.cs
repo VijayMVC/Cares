@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Models.ResponseModels
+namespace Cares.Models.ResponseModels
 {
     /// <summary>
     /// Tariff Rate Contents to be displaye on the list of Standard Rates
@@ -45,6 +45,5 @@ namespace Models.ResponseModels
         /// Operation Code Name
         /// </summary>
         public string OperationCodeName { get; set; }
-
     }
 }

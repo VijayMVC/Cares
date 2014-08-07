@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using Interfaces.Repository;
+using Cares.Interfaces.Repository;
+using Cares.Models.Common;
+using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
+using Cares.Models.ResponseModels;
+using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
-using Models.Common;
-using Models.DomainModels;
-using Models.RequestModels;
-using Models.ResponseModels;
-using Repository.BaseRepository;
-namespace Repository.Repositories
+
+
+namespace Cares.Repository.Repositories
 {
     /// <summary>
     /// Tarrif Type Repository
@@ -26,7 +28,7 @@ namespace Repository.Repositories
                        
                     };
         #endregion
-        #region Constructors
+        #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>
@@ -60,8 +62,6 @@ namespace Repository.Repositories
         /// <summary>
         /// Get All Tariff Types based on search crateria
         /// </summary>
-        /// <param name="tarrifTypeRequest"></param>
-        /// <returns></returns>
         public TarrifTypeResponse GetTarrifTypes(TarrifTypeRequest tarrifTypeRequest)
         {
             int fromRow = (tarrifTypeRequest.PageNo - 1) * tarrifTypeRequest.PageSize;
@@ -80,6 +80,9 @@ namespace Repository.Repositories
 
             return new TarrifTypeResponse { TarrifTypes = tarrifTypes, TotalCount = DbSet.Count(query) };
         }
+        /// <summary>
+        /// Load Dependencies
+        /// </summary>
         public void LoadDependencies(TarrifType tarrifType)
         {
             LoadProperty<TarrifType>(tarrifType, "Operation");
@@ -88,10 +91,8 @@ namespace Repository.Repositories
             LoadProperty(tarrifType, () => tarrifType.PricingStrategy);
         }
         /// <summary>
-        /// Find By Id
+        /// Find Tariff Type By Id
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         public override TarrifType Find(long id)
         {
             return
@@ -102,8 +103,6 @@ namespace Repository.Repositories
         /// <summary>
         /// Get Revision
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         public TarrifType GetRevison(long id)
         {
             return

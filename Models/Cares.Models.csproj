@@ -7,8 +7,8 @@
     <ProjectGuid>{81067904-2176-4648-87AB-014B0D76B85E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Models</RootNamespace>
-    <AssemblyName>Models</AssemblyName>
+    <RootNamespace>Cares.Models</RootNamespace>
+    <AssemblyName>Cares.Models</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -134,6 +134,8 @@
     <Compile Include="DomainModels\VehicleSubStatus.cs" />
     <Compile Include="DomainModels\VehicleStatus.cs" />
     <Compile Include="DomainModels\OrgGroup.cs" />
+    <Compile Include="DomainModels\AddressType.cs" />
+    <Compile Include="DomainModels\Address.cs" />
     <Compile Include="DomainModels\PhoneType.cs" />
     <Compile Include="DomainModels\PaymentTerm.cs" />
     <Compile Include="DomainModels\PricingStrategy.cs" />
@@ -171,6 +173,7 @@
     <Compile Include="ResponseModels\FleetPoolResponse.cs" />
     <Compile Include="ResponseModels\BusinessPartnerResponse.cs" />
     <Compile Include="ResponseModels\ProductResponse.cs" />
+    <Compile Include="ResponseModels\RegionResponse.cs" />
     <Compile Include="ResponseModels\TariffRateBaseResponse.cs" />
     <Compile Include="ResponseModels\TariffRateContent.cs" />
     <Compile Include="ResponseModels\HireGroupDetailResponse.cs" />

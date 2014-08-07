@@ -1,4 +1,4 @@
-﻿namespace Models.RequestModels
+﻿namespace Cares.Models.RequestModels
 {
     /// <summary>
     /// FleetPool Search Request

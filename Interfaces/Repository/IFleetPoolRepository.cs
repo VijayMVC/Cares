@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Models.DomainModels;
-using Models.RequestModels;
+using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
 
-namespace Interfaces.Repository
+namespace Cares.Interfaces.Repository
 {
     /// <summary>
     /// FleetPool Repository
@@ -13,5 +13,9 @@ namespace Interfaces.Repository
         /// Search Fleet Pool Request
         /// </summary>
         IEnumerable<FleetPool> SearchFleetPool(FleetPoolSearchRequest request, out int rowCount);
+        /// <summary>
+        /// Add new FleetPools
+        /// </summary>
+        FleetPool AddNewFleetPool(FleetPool request);
     }
 }

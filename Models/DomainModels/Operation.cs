@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Models.DomainModels
+namespace Cares.Models.DomainModels
 {
     /// <summary>
     /// Operation Domain Model
@@ -81,7 +81,6 @@ namespace Models.DomainModels
         public long UserDomainKey { get; set; }
 
         #endregion
-
         #region Reference Properties
         
         /// <summary>

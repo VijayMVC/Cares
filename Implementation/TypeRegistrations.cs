@@ -1,16 +1,21 @@
-﻿using Implementation.Identity;
-using Implementation.Services;
-using Interfaces.IServices;
+﻿using Cares.Implementation.Identity;
+using Cares.Implementation.Services;
+using Cares.Interfaces.IServices;
+using Cares.Models.IdentityModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Practices.Unity;
-using Models.IdentityModels;
-using Repository.Repositories;
 
-namespace Implementation
+namespace Cares.Implementation
 {
+    /// <summary>
+    /// Type Registration for Implemention 
+    /// </summary>
     public static class TypeRegistrations
     {
+        /// <summary>
+        /// Register Types for Implementation
+        /// </summary>
         public static void RegisterType(IUnityContainer unityContainer)
         {
             UnityConfig.UnityContainer = unityContainer;
@@ -28,17 +33,18 @@ namespace Implementation
             unityContainer.RegisterType<IOperationService, OperationService>();
             unityContainer.RegisterType<IPricingStrategyService, PricingStrategyService>();
             unityContainer.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>();
-             unityContainer.RegisterType<IBusinessPartnerService, BusinessPartnerService>();
-             unityContainer.RegisterType<IPaymentTermService, PaymentTermService>();
-             unityContainer.RegisterType<IBPRatingTypeService, BPRatingTypeService>();
-             unityContainer.RegisterType<IBusinessLegalStatusService, BusinessLegalStatusService>();
-             unityContainer.RegisterType<IBusinessPartnerBaseDataService, BusinessPartnerBaseDataService>();
-             unityContainer.RegisterType<ITariffRateService, TariffRateService>();         
+            unityContainer.RegisterType<IBusinessPartnerService, BusinessPartnerService>();
+            unityContainer.RegisterType<IPaymentTermService, PaymentTermService>();
+            unityContainer.RegisterType<IBPRatingTypeService, BPRatingTypeService>();
+            unityContainer.RegisterType<IBusinessLegalStatusService, BusinessLegalStatusService>();
+            unityContainer.RegisterType<IBusinessPartnerBaseDataService, BusinessPartnerBaseDataService>();
+            unityContainer.RegisterType<ITariffRateService, TariffRateService>();
             unityContainer.RegisterType<IBusinessPartnerCompanyService, BusinessPartnerCompanyService>();
-       
-             unityContainer.RegisterType<IBusinessPartnerIndividualService, BusinessPartnerIndividualService>();
-             unityContainer.RegisterType<IOccupationTypeService, OccupationTypeService>();
-             unityContainer.RegisterType<ICountryService, CountryService>();
+            unityContainer.RegisterType<IStandardRateService, StandardRateService>();
+            unityContainer.RegisterType<IBusinessPartnerIndividualService, BusinessPartnerIndividualService>();
+            unityContainer.RegisterType<IOccupationTypeService, OccupationTypeService>();
+            unityContainer.RegisterType<ICountryService, CountryService>();
+            unityContainer.RegisterType<ICountryRegionsService, CountryRegionsService>();
         }
     }
 }

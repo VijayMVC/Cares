@@ -1,26 +1,19 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Security.Cryptography.X509Certificates;
-using Interfaces.Repository;
+using Cares.Interfaces.Repository;
+using Cares.Models.DomainModels;
+using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
-using Models.Common;
-using Models.DomainModels;
-using Models.RequestModels;
-using Models.ResponseModels;
-using Repository.BaseRepository;
 
-namespace Repository.Repositories
+
+namespace Cares.Repository.Repositories
 {
     /// <summary>
     /// Hire Group Detail Repository
     /// </summary>
     public sealed class HireGroupDetailRepository : BaseRepository<HireGroupDetail>, IHireGroupDetailRepository
     {
-       
         #region Constructor
         /// <summary>
         /// Constructor
@@ -54,11 +47,9 @@ namespace Repository.Repositories
         /// <summary>
         /// Get Hire Group detail, based on filter criteria
         /// </summary>
-        public HireGroupDetailResponse GetHireGroupDetailsForTariffRate()
+        public IEnumerable<HireGroupDetail> GetHireGroupDetailsForTariffRate()
         {
-
-            IEnumerable<HireGroupDetail> hireGroupDetails = DbSet.Where(h => h.UserDomainKey == UserDomainKey).Include(x => x.HireGroup);
-            return new HireGroupDetailResponse { HireGroupDetails = hireGroupDetails, TotalCount = hireGroupDetails.Count() };
+            return DbSet.Where(h => h.UserDomainKey == UserDomainKey).Include(x => x.HireGroup); ;
         }
         #endregion
     }

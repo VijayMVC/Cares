@@ -1,8 +1,7 @@
-﻿
-using System.Collections.Generic;
-using Models.DomainModels;
+﻿using System.Collections.Generic;
+using Cares.Models.DomainModels;
 
-namespace Interfaces.IServices
+namespace Cares.Interfaces.IServices
 {
     /// <summary>
     /// Occupation Type Service Interface
@@ -12,7 +11,6 @@ namespace Interfaces.IServices
         /// <summary>
         /// Get All Occupation Types
         /// </summary>
-        /// <returns></returns>
         IEnumerable<OccupationType> LoadAll();
     }
 }

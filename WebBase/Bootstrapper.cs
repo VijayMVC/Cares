@@ -1,6 +1,8 @@
 using System.Web.Mvc;
+using Cares.WebBase.UnityConfiguration;
 using Microsoft.Practices.Unity;
-namespace WebBase
+
+namespace Cares.WebBase
 {
   public static class Bootstrapper
   {
@@ -8,7 +10,7 @@ namespace WebBase
     {
       var container = BuildUnityContainer();
 
-      DependencyResolver.SetResolver(new UnityConfiguration.UnityDependencyResolver(container));
+      DependencyResolver.SetResolver(new UnityDependencyResolver(container));
 
       return container;
     }

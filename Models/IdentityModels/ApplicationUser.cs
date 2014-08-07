@@ -3,8 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-
-namespace Models.IdentityModels
+namespace Cares.Models.IdentityModels
 {
     /// <summary>
     /// Application User

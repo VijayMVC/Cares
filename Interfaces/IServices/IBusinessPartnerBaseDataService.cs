@@ -1,8 +1,6 @@
-﻿using System.Linq;
-using Models.DomainModels;
-using Models.ResponseModels;
+﻿using Cares.Models.ResponseModels;
 
-namespace Interfaces.IServices
+namespace Cares.Interfaces.IServices
 {
     /// <summary>
     /// Business Partner Base Service Interface

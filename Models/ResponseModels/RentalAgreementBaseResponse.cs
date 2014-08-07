@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Models.DomainModels;
+using Cares.Models.DomainModels;
 
-namespace Models.ResponseModels
+namespace Cares.Models.ResponseModels
 {
     /// <summary>
     /// Rental Agreement Base Response

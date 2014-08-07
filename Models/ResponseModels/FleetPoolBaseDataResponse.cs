@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Models.DomainModels;
+using Cares.Models.DomainModels;
 
-namespace Models.ResponseModels
+namespace Cares.Models.ResponseModels
 {
     /// <summary>
     /// Model for Fleet pool base data Response
@@ -17,5 +17,10 @@ namespace Models.ResponseModels
         /// Operations
         /// </summary>
         public IEnumerable<Operation> Operations { get; set; }
+
+        /// <summary>
+        /// Operations
+        /// </summary>
+        public IEnumerable<Country> Countries { get; set; }
     }
 }

@@ -232,6 +232,7 @@
     <Compile Include="Areas\Api\Controllers\ProductBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessPartnerController.cs" />
     <Compile Include="Areas\Api\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Api\Controllers\RegionsController.cs" />
     <Compile Include="Areas\Api\Controllers\TariffRateBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\TariffRateController.cs" />
     <Compile Include="Areas\Api\Controllers\TarrifTypeBaseController.cs" />
@@ -254,11 +255,6 @@
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\UnauthorizedRequestController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
-    <Compile Include="ExceptionUtilities\CommonException .cs" />
-    <Compile Include="ExceptionUtilities\CustomExceptionFilterAttribute.cs" />
-    <Compile Include="ExceptionUtilities\IstUtilityException.cs" />
-    <Compile Include="ExceptionUtilities\IstUtilityResourceManager.cs" />
-    <Compile Include="ExceptionUtilities\Tag.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -268,6 +264,8 @@
     <Compile Include="ModelMappers\BusinessPartnerMapper.cs" />
     <Compile Include="ModelMappers\BPRatingTypeMapper.cs" />
     <Compile Include="ModelMappers\BusinessLegalStatusMapper.cs" />
+    <Compile Include="ModelMappers\AddressTypeMapper.cs" />
+    <Compile Include="ModelMappers\AddressMapper.cs" />
     <Compile Include="ModelMappers\PhoneTypeMapper.cs" />
     <Compile Include="ModelMappers\HireGroupDetailMapper.cs" />
     <Compile Include="ModelMappers\OccupationTypeMapper.cs" />
@@ -285,10 +283,10 @@
     <Compile Include="ModelMappers\ProductResponseMapper.cs" />
     <Compile Include="ModelMappers\ProductMapper.cs" />
     <Compile Include="ModelMappers\RegionMapper.cs" />
+    <Compile Include="ModelMappers\RegionResponseMapper.cs" />
     <Compile Include="ModelMappers\StandardRateMainMapper.cs" />
+    <Compile Include="ModelMappers\StandardRateMapper.cs" />
     <Compile Include="ModelMappers\TariffRateMapper.cs" />
-    <Compile Include="ModelMappers\TariffTypeBaseResponseMapper.cs" />
-    <Compile Include="ModelMappers\TarrifTypeDetailResponseMapper.cs" />
     <Compile Include="ModelMappers\TarrifTypeMapper.cs" />
     <Compile Include="ModelMappers\VehicleCategoryMapper.cs" />
     <Compile Include="ModelMappers\VehicleMakesMapper.cs" />
@@ -298,17 +296,20 @@
     <Compile Include="Models\BusinessSegment.cs" />
     <Compile Include="Models\BusinessPartnerIndividual.cs" />
     <Compile Include="Models\BusinessPartnerDetail.cs" />
-    <Compile Include="ModelMappers\TarrifTypeResponseMapper.cs" />
     <Compile Include="Models\BusinessPartnerListView.cs" />
     <Compile Include="Models\BusinessPartnerResponse.cs" />
     <Compile Include="Models\BpRatingType.cs" />
     <Compile Include="Models\BusinessLegalStatus.cs" />
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\CountryRegions.cs" />
+    <Compile Include="Models\CountryRegionsResponse.cs" />
     <Compile Include="Models\Phone.cs" />
+    <Compile Include="Models\AddressType.cs" />
     <Compile Include="Models\PhoneType.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\HireGroup.cs" />
     <Compile Include="Models\BusinessPartnerCompany.cs" />
-    <Compile Include="Models\HireGroupDetail.cs" />
+    <Compile Include="Models\HireGroupDetailContent.cs" />
     <Compile Include="Models\OccupationType.cs" />
     <Compile Include="Models\PaymentTerm.cs" />
     <Compile Include="Models\Category.cs" />
@@ -324,18 +325,19 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductResponse.cs" />
     <Compile Include="Models\Region.cs" />
+    <Compile Include="Models\RegionResponse.cs" />
     <Compile Include="Models\StandardRate.cs" />
     <Compile Include="Models\StandardRateMain.cs" />
     <Compile Include="Models\TariffRateBaseResponse.cs" />
     <Compile Include="Models\TariffRateContent.cs" />
     <Compile Include="Models\HireGroupDetailResponse.cs" />
-    <Compile Include="Models\TariffRateResponse.cs" />
+    <Compile Include="Models\TariffRateSearchResponse.cs" />
     <Compile Include="Models\TariffTypeDetail.cs" />
     <Compile Include="Models\TariffTypeDetailResponse.cs" />
     <Compile Include="Models\TarrifType.cs" />
     <Compile Include="Models\BusinessPartnerBaseResponse.cs" />
     <Compile Include="Models\TarrifTypeBaseResponse.cs" />
-    <Compile Include="Models\TarrifTypeResponse.cs" />
+    <Compile Include="Models\TarrifTypeSearchResponse.cs" />
     <Compile Include="Models\VehicleCategory.cs" />
     <Compile Include="Models\VehicleMake.cs" />
     <Compile Include="Models\VehicleModel.cs" />
@@ -419,6 +421,7 @@
       <DependentUpon>Fleet.css</DependentUpon>
     </Content>
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Images\arrow-down-small.png" />
     <Content Include="Content\Images\arrow-up-small.png" />
     <Content Include="Content\Images\up-arrow-small.png" />
     <Content Include="Content\Images\arrow-down.png" />
@@ -959,6 +962,7 @@
     <Content Include="Areas\Pricing\Views\Tarrif\_TariffRateEditor.cshtml" />
     <Content Include="Areas\Pricing\Views\Tarrif\_HireGroupRateDialog.cshtml" />
     <Content Include="Content\TariffRate.less" />
+    <Content Include="Areas\Fleet\Views\Home\_FleetPoolEditor.cshtml" />
     <Content Include="Areas\RentalAgreement\Views\_ViewStart.cshtml" />
     <Content Include="Areas\RentalAgreement\Views\Home\Index.cshtml" />
     <Content Include="Areas\RentalAgreement\Views\Shared\_Layout.cshtml" />
@@ -1118,21 +1122,21 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Implementation\Implementation.csproj">
+    <ProjectReference Include="..\Implementation\Cares.Implementation.csproj">
       <Project>{42d2e6c0-74f1-46fb-b7ba-43251156275d}</Project>
-      <Name>Implementation</Name>
+      <Name>Cares.Implementation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
+    <ProjectReference Include="..\Interfaces\Cares.Interfaces.csproj">
       <Project>{98F7A831-6D93-48E9-950F-623772AA607A}</Project>
-      <Name>Interfaces</Name>
+      <Name>Cares.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Models\Models.csproj">
+    <ProjectReference Include="..\Models\Cares.Models.csproj">
       <Project>{81067904-2176-4648-87ab-014b0d76b85e}</Project>
-      <Name>Models</Name>
+      <Name>Cares.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WebBase\WebBase.csproj">
+    <ProjectReference Include="..\WebBase\Cares.WebBase.csproj">
       <Project>{bcb8bcfd-0163-430c-8088-224074d6e384}</Project>
-      <Name>WebBase</Name>
+      <Name>Cares.WebBase</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

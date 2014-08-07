@@ -1,13 +1,19 @@
 ﻿using System.Data.Entity;
-using Interfaces.Repository;
+using Cares.Interfaces.Repository;
+using Cares.Repository.BaseRepository;
+using Cares.Repository.Repositories;
 using Microsoft.Practices.Unity;
-using Repository.BaseRepository;
-using Repository.Repositories;
 
-namespace Repository
+namespace Cares.Repository
 {
+    /// <summary>
+    /// Repository Type Registration
+    /// </summary>
     public static class TypeRegistrations
     {
+        /// <summary>
+        /// Register Types for Repositories
+        /// </summary>
         public static void RegisterType(IUnityContainer unityContainer)
         {
             unityContainer.RegisterType<IMenuRightRepository, MenuRightRepository>();
@@ -26,7 +32,7 @@ namespace Repository
             unityContainer.RegisterType<IPricingStrategyRepository, PricingStrategyRepository>();
             unityContainer.RegisterType<IRegionRepository, RegionRepository>();
             unityContainer.RegisterType<DbContext, BaseDbContext>();
-            unityContainer.RegisterType<IBpRatingTypeRepository ,BpRatingTypeRepository>();
+            unityContainer.RegisterType<IBpRatingTypeRepository, BpRatingTypeRepository>();
             unityContainer.RegisterType<IBusinessLegalStatusRepository, BusinessLegalStatusRepository>();
             unityContainer.RegisterType<IVehicleCategoryRepository, VehicleCategoryRepository>();
             unityContainer.RegisterType<IVehicleMakeRepository, VehicleMakeRepository>();
@@ -34,7 +40,7 @@ namespace Repository
             unityContainer.RegisterType<IHireGroupRepository, HireGroupRepository>();
             unityContainer.RegisterType<IHireGroupDetailRepository, HireGroupDetailRepository>();
             unityContainer.RegisterType<IStandardRateRepository, StandardRateRepository>();
-              unityContainer.RegisterType<IBusinessPartnerIndividualRepository, BusinessPartnerIndividaulRepository>();
+            unityContainer.RegisterType<IBusinessPartnerIndividualRepository, BusinessPartnerIndividaulRepository>();
             unityContainer.RegisterType<IOccupationTypeRepository, OccupationTypeRepository>();
             unityContainer.RegisterType<IBusinessPartnerCompanyRepository, BusinessPartnerCompanyRepository>();
             unityContainer.RegisterType<ICountryRepository, CountryRepository>();
@@ -42,7 +48,7 @@ namespace Repository
             unityContainer.RegisterType<IBusinessPartnerInTypeRepository, BusinessPartnerInTypeRepository>();
             unityContainer.RegisterType<IBusinessPartnerSubTypeRepository, BusinessPartnerSubTypeRepository>();
             unityContainer.RegisterType<IPhoneTypeRepository, PhoneTypeRepository>();
-
+            unityContainer.RegisterType<IAddressTypeRepository, AddressTypeRepository>();
             unityContainer.RegisterType<IStandardRateMainRepository, StandardRateMainRepository>();
         }
     }

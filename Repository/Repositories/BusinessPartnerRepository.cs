@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using Interfaces.Repository;
-
+using Cares.Interfaces.Repository;
+using Cares.Models.Common;
+using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
+using Cares.Models.ResponseModels;
+using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
-using Models.Common;
-using Models.DomainModels;
-using Models.RequestModels;
-using Models.ResponseModels;
-using Repository.BaseRepository;
 
-namespace Repository.Repositories
+namespace Cares.Repository.Repositories
 {
     /// <summary>
     /// Business Partner Repository
@@ -21,7 +20,7 @@ namespace Repository.Repositories
     {
         #region Private
         /// <summary>
-        /// Order by Column Names Dictionary statements - for Product
+        /// Order by Column Names Dictionary statements 
         /// </summary>
         private readonly Dictionary<BusinessPartnerByColumn, Func<BusinessPartner, object>> businessPartnerClause =
               new Dictionary<BusinessPartnerByColumn, Func<BusinessPartner, object>>
@@ -53,7 +52,6 @@ namespace Repository.Repositories
                 return db.BusinessPartners;
             }
         }
-
         #endregion
 
         #region Public
@@ -79,9 +77,6 @@ namespace Repository.Repositories
         /// <summary>
         /// Get business partner by name and id
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="id"></param>
-        /// <returns></returns>
         public BusinessPartner GetBusinessPartnerByName(string name, int id)
         {
             return DbSet.FirstOrDefault(businessPartner => businessPartner.BusinessPartnerName == name && businessPartner.BusinessPartnerId == id);
@@ -106,6 +101,8 @@ namespace Repository.Repositories
                 .Include(x => x.BusinessPartnerInTypes.Select(y => y.BusinessPartnerSubType))
                 .Include(x => x.BusinessPartnerPhoneNumbers)
                 .Include(x => x.BusinessPartnerPhoneNumbers.Select(y => y.PhoneType))
+                .Include(x=>x.BusinessPartnerAddressList)
+                //.Include(x => x.BusinessPartnerAddressList).Select(y => y.AddressType)
                 .Include(x => x.Company)
                 .Include(x => x.BPRatingType)
                 .FirstOrDefault();

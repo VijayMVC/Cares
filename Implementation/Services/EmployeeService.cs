@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using Interfaces.IServices;
-using Interfaces.Repository;
-using Models.DomainModels;
-using Models.RequestModels;
-using Models.ResponseModels;
+using Cares.Interfaces.IServices;
+using Cares.Interfaces.Repository;
+using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
+using Cares.Models.ResponseModels;
 
-namespace Implementation.Services
+namespace Cares.Implementation.Services
 {
     public sealed class EmployeeService: IEmployeeService
     {

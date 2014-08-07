@@ -3,14 +3,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq.Expressions;
+using Cares.Models.DomainModels;
+using Cares.Models.IdentityModels;
+using Cares.Models.LoggerModels;
+using Cares.Models.MenuModels;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Practices.Unity;
 using Models.DomainModels;
-using Models.IdentityModels;
-using Models.LoggerModels;
-using Models.MenuModels;
+using Repository.BaseRepository;
 
-namespace Repository.BaseRepository
+namespace Cares.Repository.BaseRepository
 {
     /// <summary>
     /// Base Db Context. Implements Identity Db Context over Application User
@@ -226,6 +228,10 @@ namespace Repository.BaseRepository
         /// Phone Type
         /// </summary>
         public DbSet<PhoneType> PhoneTypes { get; set; }
+        /// <summary>
+        /// Address Type
+        /// </summary>
+        public DbSet<AddressType> AddressTypes { get; set; }
 
         #endregion
     }

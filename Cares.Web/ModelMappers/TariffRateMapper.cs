@@ -1,6 +1,10 @@
-﻿using System.Linq;
-using Cares.Web.Models;
-using DomainResponseModels = Models.ResponseModels;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Cares.Models.ResponseModels;
+using ApiModel = Cares.Web.Models;
+using DomainResponseModels = Cares.Models.ResponseModels;
+
+
 namespace Cares.Web.ModelMappers
 {
     /// <summary>
@@ -11,9 +15,9 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         /// Create web model from entity
         /// </summary>
-        public static TariffRateResponse CreateFrom(this DomainResponseModels.TariffRateResponse source)
+        public static ApiModel.TariffRateSearchResponse CreateFrom(this TariffRateResponse source)
         {
-            return new TariffRateResponse
+            return new ApiModel.TariffRateSearchResponse
             {
                 TariffRates = source.TariffRates.Select(company => company.CreateFrom()),
                 TotalCount = source.TotalCount
@@ -23,12 +27,35 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity 
         /// </summary>
-        public static HireGroupDetailResponse CreateFromHireGroupDetail(this DomainResponseModels.HireGroupDetailResponse source)
+        public static ApiModel.HireGroupDetailResponse CreateFromHireGroupDetail(this HireGroupDetailResponse source)
         {
-            return new HireGroupDetailResponse
+            IEnumerable<ApiModel.HireGroupDetailContent> hireGroupDetailContent = source.HireGroupDetails.Select(hireGroupDet => hireGroupDet.CreateFrom());
+            IEnumerable<ApiModel.StandardRate> standardRates = source.StandardRates.Select(stRt => stRt.CreateFrom());
+            // ReSharper disable once SuggestUseVarKeywordEvident
+            List<ApiModel.HireGroupDetailContent> hireGroupDetails = new List<ApiModel.HireGroupDetailContent>();
+            foreach (var hireGroupDetail in hireGroupDetailContent)
             {
-                HireGroupDetails = source.HireGroupDetails.Select(hireGroup => hireGroup.CreateFrom()),
-                TotalCount = source.TotalCount
+                // ReSharper disable once PossibleMultipleEnumeration
+                foreach (var standardRate in standardRates)
+                {
+                    if (standardRate.HireGroupDetailId == hireGroupDetail.HireGroupDetailId)
+                    {
+                        hireGroupDetail.StandardRtId = standardRate.StandardRtId;
+                        hireGroupDetail.AllowMileage = standardRate.AllowMileage;
+                        hireGroupDetail.ExcessMileageCharge = standardRate.ExcessMileageCharge;
+                        hireGroupDetail.StandardRt = standardRate.StandardRt;
+                        hireGroupDetail.StartDate = standardRate.StartDate;
+                        hireGroupDetail.EndDate = standardRate.EndDt;
+                        hireGroupDetail.IsChecked = true;
+                        hireGroupDetail.RevisionNumber = standardRate.RevisionNumber;
+                    }
+                }
+                hireGroupDetails.Add(hireGroupDetail);
+            }
+            return new ApiModel.HireGroupDetailResponse
+            {
+                HireGroupDetails = hireGroupDetails,
+
             };
         }
         #endregion
@@ -36,9 +63,9 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Tariff Type Base Response Mapper
         /// </summary>
-        public static TariffRateBaseResponse CreateFrom(this DomainResponseModels.TariffRateBaseResponse source)
+        public static ApiModel.TariffRateBaseResponse CreateFrom(this TariffRateBaseResponse source)
         {
-            return new TariffRateBaseResponse
+            return new ApiModel.TariffRateBaseResponse
             {
                 Companies = source.Companies.Select(company => company.CreateFrom()),
                 Departments = source.Departments.Select(d => d.CreateFrom()),

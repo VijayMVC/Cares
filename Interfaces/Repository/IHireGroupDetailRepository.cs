@@ -1,15 +1,17 @@
-﻿using System.Linq;
-using Models.DomainModels;
-using Models.RequestModels;
-using Models.ResponseModels;
+﻿using System.Collections.Generic;
+using Cares.Models.DomainModels;
 
-namespace Interfaces.Repository
+namespace Cares.Interfaces.Repository
 {
     /// <summary>
     /// Hire Group Detail Interface
     /// </summary>
     public interface IHireGroupDetailRepository: IBaseRepository<HireGroupDetail, long>
     {
-        HireGroupDetailResponse GetHireGroupDetailsForTariffRate();
+        /// <summary>
+        /// Get Hire Group Details For Tarif fRate
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<HireGroupDetail> GetHireGroupDetailsForTariffRate();
     }
 }

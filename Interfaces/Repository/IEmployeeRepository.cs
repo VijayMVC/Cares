@@ -1,8 +1,9 @@
 ﻿using System.Linq;
-using Models.DomainModels;
-using Models.RequestModels;
-using Models.ResponseModels;
-namespace Interfaces.Repository
+using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
+using Cares.Models.ResponseModels;
+
+namespace Cares.Interfaces.Repository
 {
     public interface IEmployeeRepository : IBaseRepository<Employee, long>
     {

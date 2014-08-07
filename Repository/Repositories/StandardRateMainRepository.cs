@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using Interfaces.Repository;
+using Cares.Interfaces.Repository;
+using Cares.Models.Common;
+using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
+using Cares.Models.ResponseModels;
+using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
-using Models.Common;
-using Models.DomainModels;
-using Models.RequestModels;
-using Models.ResponseModels;
-using Repository.BaseRepository;
 
-namespace Repository.Repositories
+namespace Cares.Repository.Repositories
 {
     /// <summary>
     /// Standard Rate Main Repository
@@ -97,11 +97,18 @@ namespace Repository.Repositories
         /// <summary>
         /// Find By Id
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         public override StandardRateMain Find(long id)
         {
             return DbSet.FirstOrDefault(standardRateMain => standardRateMain.StandardRtMainId == id);
+        }
+        /// <summary>
+        /// Find By Tariff Type Code
+        /// </summary>
+        /// <param name="tariffTypeCode"></param>
+        /// <returns></returns>
+        public IEnumerable<StandardRateMain>  FindByTariffTypeCode(string tariffTypeCode)
+        {
+            return DbSet.Where(standardRateMain => standardRateMain.TariffTypeCode == tariffTypeCode);
         }
         #endregion
     }

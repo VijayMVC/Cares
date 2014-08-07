@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
-using Models.DomainModels;
-namespace Models.ResponseModels
+using Cares.Models.DomainModels;
+
+namespace Cares.Models.ResponseModels
 {
     /// <summary>
     /// TariffType Detail Response Response Model

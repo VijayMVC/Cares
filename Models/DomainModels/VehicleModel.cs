@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-namespace Models.DomainModels
+
+namespace Cares.Models.DomainModels
 {
     /// <summary>
     /// Vehicle Domain Model  

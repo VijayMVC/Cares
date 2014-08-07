@@ -1,8 +1,10 @@
-﻿using Models.DomainModels;
-using Models.RequestModels;
-using Models.ResponseModels;
+﻿using System.Collections.Generic;
+using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
+using Cares.Models.ResponseModels;
 
-namespace Interfaces.Repository
+
+namespace Cares.Interfaces.Repository
 {
     /// <summary>
     /// Standard Rate Main Interface
@@ -12,8 +14,12 @@ namespace Interfaces.Repository
         /// <summary>
         ///  Get all Tarrif Rates, based on filters
         /// </summary>
-        /// <param name="tariffRateRequest"></param>
-        /// <returns></returns>
         TariffRateResponse GetTariffRates(TariffRateRequest tariffRateRequest);
+        /// <summary>
+        /// Find By Tariff Type Code
+        /// </summary>
+        /// <param name="tariffTypeCode"></param>
+        /// <returns></returns>
+        IEnumerable<StandardRateMain> FindByTariffTypeCode(string tariffTypeCode);
     }
 }

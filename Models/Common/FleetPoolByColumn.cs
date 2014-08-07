@@ -1,4 +1,4 @@
-﻿namespace Models.Common
+﻿namespace Cares.Models.Common
 {
     /// <summary>
     /// Sort by FleetPool columns
