@@ -2,7 +2,7 @@
 using System.Linq;
 using Cares.Interfaces.Repository;
 using Microsoft.Practices.Unity;
-using Models.DomainModels;
+using Cares.Models.DomainModels;
 using Cares.Repository.BaseRepository;
 
 namespace Cares.Repository.Repositories
