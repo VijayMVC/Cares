@@ -22,30 +22,32 @@ define("businessPartner/businessPartner.viewModel",
                     isLoadingBusinessPartners = ko.observable(false),
                     // #endregion Busy Indicators
                     // #region Observables
-                     // Companies Array
+                    // Companies Array
                     companies = ko.observableArray([]),
-                     // Payment Terms Array 
+                    // Payment Terms Array 
                     paymentTerms = ko.observableArray([]),
-                     // Business Partners Rating Types Array
+                    // Business Partners Rating Types Array
                     bpRatingTypes = ko.observableArray([]),
-                      // Business Legal Statuses Array
+                    // Business Legal Statuses Array
                     businessLegalStatuses = ko.observableArray([]),
-                      // Response Business  Partners Array
+                    // Response Business  Partners Array
                     respBusinessPartners = ko.observableArray([]),
-                      // Business Legal Statuses Array
+                    // Business Legal Statuses Array
                     dealingEmployees = ko.observableArray([]),
-                       // Business Partner Companies Array
+                    // Business Partner Companies Array
                     businessPartnerCompanies = ko.observableArray([]),
-                    // Passport Countries Array
-                    passportCountries = ko.observableArray([]),
+                    // Countries Array
+                    countries = ko.observableArray([]),
                     // Occupation Types Array
                     occupationTypes = ko.observableArray([]),
                     // Business Segments Array
                     businessSegments = ko.observableArray([]),
                      // Business Partner SubType Array
                     businessPartnerSubTypes = ko.observableArray([]),
-                     // Phone Types Array
+                    // Phone Types Array
                     phoneTypes = ko.observableArray([]),
+                    // Address Types Array
+                    addressTypes = ko.observableArray([]),
                     // Sort On
                     sortOn = ko.observable(1),
                     // Sort Order -  true means asc, false means desc
@@ -145,6 +147,11 @@ define("businessPartner/businessPartner.viewModel",
                     // Delete a BusinessPartner Phone Item
                     onDeleteBusinessPartnerPhone = function (businessPartnerPhone) {
                         selectedBusinessPartner().businessPartnerPhoneNumbers.remove(businessPartnerPhone);
+                        return;
+                    },
+                    // Delete a BusinessPartner Address Item
+                    onDeleteBusinessPartnerAddress = function (businessPartnerAddress) {
+                        selectedBusinessPartner().businessPartnerAddressList.remove(businessPartnerAddress);
                         return;
                     },
                     // business partner InType selected subtype id computed
@@ -248,6 +255,27 @@ define("businessPartner/businessPartner.viewModel",
                             selectedBusinessPartner().businessPartnerPhoneNumberNew(model.BusinessPartnerPhone(undefined,false,undefined,undefined,undefined));
                         }
                     },
+                    // Do Before Add BusinessPartner Address Item
+                    doBeforeAddAddressItem = function () {
+                        var flag = true;
+                        if (!selectedBusinessPartner().businessPartnerAddressNew().isValid()) {
+                            selectedBusinessPartner().businessPartnerAddressNew().errors.showAllMessages();
+                            flag = false;
+                        }
+                        return flag;
+                    },
+                    // Add a BusinessPartner Address
+                    onAddBusinessPartnerAddress = function () {
+                        // check validation error before add
+                        if (doBeforeAddAddressItem()) {
+                            var businessPartnerAddress = model.BusinessPartnerAddress(undefined, selectedBusinessPartner().businessPartnerAddressNew().contactPerson(), selectedBusinessPartner().businessPartnerAddressNew().streetAddress(), selectedBusinessPartner().businessPartnerAddressNew().emailAddress(), selectedBusinessPartner().businessPartnerAddressNew().webPage(), selectedBusinessPartner().businessPartnerAddressNew().zipCode(), selectedBusinessPartner().businessPartnerAddressNew().poBox(),selectedBusinessPartner().businessPartnerAddressNew().countryId(),"", undefined, undefined, undefined,undefined,undefined,undefined,undefined,undefined, selectedBusinessPartner().businessPartnerAddressNew().addressTypeId(),"", selectedBusinessPartner().businessPartnerId());
+                            selectedBusinessPartner().businessPartnerAddressList.push(businessPartnerAddress);
+                            selectedBusinessPartner().businessPartnerAddressList.valueHasMutated();
+
+                            // emplty input fields
+                            selectedBusinessPartner().businessPartnerAddressNew(model.BusinessPartnerAddress(undefined,"","","","","","",undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined));
+                        }
+                    },
                     // Create Business Partner
                     createBusinessPartner = function () {
                         var businessPartner = model.BusinessPartnerDetail.Create();
@@ -327,10 +355,10 @@ define("businessPartner/businessPartner.viewModel",
                                 businessPartnerCompanies.removeAll();
                                 ko.utils.arrayPushAll(businessPartnerCompanies(), data.ResponseBusinessPartnerCompanies);
                                 businessPartnerCompanies.valueHasMutated();
-                                // Passport Countries array
-                                passportCountries.removeAll();
-                                ko.utils.arrayPushAll(passportCountries(), data.ResponsePassportCountries);
-                                passportCountries.valueHasMutated();
+                                // Countries array
+                                countries.removeAll();
+                                ko.utils.arrayPushAll(countries(), data.ResponseCountries);
+                                countries.valueHasMutated();
                                 // Occupation Types array
                                 occupationTypes.removeAll();
                                 ko.utils.arrayPushAll(occupationTypes(), data.ResponseOccupationTypes);
@@ -347,6 +375,10 @@ define("businessPartner/businessPartner.viewModel",
                                 phoneTypes.removeAll();
                                 ko.utils.arrayPushAll(phoneTypes(), data.ResponsePhoneTypes);
                                 phoneTypes.valueHasMutated();
+                                // Address Types array
+                                addressTypes.removeAll();
+                                ko.utils.arrayPushAll(addressTypes(), data.ResponseAddressTypes);
+                                addressTypes.valueHasMutated();
                             },
                             error: function () {
                                 toastr.error("Failed to load base data");
@@ -433,11 +465,12 @@ define("businessPartner/businessPartner.viewModel",
                     respBusinessPartners: respBusinessPartners,
                     dealingEmployees: dealingEmployees,
                     businessPartnerCompanies: businessPartnerCompanies,
-                    passportCountries: passportCountries,
+                    countries: countries,
                     occupationTypes: occupationTypes,
                     businessSegments: businessSegments,
                     businessPartnerSubTypes: businessPartnerSubTypes,
-                    phoneTypes:phoneTypes,
+                    phoneTypes: phoneTypes,
+                    addressTypes:addressTypes,
                     // Utility Methods
                     onSaveBusinessPartner: onSaveBusinessPartner,
                     createBusinessPartner: createBusinessPartner,
@@ -460,7 +493,10 @@ define("businessPartner/businessPartner.viewModel",
                     onAddBusinessPartnerInType: onAddBusinessPartnerInType,
                     doBeforeAddPhoneItem: doBeforeAddPhoneItem,
                     onAddBusinessPartnerPhone: onAddBusinessPartnerPhone,
-                    onDeleteBusinessPartnerPhone: onDeleteBusinessPartnerPhone
+                    onDeleteBusinessPartnerPhone: onDeleteBusinessPartnerPhone,
+                    doBeforeAddAddressItem: doBeforeAddAddressItem,
+                    onAddBusinessPartnerAddress: onAddBusinessPartnerAddress,
+                    onDeleteBusinessPartnerAddress: onDeleteBusinessPartnerAddress
                     // Utility Methods
                 };
             })()

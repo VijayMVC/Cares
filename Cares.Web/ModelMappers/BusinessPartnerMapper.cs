@@ -132,10 +132,11 @@ namespace Cares.Web.ModelMappers
                 ResponseBusinessLegalStatuses = source.ResponseBusinessLegalStatuses.Select(x => x.CreateFrom()),
                 ResponseBusinessPartnerCompanies = source.ResponseBusinessPartnerCompanies.Select(x => x.CreateFrom()),
                 ResponseOccupationTypes = source.ResponseOccupationTypes.Select(x => x.CreateFrom()),
-                ResponsePassportCountries = source.ResponsePassportCountries.Select(x => x.CreateFrom()),
+                ResponseCountries = source.ResponseCountries.Select(x => x.CreateFrom()),
                 ResponseBusinessSegments = source.ResponseBusinessSegments.Select(x => x.CreateFrom()),
                 ResponseBusinessPartnerSubTypes = source.ResponseBusinessPartnerSubTypes.Select(x => x.CreateFrom()),
-                ResponsePhoneTypes = source.ResponsePhoneTypes.Select(x => x.CreateFrom())
+                ResponsePhoneTypes = source.ResponsePhoneTypes.Select(x => x.CreateFrom()),
+                ResponseAddressTypes = source.ResponseAddressTypes.Select(x=>x.CreateFrom())
             };
         }
         #endregion

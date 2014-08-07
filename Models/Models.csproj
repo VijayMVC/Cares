@@ -125,6 +125,8 @@
     <Compile Include="DomainModels\MeasurementUnit.cs" />
     <Compile Include="DomainModels\Operation.cs" />
     <Compile Include="DomainModels\OrgGroup.cs" />
+    <Compile Include="DomainModels\AddressType.cs" />
+    <Compile Include="DomainModels\Address.cs" />
     <Compile Include="DomainModels\PhoneType.cs" />
     <Compile Include="DomainModels\PaymentTerm.cs" />
     <Compile Include="DomainModels\PricingStrategy.cs" />

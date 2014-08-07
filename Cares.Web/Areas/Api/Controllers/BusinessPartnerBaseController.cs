@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web.Http;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
 using Interfaces.IServices;
-using Models.ResponseModels;
-
 namespace Cares.Web.Areas.Api.Controllers
 {
     /// <summary>

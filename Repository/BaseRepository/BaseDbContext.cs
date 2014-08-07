@@ -220,6 +220,10 @@ namespace Repository.BaseRepository
         /// Phone Type
         /// </summary>
         public DbSet<PhoneType> PhoneTypes { get; set; }
+        /// <summary>
+        /// Address Type
+        /// </summary>
+        public DbSet<AddressType> AddressTypes { get; set; }
 
         #endregion
     }

@@ -8,15 +8,15 @@ using Repository.BaseRepository;
 namespace Repository.Repositories
 {
     /// <summary>
-    /// Phone Type Repository
+    /// Address Type Repository
     /// </summary>
-    public sealed class PhoneTypeRepository : BaseRepository<PhoneType>, IPhoneTypeRepository
+    public sealed class AddressTypeRepository : BaseRepository<AddressType>, IAddressTypeRepository
     {
         #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>
-        public PhoneTypeRepository(IUnityContainer container)
+        public AddressTypeRepository(IUnityContainer container)
             : base(container)
         {
 
@@ -24,33 +24,32 @@ namespace Repository.Repositories
         /// <summary>
         /// Primary database set
         /// </summary>
-        protected override IDbSet<PhoneType> DbSet
+        protected override IDbSet<AddressType> DbSet
         {
             get
             {
-                return db.PhoneTypes;
+                return db.AddressTypes;
             }
         }
-
         #endregion
 
         #region Public
         /// <summary>
-        /// Get All Phone Types for User Domain Key
+        /// Get All Address Types for User Domain Key
         /// </summary>
-        public override IQueryable<PhoneType> GetAll()
+        public override IQueryable<AddressType> GetAll()
         {
             return DbSet.Where(phoneTypes => phoneTypes.UserDomainKey == UserDomainKey);
         }
         /// <summary>
-        /// Find Phone Type by Id
+        /// Find Address Type by Id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public PhoneType Find(int id)
+        public AddressType Find(int id)
         {
             throw new System.NotImplementedException();
-        }
+        }    
         #endregion
     }
 }
