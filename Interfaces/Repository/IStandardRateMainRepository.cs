@@ -1,4 +1,5 @@
-﻿using Models.DomainModels;
+﻿using System.Collections.Generic;
+using Models.DomainModels;
 using Models.RequestModels;
 using Models.ResponseModels;
 
@@ -15,5 +16,11 @@ namespace Interfaces.Repository
         /// <param name="tariffRateRequest"></param>
         /// <returns></returns>
         TariffRateResponse GetTariffRates(TariffRateRequest tariffRateRequest);
+        /// <summary>
+        /// Find By Tariff Type Code
+        /// </summary>
+        /// <param name="tariffTypeCode"></param>
+        /// <returns></returns>
+        IEnumerable<StandardRateMain> FindByTariffTypeCode(string tariffTypeCode);
     }
 }

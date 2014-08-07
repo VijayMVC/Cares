@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Cares.Web.Models
+﻿namespace Cares.Web.Models
 {
     /// <summary>
     /// Vehicle Category Web Model
@@ -22,6 +20,5 @@ namespace Cares.Web.Models
         /// </summary>
         public string VehicleCategoryName { get; set; }
         #endregion
-
     }
 }

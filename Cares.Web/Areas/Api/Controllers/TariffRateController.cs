@@ -5,7 +5,6 @@ using System.Web.Http;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
 using Interfaces.IServices;
-//using Models.ResponseModels;
 using DomainModels = Models.RequestModels;
 
 namespace Cares.Web.Areas.Api.Controllers
@@ -30,11 +29,13 @@ namespace Cares.Web.Areas.Api.Controllers
             }
 
             this.tariffRateService = tariffRateService;
+
+
         }
         #endregion
         #region Public
         // GET api/<controller>
-        public TariffRateResponse Get([FromUri] DomainModels.TariffRateRequest request)
+        public TariffRateSearchResponse Get([FromUri] DomainModels.TariffRateRequest request)
         {
             if (request == null && !ModelState.IsValid)
             {
@@ -45,28 +46,54 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Update a Tariff Rate
         /// </summary>
-        public void Post(StandardRateMain standardRateMain)
+        public TariffRateContent Post(StandardRateMain standardRateMain)
         {
             if (standardRateMain == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-
-            tariffRateService.Update(standardRateMain.CreateFrom());
-
+            TariffRateContent tariffRateContent = tariffRateService.Update(standardRateMain.CreateFrom()).CreateFrom();
+            if (standardRateMain.HireGroupDetailsInStandardRtMain != null)
+            {
+                foreach (var standardRate in standardRateMain.HireGroupDetailsInStandardRtMain)
+                {
+                    standardRate.StandardRtMainId = standardRateMain.StandardRtMainId;
+                    tariffRateService.AddStandardRate(standardRate.CreateFrom());
+                }
+            }
+            return tariffRateContent;
         }
 
         /// <summary>
-        /// Adds a Tariff Rate
+        /// Add a Tariff Rate
         /// </summary>
-        public void Put(StandardRateMain standardRateMain)
+        public TariffRateContent Put(StandardRateMain standardRateMain)
         {
+            DateTime a, b, c, d;
             if (standardRateMain == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
 
-            tariffRateService.AddTariffRate(standardRateMain.CreateFrom());
+            a = Convert.ToDateTime(standardRateMain.StartDt);
+            b = Convert.ToDateTime(standardRateMain.EndDt);
+            if (a.Date < System.DateTime.Now.Date)
+               // throw new CaresBusinessException("Pricing-InvalidStartDate", null);
+            if (b.Date < a.Date)
+               // throw new CaresBusinessException("Pricing-InvalidEndDate", null);
+
+            tariffRateService.FindByTariffTypeCode(standardRateMain.TariffTypeCode);
+
+            TariffRateContent tariffRateContent = tariffRateService.AddTariffRate(standardRateMain.CreateFrom()).CreateFrom();
+            if (standardRateMain.HireGroupDetailsInStandardRtMain != null)
+            {
+                foreach (var standardRate in standardRateMain.HireGroupDetailsInStandardRtMain)
+                {
+                    standardRate.StandardRtMainId = tariffRateContent.StandardRtMainId;
+                    tariffRateService.AddStandardRate(standardRate.CreateFrom());
+                }
+            }
+            return tariffRateContent;
         }
 
         /// <summary>

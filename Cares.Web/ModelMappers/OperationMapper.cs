@@ -18,8 +18,9 @@ namespace Cares.Web.ModelMappers
                 return new ApiModel.Operation
                 {
                     OperationId = source.OperationId,
-                    OperationName = source.OperationCode+"-"+ source.OperationName
-                };
+                    OperationCode = source.OperationCode,
+                    OperationName = source.OperationName
+                }; 
             }
         #endregion
         #region Model To Entity

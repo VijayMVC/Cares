@@ -13,7 +13,7 @@ namespace Models.DomainModels
         /// <summary>
         /// Country ID
         /// </summary>
-        public int? CountryId { get; set; }
+        public int CountryId { get; set; }
         /// <summary>
         /// Region Code
         /// </summary>

@@ -6,6 +6,7 @@ using Cares.Web.ModelMappers;
 using Cares.Web.Models;
 using Interfaces.IServices;
 using Domain = Models.RequestModels;
+using DomainModel = Models.DomainModels;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
@@ -15,6 +16,19 @@ namespace Cares.Web.Areas.Api.Controllers
     public class FleetPoolController : ApiController
     {
         #region Public
+
+        /// <summary>
+        /// Dalete Fleet Pool
+        /// </summary>
+        public void Delete(FleetPool fleetPool)
+        {
+            if (!ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+           fleetPoolService.DeleteFleetPool(Convert.ToInt32( fleetPool.FleetPoolId));
+        }
+
         /// <summary>
         /// Get FleetPools
         /// </summary>
@@ -27,19 +41,30 @@ namespace Cares.Web.Areas.Api.Controllers
 
             return fleetPoolService.SerchFleetPool(request).CreateFrom();
         }
-
         /// <summary>
-        /// Delete a FleetPool
+        /// Add new FleetPools
         /// </summary>
-        public void Delete(Object fleetPoolId)
+        public FleetPool Post(DomainModel.FleetPool fleetPool) 
         {
-            if ( !ModelState.IsValid)
+            if (fleetPool == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-
-            fleetPoolService.DeleteFleetPool(2);
+          return  fleetPoolService.AddNewFleetPool(fleetPool).CreateFrom();
         }
+
+        /// <summary>
+        /// update FleetPools
+        /// </summary>
+        public FleetPool Put(DomainModel.FleetPool fleetPool)
+        {
+            if (fleetPool == null || !ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+            return fleetPoolService.UpdateFleetPool(fleetPool).CreateFrom();
+        }
+       
         #endregion
         #region Constructor
 
@@ -49,9 +74,7 @@ namespace Cares.Web.Areas.Api.Controllers
         }
         #endregion
         #region Private
-
         private readonly IFleetPoolService fleetPoolService;
-
         #endregion
     }
 }

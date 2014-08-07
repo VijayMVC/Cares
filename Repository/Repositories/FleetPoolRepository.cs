@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using Interfaces.Repository;
@@ -15,9 +16,18 @@ namespace Repository.Repositories
     public sealed class FleetPoolRepository : BaseRepository<FleetPool>, IFleetPoolRepository
     {
         #region Public
-
         /// <summary>
-        /// SearchFleet Pool
+        /// Add new FleetPools
+        /// </summary>
+        public FleetPool AddNewFleetPool(FleetPool fleet)
+        {
+                FleetPool fleetPool = DbSet.Add(fleet);
+                LoadProperty(fleetPool, () => fleetPool.Operation);
+                LoadProperty(fleetPool, () => fleetPool.Region);
+                return fleetPool;
+        }
+        /// <summary>
+        /// SearchFleet Pool for the given parameters by user
         /// </summary>
         public IEnumerable<FleetPool> SearchFleetPool(FleetPoolSearchRequest request, out int rowCount)
         {
@@ -27,9 +37,7 @@ namespace Repository.Repositories
             rowCount =
                 DbSet.Count(
                     fleet =>
-                        (string.IsNullOrEmpty(request.FleetPoolCode) ||
-                         fleet.FleetPoolCode.Contains(request.FleetPoolCode) ||
-                         fleet.FleetPoolName.Contains(request.FleetPoolCode))
+                        (string.IsNullOrEmpty(request.FleetPoolCode) || fleet.FleetPoolCode.Contains(request.FleetPoolCode) ||fleet.FleetPoolName.Contains(request.FleetPoolCode))
                          && (!request.RegionId.HasValue || fleet.RegionId == request.RegionId.Value)
                          && (!request.OperationId.HasValue || fleet.OperationId == request.OperationId.Value));
 

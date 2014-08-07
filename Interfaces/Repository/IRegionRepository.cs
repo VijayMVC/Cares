@@ -1,4 +1,5 @@
 ﻿using Models.DomainModels;
+using System.Collections.Generic;
 
 namespace Interfaces.Repository
 {
@@ -7,5 +8,6 @@ namespace Interfaces.Repository
     /// </summary>
     public interface IRegionRepository : IBaseRepository<Region, long>
     {
+        IEnumerable<Region> GetRegions(int id);
     }
 }

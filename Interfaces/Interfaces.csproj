@@ -53,6 +53,7 @@
     <Compile Include="IServices\IBusinessPartnerInTypeService.cs" />
     <Compile Include="IServices\IBusinessPartnerIndividualService.cs" />
     <Compile Include="IServices\IBusinessPartnerCompanyService.cs" />
+    <Compile Include="IServices\ICountryRegionsService.cs" />
     <Compile Include="IServices\ICountryService.cs" />
     <Compile Include="IServices\IOccupationTypeService.cs" />
     <Compile Include="IServices\IPaymentTermService.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="IServices\IOperationService.cs" />
     <Compile Include="IServices\IPricingStrategyService.cs" />
     <Compile Include="IServices\IProductService.cs" />
+    <Compile Include="IServices\IStandardRateService.cs" />
     <Compile Include="IServices\ITariffRateService.cs" />
     <Compile Include="IServices\ITarrifTypeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

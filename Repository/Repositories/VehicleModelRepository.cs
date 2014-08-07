@@ -39,9 +39,8 @@ namespace Repository.Repositories
         /// </summary>
         public override IQueryable<VehicleModel> GetAll()
         {
-            return DbSet.Where(vehicleModel => vehicleModel.UserDomainKey == UserDomainKey );
+            return DbSet.Where(vehicleModel => vehicleModel.UserDomainKey == UserDomainKey);
         }
-
         #endregion
     }
 }

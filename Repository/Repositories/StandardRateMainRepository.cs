@@ -68,8 +68,8 @@ namespace Repository.Repositories
                 where
                     ((!tariffRateRequest.OperationId.HasValue ||
                       tariffType.OperationId == tariffRateRequest.OperationId.Value) &&
-                     (!tariffRateRequest.TariffTypeId.HasValue ||
-                      tariffType.TariffTypeId == tariffRateRequest.TariffTypeId))
+                     (!tariffRateRequest.TariffRateId.HasValue ||
+                      tariffType.TariffTypeId == tariffRateRequest.TariffRateId))
                 select new TariffRateContent
                 {                    
                     StandardRtMainId = tariffRate.StandardRtMainId,
@@ -102,6 +102,15 @@ namespace Repository.Repositories
         public override StandardRateMain Find(long id)
         {
             return DbSet.FirstOrDefault(standardRateMain => standardRateMain.StandardRtMainId == id);
+        }
+        /// <summary>
+        /// Find By Tariff Type Code
+        /// </summary>
+        /// <param name="tariffTypeCode"></param>
+        /// <returns></returns>
+        public IEnumerable<StandardRateMain>  FindByTariffTypeCode(string tariffTypeCode)
+        {
+            return DbSet.Where(standardRateMain => standardRateMain.TariffTypeCode == tariffTypeCode);
         }
         #endregion
     }

@@ -1,4 +1,5 @@
-﻿using Interfaces.IServices;
+﻿using System.Collections.Generic;
+using Interfaces.IServices;
 using Interfaces.Repository;
 using Models.DomainModels;
 using Models.RequestModels;
@@ -47,6 +48,10 @@ namespace Implementation.Services
         }
         #endregion
         #region Public
+        /// <summary>
+        /// Get Tariff Rate Base Data
+        /// </summary>
+        /// <returns></returns>
         public TariffRateBaseResponse GetBaseData()
         {
             return new TariffRateBaseResponse
@@ -61,6 +66,11 @@ namespace Implementation.Services
                 TariffTypes = tarrifTypeRepository.GetAll(),
             };
         }
+        /// <summary>
+        /// Get Stanadrd Rate Main
+        /// </summary>
+        /// <param name="tariffRateRequest"></param>
+        /// <returns></returns>
         public TariffRateResponse LoadTariffRates(TariffRateRequest tariffRateRequest)
         {
             return standardRateMainRepository.GetTariffRates(tariffRateRequest);
@@ -69,9 +79,11 @@ namespace Implementation.Services
         ///Get Hire Group Detail List
         /// </summary>
         /// <returns>Hire Group Detail Response</returns>
-        public HireGroupDetailResponse GetHireGroupDetailsForTariffRate()
+        public HireGroupDetailResponse GetHireGroupDetailsForTariffRate(long standardRtMainId)
         {
-            return hireGroupDetailRepository.GetHireGroupDetailsForTariffRate();
+            IEnumerable<HireGroupDetail> hireGroupDetails = hireGroupDetailRepository.GetHireGroupDetailsForTariffRate();
+            IEnumerable<StandardRate> standardRates = standardRateRepository.GetStandardRateForTariffRate(standardRtMainId);
+            return new HireGroupDetailResponse { HireGroupDetails = hireGroupDetails, StandardRates = standardRates, StandardRateId = standardRtMainId };
         }
         /// <summary>
         /// Find Standard Rate Main
@@ -87,27 +99,85 @@ namespace Implementation.Services
         /// </summary>
         /// <param name="standardRateMain"></param>
         /// <returns></returns>
-        public void AddTariffRate(StandardRateMain standardRateMain)
+        public TariffRateContent AddTariffRate(StandardRateMain standardRateMain)
         {
             standardRateMain.RecCreatedDt = System.DateTime.Now;
             standardRateMain.RecLastUpdatedDt = System.DateTime.Now;
             standardRateMain.UserDomainKey = standardRateMainRepository.UserDomainKey;
+            TarrifType tarrifType = tarrifTypeRepository.Find(long.Parse(standardRateMain.TariffTypeCode));
+            standardRateMain.TariffTypeCode = tarrifType.TariffTypeCode;
             standardRateMainRepository.Add(standardRateMain);
             standardRateMainRepository.SaveChanges();
+            return new TariffRateContent
+                   {
+                       StandardRtMainId = standardRateMain.StandardRtMainId,
+                       StandardRtMainCode = standardRateMain.StandardRtMainCode,
+                       StandardRtMainName = standardRateMain.StandardRtMainName,
+                       StandardRtMainDescription = standardRateMain.StandardRtMainDescription,
+                       StartDt = standardRateMain.StartDt,
+                       EndDt = standardRateMain.EndDt,
+                       TariffTypeId = tarrifType.TariffTypeId,
+                       TariffTypeCodeName = tarrifType.TariffTypeCode + " - " + tarrifType.TariffTypeName,
+                       OperationId = tarrifType.OperationId,
+                       OperationCodeName = tarrifType.Operation.OperationCode + " - " + tarrifType.Operation.OperationName,
+                   };
+        }
 
+        /// <summary>
+        /// Add Standard Rate
+        /// </summary>
+        /// <param name="standardRate"></param>
+        /// <returns></returns>
+        public void AddStandardRate(StandardRate standardRate)
+        {
+            standardRate.RecCreatedDt = System.DateTime.Now;
+            standardRate.RecLastUpdatedDt = System.DateTime.Now;
+            standardRate.UserDomainKey = standardRateMainRepository.UserDomainKey;
+            if (standardRate.StandardRtId > 0)
+            {
+                long oldRecordId = standardRate.StandardRtId;
+                standardRate.StandardRtId = 0;
+                standardRate.RevisionNumber = standardRate.RevisionNumber+1;
+                standardRateRepository.Add(standardRate);
+                standardRateRepository.SaveChanges();
+                StandardRate oldStandardRate = standardRateRepository.Find(oldRecordId);
+                oldStandardRate.ChildStandardRtId = standardRate.StandardRtId;
+                standardRateRepository.SaveChanges();
+            }
+            else
+            {
+                standardRateRepository.Add(standardRate);
+                standardRateRepository.SaveChanges();
+            }
+
+            //standardRateRepository.FindByHireGroupId(standardRate.StandardRtMainId, standardRate.HireGroupDetailId);
         }
         /// <summary>
         /// Update Tariff Rate
         /// </summary>
         /// <param name="standardRateMain"></param>
         /// <returns></returns>
-        public void Update(StandardRateMain standardRateMain)
+        public TariffRateContent Update(StandardRateMain standardRateMain)
         {
             standardRateMain.RecCreatedDt = System.DateTime.Now;
             standardRateMain.RecLastUpdatedDt = System.DateTime.Now;
+            TarrifType tarrifType = tarrifTypeRepository.Find(long.Parse(standardRateMain.TariffTypeCode));
+            standardRateMain.TariffTypeCode = tarrifType.TariffTypeCode;
             standardRateMainRepository.Update(standardRateMain);
-            standardRateMainRepository.SaveChanges(); ;
-
+            standardRateMainRepository.SaveChanges(); 
+            return new TariffRateContent
+            {
+                StandardRtMainId = standardRateMain.StandardRtMainId,
+                StandardRtMainCode = standardRateMain.StandardRtMainCode,
+                StandardRtMainName = standardRateMain.StandardRtMainName,
+                StandardRtMainDescription = standardRateMain.StandardRtMainDescription,
+                StartDt = standardRateMain.StartDt,
+                EndDt = standardRateMain.EndDt,
+                TariffTypeId = tarrifType.TariffTypeId,
+                TariffTypeCodeName = tarrifType.TariffTypeCode + " - " + tarrifType.TariffTypeName,
+                OperationId = tarrifType.OperationId,
+                OperationCodeName = tarrifType.Operation.OperationCode + " - " + tarrifType.Operation.OperationName,
+            };
         }
         /// <summary>
         /// Delete Tariff Rate
@@ -118,6 +188,22 @@ namespace Implementation.Services
             standardRateMainRepository.Delete(standardRateMain);
             standardRateMainRepository.SaveChanges();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="standardRtMainId"></param>
+        /// <param name="hireGroupDetailId"></param>
+        /// <returns></returns>
+        public IEnumerable<StandardRate> FindStandardRate(long standardRtMainId, long hireGroupDetailId)
+        {
+            return standardRateRepository.FindByHireGroupId(standardRtMainId, hireGroupDetailId);
+        }
+
+        public IEnumerable<StandardRateMain> FindByTariffTypeCode(string tariffTypeCode)
+        {
+            return standardRateMainRepository.FindByTariffTypeCode(tariffTypeCode);
+        }
+
         #endregion
     }
 }

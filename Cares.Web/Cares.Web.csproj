@@ -232,6 +232,7 @@
     <Compile Include="Areas\Api\Controllers\ProductBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessPartnerController.cs" />
     <Compile Include="Areas\Api\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Api\Controllers\RegionsController.cs" />
     <Compile Include="Areas\Api\Controllers\TariffRateBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\TariffRateController.cs" />
     <Compile Include="Areas\Api\Controllers\TarrifTypeBaseController.cs" />
@@ -286,10 +287,10 @@
     <Compile Include="ModelMappers\ProductResponseMapper.cs" />
     <Compile Include="ModelMappers\ProductMapper.cs" />
     <Compile Include="ModelMappers\RegionMapper.cs" />
+    <Compile Include="ModelMappers\RegionResponseMapper.cs" />
     <Compile Include="ModelMappers\StandardRateMainMapper.cs" />
+    <Compile Include="ModelMappers\StandardRateMapper.cs" />
     <Compile Include="ModelMappers\TariffRateMapper.cs" />
-    <Compile Include="ModelMappers\TariffTypeBaseResponseMapper.cs" />
-    <Compile Include="ModelMappers\TarrifTypeDetailResponseMapper.cs" />
     <Compile Include="ModelMappers\TarrifTypeMapper.cs" />
     <Compile Include="ModelMappers\VehicleCategoryMapper.cs" />
     <Compile Include="ModelMappers\VehicleMakesMapper.cs" />
@@ -299,19 +300,20 @@
     <Compile Include="Models\BusinessSegment.cs" />
     <Compile Include="Models\BusinessPartnerIndividual.cs" />
     <Compile Include="Models\BusinessPartnerDetail.cs" />
-    <Compile Include="ModelMappers\TarrifTypeResponseMapper.cs" />
     <Compile Include="Models\BusinessPartnerListView.cs" />
     <Compile Include="Models\BusinessPartnerResponse.cs" />
     <Compile Include="Models\BpRatingType.cs" />
     <Compile Include="Models\BusinessLegalStatus.cs" />
-    <Compile Include="Models\Address.cs" />
+     <Compile Include="Models\Address.cs" />   
+    <Compile Include="Models\CountryRegions.cs" />
+    <Compile Include="Models\CountryRegionsResponse.cs" />
     <Compile Include="Models\Phone.cs" />
     <Compile Include="Models\AddressType.cs" />
     <Compile Include="Models\PhoneType.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\HireGroup.cs" />
     <Compile Include="Models\BusinessPartnerCompany.cs" />
-    <Compile Include="Models\HireGroupDetail.cs" />
+    <Compile Include="Models\HireGroupDetailContent.cs" />
     <Compile Include="Models\OccupationType.cs" />
     <Compile Include="Models\PaymentTerm.cs" />
     <Compile Include="Models\Category.cs" />
@@ -327,18 +329,19 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductResponse.cs" />
     <Compile Include="Models\Region.cs" />
+    <Compile Include="Models\RegionResponse.cs" />
     <Compile Include="Models\StandardRate.cs" />
     <Compile Include="Models\StandardRateMain.cs" />
     <Compile Include="Models\TariffRateBaseResponse.cs" />
     <Compile Include="Models\TariffRateContent.cs" />
     <Compile Include="Models\HireGroupDetailResponse.cs" />
-    <Compile Include="Models\TariffRateResponse.cs" />
+    <Compile Include="Models\TariffRateSearchResponse.cs" />
     <Compile Include="Models\TariffTypeDetail.cs" />
     <Compile Include="Models\TariffTypeDetailResponse.cs" />
     <Compile Include="Models\TarrifType.cs" />
     <Compile Include="Models\BusinessPartnerBaseResponse.cs" />
     <Compile Include="Models\TarrifTypeBaseResponse.cs" />
-    <Compile Include="Models\TarrifTypeResponse.cs" />
+    <Compile Include="Models\TarrifTypeSearchResponse.cs" />
     <Compile Include="Models\VehicleCategory.cs" />
     <Compile Include="Models\VehicleMake.cs" />
     <Compile Include="Models\VehicleModel.cs" />
@@ -422,6 +425,7 @@
       <DependentUpon>Fleet.css</DependentUpon>
     </Content>
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Images\arrow-down-small.png" />
     <Content Include="Content\Images\arrow-up-small.png" />
     <Content Include="Content\Images\up-arrow-small.png" />
     <Content Include="Content\Images\arrow-down.png" />
@@ -962,6 +966,7 @@
     <Content Include="Areas\Pricing\Views\Tarrif\_TariffRateEditor.cshtml" />
     <Content Include="Areas\Pricing\Views\Tarrif\_HireGroupRateDialog.cshtml" />
     <Content Include="Content\TariffRate.less" />
+    <Content Include="Areas\Fleet\Views\Home\_FleetPoolEditor.cshtml" />
     <Content Include="Areas\RentalAgreement\Views\_ViewStart.cshtml" />
     <Content Include="Areas\RentalAgreement\Views\Home\Index.cshtml" />
     <Content Include="Areas\RentalAgreement\Views\Shared\_Layout.cshtml" />

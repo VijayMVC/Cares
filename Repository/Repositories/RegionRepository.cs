@@ -4,6 +4,7 @@ using Interfaces.Repository;
 using Microsoft.Practices.Unity;
 using Models.DomainModels;
 using Repository.BaseRepository;
+using System.Collections.Generic;
 
 namespace Repository.Repositories
 {
@@ -40,7 +41,13 @@ namespace Repository.Repositories
             return DbSet.Where(region => region.UserDomainKey == UserDomainKey);
         }
 
+
+        public IEnumerable<Region> GetRegions(int id)
+        {
+            return DbSet.Where(region => region.CountryId == id);
+        }
+
         #endregion
 
-    }
+        }
 }
