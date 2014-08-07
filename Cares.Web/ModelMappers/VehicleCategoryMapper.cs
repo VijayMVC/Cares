@@ -1,5 +1,4 @@
 ﻿using Cares.Web.Models;
-using DomainModels = Models.DomainModels;
 
 namespace Cares.Web.ModelMappers
 {
@@ -12,7 +11,7 @@ namespace Cares.Web.ModelMappers
 /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static VehicleCategory CreateFrom(this DomainModels.VehicleCategory source)
+        public static VehicleCategory CreateFrom(this Cares.Models.DomainModels.VehicleCategory source)
         {
             return new VehicleCategory
             {

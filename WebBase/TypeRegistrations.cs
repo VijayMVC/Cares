@@ -1,9 +1,9 @@
 ﻿using System.Web.Mvc;
+using Cares.WebBase.Mvc;
+using Cares.WebBase.UnityConfiguration;
 using Microsoft.Practices.Unity;
-using WebBase.Mvc;
-using WebBase.UnityConfiguration;
 
-namespace WebBase
+namespace Cares.WebBase
 {
     public static class TypeRegistrations
     {

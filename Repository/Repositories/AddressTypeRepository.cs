@@ -1,11 +1,11 @@
 ﻿using System.Data.Entity;
 using System.Linq;
-using Interfaces.Repository;
+using Cares.Interfaces.Repository;
 using Microsoft.Practices.Unity;
 using Models.DomainModels;
-using Repository.BaseRepository;
+using Cares.Repository.BaseRepository;
 
-namespace Repository.Repositories
+namespace Cares.Repository.Repositories
 {
     /// <summary>
     /// Address Type Repository

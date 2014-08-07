@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Cares.Implementation.Identity;
+using Cares.Interfaces.IServices;
+using Cares.Models.IdentityModels;
+using Cares.Models.MenuModels;
 using Cares.Web.ViewModels.Common;
-using Implementation.Identity;
-using Interfaces.IServices;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
-using Models.IdentityModels;
-using Models.MenuModels;
 
 namespace Cares.Web.Controllers
 {

@@ -1,5 +1,5 @@
-﻿using DomainModels = Models.DomainModels;
-using ResponseModel = Models.ResponseModels;
+﻿using Cares.Models.DomainModels;
+using Cares.Models.ResponseModels;
 using ApiModels = Cares.Web.Models;
 
 namespace Cares.Web.ModelMappers
@@ -13,7 +13,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity For List
         /// </summary>
-        public static ApiModels.TariffRateContent CreateFrom(this ResponseModel.TariffRateContent source)
+        public static ApiModels.TariffRateContent CreateFrom(this TariffRateContent source)
         {
             return new ApiModels.TariffRateContent
             {
@@ -33,9 +33,9 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create entity from web model
         /// </summary>
-        public static DomainModels.StandardRateMain CreateFrom(this ApiModels.StandardRateMain source)
+        public static StandardRateMain CreateFrom(this ApiModels.StandardRateMain source)
         {
-            return new DomainModels.StandardRateMain
+            return new StandardRateMain
             {
                 StandardRtMainId = source.StandardRtMainId,
                 StandardRtMainCode = source.StandardRtMainCode,

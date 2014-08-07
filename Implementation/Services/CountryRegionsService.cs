@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using Interfaces.IServices;
-using Interfaces.Repository;
-using Microsoft.Owin.Security.Provider;
-using Models.DomainModels;
-using Models.RequestModels;
-using Models.ResponseModels;
+﻿using System.Collections.Generic;
+using Cares.Interfaces.IServices;
+using Cares.Interfaces.Repository;
+using Cares.Models.DomainModels;
 
-namespace Implementation.Services
+namespace Cares.Implementation.Services
 {
     /// <summary>
     /// FleetPool Service
@@ -29,9 +23,9 @@ namespace Implementation.Services
         #endregion
 
          #region Constructors
-        public CountryRegionsService(IRegionRepository _regionRepository)
+        public CountryRegionsService(IRegionRepository regionRepository)
         {
-            this.regionRepository = _regionRepository;
+            this.regionRepository = regionRepository;
         }
         #endregion
     }

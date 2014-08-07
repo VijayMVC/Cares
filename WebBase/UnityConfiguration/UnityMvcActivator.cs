@@ -1,13 +1,13 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
+using Cares.WebBase.UnityConfiguration;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Mvc;
-using WebBase.UnityConfiguration;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(UnityWebActivator), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(UnityWebActivator), "Shutdown")]
 
-namespace WebBase.UnityConfiguration
+namespace Cares.WebBase.UnityConfiguration
 {
     /// <summary>Provides the bootstrapping for integrating Unity with ASP.NET MVC.</summary>
     public static class UnityWebActivator

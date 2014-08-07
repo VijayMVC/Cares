@@ -1,11 +1,7 @@
-﻿using Models.MenuModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
+using Cares.Models.MenuModels;
 
-namespace Interfaces.Repository
+namespace Cares.Interfaces.Repository
 {
     public interface IMenuRightRepository
     {

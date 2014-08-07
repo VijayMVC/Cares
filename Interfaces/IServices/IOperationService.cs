@@ -1,8 +1,7 @@
-﻿
-using System.Collections.Generic;
-using Models.DomainModels;
+﻿using System.Collections.Generic;
+using Cares.Models.DomainModels;
 
-namespace Interfaces.IServices
+namespace Cares.Interfaces.IServices
 {
     /// <summary>
     /// Operation Service Interface
@@ -12,7 +11,6 @@ namespace Interfaces.IServices
         /// <summary>
         /// Get All Opertaions
         /// </summary>
-        /// <returns></returns>
         IEnumerable<Operation> LoadAll();
     }
 }

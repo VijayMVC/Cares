@@ -2,11 +2,10 @@
 using System.Net;
 using System.Web;
 using System.Web.Http;
+using Cares.Interfaces.IServices;
+using Cares.Models.RequestModels;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
-using Interfaces.IServices;
-using Domain = Models.RequestModels;
-using DomainModel = Models.DomainModels;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
@@ -32,7 +31,7 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Get FleetPools
         /// </summary>
-        public FleetPoolResponse Get([FromUri] Domain.FleetPoolSearchRequest request)
+        public FleetPoolResponse Get([FromUri] FleetPoolSearchRequest request)
         {
             if (request == null || !ModelState.IsValid)
             {
@@ -44,7 +43,7 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Add new FleetPools
         /// </summary>
-        public FleetPool Post(DomainModel.FleetPool fleetPool) 
+        public FleetPool Post(Cares.Models.DomainModels.FleetPool fleetPool) 
         {
             if (fleetPool == null || !ModelState.IsValid)
             {
@@ -56,7 +55,7 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// update FleetPools
         /// </summary>
-        public FleetPool Put(DomainModel.FleetPool fleetPool)
+        public FleetPool Put(Cares.Models.DomainModels.FleetPool fleetPool)
         {
             if (fleetPool == null || !ModelState.IsValid)
             {

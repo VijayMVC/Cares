@@ -1,10 +1,9 @@
-﻿
-using System.Collections.Generic;
-using Interfaces.IServices;
-using Interfaces.Repository;
+﻿using System.Collections.Generic;
+using Cares.Interfaces.IServices;
+using Cares.Interfaces.Repository;
 using Models.DomainModels;
 
-namespace Implementation.Services
+namespace Cares.Implementation.Services
 {
     /// <summary>
     /// Category Service

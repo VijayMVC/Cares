@@ -1,9 +1,9 @@
 ﻿using System.Linq;
+using Cares.Models.RequestModels;
+using Cares.Models.ResponseModels;
 using Models.DomainModels;
-using Models.RequestModels;
-using Models.ResponseModels;
 
-namespace Interfaces.Repository
+namespace Cares.Interfaces.Repository
 {
     public interface IProductRepository : IBaseRepository<Product, long>
     {

@@ -1,4 +1,4 @@
-﻿namespace Models.Common
+﻿namespace Cares.Models.Common
 {
     /// <summary>
     /// Tariff Rate By Column

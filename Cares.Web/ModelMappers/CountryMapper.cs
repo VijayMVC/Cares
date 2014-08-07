@@ -1,4 +1,5 @@
-﻿using ApiModel = Cares.Web.Models;
+﻿using Cares.Models.DomainModels;
+using ApiModel = Cares.Web.Models;
 using DomainModel = Models.DomainModels;
 
 namespace Cares.Web.ModelMappers
@@ -13,7 +14,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static ApiModel.Country CreateFrom(this DomainModel.Country source)
+        public static ApiModel.Country CreateFrom(this Country source)
             {
                 return new ApiModel.Country
                 {
@@ -28,9 +29,9 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create entity from web model
         /// </summary>
-        public static DomainModel.Country CreateFrom(this ApiModel.Country source)
+        public static Country CreateFrom(this ApiModel.Country source)
         {
-            return new DomainModel.Country
+            return new Country
             {
                 CountryId = source.CountryId,
                 CountryCode = source.CountryCode,

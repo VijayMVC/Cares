@@ -7,8 +7,8 @@
     <ProjectGuid>{98F7A831-6D93-48E9-950F-623772AA607A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Interfaces</RootNamespace>
-    <AssemblyName>Interfaces</AssemblyName>
+    <RootNamespace>Cares.Interfaces</RootNamespace>
+    <AssemblyName>Cares.Interfaces</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -110,9 +110,9 @@
     <Compile Include="Repository\IVehicleModelRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Models\Models.csproj">
+    <ProjectReference Include="..\Models\Cares.Models.csproj">
       <Project>{81067904-2176-4648-87AB-014B0D76B85E}</Project>
-      <Name>Models</Name>
+      <Name>Cares.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

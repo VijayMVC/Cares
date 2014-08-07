@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Interfaces.IServices;
-using Interfaces.Repository;
-using Models.DomainModels;
-using Repository.Repositories;
+﻿using System.Collections.Generic;
+using Cares.Interfaces.IServices;
+using Cares.Interfaces.Repository;
+using Cares.Models.DomainModels;
 
-namespace Implementation.Services
+namespace Cares.Implementation.Services
 {
     public class MeasurementUnitService:IMeasurementUnitService
     {

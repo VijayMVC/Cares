@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Interfaces.Repository
+namespace Cares.Interfaces.Repository
 {
     /// <summary>
     /// Base repository interface

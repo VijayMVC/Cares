@@ -1,6 +1,6 @@
 ﻿using Models.DomainModels;
 
-namespace Interfaces.Repository
+namespace Cares.Interfaces.Repository
 {
     /// <summary>
     /// Address Type Repository Interface

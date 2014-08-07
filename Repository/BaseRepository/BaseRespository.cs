@@ -6,10 +6,10 @@ using System.Data.Entity.Migrations;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Linq.Expressions;
-using Interfaces.Repository;
+using Cares.Interfaces.Repository;
 using Microsoft.Practices.Unity;
 
-namespace Repository.BaseRepository
+namespace Cares.Repository.BaseRepository
 {
     /// <summary>
     /// Base Repository

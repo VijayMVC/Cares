@@ -1,4 +1,7 @@
-﻿using IdentitySample.Models;
+﻿using Cares.Implementation.Identity;
+using Cares.Models.IdentityModels;
+using Cares.Models.IdentityModels.ViewModels;
+using IdentitySample.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -6,10 +9,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-
-using Models.IdentityModels;
-using Models.IdentityModels.ViewModels;
-using Implementation.Identity;
 
 namespace IdentitySample.Controllers
 {

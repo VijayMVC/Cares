@@ -1,7 +1,7 @@
-﻿using Models.Common;
-using Models.DomainModels;
+﻿using Cares.Models.Common;
+using Cares.Models.DomainModels;
 
-namespace Models.RequestModels
+namespace Cares.Models.RequestModels
 {
     /// <summary>
     /// TarrifT ype Request

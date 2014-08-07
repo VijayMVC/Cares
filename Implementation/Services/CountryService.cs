@@ -1,11 +1,9 @@
-﻿
-using System.Collections.Generic;
-using System.Linq;
-using Interfaces.IServices;
-using Interfaces.Repository;
-using Models.DomainModels;
+﻿using System.Linq;
+using Cares.Interfaces.IServices;
+using Cares.Interfaces.Repository;
+using Cares.Models.DomainModels;
 
-namespace Implementation.Services
+namespace Cares.Implementation.Services
 {
     /// <summary>
     /// Country Service

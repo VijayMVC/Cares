@@ -2,10 +2,10 @@
 using System.Net;
 using System.Web;
 using System.Web.Http;
+using Cares.Interfaces.IServices;
+using Cares.Models.RequestModels;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
-using Interfaces.IServices;
-using DomainModels = Models.RequestModels;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
@@ -35,7 +35,7 @@ namespace Cares.Web.Areas.Api.Controllers
         #endregion
         #region Public
         // GET api/<controller>
-        public TariffRateSearchResponse Get([FromUri] DomainModels.TariffRateRequest request)
+        public TariffRateSearchResponse Get([FromUri] TariffRateRequest request)
         {
             if (request == null && !ModelState.IsValid)
             {

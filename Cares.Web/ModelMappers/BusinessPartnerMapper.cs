@@ -1,9 +1,8 @@
 ﻿using System.Linq;
-using Models.DomainModels;
+using Cares.Models.DomainModels;
+using Cares.Models.ResponseModels;
 using ApiModel = Cares.Web.Models;
 using DomainModel = Models.DomainModels;
-using ResponseModel = Models.ResponseModels;
-using RequestModel = Models.RequestModels;
 
 namespace Cares.Web.ModelMappers
 {
@@ -107,7 +106,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web api model from domain entity
         /// </summary>
-        public static Models.BusinessPartnerResponse CreateFrom(this  ResponseModel.BusinessPartnerResponse source)
+        public static Models.BusinessPartnerResponse CreateFrom(this  BusinessPartnerResponse source)
         {
             return new Models.BusinessPartnerResponse
             {
@@ -122,7 +121,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web api model from domain entity
         /// </summary>
-        public static Models.BusinessPartnerBaseResponse CreateFrom(this ResponseModel.BusinessPartnerBaseDataResponse source)
+        public static Models.BusinessPartnerBaseResponse CreateFrom(this BusinessPartnerBaseDataResponse source)
         {
             return new Models.BusinessPartnerBaseResponse
             {
@@ -148,7 +147,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static ApiModel.BusinessPartnerIndividual CreateFrom(this DomainModel.BusinessPartnerIndividual source)
+        public static ApiModel.BusinessPartnerIndividual CreateFrom(this BusinessPartnerIndividual source)
         {
             return new ApiModel.BusinessPartnerIndividual
             {
@@ -183,9 +182,9 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create entity from web model
         /// </summary>
-        public static DomainModel.BusinessPartnerIndividual CreateFrom(this ApiModel.BusinessPartnerIndividual source)
+        public static BusinessPartnerIndividual CreateFrom(this ApiModel.BusinessPartnerIndividual source)
         {
-            return new DomainModel.BusinessPartnerIndividual
+            return new BusinessPartnerIndividual
             {
                 BusinessPartnerId = source.BusinessPartnerId != null ? (long)source.BusinessPartnerId : 0,
                 FirstName = source.FirstName,
@@ -222,7 +221,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static ApiModel.BusinessPartnerCompany CreateFrom(this DomainModel.BusinessPartnerCompany source)
+        public static ApiModel.BusinessPartnerCompany CreateFrom(this BusinessPartnerCompany source)
         {
             return new ApiModel.BusinessPartnerCompany
             {
@@ -239,9 +238,9 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create entity from web model
         /// </summary>
-        public static DomainModel.BusinessPartnerCompany CreateFrom(this ApiModel.BusinessPartnerCompany source)
+        public static BusinessPartnerCompany CreateFrom(this ApiModel.BusinessPartnerCompany source)
         {
-            return new DomainModel.BusinessPartnerCompany
+            return new BusinessPartnerCompany
             {
                 BusinessPartnerId = source.BusinessPartnerId != null ? (long)source.BusinessPartnerId : 0,
                 BusinessPartnerCompanyCode = source.BusinessPartnerCompanyCode,
@@ -260,7 +259,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static ApiModel.BusinessPartnerSubType CreateFrom(this DomainModel.BusinessPartnerSubType source)
+        public static ApiModel.BusinessPartnerSubType CreateFrom(this BusinessPartnerSubType source)
         {
             return new ApiModel.BusinessPartnerSubType
             {
@@ -274,9 +273,9 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create entity from web model
         /// </summary>
-        public static DomainModel.BusinessPartnerSubType CreateFrom(this ApiModel.BusinessPartnerSubType source)
+        public static BusinessPartnerSubType CreateFrom(this ApiModel.BusinessPartnerSubType source)
         {
-            return new DomainModel.BusinessPartnerSubType
+            return new BusinessPartnerSubType
             {
                 BusinessPartnerSubTypeId = source.BusinessPartnerSubTypeId,
                 BusinessPartnerSubTypeCode = source.BusinessPartnerSubTypeCode,
@@ -291,7 +290,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static ApiModel.BusinessPartnerInType CreateFrom(this DomainModel.BusinessPartnerInType source)
+        public static ApiModel.BusinessPartnerInType CreateFrom(this BusinessPartnerInType source)
         {
             return new ApiModel.BusinessPartnerInType
                    {
@@ -305,7 +304,7 @@ namespace Cares.Web.ModelMappers
                                : string.Empty,
                        FromDate = source.FromDate,
                        ToDate = source.ToDate,
-                       BusinessPartnerId = source.BusinessPartnerId > 0 ? (long)source.BusinessPartnerId : 0,
+                       BusinessPartnerId = source.BusinessPartnerId > 0 ? source.BusinessPartnerId : 0,
                        BpRatingTypeId = source.BpRatingTypeId,
                        BpRatingTypeName =
                            source.BpRatingType != null
@@ -317,9 +316,9 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create entity from web model
         /// </summary>
-        public static DomainModel.BusinessPartnerInType CreateFrom(this ApiModel.BusinessPartnerInType source)
+        public static BusinessPartnerInType CreateFrom(this ApiModel.BusinessPartnerInType source)
         {
-            return new DomainModel.BusinessPartnerInType
+            return new BusinessPartnerInType
             {
                 BusinessPartnerInTypeId = source.BusinessPartnerInTypeId != null ? (long)source.BusinessPartnerInTypeId : 0,
                 BusinessPartnerInTypeDescription = source.BusinessPartnerInTypeDescription,

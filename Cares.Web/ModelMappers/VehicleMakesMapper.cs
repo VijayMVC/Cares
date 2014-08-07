@@ -1,5 +1,4 @@
 ﻿using Cares.Web.Models;
-using DomainModels = Models.DomainModels;
 namespace Cares.Web.ModelMappers
 {
     public static class VehicleMakesMapper
@@ -9,7 +8,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static VehicleMake CreateFrom(this DomainModels.VehicleMake source)
+        public static VehicleMake CreateFrom(this Cares.Models.DomainModels.VehicleMake source)
         {
             return new VehicleMake
             {

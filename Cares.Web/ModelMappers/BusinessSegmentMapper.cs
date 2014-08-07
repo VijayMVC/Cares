@@ -1,4 +1,5 @@
-﻿using ApiModel = Cares.Web.Models;
+﻿using Cares.Models.DomainModels;
+using ApiModel = Cares.Web.Models;
 using DomainModel = Models.DomainModels;
 
 namespace Cares.Web.ModelMappers
@@ -13,7 +14,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static ApiModel.BusinessSegment CreateFrom(this DomainModel.BusinessSegment source)
+        public static ApiModel.BusinessSegment CreateFrom(this BusinessSegment source)
             {
                 return new ApiModel.BusinessSegment
                 {
@@ -27,9 +28,9 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create entity from web model
         /// </summary>
-        public static DomainModel.BusinessSegment CreateFrom(this ApiModel.BusinessSegment source)
+        public static BusinessSegment CreateFrom(this ApiModel.BusinessSegment source)
         {
-            return new DomainModel.BusinessSegment
+            return new BusinessSegment
             {
                 BusinessSegmentId = source.BusinessSegmentId,
                 BusinessSegmentCode = source.BusinessSegmentCode,

@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using Models.DomainModels;
-using Models.RequestModels;
-using Models.ResponseModels;
+﻿using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
+using Cares.Models.ResponseModels;
 
-namespace Interfaces.Repository
+namespace Cares.Interfaces.Repository
 {
     /// <summary>
     /// Business Partner Repository Interface
@@ -14,21 +12,14 @@ namespace Interfaces.Repository
         /// <summary>
         /// Get All business partners
         /// </summary>
-        /// <param name="businessPartnerSearchRequest"></param>
-        /// <returns></returns>
         BusinessPartnerResponse GetAllBusinessPartners(BusinessPartnerSearchRequest businessPartnerSearchRequest);
         /// <summary>
         /// Get Busienss partner by Name and Id
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="id"></param>
-        /// <returns></returns>
         BusinessPartner GetBusinessPartnerByName(string name, int id);
         /// <summary>
         /// Get business partner by Id
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         BusinessPartner GetById(long id);
     }
 }

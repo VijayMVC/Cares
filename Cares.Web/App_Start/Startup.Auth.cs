@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Cares.Implementation.Identity;
+using Cares.Models.IdentityModels;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using IdentitySample.Models;
 using Owin;
 using System;
-using Implementation.Identity;
-using Models.IdentityModels;
+
 namespace IdentitySample
 {
     public partial class Startup

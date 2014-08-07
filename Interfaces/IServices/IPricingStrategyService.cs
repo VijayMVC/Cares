@@ -1,7 +1,7 @@
 ﻿using System.Linq;
-using Models.DomainModels;
+using Cares.Models.DomainModels;
 
-namespace Interfaces.IServices
+namespace Cares.Interfaces.IServices
 {
     /// <summary>
     /// Pricing Strategy Interface
