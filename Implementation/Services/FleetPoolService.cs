@@ -36,9 +36,9 @@ namespace Implementation.Services
             fleetPool.RecCreatedDt = DateTime.Now;
             fleetPool.RecLastUpdatedBy = fleetPoolRepository.LoggedInUserIdentity;
             fleetPool.RecLastUpdatedDt = DateTime.Now;
-            FleetPool result = fleetPoolRepository.AddNewFleetPool(fleetPool);
+            FleetPool fleet=fleetPoolRepository.AddNewFleetPool(fleetPool);
             fleetPoolRepository.SaveChanges();
-            return result;
+            return fleet;
         }
         /// <summary>
         /// Load Fleet Pool Base Data
@@ -71,9 +71,22 @@ namespace Implementation.Services
         public FleetPool FindFleetPool(int id)
         {
             return fleetPoolRepository.Find(id);
+
+        }
+        /// <summary>
+        /// update fleetpool 
+        /// </summary>
+        public FleetPool UpdateFleetPool(FleetPool fleetPool)
+        {
+            fleetPool.RecCreatedBy = fleetPoolRepository.LoggedInUserIdentity;
+            fleetPool.RecCreatedDt = DateTime.Now;
+            fleetPool.RecLastUpdatedBy = fleetPoolRepository.LoggedInUserIdentity;
+            fleetPool.RecLastUpdatedDt = DateTime.Now;
+            fleetPoolRepository.Update(fleetPool);
+            fleetPoolRepository.SaveChanges();
+            return fleetPoolRepository.Find(fleetPool.FleetPoolId);
         }
         #endregion
-
         #region Constructor
         /// <summary>
         /// Constructor
@@ -88,9 +101,7 @@ namespace Implementation.Services
             this.regionRepository = regionRepository;
             this.operationRepository = operationRepository;
         }
-
         #endregion
-
        #region Private
        
         private readonly IOperationRepository operationRepository;
@@ -99,7 +110,6 @@ namespace Implementation.Services
          private readonly IFleetPoolRepository fleetPoolRepository;
 
         #endregion
-
         #region Constructors
 
         public FleetPoolService(

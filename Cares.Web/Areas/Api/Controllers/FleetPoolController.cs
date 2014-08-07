@@ -44,7 +44,7 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Add new FleetPools
         /// </summary>
-        public FleetPool Put(DomainModel.FleetPool fleetPool) 
+        public FleetPool Post(DomainModel.FleetPool fleetPool) 
         {
             if (fleetPool == null || !ModelState.IsValid)
             {
@@ -53,6 +53,17 @@ namespace Cares.Web.Areas.Api.Controllers
           return  fleetPoolService.AddNewFleetPool(fleetPool).CreateFrom();
         }
 
+        /// <summary>
+        /// update FleetPools
+        /// </summary>
+        public FleetPool Put(DomainModel.FleetPool fleetPool)
+        {
+            if (fleetPool == null || !ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+            return fleetPoolService.UpdateFleetPool(fleetPool).CreateFrom();
+        }
        
         #endregion
         #region Constructor

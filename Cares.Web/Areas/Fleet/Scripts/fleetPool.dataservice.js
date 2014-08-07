@@ -30,7 +30,7 @@ define("Fleet/fleetPool.dataservice", function () {
                     amplify.request.define('saveFleetPool', 'ajax', {
                         url: '/Api/FleetPool',
                         dataType: 'json',
-                        type: 'PUT'
+                        type: 'POST'
                     });
 
 
@@ -48,6 +48,13 @@ define("Fleet/fleetPool.dataservice", function () {
                         type: 'Delete'
                     });
 
+                    // Define request to update FleetPool
+                    amplify.request.define('updateFleetPool', 'ajax', {
+                        url: '/Api/FleetPool',
+                        dataType: 'json',
+                        type: 'PUT'
+                    });
+
                     isInitialized = true;
                 }
             },
@@ -62,10 +69,20 @@ define("Fleet/fleetPool.dataservice", function () {
                     data: params
                 });
             },
-
+            //update fleetpool
+            updateFleetPool = function (params, callbacks) {
+                debugger;
+                return amplify.request({
+                    resourceId: 'updateFleetPool',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: params
+                });
+            },
 
             //add new fleetpool
             saveFleetPool = function (params, callbacks) {
+                debugger;
                 return amplify.request({
                     resourceId: 'saveFleetPool',
                     success: callbacks.success,
@@ -117,7 +134,8 @@ define("Fleet/fleetPool.dataservice", function () {
             getFleetPools: getFleetPools,
             deleteFleetPool: deleteFleetPool,
             getCountryRegions: getCountryRegions,
-            saveFleetPool: saveFleetPool
+            saveFleetPool: saveFleetPool,
+            updateFleetPool: updateFleetPool
         };
     })();
 

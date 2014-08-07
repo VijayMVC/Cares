@@ -8,121 +8,115 @@ define("Fleet/fleetPool.viewModel",
         var ist = window.ist || {};
         ist.fleetPool = {
             viewModel: (function () {
-                var // the view 
-                    view;
+                // the view 
+                 var view,
+                //selected FleePoolId
+                selectedFleetPoolid = ko.observable(),
+                //tells if edit mode is on
+                 isEditMode = ko.observable(false),
                 // selected country regions
-                var selectedCountryRegions = ko.observableArray([]);
-                var addUpdatelabel = ko.observable("hello");
+                 selectedCountryRegions = ko.observableArray([]),
+                 addUpdatelabel = ko.observable(undefined),
                 //fleet pool code
-                var fleetPoolCode = ko.observable();
+                 fleetPoolCode = ko.observable(),
                 //fleet pool Name
-                var fleetPoolName = ko.observable();
+                 fleetPoolName = ko.observable(),
                 //fleet pool Vehicles
-                var fleetPoolVehicles = ko.observable();
+                 fleetPoolVehicles = ko.observable(),
                 //fleet pool Description
-                var fleetPoolDescription = ko.observable();
+                 fleetPoolDescription = ko.observable(),
                 //new operation filter
-                var newOperationFilter = ko.observable();
+                 newOperationFilter = ko.observable(),
                 //new country filter
-                var newCountryFilter = ko.observable();
+                 newCountryFilter = ko.observable(),
                 //new region filter
-                var newRegionFilter = ko.observable();
+                 newRegionFilter = ko.observable(),
                 // add fleetpool
-                var addFleetPoll = ko.observable();
+                 addFleetPoll = ko.observable(),
                 // Active FleetPool
-                var selectedFleetPool = ko.observable();
-                // #region Arrays
+                 selectedFleetPool = ko.observable(),
                 // fleetPools
-                var fleetPools = ko.observableArray([]);
-                // #endregion Arrays
+                 fleetPools = ko.observableArray([]),
                 // Regions
-                var regionsList = ko.observableArray([]);
+                 regionsList = ko.observableArray([]),
                 // Operations
-                var operationsList = ko.observableArray([]);
+                 operationsList = ko.observableArray([]),
                 // FleetPool Code
-                var fleetPoolSeachFilter = ko.observable();
+                 fleetPoolSeachFilter = ko.observable(),
                 //Operation Filter
-                var operationFilter = ko.observable();
-
+                 operationFilter = ko.observable(),
                 // region Filter
-                var regionFilter = ko.observable();
+                 regionFilter = ko.observable(),
                 // country Filter
-                var countryFilter = ko.observable();
+                 countryFilter = ko.observable(),
                 // #region Busy Indicators
-                var isLoadingFleetPools = ko.observable(false);
+                 isLoadingFleetPools = ko.observable(false),
                 //Is Edit visible
-                var isFleetPoolEditorVisible = ko.observable(false);
+                isFleetPoolEditorVisible = ko.observable(false),
                 // Sort On
-                var sortOn = ko.observable(1);
+                 sortOn = ko.observable(1),
                 // Sort Order -  true means asc, false means desc
-                var sortIsAsc = ko.observable(true);
+                 sortIsAsc = ko.observable(true),
                 // Pagination
-                var pager = ko.observable();
+                 pager = ko.observable(),
                 //counytr list
-                var countryList = ko.observableArray([]);
-                // Get Fleet Pool Base Data
-                var getFleetPoolBaseData = function(callBack) {
-                    dataservice.getFleetPoolBasedata(null, {
-                        success: function (data) {
-                         
-                            operationsList.removeAll();
-                            ko.utils.arrayPushAll(operationsList(), data.Operations);
-                            operationsList.valueHasMutated();
+                 countryList = ko.observableArray([]),
+                    // Get Fleet Pool Base Data
+                    getFleetPoolBaseData = function(callBack) {
+                        dataservice.getFleetPoolBasedata(null, {
+                            success: function(data) {
+                                operationsList.removeAll();
+                                ko.utils.arrayPushAll(operationsList(), data.Operations);
+                                operationsList.valueHasMutated();
+                                ko.utils.arrayPushAll(regionsList(), data.Regions);
+                                regionsList.valueHasMutated();
+                                countryList.removeAll();
+                                ko.utils.arrayPushAll(countryList(), data.Countries);
+                                countryList.valueHasMutated();
+                                if (callBack && callBack === 'function') {
+                                    callBack()();
+                                };
+                            },
+                            error: function(data, error) {
 
-                            regionsList.removeAll();
-                            ko.utils.arrayPushAll(regionsList(), data.Regions);
-                            regionsList.valueHasMutated();
-
-
-                            countryList.removeAll();
-                            ko.utils.arrayPushAll(countryList(), data.Countries);
-                            countryList.valueHasMutated();
-
-
-                            if (callBack && callBack === 'function') {
-                                callBack()();
-                            };
-                        },
-                        error: function(data, error) {
-
-                            toastr.error("Failed to load base data.");
-                        }
-                    });
-                };
-                //country selected form dd
-                var countrySelected = function () {
-                    getRegions(newCountryFilter());
-                };
-
-                function getRegions( _countryId) {
-
-                    dataservice.getCountryRegions({
-                        countryId: _countryId
-                    }, {
-                        success: function (data) {
-                            //     toastr.success("successfully");
-                            selectedCountryRegions.removeAll();
-                            jQuery.each(data, function (index, value) {
-                                debugger;
-                                selectedCountryRegions.push(value);
-                            });
-                        },
-                        error: function () {
-                            toastr.error("Failed to load regions!");
-                        }
-                    });
-
-
-                    
-                }
-
-                var cancelSave = function() {
-
+                                toastr.error("Failed to load base data.");
+                            }
+                        });
+                    },
+                    //country selected form dd
+                    countrySelected = function() {
+                        getRegions(newCountryFilter());
+                    },
+                   cancelSave = function() {
                     isFleetPoolEditorVisible(false);
-                };
+                   },
 
                 //add new fleetpool
-                var saveFleetPool = function () {
+                   saveFleetPool = function () {
+                    if (isEditMode()) {
+                        isEditMode(false);
+                        dataservice.updateFleetPool({
+                            FleetPoolId:selectedFleetPool().id(),
+                            CountryId: newCountryFilter(),
+                            RegionId: newRegionFilter(),
+                            OperationId: newOperationFilter(),
+                            FleetPoolCode: fleetPoolCode(),
+                            FleetPoolName: fleetPoolName(),
+                            ApproximateVehiclesAsgnd: fleetPoolVehicles(),
+                            FleetPoolDescription: fleetPoolDescription()
+                        }, {
+                            success: function (data) {
+                                var updatedFleetPool = model.fleetPoolServertoClinetMapper(data);
+                                var fleetPool = selectedFleetPool();
+                                fleetPools.replace(fleetPool, updatedFleetPool);
+                                reset();
+                                toastr.success("Successfully upadted!");
+                            },
+                            error: function () {
+                                toastr.error("Failed to upadte!");
+                            }
+                        });
+                    }
                     dataservice.saveFleetPool({
                         CountryId: newCountryFilter(),
                         RegionId: newRegionFilter(),
@@ -131,10 +125,8 @@ define("Fleet/fleetPool.viewModel",
                         FleetPoolName: fleetPoolName(),
                         ApproximateVehiclesAsgnd: fleetPoolVehicles(),
                         FleetPoolDescription: fleetPoolDescription()
-
                     }, {
                         success: function (data) {
-                            debugger;
                             reset();
                             toastr.success("Successfully added!");
                         },
@@ -142,17 +134,13 @@ define("Fleet/fleetPool.viewModel",
                             toastr.error("Failed to add!");
                         }
                     });
-
-                };
-
-
-
+                },
                 //search Fleet Pools
-                var search = function() {
+                 search = function() {
                     pager().reset();
                     getFleetPools();
-                };
-                var reset = function() {
+                },
+                 reset = function() {
                     fleetPoolSeachFilter(undefined);
                     regionFilter(undefined);
                     countryFilter(undefined);
@@ -162,19 +150,19 @@ define("Fleet/fleetPool.viewModel",
                     fleetPoolName(undefined);
                     fleetPoolVehicles(undefined);
                     fleetPoolDescription(undefined);
-                };
-              
-                var createFleetForm = function() { //parent
+                    newCountryFilter(undefined);
+                    newOperationFilter(undefined);
+                    newRegionFilter(undefined);
+                },
+                 createFleetForm = function() { //parent
                     createPoolDetail();
                     showFleetPoolEditor();
-                };
-
-                //workingon it
-                var createPoolDetail = function() {
+                },
+                //creating fleetpool details 
+                 createPoolDetail = function() {
                     var temp = new model.FleetPoolDetail();
-                    //    addFleetPoll(temp);
-                };
-                var showFleetPoolEditor = function () {
+                },
+                    showFleetPoolEditor = function () {
                     newCountryFilter(undefined);
                     newOperationFilter(undefined);
                     newRegionFilter(undefined);
@@ -184,9 +172,9 @@ define("Fleet/fleetPool.viewModel",
                     fleetPoolDescription(undefined);
                     addUpdatelabel("Add");
                     isFleetPoolEditorVisible(true);
-                };
+                },
                 // delete fleetpool
-                var onDeleteFleetPool = function(item) {
+                   onDeleteFleetPool = function(item) {
                     if (!item.id()) {
                         fleetPools.remove(item);
                         return;
@@ -198,7 +186,7 @@ define("Fleet/fleetPool.viewModel",
                     confirmation.show();
                 },
                 // Delete Fleetpool request to daraservice
-                deleteAsset = function (asset) {
+                    deleteAsset = function (asset) {
                     dataservice.deleteFleetPool(asset.convertToServerData(), {
                         success: function() {
                             fleetPools.remove(asset);
@@ -208,28 +196,19 @@ define("Fleet/fleetPool.viewModel",
                             toastr.error("Failed to remove product!");
                         }
                     });
-                };
+                },
                 // on edit the existing fleet pool
-                var onEditFleetPool = function (item) {
-
+                    onEditFleetPool = function (item) {
+                    selectedFleetPool(item);
+                    isEditMode(true);
                     addUpdatelabel("Update");
                     getRegions(item.countryId());
                     editFleetPool(item);
                     newRegionFilter(item.regionId());
-                };
-                function editFleetPool(item) {
-                   
-                    isFleetPoolEditorVisible(true);
-                    newCountryFilter(item.countryId());
-                    newOperationFilter(item.operationId());
-                    fleetPoolCode(item.code());
-                    fleetPoolName(item.name());
-                    fleetPoolVehicles(item.vehiclesAssigned());
-                    fleetPoolDescription(item.description());
-                    debugger;
-                }
+                },
+                
                 // Map Tarrif Types - Server to Client
-                var mapFleetPools = function(data) {
+                 mapFleetPools = function(data) {
                     var fleetPoolList = [];
                     _.each(data.FleetPools, function (item) {
                         var fleetPool = model.fleetPoolServertoClinetMapper(item);
@@ -239,10 +218,9 @@ define("Fleet/fleetPool.viewModel",
 
                     ko.utils.arrayPushAll(fleetPools(), fleetPoolList);
                     fleetPools.valueHasMutated();
-                };
+                },
                 // Get FleetPools 
-                var getFleetPools = function() {
-
+                   getFleetPools = function() {
                     isLoadingFleetPools(true);
                     dataservice.getFleetPools({
                         FleetPoolCode: fleetPoolSeachFilter(),
@@ -255,7 +233,6 @@ define("Fleet/fleetPool.viewModel",
                         IsAsc: sortIsAsc()
                     }, {
                         success: function (data) {
-
                             pager().totalCount(data.TotalCount);
                             fleetPools.removeAll();
                             mapFleetPools(data);
@@ -266,18 +243,43 @@ define("Fleet/fleetPool.viewModel",
                             toastr.error("Failed to load fleetPools!");
                         }
                     });
-                };
-
-
+                },
                 // Initialize the view model
-                var initialize = function(specifiedView) {
+                   initialize = function(specifiedView) {
                     view = specifiedView;
                     ko.applyBindings(view.viewModel, view.bindingRoot);
                     getFleetPoolBaseData(getFleetPools);
                     // Set Pager
                     pager(pagination.Pagination({}, fleetPools, getFleetPools));
                     getFleetPools();
-                };
+                   };
+                // function to edit fleet pool
+                function editFleetPool(item) { 
+                    isFleetPoolEditorVisible(true);
+                    newCountryFilter(item.countryId());
+                    newOperationFilter(item.operationId());
+                    fleetPoolCode(item.code());
+                    fleetPoolName(item.name());
+                    fleetPoolVehicles(item.vehiclesAssigned());
+                    fleetPoolDescription(item.description());
+                }      //function to get country region          
+                function getRegions( countryId) {
+                    dataservice.getCountryRegions({
+                        countryId: countryId
+                    }, {
+                        success: function (data) {
+                            //     toastr.success("successfully");
+                            selectedCountryRegions.removeAll();
+                            jQuery.each(data, function (index, value) {
+                                selectedCountryRegions.push(value);
+                            });
+                        },
+                        error: function () {
+                            toastr.error("Failed to load regions!");
+                        }
+                    });
+
+                }
                 return {
                     isLoadingFleetPools: isLoadingFleetPools,
                     sortOn: sortOn,
@@ -313,7 +315,9 @@ define("Fleet/fleetPool.viewModel",
                     newCountryFilter: newCountryFilter,
                     newRegionFilter: newRegionFilter,
                     newOperationFilter: newOperationFilter,
-                    addUpdatelabel: addUpdatelabel
+                    addUpdatelabel: addUpdatelabel,
+                    isEditMode: isEditMode,
+                    selectedFleetPoolid: selectedFleetPoolid
                 };
             })()
         };

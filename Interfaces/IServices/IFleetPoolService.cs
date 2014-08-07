@@ -29,5 +29,10 @@ namespace Interfaces.IServices
         /// Add new FleetPools
         /// </summary>
         FleetPool AddNewFleetPool(FleetPool fleetPool);
+        /// <summary>
+        /// update fleetpool 
+        /// </summary>
+        FleetPool UpdateFleetPool(FleetPool request);
+
     }
 }
