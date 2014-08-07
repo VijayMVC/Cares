@@ -15,7 +15,7 @@ namespace Models.RequestModels
         /// <summary>
         /// Company Id
         /// </summary>
-        public int CompanyId { get; set; }
+        public long CompanyId { get; set; }
         /// <summary>
         /// Measurement Unit Id
         /// </summary>
@@ -27,11 +27,11 @@ namespace Models.RequestModels
         /// <summary>
         /// Department Id
         /// </summary>
-        public int DepartmentId { get; set; }
+        public long DepartmentId { get; set; }
         /// <summary>
         /// Operation Id
         /// </summary>
-        public int OperationId { get; set; }
+        public long OperationId { get; set; }
         /// <summary>
         /// Tarrif Type
         /// </summary>

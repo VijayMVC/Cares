@@ -9,7 +9,7 @@
         /// <summary>
         /// Business Partner Rating Type ID
         /// </summary>
-        public int BpRatingTypeId { get; set; }
+        public short BpRatingTypeId { get; set; }
         /// <summary>
         /// Business Partner Rating Type Custom ID 
         /// </summary>

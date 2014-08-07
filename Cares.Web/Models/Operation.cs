@@ -9,7 +9,7 @@
         /// <summary>
         /// Operation ID
         /// </summary>
-        public int OperationId { get; set; }
+        public long OperationId { get; set; }
         /// <summary>
         /// Operation Code
         /// </summary>

@@ -1,39 +1,45 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models.DomainModels
 {
     /// <summary>
-    /// Organization Group Domain Model
+    /// Operations Work Place Domain Model
     /// </summary>
-    public class OrgGroup
+    public class OperationsWorkPlace
     {
         #region Persisted Properties
-
+        
         /// <summary>
-        /// Organization Group ID
+        /// Operations Work Place Id
         /// </summary>
-        public long OrgGroupId { get; set; }
+        public long OperationsWorkPlaceId { get; set; }
 
         /// <summary>
-        /// Organization Group Code
+        /// Location Code
         /// </summary>
         [StringLength(100)]
-        public string OrgGroupCode { get; set; }
+        public string LocationCode { get; set; }
 
         /// <summary>
-        /// Organization Group Name
+        /// Work Place Id
         /// </summary>
-        [StringLength(255), Required]
-        public string OrgGroupName { get; set; }
+        [ForeignKey("WorkPlace")]
+        public long WorkPlaceId { get; set; }
 
         /// <summary>
-        /// Organization Group Description
+        /// Operation Id
         /// </summary>
-        [StringLength(500)]
-        public string OrgGroupDescription { get; set; }
+        [ForeignKey("Operation")]
+        public long OperationId { get; set; }
 
+        /// <summary>
+        /// Fleet Pool Id
+        /// </summary>
+        [ForeignKey("FleetPool")]
+        public long? FleetPoolId { get; set; }
+        
         /// <summary>
         /// Row Version
         /// </summary>
@@ -45,37 +51,37 @@ namespace Models.DomainModels
         /// </summary>
         [Required]
         public bool IsActive { get; set; }
-        
+
         /// <summary>
         /// Is Deleted
         /// </summary>
         [Required]
         public bool IsDeleted { get; set; }
-        
+
         /// <summary>
         /// Is Private
         /// </summary>
         [Required]
         public bool IsPrivate { get; set; }
-        
+
         /// <summary>
         /// Is Readonly
         /// </summary>
         [Required]
         public bool IsReadOnly { get; set; }
-        
+
         /// <summary>
         /// Record Created Date
         /// </summary>
         [Required]
         public DateTime RecCreatedDt { get; set; }
-        
+
         /// <summary>
         /// Record Created By
         /// </summary>
         [StringLength(100), Required]
         public string RecCreatedBy { get; set; }
-        
+
         /// <summary>
         /// Record Last Updated Date
         /// </summary>
@@ -99,9 +105,19 @@ namespace Models.DomainModels
         #region Reference Properties
 
         /// <summary>
-        /// Companies Assocaited to this OrgGroup
+        /// Work Place
         /// </summary>
-        public virtual ICollection<Company> Companies { get; set; }
+        public virtual WorkPlace WorkPlace { get; set; }
+
+        /// <summary>
+        /// Fleet Pool
+        /// </summary>
+        public virtual FleetPool FleetPool { get; set; }
+
+        /// <summary>
+        /// Operation
+        /// </summary>
+        public virtual Operation Operation { get; set; }
 
         #endregion
     }

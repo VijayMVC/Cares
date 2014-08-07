@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Models.DomainModels
@@ -12,11 +13,11 @@ namespace Models.DomainModels
         /// <summary>
         /// PaymentTerm ID
         /// </summary>
-        public int PaymentTermId { get; set; }
+        public short PaymentTermId { get; set; }
         /// <summary>
         /// PaymentTerm Code
         /// </summary>
-        [StringLength(100)]
+        [StringLength(100), Required]
         public string PaymentTermCode { get; set; }
         /// <summary>
         /// PaymentTerm Name
@@ -51,7 +52,7 @@ namespace Models.DomainModels
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100)]
+        [StringLength(100), Required]
         public string RecCreatedBy { get; set; }
         /// <summary>
         /// Record Last Updated Date
@@ -60,13 +61,22 @@ namespace Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100)]
+        [StringLength(100), Required]
         public string RecLastUpdatedBy { get; set; }
         /// <summary>
         /// User Domain Key
         /// </summary>
         public long UserDomainKey { get; set; }
 
+        #endregion
+
+        #region Reference Properties
+
+        /// <summary>
+        /// Business Partners having this Payment Term
+        /// </summary>
+        public virtual ICollection<BusinessPartner> BusinessPartners { get; set; } 
+        
         #endregion
     }
 }

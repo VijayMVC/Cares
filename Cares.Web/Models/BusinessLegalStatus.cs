@@ -8,7 +8,7 @@
         /// <summary>
         /// Business Legal Status ID
         /// </summary>
-        public int BusinessLegalStatusId { get; set; }
+        public short BusinessLegalStatusId { get; set; }
         /// <summary>
         /// Business Legal Status Name
         /// </summary>

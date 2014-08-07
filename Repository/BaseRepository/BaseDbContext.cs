@@ -66,6 +66,12 @@ namespace Repository.BaseRepository
             modelBuilder.Entity<PaymentTerm>().HasKey(pTerm => pTerm.PaymentTermId);
             modelBuilder.Entity<PaymentTerm>().Property(pTerm => pTerm.PaymentTermId)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            
+            modelBuilder.Entity<OperationsWorkPlace>()
+                .HasRequired(c => c.WorkPlace)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+            
         }
         #endregion
         #region Constructor

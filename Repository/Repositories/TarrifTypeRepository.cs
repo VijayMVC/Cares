@@ -86,7 +86,6 @@ namespace Repository.Repositories
             LoadProperty(tarrifType, () => tarrifType.Operation);
             LoadProperty(tarrifType, () => tarrifType.MeasurementUnit);
             LoadProperty(tarrifType, () => tarrifType.PricingStrategy);
-            LoadProperty(tarrifType, () => tarrifType.Company);
         }
         /// <summary>
         /// Find By Id

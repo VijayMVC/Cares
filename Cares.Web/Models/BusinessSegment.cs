@@ -10,7 +10,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Business Segment ID
         /// </summary>
-        public int BusinessSegmentId { get; set; }
+        public short BusinessSegmentId { get; set; }
         /// <summary>
         /// Business Segment Code
         /// </summary>

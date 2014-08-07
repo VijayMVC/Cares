@@ -41,7 +41,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Business Partner Rating Type Id
         /// </summary>
-        public int? BpRatingTypeId { get; set; }
+        public short? BpRatingTypeId { get; set; }
         /// <summary>
         /// Business Partner Rating Type Name
         /// </summary>

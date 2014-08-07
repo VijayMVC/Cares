@@ -6,46 +6,52 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Models.DomainModels
 {
     /// <summary>
-    /// Department Domain Model
+    /// Work Place Domain Model
     /// </summary>
-    public class Department
+    public class WorkPlace
     {
         #region Persisted Properties
         
         /// <summary>
-        /// Department ID
+        /// Work Place Id
         /// </summary>
-        public long DepartmentId { get; set; }
-        
+        public long WorkPlaceId { get; set; }
+
         /// <summary>
-        /// Department Code
+        /// Work Location Id
+        /// </summary>
+        [ForeignKey("WorkLocation")]
+        public long WorkLocationId { get; set; }
+
+        /// <summary>
+        /// Work Place Code
         /// </summary>
         [StringLength(100), Required]
-        public string DepartmentCode { get; set; }
-        
+        public string WorkPlaceCode { get; set; }
+
         /// <summary>
-        /// Department Code
+        /// Work Place Name
         /// </summary>
         [StringLength(255)]
-        public string DepartmentName { get; set; }
-        
+        public string WorkPlaceName { get; set; }
+
         /// <summary>
-        /// Department Description
+        /// Work Place Description
         /// </summary>
         [StringLength(500)]
-        public string DepartmentDescription { get; set; }
-        
+        public string WorkPlaceDescription { get; set; }
+
         /// <summary>
-        /// Department Type Id
+        /// Parent Work Place Id
         /// </summary>
-        [ForeignKey("DepartmentType")]
-        public short DepartmentTypeId { get; set; }
-        
+        [ForeignKey("ParentWorkPlace")]
+        public long? ParentWorkPlaceId { get; set; }
+
         /// <summary>
-        /// Company ID
+        /// Work Place Type Id
         /// </summary>
-        [ForeignKey("Company")]
-        public long CompanyId { get; set; }
+        [ForeignKey("WorkPlaceType")]
+        public short WorkPlaceTypeId { get; set; }
 
         /// <summary>
         /// Row Version
@@ -58,43 +64,43 @@ namespace Models.DomainModels
         /// </summary>
         [Required]
         public bool IsActive { get; set; }
-        
+
         /// <summary>
         /// Is Deleted
         /// </summary>
         [Required]
         public bool IsDeleted { get; set; }
-        
+
         /// <summary>
         /// Is Private
         /// </summary>
         [Required]
         public bool IsPrivate { get; set; }
-        
+
         /// <summary>
         /// Is Readonly
         /// </summary>
         [Required]
         public bool IsReadOnly { get; set; }
-        
+
         /// <summary>
         /// Record Created Date
         /// </summary>
         [Required]
         public DateTime RecCreatedDt { get; set; }
-        
+
         /// <summary>
         /// Record Created By
         /// </summary>
         [StringLength(100), Required]
         public string RecCreatedBy { get; set; }
-        
+
         /// <summary>
         /// Record Last Updated Date
         /// </summary>
         [Required]
         public DateTime RecLastUpdatedDt { get; set; }
-        
+
         /// <summary>
         /// Record Last Updated By
         /// </summary>
@@ -110,26 +116,26 @@ namespace Models.DomainModels
         #endregion
 
         #region Reference Properties
-        
-        /// <summary>
-        /// Company
-        /// </summary>
-        public virtual Company Company{ get; set; }
 
         /// <summary>
-        /// Department Type
+        /// Work Place
         /// </summary>
-        public virtual DepartmentType DepartmentType { get; set; }
-        
-        /// <summary>
-        /// Operations
-        /// </summary>
-        public virtual ICollection<Operation> Operations { get; set; }
+        public virtual WorkPlace ParentWorkPlace { get; set; }
 
         /// <summary>
-        /// Employees in this department
+        /// Work Place Type
         /// </summary>
-        public virtual ICollection<Employee> Employees { get; set; } 
+        public virtual WorkPlaceType WorkPlaceType { get; set; }
+
+        /// <summary>
+        /// Work Location
+        /// </summary>
+        public virtual WorkLocation WorkLocation { get; set; }
+
+        /// <summary>
+        /// Operations Workplaces that use this workspace
+        /// </summary>
+        public virtual ICollection<OperationsWorkPlace> OperationsWorkPlaces { get; set; } 
 
         #endregion
     }

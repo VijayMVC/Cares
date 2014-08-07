@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Models.DomainModels
@@ -21,12 +22,12 @@ namespace Models.DomainModels
         /// <summary>
         /// Standard Rate Main Code
         /// </summary>
-        [StringLength(100)]
+        [StringLength(100), Required]
         public string StandardRtMainCode { get; set; }
         /// <summary>
         /// Tariff Type Code
         /// </summary>
-        [StringLength(100)]
+        [StringLength(100), Required]
         public string TariffTypeCode { get; set; }
         /// <summary>
         ///Standard Rate Main Name
@@ -73,17 +74,26 @@ namespace Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100)]
+        [StringLength(100), Required]
         public string RecLastUpdatedBy { get; set; }
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100)]
+        [StringLength(100), Required]
         public string RecCreatedBy { get; set; }
         /// <summary>
         /// Row Version
         /// </summary>
         public long RowVersion { get; set; }
+
+        #endregion
+
+        #region Reference Properties
+
+        /// <summary>
+        /// Standard Rates assocaited to this Entity
+        /// </summary>
+        public virtual ICollection<StandardRate> StandardRates { get; set; }
 
         #endregion
     }

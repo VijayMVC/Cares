@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Models.DomainModels
@@ -55,7 +56,7 @@ namespace Models.DomainModels
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100)]
+        [StringLength(100), Required]
         public string RecCreatedBy { get; set; }
         /// <summary>
         /// Record Last Updated Date
@@ -64,13 +65,22 @@ namespace Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100)]
+        [StringLength(100), Required]
         public string RecLastUpdatedBy { get; set; }
         /// <summary>
         /// User Domain Key
         /// </summary>
         public long UserDomainKey { get; set; }
 
+        #endregion
+
+        #region Reference Properties
+
+        /// <summary>
+        /// Phones having this Phone Type
+        /// </summary>
+        public virtual ICollection<Phone> Phones { get; set; } 
+        
         #endregion
     }
 }

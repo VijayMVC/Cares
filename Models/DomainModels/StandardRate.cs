@@ -10,22 +10,22 @@ namespace Models.DomainModels
     public class StandardRate
     {
         #region Perssisted Properties
+        
         /// <summary>
         /// Standard Rate ID
         /// </summary>
         [Key]
         public long StandardRtId { get; set; }
+        
         /// <summary>
         /// User Domain Key
         /// </summary>
         public long UserDomainKey { get; set; }
-        /// <summary>
-        /// Child Standard Rate ID
-        /// </summary>
-        public long ChildStandardRtId { get; set; }
+        
         /// <summary>
         /// Standard Rate Main ID
         /// </summary>
+        [ForeignKey("StandardRateMain")]
         public long StandardRtMainId { get; set; }
         /// <summary>
         /// Allowed Mileage
@@ -80,12 +80,43 @@ namespace Models.DomainModels
         /// Standard Rate Start Date
         /// </summary>
         public DateTime StandardRtStartDt { get; set; }
+
+        /// <summary>
+        /// Record Last Updated By
+        /// </summary>
+        [StringLength(100), Required]
+        public string RecLastUpdatedBy { get; set; }
+
+        /// <summary>
+        /// Record Created By
+        /// </summary>
+        [StringLength(100), Required]
+        public string RecCreatedBy { get; set; }
+
+        /// <summary>
+        /// Child Standard Rate ID
+        /// </summary>
+        [ForeignKey("ChildStandardRate")]
+        public long? ChildStandardRtId { get; set; }
+
         #endregion
         #region Reference Properties
+        
         /// <summary>
         /// Hire Group Detail
         /// </summary>
         public virtual HireGroupDetail HireGroupDetail { get; set; }
+
+        /// <summary>
+        /// Standard Rate Main
+        /// </summary>
+        public virtual StandardRateMain StandardRateMain { get; set; }
+
+        /// <summary>
+        /// Child Standard Rate
+        /// </summary>
+        public virtual StandardRate ChildStandardRate { get; set; }
+
         #endregion
     }
 }

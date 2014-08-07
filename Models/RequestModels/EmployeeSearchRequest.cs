@@ -4,7 +4,7 @@ namespace Models.RequestModels
 {
     public class EmployeeSearchRequest : GetPagedListRequest
     {
-        public int? DepartmentId { get; set; }
+        public long? DepartmentId { get; set; }
 
         /// <summary>
         /// Employee Order By

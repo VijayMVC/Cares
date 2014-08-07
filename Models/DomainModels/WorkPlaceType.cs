@@ -5,34 +5,39 @@ using System.ComponentModel.DataAnnotations;
 namespace Models.DomainModels
 {
     /// <summary>
-    /// Organization Group Domain Model
+    /// Work Place Type Domain Model
     /// </summary>
-    public class OrgGroup
+    public class WorkPlaceType
     {
         #region Persisted Properties
-
+        
         /// <summary>
-        /// Organization Group ID
+        /// Work Place Type Id
         /// </summary>
-        public long OrgGroupId { get; set; }
-
+        public short WorkPlaceTypeId { get; set; }
+        
         /// <summary>
-        /// Organization Group Code
+        /// WorkPlace Type Code
         /// </summary>
-        [StringLength(100)]
-        public string OrgGroupCode { get; set; }
+        [StringLength(100), Required]
+        public string WorkPlaceTypeCode { get; set; }
 
         /// <summary>
-        /// Organization Group Name
+        /// WorkPlace Type Name
         /// </summary>
-        [StringLength(255), Required]
-        public string OrgGroupName { get; set; }
+        [StringLength(255)]
+        public string WorkPlaceTypeName { get; set; }
 
         /// <summary>
-        /// Organization Group Description
+        /// WorkPlace Type Description
         /// </summary>
         [StringLength(500)]
-        public string OrgGroupDescription { get; set; }
+        public string WorkPlaceTypeDescription { get; set; }
+
+        /// <summary>
+        /// Work Place Type Cat
+        /// </summary>
+        public short WorkPlaceTypeCat { get; set; }
 
         /// <summary>
         /// Row Version
@@ -45,37 +50,37 @@ namespace Models.DomainModels
         /// </summary>
         [Required]
         public bool IsActive { get; set; }
-        
+
         /// <summary>
         /// Is Deleted
         /// </summary>
         [Required]
         public bool IsDeleted { get; set; }
-        
+
         /// <summary>
         /// Is Private
         /// </summary>
         [Required]
         public bool IsPrivate { get; set; }
-        
+
         /// <summary>
         /// Is Readonly
         /// </summary>
         [Required]
         public bool IsReadOnly { get; set; }
-        
+
         /// <summary>
         /// Record Created Date
         /// </summary>
         [Required]
         public DateTime RecCreatedDt { get; set; }
-        
+
         /// <summary>
         /// Record Created By
         /// </summary>
         [StringLength(100), Required]
         public string RecCreatedBy { get; set; }
-        
+
         /// <summary>
         /// Record Last Updated Date
         /// </summary>
@@ -99,10 +104,11 @@ namespace Models.DomainModels
         #region Reference Properties
 
         /// <summary>
-        /// Companies Assocaited to this OrgGroup
+        /// WorkPlaces having this Workplace Type
         /// </summary>
-        public virtual ICollection<Company> Companies { get; set; }
+        public virtual ICollection<WorkPlace> WorkPlaces { get; set; }
 
         #endregion
+
     }
 }
