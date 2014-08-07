@@ -52,5 +52,11 @@ namespace Cares.Interfaces.IServices
         /// <param name="tariffTypeCode"></param>
         /// <returns></returns>
         IEnumerable<StandardRateMain> FindByTariffTypeCode(string tariffTypeCode);
+        /// <summary>
+        ///Find Tariff Type By Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        TarrifType FindTariffTypeById(long id);
     }
 }
