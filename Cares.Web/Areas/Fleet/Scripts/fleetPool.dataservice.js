@@ -16,6 +16,7 @@ define("Fleet/fleetPool.dataservice", function () {
                     amplify.request.define('getFleetPoolBasedata', 'ajax', {
                         url: '/Api/FleetPoolBase',
                         dataType: 'json',
+                        decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using Cares.ExceptionHandling;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -44,6 +45,7 @@ namespace Cares.Implementation.Services
         /// </summary>
         public FleetPoolBaseDataResponse LoadFleetPoolBaseData()
         {
+            throw new CaresException("My Message");
             return new FleetPoolBaseDataResponse
             {
                 Operations = operationRepository.GetSalesOperation(),
