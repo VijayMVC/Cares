@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using Interfaces.Repository;
 using Microsoft.Practices.Unity;
@@ -40,8 +41,15 @@ namespace Repository.Repositories
         /// </summary>
         public override IQueryable<Operation> GetAll()
         {
+            
             return DbSet.Where(operation => operation.UserDomainKey == UserDomainKey && operation.Department.DepartmentType == DepartmentTypes.Sales);
         }
+
+        public IQueryable<Operation> GetSalesOperation()
+        {
+            return DbSet.Where(operation => operation.Department.DepartmentType == DepartmentTypes.Sales);
+        }
+
         #endregion
     }
 }

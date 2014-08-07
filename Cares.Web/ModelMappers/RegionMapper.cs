@@ -16,7 +16,8 @@ namespace Cares.Web.ModelMappers
                 RegionId = source.RegionId,
                 RegionCode = source.RegionCode,
                 RegionName = source.RegionName,
-                Country = source.Country != null ? source.Country.CountryCode + " - " + source.Country.CountryName : string.Empty
+                Country = source.Country != null ? source.Country.CountryCode + " - " + source.Country.CountryName : string.Empty,
+                CountryId = source.CountryId
             };
         }
         #endregion        

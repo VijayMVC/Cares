@@ -5,25 +5,13 @@ namespace Cares.Web.Models
     /// <summary>
     /// Fleet Pool Base Data Response
     /// </summary>
-    public class FleetPoolBaseDataResponse
+    public class CountryRegions
     {
         #region Public
         /// <summary>
         /// List of Regions
         /// </summary>
         public IEnumerable<Region> Regions { get; set; }
-
-        /// <summary>
-        /// Operations
-        /// </summary>
-        public IEnumerable<Operation> Operations { get; set; }
-
-
-        /// <summary>
-        ///countires
-        /// </summary>
-        public IEnumerable<Country> Countries { get; set; }
-
         #endregion
     }
 }

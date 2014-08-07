@@ -232,6 +232,7 @@
     <Compile Include="Areas\Api\Controllers\ProductBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessPartnerController.cs" />
     <Compile Include="Areas\Api\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Api\Controllers\RegionsController.cs" />
     <Compile Include="Areas\Api\Controllers\TariffRateBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\TariffRateController.cs" />
     <Compile Include="Areas\Api\Controllers\TarrifTypeBaseController.cs" />
@@ -285,6 +286,7 @@
     <Compile Include="ModelMappers\ProductResponseMapper.cs" />
     <Compile Include="ModelMappers\ProductMapper.cs" />
     <Compile Include="ModelMappers\RegionMapper.cs" />
+    <Compile Include="ModelMappers\RegionResponseMapper.cs" />
     <Compile Include="ModelMappers\StandardRateMainMapper.cs" />
     <Compile Include="ModelMappers\StandardRateMapper.cs" />
     <Compile Include="ModelMappers\TariffRateMapper.cs" />
@@ -301,6 +303,8 @@
     <Compile Include="Models\BusinessPartnerResponse.cs" />
     <Compile Include="Models\BpRatingType.cs" />
     <Compile Include="Models\BusinessLegalStatus.cs" />
+    <Compile Include="Models\CountryRegions.cs" />
+    <Compile Include="Models\CountryRegionsResponse.cs" />
     <Compile Include="Models\Phone.cs" />
     <Compile Include="Models\PhoneType.cs" />
     <Compile Include="Models\Employee.cs" />
@@ -322,6 +326,7 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductResponse.cs" />
     <Compile Include="Models\Region.cs" />
+    <Compile Include="Models\RegionResponse.cs" />
     <Compile Include="Models\StandardRate.cs" />
     <Compile Include="Models\StandardRateMain.cs" />
     <Compile Include="Models\TariffRateBaseResponse.cs" />
@@ -958,6 +963,7 @@
     <Content Include="Areas\Pricing\Views\Tarrif\_TariffRateEditor.cshtml" />
     <Content Include="Areas\Pricing\Views\Tarrif\_HireGroupRateDialog.cshtml" />
     <Content Include="Content\TariffRate.less" />
+    <Content Include="Areas\Fleet\Views\Home\_FleetPoolEditor.cshtml" />
     <Content Include="Areas\RentalAgreement\Views\_ViewStart.cshtml" />
     <Content Include="Areas\RentalAgreement\Views\Home\Index.cshtml" />
     <Content Include="Areas\RentalAgreement\Views\Shared\_Layout.cshtml" />

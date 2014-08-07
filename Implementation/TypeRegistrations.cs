@@ -40,6 +40,8 @@ namespace Implementation
              unityContainer.RegisterType<IBusinessPartnerIndividualService, BusinessPartnerIndividualService>();
              unityContainer.RegisterType<IOccupationTypeService, OccupationTypeService>();
              unityContainer.RegisterType<ICountryService, CountryService>();
+
+             unityContainer.RegisterType<ICountryRegionsService, CountryRegionsService>();
         }
     }
 }

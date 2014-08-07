@@ -22,6 +22,10 @@
         /// Country
         /// </summary>
         public string Country { get; set; }
+        /// <summary>
+        /// Country Id
+        /// </summary>
+        public int CountryId { get; set; }
         #endregion
     }
 }

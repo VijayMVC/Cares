@@ -1,4 +1,7 @@
-﻿using Models.DomainModels;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Models.DomainModels;
 
 namespace Interfaces.Repository
 {
@@ -7,5 +10,10 @@ namespace Interfaces.Repository
     /// </summary>
     public interface IOperationRepository : IBaseRepository<Operation, long>
     {
+        /// <summary>
+        /// gets all operatoins for sale 
+        /// </summary>
+        /// <returns></returns>
+        IQueryable<Operation> GetSalesOperation();
     }
 }

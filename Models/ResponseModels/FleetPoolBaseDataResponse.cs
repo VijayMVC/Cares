@@ -17,5 +17,10 @@ namespace Models.ResponseModels
         /// Operations
         /// </summary>
         public IEnumerable<Operation> Operations { get; set; }
+
+        /// <summary>
+        /// Operations
+        /// </summary>
+        public IEnumerable<Country> Countries { get; set; }
     }
 }
