@@ -1,7 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Models.DomainModels
+
+namespace Cares.Models.DomainModels
 {    /// <summary>
     /// Tarrif Type Domain Model
     /// </summary>

@@ -1,12 +1,11 @@
-﻿using Models.DomainModels;
+﻿using Cares.Models.DomainModels;
 
-namespace Interfaces.Repository
+namespace Cares.Interfaces.Repository
 {
     /// <summary>
     /// Phone Type Repository Interface
     /// </summary>
     public interface IPhoneTypeRepository : IBaseRepository<PhoneType, int>
     {
-
     }
 }

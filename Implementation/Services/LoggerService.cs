@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
-using Interfaces.IServices;
+using Cares.Interfaces.IServices;
 using Microsoft.Practices.EnterpriseLibrary.Logging;
 
-namespace Implementation.Services
+namespace Cares.Implementation.Services
 {
     /// <summary>
     /// Logger class that manages log entries 

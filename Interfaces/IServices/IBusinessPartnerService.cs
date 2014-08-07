@@ -1,8 +1,8 @@
-﻿using Models.DomainModels;
-using Models.RequestModels;
-using Models.ResponseModels;
+﻿using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
+using Cares.Models.ResponseModels;
 
-namespace Interfaces.IServices
+namespace Cares.Interfaces.IServices
 {
     /// <summary>
     /// Business Partner Service Interface
@@ -12,30 +12,22 @@ namespace Interfaces.IServices
         /// <summary>
         /// Get all business partneres
         /// </summary>
-        /// <param name="businessPartnerSearchRequest"></param>
-        /// <returns></returns>
         BusinessPartnerResponse LoadAllBusinessPartners(BusinessPartnerSearchRequest businessPartnerSearchRequest);
         /// <summary>
         /// Delete businsess partner
         /// </summary>
-        /// <param name="businessPartner"></param>
         void DeleteBusinessPartner(BusinessPartner businessPartner);
         /// <summary>
         /// Add business partner
         /// </summary>
-        /// <param name="businessPartner"></param>
-        /// <returns></returns>
         bool AddBusinessPartner(BusinessPartner businessPartner);
         /// <summary>
         /// Update business partner
         /// </summary>
-        /// <param name="businessPartner"></param>
-        /// <returns></returns>
         bool UpdateBusinessPartner(BusinessPartner businessPartner);
         /// <summary>
         /// Get business partnere by Id
         /// </summary>
-        BusinessPartner FindBusinessPartnerById(long id);
-      
+        BusinessPartner FindBusinessPartnerById(long id);      
     }
 }

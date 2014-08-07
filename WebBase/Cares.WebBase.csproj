@@ -7,8 +7,8 @@
     <ProjectGuid>{BCB8BCFD-0163-430C-8088-224074D6E384}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WebBase</RootNamespace>
-    <AssemblyName>WebBase</AssemblyName>
+    <RootNamespace>Cares.WebBase</RootNamespace>
+    <AssemblyName>Cares.WebBase</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -127,9 +127,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
+    <ProjectReference Include="..\Interfaces\Cares.Interfaces.csproj">
       <Project>{98f7a831-6d93-48e9-950f-623772aa607a}</Project>
-      <Name>Interfaces</Name>
+      <Name>Cares.Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,7 +1,10 @@
 ﻿using System.Globalization;
 using System.Web.Security;
+using Cares.Implementation.Identity;
+using Cares.Interfaces.IServices;
+using Cares.Models.IdentityModels;
+using Cares.Models.IdentityModels.ViewModels;
 using IdentitySample.Models;
-using Interfaces.IServices;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -14,11 +17,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Collections.Generic;
 using Models.DomainModels;
-using Models.IdentityModels;
-using Models.IdentityModels.ViewModels;
-using Implementation.Identity;
-using Implementation.Services;
-using Interfaces.IServices;
 
 namespace IdentitySample.Controllers
 {

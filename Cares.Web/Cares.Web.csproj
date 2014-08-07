@@ -1125,21 +1125,21 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Implementation\Implementation.csproj">
+    <ProjectReference Include="..\Implementation\Cares.Implementation.csproj">
       <Project>{42d2e6c0-74f1-46fb-b7ba-43251156275d}</Project>
-      <Name>Implementation</Name>
+      <Name>Cares.Implementation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
+    <ProjectReference Include="..\Interfaces\Cares.Interfaces.csproj">
       <Project>{98F7A831-6D93-48E9-950F-623772AA607A}</Project>
-      <Name>Interfaces</Name>
+      <Name>Cares.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Models\Models.csproj">
+    <ProjectReference Include="..\Models\Cares.Models.csproj">
       <Project>{81067904-2176-4648-87ab-014b0d76b85e}</Project>
-      <Name>Models</Name>
+      <Name>Cares.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WebBase\WebBase.csproj">
+    <ProjectReference Include="..\WebBase\Cares.WebBase.csproj">
       <Project>{bcb8bcfd-0163-430c-8088-224074d6e384}</Project>
-      <Name>WebBase</Name>
+      <Name>Cares.WebBase</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

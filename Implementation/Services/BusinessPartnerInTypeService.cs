@@ -1,13 +1,9 @@
-﻿using System;
-using System.Globalization;
-using FaceSharp.Api.Objects;
-using Interfaces.IServices;
-using Interfaces.Repository;
-using Models.DomainModels;
-using Models.RequestModels;
-using Models.ResponseModels;
+﻿using Cares.Interfaces.IServices;
+using Cares.Interfaces.Repository;
+using Cares.Models.DomainModels;
 
-namespace Implementation.Services
+
+namespace Cares.Implementation.Services
 {
     /// <summary>
     /// Business Partner InType Service

@@ -1,6 +1,6 @@
-﻿using Models.Common;
+﻿using Cares.Models.Common;
 
-namespace Models.RequestModels
+namespace Cares.Models.RequestModels
 {
 
     public class ProductSearchRequest : GetPagedListRequest

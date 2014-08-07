@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Cares.Web.Models;
-using DomainResponseModels = Models.ResponseModels;
 
 namespace Cares.Web.ModelMappers
 {
@@ -13,7 +12,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         /// Create web model from entity
         /// </summary>
-        public static TariffRateResponse CreateFrom(this DomainResponseModels.TariffRateResponse source)
+        public static TariffRateResponse CreateFrom(this Cares.Models.ResponseModels.TariffRateResponse source)
         {
             return new TariffRateResponse
             {
@@ -25,7 +24,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity 
         /// </summary>
-        public static HireGroupDetailResponse CreateFromHireGroupDetail(this DomainResponseModels.HireGroupDetailResponse source)
+        public static HireGroupDetailResponse CreateFromHireGroupDetail(this Cares.Models.ResponseModels.HireGroupDetailResponse source)
         {
             IEnumerable<HireGroupDetailContent> hireGroupDetailContent = source.HireGroupDetails.Select(hireGroupDet => hireGroupDet.CreateFrom());
             IEnumerable<StandardRate> standardRates = source.StandardRates.Select(stRt => stRt.CreateFrom());
@@ -60,7 +59,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Tariff Type Base Response Mapper
         /// </summary>
-        public static TariffRateBaseResponse CreateFrom(this DomainResponseModels.TariffRateBaseResponse source)
+        public static TariffRateBaseResponse CreateFrom(this Cares.Models.ResponseModels.TariffRateBaseResponse source)
         {
             return new TariffRateBaseResponse
             {

@@ -1,4 +1,4 @@
-﻿using DomainModels = Models.DomainModels;
+﻿using Cares.Models.DomainModels;
 using ApiModels = Cares.Web.Models;
 
 namespace Cares.Web.ModelMappers
@@ -12,7 +12,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static ApiModels.TarrifType CreateFrom(this DomainModels.TarrifType source)
+        public static ApiModels.TarrifType CreateFrom(this TarrifType source)
         {
             return new ApiModels.TarrifType
             {
@@ -49,9 +49,9 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create entity from web model
         /// </summary>
-        public static DomainModels.TarrifType CreateFrom(this ApiModels.TariffTypeDetail source)
+        public static TarrifType CreateFrom(this ApiModels.TariffTypeDetail source)
         {
-            return new DomainModels.TarrifType
+            return new TarrifType
             {
                 TariffTypeId = source.TariffTypeId,
                 TariffTypeCode = source.TariffTypeCode,
@@ -76,7 +76,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create Detail web model from entity
         /// </summary>
-        public static ApiModels.TariffTypeDetail CreateFromDetail(this DomainModels.TarrifType source)
+        public static ApiModels.TariffTypeDetail CreateFromDetail(this TarrifType source)
         {
             return new ApiModels.TariffTypeDetail
             {
@@ -104,7 +104,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static ApiModels.TarrifType CreateFromForTariffRate(this DomainModels.TarrifType source)
+        public static ApiModels.TarrifType CreateFromForTariffRate(this TarrifType source)
         {
             return new ApiModels.TarrifType
             {

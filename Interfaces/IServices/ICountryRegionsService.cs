@@ -1,9 +1,7 @@
-﻿using Models.DomainModels;
-using Models.RequestModels;
-using Models.ResponseModels;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Cares.Models.DomainModels;
 
-namespace Interfaces.IServices
+namespace Cares.Interfaces.IServices
 {
     /// <summary>
     /// FleetPool Interface

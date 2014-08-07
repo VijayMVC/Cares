@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using Interfaces.Repository;
+using Cares.Interfaces.Repository;
+using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
+using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
-using Models.DomainModels;
-using Models.RequestModels;
-using Repository.BaseRepository;
 
-namespace Repository.Repositories
+
+namespace Cares.Repository.Repositories
 {
     /// <summary>
     /// FleetPool Repository

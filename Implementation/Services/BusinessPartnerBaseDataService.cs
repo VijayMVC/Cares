@@ -1,8 +1,8 @@
-﻿using Interfaces.IServices;
-using Interfaces.Repository;
-using Models.ResponseModels;
+﻿using Cares.Interfaces.IServices;
+using Cares.Interfaces.Repository;
+using Cares.Models.ResponseModels;
 
-namespace Implementation.Services
+namespace Cares.Implementation.Services
 {
     /// <summary>
     /// Business Partner Base Service

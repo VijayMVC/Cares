@@ -1,8 +1,7 @@
-﻿
-using System.Collections.Generic;
-using Models.DomainModels;
+﻿using System.Collections.Generic;
+using Cares.Models.DomainModels;
 
-namespace Interfaces.IServices
+namespace Cares.Interfaces.IServices
 {
     /// <summary>
     /// Measurement Unit Service Interface

@@ -1,12 +1,11 @@
 ﻿using System.Data.Entity;
 using System.Linq;
-using Interfaces.Repository;
+using Cares.Interfaces.Repository;
+using Cares.Models.DomainModels;
+using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
-using Models.DomainModels;
-using Repository.BaseRepository;
 
-
-namespace Repository.Repositories
+namespace Cares.Repository.Repositories
 {
     /// <summary>
     /// Payment Term Repository
@@ -32,7 +31,6 @@ namespace Repository.Repositories
                 return db.PaymentTerms;
             }
         }
-
         #endregion
        
         #region Public
@@ -44,6 +42,5 @@ namespace Repository.Repositories
             return DbSet.Where(paymentTerm => paymentTerm.UserDomainKey == UserDomainKey);
         }
         #endregion
-
     }
 }

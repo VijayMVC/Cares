@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-namespace Models.DomainModels
+using Models.DomainModels;
+
+namespace Cares.Models.DomainModels
 {
     /// <summary>
     /// Business Parnter Domain Model

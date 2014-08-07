@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
-using Interfaces.IServices;
-using Interfaces.Repository;
-using Models.DomainModels;
+using Cares.Interfaces.IServices;
+using Cares.Interfaces.Repository;
+using Cares.Models.DomainModels;
 
-namespace Implementation.Services
+namespace Cares.Implementation.Services
 {
-    public class DepartmentService: IDepartmentService
+    public class DepartmentService : IDepartmentService
     {
         private readonly IDepartmentRepository iRepository;
 
-          public DepartmentService(IDepartmentRepository xRepository)
+        public DepartmentService(IDepartmentRepository xRepository)
         {
             iRepository = xRepository;
         }

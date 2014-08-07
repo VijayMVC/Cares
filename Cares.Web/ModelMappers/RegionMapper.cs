@@ -1,5 +1,6 @@
-﻿using ApiModel = Cares.Web.Models;
-using Models.DomainModels;
+﻿using Cares.Models.DomainModels;
+using ApiModel = Cares.Web.Models;
+
 namespace Cares.Web.ModelMappers
 {
     public static class RegionMapper
