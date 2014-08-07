@@ -5,11 +5,10 @@ using System.Net;
 using System.Web;
 using System.Web.Http;
 using Cares.Interfaces.IServices;
-using Cares.Models.RequestModels;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
-using DomainRequestModels = Models.RequestModels;
-using DomainModels = Models.DomainModels;
+using DomainRequestModels = Cares.Models.RequestModels;
+using DomainModels = Cares.Models.DomainModels;
 namespace Cares.Web.Areas.Api.Controllers
 {
     /// <summary>
