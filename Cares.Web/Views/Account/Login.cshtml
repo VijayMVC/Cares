@@ -1,5 +1,6 @@
-﻿@*@model IdentitySample.Models.LoginViewModel*@
-@model Models.IdentityModels.ViewModels.LoginViewModel
+﻿
+@using Cares.Models.IdentityModels.ViewModels
+@model Cares.Models.IdentityModels.ViewModels.LoginViewModel
 
 @{
     ViewBag.Title = "Log in";
@@ -53,7 +54,7 @@
     <div class="col-md-4">
         <section id="socialLoginForm">
             @*@Html.Partial("_ExternalLoginsListPartial", new IdentitySample.Models.ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })*@
-            @Html.Partial("_ExternalLoginsListPartial", new Models.IdentityModels.ViewModels.ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
         </section>
     </div>
 </div>

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Models.ResponseModels
+namespace Cares.Models.ResponseModels
 {
     /// <summary>
     /// Tariff Rate Domain Response Model

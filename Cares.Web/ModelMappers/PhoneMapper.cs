@@ -1,4 +1,5 @@
-﻿using ApiModel = Cares.Web.Models;
+﻿using Cares.Models.DomainModels;
+using ApiModel = Cares.Web.Models;
 using DomainModel = Models.DomainModels;
 namespace Cares.Web.ModelMappers
 {
@@ -11,9 +12,9 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create domain model from web api model
         /// </summary>
-        public static DomainModel.Phone CreateFrom(this ApiModel.Phone source)
+        public static Phone CreateFrom(this ApiModel.Phone source)
         {
-            return new DomainModel.Phone
+            return new Phone
             {
                 PhoneId = source.PhoneId != null ? (long)source.PhoneId : 0,
                 IsDefault = source.IsDefault,
@@ -25,7 +26,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create Web Api model from domain model
         /// </summary>
-        public static ApiModel.Phone CreateFrom(this DomainModel.Phone source)
+        public static ApiModel.Phone CreateFrom(this Phone source)
         {
             return new ApiModel.Phone
             {

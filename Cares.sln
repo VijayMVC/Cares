@@ -1,17 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{852BDC39-3388-4CB1-A959-F3BD06E9DF92}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cares.Repository", "Repository\Cares.Repository.csproj", "{852BDC39-3388-4CB1-A959-F3BD06E9DF92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "Interfaces\Interfaces.csproj", "{98F7A831-6D93-48E9-950F-623772AA607A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cares.Interfaces", "Interfaces\Cares.Interfaces.csproj", "{98F7A831-6D93-48E9-950F-623772AA607A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{81067904-2176-4648-87AB-014B0D76B85E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cares.Models", "Models\Cares.Models.csproj", "{81067904-2176-4648-87AB-014B0D76B85E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Implementation", "Implementation\Implementation.csproj", "{42D2E6C0-74F1-46FB-B7BA-43251156275D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cares.Implementation", "Implementation\Cares.Implementation.csproj", "{42D2E6C0-74F1-46FB-B7BA-43251156275D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBase", "WebBase\WebBase.csproj", "{BCB8BCFD-0163-430C-8088-224074D6E384}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cares.WebBase", "WebBase\Cares.WebBase.csproj", "{BCB8BCFD-0163-430C-8088-224074D6E384}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cares.Web", "Cares.Web\Cares.Web.csproj", "{426080DD-D8CB-49F2-9645-DFD962ADFFDF}"
 EndProject

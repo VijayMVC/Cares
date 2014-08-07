@@ -1,7 +1,6 @@
-﻿
-using Models.Common;
+﻿using Cares.Models.Common;
 
-namespace Models.RequestModels
+namespace Cares.Models.RequestModels
 {
     /// <summary>
     /// Business Partner Search Request Model

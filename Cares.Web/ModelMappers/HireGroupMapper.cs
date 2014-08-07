@@ -1,5 +1,5 @@
 ﻿using Cares.Web.Models;
-using DomainModels = Models.DomainModels;
+
 namespace Cares.Web.ModelMappers
 {
     public static class HireGroupMapper
@@ -8,7 +8,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static HireGroup CreateFrom(this DomainModels.HireGroup source)
+        public static HireGroup CreateFrom(this Cares.Models.DomainModels.HireGroup source)
         {
             return new HireGroup
             {

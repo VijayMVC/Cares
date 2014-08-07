@@ -1,5 +1,6 @@
-﻿using ApiModel = Cares.Web.Models;
-using DomainModel = Models.DomainModels;
+﻿using Cares.Models.DomainModels;
+using ApiModel = Cares.Web.Models;
+
 
 namespace Cares.Web.ModelMappers
 {
@@ -7,13 +8,12 @@ namespace Cares.Web.ModelMappers
     /// PhoneType Mapper
     /// </summary>
     public static class PhoneTypeMapper
-    {
-        #region Public
+    {        
         #region Entity To Model
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static ApiModel.PhoneType CreateFrom(this DomainModel.PhoneType source)
+        public static ApiModel.PhoneType CreateFrom(this PhoneType source)
             {
                 return new ApiModel.PhoneType()
                 {
@@ -27,16 +27,15 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create entity from web model
         /// </summary>
-        public static DomainModel.PhoneType CreateFrom(this ApiModel.PhoneType source)
+        public static PhoneType CreateFrom(this ApiModel.PhoneType source)
         {
-            return new DomainModel.PhoneType()
+            return new PhoneType()
             {
                 PhoneTypeId = source.PhoneTypeId,
                 PhoneTypeName = source.PhoneTypeName
             };
         }
         
-        #endregion
-        #endregion
+        #endregion       
     }
 }

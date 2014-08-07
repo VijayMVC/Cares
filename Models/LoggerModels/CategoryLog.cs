@@ -1,5 +1,5 @@
 ﻿
-namespace Models.LoggerModels
+namespace Cares.Models.LoggerModels
 {
     /// <summary>
     /// Category Log class for database logging

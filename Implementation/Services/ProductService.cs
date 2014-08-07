@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using Interfaces.IServices;
-using Interfaces.Repository;
+using Cares.Interfaces.IServices;
+using Cares.Interfaces.Repository;
+using Cares.Models.RequestModels;
+using Cares.Models.ResponseModels;
 using Models.DomainModels;
-using Models.RequestModels;
-using Models.ResponseModels;
 
-namespace Implementation.Services
+namespace Cares.Implementation.Services
 {
     public sealed class ProductService : IProductService
     {

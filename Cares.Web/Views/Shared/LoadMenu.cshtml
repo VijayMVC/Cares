@@ -1,5 +1,4 @@
-﻿@using System.Collections
-@using Models.MenuModels
+﻿@using Cares.Models.MenuModels
 @model Cares.Web.ViewModels.Common.MenuViewModel
 @{
     Layout = null;
@@ -12,7 +11,7 @@
         if (Model.MenuRights != null)
         {
             // loop through menu headers one by one and populate childs
-            foreach (Models.MenuModels.MenuRight header in Model.MenuHeaders.ToList())
+            foreach (MenuRight header in Model.MenuHeaders.ToList())
             {
                 <li class="dropdown">
                     <a href="@header.Menu.MenuTargetController/@header.Menu.MenuFunction" class="dropdown-toggle" data-toggle="dropdown">@header.Menu.MenuTitle <span class="caret"></span></a>

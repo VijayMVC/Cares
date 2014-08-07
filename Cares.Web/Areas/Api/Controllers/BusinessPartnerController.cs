@@ -2,10 +2,10 @@
 using System.Net;
 using System.Web;
 using System.Web.Http;
+using Cares.Interfaces.IServices;
+using Cares.Models.RequestModels;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
-using Interfaces.IServices;
-using DomainModels=Models.RequestModels;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
@@ -39,7 +39,7 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Get all Bussiness Partner
         /// </summary>
-        public BusinessPartnerResponse Get([FromUri] DomainModels.BusinessPartnerSearchRequest request)
+        public BusinessPartnerResponse Get([FromUri] BusinessPartnerSearchRequest request)
         {
             if (request == null || !ModelState.IsValid)
             {

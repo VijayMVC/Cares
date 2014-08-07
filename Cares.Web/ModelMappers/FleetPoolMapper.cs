@@ -1,9 +1,8 @@
-﻿using System;
-using System.Linq;
-using Models.RequestModels;
-using Models.ResponseModels;
-using ApiModel=Cares.Web.Models;
-using DomainMOdels=Models.DomainModels;
+﻿using System.Linq;
+using Cares.Models.DomainModels;
+using Cares.Models.ResponseModels;
+using ApiModel = Cares.Web.Models;
+
 namespace Cares.Web.ModelMappers
 {
     /// <summary>
@@ -16,7 +15,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static ApiModel.FleetPool CreateFrom(this DomainMOdels.FleetPool source)
+        public static ApiModel.FleetPool CreateFrom(this FleetPool source)
         {
             return new ApiModel.FleetPool
                    {

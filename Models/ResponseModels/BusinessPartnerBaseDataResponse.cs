@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using Cares.Models.DomainModels;
 using Models.DomainModels;
 
-namespace Models.ResponseModels
+namespace Cares.Models.ResponseModels
 {
     /// <summary>
     /// Business Parnter Base Data Domain Model

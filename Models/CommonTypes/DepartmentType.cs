@@ -1,5 +1,5 @@
 ﻿
-namespace Models.CommonTypes
+namespace Cares.Models.CommonTypes
 {
     /// <summary>
     /// Department Types

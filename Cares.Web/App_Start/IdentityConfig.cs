@@ -1,5 +1,7 @@
 ﻿using System.Linq;
 using System.Security.Claims;
+using Cares.Implementation.Identity;
+using Cares.Models.IdentityModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -10,8 +12,6 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Threading.Tasks;
 using System.Web;
-using Models.IdentityModels;
-using Implementation.Identity;
 
 namespace IdentitySample.Models
 {

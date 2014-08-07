@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Models.DomainModels;
+using Cares.Models.DomainModels;
 
-namespace Interfaces.IServices
+namespace Cares.Interfaces.IServices
 {
     /// <summary>
     /// Department Service Interface
@@ -11,7 +11,6 @@ namespace Interfaces.IServices
         /// <summary>
         /// Get All Departments
         /// </summary>
-        /// <returns></returns>
         IEnumerable<Department> LoadAll();
     }
 }

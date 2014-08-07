@@ -7,8 +7,8 @@
     <ProjectGuid>{852BDC39-3388-4CB1-A959-F3BD06E9DF92}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Repository</RootNamespace>
-    <AssemblyName>Repository</AssemblyName>
+    <RootNamespace>Cares.Repository</RootNamespace>
+    <AssemblyName>Cares.Repository</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -161,13 +161,13 @@
     <Content Include="Unity.Mvc4.README.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
+    <ProjectReference Include="..\Interfaces\Cares.Interfaces.csproj">
       <Project>{98f7a831-6d93-48e9-950f-623772aa607a}</Project>
-      <Name>Interfaces</Name>
+      <Name>Cares.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Models\Models.csproj">
+    <ProjectReference Include="..\Models\Cares.Models.csproj">
       <Project>{81067904-2176-4648-87AB-014B0D76B85E}</Project>
-      <Name>Models</Name>
+      <Name>Cares.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

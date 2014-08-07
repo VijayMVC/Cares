@@ -1,5 +1,4 @@
 ﻿using Cares.Web.Models;
-using DomainModels=Models.DomainModels;
 
 namespace Cares.Web.ModelMappers
 {
@@ -12,7 +11,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static PricingStrategy CreateFrom(this DomainModels.PricingStrategy source)
+        public static PricingStrategy CreateFrom(this Cares.Models.DomainModels.PricingStrategy source)
         {
             return new PricingStrategy
             {
@@ -23,17 +22,17 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create entity from web model
         /// </summary>
-        public static DomainModels.PricingStrategy CreateFrom(this PricingStrategy source)
+        public static Cares.Models.DomainModels.PricingStrategy CreateFrom(this PricingStrategy source)
         {
             if (source != null)
             {
-                return new DomainModels.PricingStrategy
+                return new Cares.Models.DomainModels.PricingStrategy
                 {
                     PricingStrategyId = source.PricingStrategyId,
                     PricingStrategyName = source.PricingStrategyName,
                 };
             }
-            return new DomainModels.PricingStrategy();
+            return new Cares.Models.DomainModels.PricingStrategy();
         }
         #endregion
     

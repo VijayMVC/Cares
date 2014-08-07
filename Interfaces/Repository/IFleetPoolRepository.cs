@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using Models.DomainModels;
-using Models.RequestModels;
+﻿using System.Collections.Generic;
+using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
 
-namespace Interfaces.Repository
+namespace Cares.Interfaces.Repository
 {
     /// <summary>
     /// FleetPool Repository

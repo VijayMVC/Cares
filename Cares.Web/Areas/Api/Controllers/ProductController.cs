@@ -2,9 +2,9 @@
 using System.Net;
 using System.Web;
 using System.Web.Http;
+using Cares.Interfaces.IServices;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
-using Interfaces.IServices;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
@@ -28,7 +28,7 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Get Products
         /// </summary>
-        public ProductResponse Get([FromUri] global::Models.RequestModels.ProductSearchRequest request)
+        public ProductResponse Get([FromUri] global::Cares.Models.RequestModels.ProductSearchRequest request)
         {
             if (request == null || !ModelState.IsValid)
             {

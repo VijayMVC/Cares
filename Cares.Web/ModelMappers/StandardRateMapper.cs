@@ -1,7 +1,5 @@
-﻿using DomainModels = Models.DomainModels;
-using ResponseModel = Models.ResponseModels;
+﻿using Cares.Models.DomainModels;
 using ApiModels = Cares.Web.Models;
-
 
 namespace Cares.Web.ModelMappers
 {
@@ -11,9 +9,9 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create entity from web model
         /// </summary>
-        public static DomainModels.StandardRate CreateFrom(this ApiModels.StandardRate source)
+        public static StandardRate CreateFrom(this ApiModels.StandardRate source)
         {
-            return new DomainModels.StandardRate
+            return new StandardRate
             {
                 StandardRtId = source.StandardRtId,
                 ChildStandardRtId=source.ChildStandardRtId,
@@ -31,7 +29,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create entity from web model
         /// </summary>
-        public static ApiModels.StandardRate CreateFrom(this DomainModels.StandardRate source)
+        public static ApiModels.StandardRate CreateFrom(this StandardRate source)
         {
             return new ApiModels.StandardRate
             {

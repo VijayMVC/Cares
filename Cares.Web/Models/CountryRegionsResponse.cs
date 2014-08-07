@@ -11,7 +11,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// FleetPools List
         /// </summary>
-        public IEnumerable<global::Models.DomainModels.Region> Regions { get; set; }
+        public IEnumerable<global::Cares.Models.DomainModels.Region> Regions { get; set; }
 
         #endregion
 
