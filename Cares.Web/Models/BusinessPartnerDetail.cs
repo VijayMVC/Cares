@@ -90,6 +90,10 @@ namespace Cares.Web.Models
         /// Business Partner Phones 
         /// </summary>
         public List<Phone> BusinessPartnerPhoneNumbers { get; set; }
+        /// <summary>
+        /// Business Partner Address List 
+        /// </summary>
+        public List<Address> BusinessPartnerAddressList { get; set; }
         #endregion
 
         #endregion

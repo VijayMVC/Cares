@@ -54,7 +54,8 @@ namespace Cares.Web.ModelMappers
                 BusinessPartnerIndividual = source.BusinessPartnerIndividual.CreateFrom(),
                 BusinessPartnerCompany = source.BusinessPartnerCompany.CreateFrom(),
                 BusinessPartnerInTypes = source.BusinessPartnerInTypes.Select(x => x.CreateFrom()).ToList(),
-                BusinessPartnerPhoneNumbers = source.BusinessPartnerPhoneNumbers.Select(x => x.CreateFrom()).ToList()
+                BusinessPartnerPhoneNumbers = source.BusinessPartnerPhoneNumbers.Select(x => x.CreateFrom()).ToList(),
+                BusinessPartnerAddressList = source.BusinessPartnerAddressList.Select(x=>x.CreateFrom()).ToList()
             };
         }
 
@@ -94,7 +95,8 @@ namespace Cares.Web.ModelMappers
                 BusinessPartnerIndividual = source.BusinessPartnerIndividual.CreateFrom(),
                 BusinessPartnerCompany = source.BusinessPartnerCompany.CreateFrom(),
                 BusinessPartnerInTypes = source.BusinessPartnerInTypes.Select(x => x.CreateFrom()).ToList(),
-                BusinessPartnerPhoneNumbers = source.BusinessPartnerPhoneNumbers.Select(x => x.CreateFrom()).ToList()
+                BusinessPartnerPhoneNumbers = source.BusinessPartnerPhoneNumbers.Select(x => x.CreateFrom()).ToList(),
+                BusinessPartnerAddressList = source.BusinessPartnerAddressList.Select(x=>x.CreateFrom()).ToList()
             };
         }
 

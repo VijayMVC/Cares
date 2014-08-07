@@ -134,6 +134,10 @@ namespace Models.DomainModels
         /// Address Type
         /// </summary>
         public virtual AddressType AddressType { get; set; }
+        /// <summary>
+        /// Country
+        /// </summary>
+        public virtual Country Country { get; set; }
         #endregion
     }
 }

@@ -5,31 +5,48 @@
     /// </summary>
     public class Address
     {
-        #region Address Persisted Properties
+        #region Public Properties
         /// <summary>
         /// Address ID
         /// </summary>
         public long? AddressId { get; set; }
         /// <summary>
-        /// Is Default
+        /// Contact Person
         /// </summary>
-        public bool IsDefault { get; set; }
+        public string ContactPerson { get; set; }
         /// <summary>
-        /// Address Number
+        /// Street Address
         /// </summary>
-        public string AddressNumber { get; set; }
+        public string StreetAddress { get; set; }
         /// <summary>
-        /// Business Partner Id
+        /// Email Address
         /// </summary>
-        public long? BusinessPartnerId { get; set; }
+        public string EmailAddress { get; set; }
+        /// <summary>
+        /// Web Page
+        /// </summary>
+        public string WebPage { get; set; }
+        /// <summary>
+        /// Contact Person
+        /// </summary>
+        public string ZipCode { get; set; }
+        /// <summary>
+        /// Po Box
+        /// </summary>
+        public string POBox { get; set; }
+        /// <summary>
+        /// Country
+        /// </summary>
+        public int? CountryId { get; set; }
         /// <summary>
         /// Address Type ID
         /// </summary>
         public int AddressTypeId { get; set; }
         /// <summary>
-        /// Address Type Name
+        /// Business Partner Id
         /// </summary>
-        public string AddressTypeName { get; set; }
+        public long? BusinessPartnerId { get; set; }
+
         #endregion
     }
 }

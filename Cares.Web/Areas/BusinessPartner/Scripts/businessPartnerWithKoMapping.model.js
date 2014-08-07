@@ -828,6 +828,10 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
          _.each(serverData.BusinessPartnerPhoneNumbers, function (item) {
              businessPartner.businessPartnerPhoneNumbers.push(BusinessPartnerPhoneClientMapper(item));
          });
+        // fifth tab : BusinessPartner Address List
+         _.each(serverData.BusinessPartnerAddressList, function (item) {
+             businessPartner.businessPartnerAddressList.push(BusinessPartnerAddressClientMapper(item));
+         });
         return businessPartner;
     };
     // Convert (Business Partner Individual) Server to Client
@@ -906,6 +910,26 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         businessPartnerPhone.phoneTypeId(item.PhoneTypeId === undefined ? undefined : item.PhoneTypeId);
         businessPartnerPhone.phoneTypeName(item.PhoneTypeName === undefined ? undefined : item.PhoneTypeName);
         return businessPartnerPhone;
+    };
+    // Convert (Business Partner Address ) Server to Client
+    var BusinessPartnerAddressClientMapper = function (item) {
+        var businessPartnerAddress = new BusinessPartnerAddress();
+        // Third Tab : Business Partner Address
+        businessPartnerAddress.addressId(item.AddressId === undefined ? undefined : item.AddressId);
+        businessPartnerAddress.contactPerson(item.ContactPerson === undefined ? undefined : item.ContactPerson);
+        businessPartnerAddress.streetAddress(item.StreetAddress === undefined ? undefined : item.StreetAddress);
+        businessPartnerAddress.emailAddress(item.EmailAddress === undefined ? undefined : item.EmailAddress);
+        businessPartnerAddress.webPage(item.WebPage === undefined ? undefined : item.WebPage);
+        businessPartnerAddress.zipCode(item.ZipCode === undefined ? undefined : item.ZipCode);
+        businessPartnerAddress.poBox(item.PoBox === undefined ? undefined : item.PoBox);
+        businessPartnerAddress.countryId(item.CountryId === undefined ? undefined : item.CountryId);
+        businessPartnerAddress.regionId(item.RegionId === undefined ? undefined : item.RegionId);
+        businessPartnerAddress.subRegionId(item.SubRegionId === undefined ? undefined : item.SubRegionId);
+        businessPartnerAddress.cityId(item.CityId === undefined ? undefined : item.CityId);
+        businessPartnerAddress.areaId(item.AreaId === undefined ? undefined : item.AreaId);
+        businessPartnerAddress.addressTypeId(item.AddressTypeId === undefined ? undefined : item.AddressTypeId);
+        businessPartnerAddress.businessPartnerId(item.BusinessPartnerId === undefined ? undefined : item.BusinessPartnerId);
+        return businessPartnerAddress;        
     };
     return {
         BusinessPartner: BusinessPartner,

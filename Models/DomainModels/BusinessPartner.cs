@@ -175,10 +175,13 @@ namespace Models.DomainModels
         /// </summary>
         public virtual ICollection<BusinessPartnerInType> BusinessPartnerInTypes { get; set; }
         /// <summary>
-        /// Business Partner In Types Phones
+        /// Business Partner Phones
         /// </summary>
         public virtual ICollection<Phone> BusinessPartnerPhoneNumbers { get; set; }
-
+        /// <summary>
+        /// Business Partner Address List
+        /// </summary>
+        public virtual ICollection<Address> BusinessPartnerAddressList { get; set; }
         #endregion
     }
 }

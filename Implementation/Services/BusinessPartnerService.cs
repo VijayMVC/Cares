@@ -136,6 +136,24 @@ namespace Implementation.Services
                 }
                 #endregion
 
+                //set child (business partner address) properties
+                #region Business Partner Address
+                // set properties
+                foreach (Address item in businessPartner.BusinessPartnerAddressList)
+                {
+                    item.IsActive = true;
+                    item.IsDeleted = false;
+                    item.IsPrivate = false;
+                    item.IsReadOnly = false;
+                    item.RecCreatedDt = DateTime.Now;
+                    item.RecLastUpdatedDt = DateTime.Now;
+                    item.RecCreatedBy = businessPartnerRepository.LoggedInUserIdentity;
+                    item.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
+                    item.RowVersion = 0;
+                    item.UserDomainKey = businessPartnerRepository.UserDomainKey;
+                }
+                #endregion
+
                 // save data
                 businessPartnerRepository.Add(businessPartner);
                 businessPartnerRepository.SaveChanges();
@@ -308,6 +326,45 @@ namespace Implementation.Services
                     Phone dbVersionMissingPhoneItem = businessPartnerDbVersion.BusinessPartnerPhoneNumbers.First(x => x.PhoneId == missingBusinessPartnerPhone.PhoneId);
                     if (dbVersionMissingPhoneItem.PhoneId > 0)
                         businessPartnerDbVersion.BusinessPartnerPhoneNumbers.Remove(dbVersionMissingPhoneItem);
+                }
+                #endregion
+
+                //set child (business partner address list)
+                #region Business Partner Address List
+                //add new address items
+                foreach (Address address in businessPartner.BusinessPartnerAddressList)
+                {
+                    if (businessPartnerDbVersion.BusinessPartnerAddressList.All(x => x.AddressId != address.AddressId) || address.AddressId == 0)
+                    {
+                        // set properties
+                        address.IsActive = true;
+                        address.IsDeleted = false;
+                        address.IsPrivate = false;
+                        address.IsReadOnly = false;
+                        address.RecCreatedDt = DateTime.Now;
+                        address.RecLastUpdatedDt = DateTime.Now;
+                        address.RecCreatedBy = businessPartnerRepository.LoggedInUserIdentity;
+                        address.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
+                        address.RowVersion = 0;
+                        address.UserDomainKey = businessPartnerRepository.UserDomainKey;
+                        businessPartnerDbVersion.BusinessPartnerAddressList.Add(address);
+                    }
+                }
+                //find missing address items
+                List<Address> missingAddressItems = new List<Address>();
+                foreach (Address dbversionAddressItem in businessPartnerDbVersion.BusinessPartnerAddressList)
+                {
+                    if (businessPartner.BusinessPartnerAddressList.All(x => x.AddressId != dbversionAddressItem.AddressId))
+                    {
+                        missingAddressItems.Add(dbversionAddressItem);
+                    }
+                }
+                //remove missing address items
+                foreach (Address missingBusinessPartnerAddress in missingAddressItems)
+                {
+                    Address dbVersionMissingAddressItem = businessPartnerDbVersion.BusinessPartnerAddressList.First(x => x.AddressId == missingBusinessPartnerAddress.AddressId);
+                    if (dbVersionMissingAddressItem.AddressId > 0)
+                        businessPartnerDbVersion.BusinessPartnerAddressList.Remove(dbVersionMissingAddressItem);
                 }
                 #endregion
 
