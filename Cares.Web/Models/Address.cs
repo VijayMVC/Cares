@@ -39,9 +39,25 @@
         /// </summary>
         public short? CountryId { get; set; }
         /// <summary>
+        /// Region
+        /// </summary>
+        public short? RegionId { get; set; }
+        /// <summary>
+        /// Sub Region
+        /// </summary>
+        public short? SubRegionId { get; set; }
+        /// <summary>
+        /// City
+        /// </summary>
+        public short? CityId { get; set; }
+        /// <summary>
+        /// Area
+        /// </summary>
+        public short? AreaId { get; set; }
+        /// <summary>
         /// Address Type ID
         /// </summary>
-        public int AddressTypeId { get; set; }
+        public short AddressTypeId { get; set; }
         /// <summary>
         /// Business Partner Id
         /// </summary>

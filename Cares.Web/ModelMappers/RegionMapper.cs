@@ -35,7 +35,7 @@ namespace Cares.Web.ModelMappers
         {
             return new ApiModel.SubRegion()
             {
-                SubRegionId = source.RegionId,
+                SubRegionId = source.SubRegionId,
                 SubRegionCode = source.SubRegionCode,
                 SubRegionName = source.SubRegionName,
                 RegionId = source.RegionId

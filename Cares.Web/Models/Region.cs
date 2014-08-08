@@ -9,7 +9,7 @@
         /// <summary>
         /// Region ID
         /// </summary>
-        public int RegionId { get; set; }
+        public short RegionId { get; set; }
         /// <summary>
         /// Region Code
         /// </summary>
