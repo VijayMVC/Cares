@@ -40,13 +40,12 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public override IQueryable<Operation> GetAll()
         {
-            
-            return DbSet.Where(operation => operation.UserDomainKey == UserDomainKey && operation.Department.DepartmentType == DepartmentTypes.Sales);
+            return DbSet.Where(operation => operation.UserDomainKey == UserDomainKey && operation.Department.DepartmentType.DepartmentTypeName == DepartmentTypes.Sales);
         }
 
         public IQueryable<Operation> GetSalesOperation()
         {
-            return DbSet.Where(operation => operation.Department.DepartmentType == DepartmentTypes.Sales);
+            return DbSet.Where(operation => operation.Department.DepartmentType.DepartmentTypeName == DepartmentTypes.Sales);
         }
 
         #endregion

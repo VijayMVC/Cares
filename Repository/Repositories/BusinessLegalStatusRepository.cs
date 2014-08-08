@@ -3,7 +3,7 @@ using System.Linq;
 using Cares.Interfaces.Repository;
 using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
-using Models.DomainModels;
+using Cares.Models.DomainModels;
 
 namespace Cares.Repository.Repositories
 {

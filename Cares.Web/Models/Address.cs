@@ -37,7 +37,7 @@
         /// <summary>
         /// Country
         /// </summary>
-        public int? CountryId { get; set; }
+        public short? CountryId { get; set; }
         /// <summary>
         /// Address Type ID
         /// </summary>

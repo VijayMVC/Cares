@@ -11,43 +11,52 @@ namespace Cares.Models.DomainModels
     public class BusinessPartnerInType
     {
         #region Persisted Properties
+        
         /// <summary>
         /// Business Partner In Type Id
         /// </summary>
-        [Key, Column(Order = 2), DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long BusinessPartnerInTypeId { get; set; }
+        
         /// <summary>
         /// Business Partner In Type Description
         /// </summary>
         [StringLength(500)]
         public string BusinessPartnerInTypeDescription { get; set; }
+        
         /// <summary>
         /// Business Partner In Type From Date
         /// </summary>
         public DateTime? FromDate { get; set; }
+        
         /// <summary>
         /// Business Partner In Type To Date
         /// </summary>
         public DateTime? ToDate { get; set; }
+        
         /// <summary>
         /// Business Partner Id
         /// </summary>
-        [Key, ForeignKey("BusinessPartner"), Column(Order = 1)]
+        [ForeignKey("BusinessPartner")]
         public long BusinessPartnerId { get; set; }
+        
         /// <summary>
         /// Business Partner Sub Type Id
         /// </summary>
-        [Required]
+        [ForeignKey("BusinessPartnerSubType")]
         public int BusinessPartnerSubTypeId { get; set; }
+        
         /// <summary>
         /// Row Version
         /// </summary>
         [Required]
         public long RowVersion { get; set; }
+        
         /// <summary>
         /// Business Partner Rating Type Id
         /// </summary>
-        public int? BpRatingTypeId { get; set; }
+        [ForeignKey("BpRatingType")]
+        public short? BpRatingTypeId { get; set; }
+        
         /// <summary>
         /// User Domain Key
         /// </summary>

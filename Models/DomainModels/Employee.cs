@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cares.Models.DomainModels
 {
@@ -9,26 +10,33 @@ namespace Cares.Models.DomainModels
     public class Employee
     {
         #region Persisted Properties
+        
         /// <summary>
         /// Id
         /// </summary>
-        public int Id { get; set; }
+        public long Id { get; set; }
+        
         /// <summary>
         /// Department Id
         /// </summary>
-        public int DepartmentId { get; set; }
+        [ForeignKey("Department")]
+        public long DepartmentId { get; set; }
+        
         /// <summary>
         /// Name
         /// </summary>
         public string Name { get; set; }
+        
         /// <summary>
         /// Bio
         /// </summary>
         public string Bio { get; set; }
+        
         /// <summary>
         /// Date of Birth
         /// </summary>
         public DateTime? DateOfBirth { get; set; }
+        
         /// <summary>
         /// Image
         /// </summary>
@@ -56,7 +64,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100)]
+        [StringLength(100), Required]
         public string RecCreatedBy { get; set; }
         /// <summary>
         /// Record Last Updated Date
@@ -65,7 +73,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100)]
+        [StringLength(100), Required]
         public string RecLastUpdatedBy { get; set; }
         /// <summary>
         /// User Domain Key

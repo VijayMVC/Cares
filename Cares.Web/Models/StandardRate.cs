@@ -19,7 +19,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Child Standard Rate ID
         /// </summary>
-        public long ChildStandardRtId { get; set; }
+        public long? ChildStandardRtId { get; set; }
         /// <summary>
         /// Hire Group
         /// </summary>

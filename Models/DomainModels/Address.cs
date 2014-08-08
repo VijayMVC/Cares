@@ -50,7 +50,7 @@ namespace Cares.Models.DomainModels
         /// Country
         /// </summary>
         [ForeignKey("Country")]
-        public int? CountryId { get; set; }
+        public short? CountryId { get; set; }
         ///// <summary>
         ///// Region
         ///// </summary>

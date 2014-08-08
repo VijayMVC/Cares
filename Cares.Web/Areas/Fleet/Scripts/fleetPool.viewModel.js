@@ -76,9 +76,12 @@ define("Fleet/fleetPool.viewModel",
                                     callBack()();
                                 };
                             },
-                            error: function(data, error) {
-
-                                toastr.error("Failed to load base data.");
+                            error: function (exceptionMessage, exceptionType) {
+                                if (exceptionType === ist.exceptionType.CaresGeneralException) {
+                                    toastr.error(data);
+                                } else {
+                                    toastr.error("Failed to load base data.");
+                                }
                             }
                         });
                     },

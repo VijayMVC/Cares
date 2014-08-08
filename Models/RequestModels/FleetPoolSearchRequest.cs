@@ -16,7 +16,7 @@
         /// <summary>
         /// Operation Id
         /// </summary>
-        public int? OperationId { get; set; }
+        public long? OperationId { get; set; }
 
     }
 }

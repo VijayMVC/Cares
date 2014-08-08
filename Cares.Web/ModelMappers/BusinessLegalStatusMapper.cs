@@ -1,5 +1,5 @@
 ﻿
-using DomainModels = Models.DomainModels;
+using DomainModels = Cares.Models.DomainModels;
 using Cares.Web.Models;
 
 namespace Cares.Web.ModelMappers

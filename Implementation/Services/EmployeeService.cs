@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -45,7 +46,7 @@ namespace Cares.Implementation.Services
 
         private bool Validate(Employee x)
         {
-            Employee productDbVersion = employeeRepository.GetEmployeeByName(x.Name, x.Id);
+            Employee productDbVersion = employeeRepository.GetEmployeeByName(x.Name, Convert.ToInt32(x.Id));
             return productDbVersion == null;
         }
 

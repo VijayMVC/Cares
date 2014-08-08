@@ -256,11 +256,6 @@
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\UnauthorizedRequestController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
-    <Compile Include="ExceptionUtilities\CommonException .cs" />
-    <Compile Include="ExceptionUtilities\CustomExceptionFilterAttribute.cs" />
-    <Compile Include="ExceptionUtilities\IstUtilityException.cs" />
-    <Compile Include="ExceptionUtilities\IstUtilityResourceManager.cs" />
-    <Compile Include="ExceptionUtilities\Tag.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
