@@ -1,4 +1,4 @@
-﻿namespace Models.DomainModels
+﻿namespace Cares.Models.DomainModels
 {
 
     /// <summary>

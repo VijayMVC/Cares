@@ -98,6 +98,7 @@
   <ItemGroup>
     <Compile Include="CommonTypes\DepartmentType.cs" />
     <Compile Include="Common\BusinessPartnerByColumn.cs" />
+    <Compile Include="Common\HireGroupByColumn.cs" />
     <Compile Include="Common\HireGroupDetailByColumn.cs" />
     <Compile Include="Common\TariffRateByColumn.cs" />
     <Compile Include="DomainModels\BusinessPartnerInType.cs" />
@@ -113,7 +114,6 @@
     <Compile Include="DomainModels\BusinessPartnerMainType.cs" />
     <Compile Include="DomainModels\BusinessPartnerSubType.cs" />
      <Compile Include="DomainModels\Area.cs" />
-    <Compile Include="DomainModels\DepartmentType.cs" />
     <Compile Include="DomainModels\TransmissionType.cs" />
     <Compile Include="DomainModels\OccupationType.cs" />
     <Compile Include="DomainModels\BusinessSegment.cs" />
@@ -166,6 +166,7 @@
     <Compile Include="RequestModels\FleetPoolSearchRequest.cs" />
     <Compile Include="RequestModels\GetPagedListRequest.cs" />
     <Compile Include="RequestModels\BusinessPartnerSearchRequest.cs" />
+    <Compile Include="RequestModels\HireGroupSearchRequest.cs" />
     <Compile Include="RequestModels\ProductSearchRequest.cs" />
     <Compile Include="RequestModels\HireGroupDetailRequest.cs" />
     <Compile Include="RequestModels\TariffRateRequest.cs" />
@@ -176,6 +177,8 @@
     <Compile Include="ResponseModels\FleetPoolBaseDataResponse.cs" />
     <Compile Include="ResponseModels\FleetPoolResponse.cs" />
     <Compile Include="ResponseModels\BusinessPartnerResponse.cs" />
+    <Compile Include="ResponseModels\HireGroupBaseResponse.cs" />
+    <Compile Include="ResponseModels\HireGroupSearchResponse.cs" />
     <Compile Include="ResponseModels\ProductResponse.cs" />
     <Compile Include="ResponseModels\RegionResponse.cs" />
     <Compile Include="ResponseModels\TariffRateBaseResponse.cs" />

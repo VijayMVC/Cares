@@ -5,7 +5,7 @@ using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
-using Models.DomainModels;
+using Cares.Models.DomainModels;
 
 namespace Cares.Implementation.Services
 {

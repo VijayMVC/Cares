@@ -36,10 +36,11 @@ namespace Cares.Models.DomainModels
         public string DepartmentDescription { get; set; }
         
         /// <summary>
-        /// Department Type Id
+        /// Department Type
         /// </summary>
-        [ForeignKey("DepartmentType")]
-        public short DepartmentTypeId { get; set; }
+        [Required]
+        [StringLength(100)]
+        public string DepartmentType { get; set; }
         
         /// <summary>
         /// Company ID
@@ -115,11 +116,6 @@ namespace Cares.Models.DomainModels
         /// Company
         /// </summary>
         public virtual Company Company{ get; set; }
-
-        /// <summary>
-        /// Department Type
-        /// </summary>
-        public virtual DepartmentType DepartmentType { get; set; }
         
         /// <summary>
         /// Operations

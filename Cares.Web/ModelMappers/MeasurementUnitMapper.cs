@@ -1,5 +1,6 @@
 ﻿
 using Cares.Web.Models;
+using DomainModels = Cares.Models.DomainModels;
 
 namespace Cares.Web.ModelMappers
 {
@@ -10,7 +11,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static MeasurementUnit CreateFrom(this global::Cares.Models.DomainModels.MeasurementUnit source)
+        public static MeasurementUnit CreateFrom(this DomainModels.MeasurementUnit source)
         {
             return new MeasurementUnit
             {
@@ -22,17 +23,17 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create entity from web model
         /// </summary>
-        public static global::Cares.Models.DomainModels.MeasurementUnit CreateFrom(this MeasurementUnit source)
+        public static DomainModels.MeasurementUnit CreateFrom(this MeasurementUnit source)
         {
             if (source != null)
             {
-                return new global::Cares.Models.DomainModels.MeasurementUnit
+                return new DomainModels.MeasurementUnit
                 {
                     MeasurementUnitId = source.MeasurementUnitId,
                     MeasurementUnitName = source.MeasurementUnitName,
                 };
             }
-            return new global::Cares.Models.DomainModels.MeasurementUnit();
+            return new DomainModels.MeasurementUnit();
         }
 
         #endregion

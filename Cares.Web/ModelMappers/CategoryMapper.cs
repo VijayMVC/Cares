@@ -1,4 +1,5 @@
-﻿using Category = Cares.Web.Models.Category;
+﻿using Cares.Web.Models;
+using DomainModels = Cares.Models.DomainModels;
 
 namespace Cares.Web.ModelMappers
 {
@@ -9,7 +10,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static Category CreateFrom(this global::Models.DomainModels.Category source)
+        public static Category CreateFrom(this DomainModels.Category source)
         {
             return new Category
             {
@@ -21,17 +22,17 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create entity from web model
         /// </summary>
-        public static global::Models.DomainModels.Category CreateFrom(this Category source)
+        public static DomainModels.Category CreateFrom(this Category source)
         {
             if (source != null)
             {
-                return new global::Models.DomainModels.Category
+                return new DomainModels.Category
                 {
                     Id = source.Id,
                     Name = source.Name,
                 };
             }
-            return new global::Models.DomainModels.Category();
+            return new DomainModels.Category();
         }
 
         #endregion

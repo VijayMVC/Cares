@@ -1,4 +1,5 @@
 ﻿using Cares.Web.Models;
+using DomainModels = Cares.Models.DomainModels;
 
 namespace Cares.Web.ModelMappers
 {
@@ -11,7 +12,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static Company CreateFrom(this Cares.Models.DomainModels.Company source)
+        public static Company CreateFrom(this DomainModels.Company source)
         {
             return new Company
             {

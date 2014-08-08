@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Collections.Generic;
-using Models.DomainModels;
+using Cares.Models.DomainModels;
 
 namespace IdentitySample.Controllers
 {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
-using Models.DomainModels;
+using Cares.Models.DomainModels;
 
 namespace Cares.Implementation.Services
 {

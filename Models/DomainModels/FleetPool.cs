@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Models.DomainModels;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cares.Models.DomainModels

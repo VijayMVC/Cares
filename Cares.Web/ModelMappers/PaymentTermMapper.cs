@@ -1,4 +1,5 @@
 ﻿using Cares.Web.Models;
+using DomainModels = Cares.Models.DomainModels;
 
 namespace Cares.Web.ModelMappers
 {
@@ -11,7 +12,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web api model from domail model
         /// </summary>
-        public static PaymentTerm CreateFrom(this Cares.Models.DomainModels.PaymentTerm source)
+        public static PaymentTerm CreateFrom(this DomainModels.PaymentTerm source)
         {
             return new PaymentTerm
             {
@@ -22,17 +23,17 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create domain model from web api model
         /// </summary>
-        public static Cares.Models.DomainModels.PaymentTerm CreateFrom(this PaymentTerm source)
+        public static DomainModels.PaymentTerm CreateFrom(this PaymentTerm source)
         {
             if (source != null)
             {
-                return new Cares.Models.DomainModels.PaymentTerm
+                return new DomainModels.PaymentTerm
                 {
                     PaymentTermId = source.PaymentTermId,
                     PaymentTermName = source.PaymentTermName
                 };
             }
-            return new Cares.Models.DomainModels.PaymentTerm();
+            return new DomainModels.PaymentTerm();
         }
         #endregion
     }

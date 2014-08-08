@@ -1,5 +1,5 @@
 ﻿using Cares.Web.Models;
-
+using DomainModels = Cares.Models.DomainModels;
 namespace Cares.Web.ModelMappers
 {
     /// <summary>
@@ -11,7 +11,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static Employee CreateFrom(this Cares.Models.DomainModels.Employee source)
+        public static Employee CreateFrom(this DomainModels.Employee source)
         {
             return new Employee
             {
@@ -22,17 +22,17 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create entity from web model
         /// </summary>
-        public static Cares.Models.DomainModels.Employee CreateFrom(this Employee source)
+        public static DomainModels.Employee CreateFrom(this Employee source)
         {
             if (source != null)
             {
-                return new Cares.Models.DomainModels.Employee
+                return new DomainModels.Employee
                 {
                     Id = source.Id,
                     Name = source.Name
                 };
             }
-            return new Cares.Models.DomainModels.Employee();
+            return new DomainModels.Employee();
         }
         #endregion
     }

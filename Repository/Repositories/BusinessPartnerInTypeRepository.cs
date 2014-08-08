@@ -4,7 +4,6 @@ using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
 using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
-using Models.DomainModels;
 
 namespace Cares.Repository.Repositories
 {

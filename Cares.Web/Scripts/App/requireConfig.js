@@ -11,6 +11,7 @@
             "product": "/Areas/Product/Scripts",
             "common": "/Areas/Common/Scripts",
             "Fleet": "/Areas/Fleet/Scripts",
+            "hireGroup": "/Areas/Fleet/Scripts",
             "tarrifType": "/Areas/Pricing/Scripts",
             "tariffRate": "/Areas/Pricing/Scripts",
             "rentalAgreement": "/Areas/RentalAgreement/Scripts"
