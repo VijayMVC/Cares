@@ -9,7 +9,7 @@
         /// <summary>
         /// City ID
         /// </summary>
-        public int CityId { get; set; }
+        public short CityId { get; set; }
         /// <summary>
         /// City Code
         /// </summary>
@@ -25,15 +25,15 @@
         /// <summary>
         /// Region ID
         /// </summary>
-        public int? RegionId { get; set; }
+        public short? RegionId { get; set; }
         /// <summary>
         /// Sub Region ID
         /// </summary>
-        public int? SubRegionId { get; set; }
+        public short? SubRegionId { get; set; }
         /// <summary>
         /// Country ID
         /// </summary>
-        public int CountryId { get; set; }
+        public short CountryId { get; set; }
         #endregion
     }
 }

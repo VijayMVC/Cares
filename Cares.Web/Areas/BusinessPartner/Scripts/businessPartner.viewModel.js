@@ -58,8 +58,10 @@ define("businessPartner/businessPartner.viewModel",
                     filteredSubRegions = ko.observableArray([]),
                     // Filtered Country Cities Array
                     filteredCountryCities = ko.observableArray([]),
-                    // Areas Array
+                     // Areas Array
                     areas = ko.observableArray([]),
+                    // filtered Areas Array
+                    filteredAreas = ko.observableArray([]),
                     // Sort On
                     sortOn = ko.observable(1),
                     // Sort Order -  true means asc, false means desc
@@ -133,6 +135,7 @@ define("businessPartner/businessPartner.viewModel",
                                 areas.removeAll();
                                 ko.utils.arrayPushAll(areas(), data.ResponseAreas);
                                 areas.valueHasMutated();
+                                
                                 isLoadingBusinessPartners(false);
                             },
                             error: function () {
@@ -177,6 +180,22 @@ define("businessPartner/businessPartner.viewModel",
                                 filteredCountryCities.push(item);
                         });
                         filteredCountryCities.valueHasMutated();
+                        isLoadingBusinessPartners(false);
+                    },
+                      //city selection change event
+                    onCitySelectionChange = function (value) {
+                        getAreasByCity(value.cityId());
+                    },
+                    //get Areas by city          
+                    getAreasByCity = function (cityId) {
+                        isLoadingBusinessPartners(true);
+                        // get areas by city
+                        filteredAreas.removeAll();
+                        _.each(areas(), function (item) {
+                            if (item.CityId == cityId)
+                                filteredAreas.push(item);
+                        });
+                        filteredAreas.valueHasMutated();
                         isLoadingBusinessPartners(false);
                     },
                     // get business partner by id
@@ -359,7 +378,28 @@ define("businessPartner/businessPartner.viewModel",
                     onAddBusinessPartnerAddress = function () {
                         // check validation error before add
                         if (doBeforeAddAddressItem()) {
-                            var businessPartnerAddress = model.BusinessPartnerAddress(undefined, selectedBusinessPartner().businessPartnerAddressNew().contactPerson(), selectedBusinessPartner().businessPartnerAddressNew().streetAddress(), selectedBusinessPartner().businessPartnerAddressNew().emailAddress(), selectedBusinessPartner().businessPartnerAddressNew().webPage(), selectedBusinessPartner().businessPartnerAddressNew().zipCode(), selectedBusinessPartner().businessPartnerAddressNew().poBox(),selectedBusinessPartner().businessPartnerAddressNew().countryId(),"", undefined, undefined, undefined,undefined,undefined,undefined,undefined,undefined, selectedBusinessPartner().businessPartnerAddressNew().addressTypeId(),"", selectedBusinessPartner().businessPartnerId());
+                            var businessPartnerAddress = model.BusinessPartnerAddress(
+                                undefined,
+                                selectedBusinessPartner().businessPartnerAddressNew().contactPerson(),
+                                selectedBusinessPartner().businessPartnerAddressNew().streetAddress(),
+                                selectedBusinessPartner().businessPartnerAddressNew().emailAddress(),
+                                selectedBusinessPartner().businessPartnerAddressNew().webPage(),
+                                selectedBusinessPartner().businessPartnerAddressNew().zipCode(),
+                                selectedBusinessPartner().businessPartnerAddressNew().poBox(),
+                                selectedBusinessPartner().businessPartnerAddressNew().countryId(),
+                                "",
+                                selectedBusinessPartner().businessPartnerAddressNew().regionId(),
+                                undefined,
+                                selectedBusinessPartner().businessPartnerAddressNew().subRegionId(),
+                                undefined,
+                                selectedBusinessPartner().businessPartnerAddressNew().cityId(),
+                                undefined,
+                                selectedBusinessPartner().businessPartnerAddressNew().areaId(),
+                                undefined,
+                                selectedBusinessPartner().businessPartnerAddressNew().addressTypeId(),
+                                "",
+                                selectedBusinessPartner().businessPartnerId()
+                        );
                             selectedBusinessPartner().businessPartnerAddressList.push(businessPartnerAddress);
                             selectedBusinessPartner().businessPartnerAddressList.valueHasMutated();
 
@@ -597,8 +637,9 @@ define("businessPartner/businessPartner.viewModel",
                     areas: areas,
                     filteredSubRegions: filteredSubRegions,
                     filteredCountryCities: filteredCountryCities,
-                    onSubRegionSelectionChange:onSubRegionSelectionChange
-                    //filteredAreas: filteredAreas,
+                    onSubRegionSelectionChange: onSubRegionSelectionChange,
+                    filteredAreas: filteredAreas,
+                    onCitySelectionChange: onCitySelectionChange
                     // Utility Methods
                 };
             })()

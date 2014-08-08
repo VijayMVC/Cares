@@ -29,6 +29,10 @@ namespace Cares.Web.ModelMappers
                 ZipCode = source.ZipCode,
                 POBox = source.POBox,
                 CountryId = source.CountryId,
+                RegionId = source.RegionId,
+                SubRegionId = source.SubRegionId,
+                CityId = source.CityId,
+                AreaId = source.AreaId,
                 AddressTypeId = source.AddressTypeId,      
                 BusinessPartnerId = source.BusinessPartnerId
             };
@@ -48,6 +52,10 @@ namespace Cares.Web.ModelMappers
                 ZipCode = source.ZipCode,
                 POBox = source.POBox,
                 CountryId = source.CountryId,
+                RegionId = source.RegionId,
+                SubRegionId = source.SubRegionId,
+                CityId = source.CityId,
+                AreaId = source.AreaId,
                 AddressTypeId = source.AddressTypeId,      
                 //PhoneTypeName = source.PhoneType != null ? (source.PhoneType.PhoneTypeCode + '-' + source.PhoneType.PhoneTypeName) : string.Empty,
                 BusinessPartnerId = source.BusinessPartnerId

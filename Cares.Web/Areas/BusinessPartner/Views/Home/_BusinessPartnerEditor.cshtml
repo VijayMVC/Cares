@@ -366,11 +366,11 @@
                     <div class="form-group">
                         <label for="addressListCity" class="control-label col-sm-2">City</label>
                         <div class="col-md-2">
-                            <select id="addressListCity" class="form-control" data-bind="options: $root.filteredCountryCities, optionsText: 'CityName', optionsValue: 'CityId', optionsCaption: '<City>',value:cityId"></select>
+                            <select id="addressListCity" class="form-control" data-bind="options: $root.filteredCountryCities, optionsText: 'CityName', optionsValue: 'CityId', optionsCaption: '<City>',value:cityId,event:{change:$root.onCitySelectionChange}"></select>
                         </div>
                         <label for="addressListAreas" class="control-label col-sm-2">Area</label>
                         <div class="col-md-2">
-                            <select id="addressListAreas" class="form-control" data-bind="options: $root.phoneTypes, optionsText: 'PhoneTypeName', optionsValue: 'PhoneTypeCustomId', optionsCaption: '<Area>',value:areaId"></select>
+                            <select id="addressListAreas" class="form-control" data-bind="options: $root.filteredAreas, optionsText: 'AreaName', optionsValue: 'AreaId', optionsCaption: '<Area>',value:areaId"></select>
                         </div>
                         <label for="isDefault" class="control-label col-sm-2">Address Type *</label>
                         <div class="col-md-2">
@@ -420,15 +420,14 @@
                                     <th> <span id="2">Country<span></span></span></th>
                                     <th> <span id="3">Region<span></span></span></th>
                                     <th> <span id="4">Sub Region<span></span></span></th>
-                                    <th> <span id="5">Region<span></span></span></th>
-                                    <th> <span id="6">City<span></span></span></th>
-                                    <th> <span id="7">Area<span></span></span></th>
-                                    <th> <span id="8">PO Box#<span></span></span></th>
-                                    <th> <span id="9">Zip Code<span></span></span></th>
-                                    <th> <span id="10">Web Address<span></span></span></th>
-                                    <th> <span id="11">Email Address<span></span></span></th>
-                                    <th> <span id="12">Address<span></span></span></th>
-                                    <th> <span id="13">Contact Person<span></span></span></th>
+                                    <th> <span id="5">City<span></span></span></th>
+                                    <th> <span id="6">Area<span></span></span></th>
+                                    <th> <span id="7">PO Box#<span></span></span></th>
+                                    <th> <span id="8">Zip Code<span></span></span></th>
+                                    <th> <span id="9">Web Address<span></span></span></th>
+                                    <th> <span id="10">Email Address<span></span></span></th>
+                                    <th> <span id="11">Address<span></span></span></th>
+                                    <th> <span id="12">Contact Person<span></span></span></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -476,13 +475,12 @@
 </script>
 <script id="itemBusinessPartnerAddressTemplate" type="text/html">
     <tr>
-        <td data-bind="text: addressTypeName"></td>
-        <td data-bind="text: countryName"></td>
-        <td data-bind="text: regionName"></td>
-        <td data-bind="text: subRegionName"></td>
-        <td data-bind="text: cityName"></td>
-        <td data-bind="text: areaName"></td>
-        <td data-bind="text: subRegionName"></td>
+        <td data-bind="text: addressTypeId"></td>
+        <td data-bind="text: countryId"></td>
+        <td data-bind="text: regionId"></td>
+        <td data-bind="text: subRegionId"></td>
+        <td data-bind="text: cityId"></td>
+        <td data-bind="text: areaId"></td>
         <td data-bind="text: poBox"></td>
         <td data-bind="text: zipCode"></td>
         <td data-bind="text: webPage"></td>

@@ -9,7 +9,7 @@
         /// <summary>
         /// Sub Region ID
         /// </summary>
-        public int SubRegionId { get; set; }
+        public short SubRegionId { get; set; }
         /// <summary>
         /// Sub Region Code
         /// </summary>
@@ -21,7 +21,7 @@
         /// <summary>
         /// Region ID
         /// </summary>
-        public int RegionId { get; set; }
+        public short RegionId { get; set; }
         #endregion
     }
 }
