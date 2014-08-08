@@ -27,7 +27,7 @@ namespace Cares.Models.DomainModels
         /// Parent Hire Group ID
         /// </summary>
         [ForeignKey("ParentHireGroup")]
-        public long ParentHireGroupId { get; set; }
+        public long? ParentHireGroupId { get; set; }
         
         /// <summary>
         /// Company ID
