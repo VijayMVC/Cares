@@ -78,7 +78,7 @@ define("Fleet/fleetPool.viewModel",
                             },
                             error: function (exceptionMessage, exceptionType) {
                                 if (exceptionType === ist.exceptionType.CaresGeneralException) {
-                                    toastr.error(data);
+                                    toastr.error(exceptionMessage);
                                 } else {
                                     toastr.error("Failed to load base data.");
                                 }
