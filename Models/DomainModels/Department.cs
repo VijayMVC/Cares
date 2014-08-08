@@ -39,6 +39,7 @@ namespace Cares.Models.DomainModels
         /// Department Type
         /// </summary>
         [Required]
+        [StringLength(100)]
         public string DepartmentType { get; set; }
         
         /// <summary>
