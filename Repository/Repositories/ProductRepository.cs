@@ -8,7 +8,7 @@ using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
 using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
-using Models.DomainModels;
+using Cares.Models.DomainModels;
 
 namespace Cares.Repository.Repositories
 {

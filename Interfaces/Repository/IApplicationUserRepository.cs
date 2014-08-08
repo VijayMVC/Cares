@@ -1,4 +1,4 @@
-﻿using Models.DomainModels;
+﻿using Cares.Models.DomainModels;
 
 namespace Cares.Interfaces.Repository
 {

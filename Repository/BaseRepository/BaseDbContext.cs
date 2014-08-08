@@ -9,7 +9,6 @@ using Cares.Models.LoggerModels;
 using Cares.Models.MenuModels;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Practices.Unity;
-using Models.DomainModels;
 using Repository.BaseRepository;
 
 namespace Cares.Repository.BaseRepository

@@ -7,7 +7,6 @@ using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
-using Models.DomainModels;
 
 namespace Cares.Implementation.Services
 {
@@ -18,6 +17,7 @@ namespace Cares.Implementation.Services
     {
         #region Private
         private readonly IBusinessPartnerRepository businessPartnerRepository;
+        private readonly IBusinessPartnerInTypeRepository businessPartnerInTypeRepository;
 
         #endregion
 
@@ -25,9 +25,13 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Constructor
         /// </summary>
-        public BusinessPartnerService(IBusinessPartnerRepository businessPartnerRepository)
+        public BusinessPartnerService(IBusinessPartnerRepository businessPartnerRepository, IBusinessPartnerInTypeRepository businessPartnerInTypeRepository)
         {
+            if (businessPartnerInTypeRepository == null)
+                throw new ArgumentNullException("businessPartnerInTypeRepository");
+
             this.businessPartnerRepository = businessPartnerRepository;
+            this.businessPartnerInTypeRepository = businessPartnerInTypeRepository;
         }
 
         #endregion
@@ -285,6 +289,7 @@ namespace Cares.Implementation.Services
                     if (dbVersionMissingItem.BusinessPartnerInTypeId > 0)
                     {
                         businessPartnerDbVersion.BusinessPartnerInTypes.Remove(dbVersionMissingItem);
+                        businessPartnerInTypeRepository.Delete(dbVersionMissingItem);
                     }
                 }
 
@@ -325,7 +330,9 @@ namespace Cares.Implementation.Services
                 {
                     Phone dbVersionMissingPhoneItem = businessPartnerDbVersion.BusinessPartnerPhoneNumbers.First(x => x.PhoneId == missingBusinessPartnerPhone.PhoneId);
                     if (dbVersionMissingPhoneItem.PhoneId > 0)
+                    {
                         businessPartnerDbVersion.BusinessPartnerPhoneNumbers.Remove(dbVersionMissingPhoneItem);
+                    }
                 }
                 #endregion
 

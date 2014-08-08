@@ -1,5 +1,6 @@
 ﻿using System.Linq;
-using ProductResponse = Cares.Web.Models.ProductResponse;
+using Cares.Web.Models;
+using ResponseModels = Cares.Models.ResponseModels;
 
 namespace Cares.Web.ModelMappers
 {
@@ -13,7 +14,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static ProductResponse CreateFrom(this global::Cares.Models.ResponseModels.ProductResponse source)
+        public static ProductResponse CreateFrom(this ResponseModels.ProductResponse source)
         {
             return new ProductResponse
             {

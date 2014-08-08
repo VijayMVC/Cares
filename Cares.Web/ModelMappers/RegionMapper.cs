@@ -12,7 +12,7 @@ namespace Cares.Web.ModelMappers
         /// </summary>
         public static ApiModel.Region CreateFrom(this Region source)
         {
-            return new ApiModel.Region()
+            return new ApiModel.Region
             {
                 RegionId = source.RegionId,
                 RegionCode = source.RegionCode,
