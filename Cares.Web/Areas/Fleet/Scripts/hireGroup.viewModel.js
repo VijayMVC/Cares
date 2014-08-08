@@ -77,7 +77,7 @@ define("hireGroup/hireGroup.viewModel",
                                 companies.valueHasMutated();
 
                                 parentHireGroups.removeAll();
-                                ko.utils.arrayPushAll(parentHireGroups(), data.Companies);
+                                ko.utils.arrayPushAll(parentHireGroups(), data.ParentHireGroups);
                                 parentHireGroups.valueHasMutated();
                                 if (callBack && typeof callBack === 'function') {
                                     callBack();
