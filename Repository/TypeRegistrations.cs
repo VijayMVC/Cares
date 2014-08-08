@@ -50,6 +50,9 @@ namespace Cares.Repository
             unityContainer.RegisterType<IPhoneTypeRepository, PhoneTypeRepository>();
             unityContainer.RegisterType<IAddressTypeRepository, AddressTypeRepository>();
             unityContainer.RegisterType<IStandardRateMainRepository, StandardRateMainRepository>();
+            unityContainer.RegisterType<ISubRegionRepository, SubRegionRepository>();
+            unityContainer.RegisterType<ICityRepository, CityRepository>();
+            unityContainer.RegisterType<IAreaRepository, AreaRepository>();
         }
     }
 }

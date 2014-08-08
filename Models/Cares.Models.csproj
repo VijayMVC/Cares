@@ -112,6 +112,7 @@
     <Compile Include="DomainModels\BusinessPartnerCompany.cs" />
     <Compile Include="DomainModels\BusinessPartnerMainType.cs" />
     <Compile Include="DomainModels\BusinessPartnerSubType.cs" />
+    <Compile Include="DomainModels\Area.cs" />
     <Compile Include="DomainModels\OccupationType.cs" />
     <Compile Include="DomainModels\BusinessSegment.cs" />
     <Compile Include="DomainModels\Category.cs" />
@@ -132,6 +133,8 @@
     <Compile Include="DomainModels\PricingStrategy.cs" />
     <Compile Include="DomainModels\Phone.cs" />
     <Compile Include="DomainModels\Product.cs" />
+    <Compile Include="DomainModels\City.cs" />
+    <Compile Include="DomainModels\SubRegion.cs" />
     <Compile Include="DomainModels\StandardRate.cs" />
     <Compile Include="DomainModels\StandardRateMain.cs" />
     <Compile Include="DomainModels\TarrifType.cs" />
@@ -158,6 +161,7 @@
     <Compile Include="RequestModels\HireGroupDetailRequest.cs" />
     <Compile Include="RequestModels\TariffRateRequest.cs" />
     <Compile Include="RequestModels\TarrifTypeRequest.cs" />
+    <Compile Include="ResponseModels\AddressBaseDataResponse.cs" />
     <Compile Include="ResponseModels\BusinessPartnerBaseDataResponse.cs" />
     <Compile Include="ResponseModels\EmployeeResponse.cs" />
     <Compile Include="ResponseModels\FleetPoolBaseDataResponse.cs" />

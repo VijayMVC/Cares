@@ -48,6 +48,18 @@ define("businessPartner/businessPartner.viewModel",
                     phoneTypes = ko.observableArray([]),
                     // Address Types Array
                     addressTypes = ko.observableArray([]),
+                    // Country Regions Array
+                    countryRegions = ko.observableArray([]),
+                    // Country Regions Array
+                    countryCitites = ko.observableArray([]),
+                    // Sub Regions Array
+                    subRegions = ko.observableArray([]),
+                    // Filtered Sub Regions Array
+                    filteredSubRegions = ko.observableArray([]),
+                    // Filtered Country Cities Array
+                    filteredCountryCities = ko.observableArray([]),
+                    // Areas Array
+                    areas = ko.observableArray([]),
                     // Sort On
                     sortOn = ko.observable(1),
                     // Sort Order -  true means asc, false means desc
@@ -60,6 +72,8 @@ define("businessPartner/businessPartner.viewModel",
                     searchFilter = ko.observable(),
                     // select Filter
                     selectFilter = ko.observable(),
+                    // selected Country from dropdown
+                    selectedCountry = ko.observable(),
                     // #region Utility Functions
                     // Select filter option Individual or Company list
                     optionIndividualOrCompany = [{ Id: true, Name: 'Individual' },{Id : false, Name :  'Company'}],
@@ -87,6 +101,83 @@ define("businessPartner/businessPartner.viewModel",
                         getBusinessPartnerById(selectedBusinessPartnerId());
                         showBusinessPartnerEditor();
                         e.stopImmediatePropagation();
+                    },
+                     //country selection change event
+                    onCountrySelectionChange = function(value) {
+                        getRegionsByCountry(value.countryId());
+                    },
+                    //get regions by country          
+                    getRegionsByCountry = function (countryId) {
+                        isLoadingBusinessPartners(true);
+                        dataservice.getCountryRegions({
+                            id: countryId
+                        }, {
+                            success: function (data) {
+                                //country Regions array
+                                countryRegions.removeAll();
+                                ko.utils.arrayPushAll(countryRegions(), data.ResponseRegions);
+                                countryRegions.valueHasMutated();
+                                //country Cities array
+                                countryCitites.removeAll();
+                                ko.utils.arrayPushAll(countryCitites(), data.ResponseCities);
+                                countryCitites.valueHasMutated();
+                                //filtered Country Cities
+                                filteredCountryCities.removeAll();
+                                ko.utils.arrayPushAll(filteredCountryCities(), data.ResponseCities);
+                                filteredCountryCities.valueHasMutated();
+                                //Sub Regions array
+                                subRegions.removeAll();
+                                ko.utils.arrayPushAll(subRegions(), data.ResponseSubRegions);
+                                subRegions.valueHasMutated();
+                                //Area array
+                                areas.removeAll();
+                                ko.utils.arrayPushAll(areas(), data.ResponseAreas);
+                                areas.valueHasMutated();
+                                isLoadingBusinessPartners(false);
+                            },
+                            error: function () {
+                                toastr.error("Failed to load regions!");
+                            }
+                        });
+                    },
+                    //region selection change event
+                    onRegionSelectionChange = function (value) {
+                        getSubRegionsByRegion(value.regionId());
+                    },
+                    //get sub regions by region          
+                    getSubRegionsByRegion = function (regionId) {
+                        isLoadingBusinessPartners(true);
+                        // get filtered sub regions
+                        filteredSubRegions.removeAll();
+                        _.each(subRegions(), function (item) {
+                            if (item.RegionId == regionId)
+                                filteredSubRegions.push(item);
+                        });
+                        filteredSubRegions.valueHasMutated();
+                        // get filtered cities
+                        filteredCountryCities.removeAll();
+                        _.each(countryCitites(), function (item) {
+                            if (item.RegionId == regionId)
+                                filteredCountryCities.push(item);
+                        });
+                        filteredCountryCities.valueHasMutated();
+                        isLoadingBusinessPartners(false);
+                    },
+                    //sub region selection change event
+                    onSubRegionSelectionChange = function (value) {
+                        getCitiesBySubRegion(value.subRegionId());
+                    },
+                    //get cities by sub region          
+                    getCitiesBySubRegion = function (subRegionId) {
+                        isLoadingBusinessPartners(true);
+                        // get filtered cities
+                        filteredCountryCities.removeAll();
+                        _.each(countryCitites(), function (item) {
+                            if (item.SubRegionId == subRegionId)
+                                filteredCountryCities.push(item);
+                        });
+                        filteredCountryCities.valueHasMutated();
+                        isLoadingBusinessPartners(false);
                     },
                     // get business partner by id
                     getBusinessPartnerById = function (businessPartnerId) {
@@ -496,7 +587,18 @@ define("businessPartner/businessPartner.viewModel",
                     onDeleteBusinessPartnerPhone: onDeleteBusinessPartnerPhone,
                     doBeforeAddAddressItem: doBeforeAddAddressItem,
                     onAddBusinessPartnerAddress: onAddBusinessPartnerAddress,
-                    onDeleteBusinessPartnerAddress: onDeleteBusinessPartnerAddress
+                    onDeleteBusinessPartnerAddress: onDeleteBusinessPartnerAddress,
+                    onCountrySelectionChange: onCountrySelectionChange,
+                    selectedCountry: selectedCountry,
+                    countryRegions: countryRegions,
+                    countryCitites: countryCitites,
+                    onRegionSelectionChange: onRegionSelectionChange,
+                    subRegions: subRegions,
+                    areas: areas,
+                    filteredSubRegions: filteredSubRegions,
+                    filteredCountryCities: filteredCountryCities,
+                    onSubRegionSelectionChange:onSubRegionSelectionChange
+                    //filteredAreas: filteredAreas,
                     // Utility Methods
                 };
             })()
