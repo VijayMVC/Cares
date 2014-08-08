@@ -2,7 +2,7 @@
 using Cares.Models.DomainModels;
 using Cares.Models.ResponseModels;
 using ApiModel = Cares.Web.Models;
-using DomainModel = Models.DomainModels;
+using DomainModel = Cares.Models.DomainModels;
 
 namespace Cares.Web.ModelMappers
 {
@@ -54,7 +54,7 @@ namespace Cares.Web.ModelMappers
                 BusinessPartnerCompany = source.BusinessPartnerCompany.CreateFrom(),
                 BusinessPartnerInTypes = source.BusinessPartnerInTypes.Select(x => x.CreateFrom()).ToList(),
                 BusinessPartnerPhoneNumbers = source.BusinessPartnerPhoneNumbers.Select(x => x.CreateFrom()).ToList(),
-                BusinessPartnerAddressList = source.BusinessPartnerAddressList.Select(x=>x.CreateFrom()).ToList()
+                BusinessPartnerAddressList = source.BusinessPartnerAddressList.Select(x => x.CreateFrom()).ToList()
             };
         }
 

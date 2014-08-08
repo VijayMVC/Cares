@@ -113,7 +113,6 @@
     <Compile Include="DomainModels\BusinessPartnerMainType.cs" />
     <Compile Include="DomainModels\BusinessPartnerSubType.cs" />
      <Compile Include="DomainModels\Area.cs" />
-    <Compile Include="DomainModels\DepartmentType.cs" />
     <Compile Include="DomainModels\TransmissionType.cs" />
     <Compile Include="DomainModels\OccupationType.cs" />
     <Compile Include="DomainModels\BusinessSegment.cs" />
