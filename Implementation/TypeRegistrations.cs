@@ -45,6 +45,8 @@ namespace Cares.Implementation
             unityContainer.RegisterType<IOccupationTypeService, OccupationTypeService>();
             unityContainer.RegisterType<ICountryService, CountryService>();
             unityContainer.RegisterType<ICountryRegionsService, CountryRegionsService>();
+            unityContainer.RegisterType<IAddressBaseDataService, AddressBaseDataService>();
+
         }
     }
 }

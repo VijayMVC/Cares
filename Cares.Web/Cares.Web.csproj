@@ -231,6 +231,7 @@
     <Compile Include="Areas\Api\Controllers\GetHireGroupDetailController.cs" />
     <Compile Include="Areas\Api\Controllers\ProductBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessPartnerController.cs" />
+    <Compile Include="Areas\Api\Controllers\AddressBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\ProductController.cs" />
     <Compile Include="Areas\Api\Controllers\RegionsController.cs" />
     <Compile Include="Areas\Api\Controllers\TariffRateBaseController.cs" />
@@ -282,6 +283,8 @@
     <Compile Include="ModelMappers\PhoneMapper.cs" />
     <Compile Include="ModelMappers\ProductResponseMapper.cs" />
     <Compile Include="ModelMappers\ProductMapper.cs" />
+    <Compile Include="ModelMappers\AreaMapper.cs" />
+    <Compile Include="ModelMappers\CityMapper.cs" />
     <Compile Include="ModelMappers\RegionMapper.cs" />
     <Compile Include="ModelMappers\RegionResponseMapper.cs" />
     <Compile Include="ModelMappers\StandardRateMainMapper.cs" />
@@ -291,6 +294,7 @@
     <Compile Include="ModelMappers\VehicleCategoryMapper.cs" />
     <Compile Include="ModelMappers\VehicleMakesMapper.cs" />
     <Compile Include="ModelMappers\VehicleModelMapper.cs" />
+    <Compile Include="Models\AddressBaseResponse.cs" />
     <Compile Include="Models\BusinessPartnerInType.cs" />
     <Compile Include="Models\BusinessPartnerSubType.cs" />
     <Compile Include="Models\BusinessSegment.cs" />
@@ -301,6 +305,7 @@
     <Compile Include="Models\BpRatingType.cs" />
     <Compile Include="Models\BusinessLegalStatus.cs" />
     <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\Area.cs" />
     <Compile Include="Models\CountryRegions.cs" />
     <Compile Include="Models\CountryRegionsResponse.cs" />
     <Compile Include="Models\Phone.cs" />
@@ -324,6 +329,8 @@
     <Compile Include="Models\PricingStrategy.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductResponse.cs" />
+    <Compile Include="Models\City.cs" />
+    <Compile Include="Models\SubRegion.cs" />
     <Compile Include="Models\Region.cs" />
     <Compile Include="Models\RegionResponse.cs" />
     <Compile Include="Models\StandardRate.cs" />

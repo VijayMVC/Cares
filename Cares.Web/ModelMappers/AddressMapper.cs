@@ -1,6 +1,8 @@
-﻿using Cares.Models.DomainModels;
+﻿using System.Linq;
+using Cares.Models.DomainModels;
 using ApiModel = Cares.Web.Models;
 using DomainModel = Cares.Models.DomainModels;
+using ResponseModel = Cares.Models.ResponseModels;
 namespace Cares.Web.ModelMappers
 {
     /// <summary>
@@ -9,6 +11,9 @@ namespace Cares.Web.ModelMappers
     public static class AddressMapper
     {
         #region Public
+
+        #region Address
+
         /// <summary>
         ///  Create domain model from web api model
         /// </summary>
@@ -48,6 +53,27 @@ namespace Cares.Web.ModelMappers
                 BusinessPartnerId = source.BusinessPartnerId
             };
         }
+
+        #endregion
+
+        #region Address Base Date Response Mapper
+
+        /// <summary>
+        ///  Create web api model from domain model
+        /// </summary>
+        public static ApiModel.AddressBaseResponse CreateFrom(this ResponseModel.AddressBaseDataResponse source)
+        {
+            return new ApiModel.AddressBaseResponse
+            {
+               ResponseCountry = source.ResponseCountry.CreateFrom(),
+               ResponseRegions = source.ResponseRegions.Select(x=>x.CreateFrom()),
+               ResponseSubRegions = source.ResponseSubRegions.Select(x=>x.CreateFrom()),
+               ResponseCities = source.ResponseCities.Select(x=>x.CreateFrom()),
+               ResponseAreas = source.ResponseAreas.Select(x=>x.CreateFrom()),
+            };
+        }
+        #endregion
+
         #endregion
     }
 }

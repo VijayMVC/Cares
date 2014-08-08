@@ -6,8 +6,14 @@ namespace Cares.Interfaces.Repository
     /// <summary>
     /// Region Repository Interface
     /// </summary>
-    public interface IRegionRepository : IBaseRepository<Region, long>
+    public interface IRegionRepository : IBaseRepository<Region, int>
     {
         IEnumerable<Region> GetRegions(int id);
+        /// <summary>
+        /// Get Regions by Country Id
+        /// </summary>
+        /// <param name="countryId"></param>
+        /// <returns></returns>
+        IEnumerable<Region> GetRegionsByCountry(int countryId);
     }
 }
