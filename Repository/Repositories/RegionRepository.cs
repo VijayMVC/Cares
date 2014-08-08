@@ -32,7 +32,6 @@ namespace Cares.Repository.Repositories
                 return db.Regions;
             }
         }
-
         #endregion
 
         #region Public
@@ -43,14 +42,23 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(region => region.UserDomainKey == UserDomainKey);
         }
-
-
         public IEnumerable<Region> GetRegions(int id)
         {
             return DbSet.Where(region => region.CountryId == id);
         }
-
-        #endregion
-
+        /// <summary>
+        /// Get Regions by Country Id
+        /// </summary>
+        /// <param name="countryId"></param>
+        /// <returns></returns>
+        public IEnumerable<Region> GetRegionsByCountry(int countryId)
+        {
+            return DbSet.Where(region => region.CountryId == countryId);
         }
+        public Region Find(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+        #endregion
+    }
 }

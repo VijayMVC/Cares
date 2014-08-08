@@ -9,7 +9,6 @@ using Cares.Models.LoggerModels;
 using Cares.Models.MenuModels;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Practices.Unity;
-using Models.DomainModels;
 using Repository.BaseRepository;
 
 namespace Cares.Repository.BaseRepository
@@ -232,7 +231,18 @@ namespace Cares.Repository.BaseRepository
         /// Address Type
         /// </summary>
         public DbSet<AddressType> AddressTypes { get; set; }
-
+        /// <summary>
+        /// Sub Region DB Set
+        /// </summary>
+        public DbSet<SubRegion> SubRegions { get; set; }
+        /// <summary>
+        /// City DB Set
+        /// </summary>
+        public DbSet<City> Cities { get; set; }
+        /// <summary>
+        /// Area DB Set
+        /// </summary>
+        public DbSet<Area> Areas { get; set; }
         #endregion
     }
 }

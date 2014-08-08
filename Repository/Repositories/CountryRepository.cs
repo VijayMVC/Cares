@@ -35,13 +35,21 @@ namespace Cares.Repository.Repositories
 
         #region Public
         /// <summary>
-        /// Get All Business Segments for User Domain Key
+        /// Get All Countries for User Domain Key
         /// </summary>
         public override IQueryable<Country> GetAll()
         {
             return DbSet.Where(country => country.UserDomainKey == UserDomainKey);
         }
-
+        /// <summary>
+        /// Find by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Country Find(int id)
+        {
+            return DbSet.FirstOrDefault(country => country.UserDomainKey == UserDomainKey && country.CountryId == id);
+        }
         #endregion
     }
 }

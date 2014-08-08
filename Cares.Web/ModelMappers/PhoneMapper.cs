@@ -1,6 +1,6 @@
 ﻿using Cares.Models.DomainModels;
 using ApiModel = Cares.Web.Models;
-using DomainModel = Models.DomainModels;
+using DomainModel = Cares.Models.DomainModels;
 namespace Cares.Web.ModelMappers
 {
     /// <summary>

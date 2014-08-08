@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-namespace Models.DomainModels
+namespace Cares.Models.DomainModels
 {
     /// <summary>
     /// Fuel Type Domain Model  

@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="IServices\IBPRatingTypeService.cs" />
     <Compile Include="IServices\IBusinessLegalStatusService.cs" />
+    <Compile Include="IServices\IAddressBaseDataService.cs" />
     <Compile Include="IServices\IBusinessPartnerBaseDataService.cs" />
     <Compile Include="IServices\IBusinessPartnerInTypeService.cs" />
     <Compile Include="IServices\IBusinessPartnerIndividualService.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="IServices\ITariffRateService.cs" />
     <Compile Include="IServices\ITarrifTypeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\ICityRepository.cs" />
     <Compile Include="Repository\IBaseRepository.cs" />
     <Compile Include="Repository\IApplicationUserRepository.cs" />
     <Compile Include="Repository\IBpRatingTypeRepository.cs" />
@@ -86,6 +88,8 @@
     <Compile Include="Repository\ICategoryRepository.cs" />
     <Compile Include="Repository\IBusinessPartnerIndividualRepository.cs" />
     <Compile Include="Repository\ICompanyRepository.cs" />
+    <Compile Include="Repository\IAreaRepository.cs" />
+    <Compile Include="Repository\ISubRegionRepository.cs" />
     <Compile Include="Repository\IFleetPoolRepository.cs" />
     <Compile Include="Repository\ICountryRepository.cs" />
     <Compile Include="Repository\IHireGroupRepository.cs" />

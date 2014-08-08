@@ -1,4 +1,5 @@
-﻿using Cares.Models.DomainModels;
+﻿using System.Globalization;
+using Cares.Models.DomainModels;
 using ApiModel = Cares.Web.Models;
 
 
@@ -15,11 +16,11 @@ namespace Cares.Web.ModelMappers
         /// </summary>
         public static ApiModel.PhoneType CreateFrom(this PhoneType source)
             {
-                return new ApiModel.PhoneType()
+                return new ApiModel.PhoneType
                 {
                     PhoneTypeId = source.PhoneTypeId,
                     PhoneTypeName = source.PhoneTypeCode + '-'+source.PhoneTypeName,
-                    PhoneTypeCustomId = source.PhoneTypeId.ToString() + '-'+ source.PhoneTypeCode + '-' + source.PhoneTypeName
+                    PhoneTypeCustomId = source.PhoneTypeId.ToString(CultureInfo.InvariantCulture) + '-'+ source.PhoneTypeCode + '-' + source.PhoneTypeName
                 };
             }
         #endregion
@@ -29,7 +30,7 @@ namespace Cares.Web.ModelMappers
         /// </summary>
         public static PhoneType CreateFrom(this ApiModel.PhoneType source)
         {
-            return new PhoneType()
+            return new PhoneType
             {
                 PhoneTypeId = source.PhoneTypeId,
                 PhoneTypeName = source.PhoneTypeName
