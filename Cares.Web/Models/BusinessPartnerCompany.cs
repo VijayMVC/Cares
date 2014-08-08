@@ -1,5 +1,4 @@
 ﻿using System;
-using Models.DomainModels;
 
 namespace Cares.Web.Models
 {
@@ -37,7 +36,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Business Segment ID
         /// </summary>
-        public int? BusinessSegmentId { get; set; }
+        public short? BusinessSegmentId { get; set; }
  
         #endregion
     }

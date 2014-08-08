@@ -10,8 +10,8 @@ var ist = {
     utcFormat: "YYYY-MM-DDTHH:mm:ss",
     //server exceptions enumeration 
     exceptionType: {
-        UserException: 1,
-        UnspecifiedException: 2
+        CaresGeneralException: 'CaresGeneralException',
+        UnspecifiedException: 'UnspecifiedException'
     },
     //verify if the string is a valid json
     verifyValidJSON: function (str) {
@@ -53,25 +53,27 @@ function hideProgress() {
 };
 
 
-// Amplify Decoders
 //status decoder for parsing the exception type and message
 amplify.request.decoders = {
-    odyStatusDecoder: function (data, status, xhr, success, error) {
+    istStatusDecoder: function(data, status, xhr, success, error) {
         if (status === "success") {
             success(data);
         } else {
             if (status === "fail" || status === "error") {
                 var errorObject = {};
-                errorObject.errorType = ody.exceptionType.UnspecifiedException;
-                if (ody.verifyValidJSON(xhr.responseText)) {
+                errorObject.errorType = ist.exceptionType.UnspecifiedException;
+                if (ist.verifyValidJSON(xhr.responseText)) {
                     errorObject.errorDetail = JSON.parse(xhr.responseText);;
-                    if (errorObject.errorDetail.ErrorCode) {
-                        errorObject.errorType = ody.exceptionType.UserException;
+                    if (errorObject.errorDetail.ExceptionType === ist.exceptionType.CaresGeneralException) {
+                        error(errorObject.errorDetail.Message, ist.exceptionType.CaresGeneralException);
+                    } else {
+                        error("Unspecified exception", ist.exceptionType.UnspecifiedException);
                     }
+                } else {
+                    error(xhr.responseText);
                 }
-                error(xhr.responseText, errorObject);
             } else {
-                error(xhr.responseText, "fatal");
+                error(xhr.responseText);
             }
         }
     }

@@ -100,7 +100,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Individual Passport Country Id
         /// </summary>
-        public int? PassportCountryId { get; set; }
+        public short? PassportCountryId { get; set; }
         /// <summary>
         /// Individual Iqama No
         /// </summary>

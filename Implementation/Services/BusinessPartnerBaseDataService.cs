@@ -20,13 +20,15 @@ namespace Cares.Implementation.Services
         // For Individual Tab
         private readonly IOccupationTypeRepository occupationTypeRepository;
         private readonly IBusinessPartnerCompanyRepository businessPartnerCompanyRepository;
-        private readonly ICountryRepository passportCountryRepository;
+        private readonly ICountryRepository countryRepository;
         // For Company
         private readonly IBusinessSegmentRepository businessSegmentRepository;
         // For Business Patner type
         private readonly IBusinessPartnerSubTypeRepository businessPartnerSubTypeRepository;
         // For Phone tab
         private readonly IPhoneTypeRepository phoneTypeRepository;
+        // For Address tab
+        private readonly IAddressTypeRepository addressTypeRepository;
         #endregion
         #region Constructor
 
@@ -39,9 +41,10 @@ namespace Cares.Implementation.Services
             , IOccupationTypeRepository occupationTypeRepository
             , IBusinessPartnerCompanyRepository businessPartnerCompanyRepository
             , ICountryRepository passportCountryRepository
-            , IBusinessSegmentRepository businessSegmentRepository,
-            IBusinessPartnerSubTypeRepository businessPartnerSubTypeRepository,
-            IPhoneTypeRepository phoneTypeRepository)
+            , IBusinessSegmentRepository businessSegmentRepository
+            ,IBusinessPartnerSubTypeRepository businessPartnerSubTypeRepository
+            ,IPhoneTypeRepository phoneTypeRepository
+            ,IAddressTypeRepository addressTypeRepository)
         {
             this.companyRepository = companyRepository;
             this.paymentTermRepository = paymentTermRepository;
@@ -51,10 +54,11 @@ namespace Cares.Implementation.Services
             this.employeeRepository = employeeRepository;
             this.occupationTypeRepository = occupationTypeRepository;
             this.businessPartnerCompanyRepository = businessPartnerCompanyRepository;
-            this.passportCountryRepository = passportCountryRepository;
+            this.countryRepository = passportCountryRepository;
             this.businessSegmentRepository = businessSegmentRepository;
             this.businessPartnerSubTypeRepository = businessPartnerSubTypeRepository;
             this.phoneTypeRepository = phoneTypeRepository;
+            this.addressTypeRepository = addressTypeRepository;
         }
         #endregion
         #region Public
@@ -70,10 +74,11 @@ namespace Cares.Implementation.Services
             response.ResponseDealingEmployees = employeeRepository.GetAll();
             response.ResponseOccupationTypes = occupationTypeRepository.GetAll();
             response.ResponseBusinessPartnerCompanies = businessPartnerCompanyRepository.GetAll();
-            response.ResponsePassportCountries = passportCountryRepository.GetAll();
+            response.ResponseCountries = countryRepository.GetAll();
             response.ResponseBusinessSegments =  businessSegmentRepository.GetAll();
             response.ResponseBusinessPartnerSubTypes = businessPartnerSubTypeRepository.GetAll();
             response.ResponsePhoneTypes = phoneTypeRepository.GetAll();
+            response.ResponseAddressTypes = addressTypeRepository.GetAll();
             return response;
         }
         #endregion

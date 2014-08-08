@@ -5,6 +5,7 @@ using System.Web.Http;
 using Cares.Interfaces.IServices;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
+using Cares.WebBase.Mvc;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
@@ -18,6 +19,7 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Get Fleet Pool Base Data 
         /// </summary>
+        [ApiException]
         public FleetPoolBaseDataResponse Get()
         {
             if (!ModelState.IsValid)

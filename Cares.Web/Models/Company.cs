@@ -8,12 +8,12 @@
         /// <summary>
         /// Company ID
         /// </summary>
-        public int CompanyId { get; set; }
+        public long CompanyId { get; set; }
         /// <summary>
         /// Parent Company
         /// </summary>
 
-        public int? ParentCompanyId { get; set; }
+        public long? ParentCompanyId { get; set; }
         /// <summary>
         /// Organization Group ID
         /// </summary>

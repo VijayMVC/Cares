@@ -255,11 +255,6 @@
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\UnauthorizedRequestController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
-    <Compile Include="ExceptionUtilities\CommonException .cs" />
-    <Compile Include="ExceptionUtilities\CustomExceptionFilterAttribute.cs" />
-    <Compile Include="ExceptionUtilities\IstUtilityException.cs" />
-    <Compile Include="ExceptionUtilities\IstUtilityResourceManager.cs" />
-    <Compile Include="ExceptionUtilities\Tag.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -269,6 +264,8 @@
     <Compile Include="ModelMappers\BusinessPartnerMapper.cs" />
     <Compile Include="ModelMappers\BPRatingTypeMapper.cs" />
     <Compile Include="ModelMappers\BusinessLegalStatusMapper.cs" />
+    <Compile Include="ModelMappers\AddressTypeMapper.cs" />
+    <Compile Include="ModelMappers\AddressMapper.cs" />
     <Compile Include="ModelMappers\PhoneTypeMapper.cs" />
     <Compile Include="ModelMappers\HireGroupDetailMapper.cs" />
     <Compile Include="ModelMappers\OccupationTypeMapper.cs" />
@@ -303,9 +300,11 @@
     <Compile Include="Models\BusinessPartnerResponse.cs" />
     <Compile Include="Models\BpRatingType.cs" />
     <Compile Include="Models\BusinessLegalStatus.cs" />
+    <Compile Include="Models\Address.cs" />
     <Compile Include="Models\CountryRegions.cs" />
     <Compile Include="Models\CountryRegionsResponse.cs" />
     <Compile Include="Models\Phone.cs" />
+    <Compile Include="Models\AddressType.cs" />
     <Compile Include="Models\PhoneType.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\HireGroup.cs" />

@@ -169,7 +169,7 @@
                     </div>
                     <label for="passportCountries" class="control-label col-sm-2">Passport Country</label>
                     <div class="col-md-2">
-                        <select id="passportCountries" class="form-control" data-bind="options: $root.passportCountries, optionsText: 'CountryName', optionsValue: 'CountryId', optionsCaption: '<Passport Country>', value: individualPassportCountryId"></select>
+                        <select id="passportCountries" class="form-control" data-bind="options: $root.countries, optionsText: 'CountryName', optionsValue: 'CountryId', optionsCaption: '<Passport Country>', value: individualPassportCountryId"></select>
                     </div>
 
                 </div>
@@ -308,7 +308,6 @@
                
             </div>
             <div class="tab-pane" id="bpphone">
-
                 <div data-bind="with:businessPartnerPhoneNumberNew">
                     <div class="form-group">
                         <label for="phoneTypes" class="control-label col-sm-2">Phone Type *</label>
@@ -347,10 +346,99 @@
                         </table>
                     </div>
                 </div>
-
-
             </div>
-            <div class="tab-pane" id="bpaddress">...</div>
+            <div class="tab-pane" id="bpaddress">
+                <div data-bind="with:businessPartnerAddressNew">
+                    <div class="form-group">
+                        <label for="addressListCountries" class="control-label col-sm-2">Country *</label>
+                        <div class="col-md-2">
+                            <select id="addressListCountries" class="form-control" data-bind="options: $root.countries, optionsText: 'CountryName', optionsValue: 'CountryId', optionsCaption: '<Country>',value:countryId"></select>
+                        </div>
+                        <label for="addressListRegion" class="control-label col-sm-2">Region</label>
+                        <div class="col-md-2">
+                            <select id="addressListRegion" class="form-control" data-bind="options: $root.phoneTypes, optionsText: 'PhoneTypeName', optionsValue: 'PhoneTypeCustomId', optionsCaption: '<Region>',value:regionId"></select>
+                        </div>
+                        <label for="addressListSubRegion" class="control-label col-sm-2">Sub Region</label>
+                        <div class="col-md-2">
+                            <select id="addressListSubRegion" class="form-control" data-bind="options: $root.phoneTypes, optionsText: 'PhoneTypeName', optionsValue: 'PhoneTypeCustomId', optionsCaption: '<Sub Region>',value:subRegionId"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="addressListCity" class="control-label col-sm-2">City</label>
+                        <div class="col-md-2">
+                            <select id="addressListCity" class="form-control" data-bind="options: $root.phoneTypes, optionsText: 'PhoneTypeName', optionsValue: 'PhoneTypeCustomId', optionsCaption: '<City>',value:cityId"></select>
+                        </div>
+                        <label for="addressListAreas" class="control-label col-sm-2">Area</label>
+                        <div class="col-md-2">
+                            <select id="addressListAreas" class="form-control" data-bind="options: $root.phoneTypes, optionsText: 'PhoneTypeName', optionsValue: 'PhoneTypeCustomId', optionsCaption: '<Area>',value:areaId"></select>
+                        </div>
+                        <label for="isDefault" class="control-label col-sm-2">Address Type *</label>
+                        <div class="col-md-2">
+                            <select id="addressListAddressType" class="form-control" data-bind="options: $root.addressTypes, optionsText: 'AddressTypeName', optionsValue: 'AddressTypeId', optionsCaption: '<Address Type>',value:addressTypeId"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="addressListPhoneNumber" class="control-label col-sm-2">PO Box Number</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" placeholder="<PO Box Number>" id="addressListPhoneNumber" data-bind="value: poBox, valueUpdate: 'keyup'" />
+                        </div>
+                        <label for="addressListZipCode" class="control-label col-sm-2">Zip Code</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" placeholder="<Zip Code>" id="addressListZipCode" data-bind="value: zipCode, valueUpdate: 'keyup'" />
+                        </div>
+                        <label for="addressListStreetAddress" class="control-label col-sm-2">Street Address *</label>
+                        <div class="col-md-2">
+                            <textarea class="form-control" rows="2" placeholder="<Street Address>" id="addressListStreetAddress" data-bind="value : streetAddress,valueUpdate: 'keyup'"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="addressListWebPage" class="control-label col-sm-2">Web Page</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" placeholder="<Web Page>" id="addressListWebPage" data-bind="value: webPage, valueUpdate: 'keyup'" />
+                        </div>
+                        <label for="addressListEmailAddress" class="control-label col-sm-2">Email Address</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" placeholder="<Email Address>" id="addressListEmailAddress" data-bind="value: emailAddress, valueUpdate: 'keyup'" />
+                        </div>
+                        <label for="addressListContactPerson" class="control-label col-sm-2">Contact Person</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" placeholder="<Contact Person>" id="addressListContactPerson" data-bind="value: contactPerson, valueUpdate: 'keyup'" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            <button class="btn btn-sm pull-right" id="businessPartnerAddressItemSave" data-bind="click: $root.onAddBusinessPartnerAddress">Add To List</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class=" col-md-12 well">
+                        <table id="businessPartnerAddressTable" class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th> <span id="1">Address Type<span></span></span></th>
+                                    <th> <span id="2">Country<span></span></span></th>
+                                    <th> <span id="3">Region<span></span></span></th>
+                                    <th> <span id="4">Sub Region<span></span></span></th>
+                                    <th> <span id="5">Region<span></span></span></th>
+                                    <th> <span id="6">City<span></span></span></th>
+                                    <th> <span id="7">Area<span></span></span></th>
+                                    <th> <span id="8">PO Box#<span></span></span></th>
+                                    <th> <span id="9">Zip Code<span></span></span></th>
+                                    <th> <span id="10">Web Address<span></span></span></th>
+                                    <th> <span id="11">Email Address<span></span></span></th>
+                                    <th> <span id="12">Address<span></span></span></th>
+                                    <th> <span id="13">Contact Person<span></span></span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- ko template: { name: 'itemBusinessPartnerAddressTemplate' , foreach: businessPartnerAddressList } -->
+                                <!-- /ko -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
             <div class="tab-pane" id="marketingchannel">...</div>
             <div class="tab-pane" id="bprelationships">...</div>
         </div>
@@ -385,4 +473,28 @@
 </script>
 <script id="deleteActionBusinessPartnerPhoneTemplate" type="text/html">
     <a href="#" data-bind="click: $root.onDeleteBusinessPartnerPhone" title="Delete Business Partner Phone"><span class="glyphicon glyphicon-remove"></span></a>
+</script>
+<script id="itemBusinessPartnerAddressTemplate" type="text/html">
+    <tr>
+        <td data-bind="text: addressTypeName"></td>
+        <td data-bind="text: countryName"></td>
+        <td data-bind="text: regionName"></td>
+        <td data-bind="text: subRegionName"></td>
+        <td data-bind="text: cityName"></td>
+        <td data-bind="text: areaName"></td>
+        <td data-bind="text: subRegionName"></td>
+        <td data-bind="text: poBox"></td>
+        <td data-bind="text: zipCode"></td>
+        <td data-bind="text: webPage"></td>
+        <td data-bind="text: emailAddress"></td>
+        <td data-bind="text: streetAddress"></td>
+        <td data-bind="text: contactPerson"></td>
+        <td>
+            <!-- ko template: { name: 'deleteActionBusinessPartnerAddressTemplate' } -->
+            <!-- /ko -->
+        </td>
+    </tr>
+</script>
+<script id="deleteActionBusinessPartnerAddressTemplate" type="text/html">
+    <a href="#" data-bind="click: $root.onDeleteBusinessPartnerAddress" title="Delete Business Partner Address"><span class="glyphicon glyphicon-remove"></span></a>
 </script>

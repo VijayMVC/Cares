@@ -42,14 +42,15 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(phoneTypes => phoneTypes.UserDomainKey == UserDomainKey);
         }
-
-        #endregion
         /// <summary>
-        /// Find Phone Type By Id
+        /// Find Phone Type by Id
         /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public PhoneType Find(int id)
         {
             throw new System.NotImplementedException();
         }
+        #endregion
     }
 }

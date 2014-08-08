@@ -150,6 +150,10 @@
     <Compile Include="TypeRegistrations.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ExceptionHandling\Cares.ExceptionHandling.csproj">
+      <Project>{5A6ACD2D-0701-4E38-99B7-65CC4E6CB8E8}</Project>
+      <Name>Cares.ExceptionHandling</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Interfaces\Cares.Interfaces.csproj">
       <Project>{98f7a831-6d93-48e9-950f-623772aa607a}</Project>
       <Name>Cares.Interfaces</Name>

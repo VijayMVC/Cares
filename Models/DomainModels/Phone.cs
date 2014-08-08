@@ -61,7 +61,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100)]
+        [StringLength(100), Required]
         public string RecCreatedBy { get; set; }
         /// <summary>
         /// Record Last Updated Date
@@ -70,12 +70,24 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100)]
+        [StringLength(100), Required]
         public string RecLastUpdatedBy { get; set; }
         /// <summary>
         /// User Domain Key
         /// </summary>
         public long UserDomainKey { get; set; }
+
+        /// <summary>
+        /// Work Location
+        /// </summary>
+        [ForeignKey("WorkLocation")]
+        public long? WorkLocationId { get; set; }
+
+        /// <summary>
+        /// Employee
+        /// </summary>
+        [ForeignKey("Employee")]
+        public long? EmployeeId { get; set; }
 
         #endregion
 
@@ -88,6 +100,17 @@ namespace Cares.Models.DomainModels
         /// Phone Type
         /// </summary>
         public virtual PhoneType PhoneType { get; set; }
+
+        /// <summary>
+        /// Work Location
+        /// </summary>
+        public virtual WorkLocation WorkLocation { get; set; }
+
+        /// <summary>
+        /// Employee
+        /// </summary>
+        public virtual Employee Employee { get; set; }
+
         #endregion
     }
 }

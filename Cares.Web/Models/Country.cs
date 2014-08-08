@@ -11,7 +11,11 @@ namespace Cares.Web.Models
             /// <summary>
             /// Country ID
             /// </summary>
-            public int CountryId { get; set; }
+            public short CountryId { get; set; }
+            /// <summary>
+            /// Country Custom ID
+            /// </summary>
+            public string CountryCustomId { get; set; }
             /// <summary>
             /// Country Code
             /// </summary>

@@ -43,9 +43,9 @@ namespace Cares.Models.ResponseModels
         /// </summary>
         public IEnumerable<BusinessPartnerCompany> ResponseBusinessPartnerCompanies { get; set; }
         /// <summary>
-        /// Passport Countries
+        /// Countries
         /// </summary>
-        public IEnumerable<Country> ResponsePassportCountries { get; set; }
+        public IEnumerable<Country> ResponseCountries { get; set; }
         /// <summary>
         /// Business Segments
         /// </summary>
@@ -58,6 +58,10 @@ namespace Cares.Models.ResponseModels
         /// Phone Types
         /// </summary>
         public IEnumerable<PhoneType> ResponsePhoneTypes { get; set; }
+        /// <summary>
+        /// Address Types
+        /// </summary>
+        public IEnumerable<AddressType> ResponseAddressTypes { get; set; }
         #endregion
     }
 }

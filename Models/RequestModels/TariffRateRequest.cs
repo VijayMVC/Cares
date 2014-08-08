@@ -14,7 +14,7 @@ namespace Cares.Models.RequestModels
         /// <summary>
         /// Operation Id
         /// </summary>
-        public int? OperationId { get; set; }
+        public long? OperationId { get; set; }
         /// <summary>
         /// Tarrif Rate Order By
         /// </summary>

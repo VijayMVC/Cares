@@ -25,7 +25,7 @@
         /// <summary>
         /// Country Id
         /// </summary>
-        public int CountryId { get; set; }
+        public short? CountryId { get; set; }
         #endregion
     }
 }

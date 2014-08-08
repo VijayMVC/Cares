@@ -9,7 +9,7 @@
         /// <summary>
         /// Department ID
         /// </summary>
-        public int DepartmentId { get; set; }
+        public long DepartmentId { get; set; }
         /// <summary>
         /// Department Code
         /// </summary>

@@ -50,15 +50,15 @@ namespace Cares.Web.Models
         /// <summary>
         /// Company Id
         /// </summary>
-        public int CompanyId { get; set; }
+        public long CompanyId { get; set; }
         /// <summary>
         /// Payment Term Id
         /// </summary>
-        public int PaymentTermId { get; set; }
+        public short PaymentTermId { get; set; }
         /// <summary>
         /// Business Partner Rating Type Id
         /// </summary>
-        public int? BPRatingTypeId { get; set; }
+        public short? BPRatingTypeId { get; set; }
         /// <summary>
         /// System Guarantor ID
         /// </summary>
@@ -70,7 +70,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Business Legal Status Id
         /// </summary>
-        public int? BusinessLegalStatusId { get; set; }
+        public short? BusinessLegalStatusId { get; set; }
         #endregion
 
         #region Reference Properties
@@ -90,6 +90,10 @@ namespace Cares.Web.Models
         /// Business Partner Phones 
         /// </summary>
         public List<Phone> BusinessPartnerPhoneNumbers { get; set; }
+        /// <summary>
+        /// Business Partner Address List 
+        /// </summary>
+        public List<Address> BusinessPartnerAddressList { get; set; }
         #endregion
 
         #endregion

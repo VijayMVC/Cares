@@ -24,10 +24,6 @@ namespace Cares.Web.ModelMappers
                     source.Operation != null
                         ? source.Operation.OperationCode + " - " + source.Operation.OperationName
                         : string.Empty,
-                Company =
-            source.Company != null
-                ? source.Company.CompanyCode + " - " + source.Company.CompanyName
-                : string.Empty,
                 MeasurementUnit =
                     source.MeasurementUnit != null
                         ? source.MeasurementUnit.MeasurementUnitCode + " - " +
@@ -59,7 +55,6 @@ namespace Cares.Web.ModelMappers
                 TariffTypeCode = source.TariffTypeCode,
                 TariffTypeName = source.TariffTypeName,
                 TariffTypeDescription = source.TariffTypeDescription,
-                CompanyId = source.CompanyId,
                 OperationId = source.OperationId,
                 MeasurementUnitId = source.MeasurementUnitId,
                 DurationFrom = source.DurationFrom,
@@ -86,7 +81,6 @@ namespace Cares.Web.ModelMappers
                 TariffTypeCode = source.TariffTypeCode,
                 TariffTypeName = source.TariffTypeName,
                 TariffTypeDescription = source.TariffTypeDescription,
-                CompanyId = source.CompanyId,
                 OperationId = source.OperationId,
                 DepartmentId = source.Operation.DepartmentId,
                 MeasurementUnitId = source.MeasurementUnitId,

@@ -33,7 +33,7 @@
         /// <summary>
         /// Operation id
         /// </summary>
-        public int OperationId { get; set; }
+        public long OperationId { get; set; }
         /// <summary>
         /// Operation Name
         /// </summary>
@@ -50,7 +50,7 @@
         /// <summary>
         /// country id
         /// </summary>
-        public int CountryId { get; set; }
+        public short? CountryId { get; set; }
         /// <summary>
         /// country name
         /// </summary>

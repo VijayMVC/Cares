@@ -1,7 +1,4 @@
-﻿
-using System.Collections.Generic;
-using Models.DomainModels;
-
+﻿using System.Collections.Generic;
 namespace Cares.Web.Models
 {
     public class BusinessPartnerBaseResponse
@@ -46,9 +43,9 @@ namespace Cares.Web.Models
         /// </summary>
         public IEnumerable<BusinessPartnerCompany> ResponseBusinessPartnerCompanies { get; set; }
         /// <summary>
-        /// Passport Countries
+        /// Countries
         /// </summary>
-        public IEnumerable<Country> ResponsePassportCountries { get; set; }
+        public IEnumerable<Country> ResponseCountries { get; set; }
         /// <summary>
         /// Business Segments
         /// </summary>
@@ -61,6 +58,10 @@ namespace Cares.Web.Models
         /// Phone Types
         /// </summary>
         public IEnumerable<PhoneType> ResponsePhoneTypes { get; set; }
+        /// <summary>
+        /// Address Types
+        /// </summary>
+        public IEnumerable<AddressType> ResponseAddressTypes { get; set; }
         #endregion
     }
 }

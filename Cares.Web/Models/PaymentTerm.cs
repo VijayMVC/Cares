@@ -10,7 +10,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// PaymentTerm ID
         /// </summary>
-        public int PaymentTermId { get; set; }
+        public short PaymentTermId { get; set; }
         /// <summary>
         /// PaymentTerm Code
         /// </summary>

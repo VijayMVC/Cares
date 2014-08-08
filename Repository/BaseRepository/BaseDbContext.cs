@@ -68,6 +68,12 @@ namespace Cares.Repository.BaseRepository
             modelBuilder.Entity<PaymentTerm>().HasKey(pTerm => pTerm.PaymentTermId);
             modelBuilder.Entity<PaymentTerm>().Property(pTerm => pTerm.PaymentTermId)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            
+            modelBuilder.Entity<OperationsWorkPlace>()
+                .HasRequired(c => c.WorkPlace)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+            
         }
         #endregion
         #region Constructor
@@ -222,6 +228,10 @@ namespace Cares.Repository.BaseRepository
         /// Phone Type
         /// </summary>
         public DbSet<PhoneType> PhoneTypes { get; set; }
+        /// <summary>
+        /// Address Type
+        /// </summary>
+        public DbSet<AddressType> AddressTypes { get; set; }
 
         #endregion
     }

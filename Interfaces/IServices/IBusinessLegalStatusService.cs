@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Models.DomainModels;
+using Cares.Models.DomainModels;
 
 namespace Cares.Interfaces.IServices
 {

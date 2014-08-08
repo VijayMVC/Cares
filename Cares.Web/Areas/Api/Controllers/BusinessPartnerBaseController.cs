@@ -3,7 +3,6 @@ using System.Web.Http;
 using Cares.Interfaces.IServices;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
-
 namespace Cares.Web.Areas.Api.Controllers
 {
     /// <summary>
