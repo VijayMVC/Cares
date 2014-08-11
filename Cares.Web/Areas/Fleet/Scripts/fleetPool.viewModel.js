@@ -10,6 +10,8 @@ define("Fleet/fleetPool.viewModel",
             viewModel: (function() {
                 // the view 
                 var view,
+                     // Show Filter Section
+                    filterSectionVisilble = ko.observable(false),
                     //to check if edit mode 
                      isEditMode = ko.observable(false),
                     // Active FleetPool
@@ -68,6 +70,18 @@ define("Fleet/fleetPool.viewModel",
                                 }
                             }
                         });
+                    },
+                     // Collapase filter section
+                    collapseFilterSection = function () {
+                        filterSectionVisilble(false);
+                    },
+                    //Show filter section
+                    showFilterSection = function () {
+                        filterSectionVisilble(true);
+                    },
+                     // close Product Editor
+                    closeFleetPoolEditor = function () {
+                        isFleetPoolEditorVisible(false);
                     },
                     //country selected form dd
                     countrySelected = function() {
@@ -131,7 +145,6 @@ define("Fleet/fleetPool.viewModel",
                     createFleetForm = function() { //parent
                         var fleetPool = createPoolDetail();
                         selectedFleetPool(fleetPool);
-                        debugger;
                         showFleetPoolEditor();
                     },
                     //creating fleetpool details 
@@ -252,7 +265,11 @@ define("Fleet/fleetPool.viewModel",
                     showFleetPoolEditor: showFleetPoolEditor,                                        
                     cancelSave: cancelSave,                                        
                     onSaveFleetPool: onSaveFleetPool,
-                    filterRegions: filterRegions
+                    filterRegions: filterRegions,
+                    filterSectionVisilble: filterSectionVisilble,
+                    collapseFilterSection: collapseFilterSection,
+                    showFilterSection: showFilterSection,
+                    closeFleetPoolEditor: closeFleetPoolEditor
                 };
             })()
         };

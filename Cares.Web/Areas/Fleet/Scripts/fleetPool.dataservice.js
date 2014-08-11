@@ -11,7 +11,6 @@ define("Fleet/fleetPool.dataservice", function () {
             // Initialize
             initialize = function() {
                 if (!isInitialized) {
-
                     // Define request to get FleetPool Base data
                     amplify.request.define('getFleetPoolBasedata', 'ajax', {
                         url: '/Api/FleetPoolBase',
@@ -19,36 +18,30 @@ define("Fleet/fleetPool.dataservice", function () {
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
-
                     //gets regions of selected country
                     amplify.request.define('getCountryRegions', 'ajax', {
                         url: '/Api/Regions',
                         dataType: 'json',
                         type: 'GET'
                     });
-
                     //save new added fleetpool
                     amplify.request.define('saveFleetPool', 'ajax', {
                         url: '/Api/FleetPool',
                         dataType: 'json',
                         type: 'POST'
                     });
-
-
                     // Define request to get FleetPools
                     amplify.request.define('getFleetPools', 'ajax', {
                         url: '/Api/FleetPool',
                         dataType: 'json',
                         type: 'GET'
                     });
-
                     // Define request to delete FleetPool
                     amplify.request.define('deleteFleetPool', 'ajax', {
                         url: '/Api/FleetPool',
                         dataType: 'json',
                         type: 'Delete'
                     });
-
                     // Define request to update FleetPool
                     amplify.request.define('updateFleetPool', 'ajax', {
                         url: '/Api/FleetPool',
@@ -58,7 +51,6 @@ define("Fleet/fleetPool.dataservice", function () {
                     isInitialized = true;
                 }
             },
-
             // Get Fleet Pool Base Data
             getFleetPoolBasedata = function(params, callbacks) {
                 initialize();
@@ -71,7 +63,6 @@ define("Fleet/fleetPool.dataservice", function () {
             },
             //update fleetpool
             updateFleetPool = function (params, callbacks) {
-                debugger;
                 return amplify.request({
                     resourceId: 'updateFleetPool',
                     success: callbacks.success,
@@ -79,10 +70,8 @@ define("Fleet/fleetPool.dataservice", function () {
                     data: params
                 });
             },
-
             //add new fleetpool
             saveFleetPool = function (params, callbacks) {
-                debugger;
                 return amplify.request({
                     resourceId: 'saveFleetPool',
                     success: callbacks.success,
@@ -90,7 +79,6 @@ define("Fleet/fleetPool.dataservice", function () {
                     data: params
                 });
             },
-
             //get the selected country's regions
             getCountryRegions = function (params, callbacks) {
                 return amplify.request({
@@ -100,10 +88,8 @@ define("Fleet/fleetPool.dataservice", function () {
                     data: params
                 });
             },
-
         ///get Fleet Pools
             getFleetPools = function (params, callbacks) {
-              
                 initialize();
                 return amplify.request({
                     resourceId: 'getFleetPools',
@@ -112,10 +98,8 @@ define("Fleet/fleetPool.dataservice", function () {
                     data: params
                 });
             },
-
             // save Forecast
         deleteFleetPool = function (params, callbacks) {
-            debugger;
             return amplify.request({
                 resourceId: 'deleteFleetPool',
                 success: callbacks.success,

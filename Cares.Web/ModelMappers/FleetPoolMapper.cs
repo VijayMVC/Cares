@@ -75,8 +75,6 @@ namespace Cares.Web.ModelMappers
                 RegionId = source.RegionId
             };
         }
-
         #endregion
-
     }
 }

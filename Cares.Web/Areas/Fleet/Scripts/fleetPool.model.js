@@ -26,7 +26,7 @@
                     return errors().length === 0;
                 }),
                 // True if the booking has been changed
-// ReSharper disable InconsistentNaming
+               // ReSharper disable InconsistentNaming
                 dirtyFlag = new ko.dirtyFlag({
                     // ReSharper restore InconsistentNaming
                     id: id,
@@ -79,7 +79,6 @@
                 convertToServerData: convertToServerData,
                 description: description,
                 vehiclesAssigned: vehiclesAssigned
-
             };
         };
     var FleetPoolDetail = function (specifiedId, specifiedCode, specifiedName, specifieddescription, specifiedOperationName, specifiedOperationId, 
@@ -94,13 +93,15 @@
             regionName = ko.observable(specifiedRegionName),
             regionId = ko.observable(specifiedRegionId).extend({ required: true }),
             countryName = ko.observable(specifiedCountryName),
-            countryId = ko.observable(specifiedCountryId),
-            vehiclesAssigned = ko.observable(specifiedvehicleasigned),            
+            countryId = ko.observable(specifiedCountryId).extend({ required: true }),
+            vehiclesAssigned = ko.observable(specifiedvehicleasigned).extend({ required: true }),
             // Errors
             errors = ko.validation.group({
                 name: name,
                 code: code,
-                regionId: regionId
+                regionId: regionId,
+                countryId: countryId,
+                vehiclesAssigned: vehiclesAssigned
             }),
             // Is Valid
             isValid = ko.computed(function() {
@@ -124,7 +125,6 @@
             reset = function() {
                 dirtyFlag.reset();
             },
-
             // Convert to server
             convertToServerData = function() {
                 return {
@@ -133,8 +133,6 @@
                     FleetPoolId: id()
                 };
             };
-
-
         return {
             id: id,
             code: code,
@@ -153,20 +151,18 @@
             hasChanges: hasChanges,
             reset: reset,
             convertToServerData: convertToServerData
-
         };
     };
     // server to client mapper
     var fleetPoolServertoClinetMapper = function(source) {
         return FleetPoolDetail.Create(source);
     };
+    //client to server mapper
     var fleePoolClienttoServerMapper = function (client) {
-        debugger;
         var server = FleetPool(client.id(), client.code(), client.name(), undefined, undefined, client.operationId(),
             client.countryId(), client.regionId(), client.vehiclesAssigned(), client.description());
         return server.convertToServerData();
     };
-
     // FleetPool Factory
     FleetPoolDetail.Create = function (source) {
         return new FleetPoolDetail(source.FleetPoolId, source.FleetPoolCode, source.FleetPoolName, source.Description, source.OperationName, 

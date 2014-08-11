@@ -15,7 +15,6 @@ namespace Cares.Web.Areas.Api.Controllers
     public class FleetPoolController : ApiController
     {
         #region Public
-
         /// <summary>
         /// Dalete Fleet Pool
         /// </summary>
