@@ -37,14 +37,14 @@ namespace Cares.Repository.Repositories
             rowCount =
                 DbSet.Count(
                     fleet =>
-                        (string.IsNullOrEmpty(request.FleetPoolCode) || fleet.FleetPoolCode.Contains(request.FleetPoolCode) ||fleet.FleetPoolName.Contains(request.FleetPoolCode))
+                        (string.IsNullOrEmpty(request.FleetPoolSearchText) || fleet.FleetPoolCode.Contains(request.FleetPoolSearchText) ||fleet.FleetPoolName.Contains(request.FleetPoolSearchText))
                          && (!request.RegionId.HasValue || fleet.RegionId == request.RegionId.Value)
                          && (!request.OperationId.HasValue || fleet.OperationId == request.OperationId.Value));
 
             return DbSet.Where(fleet =>
-                (string.IsNullOrEmpty(request.FleetPoolCode) ||
-                 fleet.FleetPoolCode.Contains(request.FleetPoolCode) ||
-                 fleet.FleetPoolName.Contains(request.FleetPoolCode))
+                (string.IsNullOrEmpty(request.FleetPoolSearchText) ||
+                 fleet.FleetPoolCode.Contains(request.FleetPoolSearchText) ||
+                 fleet.FleetPoolName.Contains(request.FleetPoolSearchText))
                 && (!request.RegionId.HasValue || fleet.RegionId == request.RegionId.Value)
                 && (!request.OperationId.HasValue || fleet.OperationId == request.OperationId.Value)).OrderBy(x=>x.FleetPoolCode).Skip(fromRow).Take(toRow).ToList();
         }
