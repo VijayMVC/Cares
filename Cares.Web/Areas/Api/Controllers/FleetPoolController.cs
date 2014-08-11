@@ -15,7 +15,6 @@ namespace Cares.Web.Areas.Api.Controllers
     public class FleetPoolController : ApiController
     {
         #region Public
-
         /// <summary>
         /// Dalete Fleet Pool
         /// </summary>
@@ -27,7 +26,6 @@ namespace Cares.Web.Areas.Api.Controllers
             }
            fleetPoolService.DeleteFleetPool(Convert.ToInt32( fleetPool.FleetPoolId));
         }
-
         /// <summary>
         /// Get FleetPools
         /// </summary>
@@ -43,25 +41,24 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Add new FleetPools
         /// </summary>
-        public FleetPool Post(Cares.Models.DomainModels.FleetPool fleetPool) 
+        public FleetPool Post(FleetPool fleetPool) 
         {
             if (fleetPool == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-          return  fleetPoolService.AddNewFleetPool(fleetPool).CreateFrom();
+            return fleetPoolService.AddNewFleetPool(fleetPool.CreateFrom()).CreateFrom();
         }
-
         /// <summary>
         /// update FleetPools
         /// </summary>
-        public FleetPool Put(Cares.Models.DomainModels.FleetPool fleetPool)
+        public FleetPool Put(FleetPool fleetPool)
         {
             if (fleetPool == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return fleetPoolService.UpdateFleetPool(fleetPool).CreateFrom();
+            return fleetPoolService.UpdateFleetPool(fleetPool.CreateFrom()).CreateFrom();
         }
        
         #endregion

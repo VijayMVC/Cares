@@ -62,6 +62,8 @@ define("businessPartner/businessPartner.viewModel",
                     areas = ko.observableArray([]),
                     // filtered Areas Array
                     filteredAreas = ko.observableArray([]),
+                    // Marketing Channel Array
+                    marketingChannels = ko.observableArray([]),
                     // Sort On
                     sortOn = ko.observable(1),
                     // Sort Order -  true means asc, false means desc
@@ -78,7 +80,7 @@ define("businessPartner/businessPartner.viewModel",
                     selectedCountry = ko.observable(),
                     // #region Utility Functions
                     // Select filter option Individual or Company list
-                    optionIndividualOrCompany = [{ Id: true, Name: 'Individual' },{Id : false, Name :  'Company'}],
+                    optionIndividualOrCompany = [{ Id: true, Name: 'Individual' }, { Id: false, Name: 'Company' }],
                     // Select Gender list
                     optionGenderList = [{ Id: 'M', Name: 'Male' }, { Id: 'F', Name: 'Female' }],
                     // Select Martial Status list
@@ -136,7 +138,7 @@ define("businessPartner/businessPartner.viewModel",
                                 areas.removeAll();
                                 ko.utils.arrayPushAll(areas(), data.ResponseAreas);
                                 areas.valueHasMutated();
-                                
+
                                 isLoadingBusinessPartners(false);
                             },
                             error: function () {
@@ -228,7 +230,7 @@ define("businessPartner/businessPartner.viewModel",
                         if (selectedBusinessPartner().hasChanges()) {
                             confirmation.messageText("Do you want to save changes?");
                             confirmation.afterProceed(onSaveBusinessPartner);
-                            confirmation.afterCancel(function() {
+                            confirmation.afterCancel(function () {
                                 selectedBusinessPartner().reset();
                                 closeBusinessPartnerEditor();
                             });
@@ -248,15 +250,15 @@ define("businessPartner/businessPartner.viewModel",
                             return;
                         }
                         // Ask for confirmation
-                        confirmation.afterProceed(function() {
+                        confirmation.afterProceed(function () {
                             deleteBusinessPartner(businessPartner);
                         });
                         confirmation.show();
                     },
                     // Delete a BusinessPartner In Type
                     onDeleteBusinessPartnerInType = function (businessPartnerInType) {
-                           selectedBusinessPartner().businessPartnerInTypes.remove(businessPartnerInType);
-                            return;
+                        selectedBusinessPartner().businessPartnerInTypes.remove(businessPartnerInType);
+                        return;
                     },
                     // Delete a BusinessPartner Phone Item
                     onDeleteBusinessPartnerPhone = function (businessPartnerPhone) {
@@ -266,6 +268,11 @@ define("businessPartner/businessPartner.viewModel",
                     // Delete a BusinessPartner Address Item
                     onDeleteBusinessPartnerAddress = function (businessPartnerAddress) {
                         selectedBusinessPartner().businessPartnerAddressList.remove(businessPartnerAddress);
+                        return;
+                    },
+                    // Delete a BusinessPartner Marketing Channel Item
+                    onDeleteBusinessPartnerMarketingChannel = function (businessPartnerMarketingChannel) {
+                        selectedBusinessPartner().businessPartnerMarketingChannels.remove(businessPartnerMarketingChannel);
                         return;
                     },
                     // business partner InType selected subtype id computed
@@ -285,7 +292,7 @@ define("businessPartner/businessPartner.viewModel",
                         }
                     }),
                     // business partner intype selected rating id computed
-                    businessPartnerTypeSelecedBpRatingIdComputed = ko.computed(function() {
+                    businessPartnerTypeSelecedBpRatingIdComputed = ko.computed(function () {
                         if (selectedBusinessPartner() != undefined && selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId() != undefined && selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId().split('-').length == 3)
                             return selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId().split('-')[0];
                         else {
@@ -301,7 +308,7 @@ define("businessPartner/businessPartner.viewModel",
                         }
                     }),
                     // business partner phone selected phone type id computed
-                    businessPartnerPhoneSelecedPhoneTypeIdComputed = ko.computed(function() {
+                    businessPartnerPhoneSelecedPhoneTypeIdComputed = ko.computed(function () {
                         if (selectedBusinessPartner() != undefined && selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId() != undefined && selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId().split('-').length == 3)
                             return selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId().split('-')[0];
                         else {
@@ -412,6 +419,22 @@ define("businessPartner/businessPartner.viewModel",
                             return undefined;
                         }
                     }),
+                    // business partner marketing channel selected channel id computed
+                    businessPartnerAddressSelecedMarketingChannelIdComputed = ko.computed(function () {
+                        if (selectedBusinessPartner() != undefined && selectedBusinessPartner().businessPartnerMarketingChannelNew().marketingChannelId() != undefined && selectedBusinessPartner().businessPartnerMarketingChannelNew().marketingChannelId().split('-').length == 3)
+                            return selectedBusinessPartner().businessPartnerMarketingChannelNew().marketingChannelId().split('-')[0];
+                        else {
+                            return undefined;
+                        }
+                    }),
+                    // business partner marketing channel selected channel name computed
+                    businessPartnerAddressSelecedMarketingChannelNameComputed = ko.computed(function () {
+                        if (selectedBusinessPartner() != undefined && selectedBusinessPartner().businessPartnerMarketingChannelNew().marketingChannelId() != undefined && selectedBusinessPartner().businessPartnerMarketingChannelNew().marketingChannelId().split('-').length == 3)
+                            return selectedBusinessPartner().businessPartnerMarketingChannelNew().marketingChannelId().split('-')[1] + '-' + selectedBusinessPartner().businessPartnerMarketingChannelNew().marketingChannelId().split('-')[2];
+                        else {
+                            return undefined;
+                        }
+                    }),
                      // Do Before Add BusinessPartner InType Item
                     doBeforeAddItem = function () {
                         var flag = true;
@@ -442,7 +465,7 @@ define("businessPartner/businessPartner.viewModel",
                         } else {
                             // check if isdefault true entry already there
                             var isDefaultAlreadyThere = false;
-                            _.each(selectedBusinessPartner().businessPartnerPhoneNumbers(), function(item) {
+                            _.each(selectedBusinessPartner().businessPartnerPhoneNumbers(), function (item) {
                                 if (item.isDefault() == true)
                                     isDefaultAlreadyThere = true;
                             });
@@ -460,9 +483,9 @@ define("businessPartner/businessPartner.viewModel",
                             var businessPartnerPhone = model.BusinessPartnerPhone(undefined, selectedBusinessPartner().businessPartnerPhoneNumberNew().isDefault(), selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneNumber(), selectedBusinessPartner().businessPartnerId(), businessPartnerPhoneSelecedPhoneTypeIdComputed(), businessPartnerPhoneSelecedPhoneTypeNameComputed());
                             selectedBusinessPartner().businessPartnerPhoneNumbers.push(businessPartnerPhone);
                             selectedBusinessPartner().businessPartnerPhoneNumbers.valueHasMutated();
-                            
+
                             // emplty input fields
-                            selectedBusinessPartner().businessPartnerPhoneNumberNew(model.BusinessPartnerPhone(undefined,false,undefined,undefined,undefined));
+                            selectedBusinessPartner().businessPartnerPhoneNumberNew(model.BusinessPartnerPhone(undefined, false, undefined, undefined, undefined));
                         }
                     },
                     // Do Before Add BusinessPartner Address Item
@@ -504,7 +527,31 @@ define("businessPartner/businessPartner.viewModel",
                             selectedBusinessPartner().businessPartnerAddressList.valueHasMutated();
 
                             // emplty input fields
-                            selectedBusinessPartner().businessPartnerAddressNew(model.BusinessPartnerAddress(undefined,"","","","","","",undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined));
+                            selectedBusinessPartner().businessPartnerAddressNew(model.BusinessPartnerAddress(undefined, "", "", "", "", "", "", undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined));
+                        }
+                    },
+                     // Do Before Add BusinessPartner Address Item
+                    doBeforeAddMarketingChannelItem = function () {
+                        var flag = true;
+                        if (!selectedBusinessPartner().businessPartnerMarketingChannelNew().isValid()) {
+                            selectedBusinessPartner().businessPartnerMarketingChannelNew().errors.showAllMessages();
+                            flag = false;
+                        }
+                        return flag;
+                    },
+                    // Add a BusinessPartner Marketing Channel
+                    onAddBusinessPartnerMarketingChannel = function () {
+                        // check validation error before add
+                        if (doBeforeAddMarketingChannelItem()) {
+                            var businessPartnerMarketingChannel = model.BusinessPartnerMarketingChannel(
+                                businessPartnerAddressSelecedMarketingChannelIdComputed(),
+                                businessPartnerAddressSelecedMarketingChannelNameComputed(),
+                                selectedBusinessPartner().businessPartnerId()
+                        );
+                            selectedBusinessPartner().businessPartnerMarketingChannels.push(businessPartnerMarketingChannel);
+                            selectedBusinessPartner().businessPartnerMarketingChannels.valueHasMutated();
+                            // emplty input fields
+                            selectedBusinessPartner().businessPartnerMarketingChannelNew(model.BusinessPartnerMarketingChannel(undefined, undefined, undefined));
                         }
                     },
                     // Create Business Partner
@@ -525,7 +572,7 @@ define("businessPartner/businessPartner.viewModel",
                         }
                     },
                     // Do Before Logic
-                    doBeforeSave = function() {
+                    doBeforeSave = function () {
                         var flag = true;
                         if (!selectedBusinessPartner().isValid()) {
                             selectedBusinessPartner().errors.showAllMessages();
@@ -536,7 +583,7 @@ define("businessPartner/businessPartner.viewModel",
                         return flag;
                     },
                     // Initialize the view model
-                    initialize = function(specifiedView) {
+                    initialize = function (specifiedView) {
                         view = specifiedView;
                         ko.applyBindings(view.viewModel, view.bindingRoot);
                         getBase();
@@ -550,7 +597,7 @@ define("businessPartner/businessPartner.viewModel",
                         _.each(data.BusinessPartners, function (item) {
                             var businessPartner = new model.BusinessPartner(item);
                             businessPartnerList.push(businessPartner);
-                        });                  
+                        });
                         ko.utils.arrayPushAll(businessPartners(), businessPartnerList);
                         businessPartners.valueHasMutated();
                     },
@@ -610,6 +657,10 @@ define("businessPartner/businessPartner.viewModel",
                                 addressTypes.removeAll();
                                 ko.utils.arrayPushAll(addressTypes(), data.ResponseAddressTypes);
                                 addressTypes.valueHasMutated();
+                                // Marketing Channel array
+                                marketingChannels.removeAll();
+                                ko.utils.arrayPushAll(marketingChannels(), data.ResponseMarketingChannels);
+                                marketingChannels.valueHasMutated();
                             },
                             error: function () {
                                 toastr.error("Failed to load base data");
@@ -626,16 +677,16 @@ define("businessPartner/businessPartner.viewModel",
                         isLoadingBusinessPartners(true);
                         dataservice.getBusinessPartners({
                             SearchString: searchFilter(),
-                            SelectOption: selectFilter(),  
-                            PageNo: pager().currentPage(), SortBy: sortOn(), IsAsc: sortIsAsc() 
+                            SelectOption: selectFilter(),
+                            PageNo: pager().currentPage(), SortBy: sortOn(), IsAsc: sortIsAsc()
                         }, {
-                            success: function(data) {
+                            success: function (data) {
                                 pager().totalCount(data.TotalCount);
                                 businessPartners.removeAll();
                                 mapBusinessPartners(data);
                                 isLoadingBusinessPartners(false);
                             },
-                            error: function() {
+                            error: function () {
                                 isLoadingBusinessPartners(false);
                                 toastr.error("Failed to load businessPartners!");
                             }
@@ -701,7 +752,7 @@ define("businessPartner/businessPartner.viewModel",
                     businessSegments: businessSegments,
                     businessPartnerSubTypes: businessPartnerSubTypes,
                     phoneTypes: phoneTypes,
-                    addressTypes:addressTypes,
+                    addressTypes: addressTypes,
                     // Utility Methods
                     onSaveBusinessPartner: onSaveBusinessPartner,
                     createBusinessPartner: createBusinessPartner,
@@ -717,7 +768,7 @@ define("businessPartner/businessPartner.viewModel",
                     isBusinessPartnerEditorVisible: isBusinessPartnerEditorVisible,
                     createBusinessPartnerInForm: createBusinessPartnerInForm,
                     optionIndividualOrCompany: optionIndividualOrCompany,
-                    listSelectedBusinessPartner: listSelectedBusinessPartner,      
+                    listSelectedBusinessPartner: listSelectedBusinessPartner,
                     optionGenderList: optionGenderList,
                     optionMaritalStatusList: optionMaritalStatusList,
                     onDeleteBusinessPartnerInType: onDeleteBusinessPartnerInType,
@@ -739,7 +790,10 @@ define("businessPartner/businessPartner.viewModel",
                     filteredCountryCities: filteredCountryCities,
                     onSubRegionSelectionChange: onSubRegionSelectionChange,
                     filteredAreas: filteredAreas,
-                    onCitySelectionChange: onCitySelectionChange
+                    onCitySelectionChange: onCitySelectionChange,
+                    marketingChannels: marketingChannels,
+                    onDeleteBusinessPartnerMarketingChannel: onDeleteBusinessPartnerMarketingChannel,
+                    onAddBusinessPartnerMarketingChannel: onAddBusinessPartnerMarketingChannel
                     // Utility Methods
                 };
             })()

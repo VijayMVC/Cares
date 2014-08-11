@@ -129,6 +129,7 @@
     <Compile Include="Repositories\AddressTypeRepository.cs" />
     <Compile Include="Repositories\AreaRepository.cs" />
     <Compile Include="Repositories\OperationsWorkPlaceRepository.cs" />
+    <Compile Include="Repositories\MarketingChannelRepository.cs" />
     <Compile Include="Repositories\SubRegionRepository.cs" />
     <Compile Include="Repositories\PhoneTypeRepository.cs" />
     <Compile Include="Repositories\BusinessSegmentRepository.cs" />

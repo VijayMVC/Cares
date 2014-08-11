@@ -102,7 +102,7 @@ namespace Cares.Repository.Repositories
                 .Include(x => x.BusinessPartnerPhoneNumbers)
                 .Include(x => x.BusinessPartnerPhoneNumbers.Select(y => y.PhoneType))
                 .Include(x=>x.BusinessPartnerAddressList)
-                //.Include(x => x.BusinessPartnerAddressList).Select(y => y.AddressType)
+                .Include(x => x.BusinessPartnerMarketingChannels)
                 .Include(x => x.Company)
                 .Include(x => x.BPRatingType)
                 .FirstOrDefault();

@@ -91,6 +91,7 @@
     <Compile Include="Repository\ICompanyRepository.cs" />
     <Compile Include="Repository\IAreaRepository.cs" />
     <Compile Include="Repository\IOperationsWorkPlaceRepository.cs" />
+    <Compile Include="Repository\IMarketingChannelRepository.cs" />
     <Compile Include="Repository\ISubRegionRepository.cs" />
     <Compile Include="Repository\IFleetPoolRepository.cs" />
     <Compile Include="Repository\ICountryRepository.cs" />

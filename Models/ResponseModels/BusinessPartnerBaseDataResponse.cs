@@ -61,6 +61,10 @@ namespace Cares.Models.ResponseModels
         /// Address Types
         /// </summary>
         public IEnumerable<AddressType> ResponseAddressTypes { get; set; }
+        /// <summary>
+        /// Marketing Channels
+        /// </summary>
+        public IEnumerable<MarketingChannel> ResponseMarketingChannels { get; set; }
         #endregion
     }
 }

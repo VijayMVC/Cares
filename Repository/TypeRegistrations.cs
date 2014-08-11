@@ -53,6 +53,7 @@ namespace Cares.Repository
             unityContainer.RegisterType<ICityRepository, CityRepository>();
             unityContainer.RegisterType<IAreaRepository, AreaRepository>();
             unityContainer.RegisterType<IOperationsWorkPlaceRepository, OperationsWorkPlaceRepository>();
+            unityContainer.RegisterType<IMarketingChannelRepository, MarketingChannelRepository>();
         }
     }
 }

@@ -1,0 +1,73 @@
+﻿
+<div class="well col-md-12" id="hireGroupEditor" data-bind="visible: isHireGroupEditorVisible, with: selectedHireGroup" style="display: none;">
+    <div class="detailsContainer">
+        <h3 class="page-header detailsHeaderSection">Hire Group Details</h3>
+        <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onSaveHireGroup">Save</button>
+        <button class="btn btn-default" id="saveBtn" data-bind="click: $root.closeHireGroupEditor">Cancel</button>
+    </div>
+
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="hireGroupCode" class="control-label h5 col-sm-2">Hire Group Code *</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="<Hire Group Code>" id="hireGroupCode" data-bind="value: hireGroupCode, validationTooltip: hireGroupCode, disable :virtualIsParent()" />
+            </div>
+            <label for="hireGroupName" class="control-label h5 col-sm-2">Hire Group Name</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="<Hire Group Name>" id="hireGroupName" data-bind="value: hireGroupName, validationTooltip: hireGroupName, disable :virtualIsParent()" />
+            </div>
+            <label for="company" class="control-label h5 col-sm-2">Company *</label>
+            <div class="col-md-2">
+                <select id="company" class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyName', optionsValue: 'CompanyId', optionsCaption: '<Company>', value: companyId, validationTooltip: companyId, disable :virtualIsParent(), event:{change:$root.onSelectedCompany}"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="isParent" class="control-label h5 col-sm-2">Is Parent?  </label>
+            <div class="col-md-2">
+                <input type="checkbox" class="form-control" id="isParent" data-bind="value: isParent, validationTooltip: isParent, disable :virtualIsParent()" />
+            </div>
+            <label for="isParentHireGroup" class="control-label h5 col-sm-2">Parent Hire Group </label>
+            <div class="col-xs-2">
+                <select id="isParentHireGroup" class="form-control" data-bind="options: $root.filteredParentHireGroups, optionsText: 'ParentHireGroupName', optionsValue: 'ParentHireGroupId', optionsCaption: '<Parent Hire Group>', value: parentHireGroupId,validationTooltip: parentHireGroupId, disable :virtualIsParent()"></select>
+            </div>
+            <label for="description" class="control-label h5 col-sm-2">Description</label>
+            <div class="col-md-2">
+                <textarea class="form-control" rows="2" placeholder="<Description>" id="description" data-bind="value: description, valueUpdate: 'keyup', disable :virtualIsParent()"></textarea>
+            </div>
+        </div>
+    </form>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active"><a href="#detail" role="tab" data-toggle="tab">Detail</a></li>
+        <li><a href="#upgradedHireGroups" role="tab" data-toggle="tab">Upgraded HireGroups</a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <br />
+        <!-- first tab - Detail-->
+        <div class="tab-pane active" id="detail" data-bind="with:vehicleDetail">
+            <form class="form-horizontal">
+                <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onSaveHireGroup">Add</button>
+                <div class="form-group">
+                    <label for="vehicleMake" class="control-label h5 col-sm-2">Vehicle Make*</label>
+                    <div class="col-md-2">
+                        <select id="vehicleMake" class="form-control" data-bind="options: $root.vehicleMakes, optionsText: 'VehicleMakeName', optionsValue: 'VehicleMakeId', optionsCaption: '<Vehicle Make>', value:vehicleMakeId"></select>
+                    </div>
+                    <label for="vehicleModel" class="control-label h5 col-sm-2">Vehicle Model*</label>
+                    <div class="col-md-2">
+                        <select id="vehicleModel" class="form-control" data-bind="options: $root.vehicleModels, optionsText: 'VehicleModelName', optionsValue: 'VehicleModeld', optionsCaption: '<Vehicle Model>', value: vehicleModelId "></select>
+                    </div>
+                    <label for="vehicleCategory" class="control-label h5 col-sm-2">Vehicle Category</label>
+                    <div class="col-md-2">
+                        <select id="vehicleCategory" class="form-control" data-bind="options: $root.vehicleCategories, optionsText: 'VehicleCategoryName', optionsValue: 'VehicleCategoryId', optionsCaption: '<Vehicle Category>', value: vehicleCategoryId "></select>
+                    </div>
+                </div>
+                <div class="form-group">
+
+                </div>
+            </form>
+        </div>
+        <!-- first tab - Upgraded HireGroups-->
+        <div class="tab-pane" id="upgradedHireGroups">...</div>
+    </div>
+</div>

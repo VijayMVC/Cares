@@ -11,7 +11,6 @@ namespace Cares.Web.ModelMappers
     public static class FleetPoolMapper
     {
         #region Fleet Pool
-        #region Entity To Model
         /// <summary>
         ///  Create web model from entity
         /// </summary>
@@ -30,14 +29,10 @@ namespace Cares.Web.ModelMappers
                        RegionName = source.Region.RegionName,
                        CountryId = source.Region.CountryId,
                        CountryName = source.Region.Country.CountryName,
-                       
                    };
-        }
-        #endregion     
+        } 
         #endregion
-
         #region FleetPoolBase
-
         /// <summary>
         /// Fleet Pool Base Data Response
         /// </summary>
@@ -51,8 +46,6 @@ namespace Cares.Web.ModelMappers
              };
         }
         #endregion
-
-
         #region FleetPoolResponse
 
         /// <summary>
@@ -66,8 +59,22 @@ namespace Cares.Web.ModelMappers
                 TotalCount = source.TotalCount
             };
         }
-
+        /// <summary>
+        /// web model to domain model mapper
+        /// </summary>
+        public static FleetPool CreateFrom(this ApiModel.FleetPool source)
+        {
+            return new FleetPool
+            {
+                FleetPoolId = source.FleetPoolId,
+                FleetPoolCode = source.FleetPoolCode,
+                FleetPoolName = source.FleetPoolName,
+                FleetPoolDescription = source.Description,
+                ApproximateVehiclesAsgnd= source.ApproximateVehiclesAsgnd,
+                OperationId = source.OperationId,
+                RegionId = source.RegionId
+            };
+        }
         #endregion
-
     }
 }

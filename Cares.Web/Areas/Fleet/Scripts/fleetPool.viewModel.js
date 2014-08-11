@@ -10,7 +10,10 @@ define("Fleet/fleetPool.viewModel",
             viewModel: (function() {
                 // the view 
                 var view,
-
+                     // Show Filter Section
+                    filterSectionVisilble = ko.observable(false),
+                    //to check if edit mode 
+                     isEditMode = ko.observable(false),
                     // Active FleetPool
                     selectedFleetPool = ko.observable(),
                     // fleetPools
@@ -39,7 +42,6 @@ define("Fleet/fleetPool.viewModel",
                     sortIsAsc = ko.observable(true),
                     // Pagination
                     pager = ko.observable(),
-
                     // Get Fleet Pool Base Data
                     getFleetPoolBaseData = function(callBack) {
                         dataservice.getFleetPoolBasedata(null, {
@@ -50,15 +52,12 @@ define("Fleet/fleetPool.viewModel",
                                 regionsList.removeAll();
                                 ko.utils.arrayPushAll(regionsList(), data.Regions);
                                 regionsList.valueHasMutated();
-
                                 contryBaseRegionList.removeAll();
                                 ko.utils.arrayPushAll(contryBaseRegionList(), data.Regions);
                                 contryBaseRegionList.valueHasMutated();
-
                                 countryList.removeAll();
                                 ko.utils.arrayPushAll(countryList(), data.Countries);
                                 countryList.valueHasMutated();
-
                                 if (callBack && callBack === 'function') {
                                     callBack()();
                                 };
@@ -72,6 +71,18 @@ define("Fleet/fleetPool.viewModel",
                             }
                         });
                     },
+                     // Collapase filter section
+                    collapseFilterSection = function () {
+                        filterSectionVisilble(false);
+                    },
+                    //Show filter section
+                    showFilterSection = function () {
+                        filterSectionVisilble(true);
+                    },
+                     // close Product Editor
+                    closeFleetPoolEditor = function () {
+                        isFleetPoolEditorVisible(false);
+                    },
                     //country selected form dd
                     countrySelected = function() {
                         //getRegions(newCountryFilter());
@@ -81,7 +92,7 @@ define("Fleet/fleetPool.viewModel",
                     },
                     //Validation Check function while saving Fleet Pool
                     doBeforeSaveFleetPool = function() {
-                        return selectedFleetPool.isValid();
+                        return selectedFleetPool().isValid();
                     },
                     //event handler for Saving Fleet Pool
                     onSaveFleetPool = function() {
@@ -90,24 +101,14 @@ define("Fleet/fleetPool.viewModel",
                         }
                     },
                     //add new fleetpool
-                    saveFleetPool = function() {
-                        if (isEditMode()) {
-                            isEditMode(false);
-                            dataservice.updateFleetPool({
-                                FleetPoolId: selectedFleetPool().id(),
-                                CountryId: newCountryFilter(),
-                                RegionId: newRegionFilter(),
-                                OperationId: newOperationFilter(),
-                                FleetPoolCode: fleetPoolCode(),
-                                FleetPoolName: fleetPoolName(),
-                                ApproximateVehiclesAsgnd: fleetPoolVehicles(),
-                                FleetPoolDescription: fleetPoolDescription()
-                            }, {
-                                success: function(data) {
-                                    var updatedFleetPool = model.fleetPoolServertoClinetMapper(data);
-                                    var fleetPool = selectedFleetPool();
-                                    fleetPools.replace(fleetPool, updatedFleetPool);
+                    saveFleetPool = function () {
+                        if (isEditMode()) // to check if we are ediring some record
+                        {
+                            dataservice.updateFleetPool(model.fleePoolClienttoServerMapper(selectedFleetPool()), {
+                                success: function(dataFromServer) {
+                                    fleetPools.replace(selectedFleetPool(), model.fleetPoolServertoClinetMapper(dataFromServer));
                                     reset();
+                                    isEditMode(false);
                                     toastr.success("Successfully upadted!");
                                 },
                                 error: function() {
@@ -115,23 +116,19 @@ define("Fleet/fleetPool.viewModel",
                                 }
                             });
                         }
-                        dataservice.saveFleetPool({
-                            CountryId: newCountryFilter(),
-                            RegionId: newRegionFilter(),
-                            OperationId: newOperationFilter(),
-                            FleetPoolCode: fleetPoolCode(),
-                            FleetPoolName: fleetPoolName(),
-                            ApproximateVehiclesAsgnd: fleetPoolVehicles(),
-                            FleetPoolDescription: fleetPoolDescription()
-                        }, {
-                            success: function(data) {
-                                reset();
-                                toastr.success("Successfully added!");
-                            },
-                            error: function() {
-                                toastr.error("Failed to add!");
-                            }
-                        });
+                        else    // adding new fleetpool
+                        {
+                            dataservice.saveFleetPool(model.fleePoolClienttoServerMapper(selectedFleetPool()), {
+                                success: function (dataFromServer) {
+                                    fleetPools.replace(selectedFleetPool(), model.fleetPoolServertoClinetMapper(dataFromServer));
+                                    reset();
+                                    toastr.success("Successfully Added!");
+                                },
+                                error: function () {
+                                    toastr.error("Failed to Add!");
+                                }
+                            });
+                        }
                     },
                     //search Fleet Pools
                     search = function() {
@@ -146,22 +143,16 @@ define("Fleet/fleetPool.viewModel",
                         search();                        
                     },
                     createFleetForm = function() { //parent
-                        createPoolDetail();
+                        var fleetPool = createPoolDetail();
+                        selectedFleetPool(fleetPool);
                         showFleetPoolEditor();
                     },
                     //creating fleetpool details 
-                    createPoolDetail = function() {
-                        var temp = new model.FleetPoolDetail();
+                    createPoolDetail = function () {
+                        var fleetPool = model.FleetPoolDetail();
+                        return new model.FleetPoolDetail.Create(fleetPool);
                     },
                     showFleetPoolEditor = function() {
-                        newCountryFilter(undefined);
-                        newOperationFilter(undefined);
-                        newRegionFilter(undefined);
-                        fleetPoolCode(undefined);
-                        fleetPoolName(undefined);
-                        fleetPoolVehicles(undefined);
-                        fleetPoolDescription(undefined);
-
                         isFleetPoolEditorVisible(true);
                     },
                     // delete fleetpool
@@ -189,7 +180,8 @@ define("Fleet/fleetPool.viewModel",
                         });
                     },
                     // on edit the existing fleet pool
-                    onEditFleetPool = function(item) {
+                    onEditFleetPool = function (item) {
+                        isEditMode(true);
                         selectedFleetPool(item);
                         editFleetPool(item);                        
                     },
@@ -205,9 +197,7 @@ define("Fleet/fleetPool.viewModel",
                         _.each(data.FleetPools, function(item) {
                             var fleetPool = model.fleetPoolServertoClinetMapper(item);
                             fleetPoolList.push(fleetPool);
-
                         });
-
                         ko.utils.arrayPushAll(fleetPools(), fleetPoolList);
                         fleetPools.valueHasMutated();
                     },
@@ -223,7 +213,7 @@ define("Fleet/fleetPool.viewModel",
                             SortBy: sortOn(),
                             IsAsc: sortIsAsc()
                         }, {
-                            success: function(data) {
+                            success: function (data) {
                                 pager().totalCount(data.TotalCount);
                                 fleetPools.removeAll();
                                 mapFleetPools(data);
@@ -248,8 +238,6 @@ define("Fleet/fleetPool.viewModel",
                     editFleetPool = function(item) {
                         isFleetPoolEditorVisible(true);                        
                     };
-                    
-
                 return {
                     isLoadingFleetPools: isLoadingFleetPools,
                     sortOn: sortOn,
@@ -266,6 +254,7 @@ define("Fleet/fleetPool.viewModel",
                     fleetPoolRegionFilter: fleetPoolRegionFilter,
                     search: search,
                     reset: reset,
+                    isEditMode:isEditMode,
                     isFleetPoolEditorVisible: isFleetPoolEditorVisible,
                     countrySelected: countrySelected,
                     countryList: countryList,
@@ -276,7 +265,11 @@ define("Fleet/fleetPool.viewModel",
                     showFleetPoolEditor: showFleetPoolEditor,                                        
                     cancelSave: cancelSave,                                        
                     onSaveFleetPool: onSaveFleetPool,
-                    filterRegions: filterRegions
+                    filterRegions: filterRegions,
+                    filterSectionVisilble: filterSectionVisilble,
+                    collapseFilterSection: collapseFilterSection,
+                    showFilterSection: showFilterSection,
+                    closeFleetPoolEditor: closeFleetPoolEditor
                 };
             })()
         };
