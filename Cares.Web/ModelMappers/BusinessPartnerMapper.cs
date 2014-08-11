@@ -54,7 +54,8 @@ namespace Cares.Web.ModelMappers
                 BusinessPartnerCompany = source.BusinessPartnerCompany.CreateFrom(),
                 BusinessPartnerInTypes = source.BusinessPartnerInTypes.Select(x => x.CreateFrom()).ToList(),
                 BusinessPartnerPhoneNumbers = source.BusinessPartnerPhoneNumbers.Select(x => x.CreateFrom()).ToList(),
-                BusinessPartnerAddressList = source.BusinessPartnerAddressList.Select(x => x.CreateFrom()).ToList()
+                BusinessPartnerAddressList = source.BusinessPartnerAddressList.Select(x => x.CreateFrom()).ToList(),
+                BusinessPartnerMarketingChannels = source.BusinessPartnerMarketingChannels.Select(x=>x.CreateFrom()).ToList()
             };
         }
 
@@ -95,7 +96,8 @@ namespace Cares.Web.ModelMappers
                 BusinessPartnerCompany = source.BusinessPartnerCompany.CreateFrom(),
                 BusinessPartnerInTypes = source.BusinessPartnerInTypes.Select(x => x.CreateFrom()).ToList(),
                 BusinessPartnerPhoneNumbers = source.BusinessPartnerPhoneNumbers.Select(x => x.CreateFrom()).ToList(),
-                BusinessPartnerAddressList = source.BusinessPartnerAddressList.Select(x=>x.CreateFrom()).ToList()
+                BusinessPartnerAddressList = source.BusinessPartnerAddressList.Select(x=>x.CreateFrom()).ToList(),
+                BusinessPartnerMarketingChannels = source.BusinessPartnerMarketingChannels.Select(x=>x.CreateFrom()).ToList()
             };
         }
 
@@ -137,7 +139,8 @@ namespace Cares.Web.ModelMappers
                 ResponseBusinessSegments = source.ResponseBusinessSegments.Select(x => x.CreateFrom()),
                 ResponseBusinessPartnerSubTypes = source.ResponseBusinessPartnerSubTypes.Select(x => x.CreateFrom()),
                 ResponsePhoneTypes = source.ResponsePhoneTypes.Select(x => x.CreateFrom()),
-                ResponseAddressTypes = source.ResponseAddressTypes.Select(x=>x.CreateFrom())
+                ResponseAddressTypes = source.ResponseAddressTypes.Select(x=>x.CreateFrom()),
+                ResponseMarketingChannels = source.ResponseMarketingChannels.Select(x=>x.CreateFrom())
             };
         }
         #endregion
@@ -325,11 +328,43 @@ namespace Cares.Web.ModelMappers
                 BusinessPartnerSubTypeId = source.BusinessPartnerSubTypeId,
                 FromDate = source.FromDate,
                 ToDate = source.ToDate,
-                BusinessPartnerId = source.BusinessPartnerId,
+                BusinessPartnerId =source.BusinessPartnerId != null ? (long) source.BusinessPartnerId : 0,
                 BpRatingTypeId = source.BpRatingTypeId
             };
         }
 
         #endregion
+
+        #region Business Partner Marketing Channel Mappers
+
+        /// <summary>
+        ///  Create web model from entity
+        /// </summary>
+        public static ApiModel.BusinessPartnerMarketingChannel CreateFrom(this BusinessPartnerMarketingChannel source)
+        {
+            return new ApiModel.BusinessPartnerMarketingChannel()
+            {
+                BusinessPartnerMarketingChannelId = source.BusinessPartnerMarketingChannelId,
+                MarketingChannelId = source.MarketingChannelId,
+                MarketingChannelName = source.MarketingChannel != null ? (source.MarketingChannel.MarketingChannelCode+ "-"+source.MarketingChannel.MarketingChannelName):string.Empty,
+                BusinessPartnerId = source.BusinessPartnerId
+            };
+        }
+
+        /// <summary>
+        ///  Create entity from web model
+        /// </summary>
+        public static BusinessPartnerMarketingChannel CreateFrom(this ApiModel.BusinessPartnerMarketingChannel source)
+        {
+            return new BusinessPartnerMarketingChannel
+            {
+                BusinessPartnerMarketingChannelId = source.BusinessPartnerMarketingChannelId != null ? (long)source.BusinessPartnerMarketingChannelId : 0 ,
+                MarketingChannelId = source.MarketingChannelId,
+                BusinessPartnerId = source.BusinessPartnerId != null ? (long)source.BusinessPartnerId : 0
+            };
+        }
+
+        #endregion
+
     }
 }

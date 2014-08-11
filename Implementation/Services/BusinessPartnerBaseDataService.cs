@@ -29,6 +29,8 @@ namespace Cares.Implementation.Services
         private readonly IPhoneTypeRepository phoneTypeRepository;
         // For Address tab
         private readonly IAddressTypeRepository addressTypeRepository;
+        // For Marketing Channel tab
+        private readonly IMarketingChannelRepository marketingChannelRepository;
         #endregion
         #region Constructor
 
@@ -44,7 +46,8 @@ namespace Cares.Implementation.Services
             , IBusinessSegmentRepository businessSegmentRepository
             ,IBusinessPartnerSubTypeRepository businessPartnerSubTypeRepository
             ,IPhoneTypeRepository phoneTypeRepository
-            ,IAddressTypeRepository addressTypeRepository)
+            ,IAddressTypeRepository addressTypeRepository
+            ,IMarketingChannelRepository marketingChannelRepository)
         {
             this.companyRepository = companyRepository;
             this.paymentTermRepository = paymentTermRepository;
@@ -59,6 +62,7 @@ namespace Cares.Implementation.Services
             this.businessPartnerSubTypeRepository = businessPartnerSubTypeRepository;
             this.phoneTypeRepository = phoneTypeRepository;
             this.addressTypeRepository = addressTypeRepository;
+            this.marketingChannelRepository = marketingChannelRepository;
         }
         #endregion
         #region Public
@@ -79,6 +83,7 @@ namespace Cares.Implementation.Services
             response.ResponseBusinessPartnerSubTypes = businessPartnerSubTypeRepository.GetAll();
             response.ResponsePhoneTypes = phoneTypeRepository.GetAll();
             response.ResponseAddressTypes = addressTypeRepository.GetAll();
+            response.ResponseMarketingChannels = marketingChannelRepository.GetAll();
             return response;
         }
         #endregion

@@ -101,6 +101,7 @@
     <Compile Include="Common\HireGroupByColumn.cs" />
     <Compile Include="Common\HireGroupDetailByColumn.cs" />
     <Compile Include="Common\TariffRateByColumn.cs" />
+    <Compile Include="DomainModels\BusinessPartnerMarketingChannel.cs" />
     <Compile Include="DomainModels\BusinessPartnerInType.cs" />
     <Compile Include="DomainModels\BusinessPartnerIndividual.cs" />
     <Compile Include="DomainModels\BusinessPartner.cs" />
@@ -113,7 +114,8 @@
     <Compile Include="DomainModels\BusinessPartnerCompany.cs" />
     <Compile Include="DomainModels\BusinessPartnerMainType.cs" />
     <Compile Include="DomainModels\BusinessPartnerSubType.cs" />
-     <Compile Include="DomainModels\Area.cs" />
+    <Compile Include="DomainModels\Area.cs" />
+    <Compile Include="DomainModels\MarketingChannel.cs" />
     <Compile Include="DomainModels\TransmissionType.cs" />
     <Compile Include="DomainModels\OccupationType.cs" />
     <Compile Include="DomainModels\BusinessSegment.cs" />
