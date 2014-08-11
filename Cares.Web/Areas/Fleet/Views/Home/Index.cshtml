@@ -11,10 +11,10 @@
                         <input type="text" class="form-control" placeholder="<Fleet Pool>" data-bind="value: fleetPoolSeachFilter" />
                     </div>
                     <div class="col-xs-2 float-left">
-                        <select class="form-control" data-bind="options: $root.regionsList, optionsText: 'RegionName', optionsValue: 'RegionId', optionsCaption: '<Region>', value: regionFilter"></select>
+                        <select class="form-control" data-bind="options: $root.regionsList, optionsText: 'RegionName', optionsValue: 'RegionId', optionsCaption: '<Region>', value: fleetPoolRegionFilter"></select>
                     </div>
                     <div class="col-xs-2 float-left">
-                        <select class="form-control" data-bind="options: $root.operationsList, optionsText: 'OperationName', optionsValue: 'OperationId', optionsCaption: '<Operation>', value: operationFilter"></select>
+                        <select class="form-control" data-bind="options: $root.operationsList, optionsText: 'OperationName', optionsValue: 'OperationId', optionsCaption: '<Operation>', value: fleetPoolOperationFilter"></select>
                     </div>
                     <div class="col-xs-3 float-left">
                         <button type="button" class="btn btn-info float-left" data-bind="click: reset">Reset</button>
