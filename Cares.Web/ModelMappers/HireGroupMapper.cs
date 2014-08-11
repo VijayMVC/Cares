@@ -33,7 +33,18 @@ namespace Cares.Web.ModelMappers
                 Description = source.HireGroupDescription,
                 IsParent = source.IsParent,
                 ParentHireGroupName = source.ParentHireGroup != null ? source.ParentHireGroup.HireGroupCode +'-' +source.ParentHireGroup.HireGroupName : string.Empty,
-                CompanyName = source.Company.CompanyCode + '-' + source.Company.CompanyName
+                ParentHireGroupId = source.ParentHireGroup != null ? source.ParentHireGroup.HireGroupId  : 0,
+                CompanyName = source.Company.CompanyCode + '-' + source.Company.CompanyName,
+                CompanyId = source.Company.CompanyId, 
+            };
+        }
+        public static ParentHireGroup CreateFromParentHireGroup(this DomainModels.HireGroup source)
+        {
+            return new ParentHireGroup
+            {
+                ParentHireGroupId = source.HireGroupId,
+                ParentHireGroupName = source.HireGroupCode+'-'+source.HireGroupName,
+              CompanyId = source.CompanyId
             };
         }
         /// <summary>
@@ -55,8 +66,12 @@ namespace Cares.Web.ModelMappers
         {
             return new HireGroupBaseResponse
             {
-                ParentHireGroups = source.ParentHireGroups.Select(hg => hg.CreateFrom()),
+                ParentHireGroups = source.ParentHireGroups.Select(hg => hg.CreateFromParentHireGroup()),
                 Companies = source.Companies.Select(company => company.CreateFrom()),
+                VehicleCategories = source.VehicleCategories.Select(category => category.CreateFrom()),
+                VehicleModels = source.VehicleModels.Select(model => model.CreateFrom()),
+                VehicleMakes = source.VehicleMakes.Select(makes => makes.CreateFrom()),
+                
             };
         }
         #endregion

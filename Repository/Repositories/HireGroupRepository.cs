@@ -28,6 +28,7 @@ namespace Cares.Repository.Repositories
                        
                     };
         #endregion
+        
         #region Constructor
         /// <summary>
         /// Constructor
@@ -49,6 +50,7 @@ namespace Cares.Repository.Repositories
         }
 
         #endregion
+        
         #region Public
         /// <summary>
         /// Get All Hire Groups 
@@ -83,6 +85,13 @@ namespace Cares.Repository.Repositories
         public  IEnumerable<HireGroup> GetParentHireGroups()
         {
             return DbSet.Where(hireGroup => hireGroup.UserDomainKey == UserDomainKey && hireGroup.IsParent);
+        }
+        /// <summary>
+        /// Get Hire Groups that are not parent hire groups 
+        /// </summary>
+        public IEnumerable<HireGroup> GetHireGroupList()
+        {
+            return DbSet.Where(hireGroup => hireGroup.UserDomainKey == UserDomainKey && !hireGroup.IsParent);
         }
         #endregion
     }

@@ -312,6 +312,7 @@
     <Compile Include="Models\CountryRegionsResponse.cs" />
     <Compile Include="Models\HireGroupBaseResponse.cs" />
     <Compile Include="Models\HireGroupSearchResponse.cs" />
+    <Compile Include="Models\ParentHireGroup.cs" />
     <Compile Include="Models\Phone.cs" />
     <Compile Include="Models\AddressType.cs" />
     <Compile Include="Models\PhoneType.cs" />
@@ -984,6 +985,7 @@
     <Content Include="Areas\RentalAgreement\Views\web.config" />
     <Content Include="Content\RentalAgreement.less" />
     <Content Include="Areas\Fleet\Views\Home\HireGroup.cshtml" />
+    <Content Include="Areas\Fleet\Views\Home\_HireGroupEditor.cshtml" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
