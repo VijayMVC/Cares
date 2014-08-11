@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Configuration;
+using System.Data.Entity;
 using Cares.Interfaces.Repository;
 using Cares.Repository.BaseRepository;
 using Cares.Repository.Repositories;
@@ -27,11 +28,11 @@ namespace Cares.Repository
             unityContainer.RegisterType<IBusinessPartnerRepository, BusinessPartnerRepository>();
             unityContainer.RegisterType<IOperationRepository, OperationRepository>();
             unityContainer.RegisterType<IMeasurementUnit, MeasurementUnitRepository>();
-            unityContainer.RegisterType<DbContext, BaseDbContext>(new HierarchicalLifetimeManager());
             unityContainer.RegisterType<IPaymentTermRepository, PaymentTermRepository>();
             unityContainer.RegisterType<IPricingStrategyRepository, PricingStrategyRepository>();
             unityContainer.RegisterType<IRegionRepository, RegionRepository>();
-            unityContainer.RegisterType<DbContext, BaseDbContext>();
+            unityContainer.RegisterType<BaseDbContext>(new PerRequestLifetimeManager());
+
             unityContainer.RegisterType<IBpRatingTypeRepository, BpRatingTypeRepository>();
             unityContainer.RegisterType<IBusinessLegalStatusRepository, BusinessLegalStatusRepository>();
             unityContainer.RegisterType<IVehicleCategoryRepository, VehicleCategoryRepository>();
