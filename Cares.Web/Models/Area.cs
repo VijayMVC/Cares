@@ -11,6 +11,10 @@
         /// </summary>
         public short AreaId { get; set; }
         /// <summary>
+        /// Area Custom ID
+        /// </summary>
+        public string AreaCustomId { get; set; }
+        /// <summary>
         /// Area Code
         /// </summary>
         public string AreaCode { get; set; }

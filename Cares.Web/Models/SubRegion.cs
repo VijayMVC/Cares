@@ -11,6 +11,10 @@
         /// </summary>
         public short SubRegionId { get; set; }
         /// <summary>
+        /// Sub Region Custom ID
+        /// </summary>
+        public string SubRegionCustomId { get; set; }
+        /// <summary>
         /// Sub Region Code
         /// </summary>
         public string SubRegionCode { get; set; }

@@ -15,6 +15,7 @@ namespace Cares.Web.ModelMappers
             return new ApiModel.Area()
             {
                 AreaId = source.AreaId,
+                AreaCustomId = source.AreaId.ToString()+"-"+source.AreaCode+"-"+source.AreaName,
                 AreaCode = source.AreaCode,
                 AreaName = source.AreaName,
                 CityId = source.CityId

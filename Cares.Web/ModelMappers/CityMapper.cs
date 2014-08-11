@@ -17,6 +17,7 @@ namespace Cares.Web.ModelMappers
             return new ApiModel.City()
             {
                 CityId = source.CityId,
+                CityCustomId = source.CityId.ToString()+"-"+source.CityCode+"-"+source.CityName,
                 CityCode = source.CityCode,
                 CityName = source.CityName,
                 RegionId = source.RegionId,
