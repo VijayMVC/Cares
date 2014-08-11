@@ -55,7 +55,6 @@ define("Fleet/fleetPool.dataservice", function () {
                         dataType: 'json',
                         type: 'PUT'
                     });
-
                     isInitialized = true;
                 }
             },
@@ -92,8 +91,6 @@ define("Fleet/fleetPool.dataservice", function () {
                 });
             },
 
-
-
             //get the selected country's regions
             getCountryRegions = function (params, callbacks) {
                 return amplify.request({
@@ -103,7 +100,6 @@ define("Fleet/fleetPool.dataservice", function () {
                     data: params
                 });
             },
-
 
         ///get Fleet Pools
             getFleetPools = function (params, callbacks) {
@@ -117,8 +113,6 @@ define("Fleet/fleetPool.dataservice", function () {
                 });
             },
 
-           
-
             // save Forecast
         deleteFleetPool = function (params, callbacks) {
             debugger;
@@ -129,7 +123,6 @@ define("Fleet/fleetPool.dataservice", function () {
                 data: params
             });
         };
-
         return {
             getFleetPoolBasedata: getFleetPoolBasedata,
             getFleetPools: getFleetPools,
@@ -139,6 +132,5 @@ define("Fleet/fleetPool.dataservice", function () {
             updateFleetPool: updateFleetPool
         };
     })();
-
     return dataService;
 });
