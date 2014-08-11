@@ -243,6 +243,10 @@ namespace Cares.Repository.BaseRepository
         /// Area DB Set
         /// </summary>
         public DbSet<Area> Areas { get; set; }
+        /// <summary>
+        /// Marketing Channel DB Set
+        /// </summary>
+        public DbSet<MarketingChannel> MarketingChannels { get; set; }
         #endregion
     }
 }

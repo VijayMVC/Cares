@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Cares.Models.DomainModels;
+
 namespace Cares.Web.Models
 {
     public class BusinessPartnerBaseResponse
@@ -62,6 +64,10 @@ namespace Cares.Web.Models
         /// Address Types
         /// </summary>
         public IEnumerable<AddressType> ResponseAddressTypes { get; set; }
+        /// <summary>
+        /// Marketing Channels
+        /// </summary>
+        public IEnumerable<MarketingChannel> ResponseMarketingChannels { get; set; }
         #endregion
     }
 }

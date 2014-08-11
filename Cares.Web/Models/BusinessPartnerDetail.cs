@@ -94,6 +94,11 @@ namespace Cares.Web.Models
         /// Business Partner Address List 
         /// </summary>
         public List<Address> BusinessPartnerAddressList { get; set; }
+        /// <summary>
+        /// Business Partner Marketing Channels 
+        /// </summary>
+        public List<BusinessPartnerMarketingChannel> BusinessPartnerMarketingChannels { get; set; }
+        
         #endregion
 
         #endregion
