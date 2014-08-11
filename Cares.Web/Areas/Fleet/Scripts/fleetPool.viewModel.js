@@ -94,7 +94,7 @@ define("Fleet/fleetPool.viewModel",
                     },
                     //Validation Check function while saving Fleet Pool
                     doBeforeSaveFleetPool = function() {
-
+                        return true;
                     },
                     //event handler for Saving Fleet Pool
                     onSaveFleetPool = function() {
