@@ -9,7 +9,11 @@
         /// <summary>
         /// Area ID
         /// </summary>
-        public int AreaId { get; set; }
+        public short AreaId { get; set; }
+        /// <summary>
+        /// Area Custom ID
+        /// </summary>
+        public string AreaCustomId { get; set; }
         /// <summary>
         /// Area Code
         /// </summary>
@@ -25,7 +29,7 @@
         /// <summary>
         /// City ID
         /// </summary>
-        public int CityId { get; set; }
+        public short CityId { get; set; }
         #endregion
     }
 }

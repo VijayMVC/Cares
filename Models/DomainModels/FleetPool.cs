@@ -75,7 +75,7 @@ namespace Cares.Models.DomainModels
         /// Region ID
         /// </summary>
         [ForeignKey("Region")]
-        public int RegionId { get; set; }
+        public short RegionId { get; set; }
         
         /// <summary>
         /// FleetPool Record Created Date

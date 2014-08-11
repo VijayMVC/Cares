@@ -39,9 +39,49 @@
         /// </summary>
         public short? CountryId { get; set; }
         /// <summary>
+        /// Country Name
+        /// </summary>
+        public string CountryName { get; set; }
+        /// <summary>
+        /// Region
+        /// </summary>
+        public short? RegionId { get; set; }
+        /// <summary>
+        /// Region Name
+        /// </summary>
+        public string RegionName { get; set; }
+        /// <summary>
+        /// Sub Region
+        /// </summary>
+        public short? SubRegionId { get; set; }
+        /// <summary>
+        /// Sub Region Name
+        /// </summary>
+        public string SubRegionName { get; set; }
+        /// <summary>
+        /// City
+        /// </summary>
+        public short? CityId { get; set; }
+        /// <summary>
+        /// City Name
+        /// </summary>
+        public string CityName { get; set; }
+        /// <summary>
+        /// Area
+        /// </summary>
+        public short? AreaId { get; set; }
+        /// <summary>
+        /// Area Name
+        /// </summary>
+        public string AreaName { get; set; }
+        /// <summary>
         /// Address Type ID
         /// </summary>
-        public int AddressTypeId { get; set; }
+        public short AddressTypeId { get; set; }
+        /// <summary>
+        /// Address Type Name
+        /// </summary>
+        public string AddressTypeName { get; set; }
         /// <summary>
         /// Business Partner Id
         /// </summary>

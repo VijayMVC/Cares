@@ -227,6 +227,8 @@
     <Compile Include="Areas\Api\Controllers\GetBusinessPartnerDetailsController.cs" />
     <Compile Include="Areas\Api\Controllers\GetTariffDetailsController.cs" />
     <Compile Include="Areas\Api\Controllers\GetHireGroupDetailController.cs" />
+    <Compile Include="Areas\Api\Controllers\HireGroupBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\HireGroupController.cs" />
     <Compile Include="Areas\Api\Controllers\ProductBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessPartnerController.cs" />
     <Compile Include="Areas\Api\Controllers\AddressBaseController.cs" />
@@ -306,6 +308,8 @@
     <Compile Include="Models\Area.cs" />
     <Compile Include="Models\CountryRegions.cs" />
     <Compile Include="Models\CountryRegionsResponse.cs" />
+    <Compile Include="Models\HireGroupBaseResponse.cs" />
+    <Compile Include="Models\HireGroupSearchResponse.cs" />
     <Compile Include="Models\Phone.cs" />
     <Compile Include="Models\AddressType.cs" />
     <Compile Include="Models\PhoneType.cs" />
@@ -384,6 +388,10 @@
     <Content Include="Areas\Fleet\Scripts\fleetPool.model.js" />
     <Content Include="Areas\Fleet\Scripts\fleetPool.view.js" />
     <Content Include="Areas\Fleet\Scripts\fleetPoolWithKoMapping.model.js" />
+    <Content Include="Areas\Fleet\Scripts\hireGroup.dataservice.js" />
+    <Content Include="Areas\Fleet\Scripts\hireGroup.model.js" />
+    <Content Include="Areas\Fleet\Scripts\hireGroup.view.js" />
+    <Content Include="Areas\Fleet\Scripts\hireGroup.viewModel.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.dataservice.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.model.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.view.js" />
@@ -973,6 +981,7 @@
     <Content Include="Areas\RentalAgreement\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\RentalAgreement\Views\web.config" />
     <Content Include="Content\RentalAgreement.less" />
+    <Content Include="Areas\Fleet\Views\Home\HireGroup.cshtml" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />

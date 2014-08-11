@@ -11,41 +11,38 @@
     <hr/>
     <form class="form-horizontal">
         
-        <div class="form-group">
+        <div class="form-group" data-bind="with: selectedFleetPool">
             <label for="tariffTypeCode" class="control-label h5 col-sm-2">Fleet Pool Code</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" required placeholder="<Fleet Pool Code>" id="tariffTypeCode" data-bind="value:fleetPoolCode" />
+                <input type="text" class="form-control" placeholder="<Fleet Pool Code>" id="tariffTypeCode" data-bind="value: code" />
             </div>
             <label for="FleetPoolName" class="control-label h5 col-sm-2">Fleet Pool Name</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" required placeholder="<Fleet Pool Name>" id="FleetPoolName" data-bind="value:fleetPoolName" />
+                <input type="text" class="form-control" required placeholder="<Fleet Pool Name>" id="FleetPoolName" data-bind="value:name" />
             </div>
-
-            <label for="veh" class="control-label h5 col-sm-2">Vehicles Asgnd</label>
+            <label for="veh" class="control-label h5 col-sm-2">Vehicles Assigned</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" required placeholder="<Vehicles Asgnd>" id="veh" data-bind="value:fleetPoolVehicles" />
+                <input type="text" class="form-control" required placeholder="<Vehicles Asgnd>" id="veh" data-bind="value:vehiclesAssigned" />
             </div>
-
             <label for="FleetPoolDescription" class="control-label h5 col-sm-2">Description</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" required placeholder="<Description>" id="FleetPoolDescription" data-bind="value:fleetPoolDescription" />
+                <input type="text" class="form-control" required placeholder="<Description>" id="FleetPoolDescription" data-bind="value:description" />
             </div>
-            
-            
+
+
             <label for="tariffTypeCode" class="control-label h5 col-sm-2">Country</label>
             <div class="col-md-2">
-                <select class="form-control" required data-bind="options: $root.countryList, optionsText: 'CountryName', optionsValue: 'CountryId', optionsCaption: '<Country>', value: newCountryFilter, event:{change:countrySelected}"></select>
+                <select class="form-control" required data-bind="options: $root.countryList, optionsText: 'CountryName', optionsValue: 'CountryId', optionsCaption: '<Country>', value: countryId, event: { change : $root.filterRegions}"></select>
             </div>
             <label for="FleetPoolName" class="control-label h5 col-sm-2">Region</label>
             <div class="col-md-2">
-                <select class="form-control" required data-bind="options: $root.selectedCountryRegions, optionsText: 'RegionName', optionsValue: 'RegionId', optionsCaption: '<Region>', value: newRegionFilter"></select>
+                <select class="form-control" required data-bind="options: $root.contryBaseRegionList, optionsText: 'RegionName', optionsValue: 'RegionId', optionsCaption: '<Region>', value: regionId"></select>
             </div>
-
             <label for="veh" class="control-label h5 col-sm-2">Operation</label>
             <div class="col-md-2">
-                <select class="form-control" required data-bind="options: $root.operationsList, optionsText: 'OperationName', optionsValue: 'OperationId', optionsCaption: '<Operation>', value: newOperationFilter"></select>
+                <select class="form-control" required data-bind="options: $root.operationsList, optionsText: 'OperationName', optionsValue: 'OperationId', optionsCaption: '<Operation>', value: operationId"></select>
             </div>
-          
+
         </div>
     </form>
    

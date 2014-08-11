@@ -50,31 +50,31 @@ namespace Cares.Models.DomainModels
         /// </summary>
         [ForeignKey("Country")]
         public short? CountryId { get; set; }
-        ///// <summary>
-        ///// Region
-        ///// </summary>
-        //[ForeignKey("Region")]
-        //public int? RegionId { get; set; }
-        ///// <summary>
-        ///// SubRegion ID
-        ///// </summary>
-        //[ForeignKey("SubRegion")]
-        //public int? SubRegionId { get; set; }
-        ///// <summary>
-        ///// City
-        ///// </summary>
-        //[ForeignKey("City")]
-        //public int? CityId { get; set; }
-        ///// <summary>
-        ///// Area
-        ///// </summary>
-        //[ForeignKey("Area")]
-        //public int? AreaId { get; set; }
+        /// <summary>
+        /// Region id
+        /// </summary>
+        [ForeignKey("Region")]
+        public short? RegionId { get; set; }
+        /// <summary>
+        /// SubRegion ID
+        /// </summary>
+        [ForeignKey("SubRegion")]
+        public short? SubRegionId { get; set; }
+        /// <summary>
+        /// City
+        /// </summary>
+        [ForeignKey("City")]
+        public short? CityId { get; set; }
+        /// <summary>
+        /// Area
+        /// </summary>
+        [ForeignKey("Area")]
+        public short? AreaId { get; set; }
         /// <summary>
         /// Address Type ID
         /// </summary>
         [ForeignKey("AddressType")]
-        public int AddressTypeId { get; set; }
+        public short AddressTypeId { get; set; }
         /// <summary>
         /// Business Partner Id
         /// </summary>
@@ -139,6 +139,22 @@ namespace Cares.Models.DomainModels
         /// Country
         /// </summary>
         public virtual Country Country { get; set; }
+        /// <summary>
+        /// Region
+        /// </summary>
+        public virtual Region Region { get; set; }
+        /// <summary>
+        /// Sub Region
+        /// </summary>
+        public virtual SubRegion SubRegion { get; set; }
+        /// <summary>
+        /// City
+        /// </summary>
+        public virtual City City { get; set; }
+        /// <summary>
+        /// Area
+        /// </summary>
+        public virtual Area Area { get; set; }
         #endregion
     }
 }

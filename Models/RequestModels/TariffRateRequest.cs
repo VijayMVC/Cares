@@ -5,7 +5,7 @@ namespace Cares.Models.RequestModels
     /// <summary>
     /// Tariff Rate Request Domain Model
     /// </summary>
-    public class TariffRateRequest : GetPagedListRequest
+    public sealed class TariffRateRequest : GetPagedListRequest
     {
         /// <summary>
         /// Tariff Rate Id
