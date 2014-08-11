@@ -923,11 +923,17 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         businessPartnerAddress.zipCode(item.ZipCode === undefined ? undefined : item.ZipCode);
         businessPartnerAddress.poBox(item.PoBox === undefined ? undefined : item.PoBox);
         businessPartnerAddress.countryId(item.CountryId === undefined ? undefined : item.CountryId);
+        businessPartnerAddress.countryName(item.CountryName === undefined ? undefined : item.CountryName);
         businessPartnerAddress.regionId(item.RegionId === undefined ? undefined : item.RegionId);
+        businessPartnerAddress.regionName(item.RegionName === undefined ? undefined : item.RegionName);
         businessPartnerAddress.subRegionId(item.SubRegionId === undefined ? undefined : item.SubRegionId);
+        businessPartnerAddress.subRegionName(item.SubRegionName === undefined ? undefined : item.SubRegionName);
         businessPartnerAddress.cityId(item.CityId === undefined ? undefined : item.CityId);
+        businessPartnerAddress.cityName(item.CityName === undefined ? undefined : item.CityName);
         businessPartnerAddress.areaId(item.AreaId === undefined ? undefined : item.AreaId);
+        businessPartnerAddress.areaName(item.AreaName === undefined ? undefined : item.AreaName);
         businessPartnerAddress.addressTypeId(item.AddressTypeId === undefined ? undefined : item.AddressTypeId);
+        businessPartnerAddress.addressTypeName(item.AddressTypeName === undefined ? undefined : item.AddressTypeName);
         businessPartnerAddress.businessPartnerId(item.BusinessPartnerId === undefined ? undefined : item.BusinessPartnerId);
         return businessPartnerAddress;        
     };

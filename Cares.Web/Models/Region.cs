@@ -9,7 +9,11 @@
         /// <summary>
         /// Region ID
         /// </summary>
-        public int RegionId { get; set; }
+        public short RegionId { get; set; }
+        /// <summary>
+        /// Region Custom ID
+        /// </summary>
+        public string RegionCustomId { get; set; }
         /// <summary>
         /// Region Code
         /// </summary>

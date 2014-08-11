@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Cares.Models.DomainModels;
 
 namespace Cares.Interfaces.Repository
@@ -12,6 +14,6 @@ namespace Cares.Interfaces.Repository
         /// gets all operatoins for sale 
         /// </summary>
         /// <returns></returns>
-        IQueryable<Operation> GetSalesOperation();
+        ICollection<Operation> GetSalesOperation();
     }
 }

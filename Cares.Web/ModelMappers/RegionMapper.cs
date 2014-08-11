@@ -17,6 +17,7 @@ namespace Cares.Web.ModelMappers
             return new ApiModel.Region
             {
                 RegionId = source.RegionId,
+                RegionCustomId = source.RegionId.ToString()+"-"+source.RegionCode+"-"+source.RegionName,
                 RegionCode = source.RegionCode,
                 RegionName = source.RegionName,
                 Country = source.Country != null ? source.Country.CountryCode + " - " + source.Country.CountryName : string.Empty,
@@ -35,7 +36,8 @@ namespace Cares.Web.ModelMappers
         {
             return new ApiModel.SubRegion()
             {
-                SubRegionId = source.RegionId,
+                SubRegionId = source.SubRegionId,
+                SubRegionCustomId = source.SubRegionId.ToString()+"-"+source.SubRegionCode+"-"+source.SubRegionName,
                 SubRegionCode = source.SubRegionCode,
                 SubRegionName = source.SubRegionName,
                 RegionId = source.RegionId

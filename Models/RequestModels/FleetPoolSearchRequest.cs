@@ -8,7 +8,7 @@
         /// <summary>
         /// FleetPool Code
         /// </summary>
-        public string FleetPoolCode { get; set; }  
+        public string FleetPoolSearchText { get; set; }  
         /// <summary>
         /// Region Id
         /// </summary>

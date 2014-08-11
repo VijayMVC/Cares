@@ -37,7 +37,7 @@ namespace Cares.Implementation.Identity
             string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
 
-            BaseDbContext db = new BaseDbContext(connectionString,UnityConfig.UnityContainer);
+            BaseDbContext db = new BaseDbContext(UnityConfig.UnityContainer, connectionString);
 
 
 
@@ -99,7 +99,7 @@ namespace Cares.Implementation.Identity
             string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             //BaseDbContext db = UnityConfig.UnityContainer.Resolve<BaseDbContext>();
 
-            BaseDbContext db = new BaseDbContext(connectionString,UnityConfig.UnityContainer);
+            BaseDbContext db = new BaseDbContext(UnityConfig.UnityContainer, connectionString);
 
             return new ApplicationRoleManager(new RoleStore<IdentityRole>(db));
             

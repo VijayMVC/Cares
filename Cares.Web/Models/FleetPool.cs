@@ -42,7 +42,7 @@
         /// <summary>
         /// Region id
         /// </summary>
-        public int RegionId { get; set; }
+        public short RegionId { get; set; }
         /// <summary>
         /// Region Name
         /// </summary>

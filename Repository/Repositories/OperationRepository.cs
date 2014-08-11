@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using Cares.Interfaces.Repository;
 using Cares.Models.CommonTypes;
@@ -43,9 +45,9 @@ namespace Cares.Repository.Repositories
             return DbSet.Where(operation => operation.UserDomainKey == UserDomainKey && operation.Department.DepartmentType == DepartmentTypes.Sales);
         }
 
-        public IQueryable<Operation> GetSalesOperation()
+        public ICollection<Operation> GetSalesOperation()
         {
-            return DbSet.Where(operation => operation.Department.DepartmentType == DepartmentTypes.Sales);
+            return DbSet.Include(operation => operation.Department).Where(operation => operation.Department.DepartmentType == DepartmentTypes.Sales).ToList();
         }
 
         #endregion

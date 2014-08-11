@@ -11,7 +11,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Area ID
         /// </summary>
-        public int AreaId { get; set; }
+        public short AreaId { get; set; }
         /// <summary>
         /// Area Code
         /// </summary>
@@ -31,7 +31,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// City ID
         /// </summary>
-        public int CityId { get; set; }
+        public short CityId { get; set; }
         /// <summary>
         /// Row Version
         /// </summary>

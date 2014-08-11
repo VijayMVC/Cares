@@ -29,6 +29,10 @@ namespace Cares.Web.ModelMappers
                 ZipCode = source.ZipCode,
                 POBox = source.POBox,
                 CountryId = source.CountryId,
+                RegionId = source.RegionId,
+                SubRegionId = source.SubRegionId,
+                CityId = source.CityId,
+                AreaId = source.AreaId,
                 AddressTypeId = source.AddressTypeId,      
                 BusinessPartnerId = source.BusinessPartnerId
             };
@@ -48,8 +52,17 @@ namespace Cares.Web.ModelMappers
                 ZipCode = source.ZipCode,
                 POBox = source.POBox,
                 CountryId = source.CountryId,
+                CountryName = source.Country != null ? (source.Country.CountryCode +"-"+source.Country.CountryName) : string.Empty,
+                RegionId = source.RegionId,
+                RegionName = source.Region != null ? (source.Region.RegionCode +"-"+source.Region.RegionName) : string.Empty,
+                SubRegionId = source.SubRegionId,
+                SubRegionName = source.SubRegion != null ?(source.SubRegion.SubRegionCode + "-"+source.SubRegion.SubRegionName) : string.Empty,
+                CityId = source.CityId,
+                CityName = source.City != null ? (source.City.CityCode + "-"+source.City.CityName) : string.Empty,
+                AreaId = source.AreaId,
+                AreaName = source.Area != null ? (source.Area.AreaCode +"-"+source.Area.AreaName) : string.Empty,
                 AddressTypeId = source.AddressTypeId,      
-                //PhoneTypeName = source.PhoneType != null ? (source.PhoneType.PhoneTypeCode + '-' + source.PhoneType.PhoneTypeName) : string.Empty,
+                AddressTypeName = source.AddressType != null ? (source.AddressType.AddressTypeCode + "-" + source.AddressType.AddressTypeName) : string.Empty,
                 BusinessPartnerId = source.BusinessPartnerId
             };
         }

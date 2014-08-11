@@ -89,21 +89,7 @@ namespace Cares.Implementation.Services
             return fleetPoolRepository.Find(fleetPool.FleetPoolId);
         }
         #endregion
-        #region Constructor
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public FleetPoolService(IFleetPoolRepository iFleetPoolRepositoryService, IRegionRepository regionRepository, IOperationRepository operationRepository)
-        {
-            if (iFleetPoolRepositoryService == null) throw new ArgumentNullException("iFleetPoolRepositoryService");
-            if (regionRepository == null) throw new ArgumentNullException("regionRepository");
-            if (operationRepository == null) throw new ArgumentNullException("operationRepository");
-
-            fleetPoolRepository = iFleetPoolRepositoryService;
-            this.regionRepository = regionRepository;
-            this.operationRepository = operationRepository;
-        }
-        #endregion
+        
        #region Private
        
         private readonly IOperationRepository operationRepository;

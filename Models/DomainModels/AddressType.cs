@@ -12,7 +12,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Address Type ID
         /// </summary>
-        public int AddressTypeId { get; set; }
+        public short AddressTypeId { get; set; }
         /// <summary>
         /// Address Type Code
         /// </summary>

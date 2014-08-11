@@ -352,29 +352,29 @@
                     <div class="form-group">
                         <label for="addressListCountries" class="control-label col-sm-2">Country *</label>
                         <div class="col-md-2">
-                            <select id="addressListCountries" class="form-control" data-bind="options: $root.countries, optionsText: 'CountryName', optionsValue: 'CountryId', optionsCaption: '<Country>',value:countryId,event:{change:$root.onCountrySelectionChange}"></select>
+                            <select id="addressListCountries" class="form-control" data-bind="options: $root.countries, optionsText: 'CountryName', optionsValue: 'CountryCustomId', optionsCaption: '<Country>',value:countryId,event:{change:$root.onCountrySelectionChange}"></select>
                         </div>
                         <label for="addressListRegion" class="control-label col-sm-2">Region</label>
                         <div class="col-md-2">
-                            <select id="addressListRegion" class="form-control" data-bind="options: $root.countryRegions, optionsText: 'RegionName', optionsValue: 'RegionId', optionsCaption: '<Region>',value:regionId,event:{change:$root.onRegionSelectionChange}"></select>
+                            <select id="addressListRegion" class="form-control" data-bind="options: $root.countryRegions, optionsText: 'RegionName', optionsValue: 'RegionCustomId', optionsCaption: '<Region>',value:regionId,event:{change:$root.onRegionSelectionChange}"></select>
                         </div>
                         <label for="addressListSubRegion" class="control-label col-sm-2">Sub Region</label>
                         <div class="col-md-2">
-                            <select id="addressListSubRegion" class="form-control" data-bind="options: $root.filteredSubRegions, optionsText: 'SubRegionName', optionsValue: 'SubRegionId', optionsCaption: '<Sub Region>',value:subRegionId,event:{change:$root.onSubRegionSelectionChange}"></select>
+                            <select id="addressListSubRegion" class="form-control" data-bind="options: $root.filteredSubRegions, optionsText: 'SubRegionName', optionsValue: 'SubRegionCustomId', optionsCaption: '<Sub Region>',value:subRegionId,event:{change:$root.onSubRegionSelectionChange}"></select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="addressListCity" class="control-label col-sm-2">City</label>
                         <div class="col-md-2">
-                            <select id="addressListCity" class="form-control" data-bind="options: $root.filteredCountryCities, optionsText: 'CityName', optionsValue: 'CityId', optionsCaption: '<City>',value:cityId"></select>
+                            <select id="addressListCity" class="form-control" data-bind="options: $root.filteredCountryCities, optionsText: 'CityName', optionsValue: 'CityCustomId', optionsCaption: '<City>',value:cityId,event:{change:$root.onCitySelectionChange}"></select>
                         </div>
                         <label for="addressListAreas" class="control-label col-sm-2">Area</label>
                         <div class="col-md-2">
-                            <select id="addressListAreas" class="form-control" data-bind="options: $root.phoneTypes, optionsText: 'PhoneTypeName', optionsValue: 'PhoneTypeCustomId', optionsCaption: '<Area>',value:areaId"></select>
+                            <select id="addressListAreas" class="form-control" data-bind="options: $root.filteredAreas, optionsText: 'AreaName', optionsValue: 'AreaCustomId', optionsCaption: '<Area>',value:areaId"></select>
                         </div>
                         <label for="isDefault" class="control-label col-sm-2">Address Type *</label>
                         <div class="col-md-2">
-                            <select id="addressListAddressType" class="form-control" data-bind="options: $root.addressTypes, optionsText: 'AddressTypeName', optionsValue: 'AddressTypeId', optionsCaption: '<Address Type>',value:addressTypeId"></select>
+                            <select id="addressListAddressType" class="form-control" data-bind="options: $root.addressTypes, optionsText: 'AddressTypeName', optionsValue: 'AddressTypeCustomId', optionsCaption: '<Address Type>',value:addressTypeId"></select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -420,15 +420,14 @@
                                     <th> <span id="2">Country<span></span></span></th>
                                     <th> <span id="3">Region<span></span></span></th>
                                     <th> <span id="4">Sub Region<span></span></span></th>
-                                    <th> <span id="5">Region<span></span></span></th>
-                                    <th> <span id="6">City<span></span></span></th>
-                                    <th> <span id="7">Area<span></span></span></th>
-                                    <th> <span id="8">PO Box#<span></span></span></th>
-                                    <th> <span id="9">Zip Code<span></span></span></th>
-                                    <th> <span id="10">Web Address<span></span></span></th>
-                                    <th> <span id="11">Email Address<span></span></span></th>
-                                    <th> <span id="12">Address<span></span></span></th>
-                                    <th> <span id="13">Contact Person<span></span></span></th>
+                                    <th> <span id="5">City<span></span></span></th>
+                                    <th> <span id="6">Area<span></span></span></th>
+                                    <th> <span id="7">PO Box#<span></span></span></th>
+                                    <th> <span id="8">Zip Code<span></span></span></th>
+                                    <th> <span id="9">Web Address<span></span></span></th>
+                                    <th> <span id="10">Email Address<span></span></span></th>
+                                    <th> <span id="11">Address<span></span></span></th>
+                                    <th> <span id="12">Contact Person<span></span></span></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -482,7 +481,6 @@
         <td data-bind="text: subRegionName"></td>
         <td data-bind="text: cityName"></td>
         <td data-bind="text: areaName"></td>
-        <td data-bind="text: subRegionName"></td>
         <td data-bind="text: poBox"></td>
         <td data-bind="text: zipCode"></td>
         <td data-bind="text: webPage"></td>

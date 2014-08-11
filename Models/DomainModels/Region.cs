@@ -11,7 +11,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Region ID
         /// </summary>
-        public int RegionId { get; set; }
+        public short RegionId { get; set; }
         /// <summary>
         /// Country ID
         /// </summary>
@@ -89,6 +89,10 @@ namespace Cares.Models.DomainModels
         /// Fleet Pools this region has
         /// </summary>
         public virtual ICollection<FleetPool> FleetPools { get; set; }
+        /// <summary>
+        /// City
+        /// </summary>
+        public virtual ICollection<City> Cities { get; set; }
 
         #endregion
     }
