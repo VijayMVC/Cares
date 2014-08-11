@@ -43,8 +43,7 @@ namespace Cares.Repository.BaseRepository
             }
             this.container = container;
             string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            db = new BaseDbContext(connectionString, container);
-
+            db = (BaseDbContext)container.Resolve(typeof(BaseDbContext), new ResolverOverride[] { new ParameterOverride("connectionString", connectionString) });
         }
 
         #endregion
@@ -154,5 +153,6 @@ namespace Cares.Repository.BaseRepository
         public string LoggedInUserIdentity { get { return "cares"; }  }
 
         #endregion
+
     }
 }

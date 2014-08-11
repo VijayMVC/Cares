@@ -11,6 +11,10 @@
         /// </summary>
         public short CityId { get; set; }
         /// <summary>
+        /// City Custom ID
+        /// </summary>
+        public string CityCustomId { get; set; }
+        /// <summary>
         /// City Code
         /// </summary>
         public string CityCode { get; set; }

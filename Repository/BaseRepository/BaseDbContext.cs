@@ -105,7 +105,7 @@ namespace Cares.Repository.BaseRepository
         #endregion
         #region Public
 
-        public BaseDbContext(string connectionString, IUnityContainer container)
+        public BaseDbContext(IUnityContainer container, string connectionString)
             : base(connectionString)
         {
             this.container = container;
