@@ -35,6 +35,15 @@ namespace Cares.Implementation.Services
             IEnumerable<HireGroup> parentHireGroups = hireGroupRepository.GetParentHireGroups();
             return new HireGroupBaseResponse{Companies = companies,ParentHireGroups =parentHireGroups };
         }
+
+        /// <summary>
+        /// Get Hire Groups By Code, Vehicle Make / Category / Model / Model Year
+        /// </summary>
+        public IEnumerable<HireGroup> GetByCodeAndVehicleInfo(string searchText)
+        {
+            return hireGroupRepository.GetByCodeAndVehicleInfo(searchText);
+        }
+
         /// <summary>
         /// Load tarrif type, based on search filters
         /// </summary>

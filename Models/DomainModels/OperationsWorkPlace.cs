@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -118,6 +119,11 @@ namespace Cares.Models.DomainModels
         /// Operation
         /// </summary>
         public virtual Operation Operation { get; set; }
+
+        /// <summary>
+        /// Vehicles Associated with this OperationsWorkPlace
+        /// </summary>
+        public virtual ICollection<Vehicle> Vehicles { get; set; }
 
         #endregion
     }

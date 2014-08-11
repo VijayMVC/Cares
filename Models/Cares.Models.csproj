@@ -113,7 +113,8 @@
     <Compile Include="DomainModels\BusinessPartnerCompany.cs" />
     <Compile Include="DomainModels\BusinessPartnerMainType.cs" />
     <Compile Include="DomainModels\BusinessPartnerSubType.cs" />
-     <Compile Include="DomainModels\Area.cs" />
+    <Compile Include="DomainModels\Area.cs" />
+    <Compile Include="DomainModels\VehicleImageHireGroupDetail.cs" />
     <Compile Include="DomainModels\TransmissionType.cs" />
     <Compile Include="DomainModels\OccupationType.cs" />
     <Compile Include="DomainModels\BusinessSegment.cs" />
@@ -129,6 +130,8 @@
     <Compile Include="DomainModels\Operation.cs" />
     <Compile Include="DomainModels\FuelType.cs" />
     <Compile Include="DomainModels\OperationsWorkPlace.cs" />
+    <Compile Include="DomainModels\Vehicle.cs" />
+    <Compile Include="DomainModels\VehicleImage.cs" />
     <Compile Include="DomainModels\WorkPlace.cs" />
     <Compile Include="DomainModels\WorkPlaceType.cs" />
     <Compile Include="DomainModels\WorkLocation.cs" />
@@ -186,7 +189,7 @@
     <Compile Include="ResponseModels\HireGroupDetailResponse.cs" />
     <Compile Include="ResponseModels\TariffRateResponse.cs" />
     <Compile Include="ResponseModels\TariffTypeDetailResponse.cs" />
-    <Compile Include="ResponseModels\RentalAgreementBaseResponse.cs" />
+    <Compile Include="ResponseModels\RentalAgreementBaseDataResponse.cs" />
     <Compile Include="ResponseModels\TarrifTypeBaseResponse.cs" />
     <Compile Include="ResponseModels\TarrifTypeResponse.cs" />
   </ItemGroup>

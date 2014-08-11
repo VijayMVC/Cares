@@ -98,6 +98,11 @@ namespace Cares.Models.DomainModels
         /// </summary>
         [StringLength(100), Required]
         public string RecLastUpdatedBy { get; set; }
+
+        /// <summary>
+        /// User Domain Key
+        /// </summary>
+        public long UserDomainKey { get; set; }
         
         #endregion
 
@@ -107,6 +112,11 @@ namespace Cares.Models.DomainModels
         /// Vehicle Sub Statuses
         /// </summary>
         public virtual ICollection<VehicleSubStatus> VehicleSubStatus { get; set; }
+
+        /// <summary>
+        /// Vehicles having this Vehicle Status
+        /// </summary>
+        public virtual ICollection<Vehicle> Vehicles { get; set; }
 
         #endregion
     }

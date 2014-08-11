@@ -73,6 +73,7 @@
     <Compile Include="IServices\IProductService.cs" />
     <Compile Include="IServices\IStandardRateService.cs" />
     <Compile Include="IServices\ITariffRateService.cs" />
+    <Compile Include="IServices\IRentalAgreementService.cs" />
     <Compile Include="IServices\ITarrifTypeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\ICityRepository.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Repository\IBusinessPartnerIndividualRepository.cs" />
     <Compile Include="Repository\ICompanyRepository.cs" />
     <Compile Include="Repository\IAreaRepository.cs" />
+    <Compile Include="Repository\IOperationsWorkPlaceRepository.cs" />
     <Compile Include="Repository\ISubRegionRepository.cs" />
     <Compile Include="Repository\IFleetPoolRepository.cs" />
     <Compile Include="Repository\ICountryRepository.cs" />

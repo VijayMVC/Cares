@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -87,6 +88,7 @@ namespace Cares.Models.DomainModels
         public long RowVersion { get; set; }
 
         #endregion
+
         #region Reference Properties
         /// <summary>
         /// Hire Group
@@ -104,6 +106,12 @@ namespace Cares.Models.DomainModels
         /// Vehicle Model
         /// </summary>
         public virtual VehicleModel VehicleModel { get; set; }
+
+        /// <summary>
+        /// Vehicle Image Hire Group Details Associated to this Hire Group Detail
+        /// </summary>
+        public virtual ICollection<VehicleImageHireGroupDetail> VehicleImageHireGroupDetails { get; set; }
+
         ///// <summary>
         ///// Stanadard Rate 
         ///// </summary>

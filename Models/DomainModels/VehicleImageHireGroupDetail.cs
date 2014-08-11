@@ -1,45 +1,35 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cares.Models.DomainModels
 {
     /// <summary>
-    /// Vehicle Sub Status Domain Model
+    /// Vehicle Image Hire Group Detail Domain Model
     /// </summary>
-    public class VehicleSubStatus
+    public class VehicleImageHireGroupDetail
     {
         #region Persisted Properties
         
         /// <summary>
-        /// Vehicle Sub Status ID
+        /// VehicleImage HireGroupDetail Id
         /// </summary>
-        public short VehicleSubStatusId { get; set; }
+        [Key, Column(Order = 1), DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public long VehicleImageHireGroupDetailId { get; set; }
+        
+        /// <summary>
+        /// Vehicle Image Id
+        /// </summary>
+        [Key, Column(Order = 2), ForeignKey("VehicleImage")]
+        public long VehicleImageId { get; set; }
 
         /// <summary>
-        /// Vehicle Status Id
+        /// HireGroup Detail Id
         /// </summary>
-        [ForeignKey("VehicleStatus")]
-        public short VehicleStatusId { get; set; }
-
-        /// <summary>
-        /// Vehicle Sub Status Code
-        /// </summary>
-        [StringLength(100), Required]
-        public string VehicleSubStatusCode { get; set; }
-
-        /// <summary>
-        /// Vehicle Sub Status Name
-        /// </summary>
-        [StringLength(255)]
-        public string VehicleSubStatusName { get; set; }
-
-        /// <summary>
-        /// Vehicle Sub Status Description
-        /// </summary>
-        [StringLength(500)]
-        public string VehicleSubStatusDescription { get; set; }
-
+        [Key, Column(Order = 3), ForeignKey("HireGroupDetail")]
+        public long HireGroupDetailId { get; set; }
+        
         /// <summary>
         /// Row Version
         /// </summary>
@@ -97,6 +87,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// User Domain Key
         /// </summary>
+        [Required]
         public long UserDomainKey { get; set; }
         
         #endregion
@@ -104,9 +95,14 @@ namespace Cares.Models.DomainModels
         #region Reference Properties
 
         /// <summary>
-        /// Vehicle Status
+        /// Vehicle Image
         /// </summary>
-        public virtual VehicleStatus VehicleStatus { get; set; }
+        public virtual VehicleImage VehicleImage { get; set; }
+
+        /// <summary>
+        /// Hire Group Detail
+        /// </summary>
+        public virtual HireGroupDetail HireGroupDetail { get; set; }
 
         #endregion
     }
