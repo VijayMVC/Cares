@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using Cares.WebBase.UnityConfiguration;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Mvc;
+using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(UnityWebActivator), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(UnityWebActivator), "Shutdown")]
@@ -26,7 +27,7 @@ namespace Cares.WebBase.UnityConfiguration
             DependencyResolver.SetResolver(new UnityDependencyResolver(Container));
 
             // TODO: Uncomment if you want to use PerRequestLifetimeManager
-            // Microsoft.Web.Infrastructure.DynamicModuleHelper.DynamicModuleUtility.RegisterModule(typeof(UnityPerRequestHttpModule));
+            DynamicModuleUtility.RegisterModule(typeof(UnityPerRequestHttpModule));
         }
 
         /// <summary>Disposes the Unity container when the application is shut down.</summary>
