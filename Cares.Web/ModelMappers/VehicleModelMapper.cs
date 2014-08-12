@@ -14,7 +14,7 @@ namespace Cares.Web.ModelMappers
             return new VehicleModel
             {
                 VehicleModeld = source.VehicleModelId,
-                VehicleModelName = source.VehicleModelCode + "-" + source.VehicleModelName,
+                VehicleModelCodeName = source.VehicleModelCode + " - " + source.VehicleModelName,
             };
         }
 

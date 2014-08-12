@@ -14,11 +14,8 @@
         /// <summary>
         /// Vehicle Category Code
         /// </summary>
-        public string VehicleCategoryCode { get; set; }
-        /// <summary>
-        /// Vehicle Category Name
-        /// </summary>
-        public string VehicleCategoryName { get; set; }
+        public string VehicleCategoryCodeName { get; set; }
+      
         #endregion
     }
 }

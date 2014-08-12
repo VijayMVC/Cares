@@ -13,11 +13,8 @@
           /// <summary>
         /// Vehicl eModel Code
         /// </summary>
-         public string VehicleModelCode { get; set; }
-        /// <summary>
-        /// Vehicle Model Name
-        /// </summary>
-        public string VehicleModelName { get; set; }
+         public string VehicleModelCodeName { get; set; }
+      
         #endregion
     }
 }

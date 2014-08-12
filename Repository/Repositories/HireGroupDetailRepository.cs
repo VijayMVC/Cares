@@ -51,6 +51,14 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(h => h.UserDomainKey == UserDomainKey).Include(x => x.HireGroup); ;
         }
+
+        /// <summary>
+        /// Get Hire Group Detail By Hire Group Id
+        /// </summary>
+        public IEnumerable<HireGroupDetail> GetHireGroupDetailByHireGroupId(long hireGroupId)
+        {
+            return DbSet.Where(h => h.HireGroupId == hireGroupId);
+        }
         #endregion
     }
 }

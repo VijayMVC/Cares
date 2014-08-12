@@ -29,8 +29,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
            parentHireGroupName = ko.observable(),
             //Description
             description = ko.observable(),
-            //Hire Group Vehicle Detail list
-            hireGroupVehicleDetailList = ko.observableArray([]),
+            //Hire Group Detail list
+            hireGroupDetailList = ko.observableArray([]),
             //Upgraded hire group list
             upgragedHireGroupList = ko.observableArray([]),
             //Vehile detail Object
@@ -72,7 +72,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             //Objects
             vehicleDetail: vehicleDetail,
             //Arrays
-            hireGroupVehicleDetailList: hireGroupVehicleDetailList,
+            hireGroupDetailList: hireGroupDetailList,
             upgragedHireGroupList: upgragedHireGroupList,
             // Utility Methods
             errors: errors,
@@ -84,12 +84,12 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         return self;
     };
     // ReSharper disable once AssignToImplicitGlobalInFunctionScope
-    VehicleDetail = function () {
+    HireGroupDetail = function () {
         // ReSharper restore InconsistentNaming
         var // Reference to this object
             self,
             // Unique key
-            vehicleDetailId = ko.observable(),
+            hireGroupDetailId = ko.observable(),
             // Vehicle Make 
             vehicleMakeId = ko.observable().extend({ required: true }),
             //Vehicle Make Name
@@ -103,9 +103,9 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             //Vehicle Model Name
             vehicleModelName = ko.observable(),
                //Vehicle Model Year Id
-            vehicleModelYearId = ko.observable().extend({ required: true }),
+            vehicleModelYearId = ko.observable(),
             //Vehicle Model Year 
-            vehicleModeYear = ko.observable(),
+            vehicleModelYear = ko.observable(),
             // Errors
             errors = ko.validation.group({
                 vehicleMakeId: vehicleMakeId,
@@ -135,7 +135,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             };
 
         self = {
-            vehicleDetailId: vehicleDetailId,
+            hireGroupDetailId: hireGroupDetailId,
             vehicleMakeId: vehicleMakeId,
             vehicleCategoryId: vehicleCategoryId,
             vehicleModelId: vehicleModelId,
@@ -143,7 +143,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             vehicleMakeName: vehicleMakeName,
             vehicleCategoryName: vehicleCategoryName,
             vehicleModelName: vehicleModelName,
-            vehicleModeYear: vehicleModeYear,
+            vehicleModelYear: vehicleModelYear,
             // Utility Methods
             errors: errors,
             isValid: isValid,
@@ -168,9 +168,54 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         hireGroup.virtualIsParent(source.IsParent === null ? false : source.IsParent);
         return hireGroup;
     };
+    //Hire grou Mapper
+    // ReSharper disable once InconsistentNaming
+    var HireGroupDetailClientMapper = function (source) {
+        var hireGroupDetail = new HireGroupDetail();
+        hireGroupDetail.hireGroupDetailId(source.hireGroupDetailId === null ? undefined : source.hireGroupDetailId);
+        hireGroupDetail.vehicleMakeId(source.vehicleMakeId === null ? undefined : source.vehicleMakeId);
+        hireGroupDetail.vehicleMakeName(source.vehicleMakeName === null ? undefined : source.vehicleMakeName);
+        hireGroupDetail.vehicleCategoryId(source.vehicleCategoryId === null ? undefined : source.vehicleCategoryId);
+        hireGroupDetail.vehicleCategoryName(source.vehicleCategoryName === null ? undefined : source.vehicleCategoryName);
+        hireGroupDetail.vehicleModelId(source.vehicleModelId === null ? undefined : source.vehicleModelId);
+        hireGroupDetail.vehicleModelName(source.vehicleModelName === null ? undefined : source.vehicleModelName);
+        hireGroupDetail.vehicleModelYear(source.vehicleModelYear === 2006 ? undefined : source.vehicleModelYear);
+        return hireGroupDetail;
+    };
+    var HireGroupDetailServerMapper = function (source) {
+        var result = {}; 
+        result.HireGroupDetailId = source.hireGroupDetailId() === undefined ? 0 : source.hireGroupDetailId();
+        result.VehicleMakeId = source.vehicleMakeId() === undefined ? null : source.vehicleMakeId();
+        result.VehicleMakeCodeName = source.vehicleMakeName() === undefined ? null : source.vehicleMakeName();
+        result.VehicleCategoryId = source.vehicleCategoryId() === undefined ? null : source.vehicleCategoryId();
+        result.VehicleCategoryCodeName = source.vehicleCategoryName() === undefined ? null : source.vehicleCategoryName();
+        result.VehicleModelId = source.vehicleModelId() === undefined ? null : source.vehicleModelId();
+        result.VehicleModelCodeName = source.vehicleModelName() === undefined ? null : source.vehicleModelName();
+        result.VehicleModelYear = source.vehicleModelYear() === undefined ? 2006 : source.vehicleModelYear();
+        return result;
+    };
+    var HireGroupServerMapper = function (source) {
+        var result = {};
+        result.HireGroupId = source.hireGroupId() === undefined ? 0 : source.hireGroupId();
+        result.HireGroupCode = source.hireGroupCode() === undefined ? null : source.hireGroupCode();
+        result.HireGroupName = source.hireGroupName() === undefined ? null : source.hireGroupName();
+        result.ParentHireGroupId = source.parentHireGroupId() === undefined ? null : source.parentHireGroupId();
+        result.CompanyId = source.companyId() === undefined ? null : source.companyId();
+        result.Description = source.description() === undefined ? null : source.description();
+        result.IsParent = source.isParent() === undefined ? false : source.isParent();
+        result.HireGroupDetailList = [];
+        _.each(source.hireGroupDetailList(), function (item) {
+            result.HireGroupDetailList.push(item);
+        });
+
+        return result;
+    };
     return {
         HireGroup: HireGroup,
         HireGroupClientMapper: HireGroupClientMapper,
-        VehicleDetail: VehicleDetail
+        HireGroupDetail: HireGroupDetail,
+        HireGroupDetailServerMapper: HireGroupDetailServerMapper,
+        HireGroupServerMapper: HireGroupServerMapper,
+        HireGroupDetailClientMapper: HireGroupDetailClientMapper
     };
 });

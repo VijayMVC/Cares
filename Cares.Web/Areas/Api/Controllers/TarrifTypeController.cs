@@ -35,7 +35,7 @@ namespace Cares.Web.Areas.Api.Controllers
         // GET api/<controller>
         public TarrifTypeSearchResponse Get([FromUri] TarrifTypeRequest request)
         {
-            return tarrifTypeService.LoadTarrifTypes((request)).CreateFrom();
+           return tarrifTypeService.LoadTarrifTypes((request)).CreateFrom();
         }
         /// <summary>
         /// Update a Tarrif Type

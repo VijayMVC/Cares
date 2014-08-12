@@ -297,6 +297,7 @@
     <Compile Include="ModelMappers\VehicleModelMapper.cs" />
     <Compile Include="Models\AddressBaseResponse.cs" />
     <Compile Include="Models\BusinessPartnerMarketingChannel.cs" />
+    <Compile Include="Models\HireGroupDetailForHireGroup.cs" />
     <Compile Include="Models\MarketingChannel.cs" />
     <Compile Include="Models\BusinessPartnerInType.cs" />
     <Compile Include="Models\BusinessPartnerSubType.cs" />

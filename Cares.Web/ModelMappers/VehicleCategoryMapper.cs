@@ -16,7 +16,7 @@ namespace Cares.Web.ModelMappers
             return new VehicleCategory
             {
                 VehicleCategoryId = source.VehicleCategoryId,
-                VehicleCategoryName = source.VehicleCategoryCode + "-" + source.VehicleCategoryName,
+                VehicleCategoryCodeName = source.VehicleCategoryCode + " - " + source.VehicleCategoryName,
             };
         }
         #endregion
