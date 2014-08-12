@@ -27,7 +27,7 @@ namespace Cares.Implementation
             unityContainer.RegisterType<IEmployeeService, EmployeeService>();
             unityContainer.RegisterType<IDepartmentService, DepartmentService>();
             unityContainer.RegisterType<IFleetPoolService, FleetPoolService>();
-            unityContainer.RegisterType<ITarrifTypeService, TarrifTypeService>();
+            unityContainer.RegisterType<ITariffTypeService, TariffTypeService>();
             unityContainer.RegisterType<ICompanyService, CompanyService>();
             unityContainer.RegisterType<IMeasurementUnitService, MeasurementUnitService>();
             unityContainer.RegisterType<IOperationService, OperationService>();

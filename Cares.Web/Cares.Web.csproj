@@ -332,13 +332,13 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CompanyDropDown.cs" />
     <Compile Include="Models\CountryDropDown.cs" />
-    <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\DepartmentDropDown.cs" />
     <Compile Include="Models\FleetPool.cs" />
     <Compile Include="Models\FleetPoolBaseDataResponse.cs" />
     <Compile Include="Models\FleetPoolResponse.cs" />
-    <Compile Include="Models\MeasurementUnit.cs" />
-    <Compile Include="Models\Operation.cs" />
-    <Compile Include="Models\PricingStrategy.cs" />
+    <Compile Include="Models\MeasurementUnitDropDown.cs" />
+    <Compile Include="Models\OperationDropDown.cs" />
+    <Compile Include="Models\PricingStrategyDropDown.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductResponse.cs" />
     <Compile Include="Models\CityDropDown.cs" />
@@ -358,9 +358,9 @@
     <Compile Include="Models\RentalAgreementBaseDataResponse.cs" />
     <Compile Include="Models\TarrifTypeBaseResponse.cs" />
     <Compile Include="Models\TarrifTypeSearchResponse.cs" />
-    <Compile Include="Models\VehicleCategory.cs" />
-    <Compile Include="Models\VehicleMake.cs" />
-    <Compile Include="Models\VehicleModel.cs" />
+    <Compile Include="Models\VehicleCategoryDropDown.cs" />
+    <Compile Include="Models\VehicleMakeDropDown.cs" />
+    <Compile Include="Models\VehicleModelDropDown.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Shared\Common.ar.Designer.cs">
       <AutoGen>True</AutoGen>

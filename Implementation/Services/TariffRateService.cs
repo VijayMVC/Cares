@@ -20,7 +20,7 @@ namespace Cares.Implementation.Services
         private readonly IVehicleMakeRepository vehicleMakeRepository;
         private readonly IVehicleCategoryRepository vehicleCategoryRepository;
         private readonly IHireGroupRepository hireGroupRepository;
-        private readonly ITarrifTypeRepository tarrifTypeRepository;
+        private readonly ITariffTypeRepository tariffTypeRepository;
         private readonly IStandardRateMainRepository standardRateMainRepository;
         private readonly IHireGroupDetailRepository hireGroupDetailRepository;
         private readonly IStandardRateRepository standardRateRepository;
@@ -29,7 +29,7 @@ namespace Cares.Implementation.Services
         #region Constructors
         public TariffRateService(IDepartmentRepository departmentRepository, ICompanyRepository companyRepository, IOperationRepository operationRepository,
             IVehicleModelRepository vehicleModelRepository, IVehicleMakeRepository vehicleMakeRepository, IVehicleCategoryRepository vehicleCategoryRepository,
-            IHireGroupRepository hireGroupRepository, ITarrifTypeRepository tarrifTypeRepository, IStandardRateMainRepository standardRateMainRepository,
+            IHireGroupRepository hireGroupRepository, ITariffTypeRepository tariffTypeRepository, IStandardRateMainRepository standardRateMainRepository,
             IHireGroupDetailRepository hireGroupDetailRepository, IStandardRateRepository standardRateRepository)
         {
             this.operationRepository = operationRepository;
@@ -39,7 +39,7 @@ namespace Cares.Implementation.Services
             this.vehicleMakeRepository = vehicleMakeRepository;
             this.vehicleCategoryRepository = vehicleCategoryRepository;
             this.hireGroupRepository = hireGroupRepository;
-            this.tarrifTypeRepository = tarrifTypeRepository;
+            this.tariffTypeRepository = tariffTypeRepository;
             this.standardRateMainRepository = standardRateMainRepository;
             this.hireGroupDetailRepository = hireGroupDetailRepository;
             this.standardRateRepository = standardRateRepository;
@@ -63,7 +63,7 @@ namespace Cares.Implementation.Services
                 VehicleModels = vehicleModelRepository.GetAll(),
                 VehicleMakes = vehicleMakeRepository.GetAll(),
                 VehicleCategories = vehicleCategoryRepository.GetAll(),
-                TariffTypes = tarrifTypeRepository.GetAll(),
+                TariffTypes = tariffTypeRepository.GetAll(),
             };
         }
         /// <summary>
@@ -104,8 +104,8 @@ namespace Cares.Implementation.Services
             standardRateMain.RecCreatedDt = System.DateTime.Now;
             standardRateMain.RecLastUpdatedDt = System.DateTime.Now;
             standardRateMain.UserDomainKey = standardRateMainRepository.UserDomainKey;
-            TarrifType tarrifType = tarrifTypeRepository.Find(long.Parse(standardRateMain.TariffTypeCode));
-            standardRateMain.TariffTypeCode = tarrifType.TariffTypeCode;
+            TariffType tariffType = tariffTypeRepository.Find(long.Parse(standardRateMain.TariffTypeCode));
+            standardRateMain.TariffTypeCode = tariffType.TariffTypeCode;
             standardRateMainRepository.Add(standardRateMain);
             standardRateMainRepository.SaveChanges();
             return new TariffRateContent
@@ -116,10 +116,10 @@ namespace Cares.Implementation.Services
                        StandardRtMainDescription = standardRateMain.StandardRtMainDescription,
                        StartDt = standardRateMain.StartDt,
                        EndDt = standardRateMain.EndDt,
-                       TariffTypeId = tarrifType.TariffTypeId,
-                       TariffTypeCodeName = tarrifType.TariffTypeCode + " - " + tarrifType.TariffTypeName,
-                       OperationId = tarrifType.OperationId,
-                       OperationCodeName = tarrifType.Operation.OperationCode + " - " + tarrifType.Operation.OperationName,
+                       TariffTypeId = tariffType.TariffTypeId,
+                       TariffTypeCodeName = tariffType.TariffTypeCode + " - " + tariffType.TariffTypeName,
+                       OperationId = tariffType.OperationId,
+                       OperationCodeName = tariffType.Operation.OperationCode + " - " + tariffType.Operation.OperationName,
                    };
         }
 
@@ -161,8 +161,8 @@ namespace Cares.Implementation.Services
         {
             standardRateMain.RecCreatedDt = System.DateTime.Now;
             standardRateMain.RecLastUpdatedDt = System.DateTime.Now;
-            TarrifType tarrifType = tarrifTypeRepository.Find(long.Parse(standardRateMain.TariffTypeCode));
-            standardRateMain.TariffTypeCode = tarrifType.TariffTypeCode;
+            TariffType tariffType = tariffTypeRepository.Find(long.Parse(standardRateMain.TariffTypeCode));
+            standardRateMain.TariffTypeCode = tariffType.TariffTypeCode;
             standardRateMainRepository.Update(standardRateMain);
             standardRateMainRepository.SaveChanges(); 
             return new TariffRateContent
@@ -173,10 +173,10 @@ namespace Cares.Implementation.Services
                 StandardRtMainDescription = standardRateMain.StandardRtMainDescription,
                 StartDt = standardRateMain.StartDt,
                 EndDt = standardRateMain.EndDt,
-                TariffTypeId = tarrifType.TariffTypeId,
-                TariffTypeCodeName = tarrifType.TariffTypeCode + " - " + tarrifType.TariffTypeName,
-                OperationId = tarrifType.OperationId,
-                OperationCodeName = tarrifType.Operation.OperationCode + " - " + tarrifType.Operation.OperationName,
+                TariffTypeId = tariffType.TariffTypeId,
+                TariffTypeCodeName = tariffType.TariffTypeCode + " - " + tariffType.TariffTypeName,
+                OperationId = tariffType.OperationId,
+                OperationCodeName = tariffType.Operation.OperationCode + " - " + tariffType.Operation.OperationName,
             };
         }
         /// <summary>
@@ -207,9 +207,9 @@ namespace Cares.Implementation.Services
         {
             return standardRateMainRepository.FindByTariffTypeCode(tariffTypeCode);
         }
-        public TarrifType FindTariffTypeById(long id)
+        public TariffType FindTariffTypeById(long id)
         {
-            return tarrifTypeRepository.Find(id);
+            return tariffTypeRepository.Find(id);
         }
         #endregion
     }

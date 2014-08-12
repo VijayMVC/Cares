@@ -4,7 +4,7 @@
 
         <button class="btn btn-default" id="saveBtn" data-bind="click: $root.closeTariffRateEditor">Cancel</button>
     </div>
-    <form class="form-horizontal" data-bind="with: $root.selectedTarrifRate">
+    <form class="form-horizontal" data-bind="with: $root.selectedtariffRate">
         <button class="btn btn-info" id="saveBtn" data-bind="click: $root.onSaveTariffRate">Save</button>
         <div class="form-group">
             <label for="tariffRateCode" class="control-label h5 col-sm-2">Tariff Rate Code *</label>
@@ -23,7 +23,7 @@
         <div class="form-group">
             <label for="operation" class="control-label h5 col-sm-2">Operation *</label>
             <div class="col-md-2">
-                <select id="operation" class="form-control" data-bind="options: $root.operations, optionsText: 'OperationName', optionsValue: 'OperationId', optionsCaption: '<Operation>' , value: operationId, validationTooltip: operationId, disable :(tariffRateId()!=undefined)"></select>
+                <select id="operation" class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '<Operation>' , value: operationId, validationTooltip: operationId, disable :(tariffRateId()!=undefined)"></select>
             </div>
             <label for="tariffType" class="control-label h5 col-sm-2">Tariff Type *</label>
             <div class="col-xs-2">
@@ -56,13 +56,13 @@
                     <select class="form-control" data-bind="options: $root.hireGroups, optionsText: 'HireGroupName', optionsValue: 'HireGroupId', optionsCaption: '<Hire Groups>', value: $root.hireGroupFilter "></select>
                 </div>
                 <div class="col-xs-3">
-                    <select class="form-control" data-bind="options: $root.vehicleMakes, optionsText: 'VehicleMakeName', optionsValue: 'VehicleMakeId', optionsCaption: '<Vehicle Make>', value: $root.vehicleMakeFilter "></select>
+                    <select class="form-control" data-bind="options: $root.vehicleMakes, optionsText: 'VehicleMakeCodeName', optionsValue: 'VehicleMakeId', optionsCaption: '<Vehicle Make>', value: $root.vehicleMakeFilter "></select>
                 </div>
                 <div class="col-xs-3">
-                    <select class="form-control" data-bind="options: $root.vehicleModels, optionsText: 'VehicleModelName', optionsValue: 'VehicleModeld', optionsCaption: '<Vehicle Model>', value: $root.vehicleModelFilter "></select>
+                    <select class="form-control" data-bind="options: $root.vehicleModels, optionsText: 'VehicleModelCodeName', optionsValue: 'VehicleModeld', optionsCaption: '<Vehicle Model>', value: $root.vehicleModelFilter "></select>
                 </div>
                 <div class="col-xs-3">
-                    <select class="form-control" data-bind="options: $root.vehicleCategories, optionsText: 'VehicleCategoryName', optionsValue: 'VehicleCategoryId', optionsCaption: '<Vehicle Category>', value: $root.vehicleCategoryFilter "></select>
+                    <select class="form-control" data-bind="options: $root.vehicleCategories, optionsText: 'VehicleCategoryCodeName', optionsValue: 'VehicleCategoryId', optionsCaption: '<Vehicle Category>', value: $root.vehicleCategoryFilter "></select>
                 </div>
                 <button type="submit" class="btn btn-success" data-bind="click: $root.searchHireGroups">Search</button>
                 <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: $root.collapseFilterSection" title="Hide Section"></a>

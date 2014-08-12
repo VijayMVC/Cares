@@ -1,34 +1,34 @@
-﻿#tarrifTypeBinding table thead tr .ttypesearchButton {
+﻿#tariffTypeBinding table thead tr .ttypesearchButton {
   margin-left: 5px;
 }
-#tarrifTypeBinding table thead tr .tarrifTypeCode {
+#tariffTypeBinding table thead tr .tariffTypeCode {
   width: 10%;
 }
-#tarrifTypeBinding table thead tr .tarrifTypeName {
+#tariffTypeBinding table thead tr .tariffTypeName {
   width: 15%;
 }
-#tarrifTypeBinding table thead tr .pricingScheme {
+#tariffTypeBinding table thead tr .pricingScheme {
   width: 15%;
 }
-#tarrifTypeBinding table thead tr .operation {
+#tariffTypeBinding table thead tr .operation {
   width: 15%;
 }
-#tarrifTypeBinding table thead tr .measurementUnit {
+#tariffTypeBinding table thead tr .measurementUnit {
   width: 15%;
 }
-#tarrifTypeBinding table thead tr .from {
+#tariffTypeBinding table thead tr .from {
   width: 7%;
 }
-#tarrifTypeBinding table thead tr .to {
+#tariffTypeBinding table thead tr .to {
   width: 8%;
 }
-#tarrifTypeBinding table thead tr .gracePeriod {
+#tariffTypeBinding table thead tr .gracePeriod {
   width: 5%;
 }
-#tarrifTypeBinding table thead tr .effectiveDate {
+#tariffTypeBinding table thead tr .effectiveDate {
   width: 5%;
 }
-#tarrifTypeBinding table thead tr .revision {
+#tariffTypeBinding table thead tr .revision {
   width: 5%;
 }
 #FleetPoolEditor {

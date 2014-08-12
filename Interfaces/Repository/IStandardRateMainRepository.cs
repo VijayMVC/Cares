@@ -12,7 +12,7 @@ namespace Cares.Interfaces.Repository
     public interface IStandardRateMainRepository : IBaseRepository<StandardRateMain, long>
     {
         /// <summary>
-        ///  Get all Tarrif Rates, based on filters
+        ///  Get all tariff Rates, based on filters
         /// </summary>
         TariffRateResponse GetTariffRates(TariffRateRequest tariffRateRequest);
         /// <summary>

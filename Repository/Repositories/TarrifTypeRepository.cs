@@ -15,16 +15,16 @@ using Microsoft.Practices.Unity;
 namespace Cares.Repository.Repositories
 {
     /// <summary>
-    /// Tarrif Type Repository
+    /// tariff Type Repository
     /// </summary>
-    public sealed class TarrifTypeRepository : BaseRepository<TarrifType>, ITarrifTypeRepository
+    public sealed class TariffTypeRepository : BaseRepository<TariffType>, ITariffTypeRepository
     {
         #region Private
-        private readonly Dictionary<TarrifTypeByColumn, Func<TarrifType, object>> tarrifTypeClause =
-             new Dictionary<TarrifTypeByColumn, Func<TarrifType, object>>
+        private readonly Dictionary<TariffTypeByColumn, Func<TariffType, object>> tariffTypeClause =
+             new Dictionary<TariffTypeByColumn, Func<TariffType, object>>
                     {
-                        { TarrifTypeByColumn.TariffTypeName, c => c.TariffTypeName },
-                        { TarrifTypeByColumn.TariffTypeCode, c => c.TariffTypeCode }
+                        { TariffTypeByColumn.TariffTypeName, c => c.TariffTypeName },
+                        { TariffTypeByColumn.TariffTypeCode, c => c.TariffTypeCode }
                        
                     };
         #endregion
@@ -32,7 +32,7 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Constructor
         /// </summary>
-        public TarrifTypeRepository(IUnityContainer container)
+        public TariffTypeRepository(IUnityContainer container)
             : base(container)
         {
 
@@ -42,11 +42,11 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Primary database set
         /// </summary>
-        protected override IDbSet<TarrifType> DbSet
+        protected override IDbSet<TariffType> DbSet
         {
             get
             {
-                return db.TarrifTypes;
+                return db.TariffTypes;
             }
         }
         #endregion
@@ -55,60 +55,60 @@ namespace Cares.Repository.Repositories
         /// Get All Tariff Types for User Domain Key
         /// </summary>
         /// <returns></returns>
-        public override IQueryable<TarrifType> GetAll()
+        public override IQueryable<TariffType> GetAll()
         {
             return DbSet.Where(p => p.UserDomainKey == UserDomainKey && p.ChildTariffTypeId == 0);
         }
         /// <summary>
         /// Get All Tariff Types based on search crateria
         /// </summary>
-        public TarrifTypeResponse GetTarrifTypes(TarrifTypeRequest tarrifTypeRequest)
+        public TariffTypeResponse GettariffTypes(TariffTypeRequest tariffTypeRequest)
         {
-            int fromRow = (tarrifTypeRequest.PageNo - 1) * tarrifTypeRequest.PageSize;
-            int toRow = tarrifTypeRequest.PageSize;
-            Expression<Func<TarrifType, bool>> query =
-                            s => ((!(tarrifTypeRequest.OperationId > 0) || s.OperationId == tarrifTypeRequest.OperationId) &&
-                                (!(tarrifTypeRequest.MeasurementUnitId > 0) || s.MeasurementUnitId == tarrifTypeRequest.MeasurementUnitId) &&
-                                 (string.IsNullOrEmpty(tarrifTypeRequest.TarrifTypeCode) || s.TariffTypeCode.Contains(tarrifTypeRequest.TarrifTypeCode))) &&
+            int fromRow = (tariffTypeRequest.PageNo - 1) * tariffTypeRequest.PageSize;
+            int toRow = tariffTypeRequest.PageSize;
+            Expression<Func<TariffType, bool>> query =
+                            s => ((!(tariffTypeRequest.OperationId > 0) || s.OperationId == tariffTypeRequest.OperationId) &&
+                                (!(tariffTypeRequest.MeasurementUnitId > 0) || s.MeasurementUnitId == tariffTypeRequest.MeasurementUnitId) &&
+                                 (string.IsNullOrEmpty(tariffTypeRequest.TariffTypeCode) || s.TariffTypeCode.Contains(tariffTypeRequest.TariffTypeCode))) &&
                                  (s.ChildTariffTypeId == 0);
 
-            IEnumerable<TarrifType> tarrifTypes = tarrifTypeRequest.IsAsc ? DbSet.Where(query)
-                                            .OrderBy(tarrifTypeClause[tarrifTypeRequest.TarrifTypeByOrder]).Skip(fromRow).Take(toRow).ToList()
+            IEnumerable<TariffType> tariffTypes = tariffTypeRequest.IsAsc ? DbSet.Where(query)
+                                            .OrderBy(tariffTypeClause[tariffTypeRequest.TariffTypeByOrder]).Skip(fromRow).Take(toRow).ToList()
                                             : DbSet.Where(query)
-                                                .OrderByDescending(tarrifTypeClause[tarrifTypeRequest.TarrifTypeByOrder]).Skip(fromRow).Take(toRow).ToList();
+                                                .OrderByDescending(tariffTypeClause[tariffTypeRequest.TariffTypeByOrder]).Skip(fromRow).Take(toRow).ToList();
 
 
-            return new TarrifTypeResponse { TarrifTypes = tarrifTypes, TotalCount = DbSet.Count(query) };
+            return new TariffTypeResponse { TariffTypes = tariffTypes, TotalCount = DbSet.Count(query) };
         }
         /// <summary>
         /// Load Dependencies
         /// </summary>
-        public void LoadDependencies(TarrifType tarrifType)
+        public void LoadDependencies(TariffType tariffType)
         {
-            LoadProperty<TarrifType>(tarrifType, "Operation");
-            LoadProperty(tarrifType, () => tarrifType.Operation);
-            LoadProperty(tarrifType, () => tarrifType.MeasurementUnit);
-            LoadProperty(tarrifType, () => tarrifType.PricingStrategy);
+            LoadProperty<TariffType>(tariffType, "Operation");
+            LoadProperty(tariffType, () => tariffType.Operation);
+            LoadProperty(tariffType, () => tariffType.MeasurementUnit);
+            LoadProperty(tariffType, () => tariffType.PricingStrategy);
         }
         /// <summary>
         /// Find Tariff Type By Id
         /// </summary>
-        public override TarrifType Find(long id)
+        public override TariffType Find(long id)
         {
             return
-              DbSet.Include(tarrifType => tarrifType.Operation)
-                  .Include(tarrifType => tarrifType.Operation.Department)
-                  .FirstOrDefault(tarrifType => tarrifType.TariffTypeId == id);
+              DbSet.Include(tariffType => tariffType.Operation)
+                  .Include(tariffType => tariffType.Operation.Department)
+                  .FirstOrDefault(tariffType => tariffType.TariffTypeId == id);
         }
         /// <summary>
         /// Get Revision
         /// </summary>
-        public TarrifType GetRevison(long id)
+        public TariffType GetRevison(long id)
         {
             return
-              DbSet.Include(tarrifType => tarrifType.Operation)
-                  .Include(tarrifType => tarrifType.Operation.Department)
-                  .FirstOrDefault(tarrifType => tarrifType.ChildTariffTypeId == id);
+              DbSet.Include(tariffType => tariffType.Operation)
+                  .Include(tariffType => tariffType.Operation.Department)
+                  .FirstOrDefault(tariffType => tariffType.ChildTariffTypeId == id);
         }
         #endregion
     }

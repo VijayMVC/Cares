@@ -1,5 +1,5 @@
 ﻿/*
-    Module with the view model for the Tarrif Rate
+    Module with the view model for the tariff Rate
 */
 define("hireGroup/hireGroup.viewModel",
     ["jquery", "amplify", "ko", "hireGroup/hireGroup.dataservice", "hireGroup/hireGroup.model", "common/confirmation.viewModel", "common/pagination"],
@@ -103,7 +103,7 @@ define("hireGroup/hireGroup.viewModel",
                         //selectedTariffRateId(tariffRate.tariffRateId());
                         selectedHireGroup(hireGroup);
                         selectedHireGroup().vehicleDetail(new model.HireGroupDetail());
-                        //selectedTarrifRateCopy(model.TariffRateCoppier(selectedTarrifRate()));
+                        //selectedtariffRateCopy(model.TariffRateCoppier(selectedtariffRate()));
                         //getHireGroupDetails(tariffRate);
                         showHireGroupEditor();
                         e.stopImmediatePropagation();

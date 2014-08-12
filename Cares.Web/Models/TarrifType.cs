@@ -3,9 +3,9 @@
 namespace Cares.Web.Models
 {
     /// <summary>
-    /// Tarrif Type Web Models
+    /// tariff Type Web Models
     /// </summary>
-    public class TarrifType
+    public class TariffType
     {
         #region Public Properties
         /// <summary>

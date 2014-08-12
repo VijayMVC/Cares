@@ -18,7 +18,7 @@ define("tariffRate/tariffRate.dataservice", function () {
                         dataType: 'json',
                         type: 'GET'
                     });
-                    // Define request to get tarrif type  
+                    // Define request to get tariff type  
                     amplify.request.define('getTariffRate', 'ajax', {
                         url: '/Api/TariffRate',
                         dataType: 'json',
@@ -91,7 +91,7 @@ define("tariffRate/tariffRate.dataservice", function () {
                     data: param
                 });
             },
-             // Get Tarrif type by id 
+             // Get tariff type by id 
             getHireGroupDetails = function (params,callbacks) {
                 initialize();
                 return amplify.request({

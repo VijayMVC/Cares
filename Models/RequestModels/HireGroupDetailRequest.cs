@@ -28,9 +28,9 @@ namespace Cares.Models.RequestModels
         /// </summary>
         public short ModelYear { get; set; }
         /// <summary>
-        /// Tarrif type Order By
+        /// tariff type Order By
         /// </summary>
-        public HireGroupDetailByColumn TarrifTypeByOrder
+        public HireGroupDetailByColumn tariffTypeByOrder
         {
             get
             {

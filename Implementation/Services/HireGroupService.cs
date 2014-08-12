@@ -67,7 +67,7 @@ namespace Cares.Implementation.Services
         }
 
         /// <summary>
-        /// Load tarrif type, based on search filters
+        /// Load tariff type, based on search filters
         /// </summary>
         /// <param name="hireGroupSearchRequest"></param>
         /// <returns></returns>

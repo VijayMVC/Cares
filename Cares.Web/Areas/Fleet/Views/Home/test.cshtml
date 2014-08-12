@@ -1,5 +1,5 @@
 ﻿
-<div class="well col-md-12" id="tariffTypeEditor" data-bind="visible: isTarrifTypeEditorVisible, with: addTarrifType" style="display: none;">
+<div class="well col-md-12" id="tariffTypeEditor" data-bind="visible: istariffTypeEditorVisible, with: addtariffType" style="display: none;">
     <div class="float-left detailsContainer">
         <h3 class="page-header detailsHeaderSection">Tariff Type Details</h3>
         <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onSaveTariffType">Save</button>
@@ -13,7 +13,7 @@
             </div>
             <label for="tariffTypeName" class="control-label h5 col-sm-2">Tariff Type Name</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" placeholder="<Tariff Type Name>" id="tariffTypeName" data-bind="value: tarrifTypeName, validationTooltip: tarrifTypeName" />
+                <input type="text" class="form-control" placeholder="<Tariff Type Name>" id="tariffTypeName" data-bind="value: tariffTypeName, validationTooltip: tariffTypeName" />
             </div>
             <label for="tariffTypeDescription" class="control-label h5 col-sm-2">Description</label>
             <div class="col-md-2">
@@ -74,7 +74,7 @@
     <div class="panel panel-info">
 
         <div class="panel-heading">Tariff Revisions</div>
-        <table id="tarrifTypeRevisions" class="table">
+        <table id="tariffTypeRevisions" class="table">
             <thead>
                 <tr>
                     <th> <span id="3">Duration<br />From<span></span></span></th>
@@ -93,7 +93,7 @@
                 <!-- /ko -->
             </tbody>
         </table>
-        <script id="itemTarrifTypeRevisionTemplate" type="text/html">
+        <script id="itemtariffTypeRevisionTemplate" type="text/html">
             <tr>
                 <td data-bind="text: durationFrom"></td>
                 <td data-bind="text: durationTo"></td>

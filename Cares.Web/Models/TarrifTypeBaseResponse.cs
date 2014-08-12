@@ -3,21 +3,21 @@
 namespace Cares.Web.Models
 {
     /// <summary>
-    /// Tarrif Type Base Response Web Models
+    /// tariff Type Base Response Web Models
     /// </summary>
-    public class TarrifTypeBaseResponse
+    public class TariffTypeBaseResponse
     {
         #region Constructors
         /// <summary>
         /// Constructor
         /// </summary>
-        public TarrifTypeBaseResponse()
+        public TariffTypeBaseResponse()
         {
             ResponseCompanies = new List<CompanyDropDown>();
-            ResponseMeasurementUnits = new List<MeasurementUnit>();
-            ResponseDepartments = new List<Department>();
-            ResponseOperations = new List<Operation>();
-            ResponsePricingStrategies = new List<PricingStrategy>();
+            ResponseMeasurementUnits = new List<MeasurementUnitDropDown>();
+            ResponseDepartments = new List<DepartmentDropDown>();
+            ResponseOperations = new List<OperationDropDown>();
+            ResponsePricingStrategies = new List<PricingStrategyDropDown>();
         }
         #endregion
         #region Public
@@ -28,19 +28,19 @@ namespace Cares.Web.Models
         /// <summary>
         /// Measurement Unit 
         /// </summary>
-        public IEnumerable<MeasurementUnit> ResponseMeasurementUnits { get; set; }
+        public IEnumerable<MeasurementUnitDropDown> ResponseMeasurementUnits { get; set; }
         /// <summary>
         /// Departments 
         /// </summary>
-        public IEnumerable<Department> ResponseDepartments { get; set; }
+        public IEnumerable<DepartmentDropDown> ResponseDepartments { get; set; }
         /// <summary>
         /// Operations 
         /// </summary>
-        public IEnumerable<Operation> ResponseOperations { get; set; }
+        public IEnumerable<OperationDropDown> ResponseOperations { get; set; }
         /// <summary>
         /// Pricing Strategies
         /// </summary>
-        public IEnumerable<PricingStrategy> ResponsePricingStrategies { get; set; }
+        public IEnumerable<PricingStrategyDropDown> ResponsePricingStrategies { get; set; }
         #endregion
     }
 }

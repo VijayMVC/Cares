@@ -21,7 +21,7 @@ namespace Cares.Interfaces.IServices
         /// <summary>
         /// Load roups, based on search filters
         /// </summary>
-        HireGroupSearchResponse LoadHireGroups(HireGroupSearchRequest tarrifTypeRequest);
+        HireGroupSearchResponse LoadHireGroups(HireGroupSearchRequest tariffTypeRequest);
         
         /// <summary>
         /// Load Hire Group Base data

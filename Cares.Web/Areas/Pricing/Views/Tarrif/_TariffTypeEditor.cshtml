@@ -1,5 +1,5 @@
 ﻿
-<div class="well col-md-12" id="tariffTypeEditor" data-bind="visible: isTarrifTypeEditorVisible, with: addTarrifType" style="display: none;">
+<div class="well col-md-12" id="tariffTypeEditor" data-bind="visible: istariffTypeEditorVisible, with: addtariffType" style="display: none;">
     <div class="float-left detailsContainer">
         <h3 class="page-header detailsHeaderSection">Tariff Type Details</h3>
         <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onSaveTariffType">Save</button>
@@ -13,7 +13,7 @@
             </div>
             <label for="tariffTypeName" class="control-label h5 col-sm-2">Tariff Type Name</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" placeholder="<Tariff Type Name>" id="tariffTypeName" data-bind="value: tarrifTypeName, validationTooltip: tarrifTypeName" />
+                <input type="text" class="form-control" placeholder="<Tariff Type Name>" id="tariffTypeName" data-bind="value: tariffTypeName, validationTooltip: tariffTypeName" />
             </div>
             <label for="tariffTypeDescription" class="control-label h5 col-sm-2">Description</label>
             <div class="col-md-2">
@@ -24,22 +24,22 @@
 
             <label for="tariffTypeCompany" class="control-label h5 col-sm-2">Company *</label>
             <div class="col-md-2">
-                <select id="tariffTypeCompany" class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyName', optionsValue: 'CompanyId', optionsCaption: '<Company>', value: companyId, validationTooltip: companyId"></select>
+                <select id="tariffTypeCompany" class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '<Company>', value: companyId, validationTooltip: companyId"></select>
             </div>
             <label for="tariffTypeDepartment" class="control-label h5 col-sm-2">Department *</label>
             <div class="col-md-2">
-                <select id="tariffTypeDepartment" class="form-control" data-bind="options: $root.departments, optionsText: 'DepartmentName', optionsValue: 'DepartmentId', optionsCaption: '<Department>' , value: departmentId, validationTooltip: departmentId"></select>
+                <select id="tariffTypeDepartment" class="form-control" data-bind="options: $root.departments, optionsText: 'DepartmentCodeName', optionsValue: 'DepartmentId', optionsCaption: '<Department>' , value: departmentId, validationTooltip: departmentId"></select>
             </div>
             <label for="tariffTypeOperation" class="control-label h5 col-sm-2">Operation *</label>
             <div class="col-md-2">
-                <select id="tariffTypeOperation" class="form-control" data-bind="options: $root.operations, optionsText: 'OperationName', optionsValue: 'OperationId', optionsCaption: '<Operation>' , value: operationId, validationTooltip: operationId"></select>
+                <select id="tariffTypeOperation" class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '<Operation>' , value: operationId, validationTooltip: operationId"></select>
             </div>
         </div>
 
         <div class="form-group">
             <label for="tariffTypeMeasurementUnit" class="control-label h5 col-sm-2">Measurement Unit *</label>
             <div class="col-md-4">
-                <select id="tariffTypeMeasurementUnit" class="form-control" data-bind="options: $root.measurementUnits, optionsText: 'MeasurementUnitName', optionsValue: 'MeasurementUnitId', optionsCaption: '<Measurement Unit>' , value: measurementUnitId, validationTooltip: measurementUnitId"></select>
+                <select id="tariffTypeMeasurementUnit" class="form-control" data-bind="options: $root.measurementUnits, optionsText: 'MeasurementUnitCodeName', optionsValue: 'MeasurementUnitId', optionsCaption: '<Measurement Unit>' , value: measurementUnitId, validationTooltip: measurementUnitId"></select>
             </div>
         </div>
         <div class="form-group">
@@ -63,7 +63,7 @@
             </div>
             <label for="tariffTypepricingStrategies" class="control-label h5 col-sm-2">Pricing Strategy *</label>
             <div class="col-md-2">
-                <select id="tariffTypepricingStrategies" class="form-control" data-bind="options: $root.pricingStrategies, optionsText: 'PricingStrategyName', optionsValue: 'PricingStrategyId', optionsCaption: '<Pricing Strategy>' , value: pricingStrategyId, validationTooltip: pricingStrategyId"></select>
+                <select id="tariffTypepricingStrategies" class="form-control" data-bind="options: $root.pricingStrategies, optionsText: 'PricingStrategyCodeName', optionsValue: 'PricingStrategyId', optionsCaption: '<Pricing Strategy>' , value: pricingStrategyId, validationTooltip: pricingStrategyId"></select>
             </div>
         </div>
 
@@ -74,7 +74,7 @@
     <div class="panel panel-info">
 
         <div class="panel-heading">Tariff Revisions</div>
-        <table id="tarrifTypeRevisions" class="table">
+        <table id="tariffTypeRevisions" class="table">
             <thead>
                 <tr>
                     <th> <span id="3">Duration<br />From<span></span></span></th>
@@ -93,7 +93,7 @@
                 <!-- /ko -->
             </tbody>
         </table>
-        <script id="itemTarrifTypeRevisionTemplate" type="text/html">
+        <script id="itemtariffTypeRevisionTemplate" type="text/html">
             <tr>
                 <td data-bind="text: durationFrom"></td>
                 <td data-bind="text: durationTo"></td>

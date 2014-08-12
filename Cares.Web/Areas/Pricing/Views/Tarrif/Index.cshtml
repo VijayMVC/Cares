@@ -2,38 +2,38 @@
     ViewBag.Title = "Index";
 }
 
-<div class="row" id="tarrifTypeBinding">
-    <div class="row " data-bind="visible: !isTarrifTypeEditorVisible()">
+<div class="row" id="tariffTypeBinding">
+    <div class="row " data-bind="visible: !istariffTypeEditorVisible()">
         <h3 class="page-header float-left pageHeaderSection">Tariff Types</h3>
         <div class="header-toolsSection">
             <a href="#" class="label label-default create-new-icon" data-bind="click: createTariffTypeInForm" title="Create New Tariff">NEW</a>
             <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title="Show Filters" style="display: none"></a>
         </div>
     </div>
-    <div class="row searchFilterSection" data-bind="visible: !isTarrifTypeEditorVisible() && filterSectionVisilble()" style="display: none">
+    <div class="row searchFilterSection" data-bind="visible: !istariffTypeEditorVisible() && filterSectionVisilble()" style="display: none">
         <div class="well">
             <form class="form-horizontal" data-bind="submit: search">
                 <div class="col-xs-3">
-                    <input type="text" class="form-control" placeholder="<Search>" data-bind="value: tarrifTypeCodeFilter" />
+                    <input type="text" class="form-control" placeholder="<Search>" data-bind="value: tariffTypeCodeFilter" />
                 </div>
                 <div class="col-xs-3">
-                    <select class="form-control" data-bind="options: $root.measurementUnits, optionsText: 'MeasurementUnitName', optionsValue: 'MeasurementUnitId', optionsCaption: '<Measurement Unit>', value: measurementUnitFilter"></select>
+                    <select class="form-control" data-bind="options: $root.measurementUnits, optionsText: 'MeasurementUnitCodeName', optionsValue: 'MeasurementUnitId', optionsCaption: '<Measurement Unit>', value: measurementUnitFilter"></select>
                 </div>
                 <div class="col-xs-3">
-                    <select class="form-control" data-bind="options: $root.operations, optionsText: 'OperationName', optionsValue: 'OperationId', optionsCaption: '<Operation>', value: operationFilter"></select>
+                    <select class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '<Operation>', value: operationFilter"></select>
                 </div>
                 <button type="submit" class="btn btn-success" data-bind="click: search">Search</button>
                 <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection" title="Hide Section"></a>
             </form>
         </div>
     </div>
-    <div class="row searchFilterResultSection" data-bind="visible: !isTarrifTypeEditorVisible()">
+    <div class="row searchFilterResultSection" data-bind="visible: !istariffTypeEditorVisible()">
         <div class="well">
-            <table id="tarrifTypeTable" class="table table-condensed ">
+            <table id="tariffTypeTable" class="table table-condensed ">
                 <thead>
                     <tr>
-                        <th class="tarrifTypeCode"> <span id="1">Code<span class="icon-up"></span></span></th>
-                        <th class="tarrifTypeName"> <span id="2">Name<span></span></span></th>
+                        <th class="tariffTypeCode"> <span id="1">Code<span class="icon-up"></span></span></th>
+                        <th class="tariffTypeName"> <span id="2">Name<span></span></span></th>
                         <th class="pricingScheme"> <span id="4">Pricing<br />Scheme<span></span></span></th>
                         <th class="operation"> <span id="6">Operation<span></span></span></th>
                         <th class="measurementUnit"> <span id="7">Measurement<br />Unit<span></span></span></th>
@@ -45,7 +45,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- ko template: { name: 'itemTarrifTypeTemplate' , foreach: tarrifTypes } -->
+                    <!-- ko template: { name: 'itemtariffTypeTemplate' , foreach: tariffTypes } -->
                     <!-- /ko -->
                 </tbody>
             </table>
@@ -54,14 +54,14 @@
             <!-- /ko -->
         </div>
     </div>
-    <script id="editActionTarrifTypeTemplate" type="text/html">
+    <script id="editActiontariffTypeTemplate" type="text/html">
         <a href="#" data-bind="click: $root.onEditTariffType" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
     </script>
 
-    <script id="itemTarrifTypeTemplate" type="text/html">
-        <tr data-bind="click: $root.selectTarrifType">
+    <script id="itemtariffTypeTemplate" type="text/html">
+        <tr data-bind="click: $root.selecttariffType">
             <td data-bind="text: tariffTypeCode"></td>
-            <td data-bind="text: tarrifTypeName"></td>
+            <td data-bind="text: tariffTypeName"></td>
             <td data-bind="text: pricingScheme"></td>
             <td data-bind="text: operation"></td>
             <td data-bind="text: measurementUnit"></td>
@@ -71,7 +71,7 @@
             <td data-bind="text: effectiveDate"></td>
             <td data-bind="text: revisionNumber"></td>
             <td>
-                <!-- ko template: { name: 'editActionTarrifTypeTemplate' } -->
+                <!-- ko template: { name: 'editActiontariffTypeTemplate' } -->
                 <!-- /ko -->
             </td>
         </tr>
@@ -87,7 +87,7 @@
 @section inlinescripts
 {
     <script type="text/javascript">
-        require(["tarrifType/tarrifType.view", "common/confirmation.view"]);
+        require(["tariffType/tariffType.view", "common/confirmation.view"]);
 
     </script>
 }

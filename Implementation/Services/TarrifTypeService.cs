@@ -8,9 +8,9 @@ using Cares.Models.ResponseModels;
 namespace Cares.Implementation.Services
 {
     /// <summary>
-    /// Tarrif TypeS ervice
+    /// tariff TypeS ervice
     /// </summary>
-    public class TarrifTypeService : ITarrifTypeService
+    public class TariffTypeService : ITariffTypeService
     {
         #region Private
         private readonly IDepartmentRepository departmentRepository;
@@ -18,27 +18,27 @@ namespace Cares.Implementation.Services
         private readonly IMeasurementUnit measurementUnit;
         private readonly IOperationRepository operationRepository;
         private readonly IPricingStrategyRepository pricingStrategyRepository;
-        private readonly ITarrifTypeRepository tarrifTypeRepository;
+        private readonly ITariffTypeRepository tariffTypeRepository;
 
         #endregion
         #region Constructors
-        public TarrifTypeService(IDepartmentRepository departmentRepository, ICompanyRepository companyRepository, IMeasurementUnit measurementUnit,
-           IOperationRepository operationRepository, IPricingStrategyRepository pricingStrategyRepository, ITarrifTypeRepository tarrifTypeRepository)
+        public TariffTypeService(IDepartmentRepository departmentRepository, ICompanyRepository companyRepository, IMeasurementUnit measurementUnit,
+           IOperationRepository operationRepository, IPricingStrategyRepository pricingStrategyRepository, ITariffTypeRepository tariffTypeRepository)
         {
             this.operationRepository = operationRepository;
             this.departmentRepository = departmentRepository;
             this.companyRepository = companyRepository;
             this.measurementUnit = measurementUnit;
             this.pricingStrategyRepository = pricingStrategyRepository;
-            this.tarrifTypeRepository = tarrifTypeRepository;
+            this.tariffTypeRepository = tariffTypeRepository;
 
         }
         #endregion
         #region Public
 
-        public TarrifTypeBaseResponse GetBaseData()
+        public TariffTypeBaseResponse GetBaseData()
         {
-            return new TarrifTypeBaseResponse
+            return new TariffTypeBaseResponse
             {
                 Companies = companyRepository.GetAll(),
                 MeasurementUnits = measurementUnit.GetAll(),
@@ -49,18 +49,18 @@ namespace Cares.Implementation.Services
             };
 
         }
-        public IEnumerable<TarrifType> LoadAll()
+        public IEnumerable<TariffType> LoadAll()
         {
-            return tarrifTypeRepository.GetAll();
+            return tariffTypeRepository.GetAll();
         }
         /// <summary>
-        /// Load tarrif type, based on search filters
+        /// Load tariff type, based on search filters
         /// </summary>
-        /// <param name="tarrifTypeRequest"></param>
+        /// <param name="tariffTypeRequest"></param>
         /// <returns></returns>
-        public TarrifTypeResponse LoadTarrifTypes(TarrifTypeRequest tarrifTypeRequest)
+        public TariffTypeResponse LoadtariffTypes(TariffTypeRequest tariffTypeRequest)
         {
-            return tarrifTypeRepository.GetTarrifTypes(tarrifTypeRequest);
+            return tariffTypeRepository.GettariffTypes(tariffTypeRequest);
         }
         /// <summary>
         /// Find Tariff Type By Id
@@ -69,53 +69,53 @@ namespace Cares.Implementation.Services
         /// <returns></returns>
         public TariffTypeDetailResponse FindDetailById(long id)
         {
-            List<TarrifType> revisionList = new List<TarrifType>();
-            var tarrifType = tarrifTypeRepository.Find(id);
-            if (tarrifType != null && tarrifType.RevisionNumber > 0)
+            List<TariffType> revisionList = new List<TariffType>();
+            var tariffType = tariffTypeRepository.Find(id);
+            if (tariffType != null && tariffType.RevisionNumber > 0)
             {
-                var tempId = tarrifType.TariffTypeId;
-                for (int i = 0; i < tarrifType.RevisionNumber; i++)
+                var tempId = tariffType.TariffTypeId;
+                for (int i = 0; i < tariffType.RevisionNumber; i++)
                 {
                     if (tempId > 0)
                     {
-                        var tariffRevision = tarrifTypeRepository.GetRevison(tempId);
+                        var tariffRevision = tariffTypeRepository.GetRevison(tempId);
                         tempId = tariffRevision != null ? tariffRevision.TariffTypeId : 0;
                         revisionList.Add(tariffRevision);
                     }
                 }
             }
-            return new TariffTypeDetailResponse { TarrifType = tarrifType, TarrifTypeRevisions = revisionList };
+            return new TariffTypeDetailResponse { TariffType = tariffType, TariffTypeRevisions = revisionList };
         }
         /// <summary>
         /// Add Tariff Type
         /// </summary>
-        /// <param name="tarrifType"></param>
+        /// <param name="tariffType"></param>
         /// <returns></returns>
-        public TarrifType AddTarrifType(TarrifType tarrifType)
+        public TariffType AddtariffType(TariffType tariffType)
         {
-            tarrifTypeRepository.Add(tarrifType);
-            tarrifTypeRepository.SaveChanges();
-            TarrifType tarrif = tarrifTypeRepository.Find(tarrifType.TariffTypeId);
-            tarrifTypeRepository.LoadDependencies(tarrif);
-            return tarrif;
+            tariffTypeRepository.Add(tariffType);
+            tariffTypeRepository.SaveChanges();
+            TariffType tariff = tariffTypeRepository.Find(tariffType.TariffTypeId);
+            tariffTypeRepository.LoadDependencies(tariff);
+            return tariff;
         }
         /// <summary>
         /// Update Tariff Type
         /// </summary>
-        /// <param name="tarrifType"></param>
+        /// <param name="tariffType"></param>
         /// <returns></returns>
-        public TarrifType UpdateTarrifType(TarrifType tarrifType)
+        public TariffType UpdatetariffType(TariffType tariffType)
         {
-            long oldRecordId = tarrifType.TariffTypeId;
-            tarrifType.TariffTypeId = 0;
-            tarrifType.RevisionNumber = tarrifType.RevisionNumber + 1;
-            tarrifTypeRepository.Add(tarrifType);
-            tarrifTypeRepository.SaveChanges();
-            TarrifType oldTariffRecord = tarrifTypeRepository.Find(oldRecordId);
-            oldTariffRecord.ChildTariffTypeId = tarrifType.TariffTypeId;
-            tarrifTypeRepository.SaveChanges();
-            tarrifTypeRepository.LoadDependencies(tarrifType);
-            return tarrifType;
+            long oldRecordId = tariffType.TariffTypeId;
+            tariffType.TariffTypeId = 0;
+            tariffType.RevisionNumber = tariffType.RevisionNumber + 1;
+            tariffTypeRepository.Add(tariffType);
+            tariffTypeRepository.SaveChanges();
+            TariffType oldTariffRecord = tariffTypeRepository.Find(oldRecordId);
+            oldTariffRecord.ChildTariffTypeId = tariffType.TariffTypeId;
+            tariffTypeRepository.SaveChanges();
+            tariffTypeRepository.LoadDependencies(tariffType);
+            return tariffType;
         }
         #endregion
     }

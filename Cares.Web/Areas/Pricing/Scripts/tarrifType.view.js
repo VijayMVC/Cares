@@ -1,18 +1,18 @@
 ﻿/*
-    View for the Tarrif Type. Used to keep the viewmodel clear of UI related logic
+    View for the tariff Type. Used to keep the viewmodel clear of UI related logic
 */
-define("tarrifType/tarrifType.view",
-    ["jquery", "tarrifType/tarrifType.viewModel"], function ($, tarrifViewModel) {
+define("tariffType/tariffType.view",
+    ["jquery", "tariffType/tariffType.viewModel"], function ($, tariffViewModel) {
 
         var ist = window.ist || {};
 
         // View 
-        ist.tarrifType.view = (function (specifiedViewModel) {
+        ist.tariffType.view = (function (specifiedViewModel) {
             var
                 // View model 
                 viewModel = specifiedViewModel,
                 // Binding root used with knockout
-                bindingRoot = $("#tarrifTypeBinding")[0],
+                bindingRoot = $("#tariffTypeBinding")[0],
                 // Initialize
                 initialize = function () {
                     if (!bindingRoot) {
@@ -20,18 +20,18 @@ define("tarrifType/tarrifType.view",
                     }
 
                     // Handle Sorting
-                    handleSorting("tarrifTypeTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getTarrifType);
+                    handleSorting("tariffTypeTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.gettariffType);
                 };
             initialize();
             return {
                 bindingRoot: bindingRoot,
                 viewModel: viewModel
             };
-        })(tarrifViewModel);
+        })(tariffViewModel);
 
         // Initialize the view model
-        if (ist.tarrifType.view.bindingRoot) {
-            tarrifViewModel.initialize(ist.tarrifType.view);
+        if (ist.tariffType.view.bindingRoot) {
+            tariffViewModel.initialize(ist.tariffType.view);
         }
-        return ist.tarrifType.view;
+        return ist.tariffType.view;
     });

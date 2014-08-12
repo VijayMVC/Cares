@@ -190,7 +190,7 @@ define("Fleet/fleetPool.viewModel",
                              return region.CountryId === item.countryId();
                         }));
                     },
-                    // Map Tarrif Types - Server to Client
+                    // Map tariff Types - Server to Client
                     mapFleetPools = function(data) {
                         var fleetPoolList = [];
                         _.each(data.FleetPools, function(item) {

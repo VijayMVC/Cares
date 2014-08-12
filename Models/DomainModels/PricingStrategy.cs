@@ -73,9 +73,9 @@ namespace Cares.Models.DomainModels
         #region Reference Properties
 
         /// <summary>
-        /// Tarrif Types having this Pricing Strategy
+        /// tariff Types having this Pricing Strategy
         /// </summary>
-        public virtual ICollection<TarrifType> TarrifTypes { get; set; }
+        public virtual ICollection<TariffType> TariffTypes { get; set; }
 
         #endregion
     }

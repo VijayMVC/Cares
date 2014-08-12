@@ -19,27 +19,27 @@ namespace Cares.Web.Models
         /// <summary>
         /// Departments 
         /// </summary>
-        public IEnumerable<Department> Departments { get; set; }
+        public IEnumerable<DepartmentDropDown> Departments { get; set; }
         /// <summary>
         /// Operations 
         /// </summary>
-        public IEnumerable<Operation> Operations { get; set; }
+        public IEnumerable<OperationDropDown> Operations { get; set; }
         /// <summary>
         /// Vehicle Categories
         /// </summary>
-        public IEnumerable<VehicleCategory> VehicleCategories { get; set; }
+        public IEnumerable<VehicleCategoryDropDown> VehicleCategories { get; set; }
         /// <summary>
         /// Vehicle Makes
         /// </summary>
-        public IEnumerable<VehicleMake> VehicleMakes { get; set; }
+        public IEnumerable<VehicleMakeDropDown> VehicleMakes { get; set; }
         /// <summary>
         /// Vehicle Models
         /// </summary>
-        public IEnumerable<VehicleModel> VehicleModels { get; set; }
+        public IEnumerable<VehicleModelDropDown> VehicleModels { get; set; }
         /// <summary>
         /// Tariff types
         /// </summary>
-        public IEnumerable<TarrifType> TariffTypes { get; set; }
+        public IEnumerable<TariffType> TariffTypes { get; set; }
 
         #endregion
     }

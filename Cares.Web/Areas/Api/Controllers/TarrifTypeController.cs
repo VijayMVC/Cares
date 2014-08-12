@@ -10,55 +10,55 @@ using Cares.Web.Models;
 namespace Cares.Web.Areas.Api.Controllers
 {
     /// <summary>
-    /// Tarrif Type Api Controller
+    /// tariff Type Api Controller
     /// </summary>
-    public class TarrifTypeController : ApiController
+    public class TariffTypeController : ApiController
     {
         #region Private
-        private readonly ITarrifTypeService tarrifTypeService;
+        private readonly ITariffTypeService tariffTypeService;
         #endregion
         #region Constructors
         /// <summary>
         /// Constructor
         /// </summary>
-        public TarrifTypeController(ITarrifTypeService tarrifTypeService)
+        public TariffTypeController(ITariffTypeService tariffTypeService)
         {
-            if (tarrifTypeService == null)
+            if (tariffTypeService == null)
             {
-                throw new ArgumentNullException("tarrifTypeService");
+                throw new ArgumentNullException("tariffTypeService");
             }
 
-            this.tarrifTypeService = tarrifTypeService;
+            this.tariffTypeService = tariffTypeService;
         }
         #endregion
         #region Public
         // GET api/<controller>
-        public TarrifTypeSearchResponse Get([FromUri] TarrifTypeRequest request)
+        public TariffTypeSearchResponse Get([FromUri] TariffTypeRequest request)
         {
-           return tarrifTypeService.LoadTarrifTypes((request)).CreateFrom();
+           return tariffTypeService.LoadtariffTypes((request)).CreateFrom();
         }
         /// <summary>
-        /// Update a Tarrif Type
+        /// Update a tariff Type
         /// </summary>
-        public TarrifType Post(TariffTypeDetail tarrifType)
+        public TariffType Post(TariffTypeDetail tariffType)
         {
-            if (tarrifType == null || !ModelState.IsValid)
+            if (tariffType == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
 
-            return tarrifTypeService.UpdateTarrifType(tarrifType.CreateFrom()).CreateFrom();
+            return tariffTypeService.UpdatetariffType(tariffType.CreateFrom()).CreateFrom();
         }
         /// <summary>
-        /// Add a Tarrif Type
+        /// Add a tariff Type
         /// </summary>
-        public TarrifType Put(TariffTypeDetail tarrifType)
+        public TariffType Put(TariffTypeDetail tariffType)
         {
-            if (tarrifType == null || !ModelState.IsValid)
+            if (tariffType == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return tarrifTypeService.AddTarrifType(tarrifType.CreateFrom()).CreateFrom();
+            return tariffTypeService.AddtariffType(tariffType.CreateFrom()).CreateFrom();
 
         }
         #endregion

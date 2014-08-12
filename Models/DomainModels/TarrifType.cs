@@ -5,9 +5,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cares.Models.DomainModels
 {    /// <summary>
-    /// Tarrif Type Domain Model
+    /// tariff Type Domain Model
     /// </summary>
-    public class TarrifType
+    public class TariffType
     {
         #region Persisited Properties
         /// <summary>
@@ -75,7 +75,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Child Tariff Type Id
         /// </summary>
-        [ForeignKey("ChildTarrifType")]
+        [ForeignKey("ChildtariffType")]
         public long? ChildTariffTypeId { get; set; }
         /// <summary>
         /// Record Created Date
@@ -130,9 +130,9 @@ namespace Cares.Models.DomainModels
         public virtual PricingStrategy PricingStrategy { get; set; }
 
         /// <summary>
-        /// Child Tarrif Type
+        /// Child tariff Type
         /// </summary>
-        public virtual TarrifType ChildTarrifType { get; set; }
+        public virtual TariffType ChildtariffType { get; set; }
 
         #endregion
     }

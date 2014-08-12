@@ -1,5 +1,5 @@
 ﻿/*
-    Module with the view model for the Tarrif Rate
+    Module with the view model for the tariff Rate
 */
 define("tariffRate/tariffRate.viewModel",
     ["jquery", "amplify", "ko", "tariffRate/tariffRate.dataservice", "tariffRate/tariffRate.model", "common/confirmation.viewModel", "common/pagination"],
@@ -9,10 +9,10 @@ define("tariffRate/tariffRate.viewModel",
             viewModel: (function () {
                 var // the view 
                     view,
-                     // Active Tarrif Rate
-                    selectedTarrifRate = ko.observable(),
-                    //Active Tarrif Rate Copy 
-                    selectedTarrifRateCopy = ko.observable(),
+                     // Active tariff Rate
+                    selectedtariffRate = ko.observable(),
+                    //Active tariff Rate Copy 
+                    selectedtariffRateCopy = ko.observable(),
                     //For Edit, Tariff Rate Id
                     selectedTariffRateId = ko.observable(),
                      //Selected Hire Group
@@ -203,17 +203,17 @@ define("tariffRate/tariffRate.viewModel",
                     },
                      // close Tariff Rate Editor
                     closeTariffRateEditor = function () {
-                        if (selectedTarrifRateCopy() !== undefined) {
-                            selectedTarrifRate().tariffRateCode(selectedTarrifRateCopy().tariffRateCode());
-                            selectedTarrifRate().tariffRateName(selectedTarrifRateCopy().tariffRateName());
-                            selectedTarrifRate().tariffRateDescription(selectedTarrifRateCopy().tariffRateDescription());
-                            selectedTarrifRate().tariffRateCode(selectedTarrifRateCopy().tariffRateCode());
-                            selectedTarrifRate().startEffectiveDate(selectedTarrifRateCopy().startEffectiveDate());
-                            selectedTarrifRate().endEffectiveDate(selectedTarrifRateCopy().endEffectiveDate());
-                            selectedTarrifRate().tariffTypeCodeName(selectedTarrifRateCopy().tariffTypeCodeName());
-                            selectedTarrifRate().tariffTypeId(selectedTarrifRateCopy().tariffTypeId());
-                            selectedTarrifRate().operationCodeName(selectedTarrifRateCopy().operationCodeName());
-                            selectedTarrifRate().operationId(selectedTarrifRateCopy().operationId());
+                        if (selectedtariffRateCopy() !== undefined) {
+                            selectedtariffRate().tariffRateCode(selectedtariffRateCopy().tariffRateCode());
+                            selectedtariffRate().tariffRateName(selectedtariffRateCopy().tariffRateName());
+                            selectedtariffRate().tariffRateDescription(selectedtariffRateCopy().tariffRateDescription());
+                            selectedtariffRate().tariffRateCode(selectedtariffRateCopy().tariffRateCode());
+                            selectedtariffRate().startEffectiveDate(selectedtariffRateCopy().startEffectiveDate());
+                            selectedtariffRate().endEffectiveDate(selectedtariffRateCopy().endEffectiveDate());
+                            selectedtariffRate().tariffTypeCodeName(selectedtariffRateCopy().tariffTypeCodeName());
+                            selectedtariffRate().tariffTypeId(selectedtariffRateCopy().tariffTypeId());
+                            selectedtariffRate().operationCodeName(selectedtariffRateCopy().operationCodeName());
+                            selectedtariffRate().operationId(selectedtariffRateCopy().operationId());
                         }
                         isTariffRateEditorVisible(false);
                     },
@@ -226,7 +226,7 @@ define("tariffRate/tariffRate.viewModel",
                         hireGroupDetails.removeAll();
                         var tariffRate = new model.TariffRate();
                         // Select the newly added Tariff Rate
-                        selectedTarrifRate(tariffRate);
+                        selectedtariffRate(tariffRate);
                         // addTariffRate(tariffRate);
                         getHireGroupDetails(tariffRate);
                         showTariffRateEditor();
@@ -256,14 +256,14 @@ define("tariffRate/tariffRate.viewModel",
                         dataservice[method](model.TariffRateServerMapper(tariffRate), {
                             success: function (data) {
                                 var tariffRateData = new model.TariffRateClientMapper(data);
-                                if (selectedTarrifRate().tariffRateId() > 0) {
-                                    selectedTarrifRateCopy(undefined);
-                                    selectedTarrifRate().startEffectiveDate(tariffRateData.startEffectiveDate()),
-                                    selectedTarrifRate().endEffectiveDate(tariffRateData.endEffectiveDate()),
-                                    //selectedTarrifRate().tariffTypeCodeName(data.TariffTypeCodeName),
-                                    //selectedTarrifRate().tariffTypeId(data.TariffTypeId),
-                                    //selectedTarrifRate().operationCodeName(data.OperationCodeName),
-                                    //selectedTarrifRate().operationId(data.OperationId),
+                                if (selectedtariffRate().tariffRateId() > 0) {
+                                    selectedtariffRateCopy(undefined);
+                                    selectedtariffRate().startEffectiveDate(tariffRateData.startEffectiveDate()),
+                                    selectedtariffRate().endEffectiveDate(tariffRateData.endEffectiveDate()),
+                                    //selectedtariffRate().tariffTypeCodeName(data.TariffTypeCodeName),
+                                    //selectedtariffRate().tariffTypeId(data.TariffTypeId),
+                                    //selectedtariffRate().operationCodeName(data.OperationCodeName),
+                                    //selectedtariffRate().operationId(data.OperationId),
                                     closeTariffRateEditor();
                                 } else {
                                     tariffRates.splice(0, 0, tariffRateData);
@@ -279,8 +279,8 @@ define("tariffRate/tariffRate.viewModel",
                       // Do Before Logic
                     doBeforeSave = function () {
                         var flag = true;
-                        if (!selectedTarrifRate().isValid()) {
-                            selectedTarrifRate().errors.showAllMessages();
+                        if (!selectedtariffRate().isValid()) {
+                            selectedtariffRate().errors.showAllMessages();
                             flag = false;
                         }
                         return flag;
@@ -322,14 +322,14 @@ define("tariffRate/tariffRate.viewModel",
                      //Edit Tariff Rate
                     onEditTariffRate = function (tariffRate, e) {
                         selectedTariffRateId(tariffRate.tariffRateId());
-                        selectedTarrifRate(tariffRate);
-                        selectedTarrifRateCopy(model.TariffRateCoppier(selectedTarrifRate()));
+                        selectedtariffRate(tariffRate);
+                        selectedtariffRateCopy(model.TariffRateCoppier(selectedtariffRate()));
                         getHireGroupDetails(tariffRate);
                         showTariffRateEditor();
                         e.stopImmediatePropagation();
                     },
                     // Map Tariff Rates - Server to Client
-                    mapTarrifRates = function (data) {
+                    maptariffRates = function (data) {
                         var tariffRateList = [];
                         _.each(data.TariffRates, function (item) {
                             var tariffRate = new model.TariffRateClientMapper(item);
@@ -354,7 +354,7 @@ define("tariffRate/tariffRate.viewModel",
                             success: function (data) {
                                 pager().totalCount(data.TotalCount);
                                 tariffRates.removeAll();
-                                mapTarrifRates(data);
+                                maptariffRates(data);
                                 isLoadingTariffRates(false);
                             },
                             error: function () {
@@ -367,8 +367,8 @@ define("tariffRate/tariffRate.viewModel",
 
                 return {
                     // Observables
-                    selectedTarrifRate: selectedTarrifRate,
-                    selectedTarrifRateCopy: selectedTarrifRateCopy,
+                    selectedtariffRate: selectedtariffRate,
+                    selectedtariffRateCopy: selectedtariffRateCopy,
                     addTariffRate: addTariffRate,
                     selectedTariffRateId: selectedTariffRateId,
                     isLoadingTariffRates: isLoadingTariffRates,
@@ -410,7 +410,7 @@ define("tariffRate/tariffRate.viewModel",
                     initialize: initialize,
                     search: search,
                     getTariffRates: getTariffRates,
-                    mapTarrifRates: mapTarrifRates,
+                    maptariffRates: maptariffRates,
                     getBase: getBase,
                     pager: pager,
                     editorPager: editorPager,
