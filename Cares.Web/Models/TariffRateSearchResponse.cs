@@ -17,7 +17,7 @@ namespace Cares.Web.Models
         #endregion
         #region Public
         /// <summary>
-        /// Tarrif Rates
+        /// tariff Rates
         /// </summary>
         public IEnumerable<TariffRateContent> TariffRates { get; set; }
 

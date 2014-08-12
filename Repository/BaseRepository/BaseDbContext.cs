@@ -161,7 +161,7 @@ namespace Cares.Repository.BaseRepository
         /// Department DB Set
         /// </summary>
         public DbSet<Department> Departments { get; set; }
-        public DbSet<TarrifType> TarrifTypes { get; set; }
+        public DbSet<TariffType> TariffTypes { get; set; }
         /// <summary>
         /// Operation DB Set
         /// </summary>

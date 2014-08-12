@@ -9,12 +9,12 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static VehicleModel CreateFrom(this Cares.Models.DomainModels.VehicleModel source)
+        public static VehicleModelDropDown CreateFrom(this Cares.Models.DomainModels.VehicleModel source)
         {
-            return new VehicleModel
+            return new VehicleModelDropDown
             {
                 VehicleModeld = source.VehicleModelId,
-                VehicleModelName = source.VehicleModelCode + "-" + source.VehicleModelName,
+                VehicleModelCodeName = source.VehicleModelCode + " - " + source.VehicleModelName,
             };
         }
 

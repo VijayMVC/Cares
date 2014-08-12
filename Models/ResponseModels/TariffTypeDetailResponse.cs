@@ -8,8 +8,8 @@ namespace Cares.Models.ResponseModels
     /// </summary>
     public class TariffTypeDetailResponse
     {
-        public TarrifType TarrifType { get; set; }
-        public List<TarrifType> TarrifTypeRevisions { get; set; }
+        public TariffType TariffType { get; set; }
+        public List<TariffType> TariffTypeRevisions { get; set; }
         
     }
 }

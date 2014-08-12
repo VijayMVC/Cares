@@ -3,7 +3,7 @@
 namespace Cares.Web.Models
 {
     /// <summary>
-    /// Tarrif Type Base Response Web Models
+    /// tariff Type Base Response Web Models
     /// </summary>
     public class RegionResponse
     {

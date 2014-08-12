@@ -1,7 +1,7 @@
 ﻿/*
     Data service module with ajax calls to the server
 */
-define("tarrifType/tarrifType.dataservice", function () {
+define("tariffType/tariffType.dataservice", function () {
 
     // Data service for forecast 
     var dataService = (function () {
@@ -12,85 +12,85 @@ define("tarrifType/tarrifType.dataservice", function () {
             initialize = function() {
                 if (!isInitialized) {
                     
-                    // Define request to get tarrif type base 
-                    amplify.request.define('getTarrifTypeBase', 'ajax', {
-                        url: '/Api/TarrifTypeBase',
+                    // Define request to get tariff type base 
+                    amplify.request.define('gettariffTypeBase', 'ajax', {
+                        url: '/Api/tariffTypeBase',
                         dataType: 'json',
                         type: 'GET'
                     });
-                    // Define request to get tarrif type by id 
-                    amplify.request.define('getTarrifTypeById', 'ajax', {
+                    // Define request to get tariff type by id 
+                    amplify.request.define('gettariffTypeById', 'ajax', {
                         url: '/Api/GetTariffDetails',
                         dataType: 'json',
                         type: 'GET'
                     });
-                    // Define request to get tarrif type  
-                    amplify.request.define('getTarrifType', 'ajax', {
-                        url: '/Api/TarrifType',
+                    // Define request to get tariff type  
+                    amplify.request.define('gettariffType', 'ajax', {
+                        url: '/Api/tariffType',
                         dataType: 'json',
                         type: 'GET'
                     });
-                    // Define request to save updateTarrifType
-                    amplify.request.define('createTarrifType', 'ajax', {
-                        url: '/Api/TarrifType',
+                    // Define request to save updatetariffType
+                    amplify.request.define('createtariffType', 'ajax', {
+                        url: '/Api/tariffType',
                         dataType: 'json',
                         type: 'PUT'
                     });
 
-                    // Define request to update updateTarrifType
-                    amplify.request.define('updateTarrifType', 'ajax', {
-                        url: '/Api/TarrifType',
+                    // Define request to update updatetariffType
+                    amplify.request.define('updatetariffType', 'ajax', {
+                        url: '/Api/tariffType',
                         dataType: 'json',
                         type: 'POST'
                     });
                     isInitialized = true;
                 }
             },
-            // Get Tarrif type base
-            getTarrifTypeBase = function(callbacks) {
+            // Get tariff type base
+            gettariffTypeBase = function(callbacks) {
                 initialize();
                 return amplify.request({
-                    resourceId: 'getTarrifTypeBase',
+                    resourceId: 'gettariffTypeBase',
                     success: callbacks.success,
                     error: callbacks.error,
                 });
             },
-            // Get Tarrif type 
-            getTarrifType = function(params, callbacks) {
+            // Get tariff type 
+            gettariffType = function(params, callbacks) {
                 initialize();
                 return amplify.request({
-                    resourceId: 'getTarrifType',
+                    resourceId: 'gettariffType',
                     success: callbacks.success,
                     error: callbacks.error,
                     data: params
                 });
             },
-            // Create Tarrif type 
-            createTarrifType = function (param, callbacks) {
+            // Create tariff type 
+            createtariffType = function (param, callbacks) {
                 initialize();
                 return amplify.request({
-                    resourceId: 'createTarrifType',
+                    resourceId: 'createtariffType',
                     success: callbacks.success,
                     error: callbacks.error,
                     data: param
                 });
             },
-             // Get Tarrif type bby id 
-            getTarrifTypeById = function (param, callbacks) {
+             // Get tariff type bby id 
+            gettariffTypeById = function (param, callbacks) {
                 initialize();
                 return amplify.request({
-                    resourceId: 'getTarrifTypeById',
+                    resourceId: 'gettariffTypeById',
                     success: callbacks.success,
                     error: callbacks.error,
                     data: param
                 });
             },
             
-            // Update a Tarrif type 
-            updateTarrifType = function (param, callbacks) {
+            // Update a tariff type 
+            updatetariffType = function (param, callbacks) {
                 initialize();
                 return amplify.request({
-                    resourceId: 'updateTarrifType',
+                    resourceId: 'updatetariffType',
                     success: callbacks.success,
                     error: callbacks.error,
                     data: param
@@ -98,11 +98,11 @@ define("tarrifType/tarrifType.dataservice", function () {
             };
             
         return {
-            getTarrifTypeBase: getTarrifTypeBase,
-            getTarrifType: getTarrifType,
-            createTarrifType: createTarrifType,
-            updateTarrifType: updateTarrifType,
-            getTarrifTypeById: getTarrifTypeById
+            gettariffTypeBase: gettariffTypeBase,
+            gettariffType: gettariffType,
+            createtariffType: createtariffType,
+            updatetariffType: updatetariffType,
+            gettariffTypeById: gettariffTypeById
 
         };
     })();

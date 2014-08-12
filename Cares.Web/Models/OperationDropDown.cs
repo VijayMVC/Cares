@@ -3,7 +3,7 @@
     /// <summary>
     /// Operation Web Model
     /// </summary>
-    public class Operation
+    public class OperationDropDown
     {
         #region Public Properties
         /// <summary>
@@ -13,13 +13,8 @@
         /// <summary>
         /// Operation Code
         /// </summary>
-        public string OperationCode { get; set; }
-        /// <summary>
-        /// Operation Name
-        /// </summary>        
-        public string OperationName { get; set; }
-
-
+        public string OperationCodeName { get; set; }
         #endregion
+       
     }
 }

@@ -36,38 +36,64 @@
             </div>
         </div>
     </form>
-    <!-- Nav tabs -->
-    <ul class="nav nav-tabs" role="tablist">
-        <li class="active"><a href="#detail" role="tab" data-toggle="tab">Detail</a></li>
-        <li><a href="#upgradedHireGroups" role="tab" data-toggle="tab">Upgraded HireGroups</a></li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-        <br />
-        <!-- first tab - Detail-->
-        <div class="tab-pane active" id="detail" data-bind="with:vehicleDetail">
-            <form class="form-horizontal">
-                <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onSaveHireGroup">Add</button>
-                <div class="form-group">
-                    <label for="vehicleMake" class="control-label h5 col-sm-2">Vehicle Make*</label>
-                    <div class="col-md-2">
-                        <select id="vehicleMake" class="form-control" data-bind="options: $root.vehicleMakes, optionsText: 'VehicleMakeName', optionsValue: 'VehicleMakeId', optionsCaption: '<Vehicle Make>', value:vehicleMakeId"></select>
+    <div class="panel panel-info">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="active"><a href="#detail" role="tab" data-toggle="tab">Detail</a></li>
+            <li><a href="#upgradedHireGroups" role="tab" data-toggle="tab">Upgraded HireGroups</a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <br />
+            <!-- first tab - Detail-->
+            <div class="tab-pane active" id="detail" data-bind="with:vehicleDetail">
+                <form class="form-horizontal">
+                    <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onAddVehicleDetail">Add</button>
+                    <div class="form-group">
+                        <label for="vehicleMake" class="control-label h5 col-sm-2">Vehicle Make*</label>
+                        <div class="col-md-2">
+                            <select id="vehicleMake" class="form-control" data-bind="options: $root.vehicleMakes, optionsText: 'VehicleMakeCodeName', optionsCaption: '<Vehicle Make>', value:vehicleMakeId, event:{change:$root.onVehicleMakeChange}"></select>
+                        </div>
+                        <label for="vehicleModel" class="control-label h5 col-sm-2">Vehicle Model*</label>
+                        <div class="col-md-2">
+                            <select id="vehicleModel" class="form-control" data-bind="options: $root.vehicleModels, optionsText: 'VehicleModelCodeName', optionsCaption: '<Vehicle Model>', value: vehicleModelId, event:{change:$root.onVehicleModelChange} "></select>
+                        </div>
+                        <label for="vehicleCategory" class="control-label h5 col-sm-2">Vehicle Category</label>
+                        <div class="col-md-2">
+                            <select id="vehicleCategory" class="form-control" data-bind="options: $root.vehicleCategories, optionsText: 'VehicleCategoryCodeName', optionsCaption: '<Vehicle Category>', value: vehicleCategoryId, event:{change:$root.onVehicleCategoryChange} "></select>
+                        </div>
                     </div>
-                    <label for="vehicleModel" class="control-label h5 col-sm-2">Vehicle Model*</label>
-                    <div class="col-md-2">
-                        <select id="vehicleModel" class="form-control" data-bind="options: $root.vehicleModels, optionsText: 'VehicleModelName', optionsValue: 'VehicleModeld', optionsCaption: '<Vehicle Model>', value: vehicleModelId "></select>
-                    </div>
-                    <label for="vehicleCategory" class="control-label h5 col-sm-2">Vehicle Category</label>
-                    <div class="col-md-2">
-                        <select id="vehicleCategory" class="form-control" data-bind="options: $root.vehicleCategories, optionsText: 'VehicleCategoryName', optionsValue: 'VehicleCategoryId', optionsCaption: '<Vehicle Category>', value: vehicleCategoryId "></select>
-                    </div>
-                </div>
-                <div class="form-group">
+                    <div class="form-group">
 
-                </div>
-            </form>
+                    </div>
+                </form>
+
+                <table id="hireGroupDetail" class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th> <span></span></th>
+                            <th> <span>Vehicle<br />Make<span></span></span></th>
+                            <th> <span>Vehicle<br />Model<span></span></span></th>
+                            <th> <span>Vehicle<br />Category<span></span></span></th>
+                            <th> <span>Model<br />Year<span></span></span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- ko template: { name: itemHireGroupDetailTemplate , foreach: $root.hireGroupDetails } -->
+                        <!-- /ko -->
+                    </tbody>
+                </table>
+                <script id="itemHireGroupDetailTemplate" type="text/html">
+                    <tr >
+                        <td data-bind="text: vehicleMakeName"></td>
+                        <td data-bind="text: VehicleModelCodeName"></td>
+                        <td data-bind="text: vehicleModelName"></td>
+                        @*<td data-bind="text: modelYear"></td>*@
+                    </tr>
+                </script>
+            </div>
+            <!-- second tab - Upgraded HireGroups-->
+            <div class="tab-pane" id="upgradedHireGroups">...</div>
         </div>
-        <!-- first tab - Upgraded HireGroups-->
-        <div class="tab-pane" id="upgradedHireGroups">...</div>
     </div>
 </div>

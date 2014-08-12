@@ -3,20 +3,24 @@
 namespace Cares.Web.Areas.Pricing.Controllers
 {
     /// <summary>
-    /// Tarrif Controller
+    /// tariff Controller
     /// </summary>
-    public class TarrifController : Controller
+    public class tariffController : Controller
     {
         //
-        // GET: /TarrifType/Tarrif/
+        // GET: /tariffType/tariff/
         public ActionResult Index()
         {
             return View();
         }//
-        // GET: /Tarrif/TariffRate/
+        // GET: /tariff/TariffRate/
         public ActionResult TariffRate()
         {
             return View();
         }
+        public ActionResult test()
+        {
+            return View();
+        }//
 	}
 }

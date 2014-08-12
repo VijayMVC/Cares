@@ -21,7 +21,7 @@ namespace Cares.Models.ResponseModels
             VehicleCategories = new List<VehicleCategory>();
             VehicleMakes = new List<VehicleMake>();
             VehicleModels = new List<VehicleModel>();
-            TariffTypes = new List<TarrifType>();
+            TariffTypes = new List<TariffType>();
         }
         #endregion
         #region Public
@@ -56,7 +56,7 @@ namespace Cares.Models.ResponseModels
         /// <summary>
         /// Tariff types
         /// </summary>
-        public IEnumerable<TarrifType> TariffTypes { get; set; }
+        public IEnumerable<TariffType> TariffTypes { get; set; }
 
         #endregion
     }

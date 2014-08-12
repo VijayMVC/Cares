@@ -3,7 +3,6 @@ using System.Net;
 using System.Web;
 using System.Web.Http;
 using Cares.Interfaces.IServices;
-using Cares.Models.ResponseModels;
 using Cares.Web.ModelMappers;
 using ApiModels=Cares.Web.Models;
 namespace Cares.Web.Areas.Api.Controllers

@@ -1,5 +1,5 @@
 ﻿/*
-    Module with the view model for the Tarrif Rate
+    Module with the view model for the tariff Rate
 */
 define("hireGroup/hireGroup.viewModel",
     ["jquery", "amplify", "ko", "hireGroup/hireGroup.dataservice", "hireGroup/hireGroup.model", "common/confirmation.viewModel", "common/pagination"],
@@ -30,6 +30,8 @@ define("hireGroup/hireGroup.viewModel",
                     vehicleModels = ko.observableArray([]),
                     //Vehicle Categories
                     vehicleCategories = ko.observableArray([]),
+                    //Hire Group Deatil List
+                    hireGroupDetails = ko.observableArray([]),
                     //Model Years
                     modelYears = ko.observableArray([]),
                     //Hire Group upgraded tab 
@@ -93,28 +95,102 @@ define("hireGroup/hireGroup.viewModel",
                         var hireGroup = new model.HireGroup();
                         // Select the newly added Hire Group
                         selectedHireGroup(hireGroup);
-                       selectedHireGroup().vehicleDetail(new model.VehicleDetail());
+                        selectedHireGroup().vehicleDetail(new model.HireGroupDetail());
                         showHireGroupEditor();
                     },
                       //Edit Hire Group
                     onEditHireGroup = function (hireGroup, e) {
                         //selectedTariffRateId(tariffRate.tariffRateId());
                         selectedHireGroup(hireGroup);
-                        //selectedTarrifRateCopy(model.TariffRateCoppier(selectedTarrifRate()));
+                        selectedHireGroup().vehicleDetail(new model.HireGroupDetail());
+                        //selectedtariffRateCopy(model.TariffRateCoppier(selectedtariffRate()));
                         //getHireGroupDetails(tariffRate);
                         showHireGroupEditor();
                         e.stopImmediatePropagation();
                     },
-                //country selected form dd
-                onSelectedCompany = function (companyId) {
-                    // get filtered parent hire groups based on company id
-                    filteredParentHireGroups.removeAll();
-                    _.each(parentHireGroups(), function (item) {
-                        if (item.CompanyId === companyId.companyId())
-                            filteredParentHireGroups.push(item);
-                    });
-                    filteredParentHireGroups.valueHasMutated();
-                },
+                    //country selected form dd
+                    onSelectedCompany = function (companyId) {
+                        // get filtered parent hire groups based on company id
+                        filteredParentHireGroups.removeAll();
+                        _.each(parentHireGroups(), function (item) {
+                            if (item.CompanyId === companyId.companyId())
+                                filteredParentHireGroups.push(item);
+                        });
+                        filteredParentHireGroups.valueHasMutated();
+                    },
+                     //On Vehicle Make Change
+                    onVehicleMakeChange = function (vehicleMake) {
+                        if (vehicleMake.vehicleMakeId() !== undefined) {
+                            selectedHireGroup().vehicleDetail().vehicleMakeName(vehicleMake.vehicleMakeId().VehicleMakeCodeName);
+                            selectedHireGroup().vehicleDetail().vehicleMakeId(vehicleMake.vehicleMakeId().VehicleMakeId);
+                        }
+                    },
+                      //On Vehicle Category Change
+                    onVehicleCategoryChange = function (vehicelCategory) {
+                        if (vehicelCategory.vehicleCategoryId() !== undefined) {
+                            selectedHireGroup().vehicleDetail().vehicleCategoryName(vehicelCategory.vehicleCategoryId().VehicleCategoryCodeName);
+                            selectedHireGroup().vehicleDetail().vehicleCategoryId(vehicelCategory.vehicleCategoryId().VehicleCategoryId);
+                        }
+                    },
+                      //On Vehicle Model Change
+                    onVehicleModelChange = function (vehicelModel) {
+                        if (vehicelModel.vehicleModelId() !== undefined) {
+                            selectedHireGroup().vehicleDetail().vehicleModelName(vehicelModel.vehicleModelId().VehicleModelCodeName);
+                            selectedHireGroup().vehicleDetail().vehicleModelId(vehicelModel.vehicleModelId().VehicleModeld);
+                        }
+                    },
+                       // Add To list vehicle detail
+                    onAddVehicleDetail = function (vehicleDetail) {
+                        if (doBeforeAdd()) {
+                            selectedHireGroup().hireGroupDetailList().push(new model.HireGroupDetailServerMapper(vehicleDetail));
+                            hireGroupDetails.push(model.HireGroupDetailClientMapper(vehicleDetail));
+                            //selectedHireGroup().vehicleDetail().vehicleMakeId(undefined);
+                            //alert("test");
+                            //saveTariffRate(vehicleDetail);
+                        }
+                    },
+                      // Do Before Logic
+                    doBeforeAdd = function () {
+                        var flag = true;
+                        if (!selectedHireGroup().vehicleDetail().isValid()) {
+                            selectedHireGroup().vehicleDetail().errors.showAllMessages();
+                            flag = false;
+                        }
+                        return flag;
+                    },
+                      // Save Hire Group
+                    onSaveHireGroup = function (hireGroup) {
+                        if (doBeforeSave()) {
+                            saveHireGroup(hireGroup);
+                        }
+                    },
+                       // Do Before Logic
+                    doBeforeSave = function () {
+                        var flag = true;
+                        if (!selectedHireGroup().isValid()) {
+                            selectedHireGroup().errors.showAllMessages();
+                            flag = false;
+                        }
+                        return flag;
+                    },
+                    // Save Hire Group
+                    saveHireGroup = function (hireGroup) {
+                        var method = "updateHireGroup";
+                        if (!hireGroup.hireGroupId()) {
+                            method = "createHireGroup";
+                        }
+
+                        dataservice[method](model.HireGroupServerMapper(hireGroup), {
+                            success: function (data) {
+                                // var tariffRateData = new model.TariffRateClientMapper(data);
+                                closeHireGroupEditor();
+                                toastr.success("Hire Group saved successfully");
+                            },
+                            error: function () {
+                                toastr.error('Failed to save Hire Group!');
+                            }
+                        });
+                    },
                      //Get Base Data
                     getBaseData = function (callBack) {
                         dataservice.getHireGroupBase({
@@ -215,6 +291,7 @@ define("hireGroup/hireGroup.viewModel",
                     hireGroupsForDdList: hireGroupsForDdList,
                     filteredHireGroupsForDdList: filteredHireGroupsForDdList,
                     filteredParentHireGroups: filteredParentHireGroups,
+                    hireGroupDetails: hireGroupDetails,
                     //Filters
                     hireGroupCodeFilter: hireGroupCodeFilter,
                     hireGroupNameFilter: hireGroupNameFilter,
@@ -232,6 +309,11 @@ define("hireGroup/hireGroup.viewModel",
                     createHireGroup: createHireGroup,
                     onEditHireGroup: onEditHireGroup,
                     onSelectedCompany: onSelectedCompany,
+                    onAddVehicleDetail: onAddVehicleDetail,
+                    onVehicleModelChange: onVehicleModelChange,
+                    onVehicleMakeChange: onVehicleMakeChange,
+                    onVehicleCategoryChange: onVehicleCategoryChange,
+                    onSaveHireGroup: onSaveHireGroup,
                     //selectHireGroup: selectHireGroup,
                     collapseFilterSection: collapseFilterSection,
                     showFilterSection: showFilterSection,

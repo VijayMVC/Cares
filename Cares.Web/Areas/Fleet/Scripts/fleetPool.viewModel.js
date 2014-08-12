@@ -58,8 +58,8 @@ define("Fleet/fleetPool.viewModel",
                                 countryList.removeAll();
                                 ko.utils.arrayPushAll(countryList(), data.Countries);
                                 countryList.valueHasMutated();
-                                if (callBack && callBack === 'function') {
-                                    callBack()();
+                                if (callBack && typeof callBack === 'function') {
+                                    callBack();
                                 };
                             },
                             error: function(exceptionMessage, exceptionType) {
@@ -87,7 +87,7 @@ define("Fleet/fleetPool.viewModel",
                     countrySelected = function() {
                         //getRegions(newCountryFilter());
                     },
-                    cancelSave = function() {
+                    onCancelSave = function() {
                         isFleetPoolEditorVisible(false);
                     },
                     //Validation Check function while saving Fleet Pool
@@ -102,12 +102,11 @@ define("Fleet/fleetPool.viewModel",
                     },
                     //add new fleetpool
                     saveFleetPool = function () {
-                        if (isEditMode()) // to check if we are ediring some record
+                        if (isEditMode()) // to check if we are editing some record
                         {
                             dataservice.updateFleetPool(model.fleePoolClienttoServerMapper(selectedFleetPool()), {
                                 success: function(dataFromServer) {
                                     fleetPools.replace(selectedFleetPool(), model.fleetPoolServertoClinetMapper(dataFromServer));
-                                    reset();
                                     isEditMode(false);
                                     toastr.success("Successfully upadted!");
                                 },
@@ -120,8 +119,8 @@ define("Fleet/fleetPool.viewModel",
                         {
                             dataservice.saveFleetPool(model.fleePoolClienttoServerMapper(selectedFleetPool()), {
                                 success: function (dataFromServer) {
-                                    fleetPools.replace(selectedFleetPool(), model.fleetPoolServertoClinetMapper(dataFromServer));
-                                    reset();
+                                    fleetPools.push(model.fleetPoolServertoClinetMapper(dataFromServer));
+                                    isFleetPoolEditorVisible(false);
                                     toastr.success("Successfully Added!");
                                 },
                                 error: function () {
@@ -191,7 +190,7 @@ define("Fleet/fleetPool.viewModel",
                              return region.CountryId === item.countryId();
                         }));
                     },
-                    // Map Tarrif Types - Server to Client
+                    // Map tariff Types - Server to Client
                     mapFleetPools = function(data) {
                         var fleetPoolList = [];
                         _.each(data.FleetPools, function(item) {
@@ -229,10 +228,9 @@ define("Fleet/fleetPool.viewModel",
                     initialize = function(specifiedView) {
                         view = specifiedView;
                         ko.applyBindings(view.viewModel, view.bindingRoot);
+                        // Set Pager / page / paginition
+                        pager(pagination.Pagination({ PageSize: 10 }, fleetPools, getFleetPools));
                         getFleetPoolBaseData(getFleetPools);
-                        // Set Pager
-                        pager(pagination.Pagination({}, fleetPools, getFleetPools));
-                        getFleetPools();
                     },
                     // function to edit fleet pool
                     editFleetPool = function(item) {
@@ -263,13 +261,14 @@ define("Fleet/fleetPool.viewModel",
                     createFleetForm: createFleetForm,
                     ccreatePoolDetail: createPoolDetail,                    
                     showFleetPoolEditor: showFleetPoolEditor,                                        
-                    cancelSave: cancelSave,                                        
+                    onCancelSave: onCancelSave,
                     onSaveFleetPool: onSaveFleetPool,
                     filterRegions: filterRegions,
                     filterSectionVisilble: filterSectionVisilble,
                     collapseFilterSection: collapseFilterSection,
                     showFilterSection: showFilterSection,
-                    closeFleetPoolEditor: closeFleetPoolEditor
+                    closeFleetPoolEditor: closeFleetPoolEditor,
+                    getFleetPools: getFleetPools
                 };
             })()
         };

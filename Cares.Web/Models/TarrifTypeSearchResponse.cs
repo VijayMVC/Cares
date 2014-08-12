@@ -3,26 +3,26 @@
 namespace Cares.Web.Models
 {
     /// <summary>
-    /// Tarrif Type Response Web Models
+    /// tariff Type Response Web Models
     /// </summary>
-    public class TarrifTypeSearchResponse
+    public class TariffTypeSearchResponse
     { 
         
         #region Constructors
         /// <summary>
         /// Constructor
         /// </summary>
-        public TarrifTypeSearchResponse()
+        public TariffTypeSearchResponse()
         {
-            ServerTarrifTypes = new List<TarrifType>();
+            ServertariffTypes = new List<TariffType>();
         }
         #endregion
         
         #region Public
         /// <summary>
-        /// Tarrif Types
+        /// tariff Types
         /// </summary>
-        public IEnumerable<TarrifType> ServerTarrifTypes { get; set; }
+        public IEnumerable<TariffType> ServertariffTypes { get; set; }
 
         /// <summary>
         /// Total Count

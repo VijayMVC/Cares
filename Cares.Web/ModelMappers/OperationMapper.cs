@@ -14,30 +14,15 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static ApiModel.Operation CreateFrom(this Operation source)
+        public static ApiModel.OperationDropDown CreateFrom(this Operation source)
             {
-                return new ApiModel.Operation
+                return new ApiModel.OperationDropDown
                 {
                     OperationId = source.OperationId,
-                    OperationCode = source.OperationCode,
-                    OperationName = source.OperationName
+                    OperationCodeName = source.OperationCode+" - "+source.OperationName,
+                   
                 }; 
             }
-        #endregion
-        #region Model To Entity
-        /// <summary>
-        ///  Create entity from web model
-        /// </summary>
-        public static Operation CreateFrom(this ApiModel.Operation source)
-        {
-            return new Operation
-            {
-                OperationId = source.OperationId,
-                OperationCode = source.OperationCode,
-                OperationName = source.OperationName
-            };
-        }
-        
         #endregion
         #endregion
     }

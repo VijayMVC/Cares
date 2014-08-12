@@ -9,33 +9,33 @@ using Cares.Web.Models;
 namespace Cares.Web.Areas.Api.Controllers
 {
     /// <summary>
-    /// Tarrif Type Base Api Controller
+    /// tariff Type Base Api Controller
     /// </summary>
-    public class TarrifTypeBaseController : ApiController
+    public class TariffTypeBaseController : ApiController
     {
         #region Private
-        private readonly ITarrifTypeService tarrifTypeService;
+        private readonly ITariffTypeService tariffTypeService;
         #endregion
         #region Constructors
         /// <summary>
         /// Constructor
         /// </summary>
-        public TarrifTypeBaseController(ITarrifTypeService tarrifTypeService)
+        public TariffTypeBaseController(ITariffTypeService tariffTypeService)
         {
-            if (tarrifTypeService == null) throw new ArgumentNullException("tarrifTypeService");
-            this.tarrifTypeService = tarrifTypeService;
+            if (tariffTypeService == null) throw new ArgumentNullException("tariffTypeService");
+            this.tariffTypeService = tariffTypeService;
         }
 
         #endregion
         #region Public
         // GET api/<controller>
-        public TarrifTypeBaseResponse Get()
+        public TariffTypeBaseResponse Get()
         {
             if (!ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return tarrifTypeService.GetBaseData().CreateFrom();
+            return tariffTypeService.GetBaseData().CreateFrom();
         }
         #endregion
     }

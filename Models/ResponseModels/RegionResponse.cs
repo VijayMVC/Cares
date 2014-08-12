@@ -4,7 +4,7 @@ using Cares.Models.DomainModels;
 namespace Cares.Models.ResponseModels
 {
     /// <summary>
-    /// Tarrif Type Base Response
+    /// tariff Type Base Response
     /// </summary>
     public sealed class RegionResponse
     {

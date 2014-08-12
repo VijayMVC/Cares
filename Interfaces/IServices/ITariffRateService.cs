@@ -57,6 +57,6 @@ namespace Cares.Interfaces.IServices
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        TarrifType FindTariffTypeById(long id);
+        TariffType FindTariffTypeById(long id);
     }
 }

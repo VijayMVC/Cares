@@ -21,7 +21,7 @@ namespace Cares.Repository
             unityContainer.RegisterType<IEmployeeRepository, EmployeeRepository>();
             unityContainer.RegisterType<IDepartmentRepository, DepartmentRepository>();
             unityContainer.RegisterType<IFleetPoolRepository, FleetPoolRepository>();
-            unityContainer.RegisterType<ITarrifTypeRepository, TarrifTypeRepository>();
+            unityContainer.RegisterType<ITariffTypeRepository, TariffTypeRepository>();
             unityContainer.RegisterType<ICompanyRepository, CompanyRepository>();
             unityContainer.RegisterType<IBusinessPartnerRepository, BusinessPartnerRepository>();
             unityContainer.RegisterType<IOperationRepository, OperationRepository>();

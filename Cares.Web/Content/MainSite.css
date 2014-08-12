@@ -1,46 +1,120 @@
-﻿#fleetBindings .searchButton {
+﻿#tariffTypeBinding table thead tr .ttypesearchButton {
   margin-left: 5px;
 }
-#tarrifTypeBinding table thead tr .ttypesearchButton {
-  margin-left: 5px;
-}
-#tarrifTypeBinding table thead tr .tarrifTypeCode {
+#tariffTypeBinding table thead tr .tariffTypeCode {
   width: 10%;
 }
-#tarrifTypeBinding table thead tr .tarrifTypeName {
+#tariffTypeBinding table thead tr .tariffTypeName {
   width: 15%;
 }
-#tarrifTypeBinding table thead tr .pricingScheme {
+#tariffTypeBinding table thead tr .pricingScheme {
   width: 15%;
 }
-#tarrifTypeBinding table thead tr .operation {
+#tariffTypeBinding table thead tr .operation {
   width: 15%;
 }
-#tarrifTypeBinding table thead tr .measurementUnit {
+#tariffTypeBinding table thead tr .measurementUnit {
   width: 15%;
 }
-#tarrifTypeBinding table thead tr .from {
+#tariffTypeBinding table thead tr .from {
   width: 7%;
 }
-#tarrifTypeBinding table thead tr .to {
+#tariffTypeBinding table thead tr .to {
   width: 8%;
 }
-#tarrifTypeBinding table thead tr .gracePeriod {
+#tariffTypeBinding table thead tr .gracePeriod {
   width: 5%;
 }
-#tarrifTypeBinding table thead tr .effectiveDate {
+#tariffTypeBinding table thead tr .effectiveDate {
   width: 5%;
 }
-#tarrifTypeBinding table thead tr .revision {
+#tariffTypeBinding table thead tr .revision {
   width: 5%;
 }
-#tarrifTypeBinding #tariffTypeEditor {
+#FleetPoolEditor {
   margin-top: 15px;
 }
-#tarrifTypeBinding #tariffTypeEditor .detailsContainer {
+#FleetPoolEditor h3 {
+  margin-top: 10px;
+  position: relative;
+}
+#FleetPoolEditor .fleetheading {
+  margin-top: -10px;
+}
+#FleetPoolEditor #saveFleetPoolbtn {
+  position: fixed;
+  margin-left: 975px;
+  margin-top: -45px;
+}
+#FleetPoolEditor #cancelFleetPoolbtn {
+  position: fixed;
+  margin-left: 1037px;
+  margin-top: -45px;
+}
+#tariffRateBinding #tariffRateEditor {
+  margin-top: 15px;
+}
+#tariffRateBinding #tariffRateEditor .detailsContainer {
   width: 100%;
 }
-#tarrifTypeBinding #tariffTypeEditor .detailsContainer .detailsHeaderSection {
+#tariffRateBinding #tariffRateEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#tariffTypeBinding table thead tr .ttypesearchButton {
+  margin-left: 5px;
+}
+#tariffTypeBinding table thead tr .tariffTypeCode {
+  width: 10%;
+}
+#tariffTypeBinding table thead tr .tariffTypeName {
+  width: 15%;
+}
+#tariffTypeBinding table thead tr .pricingScheme {
+  width: 15%;
+}
+#tariffTypeBinding table thead tr .operation {
+  width: 15%;
+}
+#tariffTypeBinding table thead tr .measurementUnit {
+  width: 15%;
+}
+#tariffTypeBinding table thead tr .from {
+  width: 7%;
+}
+#tariffTypeBinding table thead tr .to {
+  width: 8%;
+}
+#tariffTypeBinding table thead tr .gracePeriod {
+  width: 5%;
+}
+#tariffTypeBinding table thead tr .effectiveDate {
+  width: 5%;
+}
+#tariffTypeBinding table thead tr .revision {
+  width: 5%;
+}
+#tariffTypeBinding #tariffTypeEditor {
+  margin-top: 15px;
+}
+#tariffTypeBinding #tariffTypeEditor .detailsContainer {
+  width: 100%;
+}
+#tariffTypeBinding #tariffTypeEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#tariffRateBinding #tariffRateEditor {
+  margin-top: 15px;
+}
+#tariffRateBinding #tariffRateEditor .detailsContainer {
+  width: 100%;
+}
+#tariffRateBinding #tariffRateEditor .detailsContainer .detailsHeaderSection {
   float: left;
   width: 85%;
   margin-bottom: 20px;
@@ -105,3 +179,4 @@
   }
 }
 /* Input Mini */
+/*# sourceMappingURL=MainSite.css.map */

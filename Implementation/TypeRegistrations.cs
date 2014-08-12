@@ -27,7 +27,7 @@ namespace Cares.Implementation
             unityContainer.RegisterType<IEmployeeService, EmployeeService>();
             unityContainer.RegisterType<IDepartmentService, DepartmentService>();
             unityContainer.RegisterType<IFleetPoolService, FleetPoolService>();
-            unityContainer.RegisterType<ITarrifTypeService, TarrifTypeService>();
+            unityContainer.RegisterType<ITariffTypeService, TariffTypeService>();
             unityContainer.RegisterType<ICompanyService, CompanyService>();
             unityContainer.RegisterType<IMeasurementUnitService, MeasurementUnitService>();
             unityContainer.RegisterType<IOperationService, OperationService>();
@@ -43,8 +43,7 @@ namespace Cares.Implementation
             unityContainer.RegisterType<IStandardRateService, StandardRateService>();
             unityContainer.RegisterType<IBusinessPartnerIndividualService, BusinessPartnerIndividualService>();
             unityContainer.RegisterType<IOccupationTypeService, OccupationTypeService>();
-            unityContainer.RegisterType<ICountryService, CountryService>();
-            unityContainer.RegisterType<ICountryRegionsService, CountryRegionsService>();
+            unityContainer.RegisterType<ICountryService, CountryService>();            
             unityContainer.RegisterType<IHireGroupService, HireGroupService>();
             unityContainer.RegisterType<IAddressBaseDataService, AddressBaseDataService>();
             unityContainer.RegisterType<IRentalAgreementService, RentalAgreementService>();
