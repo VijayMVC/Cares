@@ -1,6 +1,4 @@
-﻿using System.Configuration;
-using System.Data.Entity;
-using Cares.Interfaces.Repository;
+﻿using Cares.Interfaces.Repository;
 using Cares.Repository.BaseRepository;
 using Cares.Repository.Repositories;
 using Microsoft.Practices.Unity;
@@ -54,6 +52,8 @@ namespace Cares.Repository
             unityContainer.RegisterType<ISubRegionRepository, SubRegionRepository>();
             unityContainer.RegisterType<ICityRepository, CityRepository>();
             unityContainer.RegisterType<IAreaRepository, AreaRepository>();
+            unityContainer.RegisterType<IOperationsWorkPlaceRepository, OperationsWorkPlaceRepository>();
+            unityContainer.RegisterType<IMarketingChannelRepository, MarketingChannelRepository>();
         }
     }
 }

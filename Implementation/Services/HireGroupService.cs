@@ -15,12 +15,19 @@ namespace Cares.Implementation.Services
         #region Private
         private readonly IHireGroupRepository hireGroupRepository;
         private readonly ICompanyRepository companyRepository;
+        private readonly IVehicleCategoryRepository vehicleCategoryRepository;
+        private readonly IVehicleMakeRepository vehicleMakeRepository;
+        private readonly IVehicleModelRepository vehicleModelRepository;
         #endregion
         #region Constructors
-        public HireGroupService(IHireGroupRepository hireGroupRepository, ICompanyRepository companyRepository)
+        public HireGroupService(IHireGroupRepository hireGroupRepository, ICompanyRepository companyRepository, IVehicleCategoryRepository vehicleCategoryRepository,
+            IVehicleMakeRepository vehicleMakeRepository, IVehicleModelRepository vehicleModelRepository)
         {
             this.hireGroupRepository = hireGroupRepository;
             this.companyRepository = companyRepository;
+            this.vehicleCategoryRepository = vehicleCategoryRepository;
+            this.vehicleMakeRepository = vehicleMakeRepository;
+            this.vehicleModelRepository = vehicleModelRepository;
         }
         #endregion
         #region Public
@@ -33,8 +40,30 @@ namespace Cares.Implementation.Services
         {
             IEnumerable<Company> companies = companyRepository.GetAll();
             IEnumerable<HireGroup> parentHireGroups = hireGroupRepository.GetParentHireGroups();
-            return new HireGroupBaseResponse{Companies = companies,ParentHireGroups =parentHireGroups };
+            IEnumerable<VehicleCategory> vehicleCategories = vehicleCategoryRepository.GetAll();
+            IEnumerable<VehicleMake> vehicleMakes = vehicleMakeRepository.GetAll();
+            IEnumerable<VehicleModel> vehicleModels = vehicleModelRepository.GetAll();
+            //exlude parent hire group
+            IEnumerable<HireGroup> hireGroups = hireGroupRepository.GetHireGroupList();
+            return new HireGroupBaseResponse
+            {
+                Companies = companies,
+                ParentHireGroups = parentHireGroups,
+                VehicleCategories = vehicleCategories,
+                VehicleMakes = vehicleMakes,
+                VehicleModels = vehicleModels,
+                HireGroups = hireGroups
+            };
         }
+
+        /// <summary>
+        /// Get Hire Groups By Code, Vehicle Make / Category / Model / Model Year
+        /// </summary>
+        public IEnumerable<HireGroup> GetByCodeAndVehicleInfo(string searchText)
+        {
+            return hireGroupRepository.GetByCodeAndVehicleInfo(searchText);
+        }
+
         /// <summary>
         /// Load tarrif type, based on search filters
         /// </summary>

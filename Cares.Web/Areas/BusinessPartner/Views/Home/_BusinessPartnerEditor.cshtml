@@ -438,7 +438,40 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-pane" id="marketingchannel">...</div>
+            <div class="tab-pane" id="marketingchannel">
+                <div data-bind="with:businessPartnerMarketingChannelNew">
+                    <div class="form-group">
+                        <label for="marketingChannels" class="control-label col-sm-2">Marketing Channel *</label>
+                        <div class="col-md-2">
+                            <select id="marketingChannels" class="form-control" data-bind="options: $root.marketingChannels, optionsText: 'MarketingChannelName', optionsValue: 'MarketingChannelCustomId', optionsCaption: '<Marketing Channel>',value:marketingChannelId"></select>
+                        </div>
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-2">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            <button class="btn btn-sm pull-right" id="businessPartnerMarketingChannelItemSave" data-bind="click: $root.onAddBusinessPartnerMarketingChannel">Add To List</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class=" col-md-3 well">
+                        <table id="businessPartnerMarketingChannelTable" class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th> <span id="1">Marketing Channel<span></span></span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- ko template: { name: 'itemBusinessPartnerMarketingChannelTemplate' , foreach: businessPartnerMarketingChannels } -->
+                                <!-- /ko -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
             <div class="tab-pane" id="bprelationships">...</div>
         </div>
     </form>
@@ -495,4 +528,16 @@
 </script>
 <script id="deleteActionBusinessPartnerAddressTemplate" type="text/html">
     <a href="#" data-bind="click: $root.onDeleteBusinessPartnerAddress" title="Delete Business Partner Address"><span class="glyphicon glyphicon-remove"></span></a>
+</script>
+<script id="itemBusinessPartnerMarketingChannelTemplate" type="text/html">
+    <tr>
+        <td data-bind="text: marketingChannelName"></td>
+        <td>
+            <!-- ko template: { name: 'deleteActionBusinessPartnerMarketingChannelTemplate' } -->
+            <!-- /ko -->
+        </td>
+    </tr>
+</script>
+<script id="deleteActionBusinessPartnerMarketingChannelTemplate" type="text/html">
+    <a href="#" data-bind="click: $root.onDeleteBusinessPartnerMarketingChannel" title="Delete Business Partner Marketing Channel"><span class="glyphicon glyphicon-remove"></span></a>
 </script>

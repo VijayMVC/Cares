@@ -131,6 +131,11 @@ namespace Cares.Models.DomainModels
         /// Operations Workplaces this FleetPool has
         /// </summary>
         public virtual ICollection<OperationsWorkPlace> OperationsWorkPlaces { get; set; }
+
+        /// <summary>
+        /// Vehicles Workplaces this FleetPool has
+        /// </summary>
+        public virtual ICollection<Vehicle> Vehicles { get; set; }
         
         #endregion
     }

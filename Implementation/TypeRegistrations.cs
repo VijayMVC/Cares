@@ -47,7 +47,7 @@ namespace Cares.Implementation
             unityContainer.RegisterType<ICountryRegionsService, CountryRegionsService>();
             unityContainer.RegisterType<IHireGroupService, HireGroupService>();
             unityContainer.RegisterType<IAddressBaseDataService, AddressBaseDataService>();
-
+            unityContainer.RegisterType<IRentalAgreementService, RentalAgreementService>();
         }
     }
 }

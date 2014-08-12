@@ -1,45 +1,39 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cares.Models.DomainModels
 {
     /// <summary>
-    /// Vehicle Sub Status Domain Model
+    /// Vehicle Image Domain Model
     /// </summary>
-    public class VehicleSubStatus
+    public class VehicleImage
     {
         #region Persisted Properties
         
         /// <summary>
-        /// Vehicle Sub Status ID
+        /// Vehicle Image ID
         /// </summary>
-        public short VehicleSubStatusId { get; set; }
+        public long VehicleImageId { get; set; }
+        
+        /// <summary>
+        /// Vehicle Image Code
+        /// </summary>
+        [StringLength(255), Required]
+        public string VehicleImageCode { get; set; }
 
         /// <summary>
-        /// Vehicle Status Id
-        /// </summary>
-        [ForeignKey("VehicleStatus")]
-        public short VehicleStatusId { get; set; }
-
-        /// <summary>
-        /// Vehicle Sub Status Code
-        /// </summary>
-        [StringLength(100), Required]
-        public string VehicleSubStatusCode { get; set; }
-
-        /// <summary>
-        /// Vehicle Sub Status Name
+        /// Vehicle Image Name
         /// </summary>
         [StringLength(255)]
-        public string VehicleSubStatusName { get; set; }
+        public string VehicleImageName { get; set; }
 
         /// <summary>
-        /// Vehicle Sub Status Description
+        /// Image
         /// </summary>
-        [StringLength(500)]
-        public string VehicleSubStatusDescription { get; set; }
-
+        [Required]
+        public byte[] Image { get; set; }
+        
         /// <summary>
         /// Row Version
         /// </summary>
@@ -104,9 +98,9 @@ namespace Cares.Models.DomainModels
         #region Reference Properties
 
         /// <summary>
-        /// Vehicle Status
+        /// Vehicle Image Hire Group Details Associated to this Vehicle Image
         /// </summary>
-        public virtual VehicleStatus VehicleStatus { get; set; }
+        public virtual ICollection<VehicleImageHireGroupDetail> VehicleImageHireGroupDetails { get; set; } 
 
         #endregion
     }

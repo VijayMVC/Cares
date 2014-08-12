@@ -1,0 +1,31 @@
+﻿using System.Collections.Generic;
+
+namespace Cares.Web.Models
+{
+    /// <summary>
+    /// Vehicle Base Data Response Web Models
+    /// </summary>
+    public class RentalAgreementBaseDataResponse
+    {
+     
+        #region Public
+
+        /// <summary>
+        /// PaymentTerms
+        /// </summary>
+        public IEnumerable<PaymentTerm> PaymentTerms { get; set; }
+
+        /// <summary>
+        /// Operations WorkPlaces 
+        /// </summary>
+        public IEnumerable<OperationsWorkPlace> OperationsWorkPlaces { get; set; }
+
+        /// <summary>
+        /// Operations 
+        /// </summary>
+        public IEnumerable<Operation> Operations { get; set; }
+
+        #endregion
+
+    }
+}

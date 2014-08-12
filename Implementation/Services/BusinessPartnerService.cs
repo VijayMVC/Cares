@@ -158,6 +158,20 @@ namespace Cares.Implementation.Services
                 }
                 #endregion
 
+                //set child (business partner marketing channel) properties
+                #region Business Partner Marketing Channel
+                // set properties
+                foreach (BusinessPartnerMarketingChannel item in businessPartner.BusinessPartnerMarketingChannels)
+                {
+                    item.RecCreatedDt = DateTime.Now;
+                    item.RecLastUpdatedDt = DateTime.Now;
+                    item.RecCreatedBy = businessPartnerRepository.LoggedInUserIdentity;
+                    item.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
+                    item.RowVersion = 0;
+                    item.UserDomainKey = businessPartnerRepository.UserDomainKey;
+                }
+                #endregion
+
                 // save data
                 businessPartnerRepository.Add(businessPartner);
                 businessPartnerRepository.SaveChanges();
@@ -372,6 +386,43 @@ namespace Cares.Implementation.Services
                     Address dbVersionMissingAddressItem = businessPartnerDbVersion.BusinessPartnerAddressList.First(x => x.AddressId == missingBusinessPartnerAddress.AddressId);
                     if (dbVersionMissingAddressItem.AddressId > 0)
                         businessPartnerDbVersion.BusinessPartnerAddressList.Remove(dbVersionMissingAddressItem);
+                }
+                #endregion
+
+                //set child (business partner marketing channel list)
+                #region Business Partner Marketing Channels
+                //add new marketing channel items
+                foreach (BusinessPartnerMarketingChannel channel in businessPartner.BusinessPartnerMarketingChannels)
+                {
+                    if (businessPartnerDbVersion.BusinessPartnerMarketingChannels
+                        .All(x => x.BusinessPartnerMarketingChannelId != channel.BusinessPartnerMarketingChannelId) || channel.BusinessPartnerMarketingChannelId == 0)
+                    {
+                        // set properties
+                        channel.RecCreatedDt = DateTime.Now;
+                        channel.RecLastUpdatedDt = DateTime.Now;
+                        channel.RecCreatedBy = businessPartnerRepository.LoggedInUserIdentity;
+                        channel.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
+                        channel.RowVersion = 0;
+                        channel.UserDomainKey = businessPartnerRepository.UserDomainKey;
+                        businessPartnerDbVersion.BusinessPartnerMarketingChannels.Add(channel);
+                    }
+                }
+                //find missing marketing channel items
+                List<BusinessPartnerMarketingChannel> missingChannelItems = new List<BusinessPartnerMarketingChannel>();
+                foreach (BusinessPartnerMarketingChannel dbversionChannelItem in businessPartnerDbVersion.BusinessPartnerMarketingChannels)
+                {
+                    if (businessPartner.BusinessPartnerMarketingChannels.
+                        All(x => x.BusinessPartnerMarketingChannelId != dbversionChannelItem.BusinessPartnerMarketingChannelId))
+                    {
+                        missingChannelItems.Add(dbversionChannelItem);
+                    }
+                }
+                //remove missing Business Marketing Channel items
+                foreach (BusinessPartnerMarketingChannel missingBusinessPartnerChannel in missingChannelItems)
+                {
+                    BusinessPartnerMarketingChannel dbversionMissingChannelItem = businessPartnerDbVersion.BusinessPartnerMarketingChannels.First(x => x.BusinessPartnerMarketingChannelId == missingBusinessPartnerChannel.BusinessPartnerMarketingChannelId);
+                    if (dbversionMissingChannelItem.BusinessPartnerMarketingChannelId > 0)
+                        businessPartnerDbVersion.BusinessPartnerMarketingChannels.Remove(dbversionMissingChannelItem);
                 }
                 #endregion
 

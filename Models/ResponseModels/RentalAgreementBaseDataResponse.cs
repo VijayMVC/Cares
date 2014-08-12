@@ -4,27 +4,36 @@ using Cares.Models.DomainModels;
 namespace Cares.Models.ResponseModels
 {
     /// <summary>
-    /// Rental Agreement Base Response
+    /// Vehicle Base Data Response
     /// </summary>
-    public sealed class RentalAgreementBaseResponse
+    public sealed class RentalAgreementBaseDataResponse
     {
         #region Constructors
+        
         /// <summary>
         /// Constructor
         /// </summary>
-        public RentalAgreementBaseResponse()
+        public RentalAgreementBaseDataResponse()
         {
             PaymentTerms = new List<PaymentTerm>();
+            OperationsWorkPlaces = new List<OperationsWorkPlace>();
             Operations = new List<Operation>();
         }
+
         #endregion
+
         #region Public
         
         /// <summary>
-        /// Measurement Unit 
+        /// PaymentTerms
         /// </summary>
         public IEnumerable<PaymentTerm> PaymentTerms { get; set; }
-       
+        
+        /// <summary>
+        /// Operations WorkPlaces 
+        /// </summary>
+        public IEnumerable<OperationsWorkPlace> OperationsWorkPlaces { get; set; }
+        
         /// <summary>
         /// Operations 
         /// </summary>

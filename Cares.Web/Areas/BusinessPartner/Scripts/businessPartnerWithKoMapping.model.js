@@ -77,6 +77,10 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
            businessPartnerAddressList = ko.observableArray([]),
            // New Business Partner Address
            businessPartnerAddressNew = ko.observable(BusinessPartnerAddress.Create()),
+           // Business Partner Marketing Channels
+           businessPartnerMarketingChannels = ko.observableArray([]),
+           // New Business Partner Marketing Channels
+           businessPartnerMarketingChannelNew = ko.observable(BusinessPartnerMarketingChannel.Create()),
            // Is Busy
            isBusy = ko.observable(false),
            // Errors
@@ -114,7 +118,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
                businessPartnerCompany: businessPartnerCompany,
                businessPartnerInTypes: businessPartnerInTypes,
                businessPartnerPhoneNumbers: businessPartnerPhoneNumbers,
-               businessPartnerAddressList: businessPartnerAddressList
+               businessPartnerAddressList: businessPartnerAddressList,
+               businessPartnerMarketingChannels: businessPartnerMarketingChannels
            }),
            // Has Changes
            hasChanges = ko.computed(function() {
@@ -146,7 +151,9 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
            businessPartnerPhoneNumbers: businessPartnerPhoneNumbers,
            businessPartnerPhoneNumberNew: businessPartnerPhoneNumberNew,
            businessPartnerAddressList: businessPartnerAddressList,
-           businessPartnerAddressNew:businessPartnerAddressNew,
+           businessPartnerAddressNew: businessPartnerAddressNew,
+           businessPartnerMarketingChannels: businessPartnerMarketingChannels,
+           businessPartnerMarketingChannelNew: businessPartnerMarketingChannelNew,
            errors: errors,
            isValid: isValid,
            dirtyFlag: dirtyFlag,
@@ -640,6 +647,61 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
     };
     return self;
 };
+    var
+    // Business Partner MarketingChannel entity
+    // ReSharper disable InconsistentNaming
+    BusinessPartnerMarketingChannel = function (specifiedBusinessPartnerMarketingChannelId, specifiedBusinessPartnerMarketingChannelName, specifiedbusinessPartnerId) {
+        // ReSharper restore InconsistentNaming
+        var // Reference to this object
+            self,
+            // Main Top Section 
+             // Business Partner Marketing Channel Id
+            businessPartnerMarketingChannelId = ko.observable(),
+            // marketing Channel Id
+            marketingChannelId = ko.observable(specifiedBusinessPartnerMarketingChannelId).extend({required :true}),
+            // marketing Channel Name
+            marketingChannelName = ko.observable(specifiedBusinessPartnerMarketingChannelName),
+            // Business Partner Id
+            businessPartnerId = ko.observable(specifiedbusinessPartnerId),
+            // Is Busy
+            isBusy = ko.observable(false),
+            // Errors
+            errors = ko.validation.group({
+                marketingChannelId: marketingChannelId
+            }),
+            // Is Valid
+            isValid = ko.computed(function () {
+                return errors().length === 0;
+            }),
+            // True if the booking has been changed
+            // ReSharper disable InconsistentNaming
+            dirtyFlag = new ko.dirtyFlag({
+                // ReSharper restore InconsistentNaming
+                marketingChannelId: marketingChannelId
+            }),
+            // Has Changes
+            hasChanges = ko.computed(function () {
+                return dirtyFlag.isDirty();
+            }),
+            // Reset
+            reset = function () {
+                dirtyFlag.reset();
+            };
+        self = {
+            businessPartnerMarketingChannelId: businessPartnerMarketingChannelId,
+            marketingChannelId:marketingChannelId,
+            marketingChannelName: marketingChannelName,
+            businessPartnerId:businessPartnerId,
+            errors: errors,
+            isValid: isValid,
+            dirtyFlag: dirtyFlag,
+            hasChanges: hasChanges,
+            reset: reset,
+            isBusy: isBusy
+        };
+        return self;
+    };
+
     // BusinessPartnerDetail Factory
     BusinessPartnerDetail.Create = function () {
         return new BusinessPartnerDetail("", "", "", false, false, "", "", false, undefined, undefined, undefined, undefined, undefined);
@@ -664,6 +726,9 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
     // Business Partner Address Factory
     BusinessPartnerAddress.Create = function () {
         return new BusinessPartnerAddress(undefined, "", "", "", "", "", "", undefined, undefined, undefined, undefined, undefined, undefined, undefined,undefined,undefined,undefined,undefined,undefined,undefined);
+    };
+    BusinessPartnerMarketingChannel.Create = function() {
+        return new BusinessPartnerMarketingChannel(undefined, undefined);
     };
     // Convert (Business Partner) Client to server
     var BusinessPartnerServerMapper = function(clientData) {
@@ -705,6 +770,12 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.BusinessPartnerAddressList = [];
         _.each(clientData.businessPartnerAddressList(), function (item) {
             result.BusinessPartnerAddressList.push(BusinessPartnerAddressServerMapper(item));
+        });
+        // businesspartner marketing channel tab
+        // from client to server
+        result.BusinessPartnerMarketingChannels = [];
+        _.each(clientData.businessPartnerMarketingChannels(), function (item) {
+            result.BusinessPartnerMarketingChannels.push(BusinessPartnerMarketingChannelServerMapper(item));
         });
         return result;
     };
@@ -770,7 +841,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
     // Convert (BusinessPartner Phone ) Client to Server
     var BusinessPartnerPhoneServerMapper = function (item) {
         var result = {};
-        // Third Tab : Business Partner Phone
+        // Fourth Tab : Business Partner Phone
         result.PhoneId = item.phoneId() === undefined ? undefined : item.phoneId();
         result.IsDefault = item.isDefault() === undefined ? undefined : item.isDefault();
         result.PhoneNumber = item.phoneNumber() === undefined ? undefined : item.phoneNumber();
@@ -781,7 +852,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
     // Convert (Business Partner Address ) Client to Server
     var BusinessPartnerAddressServerMapper = function (item) {
         var result = {};
-        // Third Tab : Business Partner Address
+        // Fifth Tab : Business Partner Address
         result.AddressId = item.addressId() === undefined ? undefined : item.addressId();
         result.ContactPerson = item.contactPerson() === undefined ? undefined : item.contactPerson();
         result.StreetAddress = item.streetAddress() === undefined ? undefined : item.streetAddress();
@@ -798,7 +869,16 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.BusinessPartnerId = item.businessPartnerId() === undefined ? undefined : item.businessPartnerId();
         return result;
     };
-
+    // Convert (Business Partner Marketing Channel) Client to Server
+    var BusinessPartnerMarketingChannelServerMapper = function (item) {
+        var result = {};
+        // Sixth Tab : Business Partner Marketing Channel
+        result.BusinessPartnerMarketingChannelId = item.businessPartnerMarketingChannelId() === undefined ? undefined : item.businessPartnerMarketingChannelId();
+        result.MarketingChannelId = item.marketingChannelId() === undefined ? undefined : item.marketingChannelId();
+        result.BusinessPartnerId = item.businessPartnerId() === undefined ? undefined : item.businessPartnerId();
+        return result;
+    };
+    
     // Convert (Business Partner) Server to Client
     var BusinessPartnerClientMapper = function(serverData) {
         var businessPartner = new BusinessPartnerDetail();
@@ -831,6 +911,10 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         // fifth tab : BusinessPartner Address List
          _.each(serverData.BusinessPartnerAddressList, function (item) {
              businessPartner.businessPartnerAddressList.push(BusinessPartnerAddressClientMapper(item));
+         });
+        // sixth tab : BusinessPartner Marketing Channels
+         _.each(serverData.BusinessPartnerMarketingChannels, function (item) {
+             businessPartner.businessPartnerMarketingChannels.push(BusinessPartnerMarketingChannelClientMapper(item));
          });
         return businessPartner;
     };
@@ -937,6 +1021,17 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         businessPartnerAddress.businessPartnerId(item.BusinessPartnerId === undefined ? undefined : item.BusinessPartnerId);
         return businessPartnerAddress;        
     };
+    // Convert (Business Partner Marketing Channel ) Server to Client
+    var BusinessPartnerMarketingChannelClientMapper = function (item) {
+        var businessPartnerMarketingChannel = new BusinessPartnerMarketingChannel();
+        // Third Tab : Business Partner Marketing Channel
+        businessPartnerMarketingChannel.businessPartnerMarketingChannelId(item.BusinessPartnerMarketingChannelId === undefined ? undefined : item.BusinessPartnerMarketingChannelId);
+        businessPartnerMarketingChannel.marketingChannelId(item.MarketingChannelId === undefined ? undefined : item.MarketingChannelId);
+        businessPartnerMarketingChannel.marketingChannelName(item.MarketingChannelName === undefined ? undefined : item.MarketingChannelName);
+        businessPartnerMarketingChannel.businessPartnerId(item.BusinessPartnerId === undefined ? undefined : item.BusinessPartnerId);
+        return businessPartnerMarketingChannel;
+    };
+    
     return {
         BusinessPartner: BusinessPartner,
         BusinessPartnerDetail: BusinessPartnerDetail,
@@ -953,6 +1048,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         BusinessPartnerPhone: BusinessPartnerPhone,
         BusinessPartnerPhoneServerMapper: BusinessPartnerPhoneServerMapper,
         BusinessPartnerPhoneClientMapper: BusinessPartnerPhoneClientMapper,
-        BusinessPartnerAddress:BusinessPartnerAddress
+        BusinessPartnerAddress: BusinessPartnerAddress,
+        BusinessPartnerMarketingChannel: BusinessPartnerMarketingChannel
     };
 });

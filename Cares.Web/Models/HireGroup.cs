@@ -19,13 +19,21 @@
         /// </summary>
         public string HireGroupName { get; set; }
         /// <summary>
-        /// Parent Hire Group
+        /// Parent Hire Group Id
+        /// </summary>
+        public long? ParentHireGroupId { get; set; }
+        /// <summary>
+        /// Parent Hire Group Name
         /// </summary>
         public string ParentHireGroupName { get; set; }
         /// <summary>
         /// Description
         /// </summary>
         public string Description { get; set; }
+        /// <summary>
+        /// Company Id
+        /// </summary>
+        public long CompanyId { get; set; }
         /// <summary>
         /// Company Name
         /// </summary>

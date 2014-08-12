@@ -221,6 +221,10 @@ namespace Cares.Models.DomainModels
         /// Business Partner Address List
         /// </summary>
         public virtual ICollection<Address> BusinessPartnerAddressList { get; set; }
+        /// <summary>
+        /// Business Partner Marketing Channels
+        /// </summary>
+        public virtual ICollection<BusinessPartnerMarketingChannel> BusinessPartnerMarketingChannels { get; set; }
         #endregion
     }
 }

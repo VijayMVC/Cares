@@ -228,6 +228,7 @@
     <Compile Include="Areas\Api\Controllers\GetTariffDetailsController.cs" />
     <Compile Include="Areas\Api\Controllers\GetHireGroupDetailController.cs" />
     <Compile Include="Areas\Api\Controllers\HireGroupBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\RentalAgreementHireGroupsController.cs" />
     <Compile Include="Areas\Api\Controllers\HireGroupController.cs" />
     <Compile Include="Areas\Api\Controllers\ProductBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessPartnerController.cs" />
@@ -236,6 +237,7 @@
     <Compile Include="Areas\Api\Controllers\RegionsController.cs" />
     <Compile Include="Areas\Api\Controllers\TariffRateBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\TariffRateController.cs" />
+    <Compile Include="Areas\Api\Controllers\RentalAgreementBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\TarrifTypeBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\TarrifTypeController.cs" />
     <Compile Include="Areas\BusinessPartner\BusinessPartnerAreaRegistration.cs" />
@@ -260,6 +262,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\CultureHelper.cs" />
+    <Compile Include="ModelMappers\MarketingChannelMapper.cs" />
     <Compile Include="ModelMappers\BusinessSegmentMapper.cs" />
     <Compile Include="ModelMappers\CategoryMapper.cs" />
     <Compile Include="ModelMappers\BusinessPartnerMapper.cs" />
@@ -267,6 +270,7 @@
     <Compile Include="ModelMappers\BusinessLegalStatusMapper.cs" />
     <Compile Include="ModelMappers\AddressTypeMapper.cs" />
     <Compile Include="ModelMappers\AddressMapper.cs" />
+    <Compile Include="ModelMappers\OperationsWorkPlaceMapper.cs" />
     <Compile Include="ModelMappers\PhoneTypeMapper.cs" />
     <Compile Include="ModelMappers\HireGroupDetailMapper.cs" />
     <Compile Include="ModelMappers\OccupationTypeMapper.cs" />
@@ -290,11 +294,14 @@
     <Compile Include="ModelMappers\StandardRateMainMapper.cs" />
     <Compile Include="ModelMappers\StandardRateMapper.cs" />
     <Compile Include="ModelMappers\TariffRateMapper.cs" />
+    <Compile Include="ModelMappers\RentalAgreementBaseMapper.cs" />
     <Compile Include="ModelMappers\TarrifTypeMapper.cs" />
     <Compile Include="ModelMappers\VehicleCategoryMapper.cs" />
     <Compile Include="ModelMappers\VehicleMakesMapper.cs" />
     <Compile Include="ModelMappers\VehicleModelMapper.cs" />
     <Compile Include="Models\AddressBaseResponse.cs" />
+    <Compile Include="Models\BusinessPartnerMarketingChannel.cs" />
+    <Compile Include="Models\MarketingChannel.cs" />
     <Compile Include="Models\BusinessPartnerInType.cs" />
     <Compile Include="Models\BusinessPartnerSubType.cs" />
     <Compile Include="Models\BusinessSegment.cs" />
@@ -310,6 +317,8 @@
     <Compile Include="Models\CountryRegionsResponse.cs" />
     <Compile Include="Models\HireGroupBaseResponse.cs" />
     <Compile Include="Models\HireGroupSearchResponse.cs" />
+    <Compile Include="Models\OperationsWorkPlace.cs" />
+    <Compile Include="Models\ParentHireGroup.cs" />
     <Compile Include="Models\Phone.cs" />
     <Compile Include="Models\AddressType.cs" />
     <Compile Include="Models\PhoneType.cs" />
@@ -345,6 +354,7 @@
     <Compile Include="Models\TariffTypeDetailResponse.cs" />
     <Compile Include="Models\TarrifType.cs" />
     <Compile Include="Models\BusinessPartnerBaseResponse.cs" />
+    <Compile Include="Models\RentalAgreementBaseDataResponse.cs" />
     <Compile Include="Models\TarrifTypeBaseResponse.cs" />
     <Compile Include="Models\TarrifTypeSearchResponse.cs" />
     <Compile Include="Models\VehicleCategory.cs" />
@@ -982,6 +992,7 @@
     <Content Include="Areas\RentalAgreement\Views\web.config" />
     <Content Include="Content\RentalAgreement.less" />
     <Content Include="Areas\Fleet\Views\Home\HireGroup.cshtml" />
+    <Content Include="Areas\Fleet\Views\Home\_HireGroupEditor.cshtml" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
