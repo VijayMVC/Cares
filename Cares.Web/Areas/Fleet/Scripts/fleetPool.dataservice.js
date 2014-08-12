@@ -18,12 +18,6 @@ define("Fleet/fleetPool.dataservice", function () {
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
-                    //gets regions of selected country
-                    amplify.request.define('getCountryRegions', 'ajax', {
-                        url: '/Api/Regions',
-                        dataType: 'json',
-                        type: 'GET'
-                    });
                     //save new added fleetpool
                     amplify.request.define('saveFleetPool', 'ajax', {
                         url: '/Api/FleetPool',
@@ -78,16 +72,7 @@ define("Fleet/fleetPool.dataservice", function () {
                     error: callbacks.error,
                     data: params
                 });
-            },
-            //get the selected country's regions
-            getCountryRegions = function (params, callbacks) {
-                return amplify.request({
-                    resourceId: 'getCountryRegions',
-                    success: callbacks.success,
-                    error: callbacks.error,
-                    data: params
-                });
-            },
+            },            
         ///get Fleet Pools
             getFleetPools = function (params, callbacks) {
                 initialize();
@@ -111,7 +96,6 @@ define("Fleet/fleetPool.dataservice", function () {
             getFleetPoolBasedata: getFleetPoolBasedata,
             getFleetPools: getFleetPools,
             deleteFleetPool: deleteFleetPool,
-            getCountryRegions: getCountryRegions,
             saveFleetPool: saveFleetPool,
             updateFleetPool: updateFleetPool
         };

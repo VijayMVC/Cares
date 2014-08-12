@@ -43,8 +43,7 @@ namespace Cares.Implementation
             unityContainer.RegisterType<IStandardRateService, StandardRateService>();
             unityContainer.RegisterType<IBusinessPartnerIndividualService, BusinessPartnerIndividualService>();
             unityContainer.RegisterType<IOccupationTypeService, OccupationTypeService>();
-            unityContainer.RegisterType<ICountryService, CountryService>();
-            unityContainer.RegisterType<ICountryRegionsService, CountryRegionsService>();
+            unityContainer.RegisterType<ICountryService, CountryService>();            
             unityContainer.RegisterType<IHireGroupService, HireGroupService>();
             unityContainer.RegisterType<IAddressBaseDataService, AddressBaseDataService>();
             unityContainer.RegisterType<IRentalAgreementService, RentalAgreementService>();
