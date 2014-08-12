@@ -13,7 +13,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// PaymentTerms
         /// </summary>
-        public IEnumerable<PaymentTerm> PaymentTerms { get; set; }
+        public IEnumerable<PaymentTermDropDown> PaymentTerms { get; set; }
 
         /// <summary>
         /// Operations WorkPlaces 
