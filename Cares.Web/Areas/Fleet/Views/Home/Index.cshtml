@@ -3,14 +3,14 @@
 }
 
 <div class="row" id="fleetRootBinding">
-    <div class="row " data-bind="visible: !isFleetPoolEditorVisible()">
+    <div class="row " data-bind="visible: !isFleetPoolEditorVisible()" >
         <h3 class="page-header float-left pageHeaderSection">Fleet Pool</h3>
         <div class="header-toolsSection">
             <a href="#" class="label label-default create-new-icon" data-bind="click: createFleetForm" title="Create New Tariff">NEW</a>
             <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title="Show Filters" style="display: none"></a>
         </div>
     </div>
-    <div class="row searchFilterSection" data-bind="visible: !isFleetPoolEditorVisible() && filterSectionVisilble()">
+    <div class="row searchFilterSection" data-bind="visible: !isFleetPoolEditorVisible() && filterSectionVisilble()" style="display: none">
         <div class="well">
             <form class="form-horizontal" data-bind="submit: search">
 
@@ -18,7 +18,7 @@
                     <input type="text" class="form-control" placeholder="<Fleet Pool>" data-bind="value: fleetPoolSeachFilter" />
                 </div>
                 <div class="col-xs-3">
-                    <select class="form-control" data-bind="options: $root.regionsList, optionsText: 'RegionName', optionsValue: 'RegionId', optionsCaption: '<Region>', value: fleetPoolRegionFilter"></select>
+                    <select class="form-control" data-bind="options: $root.regionsList, optionsText: 'RegionCodeName', optionsValue: 'RegionId', optionsCaption: '<Region>', value: fleetPoolRegionFilter"></select>
                 </div>
                 <div class="col-xs-3">
                     <select class="form-control" data-bind="options: $root.operationsList, optionsText: 'OperationName', optionsValue: 'OperationId', optionsCaption: '<Operation>', value: fleetPoolOperationFilter"></select>

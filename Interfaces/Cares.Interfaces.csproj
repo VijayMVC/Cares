@@ -54,7 +54,6 @@
     <Compile Include="IServices\IBusinessPartnerInTypeService.cs" />
     <Compile Include="IServices\IBusinessPartnerIndividualService.cs" />
     <Compile Include="IServices\IBusinessPartnerCompanyService.cs" />
-    <Compile Include="IServices\ICountryRegionsService.cs" />
     <Compile Include="IServices\ICountryService.cs" />
     <Compile Include="IServices\IHireGroupService.cs" />
     <Compile Include="IServices\IOccupationTypeService.cs" />

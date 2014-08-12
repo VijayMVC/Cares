@@ -26,11 +26,11 @@
             </div>
             <label for="tariffTypeDepartment" class="control-label h5 col-sm-2">Country</label>
             <div class="col-md-2">
-                <select class="form-control" id="tariffTypeDepartment" required data-bind="options: $root.countryList, optionsText: 'CountryName', optionsValue: 'CountryId', optionsCaption: '<Country>', value: countryId, event: { change : $root.filterRegions}"></select>
+                <select class="form-control" id="tariffTypeDepartment" required data-bind="options: $root.countryList, optionsText: 'CountryCodeName', optionsValue: 'CountryId', optionsCaption: '<Country>', value: countryId, event: { change : $root.filterRegions}"></select>
             </div>
             <label for="tariffTypeOperation" class="control-label h5 col-sm-2">Region</label>
             <div class="col-md-2">
-                <select class="form-control" id="tariffTypeOperation" required data-bind="options: $root.contryBaseRegionList, optionsText: 'RegionName', optionsValue: 'RegionId', optionsCaption: '<Region>', value: regionId"></select>
+                <select class="form-control" id="tariffTypeOperation" required data-bind="options: $root.contryBaseRegionList, optionsText: 'RegionCodeName', optionsValue: 'RegionId', optionsCaption: '<Region>', value: regionId"></select>
             </div>
         </div>
         <div class="form-group">

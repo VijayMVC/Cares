@@ -234,7 +234,6 @@
     <Compile Include="Areas\Api\Controllers\BusinessPartnerController.cs" />
     <Compile Include="Areas\Api\Controllers\AddressBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\ProductController.cs" />
-    <Compile Include="Areas\Api\Controllers\RegionsController.cs" />
     <Compile Include="Areas\Api\Controllers\TariffRateBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\TariffRateController.cs" />
     <Compile Include="Areas\Api\Controllers\RentalAgreementBaseController.cs" />
@@ -315,7 +314,6 @@
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\AreaDropDown.cs" />
     <Compile Include="Models\CountryRegions.cs" />
-    <Compile Include="Models\CountryRegionsResponse.cs" />
     <Compile Include="Models\HireGroupBaseResponse.cs" />
     <Compile Include="Models\HireGroupSearchResponse.cs" />
     <Compile Include="Models\OperationsWorkPlace.cs" />
@@ -993,7 +991,6 @@
     <Content Include="Content\RentalAgreement.less" />
     <Content Include="Areas\Fleet\Views\Home\HireGroup.cshtml" />
     <Content Include="Areas\Fleet\Views\Home\_HireGroupEditor.cshtml" />
-    <Content Include="Areas\Fleet\Views\Home\test.cshtml" />
     <Content Include="Areas\Pricing\Views\Tarrif\test.cshtml" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />

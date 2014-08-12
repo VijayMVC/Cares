@@ -58,8 +58,8 @@ define("Fleet/fleetPool.viewModel",
                                 countryList.removeAll();
                                 ko.utils.arrayPushAll(countryList(), data.Countries);
                                 countryList.valueHasMutated();
-                                if (callBack && callBack === 'function') {
-                                    callBack()();
+                                if (callBack && typeof callBack === 'function') {
+                                    callBack();
                                 };
                             },
                             error: function(exceptionMessage, exceptionType) {
@@ -228,10 +228,9 @@ define("Fleet/fleetPool.viewModel",
                     initialize = function(specifiedView) {
                         view = specifiedView;
                         ko.applyBindings(view.viewModel, view.bindingRoot);
+                        // Set Pager / page / paginition
+                        pager(pagination.Pagination({ PageSize: 10 }, fleetPools, getFleetPools));
                         getFleetPoolBaseData(getFleetPools);
-                        // Set Pager
-                        pager(pagination.Pagination({}, fleetPools, getFleetPools));
-                        getFleetPools();
                     },
                     // function to edit fleet pool
                     editFleetPool = function(item) {
