@@ -304,12 +304,12 @@
     <Compile Include="Models\BusinessPartnerMarketingChannel.cs" />
     <Compile Include="Models\MarketingChannelDropDown.cs" />
     <Compile Include="Models\BusinessPartnerInType.cs" />
-    <Compile Include="Models\BusinessPartnerSubType.cs" />
-    <Compile Include="Models\BusinessSegment.cs" />
+    <Compile Include="Models\BusinessPartnerSubTypeDropDown.cs" />
+    <Compile Include="Models\BusinessSegmentDropDown.cs" />
     <Compile Include="Models\BusinessPartnerIndividual.cs" />
     <Compile Include="Models\BusinessPartnerDetail.cs" />
     <Compile Include="Models\BusinessPartnerListView.cs" />
-    <Compile Include="Models\BusinessPartnerResponse.cs" />
+    <Compile Include="Models\BusinessPartnerSearchResponse.cs" />
     <Compile Include="Models\BpRatingTypeDropDown.cs" />
     <Compile Include="Models\BusinessLegalStatusDropDown.cs" />
     <Compile Include="Models\Address.cs" />
@@ -329,7 +329,7 @@
     <Compile Include="Models\OccupationTypeDropDown.cs" />
     <Compile Include="Models\PaymentTermDropDown.cs" />
     <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\CompanyDropDown.cs" />
     <Compile Include="Models\CountryDropDown.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\FleetPool.cs" />

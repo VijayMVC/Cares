@@ -12,12 +12,12 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static Company CreateFrom(this DomainModels.Company source)
+        public static CompanyDropDown CreateFrom(this DomainModels.Company source)
         {
-            return new Company
+            return new CompanyDropDown
             {
                 CompanyId = source.CompanyId,
-                CompanyName = source.CompanyCode+"-" +source.CompanyName,
+                CompanyCodeName = source.CompanyCode+" - " +source.CompanyName,
             };
         }
         #endregion

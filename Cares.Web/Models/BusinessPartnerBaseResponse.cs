@@ -15,7 +15,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Companies
         /// </summary>
-        public IEnumerable<Company> ResponseCompanies { get; set; }
+        public IEnumerable<CompanyDropDown> ResponseCompanies { get; set; }
         /// <summary>
         /// Payment Terms
         /// </summary>
@@ -51,11 +51,11 @@ namespace Cares.Web.Models
         /// <summary>
         /// Business Segments
         /// </summary>
-        public IEnumerable<BusinessSegment> ResponseBusinessSegments { get; set; }
+        public IEnumerable<BusinessSegmentDropDown> ResponseBusinessSegments { get; set; }
         /// <summary>
         /// Business Partner SubTypes
         /// </summary>
-        public IEnumerable<BusinessPartnerSubType> ResponseBusinessPartnerSubTypes { get; set; }
+        public IEnumerable<BusinessPartnerSubTypeDropDown> ResponseBusinessPartnerSubTypes { get; set; }
         /// <summary>
         /// Phone Types
         /// </summary>
