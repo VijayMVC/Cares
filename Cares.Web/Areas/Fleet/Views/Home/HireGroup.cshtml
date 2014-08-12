@@ -6,7 +6,7 @@
     <div class="row " data-bind="visible: !isHireGroupEditorVisible()">
         <h3 class="page-header float-left pageHeaderSection">Hire Group</h3>
         <div class="header-toolsSection">
-            <a href="#" class="label label-default create-new-icon" title="Create New Hire Group">NEW</a>
+            <a href="#" class="label label-default create-new-icon" data-bind="click: createHireGroup" title="Create New Hire Group">NEW</a>
             <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title="Show Filters" style="display: none"></a>
         </div>
     </div>
@@ -52,7 +52,7 @@
         </div>
     </div>
     <script id="editActionHireGroupTemplate" type="text/html">
-        <a href="#"  title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
+        <a href="#" data-bind="click: $root.onEditHireGroup" title="Edit" ><span class="glyphicon glyphicon-edit"></span></a>
     </script>
     <script id="deleteActionHireGroupTemplate" type="text/html">
         <a href="#"  title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
@@ -61,9 +61,9 @@
         <tr>
             <td data-bind="text: hireGroupCode"></td>
             <td data-bind="text: hireGroupName"></td>
-            <td data-bind="text: parentHireGroup"></td>
+            <td data-bind="text: parentHireGroupName"></td>
             <td data-bind="text: description"></td>
-            <td data-bind="text: company"></td>
+            <td data-bind="text: companyName"></td>
             <td data-bind="text: isParent"></td>
             <td>
                 <!-- ko template: { name: 'editActionHireGroupTemplate' } -->
@@ -75,7 +75,7 @@
             </td>
         </tr>
     </script>
-    @*@Html.Partial("_TariffRateEditor")*@
+    @Html.Partial("_HireGroupEditor")
 
 </div>
 <!-- ko stopBinding: true -->

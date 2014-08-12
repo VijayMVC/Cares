@@ -79,7 +79,12 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Hire Group Details having this Category
         /// </summary>
-        public virtual ICollection<HireGroupDetail> HireGroupDetails { get; set; } 
+        public virtual ICollection<HireGroupDetail> HireGroupDetails { get; set; }
+
+        /// <summary>
+        /// Vehicles having this Vehicle Category
+        /// </summary>
+        public virtual ICollection<Vehicle> Vehicles { get; set; }
 
         #endregion
     }
