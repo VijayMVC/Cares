@@ -5,13 +5,6 @@ namespace Cares.Web.Models
 {
     public class BusinessPartnerBaseResponse
     {
-        #region Private
-        #endregion
-
-        #region Protected
-        #endregion
-
-        #region Public
         /// <summary>
         /// Companies
         /// </summary>
@@ -31,7 +24,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// System Guarnator 
         /// </summary>
-        public IEnumerable<BusinessPartnerListView> ResponseBusinessPartners { get; set; }
+        public IEnumerable<BusinessPartnerDropDown> ResponseBusinessPartners { get; set; }
         /// <summary>
         /// Dealing Employees 
         /// </summary>
@@ -68,6 +61,9 @@ namespace Cares.Web.Models
         /// Marketing Channels
         /// </summary>
         public IEnumerable<MarketingChannelDropDown> ResponseMarketingChannels { get; set; }
-        #endregion
+        /// <summary>
+        /// Business Partner Relationship type
+        /// </summary>
+        public IEnumerable<BusinessPartnerRelationshipTypeDropDown> ResponseBusinessPartnerRelationshipTypes { get; set; }
     }
 }

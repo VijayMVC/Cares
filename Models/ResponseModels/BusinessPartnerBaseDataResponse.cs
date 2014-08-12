@@ -65,6 +65,10 @@ namespace Cares.Models.ResponseModels
         /// Marketing Channels
         /// </summary>
         public IEnumerable<MarketingChannel> ResponseMarketingChannels { get; set; }
+        /// <summary>
+        /// Business Partner Relationship Types
+        /// </summary>
+        public IEnumerable<BusinessPartnerRelationshipType> ResponseBusinessPartnerRelationshipTypes { get; set; }
         #endregion
     }
 }

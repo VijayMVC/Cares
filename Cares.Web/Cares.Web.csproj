@@ -301,7 +301,10 @@
     <Compile Include="ModelMappers\VehicleModelMapper.cs" />
     <Compile Include="Models\AddressBaseResponse.cs" />
     <Compile Include="Models\AddressTypeDropDown.cs" />
+    <Compile Include="Models\BusinessPartnerRelationship.cs" />
+    <Compile Include="Models\BusinessPartnerDropDown.cs" />
     <Compile Include="Models\BusinessPartnerMarketingChannel.cs" />
+    <Compile Include="Models\BusinessPartnerRelationshipTypeDropDown.cs" />
     <Compile Include="Models\MarketingChannelDropDown.cs" />
     <Compile Include="Models\BusinessPartnerInType.cs" />
     <Compile Include="Models\BusinessPartnerSubTypeDropDown.cs" />

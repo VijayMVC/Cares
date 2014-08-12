@@ -64,6 +64,8 @@ define("businessPartner/businessPartner.viewModel",
                     filteredAreas = ko.observableArray([]),
                     // Marketing Channel Array
                     marketingChannels = ko.observableArray([]),
+                    // Business Partner Relationship Type Array
+                    businessPartnerRelationshipTypes = ko.observableArray([]),
                     // Sort On
                     sortOn = ko.observable(1),
                     // Sort Order -  true means asc, false means desc
@@ -111,6 +113,20 @@ define("businessPartner/businessPartner.viewModel",
                         if (value.countryId() !== undefined && value.countryId().split('-').length === 3)
                             getRegionsByCountry(value.countryId().split('-')[0]);
                     },
+                    ////secondary business Partner selection change event
+                    //onSecondaryBusinessPartnerSelectionChange = function (value) {
+                    //    if (value !== undefined && value !== null) {
+                    //        selectedBusinessPartner().businessPartnerRelationshipItemNew().businessPartnerId(value.BusinessPartnerId());
+                    //        selectedBusinessPartner().businessPartnerRelationshipItemNew().businessPartnerName(value.BusinessPartnerCodeName());
+                    //    }
+                    //},
+                    ////secondary business Partner selection change event
+                    //onBusinessPartnerRelationshipTypeSelectionChange = function (value) {
+                    //    if (value !== undefined && value !== null) {
+                    //        selectedBusinessPartner().businessPartnerRelationshipItemNew().businessPartnerRelationshipTypeId(value.BusinessPartnerRelationshipTypeId());
+                    //        selectedBusinessPartner().businessPartnerRelationshipItemNew().businessPartnerRelationshipTypeName(value.BusinessPartnerRelationshipTypeCodeName());
+                    //    }
+                    //},  
                     //get regions by country          
                     getRegionsByCountry = function (countryId) {
                         isLoadingBusinessPartners(true);
@@ -260,6 +276,11 @@ define("businessPartner/businessPartner.viewModel",
                         selectedBusinessPartner().businessPartnerInTypes.remove(businessPartnerInType);
                         return;
                     },
+                     // Delete a BusinessPartner Relationship Item
+                    onDeleteBusinessPartnerRelationshipItem = function (businessPartnerRelationshipItem) {
+                        selectedBusinessPartner().businessPartnerRelationshipItemList.remove(businessPartnerRelationshipItem);
+                        return;
+                    },
                     // Delete a BusinessPartner Phone Item
                     onDeleteBusinessPartnerPhone = function (businessPartnerPhone) {
                         selectedBusinessPartner().businessPartnerPhoneNumbers.remove(businessPartnerPhone);
@@ -269,6 +290,7 @@ define("businessPartner/businessPartner.viewModel",
                     onDeleteBusinessPartnerAddress = function (businessPartnerAddress) {
                         selectedBusinessPartner().businessPartnerAddressList.remove(businessPartnerAddress);
                         return;
+                        
                     },
                     // Delete a BusinessPartner Marketing Channel Item
                     onDeleteBusinessPartnerMarketingChannel = function (businessPartnerMarketingChannel) {
@@ -589,6 +611,33 @@ define("businessPartner/businessPartner.viewModel",
                             selectedBusinessPartner().businessPartnerMarketingChannelNew(model.BusinessPartnerMarketingChannel(undefined, undefined, undefined));
                         }
                     },
+                     // Do Before Add BusinessPartner Relationship Item
+                    doBeforeAddBusinessPartnerRelationshipItem = function () {
+                        var flag = true;
+                        if (!selectedBusinessPartner().businessPartnerRelationshipItemNew().isValid()) {
+                            selectedBusinessPartner().businessPartnerRelationshipItemNew().errors.showAllMessages();
+                            flag = false;
+                        }
+                        return flag;
+                    },
+                    // Add a BusinessPartner Relationship Item
+                    onAddBusinessPartnerRelationshipItem = function () {
+                        // check validation error before add
+                        if (doBeforeAddBusinessPartnerRelationshipItem()) {
+                            var businessPartnerRelationshipItem = model.BusinessPartnerRelationshipItem(
+                                undefined,
+                                selectedBusinessPartner().businessPartnerId(),
+                                selectedBusinessPartner().businessPartnerRelationshipItemNew().businessPartnerRelationshipTypeId().BusinessPartnerRelationshipTypeId,
+                                selectedBusinessPartner().businessPartnerRelationshipItemNew().businessPartnerRelationshipTypeId().BusinessPartnerRelationshipTypeCodeName,
+                                selectedBusinessPartner().businessPartnerRelationshipItemNew().secondaryBusinessPartnerId().BusinessPartnerId,
+                                selectedBusinessPartner().businessPartnerRelationshipItemNew().secondaryBusinessPartnerId().BusinessPartnerCodeName
+                            );
+                            selectedBusinessPartner().businessPartnerRelationshipItemList.push(businessPartnerRelationshipItem);
+                            selectedBusinessPartner().businessPartnerRelationshipItemList.valueHasMutated();
+                            // emplty input fields
+                            selectedBusinessPartner().businessPartnerRelationshipItemNew(model.BusinessPartnerRelationshipItem(undefined, undefined, undefined,undefined,undefined,undefined));
+                        }
+                    },
                     // Create Business Partner
                     createBusinessPartner = function () {
                         var businessPartner = model.BusinessPartnerDetail.Create();
@@ -696,6 +745,10 @@ define("businessPartner/businessPartner.viewModel",
                                 marketingChannels.removeAll();
                                 ko.utils.arrayPushAll(marketingChannels(), data.ResponseMarketingChannels);
                                 marketingChannels.valueHasMutated();
+                                // Business Partner Relationship array
+                                businessPartnerRelationshipTypes.removeAll();
+                                ko.utils.arrayPushAll(businessPartnerRelationshipTypes(), data.ResponseBusinessPartnerRelationshipTypes);
+                                businessPartnerRelationshipTypes.valueHasMutated();
                             },
                             error: function () {
                                 toastr.error("Failed to load base data");
@@ -828,7 +881,10 @@ define("businessPartner/businessPartner.viewModel",
                     onCitySelectionChange: onCitySelectionChange,
                     marketingChannels: marketingChannels,
                     onDeleteBusinessPartnerMarketingChannel: onDeleteBusinessPartnerMarketingChannel,
-                    onAddBusinessPartnerMarketingChannel: onAddBusinessPartnerMarketingChannel
+                    onAddBusinessPartnerMarketingChannel: onAddBusinessPartnerMarketingChannel,
+                    businessPartnerRelationshipTypes: businessPartnerRelationshipTypes,
+                    onAddBusinessPartnerRelationshipItem: onAddBusinessPartnerRelationshipItem,
+                    onDeleteBusinessPartnerRelationshipItem:onDeleteBusinessPartnerRelationshipItem
                     // Utility Methods
                 };
             })()
