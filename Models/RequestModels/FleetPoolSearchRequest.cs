@@ -1,4 +1,6 @@
-﻿namespace Cares.Models.RequestModels
+﻿using Cares.Models.Common;
+
+namespace Cares.Models.RequestModels
 {
     /// <summary>
     /// FleetPool Search Request
@@ -17,6 +19,20 @@
         /// Operation Id
         /// </summary>
         public long? OperationId { get; set; }
+        /// <summary>
+        /// FleetPool Order By
+        /// </summary>
+        public FleetPoolByColumn FleetPoolOrderBy
+        {
+            get
+            {
+                return (FleetPoolByColumn)SortBy;
+            }
+            set
+            {
+                SortBy = (short)value;
+            }
+        }
 
     }
 }

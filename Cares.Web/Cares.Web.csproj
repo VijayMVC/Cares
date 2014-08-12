@@ -993,6 +993,8 @@
     <Content Include="Content\RentalAgreement.less" />
     <Content Include="Areas\Fleet\Views\Home\HireGroup.cshtml" />
     <Content Include="Areas\Fleet\Views\Home\_HireGroupEditor.cshtml" />
+    <Content Include="Areas\Fleet\Views\Home\test.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tarrif\test.cshtml" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />

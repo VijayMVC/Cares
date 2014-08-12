@@ -87,7 +87,7 @@ define("Fleet/fleetPool.viewModel",
                     countrySelected = function() {
                         //getRegions(newCountryFilter());
                     },
-                    cancelSave = function() {
+                    onCancelSave = function() {
                         isFleetPoolEditorVisible(false);
                     },
                     //Validation Check function while saving Fleet Pool
@@ -102,12 +102,11 @@ define("Fleet/fleetPool.viewModel",
                     },
                     //add new fleetpool
                     saveFleetPool = function () {
-                        if (isEditMode()) // to check if we are ediring some record
+                        if (isEditMode()) // to check if we are editing some record
                         {
                             dataservice.updateFleetPool(model.fleePoolClienttoServerMapper(selectedFleetPool()), {
                                 success: function(dataFromServer) {
                                     fleetPools.replace(selectedFleetPool(), model.fleetPoolServertoClinetMapper(dataFromServer));
-                                    reset();
                                     isEditMode(false);
                                     toastr.success("Successfully upadted!");
                                 },
@@ -120,8 +119,8 @@ define("Fleet/fleetPool.viewModel",
                         {
                             dataservice.saveFleetPool(model.fleePoolClienttoServerMapper(selectedFleetPool()), {
                                 success: function (dataFromServer) {
-                                    fleetPools.replace(selectedFleetPool(), model.fleetPoolServertoClinetMapper(dataFromServer));
-                                    reset();
+                                    fleetPools.push(model.fleetPoolServertoClinetMapper(dataFromServer));
+                                    isFleetPoolEditorVisible(false);
                                     toastr.success("Successfully Added!");
                                 },
                                 error: function () {
@@ -263,13 +262,14 @@ define("Fleet/fleetPool.viewModel",
                     createFleetForm: createFleetForm,
                     ccreatePoolDetail: createPoolDetail,                    
                     showFleetPoolEditor: showFleetPoolEditor,                                        
-                    cancelSave: cancelSave,                                        
+                    onCancelSave: onCancelSave,
                     onSaveFleetPool: onSaveFleetPool,
                     filterRegions: filterRegions,
                     filterSectionVisilble: filterSectionVisilble,
                     collapseFilterSection: collapseFilterSection,
                     showFilterSection: showFilterSection,
-                    closeFleetPoolEditor: closeFleetPoolEditor
+                    closeFleetPoolEditor: closeFleetPoolEditor,
+                    getFleetPools: getFleetPools
                 };
             })()
         };

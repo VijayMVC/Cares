@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using Cares.Interfaces.Repository;
+using Cares.Models.Common;
 using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Repository.BaseRepository;
@@ -15,6 +18,17 @@ namespace Cares.Repository.Repositories
     /// </summary>
     public sealed class FleetPoolRepository : BaseRepository<FleetPool>, IFleetPoolRepository
     {
+        /// <summary>
+        /// To sort the FleetPool Data
+        /// </summary>
+        private readonly Dictionary<FleetPoolByColumn, Func<FleetPool, object>> _fleetPoolOrderByClause = new Dictionary<FleetPoolByColumn, Func<FleetPool, object>>
+                    {
+                        { FleetPoolByColumn.FleetPoolCode, c => c.FleetPoolCode },
+                        { FleetPoolByColumn.FleetPoolName, c => c.FleetPoolName },
+                        { FleetPoolByColumn.Operation, c=> c.OperationId},
+                        { FleetPoolByColumn.Region, c=> c.RegionId}
+                    };
+
         #region Public
         /// <summary>
         /// Add new FleetPools
@@ -34,19 +48,16 @@ namespace Cares.Repository.Repositories
             int fromRow = (request.PageNo - 1) * request.PageSize;
             int toRow = request.PageSize;
 
-            rowCount =
-                DbSet.Count(
-                    fleet =>
+            Expression<Func<FleetPool, bool>> query =
+                fleet =>
                         (string.IsNullOrEmpty(request.FleetPoolSearchText) || fleet.FleetPoolCode.Contains(request.FleetPoolSearchText) ||fleet.FleetPoolName.Contains(request.FleetPoolSearchText))
                          && (!request.RegionId.HasValue || fleet.RegionId == request.RegionId.Value)
-                         && (!request.OperationId.HasValue || fleet.OperationId == request.OperationId.Value));
+                         && (!request.OperationId.HasValue || fleet.OperationId == request.OperationId.Value);
 
-            return DbSet.Where(fleet =>
-                (string.IsNullOrEmpty(request.FleetPoolSearchText) ||
-                 fleet.FleetPoolCode.Contains(request.FleetPoolSearchText) ||
-                 fleet.FleetPoolName.Contains(request.FleetPoolSearchText))
-                && (!request.RegionId.HasValue || fleet.RegionId == request.RegionId.Value)
-                && (!request.OperationId.HasValue || fleet.OperationId == request.OperationId.Value)).OrderBy(x=>x.FleetPoolCode).Skip(fromRow).Take(toRow).ToList();
+            rowCount = DbSet.Count(query);
+
+            return request.IsAsc ? DbSet.Where(query).OrderBy(_fleetPoolOrderByClause[request.FleetPoolOrderBy]).Skip(fromRow).Take(toRow).ToList() :
+                                   DbSet.Where(query).OrderByDescending(_fleetPoolOrderByClause[request.FleetPoolOrderBy]).Skip(fromRow).Take(toRow).ToList();
         }
         #endregion
 
