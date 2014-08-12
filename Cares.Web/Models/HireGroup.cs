@@ -1,4 +1,6 @@
-﻿namespace Cares.Web.Models
+﻿using System.Collections.Generic;
+
+namespace Cares.Web.Models
 {
     /// <summary>
     /// Hire Group Web Model
@@ -42,6 +44,9 @@
         /// Is Parent
         /// </summary>
         public bool IsParent { get; set; }
+
+        public List<HireGroupDetailForHireGroup> HireGroupDetailList { get; set; }
+
         #endregion
 
     }

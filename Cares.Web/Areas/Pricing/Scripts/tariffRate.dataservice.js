@@ -71,7 +71,7 @@ define("tariffRate/tariffRate.dataservice", function () {
                     data: params
                 });
             },
-             // Create Product
+             // Create Tariff Rate
             createTariffRate = function (param, callbacks) {
                 initialize();
                 return amplify.request({
@@ -81,7 +81,7 @@ define("tariffRate/tariffRate.dataservice", function () {
                     data: param
                 });
             },
-            // Update a Product
+            // Update a Tariff Rate
             updateTariffRate = function (param, callbacks) {
                 initialize();
                 return amplify.request({
@@ -91,7 +91,7 @@ define("tariffRate/tariffRate.dataservice", function () {
                     data: param
                 });
             },
-             // Get Tarrif type bby id 
+             // Get Tarrif type by id 
             getHireGroupDetails = function (params,callbacks) {
                 initialize();
                 return amplify.request({
