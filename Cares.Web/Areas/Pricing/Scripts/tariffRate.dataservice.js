@@ -39,7 +39,7 @@ define("tariffRate/tariffRate.dataservice", function () {
                     });
                     // Define request to get Hire Group detail
                     amplify.request.define('getHireGroupDetails', 'ajax', {
-                        url: '/Api/GetHireGroupDetail',
+                        url: '/Api/GetHireGroupDetailTariffRate',
                         dataType: 'json',
                         type: 'GET'
                     });
