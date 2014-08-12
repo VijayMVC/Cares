@@ -108,9 +108,9 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web api model from domain entity
         /// </summary>
-        public static Models.BusinessPartnerResponse CreateFrom(this  BusinessPartnerResponse source)
+        public static Models.BusinessPartnerSearchResponse CreateFrom(this  BusinessPartnerSearchResponse source)
         {
-            return new Models.BusinessPartnerResponse
+            return new Models.BusinessPartnerSearchResponse
             {
                 TotalCount = source.TotalCount,
                 BusinessPartners = source.BusinessPartners.Select(p => p.CreateFrom())
@@ -262,27 +262,24 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static ApiModel.BusinessPartnerSubType CreateFrom(this BusinessPartnerSubType source)
+        public static ApiModel.BusinessPartnerSubTypeDropDown CreateFrom(this BusinessPartnerSubType source)
         {
-            return new ApiModel.BusinessPartnerSubType
+            return new ApiModel.BusinessPartnerSubTypeDropDown
             {
                 BusinessPartnerSubTypeId = source.BusinessPartnerSubTypeId,
-                BusinessPartnerSubTypeCode = source.BusinessPartnerSubTypeCode,
-                BusinessPartnerSubTypeName = source.BusinessPartnerSubTypeCode + '-' + source.BusinessPartnerSubTypeName,
-                BusinessPartnerSubTypeCustomId = source.BusinessPartnerSubTypeId.ToString() + '-' + source.BusinessPartnerSubTypeCode + '-' + source.BusinessPartnerSubTypeName
+                BusinessPartnerSubTypeCodeName = source.BusinessPartnerSubTypeCode + " - " + source.BusinessPartnerSubTypeName,
             };
         }
 
         /// <summary>
         ///  Create entity from web model
         /// </summary>
-        public static BusinessPartnerSubType CreateFrom(this ApiModel.BusinessPartnerSubType source)
+        public static BusinessPartnerSubType CreateFrom(this ApiModel.BusinessPartnerSubTypeDropDown source)
         {
             return new BusinessPartnerSubType
             {
                 BusinessPartnerSubTypeId = source.BusinessPartnerSubTypeId,
-                BusinessPartnerSubTypeCode = source.BusinessPartnerSubTypeCode,
-                BusinessPartnerSubTypeName = source.BusinessPartnerSubTypeName
+                BusinessPartnerSubTypeName = source.BusinessPartnerSubTypeCodeName
             };
         }
 

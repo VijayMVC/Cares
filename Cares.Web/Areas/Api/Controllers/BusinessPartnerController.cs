@@ -39,7 +39,7 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Get all Bussiness Partner
         /// </summary>
-        public BusinessPartnerResponse Get([FromUri] BusinessPartnerSearchRequest request)
+        public BusinessPartnerSearchResponse Get([FromUri] BusinessPartnerSearchRequest request)
         {
             if (request == null || !ModelState.IsValid)
             {

@@ -5,29 +5,23 @@ namespace Cares.Web.ModelMappers
 {
     public static class CityMapper
     {
-        #region Public
-
         #region City
         #region Entity To Model
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static ApiModel.City CreateFrom(this City source)
+        public static ApiModel.CityDropDown CreateFrom(this City source)
         {
-            return new ApiModel.City()
+            return new ApiModel.CityDropDown()
             {
                 CityId = source.CityId,
-                CityCustomId = source.CityId.ToString()+"-"+source.CityCode+"-"+source.CityName,
-                CityCode = source.CityCode,
-                CityName = source.CityName,
+                CityCodeName = source.CityCode + " - " + source.CityName,
                 RegionId = source.RegionId,
                 CountryId = source.CountryId,
                 SubRegionId = source.SubRegionId
             };
         }
-        #endregion        
         #endregion
-        
         #endregion
     }
 }

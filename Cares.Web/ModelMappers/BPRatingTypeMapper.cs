@@ -11,26 +11,25 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web api model from domail model
         /// </summary>
-        public static BpRatingType CreateFrom(this Cares.Models.DomainModels.BpRatingType source)
+        public static BpRatingTypeDropDown CreateFrom(this Cares.Models.DomainModels.BpRatingType source)
         {
-            return new BpRatingType
+            return new BpRatingTypeDropDown
             {
                 BpRatingTypeId = source.BpRatingTypeId,
-                BpRatingTypeName = source.BpRatingTypeCode +'-'+ source.BpRatingTypeName,
-                BpRatingTypeCustomId = source.BpRatingTypeId.ToString() + '-' + source.BpRatingTypeCode + '-' + source.BpRatingTypeName
+                BpRatingTypeCodeName = source.BpRatingTypeCode +'-'+ source.BpRatingTypeName
             };
         }
         /// <summary>
         ///  Create domain model from web api model
         /// </summary>
-        public static Cares.Models.DomainModels.BpRatingType CreateFrom(this BpRatingType source)
+        public static Cares.Models.DomainModels.BpRatingType CreateFrom(this BpRatingTypeDropDown source)
         {
             if (source != null)
             {
                 return new Cares.Models.DomainModels.BpRatingType
                 {
                     BpRatingTypeId = source.BpRatingTypeId,
-                    BpRatingTypeName = source.BpRatingTypeName
+                    BpRatingTypeName = source.BpRatingTypeCodeName
                 };
             }
             return new Cares.Models.DomainModels.BpRatingType();

@@ -11,7 +11,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Companies
         /// </summary>
-        public IEnumerable<Company> Companies { get; set; }
+        public IEnumerable<CompanyDropDown> Companies { get; set; }
         /// <summary>
         /// Hire Group 
         /// </summary>

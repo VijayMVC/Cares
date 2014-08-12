@@ -57,6 +57,15 @@ namespace Cares.Implementation.Services
                 HireGroups = hireGroups
             };
         }
+
+        /// <summary>
+        /// Get Hire Groups By Code, Vehicle Make / Category / Model / Model Year
+        /// </summary>
+        public IEnumerable<HireGroup> GetByCodeAndVehicleInfo(string searchText)
+        {
+            return hireGroupRepository.GetByCodeAndVehicleInfo(searchText);
+        }
+
         /// <summary>
         /// Load tarrif type, based on search filters
         /// </summary>

@@ -13,7 +13,7 @@ namespace Cares.Web.Models
         /// </summary>
         public TarrifTypeBaseResponse()
         {
-            ResponseCompanies = new List<Company>();
+            ResponseCompanies = new List<CompanyDropDown>();
             ResponseMeasurementUnits = new List<MeasurementUnit>();
             ResponseDepartments = new List<Department>();
             ResponseOperations = new List<Operation>();
@@ -24,7 +24,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Companies
         /// </summary>
-        public IEnumerable<Company> ResponseCompanies { get; set; }
+        public IEnumerable<CompanyDropDown> ResponseCompanies { get; set; }
         /// <summary>
         /// Measurement Unit 
         /// </summary>

@@ -725,10 +725,10 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
     };
     // Business Partner Address Factory
     BusinessPartnerAddress.Create = function () {
-        return new BusinessPartnerAddress(undefined, "", "", "", "", "", "", undefined, undefined, undefined, undefined, undefined, undefined, undefined,undefined,undefined,undefined,undefined,undefined,undefined);
+        return new BusinessPartnerAddress(undefined,"","", "", "", "", "", undefined, undefined, undefined, undefined, undefined, undefined, undefined,undefined,undefined,undefined,undefined,undefined,undefined);
     };
     BusinessPartnerMarketingChannel.Create = function() {
-        return new BusinessPartnerMarketingChannel(undefined, undefined);
+        return new BusinessPartnerMarketingChannel(undefined, undefined,undefined);
     };
     // Convert (Business Partner) Client to server
     var BusinessPartnerServerMapper = function(clientData) {

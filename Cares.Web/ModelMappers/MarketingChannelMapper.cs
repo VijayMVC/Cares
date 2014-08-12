@@ -12,13 +12,12 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web Api model from domain entity
         /// </summary>
-        public static ApiModel.MarketingChannel CreateFrom(this DomainModel.MarketingChannel source)
+        public static ApiModel.MarketingChannelDropDown CreateFrom(this DomainModel.MarketingChannel source)
             {
-                return new ApiModel.MarketingChannel()
+                return new ApiModel.MarketingChannelDropDown()
                 {
                     MarketingChannelId = source.MarketingChannelId,
-                    MarketingChannelName = source.MarketingChannelCode + '-'+source.MarketingChannelName,
-                    MarketingChannelCustomId = source.MarketingChannelId.ToString() + '-'+ source.MarketingChannelCode + '-' + source.MarketingChannelName
+                    MarketingChannelCodeName = source.MarketingChannelCode + " - "+source.MarketingChannelName,
                 };
             }
         #endregion

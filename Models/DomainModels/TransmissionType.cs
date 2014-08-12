@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 namespace Cares.Models.DomainModels
 {
     /// <summary>
@@ -24,6 +25,15 @@ namespace Cares.Models.DomainModels
         /// </summary>
         [StringLength(255)]
         public string TransmissionTypeName { get; set; }
+
+        #endregion
+
+        #region Reference Properties
+
+        /// <summary>
+        /// Vehicles having this Transmission Type
+        /// </summary>
+        public virtual ICollection<Vehicle> Vehicles { get; set; }
 
         #endregion
     }

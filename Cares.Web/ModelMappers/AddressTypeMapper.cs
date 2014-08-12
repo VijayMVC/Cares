@@ -12,15 +12,14 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web Api model from domain entity
         /// </summary>
-        public static ApiModel.AddressType CreateFrom(this DomainModel.AddressType source)
+        public static ApiModel.AddressTypeDropDown CreateFrom(this DomainModel.AddressType source)
+        {
+            return new ApiModel.AddressTypeDropDown()
             {
-                return new ApiModel.AddressType()
-                {
-                    AddressTypeId = source.AddressTypeId,
-                    AddressTypeName = source.AddressTypeCode + '-'+source.AddressTypeName,
-                    AddressTypeCustomId = source.AddressTypeId.ToString() + '-'+ source.AddressTypeCode + '-' + source.AddressTypeName
-                };
-            }
+                AddressTypeId = source.AddressTypeId,
+                AddressTypeCodeName = source.AddressTypeCode + " - " + source.AddressTypeName,
+            };
+        }
         #endregion
         #endregion
     }

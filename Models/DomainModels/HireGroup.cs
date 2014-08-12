@@ -130,6 +130,11 @@ namespace Cares.Models.DomainModels
         /// Details of this Hire Group
         /// </summary>
         public virtual ICollection<HireGroupDetail> HireGroupDetails { get; set; }
+
+        /// <summary>
+        /// Vehicle Associated with this Hire Group
+        /// </summary>
+        public virtual ICollection<Vehicle> Vehicles { get; set; }
         
         #endregion
     }

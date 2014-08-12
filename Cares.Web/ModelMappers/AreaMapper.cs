@@ -10,14 +10,12 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web api model from domain entity
         /// </summary>
-        public static ApiModel.Area CreateFrom(this Area source)
+        public static ApiModel.AreaDropDown CreateFrom(this Area source)
         {
-            return new ApiModel.Area()
+            return new ApiModel.AreaDropDown()
             {
                 AreaId = source.AreaId,
-                AreaCustomId = source.AreaId.ToString()+"-"+source.AreaCode+"-"+source.AreaName,
-                AreaCode = source.AreaCode,
-                AreaName = source.AreaName,
+                AreaCodeName = source.AreaCode + " - "+source.AreaName,
                 CityId = source.CityId
             };
         }

@@ -10,6 +10,10 @@ namespace Cares.Web.Areas.Fleet.Controllers
         {
             return View();
         }
+        public ActionResult test()
+        {
+            return View();
+        }
         //
         // GET: /HireGroup/Home/
         public ActionResult HireGroup()

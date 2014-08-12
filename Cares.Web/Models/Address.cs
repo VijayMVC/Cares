@@ -5,7 +5,6 @@
     /// </summary>
     public class Address
     {
-        #region Public Properties
         /// <summary>
         /// Address ID
         /// </summary>
@@ -86,7 +85,5 @@
         /// Business Partner Id
         /// </summary>
         public long? BusinessPartnerId { get; set; }
-
-        #endregion
     }
 }
