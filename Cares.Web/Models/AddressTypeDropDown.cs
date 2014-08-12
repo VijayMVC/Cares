@@ -3,23 +3,19 @@
 namespace Cares.Web.Models
 {
     /// <summary>
-    /// Address Type Web Model
+    /// Address Type Dropdown Web Model
     /// </summary>
-    public class AddressType
+    public class AddressTypeDropDown
     {
         /// <summary>
         /// Address Type ID
         /// </summary>
         public int AddressTypeId { get; set; }
         /// <summary>
-        /// Address Type Custom ID
-        /// </summary>
-        public string AddressTypeCustomId { get; set; }
-        /// <summary>
-        /// AddressType Name
+        /// AddressType Code and Name
         /// </summary>
         [StringLength(255)]
-        public string AddressTypeName { get; set; }
+        public string AddressTypeCodeName { get; set; }
       
     }
 }

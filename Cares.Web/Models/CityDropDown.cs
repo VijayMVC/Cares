@@ -1,11 +1,10 @@
 ﻿namespace Cares.Web.Models
 {
     /// <summary>
-    /// City Web Api Model
+    /// City Dropdown Web Api Model
     /// </summary>
-    public class City
+    public class CityDropDown
     {
-        #region Persisted Properties
         /// <summary>
         /// City ID
         /// </summary>
@@ -14,18 +13,12 @@
         /// City Custom ID
         /// </summary>
         public string CityCustomId { get; set; }
+
         /// <summary>
-        /// City Code
+        /// City Code and Name
         /// </summary>
-        public string CityCode { get; set; }
-        /// <summary>
-        /// City Name
-        /// </summary>
-        public string CityName { get; set; }
-        /// <summary>
-        /// City Description
-        /// </summary>
-        public string CityDescription { get; set; }
+        public string CityCodeName { get; set; }
+
         /// <summary>
         /// Region ID
         /// </summary>
@@ -38,6 +31,5 @@
         /// Country ID
         /// </summary>
         public short CountryId { get; set; }
-        #endregion
     }
 }

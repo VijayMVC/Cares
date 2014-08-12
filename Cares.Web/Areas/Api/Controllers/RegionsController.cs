@@ -34,7 +34,7 @@ namespace Cares.Web.Areas.Api.Controllers
         #endregion
         #region Public
         // GET api/<controller>
-        public IEnumerable<Region> Get(int countryId)
+        public IEnumerable<RegionDropDown> Get(int countryId)
         {
 
             if (!ModelState.IsValid)
@@ -42,7 +42,7 @@ namespace Cares.Web.Areas.Api.Controllers
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
             var abc = countryRegionsService.GetCoutryRegion(countryId);
-            IEnumerable<Region> abcd = abc.Select(x => x.CreateFrom());
+            IEnumerable<RegionDropDown> abcd = abc.Select(x => x.CreateFrom());
             return abcd;
         }
         #endregion

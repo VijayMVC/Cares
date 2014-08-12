@@ -11,7 +11,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// List of Regions
         /// </summary>
-        public IEnumerable<Region> Regions { get; set; }
+        public IEnumerable<RegionDropDown> Regions { get; set; }
 
         /// <summary>
         /// Operations
@@ -22,7 +22,7 @@ namespace Cares.Web.Models
         /// <summary>
         ///countires
         /// </summary>
-        public IEnumerable<Country> Countries { get; set; }
+        public IEnumerable<CountryDropDown> Countries { get; set; }
 
         #endregion
     }

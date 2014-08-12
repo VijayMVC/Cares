@@ -12,14 +12,12 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static ApiModel.Region CreateFrom(this Region source)
+        public static ApiModel.RegionDropDown CreateFrom(this Region source)
         {
-            return new ApiModel.Region
+            return new ApiModel.RegionDropDown
             {
                 RegionId = source.RegionId,
-                RegionCustomId = source.RegionId.ToString()+"-"+source.RegionCode+"-"+source.RegionName,
-                RegionCode = source.RegionCode,
-                RegionName = source.RegionName,
+                RegionCodeName = source.RegionCode +" - "+ source.RegionName,
                 Country = source.Country != null ? source.Country.CountryCode + " - " + source.Country.CountryName : string.Empty,
                 CountryId = source.CountryId
             };
@@ -32,14 +30,12 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static ApiModel.SubRegion CreateFrom(this SubRegion source)
+        public static ApiModel.SubRegionDropDown CreateFrom(this SubRegion source)
         {
-            return new ApiModel.SubRegion()
+            return new ApiModel.SubRegionDropDown()
             {
                 SubRegionId = source.SubRegionId,
-                SubRegionCustomId = source.SubRegionId.ToString()+"-"+source.SubRegionCode+"-"+source.SubRegionName,
-                SubRegionCode = source.SubRegionCode,
-                SubRegionName = source.SubRegionName,
+                SubRegionCodeName = source.SubRegionCode+" - "+source.SubRegionName,
                 RegionId = source.RegionId
             };
         }

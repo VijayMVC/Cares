@@ -1,9 +1,9 @@
 ﻿namespace Cares.Web.Models
 {
     /// <summary>
-    /// Region Model
+    /// Region Dropdown Model
     /// </summary>
-    public class Region
+    public class RegionDropDown
     {
         #region Persisted Properties
         /// <summary>
@@ -11,17 +11,9 @@
         /// </summary>
         public short RegionId { get; set; }
         /// <summary>
-        /// Region Custom ID
+        /// Region Code and Name
         /// </summary>
-        public string RegionCustomId { get; set; }
-        /// <summary>
-        /// Region Code
-        /// </summary>
-        public string RegionCode { get; set; }
-        /// <summary>
-        /// Region Name
-        /// </summary>
-        public string RegionName { get; set; }
+        public string RegionCodeName { get; set; }
         /// <summary>
         /// Country
         /// </summary>

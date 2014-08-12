@@ -13,7 +13,7 @@ namespace Cares.Web.Models
         /// </summary>
         public HireGroupBaseResponse()
         {
-            Companies = new List<Company>();
+            Companies = new List<CompanyDropDown>();
             ParentHireGroups = new List<ParentHireGroup>();
             VehicleCategories = new List<VehicleCategory>();
             VehicleMakes = new List<VehicleMake>();
@@ -26,7 +26,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Companies
         /// </summary>
-        public IEnumerable<Company> Companies { get; set; }
+        public IEnumerable<CompanyDropDown> Companies { get; set; }
         /// <summary>
         /// Hire Group 
         /// </summary>

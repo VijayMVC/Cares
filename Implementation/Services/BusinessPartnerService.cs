@@ -40,7 +40,7 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Load All Business Partners
         /// </summary>
-        public BusinessPartnerResponse LoadAllBusinessPartners(BusinessPartnerSearchRequest businessPartnerSearchRequest)
+        public BusinessPartnerSearchResponse LoadAllBusinessPartners(BusinessPartnerSearchRequest businessPartnerSearchRequest)
         {
             return businessPartnerRepository.GetAllBusinessPartners(businessPartnerSearchRequest);
         }
