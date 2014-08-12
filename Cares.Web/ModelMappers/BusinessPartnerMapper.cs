@@ -108,7 +108,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web api model from domain entity
         /// </summary>
-        public static Models.BusinessPartnerResponse CreateFrom(this  BusinessPartnerResponse source)
+        public static Models.BusinessPartnerResponse CreateFrom(this  BusinessPartnerSearchResponse source)
         {
             return new Models.BusinessPartnerResponse
             {

@@ -1,9 +1,9 @@
 ﻿namespace Cares.Web.Models
 {
     /// <summary>
-    /// Occupation Type Web Api Model
+    /// Occupation Type Dropdown Web Api Model
     /// </summary>
-    public class OccupationType
+    public class OccupationTypeDropDown
     {
         #region Public Properties
         /// <summary>
@@ -11,15 +11,9 @@
         /// </summary>
         public int OccupationTypeId { get; set; }
         /// <summary>
-        /// Occupation Code
-        /// </summary>
-        public string OccupationTypeCode { get; set; }
-        /// <summary>
-        /// Occupation Name
+        /// Occupation Code and Name
         /// </summary>        
-        public string OccupationTypeName { get; set; }
-
-
+        public string OccupationTypeCodeName { get; set; }
         #endregion
     }
 }

@@ -6,12 +6,12 @@ namespace Cares.Models.ResponseModels
     /// <summary>
     /// Business Partner Response
     /// </summary>
-    public sealed class BusinessPartnerResponse
+    public sealed class BusinessPartnerSearchResponse
     {
         /// <summary>
         /// Constructor
         /// </summary>
-        public BusinessPartnerResponse()
+        public BusinessPartnerSearchResponse()
         {
             BusinessPartners = new List<BusinessPartner>();
         }

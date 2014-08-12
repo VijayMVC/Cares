@@ -13,14 +13,14 @@ namespace Cares.Web.Models
         /// </summary>
         public RegionResponse()
         {
-            ResponseRejions = new List<Region>();
+            ResponseRejions = new List<RegionDropDown>();
         }
         #endregion
         #region Public
         /// <summary>
         /// rejions
         /// </summary>
-        public IEnumerable<Region> ResponseRejions { get; set; }
+        public IEnumerable<RegionDropDown> ResponseRejions { get; set; }
         #endregion
     }
 }

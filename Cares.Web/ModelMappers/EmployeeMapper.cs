@@ -11,25 +11,25 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static Employee CreateFrom(this DomainModels.Employee source)
+        public static EmployeeDropDown CreateFrom(this DomainModels.Employee source)
         {
-            return new Employee
+            return new EmployeeDropDown
             {
-                Id = source.Id,
-                Name = source.Name
+                EmployeeId = source.Id,
+                EmployeeName = source.Name
             };
         }
         /// <summary>
         ///  Create entity from web model
         /// </summary>
-        public static DomainModels.Employee CreateFrom(this Employee source)
+        public static DomainModels.Employee CreateFrom(this EmployeeDropDown source)
         {
             if (source != null)
             {
                 return new DomainModels.Employee
                 {
-                    Id = source.Id,
-                    Name = source.Name
+                    Id = source.EmployeeId,
+                    Name = source.EmployeeName
                 };
             }
             return new DomainModels.Employee();

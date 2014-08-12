@@ -14,31 +14,28 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static ApiModel.Country CreateFrom(this Country source)
+        public static ApiModel.CountryDropDown CreateFrom(this Country source)
+        {
+            return new ApiModel.CountryDropDown
             {
-                return new ApiModel.Country
-                {
-                    CountryId = source.CountryId,
-                    CountryCode = source.CountryCode,
-                    CountryName = source.CountryCode+"-"+source.CountryName,
-                    CountryCustomId =source.CountryId.ToString() +"-"+ source.CountryCode + "-" + source.CountryName
-                };
-            }
+                CountryId = source.CountryId,
+                CountryCodeName = source.CountryCode + " - " + source.CountryName,
+            };
+        }
         #endregion
         #region Model To Entity
         /// <summary>
         ///  Create entity from web model
         /// </summary>
-        public static Country CreateFrom(this ApiModel.Country source)
+        public static Country CreateFrom(this ApiModel.CountryDropDown source)
         {
             return new Country
             {
                 CountryId = source.CountryId,
-                CountryCode = source.CountryCode,
-                CountryName = source.CountryName
+                CountryName = source.CountryCodeName
             };
         }
-        
+
         #endregion
         #endregion
     }

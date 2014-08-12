@@ -11,7 +11,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// FleetPools List
         /// </summary>
-        public IEnumerable<Region> Regions { get; set; }
+        public IEnumerable<RegionDropDown> Regions { get; set; }
 
         #endregion
 

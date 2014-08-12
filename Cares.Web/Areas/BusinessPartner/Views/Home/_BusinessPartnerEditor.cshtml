@@ -18,17 +18,17 @@
       
             <label for="companies" class="control-label col-sm-2">Company *</label>
             <div class="col-md-2">
-                <select id="companies" class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyName', optionsValue: 'CompanyId', optionsCaption: '<Company>', value: companyId, validationTooltip: companyId"></select>
+                <select id="companies" class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '<Company>', value: companyId, validationTooltip: companyId"></select>
             </div>
         </div>
         <div class="form-group">
             <label for="paymentTerms" class="control-label col-sm-2">Payment Term *</label>
             <div class="col-md-2">
-                <select id="paymentTerms" class="form-control" data-bind="options: $root.paymentTerms, optionsText: 'PaymentTermName', optionsValue: 'PaymentTermId', optionsCaption: '<Payment Term>', value: paymentTermId, validationTooltip: paymentTermId"></select>
+                <select id="paymentTerms" class="form-control" data-bind="options: $root.paymentTerms, optionsText: 'PaymentTermCodeName', optionsValue: 'PaymentTermId', optionsCaption: '<Payment Term>', value: paymentTermId, validationTooltip: paymentTermId"></select>
             </div>
             <label for="businessLegalStatuses" class="control-label col-sm-2">Legal Status</label>
             <div class="col-md-2">
-                <select id="businessLegalStatuses" class="form-control" data-bind="options: $root.businessLegalStatuses, optionsText: 'BusinessLegalStatusName', optionsValue: 'BusinessLegalStatusId', optionsCaption: '<Business Legal Status>', value: businessLegalStatusId"></select>
+                <select id="businessLegalStatuses" class="form-control" data-bind="options: $root.businessLegalStatuses, optionsText: 'BusinessLegalStatusCodeName', optionsValue: 'BusinessLegalStatusId', optionsCaption: '<Business Legal Status>', value: businessLegalStatusId"></select>
             </div>
             <label for="isIndividual" class="control-label col-sm-2">Is Individual *</label>
             <div class="col-md-2">
@@ -43,8 +43,7 @@
 
             <label for="systemGurantor" class="control-label col-sm-2">System Guarantor</label>
             <div class="col-md-2">
-                <select id="systemGurantor" class="form-control" data-bind="options: $root.respBusinessPartners, optionsText: 'BusinessPartnerName', optionsValue: 'BusinessPartnerId', optionsCaption: '<System Guarantor>', value: systemGuarantorId"></select>
-
+                <select id="systemGurantor" class="form-control" data-bind="options: $root.respBusinessPartners, optionsText: 'BusinessPartnerCodeName', optionsValue: 'BusinessPartnerId', optionsCaption: '<System Guarantor>', value: systemGuarantorId"></select>
             </div>
             <label for="nonSystemGuarantor" class="control-label col-sm-2">External System Guarantor </label>
             <div class="col-md-2">
@@ -54,12 +53,12 @@
         <div class="form-group">
             <label for="dealingEmployees" class="control-label col-sm-2">Dealing Employee</label>
             <div class="col-md-2">
-                <select id="dealingEmployees" class="form-control" data-bind="options: $root.dealingEmployees, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Dealing Employee>', value: dealingEmployeeId"></select>
+                <select id="dealingEmployees" class="form-control" data-bind="options: $root.dealingEmployees, optionsText: 'EmployeeName', optionsValue: 'EmployeeId', optionsCaption: '<Dealing Employee>', value: dealingEmployeeId"></select>
             </div>
 
             <label for="bPRatingTypes" class="control-label col-sm-2">Rating Type</label>
             <div class="col-md-2">
-                <select id="bPRatingTypes" class="form-control" data-bind="options: $root.bpRatingTypes, optionsText: 'BpRatingTypeName', optionsValue: 'BpRatingTypeId', optionsCaption: '<BP Rating Type>', value: bPRatingTypeId"></select>
+                <select id="bPRatingTypes" class="form-control" data-bind="options: $root.bpRatingTypes, optionsText: 'BpRatingTypeCodeName', optionsValue: 'BpRatingTypeCodeId', optionsCaption: '<BP Rating Type>', value: bPRatingTypeId"></select>
             </div>
             <label for="businessPartnerEmailAddress" class="control-label col-sm-2">Email</label>
             <div class="col-md-2">
@@ -124,7 +123,7 @@
                 <div class="form-group">
                     <label for="occupationTypes" class="control-label col-sm-2">Occupation Type</label>
                     <div class="col-md-2">
-                        <select id="occupationTypes" class="form-control" data-bind="options: $root.occupationTypes, optionsText: 'OccupationTypeName', optionsValue: 'OccupationTypeId', optionsCaption: '<Occupation Type>', value: individualOccupationTypeId"></select>
+                        <select id="occupationTypes" class="form-control" data-bind="options: $root.occupationTypes, optionsText: 'OccupationTypeCodeName', optionsValue: 'OccupationTypeId', optionsCaption: '<Occupation Type>', value: individualOccupationTypeId"></select>
                     </div>
 
                     <label for="individualDateOfBirth" class="control-label col-sm-2">Date of Birth *</label>
@@ -169,7 +168,7 @@
                     </div>
                     <label for="passportCountries" class="control-label col-sm-2">Passport Country</label>
                     <div class="col-md-2">
-                        <select id="passportCountries" class="form-control" data-bind="options: $root.countries, optionsText: 'CountryName', optionsValue: 'CountryId', optionsCaption: '<Passport Country>', value: individualPassportCountryId"></select>
+                        <select id="passportCountries" class="form-control" data-bind="options: $root.countries, optionsText: 'CountryCodeName', optionsValue: 'CountryId', optionsCaption: '<Passport Country>', value: individualPassportCountryId"></select>
                     </div>
 
                 </div>
@@ -218,7 +217,7 @@
 
                     <label for="individualinfocompanyaddress" class="control-label col-sm-2">Company Address</label>
                     <div class="col-md-2">
-                        <textarea class="form-control" rows="2" placeholder="<Company Address>" id="individualinfocompanyaddress" data-bind="value: individualCompanyAddress, valueUpdate: 'keyup'"></textarea>
+                        <textarea class="form-control" rows="4" placeholder="<Company Address>" id="individualinfocompanyaddress" data-bind="value: individualCompanyAddress, valueUpdate: 'keyup'"></textarea>
                     </div>
                 </div>
             </div>
@@ -253,7 +252,7 @@
 
                     <label for="individualinfolastname" class="control-label col-sm-2">Business Segment</label>
                     <div class="col-md-2">
-                        <select id="businessSegments" class="form-control" data-bind="options: $root.businessSegments, optionsText: 'BusinessSegmentName', optionsValue: 'BusinessSegmentId', optionsCaption: '<Business Segment>',value : businessPartnerCompanyBusinessSegmentId"></select>
+                        <select id="businessSegments" class="form-control" data-bind="options: $root.businessSegments, optionsText: 'BusinessSegmentCodeName', optionsValue: 'BusinessSegmentId', optionsCaption: '<Business Segment>',value : businessPartnerCompanyBusinessSegmentId"></select>
                     </div>
                 </div>
             </div>
@@ -264,7 +263,7 @@
                         <div class="form-group">
                             <label for="BpTypebusinessPartnerSubTypes" class="control-label col-sm-2">BP Sub Type *</label>
                             <div class="col-md-2">
-                                <select id="BpTypebusinessPartnerSubTypes" class="form-control" data-bind="options: $root.businessPartnerSubTypes, optionsText: 'BusinessPartnerSubTypeName', optionsValue: 'BusinessPartnerSubTypeCustomId', optionsCaption: '<BP Sub Type>',value : businessPartnerSubTypeId"></select>
+                                <select id="BpTypebusinessPartnerSubTypes" class="form-control" data-bind="options: $root.businessPartnerSubTypes, optionsText: 'BusinessPartnerSubTypeCodeName', optionsValue: 'BusinessPartnerSubTypeId', optionsCaption: '<BP Sub Type>',value : businessPartnerSubTypeId"></select>
                             </div>
                             <label for="businessPartnerTypeFromDate" class="control-label col-sm-2">From Date</label>
                             <div class="col-md-2">
@@ -278,13 +277,11 @@
                         <div class="form-group">
                             <label for="TypesbPRatingTypes" class="control-label col-sm-2">Rating Type</label>
                             <div class="col-md-2">
-                                <select id="TypesbPRatingTypes" class="form-control" data-bind="options: $root.bpRatingTypes, optionsText: 'BpRatingTypeName', optionsValue: 'BpRatingTypeCustomId', optionsCaption: '<BP Rating Type>',value : bpRatingTypeId"></select>
+                                <select id="TypesbPRatingTypes" class="form-control" data-bind="options: $root.bpRatingTypes, optionsText: 'BpRatingTypeCodeName', optionsValue: 'BpRatingTypeId', optionsCaption: '<BP Rating Type>',value : bpRatingTypeId"></select>
                             </div>
                             <div class="col-md-2">
                                 <button class="btn btn-sm pull-right" id="businessPartnerInTypesSave" data-bind="click: $root.onAddBusinessPartnerInType">Add To List</button>
                             </div>
-
-
                         </div>
                     </div>
                     <div class="form-group">
@@ -312,7 +309,7 @@
                     <div class="form-group">
                         <label for="phoneTypes" class="control-label col-sm-2">Phone Type *</label>
                         <div class="col-md-2">
-                            <select id="phoneTypes" class="form-control" data-bind="options: $root.phoneTypes, optionsText: 'PhoneTypeName', optionsValue: 'PhoneTypeCustomId', optionsCaption: '<Phone Type>',value:phoneTypeId"></select>
+                            <select id="phoneTypes" class="form-control" data-bind="options: $root.phoneTypes, optionsText: 'PhoneTypeCodeName', optionsValue: 'PhoneTypeId', optionsCaption: '<Phone Type>',value:phoneTypeId"></select>
                         </div>
                         <label for="phoneNumber" class="control-label col-sm-2">Phone Number *</label>
                         <div class="col-md-2">
@@ -352,29 +349,29 @@
                     <div class="form-group">
                         <label for="addressListCountries" class="control-label col-sm-2">Country *</label>
                         <div class="col-md-2">
-                            <select id="addressListCountries" class="form-control" data-bind="options: $root.countries, optionsText: 'CountryName', optionsValue: 'CountryCustomId', optionsCaption: '<Country>',value:countryId,event:{change:$root.onCountrySelectionChange}"></select>
+                            <select id="addressListCountries" class="form-control" data-bind="options: $root.countries, optionsText: 'CountryName', optionsValue: 'CountryId', optionsCaption: '<Country>',value:countryId,event:{change:$root.onCountrySelectionChange}"></select>
                         </div>
                         <label for="addressListRegion" class="control-label col-sm-2">Region</label>
                         <div class="col-md-2">
-                            <select id="addressListRegion" class="form-control" data-bind="options: $root.countryRegions, optionsText: 'RegionName', optionsValue: 'RegionCustomId', optionsCaption: '<Region>',value:regionId,event:{change:$root.onRegionSelectionChange}"></select>
+                            <select id="addressListRegion" class="form-control" data-bind="options: $root.countryRegions, optionsText: 'RegionName', optionsValue: 'RegionId', optionsCaption: '<Region>',value:regionId,event:{change:$root.onRegionSelectionChange}"></select>
                         </div>
                         <label for="addressListSubRegion" class="control-label col-sm-2">Sub Region</label>
                         <div class="col-md-2">
-                            <select id="addressListSubRegion" class="form-control" data-bind="options: $root.filteredSubRegions, optionsText: 'SubRegionName', optionsValue: 'SubRegionCustomId', optionsCaption: '<Sub Region>',value:subRegionId,event:{change:$root.onSubRegionSelectionChange}"></select>
+                            <select id="addressListSubRegion" class="form-control" data-bind="options: $root.filteredSubRegions, optionsText: 'SubRegionName', optionsValue: 'SubRegionId', optionsCaption: '<Sub Region>',value:subRegionId,event:{change:$root.onSubRegionSelectionChange}"></select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="addressListCity" class="control-label col-sm-2">City</label>
                         <div class="col-md-2">
-                            <select id="addressListCity" class="form-control" data-bind="options: $root.filteredCountryCities, optionsText: 'CityName', optionsValue: 'CityCustomId', optionsCaption: '<City>',value:cityId,event:{change:$root.onCitySelectionChange}"></select>
+                            <select id="addressListCity" class="form-control" data-bind="options: $root.filteredCountryCities, optionsText: 'CityName', optionsValue: 'CityId', optionsCaption: '<City>',value:cityId,event:{change:$root.onCitySelectionChange}"></select>
                         </div>
                         <label for="addressListAreas" class="control-label col-sm-2">Area</label>
                         <div class="col-md-2">
-                            <select id="addressListAreas" class="form-control" data-bind="options: $root.filteredAreas, optionsText: 'AreaName', optionsValue: 'AreaCustomId', optionsCaption: '<Area>',value:areaId"></select>
+                            <select id="addressListAreas" class="form-control" data-bind="options: $root.filteredAreas, optionsText: 'AreaName', optionsValue: 'AreaId', optionsCaption: '<Area>',value:areaId"></select>
                         </div>
                         <label for="isDefault" class="control-label col-sm-2">Address Type *</label>
                         <div class="col-md-2">
-                            <select id="addressListAddressType" class="form-control" data-bind="options: $root.addressTypes, optionsText: 'AddressTypeName', optionsValue: 'AddressTypeCustomId', optionsCaption: '<Address Type>',value:addressTypeId"></select>
+                            <select id="addressListAddressType" class="form-control" data-bind="options: $root.addressTypes, optionsText: 'AddressTypeName', optionsValue: 'AddressTypeId', optionsCaption: '<Address Type>',value:addressTypeId"></select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -443,7 +440,7 @@
                     <div class="form-group">
                         <label for="marketingChannels" class="control-label col-sm-2">Marketing Channel *</label>
                         <div class="col-md-2">
-                            <select id="marketingChannels" class="form-control" data-bind="options: $root.marketingChannels, optionsText: 'MarketingChannelName', optionsValue: 'MarketingChannelCustomId', optionsCaption: '<Marketing Channel>',value:marketingChannelId"></select>
+                            <select id="marketingChannels" class="form-control" data-bind="options: $root.marketingChannels, optionsText: 'MarketingChannelName', optionsValue: 'MarketingChannelId', optionsCaption: '<Marketing Channel>',value:marketingChannelId"></select>
                         </div>
                         <div class="col-md-2">
                         </div>

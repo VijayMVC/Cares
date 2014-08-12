@@ -19,15 +19,15 @@ namespace Cares.Web.Models
         /// <summary>
         /// Payment Terms
         /// </summary>
-        public IEnumerable<PaymentTerm> ResponsePaymentTerms { get; set; }
+        public IEnumerable<PaymentTermDropDown> ResponsePaymentTerms { get; set; }
         /// <summary>
         /// Business Partner Payment Types 
         /// </summary>
-        public IEnumerable<BpRatingType> ResponseBPRatingTypes { get; set; }
+        public IEnumerable<BpRatingTypeDropDown> ResponseBPRatingTypes { get; set; }
         /// <summary>
         /// Departments 
         /// </summary>
-        public IEnumerable<BusinessLegalStatus> ResponseBusinessLegalStatuses { get; set; }
+        public IEnumerable<BusinessLegalStatusDropDown> ResponseBusinessLegalStatuses { get; set; }
         /// <summary>
         /// System Guarnator 
         /// </summary>
@@ -35,11 +35,11 @@ namespace Cares.Web.Models
         /// <summary>
         /// Dealing Employees 
         /// </summary>
-        public IEnumerable<Employee> ResponseDealingEmployees { get; set; }
+        public IEnumerable<EmployeeDropDown> ResponseDealingEmployees { get; set; }
         /// <summary>
         /// Occupation Types
         /// </summary>
-        public IEnumerable<OccupationType> ResponseOccupationTypes { get; set; }
+        public IEnumerable<OccupationTypeDropDown> ResponseOccupationTypes { get; set; }
         /// <summary>
         /// Business Partner Companies 
         /// </summary>
@@ -47,7 +47,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Countries
         /// </summary>
-        public IEnumerable<Country> ResponseCountries { get; set; }
+        public IEnumerable<CountryDropDown> ResponseCountries { get; set; }
         /// <summary>
         /// Business Segments
         /// </summary>
@@ -59,15 +59,15 @@ namespace Cares.Web.Models
         /// <summary>
         /// Phone Types
         /// </summary>
-        public IEnumerable<PhoneType> ResponsePhoneTypes { get; set; }
+        public IEnumerable<PhoneTypeDropDown> ResponsePhoneTypes { get; set; }
         /// <summary>
         /// Address Types
         /// </summary>
-        public IEnumerable<AddressType> ResponseAddressTypes { get; set; }
+        public IEnumerable<AddressTypeDropDown> ResponseAddressTypes { get; set; }
         /// <summary>
         /// Marketing Channels
         /// </summary>
-        public IEnumerable<MarketingChannel> ResponseMarketingChannels { get; set; }
+        public IEnumerable<MarketingChannelDropDown> ResponseMarketingChannels { get; set; }
         #endregion
     }
 }

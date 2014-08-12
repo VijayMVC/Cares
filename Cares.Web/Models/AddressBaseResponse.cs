@@ -6,33 +6,25 @@ namespace Cares.Web.Models
     /// </summary>
     public class AddressBaseResponse
     {
-        #region Private
-        #endregion
-
-        #region Protected
-        #endregion
-
-        #region Public
         /// <summary>
         /// Country
         /// </summary>
-        public Country ResponseCountry { get; set; }
+        public CountryDropDown ResponseCountry { get; set; }
         /// <summary>
         /// Regions
         /// </summary>
-        public IEnumerable<Region> ResponseRegions { get; set; }
+        public IEnumerable<RegionDropDown> ResponseRegions { get; set; }
         /// <summary>
         /// Sub Regions
         /// </summary>
-        public IEnumerable<SubRegion> ResponseSubRegions { get; set; }
+        public IEnumerable<SubRegionDropDown> ResponseSubRegions { get; set; }
         /// <summary>
         /// Cities 
         /// </summary>
-        public IEnumerable<City> ResponseCities { get; set; }
+        public IEnumerable<CityDropDown> ResponseCities { get; set; }
         /// <summary>
         /// Areas
         /// </summary>
-        public IEnumerable<Area> ResponseAreas { get; set; }
-        #endregion
+        public IEnumerable<AreaDropDown> ResponseAreas { get; set; }
     }
 }

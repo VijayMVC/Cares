@@ -12,7 +12,7 @@ namespace Cares.Interfaces.Repository
         /// <summary>
         /// Get All business partners
         /// </summary>
-        BusinessPartnerResponse GetAllBusinessPartners(BusinessPartnerSearchRequest businessPartnerSearchRequest);
+        BusinessPartnerSearchResponse GetAllBusinessPartners(BusinessPartnerSearchRequest businessPartnerSearchRequest);
         /// <summary>
         /// Get Busienss partner by Name and Id
         /// </summary>
