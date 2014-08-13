@@ -161,7 +161,7 @@ namespace Cares.Repository.BaseRepository
         /// Department DB Set
         /// </summary>
         public DbSet<Department> Departments { get; set; }
-        public DbSet<TarrifType> TarrifTypes { get; set; }
+        public DbSet<TariffType> TariffTypes { get; set; }
         /// <summary>
         /// Operation DB Set
         /// </summary>
@@ -254,6 +254,10 @@ namespace Cares.Repository.BaseRepository
         /// OperationsWorkPlaces DB Set
         /// </summary>
         public DbSet<OperationsWorkPlace> OperationsWorkPlaces { get; set; }
+        /// <summary>
+        /// Business Partner Relationship Types DB Set
+        /// </summary>
+        public DbSet<BusinessPartnerRelationshipType> BusinessPartnerRelationshipTypes { get; set; }
         
         #endregion
     }

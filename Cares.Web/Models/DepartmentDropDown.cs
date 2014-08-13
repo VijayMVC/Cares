@@ -3,7 +3,7 @@
     /// <summary>
     /// Department Model
     /// </summary>
-    public class Department
+    public class DepartmentDropDown
     {
         #region Public Properties
         /// <summary>
@@ -13,11 +13,7 @@
         /// <summary>
         /// Department Code
         /// </summary>
-        public string DepartmentCode { get; set; }
-        /// <summary>
-        /// Department Name
-        /// </summary>
-        public string DepartmentName { get; set; }
+        public string DepartmentCodeName { get; set; }
         #endregion
     }
 }

@@ -62,7 +62,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Is Parent
         /// </summary>
-        [Required]
         public bool IsParent { get; set; }
         
         /// <summary>

@@ -7,33 +7,33 @@ using Cares.Models.ResponseModels;
 namespace Cares.Interfaces.IServices
 {
     /// <summary>
-    /// Tarrif Type Service Interface
+    /// tariff Type Service Interface
     /// </summary>
-    public interface ITarrifTypeService
+    public interface ITariffTypeService
     {
         /// <summary>
-        /// Get All Tarrif Types
+        /// Get All tariff Types
         /// </summary>
-        IEnumerable<TarrifType> LoadAll();
+        IEnumerable<TariffType> LoadAll();
         /// <summary>
-        /// Load tarrif type, based on search filters
+        /// Load tariff type, based on search filters
         /// </summary>
-        TarrifTypeResponse LoadTarrifTypes(TarrifTypeRequest tarrifTypeRequest);
+        TariffTypeResponse LoadtariffTypes(TariffTypeRequest tariffTypeRequest);
         /// <summary>
-        /// Find Tarrif Type By ID
+        /// Find tariff Type By ID
         /// </summary>
         TariffTypeDetailResponse FindDetailById(long id);
         /// <summary>
-        /// Add Tarrif Type
+        /// Add tariff Type
         /// </summary>
-        TarrifType AddTarrifType(TarrifType tarrifType);
+        TariffType AddtariffType(TariffType tariffType);
         /// <summary>
-        /// Update Tarrif Type
+        /// Update tariff Type
         /// </summary>
-        TarrifType UpdateTarrifType(TarrifType tarrifType);
+        TariffType UpdatetariffType(TariffType tariffType);
         /// <summary>
         /// Get All Base Data
         /// </summary>
-        TarrifTypeBaseResponse GetBaseData();
+        TariffTypeBaseResponse GetBaseData();
     }
 }

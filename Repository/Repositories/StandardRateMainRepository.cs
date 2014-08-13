@@ -64,7 +64,7 @@ namespace Cares.Repository.Repositories
             int toRow = tariffRateRequest.PageSize;
 
             var getTariffRateQuery = from tariffRate in DbSet
-                join tariffType in db.TarrifTypes on tariffRate.TariffTypeCode equals tariffType.TariffTypeCode
+                join tariffType in db.TariffTypes on tariffRate.TariffTypeCode equals tariffType.TariffTypeCode
                 where
                     ((!tariffRateRequest.OperationId.HasValue ||
                       tariffType.OperationId == tariffRateRequest.OperationId.Value) &&

@@ -1,9 +1,9 @@
 ﻿namespace Cares.Models.Common
 {
     /// <summary>
-    /// Tarrif Type By Column
+    /// tariff Type By Column
     /// </summary>
-    public enum TarrifTypeByColumn
+    public enum TariffTypeByColumn
     {
         /// <summary>
         /// Tariff Type Code

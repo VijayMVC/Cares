@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Web;
 using System.Web.Http;
 using Cares.Interfaces.IServices;
 using Cares.Models.RequestModels;
@@ -35,6 +37,41 @@ namespace Cares.Web.Areas.Api.Controllers
         public HireGroupSearchResponse Get([FromUri] HireGroupSearchRequest request)
         {
             return hireGroupService.LoadHireGroups((request)).CreateFrom();
+        }
+        /// <summary>
+        /// Add a Hire Group
+        /// </summary>
+        public void Put(HireGroup hireGroup)
+        {
+
+            if (hireGroup == null || !ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+
+            hireGroupService.AddHireGroup(hireGroup.CreateFrom());
+        }
+        /// <summary>
+        /// Update a Hire Group
+        /// </summary>
+        public void Post(HireGroup hireGroup)
+        {
+            if (hireGroup == null || !ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+            hireGroupService.UpdateHireGroup(hireGroup.CreateFrom());
+        }
+        /// <summary>
+        /// Delete a Hire Group
+        /// </summary>
+        public void Delete(HireGroup hireGroup)
+        {
+            if (hireGroup == null || !ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+            hireGroupService.DeleteHireGroup(hireGroupService.FindById(hireGroup.HireGroupId));
         }
         #endregion
     }

@@ -1,9 +1,9 @@
 ﻿define(["ko", "underscore", "underscore-ko"], function (ko) {
 
     var
-    // Tarrif Type entity
+    // tariff Type entity
     // ReSharper disable InconsistentNaming
-    TarrifType = function (specifiedKey, specifieOperationId, specifiedMeasurementUnitId, specifiedtariffTypeCode, specifiedTarrifTypeName,
+    tariffType = function (specifiedKey, specifieOperationId, specifiedMeasurementUnitId, specifiedtariffTypeCode, specifiedtariffTypeName,
         specifiedTariffTypeDescription, specifiedPricingStrategyId, specifiedDurationFrom, specifiedDurationTo, specifiedGracePeriod, specifiedEffectiveDate,
         specifiedRevisionNumber, specifiedRowVersion, specifiedChildTariffTypeId, specifiedRecCreatedDt, specifiedRecLastUpdatedDt, specifiedRecLastUpdatedBy,
          specifiedRecCreatedBy, specifiedIsActive, specifiedIsDeleted, specifiedIsPrivate, specifiedIsReadOnly) {
@@ -11,7 +11,7 @@
         var // Reference to this object
             self,
             // Unique key
-            tarrifTypeId = ko.observable(specifiedKey),
+            tariffTypeId = ko.observable(specifiedKey),
              // Operation ID
             operationId = ko.observable(specifieOperationId).extend({ required: true }),
             // Measurement Unit ID
@@ -20,8 +20,8 @@
             companyId = ko.observable(specifiedMeasurementUnitId).extend({ required: true }),
             // Tariff Type Code 
             tariffTypeCode = ko.observable(specifiedtariffTypeCode).extend({ required: true }),
-            // Tarrif Type Name
-            tarrifTypeName = ko.observable(specifiedTarrifTypeName),
+            // tariff Type Name
+            tariffTypeName = ko.observable(specifiedtariffTypeName),
             //Tariff Type Description
             tariffTypeDescription = ko.observable(specifiedTariffTypeDescription),
             //Pricing Strategy ID
@@ -98,12 +98,12 @@
             };
 
         self = {
-            tarrifTypeId: tarrifTypeId,
+            tariffTypeId: tariffTypeId,
             //userDomainKey: userDomainKey,
             operationId: operationId,
             measurementUnitId: measurementUnitId,
             tariffTypeCode: tariffTypeCode,
-            tarrifTypeName: tarrifTypeName,
+            tariffTypeName: tariffTypeName,
             tariffTypeDescription: tariffTypeDescription,
             pricingStrategyId: pricingStrategyId,
             durationFrom: durationFrom,
@@ -134,12 +134,12 @@
         return self;
     };
 
-    //// Tarrif Type Factory
-    //TarrifType.Create = function (source) {
+    //// tariff Type Factory
+    //tariffType.Create = function (source) {
     //    return new Product(source.Id, source.Name, source.Price, source.Description, source.CategoryId);
     //};
 
     return {
-        TarrifType: TarrifType
+        tariffType: tariffType
     };
 });

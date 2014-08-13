@@ -172,6 +172,20 @@ namespace Cares.Implementation.Services
                 }
                 #endregion
 
+                //set child (business partner relationship) properties
+                #region Business Partner Relationship
+                // set properties
+                foreach (BusinessPartnerRelationship item in businessPartner.BusinessPartnerRelationshipItemList)
+                {
+                    item.RecCreatedDt = DateTime.Now;
+                    item.RecLastUpdatedDt = DateTime.Now;
+                    item.RecCreatedBy = businessPartnerRepository.LoggedInUserIdentity;
+                    item.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
+                    item.RowVersion = 0;
+                    item.UserDomainKey = businessPartnerRepository.UserDomainKey;
+                }
+                #endregion
+
                 // save data
                 businessPartnerRepository.Add(businessPartner);
                 businessPartnerRepository.SaveChanges();
@@ -423,6 +437,43 @@ namespace Cares.Implementation.Services
                     BusinessPartnerMarketingChannel dbversionMissingChannelItem = businessPartnerDbVersion.BusinessPartnerMarketingChannels.First(x => x.BusinessPartnerMarketingChannelId == missingBusinessPartnerChannel.BusinessPartnerMarketingChannelId);
                     if (dbversionMissingChannelItem.BusinessPartnerMarketingChannelId > 0)
                         businessPartnerDbVersion.BusinessPartnerMarketingChannels.Remove(dbversionMissingChannelItem);
+                }
+                #endregion
+
+                //set child (business partner relationship items list)
+                #region Business Partner Relationship Items
+                //add new business partner relationship items
+                foreach (BusinessPartnerRelationship item in businessPartner.BusinessPartnerRelationshipItemList)
+                {
+                    if (businessPartnerDbVersion.BusinessPartnerRelationshipItemList
+                        .All(x => x.BusinessPartnerRelationshipId != item.BusinessPartnerRelationshipId) || item.BusinessPartnerRelationshipId == 0)
+                    {
+                        // set properties
+                        item.RecCreatedDt = DateTime.Now;
+                        item.RecLastUpdatedDt = DateTime.Now;
+                        item.RecCreatedBy = businessPartnerRepository.LoggedInUserIdentity;
+                        item.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
+                        item.RowVersion = 0;
+                        item.UserDomainKey = businessPartnerRepository.UserDomainKey;
+                        businessPartnerDbVersion.BusinessPartnerRelationshipItemList.Add(item);
+                    }
+                }
+                //find missing relationship items
+                List<BusinessPartnerRelationship> missingRelationshipItems = new List<BusinessPartnerRelationship>();
+                foreach (BusinessPartnerRelationship dbversionRelationshipItem in businessPartnerDbVersion.BusinessPartnerRelationshipItemList)
+                {
+                    if (businessPartner.BusinessPartnerRelationshipItemList.
+                        All(x => x.BusinessPartnerRelationshipId != dbversionRelationshipItem.BusinessPartnerRelationshipId))
+                    {
+                        missingRelationshipItems.Add(dbversionRelationshipItem);
+                    }
+                }
+                //remove missing relationship items
+                foreach (BusinessPartnerRelationship missingBusinessPartnerRelationshipItem in missingRelationshipItems)
+                {
+                    BusinessPartnerRelationship dbversionMissingRelationshipItem = businessPartnerDbVersion.BusinessPartnerRelationshipItemList.First(x => x.BusinessPartnerRelationshipId == missingBusinessPartnerRelationshipItem.BusinessPartnerRelationshipId);
+                    if (dbversionMissingRelationshipItem.BusinessPartnerRelationshipId > 0)
+                        businessPartnerDbVersion.BusinessPartnerRelationshipItemList.Remove(dbversionMissingRelationshipItem);
                 }
                 #endregion
 

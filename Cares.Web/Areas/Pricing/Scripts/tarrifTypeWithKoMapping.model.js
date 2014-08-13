@@ -1,8 +1,8 @@
 ﻿define(["ko", "underscore", "underscore-ko"], function (ko) {
     var
-    // Tarrif Type entity - Using Knockout Mapping
+    // tariff Type entity - Using Knockout Mapping
     // ReSharper disable InconsistentNaming
-    TarrifType = function (data) {
+    tariffType = function (data) {
         // ReSharper restore InconsistentNaming
         var // Reference to this object
             self = {},
@@ -22,7 +22,7 @@
             tariffTypeId: self.TariffTypeId,
             measurementUnit: self.MeasurementUnit,
             tariffTypeCode: self.TariffTypeCode,
-            tarrifTypeName: self.TariffTypeName,
+            tariffTypeName: self.TariffTypeName,
             pricingScheme: self.PricingScheme,
             company: self.Company,
             operation: self.Operation,
@@ -34,11 +34,11 @@
             
         };
     };
-    var TarrifTypeDetail = function () {
+    var tariffTypeDetail = function () {
         // ReSharper restore InconsistentNaming
         var // Reference to this object
             // Unique key
-            tarrifTypeId = ko.observable(),
+            tariffTypeId = ko.observable(),
             // Operation ID
             operationId = ko.observable().extend({ required: true }),
             // Measurement Unit ID
@@ -49,8 +49,8 @@
             departmentId = ko.observable().extend({ required: true }),
             // Tariff Type Code 
             tariffTypeCode = ko.observable().extend({ required: true }),
-            // Tarrif Type Name
-            tarrifTypeName = ko.observable(),
+            // tariff Type Name
+            tariffTypeName = ko.observable(),
             //Tariff Type Description
             tariffTypeDescription = ko.observable(),
             //Pricing Strategy ID
@@ -142,14 +142,14 @@
 
 
         self = {
-            tarrifTypeId: tarrifTypeId,
+            tariffTypeId: tariffTypeId,
             //userDomainKey: userDomainKey,
             operationId: operationId,
             measurementUnitId: measurementUnitId,
             departmentId: departmentId,
             companyId: companyId,
             tariffTypeCode: tariffTypeCode,
-            tarrifTypeName: tarrifTypeName,
+            tariffTypeName: tariffTypeName,
             tariffTypeDescription: tariffTypeDescription,
             pricingStrategyId: pricingStrategyId,
             durationFrom: durationFrom,
@@ -179,9 +179,9 @@
     //Client To Server Mapper
     var TariffTypeServerMapper = function (tariffTypeObj) {
         var result = {};
-        result.TariffTypeId = tariffTypeObj.tarrifTypeId() === undefined || tariffTypeObj.tarrifTypeId() === null ? 0 : tariffTypeObj.tarrifTypeId();
+        result.TariffTypeId = tariffTypeObj.tariffTypeId() === undefined || tariffTypeObj.tariffTypeId() === null ? 0 : tariffTypeObj.tariffTypeId();
         result.TariffTypeCode = tariffTypeObj.tariffTypeCode() === undefined || tariffTypeObj.tariffTypeCode() === null ? 0 : tariffTypeObj.tariffTypeCode();
-        result.TariffTypeName = tariffTypeObj.tarrifTypeName();
+        result.TariffTypeName = tariffTypeObj.tariffTypeName();
         result.TariffTypeDescription = tariffTypeObj.tariffTypeDescription();
         result.CompanyId = tariffTypeObj.companyId();
         result.DepartmentId = tariffTypeObj.departmentId();
@@ -197,32 +197,32 @@
     };
     //Server To Client Mapper
     var TariffTypeClientMapper = function (source) {
-        var tarrifType = new TarrifTypeDetail();
-        tarrifType.tarrifTypeId(source.TariffTypeId === null ? undefined : source.TariffTypeId);
-        tarrifType.tariffTypeCode(source.TariffTypeCode === null ? undefined : source.TariffTypeCode);
-        tarrifType.tarrifTypeName(source.TariffTypeName === null ? undefined : source.TariffTypeName);
-        tarrifType.tariffTypeDescription(source.TariffTypeDescription === null ? undefined : source.TariffTypeDescription);
-        tarrifType.companyId(source.CompanyId === null ? undefined : source.CompanyId);
-        tarrifType.departmentId(source.DepartmentId === null ? undefined : source.DepartmentId);
-        tarrifType.operationId(source.OperationId === null ? undefined : source.OperationId);
-        tarrifType.measurementUnitId(source.MeasurementUnitId === null ? undefined : source.MeasurementUnitId);
-        tarrifType.durationFrom(source.DurationFrom === null ? undefined : source.DurationFrom);
-        tarrifType.durationTo(source.DurationTo === null ? undefined : source.DurationTo);
-        tarrifType.gracePeriod(source.GracePeriod === null ? undefined : source.GracePeriod);
-        tarrifType.effectiveDate(source.EffectiveDate !== null ? moment(source.EffectiveDate, ist.utcFormat).toDate() : undefined);
-        tarrifType.pricingStrategyId(source.PricingStrategyId === null ? undefined : source.PricingStrategyId);
-        tarrifType.revisionNumber(source.RevisionNumber === null ? undefined : source.RevisionNumber);
-        tarrifType.recCreatedBy(source.CreatedBy === null ? undefined : source.CreatedBy);
-        tarrifType.recCreatedDt(source.ModifiedDate === null ? undefined : source.CreatedDate);
-        tarrifType.recLastUpdatedBy(source.ModifiedBy === null ? undefined : source.ModifiedBy);
-        tarrifType.recLastUpdatedDt(source.ModifiedDate === null ? undefined : source.ModifiedDate);
-        return tarrifType;
+        var tariffType = new tariffTypeDetail();
+        tariffType.tariffTypeId(source.TariffTypeId === null ? undefined : source.TariffTypeId);
+        tariffType.tariffTypeCode(source.TariffTypeCode === null ? undefined : source.TariffTypeCode);
+        tariffType.tariffTypeName(source.TariffTypeName === null ? undefined : source.TariffTypeName);
+        tariffType.tariffTypeDescription(source.TariffTypeDescription === null ? undefined : source.TariffTypeDescription);
+        tariffType.companyId(source.CompanyId === null ? undefined : source.CompanyId);
+        tariffType.departmentId(source.DepartmentId === null ? undefined : source.DepartmentId);
+        tariffType.operationId(source.OperationId === null ? undefined : source.OperationId);
+        tariffType.measurementUnitId(source.MeasurementUnitId === null ? undefined : source.MeasurementUnitId);
+        tariffType.durationFrom(source.DurationFrom === null ? undefined : source.DurationFrom);
+        tariffType.durationTo(source.DurationTo === null ? undefined : source.DurationTo);
+        tariffType.gracePeriod(source.GracePeriod === null ? undefined : source.GracePeriod);
+        tariffType.effectiveDate(source.EffectiveDate !== null ? moment(source.EffectiveDate, ist.utcFormat).toDate() : undefined);
+        tariffType.pricingStrategyId(source.PricingStrategyId === null ? undefined : source.PricingStrategyId);
+        tariffType.revisionNumber(source.RevisionNumber === null ? undefined : source.RevisionNumber);
+        tariffType.recCreatedBy(source.CreatedBy === null ? undefined : source.CreatedBy);
+        tariffType.recCreatedDt(source.ModifiedDate === null ? undefined : source.CreatedDate);
+        tariffType.recLastUpdatedBy(source.ModifiedBy === null ? undefined : source.ModifiedBy);
+        tariffType.recLastUpdatedDt(source.ModifiedDate === null ? undefined : source.ModifiedDate);
+        return tariffType;
     };
   
 
     return {
-        TarrifType: TarrifType,
-        TarrifTypeDetail: TarrifTypeDetail,
+        tariffType: tariffType,
+        tariffTypeDetail: tariffTypeDetail,
         TariffTypeServerMapper: TariffTypeServerMapper,
         TariffTypeClientMapper: TariffTypeClientMapper,
        

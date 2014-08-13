@@ -20,7 +20,7 @@ define("product/product.view",
             //        }
                     
             //        // Handle Sorting
-            //        handleSorting("productTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getTarrifType);
+            //        handleSorting("productTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.gettariffType);
             //    };
 
             //initialize();

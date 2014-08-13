@@ -113,6 +113,8 @@
     <Compile Include="DomainModels\BusinessLegalStatus.cs" />
     <Compile Include="DomainModels\BusinessPartnerCompany.cs" />
     <Compile Include="DomainModels\BusinessPartnerMainType.cs" />
+    <Compile Include="DomainModels\BusinessPartnerRelaionship.cs" />
+    <Compile Include="DomainModels\BusinessPartnerRelaionshipType.cs" />
     <Compile Include="DomainModels\BusinessPartnerSubType.cs" />
     <Compile Include="DomainModels\Area.cs" />
     <Compile Include="DomainModels\VehicleImageHireGroupDetail.cs" />
@@ -171,6 +173,7 @@
     <Compile Include="RequestModels\FleetPoolSearchRequest.cs" />
     <Compile Include="RequestModels\GetPagedListRequest.cs" />
     <Compile Include="RequestModels\BusinessPartnerSearchRequest.cs" />
+    <Compile Include="RequestModels\HireGroupAddRequest.cs" />
     <Compile Include="RequestModels\HireGroupSearchRequest.cs" />
     <Compile Include="RequestModels\ProductSearchRequest.cs" />
     <Compile Include="RequestModels\HireGroupDetailRequest.cs" />

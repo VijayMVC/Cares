@@ -103,6 +103,7 @@ namespace Cares.Repository.Repositories
                 .Include(x => x.BusinessPartnerPhoneNumbers.Select(y => y.PhoneType))
                 .Include(x=>x.BusinessPartnerAddressList)
                 .Include(x => x.BusinessPartnerMarketingChannels)
+                .Include(x => x.BusinessPartnerRelationshipItemList)
                 .Include(x => x.Company)
                 .Include(x => x.BPRatingType)
                 .FirstOrDefault();

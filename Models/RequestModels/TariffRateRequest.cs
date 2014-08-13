@@ -16,7 +16,7 @@ namespace Cares.Models.RequestModels
         /// </summary>
         public long? OperationId { get; set; }
         /// <summary>
-        /// Tarrif Rate Order By
+        /// tariff Rate Order By
         /// </summary>
         public TariffRateByColumn TariffRateByOrder
         {

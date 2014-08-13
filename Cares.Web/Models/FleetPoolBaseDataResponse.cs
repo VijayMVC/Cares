@@ -16,7 +16,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Operations
         /// </summary>
-        public IEnumerable<Operation> Operations { get; set; }
+        public IEnumerable<OperationDropDown> Operations { get; set; }
 
 
         /// <summary>

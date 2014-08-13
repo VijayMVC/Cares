@@ -4,24 +4,24 @@ using Cares.Models.DomainModels;
 namespace Cares.Models.ResponseModels
 {
     /// <summary>
-    /// Tarrif Type Response
+    /// tariff Type Response
     /// </summary>
-    public sealed class TarrifTypeResponse
+    public sealed class TariffTypeResponse
     {
         #region Constructors
         /// <summary>
         /// Constructor
         /// </summary>
-        public TarrifTypeResponse()
+        public TariffTypeResponse()
         {
-            TarrifTypes = new List<TarrifType>();
+            TariffTypes = new List<TariffType>();
         }
         #endregion
         #region Public
         /// <summary>
-        /// Tarrif Type
+        /// tariff Type
         /// </summary>
-        public IEnumerable<TarrifType> TarrifTypes { get; set; }
+        public IEnumerable<TariffType> TariffTypes { get; set; }
 
         /// <summary>
         /// Total Count

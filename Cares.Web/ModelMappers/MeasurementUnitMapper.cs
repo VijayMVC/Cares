@@ -11,31 +11,15 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static MeasurementUnit CreateFrom(this DomainModels.MeasurementUnit source)
+        public static MeasurementUnitDropDown CreateFrom(this DomainModels.MeasurementUnit source)
         {
-            return new MeasurementUnit
+            return new MeasurementUnitDropDown
             {
                 MeasurementUnitId = source.MeasurementUnitId,
-                MeasurementUnitName = source.MeasurementUnitName,
+                MeasurementUnitCodeName = source.MeasurementUnitCode+" - "+source.MeasurementUnitName,
             };
         }
 
-        /// <summary>
-        ///  Create entity from web model
-        /// </summary>
-        public static DomainModels.MeasurementUnit CreateFrom(this MeasurementUnit source)
-        {
-            if (source != null)
-            {
-                return new DomainModels.MeasurementUnit
-                {
-                    MeasurementUnitId = source.MeasurementUnitId,
-                    MeasurementUnitName = source.MeasurementUnitName,
-                };
-            }
-            return new DomainModels.MeasurementUnit();
-        }
-
-        #endregion
+           #endregion
     }
 }

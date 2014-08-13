@@ -98,6 +98,10 @@ namespace Cares.Web.Models
         /// Business Partner Marketing Channels 
         /// </summary>
         public List<BusinessPartnerMarketingChannel> BusinessPartnerMarketingChannels { get; set; }
+        /// <summary>
+        /// Business Partner Relationship Item List 
+        /// </summary>
+        public List<BusinessPartnerRelationship> BusinessPartnerRelationshipItemList { get; set; }
         
         #endregion
 

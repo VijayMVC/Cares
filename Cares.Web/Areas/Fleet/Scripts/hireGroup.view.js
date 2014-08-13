@@ -19,7 +19,7 @@ define("hireGroup/hireGroup.view",
                         return;
                     }
                     // Handle Sorting
-                    handleSorting("hireGroupTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getTariffRates);
+                    handleSorting("hireGroupTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getHireGroup);
 
                 };
             initialize();
