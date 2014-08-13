@@ -225,6 +225,7 @@
     <Compile Include="Areas\Api\Controllers\FleetPoolController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessPartnerBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\GetBusinessPartnerDetailsController.cs" />
+    <Compile Include="Areas\Api\Controllers\GetHireGroupDetailDataController.cs" />
     <Compile Include="Areas\Api\Controllers\GetTariffDetailsController.cs" />
     <Compile Include="Areas\Api\Controllers\GetHireGroupDetailTariffRateController.cs" />
     <Compile Include="Areas\Api\Controllers\HireGroupBaseController.cs" />
@@ -301,7 +302,11 @@
     <Compile Include="Models\AddressBaseResponse.cs" />
     <Compile Include="Models\AddressTypeDropDown.cs" />
     <Compile Include="Models\BusinessPartnerMarketingChannel.cs" />
+    <Compile Include="Models\HireGroupDataDetailResponse.cs" />
+    <Compile Include="Models\HireGroupDetailContentForHireGroup.cs" />
     <Compile Include="Models\HireGroupDetailForHireGroup.cs" />
+    <Compile Include="Models\HireGroupDropDown.cs" />
+    <Compile Include="Models\HireGroupUpgradeForHireGroup.cs" />
     <Compile Include="Models\MarketingChannelDropDown.cs" />
     <Compile Include="Models\BusinessPartnerInType.cs" />
     <Compile Include="Models\BusinessPartnerSubTypeDropDown.cs" />

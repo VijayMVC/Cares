@@ -115,6 +115,7 @@
     <Compile Include="DomainModels\BusinessPartnerMainType.cs" />
     <Compile Include="DomainModels\BusinessPartnerSubType.cs" />
     <Compile Include="DomainModels\Area.cs" />
+    <Compile Include="DomainModels\HireGroupUpGrade.cs" />
     <Compile Include="DomainModels\VehicleImageHireGroupDetail.cs" />
     <Compile Include="DomainModels\MarketingChannel.cs" />
     <Compile Include="DomainModels\TransmissionType.cs" />
@@ -184,6 +185,7 @@
     <Compile Include="ResponseModels\FleetPoolResponse.cs" />
     <Compile Include="ResponseModels\BusinessPartnerSearchResponse.cs" />
     <Compile Include="ResponseModels\HireGroupBaseResponse.cs" />
+    <Compile Include="ResponseModels\HireGroupDataDetailResponse.cs" />
     <Compile Include="ResponseModels\HireGroupSearchResponse.cs" />
     <Compile Include="ResponseModels\ProductResponse.cs" />
     <Compile Include="ResponseModels\RegionResponse.cs" />

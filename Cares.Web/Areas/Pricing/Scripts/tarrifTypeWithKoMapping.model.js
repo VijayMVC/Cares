@@ -2,7 +2,7 @@
     var
     // tariff Type entity - Using Knockout Mapping
     // ReSharper disable InconsistentNaming
-    tariffType = function (data) {
+    TariffType = function (data) {
         // ReSharper restore InconsistentNaming
         var // Reference to this object
             self = {},
@@ -34,7 +34,8 @@
             
         };
     };
-    var tariffTypeDetail = function () {
+// ReSharper disable once InconsistentNaming
+    var TariffTypeDetail = function () {
         // ReSharper restore InconsistentNaming
         var // Reference to this object
             // Unique key
@@ -197,7 +198,7 @@
     };
     //Server To Client Mapper
     var TariffTypeClientMapper = function (source) {
-        var tariffType = new tariffTypeDetail();
+        var tariffType = new TariffTypeDetail();
         tariffType.tariffTypeId(source.TariffTypeId === null ? undefined : source.TariffTypeId);
         tariffType.tariffTypeCode(source.TariffTypeCode === null ? undefined : source.TariffTypeCode);
         tariffType.tariffTypeName(source.TariffTypeName === null ? undefined : source.TariffTypeName);
@@ -221,8 +222,8 @@
   
 
     return {
-        tariffType: tariffType,
-        tariffTypeDetail: tariffTypeDetail,
+        TariffType: TariffType,
+        TariffTypeDetail: TariffTypeDetail,
         TariffTypeServerMapper: TariffTypeServerMapper,
         TariffTypeClientMapper: TariffTypeClientMapper,
        

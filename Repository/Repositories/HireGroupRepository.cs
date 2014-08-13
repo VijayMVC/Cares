@@ -114,6 +114,16 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(hireGroup => hireGroup.UserDomainKey == UserDomainKey && !hireGroup.IsParent);
         }
+        /// <summary>
+        /// Load Dependencies
+        /// </summary>
+        public void LoadDependencies(HireGroup hireGroup)
+        {
+            //LoadProperty<HireGroup>(hireGroup, "Company");
+            LoadProperty(hireGroup, () => hireGroup.Company);
+            LoadProperty(hireGroup, () => hireGroup.ParentHireGroup);
+           
+        }
         #endregion
     }
 }
