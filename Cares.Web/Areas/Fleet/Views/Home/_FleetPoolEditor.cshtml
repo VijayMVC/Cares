@@ -1,9 +1,10 @@
 ﻿
 <div class="well col-md-12" id="FleetPoolEditor" data-bind="visible: isFleetPoolEditorVisible, with: selectedFleetPool" style="display: none;">
-    <h3 >Fleet Pool Details</h3>
-    <button class="btn  btn-info" id="saveFleetPoolbtn"  data-bind="click: $root.onSaveFleetPool">Save</button>
-    <button class="btn  btn-default" id="cancelFleetPoolbtn"  data-bind="click: $root.onCancelSave">Cancel</button>
-    <hr/>
+    <div class="float-left detailsContainer">
+        <h3 class="page-header detailsHeaderSection">Fleet Pool Details</h3>
+        <button class="btn  btn-info" id="saveFleetPoolbtn" data-bind="click: $root.onSaveFleetPool">Save</button>
+        <button class="btn  btn-default" id="cancelFleetPoolbtn" data-bind="click: $root.onCancelSave">Cancel</button>
+    </div>
     <form class="form-horizontal">
         <div class="form-group">
             <label for="tariffTypeCode" class="control-label h5 col-sm-2">Fleet Pool Code</label>
