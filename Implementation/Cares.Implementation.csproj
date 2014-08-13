@@ -123,13 +123,10 @@
     <Compile Include="Identity\IdentityOperation.cs" />
     <Compile Include="Services\AddressBaseDataService.cs" />
     <Compile Include="Services\BusinessPartnerBaseDataService.cs" />
-    <Compile Include="Services\BusinessPartnerInTypeService.cs" />
-    <Compile Include="Services\BusinessPartnerIndividualService.cs" />
     <Compile Include="Services\BusinessPartnerService.cs" />
     <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Services\BPRatingTypeService.cs" />
     <Compile Include="Services\BusinessLegalStatusService.cs" />
-    <Compile Include="Services\BusinessPartnerCompanyService.cs" />
     <Compile Include="Services\HireGroupService.cs" />
     <Compile Include="Services\OccupationTypeService.cs" />
     <Compile Include="Services\CountryService.cs" />

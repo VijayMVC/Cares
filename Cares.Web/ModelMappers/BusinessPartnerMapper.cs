@@ -29,6 +29,19 @@ namespace Cares.Web.ModelMappers
         }
 
         /// <summary>
+        ///  Create dropdown web api model from domain model
+        /// </summary>
+        public static Models.BusinessPartnerDropDown CreateDropDownModelFrom(this BusinessPartner source)
+        {
+            return new Models.BusinessPartnerDropDown
+            {
+                BusinessPartnerId = source.BusinessPartnerId,
+                BusinessPartnerCodeName = source.BusinessPartnerCode + " - " + source.BusinessPartnerName
+            };
+
+        }
+
+        /// <summary>
         ///  Create detail web api model from domain model
         /// </summary>
         public static Models.BusinessPartnerDetail CreateApiDetailFromDomainModel(this BusinessPartner source)
@@ -55,7 +68,8 @@ namespace Cares.Web.ModelMappers
                 BusinessPartnerInTypes = source.BusinessPartnerInTypes.Select(x => x.CreateFrom()).ToList(),
                 BusinessPartnerPhoneNumbers = source.BusinessPartnerPhoneNumbers.Select(x => x.CreateFrom()).ToList(),
                 BusinessPartnerAddressList = source.BusinessPartnerAddressList.Select(x => x.CreateFrom()).ToList(),
-                BusinessPartnerMarketingChannels = source.BusinessPartnerMarketingChannels.Select(x=>x.CreateFrom()).ToList()
+                BusinessPartnerMarketingChannels = source.BusinessPartnerMarketingChannels.Select(x => x.CreateFrom()).ToList(),
+                BusinessPartnerRelationshipItemList = source.BusinessPartnerRelationshipItemList.Select(x => x.CreateFrom()).ToList()
             };
         }
 
@@ -96,8 +110,9 @@ namespace Cares.Web.ModelMappers
                 BusinessPartnerCompany = source.BusinessPartnerCompany.CreateFrom(),
                 BusinessPartnerInTypes = source.BusinessPartnerInTypes.Select(x => x.CreateFrom()).ToList(),
                 BusinessPartnerPhoneNumbers = source.BusinessPartnerPhoneNumbers.Select(x => x.CreateFrom()).ToList(),
-                BusinessPartnerAddressList = source.BusinessPartnerAddressList.Select(x=>x.CreateFrom()).ToList(),
-                BusinessPartnerMarketingChannels = source.BusinessPartnerMarketingChannels.Select(x=>x.CreateFrom()).ToList()
+                BusinessPartnerAddressList = source.BusinessPartnerAddressList.Select(x => x.CreateFrom()).ToList(),
+                BusinessPartnerMarketingChannels = source.BusinessPartnerMarketingChannels.Select(x => x.CreateFrom()).ToList(),
+                BusinessPartnerRelationshipItemList = source.BusinessPartnerRelationshipItemList.Select(x => x.CreateFrom()).ToList()
             };
         }
 
@@ -129,7 +144,7 @@ namespace Cares.Web.ModelMappers
             {
                 ResponseBPRatingTypes = source.ResponseBPRatingTypes.Select(x => x.CreateFrom()),
                 ResponsePaymentTerms = source.ResponsePaymentTerms.Select(x => x.CreateFrom()),
-                ResponseBusinessPartners = source.ResponseBusinessPartners.Select(x => x.CreateFrom()),
+                ResponseBusinessPartners = source.ResponseBusinessPartners.Select(x => x.CreateDropDownModelFrom()),
                 ResponseCompanies = source.ResponseCompanies.Select(x => x.CreateFrom()),
                 ResponseDealingEmployees = source.ResponseDealingEmployees.Select(x => x.CreateFrom()),
                 ResponseBusinessLegalStatuses = source.ResponseBusinessLegalStatuses.Select(x => x.CreateFrom()),
@@ -139,8 +154,9 @@ namespace Cares.Web.ModelMappers
                 ResponseBusinessSegments = source.ResponseBusinessSegments.Select(x => x.CreateFrom()),
                 ResponseBusinessPartnerSubTypes = source.ResponseBusinessPartnerSubTypes.Select(x => x.CreateFrom()),
                 ResponsePhoneTypes = source.ResponsePhoneTypes.Select(x => x.CreateFrom()),
-                ResponseAddressTypes = source.ResponseAddressTypes.Select(x=>x.CreateFrom()),
-                ResponseMarketingChannels = source.ResponseMarketingChannels.Select(x=>x.CreateFrom())
+                ResponseAddressTypes = source.ResponseAddressTypes.Select(x => x.CreateFrom()),
+                ResponseMarketingChannels = source.ResponseMarketingChannels.Select(x => x.CreateFrom()),
+                ResponseBusinessPartnerRelationshipTypes = source.ResponseBusinessPartnerRelationshipTypes.Select(x => x.CreateFrom())
             };
         }
         #endregion
@@ -325,7 +341,7 @@ namespace Cares.Web.ModelMappers
                 BusinessPartnerSubTypeId = source.BusinessPartnerSubTypeId,
                 FromDate = source.FromDate,
                 ToDate = source.ToDate,
-                BusinessPartnerId =source.BusinessPartnerId != null ? (long) source.BusinessPartnerId : 0,
+                BusinessPartnerId = source.BusinessPartnerId != null ? (long)source.BusinessPartnerId : 0,
                 BpRatingTypeId = source.BpRatingTypeId
             };
         }
@@ -343,7 +359,7 @@ namespace Cares.Web.ModelMappers
             {
                 BusinessPartnerMarketingChannelId = source.BusinessPartnerMarketingChannelId,
                 MarketingChannelId = source.MarketingChannelId,
-                MarketingChannelName = source.MarketingChannel != null ? (source.MarketingChannel.MarketingChannelCode+ "-"+source.MarketingChannel.MarketingChannelName):string.Empty,
+                MarketingChannelName = source.MarketingChannel != null ? (source.MarketingChannel.MarketingChannelCode + "-" + source.MarketingChannel.MarketingChannelName) : string.Empty,
                 BusinessPartnerId = source.BusinessPartnerId
             };
         }
@@ -355,7 +371,7 @@ namespace Cares.Web.ModelMappers
         {
             return new BusinessPartnerMarketingChannel
             {
-                BusinessPartnerMarketingChannelId = source.BusinessPartnerMarketingChannelId != null ? (long)source.BusinessPartnerMarketingChannelId : 0 ,
+                BusinessPartnerMarketingChannelId = source.BusinessPartnerMarketingChannelId != null ? (long)source.BusinessPartnerMarketingChannelId : 0,
                 MarketingChannelId = source.MarketingChannelId,
                 BusinessPartnerId = source.BusinessPartnerId != null ? (long)source.BusinessPartnerId : 0
             };
@@ -363,5 +379,68 @@ namespace Cares.Web.ModelMappers
 
         #endregion
 
+        #region Business Partner Relationship Types Mappers
+
+        /// <summary>
+        ///  Create web model from entity
+        /// </summary>
+        public static ApiModel.BusinessPartnerRelationshipTypeDropDown CreateFrom(this BusinessPartnerRelationshipType source)
+        {
+            return new ApiModel.BusinessPartnerRelationshipTypeDropDown()
+            {
+                BusinessPartnerRelationshipTypeId = source.BusinessPartnerRelationshipTypeId,
+                BusinessPartnerRelationshipTypeCodeName = source.BusinessPartnerRelationshpTypeCode + " - " + source.BusinessPartnerRelationshipTypeName
+            };
+        }
+        /// <summary>
+        ///  Create entity from web model
+        /// </summary>
+        public static BusinessPartnerRelationshipType CreateFrom(
+            this ApiModel.BusinessPartnerRelationshipTypeDropDown source)
+        {
+            return new BusinessPartnerRelationshipType
+                   {
+                       BusinessPartnerRelationshipTypeId = source.BusinessPartnerRelationshipTypeId,
+                       BusinessPartnerRelationshipTypeName = source.BusinessPartnerRelationshipTypeCodeName
+                   };
+        }
+        #endregion
+
+        #region Business Partner Relationship Mappers
+
+        /// <summary>
+        ///  Create web model from entity
+        /// </summary>
+        public static ApiModel.BusinessPartnerRelationship CreateFrom(this BusinessPartnerRelationship source)
+        {
+            return new ApiModel.BusinessPartnerRelationship()
+            {
+                BusinessPartnerRelationshipTypeId = source.BusinessPartnerRelationshipTypeId,
+                BusinessPartnerRelationshipTypeName = source.BusinessPartnerRelationshipType != null ?
+                (source.BusinessPartnerRelationshipType.BusinessPartnerRelationshpTypeCode + " - " +
+                source.BusinessPartnerRelationshipType.BusinessPartnerRelationshipTypeName) : string.Empty,
+                BusinessPartnerId = source.BusinessPartnerId,
+                SecondaryBusinessPartnerId = source.SecondaryBusinessPartnerId,
+                SecondaryBusinessPartnerCodeName = source.SecondaryBusinessPartner != null?
+                source.SecondaryBusinessPartner.BusinessPartnerCode + " - "+ source.SecondaryBusinessPartner.BusinessPartnerName: string.Empty,
+                BusinessPartnerRelationshipId = source.BusinessPartnerRelationshipId
+            };
+        }
+
+        /// <summary>
+        ///  Create entity from web model
+        /// </summary>
+        public static BusinessPartnerRelationship CreateFrom(
+            this ApiModel.BusinessPartnerRelationship source)
+        {
+            return new BusinessPartnerRelationship
+            {
+                BusinessPartnerRelationshipId = source.BusinessPartnerRelationshipId != null ? (int)source.BusinessPartnerRelationshipId : 0,
+                BusinessPartnerId = source.BusinessPartnerId != null ? (long)source.BusinessPartnerId : 0,
+                BusinessPartnerRelationshipTypeId = source.BusinessPartnerRelationshipTypeId,
+                SecondaryBusinessPartnerId = source.SecondaryBusinessPartnerId
+            };
+        }
+        #endregion
     }
 }

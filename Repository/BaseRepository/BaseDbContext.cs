@@ -76,6 +76,11 @@ namespace Cares.Repository.BaseRepository
                .HasRequired(c => c.HireGroup)
                .WithMany()
                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<BusinessPartnerRelationship>()
+                .HasRequired(c => c.SecondaryBusinessPartner)
+                .WithMany()
+                .WillCascadeOnDelete(false);
             
         }
         #endregion
@@ -267,6 +272,26 @@ namespace Cares.Repository.BaseRepository
         /// OperationsWorkPlaces DB Set
         /// </summary>
         public DbSet<OperationsWorkPlace> OperationsWorkPlaces { get; set; }
+        /// <summary>
+        /// Business Partner Relationship Types DB Set
+        /// </summary>
+        public DbSet<BusinessPartnerRelationshipType> BusinessPartnerRelationshipTypes { get; set; }
+        /// <summary>
+        /// Business Partner Phones Db Set
+        /// </summary>
+        public DbSet<Phone> Phones { get; set; }
+        /// <summary>
+        /// Business Partner Address List Db Set
+        /// </summary>
+        public DbSet<Address> AddressList { get; set; }
+        /// <summary>
+        /// Business Partner Marketing Channels Db Set
+        /// </summary>
+        public DbSet<BusinessPartnerMarketingChannel> BusinessPartnerMarketingChannels { get; set; }
+        /// <summary>
+        /// Business Partner Relationship item list Db Set
+        /// </summary>
+        public DbSet<BusinessPartnerRelationship> BusinessPartnerRelationships { get; set; }
         
         #endregion
     }

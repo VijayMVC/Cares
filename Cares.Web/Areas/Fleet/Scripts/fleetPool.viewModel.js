@@ -92,7 +92,11 @@ define("Fleet/fleetPool.viewModel",
                     },
                     //Validation Check function while saving Fleet Pool
                     doBeforeSaveFleetPool = function() {
-                        return selectedFleetPool().isValid();
+                        if (!selectedFleetPool().isValid()) {
+                            selectedFleetPool().errors.showAllMessages();
+                            return false;
+                        }
+                        return true;
                     },
                     //event handler for Saving Fleet Pool
                     onSaveFleetPool = function() {
@@ -141,15 +145,11 @@ define("Fleet/fleetPool.viewModel",
                         fleetPoolOperationFilter(undefined);
                         search();                        
                     },
-                    createFleetForm = function() { //parent
-                        var fleetPool = createPoolDetail();
+                    //Click event handler
+                    createFleetForm = function() {
+                        var fleetPool = new model.FleetPoolDetail();
                         selectedFleetPool(fleetPool);
                         showFleetPoolEditor();
-                    },
-                    //creating fleetpool details 
-                    createPoolDetail = function () {
-                        var fleetPool = model.FleetPoolDetail();
-                        return new model.FleetPoolDetail.Create(fleetPool);
                     },
                     showFleetPoolEditor = function() {
                         isFleetPoolEditorVisible(true);
@@ -258,8 +258,7 @@ define("Fleet/fleetPool.viewModel",
                     countryList: countryList,
                     onDeleteFleetPool: onDeleteFleetPool,
                     onEditFleetPool: onEditFleetPool,
-                    createFleetForm: createFleetForm,
-                    ccreatePoolDetail: createPoolDetail,                    
+                    createFleetForm: createFleetForm,                    
                     showFleetPoolEditor: showFleetPoolEditor,                                        
                     onCancelSave: onCancelSave,
                     onSaveFleetPool: onSaveFleetPool,

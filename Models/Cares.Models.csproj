@@ -113,6 +113,8 @@
     <Compile Include="DomainModels\BusinessLegalStatus.cs" />
     <Compile Include="DomainModels\BusinessPartnerCompany.cs" />
     <Compile Include="DomainModels\BusinessPartnerMainType.cs" />
+    <Compile Include="DomainModels\BusinessPartnerRelaionship.cs" />
+    <Compile Include="DomainModels\BusinessPartnerRelaionshipType.cs" />
     <Compile Include="DomainModels\BusinessPartnerSubType.cs" />
     <Compile Include="DomainModels\Area.cs" />
     <Compile Include="DomainModels\HireGroupUpGrade.cs" />
