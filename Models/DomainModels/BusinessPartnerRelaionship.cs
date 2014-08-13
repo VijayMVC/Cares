@@ -27,11 +27,11 @@ namespace Cares.Models.DomainModels
         [ForeignKey("BusinessPartnerRelationshipType")]
         public int BusinessPartnerRelationshipTypeId { get; set; }
 
-        ///// <summary>
-        ///// Secondary Business Partner Id
-        ///// </summary>
-        //[ForeignKey("SecondaryBusinessPartner")]
-        //public long SecondaryBusinessPartnerId { get; set; }
+        /// <summary>
+        /// Secondary Business Partner Id
+        /// </summary>
+        [ForeignKey("SecondaryBusinessPartner")]
+        public long SecondaryBusinessPartnerId { get; set; }
 
         /// <summary>
         /// Row Version
@@ -81,10 +81,10 @@ namespace Cares.Models.DomainModels
         /// </summary>
         public virtual BusinessPartnerRelationshipType BusinessPartnerRelationshipType { get; set; }
 
-        ///// <summary>
-        ///// Secondary Business Partner
-        ///// </summary>
-        //public virtual BusinessPartner SecondaryBusinessPartner { get; set; }
+        /// <summary>
+        /// Secondary Business Partner
+        /// </summary>
+        public virtual BusinessPartner SecondaryBusinessPartner { get; set; }
 
         #endregion
     }

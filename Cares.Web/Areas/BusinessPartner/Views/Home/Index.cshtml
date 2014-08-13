@@ -3,7 +3,14 @@
 }
 
 <div class="row" id="businessPartnerBinding">
-    <div class="row searchFilterSection" data-bind="visible: !isBusinessPartnerEditorVisible()">
+    <div class="row " data-bind="visible: !isBusinessPartnerEditorVisible()">
+        <h3 class="page-header float-left pageHeaderSection">Business Partner</h3>
+        <div class="header-toolsSection">
+            <a href="#" class="label label-default create-new-icon" data-bind="click: createBusinessPartnerInForm" title="Create New Business Partner">NEW</a>
+            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title="Show Filters" style="display: none"></a>
+        </div>
+    </div>
+    <div class="row searchFilterSection" data-bind="visible: !isBusinessPartnerEditorVisible() && filterSectionVisilble()" style="display: none" >
         <div class="well">
             <form class="form-horizontal" data-bind="submit: search">
                 <div class="col-xs-3">
@@ -12,10 +19,9 @@
                 <div class="col-xs-3">
                     <select class="form-control" data-bind="options: $root.optionIndividualOrCompany, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<All>', value: selectFilter"></select>
                 </div>
-                <div class="btn-group" id="createButton">
-                    <button type="button" class="btn btn-default" data-bind="click: createBusinessPartnerInForm">Create New</button>
-                </div>
                 <button type="submit" class="btn btn-success" data-bind="click: search">Search</button>
+                <button type="submit" class="btn btn-default" data-bind="click: reset">Reset</button>
+                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection" title="Hide Section"></a>
             </form>
         </div>
     </div>
@@ -37,7 +43,7 @@
                 </tbody>
             </table>
             <!-- ko with: pager -->
-                @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
+            @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
             <!-- /ko -->
         </div>
     </div>
@@ -52,10 +58,10 @@
     </script>
 
     <script id="itemBusinessPartnerTemplate" type="text/html">
-       <tr data-bind="click: $root.selectBusinessPartner, css: { selectedRow: $data === $root.listSelectedBusinessPartner() }">
-           <td data-bind="text: businessPartnerListId"></td>
-           <td data-bind="text: businessPartnerListName"></td>
-           <td data-bind="text: isIndividual"></td>
+        <tr data-bind="click: $root.selectBusinessPartner, css: { selectedRow: $data === $root.listSelectedBusinessPartner() }">
+            <td data-bind="text: businessPartnerListId"></td>
+            <td data-bind="text: businessPartnerListName"></td>
+            <td data-bind="text: isIndividual"></td>
             <td data-bind="text: company"></td>
             <td data-bind="text: bPRatingType"></td>
             <td>

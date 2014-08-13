@@ -48,7 +48,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
            // Non System Guarantor
            nonSystemGuarantor = ko.observable(specifiednonSystemGuarantor),
            // Business Partner Email Address
-           businessPartnerEmailAddress = ko.observable(specifiedbusinessPartnerEmailAddress),
+           businessPartnerEmailAddress = ko.observable(specifiedbusinessPartnerEmailAddress).extend({ email: true}),
            // Company Id
            companyId = ko.observable(specifiedCompany).extend({ required: true }),
            // Payment Term Id
@@ -92,7 +92,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
                isIndividual: isIndividual,
                isSystemGuarantor: isSystemGuarantor,
                companyId: companyId,
-               paymentTermId: paymentTermId
+               paymentTermId: paymentTermId,
+               businessPartnerEmailAddress: businessPartnerEmailAddress
            }),
            // Is Valid
            isValid = ko.computed(function() {
@@ -194,7 +195,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
          // Individual Last Name
         individualLastName = ko.observable(specifiedIndividualLastName).extend({ required: true }),
          // Individual Initials
-        individualInitials = ko.observable(specifiedIndividualInitials),
+        individualInitials = ko.observable(specifiedIndividualInitials).extend({maxLength: 5}),
          // Individual Liscense Number
         individualLiscenseNumber = ko.observable(specifiedIndividualLiscenseNumber),
         // Individual Liscense Expiry Date
@@ -242,7 +243,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         errors = ko.validation.group({
             individualFirstName: individualFirstName,
             individualLastName: individualLastName,
-            individualDateOfBirth: individualDateOfBirth
+            individualDateOfBirth: individualDateOfBirth,
+            individualInitials: individualInitials
         }),
         // Is Valid
         isValid = ko.computed(function () {
@@ -475,7 +477,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
           // Street Address
           streetAddress = ko.observable(specifiedStreetAddress).extend({ required: true }),
           // Email Address
-          emailAddress = ko.observable(specifiedEmailAddress),
+          emailAddress = ko.observable(specifiedEmailAddress).extend({email:true}),
           // Web Page
           webPage = ko.observable(specifiedWebPage),
           // Zip Code
@@ -514,7 +516,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
           errors = ko.validation.group({
               streetAddress: streetAddress,
               countryId: countryId,
-              addressTypeId: addressTypeId
+              addressTypeId: addressTypeId,
+              emailAddress:emailAddress
           }),
           // Is Valid
           isValid = ko.computed(function () {
@@ -594,7 +597,15 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         // Business Partner In Type From Date
         fromDate = ko.observable(specifiedfromDate),
         // Business Partner In Type To Date 
-        toDate = ko.observable(specifiedtoDate),
+        toDate = ko.observable(specifiedtoDate).extend({
+            validation: {
+                validator: function (val, someOtherVal) {
+                    return val != undefined ? (moment(val) >= moment(someOtherVal())) : true;
+                },
+                message: 'Must be greater or equal to From Date',
+                params: fromDate
+            }
+        }),
         // Business Partner Id
         businessPartnerId = ko.observable(specifiedbusinessPartnerId),
         // Business Partner Sub Type Id
@@ -609,7 +620,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         isBusy = ko.observable(false),
         // Errors
         errors = ko.validation.group({
-            businessPartnerSubTypeId: businessPartnerSubTypeId
+            businessPartnerSubTypeId: businessPartnerSubTypeId,
+            toDate: toDate
         }),
         // Is Valid
         isValid = ko.computed(function () {
@@ -727,7 +739,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             // Secondary Business Partner Id
             secondaryBusinessPartnerId = ko.observable(specifiedsecondaryBusinessPartnerId).extend({ required: true }),
             // Secondary Business Partner Name
-            secondarybusinessPartnerName = ko.observable(specifiedsecondarybusinessPartnerName),
+            secondaryBusinessPartnerName = ko.observable(specifiedsecondarybusinessPartnerName),
             // Is Busy
             isBusy = ko.observable(false),
             // Errors
@@ -760,7 +772,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             businessPartnerRelationshipTypeId: businessPartnerRelationshipTypeId,
             businessPartnerRelationshipTypeName:businessPartnerRelationshipTypeName,
             secondaryBusinessPartnerId: secondaryBusinessPartnerId,
-            secondarybusinessPartnerName: secondarybusinessPartnerName,
+            secondaryBusinessPartnerName: secondaryBusinessPartnerName,
             errors: errors,
             isValid: isValid,
             dirtyFlag: dirtyFlag,
@@ -1134,6 +1146,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         businessPartnerRelationshipItem.businessPartnerId(item.BusinessPartnerId === undefined ? undefined : item.BusinessPartnerId);
         businessPartnerRelationshipItem.businessPartnerRelationshipTypeId(item.BusinessPartnerRelationshipTypeId === undefined ? undefined : item.BusinessPartnerRelationshipTypeId);
         businessPartnerRelationshipItem.businessPartnerRelationshipTypeName(item.BusinessPartnerRelationshipTypeName === undefined ? undefined : item.BusinessPartnerRelationshipTypeName);
+        businessPartnerRelationshipItem.secondaryBusinessPartnerId(item.SecondaryBusinessPartnerId === undefined ? undefined : item.SecondaryBusinessPartnerId);
+        businessPartnerRelationshipItem.secondaryBusinessPartnerName(item.SecondaryBusinessPartnerCodeName === undefined ? undefined : item.SecondaryBusinessPartnerCodeName);
         return businessPartnerRelationshipItem;
     };
     

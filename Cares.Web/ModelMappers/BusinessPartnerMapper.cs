@@ -420,6 +420,9 @@ namespace Cares.Web.ModelMappers
                 (source.BusinessPartnerRelationshipType.BusinessPartnerRelationshpTypeCode + " - " +
                 source.BusinessPartnerRelationshipType.BusinessPartnerRelationshipTypeName) : string.Empty,
                 BusinessPartnerId = source.BusinessPartnerId,
+                SecondaryBusinessPartnerId = source.SecondaryBusinessPartnerId,
+                SecondaryBusinessPartnerCodeName = source.SecondaryBusinessPartner != null?
+                source.SecondaryBusinessPartner.BusinessPartnerCode + " - "+ source.SecondaryBusinessPartner.BusinessPartnerName: string.Empty,
                 BusinessPartnerRelationshipId = source.BusinessPartnerRelationshipId
             };
         }
@@ -435,7 +438,7 @@ namespace Cares.Web.ModelMappers
                 BusinessPartnerRelationshipId = source.BusinessPartnerRelationshipId != null ? (int)source.BusinessPartnerRelationshipId : 0,
                 BusinessPartnerId = source.BusinessPartnerId != null ? (long)source.BusinessPartnerId : 0,
                 BusinessPartnerRelationshipTypeId = source.BusinessPartnerRelationshipTypeId,
-                //SecondaryBusinessPartnerId = source.SecondaryBusinessPartnerId
+                SecondaryBusinessPartnerId = source.SecondaryBusinessPartnerId
             };
         }
         #endregion

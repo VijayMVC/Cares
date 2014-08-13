@@ -72,6 +72,11 @@ namespace Cares.Repository.BaseRepository
                 .HasRequired(c => c.WorkPlace)
                 .WithMany()
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<BusinessPartnerRelationship>()
+                .HasRequired(c => c.SecondaryBusinessPartner)
+                .WithMany()
+                .WillCascadeOnDelete(false);
             
         }
         #endregion
