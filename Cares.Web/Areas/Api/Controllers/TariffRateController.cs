@@ -119,8 +119,8 @@ namespace Cares.Web.Areas.Api.Controllers
                 if (b.Date < a.Date)
                     throw new Exception();
                 //throw new CaresBusinessException("Pricing-InvalidEndDate", null);
-                DomainModels.TarrifType tarrifType = tariffRateService.FindTariffTypeById(standardRateMain.TariffTypeId);
-                IEnumerable<DomainModels.StandardRateMain> oStRateMain = tariffRateService.FindByTariffTypeCode(tarrifType.TariffTypeCode).Select(s => s);
+                DomainModels.TariffType tariffType = tariffRateService.FindTariffTypeById(standardRateMain.TariffTypeId);
+                IEnumerable<DomainModels.StandardRateMain> oStRateMain = tariffRateService.FindByTariffTypeCode(tariffType.TariffTypeCode).Select(s => s);
                 foreach (var rateMain in oStRateMain)
                 {
                     c = rateMain.StartDt;

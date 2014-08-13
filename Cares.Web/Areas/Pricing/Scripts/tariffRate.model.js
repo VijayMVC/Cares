@@ -1,5 +1,5 @@
 ﻿/*
-    Module with the model for the Tarrif Rate
+    Module with the model for the tariff Rate
 */
 define(["ko", "underscore", "underscore-ko"], function (ko) {
     var
@@ -13,7 +13,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
              tariffRateId = ko.observable(),
              // Tariff Rate Code 
              tariffRateCode = ko.observable().extend({ required: true }),
-             // Tarrif Type Name
+             // tariff Type Name
              tariffRateName = ko.observable(),
              // Tariff Rate Description
              tariffRateDescription = ko.observable(),

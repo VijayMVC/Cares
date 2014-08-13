@@ -114,8 +114,11 @@
     <Compile Include="DomainModels\BusinessLegalStatus.cs" />
     <Compile Include="DomainModels\BusinessPartnerCompany.cs" />
     <Compile Include="DomainModels\BusinessPartnerMainType.cs" />
+    <Compile Include="DomainModels\BusinessPartnerRelaionship.cs" />
+    <Compile Include="DomainModels\BusinessPartnerRelaionshipType.cs" />
     <Compile Include="DomainModels\BusinessPartnerSubType.cs" />
     <Compile Include="DomainModels\Area.cs" />
+    <Compile Include="DomainModels\HireGroupUpGrade.cs" />
     <Compile Include="DomainModels\VehicleImageHireGroupDetail.cs" />
     <Compile Include="DomainModels\MarketingChannel.cs" />
     <Compile Include="DomainModels\TransmissionType.cs" />
@@ -173,6 +176,7 @@
     <Compile Include="RequestModels\GetPagedListRequest.cs" />
     <Compile Include="RequestModels\BusinessPartnerSearchRequest.cs" />
     <Compile Include="RequestModels\GetHireGroupRequest.cs" />
+    <Compile Include="RequestModels\HireGroupAddRequest.cs" />
     <Compile Include="RequestModels\VehicleSearchRequest.cs" />
     <Compile Include="RequestModels\HireGroupSearchRequest.cs" />
     <Compile Include="RequestModels\ProductSearchRequest.cs" />
@@ -184,9 +188,10 @@
     <Compile Include="ResponseModels\EmployeeResponse.cs" />
     <Compile Include="ResponseModels\FleetPoolBaseDataResponse.cs" />
     <Compile Include="ResponseModels\FleetPoolResponse.cs" />
-    <Compile Include="ResponseModels\BusinessPartnerResponse.cs" />
+    <Compile Include="ResponseModels\BusinessPartnerSearchResponse.cs" />
     <Compile Include="ResponseModels\HireGroupBaseResponse.cs" />
     <Compile Include="ResponseModels\GetVehicleResponse.cs" />
+    <Compile Include="ResponseModels\HireGroupDataDetailResponse.cs" />
     <Compile Include="ResponseModels\HireGroupSearchResponse.cs" />
     <Compile Include="ResponseModels\ProductResponse.cs" />
     <Compile Include="ResponseModels\RegionResponse.cs" />

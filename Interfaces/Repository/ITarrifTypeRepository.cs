@@ -5,26 +5,26 @@ using Cares.Models.ResponseModels;
 namespace Cares.Interfaces.Repository
 {
     /// <summary>
-    /// Tarrif Type Reposiory interface
+    /// tariff Type Reposiory interface
     /// </summary>
-    public interface ITarrifTypeRepository : IBaseRepository<TarrifType, long>
+    public interface ITariffTypeRepository : IBaseRepository<TariffType, long>
     {
         /// <summary>
-        ///  Get all Tarrif types, based on filters
+        ///  Get all tariff types, based on filters
         /// </summary>
-        /// <param name="tarrifTypeRequest"></param>
+        /// <param name="tariffTypeRequest"></param>
         /// <returns></returns>
-        TarrifTypeResponse GetTarrifTypes(TarrifTypeRequest tarrifTypeRequest);
+        TariffTypeResponse GettariffTypes(TariffTypeRequest tariffTypeRequest);
 
         /// <summary>
         /// Load Dependencies
         /// </summary>
-        void LoadDependencies(TarrifType tarrifType);
+        void LoadDependencies(TariffType tariffType);
         /// <summary>
         /// Get Revisions
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        TarrifType GetRevison(long id);
+        TariffType GetRevison(long id);
     }
 }

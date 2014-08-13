@@ -18,20 +18,32 @@ namespace Cares.Implementation.Services
         #region Private
         private readonly IBusinessPartnerRepository businessPartnerRepository;
         private readonly IBusinessPartnerInTypeRepository businessPartnerInTypeRepository;
-
+        private readonly IPhoneRepository businessPartnerPhoneRepository;
+        private readonly IAddressRepository businessPartnerAddressRepository;
+        private readonly IBusinessPartnerMarketingChannelRepository businessPartnerMarketingChannelRepository;
+        private readonly IBusinessPartnerRelationshipRepository businessPartnerRelationshipRepository;
         #endregion
 
         #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>
-        public BusinessPartnerService(IBusinessPartnerRepository businessPartnerRepository, IBusinessPartnerInTypeRepository businessPartnerInTypeRepository)
+        public BusinessPartnerService(IBusinessPartnerRepository businessPartnerRepository,
+            IBusinessPartnerInTypeRepository businessPartnerInTypeRepository,
+            IPhoneRepository phoneRepository,
+            IAddressRepository addressRepository,
+            IBusinessPartnerMarketingChannelRepository businessPartnerMarketingChannelRepository,
+            IBusinessPartnerRelationshipRepository businessPartnerRelationshipRepository)
         {
             if (businessPartnerInTypeRepository == null)
                 throw new ArgumentNullException("businessPartnerInTypeRepository");
 
             this.businessPartnerRepository = businessPartnerRepository;
             this.businessPartnerInTypeRepository = businessPartnerInTypeRepository;
+            this.businessPartnerPhoneRepository = phoneRepository;
+            this.businessPartnerAddressRepository = addressRepository;
+            this.businessPartnerMarketingChannelRepository = businessPartnerMarketingChannelRepository;
+            this.businessPartnerRelationshipRepository = businessPartnerRelationshipRepository;
         }
 
         #endregion
@@ -40,7 +52,7 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Load All Business Partners
         /// </summary>
-        public BusinessPartnerResponse LoadAllBusinessPartners(BusinessPartnerSearchRequest businessPartnerSearchRequest)
+        public BusinessPartnerSearchResponse LoadAllBusinessPartners(BusinessPartnerSearchRequest businessPartnerSearchRequest)
         {
             return businessPartnerRepository.GetAllBusinessPartners(businessPartnerSearchRequest);
         }
@@ -162,6 +174,20 @@ namespace Cares.Implementation.Services
                 #region Business Partner Marketing Channel
                 // set properties
                 foreach (BusinessPartnerMarketingChannel item in businessPartner.BusinessPartnerMarketingChannels)
+                {
+                    item.RecCreatedDt = DateTime.Now;
+                    item.RecLastUpdatedDt = DateTime.Now;
+                    item.RecCreatedBy = businessPartnerRepository.LoggedInUserIdentity;
+                    item.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
+                    item.RowVersion = 0;
+                    item.UserDomainKey = businessPartnerRepository.UserDomainKey;
+                }
+                #endregion
+
+                //set child (business partner relationship) properties
+                #region Business Partner Relationship
+                // set properties
+                foreach (BusinessPartnerRelationship item in businessPartner.BusinessPartnerRelationshipItemList)
                 {
                     item.RecCreatedDt = DateTime.Now;
                     item.RecLastUpdatedDt = DateTime.Now;
@@ -346,6 +372,7 @@ namespace Cares.Implementation.Services
                     if (dbVersionMissingPhoneItem.PhoneId > 0)
                     {
                         businessPartnerDbVersion.BusinessPartnerPhoneNumbers.Remove(dbVersionMissingPhoneItem);
+                        businessPartnerPhoneRepository.Delete(dbVersionMissingPhoneItem);
                     }
                 }
                 #endregion
@@ -385,7 +412,10 @@ namespace Cares.Implementation.Services
                 {
                     Address dbVersionMissingAddressItem = businessPartnerDbVersion.BusinessPartnerAddressList.First(x => x.AddressId == missingBusinessPartnerAddress.AddressId);
                     if (dbVersionMissingAddressItem.AddressId > 0)
+                    {
                         businessPartnerDbVersion.BusinessPartnerAddressList.Remove(dbVersionMissingAddressItem);
+                        businessPartnerAddressRepository.Delete(dbVersionMissingAddressItem);
+                    }
                 }
                 #endregion
 
@@ -422,7 +452,51 @@ namespace Cares.Implementation.Services
                 {
                     BusinessPartnerMarketingChannel dbversionMissingChannelItem = businessPartnerDbVersion.BusinessPartnerMarketingChannels.First(x => x.BusinessPartnerMarketingChannelId == missingBusinessPartnerChannel.BusinessPartnerMarketingChannelId);
                     if (dbversionMissingChannelItem.BusinessPartnerMarketingChannelId > 0)
+                    {
                         businessPartnerDbVersion.BusinessPartnerMarketingChannels.Remove(dbversionMissingChannelItem);
+                        businessPartnerMarketingChannelRepository.Delete(dbversionMissingChannelItem);
+                    }
+                }
+                #endregion
+
+                //set child (business partner relationship items list)
+                #region Business Partner Relationship Items
+                //add new business partner relationship items
+                foreach (BusinessPartnerRelationship item in businessPartner.BusinessPartnerRelationshipItemList)
+                {
+                    if (businessPartnerDbVersion.BusinessPartnerRelationshipItemList
+                        .All(x => x.BusinessPartnerRelationshipId != item.BusinessPartnerRelationshipId) || item.BusinessPartnerRelationshipId == 0)
+                    {
+                        // set properties
+                        item.RecCreatedDt = DateTime.Now;
+                        item.RecLastUpdatedDt = DateTime.Now;
+                        item.RecCreatedBy = businessPartnerRepository.LoggedInUserIdentity;
+                        item.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
+                        item.RowVersion = 0;
+                        item.UserDomainKey = businessPartnerRepository.UserDomainKey;
+                        businessPartnerDbVersion.BusinessPartnerRelationshipItemList.Add(item);
+                    }
+                }
+                //find missing relationship items
+                List<BusinessPartnerRelationship> missingRelationshipItems = new List<BusinessPartnerRelationship>();
+                foreach (BusinessPartnerRelationship dbversionRelationshipItem in businessPartnerDbVersion.BusinessPartnerRelationshipItemList)
+                {
+                    if (businessPartner.BusinessPartnerRelationshipItemList.
+                        All(x => x.BusinessPartnerRelationshipId != dbversionRelationshipItem.BusinessPartnerRelationshipId))
+                    {
+                        missingRelationshipItems.Add(dbversionRelationshipItem);
+                    }
+                }
+                //remove missing relationship items
+                foreach (BusinessPartnerRelationship missingBusinessPartnerRelationshipItem in missingRelationshipItems)
+                {
+                    BusinessPartnerRelationship dbversionMissingRelationshipItem = businessPartnerDbVersion.BusinessPartnerRelationshipItemList.First(x => x.BusinessPartnerRelationshipId == missingBusinessPartnerRelationshipItem.BusinessPartnerRelationshipId);
+                    if (dbversionMissingRelationshipItem.BusinessPartnerRelationshipId > 0)
+                    {
+                        businessPartnerDbVersion.BusinessPartnerRelationshipItemList.Remove(
+                            dbversionMissingRelationshipItem);
+                        businessPartnerRelationshipRepository.Delete(dbversionMissingRelationshipItem);
+                    }
                 }
                 #endregion
 

@@ -12,9 +12,10 @@
             "common": "/Areas/Common/Scripts",
             "Fleet": "/Areas/Fleet/Scripts",
             "hireGroup": "/Areas/Fleet/Scripts",
-            "tarrifType": "/Areas/Pricing/Scripts",
+            "tariffType": "/Areas/Pricing/Scripts",
             "tariffRate": "/Areas/Pricing/Scripts",
-            "rentalAgreement": "/Areas/RentalAgreement/Scripts"
+            "rentalAgreement": "/Areas/RentalAgreement/Scripts",
+            "OrganizationGroup": "/Areas/OrganizationGroup/Scripts"
         }
 
     });

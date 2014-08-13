@@ -21,7 +21,7 @@ namespace Cares.Repository
             unityContainer.RegisterType<IEmployeeRepository, EmployeeRepository>();
             unityContainer.RegisterType<IDepartmentRepository, DepartmentRepository>();
             unityContainer.RegisterType<IFleetPoolRepository, FleetPoolRepository>();
-            unityContainer.RegisterType<ITarrifTypeRepository, TarrifTypeRepository>();
+            unityContainer.RegisterType<ITariffTypeRepository, TariffTypeRepository>();
             unityContainer.RegisterType<ICompanyRepository, CompanyRepository>();
             unityContainer.RegisterType<IBusinessPartnerRepository, BusinessPartnerRepository>();
             unityContainer.RegisterType<IOperationRepository, OperationRepository>();
@@ -55,6 +55,13 @@ namespace Cares.Repository
             unityContainer.RegisterType<IOperationsWorkPlaceRepository, OperationsWorkPlaceRepository>();
             unityContainer.RegisterType<IMarketingChannelRepository, MarketingChannelRepository>();
             unityContainer.RegisterType<IVehicleRepository, VehicleRepository>();
+            unityContainer.RegisterType<IHireGroupUpGradeRepository, HireGroupUpGradeRepository>();
+            unityContainer.RegisterType<IBusinessPartnerRelationshipTypeRepository, BusinessPartnerRelationshipTypeRepository>();
+            unityContainer.RegisterType<IPhoneRepository, PhoneRepository>();
+            unityContainer.RegisterType<IAddressRepository, AddressRepository>();
+            unityContainer.RegisterType<IBusinessPartnerMarketingChannelRepository, BusinessPartnerMarketingChannelRepository>();
+            unityContainer.RegisterType<IBusinessPartnerRelationshipRepository, BusinessPartnerRelationshipRepository>();
+
         }
     }
 }

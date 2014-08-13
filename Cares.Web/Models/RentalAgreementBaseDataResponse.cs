@@ -13,7 +13,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// PaymentTerms
         /// </summary>
-        public IEnumerable<PaymentTerm> PaymentTerms { get; set; }
+        public IEnumerable<PaymentTermDropDown> PaymentTerms { get; set; }
 
         /// <summary>
         /// Operations WorkPlaces 
@@ -23,7 +23,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Operations 
         /// </summary>
-        public IEnumerable<Operation> Operations { get; set; }
+        public IEnumerable<OperationDropDown> Operations { get; set; }
 
         #endregion
 

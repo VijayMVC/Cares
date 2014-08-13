@@ -14,30 +14,28 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static ApiModel.BusinessSegment CreateFrom(this BusinessSegment source)
+        public static ApiModel.BusinessSegmentDropDown CreateFrom(this BusinessSegment source)
+        {
+            return new ApiModel.BusinessSegmentDropDown
             {
-                return new ApiModel.BusinessSegment
-                {
-                    BusinessSegmentId = source.BusinessSegmentId,
-                    BusinessSegmentCode = source.BusinessSegmentCode,
-                    BusinessSegmentName = source.BusinessSegmentName
-                };
-            }
+                BusinessSegmentId = source.BusinessSegmentId,
+                BusinessSegmentCodeName = source.BusinessSegmentCode + " - " + source.BusinessSegmentName
+            };
+        }
         #endregion
         #region Model To Entity
         /// <summary>
         ///  Create entity from web model
         /// </summary>
-        public static BusinessSegment CreateFrom(this ApiModel.BusinessSegment source)
+        public static BusinessSegment CreateFrom(this ApiModel.BusinessSegmentDropDown source)
         {
             return new BusinessSegment
             {
                 BusinessSegmentId = source.BusinessSegmentId,
-                BusinessSegmentCode = source.BusinessSegmentCode,
-                BusinessSegmentName = source.BusinessSegmentName
+                BusinessSegmentName = source.BusinessSegmentCodeName
             };
         }
-        
+
         #endregion
         #endregion
     }

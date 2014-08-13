@@ -4,15 +4,15 @@ using Cares.Models.DomainModels;
 namespace Cares.Models.ResponseModels
 {
     /// <summary>
-    /// Tarrif Type Base Response
+    /// tariff Type Base Response
     /// </summary>
-    public sealed class TarrifTypeBaseResponse
+    public sealed class TariffTypeBaseResponse
     {
         #region Constructors
         /// <summary>
         /// Constructor
         /// </summary>
-        public TarrifTypeBaseResponse()
+        public TariffTypeBaseResponse()
         {
             Companies = new List<Company>();
             MeasurementUnits = new List<MeasurementUnit>();

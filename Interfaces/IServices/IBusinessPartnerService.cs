@@ -12,7 +12,7 @@ namespace Cares.Interfaces.IServices
         /// <summary>
         /// Get all business partneres
         /// </summary>
-        BusinessPartnerResponse LoadAllBusinessPartners(BusinessPartnerSearchRequest businessPartnerSearchRequest);
+        BusinessPartnerSearchResponse LoadAllBusinessPartners(BusinessPartnerSearchRequest businessPartnerSearchRequest);
         /// <summary>
         /// Delete businsess partner
         /// </summary>

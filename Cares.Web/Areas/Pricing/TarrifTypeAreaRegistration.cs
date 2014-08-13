@@ -2,7 +2,7 @@
 
 namespace Cares.Web.Areas.Pricing
 {
-    public class TarrifTypeAreaRegistration : AreaRegistration 
+    public class tariffTypeAreaRegistration : AreaRegistration 
     {
         public override string AreaName 
         {

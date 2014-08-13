@@ -19,5 +19,10 @@ namespace Cares.Interfaces.Repository
         /// </summary>
         /// <returns></returns>
         IEnumerable<HireGroupDetail> GetHireGroupDetailsForTariffRate();
+
+        /// <summary>
+        /// Get Hire Group Detail By Hire Group Id
+        /// </summary>
+        IEnumerable<HireGroupDetail> GetHireGroupDetailByHireGroupId(long hireGroupId);
     }
 }

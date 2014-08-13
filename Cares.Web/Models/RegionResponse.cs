@@ -3,7 +3,7 @@
 namespace Cares.Web.Models
 {
     /// <summary>
-    /// Tarrif Type Base Response Web Models
+    /// tariff Type Base Response Web Models
     /// </summary>
     public class RegionResponse
     {
@@ -13,14 +13,14 @@ namespace Cares.Web.Models
         /// </summary>
         public RegionResponse()
         {
-            ResponseRejions = new List<Region>();
+            ResponseRejions = new List<RegionDropDown>();
         }
         #endregion
         #region Public
         /// <summary>
         /// rejions
         /// </summary>
-        public IEnumerable<Region> ResponseRejions { get; set; }
+        public IEnumerable<RegionDropDown> ResponseRejions { get; set; }
         #endregion
     }
 }

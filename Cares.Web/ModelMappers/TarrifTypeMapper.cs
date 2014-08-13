@@ -6,17 +6,17 @@ using ApiModels = Cares.Web.Models;
 namespace Cares.Web.ModelMappers
 {
     /// <summary>
-    /// Tarrif type mapper
+    /// tariff type mapper
     /// </summary>
-    public static class TarrifTypeMapper
+    public static class TariffTypeMapper
     {
-        #region Tarrif Type
+        #region tariff Type
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static ApiModels.TarrifType CreateFrom(this TarrifType source)
+        public static ApiModels.TariffType CreateFrom(this TariffType source)
         {
-            return new ApiModels.TarrifType
+            return new ApiModels.TariffType
             {
 
                 TariffTypeId = source.TariffTypeId,
@@ -47,9 +47,9 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create entity from web model
         /// </summary>
-        public static TarrifType CreateFrom(this ApiModels.TariffTypeDetail source)
+        public static TariffType CreateFrom(this ApiModels.TariffTypeDetail source)
         {
-            return new TarrifType
+            return new TariffType
             {
                 TariffTypeId = source.TariffTypeId,
                 TariffTypeCode = source.TariffTypeCode,
@@ -73,7 +73,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create Detail web model from entity
         /// </summary>
-        public static ApiModels.TariffTypeDetail CreateFromDetail(this TarrifType source)
+        public static ApiModels.TariffTypeDetail CreateFromDetail(this TariffType source)
         {
             return new ApiModels.TariffTypeDetail
             {
@@ -100,9 +100,9 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static ApiModels.TarrifType CreateFromForTariffRate(this TarrifType source)
+        public static ApiModels.TariffType CreateFromForTariffRate(this TariffType source)
         {
-            return new ApiModels.TarrifType
+            return new ApiModels.TariffType
             {
 
                 TariffTypeId = source.TariffTypeId,
@@ -116,9 +116,9 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Tariff Type Base Response Mapper
         /// </summary>
-        public static ApiModels.TarrifTypeBaseResponse CreateFrom(this DomainResponseModel.TarrifTypeBaseResponse source)
+        public static ApiModels.TariffTypeBaseResponse CreateFrom(this DomainResponseModel.TariffTypeBaseResponse source)
         {
-            return new ApiModels.TarrifTypeBaseResponse
+            return new ApiModels.TariffTypeBaseResponse
             {
                 ResponseCompanies = source.Companies.Select(c => c.CreateFrom()),
                 ResponseMeasurementUnits = source.MeasurementUnits.Select(m => m.CreateFrom()),
@@ -132,14 +132,14 @@ namespace Cares.Web.ModelMappers
         #region Detail Response Mapper
 
         /// <summary>
-        ///  Tarrif Type Detail Response Mapper
+        ///  tariff Type Detail Response Mapper
         /// </summary>
         public static ApiModels.TariffTypeDetailResponse CreateFrom(this DomainResponseModel.TariffTypeDetailResponse source)
         {
             return new ApiModels.TariffTypeDetailResponse
             {
-                TarrifType = source.TarrifType.CreateFromDetail(),
-                TarrifTypeRevisions = source.TarrifTypeRevisions != null ? source.TarrifTypeRevisions.Select(m => m.CreateFromDetail()) : null,
+                TariffType = source.TariffType.CreateFromDetail(),
+                TariffTypeRevisions = source.TariffTypeRevisions != null ? source.TariffTypeRevisions.Select(m => m.CreateFromDetail()) : null,
 
             };
         }
@@ -149,12 +149,12 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static ApiModels.TarrifTypeSearchResponse CreateFrom(this DomainResponseModel.TarrifTypeResponse source)
+        public static ApiModels.TariffTypeSearchResponse CreateFrom(this DomainResponseModel.TariffTypeResponse source)
         {
-            return new ApiModels.TarrifTypeSearchResponse
+            return new ApiModels.TariffTypeSearchResponse
             {
                 TotalCount = source.TotalCount,
-                ServerTarrifTypes = source.TarrifTypes.Select(p => p.CreateFrom())
+                ServertariffTypes = source.TariffTypes.Select(p => p.CreateFrom())
             };
 
         }

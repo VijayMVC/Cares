@@ -13,12 +13,12 @@ namespace Cares.Web.Models
         /// </summary>
         public HireGroupBaseResponse()
         {
-            Companies = new List<Company>();
+            Companies = new List<CompanyDropDown>();
             ParentHireGroups = new List<ParentHireGroup>();
-            VehicleCategories = new List<VehicleCategory>();
-            VehicleMakes = new List<VehicleMake>();
-            VehicleModels = new List<VehicleModel>();
-            HireGroups = new List<HireGroup>();
+            VehicleCategories = new List<VehicleCategoryDropDown>();
+            VehicleMakes = new List<VehicleMakeDropDown>();
+            VehicleModels = new List<VehicleModelDropDown>();
+            HireGroups = new List<HireGroupDropDown>();
         }
         #endregion
 
@@ -26,7 +26,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Companies
         /// </summary>
-        public IEnumerable<Company> Companies { get; set; }
+        public IEnumerable<CompanyDropDown> Companies { get; set; }
         /// <summary>
         /// Hire Group 
         /// </summary>
@@ -34,19 +34,19 @@ namespace Cares.Web.Models
         /// <summary>
         /// Vehicle Categories
         /// </summary>
-        public IEnumerable<VehicleCategory> VehicleCategories { get; set; }
+        public IEnumerable<VehicleCategoryDropDown> VehicleCategories { get; set; }
         /// <summary>
         /// Vehicle Makes
         /// </summary>
-        public IEnumerable<VehicleMake> VehicleMakes { get; set; }
+        public IEnumerable<VehicleMakeDropDown> VehicleMakes { get; set; }
         /// <summary>
         /// Vehicle Models
         /// </summary>
-        public IEnumerable<VehicleModel> VehicleModels { get; set; }
+        public IEnumerable<VehicleModelDropDown> VehicleModels { get; set; }
         /// <summary>
         /// Hire Groups i-e exlude parent hire groups
         /// </summary>
-        public IEnumerable<HireGroup> HireGroups { get; set; }
+        public IEnumerable<HireGroupDropDown> HireGroups { get; set; }
         #endregion
     }
 }

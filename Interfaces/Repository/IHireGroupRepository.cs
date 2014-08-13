@@ -27,8 +27,11 @@ namespace Cares.Interfaces.Repository
         /// Get Hire Groups that are not parent hire groups 
         /// </summary>
         IEnumerable<HireGroup> GetHireGroupList();
-
-
+        /// <summary>
+        /// Load Dependencies
+        /// </summary>
+        /// <param name="hireGroup"></param>
+        void LoadDependencies(HireGroup hireGroup);
     }
 }
 

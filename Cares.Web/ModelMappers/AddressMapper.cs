@@ -10,8 +10,6 @@ namespace Cares.Web.ModelMappers
     /// </summary>
     public static class AddressMapper
     {
-        #region Public
-
         #region Address
 
         /// <summary>
@@ -85,8 +83,6 @@ namespace Cares.Web.ModelMappers
                ResponseAreas = source.ResponseAreas.Select(x=>x.CreateFrom()),
             };
         }
-        #endregion
-
         #endregion
     }
 }

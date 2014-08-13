@@ -32,10 +32,14 @@ namespace Cares.Implementation.Services
         /// </summary>
         public FleetPool AddNewFleetPool(FleetPool fleetPool) //later
         {
-            fleetPool.RecCreatedBy = fleetPoolRepository.LoggedInUserIdentity;
-            fleetPool.RecCreatedDt = DateTime.Now;
-            fleetPool.RecLastUpdatedBy = fleetPoolRepository.LoggedInUserIdentity;
-            fleetPool.RecLastUpdatedDt = DateTime.Now;
+            
+            fleetPool.RecCreatedDt = fleetPool.RecLastUpdatedDt = DateTime.Now;
+            fleetPool.RecCreatedBy = fleetPool.RecLastUpdatedBy = fleetPoolRepository.LoggedInUserIdentity;
+            fleetPool.RowVersion = 0;
+            fleetPool.IsActive = true;
+            fleetPool.IsDeleted = fleetPool.IsPrivate = fleetPool.IsReadOnly = false;
+            fleetPool.UserDomainKey = fleetPoolRepository.UserDomainKey;
+
             FleetPool fleet=fleetPoolRepository.AddNewFleetPool(fleetPool);
             fleetPoolRepository.SaveChanges();
             return fleet;
@@ -75,19 +79,25 @@ namespace Cares.Implementation.Services
             return fleetPoolRepository.Find(id);
 
         }
+
         /// <summary>
         /// update fleetpool 
         /// </summary>
         public FleetPool UpdateFleetPool(FleetPool fleetPool)
         {
-            fleetPool.RecCreatedBy = fleetPoolRepository.LoggedInUserIdentity;
-            fleetPool.RecCreatedDt = DateTime.Now;
-            fleetPool.RecLastUpdatedBy = fleetPoolRepository.LoggedInUserIdentity;
-            fleetPool.RecLastUpdatedDt = DateTime.Now;
-            fleetPoolRepository.Update(fleetPool);
+            FleetPool fleetPoolDbVersion = fleetPoolRepository.Find(fleetPool.FleetPoolId);
+            fleetPoolDbVersion.FleetPoolCode = fleetPool.FleetPoolCode;
+            fleetPoolDbVersion.FleetPoolName = fleetPool.FleetPoolName;
+            fleetPoolDbVersion.FleetPoolDescription = fleetPool.FleetPoolDescription;
+            fleetPoolDbVersion.RecLastUpdatedDt = DateTime.Now;
+            fleetPoolDbVersion.RegionId = fleetPool.RegionId;
+            fleetPoolDbVersion.OperationId = fleetPool.OperationId;
+            fleetPoolDbVersion.RecLastUpdatedBy = fleetPoolRepository.LoggedInUserIdentity;
+            fleetPoolDbVersion.RowVersion = fleetPoolDbVersion.RowVersion + 1;
             fleetPoolRepository.SaveChanges();
             return fleetPoolRepository.Find(fleetPool.FleetPoolId);
         }
+
         #endregion
         
        #region Private

@@ -10,33 +10,33 @@ namespace Cares.Web.ModelMappers
     {
         #region Public
         #region Entity To Model
+
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static ApiModel.OccupationType CreateFrom(this OccupationType source)
-            {
-                return new ApiModel.OccupationType
-                {
-                    OccupationTypeId = source.OccupationTypeId,
-                    OccupationTypeName = source.OccupationTypeName,
-                    OccupationTypeCode = source.OccupationTypeCode
-                };
-            }
+        public static ApiModel.OccupationTypeDropDown CreateFrom(this OccupationType source)
+        {
+            return new ApiModel.OccupationTypeDropDown
+                   {
+                       OccupationTypeId = source.OccupationTypeId,
+                       OccupationTypeCodeName = source.OccupationTypeCode + " - " + source.OccupationTypeName
+                   };
+        }
+
         #endregion
         #region Model To Entity
         /// <summary>
         ///  Create entity from web model
         /// </summary>
-        public static OccupationType CreateFrom(this ApiModel.OccupationType source)
+        public static OccupationType CreateFrom(this ApiModel.OccupationTypeDropDown source)
         {
             return new OccupationType
             {
                 OccupationTypeId = source.OccupationTypeId,
-                OccupationTypeName = source.OccupationTypeName,
-                OccupationTypeCode = source.OccupationTypeCode
+                OccupationTypeName = source.OccupationTypeCodeName,
             };
         }
-        
+
         #endregion
         #endregion
     }

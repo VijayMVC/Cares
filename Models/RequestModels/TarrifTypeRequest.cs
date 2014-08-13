@@ -4,14 +4,14 @@ using Cares.Models.DomainModels;
 namespace Cares.Models.RequestModels
 {
     /// <summary>
-    /// TarrifT ype Request
+    /// tariffT ype Request
     /// </summary>
-    public class TarrifTypeRequest:GetPagedListRequest
+    public class TariffTypeRequest:GetPagedListRequest
     {
         /// <summary>
-        /// Tarrif Type Code
+        /// tariff Type Code
         /// </summary>
-        public string TarrifTypeCode  { get; set; }
+        public string TariffTypeCode  { get; set; }
         /// <summary>
         /// Company Id
         /// </summary>
@@ -21,9 +21,9 @@ namespace Cares.Models.RequestModels
         /// </summary>
         public int MeasurementUnitId  { get; set; }
         /// <summary>
-        /// Tarrif Type Name
+        /// tariff Type Name
         /// </summary>
-        public string TarrifTypeName { get; set; }
+        public string TariffTypeName { get; set; }
         /// <summary>
         /// Department Id
         /// </summary>
@@ -33,21 +33,21 @@ namespace Cares.Models.RequestModels
         /// </summary>
         public long OperationId { get; set; }
         /// <summary>
-        /// Tarrif Type
+        /// tariff Type
         /// </summary>
-        public TarrifType TarrifType { get; set; }
+        public TariffType TariffType { get; set; }
         /// <summary>
         /// User Domain Key
         /// </summary>
         public long UserDomainKey { get; set; }
         /// <summary>
-        /// Tarrif type Order By
+        /// tariff type Order By
         /// </summary>
-        public TarrifTypeByColumn TarrifTypeByOrder
+        public TariffTypeByColumn TariffTypeByOrder
         {
             get
             {
-                return (TarrifTypeByColumn)SortBy;
+                return (TariffTypeByColumn)SortBy;
             }
             set
             {

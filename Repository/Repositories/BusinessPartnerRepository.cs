@@ -58,7 +58,7 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get All Business Partners for User Domain Key
         /// </summary>
-        public BusinessPartnerResponse GetAllBusinessPartners(BusinessPartnerSearchRequest businessPartnerSearchRequest)
+        public BusinessPartnerSearchResponse GetAllBusinessPartners(BusinessPartnerSearchRequest businessPartnerSearchRequest)
         {
             int fromRow = (businessPartnerSearchRequest.PageNo - 1) * businessPartnerSearchRequest.PageSize;
             int toRow = businessPartnerSearchRequest.PageSize;
@@ -72,7 +72,7 @@ namespace Cares.Repository.Repositories
                                             : DbSet.Where(query)
                                                 .OrderByDescending(businessPartnerClause[businessPartnerSearchRequest.BusinessPartnerOrderBy]).Skip(fromRow).Take(toRow).ToList();
 
-            return new BusinessPartnerResponse { BusinessPartners = businesspartners, TotalCount = DbSet.Count(query) };
+            return new BusinessPartnerSearchResponse { BusinessPartners = businesspartners, TotalCount = DbSet.Count(query) };
         }
         /// <summary>
         /// Get business partner by name and id
@@ -103,6 +103,7 @@ namespace Cares.Repository.Repositories
                 .Include(x => x.BusinessPartnerPhoneNumbers.Select(y => y.PhoneType))
                 .Include(x=>x.BusinessPartnerAddressList)
                 .Include(x => x.BusinessPartnerMarketingChannels)
+                .Include(x => x.BusinessPartnerRelationshipItemList)
                 .Include(x => x.Company)
                 .Include(x => x.BPRatingType)
                 .FirstOrDefault();

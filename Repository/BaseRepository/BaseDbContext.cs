@@ -72,6 +72,15 @@ namespace Cares.Repository.BaseRepository
                 .HasRequired(c => c.WorkPlace)
                 .WithMany()
                 .WillCascadeOnDelete(false);
+            modelBuilder.Entity<HireGroupUpGrade>()
+               .HasRequired(c => c.HireGroup)
+               .WithMany()
+               .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<BusinessPartnerRelationship>()
+                .HasRequired(c => c.SecondaryBusinessPartner)
+                .WithMany()
+                .WillCascadeOnDelete(false);
             
         }
         #endregion
@@ -161,7 +170,7 @@ namespace Cares.Repository.BaseRepository
         /// Department DB Set
         /// </summary>
         public DbSet<Department> Departments { get; set; }
-        public DbSet<TarrifType> TarrifTypes { get; set; }
+        public DbSet<TariffType> TariffTypes { get; set; }
         /// <summary>
         /// Operation DB Set
         /// </summary>
@@ -190,9 +199,18 @@ namespace Cares.Repository.BaseRepository
         /// PaymentTerm DB Set
         /// </summary>
         public DbSet<PaymentTerm> PaymentTerms { get; set; }
+        /// <summary>
+        /// Hire Group Up Grade Db Set
+        /// </summary>
+        public DbSet<HireGroupUpGrade> HireGroupUpGrades { get; set; }
 
-
+        /// <summary>
+        /// Vehicle Models Db Set
+        /// </summary>
         public DbSet<VehicleModel> VehicleModels { get; set; }
+        /// <summary>
+        /// Vehicle Category Db Set
+        /// </summary>
         public DbSet<VehicleCategory> VehicleCategories { get; set; }
         public DbSet<VehicleMake> VehicleMakes { get; set; }
         public DbSet<HireGroup> HireGroups { get; set; }
@@ -254,6 +272,26 @@ namespace Cares.Repository.BaseRepository
         /// OperationsWorkPlaces DB Set
         /// </summary>
         public DbSet<OperationsWorkPlace> OperationsWorkPlaces { get; set; }
+        /// <summary>
+        /// Business Partner Relationship Types DB Set
+        /// </summary>
+        public DbSet<BusinessPartnerRelationshipType> BusinessPartnerRelationshipTypes { get; set; }
+        /// <summary>
+        /// Business Partner Phones Db Set
+        /// </summary>
+        public DbSet<Phone> Phones { get; set; }
+        /// <summary>
+        /// Business Partner Address List Db Set
+        /// </summary>
+        public DbSet<Address> AddressList { get; set; }
+        /// <summary>
+        /// Business Partner Marketing Channels Db Set
+        /// </summary>
+        public DbSet<BusinessPartnerMarketingChannel> BusinessPartnerMarketingChannels { get; set; }
+        /// <summary>
+        /// Business Partner Relationship item list Db Set
+        /// </summary>
+        public DbSet<BusinessPartnerRelationship> BusinessPartnerRelationships { get; set; }
 
         /// <summary>
         /// Vehicle DB Set

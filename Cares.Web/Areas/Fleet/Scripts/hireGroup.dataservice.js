@@ -23,7 +23,31 @@ define("hireGroup/hireGroup.dataservice", function () {
                         dataType: 'json',
                         type: 'GET'
                     });
+                    // Define request to save Hire Group
+                    amplify.request.define('createHireGroup', 'ajax', {
+                        url: '/Api/HireGroup',
+                        dataType: 'json',
+                        type: 'PUT'
+                    });
 
+                    // Define request to update Hire Group
+                    amplify.request.define('updateHireGroup', 'ajax', {
+                        url: '/Api/HireGroup',
+                        dataType: 'json',
+                        type: 'POST'
+                    });
+                    // Define request to get Hire Group
+                    amplify.request.define('getHireGroupDetailById', 'ajax', {
+                        url: '/Api/GetHireGroupDetailData',
+                        dataType: 'json',
+                        type: 'GET'
+                    });
+                    // Define request to delete Hire Group
+                    amplify.request.define('deleteHireGroup', 'ajax', {
+                        url: '/Api/HireGroup',
+                        dataType: 'json',
+                        type: 'DELETE'
+                    });
                     isInitialized = true;
                 }
             },
@@ -45,11 +69,56 @@ define("hireGroup/hireGroup.dataservice", function () {
                     error: callbacks.error,
                     data: params
                 });
-            };
+            },
+       
+        // Create Hire Group
+        createHireGroup = function (param, callbacks) {
+            initialize();
+            return amplify.request({
+                resourceId: 'createHireGroup',
+                success: callbacks.success,
+                error: callbacks.error,
+                data: param
+            });
+        },
+        // Update a Hire Group
+        updateHireGroup = function (param, callbacks) {
+            initialize();
+            return amplify.request({
+                resourceId: 'updateHireGroup',
+                success: callbacks.success,
+                error: callbacks.error,
+                data: param
+            });
+        },
+        // Get Hire Group id 
+        getHireGroupDetailById = function (params, callbacks) {
+            initialize();
+            return amplify.request({
+                resourceId: 'getHireGroupDetailById',
+                success: callbacks.success,
+                error: callbacks.error,
+                data: params
+            });
+        },
+        // Delete
+        deleteHireGroup = function (param, callbacks) {
+            initialize();
+            return amplify.request({
+                resourceId: 'deleteHireGroup',
+                success: callbacks.success,
+                error: callbacks.error,
+                data: param
+            });
+        };
           
         return {
             getHireGroupBase: getHireGroupBase,
             getHireGroup: getHireGroup,
+            createHireGroup:createHireGroup,
+            updateHireGroup:updateHireGroup,
+            getHireGroupDetailById: getHireGroupDetailById,
+            deleteHireGroup: deleteHireGroup
            
         };
     })();

@@ -12,9 +12,9 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web api model from domail model
         /// </summary>
-        public static PaymentTerm CreateFrom(this DomainModels.PaymentTerm source)
+        public static PaymentTermDropDown CreateFrom(this DomainModels.PaymentTerm source)
         {
-            return new PaymentTerm
+            return new PaymentTermDropDown
             {
                 PaymentTermId = source.PaymentTermId,
                 PaymentTermName = source.PaymentTermName,
@@ -24,14 +24,14 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create domain model from web api model
         /// </summary>
-        public static DomainModels.PaymentTerm CreateFrom(this PaymentTerm source)
+        public static DomainModels.PaymentTerm CreateFrom(this PaymentTermDropDown source)
         {
             if (source != null)
             {
                 return new DomainModels.PaymentTerm
                 {
                     PaymentTermId = source.PaymentTermId,
-                    PaymentTermName = source.PaymentTermName
+                    PaymentTermName = source.PaymentTermCodeName
                 };
             }
             return new DomainModels.PaymentTerm();

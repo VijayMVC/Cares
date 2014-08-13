@@ -12,20 +12,20 @@ namespace Cares.Web.Areas.Api.Controllers
     public class GetTariffDetailsController : ApiController
     {
         #region Private
-        private readonly ITarrifTypeService tarrifTypeService;
+        private readonly ITariffTypeService tariffTypeService;
         #endregion
         #region Constructors
         /// <summary>
         /// Constructor
         /// </summary>
-        public GetTariffDetailsController(ITarrifTypeService tarrifTypeService)
+        public GetTariffDetailsController(ITariffTypeService tariffTypeService)
         {
-            if (tarrifTypeService == null)
+            if (tariffTypeService == null)
             {
-                throw new ArgumentNullException("tarrifTypeService");
+                throw new ArgumentNullException("tariffTypeService");
             }
 
-            this.tarrifTypeService = tarrifTypeService;
+            this.tariffTypeService = tariffTypeService;
         }
         #endregion
         #region Public
@@ -36,7 +36,7 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <returns></returns>
         public TariffTypeDetailResponse Get(long id)
         {  
-           return tarrifTypeService.FindDetailById(id).CreateFrom();
+           return tariffTypeService.FindDetailById(id).CreateFrom();
         }
 
         #endregion

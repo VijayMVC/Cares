@@ -18,7 +18,7 @@
             </div>
             <label for="company" class="control-label h5 col-sm-2">Company *</label>
             <div class="col-md-2">
-                <select id="company" class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyName', optionsValue: 'CompanyId', optionsCaption: '<Company>', value: companyId, validationTooltip: companyId, disable :virtualIsParent(), event:{change:$root.onSelectedCompany}"></select>
+                <select id="company" class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '<Company>', value: companyId, validationTooltip: companyId, disable :virtualIsParent(), event:{change:$root.onSelectedCompany}"></select>
             </div>
         </div>
         <div class="form-group">
@@ -36,38 +36,94 @@
             </div>
         </div>
     </form>
-    <!-- Nav tabs -->
-    <ul class="nav nav-tabs" role="tablist">
-        <li class="active"><a href="#detail" role="tab" data-toggle="tab">Detail</a></li>
-        <li><a href="#upgradedHireGroups" role="tab" data-toggle="tab">Upgraded HireGroups</a></li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-        <br />
-        <!-- first tab - Detail-->
-        <div class="tab-pane active" id="detail" data-bind="with:vehicleDetail">
-            <form class="form-horizontal">
-                <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onSaveHireGroup">Add</button>
-                <div class="form-group">
-                    <label for="vehicleMake" class="control-label h5 col-sm-2">Vehicle Make*</label>
-                    <div class="col-md-2">
-                        <select id="vehicleMake" class="form-control" data-bind="options: $root.vehicleMakes, optionsText: 'VehicleMakeName', optionsValue: 'VehicleMakeId', optionsCaption: '<Vehicle Make>', value:vehicleMakeId"></select>
+    <div class="panel panel-info">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="active"><a href="#detail" role="tab" data-toggle="tab">Detail</a></li>
+            <li><a href="#upgradedHireGroups" role="tab" data-toggle="tab">Upgraded HireGroups</a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <br />
+            <!-- first tab - Detail-->
+            <div class="tab-pane active" id="detail" data-bind="with:vehicleDetail">
+                <form class="form-horizontal">
+                    <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onAddVehicleDetail ">Add</button>
+                    <div class="form-group">
+                        <label for="vehicleMake" class="control-label h5 col-sm-2">Vehicle Make*</label>
+                        <div class="col-md-2">
+                            <select id="vehicleMake" class="form-control" data-bind="options: $root.vehicleMakes, optionsText: 'VehicleMakeCodeName', optionsCaption: '<Vehicle Make>', value:vehicleMakeId, event:{change:$root.onVehicleMakeChange}"></select>
+                        </div>
+                        <label for="vehicleModel" class="control-label h5 col-sm-2">Vehicle Model*</label>
+                        <div class="col-md-2">
+                            <select id="vehicleModel" class="form-control" data-bind="options: $root.vehicleModels, optionsText: 'VehicleModelCodeName', optionsCaption: '<Vehicle Model>', value: vehicleModelId, event:{change:$root.onVehicleModelChange} "></select>
+                        </div>
+                        <label for="vehicleCategory" class="control-label h5 col-sm-2">Vehicle Category</label>
+                        <div class="col-md-2">
+                            <select id="vehicleCategory" class="form-control" data-bind="options: $root.vehicleCategories, optionsText: 'VehicleCategoryCodeName', optionsCaption: '<Vehicle Category>', value: vehicleCategoryId, event:{change:$root.onVehicleCategoryChange} "></select>
+                        </div>
                     </div>
-                    <label for="vehicleModel" class="control-label h5 col-sm-2">Vehicle Model*</label>
-                    <div class="col-md-2">
-                        <select id="vehicleModel" class="form-control" data-bind="options: $root.vehicleModels, optionsText: 'VehicleModelName', optionsValue: 'VehicleModeld', optionsCaption: '<Vehicle Model>', value: vehicleModelId "></select>
-                    </div>
-                    <label for="vehicleCategory" class="control-label h5 col-sm-2">Vehicle Category</label>
-                    <div class="col-md-2">
-                        <select id="vehicleCategory" class="form-control" data-bind="options: $root.vehicleCategories, optionsText: 'VehicleCategoryName', optionsValue: 'VehicleCategoryId', optionsCaption: '<Vehicle Category>', value: vehicleCategoryId "></select>
-                    </div>
-                </div>
-                <div class="form-group">
+                    <div class="form-group">
+                        <label for="modelYear" class="control-label h5 col-sm-2">Model Year*</label>
+                        <div class="col-md-2">
+                            <select id="modelYear" class="form-control" data-bind="options: $root.modelYears, optionsText: 'Text',optionsValue:'Id', optionsCaption: '<Model Year>', value: vehicleModelYear "></select>
+                        </div>
 
-                </div>
-            </form>
+                    </div>
+                </form>
+                
+                <table id="hireGroupDetail" class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th> <span>VehicleMake<span></span></span></th>
+                            <th> <span>VehicleModel<span></span></span></th>
+                            <th> <span>VehicleCategory<span></span></span></th>
+                            <th> <span>ModelYear<span></span></span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- ko template: { name: 'itemHireGroupDetailTemplate' , foreach: $root.hireGroupDetails } -->
+                        <!-- /ko -->
+                    </tbody>
+                </table>
+                <script id="itemHireGroupDetailTemplate" type="text/html">
+                    <tr>
+                        <td data-bind="text: vehicleMakeName"></td>
+                        <td data-bind="text: vehicleModelName"></td>
+                        <td data-bind="text: vehicleCategoryName"></td>
+                        <td data-bind="text: vehicleModelYear"></td>
+                    </tr>
+                </script>
+            </div>
+            <!-- second tab - Upgraded HireGroups-->
+            <div class="tab-pane" id="upgradedHireGroups" data-bind="with:hireGroupUpGrade">
+                <form class="form-horizontal">
+                    <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onAddHireGroupUpGrade">Add</button>
+                    <div class="form-group">
+                        <label for="hireGroups" class="control-label h5 col-sm-2">Hire Groups *</label>
+                        <div class="col-md-2">
+                            <select id="hireGroups" class="form-control" data-bind="options: $root.filteredHireGroupsForDdList, optionsText: 'HireGroupCodeName', optionsCaption: '<Hire Group>',value:hireGroupIdForUpGrade, event:{change:$root.upGradedHireGroupChange} "></select>
+                        </div>
+                    </div>
+                </form>
+
+                <table id="hireGroupUpgraded" class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th> <span>Hire Groups<span></span></span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- ko template: { name: 'itemHireGroupUpgradedTemplate' , foreach: $root.hireGroupUpGradeList } -->
+                        <!-- /ko -->
+                    </tbody>
+                </table>
+                <script id="itemHireGroupUpgradedTemplate" type="text/html">
+                    <tr>
+                        <td data-bind="text: hireGroupCodeName"></td>
+                    </tr>
+                </script>
+            </div>
         </div>
-        <!-- first tab - Upgraded HireGroups-->
-        <div class="tab-pane" id="upgradedHireGroups">...</div>
     </div>
 </div>
