@@ -13,7 +13,8 @@ namespace Cares.Web.ModelMappers
             return new VehicleMake
             {
                 VehicleMakeId = source.VehicleMakeId,
-                VehicleMakeName = source.VehicleMakeCode + "-" + source.VehicleMakeName,
+                VehicleMakeName = source.VehicleMakeName,
+                VehicleMakeCode = source.VehicleMakeCode
             };
         }
 

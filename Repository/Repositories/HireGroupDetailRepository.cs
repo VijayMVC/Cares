@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.SqlServer;
+using System.Globalization;
 using System.Linq;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -36,6 +39,30 @@ namespace Cares.Repository.Repositories
 
         #endregion
         #region Public
+
+        /// <summary>
+        /// Get Hire Groups By Code, Vehicle Make / Category / Model / Model Year
+        /// Having no Parent Hire Group
+        /// </summary>
+        public IEnumerable<HireGroupDetail> GetByCodeAndVehicleInfo(string searchText)
+        {
+            short modelYear;
+            bool isModelYear = Int16.TryParse(searchText, out modelYear);
+            return DbSet
+                .Include("HireGroup")
+                .Include("VehicleCategory")
+                .Include("VehicleMake")
+                .Include("VehicleModel")
+                .Where(hg => (string.IsNullOrEmpty(searchText) ||
+                                      (((hg.HireGroup.HireGroupCode.Contains(searchText) || hg.HireGroup.HireGroupName.Contains(searchText)) ||
+                                       (hg.VehicleMake.VehicleMakeCode.Contains(searchText) || hg.VehicleMake.VehicleMakeName.Contains(searchText)) ||
+                                       (hg.VehicleCategory.VehicleCategoryCode.Contains(searchText) || hg.VehicleCategory.VehicleCategoryName.Contains(searchText)) ||
+                                       (hg.VehicleModel.VehicleModelCode.Contains(searchText) || hg.VehicleModel.VehicleModelName.Contains(searchText)) ||
+                                       (!isModelYear || hg.ModelYear == modelYear))
+                                       && !hg.HireGroup.ParentHireGroupId.HasValue)))
+                                      .OrderBy(hg => hg.HireGroup.HireGroupCode).ThenBy(hg => hg.HireGroup.HireGroupName).Take(10).ToList();
+        }
+
         /// <summary>
         /// Get All Vehicle Models for User Domain Key
         /// </summary>
@@ -49,7 +76,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public IEnumerable<HireGroupDetail> GetHireGroupDetailsForTariffRate()
         {
-            return DbSet.Where(h => h.UserDomainKey == UserDomainKey).Include(x => x.HireGroup); ;
+            return DbSet.Where(h => h.UserDomainKey == UserDomainKey).Include(x => x.HireGroup);
         }
         #endregion
     }

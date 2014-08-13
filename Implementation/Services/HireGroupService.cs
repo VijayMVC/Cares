@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -18,16 +19,23 @@ namespace Cares.Implementation.Services
         private readonly IVehicleCategoryRepository vehicleCategoryRepository;
         private readonly IVehicleMakeRepository vehicleMakeRepository;
         private readonly IVehicleModelRepository vehicleModelRepository;
+        private readonly IHireGroupDetailRepository hireGroupDetailRepository;
+
         #endregion
         #region Constructors
         public HireGroupService(IHireGroupRepository hireGroupRepository, ICompanyRepository companyRepository, IVehicleCategoryRepository vehicleCategoryRepository,
-            IVehicleMakeRepository vehicleMakeRepository, IVehicleModelRepository vehicleModelRepository)
+            IVehicleMakeRepository vehicleMakeRepository, IVehicleModelRepository vehicleModelRepository, IHireGroupDetailRepository hireGroupDetailRepository)
         {
+            if (hireGroupDetailRepository == null)
+            {
+                throw new ArgumentNullException("hireGroupDetailRepository");
+            }
             this.hireGroupRepository = hireGroupRepository;
             this.companyRepository = companyRepository;
             this.vehicleCategoryRepository = vehicleCategoryRepository;
             this.vehicleMakeRepository = vehicleMakeRepository;
             this.vehicleModelRepository = vehicleModelRepository;
+            this.hireGroupDetailRepository = hireGroupDetailRepository;
         }
         #endregion
         #region Public
@@ -59,9 +67,9 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Get Hire Groups By Code, Vehicle Make / Category / Model / Model Year
         /// </summary>
-        public IEnumerable<HireGroup> GetByCodeAndVehicleInfo(string searchText)
+        public IEnumerable<HireGroupDetail> GetByCodeAndVehicleInfo(string searchText)
         {
-            return hireGroupRepository.GetByCodeAndVehicleInfo(searchText);
+            return hireGroupDetailRepository.GetByCodeAndVehicleInfo(searchText);
         }
 
         /// <summary>

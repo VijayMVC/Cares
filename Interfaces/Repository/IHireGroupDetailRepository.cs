@@ -9,6 +9,12 @@ namespace Cares.Interfaces.Repository
     public interface IHireGroupDetailRepository: IBaseRepository<HireGroupDetail, long>
     {
         /// <summary>
+        /// Get Hire Groups By Vehicle Make, Category, Model, Year and Hire Group Code
+        /// For AutoComplete
+        /// </summary>
+        IEnumerable<HireGroupDetail> GetByCodeAndVehicleInfo(string searchText);
+
+        /// <summary>
         /// Get Hire Group Details For Tarif fRate
         /// </summary>
         /// <returns></returns>

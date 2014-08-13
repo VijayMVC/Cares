@@ -17,7 +17,8 @@ namespace Cares.Web.ModelMappers
             return new PaymentTerm
             {
                 PaymentTermId = source.PaymentTermId,
-                PaymentTermName = source.PaymentTermName
+                PaymentTermName = source.PaymentTermName,
+                PaymentTermCode = source.PaymentTermCode
             };
         }
         /// <summary>

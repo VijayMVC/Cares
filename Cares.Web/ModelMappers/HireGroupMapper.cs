@@ -20,6 +20,7 @@ namespace Cares.Web.ModelMappers
         }
         #endregion
         #region Hire Group
+
         /// <summary>
         ///  Create web model from entity
         /// </summary>

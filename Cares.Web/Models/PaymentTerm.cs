@@ -7,6 +7,7 @@ namespace Cares.Web.Models
     public class PaymentTerm
     {
         #region Public Properties
+
         /// <summary>
         /// PaymentTerm ID
         /// </summary>
@@ -27,6 +28,16 @@ namespace Cares.Web.Models
         /// User Domain Key
         /// </summary>
         public long UserDomainKey { get; set; }
+
+        /// <summary>
+        /// PaymentTerm Code Name
+        /// </summary>
+        public string PaymentTermCodeName {
+            get
+            {
+                return string.Format("{0}-{1}", PaymentTermCode, PaymentTermName);
+            } 
+        }
 
         #endregion
     }

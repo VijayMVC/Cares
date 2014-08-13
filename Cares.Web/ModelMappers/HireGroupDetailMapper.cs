@@ -30,8 +30,8 @@ namespace Cares.Web.ModelMappers
                 VehicleCategory = source.VehicleCategory != null
                         ? source.VehicleCategory.VehicleCategoryCode + " - " + source.VehicleCategory.VehicleCategoryName
                         : string.Empty,
-                ModelYear = source.ModelYear, 
-                
+                ModelYear = source.ModelYear,
+                HireGroupId = source.HireGroupId
             };
         }
         #endregion

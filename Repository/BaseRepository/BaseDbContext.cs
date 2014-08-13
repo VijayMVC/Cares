@@ -254,6 +254,11 @@ namespace Cares.Repository.BaseRepository
         /// OperationsWorkPlaces DB Set
         /// </summary>
         public DbSet<OperationsWorkPlace> OperationsWorkPlaces { get; set; }
+
+        /// <summary>
+        /// Vehicle DB Set
+        /// </summary>
+        public DbSet<Vehicle> Vehicles { get; set; }
         
         #endregion
     }

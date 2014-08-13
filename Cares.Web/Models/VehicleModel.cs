@@ -18,6 +18,17 @@
         /// Vehicle Model Name
         /// </summary>
         public string VehicleModelName { get; set; }
+
+        /// <summary>
+        /// Vehicle Model Code Name
+        /// </summary>
+        public string VehicleModelCodeName
+        {
+            get
+            {
+                return string.Format("{0}-{1}", VehicleModelCode, VehicleModelName);
+            }
+        }
         #endregion
     }
 }

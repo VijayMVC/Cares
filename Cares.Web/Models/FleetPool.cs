@@ -55,5 +55,16 @@
         /// country name
         /// </summary>
         public string CountryName { get; set; }
+
+        /// <summary>
+        /// Fleet Pool Code Name
+        /// </summary>
+        public string FleetPoolCodeName
+        {
+            get
+            {
+                return string.Format("{0}-{1}", FleetPoolCode, FleetPoolName);
+            }
+        }
     }
 }

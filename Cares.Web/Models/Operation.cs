@@ -19,6 +19,17 @@
         /// </summary>        
         public string OperationName { get; set; }
 
+        /// <summary>
+        /// Operation Code Name
+        /// </summary>
+        public string OperationCodeName
+        {
+            get
+            {
+                return string.Format("{0}-{1}", OperationCode, OperationName);
+            }
+        }
+
 
         #endregion
     }
