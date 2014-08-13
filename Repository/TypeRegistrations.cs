@@ -55,6 +55,11 @@ namespace Cares.Repository
             unityContainer.RegisterType<IOperationsWorkPlaceRepository, OperationsWorkPlaceRepository>();
             unityContainer.RegisterType<IMarketingChannelRepository, MarketingChannelRepository>();
             unityContainer.RegisterType<IBusinessPartnerRelationshipTypeRepository, BusinessPartnerRelationshipTypeRepository>();
+            unityContainer.RegisterType<IPhoneRepository, PhoneRepository>();
+            unityContainer.RegisterType<IAddressRepository, AddressRepository>();
+            unityContainer.RegisterType<IBusinessPartnerMarketingChannelRepository, BusinessPartnerMarketingChannelRepository>();
+            unityContainer.RegisterType<IBusinessPartnerRelationshipRepository, BusinessPartnerRelationshipRepository>();
+
         }
     }
 }

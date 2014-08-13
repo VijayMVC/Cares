@@ -110,23 +110,9 @@ define("businessPartner/businessPartner.viewModel",
                     },
                      //country selection change event
                     onCountrySelectionChange = function (value) {
-                        if (value.countryId() !== undefined && value.countryId().split('-').length === 3)
-                            getRegionsByCountry(value.countryId().split('-')[0]);
+                        if (selectedBusinessPartner().businessPartnerAddressNew().countryId() !== undefined)
+                            getRegionsByCountry(selectedBusinessPartner().businessPartnerAddressNew().countryId().CountryId);
                     },
-                    ////secondary business Partner selection change event
-                    //onSecondaryBusinessPartnerSelectionChange = function (value) {
-                    //    if (value !== undefined && value !== null) {
-                    //        selectedBusinessPartner().businessPartnerRelationshipItemNew().businessPartnerId(value.BusinessPartnerId());
-                    //        selectedBusinessPartner().businessPartnerRelationshipItemNew().businessPartnerName(value.BusinessPartnerCodeName());
-                    //    }
-                    //},
-                    ////secondary business Partner selection change event
-                    //onBusinessPartnerRelationshipTypeSelectionChange = function (value) {
-                    //    if (value !== undefined && value !== null) {
-                    //        selectedBusinessPartner().businessPartnerRelationshipItemNew().businessPartnerRelationshipTypeId(value.BusinessPartnerRelationshipTypeId());
-                    //        selectedBusinessPartner().businessPartnerRelationshipItemNew().businessPartnerRelationshipTypeName(value.BusinessPartnerRelationshipTypeCodeName());
-                    //    }
-                    //},  
                     //get regions by country          
                     getRegionsByCountry = function (countryId) {
                         isLoadingBusinessPartners(true);
@@ -164,8 +150,8 @@ define("businessPartner/businessPartner.viewModel",
                     },
                     //region selection change event
                     onRegionSelectionChange = function (value) {
-                        if (value.regionId() !== undefined && value.regionId().split('-').length === 3)
-                            getSubRegionsByRegion(value.regionId().split('-')[0]);
+                        if (selectedBusinessPartner().businessPartnerAddressNew().regionId() !== undefined)
+                            getSubRegionsByRegion(selectedBusinessPartner().businessPartnerAddressNew().regionId().RegionId);
                     },
                     //get sub regions by region          
                     getSubRegionsByRegion = function (regionId) {
@@ -188,8 +174,8 @@ define("businessPartner/businessPartner.viewModel",
                     },
                     //sub region selection change event
                     onSubRegionSelectionChange = function (value) {
-                        if (value.subRegionId() !== undefined && value.subRegionId().split('-').length === 3)
-                            getCitiesBySubRegion(value.subRegionId().split('-')[0]);
+                        if (selectedBusinessPartner().businessPartnerAddressNew().subRegionId() !== undefined)
+                            getCitiesBySubRegion(selectedBusinessPartner().businessPartnerAddressNew().subRegionId().SubRegionId);
                     },
                     //get cities by sub region          
                     getCitiesBySubRegion = function (subRegionId) {
@@ -205,8 +191,8 @@ define("businessPartner/businessPartner.viewModel",
                     },
                       //city selection change event
                     onCitySelectionChange = function (value) {
-                        if (value.cityId() !== undefined && value.cityId().split('-').length === 3)
-                            getAreasByCity(value.cityId().split('-')[0]);
+                        if (selectedBusinessPartner().businessPartnerAddressNew().cityId() !== undefined)
+                            getAreasByCity(selectedBusinessPartner().businessPartnerAddressNew().cityId().CityId);
                     },
                     //get Areas by city          
                     getAreasByCity = function (cityId) {
@@ -290,193 +276,193 @@ define("businessPartner/businessPartner.viewModel",
                     onDeleteBusinessPartnerAddress = function (businessPartnerAddress) {
                         selectedBusinessPartner().businessPartnerAddressList.remove(businessPartnerAddress);
                         return;
-                        
+
                     },
                     // Delete a BusinessPartner Marketing Channel Item
                     onDeleteBusinessPartnerMarketingChannel = function (businessPartnerMarketingChannel) {
                         selectedBusinessPartner().businessPartnerMarketingChannels.remove(businessPartnerMarketingChannel);
                         return;
                     },
-                    // business partner InType selected subtype id computed
-                    businessPartnerTypeSelectedSubTypeIdComputed = ko.computed(function () {
-                        if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId() !== undefined
-                            && selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId().split('-').length === 3)
-                            return selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId().split('-')[0];
-                        else {
-                            return undefined;
-                        }
-                    }),
-                    // business partner intype selected subtype name computed
-                    businessPartnerTypeSelectedSubTypeNameComputed = ko.computed(function () {
-                        if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId() !== undefined
-                            && selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId().split('-').length === 3)
-                            return selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId().split('-')[1] + '-' + selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId().split('-')[2];
-                        else {
-                            return undefined;
-                        }
-                    }),
-                    // business partner intype selected rating id computed
-                    businessPartnerTypeSelecedBpRatingIdComputed = ko.computed(function () {
-                        if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId() !== undefined
-                            && selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId().split('-').length === 3)
-                            return selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId().split('-')[0];
-                        else {
-                            return undefined;
-                        }
-                    }),
-                    // business partner intype selected rating name computed
-                    businessPartnerTypeSelecedBpRatingNameComputed = ko.computed(function () {
-                        if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId() !== undefined
-                            && selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId().split('-').length === 3)
-                            return selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId().split('-')[1] + '-' + selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId().split('-')[2];
-                        else {
-                            return undefined;
-                        }
-                    }),
-                    // business partner phone selected phone type id computed
-                    businessPartnerPhoneSelecedPhoneTypeIdComputed = ko.computed(function () {
-                        if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId() !== undefined
-                            && selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId().split('-').length === 3)
-                            return selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId().split('-')[0];
-                        else {
-                            return undefined;
-                        }
-                    }),
-                    // business partner phone selected phone type name computed
-                    businessPartnerPhoneSelecedPhoneTypeNameComputed = ko.computed(function () {
-                        if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId() !== undefined
-                            && selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId().split('-').length === 3)
-                            return selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId().split('-')[1] + '-' + selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId().split('-')[2];
-                        else {
-                            return undefined;
-                        }
-                    }),
+                    //// business partner InType selected subtype id computed
+                    //businessPartnerTypeSelectedSubTypeIdComputed = ko.computed(function () {
+                    //    if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId() !== undefined
+                    //        && selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId().split('-').length === 3)
+                    //        return selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId().split('-')[0];
+                    //    else {
+                    //        return undefined;
+                    //    }
+                    //}),
+                    //// business partner intype selected subtype name computed
+                    //businessPartnerTypeSelectedSubTypeNameComputed = ko.computed(function () {
+                    //    if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId() !== undefined
+                    //        && selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId().split('-').length === 3)
+                    //        return selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId().split('-')[1] + '-' + selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId().split('-')[2];
+                    //    else {
+                    //        return undefined;
+                    //    }
+                    //}),
+                    //// business partner intype selected rating id computed
+                    //businessPartnerTypeSelecedBpRatingIdComputed = ko.computed(function () {
+                    //    if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId() !== undefined
+                    //        && selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId().split('-').length === 3)
+                    //        return selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId().split('-')[0];
+                    //    else {
+                    //        return undefined;
+                    //    }
+                    //}),
+                    //// business partner intype selected rating name computed
+                    //businessPartnerTypeSelecedBpRatingNameComputed = ko.computed(function () {
+                    //    if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId() !== undefined
+                    //        && selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId().split('-').length === 3)
+                    //        return selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId().split('-')[1] + '-' + selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId().split('-')[2];
+                    //    else {
+                    //        return undefined;
+                    //    }
+                    //}),
+                    //// business partner phone selected phone type id computed
+                    //businessPartnerPhoneSelecedPhoneTypeIdComputed = ko.computed(function () {
+                    //    if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId() !== undefined
+                    //        && selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId().split('-').length === 3)
+                    //        return selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId().split('-')[0];
+                    //    else {
+                    //        return undefined;
+                    //    }
+                    //}),
+                    //// business partner phone selected phone type name computed
+                    //businessPartnerPhoneSelecedPhoneTypeNameComputed = ko.computed(function () {
+                    //    if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId() !== undefined
+                    //        && selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId().split('-').length === 3)
+                    //        return selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId().split('-')[1] + '-' + selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId().split('-')[2];
+                    //    else {
+                    //        return undefined;
+                    //    }
+                    //}),
                     // business partner address selected address type id computed
-                    businessPartnerAddressSelecedAddressTypeIdComputed = ko.computed(function () {
-                        if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerAddressNew().addressTypeId() !== undefined
-                            && selectedBusinessPartner().businessPartnerAddressNew().addressTypeId().split('-').length === 3)
-                            return selectedBusinessPartner().businessPartnerAddressNew().addressTypeId().split('-')[0];
-                        else {
-                            return undefined;
-                        }
-                    }),
-                    // business partner address selected address type name computed
-                    businessPartnerAddressSelecedAddressTypeNameComputed = ko.computed(function () {
-                        if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerAddressNew().addressTypeId() !== undefined &&
-                            selectedBusinessPartner().businessPartnerAddressNew().addressTypeId().split('-').length === 3)
-                            return selectedBusinessPartner().businessPartnerAddressNew().addressTypeId().split('-')[1] + '-' + selectedBusinessPartner().businessPartnerAddressNew().addressTypeId().split('-')[2];
-                        else {
-                            return undefined;
-                        }
-                    }),
-                    // business partner address selected country id computed
-                    businessPartnerAddressSelecedCountryIdComputed = ko.computed(function () {
-                        if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerAddressNew().countryId() !== undefined
-                            && selectedBusinessPartner().businessPartnerAddressNew().countryId().split('-').length === 3)
-                            return selectedBusinessPartner().businessPartnerAddressNew().countryId().split('-')[0];
-                        else {
-                            return undefined;
-                        }
-                    }),
-                    // business partner address selected country name computed
-                    businessPartnerAddressSelecedCountryNameComputed = ko.computed(function () {
-                        if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerAddressNew().countryId() !== undefined
-                            && selectedBusinessPartner().businessPartnerAddressNew().countryId().split('-').length === 3)
-                            return selectedBusinessPartner().businessPartnerAddressNew().countryId().split('-')[1] + '-' + selectedBusinessPartner().businessPartnerAddressNew().countryId().split('-')[2];
-                        else {
-                            return undefined;
-                        }
-                    }),
-                    // business partner address selected region id computed
-                    businessPartnerAddressSelecedRegionIdComputed = ko.computed(function () {
-                        if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerAddressNew().regionId() !== undefined
-                            && selectedBusinessPartner().businessPartnerAddressNew().regionId().split('-').length === 3)
-                            return selectedBusinessPartner().businessPartnerAddressNew().regionId().split('-')[0];
-                        else {
-                            return undefined;
-                        }
-                    }),
-                    // business partner address selected region name computed
-                    businessPartnerAddressSelecedRegionNameComputed = ko.computed(function () {
-                        if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerAddressNew().regionId() !== undefined
-                            && selectedBusinessPartner().businessPartnerAddressNew().regionId().split('-').length === 3)
-                            return selectedBusinessPartner().businessPartnerAddressNew().regionId().split('-')[1] + '-' + selectedBusinessPartner().businessPartnerAddressNew().regionId().split('-')[2];
-                        else {
-                            return undefined;
-                        }
-                    }),
-                     // business partner address selected sub region id computed
-                    businessPartnerAddressSelecedSubRegionIdComputed = ko.computed(function () {
-                        if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerAddressNew().subRegionId() !== undefined
-                            && selectedBusinessPartner().businessPartnerAddressNew().subRegionId().split('-').length === 3)
-                            return selectedBusinessPartner().businessPartnerAddressNew().subRegionId().split('-')[0];
-                        else {
-                            return undefined;
-                        }
-                    }),
-                    // business partner address selected sub region name computed
-                    businessPartnerAddressSelecedSubRegionNameComputed = ko.computed(function () {
-                        if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerAddressNew().subRegionId() !== undefined
-                            && selectedBusinessPartner().businessPartnerAddressNew().subRegionId().split('-').length === 3)
-                            return selectedBusinessPartner().businessPartnerAddressNew().subRegionId().split('-')[1] + '-' + selectedBusinessPartner().businessPartnerAddressNew().subRegionId().split('-')[2];
-                        else {
-                            return undefined;
-                        }
-                    }),
-                      // business partner address selected city id computed
-                    businessPartnerAddressSelecedcityIdComputed = ko.computed(function () {
-                        if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerAddressNew().cityId() !== undefined
-                            && selectedBusinessPartner().businessPartnerAddressNew().cityId().split('-').length === 3)
-                            return selectedBusinessPartner().businessPartnerAddressNew().cityId().split('-')[0];
-                        else {
-                            return undefined;
-                        }
-                    }),
-                    // business partner address selected city name computed
-                    businessPartnerAddressSelecedSubCityNameComputed = ko.computed(function () {
-                        if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerAddressNew().cityId() !== undefined
-                            && selectedBusinessPartner().businessPartnerAddressNew().cityId().split('-').length === 3)
-                            return selectedBusinessPartner().businessPartnerAddressNew().cityId().split('-')[1] + '-' + selectedBusinessPartner().businessPartnerAddressNew().cityId().split('-')[2];
-                        else {
-                            return undefined;
-                        }
-                    }),
-                      // business partner address selected area id computed
-                    businessPartnerAddressSelecedAreaIdComputed = ko.computed(function () {
-                        if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerAddressNew().areaId() !== undefined
-                            && selectedBusinessPartner().businessPartnerAddressNew().areaId().split('-').length === 3)
-                            return selectedBusinessPartner().businessPartnerAddressNew().areaId().split('-')[0];
-                        else {
-                            return undefined;
-                        }
-                    }),
-                    // business partner address selected area name computed
-                    businessPartnerAddressSelecedAreaNameComputed = ko.computed(function () {
-                        if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerAddressNew().areaId() !== undefined
-                            && selectedBusinessPartner().businessPartnerAddressNew().areaId().split('-').length === 3)
-                            return selectedBusinessPartner().businessPartnerAddressNew().areaId().split('-')[1] + '-' + selectedBusinessPartner().businessPartnerAddressNew().areaId().split('-')[2];
-                        else {
-                            return undefined;
-                        }
-                    }),
-                    // business partner marketing channel selected channel id computed
-                    businessPartnerAddressSelecedMarketingChannelIdComputed = ko.computed(function () {
-                        if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerMarketingChannelNew().marketingChannelId() !== undefined
-                            && selectedBusinessPartner().businessPartnerMarketingChannelNew().marketingChannelId().split('-').length === 3)
-                            return selectedBusinessPartner().businessPartnerMarketingChannelNew().marketingChannelId().split('-')[0];
-                        else {
-                            return undefined;
-                        }
-                    }),
-                    // business partner marketing channel selected channel name computed
-                    businessPartnerAddressSelecedMarketingChannelNameComputed = ko.computed(function () {
-                        if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerMarketingChannelNew().marketingChannelId() !== undefined
-                            && selectedBusinessPartner().businessPartnerMarketingChannelNew().marketingChannelId().split('-').length === 3)
-                            return selectedBusinessPartner().businessPartnerMarketingChannelNew().marketingChannelId().split('-')[1] + '-' + selectedBusinessPartner().businessPartnerMarketingChannelNew().marketingChannelId().split('-')[2];
-                        else {
-                            return undefined;
-                        }
-                    }),
+                    //businessPartnerAddressSelecedAddressTypeIdComputed = ko.computed(function () {
+                    //    if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerAddressNew().addressTypeId() !== undefined
+                    //        && selectedBusinessPartner().businessPartnerAddressNew().addressTypeId().split('-').length === 3)
+                    //        return selectedBusinessPartner().businessPartnerAddressNew().addressTypeId().split('-')[0];
+                    //    else {
+                    //        return undefined;
+                    //    }
+                    //}),
+                    //// business partner address selected address type name computed
+                    //businessPartnerAddressSelecedAddressTypeNameComputed = ko.computed(function () {
+                    //    if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerAddressNew().addressTypeId() !== undefined &&
+                    //        selectedBusinessPartner().businessPartnerAddressNew().addressTypeId().split('-').length === 3)
+                    //        return selectedBusinessPartner().businessPartnerAddressNew().addressTypeId().split('-')[1] + '-' + selectedBusinessPartner().businessPartnerAddressNew().addressTypeId().split('-')[2];
+                    //    else {
+                    //        return undefined;
+                    //    }
+                    //}),
+                    //// business partner address selected country id computed
+                    //businessPartnerAddressSelecedCountryIdComputed = ko.computed(function () {
+                    //    if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerAddressNew().countryId() !== undefined
+                    //        && selectedBusinessPartner().businessPartnerAddressNew().countryId().split('-').length === 3)
+                    //        return selectedBusinessPartner().businessPartnerAddressNew().countryId().split('-')[0];
+                    //    else {
+                    //        return undefined;
+                    //    }
+                    //}),
+                    //// business partner address selected country name computed
+                    //businessPartnerAddressSelecedCountryNameComputed = ko.computed(function () {
+                    //    if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerAddressNew().countryId() !== undefined
+                    //        && selectedBusinessPartner().businessPartnerAddressNew().countryId().split('-').length === 3)
+                    //        return selectedBusinessPartner().businessPartnerAddressNew().countryId().split('-')[1] + '-' + selectedBusinessPartner().businessPartnerAddressNew().countryId().split('-')[2];
+                    //    else {
+                    //        return undefined;
+                    //    }
+                    //}),
+                    //// business partner address selected region id computed
+                    //businessPartnerAddressSelecedRegionIdComputed = ko.computed(function () {
+                    //    if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerAddressNew().regionId() !== undefined
+                    //        && selectedBusinessPartner().businessPartnerAddressNew().regionId().split('-').length === 3)
+                    //        return selectedBusinessPartner().businessPartnerAddressNew().regionId().split('-')[0];
+                    //    else {
+                    //        return undefined;
+                    //    }
+                    //}),
+                    //// business partner address selected region name computed
+                    //businessPartnerAddressSelecedRegionNameComputed = ko.computed(function () {
+                    //    if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerAddressNew().regionId() !== undefined
+                    //        && selectedBusinessPartner().businessPartnerAddressNew().regionId().split('-').length === 3)
+                    //        return selectedBusinessPartner().businessPartnerAddressNew().regionId().split('-')[1] + '-' + selectedBusinessPartner().businessPartnerAddressNew().regionId().split('-')[2];
+                    //    else {
+                    //        return undefined;
+                    //    }
+                    //}),
+                    // // business partner address selected sub region id computed
+                    //businessPartnerAddressSelecedSubRegionIdComputed = ko.computed(function () {
+                    //    if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerAddressNew().subRegionId() !== undefined
+                    //        && selectedBusinessPartner().businessPartnerAddressNew().subRegionId().split('-').length === 3)
+                    //        return selectedBusinessPartner().businessPartnerAddressNew().subRegionId().split('-')[0];
+                    //    else {
+                    //        return undefined;
+                    //    }
+                    //}),
+                    //// business partner address selected sub region name computed
+                    //businessPartnerAddressSelecedSubRegionNameComputed = ko.computed(function () {
+                    //    if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerAddressNew().subRegionId() !== undefined
+                    //        && selectedBusinessPartner().businessPartnerAddressNew().subRegionId().split('-').length === 3)
+                    //        return selectedBusinessPartner().businessPartnerAddressNew().subRegionId().split('-')[1] + '-' + selectedBusinessPartner().businessPartnerAddressNew().subRegionId().split('-')[2];
+                    //    else {
+                    //        return undefined;
+                    //    }
+                    //}),
+                    //  // business partner address selected city id computed
+                    //businessPartnerAddressSelecedcityIdComputed = ko.computed(function () {
+                    //    if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerAddressNew().cityId() !== undefined
+                    //        && selectedBusinessPartner().businessPartnerAddressNew().cityId().split('-').length === 3)
+                    //        return selectedBusinessPartner().businessPartnerAddressNew().cityId().split('-')[0];
+                    //    else {
+                    //        return undefined;
+                    //    }
+                    //}),
+                    //// business partner address selected city name computed
+                    //businessPartnerAddressSelecedSubCityNameComputed = ko.computed(function () {
+                    //    if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerAddressNew().cityId() !== undefined
+                    //        && selectedBusinessPartner().businessPartnerAddressNew().cityId().split('-').length === 3)
+                    //        return selectedBusinessPartner().businessPartnerAddressNew().cityId().split('-')[1] + '-' + selectedBusinessPartner().businessPartnerAddressNew().cityId().split('-')[2];
+                    //    else {
+                    //        return undefined;
+                    //    }
+                    //}),
+                    //  // business partner address selected area id computed
+                    //businessPartnerAddressSelecedAreaIdComputed = ko.computed(function () {
+                    //    if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerAddressNew().areaId() !== undefined
+                    //        && selectedBusinessPartner().businessPartnerAddressNew().areaId().split('-').length === 3)
+                    //        return selectedBusinessPartner().businessPartnerAddressNew().areaId().split('-')[0];
+                    //    else {
+                    //        return undefined;
+                    //    }
+                    //}),
+                    //// business partner address selected area name computed
+                    //businessPartnerAddressSelecedAreaNameComputed = ko.computed(function () {
+                    //    if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerAddressNew().areaId() !== undefined
+                    //        && selectedBusinessPartner().businessPartnerAddressNew().areaId().split('-').length === 3)
+                    //        return selectedBusinessPartner().businessPartnerAddressNew().areaId().split('-')[1] + '-' + selectedBusinessPartner().businessPartnerAddressNew().areaId().split('-')[2];
+                    //    else {
+                    //        return undefined;
+                    //    }
+                    //}),
+                    //// business partner marketing channel selected channel id computed
+                    //businessPartnerAddressSelecedMarketingChannelIdComputed = ko.computed(function () {
+                    //    if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerMarketingChannelNew().marketingChannelId() !== undefined
+                    //        && selectedBusinessPartner().businessPartnerMarketingChannelNew().marketingChannelId().split('-').length === 3)
+                    //        return selectedBusinessPartner().businessPartnerMarketingChannelNew().marketingChannelId().split('-')[0];
+                    //    else {
+                    //        return undefined;
+                    //    }
+                    //}),
+                    //// business partner marketing channel selected channel name computed
+                    //businessPartnerAddressSelecedMarketingChannelNameComputed = ko.computed(function () {
+                    //    if (selectedBusinessPartner() !== undefined && selectedBusinessPartner().businessPartnerMarketingChannelNew().marketingChannelId() !== undefined
+                    //        && selectedBusinessPartner().businessPartnerMarketingChannelNew().marketingChannelId().split('-').length === 3)
+                    //        return selectedBusinessPartner().businessPartnerMarketingChannelNew().marketingChannelId().split('-')[1] + '-' + selectedBusinessPartner().businessPartnerMarketingChannelNew().marketingChannelId().split('-')[2];
+                    //    else {
+                    //        return undefined;
+                    //    }
+                    //}),
                      // Do Before Add BusinessPartner InType Item
                     doBeforeAddItem = function () {
                         var flag = true;
@@ -494,12 +480,12 @@ define("businessPartner/businessPartner.viewModel",
                                 undefined,
                                 '',
                                 selectedBusinessPartner().businessPartnerInTypeNew().fromDate(),
-                                selectedBusinessPartner().businessPartnerInTypeNew().fromDate(),
+                                selectedBusinessPartner().businessPartnerInTypeNew().toDate(),
                                 selectedBusinessPartner().businessPartnerId(),
-                                businessPartnerTypeSelectedSubTypeIdComputed(),
-                                businessPartnerTypeSelectedSubTypeNameComputed(),
-                                businessPartnerTypeSelecedBpRatingIdComputed(),
-                                businessPartnerTypeSelecedBpRatingNameComputed()
+                                selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId() !== undefined ? selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId().BusinessPartnerSubTypeId : undefined,
+                                selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId() !== undefined ? selectedBusinessPartner().businessPartnerInTypeNew().businessPartnerSubTypeId().BusinessPartnerSubTypeCodeName : undefined,
+                                selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId() !== undefined ? selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId().BpRatingTypeId : undefined,
+                                selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId() !== undefined ? selectedBusinessPartner().businessPartnerInTypeNew().bpRatingTypeId().BpRatingTypeCodeName : undefined
                             );
                             selectedBusinessPartner().businessPartnerInTypes.push(businessPartnerInType);
                             selectedBusinessPartner().businessPartnerInTypes.valueHasMutated();
@@ -517,7 +503,7 @@ define("businessPartner/businessPartner.viewModel",
                             // check if isdefault true entry already there
                             var isDefaultAlreadyThere = false;
                             _.each(selectedBusinessPartner().businessPartnerPhoneNumbers(), function (item) {
-                                if (item.isDefault() === true)
+                                if (item.isDefault() == true)
                                     isDefaultAlreadyThere = true;
                             });
                             if (isDefaultAlreadyThere) {
@@ -536,8 +522,8 @@ define("businessPartner/businessPartner.viewModel",
                                 selectedBusinessPartner().businessPartnerPhoneNumberNew().isDefault(),
                                 selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneNumber(),
                                 selectedBusinessPartner().businessPartnerId(),
-                                businessPartnerPhoneSelecedPhoneTypeIdComputed(),
-                                businessPartnerPhoneSelecedPhoneTypeNameComputed()
+                                selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId() !== undefined ? selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId().PhoneTypeId : undefined,
+                                selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId() !== undefined ? selectedBusinessPartner().businessPartnerPhoneNumberNew().phoneTypeId().PhoneTypeCodeName : undefined
                             );
                             selectedBusinessPartner().businessPartnerPhoneNumbers.push(businessPartnerPhone);
                             selectedBusinessPartner().businessPartnerPhoneNumbers.valueHasMutated();
@@ -566,18 +552,18 @@ define("businessPartner/businessPartner.viewModel",
                                 selectedBusinessPartner().businessPartnerAddressNew().webPage(),
                                 selectedBusinessPartner().businessPartnerAddressNew().zipCode(),
                                 selectedBusinessPartner().businessPartnerAddressNew().poBox(),
-                                businessPartnerAddressSelecedCountryIdComputed(),
-                                businessPartnerAddressSelecedCountryNameComputed(),
-                                businessPartnerAddressSelecedRegionIdComputed(),
-                                businessPartnerAddressSelecedRegionNameComputed(),
-                                businessPartnerAddressSelecedSubRegionIdComputed(),
-                                businessPartnerAddressSelecedSubRegionNameComputed(),
-                                businessPartnerAddressSelecedcityIdComputed(),
-                                businessPartnerAddressSelecedSubCityNameComputed(),
-                                businessPartnerAddressSelecedAreaIdComputed(),
-                                businessPartnerAddressSelecedAreaNameComputed(),
-                                businessPartnerAddressSelecedAddressTypeIdComputed(),
-                                businessPartnerAddressSelecedAddressTypeNameComputed(),
+                                selectedBusinessPartner().businessPartnerAddressNew().countryId()!== undefined ?  selectedBusinessPartner().businessPartnerAddressNew().countryId().CountryId : undefined,
+                                selectedBusinessPartner().businessPartnerAddressNew().countryId()!== undefined ? selectedBusinessPartner().businessPartnerAddressNew().countryId().CountryCodeName : undefined,
+                                selectedBusinessPartner().businessPartnerAddressNew().regionId() !== undefined ? selectedBusinessPartner().businessPartnerAddressNew().regionId().RegionId : undefined,
+                                selectedBusinessPartner().businessPartnerAddressNew().regionId() !== undefined ? selectedBusinessPartner().businessPartnerAddressNew().regionId().RegionCodeName : undefined,
+                                selectedBusinessPartner().businessPartnerAddressNew().subRegionId() !== undefined ? selectedBusinessPartner().businessPartnerAddressNew().subRegionId().SubRegionId : undefined,
+                                selectedBusinessPartner().businessPartnerAddressNew().subRegionId() !== undefined ? selectedBusinessPartner().businessPartnerAddressNew().subRegionId().SubRegionCodeName : undefined,
+                                selectedBusinessPartner().businessPartnerAddressNew().cityId() !== undefined ? selectedBusinessPartner().businessPartnerAddressNew().cityId().CityId : undefined,
+                                selectedBusinessPartner().businessPartnerAddressNew().cityId() !== undefined ? selectedBusinessPartner().businessPartnerAddressNew().cityId().CityCodeName : undefined,
+                                selectedBusinessPartner().businessPartnerAddressNew().areaId() !== undefined ? selectedBusinessPartner().businessPartnerAddressNew().areaId().AreaId : undefined,
+                                selectedBusinessPartner().businessPartnerAddressNew().areaId() !== undefined ? selectedBusinessPartner().businessPartnerAddressNew().areaId().AreaCodeName : undefined,
+                                selectedBusinessPartner().businessPartnerAddressNew().addressTypeId() !== undefined ? selectedBusinessPartner().businessPartnerAddressNew().addressTypeId().AddressTypeId :undefined,
+                                selectedBusinessPartner().businessPartnerAddressNew().addressTypeId() !== undefined ? selectedBusinessPartner().businessPartnerAddressNew().addressTypeId().AddressTypeCodeName : undefined,
                                 selectedBusinessPartner().businessPartnerId()
                             );
                             selectedBusinessPartner().businessPartnerAddressList.push(businessPartnerAddress);
@@ -601,8 +587,8 @@ define("businessPartner/businessPartner.viewModel",
                         // check validation error before add
                         if (doBeforeAddMarketingChannelItem()) {
                             var businessPartnerMarketingChannel = model.BusinessPartnerMarketingChannel(
-                                businessPartnerAddressSelecedMarketingChannelIdComputed(),
-                                businessPartnerAddressSelecedMarketingChannelNameComputed(),
+                                selectedBusinessPartner().businessPartnerMarketingChannelNew().marketingChannelId() !== undefined ? selectedBusinessPartner().businessPartnerMarketingChannelNew().marketingChannelId().MarketingChannelId : undefined,
+                                selectedBusinessPartner().businessPartnerMarketingChannelNew().marketingChannelId() !== undefined ? selectedBusinessPartner().businessPartnerMarketingChannelNew().marketingChannelId().MarketingChannelCodeName : undefined,
                                 selectedBusinessPartner().businessPartnerId()
                             );
                             selectedBusinessPartner().businessPartnerMarketingChannels.push(businessPartnerMarketingChannel);
@@ -635,7 +621,7 @@ define("businessPartner/businessPartner.viewModel",
                             selectedBusinessPartner().businessPartnerRelationshipItemList.push(businessPartnerRelationshipItem);
                             selectedBusinessPartner().businessPartnerRelationshipItemList.valueHasMutated();
                             // emplty input fields
-                            selectedBusinessPartner().businessPartnerRelationshipItemNew(model.BusinessPartnerRelationshipItem(undefined, undefined, undefined,undefined,undefined,undefined));
+                            selectedBusinessPartner().businessPartnerRelationshipItemNew(model.BusinessPartnerRelationshipItem(undefined, undefined, undefined, undefined, undefined, undefined));
                         }
                     },
                     // Create Business Partner
@@ -884,7 +870,7 @@ define("businessPartner/businessPartner.viewModel",
                     onAddBusinessPartnerMarketingChannel: onAddBusinessPartnerMarketingChannel,
                     businessPartnerRelationshipTypes: businessPartnerRelationshipTypes,
                     onAddBusinessPartnerRelationshipItem: onAddBusinessPartnerRelationshipItem,
-                    onDeleteBusinessPartnerRelationshipItem:onDeleteBusinessPartnerRelationshipItem
+                    onDeleteBusinessPartnerRelationshipItem: onDeleteBusinessPartnerRelationshipItem
                     // Utility Methods
                 };
             })()

@@ -7,13 +7,6 @@ namespace Cares.Interfaces.Repository
     /// </summary>
     public interface IBusinessPartnerInTypeRepository : IBaseRepository<BusinessPartnerInType, long>
     {
-        ///// <summary>
-        ///// Get Busienss partner Individual by Name and Id
-        ///// </summary>
-        ///// <param name="name"></param>
-        ///// <param name="id"></param>
-        ///// <returns></returns>
-        //BusinessPartnerIndividual GetBusinessPartnerIndividualByName(string name, int id);
         /// <summary>
         /// Get business partner intype by Id
         /// </summary>
