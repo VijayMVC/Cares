@@ -236,7 +236,6 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         individualIqamaNo = ko.observable(specifiedIndividualIqamaNo),
          // Individual Iqama Expiry Date
         individualIqamaExpiryDate = ko.observable(specifiedIndividualIqamaExpiryDate),
-        
         // Is Busy
         isBusy = ko.observable(false),
         // Errors
@@ -290,8 +289,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         reset = function () {
             dirtyFlag.reset();
         };
-    return {
-   
+    return {  
         // First Tab Controls
         individualFirstName: individualFirstName,
         individualMiddleName: individualMiddleName,
@@ -317,7 +315,6 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         individualPassportCountryId: individualPassportCountryId,
         individualIqamaNo: individualIqamaNo,
         individualIqamaExpiryDate: individualIqamaExpiryDate,
-
         errors: errors,
         isValid: isValid,
         dirtyFlag: dirtyFlag,
@@ -782,7 +779,6 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         };
         return self;
     };
-
     // BusinessPartnerDetail Factory
     BusinessPartnerDetail.Create = function () {
         return new BusinessPartnerDetail("", "", "", false, false, "", "", false, undefined, undefined, undefined, undefined, undefined);
@@ -1150,7 +1146,6 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         businessPartnerRelationshipItem.secondaryBusinessPartnerName(item.SecondaryBusinessPartnerCodeName === undefined ? undefined : item.SecondaryBusinessPartnerCodeName);
         return businessPartnerRelationshipItem;
     };
-    
     return {
         BusinessPartner: BusinessPartner,
         BusinessPartnerDetail: BusinessPartnerDetail,

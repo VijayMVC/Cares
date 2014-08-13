@@ -18,7 +18,6 @@ define("businessPartner/businessPartner.viewModel",
                     // #region Arrays
                     // BusinessPartners
                     businessPartners = ko.observableArray([]),
-                    //categories = ko.observableArray([]),
                     // #endregion Arrays
                     // #region Busy Indicators
                     isLoadingBusinessPartners = ko.observable(false),
@@ -150,7 +149,6 @@ define("businessPartner/businessPartner.viewModel",
                                 areas.removeAll();
                                 ko.utils.arrayPushAll(areas(), data.ResponseAreas);
                                 areas.valueHasMutated();
-
                                 isLoadingBusinessPartners(false);
                             },
                             error: function () {
@@ -614,7 +612,7 @@ define("businessPartner/businessPartner.viewModel",
                             }
                         });
                     },
-                   // Save Business Partner
+                    // Save Business Partner
                     saveBusinessPartner = function (businessPartner) {
                         var method = "updateBusinessPartner";
                         if (!selectedBusinessPartner().businessPartnerId()) {

@@ -1,7 +1,6 @@
 ﻿@{
     ViewBag.Title = "Index";
 }
-
 <div class="row" id="businessPartnerBinding">
     <div class="row " data-bind="visible: !isBusinessPartnerEditorVisible()">
         <h3 class="page-header float-left pageHeaderSection">Business Partner</h3>
@@ -78,7 +77,6 @@
     @Html.Partial("_BusinessPartnerEditor")
 
 </div>
-
 <!-- ko stopBinding: true -->
 @Html.Partial("~/Areas/Common/Views/Shared/_ConfirmationDialog.cshtml")
 <!-- /ko -->
