@@ -31,7 +31,8 @@ namespace Cares.Web.ModelMappers
                 return new DomainModels.PaymentTerm
                 {
                     PaymentTermId = source.PaymentTermId,
-                    PaymentTermName = source.PaymentTermCodeName
+                    PaymentTermName = source.PaymentTermName,
+                    PaymentTermCode = source.PaymentTermCode
                 };
             }
             return new DomainModels.PaymentTerm();

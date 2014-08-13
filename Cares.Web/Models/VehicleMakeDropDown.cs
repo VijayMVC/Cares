@@ -13,8 +13,11 @@
         /// <summary>
         /// Vehicle Make Code
         /// </summary>
-        public string VehicleMakeCodeName { get; set; }
-       
+        public string VehicleMakeCode { get; set; }
+        /// <summary>
+        /// Vehicle Make Name
+        /// </summary>
+        public string VehicleMakeName { get; set; }
 
         /// <summary>
         /// VehicleMake Code Name

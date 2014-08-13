@@ -15,7 +15,12 @@
         /// <summary>
         /// Vehicle Category Code
         /// </summary>
-        public string VehicleCategoryCodeName { get; set; }
+        public string VehicleCategoryCode { get; set; }
+
+        /// <summary>
+        /// Vehicle Category Name
+        /// </summary>
+        public string VehicleCategoryName { get; set; }
       
 
         /// <summary>

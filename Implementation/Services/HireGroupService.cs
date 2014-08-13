@@ -25,7 +25,7 @@ namespace Cares.Implementation.Services
         #region Constructors
         public HireGroupService(IHireGroupRepository hireGroupRepository, ICompanyRepository companyRepository, IVehicleCategoryRepository vehicleCategoryRepository,
             IVehicleMakeRepository vehicleMakeRepository, IVehicleModelRepository vehicleModelRepository, IHireGroupDetailRepository hireGroupDetailRepository,
-            IHireGroupUpGradeRepository hireGroupUpGradeRepository)
+            IHireGroupUpGradeRepository hireGroupUpGradeRepository){
             if (hireGroupDetailRepository == null)
             {
                 throw new ArgumentNullException("hireGroupDetailRepository");

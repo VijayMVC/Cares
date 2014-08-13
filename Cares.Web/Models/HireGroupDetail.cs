@@ -41,17 +41,17 @@
         /// <summary>
         /// Vehicle Category
         /// </summary>
-        public VehicleCategory VehicleCategory { get; set; }
+        public VehicleCategoryDropDown VehicleCategory { get; set; }
 
         /// <summary>
         /// Vehicle Make
         /// </summary>
-        public VehicleMake VehicleMake { get; set; }
+        public VehicleMakeDropDown VehicleMake { get; set; }
 
         /// <summary>
         /// Vehicle Model
         /// </summary>
-        public VehicleModel VehicleModel { get; set; }
+        public VehicleModelDropDown VehicleModel { get; set; }
 
         /// <summary>
         /// Hire Group
