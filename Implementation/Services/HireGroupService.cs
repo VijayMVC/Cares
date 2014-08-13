@@ -19,10 +19,12 @@ namespace Cares.Implementation.Services
         private readonly IVehicleMakeRepository vehicleMakeRepository;
         private readonly IVehicleModelRepository vehicleModelRepository;
         private readonly IHireGroupDetailRepository hireGroupDetailRepository;
+        private readonly IHireGroupUpGradeRepository hireGroupUpGradeRepository;
         #endregion
         #region Constructors
         public HireGroupService(IHireGroupRepository hireGroupRepository, ICompanyRepository companyRepository, IVehicleCategoryRepository vehicleCategoryRepository,
-            IVehicleMakeRepository vehicleMakeRepository, IVehicleModelRepository vehicleModelRepository, IHireGroupDetailRepository hireGroupDetailRepository)
+            IVehicleMakeRepository vehicleMakeRepository, IVehicleModelRepository vehicleModelRepository, IHireGroupDetailRepository hireGroupDetailRepository,
+            IHireGroupUpGradeRepository hireGroupUpGradeRepository)
         {
             this.hireGroupRepository = hireGroupRepository;
             this.companyRepository = companyRepository;
@@ -30,6 +32,7 @@ namespace Cares.Implementation.Services
             this.vehicleMakeRepository = vehicleMakeRepository;
             this.vehicleModelRepository = vehicleModelRepository;
             this.hireGroupDetailRepository = hireGroupDetailRepository;
+            this.hireGroupUpGradeRepository = hireGroupUpGradeRepository;
         }
         #endregion
         #region Public
@@ -98,7 +101,7 @@ namespace Cares.Implementation.Services
         /// Add Hire Group
         /// </summary>
         /// <param name="request"></param>
-        public void AddHireGroup(HireGroupAddRequest request)
+        public HireGroup AddHireGroup(HireGroupAddRequest request)
         {
             request.HireGroup.RecCreatedDt = System.DateTime.Now;
             request.HireGroup.RecLastUpdatedDt = System.DateTime.Now;
@@ -112,67 +115,202 @@ namespace Cares.Implementation.Services
             request.HireGroup.IsActive = false;
             hireGroupRepository.Add(request.HireGroup);
             hireGroupRepository.SaveChanges();
-            foreach (var hireGroupDetail in request.HireGroupDetails)
+            if (request.HireGroupDetails != null)
             {
-                hireGroupDetail.HireGroupId = request.HireGroup.HireGroupId;
-                hireGroupDetailRepository.Add(hireGroupDetail);
-                hireGroupDetailRepository.SaveChanges();
-            }
-        }
-        /// <summary>
-        /// Update Hire Group
-        /// </summary>
-        /// <param name="request"></param>
-        public void UpdateHireGroup(HireGroupAddRequest request)
-        {
-            hireGroupRepository.Update(request.HireGroup);
-            hireGroupRepository.SaveChanges();
-            IEnumerable<HireGroupDetail> hireGroupDetailsDbVersion = hireGroupDetailRepository.GetHireGroupDetailByHireGroupId(request.HireGroup.HireGroupId);
-            var updatedItems = new List<long>();
-
-            // ReSharper disable once PossibleMultipleEnumeration
-            foreach (var hireGroupDetail in request.HireGroupDetails)
-            {
-                //check whether item is updated or not in loop
-                int addCheck = 0;
-                foreach (var groupDetail in hireGroupDetailsDbVersion)
+                foreach (var hireGroupDetail in request.HireGroupDetails)
                 {
-                    if (hireGroupDetail.HireGroupDetailId == groupDetail.HireGroupDetailId)
-                    {
-                        hireGroupDetail.HireGroupId = request.HireGroup.HireGroupId;
-                        hireGroupDetailRepository.Update(hireGroupDetail);
-                        hireGroupDetailRepository.SaveChanges();
-                        updatedItems.Add(groupDetail.HireGroupDetailId);
-                        addCheck = 1;
-                    }
-
-                }
-                if (addCheck == 0)
-                {
+                    hireGroupDetail.RecCreatedDt = System.DateTime.Now;
+                    hireGroupDetail.RecLastUpdatedDt = System.DateTime.Now;
+                    hireGroupDetail.UserDomainKey = hireGroupRepository.UserDomainKey;
+                    hireGroupDetail.RecCreatedBy = "Cares";
+                    hireGroupDetail.RowVersion = 0;
+                    hireGroupDetail.RecLastUpdatedBy = "Cares";
+                    hireGroupDetail.IsReadOnly = false;
+                    hireGroupDetail.IsDeleted = false;
+                    hireGroupDetail.IsPrivate = false;
+                    hireGroupDetail.IsActive = false;
                     hireGroupDetail.HireGroupId = request.HireGroup.HireGroupId;
                     hireGroupDetailRepository.Add(hireGroupDetail);
                     hireGroupDetailRepository.SaveChanges();
                 }
             }
-            //delete hire groups
-            // ReSharper disable once PossibleMultipleEnumeration
-            foreach (var groupDetail in hireGroupDetailsDbVersion)
+            if (request.HireGroupUpGrades != null)
             {
-                int delete = 0;
-                for (int i = 0; i < updatedItems.Count; i--)
+                foreach (var hireGroupUpGrade in request.HireGroupUpGrades)
                 {
-                    if (groupDetail.HireGroupDetailId == updatedItems[i])
+                    hireGroupUpGrade.RecCreatedDt = System.DateTime.Now;
+                    hireGroupUpGrade.RecLastUpdatedDt = System.DateTime.Now;
+                    hireGroupUpGrade.UserDomainKey = hireGroupRepository.UserDomainKey;
+                    hireGroupUpGrade.RecCreatedBy = "Cares";
+                    hireGroupUpGrade.RowVersion = 0;
+                    hireGroupUpGrade.RecLastUpdatedBy = "Cares";
+                    hireGroupUpGrade.IsReadOnly = false;
+                    hireGroupUpGrade.IsDeleted = false;
+                    hireGroupUpGrade.IsPrivate = false;
+                    hireGroupUpGrade.IsActive = false;
+                    hireGroupUpGrade.HireGroupId = request.HireGroup.HireGroupId;
+                    hireGroupUpGrade.AllowedHireGroupId = request.HireGroup.HireGroupId;
+                    hireGroupUpGradeRepository.Add(hireGroupUpGrade);
+                    hireGroupUpGradeRepository.SaveChanges();
+                }
+            }
+            var hirGroup = hireGroupRepository.Find(request.HireGroup.HireGroupId);
+            hireGroupRepository.LoadDependencies(hirGroup);
+            return hirGroup;
+        }
+        /// <summary>
+        /// Update Hire Group
+        /// </summary>
+        /// <param name="request"></param>
+        public HireGroup UpdateHireGroup(HireGroupAddRequest request)
+        {
+            hireGroupRepository.Update(request.HireGroup);
+            hireGroupRepository.SaveChanges();
+            IEnumerable<HireGroupDetail> hireGroupDetailsDbVersion = hireGroupDetailRepository.GetHireGroupDetailByHireGroupId(request.HireGroup.HireGroupId);
+            IEnumerable<HireGroupUpGrade> hireGroupUpGradesDbVersion = hireGroupUpGradeRepository.FindByHireGroupId(request.HireGroup.HireGroupId);
+            #region Hire Group Detail Updated
+            var updatedHireGroupDetailItems = new List<long>();
+            if (request.HireGroupDetails != null)
+            {
+
+                // ReSharper disable once PossibleMultipleEnumeration
+                foreach (var hireGroupDetail in request.HireGroupDetails)
+                {
+                    hireGroupDetail.RecCreatedDt = System.DateTime.Now;
+                    hireGroupDetail.RecLastUpdatedDt = System.DateTime.Now;
+                    hireGroupDetail.UserDomainKey = hireGroupRepository.UserDomainKey;
+                    hireGroupDetail.RecCreatedBy = "Cares";
+                    hireGroupDetail.RowVersion = 0;
+                    hireGroupDetail.RecLastUpdatedBy = "Cares";
+                    hireGroupDetail.IsReadOnly = false;
+                    hireGroupDetail.IsDeleted = false;
+                    hireGroupDetail.IsPrivate = false;
+                    hireGroupDetail.IsActive = false;
+
+                    //check whether item is updated or not in loop
+                    int addCheck = 0;
+                    foreach (var groupDetail in hireGroupDetailsDbVersion)
                     {
-                        delete = 1;
+                        if (hireGroupDetail.HireGroupDetailId == groupDetail.HireGroupDetailId)
+                        {
+                            hireGroupDetailRepository.Update(hireGroupDetail);
+                            hireGroupDetailRepository.SaveChanges();
+                            updatedHireGroupDetailItems.Add(groupDetail.HireGroupDetailId);
+                            addCheck = 1;
+                        }
+
+                    }
+                    if (addCheck == 0)
+                    {
+                        hireGroupDetail.HireGroupId = request.HireGroup.HireGroupId;
+                        hireGroupDetailRepository.Add(hireGroupDetail);
+                        hireGroupDetailRepository.SaveChanges();
                     }
                 }
-                if (delete == 0)
-                {
-                    hireGroupDetailRepository.Delete(groupDetail);
-                    hireGroupDetailRepository.SaveChanges();
-                }
-
             }
+            if (hireGroupDetailsDbVersion != null)
+            {
+                //delete hire groups
+                // ReSharper disable once PossibleMultipleEnumeration
+                foreach (var groupDetail in hireGroupDetailsDbVersion)
+                {
+                    int delete = 0;
+                    for (int i = 0; i < updatedHireGroupDetailItems.Count; i--)
+                    {
+                        if (groupDetail.HireGroupDetailId == updatedHireGroupDetailItems[i])
+                        {
+                            delete = 1;
+                        }
+                    }
+                    if (delete == 0)
+                    {
+                        hireGroupDetailRepository.Delete(groupDetail);
+                        hireGroupDetailRepository.SaveChanges();
+                    }
+
+                }
+            }
+            #endregion
+            #region Hire Group Up Garde Update
+            var updatedHireGroupUpGradeItems = new List<long>();
+            if (request.HireGroupUpGrades != null)
+            {
+
+                // ReSharper disable once PossibleMultipleEnumeration
+                foreach (var hireGroupUpGrade in request.HireGroupUpGrades)
+                {
+                    hireGroupUpGrade.RecCreatedDt = System.DateTime.Now;
+                    hireGroupUpGrade.RecLastUpdatedDt = System.DateTime.Now;
+                    hireGroupUpGrade.UserDomainKey = hireGroupRepository.UserDomainKey;
+                    hireGroupUpGrade.RecCreatedBy = "Cares";
+                    hireGroupUpGrade.RowVersion = 0;
+                    hireGroupUpGrade.RecLastUpdatedBy = "Cares";
+                    hireGroupUpGrade.IsReadOnly = false;
+                    hireGroupUpGrade.IsDeleted = false;
+                    hireGroupUpGrade.IsPrivate = false;
+                    hireGroupUpGrade.IsActive = false;
+
+                    //check whether item is updated or not in loop
+                    int addCheck = 0;
+                    foreach (var hireGroupUpGradeDb in hireGroupUpGradesDbVersion)
+                    {
+                        if (hireGroupUpGradeDb.HireGroupUpGradeId == hireGroupUpGrade.HireGroupUpGradeId)
+                        {
+                            hireGroupUpGradeRepository.Update(hireGroupUpGrade);
+                            hireGroupUpGradeRepository.SaveChanges();
+                            updatedHireGroupUpGradeItems.Add(hireGroupUpGradeDb.HireGroupUpGradeId);
+                            addCheck = 1;
+                        }
+
+                    }
+                    if (addCheck == 0)
+                    {
+                        hireGroupUpGrade.HireGroupId = request.HireGroup.HireGroupId;
+                        hireGroupUpGrade.AllowedHireGroupId = request.HireGroup.HireGroupId;
+                        hireGroupUpGradeRepository.Add(hireGroupUpGrade);
+                        hireGroupUpGradeRepository.SaveChanges();
+                    }
+                }
+            }
+            if (hireGroupUpGradesDbVersion != null)
+            {
+                //delete hire groups
+                // ReSharper disable once PossibleMultipleEnumeration
+                foreach (var hireGroupUpGrade in hireGroupUpGradesDbVersion)
+                {
+                    int delete = 0;
+                    for (int i = 0; i < updatedHireGroupDetailItems.Count; i--)
+                    {
+                        if (hireGroupUpGrade.HireGroupUpGradeId == updatedHireGroupDetailItems[i])
+                        {
+                            delete = 1;
+                        }
+                    }
+                    if (delete == 0)
+                    {
+                        hireGroupUpGradeRepository.Delete(hireGroupUpGrade);
+                        hireGroupUpGradeRepository.SaveChanges();
+                    }
+
+                }
+            }
+            #endregion
+            var hirGroup = hireGroupRepository.Find(request.HireGroup.HireGroupId);
+            hireGroupRepository.LoadDependencies(hirGroup);
+            return hirGroup;
+        }
+        /// <summary>
+        /// Get Hire Group Data By Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public HireGroupDataDetailResponse FindHireGroupId(long id)
+        {
+            return new HireGroupDataDetailResponse
+                   {
+                       HireGroupDetails = hireGroupDetailRepository.GetHireGroupDetailByHireGroupId(id),
+                       HireGroupUpGrades = hireGroupUpGradeRepository.FindByHireGroupId(id)
+                   };
         }
         #endregion
 

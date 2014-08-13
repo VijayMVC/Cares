@@ -5,7 +5,7 @@ namespace Cares.Web.Areas.Pricing.Controllers
     /// <summary>
     /// tariff Controller
     /// </summary>
-    public class tariffController : Controller
+    public class TariffController : Controller
     {
         //
         // GET: /tariffType/tariff/
@@ -18,9 +18,6 @@ namespace Cares.Web.Areas.Pricing.Controllers
         {
             return View();
         }
-        public ActionResult test()
-        {
-            return View();
-        }//
+       
 	}
 }

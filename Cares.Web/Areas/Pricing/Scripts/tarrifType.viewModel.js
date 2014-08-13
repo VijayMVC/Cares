@@ -150,7 +150,7 @@ define("tariffType/tariffType.viewModel",
                     },
                      // Create Tariff Type
                     createTariffType = function () {
-                        var tariffType = new model.tariffTypeDetail();
+                        var tariffType = new model.TariffTypeDetail();
                         // Select the newly added tariffType
                             addtariffType(tariffType);
                     },
@@ -182,7 +182,7 @@ define("tariffType/tariffType.viewModel",
 
                         dataservice[method](model.TariffTypeServerMapper(tariffType), {
                             success: function (data) {
-                                var tariffType = new model.tariffType(data);
+                                var tariffTypeResult = new model.TariffType(data);
                                 if (addtariffType().tariffTypeId() > 0) {
                                     selectedtariffType().tariffTypeId(data.TariffTypeId);
                                     selectedtariffType().measurementUnit(data.MeasurementUnit),
@@ -198,7 +198,7 @@ define("tariffType/tariffType.viewModel",
                                     selectedtariffType().durationTo(data.DurationTo),
                                     closeTariffTypeEditor();
                                 } else {
-                                    tariffTypes.splice(0, 0, tariffType);
+                                    tariffTypes.splice(0, 0, tariffTypeResult);
 
                                 }
                                 // Reset Changes

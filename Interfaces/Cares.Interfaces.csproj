@@ -89,6 +89,7 @@
     <Compile Include="Repository\IBusinessPartnerIndividualRepository.cs" />
     <Compile Include="Repository\ICompanyRepository.cs" />
     <Compile Include="Repository\IAreaRepository.cs" />
+    <Compile Include="Repository\IHireGroupUpGradeRepository.cs" />
     <Compile Include="Repository\IOperationsWorkPlaceRepository.cs" />
     <Compile Include="Repository\IMarketingChannelRepository.cs" />
     <Compile Include="Repository\IAddressRepository.cs" />

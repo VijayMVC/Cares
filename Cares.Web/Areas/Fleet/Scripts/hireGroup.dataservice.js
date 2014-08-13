@@ -37,8 +37,8 @@ define("hireGroup/hireGroup.dataservice", function () {
                         type: 'POST'
                     });
                     // Define request to get Hire Group
-                    amplify.request.define('getHireGroupDetail', 'ajax', {
-                        url: '/Api/HireGroup',
+                    amplify.request.define('getHireGroupDetailById', 'ajax', {
+                        url: '/Api/GetHireGroupDetailData',
                         dataType: 'json',
                         type: 'GET'
                     });
@@ -92,10 +92,10 @@ define("hireGroup/hireGroup.dataservice", function () {
             });
         },
         // Get Hire Group id 
-        getHireGroupDetail = function (params, callbacks) {
+        getHireGroupDetailById = function (params, callbacks) {
             initialize();
             return amplify.request({
-                resourceId: 'getHireGroupDetail',
+                resourceId: 'getHireGroupDetailById',
                 success: callbacks.success,
                 error: callbacks.error,
                 data: params
@@ -117,7 +117,7 @@ define("hireGroup/hireGroup.dataservice", function () {
             getHireGroup: getHireGroup,
             createHireGroup:createHireGroup,
             updateHireGroup:updateHireGroup,
-            getHireGroupDetail:getHireGroupDetail,
+            getHireGroupDetailById: getHireGroupDetailById,
             deleteHireGroup: deleteHireGroup
            
         };

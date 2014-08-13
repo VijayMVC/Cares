@@ -16,5 +16,9 @@ namespace Cares.Models.RequestModels
         /// Hire Group List
         /// </summary>
         public IEnumerable<HireGroupDetail> HireGroupDetails { get; set; }
+        /// <summary>
+        /// Hire Group Up Garde List
+        /// </summary>
+        public IEnumerable<HireGroupUpGrade> HireGroupUpGrades { get; set; }
     }
 }
