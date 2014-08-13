@@ -244,6 +244,8 @@
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
     <Compile Include="Areas\Fleet\Controllers\HomeController.cs" />
     <Compile Include="Areas\Fleet\FleetPoolAreaRegistration.cs" />
+    <Compile Include="Areas\OrganizationGroup\Controllers\HomeController.cs" />
+    <Compile Include="Areas\OrganizationGroup\OrganizationGroupAreaRegistration.cs" />
     <Compile Include="Areas\RentalAgreement\Controllers\HomeController.cs" />
     <Compile Include="Areas\RentalAgreement\RentalAgreementAreaRegistration.cs" />
     <Compile Include="Areas\Product\Controllers\HomeController.cs" />
@@ -400,6 +402,10 @@
     <Content Include="Areas\Fleet\Scripts\hireGroup.model.js" />
     <Content Include="Areas\Fleet\Scripts\hireGroup.view.js" />
     <Content Include="Areas\Fleet\Scripts\hireGroup.viewModel.js" />
+    <Content Include="Areas\OrganizationGroup\Scripts\OrganizationGroup.view.js" />
+    <Content Include="Areas\OrganizationGroup\Scripts\OrganizationGroup.dataservice.js" />
+    <Content Include="Areas\OrganizationGroup\Scripts\OrganizationGroup.viewModel.js" />
+    <Content Include="Areas\OrganizationGroup\Scripts\OrganizationGroup.model.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.dataservice.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.model.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.view.js" />
@@ -992,6 +998,10 @@
     <Content Include="Areas\Fleet\Views\Home\HireGroup.cshtml" />
     <Content Include="Areas\Fleet\Views\Home\_HireGroupEditor.cshtml" />
     <Content Include="Areas\Pricing\Views\Tarrif\test.cshtml" />
+    <Content Include="Areas\OrganizationGroup\Views\web.config" />
+    <Content Include="Areas\OrganizationGroup\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\OrganizationGroup\Views\Home\Index.cshtml" />
+    <Content Include="Areas\OrganizationGroup\Views\Shared\_Layout.cshtml" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
@@ -1131,6 +1141,7 @@
     <Folder Include="Areas\Common\Controllers\" />
     <Folder Include="Areas\Common\Models\" />
     <Folder Include="Areas\Fleet\Models\" />
+    <Folder Include="Areas\OrganizationGroup\Models\" />
     <Folder Include="Areas\Pricing\Models\" />
     <Folder Include="Areas\Product\Models\" />
     <Folder Include="Areas\RentalAgreement\Models\" />
