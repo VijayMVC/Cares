@@ -271,6 +271,7 @@ define("businessPartner/businessPartner.viewModel",
                             success: function () {
                                 businessPartners.remove(businessPartner);
                                 toastr.success("Business Partner removed successfully");
+                                getBusinessPartners();
                             },
                             error: function () {
                                 toastr.error("Failed to remove Business Partner!");
