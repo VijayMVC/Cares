@@ -1077,8 +1077,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             // Third Tab : Business Partner In Type
             businessPartnerInType.businessPartnerInTypeId(item.BusinessPartnerInTypeId === null ? undefined : item.BusinessPartnerInTypeId);
             businessPartnerInType.businessPartnerInTypeDescription(item.BusinessPartnerInTypeDescription === null ? undefined : item.businessPartnerInTypeDescription);
-            businessPartnerInType.fromDate(item.fromDate === null ? undefined : moment(item.fromDate).toDate());
-            businessPartnerInType.toDate(item.toDate === null ? undefined :moment(item.toDate).toDate());
+            businessPartnerInType.fromDate(item.FromDate === null ? undefined : moment(item.fromDate).toDate());
+            businessPartnerInType.toDate(item.ToDate === null ? undefined :moment(item.toDate).toDate());
             businessPartnerInType.businessPartnerId(item.BusinessPartnerId === null ? undefined : item.BusinessPartnerId);
             businessPartnerInType.businessPartnerSubTypeId(item.BusinessPartnerSubTypeId === null ? undefined : item.BusinessPartnerSubTypeId);
             businessPartnerInType.businessPartnerSubTypeName(item.BusinessPartnerSubTypeName === null ? undefined : item.BusinessPartnerSubTypeName);
