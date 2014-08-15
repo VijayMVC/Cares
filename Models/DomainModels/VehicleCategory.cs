@@ -71,7 +71,7 @@ namespace Cares.Models.DomainModels
         /// Row Version
         /// </summary>
         public long RowVersion { get; set; }
-
+        
         #endregion
 
         #region Reference Properties

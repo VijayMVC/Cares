@@ -229,6 +229,7 @@
     <Compile Include="Areas\Api\Controllers\GetTariffDetailsController.cs" />
     <Compile Include="Areas\Api\Controllers\GetHireGroupDetailTariffRateController.cs" />
     <Compile Include="Areas\Api\Controllers\HireGroupBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\HireGroupVehiclesController.cs" />
     <Compile Include="Areas\Api\Controllers\RentalAgreementHireGroupsController.cs" />
     <Compile Include="Areas\Api\Controllers\HireGroupController.cs" />
     <Compile Include="Areas\Api\Controllers\ProductBaseController.cs" />
@@ -254,6 +255,7 @@
     <Compile Include="Areas\Pricing\TarrifTypeAreaRegistration.cs" />
     <Compile Include="Areas\Pricing\Controllers\TarrifController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\VehicleImageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
@@ -264,6 +266,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\CultureHelper.cs" />
+    <Compile Include="ModelMappers\GetVehiclesRequestMapper.cs" />
+    <Compile Include="ModelMappers\VehicleMapper.cs" />
     <Compile Include="ModelMappers\MarketingChannelMapper.cs" />
     <Compile Include="ModelMappers\BusinessSegmentMapper.cs" />
     <Compile Include="ModelMappers\CategoryMapper.cs" />
@@ -300,12 +304,21 @@
     <Compile Include="ModelMappers\TarrifTypeMapper.cs" />
     <Compile Include="ModelMappers\VehicleCategoryMapper.cs" />
     <Compile Include="ModelMappers\VehicleMakesMapper.cs" />
+    <Compile Include="ModelMappers\FuelTypeMapper.cs" />
+    <Compile Include="ModelMappers\TransmissionTypeMapper.cs" />
+    <Compile Include="ModelMappers\VehicleStatusMapper.cs" />
     <Compile Include="ModelMappers\VehicleModelMapper.cs" />
     <Compile Include="Models\AddressBaseResponse.cs" />
     <Compile Include="Models\AddressTypeDropDown.cs" />
     <Compile Include="Models\BusinessPartnerRelationship.cs" />
     <Compile Include="Models\BusinessPartnerDropDown.cs" />
     <Compile Include="Models\BusinessPartnerMarketingChannel.cs" />
+    <Compile Include="Models\FuelType.cs" />
+    <Compile Include="Models\TransmissionType.cs" />
+    <Compile Include="Models\HireGroupDetail.cs" />
+    <Compile Include="Models\Vehicle.cs" />
+    <Compile Include="Models\VehicleStatus.cs" />
+    <Compile Include="Models\VehicleSearchResponse.cs" />
     <Compile Include="Models\HireGroupDataDetailResponse.cs" />
     <Compile Include="Models\HireGroupDetailContentForHireGroup.cs" />
     <Compile Include="Models\HireGroupDetailForHireGroup.cs" />
@@ -1016,6 +1029,8 @@
     <Content Include="Scripts\amplify.min.js" />
     <Content Include="Scripts\App\architecture.js" />
     <Content Include="Scripts\App\requireConfig.js" />
+    <Content Include="Scripts\bloodhound.js" />
+    <Content Include="Scripts\bloodhound.min.js" />
     <Content Include="Scripts\bootstrap-rtl.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1081,6 +1096,10 @@
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\tooltip.js" />
     <Content Include="Scripts\transition.js" />
+    <Content Include="Scripts\typeahead.bundle.js" />
+    <Content Include="Scripts\typeahead.bundle.min.js" />
+    <Content Include="Scripts\typeahead.jquery.js" />
+    <Content Include="Scripts\typeahead.jquery.min.js" />
     <Content Include="Scripts\underscore-ko-1.6.0.js" />
     <Content Include="Scripts\underscore-ko-1.6.0.min.js" />
     <Content Include="Scripts\underscore-min.js" />

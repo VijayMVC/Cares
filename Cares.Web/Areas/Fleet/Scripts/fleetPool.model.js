@@ -122,8 +122,8 @@
                 return dirtyFlag.isDirty();
             }),
             // Reset
-            reset = function() {
-                dirtyFlag.reset();
+            reset = function(obj) {
+                dirtyFlag.reset(obj);
             },
             // Convert to server
             convertToServerData = function() {

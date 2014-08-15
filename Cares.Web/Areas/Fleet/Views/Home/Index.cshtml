@@ -21,7 +21,7 @@
                     <select class="form-control" data-bind="options: $root.regionsList, optionsText: 'RegionCodeName', optionsValue: 'RegionId', optionsCaption: '<Region>', value: fleetPoolRegionFilter"></select>
                 </div>
                 <div class="col-xs-3">
-                    <select class="form-control" data-bind="options: $root.operationsList, optionsText: 'OperationName', optionsValue: 'OperationId', optionsCaption: '<Operation>', value: fleetPoolOperationFilter"></select>
+                    <select class="form-control" data-bind="options: $root.operationsList, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '<Operation>', value: fleetPoolOperationFilter"></select>
                 </div>
                 <button type="submit" class="btn btn-success" data-bind="click: search">Search</button>
                 <button type="submit" class="btn btn-default" data-bind="click: reset">Reset</button>

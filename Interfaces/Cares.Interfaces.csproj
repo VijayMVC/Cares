@@ -52,6 +52,7 @@
     <Compile Include="IServices\IAddressBaseDataService.cs" />
     <Compile Include="IServices\IBusinessPartnerBaseDataService.cs" />
     <Compile Include="IServices\ICountryService.cs" />
+    <Compile Include="IServices\IVehicleService.cs" />
     <Compile Include="IServices\IHireGroupService.cs" />
     <Compile Include="IServices\IOccupationTypeService.cs" />
     <Compile Include="IServices\IPaymentTermService.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Repository\ICompanyRepository.cs" />
     <Compile Include="Repository\IAreaRepository.cs" />
     <Compile Include="Repository\IHireGroupUpGradeRepository.cs" />
+    <Compile Include="Repository\IVehicleRepository.cs" />
     <Compile Include="Repository\IOperationsWorkPlaceRepository.cs" />
     <Compile Include="Repository\IMarketingChannelRepository.cs" />
     <Compile Include="Repository\IAddressRepository.cs" />

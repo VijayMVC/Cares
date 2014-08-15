@@ -17,7 +17,8 @@ namespace Cares.Web.ModelMappers
             return new PaymentTermDropDown
             {
                 PaymentTermId = source.PaymentTermId,
-                PaymentTermCodeName = source.PaymentTermCode + " - " + source.PaymentTermName
+                PaymentTermName = source.PaymentTermName,
+                PaymentTermCode = source.PaymentTermCode
             };
         }
         /// <summary>
@@ -30,7 +31,8 @@ namespace Cares.Web.ModelMappers
                 return new DomainModels.PaymentTerm
                 {
                     PaymentTermId = source.PaymentTermId,
-                    PaymentTermName = source.PaymentTermCodeName
+                    PaymentTermName = source.PaymentTermName,
+                    PaymentTermCode = source.PaymentTermCode
                 };
             }
             return new DomainModels.PaymentTerm();

@@ -14,8 +14,8 @@ namespace Cares.Interfaces.Repository
         /// </summary>
         IEnumerable<FleetPool> SearchFleetPool(FleetPoolSearchRequest request, out int rowCount);
         /// <summary>
-        /// Add new FleetPools
+        /// Get Fleet pool with reference data details
         /// </summary>
-        FleetPool AddNewFleetPool(FleetPool request);
+        FleetPool GetFleetPoolWithDetails(long id);
     }
 }

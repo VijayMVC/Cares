@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using Cares.ExceptionHandling;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -40,9 +39,9 @@ namespace Cares.Implementation.Services
             fleetPool.IsDeleted = fleetPool.IsPrivate = fleetPool.IsReadOnly = false;
             fleetPool.UserDomainKey = fleetPoolRepository.UserDomainKey;
 
-            FleetPool fleet=fleetPoolRepository.AddNewFleetPool(fleetPool);
+            //fleet=fleetPoolRepository.Add(fleetPool);
             fleetPoolRepository.SaveChanges();
-            return fleet;
+            return fleetPool;
         }
         /// <summary>
         /// Load Fleet Pool Base Data
@@ -83,19 +82,34 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// update fleetpool 
         /// </summary>
-        public FleetPool UpdateFleetPool(FleetPool fleetPool)
+        public FleetPool SaveFleetPool(FleetPool fleetPool)
         {
             FleetPool fleetPoolDbVersion = fleetPoolRepository.Find(fleetPool.FleetPoolId);
-            fleetPoolDbVersion.FleetPoolCode = fleetPool.FleetPoolCode;
-            fleetPoolDbVersion.FleetPoolName = fleetPool.FleetPoolName;
-            fleetPoolDbVersion.FleetPoolDescription = fleetPool.FleetPoolDescription;
-            fleetPoolDbVersion.RecLastUpdatedDt = DateTime.Now;
-            fleetPoolDbVersion.RegionId = fleetPool.RegionId;
-            fleetPoolDbVersion.OperationId = fleetPool.OperationId;
-            fleetPoolDbVersion.RecLastUpdatedBy = fleetPoolRepository.LoggedInUserIdentity;
-            fleetPoolDbVersion.RowVersion = fleetPoolDbVersion.RowVersion + 1;
+            if (fleetPoolDbVersion == null) //Add Case
+            {
+                fleetPool.IsActive = true;
+                fleetPool.IsDeleted = fleetPool.IsPrivate = fleetPool.IsReadOnly = false;
+                fleetPool.RecLastUpdatedBy = fleetPool.RecCreatedBy = fleetPoolRepository.LoggedInUserIdentity;
+                fleetPool.RecCreatedDt = fleetPool.RecLastUpdatedDt = DateTime.Now;
+                fleetPool.RowVersion = 0;
+                fleetPool.UserDomainKey = fleetPoolRepository.UserDomainKey;
+                fleetPoolRepository.Add(fleetPool);                                
+            }
+            else //Update Case
+            {
+                
+                fleetPoolDbVersion.FleetPoolCode = fleetPool.FleetPoolCode;
+                fleetPoolDbVersion.FleetPoolName = fleetPool.FleetPoolName;
+                fleetPoolDbVersion.FleetPoolDescription = fleetPool.FleetPoolDescription;
+                fleetPoolDbVersion.RecLastUpdatedDt = DateTime.Now;
+                fleetPoolDbVersion.RegionId = fleetPool.RegionId;
+                fleetPoolDbVersion.OperationId = fleetPool.OperationId;
+                fleetPoolDbVersion.RecLastUpdatedBy = fleetPoolRepository.LoggedInUserIdentity;
+                fleetPoolDbVersion.RowVersion = fleetPoolDbVersion.RowVersion + 1;
+                
+            }
             fleetPoolRepository.SaveChanges();
-            return fleetPoolRepository.Find(fleetPool.FleetPoolId);
+            return fleetPoolRepository.GetFleetPoolWithDetails(fleetPool.FleetPoolId);
         }
 
         #endregion

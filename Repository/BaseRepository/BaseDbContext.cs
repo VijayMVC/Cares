@@ -291,6 +291,11 @@ namespace Cares.Repository.BaseRepository
         /// Business Partner Relationship item list Db Set
         /// </summary>
         public DbSet<BusinessPartnerRelationship> BusinessPartnerRelationships { get; set; }
+
+        /// <summary>
+        /// Vehicle DB Set
+        /// </summary>
+        public DbSet<Vehicle> Vehicles { get; set; }
         
         #endregion
     }
