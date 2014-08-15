@@ -9,7 +9,6 @@ namespace Cares.Web.ModelMappers
     /// </summary>
     public static class BusinessLegalStatusMapper
     {
-        #region Public
         /// <summary>
         ///  Create web model from entity
         /// </summary>
@@ -36,6 +35,5 @@ namespace Cares.Web.ModelMappers
             }
             return new DomainModels.BusinessLegalStatus();
         }
-        #endregion
     }
 }

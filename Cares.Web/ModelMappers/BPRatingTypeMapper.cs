@@ -7,7 +7,6 @@ namespace Cares.Web.ModelMappers
     /// </summary>
     public static class BPRatingTypeMapper
     {
-        #region Public
         /// <summary>
         ///  Create web api model from domail model
         /// </summary>
@@ -34,6 +33,5 @@ namespace Cares.Web.ModelMappers
             }
             return new Cares.Models.DomainModels.BpRatingType();
         }
-        #endregion
     }
 }

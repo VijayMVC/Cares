@@ -17,6 +17,8 @@ namespace Cares.Implementation.Services
     {
         #region Private
         private readonly IBusinessPartnerRepository businessPartnerRepository;
+        private readonly IBusinessPartnerIndividualRepository businessPartnerIndividualRepository;
+        private readonly IBusinessPartnerCompanyRepository businessPartnerCompanyRepository;
         private readonly IBusinessPartnerInTypeRepository businessPartnerInTypeRepository;
         private readonly IPhoneRepository businessPartnerPhoneRepository;
         private readonly IAddressRepository businessPartnerAddressRepository;
@@ -33,7 +35,9 @@ namespace Cares.Implementation.Services
             IPhoneRepository phoneRepository,
             IAddressRepository addressRepository,
             IBusinessPartnerMarketingChannelRepository businessPartnerMarketingChannelRepository,
-            IBusinessPartnerRelationshipRepository businessPartnerRelationshipRepository)
+            IBusinessPartnerRelationshipRepository businessPartnerRelationshipRepository,
+            IBusinessPartnerCompanyRepository businessPartnerCompanyRepository,
+            IBusinessPartnerIndividualRepository businessPartnerIndividualRepository)
         {
             if (businessPartnerInTypeRepository == null)
                 throw new ArgumentNullException("businessPartnerInTypeRepository");
@@ -44,6 +48,8 @@ namespace Cares.Implementation.Services
             this.businessPartnerAddressRepository = addressRepository;
             this.businessPartnerMarketingChannelRepository = businessPartnerMarketingChannelRepository;
             this.businessPartnerRelationshipRepository = businessPartnerRelationshipRepository;
+            this.businessPartnerCompanyRepository = businessPartnerCompanyRepository;
+            this.businessPartnerIndividualRepository = businessPartnerIndividualRepository;
         }
 
         #endregion
@@ -76,6 +82,69 @@ namespace Cares.Implementation.Services
             {
                 throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, "Business Partner with Id {0} not found!", businessPartner.BusinessPartnerId));
             }
+            
+            // delete business partner individual
+            #region delete business partner Individual
+            if (businessPartnerDbVersion.BusinessPartnerIndividual != null)
+            {
+                businessPartnerIndividualRepository.Delete(businessPartnerDbVersion.BusinessPartnerIndividual);
+            }
+            #endregion
+
+            // delete business partner company
+            #region delete busiess partner company
+            if (businessPartnerDbVersion.BusinessPartnerCompany != null)
+            {
+                businessPartnerCompanyRepository.Delete(businessPartnerDbVersion.BusinessPartnerCompany);
+            }
+            #endregion
+            
+            // delete business partner intypes
+            #region delete business partner intypes
+            List<BusinessPartnerInType> inTypesDeleteList = new List<BusinessPartnerInType>();
+            foreach (BusinessPartnerInType item in businessPartnerDbVersion.BusinessPartnerInTypes)
+                inTypesDeleteList.Add(item);
+            foreach (BusinessPartnerInType itemToDelete in inTypesDeleteList)
+                businessPartnerInTypeRepository.Delete(itemToDelete);
+            #endregion
+            
+            // delete business partner phone list
+            #region delete business partner phone list
+            List<Phone> phoneDeleteList = new List<Phone>();
+            foreach (Phone item in businessPartnerDbVersion.BusinessPartnerPhoneNumbers)
+                phoneDeleteList.Add(item);
+            foreach (Phone item in phoneDeleteList)
+                businessPartnerPhoneRepository.Delete(item);
+            #endregion
+            
+            // delete business partner address list
+            #region delete business partner address list
+            List<Address> addressDeleteList = new List<Address>();
+            foreach (Address item in businessPartnerDbVersion.BusinessPartnerAddressList)
+                addressDeleteList.Add(item);
+            foreach (Address item in addressDeleteList)
+                businessPartnerAddressRepository.Delete(item);
+            #endregion
+            
+            // delete business partner marketing channel
+            #region delete business partner marketing channel
+            List<BusinessPartnerMarketingChannel> marketingChannelDeleteList = new List<BusinessPartnerMarketingChannel>();
+            foreach (BusinessPartnerMarketingChannel item in businessPartnerDbVersion.BusinessPartnerMarketingChannels)
+                marketingChannelDeleteList.Add(item);
+            foreach (BusinessPartnerMarketingChannel item in marketingChannelDeleteList)
+                businessPartnerMarketingChannelRepository.Delete(item);
+            #endregion
+
+            // delete business partner relationship item
+            #region delete business partner relationship item
+            List<BusinessPartnerRelationship> relationshipItemDeleteList = new List<BusinessPartnerRelationship>();
+            foreach (BusinessPartnerRelationship item in businessPartnerDbVersion.BusinessPartnerRelationshipItemList)
+                relationshipItemDeleteList.Add(item);
+            foreach(BusinessPartnerRelationship item in businessPartnerDbVersion.BusinessPartnerRelationshipItemList)
+                businessPartnerRelationshipRepository.Delete(item);
+            #endregion
+
+            // delete business partner
             businessPartnerRepository.Delete(businessPartnerDbVersion);
             businessPartnerRepository.SaveChanges();
         }
