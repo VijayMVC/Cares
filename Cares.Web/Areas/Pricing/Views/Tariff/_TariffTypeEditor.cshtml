@@ -1,0 +1,111 @@
+﻿
+<div class="well col-md-12" id="tariffTypeEditor" data-bind="visible: istariffTypeEditorVisible, with: addtariffType" style="display: none;">
+    <div class="float-left detailsContainer">
+        <h3 class="page-header detailsHeaderSection">Tariff Type Details</h3>
+        <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onSaveTariffType">Save</button>
+        <button class="btn btn-default" id="saveBtn" data-bind="click: $root.closeTariffTypeEditor">Cancel</button>
+    </div>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="tariffTypeCode" class="control-label h5 col-sm-2">Tariff Type Code *</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="<Tariff Type Code>" id="tariffTypeCode" data-bind="value: tariffTypeCode, validationTooltip: tariffTypeCode" />
+            </div>
+            <label for="tariffTypeName" class="control-label h5 col-sm-2">Tariff Type Name</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="<Tariff Type Name>" id="tariffTypeName" data-bind="value: tariffTypeName, validationTooltip: tariffTypeName" />
+            </div>
+            <label for="tariffTypeDescription" class="control-label h5 col-sm-2">Description</label>
+            <div class="col-md-2">
+                <textarea class="form-control" rows="2" placeholder="<Description>" id="tariffTypeDescription" data-bind="value: tariffTypeDescription, valueUpdate: 'keyup'"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+
+            <label for="tariffTypeCompany" class="control-label h5 col-sm-2">Company *</label>
+            <div class="col-md-2">
+                <select id="tariffTypeCompany" class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '<Company>', value: companyId, validationTooltip: companyId"></select>
+            </div>
+            <label for="tariffTypeDepartment" class="control-label h5 col-sm-2">Department *</label>
+            <div class="col-md-2">
+                <select id="tariffTypeDepartment" class="form-control" data-bind="options: $root.departments, optionsText: 'DepartmentCodeName', optionsValue: 'DepartmentId', optionsCaption: '<Department>' , value: departmentId, validationTooltip: departmentId"></select>
+            </div>
+            <label for="tariffTypeOperation" class="control-label h5 col-sm-2">Operation *</label>
+            <div class="col-md-2">
+                <select id="tariffTypeOperation" class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '<Operation>' , value: operationId, validationTooltip: operationId"></select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="tariffTypeMeasurementUnit" class="control-label h5 col-sm-2">Measurement Unit *</label>
+            <div class="col-md-4">
+                <select id="tariffTypeMeasurementUnit" class="form-control" data-bind="options: $root.measurementUnits, optionsText: 'MeasurementUnitCodeName', optionsValue: 'MeasurementUnitId', optionsCaption: '<Measurement Unit>' , value: measurementUnitId, validationTooltip: measurementUnitId"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="tariffTypeStartFrom" class="control-label h5 col-sm-2">Start From *</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="<Start From>" id="tariffTypeStartFrom" data-bind="value: durationFrom, validationTooltip: durationFrom" />
+            </div>
+            <label for="tariffTypeEndTo" class="control-label h5 col-sm-2">End To *</label>
+            <div class="col-md-2">
+                <input type="text" placeholder="<End To>" class="form-control" id="tariffTypeEndTo" data-bind="value: durationTo, validationTooltip: durationTo" />
+            </div>
+            <label for="tariffTypeGraceCode" class="control-label h5 col-sm-2">Grace Period *</label>
+            <div class="col-md-2">
+                <input type="text" placeholder="<Grace Period>" class="form-control" id="tariffTypeGraceCode" data-bind="value: gracePeriod, validationTooltip: gracePeriod" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="tariffTypeEffectiveDate" class="control-label h5 col-sm-2">Effective start Date *</label>
+            <div class="col-md-2">
+                <input type="text" placeholder="<Effective start Date>" class="form-control" id="tariffTypeEffectiveDate" data-bind="datepicker: effectiveDate, validationTooltip: effectiveDate" />
+            </div>
+            <label for="tariffTypepricingStrategies" class="control-label h5 col-sm-2">Pricing Strategy *</label>
+            <div class="col-md-2">
+                <select id="tariffTypepricingStrategies" class="form-control" data-bind="options: $root.pricingStrategies, optionsText: 'PricingStrategyCodeName', optionsValue: 'PricingStrategyId', optionsCaption: '<Pricing Strategy>' , value: pricingStrategyId, validationTooltip: pricingStrategyId"></select>
+            </div>
+        </div>
+
+        <div class="form-group">
+
+        </div>
+    </form>
+    <div class="panel panel-info">
+
+        <div class="panel-heading">Tariff Revisions</div>
+        <table id="tariffTypeRevisions" class="table">
+            <thead>
+                <tr>
+                    <th> <span id="3">Duration<br />From<span></span></span></th>
+                    <th> <span id="4">Duration<br />To<span></span></span></th>
+                    <th> <span id="5">Grace<br />Period<span></span></span></th>
+                    <th> <span id="6">Effective<br />Date<span></span></span></th>
+                    <th> <span id="7">Revision<span></span></span></th>
+                    <th> <span id="8">Created<br />By<span></span></span></th>
+                    <th> <span id="8">Created<br />Date<span></span></span></th>
+                    <th> <span id="9">Modified<br />By<span></span></span></th>
+                    <th> <span id="10">Modified<br />Date<span></span></span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- ko template: { name: $root.templateToUseForRevision , foreach: $root.revisions } -->
+                <!-- /ko -->
+            </tbody>
+        </table>
+        <script id="itemtariffTypeRevisionTemplate" type="text/html">
+            <tr>
+                <td data-bind="text: durationFrom"></td>
+                <td data-bind="text: durationTo"></td>
+                <td data-bind="text: gracePeriod"></td>
+                <td data-bind="text: formattedEffectiveDate"></td>
+                <td data-bind="text: revisionNumber"></td>
+                <td data-bind="text: recCreatedBy"></td>
+                <td data-bind="text: formattedCreatedDate"></td>
+                <td data-bind="text: recLastUpdatedBy"></td>
+                <td data-bind="text: formattedModifiedDate"></td>
+            </tr>
+        </script>
+    </div>
+
+</div>

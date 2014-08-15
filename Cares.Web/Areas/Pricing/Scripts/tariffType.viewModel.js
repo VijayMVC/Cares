@@ -2,7 +2,7 @@
     Module with the view model for the tariff type
 */
 define("tariffType/tariffType.viewModel",
-    ["jquery", "amplify", "ko", "tariffType/tariffType.dataservice", "tariffType/tariffTypeWithKoMapping.model", "common/confirmation.viewModel", "common/pagination"],
+    ["jquery", "amplify", "ko", "tariffType/tariffType.dataservice", "tariffType/tariffType.model", "common/confirmation.viewModel", "common/pagination"],
     function ($, amplify, ko, dataservice, model, confirmation, pagination) {
         var ist = window.ist || {};
         ist.tariffType = {
@@ -68,8 +68,8 @@ define("tariffType/tariffType.viewModel",
                         ko.applyBindings(view.viewModel, view.bindingRoot);
                         getBase();
                         // Set Pager
-                        pager(pagination.Pagination({}, tariffTypes, gettariffType));
-                        gettariffType();
+                        pager(pagination.Pagination({}, tariffTypes, getTariffType));
+                        getTariffType();
                     },
                     //Template For Revision List
                     templateToUseForRevision = function () {
@@ -88,7 +88,7 @@ define("tariffType/tariffType.viewModel",
                     },
                     // Get Base
                     getBase = function () {
-                        dataservice.gettariffTypeBase({
+                        dataservice.getTariffTypeBase({
                             success: function (data) {
                                 //Company array
                                 companies.removeAll();
@@ -119,12 +119,12 @@ define("tariffType/tariffType.viewModel",
                     // Search 
                     search = function () {
                         pager().reset();
-                        gettariffType();
+                        getTariffType();
                     },
                     // Get tariff Types
-                    gettariffType = function () {
+                    getTariffType = function () {
                         isLoadingtariffTypes(true);
-                        dataservice.gettariffType({
+                        dataservice.getTariffType({
                             tariffTypeCode: tariffTypeCodeFilter(),
                             CompanyId: companyFilter(),
                             MeasurementUnitId: measurementUnitFilter(),
@@ -232,14 +232,14 @@ define("tariffType/tariffType.viewModel",
                     onEditTariffType = function (tariffType, e) {
                         selectedTariffTypeId(tariffType.tariffTypeId());
                         selectedtariffType(tariffType);
-                        gettariffTypeById();
+                        getTariffTypeById();
                         showTariffTypeEditor();
                         e.stopImmediatePropagation();
                     },
                     //Get Tariff Type By Id
-                    gettariffTypeById = function () {
+                    getTariffTypeById = function () {
                         isLoadingtariffTypes(true);
-                        dataservice.gettariffTypeById({
+                        dataservice.getTariffTypeById({
                             id: selectedTariffTypeId()
 
                         }, {
@@ -303,7 +303,7 @@ define("tariffType/tariffType.viewModel",
                     templateToUseForRevision: templateToUseForRevision,
                     selecttariffType: selecttariffType,
                     search: search,
-                    gettariffType: gettariffType,
+                    getTariffType: getTariffType,
                     getBase: getBase,
                     pager: pager,
                     istariffTypeEditorVisible: istariffTypeEditorVisible,
@@ -313,7 +313,7 @@ define("tariffType/tariffType.viewModel",
                     createTariffType: createTariffType,
                     onSaveTariffType: onSaveTariffType,
                     saveTariffType: saveTariffType,
-                    gettariffTypeById: gettariffTypeById,
+                    getTariffTypeById: getTariffTypeById,
                     closeTariffTypeEditor: closeTariffTypeEditor,
                     filterSectionVisilble: filterSectionVisilble,
                     collapseFilterSection: collapseFilterSection,
