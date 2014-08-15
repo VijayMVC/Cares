@@ -110,7 +110,7 @@ define("Fleet/fleetPool.viewModel",
                                     isEditMode(false);
                                     isFleetPoolEditorVisible(false);
                                 } else {
-                                    fleetPools.add(model.fleetPoolServertoClinetMapper(dataFromServer));
+                                    fleetPools.splice(0, 0, model.fleetPoolServertoClinetMapper(dataFromServer));                                    
                                     isFleetPoolEditorVisible(false);
                                 }
                                 toastr.success("Successfully saved.");
