@@ -55,7 +55,7 @@ define("hireGroup/hireGroup.viewModel",
                     sortOnHg = ko.observable(1),
                     // Sort Order -  true means asc, false means desc
                     sortIsAscHg = ko.observable(true),
-                    // Is Tariff Rate Editor Visible
+                    // Is HIre Group Editor Visible
                     isHireGroupEditorVisible = ko.observable(false),
                     // Pagination
                     pager = ko.observable(),
@@ -97,6 +97,8 @@ define("hireGroup/hireGroup.viewModel",
                      //Create Hire Group Rate
                     createHireGroup = function () {
                         var hireGroup = new model.HireGroup();
+                        hireGroupDetails.removeAll();
+                        hireGroupUpGradeList.removeAll();
                         // Select the newly added Hire Group
                         selectedHireGroup(hireGroup);
                         selectedHireGroup().vehicleDetail(new model.HireGroupDetail());
@@ -105,18 +107,19 @@ define("hireGroup/hireGroup.viewModel",
                     },
                       //Edit Hire Group
                     onEditHireGroup = function (hireGroup, e) {
-                        //selectedTariffRateId(tariffRate.tariffRateId());
+                        hireGroupDetails.removeAll();
+                        hireGroupUpGradeList.removeAll();
                         selectedHireGroup(hireGroup);
                         selectedHireGroupId(hireGroup.hireGroupId());
                         selectedHireGroup().vehicleDetail(new model.HireGroupDetail());
+                        selectedHireGroup().hireGroupUpGrade(new model.HireGroupUpGrade());
                         //selectedtariffRateCopy(model.TariffRateCoppier(selectedtariffRate()));
-                        //getHireGroupDetails(tariffRate);
-                        gettariffTypeById();
+                        getHireGroupById();
                         showHireGroupEditor();
                         e.stopImmediatePropagation();
                     },
                      //Get Hire Group data By Id
-                    gettariffTypeById = function () {
+                    getHireGroupById = function () {
                         isLoadingHireGroups(true);
                         dataservice.getHireGroupDetailById({
                             id: selectedHireGroupId()
@@ -216,7 +219,14 @@ define("hireGroup/hireGroup.viewModel",
                             }
                         });
                     },
-
+                      // Delete Hire Group Detail
+                    deleteHireGroupDetail = function (hireGroup) {
+                        hireGroupDetails.remove(hireGroup);
+                    },
+                      // Delete Hire Group Up Grade
+                    deleteHireGroupUpGrade = function (hireGroup) {
+                        hireGroupUpGradeList.remove(hireGroup);
+                    },
                       // Do Before Logic
                     doBeforeAdd = function () {
                         var flag = true;
@@ -238,6 +248,8 @@ define("hireGroup/hireGroup.viewModel",
                       // Save Hire Group
                     onSaveHireGroup = function (hireGroup) {
                         if (doBeforeSave()) {
+                            hireGroup.hireGroupDetailList.removeAll();
+                            hireGroup.upgragedHireGroupList.removeAll();
                             _.each(hireGroupDetails(), function (item) {
                                 hireGroup.hireGroupDetailList.push(model.HireGroupDetailServerMapper(item));
                             });
@@ -266,7 +278,7 @@ define("hireGroup/hireGroup.viewModel",
                         dataservice[method](model.HireGroupServerMapper(hireGroup), {
                             success: function (data) {
                                 var hireGroupResult = new model.HireGroupClientMapper(data);
-                                if (selectedHireGroup().hireGroupId === undefined) {
+                                if (selectedHireGroup().hireGroupId() === undefined) {
                                     hireGroups.splice(0, 0, hireGroupResult);
                                 } else {
                                     selectedHireGroup().hireGroupCode(hireGroupResult.hireGroupCode());
@@ -340,7 +352,14 @@ define("hireGroup/hireGroup.viewModel",
                     },
                     modelYears = [{ Id: 2001, Text: '2001' },
                         { Id: 2002, Text: '2002' },
-                        { Id: 2003, Text: '2003' }
+                        { Id: 2003, Text: '2003' },
+                         { Id: 2004, Text: '2004' },
+                        { Id: 2005, Text: '2005' },
+                        { Id: 2006, Text: '2006' },
+                        { Id: 2007, Text: '2007' }
+
+
+
                     ],
                     // Get Hire Group
                     getHireGroup = function () {
@@ -418,6 +437,8 @@ define("hireGroup/hireGroup.viewModel",
                     onVehicleCategoryChange: onVehicleCategoryChange,
                     onSaveHireGroup: onSaveHireGroup,
                     onDeleteHireGroup: onDeleteHireGroup,
+                    deleteHireGroupDetail: deleteHireGroupDetail,
+                    deleteHireGroupUpGrade: deleteHireGroupUpGrade,
                     //selectHireGroup: selectHireGroup,
                     collapseFilterSection: collapseFilterSection,
                     showFilterSection: showFilterSection,
