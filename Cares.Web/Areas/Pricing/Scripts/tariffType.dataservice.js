@@ -34,7 +34,7 @@ define("tariffType/tariffType.dataservice", function () {
                     amplify.request.define('createTariffType', 'ajax', {
                         url: '/Api/TariffType',
                         dataType: 'json',
-                        type: 'PUT'
+                        type: 'POST'
                     });
 
                     // Define request to update updatetariffType

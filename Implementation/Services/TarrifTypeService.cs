@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -43,7 +44,7 @@ namespace Cares.Implementation.Services
                 Companies = companyRepository.GetAll(),
                 MeasurementUnits = measurementUnit.GetAll(),
                 Departments = departmentRepository.GetAll(),
-                Operations = operationRepository.GetAll(),
+                Operations = operationRepository.GetSalesOperation(),
                 PricingStrategies = pricingStrategyRepository.GetAll()
 
             };
@@ -93,11 +94,37 @@ namespace Cares.Implementation.Services
         /// <returns></returns>
         public TariffType AddtariffType(TariffType tariffType)
         {
-            tariffTypeRepository.Add(tariffType);
-            tariffTypeRepository.SaveChanges();
+            long oldRecordId = tariffType.TariffTypeId;
+            if (tariffType.TariffTypeId == 0 ) //Add Case
+            {
+                tariffType.IsActive = true;
+                tariffType.IsDeleted = tariffType.IsPrivate = tariffType.IsReadOnly = false;
+                tariffType.RecLastUpdatedBy = tariffType.RecCreatedBy = tariffTypeRepository.LoggedInUserIdentity;
+                tariffType.RecCreatedDt = tariffType.RecLastUpdatedDt = DateTime.Now;
+                tariffType.RowVersion = 0;
+                tariffType.UserDomainKey = tariffTypeRepository.UserDomainKey;
+                tariffTypeRepository.Add(tariffType);
+                tariffTypeRepository.SaveChanges();
+            }
+            else //Update Case
+            {
+                tariffType.IsActive = true;
+                tariffType.IsDeleted = tariffType.IsPrivate = tariffType.IsReadOnly = false;
+                tariffType.RecLastUpdatedBy = tariffType.RecCreatedBy = tariffTypeRepository.LoggedInUserIdentity;
+                tariffType.RecCreatedDt = tariffType.RecLastUpdatedDt = DateTime.Now;
+                tariffType.RevisionNumber = tariffType.RevisionNumber + 1;
+                tariffType.UserDomainKey = tariffTypeRepository.UserDomainKey;
+                tariffTypeRepository.Add(tariffType);
+                tariffTypeRepository.SaveChanges();
+
+                TariffType oldTariffRecord = tariffTypeRepository.Find(oldRecordId);
+                oldTariffRecord.ChildTariffTypeId = tariffType.TariffTypeId;
+                tariffTypeRepository.SaveChanges();
+            }
             TariffType tariff = tariffTypeRepository.Find(tariffType.TariffTypeId);
             tariffTypeRepository.LoadDependencies(tariff);
             return tariff;
+
         }
         /// <summary>
         /// Update Tariff Type

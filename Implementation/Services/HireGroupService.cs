@@ -125,8 +125,8 @@ namespace Cares.Implementation.Services
             {
                 foreach (var hireGroupDetail in request.HireGroupDetails)
                 {
-                    hireGroupDetail.RecCreatedDt = System.DateTime.Now;
-                    hireGroupDetail.RecLastUpdatedDt = System.DateTime.Now;
+                    hireGroupDetail.RecCreatedDt = DateTime.Now;
+                    hireGroupDetail.RecLastUpdatedDt = DateTime.Now;
                     hireGroupDetail.UserDomainKey = hireGroupRepository.UserDomainKey;
                     hireGroupDetail.RecCreatedBy = "Cares";
                     hireGroupDetail.RowVersion = 0;

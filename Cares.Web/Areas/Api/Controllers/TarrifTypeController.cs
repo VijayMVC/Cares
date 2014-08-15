@@ -47,7 +47,7 @@ namespace Cares.Web.Areas.Api.Controllers
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
 
-            return tariffTypeService.UpdatetariffType(tariffType.CreateFrom()).CreateFrom();
+            return tariffTypeService.AddtariffType(tariffType.CreateFrom()).CreateFrom();
         }
         /// <summary>
         /// Add a tariff Type

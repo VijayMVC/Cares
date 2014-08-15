@@ -62,10 +62,7 @@ namespace Cares.Web.ModelMappers
                 GracePeriod = source.GracePeriod,
                 EffectiveDate = source.EffectiveDate,
                 PricingStrategyId = source.PricingStrategyId,
-                RecCreatedDt = System.DateTime.Now,
-                RecLastUpdatedDt = System.DateTime.Now,
-                RevisionNumber = source.RevisionNumber,
-                RecCreatedBy = "Cares"
+                RevisionNumber = source.RevisionNumber
             };
 
 

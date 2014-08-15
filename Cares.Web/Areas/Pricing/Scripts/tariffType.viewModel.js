@@ -79,7 +79,7 @@ define("tariffType/tariffType.viewModel",
                     maptariffTypes = function (data) {
                         var tariffTypeList = [];
                         _.each(data.ServertariffTypes, function (item) {
-                            var tariffType = new model.tariffType(item);
+                            var tariffType = new model.TariffType(item);
                             tariffTypeList.push(tariffType);
 
                         });
@@ -175,9 +175,9 @@ define("tariffType/tariffType.viewModel",
                     },
                        // Save Tariff Type
                     saveTariffType = function (tariffType) {
-                        var method = "updatetariffType";
+                        var method = "updateTariffType";
                         if (!addtariffType().tariffTypeId()) {
-                            method = "createtariffType";
+                            method = "createTariffType";
                         }
 
                         dataservice[method](model.TariffTypeServerMapper(tariffType), {
@@ -244,9 +244,9 @@ define("tariffType/tariffType.viewModel",
 
                         }, {
                             success: function (data) {
-                                addtariffType(model.TariffTypeClientMapper(data.tariffType));
+                                addtariffType(model.TariffTypeClientMapper(data.TariffType));
                                 revisions.removeAll();
-                                _.each(data.tariffTypeRevisions, function (item) {
+                                _.each(data.TariffTypeRevisions, function (item) {
                                     revisions.push(new model.TariffTypeClientMapper(item));
                                 });
 
