@@ -22,12 +22,8 @@ namespace Cares.Interfaces.IServices
         /// </summary>
         void DeleteFleetPool(int id);
         /// <summary>
-        /// Add new FleetPools
-        /// </summary>
-        FleetPool AddNewFleetPool(FleetPool fleetPool);
-        /// <summary>
         /// update fleetpool 
         /// </summary>
-        FleetPool UpdateFleetPool(FleetPool request);
+        FleetPool SaveFleetPool(FleetPool request);
     }
 }

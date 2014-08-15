@@ -37,28 +37,17 @@ namespace Cares.Web.Areas.Api.Controllers
             }
 
             return fleetPoolService.SerchFleetPool(request).CreateFrom();
-        }
-        /// <summary>
-        /// Add new FleetPools
-        /// </summary>
-        public FleetPool Post(FleetPool fleetPool) 
-        {
-            if (fleetPool == null || !ModelState.IsValid)
-            {
-                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
-            }
-            return fleetPoolService.AddNewFleetPool(fleetPool.CreateFrom()).CreateFrom();
-        }
+        }        
         /// <summary>
         /// update FleetPools
         /// </summary>
-        public FleetPool Put(FleetPool fleetPool)
+        public FleetPool Post(FleetPool fleetPool)
         {
             if (fleetPool == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return fleetPoolService.UpdateFleetPool(fleetPool.CreateFrom()).CreateFrom();
+            return fleetPoolService.SaveFleetPool(fleetPool.CreateFrom()).CreateFrom();
         }
        
         #endregion
