@@ -22,6 +22,10 @@ namespace Cares.Web.Models
         /// </summary>
         public string BusinessPartnerCompanyName { get; set; }
         /// <summary>
+        /// Business Partner Company Code Name
+        /// </summary>
+        public string BusinessPartnerCompanyCodeName { get; set; }
+        /// <summary>
         /// Established Since
         /// </summary>
         public DateTime? EstablishedSince { get; set; }
