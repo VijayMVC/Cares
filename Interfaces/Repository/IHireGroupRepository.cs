@@ -12,12 +12,6 @@ namespace Cares.Interfaces.Repository
     {
 
         /// <summary>
-        /// Get Hire Groups By Vehicle Make, Category, Model, Year and Hire Group Code
-        /// For AutoComplete
-        /// </summary>
-        IEnumerable<HireGroup> GetByCodeAndVehicleInfo(string searchText);
-
-        /// <summary>
         /// Get List Of Hire Group based on search criteria
         /// </summary>
         /// <param name="hireGroupSearchRequest"></param>
@@ -33,8 +27,11 @@ namespace Cares.Interfaces.Repository
         /// Get Hire Groups that are not parent hire groups 
         /// </summary>
         IEnumerable<HireGroup> GetHireGroupList();
-
-
+        /// <summary>
+        /// Load Dependencies
+        /// </summary>
+        /// <param name="hireGroup"></param>
+        void LoadDependencies(HireGroup hireGroup);
     }
 }
 

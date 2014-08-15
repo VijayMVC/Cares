@@ -13,7 +13,23 @@
         /// <summary>
         /// Operation Code
         /// </summary>
-        public string OperationCodeName { get; set; }
+        public string OperationCode { get; set; }
+
+        /// <summary>
+        /// Operation Name
+        /// </summary>
+        public string OperationName { get; set; }
+
+        /// <summary>
+        /// Operation Code Name
+        /// </summary>
+        public string OperationCodeName
+        {
+            get
+            {
+                return string.Format("{0}-{1}", OperationCode, OperationName);
+            }
+        }
         #endregion
        
     }

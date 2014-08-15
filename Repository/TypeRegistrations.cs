@@ -54,6 +54,8 @@ namespace Cares.Repository
             unityContainer.RegisterType<IAreaRepository, AreaRepository>();
             unityContainer.RegisterType<IOperationsWorkPlaceRepository, OperationsWorkPlaceRepository>();
             unityContainer.RegisterType<IMarketingChannelRepository, MarketingChannelRepository>();
+            unityContainer.RegisterType<IVehicleRepository, VehicleRepository>();
+            unityContainer.RegisterType<IHireGroupUpGradeRepository, HireGroupUpGradeRepository>();
             unityContainer.RegisterType<IBusinessPartnerRelationshipTypeRepository, BusinessPartnerRelationshipTypeRepository>();
             unityContainer.RegisterType<IPhoneRepository, PhoneRepository>();
             unityContainer.RegisterType<IAddressRepository, AddressRepository>();

@@ -1,22 +1,33 @@
 ﻿#rentalAgreementBinding {
  
+    .well
+    {
+        padding-top: 0;
+    }
+
+    .form-group
+    {
+        margin-bottom: 5px;
+    }
+
     #raPanels {
-        width: 24.5%;
+        width: 25.9%;
         float: left;
     }
 
     #raMain {
-        width: 49.5%;
+        width: 36.5%;
         float: left;
         margin-left: .5%;
         margin-right: .5%;
 
         #ra{
-
+            min-height: 300px;
         }
 
         #vehicle{
             margin-top: .5%;
+            min-height: 105px;
         }
 
         input,
@@ -24,11 +35,26 @@
         textarea {
             max-width: 100%;
         }
+
+        #vehicleImage
+		{
+			max-width: 32px;
+			max-height: 32px;
+		}
     }
 
     #raBilling {
-        width: 24.5%;
+        width: 36.5%;
         float: left;
-        min-height: 343px;
+
+        #customer{
+            min-height: 300px;
+        }
+
+        #billing
+        {
+            margin-top: .5%;
+            min-height: 105px;
+        }
     }
 }

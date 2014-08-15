@@ -13,6 +13,10 @@ define("rentalAgreement/rentalAgreement.view",
                 viewModel = specifiedViewModel,
                 // Binding root used with knockout
                 bindingRoot = $("#rentalAgreementBinding")[0],
+                // Request for service
+                throttledServiceRequest = _.debounce(function (query, data) {
+                    viewModel.getHireGroups(query, data);
+                }),
                 // Initialize
                 initialize = function () {
                     if (!bindingRoot) {

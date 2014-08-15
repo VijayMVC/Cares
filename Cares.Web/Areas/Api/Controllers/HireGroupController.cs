@@ -18,6 +18,7 @@ namespace Cares.Web.Areas.Api.Controllers
         #region Private
         private readonly IHireGroupService hireGroupService;
         #endregion
+
         #region Constructors
         /// <summary>
         /// Constructor
@@ -32,16 +33,21 @@ namespace Cares.Web.Areas.Api.Controllers
             this.hireGroupService = hireGroupService;
         }
         #endregion
+
         #region Public
         // GET api controller
         public HireGroupSearchResponse Get([FromUri] HireGroupSearchRequest request)
         {
+            if (request == null || !ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
             return hireGroupService.LoadHireGroups((request)).CreateFrom();
         }
         /// <summary>
         /// Add a Hire Group
         /// </summary>
-        public void Put(HireGroup hireGroup)
+        public HireGroup Put(HireGroup hireGroup)
         {
 
             if (hireGroup == null || !ModelState.IsValid)
@@ -49,18 +55,18 @@ namespace Cares.Web.Areas.Api.Controllers
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
 
-            hireGroupService.AddHireGroup(hireGroup.CreateFrom());
+            return hireGroupService.AddHireGroup(hireGroup.CreateFrom()).CreateFrom();
         }
         /// <summary>
         /// Update a Hire Group
         /// </summary>
-        public void Post(HireGroup hireGroup)
+        public HireGroup Post(HireGroup hireGroup)
         {
             if (hireGroup == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            hireGroupService.UpdateHireGroup(hireGroup.CreateFrom());
+            return hireGroupService.UpdateHireGroup(hireGroup.CreateFrom()).CreateFrom();
         }
         /// <summary>
         /// Delete a Hire Group

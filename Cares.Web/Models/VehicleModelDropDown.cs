@@ -13,7 +13,22 @@
         /// <summary>
         /// Vehicl eModel Code
         /// </summary>
-        public string VehicleModelCodeName { get; set; }
+        public string VehicleModelCode { get; set; }
+        /// <summary>
+        /// Vehicl eModel Name
+        /// </summary>
+        public string VehicleModelName { get; set; }
+
+        /// <summary>
+        /// Vehicle Model Code Name
+        /// </summary>
+        public string VehicleModelCodeName
+        {
+            get
+            {
+                return string.Format("{0}-{1}", VehicleModelCode, VehicleModelName);
+            }
+        }
         #endregion
     }
 }

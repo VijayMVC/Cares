@@ -18,7 +18,7 @@ namespace Cares.Web.Models
             VehicleCategories = new List<VehicleCategoryDropDown>();
             VehicleMakes = new List<VehicleMakeDropDown>();
             VehicleModels = new List<VehicleModelDropDown>();
-            HireGroups = new List<HireGroup>();
+            HireGroups = new List<HireGroupDropDown>();
         }
         #endregion
 
@@ -46,7 +46,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Hire Groups i-e exlude parent hire groups
         /// </summary>
-        public IEnumerable<HireGroup> HireGroups { get; set; }
+        public IEnumerable<HireGroupDropDown> HireGroups { get; set; }
         #endregion
     }
 }

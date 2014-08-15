@@ -516,6 +516,39 @@ namespace Cares.Implementation.Services
         {
             return businessPartnerRepository.GetById(id);
         }
+
+        /// <summary>
+        /// Get By License No
+        /// </summary>
+        public BusinessPartner GetByLicenseNo(string licenseNo)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Get By Lic No
+        /// </summary>
+        public BusinessPartner GetByNicNo(string nicNo)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Get By Passport No
+        /// </summary>
+        public BusinessPartner GetByPassportNo(string passportNo)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Get By Phone No
+        /// </summary>
+        public BusinessPartner GetByPhoneNo(string passportNo)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
     }
 }

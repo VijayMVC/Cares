@@ -72,6 +72,15 @@ namespace Cares.Repository.BaseRepository
                 .HasRequired(c => c.WorkPlace)
                 .WithMany()
                 .WillCascadeOnDelete(false);
+            modelBuilder.Entity<HireGroupUpGrade>()
+               .HasRequired(c => c.HireGroup)
+               .WithMany()
+               .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<BusinessPartnerRelationship>()
+                .HasRequired(c => c.SecondaryBusinessPartner)
+                .WithMany()
+                .WillCascadeOnDelete(false);
             
         }
         #endregion
@@ -190,9 +199,18 @@ namespace Cares.Repository.BaseRepository
         /// PaymentTerm DB Set
         /// </summary>
         public DbSet<PaymentTerm> PaymentTerms { get; set; }
+        /// <summary>
+        /// Hire Group Up Grade Db Set
+        /// </summary>
+        public DbSet<HireGroupUpGrade> HireGroupUpGrades { get; set; }
 
-
+        /// <summary>
+        /// Vehicle Models Db Set
+        /// </summary>
         public DbSet<VehicleModel> VehicleModels { get; set; }
+        /// <summary>
+        /// Vehicle Category Db Set
+        /// </summary>
         public DbSet<VehicleCategory> VehicleCategories { get; set; }
         public DbSet<VehicleMake> VehicleMakes { get; set; }
         public DbSet<HireGroup> HireGroups { get; set; }
@@ -274,6 +292,11 @@ namespace Cares.Repository.BaseRepository
         /// Business Partner Relationship item list Db Set
         /// </summary>
         public DbSet<BusinessPartnerRelationship> BusinessPartnerRelationships { get; set; }
+
+        /// <summary>
+        /// Vehicle DB Set
+        /// </summary>
+        public DbSet<Vehicle> Vehicles { get; set; }
         
         #endregion
     }

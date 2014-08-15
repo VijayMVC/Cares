@@ -29,7 +29,6 @@ define("businessPartner/businessPartner.dataservice", function () {
                         dataType: 'json',
                         type: 'PUT',
                         contentType: "application/json; charset=utf-8"
-
                     });
                     // Define request to update Business Partner
                     amplify.request.define('updateBusinessPartner', 'ajax', {
@@ -78,7 +77,7 @@ define("businessPartner/businessPartner.dataservice", function () {
                     error: callbacks.error
                 });
             },
-                        // Create Business Partner
+            // Create Business Partner
             createBusinessPartner = function (param, callbacks) {
                 initialize();
                 return amplify.request({
@@ -108,7 +107,7 @@ define("businessPartner/businessPartner.dataservice", function () {
                     data: param
                 });
             },
-          // Get Regions with respect to country Id
+            // Get Regions with respect to country Id
             getCountryRegions = function (param, callbacks) {
                 initialize();
                 return amplify.request({

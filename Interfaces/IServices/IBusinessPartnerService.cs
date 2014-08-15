@@ -25,9 +25,30 @@ namespace Cares.Interfaces.IServices
         /// Update business partner
         /// </summary>
         bool UpdateBusinessPartner(BusinessPartner businessPartner);
+        
         /// <summary>
         /// Get business partnere by Id
         /// </summary>
         BusinessPartner FindBusinessPartnerById(long id);      
+
+        /// <summary>
+        /// Get business partnere by License No
+        /// </summary>
+        BusinessPartner GetByLicenseNo(string licenseNo);
+
+        /// <summary>
+        /// Get business partnere by Nic No
+        /// </summary>
+        BusinessPartner GetByNicNo(string nicNo);
+
+        /// <summary>
+        /// Get business partnere by Passport No
+        /// </summary>
+        BusinessPartner GetByPassportNo(string passportNo);
+
+        /// <summary>
+        /// Get business partnere by Phone No
+        /// </summary>
+        BusinessPartner GetByPhoneNo(string passportNo);
     }
 }
