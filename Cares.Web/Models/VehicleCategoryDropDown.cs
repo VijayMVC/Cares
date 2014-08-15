@@ -11,28 +11,12 @@
         /// Vehicle Category ID
         /// </summary>
         public short VehicleCategoryId { get; set; }
-
-        /// <summary>
-        /// Vehicle Category Code
-        /// </summary>
-        public string VehicleCategoryCode { get; set; }
-
-        /// <summary>
-        /// Vehicle Category Name
-        /// </summary>
-        public string VehicleCategoryName { get; set; }
-      
-
+        
         /// <summary>
         /// Vehicle Category Code Name
         /// </summary>
-        public string VehicleCategoryCodeName
-        {
-            get
-            {
-                return string.Format("{0}-{1}", VehicleCategoryCode, VehicleCategoryName);
-            }
-        }
+        public string VehicleCategoryCodeName { get; set; }
+
         #endregion
     }
 }

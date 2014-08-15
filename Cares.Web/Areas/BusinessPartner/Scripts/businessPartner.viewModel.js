@@ -51,15 +51,17 @@ define("businessPartner/businessPartner.viewModel",
                     addressTypes = ko.observableArray([]),
                     // Country Regions Array
                     countryRegions = ko.observableArray([]),
+                    // filtered Country Regions Array
+                    filteredcountryRegions = ko.observableArray([]),
                     // Country Regions Array
                     countryCitites = ko.observableArray([]),
+                    // Filtered Country Cities Array
+                    filteredCountryCities = ko.observableArray([]),
                     // Sub Regions Array
                     subRegions = ko.observableArray([]),
                     // Filtered Sub Regions Array
                     filteredSubRegions = ko.observableArray([]),
-                    // Filtered Country Cities Array
-                    filteredCountryCities = ko.observableArray([]),
-                     // Areas Array
+                    // Areas Array
                     areas = ko.observableArray([]),
                     // filtered Areas Array
                     filteredAreas = ko.observableArray([]),
@@ -109,12 +111,7 @@ define("businessPartner/businessPartner.viewModel",
                         showBusinessPartnerEditor();
                         e.stopImmediatePropagation();
                     },
-                     //country selection change event
-                    onCountrySelectionChange = function (value) {
-                        if (selectedBusinessPartner().businessPartnerAddressNew().countryId() !== undefined)
-                            getRegionsByCountry(selectedBusinessPartner().businessPartnerAddressNew().countryId().CountryId);
-                    },
-                       // Collapase filter section
+                    // Collapase filter section
                     collapseFilterSection = function () {
                         filterSectionVisilble(false);
                     },
@@ -122,39 +119,29 @@ define("businessPartner/businessPartner.viewModel",
                     showFilterSection = function () {
                         filterSectionVisilble(true);
                     },
+                    //country selection change event
+                    onCountrySelectionChange = function (value) {
+                        if (selectedBusinessPartner().businessPartnerAddressNew().countryId() !== undefined)
+                            getRegionsByCountry(selectedBusinessPartner().businessPartnerAddressNew().countryId().CountryId);
+                    },
                     //get regions by country          
                     getRegionsByCountry = function (countryId) {
                         isLoadingBusinessPartners(true);
-                        dataservice.getCountryRegions({
-                            id: countryId
-                        }, {
-                            success: function (data) {
-                                //country Regions array
-                                countryRegions.removeAll();
-                                ko.utils.arrayPushAll(countryRegions(), data.ResponseRegions);
-                                countryRegions.valueHasMutated();
-                                //country Cities array
-                                countryCitites.removeAll();
-                                ko.utils.arrayPushAll(countryCitites(), data.ResponseCities);
-                                countryCitites.valueHasMutated();
-                                //filtered Country Cities
-                                filteredCountryCities.removeAll();
-                                ko.utils.arrayPushAll(filteredCountryCities(), data.ResponseCities);
-                                filteredCountryCities.valueHasMutated();
-                                //Sub Regions array
-                                subRegions.removeAll();
-                                ko.utils.arrayPushAll(subRegions(), data.ResponseSubRegions);
-                                subRegions.valueHasMutated();
-                                //Area array
-                                areas.removeAll();
-                                ko.utils.arrayPushAll(areas(), data.ResponseAreas);
-                                areas.valueHasMutated();
-                                isLoadingBusinessPartners(false);
-                            },
-                            error: function () {
-                                toastr.error("Failed to load regions!");
-                            }
+                        //filter Regions by country
+                        filteredcountryRegions.removeAll();
+                        _.each(countryRegions(), function (item) {
+                            if (item.CountryId === countryId)
+                                filteredcountryRegions.push(item);
                         });
+                        filteredcountryRegions.valueHasMutated();
+                        //filter cities by country
+                        filteredCountryCities.removeAll();
+                        _.each(countryCitites(), function (item) {
+                            if (item.CountryId === countryId)
+                                filteredCountryCities.push(item);
+                        });
+                        filteredCountryCities.valueHasMutated();
+                        isLoadingBusinessPartners(false);
                     },
                     //region selection change event
                     onRegionSelectionChange = function (value) {
@@ -271,6 +258,7 @@ define("businessPartner/businessPartner.viewModel",
                             success: function () {
                                 businessPartners.remove(businessPartner);
                                 toastr.success("Business Partner removed successfully");
+                                getBusinessPartners();
                             },
                             error: function () {
                                 toastr.error("Failed to remove Business Partner!");
@@ -575,6 +563,26 @@ define("businessPartner/businessPartner.viewModel",
                                 businessPartnerRelationshipTypes.removeAll();
                                 ko.utils.arrayPushAll(businessPartnerRelationshipTypes(), data.ResponseBusinessPartnerRelationshipTypes);
                                 businessPartnerRelationshipTypes.valueHasMutated();
+                                //country Regions array
+                                countryRegions.removeAll();
+                                ko.utils.arrayPushAll(countryRegions(), data.ResponseRegions);
+                                countryRegions.valueHasMutated();
+                                //country Cities array
+                                countryCitites.removeAll();
+                                ko.utils.arrayPushAll(countryCitites(), data.ResponseCities);
+                                countryCitites.valueHasMutated();
+                                ////filtered Country Cities
+                                //filteredCountryCities.removeAll();
+                                //ko.utils.arrayPushAll(filteredCountryCities(), data.ResponseCities);
+                                //filteredCountryCities.valueHasMutated();
+                                //Sub Regions array
+                                subRegions.removeAll();
+                                ko.utils.arrayPushAll(subRegions(), data.ResponseSubRegions);
+                                subRegions.valueHasMutated();
+                                //Area array
+                                areas.removeAll();
+                                ko.utils.arrayPushAll(areas(), data.ResponseAreas);
+                                areas.valueHasMutated();
                             },
                             error: function () {
                                 toastr.error("Failed to load base data");
@@ -697,6 +705,7 @@ define("businessPartner/businessPartner.viewModel",
                     areas: areas,
                     filteredSubRegions: filteredSubRegions,
                     filteredCountryCities: filteredCountryCities,
+                    filteredcountryRegions:filteredcountryRegions,
                     onSubRegionSelectionChange: onSubRegionSelectionChange,
                     filteredAreas: filteredAreas,
                     onCitySelectionChange: onCitySelectionChange,

@@ -69,6 +69,22 @@ namespace Cares.Models.ResponseModels
         /// Business Partner Relationship Types
         /// </summary>
         public IEnumerable<BusinessPartnerRelationshipType> ResponseBusinessPartnerRelationshipTypes { get; set; }
+        /// <summary>
+        /// Regions
+        /// </summary>
+        public IEnumerable<Region> ResponseRegions { get; set; }
+        /// <summary>
+        /// Sub Regions
+        /// </summary>
+        public IEnumerable<SubRegion> ResponseSubRegions { get; set; }
+        /// <summary>
+        /// Cities 
+        /// </summary>
+        public IEnumerable<City> ResponseCities { get; set; }
+        /// <summary>
+        /// Areas
+        /// </summary>
+        public IEnumerable<Area> ResponseAreas { get; set; }
         #endregion
     }
 }

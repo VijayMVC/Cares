@@ -35,13 +35,7 @@ define("Fleet/fleetPool.dataservice", function () {
                         url: '/Api/FleetPool',
                         dataType: 'json',
                         type: 'Delete'
-                    });
-                    // Define request to update FleetPool
-                    amplify.request.define('updateFleetPool', 'ajax', {
-                        url: '/Api/FleetPool',
-                        dataType: 'json',
-                        type: 'PUT'
-                    });
+                    });                    
                     isInitialized = true;
                 }
             },
@@ -50,15 +44,6 @@ define("Fleet/fleetPool.dataservice", function () {
                 initialize();
                 return amplify.request({
                     resourceId: 'getFleetPoolBasedata',
-                    success: callbacks.success,
-                    error: callbacks.error,
-                    data: params
-                });
-            },
-            //update fleetpool
-            updateFleetPool = function (params, callbacks) {
-                return amplify.request({
-                    resourceId: 'updateFleetPool',
                     success: callbacks.success,
                     error: callbacks.error,
                     data: params
@@ -96,8 +81,7 @@ define("Fleet/fleetPool.dataservice", function () {
             getFleetPoolBasedata: getFleetPoolBasedata,
             getFleetPools: getFleetPools,
             deleteFleetPool: deleteFleetPool,
-            saveFleetPool: saveFleetPool,
-            updateFleetPool: updateFleetPool
+            saveFleetPool: saveFleetPool
         };
     })();
     return dataService;

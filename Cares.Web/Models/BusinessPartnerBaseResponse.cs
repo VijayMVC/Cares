@@ -65,5 +65,21 @@ namespace Cares.Web.Models
         /// Business Partner Relationship type
         /// </summary>
         public IEnumerable<BusinessPartnerRelationshipTypeDropDown> ResponseBusinessPartnerRelationshipTypes { get; set; }
+        /// <summary>
+        /// Regions
+        /// </summary>
+        public IEnumerable<RegionDropDown> ResponseRegions { get; set; }
+        /// <summary>
+        /// Sub Regions
+        /// </summary>
+        public IEnumerable<SubRegionDropDown> ResponseSubRegions { get; set; }
+        /// <summary>
+        /// Cities 
+        /// </summary>
+        public IEnumerable<CityDropDown> ResponseCities { get; set; }
+        /// <summary>
+        /// Areas
+        /// </summary>
+        public IEnumerable<AreaDropDown> ResponseAreas { get; set; }
     }
 }

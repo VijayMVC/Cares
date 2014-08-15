@@ -225,6 +225,47 @@ require(["ko", "knockout-validation"], function (ko) {
         return result;
     };
     // KO Dirty Flag - Change Tracking
+    
+    // Common View Model - Editor (Save, Cancel - Reverts changes, Select Item)
+    ist.ViewModel = function (model) {
+        
+        //hold the currently selected item
+        this.selectedItem = ko.observable();
+        
+        // hold the model
+        this.model = model;
+
+        //make edits to a copy
+        this.itemForEditing = ko.observable();
+        
+    };
+
+    ko.utils.extend(ist.ViewModel.prototype, {
+        //select an item and make a copy of it for editing
+        selectItem: function (item) {
+            this.selectedItem(item);
+            this.itemForEditing(this.model.CreateFromClientModel(ko.toJS(item)));
+        },
+        
+        acceptItem: function(data) {
+            
+            //apply updates from the edited item to the selected item
+            this.selectedItem().update(data);
+
+            //clear selected item
+            this.selectedItem(null);
+            this.itemForEditing(null);
+        },
+
+        //just throw away the edited item and clear the selected observables
+        revertItem: function () {
+            this.itemForEditing().reset(); // Resets Changed State
+            this.selectedItem(null);
+            this.itemForEditing(null);
+        }
+    });
+    
+    // Common View Model
 
     // Can be used to have a parent with one binding and children with another. Child areas should be surrounded with <!-- ko stopBinding: true --> <!-- /ko -->
     ko.bindingHandlers.stopBinding = {

@@ -156,7 +156,11 @@ namespace Cares.Web.ModelMappers
                 ResponsePhoneTypes = source.ResponsePhoneTypes.Select(x => x.CreateFrom()),
                 ResponseAddressTypes = source.ResponseAddressTypes.Select(x => x.CreateFrom()),
                 ResponseMarketingChannels = source.ResponseMarketingChannels.Select(x => x.CreateFrom()),
-                ResponseBusinessPartnerRelationshipTypes = source.ResponseBusinessPartnerRelationshipTypes.Select(x => x.CreateFrom())
+                ResponseBusinessPartnerRelationshipTypes = source.ResponseBusinessPartnerRelationshipTypes.Select(x => x.CreateFrom()),
+                ResponseRegions = source.ResponseRegions.Select(x=>x.CreateFrom()),
+                ResponseSubRegions = source.ResponseSubRegions.Select(x=>x.CreateFrom()),
+                ResponseCities = source.ResponseCities.Select(x=>x.CreateFrom()),
+                ResponseAreas = source.ResponseAreas.Select(x=>x.CreateFrom())
             };
         }
         #endregion

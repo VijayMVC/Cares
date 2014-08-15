@@ -17,8 +17,7 @@ namespace Cares.Web.ModelMappers
             return new VehicleModelDropDown
             {
                 VehicleModeld = source.VehicleModelId,
-                VehicleModelName = source.VehicleModelName,
-                VehicleModelCode = source.VehicleModelCode
+                VehicleModelCodeName = source.VehicleModelCode + "-" + source.VehicleModelName
             };
         }
 

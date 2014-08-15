@@ -7,7 +7,6 @@ namespace Cares.Web.ModelMappers
     /// </summary>
     public static class AddressTypeMapper
     {
-        #region Public
         #region Entity To Model
         /// <summary>
         ///  Create web Api model from domain entity
@@ -20,7 +19,6 @@ namespace Cares.Web.ModelMappers
                 AddressTypeCodeName = source.AddressTypeCode + " - " + source.AddressTypeName,
             };
         }
-        #endregion
         #endregion
     }
 }

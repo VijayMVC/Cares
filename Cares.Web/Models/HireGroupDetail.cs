@@ -56,7 +56,7 @@
         /// <summary>
         /// Hire Group
         /// </summary>
-        public HireGroup HireGroup { get; set; }
+        public HireGroupDropDown HireGroup { get; set; }
 
         #endregion
 

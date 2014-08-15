@@ -356,7 +356,7 @@
                             </div>
                             <label for="addressListRegion" class="control-label h5  col-sm-2">Region</label>
                             <div class="col-md-2">
-                                <select id="addressListRegion" class="form-control" data-bind="options: $root.countryRegions, optionsText: 'RegionCodeName', optionsCaption: '<Region>',value:regionId,event:{change:$root.onRegionSelectionChange}"></select>
+                                <select id="addressListRegion" class="form-control" data-bind="options: $root.filteredcountryRegions, optionsText: 'RegionCodeName', optionsCaption: '<Region>',value:regionId,event:{change:$root.onRegionSelectionChange}"></select>
                             </div>
                             <label for="addressListSubRegion" class="control-label h5  col-sm-2">Sub Region</label>
                             <div class="col-md-2">

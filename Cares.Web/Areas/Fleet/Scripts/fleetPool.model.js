@@ -122,8 +122,22 @@
                 return dirtyFlag.isDirty();
             }),
             // Reset
-            reset = function() {
-                dirtyFlag.reset();
+            reset = function(obj) {
+                dirtyFlag.reset(obj);
+            },
+            // Update
+            update = function(data) {
+                id(data.FleetPoolId || undefined);
+                code(data.FleetPoolCode || undefined);
+                name(data.FleetPoolName || undefined);
+                description(data.Description || undefined);
+                operationName(data.OperationName || undefined);
+                operationId(data.OperationId || undefined);
+                regionName(data.RegionName || undefined);
+                regionId(data.RegionId || undefined);
+                countryName(data.CountryName || undefined);
+                countryId(data.CountryId || undefined);
+                vehiclesAssigned(data.ApproximateVehiclesAsgnd || undefined);
             },
             // Convert to server
             convertToServerData = function() {
@@ -150,6 +164,7 @@
             dirtyFlag: dirtyFlag,
             hasChanges: hasChanges,
             reset: reset,
+            update: update,
             convertToServerData: convertToServerData
         };
     };
@@ -167,6 +182,11 @@
     FleetPoolDetail.Create = function (source) {
         return new FleetPoolDetail(source.FleetPoolId, source.FleetPoolCode, source.FleetPoolName, source.Description, source.OperationName, 
             source.OperationId, source.RegionName, source.RegionId, source.CountryName, source.CountryId, source.ApproximateVehiclesAsgnd);
+    };
+    // FleetPool Factory
+    FleetPoolDetail.CreateFromClientModel = function (source) {
+        return new FleetPoolDetail(source.id, source.code, source.name, source.description, source.operationName,
+            source.operationId, source.regionName, source.regionId, source.countryName, source.countryId, source.vehiclesAssigned);
     };
     return {
         FleetPool: FleetPool,

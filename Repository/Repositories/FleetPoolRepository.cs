@@ -30,16 +30,7 @@ namespace Cares.Repository.Repositories
                     };
 
         #region Public
-        /// <summary>
-        /// Add new FleetPools
-        /// </summary>
-        public FleetPool AddNewFleetPool(FleetPool fleet)
-        {
-                FleetPool fleetPool = DbSet.Add(fleet);
-                LoadProperty(fleetPool, () => fleetPool.Operation);
-                LoadProperty(fleetPool, () => fleetPool.Region);
-                return fleetPool;
-        }
+        
         /// <summary>
         /// SearchFleet Pool for the given parameters by user
         /// </summary>
@@ -59,7 +50,19 @@ namespace Cares.Repository.Repositories
             return request.IsAsc ? DbSet.Where(query).OrderBy(_fleetPoolOrderByClause[request.FleetPoolOrderBy]).Skip(fromRow).Take(toRow).ToList() :
                                    DbSet.Where(query).OrderByDescending(_fleetPoolOrderByClause[request.FleetPoolOrderBy]).Skip(fromRow).Take(toRow).ToList();
         }
+        /// <summary>
+        /// Find fleet pool with reference data
+        /// </summary>
+        public FleetPool GetFleetPoolWithDetails(long id)
+        {
+            return DbSet.Include(fleetPool => fleetPool.Operation)
+                .Include(fleetPool => fleetPool.Region)
+                .Include(fleetPool => fleetPool.Region.Country)
+                .FirstOrDefault(fleetPool => fleetPool.UserDomainKey == UserDomainKey && fleetPool.FleetPoolId == id);
+        }
         #endregion
+
+       
 
         #region Constructor
         /// <summary>
