@@ -10,7 +10,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Hire Group Details List
         /// </summary>
-        public IEnumerable<HireGroupDetailContentForHireGroup> HireGroupDetails { get; set; }
+        public IEnumerable<HireGroupDetailForHireGroup> HireGroupDetails { get; set; }
         public IEnumerable<HireGroupUpgradeForHireGroup> HireGroupUpGrades { get; set; }
        
       

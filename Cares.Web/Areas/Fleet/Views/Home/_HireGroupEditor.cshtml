@@ -86,12 +86,19 @@
                         <!-- /ko -->
                     </tbody>
                 </table>
+                <script id="deleteActionHireGroupDetailTemplate" type="text/html">
+                    <a href="#" data-bind="click: $root.deleteHireGroupDetail" title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
+                </script>
                 <script id="itemHireGroupDetailTemplate" type="text/html">
                     <tr>
                         <td data-bind="text: vehicleMakeName"></td>
                         <td data-bind="text: vehicleModelName"></td>
                         <td data-bind="text: vehicleCategoryName"></td>
                         <td data-bind="text: vehicleModelYear"></td>
+                        <td>
+                            <!-- ko template: { name: 'deleteActionHireGroupDetailTemplate' } -->
+                            <!-- /ko -->
+                        </td>
                     </tr>
                 </script>
             </div>
@@ -118,9 +125,16 @@
                         <!-- /ko -->
                     </tbody>
                 </table>
+                <script id="deleteActionHireGroupUpGradeTemplate" type="text/html">
+                    <a href="#" data-bind="click: $root.deleteHireGroupUpGrade" title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
+                </script>
                 <script id="itemHireGroupUpgradedTemplate" type="text/html">
                     <tr>
                         <td data-bind="text: hireGroupCodeName"></td>
+                        <td>
+                            <!-- ko template: { name: 'deleteActionHireGroupUpGradeTemplate' } -->
+                            <!-- /ko -->
+                        </td>
                     </tr>
                 </script>
             </div>

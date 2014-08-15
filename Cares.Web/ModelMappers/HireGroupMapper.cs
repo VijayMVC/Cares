@@ -48,8 +48,8 @@ namespace Cares.Web.ModelMappers
             return new HireGroupDropDown
             {
                 HireGroupId = source.HireGroupId,
-                HireGroupCodeName = source.HireGroupCode+" - "+source.HireGroupName,
-                CompanyId=source.CompanyId
+                HireGroupCodeName = source.HireGroupCode + " - " + source.HireGroupName,
+                CompanyId = source.CompanyId
             };
         }
         public static ParentHireGroup CreateFromParentHireGroup(this DomainModels.HireGroup source)
@@ -132,7 +132,7 @@ namespace Cares.Web.ModelMappers
             return new RequestModel.HireGroupAddRequest
             {
                 HireGroupDetails = source.HireGroupDetailList != null ? source.HireGroupDetailList.Select(hg => hg.CreateFromForHireGroupAdd()) : null,
-                HireGroupUpGrades = source.HireGroupUpgradeList != null ? source.HireGroupUpgradeList.Select(h=>h.CreateFrom()) : null,
+                HireGroupUpGrades = source.HireGroupUpgradeList != null ? source.HireGroupUpgradeList.Select(h => h.CreateFrom()) : null,
                 HireGroup = source.CreateFromAdd()
             };
         }
@@ -154,15 +154,18 @@ namespace Cares.Web.ModelMappers
         /// </summary>
         /// <param name="source"></param>
         /// <returns></returns>
-        public static HireGroupDetailContentForHireGroup CreateFromForHireGroupDetail(this DomainModels.HireGroupDetail source)
+        public static HireGroupDetailForHireGroup CreateFromForHireGroupDetail(this DomainModels.HireGroupDetail source)
         {
-            return new HireGroupDetailContentForHireGroup
+            return new HireGroupDetailForHireGroup
             {
                 HireGroupDetailId = source.HireGroupDetailId,
+                VehicleCategoryId = source.VehicleCategoryId,
+                VehicleModelId = source.VehicleModelId,
+                VehicleMakeId = source.VehicleMakeId,
                 VehicleCategoryCodeName = source.VehicleCategory.VehicleCategoryCode + " - " + source.VehicleCategory.VehicleCategoryName,
                 VehicleModelCodeName = source.VehicleModel.VehicleModelCode + " - " + source.VehicleModel.VehicleModelName,
                 VehicleMakeCodeName = source.VehicleMake.VehicleMakeCode + " - " + source.VehicleMake.VehicleMakeName,
-                ModelYear = source.ModelYear,
+                VehicleModelYear = source.ModelYear,
 
             };
         }
@@ -173,8 +176,9 @@ namespace Cares.Web.ModelMappers
         {
             return new HireGroupUpgradeForHireGroup
             {
-                HireGroupCodeName = source.HireGroup.HireGroupCode + " - " + source.HireGroup.HireGroupName,
-                HireGroupId = source.HireGroupUpGradeId
+                HireGroupCodeName = source.AllowedHireGroup.HireGroupCode + " - " + source.AllowedHireGroup.HireGroupName,
+                HireGroupId = source.AllowedHireGroupId,
+                HireGroupUpGradeId=source.HireGroupUpGradeId
             };
         }
         /// <summary>
@@ -185,10 +189,10 @@ namespace Cares.Web.ModelMappers
             return new DomainModels.HireGroupUpGrade
             {
                 HireGroupUpGradeId = source.HireGroupUpGradeId,
-                HireGroupId = source.HireGroupId
+                AllowedHireGroupId = source.HireGroupId
             };
         }
- 
+
         #endregion
 
     }
