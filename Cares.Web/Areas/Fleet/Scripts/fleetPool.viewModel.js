@@ -14,10 +14,12 @@ define("Fleet/fleetPool.viewModel",
                     filterSectionVisilble = ko.observable(false),
                     //to check if edit mode 
                     isEditMode = ko.observable(false),
-                    // Active FleetPool
-                    selectedFleetPool = ko.observable(),
                     // fleetPools
                     fleetPools = ko.observableArray([]),
+                    // Editor View Model
+                    editorViewModel = new ist.ViewModel(model.FleetPoolDetail),
+                    // Active FleetPool
+                    selectedFleetPool = editorViewModel.itemForEditing,
                     // Regions
                     regionsList = ko.observableArray([]),
                     //Country Base Region List
@@ -84,7 +86,7 @@ define("Fleet/fleetPool.viewModel",
                         isFleetPoolEditorVisible(false);
                     },
                     onCancelSave = function () {
-                        selectedFleetPool().reset(selectedFleetPool);
+                        editorViewModel.revertItem();
                         isFleetPoolEditorVisible(false);
                     },
                     //Validation Check function while saving Fleet Pool
@@ -106,11 +108,11 @@ define("Fleet/fleetPool.viewModel",
                         dataservice.saveFleetPool(model.fleePoolClienttoServerMapper(selectedFleetPool()), {
                             success: function(dataFromServer) {
                                 if (isEditMode()) {
-                                    fleetPools.replace(selectedFleetPool(), model.fleetPoolServertoClinetMapper(dataFromServer));                                    
+                                    editorViewModel.acceptItem(dataFromServer);
                                     isEditMode(false);
                                     isFleetPoolEditorVisible(false);
                                 } else {
-                                    fleetPools.add(model.fleetPoolServertoClinetMapper(dataFromServer));
+                                    fleetPools.splice(0 , 0 , model.fleetPoolServertoClinetMapper(dataFromServer));
                                     isFleetPoolEditorVisible(false);
                                 }
                                 toastr.success("Successfully saved.");
@@ -135,7 +137,7 @@ define("Fleet/fleetPool.viewModel",
                     //Click event handler
                     createFleetForm = function() {
                         var fleetPool = new model.FleetPoolDetail();
-                        selectedFleetPool(fleetPool);
+                        editorViewModel.selectItem(fleetPool);
                         showFleetPoolEditor();
                     },
                     showFleetPoolEditor = function() {
@@ -168,7 +170,7 @@ define("Fleet/fleetPool.viewModel",
                     // on edit the existing fleet pool
                     onEditFleetPool = function(item) {
                         isEditMode(true);                        
-                        selectedFleetPool(item);
+                        editorViewModel.selectItem(item);
                         isFleetPoolEditorVisible(true);
                     },
                     // Filter Regions
@@ -231,6 +233,7 @@ define("Fleet/fleetPool.viewModel",
                     operationsList: operationsList,
                     fleetPools: fleetPools,
                     selectedFleetPool: selectedFleetPool,
+                    editorViewModel: editorViewModel,
                     fleetPoolSeachFilter: fleetPoolSeachFilter,
                     fleetPoolOperationFilter: fleetPoolOperationFilter,
                     fleetPoolRegionFilter: fleetPoolRegionFilter,

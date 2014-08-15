@@ -29,24 +29,20 @@
         
     // Payment Term entity
     // ReSharper disable InconsistentNaming
-    PaymentTerm = function (specifiedId, specifiedName, specifiedCode, specifiedCodeName) {
+    PaymentTerm = function (specifiedId, specifiedCodeName) {
         // ReSharper restore InconsistentNaming
         return {
             id: specifiedId,
-            name: specifiedName,
-            code: specifiedCode,
             codeName: specifiedCodeName
         };
     },
         
     // Operation entity
     // ReSharper disable InconsistentNaming
-    Operation = function (specifiedId, specifiedName, specifiedCode, specifiedCodeName) {
+    Operation = function (specifiedId, specifiedCodeName) {
         // ReSharper restore InconsistentNaming
         return {
             id: specifiedId,
-            name: specifiedName,
-            code: specifiedCode,
             codeName: specifiedCodeName
         };
     },
@@ -313,18 +309,18 @@
     // Vehicle Factory
     Vehicle.Create = function (source) {
         return new Vehicle(source.VehicleId, source.VehicleName, source.VehicleCode, source.PlateNumber, source.CurrentOdometer, source.VehicleCategoryId,
-        source.VehicleCategoryCodeName, source.vehicleMakeId, source.VehicleMakeCodeName, source.vehicleModelId, source.VehicleModelCodeName, source.vehicleStatusId,
+        source.VehicleCategoryCodeName, source.VehicleMakeId, source.VehicleMakeCodeName, source.VehicleModelId, source.VehicleModelCodeName, source.VehicleStatusId,
         source.VehicleStatusCodeName, source.ModelYear, source.ImageSource);
     };
     
     // Payment Term Factory
     PaymentTerm.Create = function (source) {
-        return new PaymentTerm(source.PaymentTermId, source.PaymentTermName, source.PaymentTermCode, source.PaymentTermCodeName);
+        return new PaymentTerm(source.PaymentTermId, source.PaymentTermCodeName);
     };
     
     // Operation Factory
     Operation.Create = function (source) {
-        return new Operation(source.OperationId, source.OperationName, source.OperationCode, source.OperationCodeName);
+        return new Operation(source.OperationId, source.OperationCodeName);
     };
     
     // Operations WorkPlace Factory
@@ -345,7 +341,7 @@
     
     // Rental Agreement Hire Group Factory
     RentalAgreementHireGroup.Create = function (source) {
-        return new RentalAgreementHireGroup(source.RentalAgreementHireGroupId, source.HireGroupDetailId, source.vehicleId,
+        return new RentalAgreementHireGroup(source.RentalAgreementHireGroupId, source.HireGroupDetailId, source.VehicleId,
             source.RentalAgreementId);
     };
 

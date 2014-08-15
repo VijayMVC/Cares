@@ -13,22 +13,8 @@
         /// <summary>
         /// Vehicle Make Code
         /// </summary>
-        public string VehicleMakeCode { get; set; }
-        /// <summary>
-        /// Vehicle Make Name
-        /// </summary>
-        public string VehicleMakeName { get; set; }
+        public string VehicleMakeCodeName { get; set; }
 
-        /// <summary>
-        /// VehicleMake Code Name
-        /// </summary>
-        public string VehicleMakeCodeName
-        {
-            get
-            {
-                return string.Format("{0}-{1}", VehicleMakeCode, VehicleMakeName);
-            }
-        }
         #endregion
     }
 }

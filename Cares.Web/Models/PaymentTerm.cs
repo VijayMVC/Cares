@@ -24,10 +24,6 @@ namespace Cares.Web.Models
         /// PaymentTerm Description
         /// </summary>
         public string PaymentTermDescription { get; set; }
-        /// <summary>
-        /// User Domain Key
-        /// </summary>
-        public long UserDomainKey { get; set; }
 
         /// <summary>
         /// PaymentTerm Code Name

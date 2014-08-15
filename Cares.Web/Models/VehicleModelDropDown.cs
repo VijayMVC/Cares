@@ -11,24 +11,10 @@
         /// </summary>
         public short VehicleModeld { get; set; }
         /// <summary>
-        /// Vehicl eModel Code
+        /// Vehicle Model Code
         /// </summary>
-        public string VehicleModelCode { get; set; }
-        /// <summary>
-        /// Vehicl eModel Name
-        /// </summary>
-        public string VehicleModelName { get; set; }
+        public string VehicleModelCodeName { get; set; }
 
-        /// <summary>
-        /// Vehicle Model Code Name
-        /// </summary>
-        public string VehicleModelCodeName
-        {
-            get
-            {
-                return string.Format("{0}-{1}", VehicleModelCode, VehicleModelName);
-            }
-        }
         #endregion
     }
 }

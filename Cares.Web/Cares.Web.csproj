@@ -314,9 +314,14 @@
     <Compile Include="Models\BusinessPartnerDropDown.cs" />
     <Compile Include="Models\BusinessPartnerMarketingChannel.cs" />
     <Compile Include="Models\FuelType.cs" />
+    <Compile Include="Models\Operation.cs" />
+    <Compile Include="Models\PaymentTerm.cs" />
     <Compile Include="Models\TransmissionType.cs" />
     <Compile Include="Models\HireGroupDetail.cs" />
     <Compile Include="Models\Vehicle.cs" />
+    <Compile Include="Models\VehicleCategory.cs" />
+    <Compile Include="Models\VehicleMake.cs" />
+    <Compile Include="Models\VehicleModel.cs" />
     <Compile Include="Models\VehicleStatus.cs" />
     <Compile Include="Models\VehicleSearchResponse.cs" />
     <Compile Include="Models\HireGroupDataDetailResponse.cs" />
