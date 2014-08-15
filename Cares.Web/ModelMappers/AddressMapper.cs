@@ -66,23 +66,5 @@ namespace Cares.Web.ModelMappers
         }
 
         #endregion
-
-        #region Address Base Date Response Mapper
-
-        /// <summary>
-        ///  Create web api model from domain model
-        /// </summary>
-        public static ApiModel.AddressBaseResponse CreateFrom(this ResponseModel.AddressBaseDataResponse source)
-        {
-            return new ApiModel.AddressBaseResponse
-            {
-               ResponseCountry = source.ResponseCountry.CreateFrom(),
-               ResponseRegions = source.ResponseRegions.Select(x=>x.CreateFrom()),
-               ResponseSubRegions = source.ResponseSubRegions.Select(x=>x.CreateFrom()),
-               ResponseCities = source.ResponseCities.Select(x=>x.CreateFrom()),
-               ResponseAreas = source.ResponseAreas.Select(x=>x.CreateFrom()),
-            };
-        }
-        #endregion
     }
 }

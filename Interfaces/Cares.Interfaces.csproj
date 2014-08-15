@@ -49,7 +49,6 @@
   <ItemGroup>
     <Compile Include="IServices\IBPRatingTypeService.cs" />
     <Compile Include="IServices\IBusinessLegalStatusService.cs" />
-    <Compile Include="IServices\IAddressBaseDataService.cs" />
     <Compile Include="IServices\IBusinessPartnerBaseDataService.cs" />
     <Compile Include="IServices\ICountryService.cs" />
     <Compile Include="IServices\IVehicleService.cs" />
