@@ -28,11 +28,11 @@
                             </thead>
                             <tbody data-bind="foreach: vehicles">
                                 <tr data-bind="click: $root.selectVehicle">
-                                    <td data-bind="text: PlateNumber"></td>
-                                    <td data-bind="text: HireGroup"></td>
-                                    <td data-bind="text: VehicleMake"></td>
-                                    <td data-bind="text: VehicleModel"></td>
-                                    <td data-bind="text: ModelYear"></td>
+                                    <td data-bind="text: plateNumber"></td>
+                                    <td data-bind="text: code"></td>
+                                    <td data-bind="text: vehicleMake"></td>
+                                    <td data-bind="text: vehicleModel"></td>
+                                    <td data-bind="text: modelYear"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -99,85 +99,170 @@
         </div>
     </div>
     <div id="raMain">
-        <form id="ra" class="well form-horizontal">
+        <form id="ra" class="well form-horizontal" data-bind="with: rentalAgreement">
             <h4>Rental Agreement</h4>
             <div class="form-group">
                 @*<label for="rentalAgreementNumber" class="control-label col-sm-2">RA #</label>*@
                 <div class="col-md-3">
-                    <input type="text" class="form-control" placeholder="<RA #>" id="rentalAgreementNumber" />
+                    <input type="text" class="form-control" placeholder="<RA #>" id="rentalAgreementNumber"  data-bind="enable: false, value: id"/>
                 </div>
                 @*<label for="rentalAgreementBookingNumber" class="control-label col-sm-2">Booking #</label>*@
                 <div class="col-md-3">
-                    <input type="text" class="form-control" placeholder="<Booking No>" id="rentalAgreementBookingNumber" />
+                    <input type="text" class="form-control" placeholder="<Booking No>" id="rentalAgreementBookingNumber" data-bind="enable: false" />
                 </div>
             </div>
             <div class="form-group">
                 @*<label for="rentalAgreementDuration" class="control-label col-sm-2">Rental Duration</label>*@
-                <div class="col-md-2 input-mini">
-                    <input type="text" class="form-control" placeholder="<Days>" id="rentalAgreementDuration" />
+                <div class="col-md-2 input-small">
+                    <input type="text" class="form-control" placeholder="<Days>" id="rentalAgreementDuration" data-bind="value: days" />
                 </div>
-                <div class="col-md-2 input-mini">
-                    <input type="text" class="form-control" placeholder="<Hours>" id="rentalAgreementHours" />
+                <div class="col-md-2 input-small">
+                    <input type="text" class="form-control" placeholder="<Hours>" id="rentalAgreementHours" data-bind="value: hours" />
                 </div>
-                <div class="col-md-2 input-mini">
-                    <input type="text" class="form-control" placeholder="<Mins>" id="rentalAgreementMins" />
+                <div class="col-md-2 input-small">
+                    <input type="text" class="form-control" placeholder="<Mins>" id="rentalAgreementMins" data-bind="value: minutes" />
                 </div>
             </div>
             <div class="form-group">
                 @*<label for="rentalAgreementStartDate" class="control-label col-sm-2">Start Date/Time</label>*@
                 <div class="col-md-3">
-                    <input type="text" class="form-control" placeholder="<Start Date>" id="rentalAgreementStartDate" />
+                    <input type="text" class="form-control" placeholder="<Start Date>" id="rentalAgreementStartDate" data-bind="datepicker: startDate" />
                 </div>
                 @*<label for="rentalAgreementEndDate" class="control-label col-sm-2">End Date/Time</label>*@
                 <div class="col-md-3">
-                    <input type="text" class="form-control" placeholder="<End Date>" id="rentalAgreementEndDate" />
+                    <input type="text" class="form-control" placeholder="<End Date>" id="rentalAgreementEndDate" data-bind="datepicker: endDate" />
                 </div>
                 @*<label for="rentalAgreementPaymentTerm" class="control-label col-sm-2">Payment Term</label>*@
                 <div class="col-md-3">
-                    <select class="form-control" id="rentalAgreementPaymentTerm" data-bind="options: paymentTerms, optionsCaption: '<Payment Term>', optionsText: 'Name', optionsValue: 'Id'"></select>
+                    <select class="form-control" id="rentalAgreementPaymentTerm" data-bind="options: $root.paymentTerms, optionsCaption: '<Payment Term>', optionsText: 'codeName', optionsValue: 'id', value: paymentTermId"></select>
                 </div>
             </div>
             <div class="form-group">
                 @*<label for="rentalAgreementOperation" class="control-label col-sm-2">Operation</label>*@
                 <div class="col-md-3">
-                    <select class="form-control" id="rentalAgreementOperation" data-bind="options: operations, optionsCaption: '<Operation>', optionsText: 'Name', optionsValue: 'Id'"></select>
+                    <select class="form-control" id="rentalAgreementOperation" data-bind="options: $root.operations, optionsCaption: '<Operation>', optionsText: 'codeName', optionsValue: 'id', value: operationId"></select>
                 </div>
                 @*<label for="rentalAgreementOutLocation" class="control-label col-sm-2">Out Location</label>*@
                 <div class="col-md-3">
-                    <select class="form-control" id="rentalAgreementOutLocation" data-bind="options: locations, optionsCaption: '<Out Location>', optionsText: 'Name', optionsValue: 'Id'"></select>
+                    <select class="form-control" id="rentalAgreementOutLocation" data-bind="options: availableLocations, optionsCaption: '<Out Location>', optionsText: 'code', optionsValue: 'id', value: openLocation"></select>
                 </div>
                 @*<label for="rentalAgreementReturnLocation" class="control-label col-sm-2">Return Location</label>*@
                 <div class="col-md-3">
-                    <select class="form-control" id="rentalAgreementReturnLocation" data-bind="options: locations, optionsCaption: '<Return Location>', optionsText: 'Name', optionsValue: 'Id'"></select>
+                    <select class="form-control" id="rentalAgreementReturnLocation" data-bind="options: availableLocations, optionsCaption: '<Return Location>', optionsText: 'code', optionsValue: 'id', value: closeLocation"></select>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" data-bind="with: $parent">
                 <div class="col-md-9">
-                    <input type="text" class="form-control" placeholder="<Hire Group>" id="rentalAgreementHireGroup" />
+                    <input type="text" class="form-control" placeholder="<Hire Group>" id="rentalAgreementHireGroup" data-bind="value: searchForHireGroupText" />
+                </div>
+                <div class="col-md-9" data-bind="visible: hireGroups().length > 0" style="display: none">
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: hireGroups">
+                            <tr data-bind="click: $root.selectHireGroup">
+                                <td data-bind="text: hireGroup"></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
         </form>
-        <form id="vehicle" class="well form-horizontal" data-bind="with: selectedVehicle">
+        <form id="vehicle" class="well form-horizontal" data-bind="with: $root.selectedVehicle">
             <h4>Vehicle</h4>
             <div class="form-group">
                 <label for="vehiclePlateNumber" class="control-label col-sm-2">Plate #</label>
                 <div class="col-md-2">
-                    <span id="vehiclePlateNumber" data-bind="text: PlateNumber"></span>
+                    <span id="vehiclePlateNumber" data-bind="text: plateNumber"></span>
                 </div>
                 <label for="vehicleHireGroup" class="control-label col-sm-2">Hire Group</label>
                 <div class="col-md-2">
-                    <span id="vehicleHireGroup" data-bind="text: HireGroup"></span>
+                    <span id="vehicleHireGroup" data-bind="text: code"></span>
                 </div>
                 <label for="vehicleMakeText" class="control-label col-sm-2">Make</label>
                 <div class="col-md-2">
-                    <span id="vehicleMakeText" data-bind="text: VehicleMake"></span>
+                    <span id="vehicleMakeText" data-bind="text: vehicleMake"></span>
+                </div>
+                <div class="col-md-2">
+                    <img id="vehicleImage" src="#" alt="" data-bind="attr:{ src: $root.vehicleImage }" />
                 </div>
             </div>
         </form>
     </div>
-    <div class="well" id="raBilling">
-        <h4>Billing</h4>
+    <div id="raBilling">
+        <form id="customer" class="well form-horizontal">
+            <h4>Customer</h4>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <input type="text" class="form-control" placeholder="<Customer #>" id="customerNumber" />
+                </div>
+                <label for="isCustomerIndividual" class="control-label col-sm-2">Is Individual</label>
+                <div class="col-md-3">
+                    <input type="checkbox" class="form-control" id="isCustomerIndividual" />
+                </div>
+                <div class="col-md-3">
+                    <select class="form-control" id="customerPaymentTerm" data-bind="options: paymentTerms, optionsCaption: '<Payment Term>', optionsText: 'codeName', optionsValue: 'id'"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="<First Name>" id="customerFirstName" />
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="<Last Name>" id="customerLastName" />
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="<DOB>" id="customerDOB" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <input type="text" class="form-control" placeholder="<NIC No.>" id="customerNic" />
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" placeholder="<NIC Expiry>" id="customerNicExpiry" />
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" placeholder="<Passport No.>" id="customerPassport" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <input type="text" class="form-control" placeholder="<Passport Expiry>" id="customerPassportExpiry" />
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" placeholder="<Sponsor/Kafeel>" id="customerSponsor" />
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" placeholder="<License No.>" id="customerLicense" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <input type="text" class="form-control" placeholder="<License Expiry>" id="customerLicenseExpiry" />
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" placeholder="<Phone>" id="customerPhone" />
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" placeholder="<Mobile>" id="customerMobile" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <input type="text" class="form-control" placeholder="<Email>" id="customerEmail" />
+                </div>
+            </div>
+        </form>
+        <form id="billing" class="well form-horizontal">
+            <h4>Billing</h4>
+            <div class="form-group">
+            </div>
+        </form>
     </div>
 </div>
 

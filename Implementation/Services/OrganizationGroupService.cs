@@ -16,12 +16,11 @@ namespace Cares.Implementation.Services
        public  OrgGroupResponse SerchOrgGroup(OrgGroupSearchRequest request)
        {
            int rowCount;
-          OrgGroupResponse orgGroup= new OrgGroupResponse
+          return new OrgGroupResponse
            {
                OrgGroups = organizationGroupRepository.SearchOrgGroup(request, out rowCount),
                TotalCount = rowCount
            };
-          return orgGroup;
        }
 
        /// <summary>

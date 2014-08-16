@@ -1,7 +1,7 @@
 ﻿/*
     Data service module with ajax calls to the server
 */
-define("OrganizationGroup/OrganizationGroup.dataservice", function () {
+define("OrganizationGroup/organizationGroup.dataservice", function () {
 
     // Data service for forecast 
     var dataService = (function () {
@@ -46,7 +46,6 @@ define("OrganizationGroup/OrganizationGroup.dataservice", function () {
                 });
             },
             addOrganizationGroup = function (params, callbacks) {
-                  debugger;
                   return amplify.request({
                       resourceId: 'addOrganizationGroup',
                       success: callbacks.success,

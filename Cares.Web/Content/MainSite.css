@@ -34,22 +34,14 @@
 #FleetPoolEditor {
   margin-top: 15px;
 }
-#FleetPoolEditor h3 {
+#FleetPoolEditor .detailsContainer {
+  width: 100%;
+}
+#FleetPoolEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
   margin-top: 10px;
-  position: relative;
-}
-#FleetPoolEditor .fleetheading {
-  margin-top: -10px;
-}
-#FleetPoolEditor #saveFleetPoolbtn {
-  position: fixed;
-  margin-left: 975px;
-  margin-top: -45px;
-}
-#FleetPoolEditor #cancelFleetPoolbtn {
-  position: fixed;
-  margin-left: 1037px;
-  margin-top: -45px;
 }
 #tariffRateBinding #tariffRateEditor {
   margin-top: 15px;
@@ -120,28 +112,60 @@
   margin-bottom: 20px;
   margin-top: 10px;
 }
+#tariffRateBinding #tariffRateEditor {
+  margin-top: 15px;
+}
+#tariffRateBinding #tariffRateEditor .detailsContainer {
+  width: 100%;
+}
+#tariffRateBinding #tariffRateEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#rentalAgreementBinding .well {
+  padding-top: 0;
+}
+#rentalAgreementBinding .form-group {
+  margin-bottom: 5px;
+}
 #rentalAgreementBinding #raPanels {
-  width: 24.5%;
+  width: 25.9%;
   float: left;
 }
 #rentalAgreementBinding #raMain {
-  width: 49.5%;
+  width: 36.5%;
   float: left;
   margin-left: .5%;
   margin-right: .5%;
 }
+#rentalAgreementBinding #raMain #ra {
+  min-height: 300px;
+}
 #rentalAgreementBinding #raMain #vehicle {
   margin-top: .5%;
+  min-height: 105px;
 }
 #rentalAgreementBinding #raMain input,
 #rentalAgreementBinding #raMain select,
 #rentalAgreementBinding #raMain textarea {
   max-width: 100%;
 }
+#rentalAgreementBinding #raMain #vehicleImage {
+  max-width: 32px;
+  max-height: 32px;
+}
 #rentalAgreementBinding #raBilling {
-  width: 24.5%;
+  width: 36.5%;
   float: left;
-  min-height: 343px;
+}
+#rentalAgreementBinding #raBilling #customer {
+  min-height: 300px;
+}
+#rentalAgreementBinding #raBilling #billing {
+  margin-top: .5%;
+  min-height: 105px;
 }
 .float-left {
   float: left;
@@ -179,4 +203,11 @@
   }
 }
 /* Input Mini */
-/*# sourceMappingURL=MainSite.css.map */
+/* Input Small */
+@media (min-width: 768px) {
+  .input-small {
+    width: 16%;
+    padding-right: 0;
+  }
+}
+/* Input Small */

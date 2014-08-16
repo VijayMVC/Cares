@@ -8,9 +8,9 @@ namespace Cares.Web.ModelMappers
     public static class OrgGroupMapper
     {
 
-        public static ApiModel.OrgGroupResponse CreateFrom(this OrgGroupResponse source)
+        public static ApiModel.OrgGroupRequestResponse CreateFrom(this OrgGroupResponse source)
         {
-            return new ApiModel.OrgGroupResponse()
+            return new ApiModel.OrgGroupRequestResponse
             {
                 OrgGroups = source.OrgGroups.Select(orgGroup => orgGroup.CreateFromResponse()),
                 TotalCount = source.TotalCount
@@ -18,7 +18,7 @@ namespace Cares.Web.ModelMappers
         }
         public static ApiModel.OrgGroup CreateFromResponse(this OrgGroup source)
         {
-            return new ApiModel.OrgGroup()
+            return new ApiModel.OrgGroup
             {
                 OrgGroupId = source.OrgGroupId,
                 OrgGroupCode = source.OrgGroupCode,
@@ -29,7 +29,7 @@ namespace Cares.Web.ModelMappers
 
         public static OrgGroup CreateFromClientToServer(this ApiModel.OrgGroup orgGroup)
         {
-            return new OrgGroup()
+            return new OrgGroup
             {
                   OrgGroupId = orgGroup.OrgGroupId,
                   OrgGroupCode = orgGroup.OrgGroupCode,

@@ -29,6 +29,10 @@ namespace Cares.Implementation.Services
         private readonly IPhoneTypeRepository phoneTypeRepository;
         // For Address tab
         private readonly IAddressTypeRepository addressTypeRepository;
+        private readonly IRegionRepository regionRepository;
+        private readonly ISubRegionRepository subRegionRepository;
+        private readonly ICityRepository cityRepository;
+        private readonly IAreaRepository areaRepository;
         // For Marketing Channel tab
         private readonly IMarketingChannelRepository marketingChannelRepository;
         // For Business Partner Relationship Type tab
@@ -50,7 +54,11 @@ namespace Cares.Implementation.Services
             ,IPhoneTypeRepository phoneTypeRepository
             ,IAddressTypeRepository addressTypeRepository
             ,IMarketingChannelRepository marketingChannelRepository
-            , IBusinessPartnerRelationshipTypeRepository businessPartnerRelationshipTypeRepository)
+            , IBusinessPartnerRelationshipTypeRepository businessPartnerRelationshipTypeRepository
+            ,IRegionRepository regionRepository
+            ,ISubRegionRepository subRegionRepository
+            ,ICityRepository cityRepository
+            ,IAreaRepository areaRepository)
         {
             this.companyRepository = companyRepository;
             this.paymentTermRepository = paymentTermRepository;
@@ -66,8 +74,11 @@ namespace Cares.Implementation.Services
             this.phoneTypeRepository = phoneTypeRepository;
             this.addressTypeRepository = addressTypeRepository;
             this.marketingChannelRepository = marketingChannelRepository;
-            this.businessPartnerRelationshipTypeRepository =
-                businessPartnerRelationshipTypeRepository;
+            this.businessPartnerRelationshipTypeRepository = businessPartnerRelationshipTypeRepository;
+            this.regionRepository = regionRepository;
+            this.subRegionRepository = subRegionRepository;
+            this.cityRepository = cityRepository;
+            this.areaRepository = areaRepository;
         }
         #endregion
         #region Public
@@ -90,6 +101,10 @@ namespace Cares.Implementation.Services
             response.ResponseAddressTypes = addressTypeRepository.GetAll();
             response.ResponseMarketingChannels = marketingChannelRepository.GetAll();
             response.ResponseBusinessPartnerRelationshipTypes = businessPartnerRelationshipTypeRepository.GetAll();
+            response.ResponseRegions = regionRepository.GetAll();
+            response.ResponseSubRegions = subRegionRepository.GetAll();
+            response.ResponseCities = cityRepository.GetAll();
+            response.ResponseAreas = areaRepository.GetAll();
             return response;
         }
         #endregion

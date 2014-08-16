@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -38,9 +39,9 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get All Occupation Types for User Domain Key
         /// </summary>
-        public override IQueryable<OccupationType> GetAll()
+        public override IEnumerable<OccupationType> GetAll()
         {
-            return DbSet.Where(occupationType => occupationType.UserDomainKey == UserDomainKey);
+            return DbSet.Where(occupationType => occupationType.UserDomainKey == UserDomainKey).ToList();
         }
         #endregion
     }

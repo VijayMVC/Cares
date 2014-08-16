@@ -2,6 +2,9 @@
 
 namespace Cares.Web.ModelMappers
 {
+    /// <summary>
+    /// Vehicle Model Mapper
+    /// </summary>
     public static class VehicleModelMapper
     {
         #region Public
@@ -14,7 +17,7 @@ namespace Cares.Web.ModelMappers
             return new VehicleModelDropDown
             {
                 VehicleModeld = source.VehicleModelId,
-                VehicleModelCodeName = source.VehicleModelCode + " - " + source.VehicleModelName,
+                VehicleModelCodeName = source.VehicleModelCode + "-" + source.VehicleModelName
             };
         }
 

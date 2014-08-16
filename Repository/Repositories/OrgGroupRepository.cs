@@ -22,9 +22,9 @@ namespace Cares.Repository.Repositories
         /// </summary>
         private readonly Dictionary<OrgGroupByColumn, Func<OrgGroup, object>> orgGroupOrderByClause = new Dictionary<OrgGroupByColumn, Func<OrgGroup, object>>
                     {
-                        {
-                            OrgGroupByColumn.OrgGroupCode, c=> c.OrgGroupCode
-                        }                       
+                        {OrgGroupByColumn.OrgGroupCode, c => c.OrgGroupCode},
+                        {OrgGroupByColumn.OrgGroupName, d => d.OrgGroupName},
+                        {OrgGroupByColumn.OrgGroupDescription, d => d.OrgGroupDescription}
                     };
         #endregion
         #region public
@@ -40,9 +40,14 @@ namespace Cares.Repository.Repositories
                       (string.IsNullOrEmpty(request.OrgGroupCode) || (orgGroup.OrgGroupCode.Contains(request.OrgGroupCode ) ))&& (
                       (string.IsNullOrEmpty(request.OrgGroupName) || ( orgGroup.OrgGroupName.Contains(request.OrgGroupName) ))    );
             rowCount = DbSet.Count(query);
-           return
+           return request.IsAsc ?
                DbSet.Where(query)
                    .OrderBy(orgGroupOrderByClause[request.OrgGroupOrderBy])
+                   .Skip(fromRow)
+                   .Take(toRow)
+                   .ToList() :
+                DbSet.Where(query)
+                   .OrderByDescending(orgGroupOrderByClause[request.OrgGroupOrderBy])
                    .Skip(fromRow)
                    .Take(toRow)
                    .ToList();

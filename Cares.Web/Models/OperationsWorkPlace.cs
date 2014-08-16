@@ -27,7 +27,7 @@
         /// Operation Id
         /// </summary>
         public long OperationId { get; set; }
-
+        
         #endregion
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Cares.Models.DomainModels;
 
 namespace Cares.Interfaces.IServices
@@ -8,6 +9,6 @@ namespace Cares.Interfaces.IServices
     /// </summary>
     public interface IBPRatingTypeService
     {
-        IQueryable<BpRatingType> LoadAll();
+        IEnumerable<BpRatingType> LoadAll();
     }
 }

@@ -13,9 +13,9 @@ namespace Cares.Web.Areas.Api.Controllers
     {
         #region Public
         /// <summary>
-        /// Get OrgGroups from database
+        /// Get OrgGroups
         /// </summary>
-        public OrgGroupResponse Get([FromUri] OrgGroupSearchRequest request)
+        public OrgGroupRequestResponse Get([FromUri] OrgGroupSearchRequest request)
         {
             if (!ModelState.IsValid)
             {
@@ -44,8 +44,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int) HttpStatusCode.BadRequest, "Invalid Request");
             }
-            OrgGroup v = orgGroupService.AddUpdateOrgGroup((orgGroup).CreateFromClientToServer()).CreateFromResponse();
-            return v;
+            return  orgGroupService.AddUpdateOrgGroup((orgGroup).CreateFromClientToServer()).CreateFromResponse();
         }
         #endregion
         #region Private

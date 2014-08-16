@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -38,9 +39,9 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get All Cities for User Domain Key
         /// </summary>
-        public override IQueryable<City> GetAll()
+        public override IEnumerable<City> GetAll()
         {
-            return DbSet.Where(city => city.UserDomainKey == UserDomainKey);
+            return DbSet.Where(city => city.UserDomainKey == UserDomainKey).ToList();
         }
         /// <summary>
         /// Find City By Id

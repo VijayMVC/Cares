@@ -51,9 +51,9 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get All Standard Rates Main for User Domain Key
         /// </summary>
-        public override IQueryable<StandardRateMain> GetAll()
+        public override IEnumerable<StandardRateMain> GetAll()
         {
-            return DbSet.Where(department => department.UserDomainKey == UserDomainKey);
+            return DbSet.Where(department => department.UserDomainKey == UserDomainKey).ToList();
         }
         /// <summary>
         /// Get All Tariff Rates based on search crateria

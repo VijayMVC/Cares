@@ -10,6 +10,9 @@ namespace Cares.Interfaces.Repository
 {
     public interface IOrganizationGroupRepository:IBaseRepository<OrgGroup, long>
     {
+        /// <summary>
+        /// Search org group
+        /// </summary>
         IEnumerable<OrgGroup> SearchOrgGroup(OrgGroupSearchRequest request, out int rowCount);
     }
 }

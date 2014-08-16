@@ -5,7 +5,6 @@ namespace Cares.Web.ModelMappers
 {
     public static class AreaMapper
     {
-        #region Public
         #region Entity To Model
         /// <summary>
         ///  Create web api model from domain entity
@@ -20,6 +19,5 @@ namespace Cares.Web.ModelMappers
             };
         }
         #endregion        
-        #endregion
     }
 }

@@ -84,9 +84,9 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get All BusinessPartner for User Domain Key
         /// </summary>
-        public override IQueryable<BusinessPartner> GetAll()
+        public override IEnumerable<BusinessPartner> GetAll()
         {
-            return DbSet.Where(businessPartner => businessPartner.UserDomainKey == UserDomainKey).Include(x => x.Company).Include(x => x.BPRatingType);
+            return DbSet.Where(businessPartner => businessPartner.UserDomainKey == UserDomainKey).Include(x => x.Company).Include(x => x.BPRatingType).ToList();
         }
         /// <summary>
         /// Get BusinessPartner by Id

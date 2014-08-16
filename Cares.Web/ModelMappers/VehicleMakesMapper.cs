@@ -13,7 +13,7 @@ namespace Cares.Web.ModelMappers
             return new VehicleMakeDropDown
             {
                 VehicleMakeId = source.VehicleMakeId,
-                VehicleMakeCodeName = source.VehicleMakeCode + " - " + source.VehicleMakeName,
+                VehicleMakeCodeName = source.VehicleMakeCode + "-" + source.VehicleMakeName
             };
         }
 

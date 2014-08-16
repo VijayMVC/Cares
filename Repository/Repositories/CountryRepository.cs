@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -37,9 +38,9 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get All Countries for User Domain Key
         /// </summary>
-        public override IQueryable<Country> GetAll()
+        public override IEnumerable<Country> GetAll()
         {
-            return DbSet.Where(country => country.UserDomainKey == UserDomainKey);
+            return DbSet.Where(country => country.UserDomainKey == UserDomainKey).ToList();
         }
         /// <summary>
         /// Find by Id

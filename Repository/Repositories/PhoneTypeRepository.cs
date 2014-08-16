@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -38,9 +39,9 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get All Phone Types for User Domain Key
         /// </summary>
-        public override IQueryable<PhoneType> GetAll()
+        public override IEnumerable<PhoneType> GetAll()
         {
-            return DbSet.Where(phoneTypes => phoneTypes.UserDomainKey == UserDomainKey);
+            return DbSet.Where(phoneTypes => phoneTypes.UserDomainKey == UserDomainKey).ToList();
         }
         /// <summary>
         /// Find Phone Type by Id

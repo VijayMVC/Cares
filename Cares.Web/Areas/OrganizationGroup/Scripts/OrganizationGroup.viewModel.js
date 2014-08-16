@@ -1,14 +1,15 @@
 ﻿/*
     Module with the view model for the OrgGroup
 */
-define("OrganizationGroup/OrganizationGroup.viewModel",
-    ["jquery", "amplify", "ko", "OrganizationGroup/OrganizationGroup.dataservice", "OrganizationGroup/OrganizationGroup.model",
+define("OrganizationGroup/organizationGroup.viewModel",
+    ["jquery", "amplify", "ko", "OrganizationGroup/organizationGroup.dataservice", "OrganizationGroup/organizationGroup.model",
     "common/confirmation.viewModel", "common/pagination"],
     function($, amplify, ko, dataservice, model, confirmation, pagination) {
         var ist = window.ist || {};
         ist.OrganizationGroup = {
             viewModel: (function() { 
                 var view,
+                     editorViewModel = new ist.ViewModel(model.organizationGroupDetail),
                     //array to save org groups
                     organizationGroups = ko.observableArray([]),
                     //pager
@@ -26,18 +27,17 @@ define("OrganizationGroup/OrganizationGroup.viewModel",
                     //to control the visibility of filter ec
                     filterSectionVisilble = ko.observable(false),
                     //selected org group 
-                    selectedOrgGroup = ko.observable(undefined),
+                    selectedOrgGroup = editorViewModel.itemForEditing,
                     //save button handler
-                    onSaveOrgGroupbtn = function() {
+                    onSaveOrgGroupbtn = function () {
+                        if (dobeforeOrgGrop())
                         saveOrgGroup(selectedOrgGroup());
                     },
                     //save org group 
                     saveOrgGroup = function(item) {
-                        debugger;
                         dataservice.addOrganizationGroup(model.organizationGroupClienttoServerMapper(item), {
                             success: function(dataFromServer) {
                                 var newItem = model.organizationGroupServertoClinetMapper(dataFromServer);
-                                debugger;
                                 if (selectedOrgGroup().id() !== undefined)
                                     organizationGroups.replace(selectedOrgGroup(), newItem);
                                 else
@@ -49,6 +49,14 @@ define("OrganizationGroup/OrganizationGroup.viewModel",
                                 toastr.error("Operation Failed!");
                             }
                         });
+                    }, 
+                    //validation check 
+                    dobeforeOrgGrop = function() {
+                        if (!selectedOrgGroup().isValid()) {
+                            selectedOrgGroup().errors.showAllMessages();
+                            return false;
+                        }
+                        return true;
                     },
                     //cancel button handler
                     onCancelOrgGroupbtn = function() {
@@ -89,10 +97,10 @@ define("OrganizationGroup/OrganizationGroup.viewModel",
                         dataservice.deleteOrganizationGroup(model.organizationGroupClienttoServerMapper(orgGroup), {
                             success: function() {
                                 organizationGroups.remove(orgGroup);
-                                toastr.success("Org.Group removed successfully");
+                                toastr.success("Organizaiton Group removed successfully.");
                             },
                             error: function() {
-                                toastr.error("failed to remove Org.Group!");
+                                toastr.error("Failed to remove Organization Group.");
                             }
                         });
                     },
@@ -138,7 +146,7 @@ define("OrganizationGroup/OrganizationGroup.viewModel",
                     initialize = function(specifiedView) {
                         view = specifiedView;
                         ko.applyBindings(view.viewModel, view.bindingRoot);
-                        pager(pagination.Pagination({ PageSize: 3 }, organizationGroups, getOrganizationGroups));
+                        pager(pagination.Pagination({ PageSize: 10}, organizationGroups, getOrganizationGroups));
                         getOrganizationGroups();
                     };
                 return {
@@ -160,7 +168,8 @@ define("OrganizationGroup/OrganizationGroup.viewModel",
                     onEditFleetPool: onEditFleetPool,
                     onCancelOrgGroupbtn: onCancelOrgGroupbtn,
                     selectedOrgGroup: selectedOrgGroup,
-                    onSaveOrgGroupbtn: onSaveOrgGroupbtn
+                    onSaveOrgGroupbtn: onSaveOrgGroupbtn,
+                    getOrganizationGroups: getOrganizationGroups
                 };
             })()
         };

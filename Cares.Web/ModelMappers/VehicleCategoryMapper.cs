@@ -8,7 +8,8 @@ namespace Cares.Web.ModelMappers
     public static class VehicleCategoryMapper
     {
         #region Public
-/// <summary>
+        
+        /// <summary>
         ///  Create web model from entity
         /// </summary>
         public static VehicleCategoryDropDown CreateFrom(this Cares.Models.DomainModels.VehicleCategory source)
@@ -16,9 +17,10 @@ namespace Cares.Web.ModelMappers
             return new VehicleCategoryDropDown
             {
                 VehicleCategoryId = source.VehicleCategoryId,
-                VehicleCategoryCodeName = source.VehicleCategoryCode + " - " + source.VehicleCategoryName,
+                VehicleCategoryCodeName = source.VehicleCategoryCode + "-" + source.VehicleCategoryName
             };
         }
+        
         #endregion
     }
 }

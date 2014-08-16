@@ -17,11 +17,10 @@
                     <input type="text" class="form-control" placeholder="<Search>" data-bind="value: hireGroupCodeFilter" />
                 </div>
                 <div class="col-xs-3">
-                    <select class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyName', optionsValue: 'CompanyId', optionsCaption: '<Company>', value: companyFilter"></select>
+                    <select class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '<Company>', value: companyFilter"></select>
                 </div>
                 <div class="col-xs-3">
                     <select class="form-control" data-bind="options: $root.parentHireGroups, optionsText: 'ParentHireGroupName', optionsValue: 'HireGroupId', optionsCaption: '<Parent Hire Group>', value: parentHireGroupFilter"></select>
-
                 </div>
                 <button type="submit" class="btn btn-success" data-bind="click: search">Search</button>
                 <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection" title="Hide Section"></a>
@@ -52,10 +51,10 @@
         </div>
     </div>
     <script id="editActionHireGroupTemplate" type="text/html">
-        <a href="#" data-bind="click: $root.onEditHireGroup" title="Edit" ><span class="glyphicon glyphicon-edit"></span></a>
+        <a href="#" data-bind="click: $root.onEditHireGroup" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
     </script>
     <script id="deleteActionHireGroupTemplate" type="text/html">
-        <a href="#"  title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
+        <a href="#" data-bind="click: $root.onDeleteHireGroup" title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
     </script>
     <script id="itemHireGroupTemplate" type="text/html">
         <tr>

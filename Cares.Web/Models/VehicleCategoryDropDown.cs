@@ -6,16 +6,17 @@
     public class VehicleCategoryDropDown
     {
         #region Public Properties
+        
         /// <summary>
         /// Vehicle Category ID
         /// </summary>
         public short VehicleCategoryId { get; set; }
-
+        
         /// <summary>
-        /// Vehicle Category Code
+        /// Vehicle Category Code Name
         /// </summary>
         public string VehicleCategoryCodeName { get; set; }
-      
+
         #endregion
     }
 }

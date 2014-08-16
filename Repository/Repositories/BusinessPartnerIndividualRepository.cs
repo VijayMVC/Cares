@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -82,9 +83,9 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get All Business Partner Individuals for User Domain Key
         /// </summary>
-        public override IQueryable<BusinessPartnerIndividual> GetAll()
+        public override IEnumerable<BusinessPartnerIndividual> GetAll()
         {
-            return DbSet.Where(businessPartnerIndividual => businessPartnerIndividual.UserDomainKey == UserDomainKey);
+            return DbSet.Where(businessPartnerIndividual => businessPartnerIndividual.UserDomainKey == UserDomainKey).ToList();
         }
         /// <summary>
         /// Get Business Partner Individual by Id

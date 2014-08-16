@@ -156,7 +156,11 @@ namespace Cares.Web.ModelMappers
                 ResponsePhoneTypes = source.ResponsePhoneTypes.Select(x => x.CreateFrom()),
                 ResponseAddressTypes = source.ResponseAddressTypes.Select(x => x.CreateFrom()),
                 ResponseMarketingChannels = source.ResponseMarketingChannels.Select(x => x.CreateFrom()),
-                ResponseBusinessPartnerRelationshipTypes = source.ResponseBusinessPartnerRelationshipTypes.Select(x => x.CreateFrom())
+                ResponseBusinessPartnerRelationshipTypes = source.ResponseBusinessPartnerRelationshipTypes.Select(x => x.CreateFrom()),
+                ResponseRegions = source.ResponseRegions.Select(x=>x.CreateFrom()),
+                ResponseSubRegions = source.ResponseSubRegions.Select(x=>x.CreateFrom()),
+                ResponseCities = source.ResponseCities.Select(x=>x.CreateFrom()),
+                ResponseAreas = source.ResponseAreas.Select(x=>x.CreateFrom())
             };
         }
         #endregion
@@ -247,6 +251,7 @@ namespace Cares.Web.ModelMappers
                 BusinessPartnerId = source.BusinessPartnerId,
                 BusinessPartnerCompanyCode = source.BusinessPartnerCompanyCode,
                 BusinessPartnerCompanyName = source.BusinessPartnerCompanyName,
+                BusinessPartnerCompanyCodeName = source.BusinessPartnerCompanyCode + " - "+source.BusinessPartnerCompanyName,
                 BusinessSegmentId = source.BusinessSegmentId,
                 AccountNumber = source.AccountNumber,
                 EstablishedSince = source.EstablishedSince,
@@ -420,6 +425,9 @@ namespace Cares.Web.ModelMappers
                 (source.BusinessPartnerRelationshipType.BusinessPartnerRelationshpTypeCode + " - " +
                 source.BusinessPartnerRelationshipType.BusinessPartnerRelationshipTypeName) : string.Empty,
                 BusinessPartnerId = source.BusinessPartnerId,
+                SecondaryBusinessPartnerId = source.SecondaryBusinessPartnerId,
+                SecondaryBusinessPartnerCodeName = source.SecondaryBusinessPartner != null?
+                source.SecondaryBusinessPartner.BusinessPartnerCode + " - "+ source.SecondaryBusinessPartner.BusinessPartnerName: string.Empty,
                 BusinessPartnerRelationshipId = source.BusinessPartnerRelationshipId
             };
         }
@@ -435,7 +443,7 @@ namespace Cares.Web.ModelMappers
                 BusinessPartnerRelationshipId = source.BusinessPartnerRelationshipId != null ? (int)source.BusinessPartnerRelationshipId : 0,
                 BusinessPartnerId = source.BusinessPartnerId != null ? (long)source.BusinessPartnerId : 0,
                 BusinessPartnerRelationshipTypeId = source.BusinessPartnerRelationshipTypeId,
-                //SecondaryBusinessPartnerId = source.SecondaryBusinessPartnerId
+                SecondaryBusinessPartnerId = source.SecondaryBusinessPartnerId
             };
         }
         #endregion

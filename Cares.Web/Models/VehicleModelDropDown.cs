@@ -11,9 +11,10 @@
         /// </summary>
         public short VehicleModeld { get; set; }
         /// <summary>
-        /// Vehicl eModel Code
+        /// Vehicle Model Code
         /// </summary>
         public string VehicleModelCodeName { get; set; }
+
         #endregion
     }
 }

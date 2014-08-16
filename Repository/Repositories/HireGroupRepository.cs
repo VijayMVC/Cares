@@ -56,30 +56,11 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get All Hire Groups 
         /// </summary>
-        public override IQueryable<HireGroup> GetAll()
+        public override IEnumerable<HireGroup> GetAll()
         {
-            return DbSet.Where(hireGroup => hireGroup.UserDomainKey == UserDomainKey && (hireGroup.ParentHireGroupId == 0 || hireGroup.ParentHireGroupId == null));
+            return DbSet.Where(hireGroup => hireGroup.UserDomainKey == UserDomainKey && (hireGroup.ParentHireGroupId == 0 || hireGroup.ParentHireGroupId == null)).ToList();
         }
-
-        /// <summary>
-        /// Get Hire Groups By Code, Vehicle Make / Category / Model / Model Year
-        /// </summary>
-        public IEnumerable<HireGroup> GetByCodeAndVehicleInfo(string searchText)
-        {
-            return DbSet.Where(hg => (string.IsNullOrEmpty(searchText) ||
-                                      (string.Format("{0}{1}", hg.HireGroupCode, hg.HireGroupName).Contains(searchText) ||
-                                       hg.HireGroupDetails.Any(
-                                           hgd =>
-                                               (string.Format("{0}{1}", hgd.VehicleMake.VehicleMakeCode,
-                                                   hgd.VehicleMake.VehicleMakeName).Contains(searchText)) ||
-                                               (string.Format("{0}{1}", hgd.VehicleCategory.VehicleCategoryCode,
-                                                    hgd.VehicleCategory.VehicleCategoryName).Contains(searchText)) ||
-                                               (string.Format("{0}{1}", hgd.VehicleModel.VehicleModelCode,
-                                                    hgd.VehicleModel.VehicleModelName).Contains(searchText)) ||
-                                               (hgd.ModelYear.ToString(CultureInfo.InvariantCulture).Contains(searchText)))
-                                      ))).OrderBy(hg => hg.HireGroupCode).ThenBy(hg => hg.HireGroupName).Take(10).ToList();
-        }
-
+        
         /// <summary>
         /// Get All Hire Group based on search crateria
         /// </summary>
@@ -113,6 +94,16 @@ namespace Cares.Repository.Repositories
         public IEnumerable<HireGroup> GetHireGroupList()
         {
             return DbSet.Where(hireGroup => hireGroup.UserDomainKey == UserDomainKey && !hireGroup.IsParent);
+        }
+        /// <summary>
+        /// Load Dependencies
+        /// </summary>
+        public void LoadDependencies(HireGroup hireGroup)
+        {
+            //LoadProperty<HireGroup>(hireGroup, "Company");
+            LoadProperty(hireGroup, () => hireGroup.Company);
+            LoadProperty(hireGroup, () => hireGroup.ParentHireGroup);
+           
         }
         #endregion
     }

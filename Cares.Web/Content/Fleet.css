@@ -34,22 +34,14 @@
 #FleetPoolEditor {
   margin-top: 15px;
 }
-#FleetPoolEditor h3 {
+#FleetPoolEditor .detailsContainer {
+  width: 100%;
+}
+#FleetPoolEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
   margin-top: 10px;
-  position: relative;
-}
-#FleetPoolEditor .fleetheading {
-  margin-top: -10px;
-}
-#FleetPoolEditor #saveFleetPoolbtn {
-  position: fixed;
-  margin-left: 975px;
-  margin-top: -45px;
-}
-#FleetPoolEditor #cancelFleetPoolbtn {
-  position: fixed;
-  margin-left: 1037px;
-  margin-top: -45px;
 }
 #tariffRateBinding #tariffRateEditor {
   margin-top: 15px;

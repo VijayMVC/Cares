@@ -67,12 +67,22 @@ namespace Cares.Repository.BaseRepository
             modelBuilder.Entity<PaymentTerm>().HasKey(pTerm => pTerm.PaymentTermId);
             modelBuilder.Entity<PaymentTerm>().Property(pTerm => pTerm.PaymentTermId)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            
+
             modelBuilder.Entity<OperationsWorkPlace>()
                 .HasRequired(c => c.WorkPlace)
                 .WithMany()
                 .WillCascadeOnDelete(false);
-            
+
+            modelBuilder.Entity<HireGroupUpGrade>()
+               .HasRequired(c => c.AllowedHireGroup)
+               .WithMany()
+               .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<BusinessPartnerRelationship>()
+                .HasRequired(c => c.SecondaryBusinessPartner)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+
         }
         #endregion
         #region Constructor
@@ -190,9 +200,18 @@ namespace Cares.Repository.BaseRepository
         /// PaymentTerm DB Set
         /// </summary>
         public DbSet<PaymentTerm> PaymentTerms { get; set; }
+        /// <summary>
+        /// Hire Group Up Grade Db Set
+        /// </summary>
+        public DbSet<HireGroupUpGrade> HireGroupUpGrades { get; set; }
 
-
+        /// <summary>
+        /// Vehicle Models Db Set
+        /// </summary>
         public DbSet<VehicleModel> VehicleModels { get; set; }
+        /// <summary>
+        /// Vehicle Category Db Set
+        /// </summary>
         public DbSet<VehicleCategory> VehicleCategories { get; set; }
         public DbSet<VehicleMake> VehicleMakes { get; set; }
         public DbSet<HireGroup> HireGroups { get; set; }
@@ -244,12 +263,12 @@ namespace Cares.Repository.BaseRepository
         /// </summary>
         public DbSet<Area> Areas { get; set; }
 
-        
+
         /// <summary>
         /// Marketing Channel DB Set
         /// </summary>
         public DbSet<MarketingChannel> MarketingChannels { get; set; }
-        
+
         /// <summary>
         /// OperationsWorkPlaces DB Set
         /// </summary>
@@ -258,7 +277,28 @@ namespace Cares.Repository.BaseRepository
         /// Business Partner Relationship Types DB Set
         /// </summary>
         public DbSet<BusinessPartnerRelationshipType> BusinessPartnerRelationshipTypes { get; set; }
-        
+        /// <summary>
+        /// Business Partner Phones Db Set
+        /// </summary>
+        public DbSet<Phone> Phones { get; set; }
+        /// <summary>
+        /// Business Partner Address List Db Set
+        /// </summary>
+        public DbSet<Address> AddressList { get; set; }
+        /// <summary>
+        /// Business Partner Marketing Channels Db Set
+        /// </summary>
+        public DbSet<BusinessPartnerMarketingChannel> BusinessPartnerMarketingChannels { get; set; }
+        /// <summary>
+        /// Business Partner Relationship item list Db Set
+        /// </summary>
+        public DbSet<BusinessPartnerRelationship> BusinessPartnerRelationships { get; set; }
+
+        /// <summary>
+        /// Vehicle DB Set
+        /// </summary>
+        public DbSet<Vehicle> Vehicles { get; set; }
+
         #endregion
     }
 }

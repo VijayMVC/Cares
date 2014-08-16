@@ -1,5 +1,5 @@
 ﻿/*
-    Module with the view model for the tariff Rate
+    Module with the view model for the Hire Group
 */
 define("hireGroup/hireGroup.viewModel",
     ["jquery", "amplify", "ko", "hireGroup/hireGroup.dataservice", "hireGroup/hireGroup.model", "common/confirmation.viewModel", "common/pagination"],
@@ -13,6 +13,8 @@ define("hireGroup/hireGroup.viewModel",
                    selectedHireGroup = ko.observable(),
                     //Active Hire Group Copy 
                    selectedHireGroupCopy = ko.observable(),
+                    //Active Hire Group Id
+                    selectedHireGroupId = ko.observable(),
                    // Show Filter Section
                     filterSectionVisilble = ko.observable(false),
                     // #region Arrays
@@ -24,6 +26,8 @@ define("hireGroup/hireGroup.viewModel",
                     parentHireGroups = ko.observableArray([]),
                     // Filter Parent Hire Groups
                     filteredParentHireGroups = ko.observableArray([]),
+                    //Filter Hire Group on base of compny
+                    filteredHireGroups = ko.observableArray([]),
                      //Vehicle Make
                     vehicleMakes = ko.observableArray([]),
                     //Vehicle Models
@@ -32,9 +36,9 @@ define("hireGroup/hireGroup.viewModel",
                     vehicleCategories = ko.observableArray([]),
                     //Hire Group Deatil List
                     hireGroupDetails = ko.observableArray([]),
-                    //Model Years
-                    modelYears = ko.observableArray([]),
-                    //Hire Group upgraded tab 
+                    //Hire Group Up Grade List
+                    hireGroupUpGradeList = ko.observableArray([]),
+                      //Hire Group upgraded tab 
                     hireGroupsForDdList = ko.observableArray([]),
                     //Filtered Hire Group list based on company For drop-down list
                     filteredHireGroupsForDdList = ko.observableArray([]),
@@ -51,7 +55,7 @@ define("hireGroup/hireGroup.viewModel",
                     sortOnHg = ko.observable(1),
                     // Sort Order -  true means asc, false means desc
                     sortIsAscHg = ko.observable(true),
-                    // Is Tariff Rate Editor Visible
+                    // Is HIre Group Editor Visible
                     isHireGroupEditorVisible = ko.observable(false),
                     // Pagination
                     pager = ko.observable(),
@@ -93,20 +97,54 @@ define("hireGroup/hireGroup.viewModel",
                      //Create Hire Group Rate
                     createHireGroup = function () {
                         var hireGroup = new model.HireGroup();
+                        hireGroupDetails.removeAll();
+                        hireGroupUpGradeList.removeAll();
                         // Select the newly added Hire Group
                         selectedHireGroup(hireGroup);
                         selectedHireGroup().vehicleDetail(new model.HireGroupDetail());
+                        selectedHireGroup().hireGroupUpGrade(new model.HireGroupUpGrade());
                         showHireGroupEditor();
                     },
                       //Edit Hire Group
                     onEditHireGroup = function (hireGroup, e) {
-                        //selectedTariffRateId(tariffRate.tariffRateId());
+                        hireGroupDetails.removeAll();
+                        hireGroupUpGradeList.removeAll();
                         selectedHireGroup(hireGroup);
+                        selectedHireGroupId(hireGroup.hireGroupId());
                         selectedHireGroup().vehicleDetail(new model.HireGroupDetail());
+                        selectedHireGroup().hireGroupUpGrade(new model.HireGroupUpGrade());
                         //selectedtariffRateCopy(model.TariffRateCoppier(selectedtariffRate()));
-                        //getHireGroupDetails(tariffRate);
+                        getHireGroupById();
                         showHireGroupEditor();
                         e.stopImmediatePropagation();
+                    },
+                     //Get Hire Group data By Id
+                    getHireGroupById = function () {
+                        isLoadingHireGroups(true);
+                        dataservice.getHireGroupDetailById({
+                            id: selectedHireGroupId()
+
+                        }, {
+                            success: function (data) {
+                                var hirGroupDetailItems = [];
+                                //Hire Group Details
+                                _.each(data.HireGroupDetails, function (item) {
+                                    hirGroupDetailItems.push(model.HireGroupDetailClientMapper(item));
+                                });
+                                ko.utils.arrayPushAll(hireGroupDetails(), hirGroupDetailItems);
+                                hireGroupDetails.valueHasMutated();
+                                //Up grade Hire Group
+                                _.each(data.HireGroupUpGrades, function (item) {
+                                    hireGroupUpGradeList.push(model.HireGroupUpGradeClientMapper(item));
+                                });
+                                hireGroupUpGradeList.valueHasMutated();
+                                isLoadingHireGroups(false);
+                            },
+                            error: function () {
+                                isLoadingHireGroups(false);
+                                toastr.error("Error!");
+                            }
+                        });
                     },
                     //country selected form dd
                     onSelectedCompany = function (companyId) {
@@ -117,6 +155,12 @@ define("hireGroup/hireGroup.viewModel",
                                 filteredParentHireGroups.push(item);
                         });
                         filteredParentHireGroups.valueHasMutated();
+                        filteredHireGroupsForDdList.removeAll();
+                        _.each(hireGroupsForDdList(), function (item) {
+                            if (item.CompanyId === companyId.companyId())
+                                filteredHireGroupsForDdList.push(item);
+                        });
+                        filteredHireGroupsForDdList.valueHasMutated();
                     },
                      //On Vehicle Make Change
                     onVehicleMakeChange = function (vehicleMake) {
@@ -142,12 +186,46 @@ define("hireGroup/hireGroup.viewModel",
                        // Add To list vehicle detail
                     onAddVehicleDetail = function (vehicleDetail) {
                         if (doBeforeAdd()) {
-                            selectedHireGroup().hireGroupDetailList().push(new model.HireGroupDetailServerMapper(vehicleDetail));
-                            hireGroupDetails.push(model.HireGroupDetailClientMapper(vehicleDetail));
-                            //selectedHireGroup().vehicleDetail().vehicleMakeId(undefined);
-                            //alert("test");
-                            //saveTariffRate(vehicleDetail);
+                            hireGroupDetails.push(model.HireGroupDetailCopier(vehicleDetail));
                         }
+                    },
+                      // Add To list HIre Group Up Grade
+                    onAddHireGroupUpGrade = function (vehicleDetail) {
+                        if (doBeforeAddHireGroupUpGrade()) {
+                            hireGroupUpGradeList.push(model.HireGroupUpGradeClientMapper(vehicleDetail.hireGroupIdForUpGrade()));
+                        }
+                    },
+                     // Delete a Hire Group
+                    onDeleteHireGroup = function (hireGroup) {
+                        if (!hireGroup.hireGroupId()) {
+                            //hireGroups.remove(hireGroup);
+                            return;
+                        }
+                        // Ask for confirmation
+                        confirmation.afterProceed(function () {
+                            deleteHireGroup(hireGroup);
+                        });
+                        confirmation.show();
+                    },
+                    // Delete Hire Group
+                    deleteHireGroup = function (hireGroup) {
+                        dataservice.deleteHireGroup(model.HireGroupServerMapper(hireGroup), {
+                            success: function () {
+                                hireGroups.remove(hireGroup);
+                                toastr.success("Hire Group removed successfully");
+                            },
+                            error: function () {
+                                toastr.error("Failed to remove Hire Group!");
+                            }
+                        });
+                    },
+                      // Delete Hire Group Detail
+                    deleteHireGroupDetail = function (hireGroup) {
+                        hireGroupDetails.remove(hireGroup);
+                    },
+                      // Delete Hire Group Up Grade
+                    deleteHireGroupUpGrade = function (hireGroup) {
+                        hireGroupUpGradeList.remove(hireGroup);
                     },
                       // Do Before Logic
                     doBeforeAdd = function () {
@@ -158,9 +236,26 @@ define("hireGroup/hireGroup.viewModel",
                         }
                         return flag;
                     },
+                     // Do Before Logic
+                    doBeforeAddHireGroupUpGrade = function () {
+                        var flag = true;
+                        if (!selectedHireGroup().hireGroupUpGrade().isValid()) {
+                            selectedHireGroup().hireGroupUpGrade().errors.showAllMessages();
+                            flag = false;
+                        }
+                        return flag;
+                    },
                       // Save Hire Group
                     onSaveHireGroup = function (hireGroup) {
                         if (doBeforeSave()) {
+                            hireGroup.hireGroupDetailList.removeAll();
+                            hireGroup.upgragedHireGroupList.removeAll();
+                            _.each(hireGroupDetails(), function (item) {
+                                hireGroup.hireGroupDetailList.push(model.HireGroupDetailServerMapper(item));
+                            });
+                            _.each(hireGroupUpGradeList(), function (item) {
+                                hireGroup.upgragedHireGroupList.push(model.HireGroupUpGradeServerMapper(item));
+                            });
                             saveHireGroup(hireGroup);
                         }
                     },
@@ -182,7 +277,20 @@ define("hireGroup/hireGroup.viewModel",
 
                         dataservice[method](model.HireGroupServerMapper(hireGroup), {
                             success: function (data) {
-                                // var tariffRateData = new model.TariffRateClientMapper(data);
+                                var hireGroupResult = new model.HireGroupClientMapper(data);
+                                if (selectedHireGroup().hireGroupId() === undefined) {
+                                    hireGroups.splice(0, 0, hireGroupResult);
+                                } else {
+                                    selectedHireGroup().hireGroupCode(hireGroupResult.hireGroupCode());
+                                    selectedHireGroup().hireGroupName(hireGroupResult.hireGroupName());
+                                    selectedHireGroup().companyName(hireGroupResult.companyName());
+                                    selectedHireGroup().companyId(hireGroupResult.companyId());
+                                    selectedHireGroup().parentHireGroupId(hireGroupResult.parentHireGroupId());
+                                    selectedHireGroup().isParent(hireGroupResult.isParent());
+                                    selectedHireGroup().description(hireGroupResult.description());
+                                    selectedHireGroup().virtualIsParent(hireGroupResult.isParent());
+
+                                }
                                 closeHireGroupEditor();
                                 toastr.success("Hire Group saved successfully");
                             },
@@ -242,6 +350,17 @@ define("hireGroup/hireGroup.viewModel",
                         ko.utils.arrayPushAll(hireGroups(), hireGroupList);
                         hireGroups.valueHasMutated();
                     },
+                    modelYears = [{ Id: 2001, Text: '2001' },
+                        { Id: 2002, Text: '2002' },
+                        { Id: 2003, Text: '2003' },
+                         { Id: 2004, Text: '2004' },
+                        { Id: 2005, Text: '2005' },
+                        { Id: 2006, Text: '2006' },
+                        { Id: 2007, Text: '2007' }
+
+
+
+                    ],
                     // Get Hire Group
                     getHireGroup = function () {
                         isLoadingHireGroups(true);
@@ -291,7 +410,9 @@ define("hireGroup/hireGroup.viewModel",
                     hireGroupsForDdList: hireGroupsForDdList,
                     filteredHireGroupsForDdList: filteredHireGroupsForDdList,
                     filteredParentHireGroups: filteredParentHireGroups,
+                    filteredHireGroups: filteredHireGroups,
                     hireGroupDetails: hireGroupDetails,
+                    hireGroupUpGradeList: hireGroupUpGradeList,
                     //Filters
                     hireGroupCodeFilter: hireGroupCodeFilter,
                     hireGroupNameFilter: hireGroupNameFilter,
@@ -310,10 +431,14 @@ define("hireGroup/hireGroup.viewModel",
                     onEditHireGroup: onEditHireGroup,
                     onSelectedCompany: onSelectedCompany,
                     onAddVehicleDetail: onAddVehicleDetail,
+                    onAddHireGroupUpGrade: onAddHireGroupUpGrade,
                     onVehicleModelChange: onVehicleModelChange,
                     onVehicleMakeChange: onVehicleMakeChange,
                     onVehicleCategoryChange: onVehicleCategoryChange,
                     onSaveHireGroup: onSaveHireGroup,
+                    onDeleteHireGroup: onDeleteHireGroup,
+                    deleteHireGroupDetail: deleteHireGroupDetail,
+                    deleteHireGroupUpGrade: deleteHireGroupUpGrade,
                     //selectHireGroup: selectHireGroup,
                     collapseFilterSection: collapseFilterSection,
                     showFilterSection: showFilterSection,

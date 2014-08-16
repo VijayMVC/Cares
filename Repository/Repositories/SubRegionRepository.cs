@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -38,9 +39,9 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get All Sub Regions for User Domain Key
         /// </summary>
-        public override IQueryable<SubRegion> GetAll()
+        public override IEnumerable<SubRegion> GetAll()
         {
-            return DbSet.Where(subRegion => subRegion.UserDomainKey == UserDomainKey);
+            return DbSet.Where(subRegion => subRegion.UserDomainKey == UserDomainKey).ToList();
         }
         /// <summary>
         /// Find Sub Region By Id

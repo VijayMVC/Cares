@@ -10,9 +10,11 @@ namespace Cares.Web.Models
         /// PaymentTerm ID
         /// </summary>
         public short PaymentTermId { get; set; }
+
         /// <summary>
-        /// PaymentTerm Code and  Name
+        /// Payment Term Code Name
         /// </summary>
         public string PaymentTermCodeName { get; set; }
+
     }
 }

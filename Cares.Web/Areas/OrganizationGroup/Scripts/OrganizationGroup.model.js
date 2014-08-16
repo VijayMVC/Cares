@@ -109,7 +109,6 @@
     };
     //client to server mapper
     var organizationGroupClienttoServerMapper = function (client) {
-        debugger;
         return new OrganizationGroup(client.id(), client.code(), client.name(), client.description()).convertToServerData();
     };
     // FleetPool Factory

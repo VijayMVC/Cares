@@ -21,6 +21,7 @@ namespace Cares.Web.ModelMappers
         }
         #endregion
         #region Hire Group
+
         /// <summary>
         ///  Create web model from entity
         /// </summary>
@@ -37,6 +38,18 @@ namespace Cares.Web.ModelMappers
                 ParentHireGroupId = source.ParentHireGroup != null ? source.ParentHireGroup.HireGroupId : 0,
                 CompanyName = source.Company.CompanyCode + '-' + source.Company.CompanyName,
                 CompanyId = source.Company.CompanyId,
+            };
+        }
+        /// <summary>
+        ///  Create web model from entity
+        /// </summary>
+        public static HireGroupDropDown CreateFromHireGroupDropDown(this DomainModels.HireGroup source)
+        {
+            return new HireGroupDropDown
+            {
+                HireGroupId = source.HireGroupId,
+                HireGroupCodeName = source.HireGroupCode + " - " + source.HireGroupName,
+                CompanyId = source.CompanyId
             };
         }
         public static ParentHireGroup CreateFromParentHireGroup(this DomainModels.HireGroup source)
@@ -59,7 +72,6 @@ namespace Cares.Web.ModelMappers
                 TotalCount = source.TotalCount
             };
         }
-
         /// <summary>
         /// Create Hire Group Search Response from domain Hire Group Search Response
         /// </summary>
@@ -72,10 +84,14 @@ namespace Cares.Web.ModelMappers
                 VehicleCategories = source.VehicleCategories.Select(category => category.CreateFrom()),
                 VehicleModels = source.VehicleModels.Select(model => model.CreateFrom()),
                 VehicleMakes = source.VehicleMakes.Select(makes => makes.CreateFrom()),
-
+                HireGroups = source.HireGroups.Select(hr => hr.CreateFromHireGroupDropDown())
             };
         }
-
+        /// <summary>
+        /// Hire Group Detail mapper for hire group web to entity
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
         public static DomainModels.HireGroupDetail CreateFromForHireGroupAdd(this HireGroupDetailForHireGroup source)
         {
             return new DomainModels.HireGroupDetail
@@ -88,6 +104,11 @@ namespace Cares.Web.ModelMappers
 
             };
         }
+        /// <summary>
+        /// Hire Group Mapper
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
         public static DomainModels.HireGroup CreateFromAdd(this HireGroup source)
         {
             return new DomainModels.HireGroup
@@ -110,8 +131,65 @@ namespace Cares.Web.ModelMappers
         {
             return new RequestModel.HireGroupAddRequest
             {
-                HireGroupDetails = source.HireGroupDetailList!=null?source.HireGroupDetailList.Select(hg => hg.CreateFromForHireGroupAdd()):null,
+                HireGroupDetails = source.HireGroupDetailList != null ? source.HireGroupDetailList.Select(hg => hg.CreateFromForHireGroupAdd()) : null,
+                HireGroupUpGrades = source.HireGroupUpgradeList != null ? source.HireGroupUpgradeList.Select(h => h.CreateFrom()) : null,
                 HireGroup = source.CreateFromAdd()
+            };
+        }
+        /// <summary>
+        /// Hire Group detail data response Mapper that get get by hire group id
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static HireGroupDataDetailResponse CreateFrom(this ResponseModel.HireGroupDataDetailResponse source)
+        {
+            return new HireGroupDataDetailResponse
+                   {
+                       HireGroupDetails = source.HireGroupDetails.Select(hg => hg.CreateFromForHireGroupDetail()),
+                       HireGroupUpGrades = source.HireGroupUpGrades.Select(hgUpGrade => hgUpGrade.CreateFrom())
+                   };
+        }
+        /// <summary>
+        /// Hire Group Detail mapper for hire group web to entity
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static HireGroupDetailForHireGroup CreateFromForHireGroupDetail(this DomainModels.HireGroupDetail source)
+        {
+            return new HireGroupDetailForHireGroup
+            {
+                HireGroupDetailId = source.HireGroupDetailId,
+                VehicleCategoryId = source.VehicleCategoryId,
+                VehicleModelId = source.VehicleModelId,
+                VehicleMakeId = source.VehicleMakeId,
+                VehicleCategoryCodeName = source.VehicleCategory.VehicleCategoryCode + " - " + source.VehicleCategory.VehicleCategoryName,
+                VehicleModelCodeName = source.VehicleModel.VehicleModelCode + " - " + source.VehicleModel.VehicleModelName,
+                VehicleMakeCodeName = source.VehicleMake.VehicleMakeCode + " - " + source.VehicleMake.VehicleMakeName,
+                VehicleModelYear = source.ModelYear,
+
+            };
+        }
+        /// <summary>
+        /// Entitit to web Model 
+        /// </summary>
+        public static HireGroupUpgradeForHireGroup CreateFrom(this DomainModels.HireGroupUpGrade source)
+        {
+            return new HireGroupUpgradeForHireGroup
+            {
+                HireGroupCodeName = source.AllowedHireGroup.HireGroupCode + " - " + source.AllowedHireGroup.HireGroupName,
+                HireGroupId = source.AllowedHireGroupId,
+                HireGroupUpGradeId=source.HireGroupUpGradeId
+            };
+        }
+        /// <summary>
+        /// Entitit to web Model 
+        /// </summary>
+        public static DomainModels.HireGroupUpGrade CreateFrom(this HireGroupUpgradeForHireGroup source)
+        {
+            return new DomainModels.HireGroupUpGrade
+            {
+                HireGroupUpGradeId = source.HireGroupUpGradeId,
+                AllowedHireGroupId = source.HireGroupId
             };
         }
 

@@ -14,7 +14,7 @@
         /// Vehicle Make Code
         /// </summary>
         public string VehicleMakeCodeName { get; set; }
-       
+
         #endregion
     }
 }

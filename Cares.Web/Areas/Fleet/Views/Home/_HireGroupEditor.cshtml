@@ -18,7 +18,7 @@
             </div>
             <label for="company" class="control-label h5 col-sm-2">Company *</label>
             <div class="col-md-2">
-                <select id="company" class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyName', optionsValue: 'CompanyId', optionsCaption: '<Company>', value: companyId, validationTooltip: companyId, disable :virtualIsParent(), event:{change:$root.onSelectedCompany}"></select>
+                <select id="company" class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '<Company>', value: companyId, validationTooltip: companyId, disable :virtualIsParent(), event:{change:$root.onSelectedCompany}"></select>
             </div>
         </div>
         <div class="form-group">
@@ -48,7 +48,7 @@
             <!-- first tab - Detail-->
             <div class="tab-pane active" id="detail" data-bind="with:vehicleDetail">
                 <form class="form-horizontal">
-                    <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onAddVehicleDetail">Add</button>
+                    <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onAddVehicleDetail ">Add</button>
                     <div class="form-group">
                         <label for="vehicleMake" class="control-label h5 col-sm-2">Vehicle Make*</label>
                         <div class="col-md-2">
@@ -64,36 +64,80 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="modelYear" class="control-label h5 col-sm-2">Model Year*</label>
+                        <div class="col-md-2">
+                            <select id="modelYear" class="form-control" data-bind="options: $root.modelYears, optionsText: 'Text',optionsValue:'Id', optionsCaption: '<Model Year>', value: vehicleModelYear "></select>
+                        </div>
 
                     </div>
                 </form>
-
+                
                 <table id="hireGroupDetail" class="table table-condensed">
                     <thead>
                         <tr>
-                            <th> <span></span></th>
-                            <th> <span>Vehicle<br />Make<span></span></span></th>
-                            <th> <span>Vehicle<br />Model<span></span></span></th>
-                            <th> <span>Vehicle<br />Category<span></span></span></th>
-                            <th> <span>Model<br />Year<span></span></span></th>
+                            <th> <span>VehicleMake<span></span></span></th>
+                            <th> <span>VehicleModel<span></span></span></th>
+                            <th> <span>VehicleCategory<span></span></span></th>
+                            <th> <span>ModelYear<span></span></span></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- ko template: { name: itemHireGroupDetailTemplate , foreach: $root.hireGroupDetails } -->
+                        <!-- ko template: { name: 'itemHireGroupDetailTemplate' , foreach: $root.hireGroupDetails } -->
                         <!-- /ko -->
                     </tbody>
                 </table>
+                <script id="deleteActionHireGroupDetailTemplate" type="text/html">
+                    <a href="#" data-bind="click: $root.deleteHireGroupDetail" title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
+                </script>
                 <script id="itemHireGroupDetailTemplate" type="text/html">
-                    <tr >
+                    <tr>
                         <td data-bind="text: vehicleMakeName"></td>
-                        <td data-bind="text: VehicleModelCodeName"></td>
                         <td data-bind="text: vehicleModelName"></td>
-                        @*<td data-bind="text: modelYear"></td>*@
+                        <td data-bind="text: vehicleCategoryName"></td>
+                        <td data-bind="text: vehicleModelYear"></td>
+                        <td>
+                            <!-- ko template: { name: 'deleteActionHireGroupDetailTemplate' } -->
+                            <!-- /ko -->
+                        </td>
                     </tr>
                 </script>
             </div>
             <!-- second tab - Upgraded HireGroups-->
-            <div class="tab-pane" id="upgradedHireGroups">...</div>
+            <div class="tab-pane" id="upgradedHireGroups" data-bind="with:hireGroupUpGrade">
+                <form class="form-horizontal">
+                    <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onAddHireGroupUpGrade">Add</button>
+                    <div class="form-group">
+                        <label for="hireGroups" class="control-label h5 col-sm-2">Hire Groups *</label>
+                        <div class="col-md-2">
+                            <select id="hireGroups" class="form-control" data-bind="options: $root.filteredHireGroupsForDdList, optionsText: 'HireGroupCodeName', optionsCaption: '<Hire Group>',value:hireGroupIdForUpGrade, event:{change:$root.upGradedHireGroupChange} "></select>
+                        </div>
+                    </div>
+                </form>
+
+                <table id="hireGroupUpgraded" class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th> <span>Hire Groups<span></span></span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- ko template: { name: 'itemHireGroupUpgradedTemplate' , foreach: $root.hireGroupUpGradeList } -->
+                        <!-- /ko -->
+                    </tbody>
+                </table>
+                <script id="deleteActionHireGroupUpGradeTemplate" type="text/html">
+                    <a href="#" data-bind="click: $root.deleteHireGroupUpGrade" title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
+                </script>
+                <script id="itemHireGroupUpgradedTemplate" type="text/html">
+                    <tr>
+                        <td data-bind="text: hireGroupCodeName"></td>
+                        <td>
+                            <!-- ko template: { name: 'deleteActionHireGroupUpGradeTemplate' } -->
+                            <!-- /ko -->
+                        </td>
+                    </tr>
+                </script>
+            </div>
         </div>
     </div>
 </div>

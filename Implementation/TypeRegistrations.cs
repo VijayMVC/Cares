@@ -39,15 +39,13 @@ namespace Cares.Implementation
             unityContainer.RegisterType<IBusinessLegalStatusService, BusinessLegalStatusService>();
             unityContainer.RegisterType<IBusinessPartnerBaseDataService, BusinessPartnerBaseDataService>();
             unityContainer.RegisterType<ITariffRateService, TariffRateService>();
-            unityContainer.RegisterType<IBusinessPartnerCompanyService, BusinessPartnerCompanyService>();
             unityContainer.RegisterType<IStandardRateService, StandardRateService>();
-            unityContainer.RegisterType<IBusinessPartnerIndividualService, BusinessPartnerIndividualService>();
             unityContainer.RegisterType<IOccupationTypeService, OccupationTypeService>();
             unityContainer.RegisterType<ICountryService, CountryService>();            
             unityContainer.RegisterType<IHireGroupService, HireGroupService>();
-            unityContainer.RegisterType<IAddressBaseDataService, AddressBaseDataService>();
             unityContainer.RegisterType<IRentalAgreementService, RentalAgreementService>();
             unityContainer.RegisterType<IOrganizationGroupService, OrganizationGroupService>();
+            unityContainer.RegisterType<IVehicleService, VehicleService>();
 
         }
     }

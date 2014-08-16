@@ -24,6 +24,10 @@ namespace Cares.Web.Models
         /// </summary>
         public string HireGroup { get; set; }
         /// <summary>
+        /// Hire Group Id
+        /// </summary>
+        public long HireGroupId { get; set; } 
+        /// <summary>
         /// Vehicle Make
         /// </summary>
         public string VehicleMake { get; set; }

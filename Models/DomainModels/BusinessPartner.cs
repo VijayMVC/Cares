@@ -229,10 +229,7 @@ namespace Cares.Models.DomainModels
         /// Business Partner RelationshipItems list
         /// </summary>
         public virtual ICollection<BusinessPartnerRelationship> BusinessPartnerRelationshipItemList { get; set; }
-        ///// <summary>
-        ///// Business Partner RelationshipItems Secondary list
-        ///// </summary>
-        //public virtual ICollection<BusinessPartnerRelationship> BusinessPartnerRelationshipItemSecondaryList { get; set; }
+
         #endregion
     }
 }

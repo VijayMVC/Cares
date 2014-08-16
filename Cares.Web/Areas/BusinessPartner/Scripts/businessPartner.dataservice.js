@@ -29,7 +29,6 @@ define("businessPartner/businessPartner.dataservice", function () {
                         dataType: 'json',
                         type: 'PUT',
                         contentType: "application/json; charset=utf-8"
-
                     });
                     // Define request to update Business Partner
                     amplify.request.define('updateBusinessPartner', 'ajax', {
@@ -47,12 +46,6 @@ define("businessPartner/businessPartner.dataservice", function () {
                     // Define request to get Business Partner by Id
                     amplify.request.define('getBusinessPartnerById', 'ajax', {
                         url: '/Api/GetBusinessPartnerDetails',
-                        dataType: 'json',
-                        type: 'GET'
-                    });
-                    // Define request to get Regions against country
-                    amplify.request.define('getCountryRegions', 'ajax', {
-                        url: '/Api/AddressBase',
                         dataType: 'json',
                         type: 'GET'
                     });
@@ -78,7 +71,7 @@ define("businessPartner/businessPartner.dataservice", function () {
                     error: callbacks.error
                 });
             },
-                        // Create Business Partner
+            // Create Business Partner
             createBusinessPartner = function (param, callbacks) {
                 initialize();
                 return amplify.request({
@@ -108,17 +101,6 @@ define("businessPartner/businessPartner.dataservice", function () {
                     data: param
                 });
             },
-          // Get Regions with respect to country Id
-            getCountryRegions = function (param, callbacks) {
-                initialize();
-                return amplify.request({
-                    resourceId: 'getCountryRegions',
-                    success: callbacks.success,
-                    error: callbacks.error,
-                    data: param
-                });
-            },
-
             // get Business Partner by id
             getBusinessPartnerById = function (param, callbacks) {
                 initialize();
@@ -135,8 +117,7 @@ define("businessPartner/businessPartner.dataservice", function () {
             updateBusinessPartner: updateBusinessPartner,
             deleteBusinessPartner: deleteBusinessPartner,
             getBusinessPartnerBase: getBusinessPartnerBase,
-            getBusinessPartnerById: getBusinessPartnerById,
-            getCountryRegions: getCountryRegions
+            getBusinessPartnerById: getBusinessPartnerById
         };
     })();
     return dataService;
