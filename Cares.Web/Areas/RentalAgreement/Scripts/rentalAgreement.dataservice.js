@@ -33,6 +33,41 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
                         type: 'GET'
                     });
                     
+                    // Define request to get Customer by Customer No
+                    amplify.request.define('getCustomerByNo', 'ajax', {
+                        url: '/Api/RentalAgreementBusinessPartner',
+                        dataType: 'json',
+                        type: 'GET'
+                    });
+                    
+                    // Define request to get Customer by Nic No
+                    amplify.request.define('getCustomerByNicNo', 'ajax', {
+                        url: '/Api/RentalAgreementBusinessPartner',
+                        dataType: 'json',
+                        type: 'GET'
+                    });
+                    
+                    // Define request to get Customer by Passport No
+                    amplify.request.define('getCustomerByPassportNo', 'ajax', {
+                        url: '/Api/RentalAgreementBusinessPartner',
+                        dataType: 'json',
+                        type: 'GET'
+                    });
+                    
+                    // Define request to get Customer by License No
+                    amplify.request.define('getCustomerByLicenseNo', 'ajax', {
+                        url: '/Api/RentalAgreementBusinessPartner',
+                        dataType: 'json',
+                        type: 'GET'
+                    });
+                    
+                    // Define request to get Customer by Phone No
+                    amplify.request.define('getCustomerByPhoneNo', 'ajax', {
+                        url: '/Api/RentalAgreementBusinessPartner',
+                        dataType: 'json',
+                        type: 'GET'
+                    });
+                    
                     // #region MockCalls
                     /* Mock Calls */
 
@@ -98,13 +133,73 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
                     error: callbacks.error,
                     data: params
                 });
+            },
+            
+            // Get Customer by Customer No
+            getCustomerByNo = function (params, callbacks) {
+                initialize();
+                return amplify.request({
+                    resourceId: 'getCustomerByNo',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: params
+                });
+            },
+            
+            // Get Customer by Nic No
+            getCustomerByNicNo = function (params, callbacks) {
+                initialize();
+                return amplify.request({
+                    resourceId: 'getCustomerByNicNo',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: params
+                });
+            },
+            
+            // Get Customer by Passport No
+            getCustomerByPassportNo = function (params, callbacks) {
+                initialize();
+                return amplify.request({
+                    resourceId: 'getCustomerByPassportNo',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: params
+                });
+            },
+            
+            // Get Customer by License No
+            getCustomerByLicenseNo = function (params, callbacks) {
+                initialize();
+                return amplify.request({
+                    resourceId: 'getCustomerByLicenseNo',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: params
+                });
+            },
+            
+            // Get Customer by Phone No
+            getCustomerByPhoneNo = function (params, callbacks) {
+                initialize();
+                return amplify.request({
+                    resourceId: 'getCustomerByPhoneNo',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: params
+                });
             };
 
 
         return {
             getBase: getBase,
             getVehiclesByHireGroup: getVehiclesByHireGroup,
-            getHireGroupsByCodeAndVehicleInfo: getHireGroupsByCodeAndVehicleInfo
+            getHireGroupsByCodeAndVehicleInfo: getHireGroupsByCodeAndVehicleInfo,
+            getCustomerByNo: getCustomerByNo,
+            getCustomerByNicNo: getCustomerByNicNo,
+            getCustomerByPassportNo: getCustomerByPassportNo,
+            getCustomerByLicenseNo: getCustomerByLicenseNo,
+            getCustomerByPhoneNo: getCustomerByPhoneNo
         };
     })();
 

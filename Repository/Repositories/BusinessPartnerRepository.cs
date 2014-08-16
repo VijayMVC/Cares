@@ -10,6 +10,7 @@ using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
 using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
+using PhoneType = Cares.Models.CommonTypes.PhoneType;
 
 namespace Cares.Repository.Repositories
 {
@@ -106,8 +107,82 @@ namespace Cares.Repository.Repositories
                 .Include(x => x.BusinessPartnerRelationshipItemList)
                 .Include(x => x.Company)
                 .Include(x => x.BPRatingType)
+                .Include(x => x.PaymentTerm)
                 .FirstOrDefault();
         }
+
+        /// <summary>
+        /// Get By License No
+        /// </summary>
+        public BusinessPartner GetByLicenseNo(string licenseNo)
+        {
+            return DbSet.Where(businessPartner => businessPartner.UserDomainKey == UserDomainKey && businessPartner.IsIndividual && 
+                businessPartner.BusinessPartnerIndividual.LiscenseNumber.Equals(licenseNo))
+                .Include(x => x.BusinessPartnerIndividual)
+                .Include(x => x.BusinessPartnerCompany)
+                .Include(x => x.BusinessPartnerPhoneNumbers)
+                .Include(x => x.BusinessPartnerPhoneNumbers.Select(y => y.PhoneType))
+                .Include(x => x.BusinessPartnerAddressList)
+                .Include(x => x.Company)
+                .Include(x => x.BPRatingType)
+                .Include(x => x.PaymentTerm)
+                .FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Get By Nic No
+        /// </summary>
+        public BusinessPartner GetByNicNo(string nicNo)
+        {
+            return DbSet.Where(businessPartner => businessPartner.UserDomainKey == UserDomainKey && businessPartner.IsIndividual &&
+                businessPartner.BusinessPartnerIndividual.NicNumber.Equals(nicNo))
+                .Include(x => x.BusinessPartnerIndividual)
+                .Include(x => x.BusinessPartnerCompany)
+                .Include(x => x.BusinessPartnerPhoneNumbers)
+                .Include(x => x.BusinessPartnerPhoneNumbers.Select(y => y.PhoneType))
+                .Include(x => x.BusinessPartnerAddressList)
+                .Include(x => x.Company)
+                .Include(x => x.BPRatingType)
+                .Include(x => x.PaymentTerm)
+                .FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Get By Passport No
+        /// </summary>
+        public BusinessPartner GetByPassportNo(string passportNo)
+        {
+            return DbSet.Where(businessPartner => businessPartner.UserDomainKey == UserDomainKey && businessPartner.IsIndividual &&
+                businessPartner.BusinessPartnerIndividual.PassportNumber.Equals(passportNo))
+                .Include(x => x.BusinessPartnerIndividual)
+                .Include(x => x.BusinessPartnerCompany)
+                .Include(x => x.BusinessPartnerPhoneNumbers)
+                .Include(x => x.BusinessPartnerPhoneNumbers.Select(y => y.PhoneType))
+                .Include(x => x.BusinessPartnerAddressList)
+                .Include(x => x.Company)
+                .Include(x => x.BPRatingType)
+                .Include(x => x.PaymentTerm)
+                .FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Get By Phone No
+        /// </summary>
+        public BusinessPartner GetByPhoneNo(string phoneNo, PhoneType phoneType)
+        {
+            return DbSet.Where(businessPartner => businessPartner.UserDomainKey == UserDomainKey && 
+                businessPartner.BusinessPartnerPhoneNumbers.Any(bpPhone => bpPhone.PhoneNumber.Equals(phoneNo) && bpPhone.PhoneType.PhoneTypeKey == (int?)phoneType))
+                .Include(x => x.BusinessPartnerIndividual)
+                .Include(x => x.BusinessPartnerCompany)
+                .Include(x => x.BusinessPartnerPhoneNumbers)
+                .Include(x => x.BusinessPartnerPhoneNumbers.Select(y => y.PhoneType))
+                .Include(x => x.BusinessPartnerAddressList)
+                .Include(x => x.Company)
+                .Include(x => x.BPRatingType)
+                .Include(x => x.PaymentTerm)
+                .FirstOrDefault();
+        }
+
         #endregion
     }
 }
