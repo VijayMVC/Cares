@@ -31,6 +31,7 @@ namespace Cares.Repository
             unityContainer.RegisterType<IRegionRepository, RegionRepository>();
             unityContainer.RegisterType<BaseDbContext>(new PerRequestLifetimeManager());
 
+            unityContainer.RegisterType<IOrganizationGroupRepository, OrgGroupRepository>();
             unityContainer.RegisterType<IBpRatingTypeRepository, BpRatingTypeRepository>();
             unityContainer.RegisterType<IBusinessLegalStatusRepository, BusinessLegalStatusRepository>();
             unityContainer.RegisterType<IVehicleCategoryRepository, VehicleCategoryRepository>();

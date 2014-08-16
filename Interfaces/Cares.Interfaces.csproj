@@ -57,6 +57,7 @@
     <Compile Include="IServices\ICountryService.cs" />
     <Compile Include="IServices\IHireGroupService.cs" />
     <Compile Include="IServices\IOccupationTypeService.cs" />
+    <Compile Include="IServices\IOrganizationGroupService.cs" />
     <Compile Include="IServices\IPaymentTermService.cs" />
     <Compile Include="IServices\ICompanyService.cs" />
     <Compile Include="IServices\IDepartmentService.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Repository\IAreaRepository.cs" />
     <Compile Include="Repository\IOperationsWorkPlaceRepository.cs" />
     <Compile Include="Repository\IMarketingChannelRepository.cs" />
+    <Compile Include="Repository\IOrganizationGroupRepository.cs" />
     <Compile Include="Repository\ISubRegionRepository.cs" />
     <Compile Include="Repository\IFleetPoolRepository.cs" />
     <Compile Include="Repository\ICountryRepository.cs" />
@@ -103,7 +105,6 @@
     <Compile Include="Repository\IEmployeeRepository.cs" />
     <Compile Include="Repository\IOccupationTypeRepository.cs" />
     <Compile Include="Repository\IOperationRepository.cs" />
-    <Compile Include="Repository\IOrgGroupRepository.cs" />
     <Compile Include="Repository\IAddressTypeRepository.cs" />
     <Compile Include="Repository\IPhoneTypeRepository.cs" />
     <Compile Include="Repository\IPaymentTermRepository.cs" />

@@ -13,7 +13,7 @@ define("OrganizationGroup/OrganizationGroup.view",
                 // View model 
                 viewModel = specifiedViewModel,
                 // Binding root used with knockout
-                bindingRoot = $("#OrgGroupRootBinding")[0],
+                bindingRoot = $("#OrgGroupBinding")[0],
                 // Initialize
                 initialize = function () {
                     if (!bindingRoot) {

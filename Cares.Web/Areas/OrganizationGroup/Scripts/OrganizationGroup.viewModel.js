@@ -1,5 +1,5 @@
 ﻿/*
-    Module with the view model for the FleetPool
+    Module with the view model for the OrgGroup
 */
 define("OrganizationGroup/OrganizationGroup.viewModel",
     ["jquery", "amplify", "ko", "OrganizationGroup/OrganizationGroup.dataservice", "OrganizationGroup/OrganizationGroup.model",
@@ -7,21 +7,160 @@ define("OrganizationGroup/OrganizationGroup.viewModel",
     function($, amplify, ko, dataservice, model, confirmation, pagination) {
         var ist = window.ist || {};
         ist.OrganizationGroup = {
-            viewModel: (function () {
+            viewModel: (function() { 
                 var view,
+                    //array to save org groups
+                    organizationGroups = ko.observableArray([]),
+                    //pager
+                    pager = ko.observable(),
+                    //org code filter in filter sec
+                    orgGroupCodeFilter = ko.observable(),
+                    //org name filter in filter sec
+                    orgGroupNameFilter = ko.observable(),
+                    //sorting
+                    sortOn = ko.observable(1),
+                    //Assending  / Desending
+                    sortIsAsc = ko.observable(true),
+                    //to control the visibility of editor sec
+                    isOrgGroupEditorVisible = ko.observable(false),
+                    //to control the visibility of filter ec
+                    filterSectionVisilble = ko.observable(false),
+                    //selected org group 
+                    selectedOrgGroup = ko.observable(undefined),
+                    //save button handler
+                    onSaveOrgGroupbtn = function() {
+                        saveOrgGroup(selectedOrgGroup());
+                    },
+                    //save org group 
+                    saveOrgGroup = function(item) {
+                        debugger;
+                        dataservice.addOrganizationGroup(model.organizationGroupClienttoServerMapper(item), {
+                            success: function(dataFromServer) {
+                                var newItem = model.organizationGroupServertoClinetMapper(dataFromServer);
+                                debugger;
+                                if (selectedOrgGroup().id() !== undefined)
+                                    organizationGroups.replace(selectedOrgGroup(), newItem);
+                                else
+                                    organizationGroups.push(newItem);
+                                isOrgGroupEditorVisible(false);
+                                toastr.success("Operation successfuly done!");
+                            },
+                            error: function() {
+                                toastr.error("Operation Failed!");
+                            }
+                        });
+                    },
+                    //cancel button handler
+                    onCancelOrgGroupbtn = function() {
+                        isOrgGroupEditorVisible(false);
+                    },
+                    // create new org group handler
+                    onCreateOrgGroupForm = function() {
+                        isOrgGroupEditorVisible(true);
+                        var v = model.organizationGroupDetail();
+                        selectedOrgGroup(v);
+                    },
+                    //reset butto handle 
+                    resetResuults = function() {
+                        orgGroupCodeFilter(undefined);
+                        orgGroupNameFilter(undefined);
+                        getOrganizationGroups();
+                        pager.reset();
+                    },
+                    //delete button handler
+                    onDeleteOrgGroup = function(item) {
+                        if (!item.id()) {
+                            organizationGroups.remove(item);
+                            return;
+                        }
+                    // Ask for confirmation
+                        confirmation.afterProceed(function() {
+                            deleteOrgGroup(item);
+                        });
+                        confirmation.show();
+                    },
+                    //edit button handler
+                    onEditFleetPool = function(item) {
+                        selectedOrgGroup(item);
+                        isOrgGroupEditorVisible(true);
+                    },
+                    //delete org group
+                    deleteOrgGroup = function(orgGroup) {
+                        dataservice.deleteOrganizationGroup(model.organizationGroupClienttoServerMapper(orgGroup), {
+                            success: function() {
+                                organizationGroups.remove(orgGroup);
+                                toastr.success("Org.Group removed successfully");
+                            },
+                            error: function() {
+                                toastr.error("failed to remove Org.Group!");
+                            }
+                        });
+                    },
+                    //search button handler in filter section
                     search = function() {
-                        alert('dfd');
+                        pager().reset();
+                        getOrganizationGroups();
+                    },
+                    //hide filte section
+                    hideFilterSection = function() {
+                        filterSectionVisilble(false);
+                    },
+                    //Show filter section
+                    showFilterSection = function() {
+                        filterSectionVisilble(true);
+                    },
+                    //get org group list from Dataservice
+                    getOrganizationGroups = function() {
+                        dataservice.getOrganizationGroups(
+                        {
+                            OrgGroupCode: orgGroupCodeFilter(),
+                            OrgGroupName: orgGroupNameFilter(),
+                            PageSize: pager().pageSize(),
+                            PageNo: pager().currentPage(),
+                            SortBy: sortOn(),
+                            IsAsc: sortIsAsc()
+                        },
+                        {
+                            success: function(data) {
+                                organizationGroups.removeAll();
+                                pager().totalCount(data.TotalCount);
+                                _.each(data.OrgGroups, function(item) {
+                                    organizationGroups.push(model.organizationGroupServertoClinetMapper(item));
+                                });
+                            },
+                            error: function() {
+                                isLoadingFleetPools(false);
+                                toastr.error("Failed to load fleetPools!");
+                            }
+                        });
                     },
                     // Initialize the view model
-                    initialize = function (specifiedView)
-                    {
+                    initialize = function(specifiedView) {
                         view = specifiedView;
                         ko.applyBindings(view.viewModel, view.bindingRoot);
-                      //  pager(pagination.Pagination({ PageSize: 10 }, fleetPools, getFleetPools));
+                        pager(pagination.Pagination({ PageSize: 3 }, organizationGroups, getOrganizationGroups));
+                        getOrganizationGroups();
                     };
                 return {
-                    initialize:initialize,
-                    search: search
+                    organizationGroups: organizationGroups,
+                    initialize: initialize,
+                    search: search,
+                    orgGroupCodeFilter: orgGroupCodeFilter,
+                    orgGroupNameFilter: orgGroupNameFilter,
+                    sortOn: sortOn,
+                    sortIsAsc: sortIsAsc,
+                    onCreateOrgGroupForm: onCreateOrgGroupForm,
+                    filterSectionVisilble: filterSectionVisilble,
+                    isOrgGroupEditorVisible: isOrgGroupEditorVisible,
+                    hideFilterSection: hideFilterSection,
+                    showFilterSection: showFilterSection,
+                    pager: pager,
+                    resetResuults: resetResuults,
+                    onDeleteOrgGroup: onDeleteOrgGroup,
+                    onEditFleetPool: onEditFleetPool,
+                    onCancelOrgGroupbtn: onCancelOrgGroupbtn,
+                    selectedOrgGroup: selectedOrgGroup,
+                    onSaveOrgGroupbtn: onSaveOrgGroupbtn
                 };
             })()
         };

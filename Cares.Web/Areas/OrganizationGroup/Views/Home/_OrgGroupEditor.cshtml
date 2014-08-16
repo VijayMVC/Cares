@@ -1,0 +1,25 @@
+﻿
+<div class="well col-md-12" id="_OrgGroupEditor" data-bind="visible: isOrgGroupEditorVisible, with: selectedOrgGroup " style="display: none;">
+    <h3>Organization Group Details</h3>
+    <button class="btn  btn-info" id="saveFleetPoolbtn" data-bind="click: $root.onSaveOrgGroupbtn">Save</button>
+    <button class="btn  btn-default" id="cancelOrgGroupbtn" data-bind="click: $root.onCancelOrgGroupbtn">Cancel</button>
+    <hr />
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label  class="control-label h5 col-sm-2">Org. Group Code</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="<Org. Group Code>" id="tariffTypeCode" data-bind="value: code" />
+            </div>
+            <label class="control-label h5 col-sm-2">Org. Group Name</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" required placeholder="<Org. Group Name>" id="tariffTypeName" data-bind="value:name" />
+            </div>
+            <label  class="control-label h5 col-sm-2">Org. Group Description</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" required placeholder="<Org. Group Description>" id="tariffTypeDescription" data-bind="value: description" />
+            </div>
+        </div>
+
+    </form>
+
+</div>
