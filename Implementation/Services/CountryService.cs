@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -24,7 +25,7 @@ namespace Cares.Implementation.Services
         /// Load all countries
         /// </summary>
         /// <returns></returns>
-        public IQueryable<Country> LoadAll()
+        public IEnumerable<Country> LoadAll()
         {
             return countryRepository.GetAll();
         }

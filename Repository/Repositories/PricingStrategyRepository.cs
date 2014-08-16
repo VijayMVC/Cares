@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -38,9 +39,9 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get All Measurement Units for User Domain Key
         /// </summary>
-        public override IQueryable<PricingStrategy> GetAll()
+        public override IEnumerable<PricingStrategy> GetAll()
         {
-            return DbSet.Where(pricingStrategy => pricingStrategy.UserDomainKey == UserDomainKey);
+            return DbSet.Where(pricingStrategy => pricingStrategy.UserDomainKey == UserDomainKey).ToList();
         }
 
         #endregion

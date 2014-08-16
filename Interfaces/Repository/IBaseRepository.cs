@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Cares.Interfaces.Repository
 {
@@ -41,7 +42,7 @@ namespace Cares.Interfaces.Repository
         /// <summary>
         /// Get all
         /// </summary>
-        IQueryable<TDomainClass> GetAll();
+        IEnumerable<TDomainClass> GetAll();
 
         /// <summary>
         /// Save changes

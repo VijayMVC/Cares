@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -36,9 +37,9 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get All Marketing Channels for User Domain Key
         /// </summary>
-        public override IQueryable<MarketingChannel> GetAll()
+        public override IEnumerable<MarketingChannel> GetAll()
         {
-            return DbSet.Where(marketingChannel => marketingChannel.UserDomainKey == UserDomainKey);
+            return DbSet.Where(marketingChannel => marketingChannel.UserDomainKey == UserDomainKey).ToList();
         }
         /// <summary>
         /// Find Marketing Channel By Id

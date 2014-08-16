@@ -55,9 +55,9 @@ namespace Cares.Repository.Repositories
         /// Get All Tariff Types for User Domain Key
         /// </summary>
         /// <returns></returns>
-        public override IQueryable<TariffType> GetAll()
+        public override IEnumerable<TariffType> GetAll()
         {
-            return DbSet.Where(p => p.UserDomainKey == UserDomainKey && p.ChildTariffTypeId == 0);
+            return DbSet.Where(p => p.UserDomainKey == UserDomainKey && p.ChildTariffTypeId == 0).ToList();
         }
         /// <summary>
         /// Get All Tariff Types based on search crateria
@@ -98,6 +98,7 @@ namespace Cares.Repository.Repositories
             return
               DbSet.Include(tariffType => tariffType.Operation)
                   .Include(tariffType => tariffType.Operation.Department)
+                  .Include(tariffType => tariffType.Operation.Department.Company)
                   .FirstOrDefault(tariffType => tariffType.TariffTypeId == id);
         }
         /// <summary>
@@ -108,6 +109,7 @@ namespace Cares.Repository.Repositories
             return
               DbSet.Include(tariffType => tariffType.Operation)
                   .Include(tariffType => tariffType.Operation.Department)
+                  .Include(tariffType => tariffType.Operation.Department.Company)
                   .FirstOrDefault(tariffType => tariffType.ChildTariffTypeId == id);
         }
         #endregion

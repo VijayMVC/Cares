@@ -56,9 +56,9 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get All Hire Groups 
         /// </summary>
-        public override IQueryable<HireGroup> GetAll()
+        public override IEnumerable<HireGroup> GetAll()
         {
-            return DbSet.Where(hireGroup => hireGroup.UserDomainKey == UserDomainKey && (hireGroup.ParentHireGroupId == 0 || hireGroup.ParentHireGroupId == null));
+            return DbSet.Where(hireGroup => hireGroup.UserDomainKey == UserDomainKey && (hireGroup.ParentHireGroupId == 0 || hireGroup.ParentHireGroupId == null)).ToList();
         }
         
         /// <summary>

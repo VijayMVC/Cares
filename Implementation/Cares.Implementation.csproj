@@ -145,7 +145,7 @@
     <Compile Include="Services\StandardRateService.cs" />
     <Compile Include="Services\TariffRateService.cs" />
     <Compile Include="Services\RentalAgreementService.cs" />
-    <Compile Include="Services\TarrifTypeService.cs" />
+    <Compile Include="Services\TariffTypeService.cs" />
     <Compile Include="TypeRegistrations.cs" />
   </ItemGroup>
   <ItemGroup>

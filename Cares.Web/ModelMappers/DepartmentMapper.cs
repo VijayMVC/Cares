@@ -20,6 +20,7 @@ namespace Cares.Web.ModelMappers
             {
                 DepartmentId = source.DepartmentId,
                 DepartmentCodeName = source.DepartmentCode+" - "+source.DepartmentName,
+                CompanyId=source.Company!=null?source.Company.CompanyId:0,
             };
         }
 

@@ -109,7 +109,7 @@
     <Compile Include="Common\EmployeeByColumn.cs" />
     <Compile Include="Common\FleetPoolByColumn.cs" />
     <Compile Include="Common\ProductByColumn.cs" />
-    <Compile Include="Common\TarrifTypeByColumn.cs" />
+    <Compile Include="Common\TariffTypeByColumn.cs" />
     <Compile Include="DomainModels\BPRatingType.cs" />
     <Compile Include="DomainModels\BusinessLegalStatus.cs" />
     <Compile Include="DomainModels\BusinessPartnerCompany.cs" />
@@ -155,7 +155,7 @@
     <Compile Include="DomainModels\SubRegion.cs" />
     <Compile Include="DomainModels\StandardRate.cs" />
     <Compile Include="DomainModels\StandardRateMain.cs" />
-    <Compile Include="DomainModels\TarrifType.cs" />
+    <Compile Include="DomainModels\TariffType.cs" />
     <Compile Include="DomainModels\Region.cs" />
     <Compile Include="DomainModels\VehicleCategory.cs" />
     <Compile Include="DomainModels\VehicleMake.cs" />
@@ -182,7 +182,7 @@
     <Compile Include="RequestModels\ProductSearchRequest.cs" />
     <Compile Include="RequestModels\HireGroupDetailRequest.cs" />
     <Compile Include="RequestModels\TariffRateRequest.cs" />
-    <Compile Include="RequestModels\TarrifTypeRequest.cs" />
+    <Compile Include="RequestModels\TariffTypeRequest.cs" />
     <Compile Include="ResponseModels\BusinessPartnerBaseDataResponse.cs" />
     <Compile Include="ResponseModels\EmployeeResponse.cs" />
     <Compile Include="ResponseModels\FleetPoolBaseDataResponse.cs" />
@@ -200,8 +200,8 @@
     <Compile Include="ResponseModels\TariffRateResponse.cs" />
     <Compile Include="ResponseModels\TariffTypeDetailResponse.cs" />
     <Compile Include="ResponseModels\RentalAgreementBaseDataResponse.cs" />
-    <Compile Include="ResponseModels\TarrifTypeBaseResponse.cs" />
-    <Compile Include="ResponseModels\TarrifTypeResponse.cs" />
+    <Compile Include="ResponseModels\TariffTypeBaseResponse.cs" />
+    <Compile Include="ResponseModels\TariffTypeResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

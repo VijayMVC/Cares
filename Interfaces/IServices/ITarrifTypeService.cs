@@ -28,10 +28,6 @@ namespace Cares.Interfaces.IServices
         /// </summary>
         TariffType AddtariffType(TariffType tariffType);
         /// <summary>
-        /// Update tariff Type
-        /// </summary>
-        TariffType UpdatetariffType(TariffType tariffType);
-        /// <summary>
         /// Get All Base Data
         /// </summary>
         TariffTypeBaseResponse GetBaseData();

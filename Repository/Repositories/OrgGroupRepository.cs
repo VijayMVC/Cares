@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -39,9 +40,9 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get All Organization Groups for User Domain Key
         /// </summary>
-        public override IQueryable<OrgGroup> GetAll()
+        public override IEnumerable<OrgGroup> GetAll()
         {
-            return DbSet.Where(orgGroup => orgGroup.UserDomainKey == UserDomainKey);
+            return DbSet.Where(orgGroup => orgGroup.UserDomainKey == UserDomainKey).ToList();
         }
         #endregion
         

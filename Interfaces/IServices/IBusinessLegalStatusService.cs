@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Cares.Models.DomainModels;
 
 namespace Cares.Interfaces.IServices
@@ -11,6 +12,6 @@ namespace Cares.Interfaces.IServices
         /// <summary>
         /// Get all business legal status records
         /// </summary>
-        IQueryable<BusinessLegalStatus> LoadAll();
+        IEnumerable<BusinessLegalStatus> LoadAll();
     }
 }

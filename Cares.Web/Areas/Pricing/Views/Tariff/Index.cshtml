@@ -3,14 +3,14 @@
 }
 
 <div class="row" id="tariffTypeBinding">
-    <div class="row " data-bind="visible: !istariffTypeEditorVisible()">
+    <div class="row " data-bind="visible: !isTariffTypeEditorVisible()">
         <h3 class="page-header float-left pageHeaderSection">Tariff Types</h3>
         <div class="header-toolsSection">
             <a href="#" class="label label-default create-new-icon" data-bind="click: createTariffTypeInForm" title="Create New Tariff">NEW</a>
             <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title="Show Filters" style="display: none"></a>
         </div>
     </div>
-    <div class="row searchFilterSection" data-bind="visible: !istariffTypeEditorVisible() && filterSectionVisilble()" style="display: none">
+    <div class="row searchFilterSection" data-bind="visible: !isTariffTypeEditorVisible() && filterSectionVisilble()" style="display: none">
         <div class="well">
             <form class="form-horizontal" data-bind="submit: search">
                 <div class="col-xs-3">
@@ -27,7 +27,7 @@
             </form>
         </div>
     </div>
-    <div class="row searchFilterResultSection" data-bind="visible: !istariffTypeEditorVisible()">
+    <div class="row searchFilterResultSection" data-bind="visible: !isTariffTypeEditorVisible()">
         <div class="well">
             <table id="tariffTypeTable" class="table table-condensed ">
                 <thead>

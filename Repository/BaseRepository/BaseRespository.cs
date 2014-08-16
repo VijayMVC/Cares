@@ -80,7 +80,7 @@ namespace Cares.Repository.BaseRepository
         /// Get All Entites 
         /// </summary>
         /// <returns></returns>
-        public virtual IQueryable<TDomainClass> GetAll()
+        public virtual IEnumerable<TDomainClass> GetAll()
         {
             throw new NotImplementedException();
         }

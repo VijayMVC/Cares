@@ -238,8 +238,8 @@
     <Compile Include="Areas\Api\Controllers\TariffRateBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\TariffRateController.cs" />
     <Compile Include="Areas\Api\Controllers\RentalAgreementBaseController.cs" />
-    <Compile Include="Areas\Api\Controllers\TarrifTypeBaseController.cs" />
-    <Compile Include="Areas\Api\Controllers\TarrifTypeController.cs" />
+    <Compile Include="Areas\Api\Controllers\TariffTypeBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\TariffTypeController.cs" />
     <Compile Include="Areas\BusinessPartner\BusinessPartnerAreaRegistration.cs" />
     <Compile Include="Areas\BusinessPartner\Controllers\HomeController.cs" />
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
@@ -251,7 +251,7 @@
     <Compile Include="Areas\RentalAgreement\RentalAgreementAreaRegistration.cs" />
     <Compile Include="Areas\Product\Controllers\HomeController.cs" />
     <Compile Include="Areas\Product\ProductAreaRegistration.cs" />
-    <Compile Include="Areas\Pricing\TarrifTypeAreaRegistration.cs" />
+    <Compile Include="Areas\Pricing\TariffTypeAreaRegistration.cs" />
     <Compile Include="Areas\Pricing\Controllers\TariffController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\VehicleImageController.cs" />
@@ -300,7 +300,7 @@
     <Compile Include="ModelMappers\StandardRateMapper.cs" />
     <Compile Include="ModelMappers\TariffRateMapper.cs" />
     <Compile Include="ModelMappers\RentalAgreementBaseMapper.cs" />
-    <Compile Include="ModelMappers\TarrifTypeMapper.cs" />
+    <Compile Include="ModelMappers\TariffTypeMapper.cs" />
     <Compile Include="ModelMappers\VehicleCategoryMapper.cs" />
     <Compile Include="ModelMappers\VehicleMakesMapper.cs" />
     <Compile Include="ModelMappers\FuelTypeMapper.cs" />
@@ -378,11 +378,11 @@
     <Compile Include="Models\TariffRateSearchResponse.cs" />
     <Compile Include="Models\TariffTypeDetail.cs" />
     <Compile Include="Models\TariffTypeDetailResponse.cs" />
-    <Compile Include="Models\TarrifType.cs" />
+    <Compile Include="Models\TariffType.cs" />
     <Compile Include="Models\BusinessPartnerBaseResponse.cs" />
     <Compile Include="Models\RentalAgreementBaseDataResponse.cs" />
-    <Compile Include="Models\TarrifTypeBaseResponse.cs" />
-    <Compile Include="Models\TarrifTypeSearchResponse.cs" />
+    <Compile Include="Models\TariffTypeBaseResponse.cs" />
+    <Compile Include="Models\TariffTypeSearchResponse.cs" />
     <Compile Include="Models\VehicleCategoryDropDown.cs" />
     <Compile Include="Models\VehicleMakeDropDown.cs" />
     <Compile Include="Models\VehicleModelDropDown.cs" />

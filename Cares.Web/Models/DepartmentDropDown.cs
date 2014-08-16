@@ -14,6 +14,11 @@
         /// Department Code
         /// </summary>
         public string DepartmentCodeName { get; set; }
+        /// <summary>
+        /// Company ID
+        /// </summary>
+        public long CompanyId { get; set; }
+    
         #endregion
     }
 }

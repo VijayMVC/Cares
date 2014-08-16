@@ -40,9 +40,9 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get All Organization Groups for User Domain Key
         /// </summary>
-        public override IQueryable<Operation> GetAll()
+        public override IEnumerable<Operation> GetAll()
         {
-            return DbSet.Where(operation => operation.UserDomainKey == UserDomainKey );
+            return DbSet.Where(operation => operation.UserDomainKey == UserDomainKey ).ToList();
         }
 
         public ICollection<Operation> GetSalesOperation()

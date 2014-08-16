@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -38,9 +39,9 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get All Business Segments for User Domain Key
         /// </summary>
-        public override IQueryable<BusinessSegment> GetAll()
+        public override IEnumerable<BusinessSegment> GetAll()
         {
-            return DbSet.Where(businessSegment => businessSegment.UserDomainKey == UserDomainKey);
+            return DbSet.Where(businessSegment => businessSegment.UserDomainKey == UserDomainKey).ToList();
         }
 
         #endregion

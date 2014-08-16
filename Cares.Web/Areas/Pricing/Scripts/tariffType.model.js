@@ -120,6 +120,8 @@
             // True if the booking has been changed
             // ReSharper disable InconsistentNaming
             dirtyFlag = new ko.dirtyFlag({
+                tariffTypeName: tariffTypeName,
+                tariffTypeDescription:tariffTypeDescription,
                 companyId: companyId,
                 tariffTypeCode: tariffTypeCode,
                 departmentId: departmentId,

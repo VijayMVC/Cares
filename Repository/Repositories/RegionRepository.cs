@@ -38,9 +38,9 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get All Measurement Units for User Domain Key
         /// </summary>
-        public override IQueryable<Region> GetAll()
+        public override IEnumerable<Region> GetAll()
         {
-            return DbSet.Where(region => region.UserDomainKey == UserDomainKey);
+            return DbSet.Where(region => region.UserDomainKey == UserDomainKey).ToList();
         }
         public IEnumerable<Region> GetRegions(int id)
         {

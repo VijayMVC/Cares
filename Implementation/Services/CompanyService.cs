@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -21,7 +22,7 @@ namespace Cares.Implementation.Services
         }
         #endregion
         #region Public
-        public IQueryable<Company> LoadAll()
+        public IEnumerable<Company> LoadAll()
         {
             return companyRepository.GetAll();
         }

@@ -39,9 +39,9 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get All Standard Rates for User Domain Key
         /// </summary>
-        public override IQueryable<StandardRate> GetAll()
+        public override IEnumerable<StandardRate> GetAll()
         {
-            return DbSet.Where(vehicleModel => vehicleModel.UserDomainKey == UserDomainKey);
+            return DbSet.Where(vehicleModel => vehicleModel.UserDomainKey == UserDomainKey).ToList();
         }
         public IEnumerable<StandardRate> GetStandardRateForTariffRate(long standardRtMainId)
         {

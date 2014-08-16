@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -28,7 +29,7 @@ namespace Cares.Implementation.Services
         /// Load All
         /// </summary>
         /// <returns></returns>
-        public IQueryable<PaymentTerm> LoadAll()
+        public IEnumerable<PaymentTerm> LoadAll()
         {
             return paymentTermRepository.GetAll();
         }
