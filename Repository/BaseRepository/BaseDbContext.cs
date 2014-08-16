@@ -67,13 +67,14 @@ namespace Cares.Repository.BaseRepository
             modelBuilder.Entity<PaymentTerm>().HasKey(pTerm => pTerm.PaymentTermId);
             modelBuilder.Entity<PaymentTerm>().Property(pTerm => pTerm.PaymentTermId)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            
+
             modelBuilder.Entity<OperationsWorkPlace>()
                 .HasRequired(c => c.WorkPlace)
                 .WithMany()
                 .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<HireGroupUpGrade>()
-               .HasRequired(c => c.HireGroup)
+               .HasRequired(c => c.AllowedHireGroup)
                .WithMany()
                .WillCascadeOnDelete(false);
 
@@ -81,6 +82,7 @@ namespace Cares.Repository.BaseRepository
                 .HasRequired(c => c.SecondaryBusinessPartner)
                 .WithMany()
                 .WillCascadeOnDelete(false);
+
         }
         #endregion
         #region Constructor
@@ -261,12 +263,12 @@ namespace Cares.Repository.BaseRepository
         /// </summary>
         public DbSet<Area> Areas { get; set; }
 
-        
+
         /// <summary>
         /// Marketing Channel DB Set
         /// </summary>
         public DbSet<MarketingChannel> MarketingChannels { get; set; }
-        
+
         /// <summary>
         /// OperationsWorkPlaces DB Set
         /// </summary>
@@ -296,7 +298,7 @@ namespace Cares.Repository.BaseRepository
         /// Vehicle DB Set
         /// </summary>
         public DbSet<Vehicle> Vehicles { get; set; }
-        
+
         #endregion
     }
 }

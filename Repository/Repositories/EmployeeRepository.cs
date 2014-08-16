@@ -76,9 +76,9 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get All Employees for User Domain Key
         /// </summary>
-        public override IQueryable<Employee> GetAll()
+        public override IEnumerable<Employee> GetAll()
         {
-            return DbSet.Where(employee => employee.UserDomainKey == UserDomainKey);
+            return DbSet.Where(employee => employee.UserDomainKey == UserDomainKey).ToList();
         }
     }
 }

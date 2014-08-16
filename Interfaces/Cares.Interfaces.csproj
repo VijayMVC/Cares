@@ -49,12 +49,12 @@
   <ItemGroup>
     <Compile Include="IServices\IBPRatingTypeService.cs" />
     <Compile Include="IServices\IBusinessLegalStatusService.cs" />
-    <Compile Include="IServices\IAddressBaseDataService.cs" />
     <Compile Include="IServices\IBusinessPartnerBaseDataService.cs" />
     <Compile Include="IServices\ICountryService.cs" />
     <Compile Include="IServices\IVehicleService.cs" />
     <Compile Include="IServices\IHireGroupService.cs" />
     <Compile Include="IServices\IOccupationTypeService.cs" />
+    <Compile Include="IServices\IOrganizationGroupService.cs" />
     <Compile Include="IServices\IPaymentTermService.cs" />
     <Compile Include="IServices\ICompanyService.cs" />
     <Compile Include="IServices\IDepartmentService.cs" />
@@ -94,6 +94,7 @@
     <Compile Include="Repository\IVehicleRepository.cs" />
     <Compile Include="Repository\IOperationsWorkPlaceRepository.cs" />
     <Compile Include="Repository\IMarketingChannelRepository.cs" />
+    <Compile Include="Repository\IOrganizationGroupRepository.cs" />
     <Compile Include="Repository\IAddressRepository.cs" />
     <Compile Include="Repository\IPhoneRepository.cs" />
     <Compile Include="Repository\ISubRegionRepository.cs" />
@@ -107,7 +108,6 @@
     <Compile Include="Repository\IEmployeeRepository.cs" />
     <Compile Include="Repository\IOccupationTypeRepository.cs" />
     <Compile Include="Repository\IOperationRepository.cs" />
-    <Compile Include="Repository\IOrgGroupRepository.cs" />
     <Compile Include="Repository\IAddressTypeRepository.cs" />
     <Compile Include="Repository\IPhoneTypeRepository.cs" />
     <Compile Include="Repository\IPaymentTermRepository.cs" />

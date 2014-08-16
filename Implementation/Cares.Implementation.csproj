@@ -121,7 +121,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Identity\IdentityOperation.cs" />
-    <Compile Include="Services\AddressBaseDataService.cs" />
     <Compile Include="Services\BusinessPartnerBaseDataService.cs" />
     <Compile Include="Services\BusinessPartnerService.cs" />
     <Compile Include="Services\CategoryService.cs" />
@@ -131,6 +130,7 @@
     <Compile Include="Services\HireGroupService.cs" />
     <Compile Include="Services\OccupationTypeService.cs" />
     <Compile Include="Services\CountryService.cs" />
+    <Compile Include="Services\OrganizationGroupService.cs" />
     <Compile Include="Services\PaymentTermService.cs" />
     <Compile Include="Services\CompanyService.cs" />
     <Compile Include="Services\FleetPoolService.cs" />
@@ -146,7 +146,7 @@
     <Compile Include="Services\StandardRateService.cs" />
     <Compile Include="Services\TariffRateService.cs" />
     <Compile Include="Services\RentalAgreementService.cs" />
-    <Compile Include="Services\TarrifTypeService.cs" />
+    <Compile Include="Services\TariffTypeService.cs" />
     <Compile Include="TypeRegistrations.cs" />
   </ItemGroup>
   <ItemGroup>

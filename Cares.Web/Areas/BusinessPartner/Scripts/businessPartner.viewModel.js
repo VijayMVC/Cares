@@ -147,6 +147,11 @@ define("businessPartner/businessPartner.viewModel",
                     onRegionSelectionChange = function (value) {
                         if (selectedBusinessPartner().businessPartnerAddressNew().regionId() !== undefined)
                             getSubRegionsByRegion(selectedBusinessPartner().businessPartnerAddressNew().regionId().RegionId);
+                        else {
+                            // empty sub regions
+                            filteredSubRegions.removeAll();
+                            filteredSubRegions.valueHasMutated();
+                        }
                     },
                     //get sub regions by region          
                     getSubRegionsByRegion = function (regionId) {
@@ -188,6 +193,11 @@ define("businessPartner/businessPartner.viewModel",
                     onCitySelectionChange = function (value) {
                         if (selectedBusinessPartner().businessPartnerAddressNew().cityId() !== undefined)
                             getAreasByCity(selectedBusinessPartner().businessPartnerAddressNew().cityId().CityId);
+                        else {
+                            // empty area list
+                            filteredAreas.removeAll();
+                            filteredAreas.valueHasMutated();
+                        }
                     },
                     //get Areas by city          
                     getAreasByCity = function (cityId) {

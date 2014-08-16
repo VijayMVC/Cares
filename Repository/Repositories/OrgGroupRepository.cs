@@ -1,18 +1,59 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using Cares.Interfaces.Repository;
+using Cares.Models.Common;
 using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
 using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
 
 
 namespace Cares.Repository.Repositories
 {
-    /// <summary>
-    /// Organization Group Repository
-    /// </summary>
-    public sealed class OrgGroupRepository : BaseRepository<OrgGroup>, IOrgGroupRepository
+   
+    public sealed class OrgGroupRepository : BaseRepository<OrgGroup>, IOrganizationGroupRepository
     {
+        #region privte
+        /// <summary>
+        /// org group GroupOrderByClause
+        /// </summary>
+        private readonly Dictionary<OrgGroupByColumn, Func<OrgGroup, object>> orgGroupOrderByClause = new Dictionary<OrgGroupByColumn, Func<OrgGroup, object>>
+                    {
+                        {OrgGroupByColumn.OrgGroupCode, c => c.OrgGroupCode},
+                        {OrgGroupByColumn.OrgGroupName, d => d.OrgGroupName},
+                        {OrgGroupByColumn.OrgGroupDescription, d => d.OrgGroupDescription}
+                    };
+        #endregion
+        #region public
+        /// <summary>
+        /// //Search org group
+        /// </summary>
+        public IEnumerable<OrgGroup> SearchOrgGroup(OrgGroupSearchRequest request, out int rowCount)
+        {
+            int fromRow = (request.PageNo - 1) * request.PageSize;
+            int toRow = request.PageSize;
+            Expression<Func<OrgGroup, bool>> query =
+              orgGroup =>
+                      (string.IsNullOrEmpty(request.OrgGroupCode) || (orgGroup.OrgGroupCode.Contains(request.OrgGroupCode ) ))&& (
+                      (string.IsNullOrEmpty(request.OrgGroupName) || ( orgGroup.OrgGroupName.Contains(request.OrgGroupName) ))    );
+            rowCount = DbSet.Count(query);
+           return request.IsAsc ?
+               DbSet.Where(query)
+                   .OrderBy(orgGroupOrderByClause[request.OrgGroupOrderBy])
+                   .Skip(fromRow)
+                   .Take(toRow)
+                   .ToList() :
+                DbSet.Where(query)
+                   .OrderByDescending(orgGroupOrderByClause[request.OrgGroupOrderBy])
+                   .Skip(fromRow)
+                   .Take(toRow)
+                   .ToList();
+        }
+
+        #endregion
         #region Constructor
         /// <summary>
         /// Constructor
@@ -34,16 +75,7 @@ namespace Cares.Repository.Repositories
         }
 
         #endregion
-       
-        #region Public
-        /// <summary>
-        /// Get All Organization Groups for User Domain Key
-        /// </summary>
-        public override IQueryable<OrgGroup> GetAll()
-        {
-            return DbSet.Where(orgGroup => orgGroup.UserDomainKey == UserDomainKey);
-        }
-        #endregion
+      
         
     }
 }

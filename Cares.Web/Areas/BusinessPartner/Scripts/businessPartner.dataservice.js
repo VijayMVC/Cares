@@ -49,12 +49,6 @@ define("businessPartner/businessPartner.dataservice", function () {
                         dataType: 'json',
                         type: 'GET'
                     });
-                    // Define request to get Regions against country
-                    amplify.request.define('getCountryRegions', 'ajax', {
-                        url: '/Api/AddressBase',
-                        dataType: 'json',
-                        type: 'GET'
-                    });
                     isInitialized = true;
                 }
             },
@@ -107,17 +101,6 @@ define("businessPartner/businessPartner.dataservice", function () {
                     data: param
                 });
             },
-            // Get Regions with respect to country Id
-            getCountryRegions = function (param, callbacks) {
-                initialize();
-                return amplify.request({
-                    resourceId: 'getCountryRegions',
-                    success: callbacks.success,
-                    error: callbacks.error,
-                    data: param
-                });
-            },
-
             // get Business Partner by id
             getBusinessPartnerById = function (param, callbacks) {
                 initialize();
@@ -134,8 +117,7 @@ define("businessPartner/businessPartner.dataservice", function () {
             updateBusinessPartner: updateBusinessPartner,
             deleteBusinessPartner: deleteBusinessPartner,
             getBusinessPartnerBase: getBusinessPartnerBase,
-            getBusinessPartnerById: getBusinessPartnerById,
-            getCountryRegions: getCountryRegions
+            getBusinessPartnerById: getBusinessPartnerById
         };
     })();
     return dataService;

@@ -102,6 +102,7 @@
     <Compile Include="Common\VehicleOrderByColumn.cs" />
     <Compile Include="Common\HireGroupByColumn.cs" />
     <Compile Include="Common\HireGroupDetailByColumn.cs" />
+    <Compile Include="Common\OrgGroupByColumn.cs" />
     <Compile Include="Common\TariffRateByColumn.cs" />
     <Compile Include="DomainModels\BusinessPartnerMarketingChannel.cs" />
     <Compile Include="DomainModels\BusinessPartnerInType.cs" />
@@ -110,7 +111,7 @@
     <Compile Include="Common\EmployeeByColumn.cs" />
     <Compile Include="Common\FleetPoolByColumn.cs" />
     <Compile Include="Common\ProductByColumn.cs" />
-    <Compile Include="Common\TarrifTypeByColumn.cs" />
+    <Compile Include="Common\TariffTypeByColumn.cs" />
     <Compile Include="DomainModels\BPRatingType.cs" />
     <Compile Include="DomainModels\BusinessLegalStatus.cs" />
     <Compile Include="DomainModels\BusinessPartnerCompany.cs" />
@@ -156,7 +157,7 @@
     <Compile Include="DomainModels\SubRegion.cs" />
     <Compile Include="DomainModels\StandardRate.cs" />
     <Compile Include="DomainModels\StandardRateMain.cs" />
-    <Compile Include="DomainModels\TarrifType.cs" />
+    <Compile Include="DomainModels\TariffType.cs" />
     <Compile Include="DomainModels\Region.cs" />
     <Compile Include="DomainModels\VehicleCategory.cs" />
     <Compile Include="DomainModels\VehicleMake.cs" />
@@ -181,11 +182,11 @@
     <Compile Include="RequestModels\HireGroupAddRequest.cs" />
     <Compile Include="RequestModels\VehicleSearchRequest.cs" />
     <Compile Include="RequestModels\HireGroupSearchRequest.cs" />
+    <Compile Include="RequestModels\OrgGroupSearchRequest.cs" />
     <Compile Include="RequestModels\ProductSearchRequest.cs" />
     <Compile Include="RequestModels\HireGroupDetailRequest.cs" />
     <Compile Include="RequestModels\TariffRateRequest.cs" />
-    <Compile Include="RequestModels\TarrifTypeRequest.cs" />
-    <Compile Include="ResponseModels\AddressBaseDataResponse.cs" />
+    <Compile Include="RequestModels\TariffTypeRequest.cs" />
     <Compile Include="ResponseModels\BusinessPartnerBaseDataResponse.cs" />
     <Compile Include="ResponseModels\EmployeeResponse.cs" />
     <Compile Include="ResponseModels\FleetPoolBaseDataResponse.cs" />
@@ -195,6 +196,7 @@
     <Compile Include="ResponseModels\GetVehicleResponse.cs" />
     <Compile Include="ResponseModels\HireGroupDataDetailResponse.cs" />
     <Compile Include="ResponseModels\HireGroupSearchResponse.cs" />
+    <Compile Include="ResponseModels\OrgGroupResponse.cs" />
     <Compile Include="ResponseModels\ProductResponse.cs" />
     <Compile Include="ResponseModels\RegionResponse.cs" />
     <Compile Include="ResponseModels\TariffRateBaseResponse.cs" />
@@ -203,8 +205,8 @@
     <Compile Include="ResponseModels\TariffRateResponse.cs" />
     <Compile Include="ResponseModels\TariffTypeDetailResponse.cs" />
     <Compile Include="ResponseModels\RentalAgreementBaseDataResponse.cs" />
-    <Compile Include="ResponseModels\TarrifTypeBaseResponse.cs" />
-    <Compile Include="ResponseModels\TarrifTypeResponse.cs" />
+    <Compile Include="ResponseModels\TariffTypeBaseResponse.cs" />
+    <Compile Include="ResponseModels\TariffTypeResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

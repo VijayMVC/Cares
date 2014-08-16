@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Cares.Models.DomainModels;
 
 namespace Cares.Interfaces.IServices
@@ -11,6 +12,6 @@ namespace Cares.Interfaces.IServices
         /// <summary>
         /// Load all companies
         /// </summary>
-        IQueryable<Company> LoadAll();
+        IEnumerable<Company> LoadAll();
     }
 }

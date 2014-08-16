@@ -28,7 +28,7 @@
         /// <summary>
         /// Vehicle Category Name
         /// </summary>
-        public string VehicleCategoryName { get; set; }
+        public string VehicleCategoryCodeName { get; set; }
         /// <summary>
         /// Vehicle Model Code Name
         /// </summary>

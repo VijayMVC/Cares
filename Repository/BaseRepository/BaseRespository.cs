@@ -80,7 +80,7 @@ namespace Cares.Repository.BaseRepository
         /// Get All Entites 
         /// </summary>
         /// <returns></returns>
-        public virtual IQueryable<TDomainClass> GetAll()
+        public virtual IEnumerable<TDomainClass> GetAll()
         {
             throw new NotImplementedException();
         }
@@ -105,7 +105,6 @@ namespace Cares.Repository.BaseRepository
                         errorMessages.Add(entityName + "." + error.PropertyName + ": " + error.ErrorMessage);
                     }
                 }
-                int i = 0;
             }
         }
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -38,9 +39,9 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get All Areas for User Domain Key
         /// </summary>
-        public override IQueryable<Area> GetAll()
+        public override IEnumerable<Area> GetAll()
         {
-            return DbSet.Where(area => area.UserDomainKey == UserDomainKey);
+            return DbSet.Where(area => area.UserDomainKey == UserDomainKey).ToList();
         }
         /// <summary>
         /// Find Area By Id

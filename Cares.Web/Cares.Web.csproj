@@ -231,17 +231,17 @@
     <Compile Include="Areas\Api\Controllers\GetHireGroupDetailTariffRateController.cs" />
     <Compile Include="Areas\Api\Controllers\HireGroupBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\HireGroupVehiclesController.cs" />
+    <Compile Include="Areas\Api\Controllers\OrganizationGroupController.cs" />
     <Compile Include="Areas\Api\Controllers\RentalAgreementHireGroupsController.cs" />
     <Compile Include="Areas\Api\Controllers\HireGroupController.cs" />
     <Compile Include="Areas\Api\Controllers\ProductBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessPartnerController.cs" />
-    <Compile Include="Areas\Api\Controllers\AddressBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\ProductController.cs" />
     <Compile Include="Areas\Api\Controllers\TariffRateBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\TariffRateController.cs" />
     <Compile Include="Areas\Api\Controllers\RentalAgreementBaseController.cs" />
-    <Compile Include="Areas\Api\Controllers\TarrifTypeBaseController.cs" />
-    <Compile Include="Areas\Api\Controllers\TarrifTypeController.cs" />
+    <Compile Include="Areas\Api\Controllers\TariffTypeBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\TariffTypeController.cs" />
     <Compile Include="Areas\BusinessPartner\BusinessPartnerAreaRegistration.cs" />
     <Compile Include="Areas\BusinessPartner\Controllers\HomeController.cs" />
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
@@ -253,8 +253,8 @@
     <Compile Include="Areas\RentalAgreement\RentalAgreementAreaRegistration.cs" />
     <Compile Include="Areas\Product\Controllers\HomeController.cs" />
     <Compile Include="Areas\Product\ProductAreaRegistration.cs" />
-    <Compile Include="Areas\Pricing\TarrifTypeAreaRegistration.cs" />
-    <Compile Include="Areas\Pricing\Controllers\TarrifController.cs" />
+    <Compile Include="Areas\Pricing\TariffTypeAreaRegistration.cs" />
+    <Compile Include="Areas\Pricing\Controllers\TariffController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\VehicleImageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -278,6 +278,7 @@
     <Compile Include="ModelMappers\AddressTypeMapper.cs" />
     <Compile Include="ModelMappers\AddressMapper.cs" />
     <Compile Include="ModelMappers\OperationsWorkPlaceMapper.cs" />
+    <Compile Include="ModelMappers\OrgGroupMapper.cs" />
     <Compile Include="ModelMappers\PhoneTypeMapper.cs" />
     <Compile Include="ModelMappers\HireGroupDetailMapper.cs" />
     <Compile Include="ModelMappers\OccupationTypeMapper.cs" />
@@ -302,7 +303,7 @@
     <Compile Include="ModelMappers\StandardRateMapper.cs" />
     <Compile Include="ModelMappers\TariffRateMapper.cs" />
     <Compile Include="ModelMappers\RentalAgreementBaseMapper.cs" />
-    <Compile Include="ModelMappers\TarrifTypeMapper.cs" />
+    <Compile Include="ModelMappers\TariffTypeMapper.cs" />
     <Compile Include="ModelMappers\VehicleCategoryMapper.cs" />
     <Compile Include="ModelMappers\VehicleMakesMapper.cs" />
     <Compile Include="ModelMappers\FuelTypeMapper.cs" />
@@ -347,6 +348,8 @@
     <Compile Include="Models\HireGroupBaseResponse.cs" />
     <Compile Include="Models\HireGroupSearchResponse.cs" />
     <Compile Include="Models\OperationsWorkPlace.cs" />
+    <Compile Include="Models\OrgGroup.cs" />
+    <Compile Include="Models\OrgGroupRequestResponse.cs" />
     <Compile Include="Models\ParentHireGroup.cs" />
     <Compile Include="Models\Phone.cs" />
     <Compile Include="Models\PhoneTypeDropDown.cs" />
@@ -380,11 +383,11 @@
     <Compile Include="Models\TariffRateSearchResponse.cs" />
     <Compile Include="Models\TariffTypeDetail.cs" />
     <Compile Include="Models\TariffTypeDetailResponse.cs" />
-    <Compile Include="Models\TarrifType.cs" />
+    <Compile Include="Models\TariffType.cs" />
     <Compile Include="Models\BusinessPartnerBaseResponse.cs" />
     <Compile Include="Models\RentalAgreementBaseDataResponse.cs" />
-    <Compile Include="Models\TarrifTypeBaseResponse.cs" />
-    <Compile Include="Models\TarrifTypeSearchResponse.cs" />
+    <Compile Include="Models\TariffTypeBaseResponse.cs" />
+    <Compile Include="Models\TariffTypeSearchResponse.cs" />
     <Compile Include="Models\VehicleCategoryDropDown.cs" />
     <Compile Include="Models\VehicleMakeDropDown.cs" />
     <Compile Include="Models\VehicleModelDropDown.cs" />
@@ -430,10 +433,10 @@
     <Content Include="Areas\Fleet\Scripts\hireGroup.model.js" />
     <Content Include="Areas\Fleet\Scripts\hireGroup.view.js" />
     <Content Include="Areas\Fleet\Scripts\hireGroup.viewModel.js" />
-    <Content Include="Areas\OrganizationGroup\Scripts\OrganizationGroup.view.js" />
-    <Content Include="Areas\OrganizationGroup\Scripts\OrganizationGroup.dataservice.js" />
-    <Content Include="Areas\OrganizationGroup\Scripts\OrganizationGroup.viewModel.js" />
-    <Content Include="Areas\OrganizationGroup\Scripts\OrganizationGroup.model.js" />
+    <Content Include="Areas\OrganizationGroup\Scripts\organizationGroup.view.js" />
+    <Content Include="Areas\OrganizationGroup\Scripts\organizationGroup.dataservice.js" />
+    <Content Include="Areas\OrganizationGroup\Scripts\organizationGroup.viewModel.js" />
+    <Content Include="Areas\OrganizationGroup\Scripts\organizationGroup.model.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.dataservice.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.model.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.view.js" />
@@ -448,11 +451,10 @@
     <Content Include="Areas\Product\Scripts\product.model.js" />
     <Content Include="Areas\Product\Scripts\product.view.js" />
     <Content Include="Areas\Product\Scripts\product.viewModel.js" />
-    <Content Include="Areas\Pricing\Scripts\tarrifType.dataservice.js" />
-    <Content Include="Areas\Pricing\Scripts\tarrifType.model.js" />
-    <Content Include="Areas\Pricing\Scripts\tarrifType.view.js" />
-    <Content Include="Areas\Pricing\Scripts\tarrifType.viewModel.js" />
-    <Content Include="Areas\Pricing\Scripts\tarrifTypeWithKoMapping.model.js" />
+    <Content Include="Areas\Pricing\Scripts\tariffType.dataservice.js" />
+    <Content Include="Areas\Pricing\Scripts\tariffType.view.js" />
+    <Content Include="Areas\Pricing\Scripts\tariffType.viewModel.js" />
+    <Content Include="Areas\Pricing\Scripts\tariffType.model.js" />
     <Content Include="asadtest.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -626,6 +628,12 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="Content\themes\OrgGroup.css">
+      <DependentUpon>OrgGroup.less</DependentUpon>
+    </Content>
+    <Content Include="Content\themes\OrgGroup.min.css">
+      <DependentUpon>OrgGroup.css</DependentUpon>
+    </Content>
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
@@ -991,7 +999,7 @@
     <Content Include="Areas\Fleet\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Fleet\Views\web.config" />
     <Content Include="Areas\Fleet\Scripts\fleetPool.dataservice.js" />
-    <Content Include="Areas\Pricing\Views\Tarrif\Index.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\Index.cshtml" />
     <Content Include="Areas\Pricing\Views\web.config" />
     <Content Include="Areas\Pricing\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Pricing\Views\_ViewStart.cshtml" />
@@ -1000,7 +1008,7 @@
     <Content Include="Areas\BusinessPartner\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\BusinessPartner\Views\Home\Index.cshtml" />
     <Content Include="Areas\BusinessPartner\Views\Home\_BusinessPartnerEditor.cshtml" />
-    <Content Include="Areas\Pricing\Views\Tarrif\_TariffTypeEditor.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\_TariffTypeEditor.cshtml" />
     <Content Include="Content\MainSite.less" />
     <Content Include="Content\Fleet.less" />
     <Content Include="Content\Pricing.less" />
@@ -1013,9 +1021,9 @@
     <Content Include="Content\Fleet.css.map">
       <DependentUpon>Fleet.css</DependentUpon>
     </Content>
-    <Content Include="Areas\Pricing\Views\Tarrif\TariffRate.cshtml" />
-    <Content Include="Areas\Pricing\Views\Tarrif\_TariffRateEditor.cshtml" />
-    <Content Include="Areas\Pricing\Views\Tarrif\_HireGroupRateDialog.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\TariffRate.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\_TariffRateEditor.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\_HireGroupRateDialog.cshtml" />
     <Content Include="Content\TariffRate.less" />
     <Content Include="Areas\Fleet\Views\Home\_FleetPoolEditor.cshtml" />
     <Content Include="Areas\RentalAgreement\Views\_ViewStart.cshtml" />
@@ -1025,11 +1033,16 @@
     <Content Include="Content\RentalAgreement.less" />
     <Content Include="Areas\Fleet\Views\Home\HireGroup.cshtml" />
     <Content Include="Areas\Fleet\Views\Home\_HireGroupEditor.cshtml" />
-    <Content Include="Areas\Pricing\Views\Tarrif\test.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\test.cshtml" />
     <Content Include="Areas\OrganizationGroup\Views\web.config" />
     <Content Include="Areas\OrganizationGroup\Views\_ViewStart.cshtml" />
     <Content Include="Areas\OrganizationGroup\Views\Home\Index.cshtml" />
     <Content Include="Areas\OrganizationGroup\Views\Shared\_Layout.cshtml" />
+    <Content Include="Content\themes\OrgGroup.less" />
+    <Content Include="Content\themes\OrgGroup.css.map">
+      <DependentUpon>OrgGroup.css</DependentUpon>
+    </Content>
+    <Content Include="Areas\OrganizationGroup\Views\Home\_OrgGroupEditor.cshtml" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
@@ -1170,6 +1183,7 @@
     <Folder Include="App_Data\ProfileImages\" />
     <Folder Include="Areas\Api\Models\" />
     <Folder Include="Areas\Api\Views\FleetPool\" />
+    <Folder Include="Areas\Api\Views\OrganizationGroup\" />
     <Folder Include="Areas\Api\Views\Shared\" />
     <Folder Include="Areas\BusinessPartner\Models\" />
     <Folder Include="Areas\Common\Controllers\" />

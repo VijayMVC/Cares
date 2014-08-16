@@ -58,7 +58,6 @@ namespace Cares.Implementation.Services
             {
                 throw new ApplicationException(string.Format(CultureInfo.InvariantCulture, "Vehicle with Id {0} not found!", vehicleId));
             }
-
             return vehicleRepository.Find(vehicleId);
         }
 

@@ -34,16 +34,19 @@
                     dirtyFlag.reset();
                 }, 
                 // Convert to server
-                convertToServerData = function() {
+                convertToServerData = function () {
                     return {
-                        
+                        OrgGroupId: id(),
+                        OrgGroupCode: code(),
+                        OrgGroupName: name(),
+                        OrgGroupDescription: description()
                     };
                 };
             return {
-                id: id,
-                code: code,
-                name: name,
-                description: description,
+                OrgGroupId: id,
+                OrgGroupCode: code,
+                OrgGroupName: name,
+                OrgGroupDescription: description,
                 hasChanges: hasChanges,
                 reset: reset,
                 convertToServerData: convertToServerData,
@@ -66,7 +69,8 @@
                 return errors().length === 0;
             }),
             // True if the booking has been changed        
-            dirtyFlag = new ko.DirtyFlag({
+            dirtyFlag = new ko.dirtyFlag({
+                id:id,
                 name: name,
                 code: code,
                 description: description
@@ -94,19 +98,22 @@
             isValid: isValid,
             dirtyFlag: dirtyFlag,
             hasChanges: hasChanges,
-            reset: reset,
-            convertToServerData: convertToServerData
+            convertToServerData: convertToServerData,
+            reset: reset
+            
         };
     };
     // server to client mapper
     var organizationGroupServertoClinetMapper = function (source) {
+        return organizationGroupDetail.Create(source);
     };
     //client to server mapper
     var organizationGroupClienttoServerMapper = function (client) {
+        return new OrganizationGroup(client.id(), client.code(), client.name(), client.description()).convertToServerData();
     };
     // FleetPool Factory
     organizationGroupDetail.Create = function (source) {
-        return new organizationGroupDetail(source.FleetPoolId, source.FleetPoolCode, source.FleetPoolName, source.Description);
+        return new organizationGroupDetail(source.OrgGroupId, source.OrgGroupCode, source.OrgGroupName, source.OrgGroupDescription);
     };
     return {
         OrganizationGroup: OrganizationGroup,

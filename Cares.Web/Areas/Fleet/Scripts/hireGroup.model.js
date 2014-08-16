@@ -25,8 +25,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             virtualIsParent = ko.observable(),
             //Parent Hire Group Id
             parentHireGroupId = ko.observable(),
-           // Parent Hire Group
-           parentHireGroupName = ko.observable(),
+            // Parent Hire Group
+            parentHireGroupName = ko.observable(),
             //Description
             description = ko.observable(),
             //Hire Group Detail list
@@ -225,7 +225,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         hireGroupDetail.hireGroupDetailId(source.HireGroupDetailId === null ? undefined : source.HireGroupDetailId);
         hireGroupDetail.vehicleMakeId(source.VehicleMakeId === null ? undefined : source.VehicleMakeId);
         hireGroupDetail.vehicleMakeName(source.VehicleMakeCodeName === null ? undefined : source.VehicleMakeCodeName);
-        hireGroupDetail.vehicleCategoryId(source.vehicleCategoryId === null ? undefined : source.vehicleCategoryId);
+        hireGroupDetail.vehicleCategoryId(source.vehicleCategoryId === null ? undefined : source.VehicleCategoryId);
         hireGroupDetail.vehicleCategoryName(source.VehicleCategoryCodeName === null ? undefined : source.VehicleCategoryCodeName);
         hireGroupDetail.vehicleModelId(source.VehicleModelId === null ? undefined : source.VehicleModelId);
         hireGroupDetail.vehicleModelName(source.VehicleModelCodeName === null ? undefined : source.VehicleModelCodeName);
@@ -266,6 +266,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.CompanyId = source.companyId() === undefined ? null : source.companyId();
         result.Description = source.description() === undefined ? null : source.description();
         result.IsParent = source.isParent() === undefined ? false : source.isParent();
+        
         result.HireGroupDetailList = [];
         _.each(source.hireGroupDetailList(), function (item) {
             result.HireGroupDetailList.push(item);
@@ -293,7 +294,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
     var HireGroupUpGradeServerMapper = function (source) {
         var result = {};
         result.HireGroupUpGradeId = source.hireGroupUpGradeId() === undefined ? 0 : source.hireGroupUpGradeId();
-        result.HireGroupId = source.hireGroupIdForUpGrade() === undefined ? null : source.hireGroupIdForUpGrade();
+        result.HireGroupId = source.hireGroupIdForUpGrade() === undefined ? 0 : source.hireGroupIdForUpGrade();
         return result;
     };
     return {

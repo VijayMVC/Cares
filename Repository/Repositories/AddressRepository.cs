@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using Cares.Interfaces.Repository;
 using Microsoft.Practices.Unity;
@@ -37,9 +38,9 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get All Address for User Domain Key
         /// </summary>
-        public override IQueryable<Address> GetAll()
+        public override IEnumerable<Address> GetAll()
         {
-            return DbSet.Where(addresslist => addresslist.UserDomainKey == UserDomainKey);
+            return DbSet.Where(addresslist => addresslist.UserDomainKey == UserDomainKey).ToList();
         }
         /// <summary>
         /// Find Address by Id

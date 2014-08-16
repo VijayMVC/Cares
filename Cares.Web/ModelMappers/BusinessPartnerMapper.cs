@@ -281,6 +281,7 @@ namespace Cares.Web.ModelMappers
                 BusinessPartnerId = source.BusinessPartnerId,
                 BusinessPartnerCompanyCode = source.BusinessPartnerCompanyCode,
                 BusinessPartnerCompanyName = source.BusinessPartnerCompanyName,
+                BusinessPartnerCompanyCodeName = source.BusinessPartnerCompanyCode + " - "+source.BusinessPartnerCompanyName,
                 BusinessSegmentId = source.BusinessSegmentId,
                 AccountNumber = source.AccountNumber,
                 EstablishedSince = source.EstablishedSince,

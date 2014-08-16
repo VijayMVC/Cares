@@ -14,8 +14,11 @@
         /// Operation Code
         /// </summary>
         public string OperationCodeName { get; set; }
-
+        /// <summary>
+        /// Department ID
+        /// </summary>
+        public long DepartmentId { get; set; }
         #endregion
-       
+
     }
 }

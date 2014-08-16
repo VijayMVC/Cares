@@ -158,7 +158,7 @@
     <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="Repositories\StandardRateMainRepository.cs" />
     <Compile Include="Repositories\StandardRateRepository.cs" />
-    <Compile Include="Repositories\TarrifTypeRepository.cs" />
+    <Compile Include="Repositories\TariffTypeRepository.cs" />
     <Compile Include="Repositories\RegionRepository.cs" />
     <Compile Include="Repositories\BusinessPartnerRepository.cs" />
     <Compile Include="Repositories\VehicleCategoryRepository.cs" />

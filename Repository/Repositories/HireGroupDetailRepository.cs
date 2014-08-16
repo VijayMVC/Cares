@@ -66,9 +66,9 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get All Vehicle Models for User Domain Key
         /// </summary>
-        public override IQueryable<HireGroupDetail> GetAll()
+        public override IEnumerable<HireGroupDetail> GetAll()
         {
-            return DbSet.Where(vehicleModel => vehicleModel.UserDomainKey == UserDomainKey);
+            return DbSet.Where(vehicleModel => vehicleModel.UserDomainKey == UserDomainKey).ToList();
         }
 
         /// <summary>

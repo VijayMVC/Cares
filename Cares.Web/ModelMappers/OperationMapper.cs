@@ -19,7 +19,8 @@ namespace Cares.Web.ModelMappers
             return new ApiModel.OperationDropDown
             {
                 OperationId = source.OperationId,
-                OperationCodeName = source.OperationCode + "-" + source.OperationName
+                OperationCodeName = source.OperationCode + "-" + source.OperationName,
+                DepartmentId = source.Department != null ? source.Department.DepartmentId : 0
             };
         }
 
