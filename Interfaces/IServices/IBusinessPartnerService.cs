@@ -1,6 +1,7 @@
 ﻿using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
+using CommonTypes = Cares.Models.CommonTypes;
 
 namespace Cares.Interfaces.IServices
 {
@@ -25,7 +26,12 @@ namespace Cares.Interfaces.IServices
         /// Update business partner
         /// </summary>
         bool UpdateBusinessPartner(BusinessPartner businessPartner);
-        
+
+        /// <summary>
+        /// Get For Rental Agreement
+        /// </summary>
+        BusinessPartner GetForRentalAgreement(GetBusinessPartnerRequest request);
+
         /// <summary>
         /// Get business partnere by Id
         /// </summary>
@@ -49,6 +55,7 @@ namespace Cares.Interfaces.IServices
         /// <summary>
         /// Get business partnere by Phone No
         /// </summary>
-        BusinessPartner GetByPhoneNo(string passportNo);
+        BusinessPartner GetByPhoneNo(string phoneNo, CommonTypes.PhoneType phoneType);
+
     }
 }

@@ -74,6 +74,36 @@ namespace Cares.Web.ModelMappers
         }
 
         /// <summary>
+        ///  Create detail web api model from domain model
+        /// </summary>
+        public static Models.BusinessPartnerDetail CreateFromForRa(this BusinessPartner source)
+        {
+            return new Models.BusinessPartnerDetail
+            {
+                BusinessPartnerId = source.BusinessPartnerId,
+                BusinessPartnerName = source.BusinessPartnerName,
+                BusinessPartnerDesciption = source.BusinessPartnerDesciption,
+                IsIndividual = source.IsIndividual,
+                BusinessLegalStatusId = source.BusinessLegalStatusId,
+                PaymentTermId = source.PaymentTermId,
+                BPRatingTypeId = source.BPRatingTypeId,
+                BusinessPartnerCode = source.BusinessPartnerCode,
+                BusinessPartnerEmailAddress = source.BusinessPartnerEmailAddress,
+                BusinessPartnerIsValid = source.BusinessPartnerIsValid,
+                CompanyId = source.CompanyId,
+                DealingEmployeeId = source.DealingEmployeeId,
+                IsSystemGuarantor = source.IsSystemGuarantor,
+                NonSystemGuarantor = source.NonSystemGuarantor,
+                SystemGuarantorId = source.SystemGuarantorId,
+                BusinessPartnerIndividual = source.BusinessPartnerIndividual.CreateFrom(),
+                BusinessPartnerCompany = source.BusinessPartnerCompany.CreateFrom(),
+                BusinessPartnerPhoneNumbers = source.BusinessPartnerPhoneNumbers.Select(x => x.CreateFrom()).ToList(),
+                BusinessPartnerAddressList = source.BusinessPartnerAddressList.Select(x => x.CreateFrom()).ToList(),
+                PaymentTerm = source.PaymentTerm.CreateFrom()
+            };
+        }
+
+        /// <summary>
         ///  Create domain model from  web api listview model
         /// </summary>
         public static BusinessPartner CreateFrom(this Models.BusinessPartnerListView source)

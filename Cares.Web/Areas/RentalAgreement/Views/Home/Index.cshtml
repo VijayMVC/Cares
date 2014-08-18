@@ -194,67 +194,82 @@
         </form>
     </div>
     <div id="raBilling">
-        <form id="customer" class="well form-horizontal">
+        <form id="customer" class="well form-horizontal" data-bind="with: rentalAgreement().businessPartner">
             <h4>Customer</h4>
             <div class="form-group">
                 <div class="col-md-3">
-                    <input type="text" class="form-control" placeholder="<Customer #>" id="customerNumber" />
+                    <input type="text" class="form-control" placeholder="<Customer #>" id="customerNumber" data-bind="value: customerNo" />
                 </div>
                 <label for="isCustomerIndividual" class="control-label col-sm-2">Is Individual</label>
                 <div class="col-md-3">
-                    <input type="checkbox" class="form-control" id="isCustomerIndividual" />
+                    <input type="checkbox" class="form-control" id="isCustomerIndividual" data-bind="checked: isIndividual" />
                 </div>
                 <div class="col-md-3">
-                    <select class="form-control" id="customerPaymentTerm" data-bind="options: paymentTerms, optionsCaption: '<Payment Term>', optionsText: 'codeName', optionsValue: 'id'"></select>
+                    <select class="form-control" id="customerPaymentTerm" data-bind="options: $root.paymentTerms, optionsCaption: '<Payment Term>', optionsText: 'codeName', optionsValue: 'id', value: paymentTermId"></select>
                 </div>
             </div>
+            <!-- ko if: isIndividual -->
+            <!-- ko with: businessPartnerIndividual -->
             <div class="form-group">
                 <div class="col-md-2">
-                    <input type="text" class="form-control" placeholder="<First Name>" id="customerFirstName" />
+                    <input type="text" class="form-control" placeholder="<First Name>" id="customerFirstName" data-bind="value: firstName" />
                 </div>
                 <div class="col-md-2">
-                    <input type="text" class="form-control" placeholder="<Last Name>" id="customerLastName" />
+                    <input type="text" class="form-control" placeholder="<Last Name>" id="customerLastName" data-bind="value: lastName" />
                 </div>
                 <div class="col-md-2">
-                    <input type="text" class="form-control" placeholder="<DOB>" id="customerDOB" />
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-3">
-                    <input type="text" class="form-control" placeholder="<NIC No.>" id="customerNic" />
-                </div>
-                <div class="col-md-3">
-                    <input type="text" class="form-control" placeholder="<NIC Expiry>" id="customerNicExpiry" />
-                </div>
-                <div class="col-md-3">
-                    <input type="text" class="form-control" placeholder="<Passport No.>" id="customerPassport" />
+                    <input type="text" class="form-control" placeholder="<DOB>" id="customerDOB" data-bind="datepicker: dateOfBirth" />
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-3">
-                    <input type="text" class="form-control" placeholder="<Passport Expiry>" id="customerPassportExpiry" />
+                    <input type="text" class="form-control" placeholder="<NIC No.>" id="customerNic" data-bind="value: nicNo" />
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" placeholder="<NIC Expiry>" id="customerNicExpiry" data-bind="datepicker: nicExpiry" />
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" placeholder="<Passport No.>" id="customerPassport" data-bind="value: passportNo" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <input type="text" class="form-control" placeholder="<Passport Expiry>" id="customerPassportExpiry" data-bind="datepicker: passportExpiry" />
                 </div>
                 <div class="col-md-3">
                     <input type="text" class="form-control" placeholder="<Sponsor/Kafeel>" id="customerSponsor" />
                 </div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" placeholder="<License No.>" id="customerLicense" />
+                    <input type="text" class="form-control" placeholder="<License No.>" id="customerLicense" data-bind="value: licenseNo" />
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-3">
-                    <input type="text" class="form-control" placeholder="<License Expiry>" id="customerLicenseExpiry" />
+                    <input type="text" class="form-control" placeholder="<License Expiry>" id="customerLicenseExpiry" data-bind="datepicker: licenseExpiry" />
+                </div>
+            </div>
+            <!-- /ko -->
+            <!-- /ko -->
+            <div class="form-group" data-bind="with: businessPartnerCompany, visible: !isIndividual()" style="display: none">
+                <div class="col-md-3">
+                    <input type="text" class="form-control" placeholder="<Company Code>" id="customerCompanyCode" data-bind="value: code" />
                 </div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" placeholder="<Phone>" id="customerPhone" />
+                    <input type="text" class="form-control" placeholder="<Company Name>" id="customerCompanyName" data-bind="value: name" />
                 </div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" placeholder="<Mobile>" id="customerMobile" />
+                    <input type="text" class="form-control" placeholder="<Renter's Name>" id="customerCompanyRenterName" />
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-3">
-                    <input type="text" class="form-control" placeholder="<Email>" id="customerEmail" />
+                    <input type="text" class="form-control" placeholder="<Phone>" id="customerPhone" data-bind="value: homePhone" />
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" placeholder="<Mobile>" id="customerMobile" data-bind="value: mobile" />
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" placeholder="<Email>" id="customerEmail" data-bind="value: email" />
                 </div>
             </div>
         </form>

@@ -105,7 +105,6 @@ namespace Cares.Repository.BaseRepository
                         errorMessages.Add(entityName + "." + error.PropertyName + ": " + error.ErrorMessage);
                     }
                 }
-                int i = 0;
             }
         }
         /// <summary>

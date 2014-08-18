@@ -34,6 +34,7 @@ namespace Cares.Web.ModelMappers
                 IsDefault = source.IsDefault,
                 PhoneNumber = source.PhoneNumber,
                 PhoneTypeId = source.PhoneTypeId,
+                PhoneTypeKey = source.PhoneType != null ? source.PhoneType.PhoneTypeKey : null,
                 PhoneTypeName = source.PhoneType != null ? (source.PhoneType.PhoneTypeCode + '-' + source.PhoneType.PhoneTypeName) : string.Empty,
                 BusinessPartnerId = source.BusinessPartnerId
             };

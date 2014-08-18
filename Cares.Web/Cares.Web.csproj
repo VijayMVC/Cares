@@ -224,12 +224,14 @@
     <Compile Include="Areas\Api\Controllers\FleetPoolBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\FleetPoolController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessPartnerBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\RentalAgreementBusinessPartnerController.cs" />
     <Compile Include="Areas\Api\Controllers\GetBusinessPartnerDetailsController.cs" />
     <Compile Include="Areas\Api\Controllers\GetHireGroupDetailDataController.cs" />
     <Compile Include="Areas\Api\Controllers\GetTariffDetailsController.cs" />
     <Compile Include="Areas\Api\Controllers\GetHireGroupDetailTariffRateController.cs" />
     <Compile Include="Areas\Api\Controllers\HireGroupBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\HireGroupVehiclesController.cs" />
+    <Compile Include="Areas\Api\Controllers\OrganizationGroupController.cs" />
     <Compile Include="Areas\Api\Controllers\RentalAgreementHireGroupsController.cs" />
     <Compile Include="Areas\Api\Controllers\HireGroupController.cs" />
     <Compile Include="Areas\Api\Controllers\ProductBaseController.cs" />
@@ -276,6 +278,7 @@
     <Compile Include="ModelMappers\AddressTypeMapper.cs" />
     <Compile Include="ModelMappers\AddressMapper.cs" />
     <Compile Include="ModelMappers\OperationsWorkPlaceMapper.cs" />
+    <Compile Include="ModelMappers\OrgGroupMapper.cs" />
     <Compile Include="ModelMappers\PhoneTypeMapper.cs" />
     <Compile Include="ModelMappers\HireGroupDetailMapper.cs" />
     <Compile Include="ModelMappers\OccupationTypeMapper.cs" />
@@ -345,6 +348,8 @@
     <Compile Include="Models\HireGroupBaseResponse.cs" />
     <Compile Include="Models\HireGroupSearchResponse.cs" />
     <Compile Include="Models\OperationsWorkPlace.cs" />
+    <Compile Include="Models\OrgGroup.cs" />
+    <Compile Include="Models\OrgGroupRequestResponse.cs" />
     <Compile Include="Models\ParentHireGroup.cs" />
     <Compile Include="Models\Phone.cs" />
     <Compile Include="Models\PhoneTypeDropDown.cs" />
@@ -428,10 +433,10 @@
     <Content Include="Areas\Fleet\Scripts\hireGroup.model.js" />
     <Content Include="Areas\Fleet\Scripts\hireGroup.view.js" />
     <Content Include="Areas\Fleet\Scripts\hireGroup.viewModel.js" />
-    <Content Include="Areas\OrganizationGroup\Scripts\OrganizationGroup.view.js" />
-    <Content Include="Areas\OrganizationGroup\Scripts\OrganizationGroup.dataservice.js" />
-    <Content Include="Areas\OrganizationGroup\Scripts\OrganizationGroup.viewModel.js" />
-    <Content Include="Areas\OrganizationGroup\Scripts\OrganizationGroup.model.js" />
+    <Content Include="Areas\OrganizationGroup\Scripts\organizationGroup.view.js" />
+    <Content Include="Areas\OrganizationGroup\Scripts\organizationGroup.dataservice.js" />
+    <Content Include="Areas\OrganizationGroup\Scripts\organizationGroup.viewModel.js" />
+    <Content Include="Areas\OrganizationGroup\Scripts\organizationGroup.model.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.dataservice.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.model.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.view.js" />
@@ -623,6 +628,12 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="Content\themes\OrgGroup.css">
+      <DependentUpon>OrgGroup.less</DependentUpon>
+    </Content>
+    <Content Include="Content\themes\OrgGroup.min.css">
+      <DependentUpon>OrgGroup.css</DependentUpon>
+    </Content>
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
@@ -1027,6 +1038,11 @@
     <Content Include="Areas\OrganizationGroup\Views\_ViewStart.cshtml" />
     <Content Include="Areas\OrganizationGroup\Views\Home\Index.cshtml" />
     <Content Include="Areas\OrganizationGroup\Views\Shared\_Layout.cshtml" />
+    <Content Include="Content\themes\OrgGroup.less" />
+    <Content Include="Content\themes\OrgGroup.css.map">
+      <DependentUpon>OrgGroup.css</DependentUpon>
+    </Content>
+    <Content Include="Areas\OrganizationGroup\Views\Home\_OrgGroupEditor.cshtml" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
@@ -1167,6 +1183,7 @@
     <Folder Include="App_Data\ProfileImages\" />
     <Folder Include="Areas\Api\Models\" />
     <Folder Include="Areas\Api\Views\FleetPool\" />
+    <Folder Include="Areas\Api\Views\OrganizationGroup\" />
     <Folder Include="Areas\Api\Views\Shared\" />
     <Folder Include="Areas\BusinessPartner\Models\" />
     <Folder Include="Areas\Common\Controllers\" />

@@ -130,6 +130,7 @@
     <Compile Include="Services\HireGroupService.cs" />
     <Compile Include="Services\OccupationTypeService.cs" />
     <Compile Include="Services\CountryService.cs" />
+    <Compile Include="Services\OrganizationGroupService.cs" />
     <Compile Include="Services\PaymentTermService.cs" />
     <Compile Include="Services\CompanyService.cs" />
     <Compile Include="Services\FleetPoolService.cs" />
