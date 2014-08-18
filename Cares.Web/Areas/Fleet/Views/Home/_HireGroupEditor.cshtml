@@ -5,34 +5,33 @@
         <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onSaveHireGroup">Save</button>
         <button class="btn btn-default" id="saveBtn" data-bind="click: $root.closeHireGroupEditor">Cancel</button>
     </div>
-
     <form class="form-horizontal">
         <div class="form-group">
             <label for="hireGroupCode" class="control-label h5 col-sm-2">Hire Group Code *</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" placeholder="<Hire Group Code>" id="hireGroupCode" data-bind="value: hireGroupCode, validationTooltip: hireGroupCode, disable :virtualIsParent()" />
+                <input type="text" class="form-control" placeholder="<Hire Group Code>" id="hireGroupCode" data-bind="value: hireGroupCode, validationTooltip: hireGroupCode" />
             </div>
             <label for="hireGroupName" class="control-label h5 col-sm-2">Hire Group Name</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" placeholder="<Hire Group Name>" id="hireGroupName" data-bind="value: hireGroupName, validationTooltip: hireGroupName, disable :virtualIsParent()" />
+                <input type="text" class="form-control" placeholder="<Hire Group Name>" id="hireGroupName" data-bind="value: hireGroupName, validationTooltip: hireGroupName" />
             </div>
             <label for="company" class="control-label h5 col-sm-2">Company *</label>
             <div class="col-md-2">
-                <select id="company" class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '<Company>', value: companyId, validationTooltip: companyId, disable :virtualIsParent(), event:{change:$root.onSelectedCompany}"></select>
+                <select id="company" class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '<Company>', value: companyId, validationTooltip: companyId, disable :virtualIsParent(), event:{change:$root.onSelectedCompany}, disable :(hireGroupId()!=undefined)"></select>
             </div>
         </div>
         <div class="form-group">
             <label for="isParent" class="control-label h5 col-sm-2">Is Parent?  </label>
             <div class="col-md-2">
-                <input type="checkbox" class="form-control" id="isParent" data-bind="value: isParent, validationTooltip: isParent, disable :virtualIsParent()" />
+                <input type="checkbox" class="form-control" id="isParent" data-bind="checked: isParent, validationTooltip: isParent" />
             </div>
             <label for="isParentHireGroup" class="control-label h5 col-sm-2">Parent Hire Group </label>
             <div class="col-xs-2">
-                <select id="isParentHireGroup" class="form-control" data-bind="options: $root.filteredParentHireGroups, optionsText: 'ParentHireGroupName', optionsValue: 'ParentHireGroupId', optionsCaption: '<Parent Hire Group>', value: parentHireGroupId,validationTooltip: parentHireGroupId, disable :virtualIsParent()"></select>
+                <select id="isParentHireGroup" class="form-control" data-bind="options: $root.filteredParentHireGroups, optionsText: 'ParentHireGroupName', optionsValue: 'ParentHireGroupId', optionsCaption: '<Parent Hire Group>', value: parentHireGroupId,validationTooltip: parentHireGroupId"></select>
             </div>
             <label for="description" class="control-label h5 col-sm-2">Description</label>
             <div class="col-md-2">
-                <textarea class="form-control" rows="2" placeholder="<Description>" id="description" data-bind="value: description, valueUpdate: 'keyup', disable :virtualIsParent()"></textarea>
+                <textarea class="form-control" rows="2" placeholder="<Description>" id="description" data-bind="value: description, valueUpdate: 'keyup'"></textarea>
             </div>
         </div>
     </form>
@@ -48,30 +47,30 @@
             <!-- first tab - Detail-->
             <div class="tab-pane active" id="detail" data-bind="with:vehicleDetail">
                 <form class="form-horizontal">
-                    <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onAddVehicleDetail ">Add</button>
+                    <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onAddVehicleDetail , disable :$root.virtualIsChecked()">Add</button>
                     <div class="form-group">
                         <label for="vehicleMake" class="control-label h5 col-sm-2">Vehicle Make*</label>
                         <div class="col-md-2">
-                            <select id="vehicleMake" class="form-control" data-bind="options: $root.vehicleMakes, optionsText: 'VehicleMakeCodeName', optionsCaption: '<Vehicle Make>', value:vehicleMakeId, event:{change:$root.onVehicleMakeChange}"></select>
+                            <select id="vehicleMake" class="form-control" data-bind="options: $root.vehicleMakes, optionsText: 'VehicleMakeCodeName', optionsCaption: '<Vehicle Make>', value:vehicleMakeId, event:{change:$root.onVehicleMakeChange}, disable :$root.virtualIsChecked()"></select>
                         </div>
                         <label for="vehicleModel" class="control-label h5 col-sm-2">Vehicle Model*</label>
                         <div class="col-md-2">
-                            <select id="vehicleModel" class="form-control" data-bind="options: $root.vehicleModels, optionsText: 'VehicleModelCodeName', optionsCaption: '<Vehicle Model>', value: vehicleModelId, event:{change:$root.onVehicleModelChange} "></select>
+                            <select id="vehicleModel" class="form-control" data-bind="options: $root.vehicleModels, optionsText: 'VehicleModelCodeName', optionsCaption: '<Vehicle Model>', value: vehicleModelId, event:{change:$root.onVehicleModelChange}, disable :$root.virtualIsChecked() "></select>
                         </div>
                         <label for="vehicleCategory" class="control-label h5 col-sm-2">Vehicle Category</label>
                         <div class="col-md-2">
-                            <select id="vehicleCategory" class="form-control" data-bind="options: $root.vehicleCategories, optionsText: 'VehicleCategoryCodeName', optionsCaption: '<Vehicle Category>', value: vehicleCategoryId, event:{change:$root.onVehicleCategoryChange} "></select>
+                            <select id="vehicleCategory" class="form-control" data-bind="options: $root.vehicleCategories, optionsText: 'VehicleCategoryCodeName', optionsCaption: '<Vehicle Category>', value: vehicleCategoryId, event:{change:$root.onVehicleCategoryChange}, disable :$root.virtualIsChecked() "></select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="modelYear" class="control-label h5 col-sm-2">Model Year*</label>
                         <div class="col-md-2">
-                            <select id="modelYear" class="form-control" data-bind="options: $root.modelYears, optionsText: 'Text',optionsValue:'Id', optionsCaption: '<Model Year>', value: vehicleModelYear "></select>
+                            <select id="modelYear" class="form-control" data-bind="options: $root.modelYears, optionsText: 'Text',optionsValue:'Id', optionsCaption: '<Model Year>', value: vehicleModelYear, disable :$root.virtualIsChecked() "></select>
                         </div>
 
                     </div>
                 </form>
-                
+
                 <table id="hireGroupDetail" class="table table-condensed">
                     <thead>
                         <tr>
@@ -105,11 +104,11 @@
             <!-- second tab - Upgraded HireGroups-->
             <div class="tab-pane" id="upgradedHireGroups" data-bind="with:hireGroupUpGrade">
                 <form class="form-horizontal">
-                    <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onAddHireGroupUpGrade">Add</button>
+                    <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onAddHireGroupUpGrade, disable :$root.virtualIsChecked()">Add</button>
                     <div class="form-group">
                         <label for="hireGroups" class="control-label h5 col-sm-2">Hire Groups *</label>
                         <div class="col-md-2">
-                            <select id="hireGroups" class="form-control" data-bind="options: $root.filteredHireGroupsForDdList, optionsText: 'HireGroupCodeName', optionsCaption: '<Hire Group>',value:hireGroupIdForUpGrade, event:{change:$root.upGradedHireGroupChange} "></select>
+                            <select id="hireGroups" class="form-control" data-bind="options: $root.filteredHireGroupsForDdList, optionsText: 'HireGroupCodeName', optionsCaption: '<Hire Group>',value:hireGroupIdForUpGrade, event:{change:$root.upGradedHireGroupChange}, disable :$root.virtualIsChecked() "></select>
                         </div>
                     </div>
                 </form>

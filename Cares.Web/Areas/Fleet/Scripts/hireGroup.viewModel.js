@@ -17,6 +17,8 @@ define("hireGroup/hireGroup.viewModel",
                     selectedHireGroupId = ko.observable(),
                    // Show Filter Section
                     filterSectionVisilble = ko.observable(false),
+                    //virtual Hire Group Is Checked
+                    virtualIsChecked = ko.observable(false),
                     // #region Arrays
                     // Companies
                     companies = ko.observableArray([]),
@@ -113,11 +115,20 @@ define("hireGroup/hireGroup.viewModel",
                         selectedHireGroupId(hireGroup.hireGroupId());
                         selectedHireGroup().vehicleDetail(new model.HireGroupDetail());
                         selectedHireGroup().hireGroupUpGrade(new model.HireGroupUpGrade());
+                        virtualIsChecked(hireGroup.isParent());
                         //selectedtariffRateCopy(model.TariffRateCoppier(selectedtariffRate()));
                         getHireGroupById();
                         showHireGroupEditor();
                         e.stopImmediatePropagation();
                     },
+
+                isChecked = ko.computed(function () {
+                    if (selectedHireGroup() != undefined) {
+                        return virtualIsChecked(selectedHireGroup().isParent());
+                    } else {
+                        return false;
+                    }
+                }),
                      //Get Hire Group data By Id
                     getHireGroupById = function () {
                         isLoadingHireGroups(true);
@@ -399,6 +410,8 @@ define("hireGroup/hireGroup.viewModel",
                     sortIsAscHg: sortIsAscHg,
                     isHireGroupEditorVisible: isHireGroupEditorVisible,
                     filterSectionVisilble: filterSectionVisilble,
+                    virtualIsChecked: virtualIsChecked,
+                    isChecked: isChecked,
                     //Arrays
                     companies: companies,
                     parentHireGroups: parentHireGroups,
