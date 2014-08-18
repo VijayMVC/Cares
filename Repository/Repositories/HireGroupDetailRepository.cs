@@ -76,7 +76,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public IEnumerable<HireGroupDetail> GetHireGroupDetailsForTariffRate()
         {
-            return DbSet.Where(h => h.UserDomainKey == UserDomainKey).Include(x => x.HireGroup);
+            return DbSet.Where(h => h.UserDomainKey == UserDomainKey).Include(x => x.HireGroup).ToList();
         }
 
         /// <summary>

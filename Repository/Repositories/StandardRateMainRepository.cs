@@ -22,7 +22,9 @@ namespace Cares.Repository.Repositories
              new Dictionary<TariffRateByColumn, Func<TariffRateContent, object>>
                     {
                         { TariffRateByColumn.TariffRateCode, c => c.StandardRtMainCode },
-                        { TariffRateByColumn.Operation, c => c.OperationCodeName }
+                        { TariffRateByColumn.TariffRateName, c => c.StandardRtMainName },
+                        { TariffRateByColumn.StartEffectiveDate, c => c.StartDt },
+                        { TariffRateByColumn.EndEffectiveDate, c => c.EndDt }
                     };
 
         #endregion

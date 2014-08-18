@@ -24,10 +24,18 @@ namespace Cares.Repository.Repositories
              new Dictionary<TariffTypeByColumn, Func<TariffType, object>>
                     {
                         { TariffTypeByColumn.TariffTypeName, c => c.TariffTypeName },
-                        { TariffTypeByColumn.TariffTypeCode, c => c.TariffTypeCode }
+                        { TariffTypeByColumn.TariffTypeCode, c => c.TariffTypeCode },
+                        { TariffTypeByColumn.PricingStrategyId, c => c.PricingStrategy.PricingStrategyId },
+                        { TariffTypeByColumn.OperationId, c => c.Operation.OperationId },
+                          { TariffTypeByColumn.MeasurementUnitId, c => c.MeasurementUnit.MeasurementUnitId },
+                        { TariffTypeByColumn.DurationFrom, c => c.DurationFrom },
+                        { TariffTypeByColumn.DurationTo, c => c.DurationTo },
+                        { TariffTypeByColumn.GracePeriod, c => c.GracePeriod },
+                        { TariffTypeByColumn.EffectiveDate, c => c.EffectiveDate }
+
                        
                     };
-        #endregion
+        #endregion.
         #region Constructor
         /// <summary>
         /// Constructor
@@ -57,7 +65,7 @@ namespace Cares.Repository.Repositories
         /// <returns></returns>
         public override IEnumerable<TariffType> GetAll()
         {
-            return DbSet.Where(p => p.UserDomainKey == UserDomainKey && p.ChildTariffTypeId == 0).ToList();
+            return DbSet.Where(p => p.UserDomainKey == UserDomainKey && p.ChildTariffTypeId == null).ToList();
         }
         /// <summary>
         /// Get All Tariff Types based on search crateria

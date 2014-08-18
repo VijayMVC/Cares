@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Cares.ExceptionHandling;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -13,6 +16,7 @@ namespace Cares.Implementation.Services
     public sealed class TariffRateService : ITariffRateService
     {
         #region Private
+
         private readonly IDepartmentRepository departmentRepository;
         private readonly ICompanyRepository companyRepository;
         private readonly IOperationRepository operationRepository;
@@ -26,10 +30,15 @@ namespace Cares.Implementation.Services
         private readonly IStandardRateRepository standardRateRepository;
 
         #endregion
+
         #region Constructors
-        public TariffRateService(IDepartmentRepository departmentRepository, ICompanyRepository companyRepository, IOperationRepository operationRepository,
-            IVehicleModelRepository vehicleModelRepository, IVehicleMakeRepository vehicleMakeRepository, IVehicleCategoryRepository vehicleCategoryRepository,
-            IHireGroupRepository hireGroupRepository, ITariffTypeRepository tariffTypeRepository, IStandardRateMainRepository standardRateMainRepository,
+
+        public TariffRateService(IDepartmentRepository departmentRepository, ICompanyRepository companyRepository,
+            IOperationRepository operationRepository,
+            IVehicleModelRepository vehicleModelRepository, IVehicleMakeRepository vehicleMakeRepository,
+            IVehicleCategoryRepository vehicleCategoryRepository,
+            IHireGroupRepository hireGroupRepository, ITariffTypeRepository tariffTypeRepository,
+            IStandardRateMainRepository standardRateMainRepository,
             IHireGroupDetailRepository hireGroupDetailRepository, IStandardRateRepository standardRateRepository)
         {
             this.operationRepository = operationRepository;
@@ -46,8 +55,11 @@ namespace Cares.Implementation.Services
 
 
         }
+
         #endregion
+
         #region Public
+
         /// <summary>
         /// Get Tariff Rate Base Data
         /// </summary>
@@ -55,17 +67,18 @@ namespace Cares.Implementation.Services
         public TariffRateBaseResponse GetBaseData()
         {
             return new TariffRateBaseResponse
-            {
-                Companies = companyRepository.GetAll(),
-                Departments = departmentRepository.GetAll(),
-                Operations = operationRepository.GetAll(),
-                HireGroups = hireGroupRepository.GetAll(),
-                VehicleModels = vehicleModelRepository.GetAll(),
-                VehicleMakes = vehicleMakeRepository.GetAll(),
-                VehicleCategories = vehicleCategoryRepository.GetAll(),
-                TariffTypes = tariffTypeRepository.GetAll(),
-            };
+                   {
+                       Companies = companyRepository.GetAll(),
+                       Departments = departmentRepository.GetAll(),
+                       Operations = operationRepository.GetAll(),
+                       HireGroups = hireGroupRepository.GetAll(),
+                       VehicleModels = vehicleModelRepository.GetAll(),
+                       VehicleMakes = vehicleMakeRepository.GetAll(),
+                       VehicleCategories = vehicleCategoryRepository.GetAll(),
+                       TariffTypes = tariffTypeRepository.GetAll(),
+                   };
         }
+
         /// <summary>
         /// Get Stanadrd Rate Main
         /// </summary>
@@ -75,6 +88,7 @@ namespace Cares.Implementation.Services
         {
             return standardRateMainRepository.GetTariffRates(tariffRateRequest);
         }
+
         /// <summary>
         ///Get Hire Group Detail List
         /// </summary>
@@ -82,9 +96,16 @@ namespace Cares.Implementation.Services
         public HireGroupDetailResponse GetHireGroupDetailsForTariffRate(long standardRtMainId)
         {
             IEnumerable<HireGroupDetail> hireGroupDetails = hireGroupDetailRepository.GetHireGroupDetailsForTariffRate();
-            IEnumerable<StandardRate> standardRates = standardRateRepository.GetStandardRateForTariffRate(standardRtMainId);
-            return new HireGroupDetailResponse { HireGroupDetails = hireGroupDetails, StandardRates = standardRates, StandardRateId = standardRtMainId };
+            IEnumerable<StandardRate> standardRates =
+                standardRateRepository.GetStandardRateForTariffRate(standardRtMainId);
+            return new HireGroupDetailResponse
+                   {
+                       HireGroupDetails = hireGroupDetails,
+                       StandardRates = standardRates,
+                       StandardRateId = standardRtMainId
+                   };
         }
+
         /// <summary>
         /// Find Standard Rate Main
         /// </summary>
@@ -94,91 +115,112 @@ namespace Cares.Implementation.Services
         {
             return standardRateMainRepository.Find(id);
         }
+
         /// <summary>
         /// Add Tariff Rate
         /// </summary>
         /// <param name="standardRateMain"></param>
         /// <returns></returns>
-        public TariffRateContent AddTariffRate(StandardRateMain standardRateMain)
+        public TariffRateContent SaveTariffRate(StandardRateMain standardRateMain)
         {
-            standardRateMain.RecCreatedDt = System.DateTime.Now;
-            standardRateMain.RecLastUpdatedDt = System.DateTime.Now;
-            standardRateMain.UserDomainKey = standardRateMainRepository.UserDomainKey;
             TariffType tariffType = tariffTypeRepository.Find(long.Parse(standardRateMain.TariffTypeCode));
             standardRateMain.TariffTypeCode = tariffType.TariffTypeCode;
-            standardRateMainRepository.Add(standardRateMain);
-            standardRateMainRepository.SaveChanges();
-            return new TariffRateContent
-                   {
-                       StandardRtMainId = standardRateMain.StandardRtMainId,
-                       StandardRtMainCode = standardRateMain.StandardRtMainCode,
-                       StandardRtMainName = standardRateMain.StandardRtMainName,
-                       StandardRtMainDescription = standardRateMain.StandardRtMainDescription,
-                       StartDt = standardRateMain.StartDt,
-                       EndDt = standardRateMain.EndDt,
-                       TariffTypeId = tariffType.TariffTypeId,
-                       TariffTypeCodeName = tariffType.TariffTypeCode + " - " + tariffType.TariffTypeName,
-                       OperationId = tariffType.OperationId,
-                       OperationCodeName = tariffType.Operation.OperationCode + " - " + tariffType.Operation.OperationName,
-                   };
-        }
 
-        /// <summary>
-        /// Add Standard Rate
-        /// </summary>
-        /// <param name="standardRate"></param>
-        /// <returns></returns>
-        public void AddStandardRate(StandardRate standardRate)
-        {
-            standardRate.RecCreatedDt = System.DateTime.Now;
-            standardRate.RecLastUpdatedDt = System.DateTime.Now;
-            standardRate.UserDomainKey = standardRateMainRepository.UserDomainKey;
-            if (standardRate.StandardRtId > 0)
+            #region Add
+            if (standardRateMain.StandardRtMainId == 0)
             {
-                long oldRecordId = standardRate.StandardRtId;
-                standardRate.StandardRtId = 0;
-                standardRate.RevisionNumber = standardRate.RevisionNumber+1;
-                standardRateRepository.Add(standardRate);
-                standardRateRepository.SaveChanges();
-                StandardRate oldStandardRate = standardRateRepository.Find(oldRecordId);
-                oldStandardRate.ChildStandardRtId = standardRate.StandardRtId;
-                standardRateRepository.SaveChanges();
+                StandardRateValidation(standardRateMain, true);
+                standardRateMain.UserDomainKey = standardRateMainRepository.UserDomainKey;
+                standardRateMain.IsActive = true;
+                standardRateMain.IsDeleted = false;
+                standardRateMain.IsPrivate = false;
+                standardRateMain.IsReadOnly = false;
+                standardRateMain.RecCreatedDt = DateTime.Now;
+                standardRateMain.RecLastUpdatedDt = DateTime.Now;
+                standardRateMain.RecCreatedBy = standardRateMainRepository.LoggedInUserIdentity;
+                standardRateMain.RecLastUpdatedBy = standardRateMainRepository.LoggedInUserIdentity;
+                standardRateMain.RowVersion = 0;
+                //set child (Standard Rate in Standard Rate Main) properties
+                #region Standard Rate in Standard Rate Main
+
+                if (standardRateMain.StandardRates != null)
+                {
+                    // set properties
+                    foreach (StandardRate item in standardRateMain.StandardRates)
+                    {
+                        item.IsActive = true;
+                        item.IsDeleted = false;
+                        item.IsPrivate = false;
+                        item.IsReadOnly = false;
+                        item.RecCreatedDt = DateTime.Now;
+                        item.RecLastUpdatedDt = DateTime.Now;
+                        item.RecCreatedBy = standardRateMainRepository.LoggedInUserIdentity;
+                        item.RecLastUpdatedBy = standardRateMainRepository.LoggedInUserIdentity;
+                        item.UserDomainKey = standardRateMainRepository.UserDomainKey;
+                    }
+                }
+
+                #endregion
+                standardRateMainRepository.Add(standardRateMain);
+                standardRateMainRepository.SaveChanges();
             }
+            #endregion
+            #region Edit
             else
             {
-                standardRateRepository.Add(standardRate);
-                standardRateRepository.SaveChanges();
-            }
+                StandardRateValidation(standardRateMain, false);
+                if (standardRateMain.StandardRates != null)
+                {
+                    foreach (StandardRate standardRate in standardRateMain.StandardRates)
+                    {
+                        standardRate.IsActive = true;
+                        standardRate.IsDeleted = false;
+                        standardRate.IsPrivate = false;
+                        standardRate.IsReadOnly = false;
+                        standardRate.RecCreatedDt = DateTime.Now;
+                        standardRate.RecLastUpdatedDt = DateTime.Now;
+                        standardRate.RecCreatedBy = standardRateMainRepository.LoggedInUserIdentity;
+                        standardRate.RecLastUpdatedBy = standardRateMainRepository.LoggedInUserIdentity;
+                        standardRate.UserDomainKey = standardRateMainRepository.UserDomainKey;
+                        standardRate.StandardRtMainId = standardRateMain.StandardRtMainId;
+                        if (standardRate.StandardRtId > 0)
+                        {
+                            long oldRecordId = standardRate.StandardRtId;
+                            standardRate.StandardRtId = 0;
+                            standardRate.RevisionNumber = standardRate.RevisionNumber + 1;
+                            standardRateRepository.Add(standardRate);
+                            standardRateRepository.SaveChanges();
+                            StandardRate oldStandardRate = standardRateRepository.Find(oldRecordId);
+                            oldStandardRate.ChildStandardRtId = standardRate.StandardRtId;
+                            standardRateRepository.SaveChanges();
+                        }
+                        else
+                        {
+                            standardRateRepository.Add(standardRate);
+                            standardRateRepository.SaveChanges();
+                        }
+                    }
+                }
 
-            //standardRateRepository.FindByHireGroupId(standardRate.StandardRtMainId, standardRate.HireGroupDetailId);
-        }
-        /// <summary>
-        /// Update Tariff Rate
-        /// </summary>
-        /// <param name="standardRateMain"></param>
-        /// <returns></returns>
-        public TariffRateContent Update(StandardRateMain standardRateMain)
-        {
-            standardRateMain.RecCreatedDt = System.DateTime.Now;
-            standardRateMain.RecLastUpdatedDt = System.DateTime.Now;
-            TariffType tariffType = tariffTypeRepository.Find(long.Parse(standardRateMain.TariffTypeCode));
-            standardRateMain.TariffTypeCode = tariffType.TariffTypeCode;
-            standardRateMainRepository.Update(standardRateMain);
-            standardRateMainRepository.SaveChanges(); 
+            }
+            #endregion
+
             return new TariffRateContent
-            {
-                StandardRtMainId = standardRateMain.StandardRtMainId,
-                StandardRtMainCode = standardRateMain.StandardRtMainCode,
-                StandardRtMainName = standardRateMain.StandardRtMainName,
-                StandardRtMainDescription = standardRateMain.StandardRtMainDescription,
-                StartDt = standardRateMain.StartDt,
-                EndDt = standardRateMain.EndDt,
-                TariffTypeId = tariffType.TariffTypeId,
-                TariffTypeCodeName = tariffType.TariffTypeCode + " - " + tariffType.TariffTypeName,
-                OperationId = tariffType.OperationId,
-                OperationCodeName = tariffType.Operation.OperationCode + " - " + tariffType.Operation.OperationName,
-            };
+           {
+               StandardRtMainId = standardRateMain.StandardRtMainId,
+               StandardRtMainCode = standardRateMain.StandardRtMainCode,
+               StandardRtMainName = standardRateMain.StandardRtMainName,
+               StandardRtMainDescription = standardRateMain.StandardRtMainDescription,
+               StartDt = standardRateMain.StartDt,
+               EndDt = standardRateMain.EndDt,
+               TariffTypeId = tariffType.TariffTypeId,
+               TariffTypeCodeName = tariffType.TariffTypeCode + " - " + tariffType.TariffTypeName,
+               OperationId = tariffType.OperationId,
+               OperationCodeName =
+                   tariffType.Operation.OperationCode + " - " + tariffType.Operation.OperationName,
+           };
         }
+
         /// <summary>
         /// Delete Tariff Rate
         /// </summary>
@@ -188,6 +230,7 @@ namespace Cares.Implementation.Services
             standardRateMainRepository.Delete(standardRateMain);
             standardRateMainRepository.SaveChanges();
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -198,6 +241,7 @@ namespace Cares.Implementation.Services
         {
             return standardRateRepository.FindByHireGroupId(standardRtMainId, hireGroupDetailId);
         }
+
         /// <summary>
         /// Find By Tariff Type Code
         /// </summary>
@@ -207,10 +251,64 @@ namespace Cares.Implementation.Services
         {
             return standardRateMainRepository.FindByTariffTypeCode(tariffTypeCode);
         }
+
         public TariffType FindTariffTypeById(long id)
         {
             return tariffTypeRepository.Find(id);
         }
+        /// <summary>
+        /// Standard Rate Validation
+        /// </summary>
+        /// <param name="standardRateMain"></param>
+        /// <param name="addFlag"></param>
+        private void StandardRateValidation(StandardRateMain standardRateMain, bool addFlag)
+        {
+            // ReSharper disable once JoinDeclarationAndInitializer
+            DateTime strMainStartDate, strMainEndDate, dbStartDate, dbEndDate;
+            strMainStartDate = Convert.ToDateTime(standardRateMain.StartDt);
+            strMainEndDate = Convert.ToDateTime(standardRateMain.EndDt);
+            if (addFlag)
+            {
+                if (strMainStartDate.Date < DateTime.Now.Date)
+                    throw new CaresException("Start Effective Date must be a current or future date.");
+                if (strMainEndDate.Date < strMainStartDate.Date)
+                    throw new CaresException("End Effective Date must be greater than the Start Date.");
+                //TariffType tariffType = FindTariffTypeById(standardRateMain.TariffTypeId);
+                IEnumerable<StandardRateMain> oStRateMain = FindByTariffTypeCode(standardRateMain.TariffTypeCode).Select(s => s);
+                foreach (var rateMain in oStRateMain)
+                {
+                    dbStartDate = rateMain.StartDt;
+                    dbEndDate = rateMain.EndDt;
+
+                    if ((strMainStartDate <= dbStartDate) && ((dbEndDate) <= (strMainEndDate)))
+                        throw new CaresException("Another Standard Rate duration falls within the current defined Effective Start and End range.");
+                    if ((dbStartDate <= strMainStartDate) && ((strMainEndDate) <= (dbEndDate)))
+                        throw new CaresException("The current defined Effective Start and End range falls within the duration of another Standard Rate. ");
+                    if ((dbStartDate <= strMainStartDate) && (strMainStartDate <= (dbEndDate)) && ((dbEndDate) <= (strMainEndDate)))
+                        throw new CaresException("Start Effective Date is less than the End Effective Date of an existing Standard Rate.");
+                    if ((strMainStartDate <= dbStartDate) && (dbStartDate <= (strMainEndDate)) && ((strMainEndDate) <= (dbEndDate)))
+                        throw new CaresException("End Effective Date is greater than the start Effective Date of an existing Standard Rate.");
+                }
+            }
+            if (standardRateMain.StandardRates != null)
+            {
+                foreach (var standardRate in standardRateMain.StandardRates)
+                {
+                    dbStartDate = Convert.ToDateTime(standardRate.StandardRtStartDt);
+                    dbEndDate = Convert.ToDateTime(standardRate.StandardRtEndDt);
+                    if (dbStartDate.Date < DateTime.Now.Date || dbEndDate.Date < DateTime.Now.Date)
+                        throw new CaresException("Start Date and End Date for Hire Groups Rate must be a current or future date.");
+                    if (dbEndDate < dbStartDate)
+                        throw new CaresException("End Date for Hire Groups Rate should be greater than their Start Date.");
+                    if (dbStartDate < strMainStartDate || dbEndDate > strMainEndDate)
+                        throw new CaresException("Start Date and End Date for Hire Groups Rate should be between the Start and Effective Date.");
+                }
+            }
+
+        }
+
         #endregion
     }
 }
+
+

@@ -20,7 +20,7 @@ define("tariffType/tariffType.view",
                     }
 
                     // Handle Sorting
-                    handleSorting("tariffTypeTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.gettariffType);
+                    handleSorting("tariffTypeTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getTariffType);
                 };
             initialize();
             return {

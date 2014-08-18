@@ -114,7 +114,7 @@
     <Compile Include="Repository\IProductRepository.cs" />
     <Compile Include="Repository\IStandardRateRepository.cs" />
     <Compile Include="Repository\IStandardRateMainRepository.cs" />
-    <Compile Include="Repository\ITarrifTypeRepository.cs" />
+    <Compile Include="Repository\ITariffTypeRepository.cs" />
     <Compile Include="Repository\IRegionRepository.cs" />
     <Compile Include="Repository\IVehicleCategoryRepository.cs" />
     <Compile Include="Repository\IVehicleMakeRepository.cs" />
