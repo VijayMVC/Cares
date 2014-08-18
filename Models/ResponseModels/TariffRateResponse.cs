@@ -16,6 +16,7 @@ namespace Cares.Models.ResponseModels
             TariffRates = new List<TariffRateContent>();
         }
         #endregion
+        
         #region Public
         /// <summary>
         /// tariff Rates

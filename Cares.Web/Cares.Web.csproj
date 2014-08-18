@@ -224,6 +224,8 @@
     <Compile Include="Areas\Api\Controllers\FleetPoolBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\FleetPoolController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessPartnerBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\InsuranceRateBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\InsuranceRateController.cs" />
     <Compile Include="Areas\Api\Controllers\RentalAgreementBusinessPartnerController.cs" />
     <Compile Include="Areas\Api\Controllers\GetBusinessPartnerDetailsController.cs" />
     <Compile Include="Areas\Api\Controllers\GetHireGroupDetailDataController.cs" />
@@ -268,6 +270,7 @@
     </Compile>
     <Compile Include="Helper\CultureHelper.cs" />
     <Compile Include="ModelMappers\GetVehiclesRequestMapper.cs" />
+    <Compile Include="ModelMappers\InsuranceRateMapper.cs" />
     <Compile Include="ModelMappers\VehicleMapper.cs" />
     <Compile Include="ModelMappers\MarketingChannelMapper.cs" />
     <Compile Include="ModelMappers\BusinessSegmentMapper.cs" />
@@ -316,8 +319,12 @@
     <Compile Include="Models\BusinessPartnerDropDown.cs" />
     <Compile Include="Models\BusinessPartnerMarketingChannel.cs" />
     <Compile Include="Models\FuelType.cs" />
+    <Compile Include="Models\InsuranceRateBaseResponse.cs" />
+    <Compile Include="Models\InsuranceRateSearchResponse.cs" />
+    <Compile Include="Models\InsuranceRtMainContent.cs" />
     <Compile Include="Models\Operation.cs" />
     <Compile Include="Models\PaymentTerm.cs" />
+    <Compile Include="Models\TariffTypeDropDown.cs" />
     <Compile Include="Models\TransmissionType.cs" />
     <Compile Include="Models\HireGroupDetail.cs" />
     <Compile Include="Models\Vehicle.cs" />
@@ -438,9 +445,13 @@
     <Content Include="Areas\OrganizationGroup\Scripts\organizationGroup.viewModel.js" />
     <Content Include="Areas\OrganizationGroup\Scripts\organizationGroup.model.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.dataservice.js" />
+    <Content Include="Areas\Pricing\Scripts\insuranceRate.model.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.model.js" />
+    <Content Include="Areas\Pricing\Scripts\insuranceRate.view.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.view.js" />
+    <Content Include="Areas\Pricing\Scripts\insuranceRate.viewModel.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.viewModel.js" />
+    <Content Include="Areas\Pricing\Scripts\insuranceRate.dataservice.js" />
     <Content Include="Areas\RentalAgreement\Scripts\Mocks\rentalAgreement.dataservice.js" />
     <Content Include="Areas\RentalAgreement\Scripts\rentalAgreement.dataservice.js" />
     <Content Include="Areas\RentalAgreement\Scripts\rentalAgreement.model.js" />
@@ -1043,6 +1054,7 @@
       <DependentUpon>OrgGroup.css</DependentUpon>
     </Content>
     <Content Include="Areas\OrganizationGroup\Views\Home\_OrgGroupEditor.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\InsuranceRate.cshtml" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />

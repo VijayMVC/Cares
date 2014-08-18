@@ -14,6 +14,7 @@
             "hireGroup": "/Areas/Fleet/Scripts",
             "tariffType": "/Areas/Pricing/Scripts",
             "tariffRate": "/Areas/Pricing/Scripts",
+            "insuranceRate": "/Areas/Pricing/Scripts",
             "rentalAgreement": "/Areas/RentalAgreement/Scripts",
             "OrganizationGroup": "/Areas/OrganizationGroup/Scripts"
         }
