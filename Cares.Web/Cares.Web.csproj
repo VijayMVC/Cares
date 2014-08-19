@@ -226,6 +226,7 @@
     <Compile Include="Areas\Api\Controllers\BusinessPartnerBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\InsuranceRateBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\InsuranceRateController.cs" />
+    <Compile Include="Areas\Api\Controllers\InsuranceRtDetailController.cs" />
     <Compile Include="Areas\Api\Controllers\RentalAgreementBusinessPartnerController.cs" />
     <Compile Include="Areas\Api\Controllers\GetBusinessPartnerDetailsController.cs" />
     <Compile Include="Areas\Api\Controllers\GetHireGroupDetailDataController.cs" />
@@ -321,6 +322,8 @@
     <Compile Include="Models\FuelType.cs" />
     <Compile Include="Models\InsuranceRateBaseResponse.cs" />
     <Compile Include="Models\InsuranceRateSearchResponse.cs" />
+    <Compile Include="Models\InsuranceRtDetailContent.cs" />
+    <Compile Include="Models\InsuranceRtDetailResponse.cs" />
     <Compile Include="Models\InsuranceRtMainContent.cs" />
     <Compile Include="Models\Operation.cs" />
     <Compile Include="Models\PaymentTerm.cs" />
@@ -1055,6 +1058,7 @@
     </Content>
     <Content Include="Areas\OrganizationGroup\Views\Home\_OrgGroupEditor.cshtml" />
     <Content Include="Areas\Pricing\Views\Tariff\InsuranceRate.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\_InsuranceRateEditor.cshtml" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />

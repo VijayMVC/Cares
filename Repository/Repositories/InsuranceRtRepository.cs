@@ -40,7 +40,12 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public override IEnumerable<InsuranceRt> GetAll()
         {
-            return DbSet.Where(insuranceType => insuranceType.UserDomainKey == UserDomainKey).ToList();
+            return DbSet.Where(insuranceRt => insuranceRt.UserDomainKey == UserDomainKey).ToList();
+        }
+
+        public IEnumerable<InsuranceRt> GetInsuranceRtByInsuranceRtMainId(long insuranceRtMainId)
+        {
+            return DbSet.Where(insuranceRt => insuranceRt.UserDomainKey == UserDomainKey && insuranceRt.InsuranceRtMainId == insuranceRtMainId).ToList();
         }
 
         #endregion

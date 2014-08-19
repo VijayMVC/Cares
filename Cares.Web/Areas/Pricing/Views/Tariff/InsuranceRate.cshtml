@@ -6,7 +6,7 @@
     <div class="row " data-bind="visible: !isInsuranceRtEditorVisible()">
         <h3 class="page-header float-left pageHeaderSection">Insurance Rate</h3>
         <div class="header-toolsSection">
-            <a href="#" class="label label-default create-new-icon" title="Create New Tariff">NEW</a>
+            <a href="#" class="label label-default create-new-icon" data-bind="click: createInsuranceRate" title=" create new tariff">NEW</a>
             <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title="Show Filters" style="display: none"></a>
         </div>
     </div>
@@ -39,15 +39,40 @@
                         <th> <span id="3">Start Effective Date<span></span></span></th>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                    <!-- ko template: { name: 'itemInsuranceRtMainTemplate' , foreach: insuranceRtMains } -->
+                    <!-- /ko -->
+                </tbody>
             </table>
             <!-- ko with: pager -->
             @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
             <!-- /ko -->
         </div>
     </div>
-
-    @*@Html.Partial("_TariffRateEditor")*@
+    <script id="editActionInsuranceRtMainTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onEditInsuranceRate" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
+    </script>
+    <script id="deleteActionInsuranceRtMainTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onDeleteInsuranceRate" title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
+    </script>
+    <script id="itemInsuranceRtMainTemplate" type="text/html">
+        <tr>
+            <td data-bind="text: insuranceRtMainCode"></td>
+            <td data-bind="text: insuranceRtName"></td>
+            <td data-bind="text: operationCodeName"></td>
+            <td data-bind="text: tariffTypeCodeName"></td>
+            <td data-bind="text: formattedStartDate"></td>
+            <td>
+                <!-- ko template: { name: 'editActionInsuranceRtMainTemplate' } -->
+                <!-- /ko -->
+            </td>
+            <td>
+                <!-- ko template: { name: 'deleteActionInsuranceRtMainTemplate' } -->
+                <!-- /ko -->
+            </td>
+        </tr>
+    </script>
+    @Html.Partial("_InsuranceRateEditor")
 
 </div>
 <!-- ko stopBinding: true -->

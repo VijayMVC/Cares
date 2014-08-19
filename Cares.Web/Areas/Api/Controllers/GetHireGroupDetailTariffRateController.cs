@@ -16,6 +16,7 @@ namespace Cares.Web.Areas.Api.Controllers
         #region Private
         private readonly ITariffRateService tariffRateService;
         #endregion
+        
         #region Constructors
         /// <summary>
         /// Constructor
@@ -30,6 +31,7 @@ namespace Cares.Web.Areas.Api.Controllers
             this.tariffRateService = tariffRateService;
         }
         #endregion
+        
         #region Public
         /// <summary>
         /// Get Hire group Detail For Tariff Rate

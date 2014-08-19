@@ -203,6 +203,8 @@
     <Compile Include="ResponseModels\HireGroupSearchResponse.cs" />
     <Compile Include="ResponseModels\InsuranceRateBaseResponse.cs" />
     <Compile Include="ResponseModels\InsuranceRateSearchResponse.cs" />
+    <Compile Include="ResponseModels\InsuranceRtDetailContent.cs" />
+    <Compile Include="ResponseModels\InsuranceRtDetailResponse.cs" />
     <Compile Include="ResponseModels\InsuranceRtMainContent.cs" />
     <Compile Include="ResponseModels\OrgGroupResponse.cs" />
     <Compile Include="ResponseModels\ProductResponse.cs" />

@@ -2,7 +2,7 @@
     ViewBag.Title = "Index";
 }
 
-<div class="row" id="tariffRateBinding" >
+<div class="row" id="tariffRateBinding">
     <div class="row " data-bind="visible: !isTariffRateEditorVisible()">
         <h3 class="page-header float-left pageHeaderSection">Tariff Rate</h3>
         <div class="header-toolsSection">
@@ -33,9 +33,9 @@
                 <thead>
                     <tr>
                         <th> <span id="1">Code<span class="icon-up"></span></span></th>
-                        <th> <span id="2">Name<span></span></span></th>                                                
+                        <th> <span id="2">Name<span></span></span></th>
                         <th> <span>Operation<span></span></span></th>
-                        <th> <span >Tariff Type<span></span></span></th>
+                        <th> <span>Tariff Type<span></span></span></th>
                         <th> <span id="5">Start Effective Date<span></span></span></th>
                         <th> <span id="6">End Effective Date<span></span></span></th>
                     </tr>
@@ -57,7 +57,7 @@
         <a href="#" data-bind="click: $root.onDeleteTariffRate" title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
     </script>
     <script id="itemTariffRateTemplate" type="text/html">
-        <tr >
+        <tr>
             <td data-bind="text: tariffRateCode"></td>
             <td data-bind="text: tariffRateName"></td>
             <td data-bind="text: operationCodeName"></td>

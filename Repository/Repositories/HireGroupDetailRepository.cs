@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.SqlServer;
-using System.Globalization;
 using System.Linq;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;

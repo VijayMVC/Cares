@@ -1,0 +1,110 @@
+﻿<div class="well col-md-12" id="insuranceRateEditor" data-bind="visible: isInsuranceRtEditorVisible" style="display: none;">
+    <div data-bind="with: selectedInsuranceRtMain">
+        <div class="detailsContainer">
+            <h3 class="page-header detailsHeaderSection">Insurance Rate Details</h3>
+            <button class="btn btn-info" id="saveBtn" data-bind="click:$root.onSaveInsuranceRate,enable: hasChanges, css: { 'btn-warning': hasChanges }">Save</button>
+            <button class="btn btn-default" id="saveBtn" data-bind="click: $root.closeInsuranceRateEditor">Cancel</button>
+        </div>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="code" class="control-label h5 col-sm-2">Insurance Rate Code *</label>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="<Insurance Rate Code>" id="code" data-bind="value: insuranceRtMainCode, validationTooltip: insuranceRtMainCode, disable :(insuranceRtMainId()!=undefined)" />
+                </div>
+                <label for="name" class="control-label h5 col-sm-2">Insurance Rate Name</label>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="<Insurance Rate Name>" id="name" data-bind="value: insuranceRtName, validationTooltip: insuranceRtName, disable :(insuranceRtMainId()!=undefined)" />
+                </div>
+                <label for="description" class="control-label h5 col-sm-2">Description</label>
+                <div class="col-md-2">
+                    <textarea class="form-control" rows="2" placeholder="<Description>" id="description" data-bind="value: description, valueUpdate: 'keyup', disable :(insuranceRtMainId()!=undefined)"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="operation" class="control-label h5 col-sm-2">Operation *</label>
+                <div class="col-md-2">
+                    <select id="operation" class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '<Operation>' , value: operationId, validationTooltip: operationId, disable :(insuranceRtMainId()!=undefined)"></select>
+                </div>
+                <label for="tariffType" class="control-label h5 col-sm-2">Tariff Type *</label>
+                <div class="col-xs-2">
+                    <select id="tariffType" class="form-control" data-bind="options: $root.tariffTypes, optionsText: 'TariffTypeCodeName', optionsValue: 'TariffTypeId', optionsCaption: '<Tariff Types>', value: tariffTypeId, disable :(insuranceRtMainId()!=undefined)"></select>
+                </div>
+                <label for="sDate" class="control-label h5 col-sm-2">Effective From *</label>
+                <div class="col-md-2">
+                    <input type="text" placeholder="<Effective From>" class="form-control" id="sDate" data-bind="datepicker: startDt, validationTooltip: startDt" />
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="panel panel-info searchFilterResultSection">
+        <table id="insuranceTypeRate" class="table table-condensed">
+            <thead>
+                <tr>
+                    <th> <span></span></th>
+                    <th> <span>Insurance<br />Type<span></span></span></th>
+                    <th> <span>Hire<br />Group<span></span></span></th>
+                    <th> <span>Vehicle<br />Make<span></span></span></th>
+                    <th> <span>Vehicle<br />Model<span></span></span></th>
+                    <th> <span>Vehicle<br />Category<span></span></span></th>
+                    <th> <span>Model<br />Year<span></span></span></th>
+                    <th> <span>Insurance<br />Rate<span></span></span></th>
+                    <th> <span>Start<br />Date<span></span></span></th>
+                    <th> <span>Revision<br />Number<span></span></span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- ko template: { name: templateToUse , foreach: insuranceTypeRts } -->
+                <!-- /ko -->
+            </tbody>
+        </table>
+        <script id="editInsuranceTypeRtTemplate" type="text/html">
+            <tr data-bind="css: { selectedRow: $data === $root.selectedInsuranceRt() }">
+                <td class="col-md-2">
+                    <input type="checkbox" data-bind="checked: isChecked, disable :isChecked() && (virtualInsuranceRtId()!=0) " />
+                </td>
+                <td class="col-md-2">
+                    <span data-bind="text: insuranceTypeCodeName"></span>
+                </td>
+                <td class="col-md-2">
+                    <span data-bind="text: hireGroupDetailCodeName"></span>
+                </td>
+                <td class="col-md-2">
+                    <span data-bind="text: vehicleMakeCodeName"></span>
+                </td>
+                <td class="col-md-2">
+                    <span data-bind="text: vehicleModelCodeName"></span>
+                </td>
+                <td class="col-md-2">
+                    <span data-bind="text: vehicleCategoryCodeName"></span>
+                </td>
+                <td class="col-md-2">
+                    <span data-bind="text: modelYear"></span>
+                </td>
+                <td class="col-md-2">
+                    <input type="text" data-bind="value: insuranceRate, validationTooltip: insuranceRate" />
+                </td>
+                <td class="col-md-2">
+                    <input type="text" data-bind="datepicker: startDate, validationTooltip: startDate" />
+                </td>
+                <td class="col-md-2">
+                    <span data-bind="text: revisionNumber"></span>
+                </td>
+            </tr>
+        </script>
+        <script id="itemInsuranceTypeRtTemplate" type="text/html">
+            <tr data-bind="click: $root.selectInsuranceRt, css: { selectedRow: $data === $root.selectedInsuranceRt() }">
+                <td><input type="checkbox" data-bind="checked: isChecked, disable :isChecked() && (virtualInsuranceRtId()!=0)" /></td>
+                <td data-bind="text: insuranceTypeCodeName"></td>
+                <td data-bind="text: hireGroupDetailCodeName"></td>
+                <td data-bind="text: vehicleMakeCodeName"></td>
+                <td data-bind="text: vehicleModelCodeName"></td>
+                <td data-bind="text: vehicleCategoryCodeName"></td>
+                <td data-bind="text: modelYear"></td>
+                <td data-bind="text: insuranceRate"></td>
+                <td data-bind="dateString: startDate"></td>
+                <td data-bind="text: revisionNumber"></td>
+            </tr>
+        </script>
+    </div>
+</div>
