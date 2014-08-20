@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Cares.ExceptionHandling;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -127,6 +129,7 @@ namespace Cares.Implementation.Services
             #region Add
             if (insuranceRtMainDbVersion == null)
             {
+                ValidateInsuranceRate(insuranceRtMain, true);
                 insuranceRtMain.UserDomainKey = insuranceRtMainRepository.UserDomainKey;
                 insuranceRtMain.IsActive = true;
                 insuranceRtMain.IsDeleted = false;
@@ -162,19 +165,64 @@ namespace Cares.Implementation.Services
                 #endregion
 
                 insuranceRtMainRepository.Add(insuranceRtMain);
-
+                insuranceRtMainRepository.SaveChanges();
             }
             #endregion
             #region Edit
             else
             {
+                ValidateInsuranceRate(insuranceRtMain,false);
                 insuranceRtMainDbVersion.RecLastUpdatedDt = DateTime.Now;
                 insuranceRtMainDbVersion.RecLastUpdatedBy = insuranceRtMainRepository.LoggedInUserIdentity;
-                insuranceRtMainDbVersion.InsuranceRtMainCode = insuranceRtMain.InsuranceRtMainCode;
-                insuranceRtMainDbVersion.InsuranceRtMainName = insuranceRtMain.InsuranceRtMainName;
-                insuranceRtMainDbVersion.InsuranceRtMainDescription = insuranceRtMain.InsuranceRtMainDescription;
-                insuranceRtMainDbVersion.TariffTypeCode = insuranceRtMain.TariffTypeCode;
                 insuranceRtMainDbVersion.StartDt = insuranceRtMain.StartDt;
+
+                //add new Insurance Rate items
+                if (insuranceRtMain.InsuranceRates != null)
+                {
+                    foreach (InsuranceRt insuranceRt in insuranceRtMain.InsuranceRates)
+                    {
+                        if (
+                            insuranceRtMainDbVersion.InsuranceRates.All(
+                                x => x.InsuranceRtId != insuranceRt.InsuranceRtId) ||
+                            insuranceRt.InsuranceRtId == 0)
+                        {
+                            // set properties
+                            insuranceRt.IsActive = true;
+                            insuranceRt.IsDeleted = false;
+                            insuranceRt.IsPrivate = false;
+                            insuranceRt.IsReadOnly = false;
+                            insuranceRt.RecCreatedDt = DateTime.Now;
+                            insuranceRt.RecLastUpdatedDt = DateTime.Now;
+                            insuranceRt.RecCreatedBy = insuranceRtMainRepository.LoggedInUserIdentity;
+                            insuranceRt.RecLastUpdatedBy = insuranceRtMainRepository.LoggedInUserIdentity;
+                            insuranceRt.UserDomainKey = insuranceRtMainRepository.UserDomainKey;
+                            insuranceRt.InsuranceRtMainId = insuranceRtMain.InsuranceRtMainId;
+                            insuranceRtMainDbVersion.InsuranceRates.Add(insuranceRt);
+                        }
+                        else
+                        {
+                            insuranceRt.IsActive = true;
+                            insuranceRt.IsDeleted = false;
+                            insuranceRt.IsPrivate = false;
+                            insuranceRt.IsReadOnly = false;
+                            insuranceRt.RecCreatedDt = DateTime.Now;
+                            insuranceRt.RecLastUpdatedDt = DateTime.Now;
+                            insuranceRt.RecCreatedBy = insuranceRtMainRepository.LoggedInUserIdentity;
+                            insuranceRt.RecLastUpdatedBy = insuranceRtMainRepository.LoggedInUserIdentity;
+                            insuranceRt.UserDomainKey = insuranceRtMainRepository.UserDomainKey;
+                            insuranceRt.InsuranceRtMainId = insuranceRtMain.InsuranceRtMainId;
+                            long oldRecordId = insuranceRt.InsuranceRtId;
+                            insuranceRt.InsuranceRtId = 0;
+                            insuranceRt.RevisionNumber = insuranceRt.RevisionNumber + 1;
+                            insuranceRtRepository.Add(insuranceRt);
+                            insuranceRtRepository.SaveChanges();
+                            InsuranceRt oldInsuranceRt = insuranceRtRepository.Find(oldRecordId);
+                            oldInsuranceRt.ChildInsuranceRtId = insuranceRt.InsuranceRtId;
+                            insuranceRtRepository.SaveChanges();
+                        }
+
+                    }
+                }
             }
 
             #endregion
@@ -206,6 +254,34 @@ namespace Cares.Implementation.Services
         public InsuranceRtMain FindById(long insuranceRtMainId)
         {
             return insuranceRtMainRepository.Find(insuranceRtMainId);
+        }
+
+        private void ValidateInsuranceRate(InsuranceRtMain insuranceRtMain, bool addFlag)
+        {
+            DateTime oStartDt, insRtStartDate;
+            oStartDt = Convert.ToDateTime(insuranceRtMain.StartDt);
+            if (addFlag)
+            {
+                //means new Standard Rt is being added
+                insRtStartDate = Convert.ToDateTime(insuranceRtMain.StartDt);
+                if (insRtStartDate.Date < DateTime.Now.Date)
+                    throw new CaresException("Start Effective Date must be a current or future date.");
+                List<InsuranceRtMain> oStRateMain = insuranceRtMainRepository.FindByTariffTypeCode(insuranceRtMain.TariffTypeCode).ToList();
+                if (oStRateMain.Count > 0)
+                    throw new CaresException("Insurance Rate for the selected tariff type already exist.");
+
+            }
+            if (insuranceRtMain.InsuranceRates != null)
+            {
+                foreach (var item in insuranceRtMain.InsuranceRates)
+                {
+                    insRtStartDate = Convert.ToDateTime(item.StartDt);
+                    if (insRtStartDate.Date < DateTime.Now.Date)
+                        throw new CaresException("Start Date for Insurance Item Rate must be a current or future date.");
+                    if (insRtStartDate.Date < oStartDt.Date)
+                        throw new CaresException("Start Date for Insurance Item Rate must be greater than their Start Effective Date.");
+                }
+            }
         }
         #endregion
     }

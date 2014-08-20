@@ -18,7 +18,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Insurance Rate Id
         /// </summary>
-        public long InsuranceTypeId { get; set; }
+        public short InsuranceTypeId { get; set; }
         /// <summary>
         /// Insurance Type Code Name
         /// </summary>
@@ -50,11 +50,11 @@ namespace Cares.Web.Models
         /// <summary>
         /// Insurance Rate
         /// </summary>
-        public float? InsuranceRate { get; set; }
+        public float InsuranceRate { get; set; }
         /// <summary>
         /// Start Date
         /// </summary>
-        public DateTime? StartDate { get; set; }
+        public DateTime StartDate { get; set; }
         /// <summary>
         /// Selected hire group for Insurance rate main
         /// </summary>

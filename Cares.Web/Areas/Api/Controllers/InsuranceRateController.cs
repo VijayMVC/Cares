@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.Http;
 using Cares.Interfaces.IServices;
 using Cares.Web.ModelMappers;
+using Cares.WebBase.Mvc;
 using DomainRequestModels = Cares.Models.RequestModels;
 using Cares.Web.Models;
 namespace Cares.Web.Areas.Api.Controllers
@@ -45,6 +46,7 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Update/Update a Insurance Rate
         /// </summary>
+        [ApiException]
         public InsuranceRtMainContent Post(InsuranceRtMainContent insuranceRtMainContent)
         {
             if (insuranceRtMainContent == null || !ModelState.IsValid)
@@ -59,13 +61,13 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
            /// Delete a Insurance Rate
         /// </summary>
-        public void Delete(StandardRateMain standardRateMain)
+        public void Delete(InsuranceRtMainContent insuranceRtMain)
         {
-            if (standardRateMain == null || !ModelState.IsValid)
+            if (insuranceRtMain == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            insuranceRateService.DeleteInsuranceRate(insuranceRateService.FindById(standardRateMain.StandardRtMainId));
+            insuranceRateService.DeleteInsuranceRate(insuranceRateService.FindById(insuranceRtMain.InsuranceRtMainId));
         }
         #endregion
     }

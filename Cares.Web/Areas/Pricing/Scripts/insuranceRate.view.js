@@ -19,7 +19,7 @@ define("insuranceRate/insuranceRate.view",
                         return;
                     }
                     // Handle Sorting
-                    handleSorting("insuranceRateTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.insuranceRateRates);
+                    handleSorting("insuranceRateTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getInsuranceRates);
                 };
             initialize();
             return {

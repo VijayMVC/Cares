@@ -174,7 +174,7 @@ namespace Cares.Implementation.Services
 
             //set child (Hire Group detail list)
             #region Hire Group Detial List List
-            //add new address items
+            //add new Hire group Detail items
             if (hireGroup.HireGroupDetails != null)
             {
                 foreach (HireGroupDetail hireGroupDetail in hireGroup.HireGroupDetails)

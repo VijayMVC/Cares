@@ -27,6 +27,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
              operationId = ko.observable().extend({ required: true }),
              //Operation Code Name
              operationCodeName = ko.observable(),
+              //Insurance Rate In Insurance Rate Main
+             insuranceRts = ko.observableArray([]),
               // Formatted Start Date for grid
              formattedStartDate = ko.computed({
                  read: function () {
@@ -79,13 +81,15 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
              operationId: operationId,
              tariffTypeCodeName: tariffTypeCodeName,
              operationCodeName: operationCodeName,
-             formattedStartDate:formattedStartDate,
+             formattedStartDate: formattedStartDate,
+             insuranceRts: insuranceRts,
              errors: errors,
              isValid: isValid,
              dirtyFlag: dirtyFlag,
              hasChanges: hasChanges,
              reset: reset,
-             convertToServerData: convertToServerData
+             convertToServerData: convertToServerData,
+
 
          };
          return self;
@@ -98,7 +102,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             // Unique key
             insuranceRtId = ko.observable(),
             //Virtual Id
-            virtualInsuranceRtId=ko.observable(),
+            virtualInsuranceRtId = ko.observable(),
             //Insurance Rate Main Id
             insuranceRtMainId = ko.observable(),
             //Insurance Type Id
@@ -118,9 +122,9 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             //Model Year
             modelYear = ko.observable(),
             //Insurance Rate
-            insuranceRate = ko.observable(),
+            insuranceRate = ko.observable().extend({ required: true }),
             //Start Date
-            startDate = ko.observable(),
+            startDate = ko.observable().extend({ required: true }),
             //Is checked
             isChecked = ko.observable(),
              //Virtual Is checked
@@ -152,7 +156,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
 
         self = {
             insuranceRtId: insuranceRtId,
-            virtualInsuranceRtId:virtualInsuranceRtId,
+            virtualInsuranceRtId: virtualInsuranceRtId,
             insuranceRtMainId: insuranceRtMainId,
             insuranceTypeId: insuranceTypeId,
             insuranceTypeCodeName: insuranceTypeCodeName,
@@ -238,11 +242,23 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.StartDt = source.startDt() === undefined || source.startDt() === null ? undefined : moment(source.startDt()).format(ist.utcFormat);
         result.OperationId = source.operationId();
         result.TariffTypeId = source.tariffTypeId();
-        //result.HireGroupDetailsInStandardRtMain = [];
-        //_.each(source.hireGroupDetailsInStandardRtMain(), function (item) {
-        //    result.HireGroupDetailsInStandardRtMain.push(HireGroupServerMapper(item));
-        //});
-
+        result.InsuranceRts = [];
+        _.each(source.insuranceRts(), function (item) {
+            result.InsuranceRts.push(InsuranceTypeRtServerMapper(item));
+        });
+        return result;
+    };
+    //Client To Server Mapper
+    // ReSharper disable once InconsistentNaming
+    var InsuranceTypeRtServerMapper = function (source) {
+        var result = {};
+        result.InsuranceRtId = source.insuranceRtId() === undefined ? 0 : source.insuranceRtId();
+        result.InsuranceTypeId = source.insuranceTypeId() === undefined ? 0 : source.insuranceTypeId();
+        result.HireGroupDetailId = source.hireGroupDetailId() === undefined ? null : source.hireGroupDetailId();
+        result.InsuranceTypeId = source.insuranceTypeId() === undefined ? 0 : source.insuranceTypeId();
+        result.InsuranceRate = source.insuranceRate() === undefined ? 0 : source.insuranceRate();
+        result.RevisionNumber = source.revisionNumber() === undefined ? 0 : source.revisionNumber();
+        result.StartDate = source.startDate() === undefined || source.startDate() === null ? undefined : moment(source.startDate()).format(ist.utcFormat);
         return result;
     };
     return {

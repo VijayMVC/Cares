@@ -22,6 +22,8 @@ namespace Cares.Repository.Repositories
              new Dictionary<InsuranceRateByColumn, Func<InsuranceRtMainContent, object>>
                     {
                         { InsuranceRateByColumn.InsuranceRtCode, c => c.InsuranceRtMainCode },
+                        { InsuranceRateByColumn.InsuranceRtName, c => c.InsuranceRtName },
+                        { InsuranceRateByColumn.StartDate, c => c.StartDt },
                        
                     };
 
@@ -54,7 +56,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public override IEnumerable<InsuranceRtMain> GetAll()
         {
-            return DbSet.Where(insuranceType => insuranceType.UserDomainKey == UserDomainKey).ToList();
+            return DbSet.Where(insuranceRtMain => insuranceRtMain.UserDomainKey == UserDomainKey).ToList();
         }
 
         /// <summary>
@@ -95,7 +97,13 @@ namespace Cares.Repository.Repositories
 
             return new InsuranceRateSearchResponse { InsuranceRtMains = insuranceRtMains, TotalCount = getInsuranceRateQuery.Count() };
         }
-
+        /// <summary>
+        /// Get  Insurance Rate Main By Tariff Type Code
+        /// </summary>
+        public IEnumerable<InsuranceRtMain> FindByTariffTypeCode(string tariffTypeCode)
+        {
+            return DbSet.Where(insuranceRtMain => insuranceRtMain.UserDomainKey == UserDomainKey && insuranceRtMain.TariffTypeCode == tariffTypeCode).ToList();
+        }
         #endregion
     }
 }

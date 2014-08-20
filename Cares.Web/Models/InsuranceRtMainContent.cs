@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Cares.Web.Models
 {
@@ -7,7 +8,7 @@ namespace Cares.Web.Models
     /// </summary>
     public class InsuranceRtMainContent
     {
-
+        #region Insurance Rate Main Properties
         public long InsuranceRtMainId { get; set; }
         /// <summary>
         /// Standard Rate Main Code
@@ -45,5 +46,14 @@ namespace Cares.Web.Models
         /// Operation Code Name
         /// </summary>
         public string OperationCodeName { get; set; }
+        #endregion
+
+        #region Reference Properties
+        /// <summary>
+        /// Insurance Rate List
+        /// </summary>
+        public List<InsuranceRtDetailContent> InsuranceRts { get; set; }
+
+        #endregion
     }
 }

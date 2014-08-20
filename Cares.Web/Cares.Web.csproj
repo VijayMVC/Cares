@@ -504,9 +504,6 @@
     <Content Include="Content\MainSite.css">
       <DependentUpon>MainSite.less</DependentUpon>
     </Content>
-    <Content Include="Content\MainSite.min.css">
-      <DependentUpon>MainSite.css</DependentUpon>
-    </Content>
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\PagedList.min.css">
       <DependentUpon>PagedList.css</DependentUpon>
@@ -1028,9 +1025,6 @@
     <Content Include="Content\Pricing.less" />
     <Content Include="Content\Pricing.css.map">
       <DependentUpon>Pricing.css</DependentUpon>
-    </Content>
-    <Content Include="Content\MainSite.css.map">
-      <DependentUpon>MainSite.css</DependentUpon>
     </Content>
     <Content Include="Content\Fleet.css.map">
       <DependentUpon>Fleet.css</DependentUpon>

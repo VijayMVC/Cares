@@ -18,7 +18,7 @@ namespace Cares.Models.ResponseModels
         /// <summary>
         /// Insurance Rate Id
         /// </summary>
-        public long InsuranceTypeId { get; set; }
+        public short InsuranceTypeId { get; set; }
         /// <summary>
         /// Insurance Type Code Name
         /// </summary>
@@ -50,7 +50,7 @@ namespace Cares.Models.ResponseModels
         /// <summary>
         /// Insurance Rate
         /// </summary>
-        public float? InsuranceRate { get; set; }
+        public float InsuranceRate { get; set; }
         /// <summary>
         /// Start Date
         /// </summary>

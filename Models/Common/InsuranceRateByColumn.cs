@@ -9,5 +9,13 @@
         /// Insurance Rate Code
         /// </summary>
         InsuranceRtCode = 1,
+        /// <summary>
+        /// Insurance Rate Name
+        /// </summary>
+        InsuranceRtName = 2,
+        /// <summary>
+        /// Insurance Rate Start Date
+        /// </summary>
+        StartDate = 5,
     }
 }

@@ -1,6 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using DomainResponseModel = Cares.Models.ResponseModels;
-using  DomainModels=Cares.Models.DomainModels;
+using DomainModels = Cares.Models.DomainModels;
 using ApiModel = Cares.Web.Models;
 namespace Cares.Web.ModelMappers
 {
@@ -70,6 +71,7 @@ namespace Cares.Web.ModelMappers
                 InsuranceRtMainDescription = source.InsuranceRtMainDescription,
                 TariffTypeCode = source.TariffTypeId.ToString(),
                 StartDt = source.StartDt,
+                InsuranceRates = source.InsuranceRts!=null?source.InsuranceRts.Select(insuranceRt => insuranceRt.CreateFrom()).ToList():null
             };
         }
         /// <summary>
@@ -90,8 +92,24 @@ namespace Cares.Web.ModelMappers
                 VehicleCategoryCodeName = source.VehicleCategoryCodeName,
                 ModelYear = source.ModelYear,
                 InsuranceRate = source.InsuranceRate,
-                StartDate = source.StartDate,
+                StartDate = (DateTime) (source.StartDate ?? DateTime.Now),
                 IsChecked = source.IsChecked,
+                RevisionNumber = source.RevisionNumber,
+            };
+        }
+        /// <summary>
+        ///  Web To entity
+        /// </summary>
+        public static DomainModels.InsuranceRt CreateFrom(this ApiModel.InsuranceRtDetailContent source)
+        {
+            return new DomainModels.InsuranceRt
+            {
+                InsuranceRtId = source.InsuranceRtId,
+                InsuranceRtMainId = source.InsuranceRtMainId,
+                InsuranceTypeId = source.InsuranceTypeId,
+                HireGroupDetailId = source.HireGroupDetailId,
+                InsuranceRate = source.InsuranceRate,
+                StartDt = source.StartDate,
                 RevisionNumber = source.RevisionNumber,
             };
         }

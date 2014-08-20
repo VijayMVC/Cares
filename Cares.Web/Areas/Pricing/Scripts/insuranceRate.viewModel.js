@@ -57,8 +57,8 @@ define("insuranceRate/insuranceRate.viewModel",
                     operationFilter = ko.observable(),
                     //Tariff Type Filter
                     tariffTypeFilter = ko.observable(),
-                   //Hire Group Detail Is Valid
-                   // hireGroupDetailIsValid = ko.observable(true),
+                   //Insurance Rate Detail Is Valid
+                   insuranceRtDetailIsValid = ko.observable(true),
                      // #region Utility Functions
                     // Initialize the view model
                     initialize = function (specifiedView) {
@@ -150,24 +150,34 @@ define("insuranceRate/insuranceRate.viewModel",
                         var insuranceRtMain = new model.InsuranceRtMain();
                         // Select the newly added Insurance Rate
                         selectedInsuranceRtMain(insuranceRtMain);
-                        //getInsuranceTypeRate(insuranceRtMain);
+                        getInsuranceTypeRate(insuranceRtMain);
                         showInsuranceRateEditor();
                     },
                      // Save Insurance Rate
                     onSaveInsuranceRate = function (insuranceRt) {
                         if (doBeforeSave()) {
-                            //tariffRate.hireGroupDetailsInStandardRtMain.removeAll();
-                            //_.each(hireGroupDetails(), function (item) {
-                            //    if (item.isChecked() === true && doBeforeSaveForHireGroupDetail(item)) {
-                            //        tariffRate.hireGroupDetailsInStandardRtMain.push(item);
-                            //    }
-                            //});
-                            //if (hireGroupDetailIsValid()) {
-                            //    saveTariffRate(tariffRate);
-                            //}
-                            saveTariffRate(insuranceRt);
+                            insuranceRt.insuranceRts.removeAll();
+                            _.each(insuranceTypeRts(), function (item) {
+                                if (item.isChecked() === true && doBeforeSaveForInsuranceRtDetail(item)) {
+                                    insuranceRt.insuranceRts.push(item);
+                                }
+                            });
+                            if (insuranceRtDetailIsValid()) {
+                                saveTariffRate(insuranceRt);
+                            }
                         }
-                        //hireGroupDetailIsValid(true);
+                        insuranceRtDetailIsValid(true);
+
+                    },
+                     // Do Before Logic
+                    doBeforeSaveForInsuranceRtDetail = function (item) {
+                        var flag = true;
+                        if (!item.isValid() || !insuranceRtDetailIsValid()) {
+                            item.errors.showAllMessages();
+                            flag = false;
+                            insuranceRtDetailIsValid(false);
+                        }
+                        return flag;
                     },
                       // Do Before Logic
                     doBeforeSave = function () {
@@ -224,9 +234,21 @@ define("insuranceRate/insuranceRate.viewModel",
                         }
                         // Ask for confirmation
                         confirmation.afterProceed(function () {
-                            //deleteTariffRate(insuranceRt);
+                            deleteInsuranceRate(insuranceRt);
                         });
                         confirmation.show();
+                    },
+                     // Delete Insurance Rate
+                    deleteInsuranceRate = function (insuranceRt) {
+                        dataservice.deleteInsuranceRate(insuranceRt.convertToServerData(), {
+                            success: function () {
+                                insuranceRtMains.remove(insuranceRt);
+                                toastr.success("Insurance Rate removed successfully");
+                            },
+                            error: function () {
+                                toastr.error("Failed to remove Insurance Rate!");
+                            }
+                        });
                     },
                      // Show Insurance Rate Editor
                     showInsuranceRateEditor = function () {
@@ -234,7 +256,7 @@ define("insuranceRate/insuranceRate.viewModel",
                     },
                     closeInsuranceRateEditor = function () {
                         if (selectedInsuranceRtMainCopy() !== undefined) {
-                            //selectedInsuranceRtMain().startDt(selectedInsuranceRtMainCopy().startDt());
+                            selectedInsuranceRtMain().startDt(selectedInsuranceRtMainCopy().startDt());
                         }
                         isInsuranceRtEditorVisible(false);
                     },
@@ -302,7 +324,8 @@ define("insuranceRate/insuranceRate.viewModel",
                     onDeleteInsuranceRate: onDeleteInsuranceRate,
                     onSaveInsuranceRate: onSaveInsuranceRate,
                     templateToUse: templateToUse,
-                    selectInsuranceRt: selectInsuranceRt
+                    selectInsuranceRt: selectInsuranceRt,
+                    getInsuranceRates: getInsuranceRates
                     // Utility Methods
 
                 };
