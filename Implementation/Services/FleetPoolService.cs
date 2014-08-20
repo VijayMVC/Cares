@@ -48,9 +48,7 @@ namespace Cares.Implementation.Services
         /// Load Fleet Pool Base Data
         /// </summary>
         public FleetPoolBaseDataResponse LoadFleetPoolBaseData()
-        {
-            //TODO: Sample exception to be thrown. Uncomment to see the behavior
-            //throw new CaresException("This is cares business exception");  
+        { 
             return new FleetPoolBaseDataResponse
             {
                 Operations = operationRepository.GetSalesOperation(),
@@ -79,7 +77,6 @@ namespace Cares.Implementation.Services
             return fleetPoolRepository.Find(id);
 
         }
-
         /// <summary>
         /// update fleetpool 
         /// </summary>
@@ -112,9 +109,7 @@ namespace Cares.Implementation.Services
             fleetPoolRepository.SaveChanges();
             return fleetPoolRepository.GetFleetPoolWithDetails(fleetPool.FleetPoolId);
         }
-
-        #endregion
-        
+        #endregion 
        #region Private
        
         private readonly IOperationRepository operationRepository;
@@ -123,7 +118,7 @@ namespace Cares.Implementation.Services
          private readonly IFleetPoolRepository fleetPoolRepository;
 
         #endregion
-        #region Constructors
+       #region Constructors
 
         public FleetPoolService(
             IOperationRepository operationRepository, ICountryRepository countryRepository,

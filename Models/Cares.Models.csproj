@@ -98,6 +98,7 @@
   <ItemGroup>
     <Compile Include="CommonTypes\DepartmentType.cs" />
     <Compile Include="Common\BusinessPartnerByColumn.cs" />
+    <Compile Include="Common\CompanyByColumn.cs" />
     <Compile Include="Common\VehicleOrderByColumn.cs" />
     <Compile Include="Common\HireGroupByColumn.cs" />
     <Compile Include="Common\HireGroupDetailByColumn.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="MenuModels\Menu.cs" />
     <Compile Include="MenuModels\MenuRight.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestModels\CompanySearchRequest.cs" />
     <Compile Include="RequestModels\EmployeeSearchRequest.cs" />
     <Compile Include="RequestModels\FleetPoolSearchRequest.cs" />
     <Compile Include="RequestModels\GetPagedListRequest.cs" />
@@ -186,6 +188,8 @@
     <Compile Include="RequestModels\TariffRateRequest.cs" />
     <Compile Include="RequestModels\TariffTypeRequest.cs" />
     <Compile Include="ResponseModels\BusinessPartnerBaseDataResponse.cs" />
+    <Compile Include="ResponseModels\CompanyBaseDataResponse.cs" />
+    <Compile Include="ResponseModels\CompanySearchResponse.cs" />
     <Compile Include="ResponseModels\EmployeeResponse.cs" />
     <Compile Include="ResponseModels\FleetPoolBaseDataResponse.cs" />
     <Compile Include="ResponseModels\FleetPoolResponse.cs" />

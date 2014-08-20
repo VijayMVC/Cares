@@ -32,7 +32,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Company Code
         /// </summary>
-        [StringLength(100)]
+        [StringLength(100)] 
         public string CompanyCode { get; set; }
 
         /// <summary>
