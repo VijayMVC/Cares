@@ -96,9 +96,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonTypes\PhoneType.cs" />
     <Compile Include="CommonTypes\DepartmentType.cs" />
     <Compile Include="Common\BusinessPartnerByColumn.cs" />
     <Compile Include="Common\CompanyByColumn.cs" />
+    <Compile Include="Common\InsuranceRateByColumn.cs" />
     <Compile Include="Common\VehicleOrderByColumn.cs" />
     <Compile Include="Common\HireGroupByColumn.cs" />
     <Compile Include="Common\HireGroupDetailByColumn.cs" />
@@ -121,6 +123,9 @@
     <Compile Include="DomainModels\BusinessPartnerSubType.cs" />
     <Compile Include="DomainModels\Area.cs" />
     <Compile Include="DomainModels\HireGroupUpGrade.cs" />
+    <Compile Include="DomainModels\InsuranceRt.cs" />
+    <Compile Include="DomainModels\InsuranceRtMain.cs" />
+    <Compile Include="DomainModels\InsuranceType.cs" />
     <Compile Include="DomainModels\VehicleImageHireGroupDetail.cs" />
     <Compile Include="DomainModels\MarketingChannel.cs" />
     <Compile Include="DomainModels\TransmissionType.cs" />
@@ -174,12 +179,14 @@
     <Compile Include="MenuModels\MenuRight.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestModels\CompanySearchRequest.cs" />
+    <Compile Include="RequestModels\GetBusinessPartnerRequest.cs" />
     <Compile Include="RequestModels\EmployeeSearchRequest.cs" />
     <Compile Include="RequestModels\FleetPoolSearchRequest.cs" />
     <Compile Include="RequestModels\GetPagedListRequest.cs" />
     <Compile Include="RequestModels\BusinessPartnerSearchRequest.cs" />
     <Compile Include="RequestModels\GetHireGroupRequest.cs" />
     <Compile Include="RequestModels\HireGroupAddRequest.cs" />
+    <Compile Include="RequestModels\InsuranceRateSearchRequest.cs" />
     <Compile Include="RequestModels\VehicleSearchRequest.cs" />
     <Compile Include="RequestModels\HireGroupSearchRequest.cs" />
     <Compile Include="RequestModels\OrgGroupSearchRequest.cs" />
@@ -198,6 +205,11 @@
     <Compile Include="ResponseModels\GetVehicleResponse.cs" />
     <Compile Include="ResponseModels\HireGroupDataDetailResponse.cs" />
     <Compile Include="ResponseModels\HireGroupSearchResponse.cs" />
+    <Compile Include="ResponseModels\InsuranceRateBaseResponse.cs" />
+    <Compile Include="ResponseModels\InsuranceRateSearchResponse.cs" />
+    <Compile Include="ResponseModels\InsuranceRtDetailContent.cs" />
+    <Compile Include="ResponseModels\InsuranceRtDetailResponse.cs" />
+    <Compile Include="ResponseModels\InsuranceRtMainContent.cs" />
     <Compile Include="ResponseModels\OrgGroupResponse.cs" />
     <Compile Include="ResponseModels\ProductResponse.cs" />
     <Compile Include="ResponseModels\RegionResponse.cs" />

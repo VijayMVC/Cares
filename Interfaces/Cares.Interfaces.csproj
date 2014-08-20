@@ -51,6 +51,7 @@
     <Compile Include="IServices\IBusinessLegalStatusService.cs" />
     <Compile Include="IServices\IBusinessPartnerBaseDataService.cs" />
     <Compile Include="IServices\ICountryService.cs" />
+    <Compile Include="IServices\IInsuranceRateService.cs" />
     <Compile Include="IServices\IVehicleService.cs" />
     <Compile Include="IServices\IHireGroupService.cs" />
     <Compile Include="IServices\IOccupationTypeService.cs" />
@@ -91,6 +92,9 @@
     <Compile Include="Repository\ICompanyRepository.cs" />
     <Compile Include="Repository\IAreaRepository.cs" />
     <Compile Include="Repository\IHireGroupUpGradeRepository.cs" />
+    <Compile Include="Repository\IInsuranceRtMainRepository.cs" />
+    <Compile Include="Repository\IInsuranceRtRepository.cs" />
+    <Compile Include="Repository\IInsuranceTypeRepository.cs" />
     <Compile Include="Repository\IVehicleRepository.cs" />
     <Compile Include="Repository\IOperationsWorkPlaceRepository.cs" />
     <Compile Include="Repository\IMarketingChannelRepository.cs" />
@@ -115,7 +119,7 @@
     <Compile Include="Repository\IProductRepository.cs" />
     <Compile Include="Repository\IStandardRateRepository.cs" />
     <Compile Include="Repository\IStandardRateMainRepository.cs" />
-    <Compile Include="Repository\ITarrifTypeRepository.cs" />
+    <Compile Include="Repository\ITariffTypeRepository.cs" />
     <Compile Include="Repository\IRegionRepository.cs" />
     <Compile Include="Repository\IVehicleCategoryRepository.cs" />
     <Compile Include="Repository\IVehicleMakeRepository.cs" />

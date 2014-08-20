@@ -157,5 +157,21 @@ namespace Cares.Web.ModelMappers
 
         }
         #endregion
+
+        #region DropDown Mapper
+        /// <summary>
+        ///  Create Drop Down web model from entity
+        /// </summary>
+        public static ApiModels.TariffTypeDropDown CreateFromDropDown(this TariffType source)
+        {
+            return new ApiModels.TariffTypeDropDown
+            {
+                TariffTypeId = source.TariffTypeId,
+                TariffTypeCodeName = source.TariffTypeCode + " - " + source.TariffTypeName,
+                OperationId = source.OperationId
+            };
+
+        }
+        #endregion
     }
 }

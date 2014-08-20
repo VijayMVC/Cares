@@ -226,6 +226,10 @@
     <Compile Include="Areas\Api\Controllers\FleetPoolBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\FleetPoolController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessPartnerBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\InsuranceRateBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\InsuranceRateController.cs" />
+    <Compile Include="Areas\Api\Controllers\InsuranceRtDetailController.cs" />
+    <Compile Include="Areas\Api\Controllers\RentalAgreementBusinessPartnerController.cs" />
     <Compile Include="Areas\Api\Controllers\GetBusinessPartnerDetailsController.cs" />
     <Compile Include="Areas\Api\Controllers\GetHireGroupDetailDataController.cs" />
     <Compile Include="Areas\Api\Controllers\GetTariffDetailsController.cs" />
@@ -271,6 +275,7 @@
     </Compile>
     <Compile Include="Helper\CultureHelper.cs" />
     <Compile Include="ModelMappers\GetVehiclesRequestMapper.cs" />
+    <Compile Include="ModelMappers\InsuranceRateMapper.cs" />
     <Compile Include="ModelMappers\VehicleMapper.cs" />
     <Compile Include="ModelMappers\MarketingChannelMapper.cs" />
     <Compile Include="ModelMappers\BusinessSegmentMapper.cs" />
@@ -322,9 +327,15 @@
     <Compile Include="Models\CompanyBaseDataResponse.cs" />
     <Compile Include="Models\CompanySearchRequestResponse.cs" />
     <Compile Include="Models\FuelType.cs" />
+    <Compile Include="Models\InsuranceRateBaseResponse.cs" />
+    <Compile Include="Models\InsuranceRateSearchResponse.cs" />
+    <Compile Include="Models\InsuranceRtDetailContent.cs" />
+    <Compile Include="Models\InsuranceRtDetailResponse.cs" />
+    <Compile Include="Models\InsuranceRtMainContent.cs" />
     <Compile Include="Models\Operation.cs" />
     <Compile Include="Models\OrgGroupDropDown.cs" />
     <Compile Include="Models\PaymentTerm.cs" />
+    <Compile Include="Models\TariffTypeDropDown.cs" />
     <Compile Include="Models\TransmissionType.cs" />
     <Compile Include="Models\HireGroupDetail.cs" />
     <Compile Include="Models\Vehicle.cs" />
@@ -449,9 +460,13 @@
     <Content Include="Areas\OrganizationGroup\Scripts\organizationGroup.viewModel.js" />
     <Content Include="Areas\OrganizationGroup\Scripts\organizationGroup.model.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.dataservice.js" />
+    <Content Include="Areas\Pricing\Scripts\insuranceRate.model.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.model.js" />
+    <Content Include="Areas\Pricing\Scripts\insuranceRate.view.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.view.js" />
+    <Content Include="Areas\Pricing\Scripts\insuranceRate.viewModel.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.viewModel.js" />
+    <Content Include="Areas\Pricing\Scripts\insuranceRate.dataservice.js" />
     <Content Include="Areas\RentalAgreement\Scripts\Mocks\rentalAgreement.dataservice.js" />
     <Content Include="Areas\RentalAgreement\Scripts\rentalAgreement.dataservice.js" />
     <Content Include="Areas\RentalAgreement\Scripts\rentalAgreement.model.js" />
@@ -506,9 +521,6 @@
     <Content Include="Content\jquery-ui-1.11.0.min.css" />
     <Content Include="Content\MainSite.css">
       <DependentUpon>MainSite.less</DependentUpon>
-    </Content>
-    <Content Include="Content\MainSite.min.css">
-      <DependentUpon>MainSite.css</DependentUpon>
     </Content>
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\PagedList.min.css">
@@ -1038,9 +1050,6 @@
     <Content Include="Content\Pricing.css.map">
       <DependentUpon>Pricing.css</DependentUpon>
     </Content>
-    <Content Include="Content\MainSite.css.map">
-      <DependentUpon>MainSite.css</DependentUpon>
-    </Content>
     <Content Include="Content\Fleet.css.map">
       <DependentUpon>Fleet.css</DependentUpon>
     </Content>
@@ -1068,6 +1077,8 @@
     <Content Include="Areas\OrganizationGroup\Views\Home\_OrgGroupEditor.cshtml" />
     <Content Include="Areas\Company\Views\web.config" />
     <Content Include="Areas\Company\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\InsuranceRate.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\_InsuranceRateEditor.cshtml" />
     <Content Include="Areas\Company\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Company\Views\Home\Index.cshtml" />
     <Content Include="Areas\Company\Views\Home\_CompanyEditor.cshtml" />

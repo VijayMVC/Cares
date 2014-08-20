@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.SqlServer;
-using System.Globalization;
 using System.Linq;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -76,7 +74,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public IEnumerable<HireGroupDetail> GetHireGroupDetailsForTariffRate()
         {
-            return DbSet.Where(h => h.UserDomainKey == UserDomainKey).Include(x => x.HireGroup);
+            return DbSet.Where(h => h.UserDomainKey == UserDomainKey).Include(x => x.HireGroup).ToList();
         }
 
         /// <summary>

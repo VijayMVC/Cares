@@ -76,13 +76,15 @@
     // Rental Agreement entity
     // ReSharper disable InconsistentNaming
     RentalAgreement = function (specifiedId, specifiedStartDate, specifiedEndDate, specifiedPaymentTermId, specifiedOperationId, specifiedOpenLocation,
-        specifiedCloseLocation) {
+        specifiedCloseLocation, specifiedBusinessPartner, callbacks) {
         // ReSharper restore InconsistentNaming
         var
             // unique key
             id = ko.observable(specifiedId || 0),
             // RA Hire Groups
             rentalAgreementHireGroups = ko.observableArray([]),
+            // Business Partner
+            businessPartner = ko.observable(BusinessPartner.Create(specifiedBusinessPartner || {}, callbacks)),
             // Start Date Time
             internalStartDateTime = ko.observable(specifiedStartDate || moment().toDate()),
             // End Date Time
@@ -280,7 +282,8 @@
             minutes: minutes,
             rentalAgreementHireGroups: rentalAgreementHireGroups,
             locations: locations,
-            availableLocations: availableLocations
+            availableLocations: availableLocations,
+            businessPartner: businessPartner
         };
     },
     
@@ -303,6 +306,257 @@
             hireGroupDetailId: hireGroupDetailId,
             vehicleId: vehicleId,
             rentalAgreementId: rentalAgreementId
+        };
+    },
+    
+    // Phone Type entity
+    // ReSharper disable InconsistentNaming
+    PhoneType = function (specifiedId, specifiedKey) {
+        // ReSharper restore InconsistentNaming
+        
+        return {
+            id: specifiedId,
+            key: specifiedKey
+        };
+    },
+
+    // Phone entity
+    // ReSharper disable InconsistentNaming
+    Phone = function (specifiedId, specifiedIsDefault, specifiedBusinessPartnerId, specifiedType, specifiedPhoneNo) {
+        // ReSharper restore InconsistentNaming
+        var
+            // Unique Id
+            id = ko.observable(specifiedId || 0),
+            // Is Default 
+            isDefault = ko.observable(specifiedIsDefault || undefined),
+            // Business Partner Id
+            businessPartnerId = ko.observable(specifiedBusinessPartnerId || 0),
+            // Phone Type
+            type = ko.observable(specifiedType || undefined),
+            // Phone No
+            internalPhoneNo = ko.observable(specifiedPhoneNo || undefined),
+            // Phone Number
+            phoneNo = ko.computed({
+                read: function() {
+                    return internalPhoneNo();
+                },
+                write: function(value) {
+                    if (internalPhoneNo() === value) {
+                        return;
+                    }
+
+                    internalPhoneNo(value);
+                }
+            });
+
+        return {
+            id: id,
+            isDefault: isDefault,
+            businessPartnerId: businessPartnerId,
+            type: type,
+            phoneNo: phoneNo
+        };
+    },
+
+    // Business Partner Company entity
+    // ReSharper disable InconsistentNaming
+    BusinessPartnerCompany = function (specifiedId, specifiedName, specifiedCode) {
+        // ReSharper restore InconsistentNaming
+        var
+            // Business Partner key
+            id = ko.observable(specifiedId || 0),
+            // name
+            name = ko.observable(specifiedName || undefined),
+            // Code
+            code = ko.observable(specifiedCode || undefined);
+
+        return {
+            id: id,
+            code: code,
+            name: name
+        };
+    },
+        
+    // Business Partner Individual entity
+    // ReSharper disable InconsistentNaming
+    BusinessPartnerIndividual = function (specifiedId, specifiedFirstName, specifiedLastName, specifiedDOB, specifiedNicNumber, specifiedNicExpiry, specifiedPassportNo,
+    specifiedPassportExpiry, specifiedLicenseNo, specifiedLicenseExpiry, callbacks, businessPartner) {
+        // ReSharper restore InconsistentNaming
+        var
+            // Business Partner key
+            id = ko.observable(specifiedId || 0),
+            // First Name
+            firstName = ko.observable(specifiedFirstName || undefined),
+            // Last Name
+            lastName = ko.observable(specifiedLastName || undefined),
+            // Date of Birth
+            dateOfBirth = ko.observable(specifiedDOB ? moment(specifiedDOB).toDate() : undefined),
+            // Nic Expiry
+            nicExpiry = ko.observable(specifiedNicExpiry ? moment(specifiedNicExpiry).toDate() : undefined),
+            // Passport Expiry
+            passportExpiry = ko.observable(specifiedPassportExpiry ? moment(specifiedPassportExpiry).toDate() : undefined),
+            // License Expiry
+            licenseExpiry = ko.observable(specifiedLicenseExpiry ? moment(specifiedLicenseExpiry).toDate() : undefined),
+            // Nic Number - Private
+            internalNicNo = ko.observable(specifiedNicNumber || undefined),
+            // Nic Number
+            nicNo = ko.computed({
+               read: function() {
+                   return internalNicNo();
+               },
+               write: function(value) {
+                   if (internalNicNo() === value) {
+                       return;
+                   }
+
+                   internalNicNo(value);
+                   if (callbacks && callbacks.OnNicChanged && typeof callbacks.OnNicChanged === "function" && businessPartner.isIndividual()) {
+                       callbacks.OnNicChanged(value);
+                   }
+               }
+            }),
+            // Passport Number
+            internalPassportNo = ko.observable(specifiedPassportNo || undefined),
+            // Passport Number
+            passportNo = ko.computed({
+                read: function () {
+                    return internalPassportNo();
+                },
+                write: function (value) {
+                    if (internalPassportNo() === value) {
+                        return;
+                    }
+
+                    internalPassportNo(value);
+                    if (callbacks && callbacks.OnPassportChanged && typeof callbacks.OnPassportChanged === "function" && businessPartner.isIndividual()) {
+                        callbacks.OnPassportChanged(value);
+                    }
+                }
+            }),
+            // License Number
+            internalLicenseNo = ko.observable(specifiedLicenseNo || undefined),
+            // License Number
+            licenseNo = ko.computed({
+                read: function() {
+                    return internalLicenseNo();
+                },
+                write: function(value) {
+                    if (internalLicenseNo() === value) {
+                        return;
+                    }
+
+                    internalLicenseNo(value);
+                    if (callbacks && callbacks.OnLicenseChanged && typeof callbacks.OnLicenseChanged === "function" && businessPartner.isIndividual()) {
+                        callbacks.OnLicenseChanged(value);
+                    }
+                }
+            });
+
+        return {
+            id: id,
+            firstName: firstName,
+            lastName: lastName,
+            dateOfBirth: dateOfBirth,
+            nicExpiry: nicExpiry,
+            passportExpiry: passportExpiry,
+            licenseExpiry: licenseExpiry,
+            nicNo: nicNo,
+            passportNo: passportNo,
+            licenseNo: licenseNo
+        };
+    },
+        
+    // Business Partner entity
+    // ReSharper disable InconsistentNaming
+    BusinessPartner = function (specifiedId, specifiedIsIndividual, specifiedPaymentTerm, specifiedBusinessPartnerIndividual, 
+    specifiedCompany, specifiedEmail, callbacks) {
+        // ReSharper restore InconsistentNaming
+        var
+            // unique key
+            id = ko.observable(specifiedId || 0),
+            // customer Number
+            customerNo = ko.computed({
+                read: function () {
+                    return id();
+                },
+                write: function (value) {
+                    if (id() === value) {
+                        return;
+                    }
+
+                    id(value);
+                    if (callbacks && callbacks.OnCustomerNoChanged && typeof callbacks.OnCustomerNoChanged === "function") {
+                        callbacks.OnCustomerNoChanged(value);
+                    }
+                }
+            }),
+            // Is Individual
+            isIndividual = ko.observable(specifiedIsIndividual || undefined),
+            // Email
+            email = ko.observable(specifiedEmail || undefined),
+            // Payment Term
+            paymentTermId = ko.observable(specifiedPaymentTerm ? specifiedPaymentTerm.PaymentTermId : undefined),
+            // Company
+            businessPartnerCompany = ko.observable(BusinessPartnerCompany.Create(specifiedCompany || {})),
+            // Reference to this
+            self = {
+                isIndividual: isIndividual
+            },
+            // Individual
+            businessPartnerIndividual = ko.observable(BusinessPartnerIndividual.Create(specifiedBusinessPartnerIndividual || {}, callbacks, self)),
+            // Phones
+            phones = ko.observableArray([]),
+            // Home Phone
+            internalHomePhone = ko.observable(),
+            // Home Phone
+            homePhone = ko.computed({
+                read: function() {
+                    return internalHomePhone();
+                },
+                write: function(value) {
+                    if (internalHomePhone() === value) {
+                        return;
+                    }
+
+                    internalHomePhone(value);
+                    if (callbacks && callbacks.OnPhoneChanged && typeof callbacks.OnPhoneChanged === "function") {
+                        callbacks.OnPhoneChanged(value, phoneTypes.HomePhone);
+                    }
+                }
+            }),
+            // Mobile Phone
+            internalMobile = ko.observable(),
+            // Mobile Phone
+            mobile = ko.computed({
+                read: function () {
+                    return internalMobile();
+                },
+                write: function (value) {
+                    if (internalMobile() === value) {
+                        return;
+                    }
+
+                    internalMobile(value);
+                    if (callbacks && callbacks.OnPhoneChanged && typeof callbacks.OnPhoneChanged === "function") {
+                        callbacks.OnPhoneChanged(value, phoneTypes.CellularPone);
+                    }
+                }
+            });
+
+        return {
+            id: id,
+            customerNo: customerNo,
+            isIndividual: isIndividual,
+            paymentTermId: paymentTermId,
+            email: email,
+            businessPartnerCompany: businessPartnerCompany,
+            businessPartnerIndividual: businessPartnerIndividual,
+            phones: phones,
+            self: self,
+            homePhone: homePhone,
+            mobile: mobile,
+            internalHomePhone: internalHomePhone,
+            internalMobile: internalMobile
         };
     };
 
@@ -333,18 +587,79 @@
         return new HireGroupDetail(source.HireGroupId, source.HireGroup, source.VehicleCategory, source.VehicleMake, source.VehicleModel, source.ModelYear);
     };
     
-    // Rental Agreement Factory
-    RentalAgreement.Create = function (source) {
-        return new RentalAgreement(source.RentalAgreementId, source.StartDateTime ? moment(source.StartDateTime).toDate() : undefined, 
-            source.EndDateTime ? moment(source.EndDateTime).toDate() : undefined, source.PaymentTermId, source.OperationId, source.OpenLocation, source.CloseLocation);
-    };
-    
     // Rental Agreement Hire Group Factory
     RentalAgreementHireGroup.Create = function (source) {
         return new RentalAgreementHireGroup(source.RentalAgreementHireGroupId, source.HireGroupDetailId, source.VehicleId,
             source.RentalAgreementId);
     };
+    
+    // Phone Type Enums
+    var phoneTypes = {
+        // ReSharper restore InconsistentNaming
+        CellularPone: 1,
+        HomePhone: 2,
+        BusinessPhone: 3,
+        AssistancePhone: 4,
+        OtherPhone: 5,
+        Fax: 6
+    };
 
+    // Phone Type Factory
+    PhoneType.Create = function (source) {
+        return new PhoneType(source.PhoneTypeId, source.PhoneTypeKey);
+    };
+
+    // Phone Factory
+    Phone.Create = function (source, callbacks) {
+        return new Phone(source.PhoneId, source.IsDefault, source.BusinessPartnerId, source.PhoneTypeId ?
+            PhoneType.Create({ PhoneTypeId: source.PhoneTypeId, PhoneTypeKey: source.PhoneTypeKey }) : undefined, source.PhoneNo,
+        callbacks);
+    };
+
+    // Business Partner Company Factory
+    BusinessPartnerCompany.Create = function (source) {
+        return new BusinessPartnerCompany(source.BusinessPartnerId, source.BusinessPartnerCompanyCode, source.BusinessPartnerCompanyName);
+    };
+    
+    // Business Partner Individual Factory
+    BusinessPartnerIndividual.Create = function (source, callbacks, businessPartner) {
+        return new BusinessPartnerIndividual(source.BusinessPartnerId, source.FirstName, source.LastName, source.DateOfBirth, source.NicNumber, source.NicExpiryDate,
+        source.PassportNumber, source.PassportExpiryDate, source.LiscenseNumber, source.LiscenseExpiryDate, callbacks, businessPartner);
+    };
+
+    // Business Partner Factory
+    BusinessPartner.Create = function (source, callbacks) {
+        var businessPartner = new BusinessPartner(source.BusinessPartnerId, source.IsIndividual, source.PaymentTerm,
+            source.BusinessPartnerIndividual, source.BusinessPartnerCompany, source.BusinessPartnerEmailAddress, callbacks);
+
+        // Add Phones
+        if (!source.BusinessPartnerPhoneNumbers) {
+            source.BusinessPartnerPhoneNumbers = [
+                { IsDefault: true, PhoneTypeKey: phoneTypes.HomePhone },
+                { IsDefault: true, PhoneTypeKey: phoneTypes.CellularPone }
+            ];
+        }
+        
+        _.each(source.BusinessPartnerPhoneNumbers, function (phone) {
+            businessPartner.phones.push(Phone.Create(phone));
+            if (phone.PhoneTypeKey === phoneTypes.HomePhone) {
+                businessPartner.internalHomePhone(phone.PhoneNumber);
+            }
+            else {
+                businessPartner.internalMobile(phone.PhoneNumber);
+            }
+        });
+        
+        return businessPartner;
+    };
+    
+    // Rental Agreement Factory
+    RentalAgreement.Create = function (source, callbacks) {
+        return new RentalAgreement(source.RentalAgreementId, source.StartDateTime ? moment(source.StartDateTime).toDate() : undefined, 
+            source.EndDateTime ? moment(source.EndDateTime).toDate() : undefined, source.PaymentTermId, source.OperationId, source.OpenLocation, source.CloseLocation,
+        source.BusinessPartner || {}, callbacks);
+    };
+    
     return {
         // Vehicle Constructor
         Vehicle: Vehicle,
@@ -359,6 +674,8 @@
         // Rental Agreement Constructor
         RentalAgreement: RentalAgreement,
         // Rental Agreement HireGroup Constructor
-        RentalAgreementHireGroup: RentalAgreementHireGroup
+        RentalAgreementHireGroup: RentalAgreementHireGroup,
+        // Business Partner Constructor
+        BusinessPartner: BusinessPartner
     };
 });

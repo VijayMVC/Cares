@@ -7,6 +7,7 @@ using System.Web.Http;
 using Cares.Interfaces.IServices;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
+using Cares.WebBase.Mvc;
 using DomainRequestModels = Cares.Models.RequestModels;
 using DomainModels = Cares.Models.DomainModels;
 namespace Cares.Web.Areas.Api.Controllers
@@ -48,47 +49,17 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Update a Tariff Rate
         /// </summary>
-        public void Post(StandardRateMain standardRateMain)
+        [ApiException]
+        public TariffRateContent Post(StandardRateMain standardRateMain)
         {
             if (standardRateMain == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            StandardRateValidation(standardRateMain, false);
-            //TariffRateContent tariffRateContent = tariffRateService.Update(standardRateMain.CreateFrom()).CreateFrom();
-            if (standardRateMain.HireGroupDetailsInStandardRtMain != null)
-            {
-                foreach (var standardRate in standardRateMain.HireGroupDetailsInStandardRtMain)
-                {
-                    standardRate.StandardRtMainId = standardRateMain.StandardRtMainId;
-                    tariffRateService.AddStandardRate(standardRate.CreateFrom());
-                }
-            }
-            //return tariffRateContent;
-        }
-
-        /// <summary>
-        /// Add a Tariff Rate
-        /// </summary>
-        public TariffRateContent Put(StandardRateMain standardRateMain)
-        {
-
-            if (standardRateMain == null || !ModelState.IsValid)
-            {
-                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
-            }
-            StandardRateValidation(standardRateMain, true);
-            TariffRateContent tariffRateContent = tariffRateService.AddTariffRate(standardRateMain.CreateFrom()).CreateFrom();
-            if (standardRateMain.HireGroupDetailsInStandardRtMain != null)
-            {
-                foreach (var standardRate in standardRateMain.HireGroupDetailsInStandardRtMain)
-                {
-                    standardRate.StandardRtMainId = tariffRateContent.StandardRtMainId;
-                    tariffRateService.AddStandardRate(standardRate.CreateFrom());
-                }
-            }
+            TariffRateContent tariffRateContent = tariffRateService.SaveTariffRate(standardRateMain.CreateFrom()).CreateFrom();
             return tariffRateContent;
         }
+
 
         /// <summary>
         /// Delete a Tariff Rate

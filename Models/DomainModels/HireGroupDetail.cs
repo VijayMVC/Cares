@@ -11,24 +11,24 @@ namespace Cares.Models.DomainModels
     public class HireGroupDetail
     {
         #region Persisted Properties
-        
+
         /// <summary>
         /// Hire Group Detail Id
         /// </summary>
         public long HireGroupDetailId { get; set; }
-        
+
         /// <summary>
         /// User Domain Key
         /// </summary>
         [Required]
         public long UserDomainKey { get; set; }
-        
+
         /// <summary>
         /// Hire Group ID
         /// </summary>
         [ForeignKey("HireGroup")]
         public long HireGroupId { get; set; }
-        
+
         /// <summary>
         /// Vehicle Category ID
         /// </summary>
@@ -112,10 +112,6 @@ namespace Cares.Models.DomainModels
         /// </summary>
         public virtual ICollection<VehicleImageHireGroupDetail> VehicleImageHireGroupDetails { get; set; }
 
-        ///// <summary>
-        ///// Stanadard Rate 
-        ///// </summary>
-        //public virtual ICollection<StandardRate> StandardRate { get; set; }
         #endregion
     }
 }

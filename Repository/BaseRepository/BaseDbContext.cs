@@ -299,6 +299,18 @@ namespace Cares.Repository.BaseRepository
         /// Vehicle DB Set
         /// </summary>
         public DbSet<Vehicle> Vehicles { get; set; }
+        /// <summary>
+        /// Insurance Type
+        /// </summary>
+        public DbSet<InsuranceType> InsuranceTypes { get; set; }
+        /// <summary>
+        /// Insurance Rate Main
+        /// </summary>
+        public DbSet<InsuranceRtMain> InsuranceRtMains { get; set; }
+        /// <summary>
+        /// Insurance Rate
+        /// </summary>
+        public DbSet<InsuranceRt> InsuranceRts { get; set; }
 
         #endregion
     }

@@ -8,16 +8,20 @@ namespace Cares.Web.Areas.Pricing.Controllers
     public class TariffController : Controller
     {
         //
-        // GET: /tariffType/tariff/
+        // GET: /TariffType/Tariff/
         public ActionResult Index()
         {
             return View();
         }//
-        // GET: /tariff/TariffRate/
+        // GET: /Tariff/TariffRate/
         public ActionResult TariffRate()
         {
             return View();
         }
-       
+        // GET: /Tariff/InsuranceRate/
+        public ActionResult InsuranceRate()
+        {
+            return View();
+        }
 	}
 }

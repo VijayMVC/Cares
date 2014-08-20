@@ -7,6 +7,7 @@ using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
+using PhoneType = Cares.Models.CommonTypes.PhoneType;
 
 namespace Cares.Implementation.Services
 {
@@ -44,8 +45,8 @@ namespace Cares.Implementation.Services
 
             this.businessPartnerRepository = businessPartnerRepository;
             this.businessPartnerInTypeRepository = businessPartnerInTypeRepository;
-            this.businessPartnerPhoneRepository = phoneRepository;
-            this.businessPartnerAddressRepository = addressRepository;
+            businessPartnerPhoneRepository = phoneRepository;
+            businessPartnerAddressRepository = addressRepository;
             this.businessPartnerMarketingChannelRepository = businessPartnerMarketingChannelRepository;
             this.businessPartnerRelationshipRepository = businessPartnerRelationshipRepository;
             this.businessPartnerCompanyRepository = businessPartnerCompanyRepository;
@@ -576,6 +577,43 @@ namespace Cares.Implementation.Services
 
             return false;
         }
+
+        /// <summary>
+        /// Get For RA
+        /// </summary>
+        public BusinessPartner GetForRentalAgreement(GetBusinessPartnerRequest request)
+        {
+            if (request.BusinessPartnerId.HasValue)
+            {
+                return FindBusinessPartnerById(request.BusinessPartnerId.Value);
+            }
+
+            if (!string.IsNullOrEmpty(request.LicenseNo))
+            {
+                return GetByLicenseNo(request.LicenseNo);
+            }
+
+            if (!string.IsNullOrEmpty(request.NicNo))
+            {
+                return GetByNicNo(request.NicNo);
+            }
+
+            if (!string.IsNullOrEmpty(request.PassportNo))
+            {
+                return GetByPassportNo(request.PassportNo);
+            }
+
+            if (!string.IsNullOrEmpty(request.PhoneNo))
+            {
+                if (request.PhoneTypeOrig.HasValue)
+                {
+                    return GetByPhoneNo(request.PhoneNo, request.PhoneTypeOrig.Value);
+                }
+            }
+
+            return new BusinessPartner();
+        }
+
         /// <summary>
         /// Get Business Partner by Id
         /// </summary>
@@ -591,7 +629,7 @@ namespace Cares.Implementation.Services
         /// </summary>
         public BusinessPartner GetByLicenseNo(string licenseNo)
         {
-            throw new NotImplementedException();
+            return businessPartnerRepository.GetByLicenseNo(licenseNo);
         }
 
         /// <summary>
@@ -599,7 +637,7 @@ namespace Cares.Implementation.Services
         /// </summary>
         public BusinessPartner GetByNicNo(string nicNo)
         {
-            throw new NotImplementedException();
+            return businessPartnerRepository.GetByNicNo(nicNo);
         }
 
         /// <summary>
@@ -607,16 +645,17 @@ namespace Cares.Implementation.Services
         /// </summary>
         public BusinessPartner GetByPassportNo(string passportNo)
         {
-            throw new NotImplementedException();
+            return businessPartnerRepository.GetByPassportNo(passportNo);
         }
 
         /// <summary>
         /// Get By Phone No
         /// </summary>
-        public BusinessPartner GetByPhoneNo(string passportNo)
+        public BusinessPartner GetByPhoneNo(string phoneNo, PhoneType phoneType)
         {
-            throw new NotImplementedException();
+            return businessPartnerRepository.GetByPhoneNo(phoneNo, phoneType);
         }
+        
 
         #endregion
     }

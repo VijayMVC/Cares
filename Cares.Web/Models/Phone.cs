@@ -27,6 +27,10 @@
         /// </summary>
         public int PhoneTypeId { get; set; }
         /// <summary>
+        /// Phone Type Key
+        /// </summary>
+        public int? PhoneTypeKey { get; set; }
+        /// <summary>
         /// Phone Type Name
         /// </summary>
         public string PhoneTypeName { get; set; }

@@ -102,6 +102,11 @@ namespace Cares.Web.Models
         /// Business Partner Relationship Item List 
         /// </summary>
         public List<BusinessPartnerRelationship> BusinessPartnerRelationshipItemList { get; set; }
+
+        /// <summary>
+        /// Payment Term 
+        /// </summary>
+        public PaymentTermDropDown PaymentTerm { get; set; }
         
         #endregion
 

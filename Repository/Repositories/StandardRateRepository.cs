@@ -45,7 +45,7 @@ namespace Cares.Repository.Repositories
         }
         public IEnumerable<StandardRate> GetStandardRateForTariffRate(long standardRtMainId)
         {
-            return DbSet.Where(s => s.UserDomainKey == UserDomainKey && s.StandardRtMainId == standardRtMainId && s.ChildStandardRtId == 0);
+            return DbSet.Where(s => s.UserDomainKey == UserDomainKey && s.StandardRtMainId == standardRtMainId && s.ChildStandardRtId == null).ToList();
 
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace Cares.Repository.Repositories
         /// <returns></returns>
         public IEnumerable<StandardRate> FindByHireGroupId(long standardRtMainId, long hireGroupDetailId)
         {
-            return DbSet.Where(s => s.UserDomainKey == UserDomainKey && s.StandardRtMainId == standardRtMainId && s.ChildStandardRtId == 0 && s.HireGroupDetailId == hireGroupDetailId);
+            return DbSet.Where(s => s.UserDomainKey == UserDomainKey && s.StandardRtMainId == standardRtMainId && s.ChildStandardRtId == null && s.HireGroupDetailId == hireGroupDetailId);
 
         }
         #endregion

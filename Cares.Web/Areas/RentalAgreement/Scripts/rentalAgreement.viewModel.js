@@ -10,8 +10,26 @@ define("rentalAgreement/rentalAgreement.viewModel",
             viewModel: (function () {
                 var// the view 
                     view,
+                    // Callbacks
+                    rentalAgreementModelCallbacks = {
+                        OnCustomerNoChanged: function(value) {
+                            getCustomerByNo(value);
+                        },
+                        OnNicChanged: function (value) {
+                            getCustomerByNicNo(value);
+                        },
+                        OnPassportChanged: function (value) {
+                            getCustomerByPassportNo(value);
+                        },
+                        OnLicenseChanged: function (value) {
+                            getCustomerByLicenseNo(value);
+                        },
+                        OnPhoneChanged: function (value, type) {
+                            getCustomerByPhoneNo(value, type);
+                        }
+                    },
                     // Main RA
-                    rentalAgreement = ko.observable(model.RentalAgreement.Create({})),
+                    rentalAgreement = ko.observable(model.RentalAgreement.Create({}, rentalAgreementModelCallbacks)),
                     // #region Arrays
                     // Operations
                     operations = ko.observableArray([]),
@@ -157,6 +175,46 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                 toastr.error("Failed to load vehicles. Error: " + response);
                             }
                         });
+                    },
+                    // Get Customer Call back Handler
+                    getCustomerCallbackHandler = {
+                        success: function (data) {
+                            rentalAgreement().businessPartner(model.BusinessPartner.Create(data, rentalAgreementModelCallbacks));
+                        },
+                        error: function (response) {
+                            toastr.error("Failed to load customer. Error: " + response);
+                        }
+                    },
+                    // Get Customer By Customer No
+                    getCustomerByNo = function (customerNo) {
+                        dataservice.getCustomerByNo({
+                            BusinessPartnerId: customerNo
+                        }, getCustomerCallbackHandler);
+                    },
+                    // Get Customer By Nic No
+                    getCustomerByNicNo = function (nicNo) {
+                        dataservice.getCustomerByNicNo({
+                            NicNo: nicNo
+                        }, getCustomerCallbackHandler);
+                    },
+                    // Get Customer By Passport No
+                    getCustomerByPassportNo = function (passportNo) {
+                        dataservice.getCustomerByPassportNo({
+                            PassportNo: passportNo
+                        }, getCustomerCallbackHandler);
+                    },
+                    // Get Customer By License No
+                    getCustomerByLicenseNo = function (licenseNo) {
+                        dataservice.getCustomerByLicenseNo({
+                            LicenseNo: licenseNo
+                        }, getCustomerCallbackHandler);
+                    },
+                    // Get Customer By Phone No
+                    getCustomerByPhoneNo = function (phoneNo, type) {
+                        dataservice.getCustomerByPhoneNo({
+                            PhoneNo: phoneNo,
+                            PhoneType: type
+                        }, getCustomerCallbackHandler);
                     };
                     // #endregion Service Calls
 

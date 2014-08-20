@@ -24,6 +24,7 @@ namespace Cares.Models.ResponseModels
             TariffTypes = new List<TariffType>();
         }
         #endregion
+        
         #region Public
         /// <summary>
         /// Companies

@@ -33,15 +33,7 @@ namespace Cares.Interfaces.IServices
         /// <summary>
         /// Add Standard Rate Main
         /// </summary>
-        TariffRateContent AddTariffRate(StandardRateMain standardRateMain);
-        /// <summary>
-        /// Update Standard Rate Main
-        /// </summary>
-        TariffRateContent Update(StandardRateMain standardRateMain);
-        /// <summary>
-        /// Add Standard Rate Against Standard Rate Main
-        /// </summary>
-        void AddStandardRate(StandardRate standardRate);
+        TariffRateContent SaveTariffRate(StandardRateMain standardRateMain);
         /// <summary>
         /// Find Standard Rate 
         /// </summary>

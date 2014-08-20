@@ -1,4 +1,5 @@
-﻿using Cares.Models.DomainModels;
+﻿using System.Linq;
+using Cares.Models.DomainModels;
 using Cares.Models.ResponseModels;
 using ApiModels = Cares.Web.Models;
 
@@ -43,7 +44,8 @@ namespace Cares.Web.ModelMappers
                 TariffTypeCode= source.TariffTypeId.ToString(),
                 StandardRtMainDescription = source.StandardRtMainDescription,
                 StartDt = source.StartDt,
-                EndDt = source.EndDt
+                EndDt = source.EndDt,
+                StandardRates = source.HireGroupDetailsInStandardRtMain!=null?source.HireGroupDetailsInStandardRtMain.Select(standardRate => standardRate.CreateFrom()).ToList():null
             };
         }
         #endregion

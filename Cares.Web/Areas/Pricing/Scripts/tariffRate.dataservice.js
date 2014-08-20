@@ -28,13 +28,15 @@ define("tariffRate/tariffRate.dataservice", function () {
                     amplify.request.define('createTariffRate', 'ajax', {
                         url: '/Api/TariffRate',
                         dataType: 'json',
-                        type: 'PUT'
+                        decoder: amplify.request.decoders.istStatusDecoder,
+                        type: 'POST'
                     });
 
                     // Define request to update Tariff rate
                     amplify.request.define('updateTariffRate', 'ajax', {
                         url: '/Api/TariffRate',
                         dataType: 'json',
+                        decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
                     });
                     // Define request to get Hire Group detail

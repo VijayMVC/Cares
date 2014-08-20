@@ -62,6 +62,9 @@ namespace Cares.Repository
             unityContainer.RegisterType<IAddressRepository, AddressRepository>();
             unityContainer.RegisterType<IBusinessPartnerMarketingChannelRepository, BusinessPartnerMarketingChannelRepository>();
             unityContainer.RegisterType<IBusinessPartnerRelationshipRepository, BusinessPartnerRelationshipRepository>();
+            unityContainer.RegisterType<IInsuranceTypeRepository, InsuranceTypeRepository>();
+            unityContainer.RegisterType<IInsuranceRtMainRepository, InsuranceRtMainRepository>();
+            unityContainer.RegisterType<IInsuranceRtRepository, InsuranceRtRepository>();
 
         }
     }
