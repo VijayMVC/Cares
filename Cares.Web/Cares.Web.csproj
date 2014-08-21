@@ -460,6 +460,10 @@
     <Content Include="Areas\OrganizationGroup\Scripts\organizationGroup.dataservice.js" />
     <Content Include="Areas\OrganizationGroup\Scripts\organizationGroup.viewModel.js" />
     <Content Include="Areas\OrganizationGroup\Scripts\organizationGroup.model.js" />
+    <Content Include="Areas\Pricing\Scripts\serviceRate.dataservice.js" />
+    <Content Include="Areas\Pricing\Scripts\serviceRate.model.js" />
+    <Content Include="Areas\Pricing\Scripts\serviceRate.view.js" />
+    <Content Include="Areas\Pricing\Scripts\serviceRate.viewModel.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.dataservice.js" />
     <Content Include="Areas\Pricing\Scripts\insuranceRate.model.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.model.js" />
@@ -1091,6 +1095,7 @@
     <Content Include="Content\Company.css.map">
       <DependentUpon>Company.css</DependentUpon>
     </Content>
+    <Content Include="Areas\Pricing\Views\Tariff\ServiceRate.cshtml" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />

@@ -1,38 +1,56 @@
-﻿
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cares.Models.DomainModels
 {
     /// <summary>
-    /// Insurance Type Domain Model
+    /// Service Rate Domain Models
     /// </summary>
-    public class InsuranceType
+    public class ServiceRt
     {
+        /// <summary>
+        /// Service Item Domain Models
+        /// </summary>
+
         #region Persisted Properties
 
         /// <summary>
-        ///Insurance Type Id
+        ///Service Rate Id
         /// </summary>
-        public short InsuranceTypeId { get; set; }
+        public long ServiceRtId { get; set; }
 
         /// <summary>
-        /// Insurance Type Code
+        /// Service Rate Main ID
         /// </summary>
-        [StringLength(100), Required]
-        public string InsuranceTypeCode { get; set; }
+        [ForeignKey("ServiceRtMain")]
+        public long ServiceRtMainId { get; set; }
 
         /// <summary>
-        /// Insurance Type Name
+        /// Service Item Id
         /// </summary>
-        [StringLength(255)]
-        public string InsuranceTypeName { get; set; }
+        [ForeignKey("ServiceItem")]
+        public long ServiceItemId { get; set; }
+        /// <summary>
+        /// Child Service Rate Id
+        /// </summary>
+        [ForeignKey("ChildServiceRt")]
+        public long ChildServiceRtId { get; set; }
 
         /// <summary>
-        /// Insurance Type Description
+        /// Service Rate
         /// </summary>
-        [StringLength(500)]
-        public string InsuranceTypeDescription { get; set; }
+        public float ServiceRate { get; set; }
+
+        /// <summary>
+        /// Revision Number
+        /// </summary>
+        public long RevisionNumber { get; set; }
+
+        /// <summary>
+        /// Start Date
+        /// </summary>
+        public DateTime StartDt { get; set; }
 
         /// <summary>
         /// Is Active
@@ -85,6 +103,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Row Vesion
         /// </summary>
+        [Required]
         public long RowVersion { get; set; }
 
         /// <summary>
@@ -94,5 +113,25 @@ namespace Cares.Models.DomainModels
         public long UserDomainKey { get; set; }
 
         #endregion
+
+        #region Reference Properties
+
+        /// <summary>
+        /// Service Type
+        /// </summary>
+        public virtual ServiceItem ServiceItem { get; set; }
+
+        /// <summary>
+        /// Child Service Rt
+        /// </summary>
+        public virtual ServiceRt ChildServiceRt { get; set; }
+
+        /// <summary>
+        /// Service Rate Main
+        /// </summary>
+        public virtual ServiceRtMain ServiceRtMain { get; set; }
+
+        #endregion
     }
+
 }

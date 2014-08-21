@@ -127,6 +127,7 @@
     <Compile Include="Services\BPRatingTypeService.cs" />
     <Compile Include="Services\BusinessLegalStatusService.cs" />
     <Compile Include="Services\InsuranceRateService.cs" />
+    <Compile Include="Services\ServiceRtService.cs" />
     <Compile Include="Services\VehicleService.cs" />
     <Compile Include="Services\HireGroupService.cs" />
     <Compile Include="Services\OccupationTypeService.cs" />

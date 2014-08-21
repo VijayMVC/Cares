@@ -45,7 +45,7 @@ define("insuranceRate/insuranceRate.viewModel",
                     sortOnHg = ko.observable(1),
                     // Sort Order -  true means asc, false means desc
                     sortIsAscHg = ko.observable(true),
-                    // Is Tariff Rate Editor Visible
+                    // Is Insurance Rate Editor Visible
                     isInsuranceRtEditorVisible = ko.observable(false),
                     // Is Editable
                     isEditable = ko.observable(false),

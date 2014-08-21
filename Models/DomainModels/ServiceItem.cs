@@ -1,38 +1,44 @@
-﻿
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cares.Models.DomainModels
 {
     /// <summary>
-    /// Insurance Type Domain Model
+    /// Service Item Domain Models
     /// </summary>
-    public class InsuranceType
+    public class ServiceItem
     {
         #region Persisted Properties
 
         /// <summary>
-        ///Insurance Type Id
+        ///Service Item Id
         /// </summary>
-        public short InsuranceTypeId { get; set; }
+        public long ServiceItemId { get; set; }
 
         /// <summary>
-        /// Insurance Type Code
+        /// Service Type ID
+        /// </summary>
+        [ForeignKey("ServiceType")]
+        public short ServiceTypeId { get; set; }
+
+        /// <summary>
+        /// Service Item Code
         /// </summary>
         [StringLength(100), Required]
-        public string InsuranceTypeCode { get; set; }
+        public string ServiceItemCode { get; set; }
 
         /// <summary>
-        /// Insurance Type Name
+        /// Service Item Name
         /// </summary>
         [StringLength(255)]
-        public string InsuranceTypeName { get; set; }
+        public string ServiceItemName { get; set; }
 
         /// <summary>
-        /// Insurance Type Description
+        /// Service Item Description
         /// </summary>
         [StringLength(500)]
-        public string InsuranceTypeDescription { get; set; }
+        public string ServiceItemDescription { get; set; }
 
         /// <summary>
         /// Is Active
@@ -85,6 +91,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Row Vesion
         /// </summary>
+        [Required]
         public long RowVersion { get; set; }
 
         /// <summary>
@@ -92,6 +99,15 @@ namespace Cares.Models.DomainModels
         /// </summary>
         [Required]
         public long UserDomainKey { get; set; }
+
+        #endregion
+
+        #region Reference Properties
+
+        /// <summary>
+        /// Service Type
+        /// </summary>
+        public virtual ServiceType ServiceType { get; set; }
 
         #endregion
     }

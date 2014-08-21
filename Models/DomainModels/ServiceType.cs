@@ -1,38 +1,37 @@
-﻿
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Cares.Models.DomainModels
 {
     /// <summary>
-    /// Insurance Type Domain Model
+    /// Service Type Domain Model
     /// </summary>
-    public class InsuranceType
+    public class ServiceType
     {
         #region Persisted Properties
 
         /// <summary>
-        ///Insurance Type Id
+        ///Service Type Id
         /// </summary>
-        public short InsuranceTypeId { get; set; }
+        public short ServiceTypeId { get; set; }
 
         /// <summary>
-        /// Insurance Type Code
+        /// Service Type Code
         /// </summary>
         [StringLength(100), Required]
-        public string InsuranceTypeCode { get; set; }
+        public string ServiceTypeCode { get; set; }
 
         /// <summary>
-        /// Insurance Type Name
+        /// Service Type Name
         /// </summary>
         [StringLength(255)]
-        public string InsuranceTypeName { get; set; }
+        public string ServiceTypeName { get; set; }
 
         /// <summary>
-        /// Insurance Type Description
+        /// Service Type Description
         /// </summary>
         [StringLength(500)]
-        public string InsuranceTypeDescription { get; set; }
+        public string ServiceTypeDescription { get; set; }
 
         /// <summary>
         /// Is Active
@@ -85,6 +84,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Row Vesion
         /// </summary>
+        [Required]
         public long RowVersion { get; set; }
 
         /// <summary>

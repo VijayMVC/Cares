@@ -51,7 +51,7 @@ namespace Cares.Implementation.Services
         {
             return new InsuranceRateBaseResponse
                    {
-                       Operations = operationRepository.GetAll(),
+                       Operations = operationRepository.GetSalesOperation(),
                        TariffTypes = tariffTypeRepository.GetAll(),
                    };
         }
