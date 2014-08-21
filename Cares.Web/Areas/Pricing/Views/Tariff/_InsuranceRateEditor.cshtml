@@ -38,6 +38,7 @@
         </form>
     </div>
     <div class="panel panel-info searchFilterResultSection">
+        <div class="panel-heading">Tariff Revisions</div>
         <table id="insuranceTypeRate" class="table table-condensed">
             <thead>
                 <tr>
@@ -54,10 +55,16 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- ko template: { name: templateToUse , foreach: insuranceTypeRts } -->
+                <!-- ko template: { name: templateToUse , foreach: clientPagerRecords } -->
                 <!-- /ko -->
             </tbody>
         </table>
+        <div class="well">
+
+            <!-- ko with: clientPager -->
+            @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
+            <!-- /ko -->
+        </div>
         <script id="editInsuranceTypeRtTemplate" type="text/html">
             <tr data-bind="css: { selectedRow: $data === $root.selectedInsuranceRt() }">
                 <td class="col-md-2">

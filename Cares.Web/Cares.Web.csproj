@@ -434,6 +434,7 @@
     <Content Include="Areas\BusinessPartner\Scripts\businessPartnerWithKoMapping.model.js" />
     <Content Include="Areas\Common\Scripts\confirmation.view.js" />
     <Content Include="Areas\Common\Scripts\confirmation.viewModel.js" />
+    <Content Include="Areas\Common\Scripts\clientSidePagination.js" />
     <Content Include="Areas\Common\Scripts\pagination.js" />
     <Content Include="Areas\Fleet\Scripts\fleetPool.viewModel.js" />
     <Content Include="Areas\Fleet\Scripts\fleetPool.model.js" />
