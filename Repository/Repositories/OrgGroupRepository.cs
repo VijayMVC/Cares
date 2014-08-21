@@ -52,6 +52,10 @@ namespace Cares.Repository.Repositories
                    .Take(toRow)
                    .ToList();
         }
+        public override IEnumerable<OrgGroup> GetAll()
+        {
+            return DbSet.Where(orgGroup => orgGroup.UserDomainKey == UserDomainKey).ToList();
+        }
 
         #endregion
         #region Constructor

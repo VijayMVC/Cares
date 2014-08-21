@@ -3,9 +3,12 @@ namespace Cares.Models.RequestModels
 {
    public class OrgGroupSearchRequest : GetPagedListRequest
     {
+       /// <summary>
+       /// Org Group Code
+       /// </summary>
         public string OrgGroupCode { get; set; }
         /// <summary>
-        /// Operation Id
+        /// Org Group Name
         /// </summary>
         public string OrgGroupName { get; set; }
         public OrgGroupByColumn OrgGroupOrderBy

@@ -37,5 +37,14 @@ namespace Cares.Web.ModelMappers
                   OrgGroupDescription = orgGroup.OrgGroupDescription
             };
         }
+        public static ApiModel.OrgGroupDropDown CreateFrom(this OrgGroup source)
+        {
+            return new ApiModel.OrgGroupDropDown
+            {
+               OrgGroupId = source.OrgGroupId,
+               OrgGroupCode = source.OrgGroupCode,
+               OrgGroupName = source.OrgGroupName
+            };
+        }
     }
 }

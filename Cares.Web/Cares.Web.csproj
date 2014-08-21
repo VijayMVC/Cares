@@ -221,6 +221,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
+    <Compile Include="Areas\Api\Controllers\CompanyBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Api\Controllers\FleetPoolBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\FleetPoolController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessPartnerBaseController.cs" />
@@ -248,6 +250,8 @@
     <Compile Include="Areas\BusinessPartner\BusinessPartnerAreaRegistration.cs" />
     <Compile Include="Areas\BusinessPartner\Controllers\HomeController.cs" />
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
+    <Compile Include="Areas\Company\CompanyAreaRegistration.cs" />
+    <Compile Include="Areas\Company\Controllers\HomeController.cs" />
     <Compile Include="Areas\Fleet\Controllers\HomeController.cs" />
     <Compile Include="Areas\Fleet\FleetPoolAreaRegistration.cs" />
     <Compile Include="Areas\OrganizationGroup\Controllers\HomeController.cs" />
@@ -319,6 +323,9 @@
     <Compile Include="Models\BusinessPartnerRelationship.cs" />
     <Compile Include="Models\BusinessPartnerDropDown.cs" />
     <Compile Include="Models\BusinessPartnerMarketingChannel.cs" />
+    <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\CompanyBaseDataResponse.cs" />
+    <Compile Include="Models\CompanySearchRequestResponse.cs" />
     <Compile Include="Models\FuelType.cs" />
     <Compile Include="Models\InsuranceRateBaseResponse.cs" />
     <Compile Include="Models\InsuranceRateSearchResponse.cs" />
@@ -326,6 +333,7 @@
     <Compile Include="Models\InsuranceRtDetailResponse.cs" />
     <Compile Include="Models\InsuranceRtMainContent.cs" />
     <Compile Include="Models\Operation.cs" />
+    <Compile Include="Models\OrgGroupDropDown.cs" />
     <Compile Include="Models\PaymentTerm.cs" />
     <Compile Include="Models\TariffTypeDropDown.cs" />
     <Compile Include="Models\TransmissionType.cs" />
@@ -436,6 +444,10 @@
     <Content Include="Areas\Common\Scripts\confirmation.viewModel.js" />
     <Content Include="Areas\Common\Scripts\clientSidePagination.js" />
     <Content Include="Areas\Common\Scripts\pagination.js" />
+    <Content Include="Areas\Company\Scripts\company.model.js" />
+    <Content Include="Areas\Company\Scripts\company.view.js" />
+    <Content Include="Areas\Company\Scripts\company.viewModel.js" />
+    <Content Include="Areas\Company\Scripts\company.dataservice.js" />
     <Content Include="Areas\Fleet\Scripts\fleetPool.viewModel.js" />
     <Content Include="Areas\Fleet\Scripts\fleetPool.model.js" />
     <Content Include="Areas\Fleet\Scripts\fleetPool.view.js" />
@@ -473,6 +485,12 @@
     <Content Include="asadtest.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Company.css">
+      <DependentUpon>Company.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Company.min.css">
+      <DependentUpon>Company.css</DependentUpon>
+    </Content>
     <Content Include="Content\CSS\architecture.css" />
     <Content Include="Content\CSS\architecture.min.css">
       <DependentUpon>architecture.css</DependentUpon>
@@ -640,6 +658,12 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="Content\themes\Fleet.css">
+      <DependentUpon>Fleet.less</DependentUpon>
+    </Content>
+    <Content Include="Content\themes\Fleet.min.css">
+      <DependentUpon>Fleet.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\OrgGroup.css">
       <DependentUpon>OrgGroup.less</DependentUpon>
     </Content>
@@ -1052,8 +1076,21 @@
       <DependentUpon>OrgGroup.css</DependentUpon>
     </Content>
     <Content Include="Areas\OrganizationGroup\Views\Home\_OrgGroupEditor.cshtml" />
+    <Content Include="Areas\Company\Views\web.config" />
+    <Content Include="Areas\Company\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Pricing\Views\Tariff\InsuranceRate.cshtml" />
     <Content Include="Areas\Pricing\Views\Tariff\_InsuranceRateEditor.cshtml" />
+    <Content Include="Areas\Company\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Company\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Company\Views\Home\_CompanyEditor.cshtml" />
+    <Content Include="Content\themes\Fleet.less" />
+    <Content Include="Content\themes\Fleet.css.map">
+      <DependentUpon>Fleet.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Company.less" />
+    <Content Include="Content\Company.css.map">
+      <DependentUpon>Company.css</DependentUpon>
+    </Content>
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
@@ -1193,12 +1230,15 @@
   <ItemGroup>
     <Folder Include="App_Data\ProfileImages\" />
     <Folder Include="Areas\Api\Models\" />
+    <Folder Include="Areas\Api\Views\CompanyBase\" />
+    <Folder Include="Areas\Api\Views\Company\" />
     <Folder Include="Areas\Api\Views\FleetPool\" />
     <Folder Include="Areas\Api\Views\OrganizationGroup\" />
     <Folder Include="Areas\Api\Views\Shared\" />
     <Folder Include="Areas\BusinessPartner\Models\" />
     <Folder Include="Areas\Common\Controllers\" />
     <Folder Include="Areas\Common\Models\" />
+    <Folder Include="Areas\Company\Models\" />
     <Folder Include="Areas\Fleet\Models\" />
     <Folder Include="Areas\OrganizationGroup\Models\" />
     <Folder Include="Areas\Pricing\Models\" />
