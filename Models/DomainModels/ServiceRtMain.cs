@@ -1,38 +1,50 @@
-﻿
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Cares.Models.DomainModels
 {
     /// <summary>
-    /// Insurance Type Domain Model
+    /// Service Rate Main Domain Model
     /// </summary>
-    public class InsuranceType
+    public class ServiceRtMain
     {
         #region Persisted Properties
 
         /// <summary>
-        ///Insurance Type Id
+        ///Service Rate Main Id
         /// </summary>
-        public short InsuranceTypeId { get; set; }
+        public long ServiceRtMainId { get; set; }
 
         /// <summary>
-        /// Insurance Type Code
+        /// Service Type Code
         /// </summary>
         [StringLength(100), Required]
-        public string InsuranceTypeCode { get; set; }
+        public string ServiceRtMainCode { get; set; }
 
         /// <summary>
-        /// Insurance Type Name
+        /// Tariff Type Code
+        /// </summary>
+        [StringLength(100), Required]
+        public string TariffTypeCode { get; set; }
+
+        /// <summary>
+        /// Service Type Name
         /// </summary>
         [StringLength(255)]
-        public string InsuranceTypeName { get; set; }
+        public string ServiceRtMainName { get; set; }
 
         /// <summary>
-        /// Insurance Type Description
+        /// Service Type Description
         /// </summary>
         [StringLength(500)]
-        public string InsuranceTypeDescription { get; set; }
+        public string ServiceRtMainDescription { get; set; }
+
+        /// <summary>
+        /// Start Date
+        /// </summary>
+        [Required]
+        public DateTime StartDt { get; set; }
 
         /// <summary>
         /// Is Active
@@ -85,6 +97,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Row Vesion
         /// </summary>
+        [Required]
         public long RowVersion { get; set; }
 
         /// <summary>
@@ -92,6 +105,15 @@ namespace Cares.Models.DomainModels
         /// </summary>
         [Required]
         public long UserDomainKey { get; set; }
+
+        #endregion
+
+        #region Reference Properties
+
+        /// <summary>
+        /// Service Rates assocaited to this Entity
+        /// </summary>
+        public virtual ICollection<ServiceRt> ServiceRts { get; set; }
 
         #endregion
     }

@@ -214,6 +214,9 @@ namespace Cares.Repository.BaseRepository
         /// Vehicle Category Db Set
         /// </summary>
         public DbSet<VehicleCategory> VehicleCategories { get; set; }
+        /// <summary>
+        /// Vehicle Make Db Set
+        /// </summary>
         public DbSet<VehicleMake> VehicleMakes { get; set; }
         public DbSet<HireGroup> HireGroups { get; set; }
         public DbSet<HireGroupDetail> HireGroupDetails { get; set; }
@@ -296,21 +299,42 @@ namespace Cares.Repository.BaseRepository
         public DbSet<BusinessPartnerRelationship> BusinessPartnerRelationships { get; set; }
 
         /// <summary>
-        /// Vehicle DB Set
+        /// Vehicle DB Set 
         /// </summary>
         public DbSet<Vehicle> Vehicles { get; set; }
         /// <summary>
-        /// Insurance Type
+        /// Insurance Type Db Set
         /// </summary>
         public DbSet<InsuranceType> InsuranceTypes { get; set; }
         /// <summary>
-        /// Insurance Rate Main
+        /// Insurance Rate Main Db Set
         /// </summary>
         public DbSet<InsuranceRtMain> InsuranceRtMains { get; set; }
         /// <summary>
-        /// Insurance Rate
+        /// Insurance Rate Db Set
         /// </summary>
         public DbSet<InsuranceRt> InsuranceRts { get; set; }
+
+        /// <summary>
+        /// Service Type Db Set
+        /// </summary>
+        public DbSet<ServiceType> ServiceTypes { get; set; }
+
+        /// <summary>
+        /// Service Item Db Set
+        /// </summary>
+        public DbSet<ServiceItem> ServiceItems { get; set; }
+
+        /// <summary>
+        /// Service Rate Main  Db Set
+        /// </summary>
+        public DbSet<ServiceRtMain> ServiceRtMains { get; set; }
+
+        /// <summary>
+        /// Service Rate Db Set
+        /// </summary>
+        public DbSet<ServiceRt> ServiceRts { get; set; }
+
 
         #endregion
     }

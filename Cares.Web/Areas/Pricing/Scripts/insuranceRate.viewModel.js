@@ -2,8 +2,8 @@
     Module with the view model for the Insurance Rate
 */
 define("insuranceRate/insuranceRate.viewModel",
-    ["jquery", "amplify", "ko", "insuranceRate/insuranceRate.dataservice", "insuranceRate/insuranceRate.model", "common/confirmation.viewModel", "common/pagination"],
-    function ($, amplify, ko, dataservice, model, confirmation, pagination) {
+    ["jquery", "amplify", "ko", "insuranceRate/insuranceRate.dataservice", "insuranceRate/insuranceRate.model", "common/confirmation.viewModel", "common/pagination", "common/clientSidePagination"],
+    function ($, amplify, ko, dataservice, model, confirmation, pagination,clientPagination) {
         var ist = window.ist || {};
         ist.insuranceRate = {
             viewModel: (function () {
@@ -45,12 +45,21 @@ define("insuranceRate/insuranceRate.viewModel",
                     sortOnHg = ko.observable(1),
                     // Sort Order -  true means asc, false means desc
                     sortIsAscHg = ko.observable(true),
-                    // Is Tariff Rate Editor Visible
+                    // Is Insurance Rate Editor Visible
                     isInsuranceRtEditorVisible = ko.observable(false),
                     // Is Editable
                     isEditable = ko.observable(false),
                     // Pagination
                     pager = ko.observable(),
+                    //Client Side Pagination
+                    clientPager = ko.observable(),
+                    //List Of Records 
+                    clientPagerRecords = ko.computed(function () {
+                        if (clientPager() !== undefined) {
+                            return clientPager().pagedRecords();
+                        }
+                        return [];
+                    }),
                     // Search Filter
                     searchFilter = ko.observable(),
                     //Operation Filter
@@ -67,6 +76,8 @@ define("insuranceRate/insuranceRate.viewModel",
                         getBase();
                         // Set Pager
                         pager(new pagination.Pagination({}, insuranceRtMains, getInsuranceRates));
+                        //Set Client Side Pager
+                        clientPager(new clientPagination.Pagination({}, insuranceTypeRts, null));
                         getInsuranceRates();
 
                     },
@@ -315,6 +326,7 @@ define("insuranceRate/insuranceRate.viewModel",
                     initialize: initialize,
                     search: search,
                     pager: pager,
+                    clientPager:clientPager,
                     collapseFilterSection: collapseFilterSection,
                     showFilterSection: showFilterSection,
                     closeInsuranceRateEditor: closeInsuranceRateEditor,
@@ -325,7 +337,8 @@ define("insuranceRate/insuranceRate.viewModel",
                     onSaveInsuranceRate: onSaveInsuranceRate,
                     templateToUse: templateToUse,
                     selectInsuranceRt: selectInsuranceRt,
-                    getInsuranceRates: getInsuranceRates
+                    getInsuranceRates: getInsuranceRates,
+                    clientPagerRecords:clientPagerRecords,
                     // Utility Methods
 
                 };

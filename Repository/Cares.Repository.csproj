@@ -135,6 +135,10 @@
     <Compile Include="Repositories\InsuranceRtMainRepository.cs" />
     <Compile Include="Repositories\InsuranceRtRepository.cs" />
     <Compile Include="Repositories\InsuranceTypeRepository.cs" />
+    <Compile Include="Repositories\ServiceRtRepository.cs" />
+    <Compile Include="Repositories\ServiceRtMainRepository.cs" />
+    <Compile Include="Repositories\ServiceItemRepository.cs" />
+    <Compile Include="Repositories\ServiceTypeRepository.cs" />
     <Compile Include="Repositories\VehicleRepository.cs" />
     <Compile Include="Repositories\HireGroupUpGradeRepository.cs" />
     <Compile Include="Repositories\OperationsWorkPlaceRepository.cs" />

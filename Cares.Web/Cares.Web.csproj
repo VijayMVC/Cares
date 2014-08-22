@@ -456,6 +456,7 @@
     <Content Include="Areas\BusinessPartner\Scripts\businessPartnerWithKoMapping.model.js" />
     <Content Include="Areas\Common\Scripts\confirmation.view.js" />
     <Content Include="Areas\Common\Scripts\confirmation.viewModel.js" />
+    <Content Include="Areas\Common\Scripts\clientSidePagination.js" />
     <Content Include="Areas\Common\Scripts\pagination.js" />
     <Content Include="Areas\Company\Scripts\company.model.js" />
     <Content Include="Areas\Company\Scripts\company.view.js" />
@@ -481,6 +482,10 @@
     <Content Include="Areas\OrganizationGroup\Scripts\organizationGroup.dataservice.js" />
     <Content Include="Areas\OrganizationGroup\Scripts\organizationGroup.viewModel.js" />
     <Content Include="Areas\OrganizationGroup\Scripts\organizationGroup.model.js" />
+    <Content Include="Areas\Pricing\Scripts\serviceRate.dataservice.js" />
+    <Content Include="Areas\Pricing\Scripts\serviceRate.model.js" />
+    <Content Include="Areas\Pricing\Scripts\serviceRate.view.js" />
+    <Content Include="Areas\Pricing\Scripts\serviceRate.viewModel.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.dataservice.js" />
     <Content Include="Areas\Pricing\Scripts\insuranceRate.model.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.model.js" />
