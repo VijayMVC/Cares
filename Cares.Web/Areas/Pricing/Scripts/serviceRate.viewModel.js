@@ -71,7 +71,7 @@ define("serviceRate/serviceRate.viewModel",
                         ko.applyBindings(view.viewModel, view.bindingRoot);
                         getBase();
                         // Set Pager
-                        pager(new pagination.Pagination({}, serviceRtMains, getServiceRates));
+                       pager(new pagination.Pagination({}, serviceRtMains, getServiceRates));
                         //Set Client Side Pager
                         clientPager(new clientPagination.Pagination({}, serviceRtItems, null));
                         getServiceRates();
@@ -123,15 +123,15 @@ define("serviceRate/serviceRate.viewModel",
                         isLoadingServiceRt(true);
                         dataservice.getServiceRateDetail(serviceRt.convertToServerData(), {
                             success: function (data) {
-                                //insuranceTypeRts.removeAll();
-                                //_.each(data.InsuranceRateDetails, function (item) {
-                                //    var insuranceTypeRt = new model.InsuranceTypeRtClientMapper(item);
-                                //    insuranceTypeRts.push(insuranceTypeRt);
-                                //});
-                                //isLoadingInsuranceRt(false);
+                                serviceRtItems.removeAll();
+                                _.each(data.ServiceRateDetails, function (item) {
+                                    var serviceRtItem = new model.ServiceItemRtClientMapper(item);
+                                    serviceRtItems.push(serviceRtItem);
+                                });
+                                isLoadingServiceRt(false);
                             },
                             error: function () {
-                                //isLoadingInsuranceRt(false);
+                                isLoadingServiceRt(false);
                                 toastr.error("Failed to load Service Item Rates!");
                             }
                         });
@@ -162,10 +162,10 @@ define("serviceRate/serviceRate.viewModel",
                      // Save Service Rate
                     onSaveServiceRate = function (serviceRt) {
                         if (doBeforeSave()) {
-                            //serviceRt.insuranceRts.removeAll();
+                            serviceRt.serviceItemRts.removeAll();
                             _.each(serviceRtItems(), function (item) {
                                 if (item.isChecked() === true && doBeforeSaveForServiceRtItem(item)) {
-                                    //insuranceRt.insuranceRts.push(item);
+                                    serviceRt.serviceItemRts.push(item);
                                 }
                             });
                             if (serviceRtDetailIsValid()) {
@@ -245,7 +245,7 @@ define("serviceRate/serviceRate.viewModel",
                         confirmation.show();
                     },
                      // Delete Service Rate
-                    deleteIServiceRate = function (serviceRt) {
+                    deleteServiceRate = function (serviceRt) {
                         dataservice.deleteServiceRate(serviceRt.convertToServerData(), {
                             success: function () {
                                 serviceRtMains.remove(serviceRt);

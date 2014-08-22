@@ -1,7 +1,87 @@
-﻿
-@{
-    ViewBag.Title = "ServiceRate";
+﻿@{
+    ViewBag.Title = "Service Rate";
 }
 
-<h2>ServiceRate</h2>
+<div class="row" id="serviceRateBinding">
+    <div class="row " data-bind="visible: !isServiceRtEditorVisible()">
+        <h3 class="page-header float-left pageHeaderSection">Service Rate</h3>
+        <div class="header-toolsSection">
+            <a href="#" class="label label-default create-new-icon" data-bind="click: createServiceRate" title=" create new Service Rate">NEW</a>
+            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title="Show Filters" style="display: none"></a>
+        </div>
+    </div>
+    <div class="row searchFilterSection" data-bind="visible: !isServiceRtEditorVisible() && filterSectionVisilble()" style="display: none">
+        <div class=" well">
+            <form class="form-horizontal" data-bind="submit: search">
+                <div class="col-xs-3">
+                    <input type="text" class="form-control" placeholder="<Search>" data-bind="value: searchFilter" />
+                </div>
+                <div class="col-xs-3">
+                    <select class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '<Operation>', value: operationFilter"></select>
+                </div>
+                <div class="col-xs-3">
+                    <select class="form-control" data-bind="options: $root.tariffTypes, optionsText: 'TariffTypeCodeName', optionsValue: 'TariffTypeId', optionsCaption: '<Tariff Types>', value: tariffTypeFilter"></select>
+                </div>
+                <button type="submit" class="btn btn-success" data-bind="click: search">Search</button>
+                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection" title="Hide Section"></a>
+            </form>
+        </div>
+    </div>
+    <div class="row searchFilterResultSection" data-bind="visible: !isServiceRtEditorVisible()">
+        <div class="well">
+            <table id="serviceRateTable" class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th> <span id="1">Service Rate<br />Code<span class="icon-up"></span></span></th>
+                        <th> <span id="2">Service Rate<br />Name<span></span></span></th>
+                        <th> <span>Operation<span></span></span></th>
+                        <th> <span>Tariff Type<span></span></span></th>
+                        <th> <span id="5">Start Effective Date<span></span></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- ko template: { name: 'itemServiceRtMainTemplate' , foreach: serviceRtMains } -->
+                    <!-- /ko -->
+                </tbody>
+            </table>
+            <!-- ko with: pager -->
+            @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
+            <!-- /ko -->
+        </div>
+    </div>
+    <script id="editActionServiceRtMainTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onEditServiceRate" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
+    </script>
+    <script id="deleteActionServiceRtMainTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onDeleteServiceRate" title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
+    </script>
+    <script id="itemServiceRtMainTemplate" type="text/html">
+        <tr>
+            <td data-bind="text: serviceRtMainCode"></td>
+            <td data-bind="text: serviceRtMainName"></td>
+            <td data-bind="text: operationCodeName"></td>
+            <td data-bind="text: tariffTypeCodeName"></td>
+            <td data-bind="text: formattedStartDate"></td>
+            <td>
+                <!-- ko template: { name: 'editActionServiceRtMainTemplate' } -->
+                <!-- /ko -->
+            </td>
+            <td>
+                <!-- ko template: { name: 'deleteActionServiceRtMainTemplate' } -->
+                <!-- /ko -->
+            </td>
+        </tr>
+    </script>
+    @Html.Partial("_ServiceRateEditor")
 
+</div>
+<!-- ko stopBinding: true -->
+@Html.Partial("~/Areas/Common/Views/Shared/_ConfirmationDialog.cshtml")
+<!-- /ko -->
+@section inlinescripts
+{
+    <script type="text/javascript">
+        require(["serviceRate/serviceRate.view", "common/confirmation.view"]);
+
+    </script>
+}

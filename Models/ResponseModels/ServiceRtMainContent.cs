@@ -3,26 +3,26 @@
 namespace Cares.Models.ResponseModels
 {
     /// <summary>
-    ///Insurance Rate Main Domain Rsponse Content
+    /// Service Rate Main Domain Content
     /// </summary>
-    public sealed class InsuranceRtMainContent
+    public sealed class ServiceRtMainContent
     {
         /// <summary>
-        /// Insurance Rate Main ID
+        /// Service Rate Main ID
         /// </summary>
-        public long InsuranceRtMainId { get; set; }
+        public long ServiceRtMainId { get; set; }
         /// <summary>
-        /// Standard Rate Main Code
+        /// Service Rate Main Code
         /// </summary>
-        public string InsuranceRtMainCode { get; set; }
+        public string ServiceRtMainCode { get; set; }
         /// <summary>
-        ///Insurance Rate Main Name
+        ///Service Rate Main Name
         /// </summary>
-        public string InsuranceRtName { get; set; }
+        public string ServiceRtMainName { get; set; }
         /// <summary>
-        /// Insurance Rate Main Description
+        /// Service Rate Main Description
         /// </summary>
-        public string InsuranceRtMainDescription { get; set; }
+        public string ServiceRtMainDescription { get; set; }
 
         /// <summary>
         /// Tariff Type Code

@@ -12,7 +12,7 @@ namespace Cares.Web.ModelMappers
     {
         #region Insurance Rate Base Response Mapper
         /// <summary>
-        ///  Tariff Type Base Response Mapper
+        ///  Insurance Rate Base Response Mapper
         /// </summary>
         public static ApiModel.InsuranceRateBaseResponse CreateFromBaseResponse(this DomainResponseModel.InsuranceRateBaseResponse source)
         {

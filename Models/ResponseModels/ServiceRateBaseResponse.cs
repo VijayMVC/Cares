@@ -4,16 +4,15 @@ using Cares.Models.DomainModels;
 namespace Cares.Models.ResponseModels
 {
     /// <summary>
-    /// Insurance Rate Base Domain Response
+    /// Service Rate Base Domain Response
     /// </summary>
-
-    public sealed class InsuranceRateBaseResponse
+    public sealed class ServiceRateBaseResponse
     {
-        #region Constructors
+          #region Constructors
         /// <summary>
         /// Constructor
         /// </summary>
-        public InsuranceRateBaseResponse()
+        public ServiceRateBaseResponse()
         {
             Operations = new List<Operation>();
             TariffTypes = new List<TariffType>();
@@ -31,6 +30,5 @@ namespace Cares.Models.ResponseModels
         public IEnumerable<TariffType> TariffTypes { get; set; }
 
         #endregion
-    
     }
 }

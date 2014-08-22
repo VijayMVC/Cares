@@ -1,0 +1,104 @@
+﻿
+<div class="well col-md-12" id="serviceRateEditor" data-bind="visible: isServiceRtEditorVisible" style="display: none;">
+    <div data-bind="with: selectedServiceRtMain">
+        <div class="detailsContainer">
+            <h3 class="page-header detailsHeaderSection">Service Rate Detail</h3>
+            <button class="btn btn-info" id="saveBtn" data-bind="click:$root.onSaveServiceRate,enable: hasChanges, css: { 'btn-warning': hasChanges }">Save</button>
+            <button class="btn btn-default" id="saveBtn" data-bind="click: $root.closeServiceRateEditor">Cancel</button>
+        </div>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="code" class="control-label h5 col-sm-2">Service Rate Code *</label>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="<Insurance Rate Code>" id="code" data-bind="value: serviceRtMainCode, validationTooltip: serviceRtMainCode, disable :(serviceRtMainId()!=undefined)" />
+                </div>
+                <label for="name" class="control-label h5 col-sm-2">Service Rate Name</label>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="<Insurance Rate Name>" id="name" data-bind="value: serviceRtMainName, validationTooltip: serviceRtMainName, disable :(serviceRtMainId()!=undefined)" />
+                </div>
+                <label for="description" class="control-label h5 col-sm-2">Description</label>
+                <div class="col-md-2">
+                    <textarea class="form-control" rows="2" placeholder="<Description>" id="description" data-bind="value: description, valueUpdate: 'keyup', disable :(serviceRtMainId()!=undefined)"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="operation" class="control-label h5 col-sm-2">Operation *</label>
+                <div class="col-md-2">
+                    <select id="operation" class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '<Operation>' , value: operationId, validationTooltip: operationId, disable :(serviceRtMainId()!=undefined)"></select>
+                </div>
+                <label for="tariffType" class="control-label h5 col-sm-2">Tariff Type *</label>
+                <div class="col-xs-2">
+                    <select id="tariffType" class="form-control" data-bind="options: $root.tariffTypes, optionsText: 'TariffTypeCodeName', optionsValue: 'TariffTypeId', optionsCaption: '<Tariff Types>', value: tariffTypeId, disable :(serviceRtMainId()!=undefined)"></select>
+                </div>
+                <label for="sDate" class="control-label h5 col-sm-2">Effective From *</label>
+                <div class="col-md-2">
+                    <input type="text" placeholder="<Effective From>" class="form-control" id="sDate" data-bind="datepicker: startDt, validationTooltip: startDt" />
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="panel panel-info searchFilterResultSection">
+        <div class="panel-heading">Service Item Rate</div>
+        <table id="serviceItemRate" class="table table-condensed">
+            <thead>
+                <tr>
+                    <th> <span></span></th>
+                    <th> <span>Service Item<br />Code<span></span></span></th>
+                    <th> <span>Service Item<br />Name<span></span></span></th>
+                    <th> <span>Service Type<span></span></span></th>
+                    <th> <span>Service Rate<span></span></span></th>
+                    <th> <span>Start<br />Date<span></span></span></th>
+                    <th> <span>Revision<br />Number<span></span></span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- ko template: { name: templateToUse , foreach: clientPagerRecords } -->
+                <!-- /ko -->
+            </tbody>
+        </table>
+        <div class="well">
+
+            <!-- ko with: clientPager -->
+            @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
+            <!-- /ko -->
+        </div>
+        <script id="editServiceRtItemTemplate" type="text/html">
+            <tr data-bind="css: { selectedRow: $data === $root.selectedServiceRtItem() }">
+                <td class="col-md-2">
+                    <input type="checkbox" data-bind="checked: isChecked, disable :isChecked() && (virtualServiceRtId()!=0) " />
+                </td>
+                <td class="col-md-2">
+                    <span data-bind="text: serviceItemCode"></span>
+                </td>
+                <td class="col-md-2">
+                    <span data-bind="text: serviceItemName"></span>
+                </td>
+                <td class="col-md-2">
+                    <span data-bind="text: serviceTypeCodeName"></span>
+                </td>
+                <td class="col-md-2">
+                    <input type="text" data-bind="value: serviceRate, validationTooltip: serviceRate" />
+                </td>
+                <td class="col-md-2">
+                    <input type="text" data-bind="datepicker: startDt, validationTooltip: startDt" />
+                </td>
+                <td class="col-md-2">
+                    <span data-bind="text: revisionNumber"></span>
+                </td>
+            </tr>
+        </script>
+        <script id="itemServiceRtItemTemplate" type="text/html">
+            <tr data-bind="click: $root.selectServiceRtItem, css: { selectedRow: $data === $root.selectedServiceRtItem() }">
+                <td><input type="checkbox" data-bind="checked: isChecked, disable :isChecked() && (virtualServiceRtId()!=0)" /></td>
+                <td data-bind="text: serviceItemCode"></td>
+                <td data-bind="text: serviceItemName"></td>
+                <td data-bind="text: serviceTypeCodeName"></td>
+                <td data-bind="text: serviceRate"></td>
+                <td data-bind="dateString: startDt"></td>
+                <td data-bind="text: revisionNumber"></td>
+
+            </tr>
+        </script>
+    </div>
+</div>

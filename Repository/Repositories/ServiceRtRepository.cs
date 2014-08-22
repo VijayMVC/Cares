@@ -43,7 +43,15 @@ namespace Cares.Repository.Repositories
             return DbSet.Where(serviceRt => serviceRt.UserDomainKey == UserDomainKey).ToList();
         }
 
-
+        /// <summary>
+        /// Get Service Rate By Service Rate Main Id
+        /// </summary>
+        /// <param name="serviceRtMainId"></param>
+        /// <returns></returns>
+        public IEnumerable<ServiceRt> GetServiceRtByServiceRtMainId(long serviceRtMainId)
+        {
+            return DbSet.Where(serviceRt => serviceRt.UserDomainKey == UserDomainKey && serviceRt.ServiceRtMainId == serviceRtMainId).ToList();
+        }
 
         #endregion
     }

@@ -122,7 +122,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             //Model Year
             modelYear = ko.observable(),
             //Insurance Rate
-            insuranceRate = ko.observable().extend({ required: true }),
+            insuranceRate = ko.observable().extend({ required: true, number: true }),
             //Start Date
             startDate = ko.observable().extend({ required: true }),
             //Is checked

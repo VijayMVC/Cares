@@ -246,6 +246,9 @@
     <Compile Include="Areas\Api\Controllers\ProductBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessPartnerController.cs" />
     <Compile Include="Areas\Api\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Api\Controllers\ServiceRtBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\ServiceRtController.cs" />
+    <Compile Include="Areas\Api\Controllers\ServiceRtDetailController.cs" />
     <Compile Include="Areas\Api\Controllers\TariffRateBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\TariffRateController.cs" />
     <Compile Include="Areas\Api\Controllers\RentalAgreementBaseController.cs" />
@@ -284,6 +287,7 @@
     <Compile Include="Helper\CultureHelper.cs" />
     <Compile Include="ModelMappers\GetVehiclesRequestMapper.cs" />
     <Compile Include="ModelMappers\InsuranceRateMapper.cs" />
+    <Compile Include="ModelMappers\ServiceRtMapper.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\DepartmentBaseDataResponse.cs" />
     <Compile Include="Models\DepartmentSearchRequestResponse.cs" />
@@ -349,6 +353,11 @@
     <Compile Include="Models\OperationBaseDataResponse.cs" />
     <Compile Include="Models\OrgGroupDropDown.cs" />
     <Compile Include="Models\PaymentTerm.cs" />
+    <Compile Include="Models\ServiceRateBaseResponse.cs" />
+    <Compile Include="Models\ServiceRateSearchResponse.cs" />
+    <Compile Include="Models\ServiceRtDetailContent.cs" />
+    <Compile Include="Models\ServiceRtDetailResponse.cs" />
+    <Compile Include="Models\ServiceRtMainContent.cs" />
     <Compile Include="Models\TariffTypeDropDown.cs" />
     <Compile Include="Models\TransmissionType.cs" />
     <Compile Include="Models\HireGroupDetail.cs" />
@@ -1080,6 +1089,8 @@
     <Content Include="Areas\BusinessPartner\Views\Home\Index.cshtml" />
     <Content Include="Areas\BusinessPartner\Views\Home\_BusinessPartnerEditor.cshtml" />
     <Content Include="Areas\Pricing\Views\Tariff\_TariffTypeEditor.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\ServiceRate.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\_ServiceRateEditor.cshtml" />
     <Content Include="Content\MainSite.less" />
     <Content Include="Content\Fleet.less" />
     <Content Include="Content\Pricing.less" />

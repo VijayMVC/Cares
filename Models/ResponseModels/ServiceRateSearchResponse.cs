@@ -1,27 +1,28 @@
 ﻿using System.Collections.Generic;
 
-namespace Cares.Web.Models
+namespace Cares.Models.ResponseModels
 {
     /// <summary>
-    /// Insurance Rate Search Web Response
+    /// Search Rate Search Domain Response
     /// </summary>
-    public sealed class InsuranceRateSearchResponse
+    public sealed class ServiceRateSearchResponse
     {
+
         #region Constructors
         /// <summary>
         /// Constructor
         /// </summary>
-        public InsuranceRateSearchResponse()
+        public ServiceRateSearchResponse()
         {
-            InsuranceRtMains = new List<InsuranceRtMainContent>();
+            ServiceRtMains = new List<ServiceRtMainContent>();
         }
         #endregion
 
         #region Public
         /// <summary>
-        /// Insurance Rates
+        /// Service Rate Mains
         /// </summary>
-        public IEnumerable<InsuranceRtMainContent> InsuranceRtMains { get; set; }
+        public IEnumerable<ServiceRtMainContent> ServiceRtMains { get; set; }
 
         /// <summary>
         /// Total Count
