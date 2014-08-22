@@ -1,4 +1,7 @@
-﻿namespace Cares.Web.Models
+﻿using System;
+using Cares.Models.DomainModels;
+
+namespace Cares.Web.Models
 {
     /// <summary>
     /// Operation Web Model
@@ -14,6 +17,12 @@
         /// Operation Code
         /// </summary>
         public string OperationCode { get; set; }
+        public string OperationDescription { get; set; }
+        public long DepartmentId { get; set; }
+        public String DepartmentName { get; set; }
+        public String DepartmentType { get; set; }
+
+        public String CompanyName { get; set; }
 
         /// <summary>
         /// Operation Name

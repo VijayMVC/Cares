@@ -1,0 +1,46 @@
+﻿#OperationBinding table thead tr .ttypesearchButton {
+  margin-left: 5px;
+}
+#OperationBinding table thead tr .tariffTypeCode {
+  width: 10%;
+}
+#OperationBinding table thead tr .tariffTypeName {
+  width: 15%;
+}
+#OperationBinding table thead tr .pricingScheme {
+  width: 15%;
+}
+#OperationBinding table thead tr .operation {
+  width: 15%;
+}
+#OperationBinding table thead tr .measurementUnit {
+  width: 15%;
+}
+#OperationBinding table thead tr .from {
+  width: 7%;
+}
+#OperationBinding table thead tr .to {
+  width: 8%;
+}
+#OperationBinding table thead tr .gracePeriod {
+  width: 5%;
+}
+#OperationBinding table thead tr .effectiveDate {
+  width: 5%;
+}
+#OperationBinding table thead tr .revision {
+  width: 5%;
+}
+#OperationBinding #OperationEditor {
+  margin-top: 15px;
+}
+#OperationBinding #OperationEditor .detailsContainer {
+  width: 100%;
+}
+#OperationBinding #OperationEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+/*# sourceMappingURL=Operation.css.map */

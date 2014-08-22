@@ -1,10 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using Cares.Interfaces.Repository;
+using Cares.Models.Common;
 using Cares.Models.CommonTypes;
 using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
 using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
 
@@ -36,10 +40,24 @@ namespace Cares.Repository.Repositories
         }
 
         #endregion
-        #region Public
+        #region privte
         /// <summary>
-        /// Get All Organization Groups for User Domain Key
+        /// Company Orderby clause
         /// </summary>
+        private readonly Dictionary<OperationByColumn, Func<Operation, object>> operationOrderByClause = new Dictionary<OperationByColumn, Func<Operation, object>>
+                    {
+
+                        {OperationByColumn.OperationCode, c => c.OperationName},
+                        {OperationByColumn.OperationName, n => n.OperationName},
+                        {OperationByColumn.Description, d=> d.OperationDescription},
+                        {OperationByColumn.Department,d=> d.Department.DepartmentName},
+                        {OperationByColumn.Company, c => c.Department.Company.CompanyName},
+                        {OperationByColumn.DepartmentType, c => c.Department.DepartmentType},
+                    };
+        #endregion
+        #region Public
+
+        
         public override IEnumerable<Operation> GetAll()
         {
             return DbSet.Where(operation => operation.UserDomainKey == UserDomainKey ).ToList();
@@ -50,6 +68,41 @@ namespace Cares.Repository.Repositories
             return DbSet.Include(operation => operation.Department).Where(operation => operation.Department.DepartmentType == DepartmentTypes.Sales).ToList();
         }
 
+        public IEnumerable<Operation> SearchOperation(OperationSearchRequest request, out int rowCount)
+        {
+            int fromRow = (request.PageNo - 1) * request.PageSize;
+            int toRow = request.PageSize;
+            Expression<Func<Operation, bool>> query =
+                operation =>
+                    (string.IsNullOrEmpty(request.OperationCodeText) ||
+                     (operation.OperationCode.Contains(request.OperationCodeText))) && (
+                         (string.IsNullOrEmpty(request.OperationNameText) ||
+                          (operation.OperationName.Contains(request.OperationNameText)))) &&
+                    (string.IsNullOrEmpty(request.DepartmentTypeText) ||
+                     (operation.Department.DepartmentType.Contains(request.DepartmentTypeText))) &&
+                    (!request.DepartmentId.HasValue || request.DepartmentId == operation.DepartmentId) &&
+                    (!request.CompanyId.HasValue || request.CompanyId == operation.Department.CompanyId);
+
+
+            rowCount = DbSet.Count(query);
+
+            return request.IsAsc
+                ? DbSet.Where(query)
+                    .OrderBy(operationOrderByClause[request.OperationOrderBy])
+                    .Skip(fromRow)
+                    .Take(toRow)
+                    .ToList()
+                : DbSet.Where(query)
+                    .OrderByDescending(operationOrderByClause[request.OperationOrderBy])
+                    .Skip(fromRow)
+                    .Take(toRow)
+                    .ToList();
+        }
+        public Operation GetCompanyWithDetails(long id)
+        {
+            return DbSet.Include(opp => opp.Department)
+                .FirstOrDefault(opp => opp.OperationId == id);
+        }
         #endregion
     }
 }

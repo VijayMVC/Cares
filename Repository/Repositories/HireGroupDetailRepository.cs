@@ -19,7 +19,7 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Constructor
         /// </summary>
-        public ic(IUnityContainer container)
+        public HireGroupDetailRepository(IUnityContainer container)
             : base(container)
         {
 

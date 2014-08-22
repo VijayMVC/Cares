@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
+using Cares.Models.ResponseModels;
 
 namespace Cares.Interfaces.Repository
 {
@@ -15,5 +17,9 @@ namespace Cares.Interfaces.Repository
         /// </summary>
         /// <returns></returns>
         ICollection<Operation> GetSalesOperation();
+
+        Operation GetCompanyWithDetails(long id);
+        IEnumerable<Operation> SearchOperation(OperationSearchRequest request, out int rowCount);
+
     }
 }

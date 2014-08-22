@@ -93,7 +93,7 @@ namespace Cares.Repository.BaseRepository
         /// <summary>
         /// Eager load property
         /// </summary>
-        public void LoadProperty<T>(object entity, string propertyName, bool isCollection = false)
+        public void LoadProperty(object entity, string propertyName, bool isCollection = false)
         {
             if (!isCollection)
             {
@@ -110,7 +110,7 @@ namespace Cares.Repository.BaseRepository
         public void LoadProperty<T>(object entity, Expression<Func<T>> propertyExpression, bool isCollection = false)
         {
             string propertyName = PropertyReference.GetPropertyName(propertyExpression);
-            LoadProperty<T>(entity, propertyName, isCollection);
+            LoadProperty(entity, propertyName, isCollection);
         }
 
         #endregion
