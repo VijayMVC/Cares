@@ -93,7 +93,6 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public void LoadDependencies(TariffType tariffType)
         {
-            LoadProperty<TariffType>(tariffType, "Operation");
             LoadProperty(tariffType, () => tariffType.Operation);
             LoadProperty(tariffType, () => tariffType.MeasurementUnit);
             LoadProperty(tariffType, () => tariffType.PricingStrategy);

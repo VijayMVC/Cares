@@ -128,13 +128,7 @@ namespace Cares.Repository.BaseRepository
         {
             DbSet.AddOrUpdate(instance);
         }
-        /// <summary>
-        /// Eager Load Property
-        /// </summary>
-        public void LoadProperty<T>(object entity, string propertyName, bool isCollection = false)
-        {
-            db.LoadProperty<T>(entity, propertyName, isCollection);
-        }
+        
         /// <summary>
         /// Eager load property
         /// </summary>
