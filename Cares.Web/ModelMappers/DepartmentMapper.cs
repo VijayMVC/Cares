@@ -1,6 +1,10 @@
 ﻿
+using System.Linq;
+using Cares.Models.ResponseModels;
 using Cares.Web.Models;
+using DepartmentBaseDataResponse = Cares.Web.Models.DepartmentBaseDataResponse;
 using DomainModels = Cares.Models.DomainModels;
+using OperationSearchResponse = Cares.Models.ResponseModels.OperationSearchResponse;
 
 namespace Cares.Web.ModelMappers
 {
@@ -10,10 +14,8 @@ namespace Cares.Web.ModelMappers
     public static class DepartmentMapper
     {
         #region Public
-
-        /// <summary>
-        ///  Create web model from entity
-        /// </summary>
+        
+       
         public static DepartmentDropDown CreateFrom(this DomainModels.Department source)
         {
             return new DepartmentDropDown
@@ -23,7 +25,48 @@ namespace Cares.Web.ModelMappers
                 CompanyId=source.Company!=null?source.Company.CompanyId:0,
             };
         }
+        public static DepartmentBaseDataResponse CreateFrom(this Cares.Models.ResponseModels.DepartmentBaseDataResponse source)
+        {
+            return new DepartmentBaseDataResponse
+            {
+                Companies = source.Companies.Select(company => company.CreateFrom())      
+            };
+        }
 
+        public static Models.DepartmentSearchRequestResponse CreateFrom(this Cares.Models.ResponseModels.DepartmentSearchRequestResponse source)
+        {
+            return new Models.DepartmentSearchRequestResponse
+            {
+                Departments = source.Departments.Select(operation => operation.CreateFromm()),
+                TotalCount = source.TotalCount
+            };
+        }
+
+        public static Department CreateFromm(this DomainModels.Department source)
+        {
+            return new Department
+            {
+                DepartmentId = source.DepartmentId,
+                DepartmentCode = source.DepartmentCode,
+                DepartmentName = source.DepartmentName,
+                DepartmentDescription = source.DepartmentDescription,
+                DepartmentType = source.DepartmentType,
+                CompanyId = source.CompanyId,
+                CompanyName = source.Company.CompanyName
+            };
+        }
+        public static DomainModels.Department CreateFromm(this Department source)
+        {
+            return new DomainModels.Department
+            {
+                DepartmentId = source.DepartmentId,
+                DepartmentCode = source.DepartmentCode,
+                DepartmentName = source.DepartmentName,
+                DepartmentDescription = source.DepartmentDescription,
+                DepartmentType = source.DepartmentType,
+                CompanyId = source.CompanyId
+            };
+        } 
         #endregion
     }
 }

@@ -1,0 +1,35 @@
+﻿
+<div class="well col-md-12" id="OperationEditor" data-bind="visible: isOperationEditorVisible , with:selectedOperation" style="display: none;">
+    <div class="float-left detailsContainer">
+        <h3 class="page-header detailsHeaderSection">Department Details</h3>
+        <button class="btn  btn-info" data-bind="click:$root.onSaveOperation">Save</button>
+        <button class="btn  btn-default" data-bind="click:$root.onCancelSaveOperation">Cancel</button>
+    </div>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">Department Code</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="<Company Code>" id="tariffTypeCode" data-bind="value: code" />
+            </div>
+            <label class="control-label h5 col-sm-2">Department Name</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="<Company Name>" id="tariffTypeName" data-bind="value:name" />
+            </div>
+            <label class="control-label h5 col-sm-2">Description</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="<Description>" id="tariffTypeDescription" data-bind="value:description" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">Department Type</label>
+            <div class="col-md-2">
+                <select class="form-control" data-bind="options: $root.baseDepartmentTypesList, optionsCaption: '<DepartmentType>', value:departmentType "></select>            </div>
+       
+            <label class="control-label h5 col-sm-2">Company</label>
+            <div class="col-md-2">
+                <select class="form-control" data-bind="options: $root.baseCompniesList, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '<Company>' , value:companyId"></select>
+            </div>
+        </div>
+    </form>
+
+</div>

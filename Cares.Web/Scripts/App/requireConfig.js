@@ -18,7 +18,10 @@
             "serviceRate": "/Areas/Pricing/Scripts",
             "rentalAgreement": "/Areas/RentalAgreement/Scripts",
             "OrganizationGroup": "/Areas/OrganizationGroup/Scripts",
-            "company": "/Areas/Company/Scripts"
+            "company": "/Areas/Company/Scripts",
+            "operation": "/Areas/Operation/Scripts",
+            "department": "/Areas/Department/Scripts"
+
         }
 
     });

@@ -1,0 +1,98 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<div class="row" id="OperationBinding">
+    <div class="row " data-bind="visible: !isOperationEditorVisible()">
+        <h3 class="page-header float-left pageHeaderSection">Operation</h3>
+        <div class="header-toolsSection">
+            <a href="#" class="label label-default create-new-icon" data-bind="click: onCreateOperationForm" title="Create New Org Group">NEW</a>
+            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title="Show Filters" style="display: none"></a>
+        </div>
+    </div>
+    <!--"-->
+    <div class="row searchFilterSection" style="display: none" data-bind="visible: !isOperationEditorVisible() && filterSectionVisilble()">
+        <div class=" well">
+            <form class="form-horizontal">
+                <div class="col-xs-2">
+                    <input type="text" class="form-control" placeholder="<Opp. Code>" data-bind="value:opperationCodeTextFilter" />
+                </div>
+                <div class="col-xs-2">
+                    <input type="text" class="form-control" placeholder="<Opp. Name>" data-bind="value:opperationNameTextFilter" />
+                </div>
+                <div class="col-xs-2">
+                    <select class="form-control" data-bind="options: $root.baseDepartmentsList, optionsText: 'DepartmentCodeName', optionsValue: 'DepartmentId', optionsCaption: '<Department>', value:departmentFilter"></select>
+                </div>
+
+                <div class="col-xs-2">
+                    <select class="form-control" data-bind="options: $root.baseCompniesList, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '<Company>' , value:companyFilter"></select>
+                </div>
+                <div class="col-xs-2">
+                    <select class="form-control" data-bind="options: $root.baseDepartmentTypesList, optionsCaption: '<DepartmentType>', value:departmentTypeFilter"></select>
+                </div>
+
+                <button type="submit" class="btn btn-success" data-bind="click: onSearch">Search</button>
+                <button type="submit" class="btn btn-default" data-bind="click:onResetResuults">Reset</button>
+                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click:hideFilterSection" title="Hide Section"></a>
+            </form>
+        </div>
+    </div>
+
+    <div class="row searchFilterResultSection" data-bind="visible: !isOperationEditorVisible()">
+        <div class="well">
+            <table id="OperationsTable" class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th> <span id="1">Code<span class="icon-up"></span></span></th>
+                        <th> <span id="2">Name<span></span></span></th>
+                        <th> <span id="4">Company<span></span></span></th>
+                        <th> <span id="6">Department<span></span></span></th>
+                        <th> <span id="5">Department Type<span></span></span></th>
+                        <th> <span></span></th>
+                        <th> <span></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- ko template: { name: 'OperationsFilterResultTemplate' , foreach: operations } -->
+                    <!-- /ko -->
+                </tbody>
+            </table>
+            <!-- ko with: pager -->
+            @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
+            <!-- /ko -->
+        </div>
+    </div>
+    <script id="deleteActionOperationTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onDeleteOperation" title="Delete Fleet Pool"><span class="glyphicon glyphicon-remove"></span></a>
+    </script>
+
+    <script id="editActionOperationTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onEditOperation" title="Edit in Form"><span class="glyphicon glyphicon-edit"></span></a>
+    </script>
+    <script id="OperationsFilterResultTemplate" type="text/html">
+        <tr>
+            <td data-bind="text: code"></td>
+            <td data-bind="text: name"></td>
+            <td data-bind="text: companyName"></td>
+            <td data-bind="text: departmentName"></td>
+            <td data-bind="text: departmentType"></td>
+            <td>
+                <!-- ko template: { name: 'editActionOperationTemplate' } -->
+                <!-- /ko -->
+            </td>
+            <td>
+                <!-- ko template: { name: 'deleteActionOperationTemplate' } -->
+                <!-- /ko -->
+            </td>
+        </tr>
+    </script>
+    @Html.Partial("_OperationEditor")
+</div>
+<!-- ko stopBinding: true -->
+@Html.Partial("~/Areas/Common/Views/Shared/_ConfirmationDialog.cshtml")
+<!-- /ko -->
+@section inlinescripts
+{
+    <script type="text/javascript">
+        require(["operation/operation.view", "common/confirmation.view"]);
+    </script>
+}

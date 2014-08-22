@@ -21,7 +21,7 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// To sort the FleetPool Data
         /// </summary>
-        private readonly Dictionary<FleetPoolByColumn, Func<FleetPool, object>> _fleetPoolOrderByClause = new Dictionary<FleetPoolByColumn, Func<FleetPool, object>>
+        private readonly Dictionary<FleetPoolByColumn, Func<FleetPool, object>> fleetPoolOrderByClause = new Dictionary<FleetPoolByColumn, Func<FleetPool, object>>
                     {
                         { FleetPoolByColumn.FleetPoolCode, c => c.FleetPoolCode },
                         { FleetPoolByColumn.FleetPoolName, c => c.FleetPoolName },
@@ -47,8 +47,8 @@ namespace Cares.Repository.Repositories
 
             rowCount = DbSet.Count(query);
 
-            return request.IsAsc ? DbSet.Where(query).OrderBy(_fleetPoolOrderByClause[request.FleetPoolOrderBy]).Skip(fromRow).Take(toRow).ToList() :
-                                   DbSet.Where(query).OrderByDescending(_fleetPoolOrderByClause[request.FleetPoolOrderBy]).Skip(fromRow).Take(toRow).ToList();
+            return request.IsAsc ? DbSet.Where(query).OrderBy(fleetPoolOrderByClause[request.FleetPoolOrderBy]).Skip(fromRow).Take(toRow).ToList() :
+                                   DbSet.Where(query).OrderByDescending(fleetPoolOrderByClause[request.FleetPoolOrderBy]).Skip(fromRow).Take(toRow).ToList();
         }
         /// <summary>
         /// Find fleet pool with reference data
