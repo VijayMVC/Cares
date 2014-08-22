@@ -9,41 +9,43 @@ using Cares.Web.Models;
 namespace Cares.Web.Areas.Api.Controllers
 {
     /// <summary>
-    /// Insurance Rate Detail Api Controller
+    /// Service Rate Detail Api Controller
     /// </summary>
-    public class InsuranceRtDetailController : ApiController
+    public class ServiceRtDetailController : ApiController
     {
         #region Private
-        private readonly IInsuranceRateService insuranceRateService;
+
+        private readonly IServiceRtService serviceRtService;
+
         #endregion
 
         #region Constructors
         /// <summary>
         /// Constructor
         /// </summary>
-        public InsuranceRtDetailController(IInsuranceRateService insuranceRateService)
+        public ServiceRtDetailController(IServiceRtService serviceRtService)
         {
-            if (insuranceRateService == null && !ModelState.IsValid)
+            if (serviceRtService == null && !ModelState.IsValid)
             {
-                throw new ArgumentNullException("insuranceRateService");
+                throw new ArgumentNullException("serviceRtService");
             }
 
-            this.insuranceRateService = insuranceRateService;
+            this.serviceRtService = serviceRtService;
         }
         #endregion
 
         #region Public
         /// <summary>
-        /// Insurance Rate for Insurance Rate Main
+        /// Service Rate Detail
         /// </summary>
         /// <returns></returns>
-        public InsuranceRtDetailResponse Get([FromUri]InsuranceRtMainContent insuranceRtMainContent)
+        public ServiceRtDetailResponse Get([FromUri]ServiceRtDetailContent serviceRtDetailContent)
         {
             if (!ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return insuranceRateService.GetInsuranceRtDetail(insuranceRtMainContent.InsuranceRtMainId).CreateFrom();
+            return serviceRtService.GetServiceRtDetail(serviceRtDetailContent.ServiceRtMainId).CreateFrom();
         }
 
         #endregion

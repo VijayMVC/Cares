@@ -207,10 +207,10 @@ define("insuranceRate/insuranceRate.viewModel",
                                 if (selectedInsuranceRtMain().insuranceRtMainId() > 0) {
                                     selectedInsuranceRtMainCopy(undefined);
                                     selectedInsuranceRtMain().startDt(insuranceRtResult.startDt()),
-                                    closeInsuranceRateEditor();
+                                    closeServiceRateEditor();
                                 } else {
                                     insuranceRtMains.splice(0, 0, insuranceRtResult);
-                                    closeInsuranceRateEditor();
+                                    closeServiceRateEditor();
                                 }
                                 toastr.success("Insurance Rate saved successfully");
                             },

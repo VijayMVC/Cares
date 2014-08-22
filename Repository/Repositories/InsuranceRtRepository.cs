@@ -42,7 +42,11 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(insuranceRt => insuranceRt.UserDomainKey == UserDomainKey).ToList();
         }
-
+        /// <summary>
+        /// Get Insurance Rate By Insurance Rate MainI d
+        /// </summary>
+        /// <param name="insuranceRtMainId"></param>
+        /// <returns></returns>
         public IEnumerable<InsuranceRt> GetInsuranceRtByInsuranceRtMainId(long insuranceRtMainId)
         {
             return DbSet.Where(insuranceRt => insuranceRt.UserDomainKey == UserDomainKey && insuranceRt.InsuranceRtMainId == insuranceRtMainId).ToList();

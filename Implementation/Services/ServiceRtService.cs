@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Cares.ExceptionHandling;
+﻿using System.Collections.Generic;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -13,30 +10,27 @@ namespace Cares.Implementation.Services
     /// <summary>
     /// Service Rate Service
     /// </summary>
-    public class ServiceRtService:IServiceRtService
+    public class ServiceRtService : IServiceRtService
     {
-         #region Private
+        #region Private
         private readonly IOperationRepository operationRepository;
         private readonly ITariffTypeRepository tariffTypeRepository;
         private readonly IServiceRtMainRepository serviceRtMainRepository;
-        private readonly IHireGroupDetailRepository hireGroupDetailRepository;
-        private readonly IServiceRtService serviceRtService;
-        private readonly IServiceTypeRepository serviceTypeRepository;
+        private readonly IServiceRtRepository serviceRtRepository;
+        private readonly IServiceItemRepository serviceItemRepository;
 
         #endregion
 
         #region Constructors
 
         public ServiceRtService(IOperationRepository operationRepository, ITariffTypeRepository tariffTypeRepository,
-            IServiceRtMainRepository serviceRtMainRepository, IHireGroupDetailRepository hireGroupDetailRepository,
-            IServiceRtService serviceRtService, IServiceTypeRepository serviceTypeRepository)
+            IServiceRtMainRepository serviceRtMainRepository, IServiceItemRepository serviceItemRepository, IServiceRtRepository serviceRtRepository)
         {
             this.operationRepository = operationRepository;
             this.tariffTypeRepository = tariffTypeRepository;
             this.serviceRtMainRepository = serviceRtMainRepository;
-            this.hireGroupDetailRepository = hireGroupDetailRepository;
-            this.serviceRtService = serviceRtService;
-            this.serviceTypeRepository = serviceTypeRepository;
+            this.serviceItemRepository = serviceItemRepository;
+            this.serviceRtRepository = serviceRtRepository;
         }
 
         #endregion
@@ -47,74 +41,69 @@ namespace Cares.Implementation.Services
         /// Get Tariff Rate Base Data
         /// </summary>
         /// <returns></returns>
-        public InsuranceRateBaseResponse GetBaseData()
+        public ServiceRateBaseResponse GetBaseData()
         {
-            return new InsuranceRateBaseResponse
+            return new ServiceRateBaseResponse
                    {
                        Operations = operationRepository.GetSalesOperation(),
                        TariffTypes = tariffTypeRepository.GetAll(),
                    };
         }
 
-        //public InsuranceRateSearchResponse LoadInsuranceRates(InsuranceRateSearchRequest request)
-        //{
-        //    return insuranceRtMainRepository.GetInsuranceRates(request);
-        //}
-        ///// <summary>
-        /////Get Hire Group Detail List
-        ///// </summary>
-        ///// <returns>Hire Group Detail Response</returns>
-        //public InsuranceRtDetailResponse GetInsuranceRtDetail(long insuranceRtMainId)
-        //{
-        //    IEnumerable<HireGroupDetail> hireGroupDetails = hireGroupDetailRepository.GetAll();
-        //    IEnumerable<InsuranceType> insuranceTypes = insuranceTypeRepository.GetAll();
-        //    IEnumerable<InsuranceRt> insuranceRts =
-        //        insuranceRtRepository.GetInsuranceRtByInsuranceRtMainId(insuranceRtMainId);
-        //    // ReSharper disable once SuggestUseVarKeywordEvident
-        //    List<InsuranceRtDetailContent> insuranceRtDetailList = new List<InsuranceRtDetailContent>();
-        //    foreach (var insuranceType in insuranceTypes)
-        //    {
-        //        foreach (var hireGroupDetail in hireGroupDetails)
-        //        {
-        //            var insuranceRtDetailContent = new InsuranceRtDetailContent();
-        //            insuranceRtDetailContent.InsuranceTypeId = insuranceType.InsuranceTypeId;
-        //            insuranceRtDetailContent.InsuranceTypeCodeName = insuranceType.InsuranceTypeCode + " - " +
-        //                                                             insuranceType.InsuranceTypeName;
-        //            insuranceRtDetailContent.HireGroupDetailId = hireGroupDetail.HireGroupDetailId;
-        //            insuranceRtDetailContent.ModelYear = hireGroupDetail.ModelYear;
-        //            insuranceRtDetailContent.HireGroupDetailCodeName = hireGroupDetail.HireGroup.HireGroupCode + " - " + hireGroupDetail.HireGroup.HireGroupName;
-        //            insuranceRtDetailContent.VehicleCategoryCodeName = hireGroupDetail.VehicleCategory.VehicleCategoryCode + " - " + hireGroupDetail.VehicleCategory.VehicleCategoryName;
-        //            insuranceRtDetailContent.VehicleMakeCodeName = hireGroupDetail.VehicleMake.VehicleMakeCode + " - " + hireGroupDetail.VehicleMake.VehicleMakeName;
-        //            insuranceRtDetailContent.VehicleModelCodeName = hireGroupDetail.VehicleModel.VehicleModelCode + " - " + hireGroupDetail.VehicleModel.VehicleModelName;
-        //            insuranceRtDetailList.Add(insuranceRtDetailContent);
+        /// <summary>
+        /// Load Service Rate Mains
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public ServiceRateSearchResponse LoadServiceRates(ServiceRateSearchRequest request)
+        {
+            return serviceRtMainRepository.GetServiceRates(request);
+        }
 
-        //        }
+        /// <summary>
+        ///Get Service Rate Detail 
+        /// </summary>
+        /// <returns>Hire Group Detail Response</returns>
+        public ServiceRtDetailResponse GetServiceRtDetail(long serviceRtMainId)
+        {
+            IEnumerable<ServiceItem> serviceItems = serviceItemRepository.GetAll();
+            IEnumerable<ServiceRt> serviceRts =
+              serviceRtRepository.GetServiceRtByServiceRtMainId(serviceRtMainId);
+            // ReSharper disable once SuggestUseVarKeywordEvident
+            List<ServiceRtDetailContent> serviceRtDetailList = new List<ServiceRtDetailContent>();
 
-        //    }
-        //    foreach (var insuranceRt in insuranceRts)
-        //    {
-        //        foreach (var insuranceRtDetailContent in insuranceRtDetailList)
-        //        {
-        //            if (insuranceRtDetailContent.InsuranceTypeId == insuranceRt.InsuranceTypeId &&
-        //                insuranceRtDetailContent.HireGroupDetailId == insuranceRt.HireGroupDetailId)
-        //            {
-        //                insuranceRtDetailContent.InsuranceRtId = insuranceRt.InsuranceRtId;
-        //                insuranceRtDetailContent.InsuranceRtMainId = insuranceRt.InsuranceRtMainId;
-        //                insuranceRtDetailContent.InsuranceRate = insuranceRt.InsuranceRate;
-        //                insuranceRtDetailContent.StartDate = insuranceRt.StartDt;
-        //                insuranceRtDetailContent.IsChecked = true;
-        //                insuranceRtDetailContent.RevisionNumber = insuranceRt.RevisionNumber;
+            foreach (var serviceItem in serviceItems)
+            {
+                ServiceRtDetailContent serviceRtDetail = new ServiceRtDetailContent
+                                                         {
+                                                             ServiceItemId = serviceItem.ServiceItemId,
+                                                             ServiceItemCode = serviceItem.ServiceItemCode,
+                                                             ServiceItemName = serviceItem.ServiceItemName,
+                                                             ServiceTypeCodeName = serviceItem.ServiceType.ServiceTypeCode +" - "+serviceItem.ServiceType.ServiceTypeName
+                                                         };
+                serviceRtDetailList.Add(serviceRtDetail);
+            }
+            foreach (var serviceRtDetailContent in serviceRtDetailList)
+            {
+                foreach (var serviceRt in serviceRts)
+                {
+                    if (serviceRt.ServiceItemId == serviceRtDetailContent.ServiceItemId &&
+                        serviceRt.ServiceRtMainId == serviceRtMainId)
+                    {
+                        serviceRtDetailContent.ServiceRtId = serviceRt.ServiceRtId;
+                        serviceRtDetailContent.ServiceRate = serviceRt.ServiceRate;
+                        serviceRtDetailContent.StartDt = serviceRt.StartDt;
+                        serviceRtDetailContent.RevisionNumber = serviceRt.RevisionNumber;
+                        serviceRtDetailContent.IsChecked = true;
+                    }
+                }
+            }
+            return new ServiceRtDetailResponse
+            {
+                ServiceRateDetails = serviceRtDetailList,
 
-        //            }
-        //        }
-
-        //    }
-        //    return new InsuranceRtDetailResponse
-        //    {
-        //        InsuranceRateDetails = insuranceRtDetailList,
-
-        //    };
-        //}
+            };
+        }
         ///// <summary>
         ///// Add Insurance Rate
         ///// </summary>
@@ -241,20 +230,25 @@ namespace Cares.Implementation.Services
         //    };
         //}
 
-        ///// <summary>
-        ///// Delete Insurance Rate
-        ///// </summary>
-        ///// <param name="insuranceRtMain"></param>
-        //public void DeleteInsuranceRate(InsuranceRtMain insuranceRtMain)
-        //{
-        //    insuranceRtMainRepository.Delete(insuranceRtMain);
-        //    insuranceRtMainRepository.SaveChanges();
-        //}
+        /// <summary>
+        /// Delete Service Rate
+        /// </summary>
+        /// <param name="serviceRtMain"></param>
+        public void DeleteServiceRate(ServiceRtMain serviceRtMain)
+        {
+            serviceRtMainRepository.Delete(serviceRtMain);
+            serviceRtMainRepository.SaveChanges();
+        }
 
-        //public InsuranceRtMain FindById(long insuranceRtMainId)
-        //{
-        //    return insuranceRtMainRepository.Find(insuranceRtMainId);
-        //}
+        /// <summary>
+        /// Get Service Rate By ID
+        /// </summary>
+        /// <param name="serviceRtMainId"></param>
+        /// <returns></returns>
+        public ServiceRtMain FindById(long serviceRtMainId)
+        {
+            return serviceRtMainRepository.Find(serviceRtMainId);
+        }
 
         //private void ValidateInsuranceRate(InsuranceRtMain insuranceRtMain, bool addFlag)
         //{

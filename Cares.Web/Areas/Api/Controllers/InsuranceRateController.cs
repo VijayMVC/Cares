@@ -17,6 +17,7 @@ namespace Cares.Web.Areas.Api.Controllers
         #region Private
         private readonly IInsuranceRateService insuranceRateService;
         #endregion
+        
         #region Constructors
         /// <summary>
         /// Constructor
@@ -33,7 +34,9 @@ namespace Cares.Web.Areas.Api.Controllers
 
         }
         #endregion
+        
         #region Public
+        
         // GET api/<controller>
         public InsuranceRateSearchResponse Get([FromUri] DomainRequestModels.InsuranceRateSearchRequest request)
         {
