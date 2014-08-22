@@ -18,6 +18,7 @@ namespace Cares.Repository.Repositories
     /// </summary>
     public sealed class FleetPoolRepository : BaseRepository<FleetPool>, IFleetPoolRepository
     {
+        #region Private
         /// <summary>
         /// To sort the FleetPool Data
         /// </summary>
@@ -28,9 +29,8 @@ namespace Cares.Repository.Repositories
                         { FleetPoolByColumn.Operation, c=> c.OperationId},
                         { FleetPoolByColumn.Region, c=> c.RegionId}
                     };
-
+        #endregion
         #region Public
-        
         /// <summary>
         /// SearchFleet Pool for the given parameters by user
         /// </summary>
@@ -60,10 +60,16 @@ namespace Cares.Repository.Repositories
                 .Include(fleetPool => fleetPool.Region.Country)
                 .FirstOrDefault(fleetPool => fleetPool.UserDomainKey == UserDomainKey && fleetPool.FleetPoolId == id);
         }
-        #endregion
 
-       
-
+        /// <summary>
+        /// Fleet Pool  Code Check
+        /// </summary>
+        public bool IsFleetPoolCodeExists(FleetPool fleetPool)
+        {
+            Expression<Func<FleetPool, bool>> query = fleet => fleet.FleetPoolCode.Contains(fleetPool.FleetPoolCode) && fleet.FleetPoolId !=fleetPool.FleetPoolId;
+            return DbSet.Count(query) > 0;
+        }
+        #endregion 
         #region Constructor
         /// <summary>
         /// Constructor

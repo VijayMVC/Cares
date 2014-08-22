@@ -1,18 +1,20 @@
-﻿using System;
+﻿using Cares.Interfaces.IServices;
+using Cares.Web.ModelMappers;
+using System;
 using System.Net;
 using System.Web;
 using System.Web.Http;
-using System.Web.Mvc;
-using Cares.Interfaces.IServices;
-using Cares.Web.ModelMappers;
-using Cares.Web.Models;
-using OperationBaseDataResponse = Cares.Models.ResponseModels.OperationBaseDataResponse;
-
 namespace Cares.Web.Areas.Api.Controllers
 {
+    /// <summary>
+    /// Operation Base Controller
+    /// </summary>
     public class OperationBaseController : ApiController
     {
-         #region Public
+        #region Public
+        /// <summary>
+        /// Get Operation Base data
+        /// </summary>
         public Models.OperationBaseDataResponse Get()
         {
             if (!ModelState.IsValid)
@@ -23,7 +25,6 @@ namespace Cares.Web.Areas.Api.Controllers
         }
         #endregion
         #region Private
-
         private readonly IOperationService operationService;
 
         #endregion

@@ -5,7 +5,6 @@ using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
-
 namespace Cares.Implementation.Services
 {
     /// <summary>
@@ -29,11 +28,17 @@ namespace Cares.Implementation.Services
 
         #endregion
         #region Public
+        /// <summary>
+        /// Load All Operations
+        /// </summary>
         public IEnumerable<Operation> LoadAll()
         {
             return operationRepository.GetAll();
         }
-
+        /// <summary>
+        /// Load Operation BaseData
+        /// </summary>
+        /// <returns></returns>
         public OperationBaseDataResponse LoadOperationBaseData()
         {
             return new OperationBaseDataResponse
@@ -43,7 +48,9 @@ namespace Cares.Implementation.Services
                 DepartmentTypes =  departmentRepository.GetDepartmentsTypes()
             };
        }
-
+        /// <summary>
+        /// Search Operation
+        /// </summary>
         public OperationSearchResponse SearchOperation(OperationSearchRequest searchRequest)
         {
             int rowCount;
@@ -53,6 +60,9 @@ namespace Cares.Implementation.Services
                 TotalCount = rowCount
             };
         }
+        /// <summary>
+        /// Delete Operation
+        /// </summary>
         public void DeleteOperation(Operation operationobeDeleted)
         {
             Operation dbVersion = operationRepository.Find(operationobeDeleted.OperationId);
@@ -63,6 +73,10 @@ namespace Cares.Implementation.Services
             operationRepository.SaveChanges();
             }
         }
+
+        /// <summary>
+        /// Save Operation
+        /// </summary>
         public Operation SaveOperation(Operation operation)
         {
 
@@ -86,7 +100,6 @@ namespace Cares.Implementation.Services
             // To Load the proprties
             return operationRepository.GetCompanyWithDetails(operation.OperationId);
         }
-
 
         #endregion
     }

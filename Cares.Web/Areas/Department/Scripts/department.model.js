@@ -1,7 +1,7 @@
 ﻿define(["ko", "underscore", "underscore-ko"], function(ko) {
 
     var
-        // Operation entity
+        // department entity
         // ReSharper disable InconsistentNaming
         department = function (specifiedId, specifiedCode, specifiedName, specifiedDescription, spcCompanyName, spcCompanyId, specifiedDepartmentType) {
             var
@@ -65,11 +65,10 @@
                 errors: errors
             };
         };
+
     var DepartmentServertoClientMapper = function (itemFromServer) {
-       
         return new department(itemFromServer.DepartmentId, itemFromServer.DepartmentCode, itemFromServer.DepartmentName,
             itemFromServer.DepartmentDescription, itemFromServer.CompanyName, itemFromServer.CompanyId, itemFromServer.DepartmentType);
-         
     };
     return {
         department: department,

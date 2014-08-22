@@ -1,4 +1,5 @@
-﻿using Cares.Models.DomainModels;
+﻿using System;
+using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
 
@@ -25,5 +26,7 @@ namespace Cares.Interfaces.IServices
         /// update fleetpool 
         /// </summary>
         FleetPool SaveFleetPool(FleetPool request);
+
+      
     }
 }

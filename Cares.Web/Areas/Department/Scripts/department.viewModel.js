@@ -1,5 +1,5 @@
 ﻿/*
-    Module with the view model for the Operation
+    Module with the view model for the department
 */
 define("department/department.viewModel",
     ["jquery", "amplify", "ko", "department/department.dataservice", "department/department.model",
@@ -9,17 +9,17 @@ define("department/department.viewModel",
         ist.Department = {
             viewModel: (function() { 
                 var view,
-                    operations = ko.observableArray([]),
-
-                    baseDepartmentsList = ko.observableArray([]),
+                    // depatment Array
+                    departments = ko.observableArray([]),
+                    // base CompniesList
                     baseCompniesList = ko.observableArray([]),
+                    // pre-defined Department Types List
                     baseDepartmentTypesList = ko.observableArray(["Sales","Support"]),
-
-                    opperationCodeTextFilter = ko.observable(),
-                    opperationNameTextFilter = ko.observable(),
+                    // Filters
+                    departmentCodeTextFilter = ko.observable(),
+                    departmentNameTextFilter = ko.observable(),
                     companyFilter = ko.observable(),
                     departmentTypeFilter = ko.observable(),
-
                     //pager
                     pager = ko.observable(),
                     //sorting
@@ -27,83 +27,80 @@ define("department/department.viewModel",
                     //Assending  / Desending
                     sortIsAsc = ko.observable(true),
                     //to control the visibility of editor sec
-                    isOperationEditorVisible = ko.observable(false),
-                    //to control the visibility of filter ec
+                    isDepartmentEditorVisible = ko.observable(false),
+                    //to control the visibility of filter sec
                     filterSectionVisilble = ko.observable(false),
-                    //selected org group 
-                    selectedOperation = ko.observable(),
+                    //selected Department
+                    selectedDepartment = ko.observable(),
                     //save button handler
-                    onSaveOperation = function () {
-                        if (dobeforeOperation())
-                        saveOperation(selectedOperation());
+                    onSaveDepartment = function () {
+                        if (dobeforeDepartment())
+                            saveDepartment(selectedDepartment());
                     },
                     //cancel button handler
-                    onCancelSaveOperation = function () {
-                        isOperationEditorVisible(false);
+                    onCancelDepartment = function () {
+                        isDepartmentEditorVisible(false);
                     },
                     // create new org group handler
-                    onCreateOperationForm = function () {
-                        var operation = model.department();
-                        selectedOperation(operation);
-                        isOperationEditorVisible(true);
+                    onCreateDepartment = function () {
+                        var department = model.department();
+                        selectedDepartment(department);
+                        isDepartmentEditorVisible(true);
                     },
                     //reset butto handle 
                     onResetResuults = function () {
-                        opperationCodeTextFilter(undefined);
-                        opperationNameTextFilter(undefined);
+                        departmentCodeTextFilter(undefined);
+                        departmentNameTextFilter(undefined);
                         departmentTypeFilter(undefined);
                         companyFilter(undefined);
-                        getOperations();
-
+                        getDepartments();
                     },
                     //delete button handler
-                    onDeleteOperation = function (item) {
+                    onDeleteDepartment = function (item) {
                         if (!item.id()) {
-                            fleetPools.remove(item);
+                            departments.remove(item);
                             return;
                         }
                         // Ask for confirmation
                         confirmation.afterProceed(function () {
-                            deleteOperation(item);
+                            deleteDepartment(item);
                         });
                         confirmation.show();
                     },
-                   
                     //edit button handler
-                    onEditOperation = function (item) {
-                        selectedOperation(item);
-                        isOperationEditorVisible(true);
+                    onEditDepartment = function (item) {
+                        selectedDepartment(item);
+                        isDepartmentEditorVisible(true);
                     },
                      //validation check 
-                    dobeforeOperation = function () {
-                        if (!selectedOperation().isValid()) {
-                            selectedOperation().errors.showAllMessages();
+                    dobeforeDepartment = function () {
+                        if (!selectedDepartment().isValid()) {
+                            selectedDepartment().errors.showAllMessages();
                             return false;
                         }
                         return true;
                     },
-                    saveOperation = function (operation) {
-                        dataservice.saveDepartment(operation.convertToServerData(), {
-                            success: function (uodatedOperation) {
+                    saveDepartment = function (department) {
+                        dataservice.saveDepartment(department.convertToServerData(), {
+                            success: function (uodateddepartment) {
                                 debugger;
-                                var newItem = model.DepartmentServertoClientMapper(uodatedOperation);
-                                if (selectedOperation().id() != undefined)
-                                    operations.replace(selectedOperation(), newItem);
+                                var newItem = model.DepartmentServertoClientMapper(uodateddepartment);
+                                if (selectedDepartment().id() != undefined)
+                                    departments.replace(selectedDepartment(), newItem);
                                 else
-                                    operations.push(newItem);
-                                isOperationEditorVisible(false);
-                                toastr.success("Operation saved successfully");
+                                    departments.push(newItem);
+                                isDepartmentEditorVisible(false);
+                                toastr.success("Department saved successfully");
                             },
                             error: function () {
-                                toastr.error("Failed to save operation!");
+                                toastr.error("Failed to save Department!");
                             }
                         });
                     },
-                    //delete org group
-                    deleteOperation = function (operation) {
-                        dataservice.deleteDepartment(operation.convertToServerData(), {
+                    deleteDepartment = function (department) {
+                        dataservice.deleteDepartment(department.convertToServerData(), {
                                 success: function() {
-                                    operations.remove(operation);
+                                    departments.remove(department);
                                     toastr.success("Department removed successfully");
                                 },
                                 error: function() {
@@ -113,7 +110,7 @@ define("department/department.viewModel",
                     },
                     //search button handler in filter section
                     onSearch = function() {
-                        getOperations();
+                        getDepartments();
                     },
                     //hide filte section
                     hideFilterSection = function() {
@@ -125,11 +122,11 @@ define("department/department.viewModel",
                             
                        },
                     //get org group list from Dataservice
-                    getOperations = function() {
+                    getDepartments = function() {
                         dataservice.getDepartments(
                         {
-                            DepartmentCodeText: opperationCodeTextFilter(),
-                            DepartmentNameText: opperationNameTextFilter(),
+                            DepartmentCodeText: departmentCodeTextFilter(),
+                            DepartmentNameText: departmentNameTextFilter(),
                             DepartmentTypeText: departmentTypeFilter(),
                             CompanyId: companyFilter(),
                             PageSize: pager().pageSize(),
@@ -140,11 +137,11 @@ define("department/department.viewModel",
                         {
                             success: function (data) {
                                 debugger;
-                                operations.removeAll();
+                                departments.removeAll();
                                 pager().totalCount(data.TotalCount);
                                 _.each(data.Departments, function (item) {
                                 var obj=    model.DepartmentServertoClientMapper(item);
-                                operations.push(obj);
+                                departments.push(obj);
 
                                 });
                             },
@@ -154,7 +151,7 @@ define("department/department.viewModel",
                             }
                         });
                     },
-                    getOperationBaseData = function () {
+                    getDepartmentBaseData = function () {
                         dataservice.getDepartmentBaseData(null, {
                             success: function (baseDataFromServer) {
                                 baseCompniesList.removeAll();
@@ -174,38 +171,36 @@ define("department/department.viewModel",
                     initialize = function (specifiedView) {
                         view = specifiedView;
                         ko.applyBindings(view.viewModel, view.bindingRoot);
-                        pager(pagination.Pagination({ PageSize: 5}, operations, getOperations));
-                         getOperationBaseData();
-                        getOperations();
+                        pager(pagination.Pagination({ PageSize: 5}, departments, getDepartments));
+                        getDepartmentBaseData();
+                        getDepartments();
                        
                     };
                 return {
-                    opperationCodeTextFilter: opperationCodeTextFilter,
-                    opperationNameTextFilter: opperationNameTextFilter,
+                    departmentCodeTextFilter: departmentCodeTextFilter,
+                    departmentNameTextFilter: departmentNameTextFilter,
                     departmentTypeFilter:departmentTypeFilter,
                     companyFilter: companyFilter,
-
                     baseDepartmentTypesList:baseDepartmentTypesList,
                     baseCompniesList:baseCompniesList,
-                    baseDepartmentsList:baseDepartmentsList,
-                    isOperationEditorVisible:isOperationEditorVisible,
+                    isDepartmentEditorVisible: isDepartmentEditorVisible,
                     initialize: initialize,
-                    onCreateOperationForm:onCreateOperationForm,
+                    onCreateDepartment: onCreateDepartment,
                     sortOn: sortOn,
-                    getOperations:getOperations,
+                    getDepartments: getDepartments,
                     sortIsAsc: sortIsAsc,
                     filterSectionVisilble: filterSectionVisilble,
                     hideFilterSection: hideFilterSection,
                     showFilterSection: showFilterSection,
                     pager: pager,
-                    selectedOperation:selectedOperation,
+                    selectedDepartment: selectedDepartment,
                     onResetResuults: onResetResuults,
-                    onEditOperation:onEditOperation,
-                    onDeleteOperation:onDeleteOperation,
-                    onSaveOperation: onSaveOperation,
+                    onEditDepartment: onEditDepartment,
+                    onDeleteDepartment: onDeleteDepartment,
+                    onSaveDepartment: onSaveDepartment,
                     onSearch: onSearch,
-                    operations:operations,
-                    onCancelSaveOperation: onCancelSaveOperation
+                    departments: departments,
+                    onCancelDepartment: onCancelDepartment
 
                 };
             })()

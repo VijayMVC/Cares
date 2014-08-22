@@ -15,10 +15,24 @@ namespace Cares.Interfaces.IServices
         /// </summary>
         IEnumerable<Department> LoadAll();
 
+        /// <summary>
+        /// Load Department BaseData
+        /// </summary>
         DepartmentBaseDataResponse LoadDepartmentBaseData();
 
+        /// <summary>
+        /// Search Department
+        /// </summary>
         DepartmentSearchRequestResponse SearchDepartment(DepartmentSearchRequest request);
+
+        /// <summary>
+        /// Delete Department
+        /// </summary>
         void DeleteDepartment(Department department);
+
+        /// <summary>
+        /// Save or Update Department
+        /// </summary>
         Department SaveUpdateDepartment(Department request);
 
 

@@ -1,33 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Cares.Interfaces.IServices;
+using Cares.Web.ModelMappers;
+using System;
 using System.Net;
 using System.Web;
 using System.Web.Http;
-using Cares.Interfaces.IServices;
-using Cares.Models.ResponseModels;
-using Cares.Web.ModelMappers;
-using Cares.Web.Models;
-using DepartmentBaseDataResponse = Cares.Models.ResponseModels.DepartmentBaseDataResponse;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
+    /// <summary>
+    /// Department Base Controller
+    /// </summary>
     public class DepartmentBaseController : ApiController
     {
         #region Publuc
+        /// <summary>
+        /// Get Department Base Data
+        /// </summary>
         public Models.DepartmentBaseDataResponse Get()
         {
             if (!ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-
            return departmentService.LoadDepartmentBaseData().CreateFrom();
-            
         }
         #endregion
-
-
         #region Private
         private readonly IDepartmentService departmentService;
         #endregion
