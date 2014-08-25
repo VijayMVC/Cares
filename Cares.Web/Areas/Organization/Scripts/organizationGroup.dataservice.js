@@ -1,7 +1,7 @@
 ﻿/*
     Data service module with ajax calls to the server
 */
-define("OrganizationGroup/organizationGroup.dataservice", function () {
+define("Organization/organizationGroup.dataservice", function () {
 
     // Data service for forecast 
     var dataService = (function () {

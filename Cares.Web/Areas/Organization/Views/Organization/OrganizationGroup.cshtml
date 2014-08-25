@@ -2,7 +2,7 @@
     ViewBag.Title = "Index";
 }
 <div class="row" id="OrgGroupBinding">
-   
+
     <div class="row " data-bind="visible: !isOrgGroupEditorVisible()">
         <h3 class="page-header float-left pageHeaderSection">Organization Group</h3>
         <div class="header-toolsSection">
@@ -32,7 +32,7 @@
                 <thead>
                     <tr>
                         <th> <span id="1">Code<span class="icon-up"></span></span></th>
-                        <th > <span id="2">Name<span></span></span></th>
+                        <th> <span id="2">Name<span></span></span></th>
                         <th> <span id="3">Description<span></span></span></th>
                         <th> <span></span></th>
                         <th> <span></span></th>
@@ -78,7 +78,7 @@
 @section inlinescripts
 {
     <script type="text/javascript">
-        require(["OrganizationGroup/organizationGroup.view", "common/confirmation.view"]);
+        require(["Organization/organizationGroup.view", "common/confirmation.view"]);
     </script>
 
 }

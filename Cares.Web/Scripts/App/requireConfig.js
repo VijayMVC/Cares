@@ -10,17 +10,21 @@
             "businessPartner": "/Areas/BusinessPartner/Scripts",
             "product": "/Areas/Product/Scripts",
             "common": "/Areas/Common/Scripts",
+
             "Fleet": "/Areas/Fleet/Scripts",
             "hireGroup": "/Areas/Fleet/Scripts",
+
             "tariffType": "/Areas/Pricing/Scripts",
             "tariffRate": "/Areas/Pricing/Scripts",
             "insuranceRate": "/Areas/Pricing/Scripts",
             "serviceRate": "/Areas/Pricing/Scripts",
+
             "rentalAgreement": "/Areas/RentalAgreement/Scripts",
-            "OrganizationGroup": "/Areas/OrganizationGroup/Scripts",
-            "company": "/Areas/Company/Scripts",
-            "operation": "/Areas/Operation/Scripts",
-            "department": "/Areas/Department/Scripts"
+
+            "Organization": "/Areas/Organization/Scripts",
+            "company": "/Areas/Organization/Scripts",
+            "operation": "/Areas/Organization/Scripts",
+            "department": "/Areas/Organization/Scripts"
 
         }
 

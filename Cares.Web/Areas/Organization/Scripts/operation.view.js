@@ -1,33 +1,33 @@
 ﻿/*
     View for the Product. Used to keep the viewmodel clear of UI related logic
 */
-define("OrganizationGroup/organizationGroup.view",
-    ["jquery", "OrganizationGroup/organizationGroup.viewModel"], function ($, organizationGroupViewModel) {
+define("operation/operation.view",
+    ["jquery", "operation/operation.viewModel"], function ($, operationViewModel) {
         var ist = window.ist || {};
         // View 
-        ist.OrganizationGroup.view = (function (specifiedViewModel) {
+        ist.Operation.view = (function (specifiedViewModel) {
             var
                 // View model 
                 viewModel = specifiedViewModel,
                 // Binding root used with knockout
-                bindingRoot = $("#OrgGroupBinding")[0],
+                bindingRoot = $("#OperationBinding")[0],
                 // Initialize
                 initialize = function () {
                     if (!bindingRoot) {
                         return;
                     }
                     // Handle Sorting
-                    handleSorting("OrgGroupTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getOrganizationGroups);
+                    handleSorting("OperationsTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getOperations);
                 };
             initialize();
             return {
                 bindingRoot: bindingRoot,
                 viewModel: viewModel
             };
-        })(organizationGroupViewModel);
+        })(operationViewModel);
         // Initialize the view model
-        if (ist.OrganizationGroup.view.bindingRoot) {
-            organizationGroupViewModel.initialize(ist.OrganizationGroup.view);
+        if (ist.Operation.view.bindingRoot) {
+            operationViewModel.initialize(ist.Operation.view);
         }
-        return ist.OrganizationGroup.view;
+        return ist.Operation.view;
     });
