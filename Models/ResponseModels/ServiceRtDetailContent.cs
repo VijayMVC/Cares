@@ -26,12 +26,12 @@ namespace Cares.Models.ResponseModels
         /// <summary>
         /// Service Rate
         /// </summary>
-        public float? ServiceRate { get; set; }
+        public float ServiceRate { get; set; }
 
         /// <summary>
         /// Start Date
         /// </summary>
-        public DateTime? StartDt { get; set; }
+        public DateTime StartDt { get; set; }
 
         /// <summary>
         /// Service Item Code

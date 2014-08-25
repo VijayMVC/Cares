@@ -178,6 +178,7 @@ define("tariffType/tariffType.viewModel",
                     },
                      // Create Tariff Type
                     createTariffType = function () {
+                        revisions.removeAll();
                         var tariffType = new model.TariffTypeDetail();
                         // Select the newly added tariffType
                         addTariffType(tariffType);
@@ -237,8 +238,18 @@ define("tariffType/tariffType.viewModel",
 
                                 toastr.success("Tariff Type saved successfully");
                             },
-                            error: function () {
-                                toastr.error('Failed to save Tariff Type!');
+                            error: function (exceptionMessage, exceptionType) {
+
+                                if (exceptionType === ist.exceptionType.CaresGeneralException) {
+
+                                    toastr.error(exceptionMessage);
+
+                                } else {
+
+                                    toastr.error("Failed to save Tariff Type.");
+
+                                }
+
                             }
                         });
                     },

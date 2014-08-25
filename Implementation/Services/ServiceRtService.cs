@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Cares.ExceptionHandling;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -79,7 +82,8 @@ namespace Cares.Implementation.Services
                                                              ServiceItemId = serviceItem.ServiceItemId,
                                                              ServiceItemCode = serviceItem.ServiceItemCode,
                                                              ServiceItemName = serviceItem.ServiceItemName,
-                                                             ServiceTypeCodeName = serviceItem.ServiceType.ServiceTypeCode +" - "+serviceItem.ServiceType.ServiceTypeName
+                                                             ServiceTypeCodeName = serviceItem.ServiceType.ServiceTypeCode + " - " + serviceItem.ServiceType.ServiceTypeName,
+                                                             StartDt = DateTime.Now
                                                          };
                 serviceRtDetailList.Add(serviceRtDetail);
             }
@@ -250,33 +254,157 @@ namespace Cares.Implementation.Services
             return serviceRtMainRepository.Find(serviceRtMainId);
         }
 
-        //private void ValidateInsuranceRate(InsuranceRtMain insuranceRtMain, bool addFlag)
-        //{
-        //    DateTime oStartDt, insRtStartDate;
-        //    oStartDt = Convert.ToDateTime(insuranceRtMain.StartDt);
-        //    if (addFlag)
-        //    {
-        //        //means new Standard Rt is being added
-        //        insRtStartDate = Convert.ToDateTime(insuranceRtMain.StartDt);
-        //        if (insRtStartDate.Date < DateTime.Now.Date)
-        //            throw new CaresException("Start Effective Date must be a current or future date.");
-        //        List<InsuranceRtMain> oStRateMain = insuranceRtMainRepository.FindByTariffTypeCode(insuranceRtMain.TariffTypeCode).ToList();
-        //        if (oStRateMain.Count > 0)
-        //            throw new CaresException("Insurance Rate for the selected tariff type already exist.");
+        /// <summary>
+        /// Add/Edit Service Rate
+        /// </summary>
+        /// <param name="serviceRtMain"></param>
+        /// <returns></returns>
+        public ServiceRtMainContent SaveInsuranceRate(ServiceRtMain serviceRtMain)
+        {
+            TariffType tariffType = tariffTypeRepository.Find(long.Parse(serviceRtMain.TariffTypeCode));
+            serviceRtMain.TariffTypeCode = tariffType.TariffTypeCode;
 
-        //    }
-        //    if (insuranceRtMain.InsuranceRates != null)
-        //    {
-        //        foreach (var item in insuranceRtMain.InsuranceRates)
-        //        {
-        //            insRtStartDate = Convert.ToDateTime(item.StartDt);
-        //            if (insRtStartDate.Date < DateTime.Now.Date)
-        //                throw new CaresException("Start Date for Insurance Item Rate must be a current or future date.");
-        //            if (insRtStartDate.Date < oStartDt.Date)
-        //                throw new CaresException("Start Date for Insurance Item Rate must be greater than their Start Effective Date.");
-        //        }
-        //    }
-        //}
+            ServiceRtMain serviceRtMainDbVersion = serviceRtMainRepository.Find(serviceRtMain.ServiceRtMainId);
+            #region Add
+            if (serviceRtMainDbVersion == null)
+            {
+                ValidateServiceRt(serviceRtMain, true);
+                serviceRtMain.UserDomainKey = serviceRtMainRepository.UserDomainKey;
+                serviceRtMain.IsActive = true;
+                serviceRtMain.IsDeleted = false;
+                serviceRtMain.IsPrivate = false;
+                serviceRtMain.IsReadOnly = false;
+                serviceRtMain.RecCreatedDt = DateTime.Now;
+                serviceRtMain.RecLastUpdatedDt = DateTime.Now;
+                serviceRtMain.RecCreatedBy = serviceRtMainRepository.LoggedInUserIdentity;
+                serviceRtMain.RecLastUpdatedBy = serviceRtMainRepository.LoggedInUserIdentity;
+                serviceRtMain.RowVersion = 0;
+
+                //set child (Service Rate in Service Rate Main) properties
+                #region Service Rate in Service Rate Main
+
+                if (serviceRtMain.ServiceRts != null)
+                {
+                    // set properties
+                    foreach (ServiceRt item in serviceRtMain.ServiceRts)
+                    {
+                        item.IsActive = true;
+                        item.IsDeleted = false;
+                        item.IsPrivate = false;
+                        item.IsReadOnly = false;
+                        item.RecCreatedDt = DateTime.Now;
+                        item.RecLastUpdatedDt = DateTime.Now;
+                        item.RecCreatedBy = serviceRtMainRepository.LoggedInUserIdentity;
+                        item.RecLastUpdatedBy = serviceRtMainRepository.LoggedInUserIdentity;
+                        item.UserDomainKey = serviceRtMainRepository.UserDomainKey;
+                    }
+                }
+
+                #endregion
+
+                serviceRtMainRepository.Add(serviceRtMain);
+                serviceRtMainRepository.SaveChanges();
+            }
+            #endregion
+            #region Edit
+            else
+            {
+                ValidateServiceRt(serviceRtMain, false);
+                serviceRtMainDbVersion.RecLastUpdatedDt = DateTime.Now;
+                serviceRtMainDbVersion.RecLastUpdatedBy = serviceRtMainRepository.LoggedInUserIdentity;
+                serviceRtMainDbVersion.StartDt = serviceRtMain.StartDt;
+                //add new Insurance Rate items
+                if (serviceRtMain.ServiceRts != null)
+                {
+                    foreach (ServiceRt serviceRt in serviceRtMain.ServiceRts)
+                    {
+                        if (
+                            serviceRtMainDbVersion.ServiceRts.All(
+                                x => x.ServiceRtId != serviceRt.ServiceRtId) ||
+                            serviceRt.ServiceRtId == 0)
+                        {
+                            // set properties
+                            serviceRt.IsActive = true;
+                            serviceRt.IsDeleted = false;
+                            serviceRt.IsPrivate = false;
+                            serviceRt.IsReadOnly = false;
+                            serviceRt.RecCreatedDt = DateTime.Now;
+                            serviceRt.RecLastUpdatedDt = DateTime.Now;
+                            serviceRt.RecCreatedBy = serviceRtMainRepository.LoggedInUserIdentity;
+                            serviceRt.RecLastUpdatedBy = serviceRtMainRepository.LoggedInUserIdentity;
+                            serviceRt.UserDomainKey = serviceRtMainRepository.UserDomainKey;
+                            serviceRt.ServiceRtMainId = serviceRtMain.ServiceRtMainId;
+                            serviceRtMainDbVersion.ServiceRts.Add(serviceRt);
+                        }
+                        else
+                        {
+                            serviceRt.IsActive = true;
+                            serviceRt.IsDeleted = false;
+                            serviceRt.IsPrivate = false;
+                            serviceRt.IsReadOnly = false;
+                            serviceRt.RecCreatedDt = DateTime.Now;
+                            serviceRt.RecLastUpdatedDt = DateTime.Now;
+                            serviceRt.RecCreatedBy = serviceRtMainRepository.LoggedInUserIdentity;
+                            serviceRt.RecLastUpdatedBy = serviceRtMainRepository.LoggedInUserIdentity;
+                            serviceRt.UserDomainKey = serviceRtMainRepository.UserDomainKey;
+                            serviceRt.ServiceRtMainId = serviceRtMain.ServiceRtMainId;
+                            long oldRecordId = serviceRt.ServiceRtId;
+                            serviceRt.ServiceRtId = 0;
+                            serviceRt.RevisionNumber = serviceRt.RevisionNumber + 1;
+                            serviceRtRepository.Add(serviceRt);
+                            serviceRtRepository.SaveChanges();
+                            ServiceRt oldServiceRt = serviceRtRepository.Find(oldRecordId);
+                            oldServiceRt.ChildServiceRtId = serviceRt.ServiceRtId;
+                            serviceRtRepository.SaveChanges();
+                        }
+
+                    }
+                }
+            }
+            serviceRtMainRepository.SaveChanges();
+
+            #endregion
+
+            return new ServiceRtMainContent
+            {
+                TariffTypeCodeName = tariffType.TariffTypeCode + " - " + tariffType.TariffTypeName,
+                TariffTypeId = tariffType.TariffTypeId,
+                OperationId = tariffType.Operation.OperationId,
+                OperationCodeName = tariffType.Operation.OperationCode + " - " + tariffType.Operation.OperationName,
+                ServiceRtMainId = serviceRtMain.ServiceRtMainId,
+                ServiceRtMainCode = serviceRtMain.ServiceRtMainCode,
+                ServiceRtMainName = serviceRtMain.ServiceRtMainName,
+                ServiceRtMainDescription = serviceRtMain.ServiceRtMainDescription,
+                StartDt = serviceRtMain.StartDt
+            };
+        }
+        private void ValidateServiceRt(ServiceRtMain serviceRtMain, bool addFlag)
+        {
+            DateTime oStartDt, serviceStartDt;
+            oStartDt = Convert.ToDateTime(serviceRtMain.StartDt);
+            if (addFlag)
+            {
+                //means new Standard Rt is being added
+                serviceStartDt = Convert.ToDateTime(serviceRtMain.StartDt);
+                if (serviceStartDt.Date < DateTime.Now.Date)
+                    throw new CaresException("Start Effective Date must be a current or future date.");
+                List<ServiceRtMain> oServiceRateMain = serviceRtMainRepository.FindByTariffTypeCode(serviceRtMain.TariffTypeCode).ToList();
+                if (oServiceRateMain.Count > 0)
+                    throw new CaresException("Service rate for the selected tariff type already exist.");
+            }
+            if (serviceRtMain.ServiceRts != null)
+            {
+                foreach (var item in serviceRtMain.ServiceRts)
+                {
+                    serviceStartDt = Convert.ToDateTime(item.StartDt);
+                    if (serviceStartDt.Date < DateTime.Now.Date)
+                        throw new CaresException("Start Date for Service Item Rate must be a current or future date.");
+                    if (serviceStartDt.Date < oStartDt.Date)
+                        throw new CaresException("Start Date for Service Item Rate must be greater than their Start Effective Date.");
+                }
+            }
+
+        }
         #endregion
     }
 }

@@ -3,7 +3,7 @@
 namespace Cares.Web.Models
 {
     /// <summary>
-    /// Insurance Rate Deatail Content
+    /// Insurance Rate Detail Web Content
     /// </summary>
     public sealed class InsuranceRtDetailContent
     {

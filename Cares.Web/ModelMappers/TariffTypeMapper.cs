@@ -52,7 +52,7 @@ namespace Cares.Web.ModelMappers
             return new TariffType
             {
                 TariffTypeId = source.TariffTypeId,
-                TariffTypeCode = source.TariffTypeCode,
+                TariffTypeCode = source.TariffTypeCode.Trim(),
                 TariffTypeName = source.TariffTypeName,
                 TariffTypeDescription = source.TariffTypeDescription,
                 OperationId = source.OperationId,

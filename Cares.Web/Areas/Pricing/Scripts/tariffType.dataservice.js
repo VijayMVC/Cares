@@ -20,7 +20,7 @@ define("tariffType/tariffType.dataservice", function () {
                     });
                     // Define request to get tariff type by id 
                     amplify.request.define('getTariffTypeById', 'ajax', {
-                        url: '/Api/GetTariffDetails',
+                        url: '/Api/GetTariffTypeDetails',
                         dataType: 'json',
                         type: 'GET'
                     });
@@ -30,10 +30,11 @@ define("tariffType/tariffType.dataservice", function () {
                         dataType: 'json',
                         type: 'GET'
                     });
-                    // Define request to save updatetariffType
+                    // Define request to save Add tariffType
                     amplify.request.define('createTariffType', 'ajax', {
                         url: '/Api/TariffType',
                         dataType: 'json',
+                        decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
                     });
 
@@ -41,6 +42,7 @@ define("tariffType/tariffType.dataservice", function () {
                     amplify.request.define('updateTariffType', 'ajax', {
                         url: '/Api/TariffType',
                         dataType: 'json',
+                        decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
                     });
                     isInitialized = true;

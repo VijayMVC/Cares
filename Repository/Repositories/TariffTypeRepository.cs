@@ -36,6 +36,7 @@ namespace Cares.Repository.Repositories
                        
                     };
         #endregion.
+       
         #region Constructor
         /// <summary>
         /// Constructor
@@ -46,6 +47,7 @@ namespace Cares.Repository.Repositories
 
         }
         #endregion
+       
         #region Protected
         /// <summary>
         /// Primary database set
@@ -58,7 +60,9 @@ namespace Cares.Repository.Repositories
             }
         }
         #endregion
+        
         #region Public
+
         /// <summary>
         /// Get All Tariff Types for User Domain Key
         /// </summary>
@@ -67,6 +71,7 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(p => p.UserDomainKey == UserDomainKey && p.ChildTariffTypeId == null).ToList();
         }
+
         /// <summary>
         /// Get All Tariff Types based on search crateria
         /// </summary>
@@ -88,6 +93,7 @@ namespace Cares.Repository.Repositories
 
             return new TariffTypeResponse { TariffTypes = tariffTypes, TotalCount = DbSet.Count(query) };
         }
+
         /// <summary>
         /// Load Dependencies
         /// </summary>
@@ -97,6 +103,7 @@ namespace Cares.Repository.Repositories
             LoadProperty(tariffType, () => tariffType.MeasurementUnit);
             LoadProperty(tariffType, () => tariffType.PricingStrategy);
         }
+
         /// <summary>
         /// Find Tariff Type By Id
         /// </summary>
@@ -108,6 +115,7 @@ namespace Cares.Repository.Repositories
                   .Include(tariffType => tariffType.Operation.Department.Company)
                   .FirstOrDefault(tariffType => tariffType.TariffTypeId == id);
         }
+
         /// <summary>
         /// Get Revision
         /// </summary>
@@ -119,6 +127,16 @@ namespace Cares.Repository.Repositories
                   .Include(tariffType => tariffType.Operation.Department.Company)
                   .FirstOrDefault(tariffType => tariffType.ChildTariffTypeId == id);
         }
+
+        /// <summary>
+        /// Get Tariff Type By Code
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<TariffType> GetByTariffTypeCode(string tariffTypeCode)
+        {
+            return DbSet.Where(tariffType => tariffType.UserDomainKey == UserDomainKey && tariffType.ChildTariffTypeId == null
+                && tariffType.TariffTypeCode == tariffTypeCode).ToList();
+        } 
         #endregion
     }
 }

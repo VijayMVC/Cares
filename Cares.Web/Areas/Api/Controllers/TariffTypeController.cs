@@ -6,6 +6,7 @@ using Cares.Interfaces.IServices;
 using Cares.Models.RequestModels;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
+using Cares.WebBase.Mvc;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
@@ -35,11 +36,12 @@ namespace Cares.Web.Areas.Api.Controllers
         // GET api/<controller>
         public TariffTypeSearchResponse Get([FromUri] TariffTypeRequest request)
         {
-           return tariffTypeService.LoadtariffTypes((request)).CreateFrom();
+            return tariffTypeService.LoadtariffTypes((request)).CreateFrom();
         }
         /// <summary>
         /// Update a tariff Type
         /// </summary>
+        [ApiException]
         public TariffType Post(TariffTypeDetail tariffType)
         {
             if (tariffType == null || !ModelState.IsValid)
@@ -49,18 +51,7 @@ namespace Cares.Web.Areas.Api.Controllers
 
             return tariffTypeService.AddtariffType(tariffType.CreateFrom()).CreateFrom();
         }
-        /// <summary>
-        /// Add a tariff Type
-        /// </summary>
-        public TariffType Put(TariffTypeDetail tariffType)
-        {
-            if (tariffType == null || !ModelState.IsValid)
-            {
-                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
-            }
-            return tariffTypeService.AddtariffType(tariffType.CreateFrom()).CreateFrom();
 
-        }
         #endregion
 
     }
