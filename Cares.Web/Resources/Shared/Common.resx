@@ -138,11 +138,14 @@
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
   <data name="EditDelete" xml:space="preserve">
     <value>Edit/Delete</value>
   </data>
-  <data name="Employee" xml:space="preserve">
-    <value>Employee</value>
+  <data name="HideSection" xml:space="preserve">
+    <value>Hide Section</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
@@ -150,11 +153,20 @@
   <data name="Login" xml:space="preserve">
     <value>Log in</value>
   </data>
+  <data name="New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="Of" xml:space="preserve">
+    <value>of</value>
+  </data>
   <data name="Page" xml:space="preserve">
     <value>Page</value>
   </data>
-  <data name="Product" xml:space="preserve">
-    <value>Product</value>
+  <data name="Prev" xml:space="preserve">
+    <value>Prev</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>Register</value>
@@ -167,6 +179,12 @@
   </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
+  </data>
+  <data name="ShowFilter" xml:space="preserve">
+    <value>Show Filters</value>
+  </data>
+  <data name="Showing" xml:space="preserve">
+    <value>Showing</value>
   </data>
   <data name="TextDirection" xml:space="preserve">
     <value>ltr</value>

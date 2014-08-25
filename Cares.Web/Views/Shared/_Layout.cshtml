@@ -10,7 +10,7 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/Bundle/BaseLibs")
-    
+
     @Scripts.Render("~/bundles/bootstrap" + (Cares.Web.Helper.CultureHelper.IsRighToLeft() ? "-rtl" : ""))
     <script src="~/Scripts/App/requireConfig.js"></script>
     <script src="~/Scripts/App/architecture.js"></script>
@@ -19,37 +19,37 @@
 
 
 </head>
-    <body>
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
 
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                      
-                        @{ Html.RenderAction("LoadMenu", "Menu", new { area = "" } ); }
-                    </ul>
-                    @Html.Partial("_LoginPartial")
-                </div>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+
+                    @{ Html.RenderAction("LoadMenu", "Menu", new { area = "" }); }
+                </ul>
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
-        <div class="container body-content @(ViewBag.FluidLayout != null && ViewBag.FluidLayout ? "container-fluid" : "")">
-            @RenderBody()
-            <div id="spinner">
-            </div>
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - CaReS</p>
-            </footer>
+    </div>
+    <div class="container body-content @(ViewBag.FluidLayout != null && ViewBag.FluidLayout ? "container-fluid" : "")">
+        @RenderBody()
+        <div id="spinner">
         </div>
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - CaReS</p>
+        </footer>
+    </div>
+    
+    @RenderSection("scripts", required: false)
 
-        @RenderSection("scripts", required: false)
-
-    </body>
+</body>
 </html>

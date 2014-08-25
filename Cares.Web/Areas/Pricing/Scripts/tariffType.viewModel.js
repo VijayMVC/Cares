@@ -236,7 +236,7 @@ define("tariffType/tariffType.viewModel",
                                     closeTariffTypeEditor();
                                 }
 
-                                toastr.success("Tariff Type saved successfully");
+                                toastr.success(ist.resourceText.tarrifTypeSuccess);
                             },
                             error: function (exceptionMessage, exceptionType) {
 

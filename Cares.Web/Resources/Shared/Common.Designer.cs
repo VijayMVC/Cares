@@ -124,6 +124,15 @@ namespace Cares.Web.Resources.Shared {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit/Delete.
         /// </summary>
         public static string EditDelete {
@@ -133,11 +142,11 @@ namespace Cares.Web.Resources.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Employee.
+        ///   Looks up a localized string similar to Hide Section.
         /// </summary>
-        public static string Employee {
+        public static string HideSection {
             get {
-                return ResourceManager.GetString("Employee", resourceCulture);
+                return ResourceManager.GetString("HideSection", resourceCulture);
             }
         }
         
@@ -160,6 +169,33 @@ namespace Cares.Web.Resources.Shared {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New.
+        /// </summary>
+        public static string New {
+            get {
+                return ResourceManager.GetString("New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next.
+        /// </summary>
+        public static string Next {
+            get {
+                return ResourceManager.GetString("Next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to of.
+        /// </summary>
+        public static string Of {
+            get {
+                return ResourceManager.GetString("Of", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Page.
         /// </summary>
         public static string Page {
@@ -169,11 +205,11 @@ namespace Cares.Web.Resources.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Product.
+        ///   Looks up a localized string similar to Prev.
         /// </summary>
-        public static string Product {
+        public static string Prev {
             get {
-                return ResourceManager.GetString("Product", resourceCulture);
+                return ResourceManager.GetString("Prev", resourceCulture);
             }
         }
         
@@ -210,6 +246,24 @@ namespace Cares.Web.Resources.Shared {
         public static string Search {
             get {
                 return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Filters.
+        /// </summary>
+        public static string ShowFilter {
+            get {
+                return ResourceManager.GetString("ShowFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Showing.
+        /// </summary>
+        public static string Showing {
+            get {
+                return ResourceManager.GetString("Showing", resourceCulture);
             }
         }
         

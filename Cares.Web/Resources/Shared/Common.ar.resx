@@ -138,8 +138,14 @@
   <data name="Delete" xml:space="preserve">
     <value>حذف</value>
   </data>
+  <data name="Edit" xml:space="preserve">
+    <value>تحرير</value>
+  </data>
   <data name="EditDelete" xml:space="preserve">
     <value>تحرير / حذف</value>
+  </data>
+  <data name="HideSection" xml:space="preserve">
+    <value>اخفاء القسم</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>منزل</value>
@@ -147,8 +153,20 @@
   <data name="Login" xml:space="preserve">
     <value>تسجيل الدخول</value>
   </data>
+  <data name="New" xml:space="preserve">
+    <value>جديد</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>التالي</value>
+  </data>
+  <data name="Of" xml:space="preserve">
+    <value>من</value>
+  </data>
   <data name="Page" xml:space="preserve">
     <value>صفحة</value>
+  </data>
+  <data name="Prev" xml:space="preserve">
+    <value>السابق</value>
   </data>
   <data name="Product" xml:space="preserve">
     <value>نتاج</value>
@@ -164,6 +182,12 @@
   </data>
   <data name="Search" xml:space="preserve">
     <value>بحث</value>
+  </data>
+  <data name="ShowFilter" xml:space="preserve">
+    <value>مشاهدة مرشحات</value>
+  </data>
+  <data name="Showing" xml:space="preserve">
+    <value>عرض</value>
   </data>
   <data name="TextDirection" xml:space="preserve">
     <value>rtl</value>
