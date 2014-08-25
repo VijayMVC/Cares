@@ -1,15 +1,18 @@
 namespace Cares.Repository.Migrations
 {
+    using System;
+    using System.Data.Entity;
     using System.Data.Entity.Migrations;
+    using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<BaseRepository.BaseDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Cares.Repository.BaseRepository.BaseDbContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(BaseRepository.BaseDbContext context)
+        protected override void Seed(Cares.Repository.BaseRepository.BaseDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 
