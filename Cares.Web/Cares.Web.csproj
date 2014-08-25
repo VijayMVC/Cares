@@ -265,8 +265,8 @@
     <Compile Include="Areas\Department\DepartmentAreaRegistration.cs" />
     <Compile Include="Areas\Operation\Controllers\HomeController.cs" />
     <Compile Include="Areas\Operation\OperationAreaRegistration.cs" />
-    <Compile Include="Areas\OrganizationGroup\Controllers\HomeController.cs" />
-    <Compile Include="Areas\OrganizationGroup\OrganizationGroupAreaRegistration.cs" />
+    <Compile Include="Areas\Organization\Controllers\OrganizationController.cs" />
+    <Compile Include="Areas\Organization\OrganizationGroupAreaRegistration.cs" />
     <Compile Include="Areas\RentalAgreement\Controllers\HomeController.cs" />
     <Compile Include="Areas\RentalAgreement\RentalAgreementAreaRegistration.cs" />
     <Compile Include="Areas\Product\Controllers\HomeController.cs" />
@@ -487,10 +487,22 @@
     <Content Include="Areas\Operation\Scripts\operation.view.js" />
     <Content Include="Areas\Operation\Scripts\operation.dataservice.js" />
     <Content Include="Areas\Operation\Scripts\operation.model.js" />
-    <Content Include="Areas\OrganizationGroup\Scripts\organizationGroup.view.js" />
-    <Content Include="Areas\OrganizationGroup\Scripts\organizationGroup.dataservice.js" />
-    <Content Include="Areas\OrganizationGroup\Scripts\organizationGroup.viewModel.js" />
-    <Content Include="Areas\OrganizationGroup\Scripts\organizationGroup.model.js" />
+    <Content Include="Areas\Organization\Scripts\company.dataservice.js" />
+    <Content Include="Areas\Organization\Scripts\company.model.js" />
+    <Content Include="Areas\Organization\Scripts\company.view.js" />
+    <Content Include="Areas\Organization\Scripts\company.viewModel.js" />
+    <Content Include="Areas\Organization\Scripts\department.dataservice.js" />
+    <Content Include="Areas\Organization\Scripts\department.model.js" />
+    <Content Include="Areas\Organization\Scripts\department.view.js" />
+    <Content Include="Areas\Organization\Scripts\department.viewModel.js" />
+    <Content Include="Areas\Organization\Scripts\operation.dataservice.js" />
+    <Content Include="Areas\Organization\Scripts\operation.model.js" />
+    <Content Include="Areas\Organization\Scripts\operation.view.js" />
+    <Content Include="Areas\Organization\Scripts\operation.viewModel.js" />
+    <Content Include="Areas\Organization\Scripts\organizationGroup.view.js" />
+    <Content Include="Areas\Organization\Scripts\organizationGroup.dataservice.js" />
+    <Content Include="Areas\Organization\Scripts\organizationGroup.viewModel.js" />
+    <Content Include="Areas\Organization\Scripts\organizationGroup.model.js" />
     <Content Include="Areas\Pricing\Scripts\serviceRate.dataservice.js" />
     <Content Include="Areas\Pricing\Scripts\serviceRate.model.js" />
     <Content Include="Areas\Pricing\Scripts\serviceRate.view.js" />
@@ -1113,15 +1125,14 @@
     <Content Include="Areas\Fleet\Views\Home\HireGroup.cshtml" />
     <Content Include="Areas\Fleet\Views\Home\_HireGroupEditor.cshtml" />
     <Content Include="Areas\Pricing\Views\Tariff\test.cshtml" />
-    <Content Include="Areas\OrganizationGroup\Views\web.config" />
-    <Content Include="Areas\OrganizationGroup\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\OrganizationGroup\Views\Home\Index.cshtml" />
-    <Content Include="Areas\OrganizationGroup\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Organization\Views\web.config" />
+    <Content Include="Areas\Organization\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Organization\Views\Shared\_Layout.cshtml" />
     <Content Include="Content\themes\OrgGroup.less" />
     <Content Include="Content\themes\OrgGroup.css.map">
       <DependentUpon>OrgGroup.css</DependentUpon>
     </Content>
-    <Content Include="Areas\OrganizationGroup\Views\Home\_OrgGroupEditor.cshtml" />
+    <Content Include="Areas\Organization\Views\Organization\_OrgGroupEditor.cshtml" />
     <Content Include="Areas\Company\Views\web.config" />
     <Content Include="Areas\Company\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Pricing\Views\Tariff\InsuranceRate.cshtml" />
@@ -1150,10 +1161,17 @@
       <DependentUpon>Operation.css</DependentUpon>
     </Content>
     <Content Include="Areas\Department\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Department\Views\Home\_OperationEditor.cshtml" />
+    <Content Include="Areas\Department\Views\Home\_DepartmentEditor.cshtml" />
     <Content Include="Areas\Department\Views\Home\Index.cshtml" />
     <Content Include="Areas\Department\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Department\Views\web.config" />
+    <Content Include="Areas\Organization\Views\Organization\OrganizationGroup.cshtml" />
+    <Content Include="Areas\Organization\Views\Organization\Company.cshtml" />
+    <Content Include="Areas\Organization\Views\Organization\Department.cshtml" />
+    <Content Include="Areas\Organization\Views\Organization\Operation.cshtml" />
+    <Content Include="Areas\Organization\Views\Organization\_CompanyEditor.cshtml" />
+    <Content Include="Areas\Organization\Views\Organization\_DepartmentEditor.cshtml" />
+    <Content Include="Areas\Organization\Views\Organization\_OperationEditor.cshtml" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
@@ -1308,7 +1326,7 @@
     <Folder Include="Areas\Department\Models\" />
     <Folder Include="Areas\Fleet\Models\" />
     <Folder Include="Areas\Operation\Models\" />
-    <Folder Include="Areas\OrganizationGroup\Models\" />
+    <Folder Include="Areas\Organization\Models\" />
     <Folder Include="Areas\Pricing\Models\" />
     <Folder Include="Areas\Product\Models\" />
     <Folder Include="Areas\RentalAgreement\Models\" />

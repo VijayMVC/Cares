@@ -1,8 +1,8 @@
 ﻿/*
     Module with the view model for the OrgGroup
 */
-define("OrganizationGroup/organizationGroup.viewModel",
-    ["jquery", "amplify", "ko", "OrganizationGroup/organizationGroup.dataservice", "OrganizationGroup/organizationGroup.model",
+define("Organization/organizationGroup.viewModel",
+    ["jquery", "amplify", "ko", "Organization/organizationGroup.dataservice", "Organization/organizationGroup.model",
     "common/confirmation.viewModel", "common/pagination"],
     function($, amplify, ko, dataservice, model, confirmation, pagination) {
         var ist = window.ist || {};

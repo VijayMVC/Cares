@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Cares.Web.Areas.OrganizationGroup
+namespace Cares.Web.Areas.Organization
 {
     public class OrganizationGroupAreaRegistration : AreaRegistration 
     {
@@ -8,15 +8,15 @@ namespace Cares.Web.Areas.OrganizationGroup
         {
             get 
             {
-                return "OrganizationGroup";
+                return "Organization";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
-                "OrganizationGroup_default",
-                "OrganizationGroup/{controller}/{action}/{id}",
+                "Organization_default",
+                "Organization/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }

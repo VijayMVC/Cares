@@ -9,8 +9,19 @@ namespace Cares.Interfaces.Repository
     /// </summary>
     public interface IDepartmentRepository : IBaseRepository<Department, long>
     {
+        /// <summary>
+        /// Get Departments Types
+        /// </summary>
         List<string> GetDepartmentsTypes();
+
+        /// <summary>
+        /// SearchD epartment
+        /// </summary>
         IEnumerable<Department> SearchDepartment(DepartmentSearchRequest request, out int rowCount);
+
+        /// <summary>
+        /// Get Department With Details
+        /// </summary>
         Department GetDepartmentWithDetails(long id);
 
     }

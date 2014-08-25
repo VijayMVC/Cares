@@ -15,10 +15,14 @@ namespace Cares.Interfaces.Repository
         /// <summary>
         /// gets all operatoins for sale 
         /// </summary>
-        /// <returns></returns>
         ICollection<Operation> GetSalesOperation();
-
+        /// <summary>
+        /// Get Company With Details 
+        /// </summary>
         Operation GetCompanyWithDetails(long id);
+        /// <summary>
+        /// Search Operation
+        /// </summary>
         IEnumerable<Operation> SearchOperation(OperationSearchRequest request, out int rowCount);
 
     }

@@ -1,7 +1,7 @@
 ﻿/*
     Data service module with ajax calls to the server
 */
-define("department/department.dataservice", function () {
+define("operation/operation.dataservice", function () {
 
     // Data service for forecast 
     var dataService = (function () {
@@ -12,72 +12,67 @@ define("department/department.dataservice", function () {
             initialize = function() {
                 if (!isInitialized) {
 
-                    //Department base Data
-                    amplify.request.define('getDepartmentBaseData', 'ajax', {
-                        url: '/Api/DepartmentBase',
+                    
+                    amplify.request.define('getOperationBaseData', 'ajax', {
+                        url: '/Api/OperationBase',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
-                    //save Department
-                    amplify.request.define('saveDepartment', 'ajax', {
-                        url: '/Api/Department',
+                    amplify.request.define('saveOperations', 'ajax', { 
+                        url: '/Api/Operation',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
                     });
-                    //get Departments
-                    amplify.request.define('getDepartments', 'ajax', {
-                        url: '/Api/Department',
+                    amplify.request.define('getOperations', 'ajax', {
+                        url: '/Api/Operation',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
-                    //delete Department
-                    amplify.request.define('deleteDepartment', 'ajax', {
-                        url: '/Api/Department',
+                    amplify.request.define('deleteOperation', 'ajax', {
+                        url: '/Api/Operation',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
+
                     isInitialized = true;
                 }
             },
-            //  Department Base Data
-            getDepartmentBaseData = function (params, callbacks) {
+            // Get Fleet Pool Base Data
+            getOperationBaseData = function(params, callbacks) {
                 initialize();
                 return amplify.request({
-                    resourceId: 'getDepartmentBaseData',
+                    resourceId: 'getOperationBaseData',
                     success: callbacks.success,
                     error: callbacks.error,
                     data: params
                 });
             },
-            //get Departments
-            getDepartments = function (params, callbacks) {
+            getOperations = function(params, callbacks) {
                 initialize();
                 return amplify.request({
-                    resourceId: 'getDepartments',
+                    resourceId: 'getOperations',
                     success: callbacks.success,
                     error: callbacks.error,
                     data: params
                 });
             },
-            //save Department
-            saveDepartment = function (params, callbacks) {
+            saveOperation = function (params, callbacks) {
                 initialize();
                 return amplify.request({
-                    resourceId: 'saveDepartment',
+                    resourceId: 'saveOperations',
                     success: callbacks.success,
                     error: callbacks.error,
                     data: params
                 });
             },
-            //delete Department
-            deleteDepartment = function (params, callbacks) {
+            deleteOperation = function (params, callbacks) {
                 initialize();
                 return amplify.request({
-                    resourceId: 'deleteDepartment',
+                    resourceId: 'deleteOperation',
                     success: callbacks.success,
                     error: callbacks.error,
                     data: params
@@ -85,10 +80,10 @@ define("department/department.dataservice", function () {
             };
 
         return {
-            getDepartmentBaseData: getDepartmentBaseData,
-            getDepartments: getDepartments,
-            saveDepartment: saveDepartment,
-            deleteDepartment: deleteDepartment
+            getOperationBaseData: getOperationBaseData,
+            getOperations: getOperations,
+            saveOperation:saveOperation,
+            deleteOperation: deleteOperation
         };
     })();
     return dataService;

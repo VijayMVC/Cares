@@ -57,17 +57,25 @@ namespace Cares.Repository.Repositories
         #endregion
         #region Public
 
-        
+        /// <summary>
+        /// get all Operations
+        /// </summary>
         public override IEnumerable<Operation> GetAll()
         {
             return DbSet.Where(operation => operation.UserDomainKey == UserDomainKey ).ToList();
         }
 
+        /// <summary>
+        /// GetSalesOperation
+        /// </summary>
         public ICollection<Operation> GetSalesOperation()
         {
             return DbSet.Include(operation => operation.Department).Where(operation => operation.Department.DepartmentType == DepartmentTypes.Sales).ToList();
         }
 
+        /// <summary>
+        /// SearchOperation
+        /// </summary>
         public IEnumerable<Operation> SearchOperation(OperationSearchRequest request, out int rowCount)
         {
             int fromRow = (request.PageNo - 1) * request.PageSize;
@@ -98,6 +106,9 @@ namespace Cares.Repository.Repositories
                     .Take(toRow)
                     .ToList();
         }
+        /// <summary>
+        /// Get Company With Details
+        /// </summary>
         public Operation GetCompanyWithDetails(long id)
         {
             return DbSet.Include(opp => opp.Department)

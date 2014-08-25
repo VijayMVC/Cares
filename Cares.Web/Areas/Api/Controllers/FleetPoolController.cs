@@ -6,6 +6,7 @@ using Cares.Interfaces.IServices;
 using Cares.Models.RequestModels;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
+using Cares.WebBase.Mvc;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
@@ -41,6 +42,7 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// update FleetPools
         /// </summary>
+        [ApiException]
         public FleetPool Post(FleetPool fleetPool)
         {
             if (fleetPool == null || !ModelState.IsValid)
@@ -49,7 +51,6 @@ namespace Cares.Web.Areas.Api.Controllers
             }
             return fleetPoolService.SaveFleetPool(fleetPool.CreateFrom()).CreateFrom();
         }
-       
         #endregion
         #region Constructor
 

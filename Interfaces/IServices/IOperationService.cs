@@ -15,12 +15,22 @@ namespace Cares.Interfaces.IServices
         /// </summary>
         IEnumerable<Operation> LoadAll();
 
+        /// <summary>
+        /// Load Operation BaseData
+        /// </summary>
         OperationBaseDataResponse LoadOperationBaseData();
 
+        /// <summary>
+        /// Search Operation
+        /// </summary>
         OperationSearchResponse SearchOperation(OperationSearchRequest request);
-
+        /// <summary>
+        /// Delete Operation
+        /// </summary>
         void DeleteOperation(Operation operationobeDeleted);
-
+        /// <summary>
+        /// Save Operation
+        /// </summary>
         Operation SaveOperation(Operation operation);
 
     }

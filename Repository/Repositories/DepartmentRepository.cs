@@ -61,12 +61,17 @@ namespace Cares.Repository.Repositories
             return DbSet.Where(department => department.UserDomainKey == UserDomainKey).ToList();
         }
 
+        /// <summary>
+        /// Get Departments Types
+        /// </summary>
         public List<string> GetDepartmentsTypes()
         {
             return DbSet.Select(department => department.DepartmentType).ToList();
         }
 
-
+        /// <summary>
+        /// Search Department
+        /// </summary>
        public IEnumerable<Department> SearchDepartment(DepartmentSearchRequest request, out int rowCount)
         {
             int fromRow = (request.PageNo - 1) * request.PageSize;
@@ -97,6 +102,9 @@ namespace Cares.Repository.Repositories
                     .ToList();
         }
 
+        /// <summary>
+       /// Get Department With Details
+        /// </summary>
         public Department GetDepartmentWithDetails(long id)
         {
             return DbSet.Include(opp => opp.Company)

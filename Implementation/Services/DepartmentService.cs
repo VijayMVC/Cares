@@ -8,6 +8,9 @@ using Cares.Models.ResponseModels;
 
 namespace Cares.Implementation.Services
 {
+    /// <summary>
+    /// Department Service
+    /// </summary>
     public class DepartmentService : IDepartmentService
     {
         #region Private
@@ -22,6 +25,9 @@ namespace Cares.Implementation.Services
         }
         #endregion
 
+        /// <summary>
+        /// Search Department
+        /// </summary>
         public DepartmentSearchRequestResponse SearchDepartment(DepartmentSearchRequest request)
         {
             int rowCount;
@@ -32,6 +38,9 @@ namespace Cares.Implementation.Services
             };
         }
 
+        /// <summary>
+        /// Delete Department
+        /// </summary>
         public void DeleteDepartment(Department department)
         {
             Department dbVersion = departmentRepository.Find(department.DepartmentId);
@@ -42,11 +51,17 @@ namespace Cares.Implementation.Services
             }
         }
 
+        /// <summary>
+        /// Load All DEpartments
+        /// </summary>
         public IEnumerable<Department> LoadAll()
         {
             return departmentRepository.GetAll();
         }
 
+        /// <summary>
+        /// Load Department Base Data
+        /// </summary>
         public DepartmentBaseDataResponse LoadDepartmentBaseData()
         {
 
@@ -56,6 +71,9 @@ namespace Cares.Implementation.Services
             };
         }
 
+        /// <summary>
+        /// Save or Update Department
+        /// </summary>
         public Department SaveUpdateDepartment(Department department)
         {
             Department dbVersion = departmentRepository.Find(department.DepartmentId);

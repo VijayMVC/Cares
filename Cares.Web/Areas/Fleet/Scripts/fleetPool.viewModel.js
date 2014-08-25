@@ -117,8 +117,11 @@ define("Fleet/fleetPool.viewModel",
                                 }
                                 toastr.success("Successfully saved.");
                             },
-                            error: function() {
-                                toastr.error("Failed to save.");
+                            error: function (exceptionMessage, exceptionType) {
+                                if (exceptionType === ist.exceptionType.CaresGeneralException)
+                                    toastr.error(exceptionMessage);
+                                 else 
+                                    toastr.error("Failed to save FleetPool");
                             }
                         });
                     },

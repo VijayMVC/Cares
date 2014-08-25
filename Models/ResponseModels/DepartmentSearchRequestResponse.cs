@@ -7,11 +7,14 @@ using Cares.Models.DomainModels;
 
 namespace Cares.Models.ResponseModels
 {
+    /// <summary>
+    /// Department Search Request Response
+    /// </summary>
    public class DepartmentSearchRequestResponse
     {
         #region Public
         /// <summary>
-        ///
+        ///Departments List
         /// </summary>
        public IEnumerable<Department> Departments { get; set; }
 

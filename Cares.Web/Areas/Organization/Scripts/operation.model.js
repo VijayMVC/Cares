@@ -1,24 +1,23 @@
 ﻿define(["ko", "underscore", "underscore-ko"], function(ko) {
 
     var
-        // department entity
+        // Operation entity
         // ReSharper disable InconsistentNaming
-        department = function (specifiedId, specifiedCode, specifiedName, specifiedDescription, spcCompanyName, spcCompanyId, specifiedDepartmentType) {
+        operation = function (specifiedId, specifiedCode, specifiedName, specifiedDescription, spcCompanyName, specifiedDepartment, specifiedDepartmentType, specifiedDepartmentId) {
             var
                 id = ko.observable(specifiedId),
                 code = ko.observable(specifiedCode).extend({ required: true }),
                 name = ko.observable(specifiedName).extend({ required: true }),
                 description = ko.observable(specifiedDescription).extend({ required: true }),
                 companyName = ko.observable(spcCompanyName).extend({ required: true }),
-                companyId = ko.observable(spcCompanyId).extend({ required: true }),
+                departmentName = ko.observable(specifiedDepartment).extend({ required: true }),
+                DepartmentId=  ko.observable(specifiedDepartmentId).extend({ required: true }),
                 departmentType = ko.observable(specifiedDepartmentType).extend({ required: true }),
-
                 errors = ko.validation.group({
                     name: name,
                     code: code,
                     description: description,
-                    companyId: companyId,
-                    departmentType: departmentType,
+                    DepartmentId: DepartmentId
                 }),
                 // Is Valid
                 isValid = ko.computed(function() {
@@ -28,8 +27,7 @@
                     name: name,
                     code: code,
                     description: description,
-                    companyId: companyId,
-                    departmentType: departmentType,
+                    DepartmentId: DepartmentId
                 }),
                 // Has Changes
                 hasChanges = ko.computed(function() {
@@ -42,22 +40,22 @@
                 // Convert to server
                 convertToServerData = function() {
                     return {
-                        DepartmentId: id(),
-                        DepartmentCode: code(),
-                        DepartmentName: name(),
-                        DepartmentDescription: description(),
-                        CompanyId: companyId(),
-                        DepartmentType: departmentType()
+                        OperationId: id(),
+                        OperationCode: code(),
+                        OperationName: name(),
+                        OperationDescription: description(),
+                        DepartmentId: DepartmentId(),
                     };
                 };
             return {
-                id:id,
+                id: id,
                 name: name,
                 code: code,
                 description: description,
-                companyId: companyId,
-                departmentType: departmentType,
+                departmentName: departmentName,
                 companyName: companyName,
+                DepartmentId: DepartmentId,
+                departmentType: departmentType,
                 hasChanges: hasChanges,
                 reset: reset,
                 convertToServerData: convertToServerData,
@@ -65,13 +63,12 @@
                 errors: errors
             };
         };
-
-    var DepartmentServertoClientMapper = function (itemFromServer) {
-        return new department(itemFromServer.DepartmentId, itemFromServer.DepartmentCode, itemFromServer.DepartmentName,
-            itemFromServer.DepartmentDescription, itemFromServer.CompanyName, itemFromServer.CompanyId, itemFromServer.DepartmentType);
+    var OperationServertoClientMapper = function (itemFromServer) {
+        return new operation(itemFromServer.OperationId, itemFromServer.OperationCode, itemFromServer.OperationName,
+            itemFromServer.OperationDescription, itemFromServer.CompanyName, itemFromServer.DepartmentName, itemFromServer.DepartmentType, itemFromServer.DepartmentId);
     };
     return {
-        department: department,
-        DepartmentServertoClientMapper: DepartmentServertoClientMapper
+        operation: operation,
+        OperationServertoClientMapper: OperationServertoClientMapper
     };
 });
