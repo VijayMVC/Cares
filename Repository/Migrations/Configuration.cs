@@ -6,7 +6,8 @@ namespace Cares.Repository.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(BaseRepository.BaseDbContext context)
