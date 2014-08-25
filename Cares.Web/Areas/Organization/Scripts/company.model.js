@@ -149,6 +149,12 @@
            source.CompanyName,  source.CrNumber,  source.Ntn,  source.OrgGroupId,  source.PaidUpCapital,  source.ParentCompanyId,  source.Uan,
          source.ParentCompanyName, source.BusinessSegmentName, source.OrgGroupName);
     };
+
+    CompanyDetail.CreateFromClientModel = function (source) {
+        return new FleetPoolDetail(source.BusinessSegmentId, source.CompanyCode, source.CompanyDescription, source.CompanyId, source.CompanyLegalName,
+            source.CompanyName, source.CrNumber, source.Ntn, source.OrgGroupId, source.PaidUpCapital, source.ParentCompanyId, source.Uan,
+           source.ParentCompanyName, source.BusinessSegmentName, source.OrgGroupName);
+    };
     return {
         CompanyServertoClinetMapper: CompanyServertoClinetMapper,
         CompanyClienttoServerMapper: CompanyClienttoServerMapper,

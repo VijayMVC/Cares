@@ -35,7 +35,7 @@ namespace Cares.Models.DomainModels
         /// Child Service Rate Id
         /// </summary>
         [ForeignKey("ChildServiceRt")]
-        public long ChildServiceRtId { get; set; }
+        public long? ChildServiceRtId { get; set; }
 
         /// <summary>
         /// Service Rate
@@ -50,6 +50,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Start Date
         /// </summary>
+        [Required]
         public DateTime StartDt { get; set; }
 
         /// <summary>

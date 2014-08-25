@@ -116,7 +116,7 @@ namespace Cares.Implementation.Services
             };
         }
         /// <summary>
-        /// Add Insurance Rate
+        /// Add/Edit Insurance Rate
         /// </summary>
         /// <param name="insuranceRtMain"></param>
         /// <returns></returns>
@@ -140,7 +140,7 @@ namespace Cares.Implementation.Services
                 insuranceRtMain.RecCreatedBy = insuranceRtMainRepository.LoggedInUserIdentity;
                 insuranceRtMain.RecLastUpdatedBy = insuranceRtMainRepository.LoggedInUserIdentity;
                 insuranceRtMain.RowVersion = 0;
-                insuranceRtMainRepository.Add(insuranceRtMain);
+                //insuranceRtMainRepository.Add(insuranceRtMain);
                 //set child (Insurance Rate in Insurance Rate Main) properties
 
                 #region Insurance Rate in Insurance Rate Main
