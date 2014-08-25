@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Cares.ExceptionHandling;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -77,24 +78,28 @@ namespace Cares.Implementation.Services
         public Department SaveUpdateDepartment(Department department)
         {
             Department dbVersion = departmentRepository.Find(department.DepartmentId);
-            if (dbVersion != null)
+            if (!departmentRepository.IsDepartmentCodeExists(department))
             {
-                department.RecLastUpdatedBy = departmentRepository.LoggedInUserIdentity;
-                department.RecLastUpdatedDt = DateTime.Now;
-                department.RecCreatedBy = dbVersion.RecCreatedBy;
-                department.RecCreatedDt = dbVersion.RecCreatedDt;
-                department.UserDomainKey = dbVersion.UserDomainKey;
+                if (dbVersion != null)
+                {
+                    department.RecLastUpdatedBy = departmentRepository.LoggedInUserIdentity;
+                    department.RecLastUpdatedDt = DateTime.Now;
+                    department.RecCreatedBy = dbVersion.RecCreatedBy;
+                    department.RecCreatedDt = dbVersion.RecCreatedDt;
+                    department.UserDomainKey = dbVersion.UserDomainKey;
+                }
+                else
+                {
+                    department.RecCreatedBy = department.RecLastUpdatedBy = departmentRepository.LoggedInUserIdentity;
+                    department.RecCreatedDt = department.RecLastUpdatedDt = DateTime.Now;
+                    department.UserDomainKey = 1;
+                }
+                departmentRepository.Update(department);
+                departmentRepository.SaveChanges();
+                // To Load the proprties
+                return departmentRepository.GetDepartmentWithDetails(department.DepartmentId);
             }
-            else
-            {
-                department.RecCreatedBy = department.RecLastUpdatedBy = departmentRepository.LoggedInUserIdentity;
-                department.RecCreatedDt = department.RecLastUpdatedDt = DateTime.Now;
-                department.UserDomainKey = 1;
-            }
-            departmentRepository.Update(department);
-            departmentRepository.SaveChanges();
-            // To Load the proprties
-            return departmentRepository.GetDepartmentWithDetails(department.DepartmentId);
+            throw new CaresException("Department with same code already exists!");
         }
      
 

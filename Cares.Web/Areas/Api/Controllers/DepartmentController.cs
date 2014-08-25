@@ -5,12 +5,13 @@ using System;
 using System.Net;
 using System.Web;
 using System.Web.Http;
+using Cares.WebBase.Mvc;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
     public class DepartmentController : ApiController
     {
-        #region
+        #region public
         public Models.DepartmentSearchRequestResponse Get([FromUri] DepartmentSearchRequest oppRequest)
         {
             if (oppRequest == null || !ModelState.IsValid)
@@ -30,6 +31,7 @@ namespace Cares.Web.Areas.Api.Controllers
             return true;
         }
 
+        [ApiException]
         public Models.Department Post(Models.Department request)
         {
             if (request == null || !ModelState.IsValid)
@@ -41,9 +43,7 @@ namespace Cares.Web.Areas.Api.Controllers
 
 
 
-        #endregion
-
-
+        #endregion 
         #region Constructor
         public DepartmentController(IDepartmentService departmentService)
         {

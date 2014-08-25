@@ -6,6 +6,7 @@ using System;
 using System.Net;
 using System.Web;
 using System.Web.Http;
+using Cares.WebBase.Mvc;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
@@ -20,6 +21,9 @@ namespace Cares.Web.Areas.Api.Controllers
         #region Private
         private readonly IOperationService operationService;
         #endregion
+        /// <summary>
+        /// Get Operations
+        /// </summary>
         public OperationSearchResponse Get([FromUri] OperationSearchRequest oppRequest)
         {
             if (oppRequest == null || !ModelState.IsValid)
@@ -28,7 +32,10 @@ namespace Cares.Web.Areas.Api.Controllers
             }
             return operationService.SearchOperation(oppRequest).CreateFrom();
         }
-        public Boolean Delete(Models.Operation oppRequest)
+        /// <summary>
+        /// Delete Operation 
+        /// </summary>
+        public Boolean Delete(Operation oppRequest)
         {
             if (oppRequest == null || !ModelState.IsValid)
             {
@@ -37,7 +44,11 @@ namespace Cares.Web.Areas.Api.Controllers
             operationService.DeleteOperation(oppRequest.CreateFrom());
             return true;
         }
-        public Models.Operation Post(Models.Operation oppRequest)
+        /// <summary>
+        ///  ADd/ Update Operation
+        /// </summary>
+        [ApiException]
+        public Operation Post(Operation oppRequest)
         {
             if (oppRequest == null || !ModelState.IsValid)
             {

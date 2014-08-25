@@ -42,9 +42,6 @@ define("company/company.viewModel",
 
                      // Editor View Model
                     editorViewModel = new ist.ViewModel(model.CompanyDetail),
-                    // Active FleetPool
-             //      selectedFleetPool = editorViewModel.itemForEditing,
-
                     // Selected company
                     selectedCompany = editorViewModel.itemForEditing,
 
@@ -67,8 +64,8 @@ define("company/company.viewModel",
                         filteredCompanyList.removeAll();
                         ko.utils.arrayPushAll(filteredCompanyList(), parentCompanyList());
                         filteredCompanyList.valueHasMutated();
-                   //     var v = model.CompanyDetail();
-                    //    selectedCompany(v);
+                        var company = new model.CompanyDetail();
+                        editorViewModel.selectItem(company);
                         isCompanyEditorVisible(true);
                     },
                     // reset event hander
@@ -85,7 +82,7 @@ define("company/company.viewModel",
                         filteredCompanyList(_.filter(parentCompanyList(), function (company) {
                             return company.CompanyId !== item.companyId();
                         }));
-                        selectedCompany(item);
+                        editorViewModel.selectItem(item);
                         isCompanyEditorVisible(true);
                     },
                     //cancel event handler
@@ -119,12 +116,16 @@ define("company/company.viewModel",
                         saveCompany(selectedCompany());
                     },
                     //save compnay 
-                    saveCompany = function(item) {
+                    saveCompany = function (item) {
                         dataservice.saveCompany(model.CompanyClienttoServerMapper(item), {
                             success: function (dataFromServer) {
                                 var newItem = model.CompanyServertoClinetMapper(dataFromServer);
                                 if (selectedCompany().companyId() !== undefined) {
-                                    companies.replace(selectedCompany(), newItem);
+                                    var newObjtodelete = companies.find(function (temp) {
+                                        return temp.companyId() == newItem.companyId();
+                                    });
+                                    companies.remove(newObjtodelete);
+                                    companies.push(newItem);
                                     // deleting existing company from basecompany
                                     var newObj = parentCompanyList.find(function (temp) {
                                         return temp.CompanyId === newItem.companyId();
@@ -141,8 +142,11 @@ define("company/company.viewModel",
                                 isCompanyEditorVisible(false);
                                 toastr.success("Operation successfuly performed!");
                             },
-                            error: function() {
-                                toastr.error("Operation Failed!");
+                            error: function (exceptionMessage, exceptionType) {
+                                if (exceptionType === ist.exceptionType.CaresGeneralException)
+                                    toastr.error(exceptionMessage);
+                                else
+                                    toastr.error("Failed to save Company!");
                             }
                         });
                     },

@@ -67,6 +67,10 @@
         return new operation(itemFromServer.OperationId, itemFromServer.OperationCode, itemFromServer.OperationName,
             itemFromServer.OperationDescription, itemFromServer.CompanyName, itemFromServer.DepartmentName, itemFromServer.DepartmentType, itemFromServer.DepartmentId);
     };
+    operation.CreateFromClientModel = function (itemFromServer) {
+        return new operation(itemFromServer.DepartmentId, itemFromServer.code, itemFromServer.name,
+            itemFromServer.description, itemFromServer.companyName, itemFromServer.departmentName, itemFromServer.departmentType, itemFromServer.DepartmentId);
+    };
     return {
         operation: operation,
         OperationServertoClientMapper: OperationServertoClientMapper

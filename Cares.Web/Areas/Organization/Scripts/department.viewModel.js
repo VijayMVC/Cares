@@ -30,8 +30,12 @@ define("department/department.viewModel",
                     isDepartmentEditorVisible = ko.observable(false),
                     //to control the visibility of filter sec
                     filterSectionVisilble = ko.observable(false),
+
+                      // Editor View Model
+                    editorViewModel = new ist.ViewModel(model.department),
                     //selected Department
-                    selectedDepartment = ko.observable(),
+                    selectedDepartment = editorViewModel.itemForEditing,
+
                     //save button handler
                     onSaveDepartment = function () {
                         if (dobeforeDepartment())
@@ -39,12 +43,13 @@ define("department/department.viewModel",
                     },
                     //cancel button handler
                     onCancelDepartment = function () {
+                        editorViewModel.revertItem();
                         isDepartmentEditorVisible(false);
                     },
                     // create new org group handler
                     onCreateDepartment = function () {
-                        var department = model.department();
-                        selectedDepartment(department);
+                        var company = new model.department();
+                        editorViewModel.selectItem(company);
                         isDepartmentEditorVisible(true);
                     },
                     //reset butto handle 
@@ -69,7 +74,7 @@ define("department/department.viewModel",
                     },
                     //edit button handler
                     onEditDepartment = function (item) {
-                        selectedDepartment(item);
+                        editorViewModel.selectItem(item);
                         isDepartmentEditorVisible(true);
                     },
                      //validation check 
@@ -85,15 +90,24 @@ define("department/department.viewModel",
                             success: function (uodateddepartment) {
                                 debugger;
                                 var newItem = model.DepartmentServertoClientMapper(uodateddepartment);
-                                if (selectedDepartment().id() != undefined)
-                                    departments.replace(selectedDepartment(), newItem);
+                                if (selectedDepartment().id() != undefined) {
+
+                                    var newObjtodelete = departments.find(function (temp) {
+                                        return temp.id() == newItem.id();
+                                    });
+                                    departments.remove(newObjtodelete);
+                                    departments.push(newItem);
+                                }
                                 else
                                     departments.push(newItem);
                                 isDepartmentEditorVisible(false);
                                 toastr.success("Department saved successfully");
                             },
-                            error: function () {
-                                toastr.error("Failed to save Department!");
+                            error: function (exceptionMessage, exceptionType) {
+                                if (exceptionType === ist.exceptionType.CaresGeneralException)
+                                    toastr.error(exceptionMessage);
+                                else
+                                    toastr.error("Failed to save Department");
                             }
                         });
                     },

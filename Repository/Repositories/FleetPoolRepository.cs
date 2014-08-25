@@ -56,8 +56,8 @@ namespace Cares.Repository.Repositories
         public FleetPool GetFleetPoolWithDetails(long id)
         {
             return DbSet.Include(fleetPool => fleetPool.Operation)
-                .Include(fleetPool => fleetPool.Region)
-                .Include(fleetPool => fleetPool.Region.Country)
+                .Include(fleetPool => fleetPool.Region.RegionId)
+                .Include(fleetPool => fleetPool.Region.Country.CountryId)
                 .FirstOrDefault(fleetPool => fleetPool.UserDomainKey == UserDomainKey && fleetPool.FleetPoolId == id);
         }
 

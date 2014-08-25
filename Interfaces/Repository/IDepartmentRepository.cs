@@ -24,5 +24,8 @@ namespace Cares.Interfaces.Repository
         /// </summary>
         Department GetDepartmentWithDetails(long id);
 
+        bool IsDepartmentCodeExists(Department department);
+
+
     }
 }
