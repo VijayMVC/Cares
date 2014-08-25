@@ -13,7 +13,7 @@ namespace Cares.Repository.Repositories
     /// </summary>
     public class ServiceRtRepository : BaseRepository<ServiceRt>, IServiceRtRepository
     {
-         #region Constructor
+        #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>

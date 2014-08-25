@@ -200,7 +200,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
     //Client To Server Mapper
     var ServiceRtMainServerMapper = function (source) {
         var result = {};
-        result.InsuranceRtMainId = source.serviceRtMainId() === undefined ? 0 : source.serviceRtMainId();
+        result.ServiceRtMainId = source.serviceRtMainId() === undefined ? 0 : source.serviceRtMainId();
         result.ServiceRtMainCode = source.serviceRtMainCode() === undefined ? null : source.serviceRtMainCode();
         result.ServiceRtMainName = source.serviceRtMainName() === undefined ? null : source.serviceRtMainName();
         result.ServiceRtMainDescription = source.description() === undefined ? null : source.description();

@@ -6,7 +6,7 @@ namespace Cares.Interfaces.Repository
     /// <summary>
     /// Service Rate Repository Interface
     /// </summary>
-    public interface IServiceRtRepository
+    public interface IServiceRtRepository : IBaseRepository<ServiceRt, long>
     {
         /// <summary>
         /// Get Service Rate By Service Rate Main Id

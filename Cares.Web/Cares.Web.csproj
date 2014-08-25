@@ -236,7 +236,7 @@
     <Compile Include="Areas\Api\Controllers\RentalAgreementBusinessPartnerController.cs" />
     <Compile Include="Areas\Api\Controllers\GetBusinessPartnerDetailsController.cs" />
     <Compile Include="Areas\Api\Controllers\GetHireGroupDetailDataController.cs" />
-    <Compile Include="Areas\Api\Controllers\GetTariffDetailsController.cs" />
+    <Compile Include="Areas\Api\Controllers\GetTariffTypeDetailsController.cs" />
     <Compile Include="Areas\Api\Controllers\GetHireGroupDetailTariffRateController.cs" />
     <Compile Include="Areas\Api\Controllers\HireGroupBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\HireGroupVehiclesController.cs" />

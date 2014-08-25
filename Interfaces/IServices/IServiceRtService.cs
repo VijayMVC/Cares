@@ -15,6 +15,7 @@ namespace Cares.Interfaces.IServices
         /// <param name="request"></param>
         /// <returns></returns>
         ServiceRateSearchResponse LoadServiceRates(ServiceRateSearchRequest request);
+
         /// <summary>
         /// Get Base Data
         /// </summary>
@@ -39,5 +40,12 @@ namespace Cares.Interfaces.IServices
         /// <param name="serviceRtMainId"></param>
         /// <returns></returns>
         ServiceRtMain FindById(long serviceRtMainId);
+
+        /// <summary>
+        /// Add/Edit Service Rate
+        /// </summary>
+        /// <param name="serviceRtMain"></param>
+        /// <returns></returns>
+        ServiceRtMainContent SaveInsuranceRate(ServiceRtMain serviceRtMain);
     }
 }

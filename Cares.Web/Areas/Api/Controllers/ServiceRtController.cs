@@ -56,8 +56,8 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            //InsuranceRtMainContent insuranceRtContent = insuranceRateService.SaveInsuranceRate(insuranceRtMainContent.CreateFrom()).CreateFrom();
-            return null;
+            ServiceRtMainContent serviceRtMainContentResponse = serviceRtService.SaveInsuranceRate(serviceRtMainContent.CreateFrom()).CreateFrom();
+            return serviceRtMainContentResponse;
         }
 
         /// <summary>

@@ -58,22 +58,22 @@ namespace Cares.Web.ModelMappers
                 StartDt = source.StartDt,
             };
         }
-        ///// <summary>
-        /////  Service Rate Main Web to Domain Model
-        ///// </summary>
-        //public static DomainModels.ServiceRtMain CreateFrom(this ApiModel.ServiceRtMainContent source)
-        //{
-        //    return new DomainModels.InsuranceRtMain
-        //    {
-        //        InsuranceRtMainId = source.InsuranceRtMainId,
-        //        InsuranceRtMainCode = source.InsuranceRtMainCode,
-        //        InsuranceRtMainName = source.InsuranceRtName,
-        //        InsuranceRtMainDescription = source.InsuranceRtMainDescription,
-        //        TariffTypeCode = source.TariffTypeId.ToString(),
-        //        StartDt = source.StartDt,
-        //        InsuranceRates = source.InsuranceRts != null ? source.InsuranceRts.Select(insuranceRt => insuranceRt.CreateFrom()).ToList() : null
-        //    };
-        //}
+        /// <summary>
+        ///  Service Rate Main Web to Domain Model
+        /// </summary>
+        public static DomainModels.ServiceRtMain CreateFrom(this ApiModel.ServiceRtMainContent source)
+        {
+            return new DomainModels.ServiceRtMain
+            {
+                ServiceRtMainId = source.ServiceRtMainId,
+                ServiceRtMainCode = source.ServiceRtMainCode,
+                ServiceRtMainName = source.ServiceRtMainName,
+                ServiceRtMainDescription = source.ServiceRtMainDescription,
+                TariffTypeCode = source.TariffTypeId.ToString(),
+                StartDt = source.StartDt,
+                ServiceRts = source.ServiceRts != null ? source.ServiceRts.Select(serviceRt => serviceRt.CreateFrom()).ToList() : null
+            };
+        }
         /// <summary>
         ///  Service Rate Detail Content Domain to web Model
         /// </summary>
@@ -93,24 +93,22 @@ namespace Cares.Web.ModelMappers
                 RevisionNumber = source.RevisionNumber,
             };
         }
-        ///// <summary>
-        /////  Web To entity
-        ///// </summary>
-        //public static DomainModels.ServiceRt CreateFrom(this ApiModel.InsuranceRtDetailContent source)
-        //{
-        //    return new DomainModels.InsuranceRt
-        //    {
-        //        InsuranceRtId = source.InsuranceRtId,
-        //        InsuranceRtMainId = source.InsuranceRtMainId,
-        //        InsuranceTypeId = source.InsuranceTypeId,
-        //        HireGroupDetailId = source.HireGroupDetailId,
-        //        InsuranceRate = source.InsuranceRate,
-        //        StartDt = source.StartDate,
-        //        RevisionNumber = source.RevisionNumber,
-        //    };
-        //}
-        //#endregion
-        //#region insurance Rate Detail Response Mapper
+        /// <summary>
+        ///  Web To entity
+        /// </summary>
+        public static DomainModels.ServiceRt CreateFrom(this ApiModel.ServiceRtDetailContent source)
+        {
+            return new DomainModels.ServiceRt
+            {
+                ServiceRtId = source.ServiceRtId,
+                ServiceItemId = source.ServiceItemId,
+                ServiceRate = source.ServiceRate,
+                StartDt = source.StartDt,
+                RevisionNumber = source.RevisionNumber,
+            };
+        }
+        #endregion
+        #region Service Rate Detail Response Mapper
 
         /// <summary>
         ///  Service Rate Detail Content Domain to web Model

@@ -1,4 +1,5 @@
-﻿using Cares.Models.DomainModels;
+﻿using System.Collections.Generic;
+using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
 
@@ -20,11 +21,18 @@ namespace Cares.Interfaces.Repository
         /// Load Dependencies
         /// </summary>
         void LoadDependencies(TariffType tariffType);
+
         /// <summary>
         /// Get Revisions
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         TariffType GetRevison(long id);
+
+        /// <summary>
+        /// Get Tariff Type By Code
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<TariffType> GetByTariffTypeCode(string tariffTypeCode);
     }
 }

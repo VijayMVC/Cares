@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Cares.ExceptionHandling;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -23,7 +24,7 @@ namespace Cares.Implementation.Services
         private readonly ITariffTypeRepository tariffTypeRepository;
 
         #endregion
-       
+
         #region Constructors
         public TariffTypeService(IDepartmentRepository departmentRepository, ICompanyRepository companyRepository, IMeasurementUnit measurementUnit,
            IOperationRepository operationRepository, IPricingStrategyRepository pricingStrategyRepository, ITariffTypeRepository tariffTypeRepository)
@@ -37,7 +38,7 @@ namespace Cares.Implementation.Services
 
         }
         #endregion
-        
+
         #region Public
 
         public TariffTypeBaseResponse GetBaseData()
@@ -101,6 +102,9 @@ namespace Cares.Implementation.Services
             long oldRecordId = tariffType.TariffTypeId;
             if (tariffType.TariffTypeId == 0) //Add Case
             {
+                List<TariffType> tariffTypes = tariffTypeRepository.GetByTariffTypeCode(tariffType.TariffTypeCode).ToList();
+                if (tariffTypes.Count()>0)
+                    throw new CaresException("Tariff Type with the same code already exists. Please choose a different code!");
                 tariffType.IsActive = true;
                 tariffType.IsDeleted = tariffType.IsPrivate = tariffType.IsReadOnly = false;
                 tariffType.RecLastUpdatedBy = tariffType.RecCreatedBy = tariffTypeRepository.LoggedInUserIdentity;
