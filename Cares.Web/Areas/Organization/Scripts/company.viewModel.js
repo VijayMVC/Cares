@@ -39,8 +39,14 @@ define("company/company.viewModel",
                     businessSegList = ko.observableArray([]),
                     // Compnies list
                     companies = ko.observableArray([]),
+
+                     // Editor View Model
+                    editorViewModel = new ist.ViewModel(model.CompanyDetail),
+                    // Active FleetPool
+             //      selectedFleetPool = editorViewModel.itemForEditing,
+
                     // Selected company
-                    selectedCompany = ko.observable(undefined),
+                    selectedCompany = editorViewModel.itemForEditing,
 
                     // EVENT HANDLERS
 
@@ -61,8 +67,8 @@ define("company/company.viewModel",
                         filteredCompanyList.removeAll();
                         ko.utils.arrayPushAll(filteredCompanyList(), parentCompanyList());
                         filteredCompanyList.valueHasMutated();
-                        var v = model.CompanyDetail();
-                        selectedCompany(v);
+                   //     var v = model.CompanyDetail();
+                    //    selectedCompany(v);
                         isCompanyEditorVisible(true);
                     },
                     // reset event hander
@@ -83,7 +89,8 @@ define("company/company.viewModel",
                         isCompanyEditorVisible(true);
                     },
                     //cancel event handler
-                    onCancelCompanySave = function() {
+                    onCancelCompanySave = function () {
+                        editorViewModel.revertItem();
                         isCompanyEditorVisible(false);
                     },
                     // delete event handler
