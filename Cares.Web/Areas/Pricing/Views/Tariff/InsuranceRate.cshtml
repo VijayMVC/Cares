@@ -1,29 +1,29 @@
 ﻿@{
-    ViewBag.Title = "Insurance Rate";
+    ViewBag.Title = @Cares.Web.Resources.Tariff.InsuranceRate.InsuranceRateText;
 }
 
 <div class="row" id="insuranceRateBinding">
     <div class="row " data-bind="visible: !isInsuranceRtEditorVisible()">
-        <h3 class="page-header float-left pageHeaderSection">Insurance Rate</h3>
+        <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.Tariff.InsuranceRate.InsuranceRateText</h3>
         <div class="header-toolsSection">
-            <a href="#" class="label label-default create-new-icon" data-bind="click: createInsuranceRate" title=" create new Insurance Rate">NEW</a>
-            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title="Show Filters" style="display: none"></a>
+            <a href="#" class="label label-default create-new-icon" data-bind="click: createInsuranceRate" title='@Cares.Web.Resources.Tariff.ServiceRate.CreateNewServiceRate'>@Cares.Web.Resources.Shared.Common.New</a>
+            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title='@Cares.Web.Resources.Shared.Common.ShowFilter' style="display: none"></a>
         </div>
     </div>
     <div class="row searchFilterSection" data-bind="visible: !isInsuranceRtEditorVisible() && filterSectionVisilble()" style="display: none">
         <div class=" well">
             <form class="form-horizontal" data-bind="submit: search">
                 <div class="col-xs-3">
-                    <input type="text" class="form-control" placeholder="<Search>" data-bind="value: searchFilter" />
+                    <input type="text" class="form-control" placeholder='@("<"+Cares.Web.Resources.Shared.Common.Search+">")' data-bind="value: searchFilter" />
                 </div>
                 <div class="col-xs-3">
-                    <select class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '<Operation>', value: operationFilter"></select>
+                    <select class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '&lt;' + '@Cares.Web.Resources.Tariff.ServiceRate.Operation' + '&gt;', value: operationFilter"></select>
                 </div>
                 <div class="col-xs-3">
-                    <select class="form-control" data-bind="options: $root.tariffTypes, optionsText: 'TariffTypeCodeName', optionsValue: 'TariffTypeId', optionsCaption: '<Tariff Types>', value: tariffTypeFilter"></select>
+                    <select class="form-control" data-bind="options: $root.tariffTypes, optionsText: 'TariffTypeCodeName', optionsValue: 'TariffTypeId', optionsCaption: '&lt;' + '@Cares.Web.Resources.Tariff.ServiceRate.TariffType' + '&gt;', value: tariffTypeFilter"></select>
                 </div>
-                <button type="submit" class="btn btn-success" data-bind="click: search">Search</button>
-                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection" title="Hide Section"></a>
+                <button type="submit" class="btn btn-success" data-bind="click: search">@Cares.Web.Resources.Shared.Common.Search</button>
+                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection" title='@Cares.Web.Resources.Shared.Common.HideSection'></a>
             </form>
         </div>
     </div>
@@ -32,11 +32,11 @@
             <table id="insuranceRateTable" class="table table-condensed">
                 <thead>
                     <tr>
-                        <th> <span id="1">Insurance Rate<br />Code<span class="icon-up"></span></span></th>
-                        <th> <span id="2">Insurance Rate<br />Name<span></span></span></th>
-                        <th> <span>Operation<span></span></span></th>
-                        <th> <span>Tariff Type<span></span></span></th>
-                        <th> <span id="5">Start Effective Date<span></span></span></th>
+                        <th> <span id="1">@Cares.Web.Resources.Tariff.InsuranceRate.InsuranceRateText<br />@Cares.Web.Resources.Tariff.InsuranceRate.Code<span class="icon-up"></span></span></th>
+                        <th> <span id="2">@Cares.Web.Resources.Tariff.InsuranceRate.InsuranceRateText<br />@Cares.Web.Resources.Tariff.InsuranceRate.Name<span></span></span></th>
+                        <th> <span>@Cares.Web.Resources.Tariff.InsuranceRate.Operation<span></span></span></th>
+                        <th> <span>@Cares.Web.Resources.Tariff.InsuranceRate.TariffType<span></span></span></th>
+                        <th> <span id="5">@Cares.Web.Resources.Tariff.InsuranceRate.StartEffectiveDate<span></span></span></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,10 +50,10 @@
         </div>
     </div>
     <script id="editActionInsuranceRtMainTemplate" type="text/html">
-        <a href="#" data-bind="click: $root.onEditInsuranceRate" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
+        <a href="#" data-bind="click: $root.onEditInsuranceRate" title=@Cares.Web.Resources.Shared.Common.Edit><span class="glyphicon glyphicon-edit"></span></a>
     </script>
     <script id="deleteActionInsuranceRtMainTemplate" type="text/html">
-        <a href="#" data-bind="click: $root.onDeleteInsuranceRate" title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
+        <a href="#" data-bind="click: $root.onDeleteInsuranceRate" title=@Cares.Web.Resources.Shared.Common.Delete><span class="glyphicon glyphicon-remove"></span></a>
     </script>
     <script id="itemInsuranceRtMainTemplate" type="text/html">
         <tr>
@@ -82,6 +82,17 @@
 {
     <script type="text/javascript">
         require(["insuranceRate/insuranceRate.view", "common/confirmation.view"]);
-
+        var ist = window.ist;
+        @{
+            <text>
+        ist.resourceText.loadBaseDataFailedMsg = '@Cares.Web.Resources.Tariff.InsuranceRate.LoadBaseDataFailedMsg';
+        ist.resourceText.loadInsuranceTypeRatesFailedMsg = '@Cares.Web.Resources.Tariff.InsuranceRate.LoadInsuranceTypeRatesFailedMsg';
+        ist.resourceText.insuranceRateAddSuccessMsg = '@Cares.Web.Resources.Tariff.InsuranceRate.InsuranceRateAddSuccessMsg';
+        ist.resourceText.insuranceRateAddFailedMsg = '@Cares.Web.Resources.Tariff.InsuranceRate.InsuranceRateAddFailedMsg';
+        ist.resourceText.insuranceRateDeleteSuccessMsg = '@Cares.Web.Resources.Tariff.InsuranceRate.InsuranceRateDeleteSuccessMsg';
+        ist.resourceText.insuranceRateDeleteFailedMsg = '@Cares.Web.Resources.Tariff.InsuranceRate.InsuranceRateDeleteFailedMsg';
+        ist.resourceText.insuranceRatesLoadFailedMsg = '@Cares.Web.Resources.Tariff.InsuranceRate.InsuranceRatesLoadFailedMsg';
+            </text>
+        }
     </script>
 }

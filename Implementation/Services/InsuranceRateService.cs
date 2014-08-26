@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Cares.ExceptionHandling;
 using Cares.Interfaces.IServices;
@@ -56,10 +57,16 @@ namespace Cares.Implementation.Services
                    };
         }
 
+        /// <summary>
+        /// Load Insurance Rates
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public InsuranceRateSearchResponse LoadInsuranceRates(InsuranceRateSearchRequest request)
         {
             return insuranceRtMainRepository.GetInsuranceRates(request);
         }
+        
         /// <summary>
         ///Get Hire Group Detail List
         /// </summary>
@@ -115,6 +122,7 @@ namespace Cares.Implementation.Services
 
             };
         }
+       
         /// <summary>
         /// Add/Edit Insurance Rate
         /// </summary>
@@ -251,11 +259,21 @@ namespace Cares.Implementation.Services
             insuranceRtMainRepository.SaveChanges();
         }
 
+        /// <summary>
+        /// Find Insurance Rate Main By Id
+        /// </summary>
+        /// <param name="insuranceRtMainId">Insurance Rate Main Id</param>
+        /// <returns></returns>
         public InsuranceRtMain FindById(long insuranceRtMainId)
         {
             return insuranceRtMainRepository.Find(insuranceRtMainId);
         }
 
+        /// <summary>
+        /// Validate Insurance Rate Main
+        /// </summary>
+        /// <param name="insuranceRtMain"></param>
+        /// <param name="addFlag"></param>
         private void ValidateInsuranceRate(InsuranceRtMain insuranceRtMain, bool addFlag)
         {
             DateTime oStartDt, insRtStartDate;
@@ -265,10 +283,10 @@ namespace Cares.Implementation.Services
                 //means new Standard Rt is being added
                 insRtStartDate = Convert.ToDateTime(insuranceRtMain.StartDt);
                 if (insRtStartDate.Date < DateTime.Now.Date)
-                    throw new CaresException("Start Effective Date must be a current or future date.");
+                    throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.InsuranceRate.InvalidStartDate));
                 List<InsuranceRtMain> oStRateMain = insuranceRtMainRepository.FindByTariffTypeCode(insuranceRtMain.TariffTypeCode).ToList();
                 if (oStRateMain.Count > 0)
-                    throw new CaresException("Insurance Rate for the selected tariff type already exist.");
+                    throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.InsuranceRate.InsuranceRtByTariffExist));
 
             }
             if (insuranceRtMain.InsuranceRates != null)
@@ -277,9 +295,9 @@ namespace Cares.Implementation.Services
                 {
                     insRtStartDate = Convert.ToDateTime(item.StartDt);
                     if (insRtStartDate.Date < DateTime.Now.Date)
-                        throw new CaresException("Start Date for Insurance Item Rate must be a current or future date.");
+                        throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.InsuranceRate.InsRateCurrentDateViolation));
                     if (insRtStartDate.Date < oStartDt.Date)
-                        throw new CaresException("Start Date for Insurance Item Rate must be greater than their Start Effective Date.");
+                        throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.InsuranceRate.InsuranceRateInvalidEffectiveDate));
                 }
             }
         }

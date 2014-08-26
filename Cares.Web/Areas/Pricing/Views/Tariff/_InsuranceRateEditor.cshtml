@@ -1,57 +1,57 @@
 ﻿<div class="well col-md-12" id="insuranceRateEditor" data-bind="visible: isInsuranceRtEditorVisible" style="display: none;">
     <div data-bind="with: selectedInsuranceRtMain">
         <div class="detailsContainer">
-            <h3 class="page-header detailsHeaderSection">Insurance Rate Details</h3>
-            <button class="btn btn-info" id="saveBtn" data-bind="click:$root.onSaveInsuranceRate,enable: hasChanges, css: { 'btn-warning': hasChanges }">Save</button>
-            <button class="btn btn-default" id="saveBtn" data-bind="click: $root.closeInsuranceRateEditor">Cancel</button>
+            <h3 class="page-header detailsHeaderSection">@Cares.Web.Resources.Tariff.InsuranceRate.InsuranceRateDetail</h3>
+            <button class="btn btn-info" id="saveBtn" data-bind="click:$root.onSaveInsuranceRate,enable: hasChanges, css: { 'btn-warning': hasChanges }">@Cares.Web.Resources.Shared.Common.Save</button>
+            <button class="btn btn-default" id="saveBtn" data-bind="click: $root.closeInsuranceRateEditor">@Cares.Web.Resources.Shared.Common.Cancel</button>
         </div>
         <form class="form-horizontal">
             <div class="form-group">
-                <label for="code" class="control-label h5 col-sm-2">Insurance Rate Code *</label>
+                <label for="code" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.InsuranceRate.InsuranceRateCode *</label>
                 <div class="col-md-2">
-                    <input type="text" class="form-control" placeholder="<Insurance Rate Code>" id="code" data-bind="value: insuranceRtMainCode, validationTooltip: insuranceRtMainCode, disable :(insuranceRtMainId()!=undefined)" />
+                    <input type="text" class="form-control" placeholder='@("<" + Cares.Web.Resources.Tariff.InsuranceRate.InsuranceRateCode + ">")' id="code" data-bind="value: insuranceRtMainCode, validationTooltip: insuranceRtMainCode, disable :(insuranceRtMainId()!=undefined)" />
                 </div>
-                <label for="name" class="control-label h5 col-sm-2">Insurance Rate Name</label>
+                <label for="name" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.InsuranceRate.InsuranceRateName</label>
                 <div class="col-md-2">
-                    <input type="text" class="form-control" placeholder="<Insurance Rate Name>" id="name" data-bind="value: insuranceRtName, validationTooltip: insuranceRtName, disable :(insuranceRtMainId()!=undefined)" />
+                    <input type="text" class="form-control" placeholder='@("<" + Cares.Web.Resources.Tariff.InsuranceRate.InsuranceRateCode + ">")' id="name" data-bind="value: insuranceRtName, validationTooltip: insuranceRtName, disable :(insuranceRtMainId()!=undefined)" />
                 </div>
-                <label for="description" class="control-label h5 col-sm-2">Description</label>
+                <label for="description" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.InsuranceRate.Description</label>
                 <div class="col-md-2">
-                    <textarea class="form-control" rows="2" placeholder="<Description>" id="description" data-bind="value: description, valueUpdate: 'keyup', disable :(insuranceRtMainId()!=undefined)"></textarea>
+                    <textarea class="form-control" rows="2" placeholder='@("<" + Cares.Web.Resources.Tariff.InsuranceRate.Description + ">")' id="description" data-bind="value: description, valueUpdate: 'keyup', disable :(insuranceRtMainId()!=undefined)"></textarea>
                 </div>
             </div>
             <div class="form-group">
-                <label for="operation" class="control-label h5 col-sm-2">Operation *</label>
+                <label for="operation" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.InsuranceRate.Operation *</label>
                 <div class="col-md-2">
-                    <select id="operation" class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '<Operation>' , value: operationId, validationTooltip: operationId, disable :(insuranceRtMainId()!=undefined)"></select>
+                    <select id="operation" class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '@("<" + Cares.Web.Resources.Tariff.InsuranceRate.Operation + ">")' , value: operationId, validationTooltip: operationId, disable :(insuranceRtMainId()!=undefined)"></select>
                 </div>
-                <label for="tariffType" class="control-label h5 col-sm-2">Tariff Type *</label>
+                <label for="tariffType" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.InsuranceRate.TariffType *</label>
                 <div class="col-xs-2">
-                    <select id="tariffType" class="form-control" data-bind="options: $root.tariffTypes, optionsText: 'TariffTypeCodeName', optionsValue: 'TariffTypeId', optionsCaption: '<Tariff Types>', value: tariffTypeId, disable :(insuranceRtMainId()!=undefined)"></select>
+                    <select id="tariffType" class="form-control" data-bind="options: $root.tariffTypes, optionsText: 'TariffTypeCodeName', optionsValue: 'TariffTypeId', optionsCaption: '@("<" + Cares.Web.Resources.Tariff.InsuranceRate.TariffType + ">")', value: tariffTypeId, disable :(insuranceRtMainId()!=undefined)"></select>
                 </div>
-                <label for="sDate" class="control-label h5 col-sm-2">Effective From *</label>
+                <label for="sDate" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.InsuranceRate.EffectiveFrom *</label>
                 <div class="col-md-2">
-                    <input type="text" placeholder="<Effective From>" class="form-control" id="sDate" data-bind="datepicker: startDt, validationTooltip: startDt" />
+                    <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.InsuranceRate.EffectiveFrom + ">")' class="form-control" id="sDate" data-bind="datepicker: startDt, validationTooltip: startDt" />
                 </div>
             </div>
 
         </form>
     </div>
     <div class="panel panel-info searchFilterResultSection">
-        <div class="panel-heading">Insurance Type Rate</div>
+        <div class="panel-heading">@Cares.Web.Resources.Tariff.InsuranceRate.InsuranceTypeRate</div>
         <table id="insuranceTypeRate" class="table table-condensed">
             <thead>
                 <tr>
                     <th> <span></span></th>
-                    <th> <span>Insurance<br />Type<span></span></span></th>
-                    <th> <span>Hire<br />Group<span></span></span></th>
-                    <th> <span>Vehicle<br />Make<span></span></span></th>
-                    <th> <span>Vehicle<br />Model<span></span></span></th>
-                    <th> <span>Vehicle<br />Category<span></span></span></th>
-                    <th> <span>Model<br />Year<span></span></span></th>
-                    <th> <span>Insurance<br />Rate<span></span></span></th>
-                    <th> <span>Start<br />Date<span></span></span></th>
-                    <th> <span>Revision<br />Number<span></span></span></th>
+                    <th> <span>@Cares.Web.Resources.Tariff.InsuranceRate.Insurance<br />@Cares.Web.Resources.Tariff.InsuranceRate.Type<span></span></span></th>
+                    <th> <span>@Cares.Web.Resources.Tariff.InsuranceRate.Hire<br />@Cares.Web.Resources.Tariff.InsuranceRate.Group<span></span></span></th>
+                    <th> <span>@Cares.Web.Resources.Tariff.InsuranceRate.Vehicle<br />@Cares.Web.Resources.Tariff.InsuranceRate.Make<span></span></span></th>
+                    <th> <span>@Cares.Web.Resources.Tariff.InsuranceRate.Vehicle<br />@Cares.Web.Resources.Tariff.InsuranceRate.Model<span></span></span></th>
+                    <th> <span>@Cares.Web.Resources.Tariff.InsuranceRate.Vehicle<br />@Cares.Web.Resources.Tariff.InsuranceRate.Category<span></span></span></th>
+                    <th> <span>@Cares.Web.Resources.Tariff.InsuranceRate.Model<br />@Cares.Web.Resources.Tariff.InsuranceRate.Year<span></span></span></th>
+                    <th> <span>@Cares.Web.Resources.Tariff.InsuranceRate.Insurance<br />@Cares.Web.Resources.Tariff.InsuranceRate.Rate<span></span></span></th>
+                    <th> <span>@Cares.Web.Resources.Tariff.InsuranceRate.Start<br />@Cares.Web.Resources.Tariff.InsuranceRate.Date<span></span></span></th>
+                    <th> <span>@Cares.Web.Resources.Tariff.InsuranceRate.Revision<br />@Cares.Web.Resources.Tariff.InsuranceRate.Number<span></span></span></th>
                 </tr>
             </thead>
             <tbody>

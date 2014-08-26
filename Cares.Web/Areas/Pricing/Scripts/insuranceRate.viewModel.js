@@ -118,7 +118,7 @@ define("insuranceRate/insuranceRate.viewModel",
                                 }
                             },
                             error: function () {
-                                toastr.error("Failed to load base data");
+                                toastr.error(ist.resourceText.loadBaseDataFailedMsg);
                             }
                         });
                     },
@@ -136,7 +136,7 @@ define("insuranceRate/insuranceRate.viewModel",
                             },
                             error: function () {
                                 isLoadingInsuranceRt(false);
-                                toastr.error("Failed to load Insurance Type Rates!");
+                                toastr.error(ist.resourceText.loadInsuranceTypeRatesFailedMsg);
                             }
                         });
                     },
@@ -212,7 +212,7 @@ define("insuranceRate/insuranceRate.viewModel",
                                     insuranceRtMains.splice(0, 0, insuranceRtResult);
                                     closeServiceRateEditor();
                                 }
-                                toastr.success("Insurance Rate saved successfully");
+                                toastr.success(ist.resourceText.insuranceRateAddSuccessMsg);
                             },
                             error: function (exceptionMessage, exceptionType) {
 
@@ -222,7 +222,7 @@ define("insuranceRate/insuranceRate.viewModel",
 
                                 } else {
 
-                                    toastr.error("Failed to save Insurance Rate.");
+                                    toastr.error(ist.resourceText.insuranceRateAddFailedMsg);
 
                                 }
 
@@ -254,10 +254,10 @@ define("insuranceRate/insuranceRate.viewModel",
                         dataservice.deleteInsuranceRate(insuranceRt.convertToServerData(), {
                             success: function () {
                                 insuranceRtMains.remove(insuranceRt);
-                                toastr.success("Insurance Rate removed successfully");
+                                toastr.success(ist.resourceText.insuranceRateDeleteSuccessMsg);
                             },
                             error: function () {
-                                toastr.error("Failed to remove Insurance Rate!");
+                                toastr.error(ist.resourceText.insuranceRateDeleteFailedMsg);
                             }
                         });
                     },
@@ -291,7 +291,7 @@ define("insuranceRate/insuranceRate.viewModel",
                             },
                             error: function () {
                                 isLoadingInsuranceRt(false);
-                                toastr.error("Failed to load Insurance Rates!");
+                                toastr.error(ist.resourceText.insuranceRatesLoadFailedMsg);
                             }
                         });
                     };

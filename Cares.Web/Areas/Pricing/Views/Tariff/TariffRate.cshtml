@@ -6,15 +6,15 @@
     <div class="row " data-bind="visible: !isTariffRateEditorVisible()">
         <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.Tariff.TariffRate.TariffRates</h3>
         <div class="header-toolsSection">
-            <a href="#" class="label label-default create-new-icon" data-bind="click: createTariffRate" title=@Cares.Web.Resources.Tariff.TariffRate.CreateNewTarifRate>@Cares.Web.Resources.Shared.Common.New</a>
-            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title=@Cares.Web.Resources.Shared.Common.ShowFilter style="display: none"></a>
+            <a href="#" class="label label-default create-new-icon" data-bind="click: createTariffRate" title='@Cares.Web.Resources.Tariff.TariffRate.CreateNewTarifRate'>@Cares.Web.Resources.Shared.Common.New</a>
+            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title='@Cares.Web.Resources.Shared.Common.ShowFilter' style="display: none"></a>
         </div>
     </div>
     <div class="row searchFilterSection" data-bind="visible: !isTariffRateEditorVisible() && filterSectionVisilble()" style="display: none">
         <div class=" well">
             <form class="form-horizontal" data-bind="submit: search">
                 <div class="col-xs-3">
-                    <input type="text" class="form-control" placeholder=@("<"+Cares.Web.Resources.Shared.Common.Search+">") data-bind="value: searchFilter" />
+                    <input type="text" class="form-control" placeholder='@("<"+Cares.Web.Resources.Shared.Common.Search+">")' data-bind="value: searchFilter" />
                 </div>
                 <div class="col-xs-3">
                     <select class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '&lt;' + '@Cares.Web.Resources.Tariff.TariffRate.Operation' + '&gt;', value: operationFilter"></select>
@@ -23,7 +23,7 @@
                     <select class="form-control" data-bind="options: $root.tariffTypes, optionsText: 'TariffTypeName', optionsValue: 'TariffTypeId', optionsCaption: '&lt;' +  '@Cares.Web.Resources.Tariff.TariffRate.TariffTypes' + '&gt;', value: tariffTypeFilter"></select>
                 </div>
                 <button type="submit" class="btn btn-success" data-bind="click: search ">@Cares.Web.Resources.Shared.Common.Search</button>
-                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection " title=@Cares.Web.Resources.Shared.Common.HideSection></a>
+                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection " title='@Cares.Web.Resources.Shared.Common.HideSection'></a>
             </form>
         </div>
     </div>

@@ -22,14 +22,14 @@ namespace Cares.Implementation.Resources.Tariff {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class TariffRate {
+    public class ServiceRate {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal TariffRate() {
+        internal ServiceRate() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Cares.Implementation.Resources.Tariff {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Cares.Implementation.Resources.Tariff.TariffRate", typeof(TariffRate).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Cares.Implementation.Resources.Tariff.ServiceRate", typeof(ServiceRate).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,42 +61,6 @@ namespace Cares.Implementation.Resources.Tariff {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The current defined Effective Start and End range falls within the duration of another Standard Rate..
-        /// </summary>
-        public static string CurrentStandardRtOverlaps {
-            get {
-                return ResourceManager.GetString("CurrentStandardRtOverlaps", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to End Effective Date is greater than the start Effective Date of an existing Standard Rate..
-        /// </summary>
-        public static string EndStandardRtDurationOverlaps {
-            get {
-                return ResourceManager.GetString("EndStandardRtDurationOverlaps", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Another Standard Rate duration falls within the current defined Effective Start and End range.
-        /// </summary>
-        public static string ExistingStandardRtOverlaps {
-            get {
-                return ResourceManager.GetString("ExistingStandardRtOverlaps", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to End Effective Date must be greater than the Start Date..
-        /// </summary>
-        public static string InvalidEndDate {
-            get {
-                return ResourceManager.GetString("InvalidEndDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Start Effective Date must be a current or future date..
         /// </summary>
         public static string InvalidStartDate {
@@ -106,38 +70,29 @@ namespace Cares.Implementation.Resources.Tariff {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start Effective Date is less than the End Effective Date of an existing Standard Rate..
+        ///   Looks up a localized string similar to Service rate for the selected tariff type already exist..
         /// </summary>
-        public static string StartStandardRtDurationOverlaps {
+        public static string ServiceRtByTariffExist {
             get {
-                return ResourceManager.GetString("StartStandardRtDurationOverlaps", resourceCulture);
+                return ResourceManager.GetString("ServiceRtByTariffExist", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start Date and End Date for Hire Groups Rate must be a current or future date..
+        ///   Looks up a localized string similar to Start Date for Service Item Rate must be a current or future date..
         /// </summary>
-        public static string StRateInvalidEffectiveDates {
+        public static string ServRateCurrentDateViolation {
             get {
-                return ResourceManager.GetString("StRateInvalidEffectiveDates", resourceCulture);
+                return ResourceManager.GetString("ServRateCurrentDateViolation", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to End Date for Hire Groups Rate should be greater than their Start Date..
+        ///   Looks up a localized string similar to Start Date for Service Item Rate must be greater than their Start Effective Date..
         /// </summary>
-        public static string StRateInvalidEndDate {
+        public static string ServRateInvalidEffectiveDate {
             get {
-                return ResourceManager.GetString("StRateInvalidEndDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Start Date and End Date for Hire Groups Rate should be between the Start and Effective Date..
-        /// </summary>
-        public static string StRateInvalidRangeEffectiveDate {
-            get {
-                return ResourceManager.GetString("StRateInvalidRangeEffectiveDate", resourceCulture);
+                return ResourceManager.GetString("ServRateInvalidEffectiveDate", resourceCulture);
             }
         }
     }

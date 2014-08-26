@@ -358,42 +358,6 @@ namespace Cares.Web.Resources.Tariff {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start Effective Date is less than the End Effective Date of an existing Standard Rate..
-        /// </summary>
-        public static string StartStandardRtDurationOverlaps {
-            get {
-                return ResourceManager.GetString("StartStandardRtDurationOverlaps", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Start Date and End Date for Hire Groups Rate must be a current or future date..
-        /// </summary>
-        public static string StRateInvalidEffectiveDates {
-            get {
-                return ResourceManager.GetString("StRateInvalidEffectiveDates", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to End Date for Hire Groups Rate should be greater than their Start Date..
-        /// </summary>
-        public static string StRateInvalidEndDate {
-            get {
-                return ResourceManager.GetString("StRateInvalidEndDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Start Date and End Date for Hire Groups Rate should be between the Start and Effective Date..
-        /// </summary>
-        public static string StRateInvalidRangeEffectiveDate {
-            get {
-                return ResourceManager.GetString("StRateInvalidRangeEffectiveDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Tariff Rate Code.
         /// </summary>
         public static string TariffRateCode {
