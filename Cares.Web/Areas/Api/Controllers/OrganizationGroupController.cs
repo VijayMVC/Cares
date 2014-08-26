@@ -6,6 +6,7 @@ using Cares.Interfaces.IServices;
 using Cares.Models.RequestModels;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
+using Cares.WebBase.Mvc;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
@@ -38,6 +39,7 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Add/Update org group
         /// </summary>
+        [ApiException]
         public OrgGroup Post(OrgGroup orgGroup)
         {
             if (!ModelState.IsValid)

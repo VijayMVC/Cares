@@ -1,12 +1,12 @@
 ﻿@{
-    ViewBag.Title = "Department";
+    ViewBag.Title = @Cares.Web.Resources.Organization.Department.DepartmentLabel;
 }
 <div class="row" id="OperationBinding">
     <div class="row " data-bind="visible: !isDepartmentEditorVisible()">
-        <h3 class="page-header float-left pageHeaderSection">Department</h3>
+        <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.Organization.Department.DepartmentLabel</h3>
         <div class="header-toolsSection">
-            <a href="#" class="label label-default create-new-icon" data-bind="click: onCreateDepartment" title="Create New Department">NEW</a>
-            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title="Show Filters" style="display: none"></a>
+            <a href="#" class="label label-default create-new-icon" data-bind="click: onCreateDepartment" title="@Cares.Web.Resources.Shared.Common.CreateNew">@Cares.Web.Resources.Shared.Common.New</a>
+            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title="@Cares.Web.Resources.Shared.Common.ShowFilter" style="display: none"></a>
         </div>
     </div>
     <!--"-->
@@ -14,22 +14,22 @@
         <div class=" well">
             <form class="form-horizontal">
                 <div class="col-xs-2">
-                    <input type="text" class="form-control" placeholder="<Dept. Code>" data-bind="value:departmentCodeTextFilter" />
+                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.Organization.Department.DepartmentCode" data-bind="value:departmentCodeTextFilter" />
                 </div>
                 <div class="col-xs-2">
-                    <input type="text" class="form-control" placeholder="<Dept. Name>" data-bind="value:departmentNameTextFilter" />
+                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.Organization.Department.DepartmentName" data-bind="value:departmentNameTextFilter" />
                 </div>
 
                 <div class="col-xs-2">
-                    <select class="form-control" data-bind="options: $root.baseCompniesList, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '<Company>' , value:companyFilter"></select>
+                    <select class="form-control" data-bind="options: $root.baseCompniesList, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '@Cares.Web.Resources.Organization.Department.Comapny' , value:companyFilter"></select>
                 </div>
                 <div class="col-xs-2">
-                    <select class="form-control" data-bind="options: $root.baseDepartmentTypesList, optionsCaption: '<DepartmentType>', value:departmentTypeFilter "></select>
+                    <select class="form-control" data-bind="options: $root.baseDepartmentTypesList, optionsCaption: '@Cares.Web.Resources.Organization.Department.DepartmentType', value:departmentTypeFilter "></select>
                 </div>
 
-                <button type="submit" class="btn btn-success" data-bind="click: onSearch">Search</button>
-                <button type="submit" class="btn btn-default" data-bind="click:onResetResuults">Reset</button>
-                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click:hideFilterSection" title="Hide Section"></a>
+                <button type="submit" class="btn btn-success" data-bind="click: onSearch">@Cares.Web.Resources.Shared.Common.Search</button>
+                <button type="submit" class="btn btn-default" data-bind="click:onResetResuults">@Cares.Web.Resources.Shared.Common.Reset</button>
+                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click:hideFilterSection" title="@Cares.Web.Resources.Shared.Common.HideSection"></a>
             </form>
         </div>
     </div>
@@ -39,11 +39,11 @@
             <table id="OperationsTable" class="table table-condensed">
                 <thead>
                     <tr>
-                        <th> <span id="1">Code<span class="icon-up"></span></span></th>
-                        <th> <span id="2">Name<span></span></span></th>
-                        <th> <span id="3">Description<span></span></span></th>
-                        <th> <span id="4">Company<span class="icon-up"></span></span></th>
-                        <th> <span id="5">Department Type<span></span></span></th>
+                        <th> <span id="1">@Cares.Web.Resources.Organization.Department.Code<span class="icon-up"></span></span></th>
+                        <th> <span id="2">@Cares.Web.Resources.Organization.Department.Name<span></span></span></th>
+                        <th> <span id="3">@Cares.Web.Resources.Organization.Department.Description<span></span></span></th>
+                        <th> <span id="4">@Cares.Web.Resources.Organization.Department.Comapny<span class="icon-up"></span></span></th>
+                        <th> <span id="5">@Cares.Web.Resources.Organization.Department.DepartmentType<span></span></span></th>
                         <th> <span></span></th>
                         <th> <span></span></th>
                     </tr>
