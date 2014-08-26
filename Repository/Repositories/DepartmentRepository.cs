@@ -111,6 +111,12 @@ namespace Cares.Repository.Repositories
                 .FirstOrDefault(opp => opp.DepartmentId == id);
         }
 
+       public bool IsDepartmentCodeExists(Department dep)
+        {
+            Expression<Func<Department, bool>> query = department => department.DepartmentCode.Contains(dep.DepartmentCode) && department.DepartmentId != dep.DepartmentId;
+            return DbSet.Count(query) > 0;
+            
+        }
         #endregion
     }
 }

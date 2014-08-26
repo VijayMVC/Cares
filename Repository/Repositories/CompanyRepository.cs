@@ -96,6 +96,14 @@ namespace Cares.Repository.Repositories
                 .Include(company => company.ParentCompany)
                 .FirstOrDefault(fleetPool => fleetPool.UserDomainKey == UserDomainKey && fleetPool.CompanyId == id);
         }
+
+        public bool IsCompanyCodeExists(Company cmpCompany)
+        {
+            Expression<Func<Company, bool>> query = company => company.CompanyCode.Contains(cmpCompany.CompanyCode) && company.CompanyId!= cmpCompany.CompanyId;
+            return DbSet.Count(query) > 0;
+            
+        }
+
         #endregion
     }
 }

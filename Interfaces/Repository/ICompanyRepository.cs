@@ -18,5 +18,9 @@ namespace Cares.Interfaces.Repository
         /// </summary>
         /// <param name="id"></param>
         Company GetCompanyWithDetails(long id);
+        /// <summary>
+        /// Company Code validation
+        /// </summary>
+        bool IsCompanyCodeExists(Company fleetPool);
     }
 }

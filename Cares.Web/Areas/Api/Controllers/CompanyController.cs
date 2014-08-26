@@ -6,6 +6,7 @@ using Cares.Web.Models;
 using System.Net;
 using System.Web;
 using System.Web.Http;
+using Cares.WebBase.Mvc;
 
 
 namespace Cares.Web.Areas.Api.Controllers
@@ -51,12 +52,13 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-         //  companyService.DeleteCompany(request.CreateFrom());
+            companyService.DeleteCompany(request.CreateFrom());
             return true;
         }
         /// <summary>
         /// Add/ Update Company
         /// </summary>
+        [ApiException]
         public Models.Company Post(Models.Company request)
         {
             if (request == null || !ModelState.IsValid)

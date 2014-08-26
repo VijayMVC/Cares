@@ -114,6 +114,16 @@ namespace Cares.Repository.Repositories
             return DbSet.Include(opp => opp.Department)
                 .FirstOrDefault(opp => opp.OperationId == id);
         }
+        /// <summary>
+        /// Operation Code validation
+        /// </summary>
+        public bool IsOperationCodeExists(Operation operation)
+        {
+            Expression<Func<Operation, bool>> query = opp => opp.OperationCode.Contains(operation.OperationCode) && opp.OperationId != operation.OperationId;
+            return DbSet.Count(query) > 0;
+            
+        }
+
         #endregion
     }
 }

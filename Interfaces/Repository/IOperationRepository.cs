@@ -24,6 +24,10 @@ namespace Cares.Interfaces.Repository
         /// Search Operation
         /// </summary>
         IEnumerable<Operation> SearchOperation(OperationSearchRequest request, out int rowCount);
+        /// <summary>
+        /// Operation Code validation 
+        /// </summary>
+        bool IsOperationCodeExists(Operation operation);
 
     }
 }

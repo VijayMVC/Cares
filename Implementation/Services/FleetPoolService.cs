@@ -1,12 +1,11 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using Cares.ExceptionHandling;
+﻿using Cares.ExceptionHandling;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
+using System;
+using System.Globalization;
 
 namespace Cares.Implementation.Services
 {
@@ -113,7 +112,7 @@ namespace Cares.Implementation.Services
                 fleetPoolRepository.SaveChanges();
                 return fleetPoolRepository.GetFleetPoolWithDetails(fleetPool.FleetPoolId);
             }
-            throw new CaresException("Fleet Pool with same code alreadt exists!");
+            throw new CaresException("Fleet Pool with same code already exists!");
         }
         #endregion 
        #region Private

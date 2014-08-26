@@ -151,9 +151,9 @@
     };
 
     CompanyDetail.CreateFromClientModel = function (source) {
-        return new FleetPoolDetail(source.BusinessSegmentId, source.CompanyCode, source.CompanyDescription, source.CompanyId, source.CompanyLegalName,
-            source.CompanyName, source.CrNumber, source.Ntn, source.OrgGroupId, source.PaidUpCapital, source.ParentCompanyId, source.Uan,
-           source.ParentCompanyName, source.BusinessSegmentName, source.OrgGroupName);
+        return new CompanyDetail(source.businessSegmentId, source.companyCode, source.companyDescription, source.companyId, source.CompanyLegalName,
+            source.companyName, source.crNumber, source.ntn, source.orgGroupId, source.paidUpCapital, source.parentCompanyId, source.uan,
+           source.parentCompanyName, source.businessSegmentName, source.orgGroupName);
     };
     return {
         CompanyServertoClinetMapper: CompanyServertoClinetMapper,

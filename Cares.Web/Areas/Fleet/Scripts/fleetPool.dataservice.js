@@ -22,6 +22,7 @@ define("Fleet/fleetPool.dataservice", function () {
                     amplify.request.define('saveFleetPool', 'ajax', {
                         url: '/Api/FleetPool',
                         dataType: 'json',
+                        decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
                     });
                     // Define request to get FleetPools

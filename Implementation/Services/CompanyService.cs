@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using Cares.ExceptionHandling;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -14,33 +15,41 @@ namespace Cares.Implementation.Services
     public class CompanyService : ICompanyService
     {
         #region Public
+
         /// <summary>
         /// AddUpdate Company
         /// </summary>
         public Company AddUpdateCompany(Company companyRequest)
         {
-            Company dbVersion = companyRepository.Find(companyRequest.CompanyId);
-            if (dbVersion != null)
-            {
-                companyRequest.RecLastUpdatedBy = organizationGroupRepository.LoggedInUserIdentity;
-                companyRequest.RecLastUpdatedDt = DateTime.Now;
-                companyRequest.RowVersion = dbVersion.RowVersion + 1;
-                companyRequest.RecCreatedBy = dbVersion.RecCreatedBy;
-                companyRequest.RecCreatedDt = dbVersion.RecCreatedDt;
-                companyRequest.UserDomainKey = dbVersion.UserDomainKey;
 
-            }
-            else
+            Company dbVersion = companyRepository.Find(companyRequest.CompanyId);
+            if (!companyRepository.IsCompanyCodeExists(companyRequest))
             {
-                companyRequest.RecCreatedBy = companyRequest.RecLastUpdatedBy = organizationGroupRepository.LoggedInUserIdentity;
-                companyRequest.RecCreatedDt = companyRequest.RecLastUpdatedDt = DateTime.Now;
-                companyRequest.RowVersion = 0;
-                companyRequest.UserDomainKey = 1;
+
+                if (dbVersion != null)
+                {
+                    companyRequest.RecLastUpdatedBy = organizationGroupRepository.LoggedInUserIdentity;
+                    companyRequest.RecLastUpdatedDt = DateTime.Now;
+                    companyRequest.RowVersion = dbVersion.RowVersion + 1;
+                    companyRequest.RecCreatedBy = dbVersion.RecCreatedBy;
+                    companyRequest.RecCreatedDt = dbVersion.RecCreatedDt;
+                    companyRequest.UserDomainKey = dbVersion.UserDomainKey;
+
+                }
+                else
+                {
+                    companyRequest.RecCreatedBy =
+                        companyRequest.RecLastUpdatedBy = organizationGroupRepository.LoggedInUserIdentity;
+                    companyRequest.RecCreatedDt = companyRequest.RecLastUpdatedDt = DateTime.Now;
+                    companyRequest.RowVersion = 0;
+                    companyRequest.UserDomainKey = 1;
+                }
+                companyRepository.Update(companyRequest);
+                companyRepository.SaveChanges();
+                // To Load the proprties
+                return companyRepository.GetCompanyWithDetails(companyRequest.CompanyId);
             }
-            companyRepository.Update(companyRequest);
-            companyRepository.SaveChanges();
-            // To Load the proprties
-            return companyRepository.GetCompanyWithDetails(companyRequest.CompanyId);
+            throw new CaresException("Company with same code already exists!");
         }
         /// <summary>
         /// Load Base data

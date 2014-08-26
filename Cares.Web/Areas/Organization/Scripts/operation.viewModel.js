@@ -31,8 +31,13 @@ define("operation/operation.viewModel",
                     isOperationEditorVisible = ko.observable(false),
                     //to control the visibility of filter ec
                     filterSectionVisilble = ko.observable(false),
-                    //selected org group 
-                    selectedOperation = ko.observable(),
+
+
+                     // Editor View Model
+                    editorViewModel = new ist.ViewModel(model.operation),
+                  
+                    //selected operation
+                    selectedOperation = editorViewModel.itemForEditing,
                     //save button handler
                     onSaveOperation = function () {
                         if (dobeforeOperation())
@@ -40,12 +45,13 @@ define("operation/operation.viewModel",
                     },
                     //cancel button handler
                     onCancelSaveOperation = function () {
+                        editorViewModel.revertItem();
                         isOperationEditorVisible(false);
                     },
                     // create new org group handler
                     onCreateOperationForm = function () {
-                        var operation = model.operation();
-                        selectedOperation(operation);
+                        var operation =new model.operation();
+                        editorViewModel.selectItem(operation);
                         isOperationEditorVisible(true);
                     },
                     //reset butto handle 
@@ -73,12 +79,11 @@ define("operation/operation.viewModel",
                    
                     //edit button handler
                     onEditOperation = function (item) {
-                        selectedOperation(item);
+                        editorViewModel.selectItem(item);
                         isOperationEditorVisible(true);
                     },
                      //validation check 
                     dobeforeOperation = function () {
-                        debugger;
                         if (!selectedOperation().isValid()) {
                             selectedOperation().errors.showAllMessages();
                             return false;
@@ -90,14 +95,23 @@ define("operation/operation.viewModel",
                             success: function (uodatedOperation) {
                                 var newItem = model.OperationServertoClientMapper(uodatedOperation);
                                 if (selectedOperation().id() != undefined)
-                                    operations.replace(selectedOperation(), newItem);
+                                {
+                                    var newObjtodelete = operations.find(function (temp) {
+                                        return temp.id() == newItem.id();
+                                    });
+                                    operations.remove(newObjtodelete);
+                                    operations.push(newItem);
+                                }
                                 else
                                     operations.push(newItem);
                                 isOperationEditorVisible(false);
                                 toastr.success("Operation saved successfully");
                             },
-                            error: function () {
-                                toastr.error("Failed to save operation!");
+                            error: function (exceptionMessage, exceptionType) {
+                                if (exceptionType === ist.exceptionType.CaresGeneralException)
+                                    toastr.error(exceptionMessage);
+                                else
+                                    toastr.error("Failed to save Operation!");
                             }
                         });
                     },

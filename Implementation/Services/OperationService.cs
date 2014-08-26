@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Cares.ExceptionHandling;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -79,26 +80,30 @@ namespace Cares.Implementation.Services
         /// </summary>
         public Operation SaveOperation(Operation operation)
         {
-
             Operation dbVersion = operationRepository.Find(operation.OperationId);
-            if (dbVersion != null)
+            if (!operationRepository.IsOperationCodeExists(operation))
             {
-                operation.RecLastUpdatedBy = operationRepository.LoggedInUserIdentity;
-                operation.RecLastUpdatedDt = DateTime.Now;
-                operation.RecCreatedBy = dbVersion.RecCreatedBy;
-                operation.RecCreatedDt = dbVersion.RecCreatedDt;
-                operation.UserDomainKey = dbVersion.UserDomainKey;
+                if (dbVersion != null)
+                {
+                    operation.RecLastUpdatedBy = operationRepository.LoggedInUserIdentity;
+                    operation.RecLastUpdatedDt = DateTime.Now;
+                    operation.RecCreatedBy = dbVersion.RecCreatedBy;
+                    operation.RecCreatedDt = dbVersion.RecCreatedDt;
+                    operation.UserDomainKey = dbVersion.UserDomainKey;
+                }
+                else
+                {
+                    operation.RecCreatedBy = operation.RecLastUpdatedBy = operationRepository.LoggedInUserIdentity;
+                    operation.RecCreatedDt = operation.RecLastUpdatedDt = DateTime.Now;
+                    operation.UserDomainKey = 1;
+                }
+                operationRepository.Update(operation);
+                operationRepository.SaveChanges();
+                // To Load the proprties
+                return operationRepository.GetCompanyWithDetails(operation.OperationId);
             }
-            else
-            {
-                operation.RecCreatedBy = operation.RecLastUpdatedBy = operationRepository.LoggedInUserIdentity;
-                operation.RecCreatedDt = operation.RecLastUpdatedDt = DateTime.Now;
-                operation.UserDomainKey = 1;
-            }
-            operationRepository.Update(operation);
-            operationRepository.SaveChanges();
-            // To Load the proprties
-            return operationRepository.GetCompanyWithDetails(operation.OperationId);
+            throw new CaresException("Operation with same code already exists!");
+
         }
 
         #endregion

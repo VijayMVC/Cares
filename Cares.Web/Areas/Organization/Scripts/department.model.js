@@ -70,6 +70,12 @@
         return new department(itemFromServer.DepartmentId, itemFromServer.DepartmentCode, itemFromServer.DepartmentName,
             itemFromServer.DepartmentDescription, itemFromServer.CompanyName, itemFromServer.CompanyId, itemFromServer.DepartmentType);
     };
+
+    department.CreateFromClientModel = function (item) {
+        return new department(item.id, item.code, item.name,
+            item.description, item.companyName, item.companyId, item.departmentType);
+    };
+
     return {
         department: department,
         DepartmentServertoClientMapper: DepartmentServertoClientMapper

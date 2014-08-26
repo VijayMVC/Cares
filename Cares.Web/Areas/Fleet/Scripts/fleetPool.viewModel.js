@@ -86,6 +86,8 @@ define("Fleet/fleetPool.viewModel",
                         isFleetPoolEditorVisible(false);
                     },
                     onCancelSave = function () {
+                        debugger;
+
                         editorViewModel.revertItem();
                         isFleetPoolEditorVisible(false);
                     },
