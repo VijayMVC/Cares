@@ -97,6 +97,15 @@ namespace Cares.Web.Resources.Tariff {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The current defined Effective Start and End range falls within the duration of another Standard Rate..
+        /// </summary>
+        public static string CurrentStandardRtOverlaps {
+            get {
+                return ResourceManager.GetString("CurrentStandardRtOverlaps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date.
         /// </summary>
         public static string Date {
@@ -133,11 +142,29 @@ namespace Cares.Web.Resources.Tariff {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to End Effective Date is greater than the start Effective Date of an existing Standard Rate..
+        /// </summary>
+        public static string EndStandardRtDurationOverlaps {
+            get {
+                return ResourceManager.GetString("EndStandardRtDurationOverlaps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Excess.
         /// </summary>
         public static string Excess {
             get {
                 return ResourceManager.GetString("Excess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Another Standard Rate duration falls within the current defined Effective Start and End range..
+        /// </summary>
+        public static string ExistingStandardRtOverlaps {
+            get {
+                return ResourceManager.GetString("ExistingStandardRtOverlaps", resourceCulture);
             }
         }
         
@@ -165,6 +192,51 @@ namespace Cares.Web.Resources.Tariff {
         public static string HireGroup {
             get {
                 return ResourceManager.GetString("HireGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to load Hire Group Rates.
+        /// </summary>
+        public static string HireGroupRateLoadFailedMsg {
+            get {
+                return ResourceManager.GetString("HireGroupRateLoadFailedMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End Effective Date must be greater than the Start Date..
+        /// </summary>
+        public static string InvalidEndDate {
+            get {
+                return ResourceManager.GetString("InvalidEndDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Effective Date must be a current or future date..
+        /// </summary>
+        public static string InvalidStartDate {
+            get {
+                return ResourceManager.GetString("InvalidStartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to load base data..
+        /// </summary>
+        public static string LoadBaseDataFailedMsg {
+            get {
+                return ResourceManager.GetString("LoadBaseDataFailedMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to load tariff rates..
+        /// </summary>
+        public static string LoadTariffRatesFailedMsg {
+            get {
+                return ResourceManager.GetString("LoadTariffRatesFailedMsg", resourceCulture);
             }
         }
         
@@ -286,11 +358,65 @@ namespace Cares.Web.Resources.Tariff {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Start Effective Date is less than the End Effective Date of an existing Standard Rate..
+        /// </summary>
+        public static string StartStandardRtDurationOverlaps {
+            get {
+                return ResourceManager.GetString("StartStandardRtDurationOverlaps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Date and End Date for Hire Groups Rate must be a current or future date..
+        /// </summary>
+        public static string StRateInvalidEffectiveDates {
+            get {
+                return ResourceManager.GetString("StRateInvalidEffectiveDates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End Date for Hire Groups Rate should be greater than their Start Date..
+        /// </summary>
+        public static string StRateInvalidEndDate {
+            get {
+                return ResourceManager.GetString("StRateInvalidEndDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Date and End Date for Hire Groups Rate should be between the Start and Effective Date..
+        /// </summary>
+        public static string StRateInvalidRangeEffectiveDate {
+            get {
+                return ResourceManager.GetString("StRateInvalidRangeEffectiveDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tariff Rate Code.
         /// </summary>
         public static string TariffRateCode {
             get {
                 return ResourceManager.GetString("TariffRateCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to remove tariff rate..
+        /// </summary>
+        public static string TariffRateDeleteFailedMsg {
+            get {
+                return ResourceManager.GetString("TariffRateDeleteFailedMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tariff Rate removed successfully..
+        /// </summary>
+        public static string TariffRateDeleteSuccessMsg {
+            get {
+                return ResourceManager.GetString("TariffRateDeleteSuccessMsg", resourceCulture);
             }
         }
         
@@ -318,6 +444,24 @@ namespace Cares.Web.Resources.Tariff {
         public static string TariffRates {
             get {
                 return ResourceManager.GetString("TariffRates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to save Tariff Rate..
+        /// </summary>
+        public static string TariffRateSaveFailedMsg {
+            get {
+                return ResourceManager.GetString("TariffRateSaveFailedMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tariff Rate saved successfully..
+        /// </summary>
+        public static string TariffRateSaveSuccessMsg {
+            get {
+                return ResourceManager.GetString("TariffRateSaveSuccessMsg", resourceCulture);
             }
         }
         

@@ -153,7 +153,7 @@ define("hireGroup/hireGroup.viewModel",
                             },
                             error: function () {
                                 isLoadingHireGroups(false);
-                                toastr.error("Error!");
+                                toastr.error(ist.resourceText.hireGroupDetailFailedMsg);
                             }
                         });
                     },
@@ -223,10 +223,10 @@ define("hireGroup/hireGroup.viewModel",
                         dataservice.deleteHireGroup(model.HireGroupServerMapper(hireGroup), {
                             success: function () {
                                 hireGroups.remove(hireGroup);
-                                toastr.success("Hire Group removed successfully");
+                                toastr.success(ist.resourceText.hireGroupDeleteSuccessMsg);
                             },
                             error: function () {
-                                toastr.error("Failed to remove Hire Group!");
+                                toastr.error(ist.resourceText.hireGroupDeleteFailedMsg);
                             }
                         });
                     },
@@ -303,10 +303,10 @@ define("hireGroup/hireGroup.viewModel",
 
                                 }
                                 closeHireGroupEditor();
-                                toastr.success("Hire Group saved successfully");
+                                toastr.success(ist.resourceText.hirGroupAddSuccesMsg);
                             },
                             error: function () {
-                                toastr.error('Failed to save Hire Group!');
+                                toastr.error(ist.resourceText.hirGroupAddFailedMsg);
                             }
                         });
                     },
@@ -343,7 +343,7 @@ define("hireGroup/hireGroup.viewModel",
                                 }
                             },
                             error: function () {
-                                toastr.error("Failed to load base data");
+                                toastr.error(ist.resourceText.loadBaseDataFailedMsg);
                             }
                         });
                     },
@@ -393,7 +393,7 @@ define("hireGroup/hireGroup.viewModel",
                             },
                             error: function () {
                                 isLoadingHireGroups(false);
-                                toastr.error("Failed to load Hire Groups!");
+                                toastr.error(ist.resourceText.hireGroupLoadFailedMsg);
                             }
                         });
                     };

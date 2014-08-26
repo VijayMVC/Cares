@@ -1,29 +1,29 @@
 ﻿@{
-    ViewBag.Title = "Hire Group";
+    ViewBag.Title = @Cares.Web.Resources.Tariff.HireGroup.HireGroupText;
 }
 
 <div class="row" id="hireGroupBinding">
     <div class="row " data-bind="visible: !isHireGroupEditorVisible()">
-        <h3 class="page-header float-left pageHeaderSection">Hire Group</h3>
+        <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.Tariff.HireGroup.HireGroups</h3>
         <div class="header-toolsSection">
-            <a href="#" class="label label-default create-new-icon" data-bind="click: createHireGroup" title="Create New Hire Group">NEW</a>
-            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title="Show Filters" style="display: none"></a>
+            <a href="#" class="label label-default create-new-icon" data-bind="click: createHireGroup" title=@Cares.Web.Resources.Tariff.TariffRate.CreateNewTarifRate>@Cares.Web.Resources.Shared.Common.New</a>
+            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title=@Cares.Web.Resources.Shared.Common.ShowFilter style="display: none"></a>
         </div>
     </div>
     <div class="row searchFilterSection" data-bind="visible: !isHireGroupEditorVisible() && filterSectionVisilble()" style="display: none">
         <div class=" well">
             <form class="form-horizontal" data-bind="submit: search">
                 <div class="col-xs-3">
-                    <input type="text" class="form-control" placeholder="<Search>" data-bind="value: hireGroupCodeFilter" />
+                    <input type="text" class="form-control" placeholder=@("<"+Cares.Web.Resources.Shared.Common.Search+">") data-bind="value: hireGroupCodeFilter" />
                 </div>
                 <div class="col-xs-3">
-                    <select class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '<Company>', value: companyFilter"></select>
+                    <select class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '@Cares.Web.Resources.Tariff.HireGroup.Company', value: companyFilter"></select>
                 </div>
                 <div class="col-xs-3">
-                    <select class="form-control" data-bind="options: $root.parentHireGroups, optionsText: 'ParentHireGroupName', optionsValue: 'HireGroupId', optionsCaption: '<Parent Hire Group>', value: parentHireGroupFilter"></select>
+                    <select class="form-control" data-bind="options: $root.parentHireGroups, optionsText: 'ParentHireGroupName', optionsValue: 'HireGroupId', optionsCaption: '@Cares.Web.Resources.Tariff.HireGroup.ParentHireGroup', value: parentHireGroupFilter"></select>
                 </div>
-                <button type="submit" class="btn btn-success" data-bind="click: search">Search</button>
-                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection" title="Hide Section"></a>
+                <button type="submit" class="btn btn-success" data-bind="click: search">@Cares.Web.Resources.Shared.Common.Search</button>
+                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection" title=@Cares.Web.Resources.Shared.Common.HideSection></a>
             </form>
         </div>
     </div>
@@ -32,12 +32,12 @@
             <table id="hireGroupTable" class="table table-condensed">
                 <thead>
                     <tr>
-                        <th> <span id="1">Hire Group Code<span class="icon-up"></span></span></th>
-                        <th> <span id="2">Hire Group Name<span></span></span></th>
-                        <th> <span id="3">Parent Hire Group<span></span></span></th>
-                        <th> <span>Description<span></span></span></th>
-                        <th> <span>Company<span></span></span></th>
-                        <th> <span>Is Parent<span></span></span></th>
+                        <th> <span id="1">@Cares.Web.Resources.Tariff.HireGroup.HireGroupCode<span class="icon-up"></span></span></th>
+                        <th> <span id="2">@Cares.Web.Resources.Tariff.HireGroup.HireGroupName<span></span></span></th>
+                        <th> <span id="3">@Cares.Web.Resources.Tariff.HireGroup.ParentHireGroup<span></span></span></th>
+                        <th> <span>@Cares.Web.Resources.Tariff.HireGroup.Description<span></span></span></th>
+                        <th> <span>@Cares.Web.Resources.Tariff.HireGroup.Company<span></span></span></th>
+                        <th> <span>@Cares.Web.Resources.Tariff.HireGroup.IsParent<span></span></span></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -84,6 +84,16 @@
 {
     <script type="text/javascript">
         require(["hireGroup/hireGroup.view", "common/confirmation.view"]);
-
+        @{
+            <text>
+        ist.resourceText.hireGroupDetailFailedMsg = '@Cares.Web.Resources.Tariff.HireGroup.HireGroupDetailFailedMsg';
+        ist.resourceText.hireGroupDeleteSuccessMsg = '@Cares.Web.Resources.Tariff.HireGroup.HireGroupDeleteSuccessMsg';
+        ist.resourceText.hireGroupDeleteFailedMsg = '@Cares.Web.Resources.Tariff.HireGroup.HireGroupDeleteFailedMsg';
+        ist.resourceText.hirGroupAddSuccesMsg = '@Cares.Web.Resources.Tariff.HireGroup.HirGroupAddSuccesMsg';
+        ist.resourceText.hirGroupAddFailedMsg = '@Cares.Web.Resources.Tariff.HireGroup.HirGroupAddFailedMsg';
+        ist.resourceText.loadBaseDataFailedMsg = '@Cares.Web.Resources.Tariff.HireGroup.LoadBaseDataFailedMsg';
+        ist.resourceText.hireGroupLoadFailedMsg = '@Cares.Web.Resources.Tariff.HireGroup.HireGroupLoadFailedMsg';
+            </text>
+        }
     </script>
 }

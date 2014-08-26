@@ -487,6 +487,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Resources\Tariff\HireGroup.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HireGroup.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tariff\HireGroup.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HireGroup.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Tariff\TariffRate.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1433,6 +1443,14 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Product.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tariff\HireGroup.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HireGroup.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tariff\HireGroup.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HireGroup.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tariff\TariffRate.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>TariffRate.ar.Designer.cs</LastGenOutput>
@@ -1444,6 +1462,7 @@
     <EmbeddedResource Include="Resources\Tariff\TariffType.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>TariffType.ar.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tariff\TariffType.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

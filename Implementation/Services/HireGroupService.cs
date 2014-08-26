@@ -23,6 +23,7 @@ namespace Cares.Implementation.Services
         private readonly IHireGroupDetailRepository hireGroupDetailRepository;
         private readonly IHireGroupUpGradeRepository hireGroupUpGradeRepository;
         #endregion
+       
         #region Constructors
         public HireGroupService(IHireGroupRepository hireGroupRepository, ICompanyRepository companyRepository, IVehicleCategoryRepository vehicleCategoryRepository,
             IVehicleMakeRepository vehicleMakeRepository, IVehicleModelRepository vehicleModelRepository, IHireGroupDetailRepository hireGroupDetailRepository,
@@ -41,6 +42,7 @@ namespace Cares.Implementation.Services
             this.hireGroupUpGradeRepository = hireGroupUpGradeRepository;
         }
         #endregion
+        
         #region Public
 
         /// <summary>
@@ -84,6 +86,7 @@ namespace Cares.Implementation.Services
         {
             return hireGroupRepository.GetHireGroups(hireGroupSearchRequest);
         }
+       
         /// <summary>
         /// Find Hire Group by ID
         /// </summary>
@@ -93,6 +96,7 @@ namespace Cares.Implementation.Services
         {
             return hireGroupRepository.Find(id);
         }
+       
         /// <summary>
         /// Delete Hire Group
         /// </summary>
@@ -103,6 +107,7 @@ namespace Cares.Implementation.Services
             hireGroupRepository.SaveChanges();
 
         }
+        
         /// <summary>
         /// Add Hire Group
         /// </summary>
@@ -164,6 +169,7 @@ namespace Cares.Implementation.Services
             hireGroupRepository.LoadDependencies(hirGroup);
             return hirGroup;
         }
+       
         /// <summary>
         /// Update Hire Group
         /// </summary>
@@ -272,6 +278,7 @@ namespace Cares.Implementation.Services
             hireGroupRepository.LoadDependencies(hirGroup);
             return hirGroup;
         }
+        
         /// <summary>
         /// Get Hire Group Data By Id
         /// </summary>

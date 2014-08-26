@@ -121,6 +121,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Identity\IdentityOperation.cs" />
+    <Compile Include="Resources\Tariff\TariffRate.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TariffRate.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tariff\TariffRate.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TariffRate.resx</DependentUpon>
+    </Compile>
     <Compile Include="Services\BusinessPartnerBaseDataService.cs" />
     <Compile Include="Services\BusinessPartnerService.cs" />
     <Compile Include="Services\CategoryService.cs" />
@@ -172,6 +182,16 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Tariff\TariffRate.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TariffRate.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tariff\TariffRate.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TariffRate.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

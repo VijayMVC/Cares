@@ -17,13 +17,13 @@
                     <input type="text" class="form-control" placeholder=@("<"+Cares.Web.Resources.Shared.Common.Search+">") data-bind="value: searchFilter" />
                 </div>
                 <div class="col-xs-3">
-                    <select class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '@Cares.Web.Resources.Tariff.TariffRate.Operation', value: operationFilter"></select>
+                    <select class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '&lt;' + '@Cares.Web.Resources.Tariff.TariffRate.Operation' + '&gt;', value: operationFilter"></select>
                 </div>
                 <div class="col-xs-3">
-                    <select class="form-control" data-bind="options: $root.tariffTypes, optionsText: 'TariffTypeName', optionsValue: 'TariffTypeId', optionsCaption: '@Cares.Web.Resources.Tariff.TariffRate.TariffTypes', value: tariffTypeFilter"></select>
+                    <select class="form-control" data-bind="options: $root.tariffTypes, optionsText: 'TariffTypeName', optionsValue: 'TariffTypeId', optionsCaption: '&lt;' +  '@Cares.Web.Resources.Tariff.TariffRate.TariffTypes' + '&gt;', value: tariffTypeFilter"></select>
                 </div>
-                <button type="submit" class="btn btn-success" data-bind="click: search">@Cares.Web.Resources.Shared.Common.Search</button>
-                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection" title=@Cares.Web.Resources.Shared.Common.HideSection></a>
+                <button type="submit" class="btn btn-success" data-bind="click: search ">@Cares.Web.Resources.Shared.Common.Search</button>
+                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection " title=@Cares.Web.Resources.Shared.Common.HideSection></a>
             </form>
         </div>
     </div>
@@ -84,6 +84,17 @@
 {
     <script type="text/javascript">
         require(["tariffRate/tariffRate.view", "common/confirmation.view"]);
-
+        var ist = window.ist;
+        @{
+            <text>
+        ist.resourceText.triffRateSaveFailedMsg = '@Cares.Web.Resources.Tariff.TariffRate.TariffRateSaveFailedMsg';
+        ist.resourceText.loadBaseDataFailedMsg = '@Cares.Web.Resources.Tariff.TariffRate.LoadBaseDataFailedMsg';
+        ist.resourceText.hireGroupRateLoadFailedMsg = '@Cares.Web.Resources.Tariff.TariffRate.HireGroupRateLoadFailedMsg';
+        ist.resourceText.tariffRateSaveSuccessMsg = '@Cares.Web.Resources.Tariff.TariffRate.TariffRateSaveSuccessMsg';
+        ist.resourceText.loadTariffRatesFailedMsg = '@Cares.Web.Resources.Tariff.TariffRate.LoadTariffRatesFailedMsg';
+        ist.resourceText.tariffRateDeleteSuccessMsg = '@Cares.Web.Resources.Tariff.TariffRate.TariffRateDeleteSuccessMsg';
+        ist.resourceText.tariffRateDeleteFailedMsg = '@Cares.Web.Resources.Tariff.TariffRate.TariffRateDeleteFailedMsg';
+        </text>
+        }
     </script>
 }
