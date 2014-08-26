@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Cares.ExceptionHandling;
 using Cares.Interfaces.IServices;
@@ -270,7 +271,7 @@ namespace Cares.Implementation.Services
             if (addFlag)
             {
                 if (strMainStartDate.Date < DateTime.Now.Date)
-                    throw new CaresException("Start Effective Date must be a current or future date.");
+                    throw new CaresException(string.Format(CultureInfo.InvariantCulture,Resources.Tariff.TariffRate.InvalidStartDate));
                 if (strMainEndDate.Date < strMainStartDate.Date)
                     throw new CaresException("End Effective Date must be greater than the Start Date.");
                 //TariffType tariffType = FindTariffTypeById(standardRateMain.TariffTypeId);

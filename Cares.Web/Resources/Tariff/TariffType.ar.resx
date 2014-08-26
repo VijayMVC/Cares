@@ -225,7 +225,19 @@
   <data name="Unit" xml:space="preserve">
     <value>وحدة</value>
   </data>
-  <data name="TariffTypeAddSucess" xml:space="preserve">
+  <data name="TariffTypeAddSucessMsg" xml:space="preserve">
     <value>نوع التعرفة التفاصيل</value>
+  </data>
+  <data name="LoadBaseDataFailedMsg" xml:space="preserve">
+    <value>فشل تحميل قاعدة البيانات.</value>
+  </data>
+  <data name="LoadTariffTypesFailedMsg" xml:space="preserve">
+    <value>فشل تحميل أنواع التعريفات.</value>
+  </data>
+  <data name="TariffTypeDetailFailedMsg" xml:space="preserve">
+    <value>فشل تحميل نوع التعريفة التفاصيل.</value>
+  </data>
+  <data name="TariffTypeSaveFailedMsg" xml:space="preserve">
+    <value>فشل حفظ التعرفة نوع.</value>
   </data>
 </root>

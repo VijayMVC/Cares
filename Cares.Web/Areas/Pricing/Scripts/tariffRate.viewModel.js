@@ -158,7 +158,7 @@ define("tariffRate/tariffRate.viewModel",
                                 }
                             },
                             error: function () {
-                                toastr.error("Failed to load base data");
+                                toastr.error(ist.resourceText.loadTariffTypesFailedMsg);
                             }
                         });
                     },
@@ -186,7 +186,7 @@ define("tariffRate/tariffRate.viewModel",
                             },
                             error: function () {
                                 isLoadingTariffRates(false);
-                                toastr.error("Failed to load Hire Group Rates!");
+                                toastr.error(ist.resourceText.hireGroupRateLoadFailedMsg);
                             }
                         });
                     },
@@ -265,7 +265,7 @@ define("tariffRate/tariffRate.viewModel",
                                     tariffRates.splice(0, 0, tariffRateData);
                                     closeTariffRateEditor();
                                 }
-                                toastr.success("Tariff Rate saved successfully");
+                                toastr.success(ist.resourceText.tariffRateSaveSuccessMsg);
                             },
                             error: function (exceptionMessage, exceptionType) {
 
@@ -275,7 +275,7 @@ define("tariffRate/tariffRate.viewModel",
 
                                 } else {
 
-                                    toastr.error("Failed to save Tariff Rate.");
+                                    toastr.error(ist.resourceText.triffRateSaveFailedMsg);
 
                                 }
 
@@ -318,10 +318,10 @@ define("tariffRate/tariffRate.viewModel",
                         dataservice.deleteTariffRate(tariffRate.convertToServerData(), {
                             success: function () {
                                 tariffRates.remove(tariffRate);
-                                toastr.success("Tariff Rate removed successfully");
+                                toastr.success(ist.resourceText.tariffRateDeleteSuccessMsg);
                             },
                             error: function () {
-                                toastr.error("Failed to remove Tariff Rate!");
+                                toastr.error(ist.resourceText.tariffRateDeleteFailedMsg);
                             }
                         });
                     },
@@ -365,7 +365,7 @@ define("tariffRate/tariffRate.viewModel",
                             },
                             error: function () {
                                 isLoadingTariffRates(false);
-                                toastr.error("Failed to load Tariff rates!");
+                                toastr.error(ist.resourceText.loadTariffRatesFailedMsg);
                             }
                         });
                     };

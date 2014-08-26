@@ -205,6 +205,24 @@ namespace Cares.Web.Resources.Tariff {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to load base data..
+        /// </summary>
+        public static string LoadBaseDataFailedMsg {
+            get {
+                return ResourceManager.GetString("LoadBaseDataFailedMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to load tariff types..
+        /// </summary>
+        public static string LoadTariffTypesFailedMsg {
+            get {
+                return ResourceManager.GetString("LoadTariffTypesFailedMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Measurement.
         /// </summary>
         public static string Measurement {
@@ -324,9 +342,9 @@ namespace Cares.Web.Resources.Tariff {
         /// <summary>
         ///   Looks up a localized string similar to Tariff Type Successfuly Added.
         /// </summary>
-        public static string TariffTypeAddSucess {
+        public static string TariffTypeAddSucessMsg {
             get {
-                return ResourceManager.GetString("TariffTypeAddSucess", resourceCulture);
+                return ResourceManager.GetString("TariffTypeAddSucessMsg", resourceCulture);
             }
         }
         
@@ -349,6 +367,15 @@ namespace Cares.Web.Resources.Tariff {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed load tariff type detail..
+        /// </summary>
+        public static string TariffTypeDetailFailedMsg {
+            get {
+                return ResourceManager.GetString("TariffTypeDetailFailedMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tariff Type Name.
         /// </summary>
         public static string TariffTypeName {
@@ -363,6 +390,15 @@ namespace Cares.Web.Resources.Tariff {
         public static string TariffTypes {
             get {
                 return ResourceManager.GetString("TariffTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to save tariff type..
+        /// </summary>
+        public static string TariffTypeSaveFailedMsg {
+            get {
+                return ResourceManager.GetString("TariffTypeSaveFailedMsg", resourceCulture);
             }
         }
         

@@ -88,12 +88,16 @@
 {
     <script type="text/javascript">
         require(["tariffType/tariffType.view", "common/confirmation.view"]);
-        
+
         var ist = window.ist;
         @{
             <text>
-            ist.resourceText.tarrifTypeSuccess = '@Cares.Web.Resources.Tariff.TariffType.TariffTypeAddSucess';
-            </text>
+        ist.resourceText.tariffTypeAddSuccess = '@Cares.Web.Resources.Tariff.TariffType.TariffTypeAddSucessMsg';
+        ist.resourceText.loadBaseDataFailedMsg = '@Cares.Web.Resources.Tariff.TariffType.LoadBaseDataFailedMsg';
+        ist.resourceText.loadTariffTypesFailedMsg = '@Cares.Web.Resources.Tariff.TariffType.LoadTariffTypesFailedMsg';
+        ist.resourceText.tariffTypeSaveFailedMsg = '@Cares.Web.Resources.Tariff.TariffType.TariffTypeSaveFailedMsg';
+        ist.resourceText.tariffTypeDetailFailedMsg = '@Cares.Web.Resources.Tariff.TariffType.TariffTypeDetailFailedMsg';
+        </text>
         }
 
     </script>

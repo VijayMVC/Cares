@@ -70,6 +70,15 @@ namespace Cares.Web.Resources.Shared {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back To List.
         /// </summary>
         public static string BackToList {
@@ -120,6 +129,15 @@ namespace Cares.Web.Resources.Shared {
         public static string Delete {
             get {
                 return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detail.
+        /// </summary>
+        public static string Detail {
+            get {
+                return ResourceManager.GetString("Detail", resourceCulture);
             }
         }
         

@@ -140,7 +140,7 @@ define("tariffType/tariffType.viewModel",
                                 pricingStrategies.valueHasMutated();
                             },
                             error: function () {
-                                toastr.error("Failed to load base data");
+                                toastr.error(ist.resourceText.loadBaseDataFailedMsg);
                             }
                         });
                     },
@@ -172,7 +172,7 @@ define("tariffType/tariffType.viewModel",
                             },
                             error: function () {
                                 isLoadingTariffTypes(false);
-                                toastr.error("Failed to load tariff types!");
+                                toastr.error(ist.resourceText.loadTariffTypesFailedMsg);
                             }
                         });
                     },
@@ -236,7 +236,7 @@ define("tariffType/tariffType.viewModel",
                                     closeTariffTypeEditor();
                                 }
 
-                                toastr.success(ist.resourceText.tarrifTypeSuccess);
+                                toastr.success(ist.resourceText.tariffTypeSuccess);
                             },
                             error: function (exceptionMessage, exceptionType) {
 
@@ -246,7 +246,7 @@ define("tariffType/tariffType.viewModel",
 
                                 } else {
 
-                                    toastr.error("Failed to save Tariff Type.");
+                                    toastr.error(ist.resourceText.tariffTypeSaveFailedMsg);
 
                                 }
 
@@ -293,7 +293,7 @@ define("tariffType/tariffType.viewModel",
                             },
                             error: function () {
                                 isLoadingTariffTypes(false);
-                                toastr.error("Error!");
+                                toastr.error(ist.resourceText.tariffTypeDetailFailedMsg);
                             }
                         });
                     },
