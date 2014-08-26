@@ -1,4 +1,5 @@
-﻿using Cares.Interfaces.IServices;
+﻿using Cares.ExceptionHandling;
+using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
@@ -43,27 +44,32 @@ namespace Cares.Implementation.Services
        {
 
            OrgGroup dbVersion = organizationGroupRepository.Find(requestOrgGroup.OrgGroupId);
-           if (dbVersion != null)
+           if (!organizationGroupRepository.IsOrgGroupCodeExists(requestOrgGroup))
            {
-               requestOrgGroup.RecLastUpdatedBy = organizationGroupRepository.LoggedInUserIdentity;
-               requestOrgGroup.RecLastUpdatedDt = DateTime.Now;
-               requestOrgGroup.RowVersion = dbVersion.RowVersion + 1;
-               requestOrgGroup.RecCreatedBy = dbVersion.RecCreatedBy;
-               requestOrgGroup.RecCreatedDt = dbVersion.RecCreatedDt;
-               requestOrgGroup.UserDomainKey = dbVersion.UserDomainKey;
-              
-           }
-           else
-           {
-               requestOrgGroup.RecCreatedBy = requestOrgGroup.RecLastUpdatedBy = organizationGroupRepository.LoggedInUserIdentity;
-               requestOrgGroup.RecCreatedDt = requestOrgGroup.RecLastUpdatedDt = DateTime.Now;
-               requestOrgGroup.RowVersion = 0;
-               requestOrgGroup.UserDomainKey = 1;
+               if (dbVersion != null)
+               {
+                   requestOrgGroup.RecLastUpdatedBy = organizationGroupRepository.LoggedInUserIdentity;
+                   requestOrgGroup.RecLastUpdatedDt = DateTime.Now;
+                   requestOrgGroup.RowVersion = dbVersion.RowVersion + 1;
+                   requestOrgGroup.RecCreatedBy = dbVersion.RecCreatedBy;
+                   requestOrgGroup.RecCreatedDt = dbVersion.RecCreatedDt;
+                   requestOrgGroup.UserDomainKey = dbVersion.UserDomainKey;
 
+               }
+               else
+               {
+                   requestOrgGroup.RecCreatedBy =
+                       requestOrgGroup.RecLastUpdatedBy = organizationGroupRepository.LoggedInUserIdentity;
+                   requestOrgGroup.RecCreatedDt = requestOrgGroup.RecLastUpdatedDt = DateTime.Now;
+                   requestOrgGroup.RowVersion = 0;
+                   requestOrgGroup.UserDomainKey = 1;
+
+               }
+               organizationGroupRepository.Update(requestOrgGroup);
+               organizationGroupRepository.SaveChanges();
+               return organizationGroupRepository.Find(requestOrgGroup.OrgGroupId);
            }
-           organizationGroupRepository.Update(requestOrgGroup);
-           organizationGroupRepository.SaveChanges();
-           return organizationGroupRepository.Find(requestOrgGroup.OrgGroupId);
+           throw new CaresException("Organization Group with same code already exists!");
        }
        #endregion
 

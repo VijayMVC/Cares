@@ -1,12 +1,12 @@
 ﻿@{
-    ViewBag.Title = "Company";
+    ViewBag.Title = Cares.Web.Resources.Organization.Company.CompanyLabel;
 }
 <div class="row" id="companyBinding">
     <div class="row " data-bind="visible: !isCompanyEditorVisible()">
-        <h3 class="page-header float-left pageHeaderSection">Company</h3>
+        <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.Organization.Company.CompanyLabel</h3>
         <div class="header-toolsSection">
-            <a href="#" class="label label-default create-new-icon" data-bind="click: onCreateCompany" title="Create New Company">NEW</a>
-            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title="Show Filters" style="display: none"></a>
+            <a href="#" class="label label-default create-new-icon" data-bind="click: onCreateCompany" title=@Cares.Web.Resources.Shared.Common.CreateNew>@Cares.Web.Resources.Shared.Common.New</a>
+            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title=@Cares.Web.Resources.Shared.Common.ShowFilter style="display: none"></a>
         </div>
     </div>
     <div class="row searchFilterSection" data-bind="visible: !isCompanyEditorVisible() && filterSectionVisilble()" style="display: none">
@@ -14,21 +14,21 @@
             <form class="form-horizontal">
 
                 <div class="col-xs-2">
-                    <input type="text" class="form-control" placeholder="<Company Code>" data-bind="value:companyCodeTextFilter" />
+                    <input type="text" class="form-control" placeholder='@Cares.Web.Resources.Organization.Company.CompanyCode' data-bind="value:companyCodeTextFilter" />
                 </div>
 
                 <div class="col-xs-2">
-                    <input type="text" class="form-control" placeholder="<Company Name>" data-bind="value:companyNameTextFilter" />
+                    <input type="text" class="form-control" placeholder='@Cares.Web.Resources.Organization.Company.CompanyName' data-bind="value:companyNameTextFilter" />
                 </div>
                 <div class="col-xs-3">
-                    <select class="form-control" data-bind="options: $root.orgGroupList, optionsText: 'OrgGroupName', optionsValue: 'OrgGroupId', optionsCaption: '<Org Group>', value: orgGroupFilter"></select>
+                    <select class="form-control" data-bind="options: $root.orgGroupList, optionsText: 'OrgGroupName', optionsValue: 'OrgGroupId', optionsCaption: '@Cares.Web.Resources.Organization.Company.OrganizationGroup', value: orgGroupFilter"></select>
                 </div>
                 <div class="col-xs-3">
-                    <select class="form-control" data-bind="options: $root.businessSegList, optionsText: 'BusinessSegmentCodeName', optionsValue: 'BusinessSegmentId', optionsCaption: '<Business Segment>', value: busiNessSegmentFilter"></select>
+                    <select class="form-control" data-bind="options: $root.businessSegList, optionsText: 'BusinessSegmentCodeName', optionsValue: 'BusinessSegmentId', optionsCaption: '@Cares.Web.Resources.Organization.Company.BusinessSegment', value: busiNessSegmentFilter"></select>
                 </div>
-                <button type="submit" class="btn btn-success" data-bind="click: onSearch">Search</button>
-                <button type="submit" class="btn btn-default" data-bind="click: onReset">Reset</button>
-                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection" title="Hide Section"></a>
+                <button type="submit" class="btn btn-success" data-bind="click: onSearch">@Cares.Web.Resources.Shared.Common.Search</button>
+                <button type="submit" class="btn btn-default" data-bind="click: onReset">@Cares.Web.Resources.Shared.Common.Reset</button>
+                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection" title=@Cares.Web.Resources.Shared.Common.HideSection></a>
             </form>
         </div>
     </div>
@@ -38,12 +38,12 @@
             <table id="CompanyTable" class="table table-condensed">
                 <thead>
                     <tr>
-                        <th> <span id="1">Code<span class="icon-up"></span></span></th>
-                        <th> <span id="2">Name<span></span></span></th>
-                        <th> <span id="3">Description<span></span></span></th>
-                        <th> <span id="4">Organization Group<span></span></span></th>
-                        <th> <span id="5">Business Segment<span></span></span></th>
-                        <th> <span id="6">Parent Company<span></span></span></th>
+                        <th> <span id="1">@Cares.Web.Resources.Organization.Company.Code<span class="icon-up"></span></span></th>
+                        <th> <span id="2">@Cares.Web.Resources.Organization.Company.Name<span></span></span></th>
+                        <th> <span id="3">@Cares.Web.Resources.Organization.Company.Description<span></span></span></th>
+                        <th> <span id="4">@Cares.Web.Resources.Organization.Company.OrganizationGroup<span></span></span></th>
+                        <th> <span id="5">@Cares.Web.Resources.Organization.Company.BusinessSegment<span></span></span></th>
+                        <th> <span id="6">@Cares.Web.Resources.Organization.Company.ParentCompany<span></span></span></th>
                         <th> <span></span></th>
                         <th> <span></span></th>
                     </tr>
@@ -86,7 +86,7 @@
     @Html.Partial("_CompanyEditor")
 
 </div>
-<!-- ko stopBinding: true -->
+<!-- ko stopBinding: true -->S
 @Html.Partial("~/Areas/Common/Views/Shared/_ConfirmationDialog.cshtml")
 <!-- /ko -->
 @section inlinescripts
@@ -95,7 +95,4 @@
         require(["company/company.view", "common/confirmation.view"]);
     </script>
 
-}
-@{
-    ViewBag.Title = "Index";
 }

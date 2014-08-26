@@ -12,7 +12,7 @@ define("Organization/organizationGroup.viewModel",
                      editorViewModel = new ist.ViewModel(model.organizationGroupDetail),
                     //array to save org groups
                     organizationGroups = ko.observableArray([]),
-                    //pager
+                    //pager%
                     pager = ko.observable(),
                     //org code filter in filter sec
                     orgGroupCodeFilter = ko.observable(),
@@ -43,10 +43,13 @@ define("Organization/organizationGroup.viewModel",
                                 else
                                     organizationGroups.push(newItem);
                                 isOrgGroupEditorVisible(false);
-                                toastr.success("Operation successfuly done!");
+                                toastr.success("Operation successfuly performed!");
                             },
-                            error: function() {
-                                toastr.error("Operation Failed!");
+                            error: function (exceptionMessage, exceptionType) {
+                                if (exceptionType === ist.exceptionType.CaresGeneralException)
+                                    toastr.error(exceptionMessage);
+                                else
+                                    toastr.error("Failed to save Organization Group!");
                             }
                         });
                     }, 

@@ -57,6 +57,11 @@ namespace Cares.Repository.Repositories
             return DbSet.Where(orgGroup => orgGroup.UserDomainKey == UserDomainKey).ToList();
         }
 
+        public bool IsOrgGroupCodeExists(OrgGroup orgGroup)
+        {
+            Expression<Func<OrgGroup, bool>> query = orgG => orgG.OrgGroupCode == orgGroup.OrgGroupCode && orgGroup.OrgGroupId != orgG.OrgGroupId;
+            return DbSet.Count(query) > 0;
+        }
         #endregion
         #region Constructor
         /// <summary>

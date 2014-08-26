@@ -14,5 +14,9 @@ namespace Cares.Interfaces.Repository
         /// Search org group
         /// </summary>
         IEnumerable<OrgGroup> SearchOrgGroup(OrgGroupSearchRequest request, out int rowCount);
+        /// <summary>
+        /// OrgGroup Code validation 
+        /// </summary>
+        bool IsOrgGroupCodeExists(OrgGroup orgGroup);
     }
 }
