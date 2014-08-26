@@ -123,8 +123,17 @@
   <data name="Comapny" xml:space="preserve">
     <value>Comapny</value>
   </data>
+  <data name="DepartmentBaseLoadFailError" xml:space="preserve">
+    <value>Department base-data loading failed!</value>
+  </data>
   <data name="DepartmentCode" xml:space="preserve">
     <value>Department Code</value>
+  </data>
+  <data name="DepartmentDeleteFailError" xml:space="preserve">
+    <value>Department deletion failed !</value>
+  </data>
+  <data name="DepartmentDeleteSuccessMessage" xml:space="preserve">
+    <value>Department successfully deleted!</value>
   </data>
   <data name="DepartmentDetail" xml:space="preserve">
     <value>Department Detail</value>
@@ -132,8 +141,17 @@
   <data name="DepartmentLabel" xml:space="preserve">
     <value>Department</value>
   </data>
+  <data name="DepartmentLoadFailError" xml:space="preserve">
+    <value>Department loading failed!</value>
+  </data>
   <data name="DepartmentName" xml:space="preserve">
     <value>DepartmentName</value>
+  </data>
+  <data name="DepartmentSaveFailError" xml:space="preserve">
+    <value>Failed to save department!</value>
+  </data>
+  <data name="DepartmentSaveSuccessMessage" xml:space="preserve">
+    <value>Department successfully saved!</value>
   </data>
   <data name="DepartmentType" xml:space="preserve">
     <value>Department Type</value>

@@ -13,19 +13,38 @@ namespace Cares.Implementation.Services
     /// Company Service
     /// </summary>
     public class CompanyService : ICompanyService
-    {
+    {   
+        #region Private
+        /// <summary>
+        /// Private members
+        /// </summary>
+        private readonly IOrganizationGroupRepository organizationGroupRepository;
+        private readonly IBusinessSegmentRepository businessSegmentRepository;
+        private readonly ICompanyRepository companyRepository;
+        #endregion
+        #region Constructor
+        /// <summary>
+        ///  Company Constructor
+        /// </summary>
+        public CompanyService(ICompanyRepository companyRepository,
+            IBusinessSegmentRepository businessSegmentRepository, IOrganizationGroupRepository organizationGroupRepository)
+        {
+            this.companyRepository = companyRepository;
+            this.businessSegmentRepository = businessSegmentRepository;
+            this.organizationGroupRepository = organizationGroupRepository;
+        }
+
+        #endregion
         #region Public
 
         /// <summary>
-        /// AddUpdate Company
+        /// Add/Update Company
         /// </summary>
         public Company AddUpdateCompany(Company companyRequest)
         {
-
             Company dbVersion = companyRepository.Find(companyRequest.CompanyId);
             if (!companyRepository.IsCompanyCodeExists(companyRequest))
             {
-
                 if (dbVersion != null)
                 {
                     companyRequest.RecLastUpdatedBy = organizationGroupRepository.LoggedInUserIdentity;
@@ -34,7 +53,6 @@ namespace Cares.Implementation.Services
                     companyRequest.RecCreatedBy = dbVersion.RecCreatedBy;
                     companyRequest.RecCreatedDt = dbVersion.RecCreatedDt;
                     companyRequest.UserDomainKey = dbVersion.UserDomainKey;
-
                 }
                 else
                 {
@@ -49,10 +67,10 @@ namespace Cares.Implementation.Services
                 // To Load the proprties
                 return companyRepository.GetCompanyWithDetails(companyRequest.CompanyId);
             }
-            throw new CaresException("Company with same code already exists!");
+            throw new CaresException(Resources.Organization.Company.CompanyWithSameCodeAlreadyExistsError);
         }
         /// <summary>
-        /// Load Base data
+        /// Load company Base data
         /// </summary>
         public CompanyBaseDataResponse LoadCompanyBaseData()
         {
@@ -63,9 +81,9 @@ namespace Cares.Implementation.Services
                 BusinessSegments = businessSegmentRepository.GetAll()
             };
         }
-       /// <summary>
+        /// <summary>
         /// Delete Company 
-       /// </summary>
+        /// </summary>
         public void DeleteCompany(Company company)
         {
             Company dbversion = companyRepository.Find(company.CompanyId);
@@ -84,36 +102,17 @@ namespace Cares.Implementation.Services
             int rowCount;
             return new CompanySearchRequestResponse
             {
-                Companies =  companyRepository.SearchCompany(request, out rowCount),
+                Companies = companyRepository.SearchCompany(request, out rowCount),
                 TotalCount = rowCount
             };
         }
         /// <summary>
-        /// Load Companies
+        /// Load All Companies
         /// </summary>
         public IEnumerable<Company> LoadAll()
         {
             return companyRepository.GetAll();
         }
         #endregion
-        #region Private
-        private readonly IOrganizationGroupRepository organizationGroupRepository;
-        private readonly IBusinessSegmentRepository businessSegmentRepository;
-        private readonly ICompanyRepository companyRepository;
-        #endregion
-        #region Constructor
-        /// <summary>
-        ///  Company Constructor
-        /// </summary>
-        public CompanyService(ICompanyRepository companyRepository, 
-            IBusinessSegmentRepository businessSegmentRepository, IOrganizationGroupRepository organizationGroupRepository)
-        {
-            this.companyRepository = companyRepository;
-            this.businessSegmentRepository = businessSegmentRepository;
-            this.organizationGroupRepository = organizationGroupRepository;
-        }
-
-        #endregion
-
     }
 }

@@ -123,8 +123,17 @@
   <data name="Comapny" xml:space="preserve">
     <value>بالشركه</value>
   </data>
+  <data name="DepartmentBaseLoadFailError" xml:space="preserve">
+    <value>قسم تحميل قاعدة البيانات فشل</value>
+  </data>
   <data name="DepartmentCode" xml:space="preserve">
     <value>كود قسم</value>
+  </data>
+  <data name="DepartmentDeleteFailError" xml:space="preserve">
+    <value>فشل حذف قسم</value>
+  </data>
+  <data name="DepartmentDeleteSuccessMessage" xml:space="preserve">
+    <value>قسم حذف بنجاح</value>
   </data>
   <data name="DepartmentDetail" xml:space="preserve">
     <value>القسم التفاصيل</value>
@@ -132,8 +141,17 @@
   <data name="DepartmentLabel" xml:space="preserve">
     <value>قسم</value>
   </data>
+  <data name="DepartmentLoadFailError" xml:space="preserve">
+    <value>قسم تحميل فشل</value>
+  </data>
   <data name="DepartmentName" xml:space="preserve">
     <value>اسم الدائرة</value>
+  </data>
+  <data name="DepartmentSaveFailError" xml:space="preserve">
+    <value>فشلت في إنقاذ قسم</value>
+  </data>
+  <data name="DepartmentSaveSuccessMessage" xml:space="preserve">
+    <value>قسم حفظها بنجاح</value>
   </data>
   <data name="DepartmentType" xml:space="preserve">
     <value>نوع القسم</value>

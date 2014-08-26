@@ -1,21 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Cares.Models.DomainModels;
+﻿using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
+using System.Collections.Generic;
 
 namespace Cares.Interfaces.Repository
 {
+    /// <summary>
+    ///  Organization Group Repository Interface
+    /// </summary>
     public interface IOrganizationGroupRepository:IBaseRepository<OrgGroup, long>
     {
         /// <summary>
-        /// Search org group
+        /// Search  Organization Group
         /// </summary>
         IEnumerable<OrgGroup> SearchOrgGroup(OrgGroupSearchRequest request, out int rowCount);
         /// <summary>
-        /// OrgGroup Code validation 
+        ///  Organization Group Code validation 
         /// </summary>
         bool IsOrgGroupCodeExists(OrgGroup orgGroup);
     }

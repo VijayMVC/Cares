@@ -4,10 +4,24 @@ using Cares.Models.ResponseModels;
 
 namespace Cares.Interfaces.IServices
 {
+    /// <summary>
+    /// Organization Group Service interface
+    /// </summary>
     public interface IOrganizationGroupService
     {
+        /// <summary>
+        /// Search Organization Group 
+        /// </summary>
         OrgGroupResponse SerchOrgGroup(OrgGroupSearchRequest request);
+
+        /// <summary>
+        /// Delete Organization Group 
+        /// </summary>
         void DeleteOrgGroup(OrgGroup request);
+
+        /// <summary>
+        /// Add / Update Organization Group 
+        /// </summary>
         OrgGroup AddUpdateOrgGroup(OrgGroup requestOrgGroup);
     }
 }

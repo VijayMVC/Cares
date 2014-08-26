@@ -12,19 +12,6 @@ namespace Cares.Web.Areas.Api.Controllers
     /// </summary>
     public class DepartmentBaseController : ApiController
     {
-        #region Publuc
-        /// <summary>
-        /// Get Department Base Data
-        /// </summary>
-        public Models.DepartmentBaseDataResponse Get()
-        {
-            if (!ModelState.IsValid)
-            {
-                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
-            }
-           return departmentService.LoadDepartmentBaseData().CreateFrom();
-        }
-        #endregion
         #region Private
         private readonly IDepartmentService departmentService;
         #endregion
@@ -42,5 +29,19 @@ namespace Cares.Web.Areas.Api.Controllers
         }
 
         #endregion
+        #region Publuc
+        /// <summary>
+        /// Get Department Base Data
+        /// </summary>
+        public Models.DepartmentBaseDataResponse Get()
+        {
+            if (!ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+            return departmentService.LoadDepartmentBaseData().CreateFrom();
+        }
+        #endregion
+
     }
 }

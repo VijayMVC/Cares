@@ -1,10 +1,8 @@
 ﻿
-using System.Linq;
-using Cares.Models.ResponseModels;
 using Cares.Web.Models;
+using System.Linq;
 using DepartmentBaseDataResponse = Cares.Web.Models.DepartmentBaseDataResponse;
 using DomainModels = Cares.Models.DomainModels;
-using OperationSearchResponse = Cares.Models.ResponseModels.OperationSearchResponse;
 
 namespace Cares.Web.ModelMappers
 {
@@ -14,8 +12,9 @@ namespace Cares.Web.ModelMappers
     public static class DepartmentMapper
     {
         #region Public
-        
-       
+        /// <summary>
+        /// Create From DomainModel
+        /// </summary>
         public static DepartmentDropDown CreateFrom(this DomainModels.Department source)
         {
             return new DepartmentDropDown
@@ -25,6 +24,10 @@ namespace Cares.Web.ModelMappers
                 CompanyId=source.Company!=null?source.Company.CompanyId:0,
             };
         }
+
+        /// <summary>
+        /// Create From response model to web base data 
+        /// </summary>
         public static DepartmentBaseDataResponse CreateFrom(this Cares.Models.ResponseModels.DepartmentBaseDataResponse source)
         {
             return new DepartmentBaseDataResponse
@@ -33,15 +36,21 @@ namespace Cares.Web.ModelMappers
             };
         }
 
-        public static Models.DepartmentSearchRequestResponse CreateFrom(this Cares.Models.ResponseModels.DepartmentSearchRequestResponse source)
+        /// <summary>
+        /// Create From ResponseModel to web model
+        /// </summary>
+        public static DepartmentSearchRequestResponse CreateFrom(this Cares.Models.ResponseModels.DepartmentSearchRequestResponse source)
         {
-            return new Models.DepartmentSearchRequestResponse
+            return new DepartmentSearchRequestResponse
             {
                 Departments = source.Departments.Select(operation => operation.CreateFromm()),
                 TotalCount = source.TotalCount
             };
         }
 
+        /// <summary>
+        /// Create From Domain model
+        /// </summary>
         public static Department CreateFromm(this DomainModels.Department source)
         {
             return new Department
@@ -55,6 +64,10 @@ namespace Cares.Web.ModelMappers
                 CompanyName = source.Company.CompanyName
             };
         }
+
+        /// <summary>
+        /// Crete from web model
+        /// </summary>
         public static DomainModels.Department CreateFromm(this Department source)
         {
             return new DomainModels.Department

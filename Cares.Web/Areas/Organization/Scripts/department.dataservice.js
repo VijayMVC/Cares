@@ -10,40 +10,39 @@ define("department/department.dataservice", function () {
             isInitialized = false,
             // Initialize
             initialize = function() {
-                if (!isInitialized) {
-
-                    //Department base Data
-                    amplify.request.define('getDepartmentBaseData', 'ajax', {
-                        url: '/Api/DepartmentBase',
-                        dataType: 'json',
-                        decoder: amplify.request.decoders.istStatusDecoder,
-                        type: 'GET'
-                    });
-                    //save Department
-                    amplify.request.define('saveDepartment', 'ajax', {
-                        url: '/Api/Department',
-                        dataType: 'json',
-                        decoder: amplify.request.decoders.istStatusDecoder,
-                        type: 'POST'
-                    });
-                    //get Departments
-                    amplify.request.define('getDepartments', 'ajax', {
-                        url: '/Api/Department',
-                        dataType: 'json',
-                        decoder: amplify.request.decoders.istStatusDecoder,
-                        type: 'GET'
-                    });
-                    //delete Department
-                    amplify.request.define('deleteDepartment', 'ajax', {
-                        url: '/Api/Department',
-                        dataType: 'json',
-                        decoder: amplify.request.decoders.istStatusDecoder,
-                        type: 'DELETE'
-                    });
-                    isInitialized = true;
-                }
-            },
-            //  Department Base Data
+            if (!isInitialized) {
+                //Department base Data
+                amplify.request.define('getDepartmentBaseData', 'ajax', {
+                    url: '/Api/DepartmentBase',
+                    dataType: 'json',
+                    decoder: amplify.request.decoders.istStatusDecoder,
+                    type: 'GET'
+                });
+                //save Department
+                amplify.request.define('saveDepartment', 'ajax', {
+                    url: '/Api/Department',
+                    dataType: 'json',
+                    decoder: amplify.request.decoders.istStatusDecoder,
+                    type: 'POST'
+                });
+                //get Departments
+                amplify.request.define('getDepartments', 'ajax', {
+                    url: '/Api/Department',
+                    dataType: 'json',
+                    decoder: amplify.request.decoders.istStatusDecoder,
+                    type: 'GET'
+                });
+                //delete Department
+                amplify.request.define('deleteDepartment', 'ajax', {
+                    url: '/Api/Department',
+                    dataType: 'json',
+                    decoder: amplify.request.decoders.istStatusDecoder,
+                    type: 'DELETE'
+                });
+                isInitialized = true;
+            }
+        },
+        //  Department Base Data
             getDepartmentBaseData = function (params, callbacks) {
                 initialize();
                 return amplify.request({

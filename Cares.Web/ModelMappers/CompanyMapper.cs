@@ -3,7 +3,6 @@ using System.Linq;
 using CompanyBaseDataResponse = Cares.Web.Models.CompanyBaseDataResponse;
 using CompanySearchRequestResponse = Cares.Models.ResponseModels.CompanySearchRequestResponse;
 using DomainModels = Cares.Models.DomainModels;
-
 namespace Cares.Web.ModelMappers
 {
     /// <summary>
@@ -13,7 +12,7 @@ namespace Cares.Web.ModelMappers
     {
         #region Public
         /// <summary>
-        /// Crete From
+        /// Crete From web model
         /// </summary>
         public static DomainModels.Company CreateFrom(this Company source)
         {
@@ -34,7 +33,7 @@ namespace Cares.Web.ModelMappers
             };
         }
         /// <summary>
-        /// Crete From
+        /// Crete From company Responsemodel
         /// </summary>
         public static Models.CompanySearchRequestResponse CreateFrom(this CompanySearchRequestResponse source)
         {
@@ -45,7 +44,7 @@ namespace Cares.Web.ModelMappers
             };
         }
         /// <summary>
-        /// Crete From
+        /// Crete From Domain model
         /// </summary>
         public static Company CreateFromm(this DomainModels.Company source)
         {
@@ -69,7 +68,7 @@ namespace Cares.Web.ModelMappers
             };
         }
         /// <summary>
-        /// Crete From   [for dropdown]
+        /// Crete From domain model to dropdown
         /// </summary>
         public static CompanyDropDown CreateFrom(this DomainModels.Company source)
         {
@@ -81,7 +80,7 @@ namespace Cares.Web.ModelMappers
             };
         }
         /// <summary>
-        /// Crete From
+        /// Crete From response model to web base data
         /// </summary>
         public static CompanyBaseDataResponse CreateFrom(this Cares.Models.ResponseModels.CompanyBaseDataResponse source)
         {

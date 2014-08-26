@@ -9,9 +9,30 @@ using Cares.WebBase.Mvc;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
+    /// <summary>
+    /// Department Controller 
+    /// </summary>
     public class DepartmentController : ApiController
     {
+        #region Private
+        /// <summary>
+        /// Private 
+        /// </summary>
+        private readonly IDepartmentService departmentService;
+        #endregion
+        #region Constructor
+        /// <summary>
+        /// Department Constructor
+        /// </summary>>
+        public DepartmentController(IDepartmentService departmentService)
+        {
+            this.departmentService = departmentService;
+        }
+        #endregion
         #region public
+        /// <summary>
+        /// Get Departments
+        /// </summary>
         public Models.DepartmentSearchRequestResponse Get([FromUri] DepartmentSearchRequest oppRequest)
         {
             if (oppRequest == null || !ModelState.IsValid)
@@ -20,7 +41,9 @@ namespace Cares.Web.Areas.Api.Controllers
             }
             return departmentService.SearchDepartment(oppRequest).CreateFrom();
         }
-
+        /// <summary>
+        /// Delete Departments
+        /// </summary>
         public Boolean Delete(Models.Department request)
         {
             if (Request == null || !ModelState.IsValid)
@@ -30,7 +53,9 @@ namespace Cares.Web.Areas.Api.Controllers
             departmentService.DeleteDepartment(request.CreateFromm());
             return true;
         }
-
+        /// <summary>
+        /// Add/Update Department
+        /// </summary>
         [ApiException]
         public Models.Department Post(Models.Department request)
         {
@@ -40,18 +65,6 @@ namespace Cares.Web.Areas.Api.Controllers
             }
             return departmentService.SaveUpdateDepartment(request.CreateFromm()).CreateFromm();
         }   
-
-
-
-        #endregion 
-        #region Constructor
-        public DepartmentController(IDepartmentService departmentService)
-        {
-            this.departmentService = departmentService;
-        }
-        #endregion
-        #region Private
-        private readonly IDepartmentService departmentService;
-        #endregion
+        #endregion   
     }
 }

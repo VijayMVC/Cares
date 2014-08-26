@@ -12,7 +12,6 @@
                 companyName = ko.observable(spcCompanyName).extend({ required: true }),
                 companyId = ko.observable(spcCompanyId).extend({ required: true }),
                 departmentType = ko.observable(specifiedDepartmentType).extend({ required: true }),
-
                 errors = ko.validation.group({
                     name: name,
                     code: code,
@@ -39,7 +38,7 @@
                 reset = function() {
                     dirtyFlag.reset();
                 },
-                // Convert to server
+                // Convert to server data
                 convertToServerData = function() {
                     return {
                         DepartmentId: id(),
@@ -65,17 +64,16 @@
                 errors: errors
             };
         };
-
+    //server to client mapper
     var DepartmentServertoClientMapper = function (itemFromServer) {
         return new department(itemFromServer.DepartmentId, itemFromServer.DepartmentCode, itemFromServer.DepartmentName,
             itemFromServer.DepartmentDescription, itemFromServer.CompanyName, itemFromServer.CompanyId, itemFromServer.DepartmentType);
     };
-
+    // Function to attain cancel button functionality
     department.CreateFromClientModel = function (item) {
         return new department(item.id, item.code, item.name,
             item.description, item.companyName, item.companyId, item.departmentType);
     };
-
     return {
         department: department,
         DepartmentServertoClientMapper: DepartmentServertoClientMapper

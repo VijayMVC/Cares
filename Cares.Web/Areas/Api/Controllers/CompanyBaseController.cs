@@ -8,18 +8,11 @@ using CompanyBaseDataResponse = Cares.Web.Models.CompanyBaseDataResponse;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
+    /// <summary>
+    /// Company base Controller
+    /// </summary>
     public class CompanyBaseController : ApiController
     {
-        #region Public
-        public CompanyBaseDataResponse Get()
-        {
-            if (!ModelState.IsValid)
-            {
-                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
-            }
-            return  companyService.LoadCompanyBaseData().CreateFrom();
-        }
-        #endregion
         #region Private
 
         private readonly ICompanyService companyService;
@@ -39,5 +32,19 @@ namespace Cares.Web.Areas.Api.Controllers
         }
 
         #endregion
+        #region Public
+        /// <summary>
+        /// Get  Company base data
+        /// </summary>
+        public CompanyBaseDataResponse Get()
+        {
+            if (!ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+            return companyService.LoadCompanyBaseData().CreateFrom();
+        }
+        #endregion
+
     }
 }

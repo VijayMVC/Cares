@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Cares.Models.DomainModels;
+﻿using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
-using Cares.Models.ResponseModels;
+using System.Collections.Generic;
 
 namespace Cares.Interfaces.Repository
 {
@@ -16,18 +13,20 @@ namespace Cares.Interfaces.Repository
         /// gets all operatoins for sale 
         /// </summary>
         ICollection<Operation> GetSalesOperation();
+
         /// <summary>
-        /// Get Company With Details 
+        /// Get Operation With Details 
         /// </summary>
-        Operation GetCompanyWithDetails(long id);
+        Operation GetOperationWithDetails(long id);
+
         /// <summary>
         /// Search Operation
         /// </summary>
         IEnumerable<Operation> SearchOperation(OperationSearchRequest request, out int rowCount);
+
         /// <summary>
         /// Operation Code validation 
         /// </summary>
         bool IsOperationCodeExists(Operation operation);
-
     }
 }

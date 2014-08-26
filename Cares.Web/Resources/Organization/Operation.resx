@@ -132,8 +132,17 @@
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="OperationBaseLoadFailError" xml:space="preserve">
+    <value>Operation base-data faied to load!</value>
+  </data>
   <data name="OperationCode" xml:space="preserve">
     <value>Operation Code</value>
+  </data>
+  <data name="OperationDeleteFailError" xml:space="preserve">
+    <value>Operation faied to delete!</value>
+  </data>
+  <data name="OperationDeleteSuccessMessage" xml:space="preserve">
+    <value>Operation deleted successfully!</value>
   </data>
   <data name="OperationDescription" xml:space="preserve">
     <value>Description</value>
@@ -144,7 +153,16 @@
   <data name="OperationLabel" xml:space="preserve">
     <value>Operation</value>
   </data>
+  <data name="OperationLoadFailError" xml:space="preserve">
+    <value>Operation faied to load!</value>
+  </data>
   <data name="OperationName" xml:space="preserve">
     <value>Operation Name</value>
+  </data>
+  <data name="OperationSaveFailError" xml:space="preserve">
+    <value>Operation failed to save!</value>
+  </data>
+  <data name="OperationSaveSuccessMessage" xml:space="preserve">
+    <value>Operation saved successfully!</value>
   </data>
 </root>

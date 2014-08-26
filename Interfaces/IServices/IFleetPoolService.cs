@@ -14,16 +14,19 @@ namespace Cares.Interfaces.IServices
         /// Load All FleetPools
         /// </summary>
         FleetPoolResponse SerchFleetPool(FleetPoolSearchRequest searchRequest);
+
         /// <summary>
         /// Load Fleet Pool Base Data
         /// </summary>
         FleetPoolBaseDataResponse LoadFleetPoolBaseData();
+
         /// <summary>
         /// Dalete Fleet Pool
         /// </summary>
         void DeleteFleetPool(int id);
+
         /// <summary>
-        /// update fleetpool 
+        /// Add/update fleetpool 
         /// </summary>
         FleetPool SaveFleetPool(FleetPool request);
 

@@ -19,13 +19,16 @@ namespace Cares.Implementation.Services
         private readonly ICompanyRepository companyRepository;
         #endregion
         #region Constructor
+        /// <summary>
+        /// Department Constructor
+        /// </summary>
         public DepartmentService(IDepartmentRepository xRepository,ICompanyRepository crRepository)
         {
             departmentRepository = xRepository;
             companyRepository = crRepository;
         }
         #endregion
-
+        #region Public
         /// <summary>
         /// Search Department
         /// </summary>
@@ -99,9 +102,8 @@ namespace Cares.Implementation.Services
                 // To Load the proprties
                 return departmentRepository.GetDepartmentWithDetails(department.DepartmentId);
             }
-            throw new CaresException("Department with same code already exists!");
+            throw new CaresException(Resources.Organization.Department.DepartmentWithSameCodeAlreadyExistsError);
         }
-     
-
+        #endregion
     }
 }

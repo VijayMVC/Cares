@@ -41,7 +41,10 @@
                 CompanyName: name,
                 CompanyCode: code,
                 CompanyDescription: description,
-                convertToServerData: convertToServerData
+                convertToServerData: convertToServerData,
+                isValid: isValid,
+                hasChanges: hasChanges,
+                reset: reset
             };
         };
     //detail object of company
@@ -64,11 +67,9 @@
               description = ko.observable(specifiedDescription),
               businessSegmentId = ko.observable(specifiedbusinessSegmentId).extend({ required: true }),
               businessSegmentName = ko.observable(specifiedbusinessSegmentName).extend({ required: true }),
-             errors = ko.validation.group({
-              
+              errors = ko.validation.group({
                  paidUpCapital: paidUpCapital,
                  businessSegmentId: businessSegmentId,
-                
              }),
             // Is Valid
             isValid = ko.computed(function() {
@@ -149,7 +150,7 @@
            source.CompanyName,  source.CrNumber,  source.Ntn,  source.OrgGroupId,  source.PaidUpCapital,  source.ParentCompanyId,  source.Uan,
          source.ParentCompanyName, source.BusinessSegmentName, source.OrgGroupName);
     };
-
+    // To attain the cancel button property
     CompanyDetail.CreateFromClientModel = function (source) {
         return new CompanyDetail(source.businessSegmentId, source.companyCode, source.companyDescription, source.companyId, source.CompanyLegalName,
             source.companyName, source.crNumber, source.ntn, source.orgGroupId, source.paidUpCapital, source.parentCompanyId, source.uan,

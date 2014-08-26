@@ -1,5 +1,5 @@
 ﻿/*
-    View for the Product. Used to keep the viewmodel clear of UI related logic
+    View for the operation. Used to keep the viewmodel clear of UI related logic
 */
 define("operation/operation.view",
     ["jquery", "operation/operation.viewModel"], function ($, operationViewModel) {

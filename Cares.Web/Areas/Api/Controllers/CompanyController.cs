@@ -8,7 +8,6 @@ using System.Web;
 using System.Web.Http;
 using Cares.WebBase.Mvc;
 
-
 namespace Cares.Web.Areas.Api.Controllers
 {
     /// <summary>
@@ -16,6 +15,12 @@ namespace Cares.Web.Areas.Api.Controllers
     /// </summary>
     public class CompanyController : ApiController
     {  
+        #region Private
+        /// <summary>
+        /// Company Service 
+        /// </summary>
+        private readonly ICompanyService companyService;
+        #endregion
         #region Constructor
         /// <summary>
         /// Constructor
@@ -24,12 +29,6 @@ namespace Cares.Web.Areas.Api.Controllers
         {
             companyService = iCompanyService;
         }
-        #endregion
-        #region Private
-        /// <summary>
-        /// Company Service 
-        /// </summary>
-        private readonly ICompanyService companyService;
         #endregion
         #region public
         /// <summary>
@@ -46,7 +45,7 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Delete Company
         /// </summary>
-        public Boolean Delete(Models.Company request)
+        public Boolean Delete(Company request)
         {
             if (request == null || !ModelState.IsValid)
             {
@@ -59,7 +58,7 @@ namespace Cares.Web.Areas.Api.Controllers
         /// Add/ Update Company
         /// </summary>
         [ApiException]
-        public Models.Company Post(Models.Company request)
+        public Company Post(Company request)
         {
             if (request == null || !ModelState.IsValid)
             {

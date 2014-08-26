@@ -132,13 +132,28 @@
   <data name="OrganizationGroupCode" xml:space="preserve">
     <value>منظمة كود المجموعة</value>
   </data>
+  <data name="OrganizationGroupDeleteFailError" xml:space="preserve">
+    <value>فشل في حذف مجموعة منظمة</value>
+  </data>
+  <data name="OrganizationGroupDeleteSuccessMessage" xml:space="preserve">
+    <value>حذف المجموعات المنظمة بنجاح</value>
+  </data>
   <data name="OrganizationGroupDetail" xml:space="preserve">
     <value>المجموعة المنظمة التفاصيل</value>
   </data>
   <data name="OrganizationGroupLabel" xml:space="preserve">
     <value>المجموعة المنظمة</value>
   </data>
+  <data name="OrganizationGroupLoadFailError" xml:space="preserve">
+    <value>فشل تحميل مجموعة منظمة</value>
+  </data>
   <data name="OrganizationGroupName" xml:space="preserve">
     <value>اسم المجموعة المنظمة</value>
+  </data>
+  <data name="OrganizationGroupSaveFailError" xml:space="preserve">
+    <value>فشلت في انقاذ المجموعة منظمة</value>
+  </data>
+  <data name="OrganizationGroupSaveSuccessMessage" xml:space="preserve">
+    <value>حفظ بنجاح المجموعات المنظمة</value>
   </data>
 </root>

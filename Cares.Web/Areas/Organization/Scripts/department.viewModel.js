@@ -85,6 +85,7 @@ define("department/department.viewModel",
                         }
                         return true;
                     },
+                    // save department
                     saveDepartment = function (department) {
                         dataservice.saveDepartment(department.convertToServerData(), {
                             success: function (uodateddepartment) {
@@ -101,24 +102,25 @@ define("department/department.viewModel",
                                 else
                                     departments.push(newItem);
                                 isDepartmentEditorVisible(false);
-                                toastr.success("Department saved successfully");
+                                toastr.success(ist.resourceText.DepartmentSaveSuccessMessage);
                             },
                             error: function (exceptionMessage, exceptionType) {
                                 if (exceptionType === ist.exceptionType.CaresGeneralException)
                                     toastr.error(exceptionMessage);
                                 else
-                                    toastr.error("Failed to save Department");
+                                    toastr.error(ist.resourceText.DepartmentSaveFailError);
                             }
                         });
                     },
+                    //delete department
                     deleteDepartment = function (department) {
                         dataservice.deleteDepartment(department.convertToServerData(), {
                                 success: function() {
                                     departments.remove(department);
-                                    toastr.success("Department removed successfully");
+                                    toastr.success(ist.resourceText.DepartmentDeleteSuccessMessage);
                                 },
                                 error: function() {
-                                    toastr.error("Failed to remove Department!");
+                                    toastr.error(ist.resourceText.DepartmentDeleteFailError);
                                 }
                             });
                     },
@@ -161,10 +163,11 @@ define("department/department.viewModel",
                             },
                             error: function() {
                                 isLoadingFleetPools(false);
-                                toastr.error("Failed to load fleetPools!");
+                                toastr.error(ist.resourceText.DepartmentLoadFailError);
                             }
                         });
                     },
+                    //get department base data
                     getDepartmentBaseData = function () {
                         dataservice.getDepartmentBaseData(null, {
                             success: function (baseDataFromServer) {
@@ -176,7 +179,7 @@ define("department/department.viewModel",
                                 if (exceptionType === ist.exceptionType.CaresGeneralException) {
                                     toastr.error(exceptionMessage);
                                 } else {
-                                    toastr.error("Failed to load base data.");
+                                    toastr.error(ist.resourceText.DepartmentBaseLoadFailError);
                                 }
                             }
                         });

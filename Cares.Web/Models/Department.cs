@@ -2,6 +2,9 @@
 
 namespace Cares.Web.Models
 {
+    /// <summary>
+    /// Department web model
+    /// </summary>
     public class Department
     {
         #region Persisted Properties

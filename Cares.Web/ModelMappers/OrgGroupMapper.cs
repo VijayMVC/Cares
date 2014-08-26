@@ -5,9 +5,14 @@ using ApiModel = Cares.Web.Models;
 
 namespace Cares.Web.ModelMappers
 {
+    /// <summary>
+    ///  Organization Group Mapper
+    /// </summary>
     public static class OrgGroupMapper
     {
-
+        /// <summary>
+        /// Create From Response Model to web 
+        /// </summary>
         public static ApiModel.OrgGroupRequestResponse CreateFrom(this OrgGroupResponse source)
         {
             return new ApiModel.OrgGroupRequestResponse
@@ -16,6 +21,10 @@ namespace Cares.Web.ModelMappers
                 TotalCount = source.TotalCount
             };
         }
+
+        /// <summary>
+        /// Create From Domain model
+        /// </summary>
         public static ApiModel.OrgGroup CreateFromResponse(this OrgGroup source)
         {
             return new ApiModel.OrgGroup
@@ -27,7 +36,10 @@ namespace Cares.Web.ModelMappers
             };
         }
 
-        public static OrgGroup CreateFromClientToServer(this ApiModel.OrgGroup orgGroup)
+        /// <summary>
+        /// Create From web model
+        /// </summary>
+        public static OrgGroup CreateFrom(this ApiModel.OrgGroup orgGroup)
         {
             return new OrgGroup
             {
@@ -37,6 +49,10 @@ namespace Cares.Web.ModelMappers
                   OrgGroupDescription = orgGroup.OrgGroupDescription
             };
         }
+
+        /// <summary>
+        /// Create From Domain Model
+        /// </summary>
         public static ApiModel.OrgGroupDropDown CreateFrom(this OrgGroup source)
         {
             return new ApiModel.OrgGroupDropDown

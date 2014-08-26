@@ -68,7 +68,7 @@ define("Fleet/fleetPool.viewModel",
                                 if (exceptionType === ist.exceptionType.CaresGeneralException) {
                                     toastr.error(exceptionMessage);
                                 } else {
-                                    toastr.error("Failed to load base data.");
+                                    toastr.error(ist.resourceText.FleetPoolBaseLoadFailError);
                                 }
                             }
                         });
@@ -117,13 +117,13 @@ define("Fleet/fleetPool.viewModel",
                                     fleetPools.splice(0 , 0 , model.fleetPoolServertoClinetMapper(dataFromServer));
                                     isFleetPoolEditorVisible(false);
                                 }
-                                toastr.success("Successfully saved.");
+                                toastr.success(ist.resourceText.FleetPoolSaveSuccessMessage);
                             },
                             error: function (exceptionMessage, exceptionType) {
                                 if (exceptionType === ist.exceptionType.CaresGeneralException)
                                     toastr.error(exceptionMessage);
                                  else 
-                                    toastr.error("Failed to save FleetPool");
+                                    toastr.error(ist.resourceText.FleetPoolSaveFailError);
                             }
                         });
                     },
@@ -165,10 +165,10 @@ define("Fleet/fleetPool.viewModel",
                         dataservice.deleteFleetPool(asset.convertToServerData(), {
                             success: function() {
                                 fleetPools.remove(asset);
-                                toastr.success("FleetPool removed successfully");
+                                toastr.success(ist.resourceText.FleetPoolDeleteSuccessMessage);
                             },
                             error: function() {
-                                toastr.error("Failed to remove product!");
+                                toastr.error(ist.resourceText.FleetPoolDeleteFailError);
                             }
                         });
                     },
@@ -179,7 +179,7 @@ define("Fleet/fleetPool.viewModel",
                         isFleetPoolEditorVisible(true);
                     },
                     // Filter Regions
-                    filterRegions = function(item, data) {
+                    filterRegions = function(item) {
                         contryBaseRegionList(_.filter(regionsList(), function(region) {
                             return region.CountryId === item.countryId();
                         }));
@@ -214,7 +214,7 @@ define("Fleet/fleetPool.viewModel",
                             },
                             error: function() {
                                 isLoadingFleetPools(false);
-                                toastr.error("Failed to load fleetPools!");
+                                toastr.error(ist.resourceText.FleetPoolLoadFailError);
                             }
                         });
                     },

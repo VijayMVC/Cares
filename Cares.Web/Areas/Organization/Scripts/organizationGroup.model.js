@@ -1,5 +1,4 @@
 ﻿define(["ko", "underscore", "underscore-ko"], function(ko) {
-
     var
         // OrganizationGroup entity
         // ReSharper disable InconsistentNaming
@@ -53,6 +52,7 @@
                 isValid: isValid
             };
         };
+    //organization detail 
     var organizationGroupDetail = function (specifiedId, specifiedCode, specifiedName, specifieddescription) {
         var            
             id = ko.observable(specifiedId),
@@ -86,7 +86,6 @@
             // Convert to server
             convertToServerData = function() {
                 return {
-                    
                 };
             };
         return {

@@ -24,10 +24,12 @@ namespace Cares.Interfaces.IServices
         /// Search Operation
         /// </summary>
         OperationSearchResponse SearchOperation(OperationSearchRequest request);
+
         /// <summary>
         /// Delete Operation
         /// </summary>
         void DeleteOperation(Operation operationobeDeleted);
+
         /// <summary>
         /// Save Operation
         /// </summary>

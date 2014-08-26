@@ -1,5 +1,5 @@
 ﻿/*
-    Module with the view model for the OrgGroup
+    Module with the view model for the Organization
 */
 define("Organization/organizationGroup.viewModel",
     ["jquery", "amplify", "ko", "Organization/organizationGroup.dataservice", "Organization/organizationGroup.model",
@@ -33,7 +33,7 @@ define("Organization/organizationGroup.viewModel",
                         if (dobeforeOrgGrop())
                         saveOrgGroup(selectedOrgGroup());
                     },
-                    //save org group 
+                    //save Organization group
                     saveOrgGroup = function(item) {
                         dataservice.addOrganizationGroup(model.organizationGroupClienttoServerMapper(item), {
                             success: function(dataFromServer) {
@@ -43,13 +43,13 @@ define("Organization/organizationGroup.viewModel",
                                 else
                                     organizationGroups.push(newItem);
                                 isOrgGroupEditorVisible(false);
-                                toastr.success("Operation successfuly performed!");
+                                toastr.success(ist.resourceText.OrganizationGroupSaveSuccessMessage);
                             },
                             error: function (exceptionMessage, exceptionType) {
                                 if (exceptionType === ist.exceptionType.CaresGeneralException)
                                     toastr.error(exceptionMessage);
                                 else
-                                    toastr.error("Failed to save Organization Group!");
+                                    toastr.error(ist.resourceText.OrganizationGroupSaveFailError);
                             }
                         });
                     }, 
@@ -95,15 +95,15 @@ define("Organization/organizationGroup.viewModel",
                         selectedOrgGroup(item);
                         isOrgGroupEditorVisible(true);
                     },
-                    //delete org group
+                    //delete Organization group
                     deleteOrgGroup = function(orgGroup) {
                         dataservice.deleteOrganizationGroup(model.organizationGroupClienttoServerMapper(orgGroup), {
                             success: function() {
                                 organizationGroups.remove(orgGroup);
-                                toastr.success("Organizaiton Group removed successfully.");
+                                toastr.success(ist.resourceText.OrganizationGroupDeleteSuccessMessage);
                             },
                             error: function() {
-                                toastr.error("Failed to remove Organization Group.");
+                                toastr.error(ist.resourceText.OrganizationGroupDeleteFailError);
                             }
                         });
                     },
@@ -120,7 +120,7 @@ define("Organization/organizationGroup.viewModel",
                     showFilterSection = function() {
                         filterSectionVisilble(true);
                     },
-                    //get org group list from Dataservice
+                    //get Organization group list from Dataservice
                     getOrganizationGroups = function() {
                         dataservice.getOrganizationGroups(
                         {
@@ -141,7 +141,7 @@ define("Organization/organizationGroup.viewModel",
                             },
                             error: function() {
                                 isLoadingFleetPools(false);
-                                toastr.error("Failed to load fleetPools!");
+                                toastr.error(ist.resourceText.OrganizationGroupLoadFailError);
                             }
                         });
                     },
