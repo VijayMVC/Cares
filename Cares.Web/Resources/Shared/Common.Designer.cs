@@ -97,6 +97,24 @@ namespace Cares.Web.Resources.Shared {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string Close {
+            get {
+                return ResourceManager.GetString("Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirmation.
+        /// </summary>
+        public static string Confirmation {
+            get {
+                return ResourceManager.GetString("Confirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contact.
         /// </summary>
         public static string Contact {
@@ -120,6 +138,15 @@ namespace Cares.Web.Resources.Shared {
         public static string CreateNew {
             get {
                 return ResourceManager.GetString("CreateNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to proceed with the request?.
+        /// </summary>
+        public static string DefaultConfirmationText {
+            get {
+                return ResourceManager.GetString("DefaultConfirmationText", resourceCulture);
             }
         }
         
@@ -205,7 +232,16 @@ namespace Cares.Web.Resources.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to of.
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to of .
         /// </summary>
         public static string Of {
             get {
@@ -277,7 +313,7 @@ namespace Cares.Web.Resources.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Showing.
+        ///   Looks up a localized string similar to Showing .
         /// </summary>
         public static string Showing {
             get {
@@ -300,6 +336,15 @@ namespace Cares.Web.Resources.Shared {
         public static string TotalRecords {
             get {
                 return ResourceManager.GetString("TotalRecords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }

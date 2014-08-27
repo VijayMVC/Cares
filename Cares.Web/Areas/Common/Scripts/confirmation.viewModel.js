@@ -11,11 +11,11 @@ define("common/confirmation.viewModel",
                     // True if we are loading data
                     isLoading = ko.observable(false),
                     // default Header text
-                    defaultHeaderText = "Confirmation",
+                    defaultHeaderText = ist.resourceText.defaultHeaderText,
                     // Heading Text
                     headingText = ko.observable(defaultHeaderText),
                     // default confirmation text
-                    defaultConfirmationText = "Do you want to proceed with the request?",
+                    defaultConfirmationText = ist.resourceText.defaultConfirmationText,
                     // Message Text
                     messageText = ko.observable(defaultConfirmationText),
                     // On Proceed

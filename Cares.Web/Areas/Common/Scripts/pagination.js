@@ -119,7 +119,7 @@
                 if (totalCount() > 0) {
                     startIndex += 1;
                 }
-                return "Showing " + startIndex + " - " + total + " of " + totalCount();
+                return ist.resourceText.showing + startIndex + " - " + total + " "+ist.resourceText.of +" "+ + totalCount();
             }),
             // Reset
             reset = function() {
