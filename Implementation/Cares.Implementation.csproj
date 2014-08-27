@@ -147,7 +147,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Company.ar.resx</DependentUpon>
     </Compile>
-     <Compile Include="Resources\Tariff\ServiceRate.Designer.cs">
+    <Compile Include="Resources\Tariff\ServiceRate.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ServiceRate.resx</DependentUpon>
@@ -263,8 +263,11 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Company.ar.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Organization\Company.resx">
-    <EmbeddedResource Include="Resources\Tariff\InsuranceRate.ar.resx" />
+
+    <EmbeddedResource Include="Resources\Tariff\InsuranceRate.ar.resx" >
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>InsuranceRate.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tariff\InsuranceRate.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>InsuranceRate.Designer.cs</LastGenOutput>
@@ -277,7 +280,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ServiceRate.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-
+    <EmbeddedResource Include="Resources\Organization\Company.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Company.Designer.cs</LastGenOutput>
     </EmbeddedResource>
