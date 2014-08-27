@@ -117,7 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CurrentStandardRtOverlaps" xml:space="preserve">
+    <value>The current defined Effective Start and End range falls within the duration of another Standard Rate.</value>
+  </data>
+  <data name="EndStandardRtDurationOverlaps" xml:space="preserve">
+    <value>End Effective Date is greater than the start Effective Date of an existing Standard Rate.</value>
+  </data>
+  <data name="ExistingStandardRtOverlaps" xml:space="preserve">
+    <value>Another Standard Rate duration falls within the current defined Effective Start and End range</value>
+  </data>
+  <data name="InvalidEndDate" xml:space="preserve">
+    <value>End Effective Date must be greater than the Start Date.</value>
+  </data>
   <data name="InvalidStartDate" xml:space="preserve">
     <value>Start Effective Date must be a current or future date.</value>
+  </data>
+  <data name="StartStandardRtDurationOverlaps" xml:space="preserve">
+    <value>Start Effective Date is less than the End Effective Date of an existing Standard Rate.</value>
+  </data>
+  <data name="StRateInvalidEffectiveDates" xml:space="preserve">
+    <value>Start Date and End Date for Hire Groups Rate must be a current or future date.</value>
+  </data>
+  <data name="StRateInvalidEndDate" xml:space="preserve">
+    <value>End Date for Hire Groups Rate should be greater than their Start Date.</value>
+  </data>
+  <data name="StRateInvalidRangeEffectiveDate" xml:space="preserve">
+    <value>Start Date and End Date for Hire Groups Rate should be between the Start and Effective Date.</value>
   </data>
 </root>

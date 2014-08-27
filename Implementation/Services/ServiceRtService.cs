@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Cares.ExceptionHandling;
 using Cares.Interfaces.IServices;
@@ -25,9 +26,8 @@ namespace Cares.Implementation.Services
         #endregion
 
         #region Constructors
-
         public ServiceRtService(IOperationRepository operationRepository, ITariffTypeRepository tariffTypeRepository,
-            IServiceRtMainRepository serviceRtMainRepository, IServiceItemRepository serviceItemRepository, IServiceRtRepository serviceRtRepository)
+          IServiceRtMainRepository serviceRtMainRepository, IServiceItemRepository serviceItemRepository, IServiceRtRepository serviceRtRepository)
         {
             this.operationRepository = operationRepository;
             this.tariffTypeRepository = tariffTypeRepository;
@@ -378,6 +378,12 @@ namespace Cares.Implementation.Services
                 StartDt = serviceRtMain.StartDt
             };
         }
+        
+        /// <summary>
+        /// Validate Servire Rate Main
+        /// </summary>
+        /// <param name="serviceRtMain"></param>
+        /// <param name="addFlag"></param>
         private void ValidateServiceRt(ServiceRtMain serviceRtMain, bool addFlag)
         {
             DateTime oStartDt, serviceStartDt;
@@ -387,10 +393,10 @@ namespace Cares.Implementation.Services
                 //means new Standard Rt is being added
                 serviceStartDt = Convert.ToDateTime(serviceRtMain.StartDt);
                 if (serviceStartDt.Date < DateTime.Now.Date)
-                    throw new CaresException("Start Effective Date must be a current or future date.");
+                    throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.ServiceRate.InvalidStartDate));
                 List<ServiceRtMain> oServiceRateMain = serviceRtMainRepository.FindByTariffTypeCode(serviceRtMain.TariffTypeCode).ToList();
                 if (oServiceRateMain.Count > 0)
-                    throw new CaresException("Service rate for the selected tariff type already exist.");
+                    throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.ServiceRate.ServiceRtByTariffExist));
             }
             if (serviceRtMain.ServiceRts != null)
             {
@@ -398,9 +404,9 @@ namespace Cares.Implementation.Services
                 {
                     serviceStartDt = Convert.ToDateTime(item.StartDt);
                     if (serviceStartDt.Date < DateTime.Now.Date)
-                        throw new CaresException("Start Date for Service Item Rate must be a current or future date.");
+                        throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.ServiceRate.ServRateCurrentDateViolation));
                     if (serviceStartDt.Date < oStartDt.Date)
-                        throw new CaresException("Start Date for Service Item Rate must be greater than their Start Effective Date.");
+                        throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.ServiceRate.ServRateInvalidEffectiveDate));
                 }
             }
 

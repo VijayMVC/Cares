@@ -6,24 +6,24 @@
     <div class="row " data-bind="visible: !isTariffTypeEditorVisible()">
         <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.Tariff.TariffType.TariffTypes</h3>
         <div class="header-toolsSection">
-            <a href="#" class="label label-default create-new-icon" data-bind="click: createTariffTypeInForm" title=@Cares.Web.Resources.Tariff.TariffType.CreateNewTariffType>@Cares.Web.Resources.Shared.Common.New</a>
-            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title=@Cares.Web.Resources.Shared.Common.ShowFilter style="display: none"></a>
+            <a href="#" class="label label-default create-new-icon" data-bind="click: createTariffTypeInForm" title='@Cares.Web.Resources.Tariff.TariffType.CreateNewTariffType'>@Cares.Web.Resources.Shared.Common.New</a>
+            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title='@Cares.Web.Resources.Shared.Common.ShowFilter' style="display: none"></a>
         </div>
     </div>
     <div class="row searchFilterSection" data-bind="visible: !isTariffTypeEditorVisible() && filterSectionVisilble()" style="display: none">
         <div class="well">
             <form class="form-horizontal" data-bind="submit: search">
                 <div class="col-xs-3">
-                    <input type="text" class="form-control" placeholder=@("<"+Cares.Web.Resources.Shared.Common.Search+">") data-bind="value: tariffTypeCodeFilter" />
+                    <input type="text" class="form-control" placeholder='@("<"+Cares.Web.Resources.Shared.Common.Search+">")' data-bind="value: tariffTypeCodeFilter" />
                 </div>
                 <div class="col-xs-3">
-                    <select class="form-control" data-bind="options: $root.measurementUnits, optionsText: 'MeasurementUnitCodeName', optionsValue: 'MeasurementUnitId', optionsCaption: '@Cares.Web.Resources.Tariff.TariffType.MeasurementUnit', value: measurementUnitFilter"></select>
+                    <select class="form-control" data-bind="options: $root.measurementUnits, optionsText: 'MeasurementUnitCodeName', optionsValue: 'MeasurementUnitId', optionsCaption: '&lt;' +'@Cares.Web.Resources.Tariff.TariffType.MeasurementUnit'+ '&gt;', value: measurementUnitFilter"></select>
                 </div>
                 <div class="col-xs-3">
-                    <select class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '@Cares.Web.Resources.Tariff.TariffType.Operation', value: operationFilter"></select>
+                    <select class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '&lt;' +'@Cares.Web.Resources.Tariff.TariffType.Operation'+ '&gt;', value: operationFilter"></select>
                 </div>
                 <button type="submit" class="btn btn-success" data-bind="click: search">@Cares.Web.Resources.Shared.Common.Search</button>
-                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection" title=@Cares.Web.Resources.Shared.Common.HideSection></a>
+                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection" title='@Cares.Web.Resources.Shared.Common.HideSection'></a>
             </form>
         </div>
     </div>

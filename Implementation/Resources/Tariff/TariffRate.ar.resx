@@ -117,7 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CurrentStandardRtOverlaps" xml:space="preserve">
+    <value>يعرف التيار ابدأ فعالة ويندرج ضمن نطاق نهاية مدة أخرى معدل قياسي.</value>
+  </data>
+  <data name="EndStandardRtDurationOverlaps" xml:space="preserve">
+    <value>نهاية التاريخ الفعلي أكبر من بداية التاريخ الفعلي لمعدل قياسي القائمة.</value>
+  </data>
+  <data name="ExistingStandardRtOverlaps" xml:space="preserve">
+    <value>تقع آخر مدة معدل قياسي ضمن تيار يعرف ابدأ فعالة ومجموعة النهاية.</value>
+  </data>
+  <data name="InvalidEndDate" xml:space="preserve">
+    <value>نهاية التاريخ الفعلي يجب أن يكون أكبر من تاريخ البدء.</value>
+  </data>
   <data name="InvalidStartDate" xml:space="preserve">
     <value>يجب أن يكون بدء تاريخ السريان تاريخ الحالي أو في المستقبل.</value>
+  </data>
+  <data name="StartStandardRtDurationOverlaps" xml:space="preserve">
+    <value>يبدأ التاريخ الفعلي أقل من نهاية التاريخ الفعلي لمعدل قياسي القائمة.</value>
+  </data>
+  <data name="StRateInvalidEffectiveDates" xml:space="preserve">
+    <value>التاريخ ونهاية التاريخ لتأجير المجموعات أسعار تبدأ يجب أن يكون التاريخ الحالي أو في المستقبل.</value>
+  </data>
+  <data name="StRateInvalidEndDate" xml:space="preserve">
+    <value>يجب أن يكون تاريخ نهاية للتأجير المجموعات نسبة أكبر من تاريخ بدء بهم</value>
+  </data>
+  <data name="StRateInvalidRangeEffectiveDate" xml:space="preserve">
+    <value>بدء التسجيل ونهاية التسجيل للتأجير المجموعات أسعار يجب أن يكون بين البداية وتاريخ النفاذ.</value>
   </data>
 </root>

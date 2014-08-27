@@ -9,15 +9,15 @@
         <div class="form-group">
             <label for="hireGroupCode" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.HireGroup.HireGroupCode *</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" placeholder=@("<" + Cares.Web.Resources.Tariff.HireGroup.HireGroupCode + ">") id="hireGroupCode" data-bind="value: hireGroupCode, validationTooltip: hireGroupCode" />
+                <input type="text" class="form-control" placeholder='@("<" + Cares.Web.Resources.Tariff.HireGroup.HireGroupCode + ">")' id="hireGroupCode" data-bind="value: hireGroupCode, validationTooltip: hireGroupCode" />
             </div>
             <label for="hireGroupName" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.HireGroup.HireGroupName</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" placeholder=@("<" + Cares.Web.Resources.Tariff.HireGroup.HireGroupName + ">") id="hireGroupName" data-bind="value: hireGroupName, validationTooltip: hireGroupName" />
+                <input type="text" class="form-control" placeholder='@("<" + Cares.Web.Resources.Tariff.HireGroup.HireGroupName + ">")' id="hireGroupName" data-bind="value: hireGroupName, validationTooltip: hireGroupName" />
             </div>
             <label for="company" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.HireGroup.Company *</label>
             <div class="col-md-2">
-                <select id="company" class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '@Cares.Web.Resources.Tariff.HireGroup.Company', value: companyId, validationTooltip: companyId, disable :virtualIsParent(), event:{change:$root.onSelectedCompany}, disable :(hireGroupId()!=undefined)"></select>
+                <select id="company" class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '&lt;' + '@Cares.Web.Resources.Tariff.HireGroup.Company' + '&gt;', value: companyId, validationTooltip: companyId, disable :virtualIsParent(), event:{change:$root.onSelectedCompany}, disable :(hireGroupId()!=undefined)"></select>
             </div>
         </div>
         <div class="form-group">
@@ -27,11 +27,11 @@
             </div>
             <label for="isParentHireGroup" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.HireGroup.ParentHireGroup </label>
             <div class="col-xs-2">
-                <select id="isParentHireGroup" class="form-control" data-bind="options: $root.filteredParentHireGroups, optionsText: 'ParentHireGroupName', optionsValue: 'ParentHireGroupId', optionsCaption: '@Cares.Web.Resources.Tariff.HireGroup.ParentHireGroup', value: parentHireGroupId,validationTooltip: parentHireGroupId"></select>
+                <select id="isParentHireGroup" class="form-control" data-bind="options: $root.filteredParentHireGroups, optionsText: 'ParentHireGroupName', optionsValue: 'ParentHireGroupId', optionsCaption:'&lt;' + '@Cares.Web.Resources.Tariff.HireGroup.ParentHireGroup' + '&gt;', value: parentHireGroupId,validationTooltip: parentHireGroupId"></select>
             </div>
             <label for="description" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.HireGroup.Description</label>
             <div class="col-md-2">
-                <textarea class="form-control" rows="2" placeholder=@("<" + Cares.Web.Resources.Tariff.HireGroup.Description + ">") id="description" data-bind="value: description, valueUpdate: 'keyup'"></textarea>
+                <textarea class="form-control" rows="2" placeholder='@("<" + Cares.Web.Resources.Tariff.HireGroup.Description + ">")' id="description" data-bind="value: description, valueUpdate: 'keyup'"></textarea>
             </div>
         </div>
     </form>
@@ -51,21 +51,21 @@
                     <div class="form-group">
                         <label for="vehicleMake" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.HireGroup.VehicleMake*</label>
                         <div class="col-md-2">
-                            <select id="vehicleMake" class="form-control" data-bind="options: $root.vehicleMakes, optionsText: 'VehicleMakeCodeName', optionsCaption: '@Cares.Web.Resources.Tariff.HireGroup.VehicleMake', value:vehicleMakeId, event:{change:$root.onVehicleMakeChange}, disable :$root.virtualIsChecked()"></select>
+                            <select id="vehicleMake" class="form-control" data-bind="options: $root.vehicleMakes, optionsText: 'VehicleMakeCodeName', optionsCaption:'&lt;' + '@Cares.Web.Resources.Tariff.HireGroup.VehicleMake' + '&gt;', value:vehicleMakeId, event:{change:$root.onVehicleMakeChange}, disable :$root.virtualIsChecked()"></select>
                         </div>
                         <label for="vehicleModel" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.HireGroup.VehicleModel*</label>
                         <div class="col-md-2">
-                            <select id="vehicleModel" class="form-control" data-bind="options: $root.vehicleModels, optionsText: 'VehicleModelCodeName', optionsCaption: '@Cares.Web.Resources.Tariff.HireGroup.VehicleModel', value: vehicleModelId, event:{change:$root.onVehicleModelChange}, disable :$root.virtualIsChecked() "></select>
+                            <select id="vehicleModel" class="form-control" data-bind="options: $root.vehicleModels, optionsText: 'VehicleModelCodeName', optionsCaption:'&lt;' + '@Cares.Web.Resources.Tariff.HireGroup.VehicleModel' + '&gt;', value: vehicleModelId, event:{change:$root.onVehicleModelChange}, disable :$root.virtualIsChecked() "></select>
                         </div>
                         <label for="vehicleCategory" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.HireGroup.VehicleCategory</label>
                         <div class="col-md-2">
-                            <select id="vehicleCategory" class="form-control" data-bind="options: $root.vehicleCategories, optionsText: 'VehicleCategoryCodeName', optionsCaption: '@Cares.Web.Resources.Tariff.HireGroup.VehicleCategory', value: vehicleCategoryId, event:{change:$root.onVehicleCategoryChange}, disable :$root.virtualIsChecked() "></select>
+                            <select id="vehicleCategory" class="form-control" data-bind="options: $root.vehicleCategories, optionsText: 'VehicleCategoryCodeName', optionsCaption:'&lt;' + '@Cares.Web.Resources.Tariff.HireGroup.VehicleCategory' + '&gt;', value: vehicleCategoryId, event:{change:$root.onVehicleCategoryChange}, disable :$root.virtualIsChecked() "></select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="modelYear" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.HireGroup.ModelYear*</label>
                         <div class="col-md-2">
-                            <select id="modelYear" class="form-control" data-bind="options: $root.modelYears, optionsText: 'Text',optionsValue:'Id', optionsCaption: '@Cares.Web.Resources.Tariff.HireGroup.ModelYear', value: vehicleModelYear, disable :$root.virtualIsChecked() "></select>
+                            <select id="modelYear" class="form-control" data-bind="options: $root.modelYears, optionsText: 'Text',optionsValue:'Id', optionsCaption:'&lt;' + '@Cares.Web.Resources.Tariff.HireGroup.ModelYear' + '&gt;', value: vehicleModelYear, disable :$root.virtualIsChecked() "></select>
                         </div>
 
                     </div>
@@ -108,7 +108,7 @@
                     <div class="form-group">
                         <label for="hireGroups" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.HireGroup.HireGroups *</label>
                         <div class="col-md-2">
-                            <select id="hireGroups" class="form-control" data-bind="options: $root.filteredHireGroupsForDdList, optionsText: 'HireGroupCodeName', optionsCaption: '<Hire Group>',value:hireGroupIdForUpGrade, event:{change:$root.upGradedHireGroupChange}, disable :$root.virtualIsChecked() "></select>
+                            <select id="hireGroups" class="form-control" data-bind="options: $root.filteredHireGroupsForDdList, optionsText: 'HireGroupCodeName', optionsCaption: '&lt;' + '@Cares.Web.Resources.Tariff.HireGroup.HireGroupText' + '&gt;',value:hireGroupIdForUpGrade, event:{change:$root.upGradedHireGroupChange}, disable :$root.virtualIsChecked() "></select>
                         </div>
                     </div>
                 </form>

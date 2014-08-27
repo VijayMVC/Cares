@@ -6,24 +6,24 @@
     <div class="row " data-bind="visible: !isHireGroupEditorVisible()">
         <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.Tariff.HireGroup.HireGroups</h3>
         <div class="header-toolsSection">
-            <a href="#" class="label label-default create-new-icon" data-bind="click: createHireGroup" title=@Cares.Web.Resources.Tariff.TariffRate.CreateNewTarifRate>@Cares.Web.Resources.Shared.Common.New</a>
-            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title=@Cares.Web.Resources.Shared.Common.ShowFilter style="display: none"></a>
+            <a href="#" class="label label-default create-new-icon" data-bind="click: createHireGroup" title='@Cares.Web.Resources.Tariff.TariffRate.CreateNewTarifRate'>@Cares.Web.Resources.Shared.Common.New</a>
+            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title='@Cares.Web.Resources.Shared.Common.ShowFilter' style="display: none"></a>
         </div>
     </div>
     <div class="row searchFilterSection" data-bind="visible: !isHireGroupEditorVisible() && filterSectionVisilble()" style="display: none">
         <div class=" well">
             <form class="form-horizontal" data-bind="submit: search">
                 <div class="col-xs-3">
-                    <input type="text" class="form-control" placeholder=@("<"+Cares.Web.Resources.Shared.Common.Search+">") data-bind="value: hireGroupCodeFilter" />
+                    <input type="text" class="form-control" placeholder='@("<"+Cares.Web.Resources.Shared.Common.Search+">")' data-bind="value: hireGroupCodeFilter" />
                 </div>
                 <div class="col-xs-3">
-                    <select class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '@Cares.Web.Resources.Tariff.HireGroup.Company', value: companyFilter"></select>
+                    <select class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '&lt;' + '@Cares.Web.Resources.Tariff.HireGroup.Company'+ '&gt;', value: companyFilter"></select>
                 </div>
                 <div class="col-xs-3">
                     <select class="form-control" data-bind="options: $root.parentHireGroups, optionsText: 'ParentHireGroupName', optionsValue: 'HireGroupId', optionsCaption: '@Cares.Web.Resources.Tariff.HireGroup.ParentHireGroup', value: parentHireGroupFilter"></select>
                 </div>
                 <button type="submit" class="btn btn-success" data-bind="click: search">@Cares.Web.Resources.Shared.Common.Search</button>
-                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection" title=@Cares.Web.Resources.Shared.Common.HideSection></a>
+                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection" title='@Cares.Web.Resources.Shared.Common.HideSection'></a>
             </form>
         </div>
     </div>
@@ -51,10 +51,10 @@
         </div>
     </div>
     <script id="editActionHireGroupTemplate" type="text/html">
-        <a href="#" data-bind="click: $root.onEditHireGroup" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
+        <a href="#" data-bind="click: $root.onEditHireGroup" title=@Cares.Web.Resources.Shared.Common.Edit><span class="glyphicon glyphicon-edit"></span></a>
     </script>
     <script id="deleteActionHireGroupTemplate" type="text/html">
-        <a href="#" data-bind="click: $root.onDeleteHireGroup" title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
+        <a href="#" data-bind="click: $root.onDeleteHireGroup" title=@Cares.Web.Resources.Shared.Common.Delete><span class="glyphicon glyphicon-remove"></span></a>
     </script>
     <script id="itemHireGroupTemplate" type="text/html">
         <tr>

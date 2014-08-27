@@ -252,18 +252,6 @@
   <data name="LoadTariffRatesFailedMsg" xml:space="preserve">
     <value>Failed to load tariff rates.</value>
   </data>
-  <data name="StartStandardRtDurationOverlaps" xml:space="preserve">
-    <value>Start Effective Date is less than the End Effective Date of an existing Standard Rate.</value>
-  </data>
-  <data name="StRateInvalidEffectiveDates" xml:space="preserve">
-    <value>Start Date and End Date for Hire Groups Rate must be a current or future date.</value>
-  </data>
-  <data name="StRateInvalidEndDate" xml:space="preserve">
-    <value>End Date for Hire Groups Rate should be greater than their Start Date.</value>
-  </data>
-  <data name="StRateInvalidRangeEffectiveDate" xml:space="preserve">
-    <value>Start Date and End Date for Hire Groups Rate should be between the Start and Effective Date.</value>
-  </data>
   <data name="TariffRateDeleteFailedMsg" xml:space="preserve">
     <value>Failed to remove tariff rate.</value>
   </data>

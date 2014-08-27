@@ -114,7 +114,7 @@ define("serviceRate/serviceRate.viewModel",
                                 }
                             },
                             error: function () {
-                                toastr.error("Failed to load base data");
+                                toastr.error(ist.resourceText.loadBaseDataFailedMsg);
                             }
                         });
                     },
@@ -132,7 +132,7 @@ define("serviceRate/serviceRate.viewModel",
                             },
                             error: function () {
                                 isLoadingServiceRt(false);
-                                toastr.error("Failed to load Service Item Rates!");
+                                toastr.error(ist.resourceText.serviceItemRatesFailedMsg);
                             }
                         });
                     },
@@ -207,7 +207,7 @@ define("serviceRate/serviceRate.viewModel",
                                     serviceRtMains.splice(0, 0, serviceRtResult);
                                     closeServiceRateEditor();
                                 }
-                                toastr.success("Service Rate saved successfully");
+                                toastr.success(ist.resourceText.serviceRateAddSuccessMsg);
                             },
                             error: function (exceptionMessage, exceptionType) {
 
@@ -217,7 +217,7 @@ define("serviceRate/serviceRate.viewModel",
 
                                 } else {
 
-                                    toastr.error("Failed to save Service Rate.");
+                                    toastr.error(ist.resourceText.serviceRateAddFailedMsg);
 
                                 }
 
@@ -249,10 +249,10 @@ define("serviceRate/serviceRate.viewModel",
                         dataservice.deleteServiceRate(serviceRt.convertToServerData(), {
                             success: function () {
                                 serviceRtMains.remove(serviceRt);
-                                toastr.success("Service Rate removed successfully");
+                                toastr.success(ist.resourceText.serviceRateDeleteSuccessMsg);
                             },
                             error: function () {
-                                toastr.error("Failed to remove Service Rate!");
+                                toastr.error(ist.resourceText.serviceRateDeleteFailedMsg);
                             }
                         });
                     },
@@ -286,7 +286,7 @@ define("serviceRate/serviceRate.viewModel",
                             },
                             error: function () {
                                 isLoadingServiceRt(false);
-                                toastr.error("Failed to load Service Rates!");
+                                toastr.error(ist.resourceText.serviceRatesLoadFailedMsg);
                             }
                         });
                     };

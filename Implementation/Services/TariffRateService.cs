@@ -252,11 +252,16 @@ namespace Cares.Implementation.Services
         {
             return standardRateMainRepository.FindByTariffTypeCode(tariffTypeCode);
         }
-
-        public TariffType FindTariffTypeById(long id)
+        /// <summary>
+        /// Find Tariff Type By Tariff Type ID
+        /// </summary>
+        /// <param name="tariffTypeId"> Tariff Type Id</param>
+        /// <returns></returns>
+        public TariffType FindTariffTypeById(long tariffTypeId)
         {
-            return tariffTypeRepository.Find(id);
+            return tariffTypeRepository.Find(tariffTypeId);
         }
+
         /// <summary>
         /// Standard Rate Validation
         /// </summary>
@@ -271,10 +276,9 @@ namespace Cares.Implementation.Services
             if (addFlag)
             {
                 if (strMainStartDate.Date < DateTime.Now.Date)
-                    throw new CaresException(string.Format(CultureInfo.InvariantCulture,Resources.Tariff.TariffRate.InvalidStartDate));
+                    throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.TariffRate.InvalidStartDate));
                 if (strMainEndDate.Date < strMainStartDate.Date)
-                    throw new CaresException("End Effective Date must be greater than the Start Date.");
-                //TariffType tariffType = FindTariffTypeById(standardRateMain.TariffTypeId);
+                    throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.TariffRate.InvalidEndDate));
                 IEnumerable<StandardRateMain> oStRateMain = FindByTariffTypeCode(standardRateMain.TariffTypeCode).Select(s => s);
                 foreach (var rateMain in oStRateMain)
                 {
@@ -282,13 +286,13 @@ namespace Cares.Implementation.Services
                     dbEndDate = rateMain.EndDt;
 
                     if ((strMainStartDate <= dbStartDate) && ((dbEndDate) <= (strMainEndDate)))
-                        throw new CaresException("Another Standard Rate duration falls within the current defined Effective Start and End range.");
+                        throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.TariffRate.ExistingStandardRtOverlaps));
                     if ((dbStartDate <= strMainStartDate) && ((strMainEndDate) <= (dbEndDate)))
-                        throw new CaresException("The current defined Effective Start and End range falls within the duration of another Standard Rate. ");
+                        throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.TariffRate.CurrentStandardRtOverlaps));
                     if ((dbStartDate <= strMainStartDate) && (strMainStartDate <= (dbEndDate)) && ((dbEndDate) <= (strMainEndDate)))
-                        throw new CaresException("Start Effective Date is less than the End Effective Date of an existing Standard Rate.");
+                        throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.TariffRate.StartStandardRtDurationOverlaps));
                     if ((strMainStartDate <= dbStartDate) && (dbStartDate <= (strMainEndDate)) && ((strMainEndDate) <= (dbEndDate)))
-                        throw new CaresException("End Effective Date is greater than the start Effective Date of an existing Standard Rate.");
+                        throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.TariffRate.EndStandardRtDurationOverlaps));
                 }
             }
             if (standardRateMain.StandardRates != null)
@@ -298,11 +302,11 @@ namespace Cares.Implementation.Services
                     dbStartDate = Convert.ToDateTime(standardRate.StandardRtStartDt);
                     dbEndDate = Convert.ToDateTime(standardRate.StandardRtEndDt);
                     if (dbStartDate.Date < DateTime.Now.Date || dbEndDate.Date < DateTime.Now.Date)
-                        throw new CaresException("Start Date and End Date for Hire Groups Rate must be a current or future date.");
+                        throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.TariffRate.StRateInvalidEffectiveDates));
                     if (dbEndDate < dbStartDate)
-                        throw new CaresException("End Date for Hire Groups Rate should be greater than their Start Date.");
+                        throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.TariffRate.StRateInvalidEndDate));
                     if (dbStartDate < strMainStartDate || dbEndDate > strMainEndDate)
-                        throw new CaresException("Start Date and End Date for Hire Groups Rate should be between the Start and Effective Date.");
+                        throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.TariffRate.StRateInvalidRangeEffectiveDate));
                 }
             }
 

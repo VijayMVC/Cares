@@ -117,32 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Allowed" xml:space="preserve">
-    <value>يسمح</value>
-  </data>
   <data name="Category" xml:space="preserve">
-    <value>الفئة</value>
+    <value>فئة</value>
   </data>
   <data name="Code" xml:space="preserve">
     <value>كود</value>
   </data>
-  <data name="CreateNewTarifRate" xml:space="preserve">
-    <value>خلق جديد التعريفة الجمركية</value>
-  </data>
   <data name="Date" xml:space="preserve">
-    <value>تاريخ</value>
+    <value>التاريخ</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>وصف</value>
   </data>
-  <data name="End" xml:space="preserve">
-    <value>انتهاء</value>
-  </data>
-  <data name="EndEffectiveDate" xml:space="preserve">
-    <value>نهاية التاريخ الفعلي</value>
-  </data>
-  <data name="Excess" xml:space="preserve">
-    <value>زيادة</value>
+  <data name="EffectiveFrom" xml:space="preserve">
+    <value>اعتبارا من</value>
   </data>
   <data name="Group" xml:space="preserve">
     <value>المجموعة</value>
@@ -150,23 +138,50 @@
   <data name="Hire" xml:space="preserve">
     <value>استئجار</value>
   </data>
-  <data name="HireGroup" xml:space="preserve">
-    <value>استئجار المجموعة</value>
+  <data name="Insurance" xml:space="preserve">
+    <value>التأمين</value>
+  </data>
+  <data name="InsuranceRateAddFailedMsg" xml:space="preserve">
+    <value>فشلت في انقاذ أسعار التأمين.</value>
+  </data>
+  <data name="InsuranceRateAddSuccessMsg" xml:space="preserve">
+    <value>أسعار التأمين حفظها بنجاح.</value>
+  </data>
+  <data name="InsuranceRateCode" xml:space="preserve">
+    <value>كود أسعار التأمين</value>
+  </data>
+  <data name="InsuranceRateDeleteFailedMsg" xml:space="preserve">
+    <value>فشل في إزالة تأمين معدل.</value>
+  </data>
+  <data name="InsuranceRateDeleteSuccessMsg" xml:space="preserve">
+    <value>تأمين معدل إزالة بنجاح.</value>
+  </data>
+  <data name="InsuranceRateDetail" xml:space="preserve">
+    <value>أسعار التأمين التفاصيل</value>
+  </data>
+  <data name="InsuranceRateName" xml:space="preserve">
+    <value>اسم سعر التأمين</value>
+  </data>
+  <data name="InsuranceRatesLoadFailedMsg" xml:space="preserve">
+    <value>فشل تحميل أسعار التأمين.</value>
+  </data>
+  <data name="InsuranceRateText" xml:space="preserve">
+    <value>أسعار التأمين</value>
+  </data>
+  <data name="InsuranceTypeRate" xml:space="preserve">
+    <value>النوع أسعار التأمين</value>
+  </data>
+  <data name="LoadBaseDataFailedMsg" xml:space="preserve">
+    <value>فشل تحميل قاعدة البيانات.</value>
+  </data>
+  <data name="LoadInsuranceTypeRatesFailedMsg" xml:space="preserve">
+    <value>فشل تحميل النوع أسعار التأمين.</value>
   </data>
   <data name="Make" xml:space="preserve">
     <value>جعل</value>
   </data>
-  <data name="Mileage" xml:space="preserve">
-    <value>الأميال</value>
-  </data>
-  <data name="MileageCharge" xml:space="preserve">
-    <value>المسافة المسؤول</value>
-  </data>
   <data name="Model" xml:space="preserve">
     <value>نموذج</value>
-  </data>
-  <data name="ModelYear" xml:space="preserve">
-    <value>الصنع</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>اسم</value>
@@ -178,7 +193,7 @@
     <value>عملية</value>
   </data>
   <data name="Rate" xml:space="preserve">
-    <value>قياسي</value>
+    <value>معدل</value>
   </data>
   <data name="Revision" xml:space="preserve">
     <value>رقم</value>
@@ -186,82 +201,19 @@
   <data name="Start" xml:space="preserve">
     <value>البدء</value>
   </data>
-  <data name="Standard" xml:space="preserve">
-    <value>معدل</value>
-  </data>
   <data name="StartEffectiveDate" xml:space="preserve">
     <value>بدء التسجيل الفعال</value>
-  </data>
-  <data name="TariffRateCode" xml:space="preserve">
-    <value>رمز التعريفة سعر</value>
-  </data>
-  <data name="TariffRateDetail" xml:space="preserve">
-    <value>تعرفة التفاصيل</value>
-  </data>
-  <data name="TariffRateName" xml:space="preserve">
-    <value>اسم التعريفة الجمركية</value>
-  </data>
-  <data name="TariffRates" xml:space="preserve">
-    <value>أسعار التعرفة</value>
-  </data>
-  <data name="TariffRateText" xml:space="preserve">
-    <value>التعريفة الجمركية</value>
   </data>
   <data name="TariffType" xml:space="preserve">
     <value>نوع التعرفة</value>
   </data>
-  <data name="TariffTypes" xml:space="preserve">
-    <value>أنواع التعرفة</value>
+  <data name="Type" xml:space="preserve">
+    <value>نوع</value>
   </data>
   <data name="Vehicle" xml:space="preserve">
     <value>السيارة</value>
   </data>
-  <data name="VehicleCategory" xml:space="preserve">
-    <value>سيارة الفئة</value>
-  </data>
-  <data name="VehicleMake" xml:space="preserve">
-    <value>السيارة جعل</value>
-  </data>
-  <data name="VehicleModel" xml:space="preserve">
-    <value>المركبة الموديل</value>
-  </data>
   <data name="Year" xml:space="preserve">
     <value>سنة</value>
-  </data>
-  <data name="CurrentStandardRtOverlaps" xml:space="preserve">
-    <value>يعرف التيار ابدأ فعالة ويندرج ضمن نطاق نهاية مدة أخرى معدل قياسي</value>
-  </data>
-  <data name="EndStandardRtDurationOverlaps" xml:space="preserve">
-    <value>نهاية التاريخ الفعلي أكبر من بداية التاريخ الفعلي لمعدل قياسي القائمة.</value>
-  </data>
-  <data name="ExistingStandardRtOverlaps" xml:space="preserve">
-    <value>تقع آخر مدة معدل قياسي ضمن تيار يعرف ابدأ فعالة ومجموعة النهاية.</value>
-  </data>
-  <data name="HireGroupRateLoadFailedMsg" xml:space="preserve">
-    <value>فشل تحميل تأجير أسعار المجموعة.</value>
-  </data>
-  <data name="InvalidEndDate" xml:space="preserve">
-    <value>نهاية التاريخ الفعلي يجب أن يكون أكبر من تاريخ البدء.</value>
-  </data>
-  <data name="InvalidStartDate" xml:space="preserve">
-    <value>يجب أن يكون بدء تاريخ السريان تاريخ الحالي أو في المستقبل.</value>
-  </data>
-  <data name="LoadBaseDataFailedMsg" xml:space="preserve">
-    <value>فشل تحميل قاعدة البيانات.</value>
-  </data>
-  <data name="LoadTariffRatesFailedMsg" xml:space="preserve">
-    <value>فشل تحميل معدلات التعريفة</value>
-  </data>
-  <data name="TariffRateDeleteFailedMsg" xml:space="preserve">
-    <value>فشل لإزالة التعريفة الجمركية.</value>
-  </data>
-  <data name="TariffRateDeleteSuccessMsg" xml:space="preserve">
-    <value>تعرفة إزالة بنجاح.</value>
-  </data>
-  <data name="TariffRateSaveFailedMsg" xml:space="preserve">
-    <value>فشل حفظ التعريفة الجمركية.</value>
-  </data>
-  <data name="TariffRateSaveSuccessMsg" xml:space="preserve">
-    <value>تعرفة حفظها بنجاح.</value>
   </data>
 </root>

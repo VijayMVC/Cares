@@ -507,6 +507,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HireGroup.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Tariff\InsuranceRate.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InsuranceRate.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tariff\InsuranceRate.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InsuranceRate.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tariff\ServiceRate.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceRate.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tariff\ServiceRate.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceRate.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Tariff\TariffRate.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1468,6 +1488,22 @@
     <EmbeddedResource Include="Resources\Tariff\HireGroup.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>HireGroup.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tariff\InsuranceRate.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>InsuranceRate.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tariff\InsuranceRate.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>InsuranceRate.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tariff\ServiceRate.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceRate.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tariff\ServiceRate.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceRate.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tariff\TariffRate.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
