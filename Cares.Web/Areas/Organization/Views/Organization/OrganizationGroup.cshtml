@@ -14,10 +14,10 @@
         <div class="well">
             <form class="form-horizontal">
                 <div class="col-xs-3">
-                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.Organization.OrganizationGroup.OrganizationGroupCode" data-bind="value: orgGroupCodeFilter" />
+                    <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.OrganizationGroup.OrganizationGroupCode+">")" data-bind="value: orgGroupCodeFilter" />
                 </div>
                 <div class="col-xs-3">
-                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.Organization.OrganizationGroup.OrganizationGroupName" data-bind="value: orgGroupNameFilter" />
+                    <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.OrganizationGroup.OrganizationGroupName+">")" data-bind="value: orgGroupNameFilter" />
                 </div>
 
                 <button type="submit" class="btn btn-success" data-bind="click: search">@Cares.Web.Resources.Shared.Common.Search</button>
@@ -49,11 +49,11 @@
         </div>
     </div>
     <script id="deleteActionOrgGroupTemplate" type="text/html">
-        <a href="#" data-bind="click: $root.onDeleteOrgGroup" title="Delete Fleet Pool"><span class="glyphicon glyphicon-remove"></span></a>
+        <a href="#" data-bind="click: $root.onDeleteOrgGroup" title="@Cares.Web.Resources.Shared.Common.Delete"><span class="glyphicon glyphicon-remove"></span></a>
     </script>
 
     <script id="editActionOrgRoupTemplate" type="text/html">
-        <a href="#" data-bind="click: $root.onEditFleetPool" title="Edit in Form"><span class="glyphicon glyphicon-edit"></span></a>
+        <a href="#" data-bind="click: $root.onEditFleetPool" title="@Cares.Web.Resources.Shared.Common.Edit"><span class="glyphicon glyphicon-edit"></span></a>
     </script>
     <script id="OrgGroupFilterResultTemplate" type="text/html">
         <tr>

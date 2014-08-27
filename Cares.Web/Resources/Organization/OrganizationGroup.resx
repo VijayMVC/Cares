@@ -130,7 +130,7 @@
     <value>Name</value>
   </data>
   <data name="OrganizationGroupCode" xml:space="preserve">
-    <value>OrganizationGroupCode</value>
+    <value>Organization Group Code</value>
   </data>
   <data name="OrganizationGroupDeleteFailError" xml:space="preserve">
     <value>Organization Group failed to delete!</value>
@@ -148,7 +148,7 @@
     <value>Organization Group failed to load!</value>
   </data>
   <data name="OrganizationGroupName" xml:space="preserve">
-    <value>OrganizationGroupName</value>
+    <value>Organization Group Name</value>
   </data>
   <data name="OrganizationGroupSaveFailError" xml:space="preserve">
     <value>Organization Group failed to save!</value>

@@ -814,10 +814,10 @@
     <Content Include="Content\themes\Fleet.min.css">
       <DependentUpon>Fleet.css</DependentUpon>
     </Content>
-    <Content Include="Content\themes\OrgGroup.css">
+    <Content Include="Content\OrgGroup.css">
       <DependentUpon>OrgGroup.less</DependentUpon>
     </Content>
-    <Content Include="Content\themes\OrgGroup.min.css">
+    <Content Include="Content\OrgGroup.min.css">
       <DependentUpon>OrgGroup.css</DependentUpon>
     </Content>
     <Content Include="Content\toastr.css" />
@@ -1222,8 +1222,8 @@
     <Content Include="Areas\Organization\Views\web.config" />
     <Content Include="Areas\Organization\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Organization\Views\Shared\_Layout.cshtml" />
-    <Content Include="Content\themes\OrgGroup.less" />
-    <Content Include="Content\themes\OrgGroup.css.map">
+    <Content Include="Content\OrgGroup.less" />
+    <Content Include="Content\OrgGroup.css.map">
       <DependentUpon>OrgGroup.css</DependentUpon>
     </Content>
     <Content Include="Areas\Organization\Views\Organization\_OrgGroupEditor.cshtml" />

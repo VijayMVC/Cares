@@ -97,7 +97,7 @@ namespace Cares.Web.Resources.Organization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OrganizationGroupCode.
+        ///   Looks up a localized string similar to Organization Group Code.
         /// </summary>
         public static string OrganizationGroupCode {
             get {
@@ -151,7 +151,7 @@ namespace Cares.Web.Resources.Organization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OrganizationGroupName.
+        ///   Looks up a localized string similar to Organization Group Name.
         /// </summary>
         public static string OrganizationGroupName {
             get {

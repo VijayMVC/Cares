@@ -133,7 +133,7 @@ namespace Cares.Web.Resources.FleetPool {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to FleetPool.
+        ///   Looks up a localized string similar to Fleet Pool.
         /// </summary>
         public static string FleetPoolLabel {
             get {

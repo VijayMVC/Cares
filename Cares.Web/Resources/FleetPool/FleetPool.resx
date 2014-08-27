@@ -142,7 +142,7 @@
     <value>Fleet Pool Detail</value>
   </data>
   <data name="FleetPoolLabel" xml:space="preserve">
-    <value>FleetPool</value>
+    <value>Fleet Pool</value>
   </data>
   <data name="FleetPoolLoadFailError" xml:space="preserve">
     <value>Failed to load Fleet Pool !</value>

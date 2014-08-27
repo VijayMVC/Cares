@@ -14,17 +14,17 @@
             <form class="form-horizontal">
 
                 <div class="col-xs-2">
-                    <input type="text" class="form-control" placeholder='@Cares.Web.Resources.Organization.Company.CompanyCode' data-bind="value:companyCodeTextFilter" />
+                    <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Company.CompanyCode+">")" data-bind="value:companyCodeTextFilter" />
                 </div>
 
                 <div class="col-xs-2">
-                    <input type="text" class="form-control" placeholder='@Cares.Web.Resources.Organization.Company.CompanyName' data-bind="value:companyNameTextFilter" />
+                    <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Company.CompanyName+">")"T data-bind="value:companyNameTextFilter" />
                 </div>
                 <div class="col-xs-3">
-                    <select class="form-control" data-bind="options: $root.orgGroupList, optionsText: 'OrgGroupName', optionsValue: 'OrgGroupId', optionsCaption: '@Cares.Web.Resources.Organization.Company.OrganizationGroup', value: orgGroupFilter"></select>
+                    <select class="form-control" data-bind="options: $root.orgGroupList, optionsText: 'OrgGroupName', optionsValue: 'OrgGroupId', optionsCaption: '&lt;' + '@Cares.Web.Resources.Organization.Company.OrganizationGroup'+ '&gt;' , value: orgGroupFilter"></select>
                 </div>
                 <div class="col-xs-3">
-                    <select class="form-control" data-bind="options: $root.businessSegList, optionsText: 'BusinessSegmentCodeName', optionsValue: 'BusinessSegmentId', optionsCaption: '@Cares.Web.Resources.Organization.Company.BusinessSegment', value: busiNessSegmentFilter"></select>
+                    <select class="form-control" data-bind="options: $root.businessSegList, optionsText: 'BusinessSegmentCodeName', optionsValue: 'BusinessSegmentId', optionsCaption:'&lt;' +  '@Cares.Web.Resources.Organization.Company.BusinessSegment'+ '&gt;' , value: busiNessSegmentFilter"></select>
                 </div>
                 <button type="submit" class="btn btn-success" data-bind="click: onSearch">@Cares.Web.Resources.Shared.Common.Search</button>
                 <button type="submit" class="btn btn-default" data-bind="click: onReset">@Cares.Web.Resources.Shared.Common.Reset</button>
@@ -59,11 +59,11 @@
         </div>
     </div>
     <script id="deleteActionCompanyTemplate" type="text/html">
-        <a href="#" data-bind="click: $root.onDeleteCompany" title="Delete Fleet Pool"><span class="glyphicon glyphicon-remove"></span></a>
+        <a href="#" data-bind="click: $root.onDeleteCompany" title="@Cares.Web.Resources.Shared.Common.Delete"><span class="glyphicon glyphicon-remove"></span></a>
     </script>
 
     <script id="editActionCompanyTemplate" type="text/html">
-        <a href="#" data-bind="click: $root.onEditCompany" title="Edit in Form"><span class="glyphicon glyphicon-edit"></span></a>
+        <a href="#" data-bind="click: $root.onEditCompany" title="@Cares.Web.Resources.Shared.Common.Edit"><span class="glyphicon glyphicon-edit"></span></a>
     </script>
     <script id="companyFilterResultTemplate" type="text/html">
         <tr>
@@ -86,7 +86,7 @@
     @Html.Partial("_CompanyEditor")
 
 </div>
-<!-- ko stopBinding: true -->S
+<!-- ko stopBinding: true -->
 @Html.Partial("~/Areas/Common/Views/Shared/_ConfirmationDialog.cshtml")
 <!-- /ko -->
 @section inlinescripts

@@ -9,54 +9,54 @@
         <div class="form-group">
             <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Company.CompanyCode</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" placeholder="@Cares.Web.Resources.Organization.Company.CompanyCode" id="tariffTypeCode" data-bind="value: companyCode" />
+                <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Company.CompanyCode+">")" id="tariffTypeCode" data-bind="value: companyCode" />
             </div>
             <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Company.CompanyName</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" placeholder="@Cares.Web.Resources.Organization.Company.CompanyName" id="tariffTypeName" data-bind="value:companyName" />
+                <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Company.CompanyName+">")" id="tariffTypeName" data-bind="value:companyName" />
             </div>
             <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Company.Description</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" placeholder="@Cares.Web.Resources.Organization.Company.Description" id="tariffTypeDescription" data-bind="value:companyDescription" />
+                <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Company.Description+">")" id="tariffTypeDescription" data-bind="value:companyDescription" />
             </div>
         </div>
         <div class="form-group">
             <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Company.OrganizationGroup</label>
             <div class="col-md-2">
-                <select class="form-control" data-bind="options: $root.orgGroupList, optionsText: 'OrgGroupCode', optionsValue: 'OrgGroupId', optionsCaption: '@Cares.Web.Resources.Organization.Company.OrganizationGroup', value:orgGroupId "></select>
+                <select class="form-control" data-bind="options: $root.orgGroupList, optionsText: 'OrgGroupCode', optionsValue: 'OrgGroupId', optionsCaption: '&lt;' +'@Cares.Web.Resources.Organization.Company.OrganizationGroup'+'&gt;', value:orgGroupId "></select>
             </div>
             <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Company.BusinessSegment</label>
             <div class="col-md-2">
-                <select class="form-control" data-bind="options: $root.businessSegList, optionsText: 'BusinessSegmentCodeName', optionsValue: 'BusinessSegmentId', optionsCaption: '@Cares.Web.Resources.Organization.Company.BusinessSegment', value:businessSegmentId"></select>
+                <select class="form-control" data-bind="options: $root.businessSegList, optionsText: 'BusinessSegmentCodeName', optionsValue: 'BusinessSegmentId', optionsCaption: '&lt;' + '@Cares.Web.Resources.Organization.Company.BusinessSegment' + '&gt;', value:businessSegmentId"></select>
             </div>
             <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Company.ParentCompany</label>
             <div class="col-md-2">
-                <select class="form-control" data-bind="options: $root.filteredCompanyList, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '@Cares.Web.Resources.Organization.Company.ParentCompany' , value:parentCompanyId"></select>
+                <select class="form-control" data-bind="options: $root.filteredCompanyList, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '&lt;' + '@Cares.Web.Resources.Organization.Company.ParentCompany' + '&gt;' , value:parentCompanyId"></select>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Company.NTN</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" data-bind="value:ntn" placeholder="@Cares.Web.Resources.Organization.Company.NTN" />
+                <input type="text" class="form-control" data-bind="value:ntn" placeholder="@("<"+Cares.Web.Resources.Organization.Company.NTN +">")" />
             </div>
 
             <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Company.UAN</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" data-bind="value:uan" placeholder="@Cares.Web.Resources.Organization.Company.UAN" />
+                <input type="text" class="form-control" data-bind="value:uan" placeholder="@("<"+Cares.Web.Resources.Organization.Company.UAN +">")" />
             </div>
             <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Company.LegalName</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" data-bind="value:CompanyLegalName" placeholder="@Cares.Web.Resources.Organization.Company.LegalName" />
+                <input type="text" class="form-control" data-bind="value:CompanyLegalName" placeholder="@("<"+Cares.Web.Resources.Organization.Company.LegalName+">")" />
             </div>
         </div>
         <div class="form-group">
             <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Company.PaidUpCapital</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" data-bind="value:paidUpCapital" placeholder="@Cares.Web.Resources.Organization.Company.PaidUpCapital" />
+                <input type="text" class="form-control" data-bind="value:paidUpCapital" placeholder="@("<"+Cares.Web.Resources.Organization.Company.PaidUpCapital+">")" />
             </div>
             <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Company.CrNumber</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" data-bind="value:crNumber" placeholder="@Cares.Web.Resources.Organization.Company.CrNumber" />
+                <input type="text" class="form-control" data-bind="value:crNumber" placeholder="@("<"+Cares.Web.Resources.Organization.Company.CrNumber+">")" />
             </div>
        </div>
     </form>
