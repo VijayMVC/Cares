@@ -9,7 +9,7 @@
         <div class="form-group">
             <label for="tariffTypeCode" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.TariffType.TariffTypeCode *</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" placeholder='@("<" + Cares.Web.Resources.Tariff.TariffType.TariffTypeCode + ">")' id="tariffTypeCode" data-bind="value: tariffTypeCode, validationTooltip: tariffTypeCode" />
+                <input type="text" class="form-control" placeholder='@("<" + Cares.Web.Resources.Tariff.TariffType.TariffTypeCode + ">")' id="tariffTypeCode" data-bind="value: tariffTypeCode, validationTooltip: tariffTypeCode, disable :(tariffTypeId()!=undefined) " />
             </div>
             <label for="tariffTypeName" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.TariffType.TariffTypeName</label>
             <div class="col-md-2">

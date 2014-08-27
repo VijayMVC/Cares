@@ -188,7 +188,9 @@ define("tariffType/tariffType.viewModel",
                         if (doBeforeSave()) {
                             if (addTariffType().tariffTypeId() > 0) {
                                 var date = new Date();
+                                date.setHours(0, 0, 0, 0);
                                 if (addTariffType().effectiveDate() >= date) {
+                                    
                                     // Commits and Selects the Row
                                     saveTariffType(tariffType);
                                 } else {

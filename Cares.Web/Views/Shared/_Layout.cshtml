@@ -48,8 +48,20 @@
             <p>&copy; @DateTime.Now.Year - CaReS</p>
         </footer>
     </div>
-    
     @RenderSection("scripts", required: false)
 
 </body>
 </html>
+
+    <script type="text/javascript">
+        var ist = window.ist;
+        @{
+            <text>
+        ist.resourceText.defaultConfirmationText = '@Cares.Web.Resources.Shared.Common.DefaultConfirmationText';
+        ist.resourceText.defaultHeaderText = '@Cares.Web.Resources.Shared.Common.Confirmation';
+        ist.resourceText.showing = '@Cares.Web.Resources.Shared.Common.Showing';
+        ist.resourceText.of = '@Cares.Web.Resources.Shared.Common.Of';
+        </text>
+        }
+    </script>
+

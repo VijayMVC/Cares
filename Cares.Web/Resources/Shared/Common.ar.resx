@@ -129,6 +129,12 @@
   <data name="Cancel" xml:space="preserve">
     <value>إلغاء</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>قريبا</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>تأكيدا</value>
+  </data>
   <data name="Contact" xml:space="preserve">
     <value>اتصال</value>
   </data>
@@ -137,6 +143,9 @@
   </data>
   <data name="CreateNew" xml:space="preserve">
     <value>خلق جديد</value>
+  </data>
+  <data name="DefaultConfirmationText" xml:space="preserve">
+    <value>هل تريد المتابعة مع الطلب؟</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>حذف</value>
@@ -165,8 +174,11 @@
   <data name="Next" xml:space="preserve">
     <value>التالي</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>لا</value>
+  </data>
   <data name="Of" xml:space="preserve">
-    <value>من</value>
+    <value>من  </value>
   </data>
   <data name="Page" xml:space="preserve">
     <value>صفحة</value>
@@ -193,12 +205,15 @@
     <value>مشاهدة مرشحات</value>
   </data>
   <data name="Showing" xml:space="preserve">
-    <value>عرض</value>
+    <value>عرض </value>
   </data>
   <data name="TextDirection" xml:space="preserve">
     <value>rtl</value>
   </data>
   <data name="TotalRecords" xml:space="preserve">
     <value>إجمالي عدد السجلات:</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>نعم</value>
   </data>
 </root>
