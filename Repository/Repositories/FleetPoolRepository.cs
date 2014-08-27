@@ -26,7 +26,7 @@ namespace Cares.Repository.Repositories
                     {
                         { FleetPoolByColumn.FleetPoolCode, c => c.FleetPoolCode },
                         { FleetPoolByColumn.FleetPoolName, c => c.FleetPoolName },
-                      //  { FleetPoolByColumn.FleetPoolName, c => c.Region.CountryId},
+                        { FleetPoolByColumn.Country, c => c.Region.CountryId},
                         { FleetPoolByColumn.Operation, c=> c.OperationId},
                         { FleetPoolByColumn.Region, c=> c.RegionId}
                     };
@@ -89,6 +89,15 @@ namespace Cares.Repository.Repositories
         public bool IsFleetPoolCodeExists(FleetPool fleetPool)
         {
             Expression<Func<FleetPool, bool>> query = fleet => fleet.FleetPoolCode.ToLower()==fleetPool.FleetPoolCode.ToLower() && fleet.FleetPoolId !=fleetPool.FleetPoolId;
+            return DbSet.Count(query) > 0;
+        }
+
+        /// <summary>
+        /// To chechk does fleetPool contain any operation 
+        /// </summary>
+        public bool IsOperationAssocisiatedWithAnyFleetPool(Operation operation)
+        {
+            Expression<Func<FleetPool, bool>> query = fleetPool => fleetPool.OperationId == operation.OperationId;
             return DbSet.Count(query) > 0;
         }
         #endregion 

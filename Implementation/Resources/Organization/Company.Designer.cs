@@ -61,6 +61,15 @@ namespace Cares.Implementation.Resources.Organization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Company has company/department association with it !.
+        /// </summary>
+        public static string CompanyHasCompanyDepartmentAssociationError {
+            get {
+                return ResourceManager.GetString("CompanyHasCompanyDepartmentAssociationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Company with same code already exists!.
         /// </summary>
         public static string CompanyWithSameCodeAlreadyExistsError {

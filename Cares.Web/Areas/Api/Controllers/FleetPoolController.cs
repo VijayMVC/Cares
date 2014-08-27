@@ -31,13 +31,15 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Dalete Fleet Pool
         /// </summary>
-        public void Delete(FleetPool fleetPool)
+        [ApiException]
+        public bool Delete(FleetPool fleetPool)
         {
             if (!ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
             fleetPoolService.DeleteFleetPool(Convert.ToInt32(fleetPool.FleetPoolId));
+            return true;
         }
 
         /// <summary>

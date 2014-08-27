@@ -103,9 +103,25 @@ namespace Cares.Repository.Repositories
         {
             Expression<Func<Company, bool>> query = company => company.CompanyCode.ToLower()==cmpCompany.CompanyCode.ToLower() && company.CompanyId!= cmpCompany.CompanyId;
             return DbSet.Count(query) > 0;
-            
         }
 
+        /// <summary>
+        /// To identify if company is parent 
+        /// </summary>
+        public bool IsComapnyParent(Company company)
+        {
+            Expression<Func<Company, bool>> query = cmp => cmp.ParentCompanyId == company.CompanyId;
+            return DbSet.Count(query) > 0;
+        }
+
+        /// <summary>
+        /// To identify if OrgGroup contains any company
+        /// </summary>
+        public bool IsOrgGroupContainCompany(OrgGroup orgGroup)
+        {
+            Expression<Func<Company, bool>> query = cmp => cmp.OrgGroupId == orgGroup.OrgGroupId;
+            return DbSet.Count(query) > 0;
+        }
         #endregion
     }
 }

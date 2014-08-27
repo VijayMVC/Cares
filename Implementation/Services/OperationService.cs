@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq.Expressions;
 using Cares.ExceptionHandling;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
@@ -17,14 +19,16 @@ namespace Cares.Implementation.Services
         private readonly IOperationRepository operationRepository;
         private readonly IDepartmentRepository departmentRepository;
         private readonly ICompanyRepository companyRepository;
+        private readonly IFleetPoolRepository fleetPoolRepository;
 
         #endregion
         #region Constructor
-        public OperationService(IOperationRepository operationRepository, IDepartmentRepository departmentRepository, ICompanyRepository companyRepository)
+        public OperationService(IOperationRepository operationRepository, IDepartmentRepository departmentRepository, ICompanyRepository companyRepository, IFleetPoolRepository fleetPoolRepository)
         {
             this.operationRepository = operationRepository;
             this.departmentRepository = departmentRepository;
             this.companyRepository = companyRepository;
+            this.fleetPoolRepository = fleetPoolRepository;
         }
 
         #endregion
@@ -67,12 +71,18 @@ namespace Cares.Implementation.Services
         public void DeleteOperation(Operation operationobeDeleted)
         {
             Operation dbVersion = operationRepository.Find(operationobeDeleted.OperationId);
-            if (dbVersion != null) 
-            { 
+            if (!fleetPoolRepository.IsOperationAssocisiatedWithAnyFleetPool(dbVersion))
+            {
+                if (dbVersion != null)
+                {
 
-            operationRepository.Delete(dbVersion);
-            operationRepository.SaveChanges();
+                    operationRepository.Delete(dbVersion);
+                    operationRepository.SaveChanges();
+                }
             }
+            else
+                throw new CaresException(Resources.Organization.Operation.OperationIsAssociatedWithFleetPool);
+           
         }
 
         /// <summary>

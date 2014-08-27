@@ -102,8 +102,11 @@ define("Organization/organizationGroup.viewModel",
                                 organizationGroups.remove(orgGroup);
                                 toastr.success(ist.resourceText.OrganizationGroupDeleteSuccessMessage);
                             },
-                            error: function() {
-                                toastr.error(ist.resourceText.OrganizationGroupDeleteFailError);
+                            error: function (exceptionMessage, exceptionType) {
+                                if (exceptionType === ist.exceptionType.CaresGeneralException)
+                                    toastr.error(exceptionMessage);
+                                else
+                                    toastr.error(ist.resourceText.OrganizationGroupDeleteFailError);
                             }
                         });
                     },

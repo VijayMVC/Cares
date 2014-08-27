@@ -89,7 +89,6 @@ define("department/department.viewModel",
                     saveDepartment = function (department) {
                         dataservice.saveDepartment(department.convertToServerData(), {
                             success: function (uodateddepartment) {
-                                debugger;
                                 var newItem = model.DepartmentServertoClientMapper(uodateddepartment);
                                 if (selectedDepartment().id() != undefined) {
 
@@ -119,8 +118,11 @@ define("department/department.viewModel",
                                     departments.remove(department);
                                     toastr.success(ist.resourceText.DepartmentDeleteSuccessMessage);
                                 },
-                                error: function() {
-                                    toastr.error(ist.resourceText.DepartmentDeleteFailError);
+                                error: function (exceptionMessage, exceptionType) {
+                                    if (exceptionType === ist.exceptionType.CaresGeneralException)
+                                        toastr.error(exceptionMessage);
+                                    else
+                                        toastr.error(ist.resourceText.DepartmentDeleteFailError);
                                 }
                             });
                     },

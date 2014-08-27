@@ -123,8 +123,11 @@ define("operation/operation.viewModel",
                                     operations.remove(operation);
                                     toastr.success(ist.resourceText.OperationDeleteSuccessMessage);
                                 },
-                                error: function() {
-                                    toastr.error(ist.resourceText.OperationDeleteFailError);
+                                error: function (exceptionMessage, exceptionType) {
+                                    if (exceptionType === ist.exceptionType.CaresGeneralException)
+                                        toastr.error(exceptionMessage);
+                                    else
+                                        toastr.error(ist.resourceText.OperationDeleteFailError);
                                 }
                             });
                     },

@@ -61,6 +61,15 @@ namespace Cares.Implementation.Resources.Organization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Organization Group is associated with company!.
+        /// </summary>
+        public static string OrganizationGroupIsAssociatedWithCompanyError {
+            get {
+                return ResourceManager.GetString("OrganizationGroupIsAssociatedWithCompanyError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Organization Group with same code already exists.
         /// </summary>
         public static string OrganizationGroupWithSameCodeAlreadyExists {

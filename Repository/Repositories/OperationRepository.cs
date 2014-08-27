@@ -119,7 +119,15 @@ namespace Cares.Repository.Repositories
         {
             Expression<Func<Operation, bool>> query = opp => opp.OperationCode.ToLower()==operation.OperationCode.ToLower() && opp.OperationId != operation.OperationId;
             return DbSet.Count(query) > 0;
-            
+        }
+
+        /// <summary>
+        /// To check if department is associated with any operation
+        /// </summary>
+        public bool IsDepartmentAssociatedWithAnyOperation(Department department)
+        {
+            Expression<Func<Operation, bool>> query = opp => opp.DepartmentId == department.DepartmentId;
+            return DbSet.Count(query) > 0;
         }
 
         #endregion

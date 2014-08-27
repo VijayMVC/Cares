@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using Cares.ExceptionHandling;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
@@ -17,15 +18,18 @@ namespace Cares.Implementation.Services
         #region Private
         private readonly IDepartmentRepository departmentRepository;
         private readonly ICompanyRepository companyRepository;
+        private readonly IOperationRepository operationRepository;
+
         #endregion
         #region Constructor
         /// <summary>
         /// Department Constructor
         /// </summary>
-        public DepartmentService(IDepartmentRepository xRepository,ICompanyRepository crRepository)
+        public DepartmentService(IDepartmentRepository xRepository, ICompanyRepository crRepository, IOperationRepository operationRepository)
         {
             departmentRepository = xRepository;
             companyRepository = crRepository;
+            this.operationRepository = operationRepository;
         }
         #endregion
         #region Public
@@ -48,11 +52,18 @@ namespace Cares.Implementation.Services
         public void DeleteDepartment(Department department)
         {
             Department dbVersion = departmentRepository.Find(department.DepartmentId);
-            if (dbVersion != null)
+            if (!operationRepository.IsDepartmentAssociatedWithAnyOperation(department))
             {
-                departmentRepository.Delete(dbVersion);
-                departmentRepository.SaveChanges();
+                if (dbVersion != null)
+                {
+                    departmentRepository.Delete(dbVersion);
+                    departmentRepository.SaveChanges();
+                    return;
+                }
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
+                         "Department with Id {0} not found!", department.DepartmentId));
             }
+            throw new CaresException(Resources.Organization.Department.DepartmentIsAssociatedWithOperationError);
         }
 
         /// <summary>

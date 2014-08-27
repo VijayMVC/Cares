@@ -15,14 +15,17 @@ namespace Cares.Implementation.Services
    {
        #region Private       
         private readonly IOrganizationGroupRepository organizationGroupRepository;
+        private readonly ICompanyRepository companyRepository;
+
         #endregion
        #region Constructors
        /// <summary>
        /// constuctor
        /// </summary>
-        public OrganizationGroupService(IOrganizationGroupRepository organizationGroupRepository)
+        public OrganizationGroupService(IOrganizationGroupRepository organizationGroupRepository, ICompanyRepository companyRepository)
         {
             this.organizationGroupRepository = organizationGroupRepository;
+            this.companyRepository = companyRepository;
         }
 
         #endregion
@@ -46,11 +49,16 @@ namespace Cares.Implementation.Services
         public void DeleteOrgGroup(OrgGroup request)
         {
             OrgGroup dbVersion = organizationGroupRepository.Find(request.OrgGroupId);
-            if (dbVersion != null)
+            if (!companyRepository.IsOrgGroupContainCompany(request))
             {
-                organizationGroupRepository.Delete(dbVersion);
-                organizationGroupRepository.SaveChanges();
+                if (dbVersion != null)
+                {
+                    organizationGroupRepository.Delete(dbVersion);
+                    organizationGroupRepository.SaveChanges();
+                }
             }
+            else 
+                throw new CaresException(Resources.Organization.OrganizationGroup.OrganizationGroupIsAssociatedWithCompanyError);
         }
 
         /// <summary>

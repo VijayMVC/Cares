@@ -29,6 +29,9 @@ namespace Cares.Interfaces.Repository
         /// </summary>
         bool IsDepartmentCodeExists(Department department);
 
-
+        /// <summary>
+        /// To check either company have any department
+        /// </summary>
+        bool IsCompanyContainDepartment(Company company);
     }
 }

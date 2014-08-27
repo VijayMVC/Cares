@@ -24,5 +24,11 @@ namespace Cares.Interfaces.Repository
         /// Fleet Pool  Code Check
         /// </summary>
         bool IsFleetPoolCodeExists(FleetPool fleetPool);
+
+
+        /// <summary>
+        /// To chechk does operation contain any fleetpool
+        /// </summary>
+        bool IsOperationAssocisiatedWithAnyFleetPool(Operation operation);
     }
 }
