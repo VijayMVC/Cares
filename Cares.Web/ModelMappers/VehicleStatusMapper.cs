@@ -22,6 +22,17 @@ namespace Cares.Web.ModelMappers
             };
         }
 
+        /// <summary>
+        ///  Create web model from entity
+        /// </summary>
+        public static VehicleStatusDropDown CreateFromDropDown(this Cares.Models.DomainModels.VehicleStatus source)
+        {
+            return new VehicleStatusDropDown
+            {
+                VehicleStatusId = source.VehicleStatusId,
+                VehicleStatusCodeName = source.VehicleStatusCode+" - "+source.VehicleStatusName
+            };
+        }
         #endregion
     }
 }

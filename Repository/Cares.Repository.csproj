@@ -133,13 +133,17 @@
     <Compile Include="Repositories\BusinessPartnerCompanyRepository.cs" />
     <Compile Include="Repositories\AddressTypeRepository.cs" />
     <Compile Include="Repositories\AreaRepository.cs" />
+    <Compile Include="Repositories\FuelTypeRepository.cs" />
     <Compile Include="Repositories\InsuranceRtMainRepository.cs" />
     <Compile Include="Repositories\InsuranceRtRepository.cs" />
     <Compile Include="Repositories\InsuranceTypeRepository.cs" />
+    <Compile Include="Repositories\MaintenanceTypeRepository.cs" />
     <Compile Include="Repositories\ServiceRtRepository.cs" />
     <Compile Include="Repositories\ServiceRtMainRepository.cs" />
     <Compile Include="Repositories\ServiceItemRepository.cs" />
     <Compile Include="Repositories\ServiceTypeRepository.cs" />
+    <Compile Include="Repositories\TransmissionTypeRepository.cs" />
+    <Compile Include="Repositories\VehicleCheckListRepository.cs" />
     <Compile Include="Repositories\VehicleRepository.cs" />
     <Compile Include="Repositories\HireGroupUpGradeRepository.cs" />
     <Compile Include="Repositories\OperationsWorkPlaceRepository.cs" />
@@ -172,6 +176,7 @@
     <Compile Include="Repositories\VehicleCategoryRepository.cs" />
     <Compile Include="Repositories\VehicleMakeRepository.cs" />
     <Compile Include="Repositories\VehicleModelRepository.cs" />
+    <Compile Include="Repositories\VehicleStatusRepository.cs" />
     <Compile Include="TypeRegistrations.cs" />
   </ItemGroup>
   <ItemGroup>

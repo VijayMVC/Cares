@@ -23,6 +23,7 @@ namespace Cares.Repository.BaseRepository
         // ReSharper disable once NotAccessedField.Local
         private IUnityContainer container;
         #endregion
+        
         #region Protected
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -86,6 +87,7 @@ namespace Cares.Repository.BaseRepository
 
         }
         #endregion
+        
         #region Constructor
         public BaseDbContext()
         {
@@ -114,6 +116,7 @@ namespace Cares.Repository.BaseRepository
         }
 
         #endregion
+        
         #region Public
 
         public BaseDbContext(IUnityContainer container, string connectionString)
@@ -293,6 +296,7 @@ namespace Cares.Repository.BaseRepository
         /// Business Partner Marketing Channels Db Set
         /// </summary>
         public DbSet<BusinessPartnerMarketingChannel> BusinessPartnerMarketingChannels { get; set; }
+        
         /// <summary>
         /// Business Partner Relationship item list Db Set
         /// </summary>
@@ -335,7 +339,35 @@ namespace Cares.Repository.BaseRepository
         /// </summary>
         public DbSet<ServiceRt> ServiceRts { get; set; }
 
+        /// <summary>
+        /// Maintenance Type  Db Set 
+        /// </summary>
+        public DbSet<MaintenanceType> MaintenanceTypes { get; set; }
 
+        /// <summary>
+        /// Vehicle Check List  Db Set 
+        /// </summary>
+        public DbSet<VehicleCheckList> VehicleCheckLists { get; set; }
+
+        /// <summary>
+        /// Maintenance Type Group  Db Set 
+        /// </summary>
+        public DbSet<MaintenanceTypeGroup> MaintenanceTypeGroups { get; set; }
+
+        /// <summary>
+        /// Fuel Type  Db Set 
+        /// </summary>
+        public DbSet<FuelType> FuelTypes { get; set; }
+
+        /// <summary>
+        /// Vehicle Status  Db Set 
+        /// </summary>
+        public DbSet<VehicleStatus> VehicleStatuses { get; set; }
+
+        /// <summary>
+        /// Transmission Type  Db Set 
+        /// </summary>
+        public DbSet<TransmissionType> TransmissionTypes { get; set; }
         #endregion
     }
 }

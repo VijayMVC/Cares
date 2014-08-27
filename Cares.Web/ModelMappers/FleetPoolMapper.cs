@@ -30,7 +30,19 @@ namespace Cares.Web.ModelMappers
                        CountryId = source.Region.CountryId,
                        CountryName = source.Region.Country.CountryName,
                    };
-        } 
+        }
+
+        /// <summary>
+        /// Fleet Pool Drop Down
+        /// </summary>
+        public static ApiModel.FleetPoolDropDown CreateFromDropDown(this FleetPool source)
+        {
+            return new ApiModel.FleetPoolDropDown
+            {
+                FleetPoold = source.FleetPoolId,
+                FleetPoolCodeName = source.FleetPoolCode + " - " + source.FleetPoolName
+            };
+        }
         #endregion
         #region FleetPoolBase
         /// <summary>
@@ -42,7 +54,7 @@ namespace Cares.Web.ModelMappers
              {
                  Operations = source.Operations.Select(operation => operation.CreateFrom()),
                  Regions = source.Regions.Select(region => region.CreateFrom()),
-                 Countries = source.Countries.Select(country=>country.CreateFrom())
+                 Countries = source.Countries.Select(country => country.CreateFrom())
              };
         }
         #endregion
@@ -70,11 +82,13 @@ namespace Cares.Web.ModelMappers
                 FleetPoolCode = source.FleetPoolCode,
                 FleetPoolName = source.FleetPoolName,
                 FleetPoolDescription = source.Description,
-                ApproximateVehiclesAsgnd= source.ApproximateVehiclesAsgnd,
+                ApproximateVehiclesAsgnd = source.ApproximateVehiclesAsgnd,
                 OperationId = source.OperationId,
                 RegionId = source.RegionId
             };
         }
         #endregion
+
+
     }
 }

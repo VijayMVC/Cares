@@ -129,10 +129,13 @@
     <Compile Include="DomainModels\InsuranceRt.cs" />
     <Compile Include="DomainModels\InsuranceRtMain.cs" />
     <Compile Include="DomainModels\InsuranceType.cs" />
+    <Compile Include="DomainModels\MaintenanceType.cs" />
+    <Compile Include="DomainModels\MaintenanceTypeGroup.cs" />
     <Compile Include="DomainModels\ServiceItem.cs" />
     <Compile Include="DomainModels\ServiceRt.cs" />
     <Compile Include="DomainModels\ServiceRtMain.cs" />
     <Compile Include="DomainModels\ServiceType.cs" />
+    <Compile Include="DomainModels\VehicleCheckList.cs" />
     <Compile Include="DomainModels\VehicleImageHireGroupDetail.cs" />
     <Compile Include="DomainModels\MarketingChannel.cs" />
     <Compile Include="DomainModels\TransmissionType.cs" />
@@ -240,6 +243,7 @@
     <Compile Include="ResponseModels\RentalAgreementBaseDataResponse.cs" />
     <Compile Include="ResponseModels\TariffTypeBaseResponse.cs" />
     <Compile Include="ResponseModels\TariffTypeResponse.cs" />
+    <Compile Include="ResponseModels\VehicleBaseDataResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

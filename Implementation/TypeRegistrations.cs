@@ -48,6 +48,7 @@ namespace Cares.Implementation
             unityContainer.RegisterType<IVehicleService, VehicleService>();
             unityContainer.RegisterType<IInsuranceRateService, InsuranceRateService>();
             unityContainer.RegisterType<IServiceRtService, ServiceRtService>();
+            unityContainer.RegisterType<IVehicleService, VehicleService>();
 
         }
     }
