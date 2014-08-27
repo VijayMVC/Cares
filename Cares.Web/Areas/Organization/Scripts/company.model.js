@@ -9,7 +9,7 @@
                code = ko.observable(specifiedCode),
                name = ko.observable(specifiedName),
                description = ko.observable(specifiedDescription),
-                errors = ko.validation.group({
+               errors = ko.validation.group({
                    
                 }),
                 // Is Valid
@@ -55,21 +55,24 @@
               id = ko.observable(specifiedId),
               parentCompanyName = ko.observable(specifiedparentCompanyName),
               parentCompanyId = ko.observable(specifiedparentCompanyId),
-              orgGroupId = ko.observable(specifiedorgGroupId),
+              orgGroupId = ko.observable(specifiedorgGroupId).extend({ required: true }),
               orgGroupName = ko.observable(specifiedorgGroup),
               legalName = ko.observable(specifiedlegalName),
               crNumber = ko.observable(specifiedcrNumber),
               uan = ko.observable(specifieduan),
               ntn = ko.observable(specifiedntn),
               paidUpCapital = ko.observable(specifiedpaidUpCapital).extend({ required: true }),
-              code = ko.observable(specifiedCode),
-              name = ko.observable(specifiedName),
+              code = ko.observable(specifiedCode).extend({ required: true }),
+              name = ko.observable(specifiedName).extend({ required: true }),
               description = ko.observable(specifiedDescription),
               businessSegmentId = ko.observable(specifiedbusinessSegmentId).extend({ required: true }),
-              businessSegmentName = ko.observable(specifiedbusinessSegmentName).extend({ required: true }),
+              businessSegmentName = ko.observable(specifiedbusinessSegmentName),
               errors = ko.validation.group({
-                 paidUpCapital: paidUpCapital,
-                 businessSegmentId: businessSegmentId,
+                name:name,
+                code:code,
+                orgGroupId:orgGroupId,
+                businessSegmentId:businessSegmentId,
+                paidUpCapital: paidUpCapital
              }),
             // Is Valid
             isValid = ko.computed(function() {
@@ -77,10 +80,12 @@
             }),
             // True if the booking has been changed        
             dirtyFlag = new ko.dirtyFlag({
-               
-                paidUpCapital: paidUpCapital,
+                name: name,
+                code: code,
+                orgGroupId: orgGroupId,
                 businessSegmentId: businessSegmentId,
-                businessSegmentName: businessSegmentName
+                paidUpCapital: paidUpCapital
+               
             }),
             // Has Changes
             hasChanges = ko.computed(function() {

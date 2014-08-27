@@ -14,17 +14,17 @@
         <div class=" well">
             <form class="form-horizontal">
                 <div class="col-xs-2">
-                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.Organization.Department.DepartmentCode" data-bind="value:departmentCodeTextFilter" />
+                    <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Department.DepartmentCode +">")" data-bind="value:departmentCodeTextFilter "/>
                 </div>
                 <div class="col-xs-2">
-                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.Organization.Department.DepartmentName" data-bind="value:departmentNameTextFilter" />
+                    <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Department.DepartmentName+ ">")" data-bind="value:departmentNameTextFilter" />
                 </div>
 
                 <div class="col-xs-2">
-                    <select class="form-control" data-bind="options: $root.baseCompniesList, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '@Cares.Web.Resources.Organization.Department.Comapny' , value:companyFilter"></select>
+                    <select class="form-control" data-bind="options: $root.baseCompniesList, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '&lt;' + '@Cares.Web.Resources.Organization.Department.Comapny'+ '&gt;' , value:companyFilter"></select>
                 </div>
                 <div class="col-xs-2">
-                    <select class="form-control" data-bind="options: $root.baseDepartmentTypesList, optionsCaption: '@Cares.Web.Resources.Organization.Department.DepartmentType', value:departmentTypeFilter "></select>
+                    <select class="form-control" data-bind="options: $root.baseDepartmentTypesList, optionsCaption: '&lt;' + '@Cares.Web.Resources.Organization.Department.DepartmentType'+ '&gt;', value:departmentTypeFilter "></select>
                 </div>
 
                 <button type="submit" class="btn btn-success" data-bind="click: onSearch">@Cares.Web.Resources.Shared.Common.Search</button>
@@ -59,11 +59,11 @@
         </div>
     </div>
     <script id="deleteActionOperationTemplate" type="text/html">
-        <a href="#" data-bind="click: $root.onDeleteDepartment" title="Delete Fleet Pool"><span class="glyphicon glyphicon-remove"></span></a>
+        <a href="#" data-bind="click: $root.onDeleteDepartment" title="@Cares.Web.Resources.Shared.Common.Delete"><span class="glyphicon glyphicon-remove"></span></a>
     </script>
 
     <script id="editActionOperationTemplate" type="text/html">
-        <a href="#" data-bind="click: $root.onEditDepartment" title="Edit in Form"><span class="glyphicon glyphicon-edit"></span></a>
+        <a href="#" data-bind="click: $root.onEditDepartment" title="@Cares.Web.Resources.Shared.Common.Edit"><span class="glyphicon glyphicon-edit"></span></a>
     </script>
     <script id="OperationsFilterResultTemplate" type="text/html">
         <tr>

@@ -142,7 +142,7 @@ namespace Cares.Web.Resources.Organization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DepartmentName.
+        ///   Looks up a localized string similar to Department Name.
         /// </summary>
         public static string DepartmentName {
             get {

@@ -55,7 +55,7 @@ namespace Cares.Web.ModelMappers
                 CompanyName = source.CompanyName,
                 CompanyLegalName = source.CompanyLegalName,
                 ParentCompanyId = source.ParentCompanyId,
-                ParentCompanyName = source.ParentCompanyId != null ? source.ParentCompany.CompanyName : "[No Name]",
+                ParentCompanyName = source.ParentCompanyId != null ? source.ParentCompany.CompanyName : "",
                 CompanyDescription = source.CompanyDescription,
                 CrNumber = source.CrNumber,
                 PaidUpCapital = source.PaidUpCapital,
