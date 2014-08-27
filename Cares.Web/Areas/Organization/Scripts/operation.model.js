@@ -1,5 +1,4 @@
 ﻿define(["ko", "underscore", "underscore-ko"], function(ko) {
-
     var
         // Operation entity
         // ReSharper disable InconsistentNaming
@@ -37,7 +36,7 @@
                 reset = function() {
                     dirtyFlag.reset();
                 },
-                // Convert to server
+                // Convert to server data
                 convertToServerData = function() {
                     return {
                         OperationId: id(),
@@ -63,10 +62,12 @@
                 errors: errors
             };
         };
+    //server to client mapper
     var OperationServertoClientMapper = function (itemFromServer) {
         return new operation(itemFromServer.OperationId, itemFromServer.OperationCode, itemFromServer.OperationName,
             itemFromServer.OperationDescription, itemFromServer.CompanyName, itemFromServer.DepartmentName, itemFromServer.DepartmentType, itemFromServer.DepartmentId);
     };
+    //function to attain cancel button functionality 
     operation.CreateFromClientModel = function (itemFromServer) {
         return new operation(itemFromServer.DepartmentId, itemFromServer.code, itemFromServer.name,
             itemFromServer.description, itemFromServer.companyName, itemFromServer.departmentName, itemFromServer.departmentType, itemFromServer.DepartmentId);

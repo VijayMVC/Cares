@@ -9,18 +9,20 @@ define("operation/operation.viewModel",
         ist.Operation = {
             viewModel: (function() { 
                 var view,
+                    //operations list
                     operations = ko.observableArray([]),
-
+                    //departments list for base data
                     baseDepartmentsList = ko.observableArray([]),
+                    //Compnies list for base data
                     baseCompniesList = ko.observableArray([]),
+                    //Department list for base data
                     baseDepartmentTypesList = ko.observableArray([]),
-
+                    //filters
                     opperationCodeTextFilter = ko.observable(),
                     opperationNameTextFilter = ko.observable(),
                     companyFilter = ko.observable(),
                     departmentFilter = ko.observable(),
                     departmentTypeFilter = ko.observable(),
-
                     //pager
                     pager = ko.observable(),
                     //sorting
@@ -31,8 +33,6 @@ define("operation/operation.viewModel",
                     isOperationEditorVisible = ko.observable(false),
                     //to control the visibility of filter ec
                     filterSectionVisilble = ko.observable(false),
-
-
                      // Editor View Model
                     editorViewModel = new ist.ViewModel(model.operation),
                   
@@ -90,6 +90,7 @@ define("operation/operation.viewModel",
                         }
                         return true;
                     },
+                    //save operation
                     saveOperation = function (operation) {
                         dataservice.saveOperation(operation.convertToServerData(), {
                             success: function (uodatedOperation) {
@@ -105,25 +106,25 @@ define("operation/operation.viewModel",
                                 else
                                     operations.push(newItem);
                                 isOperationEditorVisible(false);
-                                toastr.success("Operation saved successfully");
+                                toastr.success(ist.resourceText.OperationSaveSuccessMessage);
                             },
                             error: function (exceptionMessage, exceptionType) {
                                 if (exceptionType === ist.exceptionType.CaresGeneralException)
                                     toastr.error(exceptionMessage);
                                 else
-                                    toastr.error("Failed to save Operation!");
+                                    toastr.error(ist.resourceText.OperationSaveFailError);
                             }
                         });
                     },
-                    //delete org group
+                    //delete operation
                     deleteOperation = function (operation) {
                         dataservice.deleteOperation(operation.convertToServerData(), {
                                 success: function() {
                                     operations.remove(operation);
-                                    toastr.success("Operation removed successfully");
+                                    toastr.success(ist.resourceText.OperationDeleteSuccessMessage);
                                 },
                                 error: function() {
-                                    toastr.error("Failed to remove operation!");
+                                    toastr.error(ist.resourceText.OperationDeleteFailError);
                                 }
                             });
                     },
@@ -139,7 +140,7 @@ define("operation/operation.viewModel",
                     showFilterSection = function() {
                         filterSectionVisilble(true);
                     },
-                    //get org group list from Dataservice
+                    //get operations
                     getOperations = function() {
                         dataservice.getOperations(
                         {
@@ -163,10 +164,11 @@ define("operation/operation.viewModel",
                             },
                             error: function() {
                                 isLoadingFleetPools(false);
-                                toastr.error("Failed to load fleetPools!");
+                                toastr.error(ist.resourceText.OperationLoadFailError);
                             }
                         });
                     },
+                    //get operation base data
                     getOperationBaseData = function () {
                         dataservice.getOperationBaseData(null, {
                             success: function (baseDataFromServer) {
@@ -184,7 +186,7 @@ define("operation/operation.viewModel",
                                 if (exceptionType === ist.exceptionType.CaresGeneralException) {
                                     toastr.error(exceptionMessage);
                                 } else {
-                                    toastr.error("Failed to load base data.");
+                                    toastr.error(ist.resourceText.OperationBaseLoadFailError);
                                 }
                             }
                         });
@@ -204,7 +206,6 @@ define("operation/operation.viewModel",
                     departmentFilter: departmentFilter,
                     departmentTypeFilter:departmentTypeFilter,
                     companyFilter: companyFilter,
-
                     baseDepartmentTypesList:baseDepartmentTypesList,
                     baseCompniesList:baseCompniesList,
                     baseDepartmentsList:baseDepartmentsList,
@@ -226,7 +227,6 @@ define("operation/operation.viewModel",
                     onSearch: onSearch,
                     operations:operations,
                     onCancelSaveOperation: onCancelSaveOperation
-
                 };
             })()
         };

@@ -94,5 +94,16 @@
 {
     <script type="text/javascript">
         require(["operation/operation.view", "common/confirmation.view"]);
+        var ist = window.ist;
+    @{
+        <text>
+        ist.resourceText.OperationSaveSuccessMessage = '@Cares.Web.Resources.Organization.Operation.OperationSaveSuccessMessage'
+        ist.resourceText.OperationSaveFailError = '@Cares.Web.Resources.Organization.Operation.OperationSaveFailError';
+        ist.resourceText.OperationLoadFailError = '@Cares.Web.Resources.Organization.Operation.OperationLoadFailError';
+        ist.resourceText.OperationBaseLoadFailError = '@Cares.Web.Resources.Organization.Operation.OperationBaseLoadFailError';
+        ist.resourceText.OperationDeleteSuccessMessage = '@Cares.Web.Resources.Organization.Operation.OperationDeleteSuccessMessage';
+        ist.resourceText.OperationDeleteFailError = '@Cares.Web.Resources.Organization.Operation.OperationDeleteFailError'; 
+        </text>
+        }
     </script>
 }

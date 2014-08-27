@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -19,6 +18,21 @@ namespace Cares.Repository.Repositories
     /// </summary>
     public sealed class OperationRepository : BaseRepository<Operation>, IOperationRepository
     {
+        #region privte
+        /// <summary>
+        /// Company Orderby clause
+        /// </summary>
+        private readonly Dictionary<OperationByColumn, Func<Operation, object>> operationOrderByClause = new Dictionary<OperationByColumn, Func<Operation, object>>
+                    {
+
+                        {OperationByColumn.OperationCode, c => c.OperationName},
+                        {OperationByColumn.OperationName, n => n.OperationName},
+                        {OperationByColumn.Description, d=> d.OperationDescription},
+                        {OperationByColumn.Department,d=> d.Department.DepartmentName},
+                        {OperationByColumn.Company, c => c.Department.Company.CompanyName},
+                        {OperationByColumn.DepartmentType, c => c.Department.DepartmentType},
+                    };
+        #endregion
         #region Constructor
         /// <summary>
         /// Constructor
@@ -40,25 +54,10 @@ namespace Cares.Repository.Repositories
         }
 
         #endregion
-        #region privte
-        /// <summary>
-        /// Company Orderby clause
-        /// </summary>
-        private readonly Dictionary<OperationByColumn, Func<Operation, object>> operationOrderByClause = new Dictionary<OperationByColumn, Func<Operation, object>>
-                    {
-
-                        {OperationByColumn.OperationCode, c => c.OperationName},
-                        {OperationByColumn.OperationName, n => n.OperationName},
-                        {OperationByColumn.Description, d=> d.OperationDescription},
-                        {OperationByColumn.Department,d=> d.Department.DepartmentName},
-                        {OperationByColumn.Company, c => c.Department.Company.CompanyName},
-                        {OperationByColumn.DepartmentType, c => c.Department.DepartmentType},
-                    };
-        #endregion
         #region Public
 
         /// <summary>
-        /// get all Operations
+        /// Get all Operations
         /// </summary>
         public override IEnumerable<Operation> GetAll()
         {
@@ -66,7 +65,7 @@ namespace Cares.Repository.Repositories
         }
 
         /// <summary>
-        /// GetSalesOperation
+        /// Get All SalesOperation
         /// </summary>
         public ICollection<Operation> GetSalesOperation()
         {
@@ -74,7 +73,7 @@ namespace Cares.Repository.Repositories
         }
 
         /// <summary>
-        /// SearchOperation
+        /// SearchO peration
         /// </summary>
         public IEnumerable<Operation> SearchOperation(OperationSearchRequest request, out int rowCount)
         {
@@ -90,10 +89,7 @@ namespace Cares.Repository.Repositories
                      (operation.Department.DepartmentType.Contains(request.DepartmentTypeText))) &&
                     (!request.DepartmentId.HasValue || request.DepartmentId == operation.DepartmentId) &&
                     (!request.CompanyId.HasValue || request.CompanyId == operation.Department.CompanyId);
-
-
             rowCount = DbSet.Count(query);
-
             return request.IsAsc
                 ? DbSet.Where(query)
                     .OrderBy(operationOrderByClause[request.OperationOrderBy])
@@ -106,20 +102,22 @@ namespace Cares.Repository.Repositories
                     .Take(toRow)
                     .ToList();
         }
+
         /// <summary>
-        /// Get Company With Details
+        /// Get Operation With Details
         /// </summary>
-        public Operation GetCompanyWithDetails(long id)
+        public Operation GetOperationWithDetails(long id)
         {
             return DbSet.Include(opp => opp.Department)
                 .FirstOrDefault(opp => opp.OperationId == id);
         }
+
         /// <summary>
         /// Operation Code validation
         /// </summary>
         public bool IsOperationCodeExists(Operation operation)
         {
-            Expression<Func<Operation, bool>> query = opp => opp.OperationCode.Contains(operation.OperationCode) && opp.OperationId != operation.OperationId;
+            Expression<Func<Operation, bool>> query = opp => opp.OperationCode.ToLower()==operation.OperationCode.ToLower() && opp.OperationId != operation.OperationId;
             return DbSet.Count(query) > 0;
             
         }

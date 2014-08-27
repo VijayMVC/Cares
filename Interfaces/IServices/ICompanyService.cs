@@ -13,18 +13,22 @@ namespace Cares.Interfaces.IServices
         /// Load all companies
         /// </summary>
         IEnumerable<Company> LoadAll();
+
         /// <summary>
         /// Delete Compny
         /// </summary>
         void DeleteCompany(Company company);
+
         /// <summary>
         /// Load Base data of compnies
         /// </summary>
         CompanyBaseDataResponse LoadCompanyBaseData();
+
         /// <summary>
         /// Search Compny
         /// </summary>
         CompanySearchRequestResponse SearchCompany(CompanySearchRequest request);
+
         /// <summary>
         /// Add / Update Company
         /// </summary>

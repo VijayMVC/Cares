@@ -12,7 +12,6 @@ namespace Cares.Web.ModelMappers
     public static class OperationMapper
     {
         #region Public
-        #region Entity To Model
         /// <summary>
         ///  Create web model from entity
         /// </summary>
@@ -25,7 +24,10 @@ namespace Cares.Web.ModelMappers
                 DepartmentId = source.Department != null ? source.Department.DepartmentId : 0
             };
         }
-        public static Operation CreateFrom(this ApiModel.Operation operation)  // web to server
+        /// <summary>
+        /// Create From web model
+        /// </summary>
+        public static Operation CreateFrom(this ApiModel.Operation operation)  
         {
             return new Operation
             {
@@ -36,8 +38,10 @@ namespace Cares.Web.ModelMappers
                 DepartmentId = operation.DepartmentId
             };
         }
-
-        public static ApiModel.OperationBaseDataResponse CreateFrom(this Cares.Models.ResponseModels.OperationBaseDataResponse source)
+        /// <summary>
+        /// Create From Response Model to web base data
+        /// </summary>
+        public static ApiModel.OperationBaseDataResponse CreateFrom(this OperationBaseDataResponse source)
         {
             return new ApiModel.OperationBaseDataResponse
             {
@@ -47,6 +51,9 @@ namespace Cares.Web.ModelMappers
             };
         }
 
+        /// <summary>
+        /// Create From Response model to web search response
+        /// </summary>
         public static ApiModel.OperationSearchResponse CreateFrom(this OperationSearchResponse source)
         {
             return new ApiModel.OperationSearchResponse
@@ -56,6 +63,9 @@ namespace Cares.Web.ModelMappers
             };
         }
 
+        /// <summary>
+        /// Create From Domain model
+        /// </summary>
         public static ApiModel.Operation CreateFromm(this Operation source)
         {
             return new ApiModel.Operation
@@ -70,7 +80,6 @@ namespace Cares.Web.ModelMappers
                 CompanyName = source.Department.Company.CompanyCode + " - " + source.Department.Company.CompanyName
             };
         } 
-        #endregion
         #endregion
     }
 }

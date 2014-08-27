@@ -11,21 +11,21 @@ define("Organization/organizationGroup.dataservice", function () {
             // Initialize
             initialize = function() {
                 if (!isInitialized) {
-                    // Define request to get FleetPool Base data
+                    // Define request to get OrganizationGroup Base data
                     amplify.request.define('getOrganizationGroups', 'ajax', {
                         url: '/Api/OrganizationGroup',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
-                    //delete org group
-                    // Define request to get FleetPool Base data
+                    // Define request to delete OrganizationGroup
                     amplify.request.define('deleteOrganizationGroup', 'ajax', {
                         url: '/Api/OrganizationGroup',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
+                    // Define request to add/update OrganizationGroup
                     amplify.request.define('addOrganizationGroup', 'ajax', {
                         url: '/Api/OrganizationGroup',
                         dataType: 'json',
@@ -35,8 +35,8 @@ define("Organization/organizationGroup.dataservice", function () {
                     isInitialized = true;
                 }
             },
-            // Get Fleet Pool Base Data
-            getOrganizationGroups = function (params, callbacks) {
+            // Get Fleet Pools 
+            getOrganizationGroups = function(params, callbacks) {
                 initialize();
                 return amplify.request({
                     resourceId: 'getOrganizationGroups',
@@ -45,23 +45,24 @@ define("Organization/organizationGroup.dataservice", function () {
                     data: params
                 });
             },
-            addOrganizationGroup = function (params, callbacks) {
-                  return amplify.request({
-                      resourceId: 'addOrganizationGroup',
-                      success: callbacks.success,
-                      error: callbacks.error,
-                      data: params
-                  });
-              },
-        deleteOrganizationGroup=function (params, callbacks) {
-            return amplify.request({
-                resourceId: 'deleteOrganizationGroup',
-                success: callbacks.success,
-                error: callbacks.error,
-                data: params
-            });
-        };
-    
+            //add-update OrganizationGroup
+            addOrganizationGroup = function(params, callbacks) {
+                return amplify.request({
+                    resourceId: 'addOrganizationGroup',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: params
+                });
+            },
+              //delete OrganizationGroup
+            deleteOrganizationGroup = function(params, callbacks) {
+                return amplify.request({
+                    resourceId: 'deleteOrganizationGroup',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: params
+                });
+            };
         return {
             addOrganizationGroup:addOrganizationGroup,
             getOrganizationGroups: getOrganizationGroups,

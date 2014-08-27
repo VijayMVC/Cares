@@ -10,10 +10,11 @@ using Cares.Models.RequestModels;
 using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
 
-
 namespace Cares.Repository.Repositories
 {
-   
+   /// <summary>
+    /// Organization Group Repository
+   /// </summary>
     public sealed class OrgGroupRepository : BaseRepository<OrgGroup>, IOrganizationGroupRepository
     {
         #region privte
@@ -26,42 +27,6 @@ namespace Cares.Repository.Repositories
                         {OrgGroupByColumn.OrgGroupName, d => d.OrgGroupName},
                         {OrgGroupByColumn.OrgGroupDescription, d => d.OrgGroupDescription}
                     };
-        #endregion
-        #region public
-        /// <summary>
-        /// //Search org group
-        /// </summary>
-        public IEnumerable<OrgGroup> SearchOrgGroup(OrgGroupSearchRequest request, out int rowCount)
-        {
-            int fromRow = (request.PageNo - 1) * request.PageSize;
-            int toRow = request.PageSize;
-            Expression<Func<OrgGroup, bool>> query =
-              orgGroup =>
-                      (string.IsNullOrEmpty(request.OrgGroupCode) || (orgGroup.OrgGroupCode.Contains(request.OrgGroupCode ) ))&& (
-                      (string.IsNullOrEmpty(request.OrgGroupName) || ( orgGroup.OrgGroupName.Contains(request.OrgGroupName) ))    );
-            rowCount = DbSet.Count(query);
-           return request.IsAsc ?
-               DbSet.Where(query)
-                   .OrderBy(orgGroupOrderByClause[request.OrgGroupOrderBy])
-                   .Skip(fromRow)
-                   .Take(toRow)
-                   .ToList() :
-                DbSet.Where(query)
-                   .OrderByDescending(orgGroupOrderByClause[request.OrgGroupOrderBy])
-                   .Skip(fromRow)
-                   .Take(toRow)
-                   .ToList();
-        }
-        public override IEnumerable<OrgGroup> GetAll()
-        {
-            return DbSet.Where(orgGroup => orgGroup.UserDomainKey == UserDomainKey).ToList();
-        }
-
-        public bool IsOrgGroupCodeExists(OrgGroup orgGroup)
-        {
-            Expression<Func<OrgGroup, bool>> query = orgG => orgG.OrgGroupCode == orgGroup.OrgGroupCode && orgGroup.OrgGroupId != orgG.OrgGroupId;
-            return DbSet.Count(query) > 0;
-        }
         #endregion
         #region Constructor
         /// <summary>
@@ -84,7 +49,48 @@ namespace Cares.Repository.Repositories
         }
 
         #endregion
-      
-        
+        #region public
+        /// <summary>
+        /// Search Organization Group
+        /// </summary>
+        public IEnumerable<OrgGroup> SearchOrgGroup(OrgGroupSearchRequest request, out int rowCount)
+        {
+            int fromRow = (request.PageNo - 1) * request.PageSize;
+            int toRow = request.PageSize;
+            Expression<Func<OrgGroup, bool>> query =
+              orgGroup =>
+                      (string.IsNullOrEmpty(request.OrgGroupCode) || (orgGroup.OrgGroupCode.Contains(request.OrgGroupCode ) ))&& (
+                      (string.IsNullOrEmpty(request.OrgGroupName) || ( orgGroup.OrgGroupName.Contains(request.OrgGroupName) ))    );
+            rowCount = DbSet.Count(query);
+           return request.IsAsc ?
+               DbSet.Where(query)
+                   .OrderBy(orgGroupOrderByClause[request.OrgGroupOrderBy])
+                   .Skip(fromRow)
+                   .Take(toRow)
+                   .ToList() :
+                DbSet.Where(query)
+                   .OrderByDescending(orgGroupOrderByClause[request.OrgGroupOrderBy])
+                   .Skip(fromRow)
+                   .Take(toRow)
+                   .ToList();
+        }
+
+        /// <summary>
+        /// Gat ALL  Organization Group
+        /// </summary>
+        public override IEnumerable<OrgGroup> GetAll()
+        {
+            return DbSet.Where(orgGroup => orgGroup.UserDomainKey == UserDomainKey).ToList();
+        }
+
+        /// <summary>
+        ///  Organization Group Code check
+        /// </summary>
+        public bool IsOrgGroupCodeExists(OrgGroup orgGroup)
+        {
+            Expression<Func<OrgGroup, bool>> query = orgG => orgG.OrgGroupCode == orgGroup.OrgGroupCode && orgGroup.OrgGroupId != orgG.OrgGroupId;
+            return DbSet.Count(query) > 0;
+        }
+        #endregion
     }
 }

@@ -1,13 +1,13 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = @Cares.Web.Resources.FleetPool.FleetPool.FleetPoolLabel;
 }
 
 <div class="row" id="fleetRootBinding">
     <div class="row " data-bind="visible: !isFleetPoolEditorVisible()" >
-        <h3 class="page-header float-left pageHeaderSection">Fleet Pool</h3>
+        <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.FleetPool.FleetPool.FleetPoolLabel</h3>
         <div class="header-toolsSection">
-            <a href="#" class="label label-default create-new-icon" data-bind="click: createFleetForm" title="Create New Tariff">NEW</a>
-            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title="Show Filters" style="display: none"></a>
+            <a href="#" class="label label-default create-new-icon" data-bind="click: createFleetForm" title="@Cares.Web.Resources.Shared.Common.CreateNew">@Cares.Web.Resources.Shared.Common.New</a>
+            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title="@Cares.Web.Resources.Shared.Common.ShowFilter" style="display: none"></a>
         </div>
     </div>
     <div class="row searchFilterSection" data-bind="visible: !isFleetPoolEditorVisible() && filterSectionVisilble()" style="display: none">
@@ -15,17 +15,17 @@
             <form class="form-horizontal" data-bind="submit: search">
 
                 <div class="col-xs-3">
-                    <input type="text" class="form-control" placeholder="<Fleet Pool>" data-bind="value: fleetPoolSeachFilter" />
+                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.FleetPool.FleetPool.FleetPoolLabel" data-bind="value: fleetPoolSeachFilter" />
                 </div>
                 <div class="col-xs-3">
-                    <select class="form-control" data-bind="options: $root.regionsList, optionsText: 'RegionCodeName', optionsValue: 'RegionId', optionsCaption: '<Region>', value: fleetPoolRegionFilter"></select>
+                    <select class="form-control" data-bind="options: $root.regionsList, optionsText: 'RegionCodeName', optionsValue: 'RegionId', optionsCaption: '@Cares.Web.Resources.FleetPool.FleetPool.Region', value: fleetPoolRegionFilter"></select>
                 </div>
                 <div class="col-xs-3">
-                    <select class="form-control" data-bind="options: $root.operationsList, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '<Operation>', value: fleetPoolOperationFilter"></select>
+                    <select class="form-control" data-bind="options: $root.operationsList, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '@Cares.Web.Resources.FleetPool.FleetPool.Operation', value: fleetPoolOperationFilter"></select>
                 </div>
-                <button type="submit" class="btn btn-success" data-bind="click: search">Search</button>
-                <button type="submit" class="btn btn-default" data-bind="click: reset">Reset</button>
-                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection" title="Hide Section"></a>
+                <button type="submit" class="btn btn-success" data-bind="click: search">@Cares.Web.Resources.Shared.Common.Search</button>
+                <button type="submit" class="btn btn-default" data-bind="click: reset">@Cares.Web.Resources.Shared.Common.Reset</button>
+                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection" title="@Cares.Web.Resources.Shared.Common.HideSection"></a>
             </form>
         </div>
     </div>
@@ -35,11 +35,11 @@
             <table id="fleetPoolTable" class="table table-condensed">
                 <thead>
                     <tr>
-                        <th > <span id="1">Code<span class="icon-up"></span></span></th>
-                        <th > <span id="2">Name<span></span></span></th>
-                        <th > <span id="3">Operation<span></span></span></th>
-                        <th > <span id="4">Country<span></span></span></th>
-                        <th > <span id="5">Region<span></span></span></th>
+                        <th > <span id="1">@Cares.Web.Resources.FleetPool.FleetPool.Code<span class="icon-up"></span></span></th>
+                        <th > <span id="2">@Cares.Web.Resources.FleetPool.FleetPool.Name<span></span></span></th>
+                        <th > <span id="3">@Cares.Web.Resources.FleetPool.FleetPool.Operation<span></span></span></th>
+                        <th > <span id="4">@Cares.Web.Resources.FleetPool.FleetPool.Country<span></span></span></th>
+                        <th > <span id="5">@Cares.Web.Resources.FleetPool.FleetPool.Region<span></span></span></th>
                         <th> <span></span></th>
                         <th> <span></span></th>
                     </tr>
@@ -89,6 +89,17 @@
 {
     <script type="text/javascript">
         require(["Fleet/fleetPool.view", "common/confirmation.view"]);
+        var ist = window.ist;
+    @{
+            <text>
+        ist.resourceText.FleetPoolSaveSuccessMessage = '@Cares.Web.Resources.FleetPool.FleetPool.FleetPoolSaveSuccessMessage'
+        ist.resourceText.FleetPoolSaveFailError = '@Cares.Web.Resources.FleetPool.FleetPool.FleetPoolSaveFailError';
+        ist.resourceText.FleetPoolLoadFailError = '@Cares.Web.Resources.FleetPool.FleetPool.FleetPoolLoadFailError';
+        ist.resourceText.FleetPoolBaseLoadFailError = '@Cares.Web.Resources.FleetPool.FleetPool.FleetPoolBaseLoadFailError';
+        ist.resourceText.FleetPoolDeleteSuccessMessage = '@Cares.Web.Resources.FleetPool.FleetPool.FleetPoolDeleteSuccessMessage';
+        ist.resourceText.FleetPoolDeleteFailError = '@Cares.Web.Resources.FleetPool.FleetPool.FleetPoolDeleteFailError'; 
+            </text>
+        }
 </script>
 
 }

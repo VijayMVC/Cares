@@ -10,38 +10,38 @@ define("company/company.dataservice", function () {
             isInitialized = false,
             // Initialize
             initialize = function() {
-                if (!isInitialized) {
-                    //Get Companies
-                    amplify.request.define('getCompanies', 'ajax', {
-                        url: '/Api/Company',
-                        dataType: 'json',
-                        decoder: amplify.request.decoders.istStatusDecoder,
-                        type: 'GET'
-                    });
-                    //Get Companies Basedata
-                    amplify.request.define('getCompaniesBasedata', 'ajax', {
-                        url: '/Api/CompanyBase',
-                        dataType: 'json',
-                        decoder: amplify.request.decoders.istStatusDecoder,
-                        type: 'GET'
-                    });
-                    //Delete Company
-                    amplify.request.define('deleteCompany', 'ajax', {
-                        url: '/Api/Company',
-                        dataType: 'json',
-                        decoder: amplify.request.decoders.istStatusDecoder,
-                        type: 'DELETE'
-                    });
-                    //save Company
-                    amplify.request.define('saveCompany', 'ajax', {
-                        url: '/Api/Company',
-                        dataType: 'json',
-                        decoder: amplify.request.decoders.istStatusDecoder,
-                        type: 'POST'
-                    });
-                    isInitialized = true;
-                }
-            },
+            if (!isInitialized) {
+                //Get Companies
+                amplify.request.define('getCompanies', 'ajax', {
+                    url: '/Api/Company',
+                    dataType: 'json',
+                    decoder: amplify.request.decoders.istStatusDecoder,
+                    type: 'GET'
+                });
+                //Get Companies Basedata
+                amplify.request.define('getCompaniesBasedata', 'ajax', {
+                    url: '/Api/CompanyBase',
+                    dataType: 'json',
+                    decoder: amplify.request.decoders.istStatusDecoder,
+                    type: 'GET'
+                });
+                //Delete Company
+                amplify.request.define('deleteCompany', 'ajax', {
+                    url: '/Api/Company',
+                    dataType: 'json',
+                    decoder: amplify.request.decoders.istStatusDecoder,
+                    type: 'DELETE'
+                });
+                //save Company
+                amplify.request.define('saveCompany', 'ajax', {
+                    url: '/Api/Company',
+                    dataType: 'json',
+                    decoder: amplify.request.decoders.istStatusDecoder,
+                    type: 'POST'
+                });
+                isInitialized = true;
+            }
+        },
         //Delete Company
             deleteCompany = function(params, callbacks) {
                 return amplify.request({
@@ -68,8 +68,8 @@ define("company/company.dataservice", function () {
                 error: callbacks.error,
                 data: params
             });
-        },
-        //Get Companies Basedata
+            },
+           //Get Companies Basedata
             getCompaniesBasedata = function(params, callbacks) {
                 initialize();
                 return amplify.request({

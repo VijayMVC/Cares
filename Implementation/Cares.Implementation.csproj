@@ -121,20 +121,72 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Identity\IdentityOperation.cs" />
+    <Compile Include="Resources\FleetPool\FleetPool.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FleetPool.ar.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Tariff\InsuranceRate.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>InsuranceRate.resx</DependentUpon>
+    </Compile>
+
+    <Compile Include="Resources\FleetPool\FleetPool.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FleetPool.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Tariff\ServiceRate.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ServiceRate.ar.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Organization\Company.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Company.ar.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Tariff\ServiceRate.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ServiceRate.resx</DependentUpon>
+    </Compile>
+
+    <Compile Include="Resources\Organization\Company.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Company.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\Department.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Department.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\Department.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Department.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\Operation.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Operation.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\Operation.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Operation.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\OrganizationGroup.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OrganizationGroup.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\OrganizationGroup.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OrganizationGroup.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Tariff\TariffRate.ar.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -199,7 +251,23 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Tariff\InsuranceRate.ar.resx" />
+    <EmbeddedResource Include="Resources\FleetPool\FleetPool.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FleetPool.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FleetPool\FleetPool.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FleetPool.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\Company.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Company.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+
+    <EmbeddedResource Include="Resources\Tariff\InsuranceRate.ar.resx" >
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>InsuranceRate.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tariff\InsuranceRate.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>InsuranceRate.Designer.cs</LastGenOutput>
@@ -211,6 +279,34 @@
     <EmbeddedResource Include="Resources\Tariff\ServiceRate.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ServiceRate.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\Company.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Company.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\Department.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Department.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\Department.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Department.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\Operation.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Operation.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\Operation.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Operation.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\OrganizationGroup.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>OrganizationGroup.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\OrganizationGroup.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>OrganizationGroup.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tariff\TariffRate.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

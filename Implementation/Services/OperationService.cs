@@ -100,12 +100,10 @@ namespace Cares.Implementation.Services
                 operationRepository.Update(operation);
                 operationRepository.SaveChanges();
                 // To Load the proprties
-                return operationRepository.GetCompanyWithDetails(operation.OperationId);
+                return operationRepository.GetOperationWithDetails(operation.OperationId);
             }
-            throw new CaresException("Operation with same code already exists!");
-
+            throw new CaresException(Resources.Organization.Operation.OperationWithSameCodeAlreadyExistsError);
         }
-
         #endregion
     }
 }

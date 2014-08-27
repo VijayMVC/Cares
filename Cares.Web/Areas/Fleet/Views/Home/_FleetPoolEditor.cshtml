@@ -1,43 +1,43 @@
 ﻿
 <div class="well col-md-12" id="FleetPoolEditor" data-bind="visible: isFleetPoolEditorVisible, with: selectedFleetPool" style="display: none;">
     <div class="float-left detailsContainer">
-        <h3 class="page-header detailsHeaderSection">Fleet Pool Details</h3>
-        <button class="btn  btn-info" id="saveFleetPoolbtn" data-bind="click: $root.onSaveFleetPool">Save</button>
-        <button class="btn  btn-default" id="cancelFleetPoolbtn" data-bind="click: $root.onCancelSave">Cancel</button>
+        <h3 class="page-header detailsHeaderSection">@Cares.Web.Resources.FleetPool.FleetPool.FleetPoolDetail</h3>
+        <button class="btn  btn-info" id="saveFleetPoolbtn" data-bind="click: $root.onSaveFleetPool">@Cares.Web.Resources.Shared.Common.Save</button>
+        <button class="btn  btn-default" id="cancelFleetPoolbtn" data-bind="click: $root.onCancelSave">@Cares.Web.Resources.Shared.Common.Cancel</button>
     </div>
     <form class="form-horizontal">
         <div class="form-group">
-            <label class="control-label h5 col-sm-2">Fleet Pool Code</label>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.FleetPool.FleetPool.FleetPoolCode</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" placeholder="<Fleet Pool Code>" id="tariffTypeCode" data-bind="value: code" />
+                <input type="text" class="form-control" placeholder="@Cares.Web.Resources.FleetPool.FleetPool.FleetPoolCode" id="tariffTypeCode" data-bind="value: code" />
             </div>
-            <label class="control-label h5 col-sm-2">Fleet Pool Name</label>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.FleetPool.FleetPool.FleetPoolName</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" placeholder="<Fleet Pool Name>" id="tariffTypeName" data-bind="value:name" />
+                <input type="text" class="form-control" placeholder="@Cares.Web.Resources.FleetPool.FleetPool.FleetPoolName" id="tariffTypeName" data-bind="value:name" />
             </div>
-            <label class="control-label h5 col-sm-2">Vehicles Assigned</label>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.FleetPool.FleetPool.VehiclesAssigned</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" placeholder="<Vehicles Assigned>" id="tariffTypeDescription" data-bind="value:vehiclesAssigned" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label h5 col-sm-2">Description</label>
-            <div class="col-md-2">
-                <input type="text" class="form-control" placeholder="<Description>" id="tariffTypeCompany" data-bind="value:description" />
-            </div>
-            <label class="control-label h5 col-sm-2">Country</label>
-            <div class="col-md-2">
-                <select class="form-control" id="tariffTypeDepartment" data-bind="options: $root.countryList, optionsText: 'CountryCodeName', optionsValue: 'CountryId', optionsCaption: '<Country>', value: countryId, event: { change : $root.filterRegions}"></select>
-            </div>
-            <label class="control-label h5 col-sm-2">Region</label>
-            <div class="col-md-2">
-                <select class="form-control" id="tariffTypeOperation" data-bind="options: $root.contryBaseRegionList, optionsText: 'RegionCodeName', optionsValue: 'RegionId', optionsCaption: '<Region>', value: regionId"></select>
+                <input type="text" class="form-control" placeholder="@Cares.Web.Resources.FleetPool.FleetPool.VehiclesAssigned" id="tariffTypeDescription" data-bind="value:vehiclesAssigned" />
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label h5 col-sm-2">Operation</label>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.FleetPool.FleetPool.Description</label>
             <div class="col-md-2">
-                <select class="form-control" data-bind="options: $root.operationsList, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '<Operation>', value: operationId"></select>
+                <input type="text" class="form-control" placeholder="@Cares.Web.Resources.FleetPool.FleetPool.Description" id="tariffTypeCompany" data-bind="value:description" />
+            </div>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.FleetPool.FleetPool.Country</label>
+            <div class="col-md-2">
+                <select class="form-control" id="tariffTypeDepartment" data-bind="options: $root.countryList, optionsText: 'CountryCodeName', optionsValue: 'CountryId', optionsCaption: '@Cares.Web.Resources.FleetPool.FleetPool.Country', value: countryId, event: { change : $root.filterRegions}"></select>
+            </div>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.FleetPool.FleetPool.Region</label>
+            <div class="col-md-2">
+                <select class="form-control" id="tariffTypeOperation" data-bind="options: $root.contryBaseRegionList, optionsText: 'RegionCodeName', optionsValue: 'RegionId', optionsCaption: '@Cares.Web.Resources.FleetPool.FleetPool.Region', value: regionId"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.FleetPool.FleetPool.Operation</label>
+            <div class="col-md-2">
+                <select class="form-control" data-bind="options: $root.operationsList, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '@Cares.Web.Resources.FleetPool.FleetPool.Operation', value: operationId"></select>
             </div>
         </div>
     </form>

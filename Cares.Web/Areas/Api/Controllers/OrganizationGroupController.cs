@@ -13,7 +13,7 @@ namespace Cares.Web.Areas.Api.Controllers
     public class OrganizationGroupController : ApiController
     {
         #region Public
-        /// <summary>
+        /// <summary>to
         /// Get OrgGroups
         /// </summary>
         public OrgGroupRequestResponse Get([FromUri] OrgGroupSearchRequest request)
@@ -33,8 +33,8 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int) HttpStatusCode.BadRequest, "Invalid Request");
             }
-            orgGroupService.DeleteOrgGroup(orgGroup.CreateFromClientToServer());
-            return true;
+            orgGroupService.DeleteOrgGroup(orgGroup.CreateFrom());
+            return false;
         }
         /// <summary>
         /// Add/Update org group
@@ -46,7 +46,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int) HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return  orgGroupService.AddUpdateOrgGroup((orgGroup).CreateFromClientToServer()).CreateFromResponse();
+            return orgGroupService.AddUpdateOrgGroup((orgGroup).CreateFrom()).CreateFromResponse();
         }
         #endregion
         #region Private

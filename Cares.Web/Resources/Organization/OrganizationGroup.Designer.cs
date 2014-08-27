@@ -106,6 +106,24 @@ namespace Cares.Web.Resources.Organization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Organization Group failed to delete!.
+        /// </summary>
+        public static string OrganizationGroupDeleteFailError {
+            get {
+                return ResourceManager.GetString("OrganizationGroupDeleteFailError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Organization Group successfully deleted!.
+        /// </summary>
+        public static string OrganizationGroupDeleteSuccessMessage {
+            get {
+                return ResourceManager.GetString("OrganizationGroupDeleteSuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Organization Group Detail.
         /// </summary>
         public static string OrganizationGroupDetail {
@@ -124,11 +142,38 @@ namespace Cares.Web.Resources.Organization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Organization Group failed to load!.
+        /// </summary>
+        public static string OrganizationGroupLoadFailError {
+            get {
+                return ResourceManager.GetString("OrganizationGroupLoadFailError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OrganizationGroupName.
         /// </summary>
         public static string OrganizationGroupName {
             get {
                 return ResourceManager.GetString("OrganizationGroupName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Organization Group failed to save!.
+        /// </summary>
+        public static string OrganizationGroupSaveFailError {
+            get {
+                return ResourceManager.GetString("OrganizationGroupSaveFailError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Organization Group successfully saved!.
+        /// </summary>
+        public static string OrganizationGroupSaveSuccessMessage {
+            get {
+                return ResourceManager.GetString("OrganizationGroupSaveSuccessMessage", resourceCulture);
             }
         }
     }

@@ -39,12 +39,10 @@ define("company/company.viewModel",
                     businessSegList = ko.observableArray([]),
                     // Compnies list
                     companies = ko.observableArray([]),
-
                      // Editor View Model
                     editorViewModel = new ist.ViewModel(model.CompanyDetail),
                     // Selected company
                     selectedCompany = editorViewModel.itemForEditing,
-
                     // EVENT HANDLERS
 
                     // Collapase filter section
@@ -140,13 +138,13 @@ define("company/company.viewModel",
                                     companies.push(newItem);
                                 }
                                 isCompanyEditorVisible(false);
-                                toastr.success("Operation successfuly performed!");
+                                toastr.success(ist.resourceText.CompanySaveSuccessMessage);
                             },
                             error: function (exceptionMessage, exceptionType) {
                                 if (exceptionType === ist.exceptionType.CaresGeneralException)
                                     toastr.error(exceptionMessage);
                                 else
-                                    toastr.error("Failed to save Company!");
+                                    toastr.error(ist.resourceText.CompanySaveFailError);
                             }
                         });
                     },
@@ -159,10 +157,10 @@ define("company/company.viewModel",
                                     return item.CompanyId === company.companyId();
                                 });
                                 parentCompanyList.remove(obj);
-                                toastr.success("Company removed successfully.");
+                                toastr.success(ist.resourceText.CompanyDeleteSuccessMessage);
                             },
                             error: function() {
-                                toastr.error("Failed to remove Company.");
+                                toastr.error(ist.resourceText.CompanyDeleteFailError);
                             }
                         });
                     },
@@ -190,7 +188,7 @@ define("company/company.viewModel",
                             },
                             error: function() {
                                 isLoadingFleetPools(false);
-                                toastr.error("Failed to load fleetPools!");
+                                toastr.error(ist.resourceText.CompanyLoadFailError);
                             }
                         });
                     },
@@ -222,7 +220,7 @@ define("company/company.viewModel",
                                 if (exceptionType === ist.exceptionType.CaresGeneralException) {
                                     toastr.error(exceptionMessage);
                                 } else {
-                                    toastr.error("Failed to load base data.");
+                                    toastr.error(ist.resourceText.CompanyBaseLoadFailError);
                                 }
                             }
                         });

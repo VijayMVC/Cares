@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using Cares.Models.DomainModels;
+﻿using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
-using Cares.Models.ResponseModels;
+using System.Collections.Generic;
 namespace Cares.Interfaces.Repository
 {
     /// <summary>
@@ -19,7 +18,7 @@ namespace Cares.Interfaces.Repository
         /// <param name="id"></param>
         Company GetCompanyWithDetails(long id);
         /// <summary>
-        /// Company Code validation
+        /// Company Code validation check
         /// </summary>
         bool IsCompanyCodeExists(Company fleetPool);
     }

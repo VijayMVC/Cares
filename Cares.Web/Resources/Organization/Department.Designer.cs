@@ -79,11 +79,38 @@ namespace Cares.Web.Resources.Organization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Department base-data loading failed!.
+        /// </summary>
+        public static string DepartmentBaseLoadFailError {
+            get {
+                return ResourceManager.GetString("DepartmentBaseLoadFailError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Department Code.
         /// </summary>
         public static string DepartmentCode {
             get {
                 return ResourceManager.GetString("DepartmentCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department deletion failed !.
+        /// </summary>
+        public static string DepartmentDeleteFailError {
+            get {
+                return ResourceManager.GetString("DepartmentDeleteFailError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department successfully deleted!.
+        /// </summary>
+        public static string DepartmentDeleteSuccessMessage {
+            get {
+                return ResourceManager.GetString("DepartmentDeleteSuccessMessage", resourceCulture);
             }
         }
         
@@ -106,11 +133,38 @@ namespace Cares.Web.Resources.Organization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Department loading failed!.
+        /// </summary>
+        public static string DepartmentLoadFailError {
+            get {
+                return ResourceManager.GetString("DepartmentLoadFailError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DepartmentName.
         /// </summary>
         public static string DepartmentName {
             get {
                 return ResourceManager.GetString("DepartmentName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to save department!.
+        /// </summary>
+        public static string DepartmentSaveFailError {
+            get {
+                return ResourceManager.GetString("DepartmentSaveFailError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department successfully saved!.
+        /// </summary>
+        public static string DepartmentSaveSuccessMessage {
+            get {
+                return ResourceManager.GetString("DepartmentSaveSuccessMessage", resourceCulture);
             }
         }
         

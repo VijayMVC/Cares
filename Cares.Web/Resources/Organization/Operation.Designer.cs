@@ -106,11 +106,38 @@ namespace Cares.Web.Resources.Organization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Operation base-data faied to load!.
+        /// </summary>
+        public static string OperationBaseLoadFailError {
+            get {
+                return ResourceManager.GetString("OperationBaseLoadFailError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Operation Code.
         /// </summary>
         public static string OperationCode {
             get {
                 return ResourceManager.GetString("OperationCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operation faied to delete!.
+        /// </summary>
+        public static string OperationDeleteFailError {
+            get {
+                return ResourceManager.GetString("OperationDeleteFailError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operation deleted successfully!.
+        /// </summary>
+        public static string OperationDeleteSuccessMessage {
+            get {
+                return ResourceManager.GetString("OperationDeleteSuccessMessage", resourceCulture);
             }
         }
         
@@ -142,11 +169,38 @@ namespace Cares.Web.Resources.Organization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Operation faied to load!.
+        /// </summary>
+        public static string OperationLoadFailError {
+            get {
+                return ResourceManager.GetString("OperationLoadFailError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Operation Name.
         /// </summary>
         public static string OperationName {
             get {
                 return ResourceManager.GetString("OperationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operation failed to save!.
+        /// </summary>
+        public static string OperationSaveFailError {
+            get {
+                return ResourceManager.GetString("OperationSaveFailError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operation saved successfully!.
+        /// </summary>
+        public static string OperationSaveSuccessMessage {
+            get {
+                return ResourceManager.GetString("OperationSaveSuccessMessage", resourceCulture);
             }
         }
     }

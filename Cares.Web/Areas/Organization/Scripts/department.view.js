@@ -1,5 +1,5 @@
 ﻿/*
-    View for the Product. Used to keep the viewmodel clear of UI related logic
+    View for the department. Used to keep the viewmodel clear of UI related logic
 */
 define("department/department.view",
     ["jquery", "department/department.viewModel"], function ($, departmentViewModel) {

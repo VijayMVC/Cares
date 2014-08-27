@@ -10,17 +10,24 @@ using Cares.WebBase.Mvc;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
+    /// <summary>
+    /// Operation Controller
+    /// </summary>
     public class OperationController : ApiController{
-
+       
+        #region Private
+        private readonly IOperationService operationService;
+        #endregion
         #region Constructor
+        /// <summary>
+        /// Operation Constructor
+        /// </summary>
         public OperationController(IOperationService iOperationService)
         {
            operationService = iOperationService;
         }
         #endregion
-        #region Private
-        private readonly IOperationService operationService;
-        #endregion
+        #region public
         /// <summary>
         /// Get Operations
         /// </summary>
@@ -45,7 +52,7 @@ namespace Cares.Web.Areas.Api.Controllers
             return true;
         }
         /// <summary>
-        ///  ADd/ Update Operation
+        ///  ADD/ Update Operation
         /// </summary>
         [ApiException]
         public Operation Post(Operation oppRequest)
@@ -55,6 +62,7 @@ namespace Cares.Web.Areas.Api.Controllers
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
          return operationService.SaveOperation(oppRequest.CreateFrom()).CreateFromm();
-        }   
+        }
+        #endregion
     }
 }

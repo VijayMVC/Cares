@@ -26,9 +26,31 @@ namespace Cares.Repository.Repositories
                     {
                         { FleetPoolByColumn.FleetPoolCode, c => c.FleetPoolCode },
                         { FleetPoolByColumn.FleetPoolName, c => c.FleetPoolName },
+                      //  { FleetPoolByColumn.FleetPoolName, c => c.Region.CountryId},
                         { FleetPoolByColumn.Operation, c=> c.OperationId},
                         { FleetPoolByColumn.Region, c=> c.RegionId}
                     };
+        #endregion
+        #region Constructor
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public FleetPoolRepository(IUnityContainer container)
+            : base(container)
+        {
+
+        }
+        /// <summary>
+        /// Primary database set
+        /// </summary>
+        protected override IDbSet<FleetPool> DbSet
+        {
+            get
+            {
+                return db.FleetPools;
+            }
+        }
+
         #endregion
         #region Public
         /// <summary>
@@ -56,8 +78,8 @@ namespace Cares.Repository.Repositories
         public FleetPool GetFleetPoolWithDetails(long id)
         {
             return DbSet.Include(fleetPool => fleetPool.Operation)
-                .Include(fleetPool => fleetPool.Region.RegionId)
-                .Include(fleetPool => fleetPool.Region.Country.CountryId)
+                .Include(fleetPool => fleetPool.Region)
+                .Include(fleetPool => fleetPool.Region.Country)
                 .FirstOrDefault(fleetPool => fleetPool.UserDomainKey == UserDomainKey && fleetPool.FleetPoolId == id);
         }
 
@@ -66,31 +88,9 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsFleetPoolCodeExists(FleetPool fleetPool)
         {
-            Expression<Func<FleetPool, bool>> query = fleet => fleet.FleetPoolCode.Contains(fleetPool.FleetPoolCode) && fleet.FleetPoolId !=fleetPool.FleetPoolId;
+            Expression<Func<FleetPool, bool>> query = fleet => fleet.FleetPoolCode.ToLower()==fleetPool.FleetPoolCode.ToLower() && fleet.FleetPoolId !=fleetPool.FleetPoolId;
             return DbSet.Count(query) > 0;
         }
         #endregion 
-        #region Constructor
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public FleetPoolRepository(IUnityContainer container)
-            : base(container)
-        {
-
-        }
-        /// <summary>
-        /// Primary database set
-        /// </summary>
-        protected override IDbSet<FleetPool> DbSet
-        {
-            get
-            {
-                return db.FleetPools;
-            }
-        }
-
-        #endregion
-
     }
 }

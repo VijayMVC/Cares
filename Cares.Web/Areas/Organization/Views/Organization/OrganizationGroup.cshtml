@@ -78,7 +78,19 @@
 @section inlinescripts
 {
     <script type="text/javascript">
-        require(["Organization/organizationGroup.view", "common/confirmation.view"]);
-    </script>
+    require(["Organization/organizationGroup.view", "common/confirmation.view"]);
+    var ist = window.ist;
+    @{
+        <text>
+        ist.resourceText.OrganizationGroupSaveSuccessMessage = '@Cares.Web.Resources.Organization.OrganizationGroup.OrganizationGroupSaveSuccessMessage';
+        ist.resourceText.OrganizationGroupSaveFailError = '@Cares.Web.Resources.Organization.OrganizationGroup.OrganizationGroupSaveFailError';
+
+        ist.resourceText.OrganizationGroupLoadFailError = '@Cares.Web.Resources.Organization.OrganizationGroup.OrganizationGroupLoadFailError';
+
+        ist.resourceText.OrganizationGroupDeleteSuccessMessage = '@Cares.Web.Resources.Organization.OrganizationGroup.OrganizationGroupDeleteSuccessMessage';
+        ist.resourceText.OrganizationGroupDeleteFailError = '@Cares.Web.Resources.Organization.OrganizationGroup.OrganizationGroupDeleteFailError'; 
+        </text>
+    }
+</script>
 
 }

@@ -15,6 +15,18 @@ namespace Cares.Web.Areas.Api.Controllers
     /// </summary>
     public class FleetPoolController : ApiController
     {
+        #region Private
+        private readonly IFleetPoolService fleetPoolService;
+        #endregion
+        #region Constructor
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public FleetPoolController(IFleetPoolService ifleetPoolService)
+        {
+            fleetPoolService = ifleetPoolService;
+        }
+        #endregion
         #region Public
         /// <summary>
         /// Dalete Fleet Pool
@@ -25,8 +37,9 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-           fleetPoolService.DeleteFleetPool(Convert.ToInt32( fleetPool.FleetPoolId));
+            fleetPoolService.DeleteFleetPool(Convert.ToInt32(fleetPool.FleetPoolId));
         }
+
         /// <summary>
         /// Get FleetPools
         /// </summary>
@@ -38,9 +51,10 @@ namespace Cares.Web.Areas.Api.Controllers
             }
 
             return fleetPoolService.SerchFleetPool(request).CreateFrom();
-        }        
+        }
+
         /// <summary>
-        /// update FleetPools
+        /// ADD/update FleetPool
         /// </summary>
         [ApiException]
         public FleetPool Post(FleetPool fleetPool)
@@ -51,16 +65,6 @@ namespace Cares.Web.Areas.Api.Controllers
             }
             return fleetPoolService.SaveFleetPool(fleetPool.CreateFrom()).CreateFrom();
         }
-        #endregion
-        #region Constructor
-
-        public FleetPoolController(IFleetPoolService ifleetPoolService)
-        {
-            fleetPoolService = ifleetPoolService;
-        }
-        #endregion
-        #region Private
-        private readonly IFleetPoolService fleetPoolService;
         #endregion
     }
 }

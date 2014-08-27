@@ -79,11 +79,38 @@ namespace Cares.Web.Resources.Organization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to load company base-data!.
+        /// </summary>
+        public static string CompanyBaseLoadFailError {
+            get {
+                return ResourceManager.GetString("CompanyBaseLoadFailError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Company Code.
         /// </summary>
         public static string CompanyCode {
             get {
                 return ResourceManager.GetString("CompanyCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to delete company!.
+        /// </summary>
+        public static string CompanyDeleteFailError {
+            get {
+                return ResourceManager.GetString("CompanyDeleteFailError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Company deleted successfully!.
+        /// </summary>
+        public static string CompanyDeleteSuccessMessage {
+            get {
+                return ResourceManager.GetString("CompanyDeleteSuccessMessage", resourceCulture);
             }
         }
         
@@ -106,11 +133,38 @@ namespace Cares.Web.Resources.Organization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to load companies!.
+        /// </summary>
+        public static string CompanyLoadFailError {
+            get {
+                return ResourceManager.GetString("CompanyLoadFailError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Company Name.
         /// </summary>
         public static string CompanyName {
             get {
                 return ResourceManager.GetString("CompanyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to save company!.
+        /// </summary>
+        public static string CompanySaveFailError {
+            get {
+                return ResourceManager.GetString("CompanySaveFailError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Company saved successfully!.
+        /// </summary>
+        public static string CompanySaveSuccessMessage {
+            get {
+                return ResourceManager.GetString("CompanySaveSuccessMessage", resourceCulture);
             }
         }
         

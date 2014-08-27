@@ -65,7 +65,6 @@ namespace Cares.Repository.Repositories
                       (string.IsNullOrEmpty(request.CompanyNameText) || (company.CompanyName.Contains(request.CompanyNameText)))) &&
                       (!request.BusinessSegmentId.HasValue           || request.BusinessSegmentId == company.BusinessSegmentId) &&
                       (!request.OrganizationGroupId.HasValue         || request.OrganizationGroupId== company.OrgGroupId);
-            
             rowCount = DbSet.Count(query);
             return request.IsAsc
                 ? DbSet.Where(query)
@@ -87,7 +86,7 @@ namespace Cares.Repository.Repositories
             return DbSet.Where(company => company.UserDomainKey == UserDomainKey).ToList();
         }
         /// <summary>
-        /// Get CompanyWith Details
+        /// Get Company With Details
         /// </summary>
         public Company GetCompanyWithDetails(long id)
         {
@@ -97,9 +96,12 @@ namespace Cares.Repository.Repositories
                 .FirstOrDefault(fleetPool => fleetPool.UserDomainKey == UserDomainKey && fleetPool.CompanyId == id);
         }
 
+        /// <summary>
+        /// Comapny Code validation check
+        /// </summary>
         public bool IsCompanyCodeExists(Company cmpCompany)
         {
-            Expression<Func<Company, bool>> query = company => company.CompanyCode.Contains(cmpCompany.CompanyCode) && company.CompanyId!= cmpCompany.CompanyId;
+            Expression<Func<Company, bool>> query = company => company.CompanyCode.ToLower()==cmpCompany.CompanyCode.ToLower() && company.CompanyId!= cmpCompany.CompanyId;
             return DbSet.Count(query) > 0;
             
         }

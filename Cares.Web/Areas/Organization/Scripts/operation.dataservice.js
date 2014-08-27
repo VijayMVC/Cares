@@ -2,7 +2,6 @@
     Data service module with ajax calls to the server
 */
 define("operation/operation.dataservice", function () {
-
     // Data service for forecast 
     var dataService = (function () {
         var
@@ -11,37 +10,38 @@ define("operation/operation.dataservice", function () {
             // Initialize
             initialize = function() {
                 if (!isInitialized) {
-
-                    
+                    //get Operation Base Data
                     amplify.request.define('getOperationBaseData', 'ajax', {
                         url: '/Api/OperationBase',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
+                    //save Operations
                     amplify.request.define('saveOperations', 'ajax', { 
                         url: '/Api/Operation',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
                     });
+                    //get Operations
                     amplify.request.define('getOperations', 'ajax', {
                         url: '/Api/Operation',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
+                    //delete Operation
                     amplify.request.define('deleteOperation', 'ajax', {
                         url: '/Api/Operation',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
-
                     isInitialized = true;
                 }
             },
-            // Get Fleet Pool Base Data
+            // Get Operation Base Data
             getOperationBaseData = function(params, callbacks) {
                 initialize();
                 return amplify.request({
@@ -51,6 +51,7 @@ define("operation/operation.dataservice", function () {
                     data: params
                 });
             },
+            //get Operations
             getOperations = function(params, callbacks) {
                 initialize();
                 return amplify.request({
@@ -60,6 +61,7 @@ define("operation/operation.dataservice", function () {
                     data: params
                 });
             },
+            //save Operation
             saveOperation = function (params, callbacks) {
                 initialize();
                 return amplify.request({
@@ -69,6 +71,7 @@ define("operation/operation.dataservice", function () {
                     data: params
                 });
             },
+            //delete Operation
             deleteOperation = function (params, callbacks) {
                 initialize();
                 return amplify.request({
@@ -78,7 +81,6 @@ define("operation/operation.dataservice", function () {
                     data: params
                 });
             };
-
         return {
             getOperationBaseData: getOperationBaseData,
             getOperations: getOperations,

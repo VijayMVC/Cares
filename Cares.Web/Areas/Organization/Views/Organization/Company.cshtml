@@ -93,6 +93,17 @@
 {
     <script type="text/javascript">
         require(["company/company.view", "common/confirmation.view"]);
+        var ist = window.ist;
+    @{
+        <text>
+        ist.resourceText.CompanySaveSuccessMessage = '@Cares.Web.Resources.Organization.Company.CompanySaveSuccessMessage'
+        ist.resourceText.CompanySaveFailError = '@Cares.Web.Resources.Organization.Company.CompanySaveFailError';
+        ist.resourceText.CompanyLoadFailError = '@Cares.Web.Resources.Organization.Company.CompanyLoadFailError';
+        ist.resourceText.CompanyBaseLoadFailError = '@Cares.Web.Resources.Organization.Company.CompanyBaseLoadFailError';
+        ist.resourceText.CompanyDeleteSuccessMessage = '@Cares.Web.Resources.Organization.Company.CompanyDeleteSuccessMessage';
+        ist.resourceText.CompanyDeleteFailError = '@Cares.Web.Resources.Organization.Company.CompanyDeleteFailError'; 
+            </text>
+    }
     </script>
 
 }

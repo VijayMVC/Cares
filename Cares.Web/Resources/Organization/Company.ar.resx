@@ -162,4 +162,22 @@
   <data name="UAN" xml:space="preserve">
     <value>UAN</value>
   </data>
+  <data name="CompanyBaseLoadFailError" xml:space="preserve">
+    <value>فشل تحميل شركة قاعدة البيانات</value>
+  </data>
+  <data name="CompanyDeleteFailError" xml:space="preserve">
+    <value>فشل في حذف شركة</value>
+  </data>
+  <data name="CompanyDeleteSuccessMessage" xml:space="preserve">
+    <value>حذف الشركة بنجاح</value>
+  </data>
+  <data name="CompanyLoadFailError" xml:space="preserve">
+    <value>فشل الشركات الحمل</value>
+  </data>
+  <data name="CompanySaveFailError" xml:space="preserve">
+    <value>فشلت في انقاذ شركة</value>
+  </data>
+  <data name="CompanySaveSuccessMessage" xml:space="preserve">
+    <value>أنقذت الشركة بنجاح</value>
+  </data>
 </root>

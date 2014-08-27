@@ -34,8 +34,5 @@ namespace Cares.Interfaces.IServices
         /// Save or Update Department
         /// </summary>
         Department SaveUpdateDepartment(Department request);
-
-
-
     }
 }

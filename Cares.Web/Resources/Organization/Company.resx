@@ -162,4 +162,22 @@
   <data name="UAN" xml:space="preserve">
     <value>UAN</value>
   </data>
+  <data name="CompanyBaseLoadFailError" xml:space="preserve">
+    <value>Failed to load company base-data!</value>
+  </data>
+  <data name="CompanyDeleteFailError" xml:space="preserve">
+    <value>Failed to delete company!</value>
+  </data>
+  <data name="CompanyDeleteSuccessMessage" xml:space="preserve">
+    <value>Company deleted successfully!</value>
+  </data>
+  <data name="CompanyLoadFailError" xml:space="preserve">
+    <value>Failed to load companies!</value>
+  </data>
+  <data name="CompanySaveFailError" xml:space="preserve">
+    <value>Failed to save company!</value>
+  </data>
+  <data name="CompanySaveSuccessMessage" xml:space="preserve">
+    <value>Company saved successfully!</value>
+  </data>
 </root>

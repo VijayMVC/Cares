@@ -91,5 +91,16 @@
 {
     <script type="text/javascript">
         require(["department/department.view", "common/confirmation.view"]);
+        var ist = window.ist;
+    @{
+        <text>
+        ist.resourceText.DepartmentSaveSuccessMessage = '@Cares.Web.Resources.Organization.Department.DepartmentSaveSuccessMessage'
+        ist.resourceText.DepartmentSaveFailError = '@Cares.Web.Resources.Organization.Department.DepartmentSaveFailError';
+        ist.resourceText.DepartmentLoadFailError = '@Cares.Web.Resources.Organization.Department.DepartmentLoadFailError';
+        ist.resourceText.DepartmentBaseLoadFailError = '@Cares.Web.Resources.Organization.Department.DepartmentBaseLoadFailError';
+        ist.resourceText.DepartmentDeleteSuccessMessage = '@Cares.Web.Resources.Organization.Department.DepartmentDeleteSuccessMessage';
+        ist.resourceText.DepartmentDeleteFailError = '@Cares.Web.Resources.Organization.Department.DepartmentDeleteFailError'; 
+            </text>
+    }
     </script>
 }

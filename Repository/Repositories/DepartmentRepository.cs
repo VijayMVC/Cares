@@ -17,9 +17,24 @@ namespace Cares.Repository.Repositories
     /// </summary>
     public sealed class DepartmentRepository : BaseRepository<Department>, IDepartmentRepository
     {
+        
+        #region privte
+        /// <summary>
+        /// Company Orderby clause
+        /// </summary>
+        private readonly Dictionary<DepartmentByColumn, Func<Department, object>> departmentOrderByClause = new Dictionary<DepartmentByColumn, Func<Department, object>>
+                    {
+
+                        {DepartmentByColumn.DepartmentCode, c => c.DepartmentCode},
+                        {DepartmentByColumn.DepartmentName, n => n.DepartmentName},
+                        {DepartmentByColumn.DepartmentDescription, d=> d.DepartmentDescription},
+                        {DepartmentByColumn.Company, c => c.Company.CompanyId},
+                        {DepartmentByColumn.DepartmentType, c => c.DepartmentType},
+                    };
+        #endregion
         #region Constructor
         /// <summary>
-        /// Constructor
+        /// Department Constructor
         /// </summary>
         public DepartmentRepository(IUnityContainer container)
             : base(container)
@@ -37,20 +52,6 @@ namespace Cares.Repository.Repositories
             }
         }
 
-        #endregion
-        #region privte
-        /// <summary>
-        /// Company Orderby clause
-        /// </summary>
-        private readonly Dictionary<DepartmentByColumn, Func<Department, object>> departmentOrderByClause = new Dictionary<DepartmentByColumn, Func<Department, object>>
-                    {
-
-                        {DepartmentByColumn.DepartmentCode, c => c.DepartmentCode},
-                        {DepartmentByColumn.DepartmentName, n => n.DepartmentName},
-                        {DepartmentByColumn.DepartmentDescription, d=> d.DepartmentDescription},
-                        {DepartmentByColumn.Company, c => c.Company.CompanyId},
-                        {DepartmentByColumn.DepartmentType, c => c.DepartmentType},
-                    };
         #endregion
         #region Public
         /// <summary>
@@ -103,7 +104,7 @@ namespace Cares.Repository.Repositories
         }
 
         /// <summary>
-       /// Get Department With Details
+        /// Get Department With Details
         /// </summary>
         public Department GetDepartmentWithDetails(long id)
         {
@@ -111,11 +112,14 @@ namespace Cares.Repository.Repositories
                 .FirstOrDefault(opp => opp.DepartmentId == id);
         }
 
+        /// <summary>
+        /// Department Code validation check
+        /// </summary>
        public bool IsDepartmentCodeExists(Department dep)
         {
-            Expression<Func<Department, bool>> query = department => department.DepartmentCode.Contains(dep.DepartmentCode) && department.DepartmentId != dep.DepartmentId;
+            Expression<Func<Department, bool>> query = department => department.DepartmentCode.ToLower()==dep.DepartmentCode.ToLower() &&
+            department.DepartmentId != dep.DepartmentId;
             return DbSet.Count(query) > 0;
-            
         }
         #endregion
     }

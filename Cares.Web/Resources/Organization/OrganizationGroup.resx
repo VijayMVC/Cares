@@ -132,13 +132,28 @@
   <data name="OrganizationGroupCode" xml:space="preserve">
     <value>OrganizationGroupCode</value>
   </data>
+  <data name="OrganizationGroupDeleteFailError" xml:space="preserve">
+    <value>Organization Group failed to delete!</value>
+  </data>
+  <data name="OrganizationGroupDeleteSuccessMessage" xml:space="preserve">
+    <value>Organization Group successfully deleted!</value>
+  </data>
   <data name="OrganizationGroupDetail" xml:space="preserve">
     <value>Organization Group Detail</value>
   </data>
   <data name="OrganizationGroupLabel" xml:space="preserve">
     <value>Organization Group</value>
   </data>
+  <data name="OrganizationGroupLoadFailError" xml:space="preserve">
+    <value>Organization Group failed to load!</value>
+  </data>
   <data name="OrganizationGroupName" xml:space="preserve">
     <value>OrganizationGroupName</value>
+  </data>
+  <data name="OrganizationGroupSaveFailError" xml:space="preserve">
+    <value>Organization Group failed to save!</value>
+  </data>
+  <data name="OrganizationGroupSaveSuccessMessage" xml:space="preserve">
+    <value>Organization Group successfully saved!</value>
   </data>
 </root>

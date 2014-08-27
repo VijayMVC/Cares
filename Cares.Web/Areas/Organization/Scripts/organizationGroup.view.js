@@ -1,5 +1,5 @@
 ﻿/*
-    View for the Product. Used to keep the viewmodel clear of UI related logic
+    View for the Organization. Used to keep the viewmodel clear of UI related logic
 */
 define("Organization/organizationGroup.view",
     ["jquery", "Organization/organizationGroup.viewModel"], function ($, organizationGroupViewModel) {

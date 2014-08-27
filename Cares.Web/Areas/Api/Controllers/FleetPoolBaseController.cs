@@ -14,26 +14,9 @@ namespace Cares.Web.Areas.Api.Controllers
     /// </summary>
     public class FleetPoolBaseController: ApiController
     {
-        #region Public
-
-        /// <summary>
-        /// Get Fleet Pool Base Data 
-        /// </summary>
-        [ApiException]
-        public FleetPoolBaseDataResponse Get()
-        {
-            if (!ModelState.IsValid)
-            {
-                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
-            }
-            return  fleetPoolService.LoadFleetPoolBaseData().CreateFrom();
-        }
-        #endregion
-
         #region Private
         private readonly IFleetPoolService fleetPoolService;
         #endregion
-
         #region Constructor
         /// <summary>
         /// Constructor
@@ -47,6 +30,20 @@ namespace Cares.Web.Areas.Api.Controllers
             this.fleetPoolService = fleetPoolService;
         }
 
+        #endregion
+        #region Public
+        /// <summary>
+        /// Get Fleet Pool Base Data 
+        /// </summary>
+        [ApiException]
+        public FleetPoolBaseDataResponse Get()
+        {
+            if (!ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+            return fleetPoolService.LoadFleetPoolBaseData().CreateFrom();
+        }
         #endregion
     }
 }
