@@ -21,7 +21,17 @@ namespace Cares.Web.ModelMappers
                 FuelTypeCode = source.FuelTypeCode
             };
         }
-
+        /// <summary>
+        ///  Create web model from entity
+        /// </summary>
+        public static FuelTypeDropDown CreateFromDropDown(this Cares.Models.DomainModels.FuelType source)
+        {
+            return new FuelTypeDropDown
+            {
+                FuelTypeId = source.FuelTypeId,
+                FuelTypeCodeName = source.FuelTypeCode + " - " + source.FuelTypeName
+            };
+        }
         #endregion
     }
 }

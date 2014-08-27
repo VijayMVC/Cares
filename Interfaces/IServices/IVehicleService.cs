@@ -19,5 +19,16 @@ namespace Cares.Interfaces.IServices
         /// </summary>
         Vehicle GetById(long vehicleId);
 
+        /// <summary>
+        /// Get Base Data 
+        /// </summary>
+        /// <returns></returns>
+        VehicleBaseDataResponse GetBaseData();
+
+        /// <summary>
+        /// Get Vehicles List Based on search Criteria
+        /// </summary>
+        /// <returns></returns>
+        GetVehicleResponse LoadVehicles(VehicleSearchRequest request);
     }
 }

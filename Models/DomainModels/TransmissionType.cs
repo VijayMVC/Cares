@@ -26,6 +26,11 @@ namespace Cares.Models.DomainModels
         [StringLength(255)]
         public string TransmissionTypeName { get; set; }
 
+        /// <summary>
+        /// User Domain Key
+        /// </summary>
+        [Required]
+        public long UserDomainKey { get; set; }
         #endregion
 
         #region Reference Properties

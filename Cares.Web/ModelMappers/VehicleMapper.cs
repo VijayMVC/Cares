@@ -13,7 +13,7 @@ namespace Cares.Web.ModelMappers
         /// </summary>
         public static Vehicle CreateFrom(this DomainModels.Vehicle source, bool headerOnly = true)
         {
-            DomainModels.VehicleImage image = source.HireGroup != null ? 
+            DomainModels.VehicleImage image = source.HireGroup != null ?
                 source.HireGroup.HireGroupDetails.Select(hg => hg.VehicleImageHireGroupDetails.Select(hgd => hgd.VehicleImage)
                     .FirstOrDefault()).FirstOrDefault() : new DomainModels.VehicleImage();
 
@@ -66,6 +66,49 @@ namespace Cares.Web.ModelMappers
             return vehicle;
         }
         
+        /// <summary>
+        /// Create Vehicle Search Response from domain Vehicle Search Response
+        /// </summary>
+        public static GetVehicleResponse CreateFrom(this ResponseModel.GetVehicleResponse source)
+        {
+            return new GetVehicleResponse
+            {
+                Vehicles = source.Vehicles.Select(hg => hg.CreateFrom()),
+                TotalCount = source.TotalCount
+            };
+        }
+
+        #endregion
+
+        #region Vehicle Base Data Response
+
+        /// <summary>
+        /// Domain Response To Web Response
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static VehicleBaseDataResponse CreateFrom(this ResponseModel.VehicleBaseDataResponse source)
+        {
+            return new VehicleBaseDataResponse
+                   {
+                       Operations = source.Operations.Select(op => op.CreateFrom()),
+                       FleetPools = source.FleetPools.Select(fp => fp.CreateFromDropDown()),
+                       Companies = source.Companies.Select(comp => comp.CreateFrom()),
+                       Regions = source.Regions.Select(r => r.CreateFrom()),
+                       FuelTypes = source.FuelTypes.Select(ft => ft.CreateFromDropDown()),
+                       VehicleModels = source.VehicleModels.Select(vm => vm.CreateFrom()),
+                       VehicleStatuses = source.VehicleStatuses.Select(vs => vs.CreateFromDropDown()),
+                       Departments = source.Departments.Select(d => d.CreateFrom()),
+                       VehicleCategories = source.VehicleCategories.Select(vc => vc.CreateFrom()),
+                       TransmissionTypes = source.TransmissionTypes.Select(tt => tt.CreateFromDropDown()),
+                       VehicleMakes = source.VehicleMakes.Select(vm => vm.CreateFrom()),
+                       BusinessPartners = source.BusinessPartners.Select(bp => bp.CreateDropDownModelFrom()),
+                       InsuranceType = source.InsuranceType.Select(it => it.CreateFromDropDown()),
+                       MaintenanceTypes = source.MaintenanceTypes.Select(mt => mt.CreateFromDropDown()),
+                       VehicleCheckList = source.VehicleCheckList.Select(vcl => vcl.CreateFromDropDown())
+                   };
+        }
+
         #endregion
     }
 }

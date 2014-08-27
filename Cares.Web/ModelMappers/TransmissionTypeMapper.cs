@@ -21,7 +21,17 @@ namespace Cares.Web.ModelMappers
                 TransmissionTypeCode = source.TransmissionTypeCode
             };
         }
-
+        /// <summary>
+        ///  Create web model from entity
+        /// </summary>
+        public static TransmissionTypeDropDown CreateFromDropDown(this Cares.Models.DomainModels.TransmissionType source)
+        {
+            return new TransmissionTypeDropDown
+            {
+                TransmissionTypeId = source.TransmissionTypeId,
+                TransmissionTypeCodeName = source.TransmissionTypeCode + " - " + source.TransmissionTypeName
+            };
+        }
         #endregion
     }
 }

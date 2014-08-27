@@ -91,6 +91,34 @@ namespace Cares.Repository.Repositories
             return new GetVehicleResponse { Vehicles = vehicles, TotalCount = DbSet.Count(query) };
         }
 
+        /// <summary>
+        /// Get Vehicle List Based On Search Criteria
+        /// </summary>
+        public GetVehicleResponse GetVehicles(VehicleSearchRequest request)
+        {
+            int fromRow = (request.PageNo - 1) * request.PageSize;
+            int toRow = request.PageSize;
+            Expression<Func<Vehicle, bool>> query = vehicle => (vehicle.HireGroupId == request.HireGroupId);
+
+            IEnumerable<Vehicle> vehicles = request.IsAsc ? DbSet
+                .Include(vehicle => vehicle.HireGroup)
+                .Include(vehicle => vehicle.VehicleCategory)
+                .Include(vehicle => vehicle.VehicleMake)
+                .Include(vehicle => vehicle.VehicleModel)
+                .Include(vehicle => vehicle.VehicleStatus)
+                .Where(vehicle => vehicle.HireGroupId == request.HireGroupId)
+                .OrderBy(vehicleOrderByClause[request.VehicleOrderBy]).Skip(fromRow).Take(toRow).ToList() :
+                DbSet
+                .Include(vehicle => vehicle.HireGroup)
+                .Include(vehicle => vehicle.VehicleCategory)
+                .Include(vehicle => vehicle.VehicleMake)
+                .Include(vehicle => vehicle.VehicleModel)
+                .Include(vehicle => vehicle.VehicleStatus)
+                .Where(vehicle => vehicle.HireGroupId == request.HireGroupId)
+                .OrderByDescending(vehicleOrderByClause[request.VehicleOrderBy]).Skip(fromRow).Take(toRow).ToList();
+
+            return new GetVehicleResponse { Vehicles = vehicles, TotalCount = DbSet.Count(query) };
+        }
         #endregion
     }
 }

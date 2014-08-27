@@ -11,7 +11,22 @@ namespace Cares.Models.RequestModels
         /// Hire Group Id
         /// </summary>
         public long HireGroupId { get; set; }
-        
+
+        /// <summary>
+        /// FleetPool ID
+        /// </summary>
+        public long FleetPoolId { get; set; }
+
+        /// <summary>
+        /// Hire Group Search Text
+        /// </summary>
+        public string HireGroup { get; set; }
+
+        /// <summary>
+        /// Operation ID
+        /// </summary>
+        public long OperationId { get; set; }
+
         /// <summary>
         /// Vehicle Order By
         /// </summary>

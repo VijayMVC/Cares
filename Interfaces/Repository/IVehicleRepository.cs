@@ -14,7 +14,11 @@ namespace Cares.Interfaces.Repository
         /// Get Vechile against HireGroup
         /// </summary>
         GetVehicleResponse GetByHireGroup(VehicleSearchRequest request);
-        
+
+        /// <summary>
+        /// Get Vehicle List Based On Search Criteria
+        /// </summary>
+        GetVehicleResponse GetVehicles(VehicleSearchRequest request);
     }
 }
 

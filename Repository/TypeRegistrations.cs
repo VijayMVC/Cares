@@ -68,7 +68,11 @@ namespace Cares.Repository
             unityContainer.RegisterType<IServiceTypeRepository, ServiceTypeRepository>();
             unityContainer.RegisterType<IServiceItemRepository, ServiceItemRepository>();
             unityContainer.RegisterType<IServiceRtMainRepository, ServiceRtMainRepository>();
-            unityContainer.RegisterType<IServiceRtRepository, ServiceRtRepository>();
+            unityContainer.RegisterType<IFuelTypeRepository, FuelTypeRepository>();
+            unityContainer.RegisterType<IVehicleStatusRepository, VehicleStatusRepository>();
+            unityContainer.RegisterType<ITransmissionTypeRepository, TransmissionTypeRepository>();
+            unityContainer.RegisterType<IMaintenanceTypeRepository, MaintenanceTypeRepository>();
+            unityContainer.RegisterType<IVehicleCheckListRepository, VehicleCheckListRepository>();
 
         }
     }

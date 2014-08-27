@@ -53,6 +53,8 @@
     <Compile Include="IServices\ICountryService.cs" />
     <Compile Include="IServices\IInsuranceRateService.cs" />
     <Compile Include="IServices\IServiceRtService.cs" />
+    <Compile Include="Repository\IFuelTypeRepository.cs" />
+    <Compile Include="Repository\IMaintenanceTypeRepository.cs" />
     <Compile Include="Repository\IServiceItemRepository.cs" />
     <Compile Include="Repository\IServiceRtMainRepository.cs" />
     <Compile Include="Repository\IServiceRtRepository.cs" />
@@ -100,6 +102,8 @@
     <Compile Include="Repository\IInsuranceRtMainRepository.cs" />
     <Compile Include="Repository\IInsuranceRtRepository.cs" />
     <Compile Include="Repository\IInsuranceTypeRepository.cs" />
+    <Compile Include="Repository\ITransmissionTypeRepository.cs" />
+    <Compile Include="Repository\IVehicleCheckListRepository.cs" />
     <Compile Include="Repository\IVehicleRepository.cs" />
     <Compile Include="Repository\IOperationsWorkPlaceRepository.cs" />
     <Compile Include="Repository\IMarketingChannelRepository.cs" />
@@ -129,6 +133,7 @@
     <Compile Include="Repository\IVehicleCategoryRepository.cs" />
     <Compile Include="Repository\IVehicleMakeRepository.cs" />
     <Compile Include="Repository\IVehicleModelRepository.cs" />
+    <Compile Include="Repository\IVehicleStatusRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Cares.Models.csproj">

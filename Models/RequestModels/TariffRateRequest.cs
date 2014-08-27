@@ -11,10 +11,12 @@ namespace Cares.Models.RequestModels
         /// Tariff Rate Id
         /// </summary>
         public int? TariffTypeId { get; set; }        
+        
         /// <summary>
         /// Operation Id
         /// </summary>
         public long? OperationId { get; set; }
+        
         /// <summary>
         /// tariff Rate Order By
         /// </summary>
