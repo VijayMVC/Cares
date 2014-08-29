@@ -28,5 +28,12 @@ namespace Cares.Interfaces.Repository
         /// Operation Code validation 
         /// </summary>
         bool IsOperationCodeExists(Operation operation);
+
+
+        /// <summary>
+        /// To check if department is associated with any operation
+        /// </summary>
+        bool IsDepartmentAssociatedWithAnyOperation(Department department);
+
     }
 }

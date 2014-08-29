@@ -121,6 +121,15 @@ namespace Cares.Repository.Repositories
             department.DepartmentId != dep.DepartmentId;
             return DbSet.Count(query) > 0;
         }
+
+        /// <summary>
+        /// To check either company have any department
+        /// </summary>
+        public bool IsCompanyContainDepartment(Company company)
+        {
+            Expression<Func<Department, bool>> query = department => department.CompanyId == company.CompanyId;
+            return DbSet.Count(query) > 0;
+        }
         #endregion
     }
 }

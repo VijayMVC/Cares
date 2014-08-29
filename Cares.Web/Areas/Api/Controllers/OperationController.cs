@@ -42,6 +42,7 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Delete Operation 
         /// </summary>
+        [ApiException]
         public Boolean Delete(Operation oppRequest)
         {
             if (oppRequest == null || !ModelState.IsValid)

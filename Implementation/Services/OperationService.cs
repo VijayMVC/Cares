@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using Cares.ExceptionHandling;
+﻿using Cares.ExceptionHandling;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
+using System;
+using System.Collections.Generic;
 namespace Cares.Implementation.Services
 {
     /// <summary>
@@ -17,18 +17,21 @@ namespace Cares.Implementation.Services
         private readonly IOperationRepository operationRepository;
         private readonly IDepartmentRepository departmentRepository;
         private readonly ICompanyRepository companyRepository;
+        private readonly IFleetPoolRepository fleetPoolRepository;
 
         #endregion
         #region Constructor
-        public OperationService(IOperationRepository operationRepository, IDepartmentRepository departmentRepository, ICompanyRepository companyRepository)
+        public OperationService(IOperationRepository operationRepository, IDepartmentRepository departmentRepository, ICompanyRepository companyRepository, IFleetPoolRepository fleetPoolRepository)
         {
             this.operationRepository = operationRepository;
             this.departmentRepository = departmentRepository;
             this.companyRepository = companyRepository;
+            this.fleetPoolRepository = fleetPoolRepository;
         }
 
         #endregion
         #region Public
+
         /// <summary>
         /// Load All Operations
         /// </summary>
@@ -36,6 +39,7 @@ namespace Cares.Implementation.Services
         {
             return operationRepository.GetAll();
         }
+
         /// <summary>
         /// Load Operation BaseData
         /// </summary>
@@ -49,6 +53,7 @@ namespace Cares.Implementation.Services
                 DepartmentTypes =  departmentRepository.GetDepartmentsTypes()
             };
        }
+
         /// <summary>
         /// Search Operation
         /// </summary>
@@ -61,18 +66,25 @@ namespace Cares.Implementation.Services
                 TotalCount = rowCount
             };
         }
+
         /// <summary>
         /// Delete Operation
         /// </summary>
         public void DeleteOperation(Operation operationobeDeleted)
         {
             Operation dbVersion = operationRepository.Find(operationobeDeleted.OperationId);
-            if (dbVersion != null) 
-            { 
+            if (!fleetPoolRepository.IsOperationAssocisiatedWithAnyFleetPool(dbVersion))
+            {
+                if (dbVersion != null)
+                {
 
-            operationRepository.Delete(dbVersion);
-            operationRepository.SaveChanges();
+                    operationRepository.Delete(dbVersion);
+                    operationRepository.SaveChanges();
+                }
             }
+            else
+                throw new CaresException(Resources.Organization.Operation.OperationIsAssociatedWithFleetPool);
+           
         }
 
         /// <summary>

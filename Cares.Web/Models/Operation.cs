@@ -1,5 +1,4 @@
 ﻿using System;
-using Cares.Models.DomainModels;
 
 namespace Cares.Web.Models
 {

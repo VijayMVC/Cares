@@ -2,10 +2,10 @@
   margin-left: 5px;
 }
 #OrgGroupBinding table thead tr .Orgcode {
-  width: 10%;
+  width: 20%;
 }
 #OrgGroupBinding table thead tr .Orgname {
-  width: 15%;
+  width: 20%;
 }
 #OrgGroupBinding #_OrgGroupEditor {
   margin-top: 15px;

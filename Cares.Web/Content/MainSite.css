@@ -1,35 +1,20 @@
 ﻿#tariffTypeBinding table thead tr .ttypesearchButton {
   margin-left: 5px;
 }
-#tariffTypeBinding table thead tr .tariffTypeCode {
-  width: 10%;
-}
-#tariffTypeBinding table thead tr .tariffTypeName {
+#fleetRootBinding table thead tr .fleetCode {
   width: 15%;
 }
-#tariffTypeBinding table thead tr .pricingScheme {
+#fleetRootBinding table thead tr .fleetName {
+  width: 20%;
+}
+#fleetRootBinding table thead tr .fleetOpp {
   width: 15%;
 }
-#tariffTypeBinding table thead tr .operation {
+#fleetRootBinding table thead tr .fleetCountry {
   width: 15%;
 }
-#tariffTypeBinding table thead tr .measurementUnit {
+#fleetRootBinding table thead tr .fleetRegion {
   width: 15%;
-}
-#tariffTypeBinding table thead tr .from {
-  width: 7%;
-}
-#tariffTypeBinding table thead tr .to {
-  width: 8%;
-}
-#tariffTypeBinding table thead tr .gracePeriod {
-  width: 5%;
-}
-#tariffTypeBinding table thead tr .effectiveDate {
-  width: 5%;
-}
-#tariffTypeBinding table thead tr .revision {
-  width: 5%;
 }
 #FleetPoolEditor {
   margin-top: 15px;
@@ -168,38 +153,23 @@
   margin-top: .5%;
   min-height: 105px;
 }
-#companyBinding table thead tr .ttypesearchButton {
-  margin-left: 5px;
-}
-#companyBinding table thead tr .tariffTypeCode {
+#companyBinding table thead tr .CompanyCodeH {
   width: 10%;
 }
-#companyBinding table thead tr .tariffTypeName {
+#companyBinding table thead tr .CompanyNameH {
+  width: 10%;
+}
+#companyBinding table thead tr .CompanydesH {
   width: 15%;
 }
-#companyBinding table thead tr .pricingScheme {
+#companyBinding table thead tr .CompanyOrgGroupH {
+  width: 20%;
+}
+#companyBinding table thead tr .CompanyBSegH {
+  width: 20%;
+}
+#companyBinding table thead tr .CompanyPCompanyH {
   width: 15%;
-}
-#companyBinding table thead tr .operation {
-  width: 15%;
-}
-#companyBinding table thead tr .measurementUnit {
-  width: 15%;
-}
-#companyBinding table thead tr .from {
-  width: 7%;
-}
-#companyBinding table thead tr .to {
-  width: 8%;
-}
-#companyBinding table thead tr .gracePeriod {
-  width: 5%;
-}
-#companyBinding table thead tr .effectiveDate {
-  width: 5%;
-}
-#companyBinding table thead tr .revision {
-  width: 5%;
 }
 #companyBinding #CompanyEditor {
   margin-top: 15px;
@@ -216,35 +186,20 @@
 #OperationBinding table thead tr .ttypesearchButton {
   margin-left: 5px;
 }
-#OperationBinding table thead tr .tariffTypeCode {
-  width: 10%;
-}
-#OperationBinding table thead tr .tariffTypeName {
+#OperationBinding table thead tr .code {
   width: 15%;
 }
-#OperationBinding table thead tr .pricingScheme {
+#OperationBinding table thead tr .name {
   width: 15%;
 }
-#OperationBinding table thead tr .operation {
-  width: 15%;
+#OperationBinding table thead tr .company {
+  width: 20%;
 }
-#OperationBinding table thead tr .measurementUnit {
-  width: 15%;
+#OperationBinding table thead tr .department {
+  width: 20%;
 }
-#OperationBinding table thead tr .from {
-  width: 7%;
-}
-#OperationBinding table thead tr .to {
-  width: 8%;
-}
-#OperationBinding table thead tr .gracePeriod {
-  width: 5%;
-}
-#OperationBinding table thead tr .effectiveDate {
-  width: 5%;
-}
-#OperationBinding table thead tr .revision {
-  width: 5%;
+#OperationBinding table thead tr .departmentType {
+  width: 20%;
 }
 #OperationBinding #OperationEditor {
   margin-top: 15px;
@@ -262,10 +217,10 @@
   margin-left: 5px;
 }
 #OrgGroupBinding table thead tr .Orgcode {
-  width: 10%;
+  width: 20%;
 }
 #OrgGroupBinding table thead tr .Orgname {
-  width: 15%;
+  width: 20%;
 }
 #OrgGroupBinding #_OrgGroupEditor {
   margin-top: 15px;

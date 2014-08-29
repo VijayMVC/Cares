@@ -39,7 +39,7 @@ namespace Cares.Web.ModelMappers
             };
         }
         /// <summary>
-        /// Create From Response Model to web base data
+        /// Create From Response Model to web basedata
         /// </summary>
         public static ApiModel.OperationBaseDataResponse CreateFrom(this OperationBaseDataResponse source)
         {

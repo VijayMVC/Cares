@@ -53,6 +53,7 @@
     <Compile Include="IServices\ICountryService.cs" />
     <Compile Include="IServices\IInsuranceRateService.cs" />
     <Compile Include="IServices\IServiceRtService.cs" />
+    <Compile Include="IServices\IWorkplaceService.cs" />
     <Compile Include="Repository\IFuelTypeRepository.cs" />
     <Compile Include="Repository\IMaintenanceTypeRepository.cs" />
     <Compile Include="Repository\IServiceItemRepository.cs" />
@@ -134,6 +135,9 @@
     <Compile Include="Repository\IVehicleMakeRepository.cs" />
     <Compile Include="Repository\IVehicleModelRepository.cs" />
     <Compile Include="Repository\IVehicleStatusRepository.cs" />
+    <Compile Include="Repository\IWorkLocationRepository.cs" />
+    <Compile Include="Repository\IWorkplaceRepository.cs" />
+    <Compile Include="Repository\IWorkplaceTypeRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Cares.Models.csproj">

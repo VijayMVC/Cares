@@ -88,12 +88,13 @@ namespace Cares.Implementation.Services
          public void DeleteFleetPool(int id)
          {
              FleetPool dbVersion = FindFleetPool(id);
-             if (dbVersion == null)
-             {
-                 throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, "FleetPool with Id {0} not found!", id));
-             }
-             fleetPoolRepository.Delete(dbVersion);
-             fleetPoolRepository.SaveChanges();
+                 if (dbVersion == null)
+                 {
+                     throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
+                         "FleetPool with Id {0} not found!", id));
+                 }
+                 fleetPoolRepository.Delete(dbVersion);
+                 fleetPoolRepository.SaveChanges();
          }
 
          /// <summary>

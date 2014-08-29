@@ -17,7 +17,7 @@ namespace Cares.Web.ModelMappers
         {
             return new ApiModel.OrgGroupRequestResponse
             {
-                OrgGroups = source.OrgGroups.Select(orgGroup => orgGroup.CreateFromResponse()),
+                OrgGroups = source.OrgGroups.Select(orgGroup => orgGroup.CreateFromm()),
                 TotalCount = source.TotalCount
             };
         }
@@ -25,7 +25,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         /// Create From Domain model
         /// </summary>
-        public static ApiModel.OrgGroup CreateFromResponse(this OrgGroup source)
+        public static ApiModel.OrgGroup CreateFromm(this OrgGroup source)
         {
             return new ApiModel.OrgGroup
             {

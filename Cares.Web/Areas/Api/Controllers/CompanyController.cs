@@ -31,6 +31,7 @@ namespace Cares.Web.Areas.Api.Controllers
         }
         #endregion
         #region public
+
         /// <summary>
         /// Get compnies
         /// </summary>
@@ -42,9 +43,11 @@ namespace Cares.Web.Areas.Api.Controllers
             }
             return  companyService.SearchCompany(request).CreateFrom();
         }
+
         /// <summary>
         /// Delete Company
         /// </summary>
+        [ApiException]
         public Boolean Delete(Company request)
         {
             if (request == null || !ModelState.IsValid)
@@ -54,6 +57,7 @@ namespace Cares.Web.Areas.Api.Controllers
             companyService.DeleteCompany(request.CreateFrom());
             return true;
         }
+
         /// <summary>
         /// Add/ Update Company
         /// </summary>

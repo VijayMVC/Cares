@@ -21,17 +21,19 @@ namespace Cares.Implementation.Services
         private readonly IOrganizationGroupRepository organizationGroupRepository;
         private readonly IBusinessSegmentRepository businessSegmentRepository;
         private readonly ICompanyRepository companyRepository;
+        private readonly IDepartmentRepository departmentRepository;
         #endregion
         #region Constructor
         /// <summary>
         ///  Company Constructor
         /// </summary>
         public CompanyService(ICompanyRepository companyRepository,
-            IBusinessSegmentRepository businessSegmentRepository, IOrganizationGroupRepository organizationGroupRepository)
+            IBusinessSegmentRepository businessSegmentRepository, IOrganizationGroupRepository organizationGroupRepository, IDepartmentRepository departmentRepository)
         {
             this.companyRepository = companyRepository;
             this.businessSegmentRepository = businessSegmentRepository;
             this.organizationGroupRepository = organizationGroupRepository;
+            this.departmentRepository = departmentRepository;
         }
 
         #endregion
@@ -87,12 +89,20 @@ namespace Cares.Implementation.Services
         public void DeleteCompany(Company company)
         {
             Company dbversion = companyRepository.Find(company.CompanyId);
-            if (dbversion == null)
+            if (
+                !((companyRepository.IsComapnyParent(company)) ||
+                  departmentRepository.IsCompanyContainDepartment(company)))
             {
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, "Company with Id {0} not found!", company.CompanyId));
+                if (dbversion == null)
+                {
+                    throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
+                        "Company with Id {0} not found!", company.CompanyId));
+                }
+                companyRepository.Delete(dbversion);
+                companyRepository.SaveChanges();
             }
-            companyRepository.Delete(dbversion);
-            companyRepository.SaveChanges();
+            else
+                throw new CaresException(Resources.Organization.Company.CompanyHasCompanyDepartmentAssociationError);
         }
         /// <summary>
         /// Search Company

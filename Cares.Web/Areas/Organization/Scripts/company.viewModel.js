@@ -14,7 +14,7 @@ define("company/company.viewModel",
                     //sorting order
                     sortIsAsc = ko.observable(true),
                     //sorting
-                    sortOn = ko.observable(1), 
+                    sortOn = ko.observable(1),
                     // company editor visibility
                     isCompanyEditorVisible = ko.observable(false),
                     // Business Segment Filter
@@ -39,7 +39,7 @@ define("company/company.viewModel",
                     businessSegList = ko.observableArray([]),
                     // Compnies list
                     companies = ko.observableArray([]),
-                     // Editor View Model
+                    // Editor View Model
                     editorViewModel = new ist.ViewModel(model.CompanyDetail),
                     // Selected company
                     selectedCompany = editorViewModel.itemForEditing,
@@ -58,7 +58,7 @@ define("company/company.viewModel",
                         getCompanies();
                     },
                     //create new compnay event handler
-                    onCreateCompany = function () {
+                    onCreateCompany = function() {
                         filteredCompanyList.removeAll();
                         ko.utils.arrayPushAll(filteredCompanyList(), parentCompanyList());
                         filteredCompanyList.valueHasMutated();
@@ -75,16 +75,16 @@ define("company/company.viewModel",
                         getCompanies();
                     },
                     //edit event handler
-                    onEditCompany = function (item) {
+                    onEditCompany = function(item) {
                         filteredCompanyList();
-                        filteredCompanyList(_.filter(parentCompanyList(), function (company) {
+                        filteredCompanyList(_.filter(parentCompanyList(), function(company) {
                             return company.CompanyId !== item.companyId();
                         }));
                         editorViewModel.selectItem(item);
                         isCompanyEditorVisible(true);
                     },
                     //cancel event handler
-                    onCancelCompanySave = function () {
+                    onCancelCompanySave = function() {
                         editorViewModel.revertItem();
                         isCompanyEditorVisible(false);
                     },
@@ -100,8 +100,8 @@ define("company/company.viewModel",
                         });
                         confirmation.show();
                     },
-                      //validation check 
-                    dobeforeCompany = function () {
+                    //validation check 
+                    dobeforeCompany = function() {
                         if (!selectedCompany().isValid()) {
                             selectedCompany().errors.showAllMessages();
                             return false;
@@ -109,38 +109,36 @@ define("company/company.viewModel",
                         return true;
                     },
                     //sace event handler
-                    onSaveCompany = function () {
+                    onSaveCompany = function() {
                         if (dobeforeCompany())
-                        saveCompany(selectedCompany());
+                            saveCompany(selectedCompany());
                     },
                     //save compnay 
-                    saveCompany = function (item) {
+                    saveCompany = function(item) {
                         dataservice.saveCompany(model.CompanyClienttoServerMapper(item), {
-                            success: function (dataFromServer) {
+                            success: function(dataFromServer) {
                                 var newItem = model.CompanyServertoClinetMapper(dataFromServer);
                                 if (selectedCompany().companyId() !== undefined) {
-                                    var newObjtodelete = companies.find(function (temp) {
+                                    var newObjtodelete = companies.find(function(temp) {
                                         return temp.companyId() == newItem.companyId();
                                     });
                                     companies.remove(newObjtodelete);
                                     companies.push(newItem);
                                     // deleting existing company from basecompany
-                                    var newObj = parentCompanyList.find(function (temp) {
+                                    var newObj = parentCompanyList.find(function(temp) {
                                         return temp.CompanyId === newItem.companyId();
                                     });
                                     parentCompanyList.remove(newObj);
                                     // updating
                                     updateBaseCompany(dataFromServer);
-                                }
-                                else
-                                {
+                                } else {
                                     updateBaseCompany(dataFromServer);
                                     companies.push(newItem);
                                 }
                                 isCompanyEditorVisible(false);
                                 toastr.success(ist.resourceText.CompanySaveSuccessMessage);
                             },
-                            error: function (exceptionMessage, exceptionType) {
+                            error: function(exceptionMessage, exceptionType) {
                                 if (exceptionType === ist.exceptionType.CaresGeneralException)
                                     toastr.error(exceptionMessage);
                                 else
@@ -159,8 +157,12 @@ define("company/company.viewModel",
                                 parentCompanyList.remove(obj);
                                 toastr.success(ist.resourceText.CompanyDeleteSuccessMessage);
                             },
-                            error: function() {
-                                toastr.error(ist.resourceText.CompanyDeleteFailError);
+                            error: function (exceptionMessage, exceptionType) {
+                                debugger;
+                                if (exceptionType === ist.exceptionType.CaresGeneralException)
+                                    toastr.error(exceptionMessage);
+                                else
+                                    toastr.error(ist.resourceText.CompanyDeleteFailError);
                             }
                         });
                     },
@@ -176,10 +178,9 @@ define("company/company.viewModel",
                             PageNo: pager().currentPage(),
                             SortBy: sortOn(),
                             IsAsc: sortIsAsc()
-
                         },
                         {
-                            success: function (data) {
+                            success: function(data) {
                                 companies.removeAll();
                                 pager().totalCount(data.TotalCount);
                                 _.each(data.Companies, function(item) {
@@ -193,7 +194,7 @@ define("company/company.viewModel",
                         });
                     },
                     // update company base data
-                    updateBaseCompany = function (dataFromServer) {
+                    updateBaseCompany = function(dataFromServer) {
                         var codeNamee = dataFromServer.CompanyCode + "-" + dataFromServer.CompanyName;
                         var obej = {
                             CompanyCodeName: codeNamee,
@@ -226,7 +227,7 @@ define("company/company.viewModel",
                         });
                     },
                     // Initialize the view model
-                    initialize = function(specifiedView) { 
+                    initialize = function(specifiedView) {
                         view = specifiedView;
                         ko.applyBindings(view.viewModel, view.bindingRoot);
                         getCompaniesBaseData();

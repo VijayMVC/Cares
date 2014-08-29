@@ -61,6 +61,15 @@ namespace Cares.Implementation.Resources.Organization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Operation is associated with Fleet Pool!.
+        /// </summary>
+        public static string OperationIsAssociatedWithFleetPool {
+            get {
+                return ResourceManager.GetString("OperationIsAssociatedWithFleetPool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Operation with same code already exists!.
         /// </summary>
         public static string OperationWithSameCodeAlreadyExistsError {

@@ -61,6 +61,15 @@ namespace Cares.Implementation.Resources.Organization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Department is associated with operation!.
+        /// </summary>
+        public static string DepartmentIsAssociatedWithOperationError {
+            get {
+                return ResourceManager.GetString("DepartmentIsAssociatedWithOperationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Department with same code already exists!.
         /// </summary>
         public static string DepartmentWithSameCodeAlreadyExistsError {

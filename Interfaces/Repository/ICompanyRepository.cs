@@ -20,6 +20,16 @@ namespace Cares.Interfaces.Repository
         /// <summary>
         /// Company Code validation check
         /// </summary>
-        bool IsCompanyCodeExists(Company fleetPool);
+        bool IsCompanyCodeExists(Company company);
+
+        /// <summary>
+        /// To identify if company is parent 
+        /// </summary>
+        bool IsComapnyParent(Company company);
+
+        /// <summary>
+        /// To identify if OrgGroup contains any company
+        /// </summary>
+        bool IsOrgGroupContainCompany(OrgGroup orgGroup);
     }
 }

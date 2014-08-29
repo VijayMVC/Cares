@@ -167,8 +167,11 @@ define("Fleet/fleetPool.viewModel",
                                 fleetPools.remove(asset);
                                 toastr.success(ist.resourceText.FleetPoolDeleteSuccessMessage);
                             },
-                            error: function() {
-                                toastr.error(ist.resourceText.FleetPoolDeleteFailError);
+                            error: function (exceptionMessage, exceptionType) {
+                                if (exceptionType === ist.exceptionType.CaresGeneralException)
+                                    toastr.error(exceptionMessage);
+                                else 
+                                    toastr.error(ist.resourceText.FleetPoolDeleteFailError);
                             }
                         });
                     },

@@ -167,9 +167,11 @@ namespace Cares.Repository.BaseRepository
         public DbSet<OrgGroup> OrgGroups { get; set; }
         /// <summary>
         /// FleetPool DbSet
-        /// Countries DB Set
         /// </summary>
         public DbSet<FleetPool> FleetPools { get; set; }
+        /// <summary>
+        /// Countries DB Set
+        /// </summary>
         public DbSet<Country> Countries { get; set; }
         /// <summary>
         /// Department DB Set
@@ -196,6 +198,11 @@ namespace Cares.Repository.BaseRepository
         /// Regions DB Set
         /// </summary>
         public DbSet<Region> Regions { get; set; }
+        /// <summary>
+        /// Regions DB Set
+        /// </summary>
+        public DbSet<WorkLocation> WorkLocations { get; set; }
+
         /// <summary>
         /// PricingStrategy DB Set
         /// </summary>
@@ -270,6 +277,15 @@ namespace Cares.Repository.BaseRepository
         /// </summary>
         public DbSet<Area> Areas { get; set; }
 
+        /// <summary>
+        /// WorkPlaces DB Set
+        /// </summary>
+        public DbSet<WorkPlace> WorkPlaces { get; set; }
+
+        /// <summary>
+        /// WorkPlaceType DB Set
+        /// </summary>
+        public DbSet<WorkPlaceType> WorkPlaceType { get; set; }
 
         /// <summary>
         /// Marketing Channel DB Set

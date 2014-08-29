@@ -35,6 +35,7 @@ define("Fleet/fleetPool.dataservice", function () {
                     amplify.request.define('deleteFleetPool', 'ajax', {
                         url: '/Api/FleetPool',
                         dataType: 'json',
+                        decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'Delete'
                     });                    
                     isInitialized = true;
