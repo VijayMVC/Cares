@@ -91,6 +91,15 @@ namespace Cares.Repository.Repositories
             Expression<Func<FleetPool, bool>> query = fleet => fleet.FleetPoolCode.ToLower()==fleetPool.FleetPoolCode.ToLower() && fleet.FleetPoolId !=fleetPool.FleetPoolId;
             return DbSet.Count(query) > 0;
         }
+
+        /// <summary>
+        /// Get All Fleet Pools for User Domain Key
+        /// </summary>
+        public override IEnumerable<FleetPool> GetAll()
+        {
+            return DbSet.Where(fp => fp.UserDomainKey == UserDomainKey).ToList();
+        }
+    
         #endregion 
     }
 }

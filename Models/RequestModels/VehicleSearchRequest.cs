@@ -15,7 +15,7 @@ namespace Cares.Models.RequestModels
         /// <summary>
         /// FleetPool ID
         /// </summary>
-        public long FleetPoolId { get; set; }
+        public long? FleetPoolId { get; set; }
 
         /// <summary>
         /// Hire Group Search Text
@@ -25,7 +25,7 @@ namespace Cares.Models.RequestModels
         /// <summary>
         /// Operation ID
         /// </summary>
-        public long OperationId { get; set; }
+        public long? OperationId { get; set; }
 
         /// <summary>
         /// Vehicle Order By

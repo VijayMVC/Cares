@@ -20,6 +20,8 @@ namespace Cares.Web.Areas.Fleet.Controllers
         {
             return View();
         }
+
+        // GET: /Vehicle/Home/
         public ActionResult Vehicle()
         {
             return View();

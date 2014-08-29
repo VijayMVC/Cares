@@ -65,7 +65,27 @@ namespace Cares.Web.ModelMappers
 
             return vehicle;
         }
-        
+        /// <summary>
+        ///  Create web model from entity
+        /// </summary>
+        public static VehicleListViewContent CreateFromListViewContent(this DomainModels.Vehicle source)
+        {
+
+            return new VehicleListViewContent
+            {
+                VehicleId = source.VehicleId,
+                VehicleName = source.VehicleName,
+                PlateNumber = source.PlateNumber,
+                CurrentOdometer = source.CurrentOdometer,
+                FuelLevel = source.FuelLevel,
+                ModelYear = source.ModelYear,
+                Location = source.OperationsWorkPlace.LocationCode,
+                VehicleMakeCodeName = source.VehicleMake.VehicleMakeCode + " - " + source.VehicleMake.VehicleMakeName,
+                VehicleStatusCodeName = source.VehicleStatus.VehicleStatusCode + " - " + source.VehicleStatus.VehicleStatusName,
+                FleetPoolCodeName = source.FleetPool.FleetPoolCode + " - " + source.FleetPool.FleetPoolName,
+                OperationCodeName = source.OperationsWorkPlace.Operation.OperationCode + " - " + source.OperationsWorkPlace.Operation.OperationName,
+            };
+        }
         /// <summary>
         /// Create Vehicle Search Response from domain Vehicle Search Response
         /// </summary>
@@ -73,7 +93,7 @@ namespace Cares.Web.ModelMappers
         {
             return new GetVehicleResponse
             {
-                Vehicles = source.Vehicles.Select(hg => hg.CreateFrom()),
+                Vehicles = source.Vehicles.Select(hg => hg.CreateFromListViewContent()),
                 TotalCount = source.TotalCount
             };
         }
@@ -105,7 +125,8 @@ namespace Cares.Web.ModelMappers
                        BusinessPartners = source.BusinessPartners.Select(bp => bp.CreateDropDownModelFrom()),
                        InsuranceType = source.InsuranceType.Select(it => it.CreateFromDropDown()),
                        MaintenanceTypes = source.MaintenanceTypes.Select(mt => mt.CreateFromDropDown()),
-                       VehicleCheckList = source.VehicleCheckList.Select(vcl => vcl.CreateFromDropDown())
+                       VehicleCheckList = source.VehicleCheckList.Select(vcl => vcl.CreateFromDropDown()),
+                       //Locations = source.Locations.Select(loc => loc.CreateFrom())
                    };
         }
 

@@ -12,7 +12,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Vehicles
         /// </summary>
-        public IEnumerable<Vehicle> Vehicles { get; set; }
+        public IEnumerable<VehicleListViewContent> Vehicles { get; set; }
 
         /// <summary>
         /// Total Count

@@ -130,6 +130,26 @@ namespace Cares.Implementation.Services
 
                };
         }
+
+        /// <summary>
+        /// Delete Vehicle
+        /// </summary>
+        /// <param name="vehicle"></param>
+        public void DeleteVehicle(Vehicle vehicle)
+        {
+            vehicleRepository.Delete(vehicle);
+            vehicleRepository.SaveChanges();
+        }
+
+        /// <summary>
+        /// Find By Vehicle Id
+        /// </summary>
+        /// <param name="vehicleId"></param>
+        /// <returns></returns>
+        public Vehicle FindById(long vehicleId)
+        {
+            return vehicleRepository.Find(vehicleId);
+        }
         #endregion
 
     }

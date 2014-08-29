@@ -45,7 +45,18 @@ namespace Cares.Web.Areas.Api.Controllers
             }
             return vehicleService.LoadVehicles((request)).CreateFrom();
         }
-        
+
+        /// <summary>
+        /// Delete a Vehicle
+        /// </summary>
+        public void Delete(Vehicle vehicle)
+        {
+            if (vehicle == null || !ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+            vehicleService.DeleteVehicle(vehicleService.FindById(vehicle.VehicleId));
+        }
         #endregion
 
     }
