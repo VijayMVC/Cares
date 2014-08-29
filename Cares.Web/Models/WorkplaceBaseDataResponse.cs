@@ -20,9 +20,19 @@ namespace Cares.Web.Models
         public IEnumerable<WorkplaceTypeDropDown> WorkPlaceTypes { get; set; }
 
         /// <summary>
+        /// Operation DropDown
+        /// </summary>
+        public IEnumerable<OperationDropDown> Operations { get; set; }
+
+        /// <summary>
         /// Work Locations DropDown
         /// </summary>
         public IEnumerable<WorkLocationDropDown> WorkLocations { get; set; }
+
+        /// <summary>
+        /// Fleet Pool DropDown
+        /// </summary>
+        public IEnumerable<FleetPoolDropDown> FleetPools { get; set; }
 
         #endregion
     }

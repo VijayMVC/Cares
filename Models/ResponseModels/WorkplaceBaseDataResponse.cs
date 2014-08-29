@@ -11,5 +11,7 @@ namespace Cares.Models.ResponseModels
         public IEnumerable<Company> Companies { get; set; }
         public IEnumerable<WorkPlaceType> WorkPlaceTypes { get; set; }
         public IEnumerable<WorkLocation> WorkLocations { get; set; }
+        public IEnumerable<Operation> Operations { get; set; }
+        public IEnumerable<FleetPool> Fleetpools { get; set; }
     }
 }
