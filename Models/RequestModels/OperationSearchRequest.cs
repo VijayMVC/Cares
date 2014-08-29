@@ -1,25 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Cares.Models.Common;
+﻿using Cares.Models.Common;
 
 namespace Cares.Models.RequestModels
 {
+    /// <summary>
+    /// operation search request 
+    /// </summary>
     public class OperationSearchRequest : GetPagedListRequest
     {
-
         public string OperationCodeText { get; set; }
-
         public string OperationNameText { get; set; }
-
         public string DepartmentTypeText { get; set; }
         public int? DepartmentId { get; set; }
-
         public int? CompanyId { get; set; }
 
-      
+        /// <summary>
+        /// Operation By Column to sort the data
+        /// </summary>
         public OperationByColumn OperationOrderBy
         {
             get

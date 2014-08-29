@@ -24,7 +24,10 @@
             "Organization": "/Areas/Organization/Scripts",
             "company": "/Areas/Organization/Scripts",
             "operation": "/Areas/Organization/Scripts",
-            "department": "/Areas/Organization/Scripts"
+            "department": "/Areas/Organization/Scripts",
+            "workplace": "/Areas/Organization/Scripts"
+
+
 
         }
 

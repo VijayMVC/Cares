@@ -41,6 +41,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Castle.Core.3.0.0.4001\lib\net40-client\Castle.Core.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
@@ -150,7 +154,7 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.Helpers.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.30506.0\lib\net40\System.Web.Http.dll</HintPath>
@@ -158,7 +162,7 @@
     <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.1.1\lib\net45\System.Web.Mvc.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.1.2\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -166,19 +170,19 @@
     </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.Razor.3.1.1\lib\net45\System.Web.Razor.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.1.2\lib\net45\System.Web.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.WebPages.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
@@ -256,6 +260,8 @@
     <Compile Include="Areas\Api\Controllers\TariffTypeController.cs" />
     <Compile Include="Areas\Api\Controllers\VehicleBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\VehicleController.cs" />
+    <Compile Include="Areas\Api\Controllers\WorkplaceBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\WorkplaceController.cs" />
     <Compile Include="Areas\BusinessPartner\BusinessPartnerAreaRegistration.cs" />
     <Compile Include="Areas\BusinessPartner\Controllers\HomeController.cs" />
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
@@ -286,6 +292,9 @@
     <Compile Include="ModelMappers\MaintenanceTypeMapper.cs" />
     <Compile Include="ModelMappers\ServiceRtMapper.cs" />
     <Compile Include="ModelMappers\VehicleCheckListMapper.cs" />
+    <Compile Include="ModelMappers\WorkLocationMapper.cs" />
+    <Compile Include="ModelMappers\WorkplaceMapper.cs" />
+    <Compile Include="ModelMappers\WorkplaceTypeMapper.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\DepartmentBaseDataResponse.cs" />
     <Compile Include="Models\DepartmentSearchRequestResponse.cs" />
@@ -438,6 +447,11 @@
     <Compile Include="Models\VehicleMakeDropDown.cs" />
     <Compile Include="Models\VehicleModelDropDown.cs" />
     <Compile Include="Models\VehicleStatusDropDown.cs" />
+    <Compile Include="Models\WorkLocationDropDown.cs" />
+    <Compile Include="Models\Workplace.cs" />
+    <Compile Include="Models\WorkplaceBaseDataResponse.cs" />
+    <Compile Include="Models\WorkplaceSearchRequestResponse.cs" />
+    <Compile Include="Models\WorkplaceTypeDropDown.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\FleetPool\FleetPool.ar.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -488,6 +502,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>OrganizationGroup.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\Workplace.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Workplace.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\Workplace.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Workplace.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Shared\Common.ar.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -589,7 +613,11 @@
     <Content Include="Areas\Organization\Scripts\department.model.js" />
     <Content Include="Areas\Organization\Scripts\department.view.js" />
     <Content Include="Areas\Organization\Scripts\department.viewModel.js" />
+    <Content Include="Areas\Organization\Scripts\workplace.viewModel.js" />
+    <Content Include="Areas\Organization\Scripts\workplace.dataservice.js" />
     <Content Include="Areas\Organization\Scripts\operation.dataservice.js" />
+    <Content Include="Areas\Organization\Scripts\workplace.view.js" />
+    <Content Include="Areas\Organization\Scripts\workplace.model.js" />
     <Content Include="Areas\Organization\Scripts\operation.model.js" />
     <Content Include="Areas\Organization\Scripts\operation.view.js" />
     <Content Include="Areas\Organization\Scripts\operation.viewModel.js" />
@@ -808,12 +836,6 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
-    <Content Include="Content\themes\Fleet.css">
-      <DependentUpon>Fleet.less</DependentUpon>
-    </Content>
-    <Content Include="Content\themes\Fleet.min.css">
-      <DependentUpon>Fleet.css</DependentUpon>
-    </Content>
     <Content Include="Content\OrgGroup.css">
       <DependentUpon>OrgGroup.less</DependentUpon>
     </Content>
@@ -1229,10 +1251,6 @@
     <Content Include="Areas\Organization\Views\Organization\_OrgGroupEditor.cshtml" />
     <Content Include="Areas\Pricing\Views\Tariff\InsuranceRate.cshtml" />
     <Content Include="Areas\Pricing\Views\Tariff\_InsuranceRateEditor.cshtml" />
-    <Content Include="Content\themes\Fleet.less" />
-    <Content Include="Content\themes\Fleet.css.map">
-      <DependentUpon>Fleet.css</DependentUpon>
-    </Content>
     <Content Include="Content\Company.less" />
     <Content Include="Content\Company.css.map">
       <DependentUpon>Company.css</DependentUpon>
@@ -1252,6 +1270,8 @@
     <Content Include="Areas\Organization\Views\Organization\_DepartmentEditor.cshtml" />
     <Content Include="Areas\Organization\Views\Organization\_OperationEditor.cshtml" />
     <Content Include="Areas\Fleet\Views\Home\Vehicle.cshtml" />
+    <Content Include="Areas\Organization\Views\Organization\Workplace.cshtml" />
+    <Content Include="Areas\Organization\Views\Organization\_WorkplaceEditor.cshtml" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
@@ -1399,6 +1419,8 @@
     <Folder Include="Areas\Api\Views\Operation\" />
     <Folder Include="Areas\Api\Views\OrganizationGroup\" />
     <Folder Include="Areas\Api\Views\Shared\" />
+    <Folder Include="Areas\Api\Views\WorkplaceBase\" />
+    <Folder Include="Areas\Api\Views\Workplace\" />
     <Folder Include="Areas\BusinessPartner\Models\" />
     <Folder Include="Areas\Common\Controllers\" />
     <Folder Include="Areas\Common\Models\" />
@@ -1477,6 +1499,14 @@
     <EmbeddedResource Include="Resources\Organization\OrganizationGroup.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>OrganizationGroup.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\Workplace.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Workplace.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\Workplace.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Workplace.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Shared\Common.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

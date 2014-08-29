@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Cares.Models.Common
 {
-    public enum OperationByColumn   /////////////////////
+    /// <summary>
+    /// Operation By Column to sort the data
+    /// </summary>
+    public enum OperationByColumn   
     {
        
         OperationCode = 1,

@@ -1,13 +1,12 @@
-﻿using System;
+﻿using Cares.Models.DomainModels;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Cares.Models.CommonTypes;
-using Cares.Models.DomainModels;
 
 namespace Cares.Models.ResponseModels
 {
+    /// <summary>
+    /// Operation Base Data Response class
+    /// </summary>
   public  class OperationBaseDataResponse
     { 
         public IEnumerable<Company> Companies { get; set; }

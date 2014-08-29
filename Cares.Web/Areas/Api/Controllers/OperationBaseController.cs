@@ -11,19 +11,6 @@ namespace Cares.Web.Areas.Api.Controllers
     /// </summary>
     public class OperationBaseController : ApiController
     {
-        #region Public
-        /// <summary>
-        /// Get Operation Base data
-        /// </summary>
-        public Models.OperationBaseDataResponse Get()
-        {
-            if (!ModelState.IsValid)
-            {
-                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
-            }
-            return operationService.LoadOperationBaseData().CreateFrom();
-        }
-        #endregion
         #region Private
         private readonly IOperationService operationService;
 
@@ -41,6 +28,19 @@ namespace Cares.Web.Areas.Api.Controllers
             this.operationService = operationService;
         }
 
+        #endregion
+        #region Public
+        /// <summary>
+        /// Get Operation Base data
+        /// </summary>
+        public Models.OperationBaseDataResponse Get()
+        {
+            if (!ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+            return operationService.LoadOperationBaseData().CreateFrom();
+        }
         #endregion
     }
 }

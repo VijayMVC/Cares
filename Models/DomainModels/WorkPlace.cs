@@ -112,7 +112,7 @@ namespace Cares.Models.DomainModels
         /// </summary>
         [Required]
         public long UserDomainKey { get; set; }
-        
+        public long? CompanyId { get; set; }
         #endregion
 
         #region Reference Properties

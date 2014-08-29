@@ -38,5 +38,13 @@ namespace Cares.Web.Areas.Organization.Controllers
         {
             return View();
         }
+
+        /// <summary>
+        /// Operation Area
+        /// </summary>
+        public ActionResult Workplace()
+        {
+            return View();
+        }
     }
 }

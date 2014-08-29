@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq.Expressions;
-using Cares.ExceptionHandling;
+﻿using Cares.ExceptionHandling;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
+using System;
+using System.Collections.Generic;
 namespace Cares.Implementation.Services
 {
     /// <summary>
@@ -33,6 +31,7 @@ namespace Cares.Implementation.Services
 
         #endregion
         #region Public
+
         /// <summary>
         /// Load All Operations
         /// </summary>
@@ -40,6 +39,7 @@ namespace Cares.Implementation.Services
         {
             return operationRepository.GetAll();
         }
+
         /// <summary>
         /// Load Operation BaseData
         /// </summary>
@@ -53,6 +53,7 @@ namespace Cares.Implementation.Services
                 DepartmentTypes =  departmentRepository.GetDepartmentsTypes()
             };
        }
+
         /// <summary>
         /// Search Operation
         /// </summary>
@@ -65,6 +66,7 @@ namespace Cares.Implementation.Services
                 TotalCount = rowCount
             };
         }
+
         /// <summary>
         /// Delete Operation
         /// </summary>

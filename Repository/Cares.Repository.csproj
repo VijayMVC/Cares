@@ -177,6 +177,9 @@
     <Compile Include="Repositories\VehicleMakeRepository.cs" />
     <Compile Include="Repositories\VehicleModelRepository.cs" />
     <Compile Include="Repositories\VehicleStatusRepository.cs" />
+    <Compile Include="Repositories\WorkLocationRepository.cs" />
+    <Compile Include="Repositories\WorkplaceRepository.cs" />
+    <Compile Include="Repositories\WorkplaceTypeRepository.cs" />
     <Compile Include="TypeRegistrations.cs" />
   </ItemGroup>
   <ItemGroup>
