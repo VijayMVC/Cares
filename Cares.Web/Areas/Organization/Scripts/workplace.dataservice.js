@@ -31,9 +31,9 @@ define("workplace/workplace.dataservice", function () {
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
-                    //delete Operation
-                    amplify.request.define('deleteOperation', 'ajax', {
-                        url: '/Api/Operation',
+                    //delete Workplace
+                    amplify.request.define('deleteWorkplace', 'ajax', {
+                        url: '/Api/Workplace',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
@@ -69,10 +69,10 @@ define("workplace/workplace.dataservice", function () {
                     data: params
                 });
             },
-            //delete Operation
-            deleteOperation = function (params, callbacks) {
+            //delete Workplace
+            deleteWorkplace = function (params, callbacks) {
                 return amplify.request({
-                    resourceId: 'deleteOperation',
+                    resourceId: 'deleteWorkplace',
                     success: callbacks.success,
                     error: callbacks.error,
                     data: params
@@ -82,7 +82,7 @@ define("workplace/workplace.dataservice", function () {
             getWorkplaceBaseData: getWorkplaceBaseData,
             getWorkplaces: getWorkplaces,
             saveWorkplace: saveWorkplace,
-            deleteOperation: deleteOperation
+            deleteWorkplace: deleteWorkplace
         };
     })();
     return dataService;

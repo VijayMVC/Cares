@@ -100,6 +100,15 @@ namespace Cares.Repository.Repositories
             Expression<Func<FleetPool, bool>> query = fleetPool => fleetPool.OperationId == operation.OperationId;
             return DbSet.Count(query) > 0;
         }
+
+
+        /// <summary>
+        /// Get all FleetPools
+        /// </summary>
+        public override IEnumerable<FleetPool> GetAll()
+        {
+            return DbSet.Where(fp => fp.UserDomainKey == UserDomainKey).ToList();
+        }
         #endregion 
     }
 }

@@ -35,7 +35,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         /// Fleet Pool Drop Down
         /// </summary>
-        public static ApiModel.FleetPoolDropDown CreateFromDropDown(this FleetPool source)
+        public static ApiModel.FleetPoolDropDown CreateFromm(this FleetPool source)
         {
             return new ApiModel.FleetPoolDropDown
             {

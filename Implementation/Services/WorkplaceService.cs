@@ -14,23 +14,29 @@ namespace Cares.Implementation.Services
     public class WorkplaceService : IWorkplaceService
     {
         #region Private
-
+        // repositories 
         private readonly ICompanyRepository companyRepository;
         private readonly IWorkplaceRepository workplaceRepository;
         private readonly IWorkplaceTypeRepository workplaceTypeRepository;
         private readonly IWorkLocationRepository workLocationRepository;
+        private readonly IOperationRepository operationRepository;
+        private readonly IFleetPoolRepository fleetPoolRepository;
 
         #endregion
-
         #region Constructor
-
+        /// <summary>
+        /// Workplace Service Constructor
+        /// </summary>
         public WorkplaceService(ICompanyRepository companyRepository, IWorkplaceRepository workplaceRepository,
-            IWorkLocationRepository workLocationRepository, IWorkplaceTypeRepository workplaceTypeRepository)
+            IWorkLocationRepository workLocationRepository, IWorkplaceTypeRepository workplaceTypeRepository,
+            IOperationRepository operationRepository, IFleetPoolRepository fleetPoolRepository)
         {
             this.workplaceRepository = workplaceRepository;
             this.companyRepository = companyRepository;
             this.workLocationRepository = workLocationRepository;
             this.workplaceTypeRepository = workplaceTypeRepository;
+            this.operationRepository = operationRepository;
+            this.fleetPoolRepository = fleetPoolRepository;
         }
 
         #endregion
@@ -46,7 +52,9 @@ namespace Cares.Implementation.Services
             {
                 Companies = companyRepository.GetAll(),
                 WorkLocations = workLocationRepository.GetAll(),
-                WorkPlaceTypes = workplaceTypeRepository.GetAll()
+                WorkPlaceTypes = workplaceTypeRepository.GetAll(),
+                Operations = operationRepository.GetAll(),
+                Fleetpools = fleetPoolRepository.GetAll()
             };
         }
 
@@ -93,6 +101,21 @@ namespace Cares.Implementation.Services
             }
 
             #endregion
+        }
+
+        /// <summary>
+        /// Delete workplace
+        /// </summary>
+        public void DeleteWorkPlace(WorkPlace workPlace)
+        {
+            WorkPlace dbVersion = workplaceRepository.Find(workPlace.WorkPlaceId);
+            {
+                if (dbVersion != null)
+                {
+                    workplaceRepository.Delete(dbVersion);
+                    workplaceRepository.SaveChanges();
+                }
+            }
         }
     }
 }

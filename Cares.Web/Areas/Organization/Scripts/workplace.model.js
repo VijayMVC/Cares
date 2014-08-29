@@ -21,6 +21,11 @@
                 workLocationId = ko.observable(spworkLocationId).extend({ required: true }),
                 workLocationName = ko.observable(spworkLocationName).extend({ required: true }),
 
+                 //Hire Group Detail list
+                operationsTabList = ko.observableArray([]),
+
+                 tabDetail = ko.observable(),
+
                 errors = ko.validation.group({
                     name: name,
                     code: code,
@@ -71,7 +76,10 @@
                 workplaceTypeId:workplaceTypeId,
 
                 parentWorkPlaceId: parentWorkPlaceId,
-                parentWorkPlaceName:parentWorkPlaceName,
+                parentWorkPlaceName: parentWorkPlaceName,
+
+                operationsTabList: operationsTabList,
+                tabDetail: tabDetail,
 
                 hasChanges: hasChanges,
                 reset: reset,
@@ -94,8 +102,82 @@
             itemFromServer.workplaceTypeId, itemFromServer.workplaceTypeName, itemFromServer.workLocationId, itemFromServer.workLocationName);
         return pob;
     };
-    return {
-        operation: operation,
-        OperationServertoClientMapper: OperationServertoClientMapper
+
+    var
+       // Workplace entity
+       // ReSharper disable InconsistentNaming
+       tab = function (specifiedId, specifiedCode, specifiedName, specifiedDescription, specifiedoperationId, specifiedoperationName,
+          specifiedfleelPoolId, specifiedfleelPoolName, specifiedcostCenter) {
+           var
+                locationId = ko.observable(specifiedId),
+                locationCode = ko.observable(specifiedCode),
+                locationName = ko.observable(specifiedName),
+                locationDescription = ko.observable(specifiedDescription),
+                operationId = ko.observable(specifiedoperationId),
+                operationName = ko.observable(specifiedoperationName),
+
+               fleelPoolId = ko.observable(specifiedfleelPoolId),
+               fleelPoolName = ko.observable(specifiedfleelPoolName),
+
+                costCenter = ko.observable(specifiedcostCenter),
+                errors = ko.validation.group({
+                  
+               }),
+               // Is Valid
+               isValid = ko.computed(function () {
+                   return errors().length === 0;
+               }),
+               dirtyFlag = new ko.dirtyFlag({
+                  
+               }),
+               // Has Changes
+               hasChanges = ko.computed(function () {
+                   return dirtyFlag.isDirty();
+               }),
+               // Reset
+               reset = function () {
+                   dirtyFlag.reset();
+               },
+               // Convert to server data
+               convertToServerData = function () {
+                   return {
+                      
+                   };
+               };
+           return {
+               locationId: locationId,
+               locationCode: locationCode,
+               locationName: locationName,
+               locationDescription:locationDescription,
+               operationId:operationId,
+               operationName:operationName,
+               fleelPoolId:fleelPoolId,
+               fleelPoolName:fleelPoolName,
+               costCenter:costCenter,
+
+
+               hasChanges: hasChanges,
+               reset: reset,
+               convertToServerData: convertToServerData,
+               isValid: isValid,
+               errors: errors
+           };
+       };
+    var tabServertoClientMapper = function (itemFromServer) {
+        var pob = new tab(itemFromServer.specifiedId, itemFromServer.specifiedCode, itemFromServer.specifiedName, itemFromServer.specifiedDescription,
+            itemFromServer.specifiedoperationId, itemFromServer.specifiedoperationName,
+          itemFromServer.specifiedfleelPoolId, itemFromServer.specifiedfleelPoolName, itemFromServer.specifiedcostCenter);
+        return pob;
     };
+
+
+
+    return {
+        tab:tab,
+        operation: operation,
+        OperationServertoClientMapper: OperationServertoClientMapper,
+        tabServertoClientMapper:tabServertoClientMapper
+    };
+
+
 });

@@ -19,7 +19,9 @@ namespace Cares.Web.ModelMappers
             {
                 Companies =      source.Companies.Select(company => company.CreateFrom()),
                 WorkPlaceTypes = source.WorkPlaceTypes.Select(workplce => workplce.CreateFrom()),
-                WorkLocations = source.WorkLocations.Select(workLocation => workLocation.CreateFrom())
+                WorkLocations = source.WorkLocations.Select(workLocation => workLocation.CreateFrom()),
+                Operations = source.Operations.Select(opperation => opperation.CreateFrom()),
+                FleetPools = source.Fleetpools.Select(fleetPool => fleetPool.CreateFromm())
             };
         }
 
@@ -71,7 +73,7 @@ namespace Cares.Web.ModelMappers
                 ParentWorkPlaceId = source.ParentWorkPlaceId,
                 WorkPlaceTypeId = source.WorkPlaceTypeId,
                 WorkLocationId = source.WorkLocationId,
-                CompanyId= source.CompanyId
+              //  CompanyId= source.CompanyId
             };
         } 
         #endregion

@@ -43,13 +43,13 @@ namespace Cares.Web.Areas.Api.Controllers
         /// Delete WorkPlace 
         /// </summary>
         [ApiException]
-        public Boolean Delete(Operation oppRequest)
+        public Boolean Delete(WorkPlace workPlace)
         {
-            if (oppRequest == null || !ModelState.IsValid)
+            if (workPlace == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-          //  operationService.DeleteOperation(oppRequest.CreateFrom());
+            workplaceService.DeleteWorkPlace(workPlace.CreateFrom());
             return true;
         }
 

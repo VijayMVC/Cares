@@ -13,7 +13,7 @@ namespace Cares.Web.ModelMappers
     {
         #region Public
         /// <summary>
-        ///  Create web model from entity
+        ///  Create dropdown web model from entity
         /// </summary>
         public static ApiModel.OperationDropDown CreateFrom(this Operation source)
         {

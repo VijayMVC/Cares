@@ -7,10 +7,16 @@ define("workplace/workplace.viewModel",
     function($, amplify, ko, dataservice, model, confirmation, pagination) {
         var ist = window.ist || {};
         ist.Operation = {
-            viewModel: (function() { 
+            viewModel: (function() {
                 var view,
                     //operations list
                     operations = ko.observableArray([]),
+                    operationsTabList = ko.observableArray([]),
+
+                    baseOperationsList = ko.observableArray([]),
+                    baseFleetPoolList = ko.observableArray([]),
+
+
 
                     //departments list for base data
                     baseWorkplaceTypeList = ko.observableArray([]),
@@ -34,9 +40,12 @@ define("workplace/workplace.viewModel",
                     isOperationEditorVisible = ko.observable(false),
                     //to control the visibility of filter ec
                     filterSectionVisilble = ko.observable(false),
-                     // Editor View Model
+                    //selected tab
+                    selectedTab = ko.observable(),
+                    // Editor View Model
                     editorViewModel = new ist.ViewModel(model.operation),
-                  
+                   
+
                     //selected operation
                     selectedOperation = editorViewModel.itemForEditing,
                     //save button handler
@@ -46,13 +55,23 @@ define("workplace/workplace.viewModel",
                     },
                     //cancel button handler
                     onCancelSaveOperation = function () {
-                        editorViewModel.revertItem();
+                    //    editorViewModel.revertItem();
                         isOperationEditorVisible(false);
                     },
                     // create new org group handler
                     onCreateOperationForm = function () {
-                        var operation =new model.operation();
-                        editorViewModel.selectItem(operation);
+                      //  var operation =new model.operation();
+                     //   editorViewModel.selectItem(operation);
+                        debugger;
+
+                        var hireGroup = new model.operation(); 
+                      
+                        // Select the newly added Hire Group
+                        selectedTab(hireGroup);
+                        selectedTab().tabDetail(new model.tab());
+                       
+                       
+
                         isOperationEditorVisible(true);
                     },
                     //reset butto handle 
@@ -79,7 +98,11 @@ define("workplace/workplace.viewModel",
                    
                     //edit button handler
                     onEditOperation = function (item) {
-                        editorViewModel.selectItem(item);
+                      //  editorViewModel.selectItem(item);
+                        //   selectedTab(new model.tab);
+                        selectedTab(item);
+                        selectedTab().tabDetail(new model.tab());
+
                         isOperationEditorVisible(true);
                     },
                      //validation check 
@@ -90,6 +113,20 @@ define("workplace/workplace.viewModel",
                         }
                         return true;
                     },
+                    ///////////////////////////////////////////////////////////////
+                    //////////////////////////////////////////////////////////////
+
+                     
+                      // Add To list vehicle detail
+                    onAddOperation = function (vehicleDetail) {
+
+                        debugger;
+                        operationsTabList.push(vehicleDetail);
+                    },
+                    operationChanged= function() {
+                       
+                    },
+
                     //save operation
                     saveOperation = function (operation) {
                         dataservice.saveWorkplace(operation.convertToServerData(), {
@@ -118,7 +155,7 @@ define("workplace/workplace.viewModel",
                     },
                     //delete operation
                     deleteOperation = function (operation) {
-                        dataservice.deleteOperation(operation.convertToServerData(), {
+                        dataservice.deleteWorkplace(operation.convertToServerData(), {
                                 success: function() {
                                     operations.remove(operation);
                                     toastr.success(ist.resourceText.OperationDeleteSuccessMessage);
@@ -176,12 +213,22 @@ define("workplace/workplace.viewModel",
                                 baseCompniesList.removeAll();
                                 baseWorkplaceTypeList.removeAll();
                                 baseWorkLocationsList.removeAll();
+                                baseFleetPoolList.removeAll();
+                                baseOperationsList.removeAll();
+
                                 ko.utils.arrayPushAll(baseCompniesList(), baseDataFromServer.Companies);
                                 baseCompniesList.valueHasMutated();
                                 ko.utils.arrayPushAll(baseWorkplaceTypeList(), baseDataFromServer.WorkPlaceTypes);
                                 baseWorkplaceTypeList.valueHasMutated();
                                 ko.utils.arrayPushAll(baseWorkLocationsList(), baseDataFromServer.WorkLocations);
                                 baseWorkLocationsList.valueHasMutated();
+
+                                ko.utils.arrayPushAll(baseFleetPoolList(), baseDataFromServer.FleetPools);
+                                baseFleetPoolList.valueHasMutated();
+                                ko.utils.arrayPushAll(baseOperationsList(), baseDataFromServer.Operations);
+                                baseOperationsList.valueHasMutated();
+
+
                             },
                             error: function (exceptionMessage, exceptionType) {
                                 if (exceptionType === ist.exceptionType.CaresGeneralException) {
@@ -213,12 +260,15 @@ define("workplace/workplace.viewModel",
                     initialize: initialize,
                     onCreateOperationForm:onCreateOperationForm,
                     sortOn: sortOn,
-                    getOperations:getOperations,
+                    getOperations: getOperations,
+                    baseOperationsList: baseOperationsList,
                     sortIsAsc: sortIsAsc,
                     filterSectionVisilble: filterSectionVisilble,
                     hideFilterSection: hideFilterSection,
                     showFilterSection: showFilterSection,
                     pager: pager,
+                    operationChanged:operationChanged,
+                    baseFleetPoolList:baseFleetPoolList,
                     selectedOperation:selectedOperation,
                     onResetResuults: onResetResuults,
                     onEditOperation:onEditOperation,
@@ -226,7 +276,10 @@ define("workplace/workplace.viewModel",
                     onSaveOperation: onSaveOperation,
                     onSearch: onSearch,
                     operations:operations,
-                    onCancelSaveOperation: onCancelSaveOperation
+                    onCancelSaveOperation: onCancelSaveOperation,
+                    operationsTabList: operationsTabList,
+                    onAddOperation: onAddOperation,
+                    selectedTab: selectedTab
                 };
             })()
         };
