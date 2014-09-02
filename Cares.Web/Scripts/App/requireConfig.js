@@ -13,6 +13,7 @@
 
             "Fleet": "/Areas/Fleet/Scripts",
             "hireGroup": "/Areas/Fleet/Scripts",
+            "vehicle": "/Areas/Fleet/Scripts",
 
             "tariffType": "/Areas/Pricing/Scripts",
             "tariffRate": "/Areas/Pricing/Scripts",

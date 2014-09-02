@@ -31,8 +31,9 @@ namespace Cares.Implementation.Services
         private readonly IInsuranceTypeRepository insuranceTypeRepository;
         private readonly IMaintenanceTypeRepository maintenanceTypeRepository;
         private readonly IVehicleCheckListRepository vehicleCheckListRepository;
-         private readonly IVehicleModelRepository vehicleModelRepository;
+        private readonly IVehicleModelRepository vehicleModelRepository;
         private readonly IVehicleCategoryRepository vehicleCategoryRepository;
+        private readonly IOperationsWorkPlaceRepository operationsWorkPlaceRepository;
         #endregion
 
         #region Constructors
@@ -45,7 +46,7 @@ namespace Cares.Implementation.Services
             IVehicleMakeRepository vehicleMakeRepository, IVehicleStatusRepository vehicleStatusRepository, IDepartmentRepository departmentRepository,
                ITransmissionTypeRepository transmissionTypeResposirory, IBusinessPartnerRepository businessPartnerRepository,
             IInsuranceTypeRepository insuranceTypeRepository, IMaintenanceTypeRepository maintenanceTypeRepository, IVehicleCheckListRepository vehicleCheckListRepository,
-            IVehicleModelRepository vehicleModelRepository, IVehicleCategoryRepository vehicleCategoryRepository)
+            IVehicleModelRepository vehicleModelRepository, IVehicleCategoryRepository vehicleCategoryRepository, IOperationsWorkPlaceRepository operationsWorkPlaceRepository)
         {
             if (vehicleRepository == null)
             {
@@ -68,6 +69,7 @@ namespace Cares.Implementation.Services
             this.vehicleCheckListRepository = vehicleCheckListRepository;
             this.vehicleModelRepository = vehicleModelRepository;
             this.vehicleCategoryRepository = vehicleCategoryRepository;
+            this.operationsWorkPlaceRepository = operationsWorkPlaceRepository;
         }
 
         #endregion
@@ -89,6 +91,45 @@ namespace Cares.Implementation.Services
         public GetVehicleResponse GetByHireGroup(VehicleSearchRequest request)
         {
             return vehicleRepository.GetByHireGroup(request);
+        }
+
+        /// <summary>
+        /// Get Vehicle Detail By ID
+        /// </summary>
+        /// <param name="vehicleId">vehicleId</param>
+        /// <returns></returns>
+        public Vehicle GetVehicleDetail(long vehicleId)
+        {
+            return vehicleRepository.Find(vehicleId);
+        }
+        /// <summary>
+        /// Save Vehicle
+        /// </summary>
+        /// <param name="vehicle"></param>
+        /// <returns></returns>
+        public Vehicle SaveVehicle(Vehicle vehicle)
+        {
+            Vehicle vehicleDbVersion = vehicleRepository.Find(vehicle.VehicleId);
+            #region Add
+            if (vehicleDbVersion == null)
+            {
+                vehicle.UserDomainKey = vehicleRepository.UserDomainKey;
+                vehicle.IsActive = true;
+                vehicle.IsDeleted = false;
+                vehicle.IsPrivate = false;
+                vehicle.IsReadOnly = false;
+                vehicle.RecCreatedDt = DateTime.Now;
+                vehicle.RecLastUpdatedDt = DateTime.Now;
+                vehicle.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
+                vehicle.RecLastUpdatedBy = vehicleRepository.LoggedInUserIdentity;
+                vehicle.RowVersion = 0;
+                vehicle.VehicleCode = "CaresVehicle";
+                vehicleRepository.Add(vehicle);
+                vehicleRepository.SaveChanges();
+            }
+            #endregion
+            vehicleRepository.LoadDependencies(vehicle);
+            return vehicle;
         }
 
         /// <summary>
@@ -127,8 +168,28 @@ namespace Cares.Implementation.Services
                    InsuranceType = insuranceTypeRepository.GetAll(),
                    MaintenanceTypes = maintenanceTypeRepository.GetAll(),
                    VehicleCheckList = vehicleCheckListRepository.GetAll(),
-
+                   Locations = operationsWorkPlaceRepository.GetSalesOperationsWorkPlace()
                };
+        }
+
+        /// <summary>
+        /// Delete Vehicle
+        /// </summary>
+        /// <param name="vehicle"></param>
+        public void DeleteVehicle(Vehicle vehicle)
+        {
+            vehicleRepository.Delete(vehicle);
+            vehicleRepository.SaveChanges();
+        }
+
+        /// <summary>
+        /// Find By Vehicle Id
+        /// </summary>
+        /// <param name="vehicleId"></param>
+        /// <returns></returns>
+        public Vehicle FindById(long vehicleId)
+        {
+            return vehicleRepository.Find(vehicleId);
         }
         #endregion
 

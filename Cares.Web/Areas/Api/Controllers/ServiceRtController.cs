@@ -46,6 +46,7 @@ namespace Cares.Web.Areas.Api.Controllers
             }
             return serviceRtService.LoadServiceRates((request)).CreateFrom();
         }
+        
         /// <summary>
         /// Update/Update a Service Rate
         /// </summary>

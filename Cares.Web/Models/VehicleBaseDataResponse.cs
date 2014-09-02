@@ -81,5 +81,10 @@ namespace Cares.Web.Models
         /// Vehicle Check List Drop Down
         /// </summary>
         public IEnumerable<VehicleCheckListDropDown> VehicleCheckList { get; set; }
+
+        /// <summary>
+        /// Vehicle Check List 
+        /// </summary>
+        public IEnumerable<OperationsWorkPlace> Locations { get; set; }
     }
 }

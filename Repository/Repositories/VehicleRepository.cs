@@ -27,11 +27,8 @@ namespace Cares.Repository.Repositories
              new Dictionary<VehicleOrderByColumn, Func<Vehicle, object>>
                     {
                         { VehicleOrderByColumn.PlateNumber, c => c.PlateNumber },
-                        { VehicleOrderByColumn.CurrentOdometer, c => c.CurrentOdometer },
-                        { VehicleOrderByColumn.VehicleCategory, c => c.VehicleCategory.VehicleCategoryName },
-                        { VehicleOrderByColumn.VehicleMake, c => c.VehicleMake.VehicleMakeName },
-                        { VehicleOrderByColumn.VehicleModel, c => c.VehicleModel.VehicleModelName },
-                        { VehicleOrderByColumn.ModelYear, c => c.ModelYear }
+                        { VehicleOrderByColumn.VehicleName, c => c.VehicleName },
+                        
                     };
 
         /// <summary>
@@ -98,26 +95,29 @@ namespace Cares.Repository.Repositories
         {
             int fromRow = (request.PageNo - 1) * request.PageSize;
             int toRow = request.PageSize;
-            Expression<Func<Vehicle, bool>> query = vehicle => (vehicle.HireGroupId == request.HireGroupId);
+            Expression<Func<Vehicle, bool>> query =
+                s =>
+                    (request.OperationId == null || s.OperationsWorkPlace.Operation.OperationId == request.OperationId) &&
+                     (request.FleetPoolId == null ||
+                      s.FleetPoolId == request.FleetPoolId);
 
-            IEnumerable<Vehicle> vehicles = request.IsAsc ? DbSet
-                .Include(vehicle => vehicle.HireGroup)
-                .Include(vehicle => vehicle.VehicleCategory)
-                .Include(vehicle => vehicle.VehicleMake)
-                .Include(vehicle => vehicle.VehicleModel)
-                .Include(vehicle => vehicle.VehicleStatus)
-                .Where(vehicle => vehicle.HireGroupId == request.HireGroupId)
-                .OrderBy(vehicleOrderByClause[request.VehicleOrderBy]).Skip(fromRow).Take(toRow).ToList() :
-                DbSet
-                .Include(vehicle => vehicle.HireGroup)
-                .Include(vehicle => vehicle.VehicleCategory)
-                .Include(vehicle => vehicle.VehicleMake)
-                .Include(vehicle => vehicle.VehicleModel)
-                .Include(vehicle => vehicle.VehicleStatus)
-                .Where(vehicle => vehicle.HireGroupId == request.HireGroupId)
-                .OrderByDescending(vehicleOrderByClause[request.VehicleOrderBy]).Skip(fromRow).Take(toRow).ToList();
+            IEnumerable<Vehicle> vehicles = request.IsAsc ? DbSet.Where(query)
+                                            .OrderBy(vehicleOrderByClause[request.VehicleOrderBy]).Skip(fromRow).Take(toRow).ToList()
+                                            : DbSet.Where(query)
+                                                .OrderByDescending(vehicleOrderByClause[request.VehicleOrderBy]).Skip(fromRow).Take(toRow).ToList();
 
             return new GetVehicleResponse { Vehicles = vehicles, TotalCount = DbSet.Count(query) };
+        }
+
+        /// <summary>
+        /// Load Dependencies
+        /// </summary>
+        public void LoadDependencies(Vehicle vehicle)
+        {
+            LoadProperty(vehicle, () => vehicle.OperationsWorkPlace);
+            LoadProperty(vehicle, () => vehicle.VehicleMake);
+            LoadProperty(vehicle, () => vehicle.VehicleStatus);
+            LoadProperty(vehicle, () => vehicle.FleetPool);
         }
         #endregion
     }

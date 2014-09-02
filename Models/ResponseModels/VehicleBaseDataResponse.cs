@@ -82,5 +82,10 @@ namespace Cares.Models.ResponseModels
         /// Vehicle Check List 
         /// </summary>
         public IEnumerable<VehicleCheckList> VehicleCheckList { get; set; }
+
+        /// <summary>
+        /// Vehicle Check List 
+        /// </summary>
+        public IEnumerable<OperationsWorkPlace> Locations { get; set; }
     }
 }

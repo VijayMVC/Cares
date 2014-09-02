@@ -39,7 +39,7 @@ namespace Cares.Web.ModelMappers
         {
             return new ApiModel.FleetPoolDropDown
             {
-                FleetPoold = source.FleetPoolId,
+                FleetPoolId = source.FleetPoolId,
                 FleetPoolCodeName = source.FleetPoolCode + " - " + source.FleetPoolName
             };
         }

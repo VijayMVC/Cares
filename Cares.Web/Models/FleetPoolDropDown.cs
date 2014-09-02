@@ -8,7 +8,7 @@
         /// <summary>
         /// Fleet Pool Id
         /// </summary>
-        public long FleetPoold { get; set; }
+        public long FleetPoolId { get; set; }
 
         /// <summary>
         /// Fleet Pool Code Name

@@ -1,0 +1,160 @@
+﻿<div class="well col-md-12" id="vehicleEditor" data-bind="visible: isVehicleEditorVisible, with: selectedVehicle" style="display: none;">
+    <div class="detailsContainer">
+        <h3 class="page-header detailsHeaderSection">Vehicle Detail</h3>
+        <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onSaveVehicle, enable: hasChanges, css: { 'btn-warning': hasChanges }">@Cares.Web.Resources.Shared.Common.Save</button>
+        <button class="btn btn-default" id="saveBtn" data-bind="click: $root.closeVehicleEditor">@Cares.Web.Resources.Shared.Common.Cancel</button>
+    </div>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="plateNumber" class="control-label h5 col-sm-2">Plate Number *</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder='<Plate Number>' id="plateNumber" data-bind="value:plateNumber , validationTooltip:plateNumber " />
+            </div>
+            <label for="vName" class="control-label h5 col-sm-2">Vehicle Name </label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder='<Vehicle Name>' id="vName" data-bind="value:vehicleName , validationTooltip:vehicleName " />
+            </div>
+            <label for="vPictorialCondition" class="control-label h5 col-sm-2">Vehicle Pictorial Condition </label>
+            <div class="col-md-2">
+                <input type="button" class="form-control" placeholder='<Plate Number>' id="vPictorialCondition" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="company" class="control-label h5 col-sm-2">Company </label>
+            <div class="col-md-2">
+                <select id="company" class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption:  'Company' , value: companyId, validationTooltip: companyId, event:{change:$root.onSelectedCompany}"></select>
+            </div>
+            <label for="department" class="control-label h5 col-sm-2">Department </label>
+            <div class="col-md-2">
+                <select id="department" class="form-control" data-bind="options: $root.filteredDepartments, optionsText: 'DepartmentCodeName', optionsValue: 'DepartmentId', optionsCaption:  'Department' , value: departmentId, validationTooltip: departmentId, event:{change:$root.onSelectedDepartemnt}"></select>
+            </div>
+            <label for="operation" class="control-label h5 col-sm-2">Operation </label>
+            <div class="col-md-2">
+                <select id="operation" class="form-control" data-bind="options: $root.filteredOperations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: 'Operation '  , value: operationId, validationTooltip: operationId"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="region" class="control-label h5 col-sm-2">Region </label>
+            <div class="col-md-2">
+                <select id="region" class="form-control" data-bind="options: $root.regions, optionsText: 'RegionCodeName', optionsValue: 'RegionId', optionsCaption:  'Region' , value: regionId, validationTooltip: regionId "></select>
+            </div>
+            <label for="fleetPool" class="control-label h5 col-sm-2">Fleet Pool </label>
+            <div class="col-md-2">
+                <select id="fleetPool" class="form-control" data-bind="options: $root.fleetPools, optionsText: 'FleetPoolCodeName', optionsValue: 'FleetPoolId', optionsCaption:  'Fleet Pool ' , value: fleetPoolId, validationTooltip: fleetPoolId"></select>
+            </div>
+            <label for="location" class="control-label h5 col-sm-2"> At location  </label>
+            <div class="col-md-2">
+                <select id="location" class="form-control" data-bind="options: $root.locations, optionsText: 'LocationCode', optionsValue: 'OperationsWorkPlaceId', optionsCaption: 'Location '  , value: locationId, validationTooltip: locationId"></select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="fuelType" class="control-label h5 col-sm-2">Fuel Type* </label>
+            <div class="col-md-2">
+                <select id="fuelType" class="form-control" data-bind="options: $root.fuelTypes, optionsText: 'FuelTypeCodeName', optionsValue: 'FuelTypeId', optionsCaption:  'Fuel Type' , value: fuelTypeId, validationTooltip: fuelTypeId "></select>
+            </div>
+            <label class="control-label h5 col-sm-2">Fuel Level (%) * </label>
+            <div class="col-md-2">
+
+            </div>
+            <label for="vMake" class="control-label h5 col-sm-2">Vehicle Make *  </label>
+            <div class="col-md-2">
+                <select id="vMake" class="form-control" data-bind="options: $root.vehicleMakes, optionsText: 'VehicleMakeCodeName', optionsValue: 'VehicleMakeId', optionsCaption: 'Location '  , value: vehicleMakeId, validationTooltip: vehicleMakeId"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="vModel" class="control-label h5 col-sm-2">Vehicle Model * </label>
+            <div class="col-md-2">
+                <select id="vModel" class="form-control" data-bind="options: $root.vehicleModels, optionsText: 'VehicleModelCodeName', optionsValue: 'VehicleModeld', optionsCaption: 'Vehicle Model', value:vehicleModelId "></select>
+            </div>
+            <label for="vCategory" class="control-label h5 col-sm-2">Vehicle Category * </label>
+            <div class="col-md-2">
+                <select id="vCategory" class="form-control" data-bind="options: $root.vehicleCategories, optionsText: 'VehicleCategoryCodeName', optionsValue: 'VehicleCategoryId', optionsCaption: 'Vehicle Category' , value: vehicleCategoryId "></select>
+            </div>
+            <label for="modelYear" class="control-label h5 col-sm-2">Model Year *  </label>
+            <div class="col-md-2">
+                <select id="modelYear" class="form-control" data-bind="options: $root.modelYears, optionsText: 'Text', optionsValue: 'Id', optionsCaption: 'Model Year ', value: modelYear, validationTooltip: modelYear"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="status" class="control-label h5 col-sm-2">Status * </label>
+            <div class="col-md-2">
+                <select id="status" class="form-control" data-bind="options: $root.vehicleStatuses, optionsText: 'VehicleStatusCodeName', optionsValue: 'VehicleStatusId', optionsCaption: 'Status', value:statusId "></select>
+            </div>
+            <label for="transmission" class="control-label h5 col-sm-2">Transmission * </label>
+            <div class="col-md-2">
+                <select id="transmission" class="form-control" data-bind="options: $root.transmissionTypes, optionsText: 'TransmissionTypeCodeName', optionsValue: 'TransmissionTypeId', optionsCaption: 'Transmission Type' , value: transmissionTypeId "></select>
+            </div>
+            <label for="tankSize" class="control-label h5 col-sm-2">Tank Size (ltrs)* </label>
+            <div class="col-md-2">
+                <input id="tankSize" type="text" class="form-control" placeholder='<Tank Size (ltrs)>' data-bind="value:tankSize , validationTooltip:tankSize " />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="color" class="control-label h5 col-sm-2">Color *</label>
+            <div class="col-md-2">
+                <input id="color" type="text" class="form-control" placeholder='<Color>' data-bind="value:color , validationTooltip:color " />
+            </div>
+            <label for="initialOdemeter" class="control-label h5 col-sm-2">Initial Odometer * </label>
+            <div class="col-md-2">
+                <input id="initialOdemeter" type="text" class="form-control" placeholder='<Initial Odometer >' data-bind="value:initialOdemeter , validationTooltip:initialOdemeter " />
+            </div>
+            <label for="currentOdemeter" class="control-label h5 col-sm-2">Current Odometer * </label>
+            <div class="col-md-2">
+                <input id="currentOdemeter" type="text" class="form-control" placeholder='<Current Odometer>' data-bind="value:currentOdemeter , validationTooltip:currentOdemeter " />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="color" class="control-label h5 col-sm-2">Branch Owner *</label>
+            <div class="col-md-2">
+                <input type="checkbox" class="form-control" data-bind="checked: branchOwnerIsChecked " />
+            </div>
+            <label for="registrationDate" class="control-label h5 col-sm-2">Registeration Date  </label>
+            <div class="col-md-2">
+                <input id="registrationDate" type="text" class="form-control" data-bind="datepicker: registrationDate, validationTooltip: registrationDate" />
+            </div>
+            <label for="registrationExpDate" class="control-label h5 col-sm-2">Registeration Exp. Date </label>
+            <div class="col-md-2">
+                <input id="registrationExpDate" type="text" class="form-control" data-bind="datepicker: registrationExpDate, validationTooltip: registrationExpDate" />
+            </div>
+        </div>
+    </form>
+    <div class="panel panel-info">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="active"><a href="#otherDetail" role="tab" data-toggle="tab">Other Details</a></li>
+            <li><a href="#purchaseLeaseInfo" role="tab" data-toggle="tab">Purchase/Lease Info</a></li>
+            <li><a href="#insuranceInfo" role="tab" data-toggle="tab">Insurance Info</a></li>
+            <li><a href="#maintenanceSchedule" role="tab" data-toggle="tab">Maintenance Schedule</a></li>
+            <li><a href="#checkListItem" role="tab" data-toggle="tab">CheckList Item</a></li>
+            <li><a href="#depriciationDisposalInfo" role="tab" data-toggle="tab">Depriciation/Disposal Info</a></li>
+            <li><a href="#uploadImages" role="tab" data-toggle="tab">Upload Image</a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <br />
+            <!-- first tab - Other Details-->
+            <div class="tab-pane active" id="otherDetail">
+            </div>
+            <!-- second tab - Purchase/Lease Info-->
+            <div class="tab-pane" id="purchaseLeaseInfo">
+            </div>
+            <!-- third tab - Insuran Info-->
+            <div class="tab-pane" id="insuranceInfo">
+            </div>
+            <!-- fourth tab - Maintenance Schedule-->
+            <div class="tab-pane" id="maintenanceSchedule">
+            </div>
+            <!-- fifth tab - Check List item-->
+            <div class="tab-pane" id="checkListItem">
+            </div>
+            <!-- sixth tab - Depriciation/Disposal Info-->
+            <div class="tab-pane" id="depriciationDisposalInfo">
+            </div> 
+            <!-- seventh tab - Upload Image-->
+            <div class="tab-pane" id="uploadImages">
+            </div>
+
+        </div>
+    </div>
+</div>

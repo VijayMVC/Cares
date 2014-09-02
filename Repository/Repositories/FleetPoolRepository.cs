@@ -101,14 +101,14 @@ namespace Cares.Repository.Repositories
             return DbSet.Count(query) > 0;
         }
 
-
         /// <summary>
-        /// Get all FleetPools
+        /// Get All Fleet Pools for User Domain Key
         /// </summary>
         public override IEnumerable<FleetPool> GetAll()
         {
             return DbSet.Where(fp => fp.UserDomainKey == UserDomainKey).ToList();
         }
+    
         #endregion 
     }
 }

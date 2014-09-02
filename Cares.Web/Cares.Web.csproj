@@ -261,6 +261,7 @@
     <Compile Include="Areas\Api\Controllers\TariffTypeController.cs" />
     <Compile Include="Areas\Api\Controllers\VehicleBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\VehicleController.cs" />
+    <Compile Include="Areas\Api\Controllers\VehicleDetailController.cs" />
     <Compile Include="Areas\Api\Controllers\WorkplaceBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\WorkplaceController.cs" />
     <Compile Include="Areas\BusinessPartner\BusinessPartnerAreaRegistration.cs" />
@@ -379,6 +380,8 @@
     <Compile Include="Models\VehicleBaseDataResponse.cs" />
     <Compile Include="Models\VehicleCategory.cs" />
     <Compile Include="Models\VehicleCheckListDropDown.cs" />
+    <Compile Include="Models\VehicleDetail.cs" />
+    <Compile Include="Models\VehicleListViewContent.cs" />
     <Compile Include="Models\VehicleMake.cs" />
     <Compile Include="Models\VehicleModel.cs" />
     <Compile Include="Models\VehicleStatus.cs" />
@@ -604,9 +607,13 @@
     <Content Include="Areas\Fleet\Scripts\fleetPool.model.js" />
     <Content Include="Areas\Fleet\Scripts\fleetPool.view.js" />
     <Content Include="Areas\Fleet\Scripts\fleetPoolWithKoMapping.model.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicle.dataservice.js" />
     <Content Include="Areas\Fleet\Scripts\hireGroup.dataservice.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicle.model.js" />
     <Content Include="Areas\Fleet\Scripts\hireGroup.model.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicle.view.js" />
     <Content Include="Areas\Fleet\Scripts\hireGroup.view.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicle.viewModel.js" />
     <Content Include="Areas\Fleet\Scripts\hireGroup.viewModel.js" />
     <Content Include="Areas\Organization\Scripts\company.dataservice.js" />
     <Content Include="Areas\Organization\Scripts\company.model.js" />
@@ -1273,6 +1280,7 @@
     <Content Include="Areas\Organization\Views\Organization\_DepartmentEditor.cshtml" />
     <Content Include="Areas\Organization\Views\Organization\_OperationEditor.cshtml" />
     <Content Include="Areas\Fleet\Views\Home\Vehicle.cshtml" />
+    <Content Include="Areas\Fleet\Views\Home\_VehicleEditor.cshtml" />
     <Content Include="Areas\Organization\Views\Organization\Workplace.cshtml" />
     <Content Include="Areas\Organization\Views\Organization\_WorkplaceEditor.cshtml" />
     <None Include="Scripts\amplify-vsdoc.js" />
