@@ -52,6 +52,7 @@
     <Compile Include="IServices\IBusinessPartnerBaseDataService.cs" />
     <Compile Include="IServices\ICountryService.cs" />
     <Compile Include="IServices\IInsuranceRateService.cs" />
+    <Compile Include="IServices\IOperationsWorkPlaceService.cs" />
     <Compile Include="IServices\IServiceRtService.cs" />
     <Compile Include="IServices\IWorkplaceService.cs" />
     <Compile Include="Repository\IFuelTypeRepository.cs" />

@@ -34,6 +34,11 @@ namespace Cares.Web.Models
         /// </summary>
         public IEnumerable<FleetPoolDropDown> FleetPools { get; set; }
 
+        /// <summary>
+        /// Parent work places
+        /// </summary>
+        public IEnumerable<WorkPlaceDropdown> ParentWorkPlaces { get; set; }
+
         #endregion
     }
 }

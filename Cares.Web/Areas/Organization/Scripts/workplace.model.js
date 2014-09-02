@@ -2,43 +2,36 @@
     var
         // Workplace entity
         // ReSharper disable InconsistentNaming
-        operation = function (specifiedId, specifiedCode, specifiedName, specifiedDescription, cmpId, spcCompanyName, spparentWorkPlaceId, spparentWorkPlaceName,
+        workPlace = function (specifiedId, specifiedCode, specifiedName, specifiedDescription, cmpId, spcCompanyName, spparentWorkPlaceId, spparentWorkPlaceName,
           specifiedworkplaceTypeId, specifiedworkplaceTypeName ,spworkLocationId,spworkLocationName) {
             var
                 id = ko.observable(specifiedId),
                 code = ko.observable(specifiedCode).extend({ required: true }),
-                name = ko.observable(specifiedName).extend({ required: true }),
-                description = ko.observable(specifiedDescription).extend({ required: true }),
-                companyId = ko.observable(cmpId).extend({ required: true }),
-                companyName = ko.observable(spcCompanyName).extend({ required: true }),
-
-                parentWorkPlaceId = ko.observable(spparentWorkPlaceId).extend({ required: true }),
-                parentWorkPlaceName = ko.observable(spparentWorkPlaceName).extend({ required: true }),
-
+                name = ko.observable(specifiedName),
+                description = ko.observable(specifiedDescription),
+                companyId = ko.observable(cmpId),
+                companyName = ko.observable(spcCompanyName),
+                parentWorkPlaceId = ko.observable(spparentWorkPlaceId),
+                parentWorkPlaceName = ko.observable(spparentWorkPlaceName),
                 workplaceTypeId = ko.observable(specifiedworkplaceTypeId).extend({ required: true }),
-                workplaceTypeName = ko.observable(specifiedworkplaceTypeName).extend({ required: true }),
-
+                workplaceTypeName = ko.observable(specifiedworkplaceTypeName),
                 workLocationId = ko.observable(spworkLocationId).extend({ required: true }),
                 workLocationName = ko.observable(spworkLocationName).extend({ required: true }),
-
-                 //Hire Group Detail list
-                operationsTabList = ko.observableArray([]),
-
-                 tabDetail = ko.observable(),
-
+                OperationsWorkPlaces = ko.observableArray([]),
+                tabDetail = ko.observable(),
                 errors = ko.validation.group({
-                    name: name,
                     code: code,
-                    description: description,
+                    workplaceTypeId: workplaceTypeId,
+                    workLocationId: workLocationId
                 }),
                 // Is Valid
                 isValid = ko.computed(function() {
                     return errors().length === 0;
                 }),
                 dirtyFlag = new ko.dirtyFlag({
-                    name: name,
                     code: code,
-                    description: description,
+                    workplaceTypeId: workplaceTypeId,
+                    workLocationId: workLocationId
                 }),
                 // Has Changes
                 hasChanges = ko.computed(function() {
@@ -49,7 +42,7 @@
                     dirtyFlag.reset();
                 },
                 // Convert to server data
-                convertToServerData = function() {
+                convertToServerData = function () {
                     return {
                         WorkPlaceId :id(),
                         WorkPlaceCode:code(),
@@ -58,7 +51,8 @@
                         WorkPlaceTypeId:workplaceTypeId(),
                         CompanyId:companyId(),
                         WorkLocationId:workLocationId(),
-                        ParentWorkPlaceId: parentWorkPlaceId()
+                        ParentWorkPlaceId: parentWorkPlaceId(),
+                        OperationsWorkPlaces:OperationsWorkPlaces()
                     };
                 };
             return {
@@ -68,19 +62,14 @@
                 description: description,
                 companyId: companyId,
                 companyName: companyName,
-
                 workLocationId:workLocationId,
                 workLocationName:workLocationName,
-
                 workplaceTypeName:workplaceTypeName,
                 workplaceTypeId:workplaceTypeId,
-
                 parentWorkPlaceId: parentWorkPlaceId,
                 parentWorkPlaceName: parentWorkPlaceName,
-
-                operationsTabList: operationsTabList,
+                OperationsWorkPlaces: OperationsWorkPlaces,
                 tabDetail: tabDetail,
-
                 hasChanges: hasChanges,
                 reset: reset,
                 convertToServerData: convertToServerData,
@@ -90,38 +79,37 @@
         };
     //server to client mapper
     var OperationServertoClientMapper = function (itemFromServer) {
-        var pob = new operation(itemFromServer.WorkPlaceId, itemFromServer.WorkPlaceCode, itemFromServer.WorkPlaceName,
-            itemFromServer.WorkPlaceDescription, itemFromServer.CompanyId, itemFromServer.CompanyName, itemFromServer.WorkPlaceId, itemFromServer.WorkPlaceName,
+        var pob = new workPlace(itemFromServer.WorkPlaceId, itemFromServer.WorkPlaceCode, itemFromServer.WorkPlaceName,
+            itemFromServer.WorkPlaceDescription, itemFromServer.CompanyId, itemFromServer.CompanyName, itemFromServer.ParentWorkPlaceId, itemFromServer.ParentWorkPlaceName,
             itemFromServer.WorkPlaceTypeId, itemFromServer.WorkPlaceTypeName, itemFromServer.WorkLocationId, itemFromServer.WorkLocationName);
         return pob;
     };
     //function to attain cancel button functionality 
-    operation.CreateFromClientModel = function (itemFromServer) {
-        var pob = new operation(itemFromServer.id, itemFromServer.code, itemFromServer.name,
+    workPlace.CreateFromClientModel = function (itemFromServer) {
+        var pob = new workPlace(itemFromServer.id, itemFromServer.code, itemFromServer.name,
             itemFromServer.description, itemFromServer.companyId, itemFromServer.companyName, itemFromServer.parentWorkPlaceId, itemFromServer.parentWorkPlaceName,
             itemFromServer.workplaceTypeId, itemFromServer.workplaceTypeName, itemFromServer.workLocationId, itemFromServer.workLocationName);
         return pob;
     };
 
     var
-       // Workplace entity
+       // operation Workplace entity
        // ReSharper disable InconsistentNaming
-       tab = function (specifiedId, specifiedCode, specifiedName, specifiedDescription, specifiedoperationId, specifiedoperationName,
-          specifiedfleelPoolId, specifiedfleelPoolName, specifiedcostCenter) {
+       operationWorkplace = function (specifiedId, specifiedCode, specifiedName, specifiedDescription, specifiedoperationId, specifiedoperationName,
+          specifiedfleelPoolId, specifiedfleelPoolName, specifiedcostCenter, specifiedWorkPlaceId, isCretedNewvalue) {
            var
+                parentWorkPlaceId = ko.observable(specifiedWorkPlaceId),
+
                 locationId = ko.observable(specifiedId),
                 locationCode = ko.observable(specifiedCode),
                 locationName = ko.observable(specifiedName),
                 locationDescription = ko.observable(specifiedDescription),
                 operationId = ko.observable(specifiedoperationId),
                 operationName = ko.observable(specifiedoperationName),
-
                fleelPoolId = ko.observable(specifiedfleelPoolId),
                fleelPoolName = ko.observable(specifiedfleelPoolName),
-
                 costCenter = ko.observable(specifiedcostCenter),
                 errors = ko.validation.group({
-                  
                }),
                // Is Valid
                isValid = ko.computed(function () {
@@ -141,7 +129,12 @@
                // Convert to server data
                convertToServerData = function () {
                    return {
-                      
+                       OperationsWorkPlaceId: locationId(),
+                       LocationCode: locationCode(),
+                       OperationId: operationId(),
+                       FleetPoolId: fleelPoolId(),
+                       CostCenter: costCenter(),
+                       WorkPlaceId: parentWorkPlaceId()
                    };
                };
            return {
@@ -154,8 +147,7 @@
                fleelPoolId:fleelPoolId,
                fleelPoolName:fleelPoolName,
                costCenter:costCenter,
-
-
+               parentWorkPlaceId:parentWorkPlaceId,
                hasChanges: hasChanges,
                reset: reset,
                convertToServerData: convertToServerData,
@@ -163,20 +155,18 @@
                errors: errors
            };
        };
-    var tabServertoClientMapper = function (itemFromServer) {
-        var pob = new tab(itemFromServer.specifiedId, itemFromServer.specifiedCode, itemFromServer.specifiedName, itemFromServer.specifiedDescription,
-            itemFromServer.specifiedoperationId, itemFromServer.specifiedoperationName,
-          itemFromServer.specifiedfleelPoolId, itemFromServer.specifiedfleelPoolName, itemFromServer.specifiedcostCenter);
+    // operation Workplace Server to Client Mapper
+    var operationWorkplaceServertoClientMapper = function (itemFromServer) {
+        var pob = new operationWorkplace(itemFromServer.OperationsWorkPlaceId, itemFromServer.LocationCode, "[No Name]", "[No Des.]",
+            itemFromServer.OperationId, itemFromServer.OperationName,
+          itemFromServer.FleetPoolId, itemFromServer.FleetPoolName, itemFromServer.CostCenter, itemFromServer.WorkPlaceId,false);
         return pob;
     };
-
-
-
     return {
-        tab:tab,
-        operation: operation,
+        operationWorkplace: operationWorkplace,
+        workPlace: workPlace,
         OperationServertoClientMapper: OperationServertoClientMapper,
-        tabServertoClientMapper:tabServertoClientMapper
+        operationWorkplaceServertoClientMapper: operationWorkplaceServertoClientMapper
     };
 
 

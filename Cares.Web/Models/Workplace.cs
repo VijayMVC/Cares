@@ -1,5 +1,4 @@
-﻿using Cares.Models.DomainModels;
-using System;
+﻿
 using System.Collections.Generic;
 
 namespace Cares.Web.Models
@@ -71,6 +70,11 @@ namespace Cares.Web.Models
             /// Work Location Name
             /// </summary>
             public string WorkLocationName { get; set; }
+
+            /// <summary>
+            /// Operations Workplaces that use this workspace
+            /// </summary>
+            public virtual List<OperationsWorkPlace> OperationsWorkPlaces { get; set; } 
 
             #endregion
 

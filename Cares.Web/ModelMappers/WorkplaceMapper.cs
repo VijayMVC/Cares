@@ -1,6 +1,8 @@
 ﻿using System.Linq;
-using Cares.Models.DomainModels;
-using Cares.Models.ResponseModels;
+using Cares.Web.Models;
+using WorkPlace = Cares.Models.DomainModels.WorkPlace;
+using WorkplaceBaseDataResponse = Cares.Models.ResponseModels.WorkplaceBaseDataResponse;
+using WorkplaceSearchRequestResponse = Cares.Models.ResponseModels.WorkplaceSearchRequestResponse;
 
 namespace Cares.Web.ModelMappers
 {
@@ -21,7 +23,8 @@ namespace Cares.Web.ModelMappers
                 WorkPlaceTypes = source.WorkPlaceTypes.Select(workplce => workplce.CreateFrom()),
                 WorkLocations = source.WorkLocations.Select(workLocation => workLocation.CreateFrom()),
                 Operations = source.Operations.Select(opperation => opperation.CreateFrom()),
-                FleetPools = source.Fleetpools.Select(fleetPool => fleetPool.CreateFromm())
+                FleetPools = source.Fleetpools.Select(fleetPool => fleetPool.CreateFromm()),
+                ParentWorkPlaces = source.ParentWorkPlaces.Select(workplace => workplace.CreateFromm())
             };
         }
 
@@ -51,20 +54,32 @@ namespace Cares.Web.ModelMappers
                 CompanyId = source.WorkLocation.CompanyId ,
                 CompanyName =  source.WorkLocation.Company.CompanyName,
                 ParentWorkPlaceId = source.ParentWorkPlaceId,
-                ParentWorkPlaceName = source.ParentWorkPlaceId!=null ? source.ParentWorkPlace.WorkPlaceName : "EmptY",
+                ParentWorkPlaceName = source.ParentWorkPlaceId!=null ? source.ParentWorkPlace.WorkPlaceName : "",
                 WorkPlaceTypeId = source.WorkPlaceTypeId,
                 WorkPlaceTypeName = source.WorkPlaceType.WorkPlaceTypeName,
                 WorkLocationId = source.WorkLocationId,
-                WorkLocationName = source.WorkLocation.WorkLocationName
+                WorkLocationName = source.WorkLocation.WorkLocationName,
+                OperationsWorkPlaces = source.OperationsWorkPlaces != null ? source.OperationsWorkPlaces.Select(operationWorkPlace => operationWorkPlace.CreateFrom()).ToList() : null
+            };
+        }
+        /// <summary>
+        /// Create from domain model [for dropdowns]
+        /// </summary>
+        public static WorkPlaceDropdown CreateFromm(this WorkPlace source)
+        {
+           return new WorkPlaceDropdown
+            {
+                WorkPlaceId = source.WorkPlaceId,
+                WorkPlaceCodeName = source.WorkPlaceCode + " - " + source.WorkPlaceName
             };
         }
 
         /// <summary>
         /// Create From Web model
-        /// </summary>
+        /// </summary>twc
         public static WorkPlace CreateFrom(this Models.WorkPlace source)
         {
-            return new WorkPlace
+           return new WorkPlace
             {
                 WorkPlaceId = source.WorkPlaceId,
                 WorkPlaceCode = source.WorkPlaceCode,
@@ -73,7 +88,8 @@ namespace Cares.Web.ModelMappers
                 ParentWorkPlaceId = source.ParentWorkPlaceId,
                 WorkPlaceTypeId = source.WorkPlaceTypeId,
                 WorkLocationId = source.WorkLocationId,
-              //  CompanyId= source.CompanyId
+                OperationsWorkPlaces = source.OperationsWorkPlaces != null ? source.OperationsWorkPlaces.Select(operationWorkPlace => operationWorkPlace.CreateFrom()).ToList() : null,
+                
             };
         } 
         #endregion

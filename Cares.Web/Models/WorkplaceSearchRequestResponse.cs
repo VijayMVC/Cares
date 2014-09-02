@@ -1,8 +1,10 @@
-﻿using Cares.Models.DomainModels;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Cares.Web.Models
 {
+    /// <summary>
+    /// Work place Search Request Response
+    /// </summary>
     public class WorkplaceSearchRequestResponse
     {
         #region Public

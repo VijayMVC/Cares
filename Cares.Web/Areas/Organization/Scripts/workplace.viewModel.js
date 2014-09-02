@@ -6,23 +6,25 @@ define("workplace/workplace.viewModel",
     "common/confirmation.viewModel", "common/pagination"],
     function($, amplify, ko, dataservice, model, confirmation, pagination) {
         var ist = window.ist || {};
-        ist.Operation = {
+        ist.WorkPlace = {
             viewModel: (function() {
                 var view,
-                    //operations list
-                    operations = ko.observableArray([]),
+                    //workplaces list
+                    workplaces = ko.observableArray([]),
+                    //parent workplace list in base data
+                    parentWorkPlaceList = ko.observableArray([]),
+                    // filtered parent WP in editor
+                    filteredParentWorkPlaceList = ko.observableArray([]),
+                    // workplace operations list shows in editor
                     operationsTabList = ko.observableArray([]),
-
                     baseOperationsList = ko.observableArray([]),
+                    // base operations list
                     baseFleetPoolList = ko.observableArray([]),
-
-
-
                     //departments list for base data
                     baseWorkplaceTypeList = ko.observableArray([]),
                     //Compnies list for base data
                     baseCompniesList = ko.observableArray([]),
-                    //Department list for base data
+                    //WorkLocations list for base data
                     baseWorkLocationsList = ko.observableArray([]),
 
                     //filters
@@ -30,6 +32,9 @@ define("workplace/workplace.viewModel",
                     workplaceNameTextFilter = ko.observable(),
                     companyFilter = ko.observable(),
                     workplaceTypeFilter = ko.observable(),
+                    operationString = ko.observable(),
+                    fleelPoolString = ko.observable(),
+
                     //pager
                     pager = ko.observable(),
                     //sorting
@@ -37,251 +42,307 @@ define("workplace/workplace.viewModel",
                     //Assending  / Desending
                     sortIsAsc = ko.observable(true),
                     //to control the visibility of editor sec
-                    isOperationEditorVisible = ko.observable(false),
+                    isWorkPlaceEditorVisible = ko.observable(false),
                     //to control the visibility of filter ec
                     filterSectionVisilble = ko.observable(false),
                     //selected tab
-                    selectedTab = ko.observable(),
+                    selectedWorkPlace = ko.observable(),
                     // Editor View Model
-                    editorViewModel = new ist.ViewModel(model.operation),
-                   
+                    editorViewModel = new ist.ViewModel(model.workPlace),
 
-                    //selected operation
-                    selectedOperation = editorViewModel.itemForEditing,
-                    //save button handler
-                    onSaveOperation = function () {
-                        if (dobeforeOperation())
-                        saveOperation(selectedOperation());
+                //save button handler
+                onSaveWorkPlace = function () {
+                    debugger;
+                        if (dobeforeworkplace())
+                            saveWorkplace(selectedWorkPlace());
                     },
-                    //cancel button handler
-                    onCancelSaveOperation = function () {
-                    //    editorViewModel.revertItem();
-                        isOperationEditorVisible(false);
+                //cancel button handler
+                onCancelSaveWorkPlace = function() {
+                        //    editorViewModel.revertItem();
+                        isWorkPlaceEditorVisible(false);
                     },
-                    // create new org group handler
-                    onCreateOperationForm = function () {
-                      //  var operation =new model.operation();
-                     //   editorViewModel.selectItem(operation);
-                        debugger;
-
-                        var hireGroup = new model.operation(); 
-                      
+                // create new org group handler
+                onCreateWorkPlaceForm = function() {
+                        //  var operation =new model.operation();
+                        //   editorViewModel.selectItem(operation);
+                        operationsTabList.removeAll();
+                        var workPlace = new model.workPlace();
                         // Select the newly added Hire Group
-                        selectedTab(hireGroup);
-                        selectedTab().tabDetail(new model.tab());
-                       
-                       
+                        selectedWorkPlace(workPlace);
+                        selectedWorkPlace().tabDetail(new model.operationWorkplace());
+//                        selectedTab().tabDetail().parentWorkPlaceId('undefined');
+                        filteredParentWorkPlaceList(_.filter(parentWorkPlaceList(), function(workplace) {
+                            return workplace;
+                        }));
 
-                        isOperationEditorVisible(true);
+                        isWorkPlaceEditorVisible(true);
                     },
-                    //reset butto handle 
-                    onResetResuults = function () {
+                //reset butto handle 
+                onResetResuults = function() {
                         workplaceCodeTextFilter(undefined);
                         workplaceNameTextFilter(undefined);
                         workplaceTypeFilter(undefined);
                         companyFilter(undefined);
-                        getOperations();
-
+                        getWorkPlaces();
                     },
-                    //delete button handler
-                    onDeleteOperation = function (item) {
+                 //delete button handler
+                onDeleteWorkplace = function(item) {
                         if (!item.id()) {
                             fleetPools.remove(item);
                             return;
                         }
                         // Ask for confirmation
-                        confirmation.afterProceed(function () {
-                            deleteOperation(item);
+                        confirmation.afterProceed(function() {
+                            deleteWorkPlace(item);
                         });
                         confirmation.show();
                     },
-                   
-                    //edit button handler
-                    onEditOperation = function (item) {
-                      //  editorViewModel.selectItem(item);
-                        //   selectedTab(new model.tab);
-                        selectedTab(item);
-                        selectedTab().tabDetail(new model.tab());
+                //edit button handler
+                onEditworkplace = function(item) {
+                        operationsTabList.removeAll();
 
-                        isOperationEditorVisible(true);
+                        filteredParentWorkPlaceList(_.filter(parentWorkPlaceList(), function(workplace) {
+                            return workplace.WorkPlaceId !== item.id();
+                        }));
+                        getWorkplaceOperations(item.id());
+                        selectedWorkPlace(item);
+                        selectedWorkPlace().tabDetail(new model.operationWorkplace());
+                        selectedWorkPlace().tabDetail().parentWorkPlaceId(item.id());
+                        isWorkPlaceEditorVisible(true);
                     },
-                     //validation check 
-                    dobeforeOperation = function () {
-                        if (!selectedOperation().isValid()) {
-                            selectedOperation().errors.showAllMessages();
+                //validation check 
+                dobeforeworkplace = function() {
+                        if (!selectedWorkPlace().isValid()) {
+                            selectedWorkPlace().errors.showAllMessages();
                             return false;
                         }
                         return true;
                     },
-                    ///////////////////////////////////////////////////////////////
-                    //////////////////////////////////////////////////////////////
-
-                     
-                      // Add To list vehicle detail
-                    onAddOperation = function (vehicleDetail) {
-
-                        debugger;
-                        operationsTabList.push(vehicleDetail);
+                //add operation worklplace  handler
+                onAddOperation = function(operationDetail) {
+                        var selectedFleetPoolname = baseFleetPoolList.find(function(temp) {
+                            if (temp.FleetPoold == fleelPoolString())
+                                return temp.FleetPoolCodeName;
+                            else return "";
+                        });
+                        var selectedOperationname = baseOperationsList.find(function(temp) {
+                            if (temp.OperationId == operationString())
+                                return temp.OperationCodeName;
+                            else return "";
+                        });
+                        operationDetail.fleelPoolName(selectedFleetPoolname.FleetPoolCodeName);
+                        operationDetail.fleelPoolId(fleelPoolString());
+                        operationDetail.operationName(selectedOperationname.OperationCodeName);
+                        operationDetail.operationId(operationString());
+                        operationsTabList.push(operationDetail);
+                        fleelPoolString(undefined);
+                        operationString(undefined);
+                        selectedWorkPlace().tabDetail(new model.operationWorkplace());
                     },
-                    operationChanged= function() {
-                       
-                    },
-
-                    //save operation
-                    saveOperation = function (operation) {
-                        dataservice.saveWorkplace(operation.convertToServerData(), {
-                            success: function (uodatedOperation) {
-                                var newItem = model.OperationServertoClientMapper(uodatedOperation);
-                                if (selectedOperation().id() != undefined)
-                                {
-                                    var newObjtodelete = operations.find(function (temp) {
-                                        return temp.id() == newItem.id();
-                                    });
-                                    operations.remove(newObjtodelete);
-                                    operations.push(newItem);
-                                }
-                                else
-                                operations.push(newItem);
-                                isOperationEditorVisible(false);
-                                toastr.success(ist.resourceText.OperationSaveSuccessMessage);
+                //delete operation worklplace
+                deleteOperationDetail = function(item) {
+                    operationsTabList.remove(item);
+                },
+                //save Workplace
+                saveWorkplace = function (operation) {
+                    dataservice.saveWorkplace(workPalceClientToServerMapper(operation), {
+                        success: function (uodatedOperation) {
+                            debugger;
+                            var newItem = model.OperationServertoClientMapper(uodatedOperation);
+                            if (selectedWorkPlace().id() != undefined) {
+                                var newObjtodelete = workplaces.find(function(temp) {
+                                    return temp.id() == newItem.id();
+                                });
+                                workplaces.remove(newObjtodelete);
+                                workplaces.push(newItem);
+                            } else
+                                workplaces.push(newItem);
+                            updateParentWorkplaces();
+                            isWorkPlaceEditorVisible(false);
+                            toastr.success(ist.resourceText.WorkPlaceSaveSuccessMessage);
+                        },
+                        error: function(exceptionMessage, exceptionType) {
+                            if (exceptionType === ist.exceptionType.CaresGeneralException)
+                                toastr.error(exceptionMessage);
+                            else
+                                toastr.error(ist.resourceText.WorkPlaceSaveFailError);
+                        }
+                    });
+                },
+                //update Parent Workplaces
+                updateParentWorkplaces = function() {
+                    dataservice.updateParentWorkplace("update", {
+                        success: function(data) {
+                            getWorkPlaceBaseData();
+                            workplaces.removeAll();
+                            _.each(data.WorkPlaces, function(item) {
+                                workplaces.push(model.OperationServertoClientMapper(item));
+                            });
+                        },
+                        error: function() {
+                            toastr.error(ist.resourceText.OperationLoadFailError);
+                        }
+                    });
+                },
+                //delete WorkPlace
+                deleteWorkPlace = function(operation) {
+                        dataservice.deleteWorkplace(operation.convertToServerData(), {
+                            success: function() {
+                                workplaces.remove(operation);
+                                getWorkPlaceBaseData();
+                                toastr.success(ist.resourceText.WorkPlaceDeleteSuccessMessage);
                             },
-                            error: function (exceptionMessage, exceptionType) {
+                            error: function(exceptionMessage, exceptionType) {
                                 if (exceptionType === ist.exceptionType.CaresGeneralException)
                                     toastr.error(exceptionMessage);
                                 else
-                                    toastr.error(ist.resourceText.OperationSaveFailError);
+                                    toastr.error(ist.resourceText.WorkPlaceDeleteFailError);
                             }
                         });
                     },
-                    //delete operation
-                    deleteOperation = function (operation) {
-                        dataservice.deleteWorkplace(operation.convertToServerData(), {
-                                success: function() {
-                                    operations.remove(operation);
-                                    toastr.success(ist.resourceText.OperationDeleteSuccessMessage);
-                                },
-                                error: function (exceptionMessage, exceptionType) {
-                                    if (exceptionType === ist.exceptionType.CaresGeneralException)
-                                        toastr.error(exceptionMessage);
-                                    else
-                                        toastr.error(ist.resourceText.OperationDeleteFailError);
-                                }
-                            });
+                //search button handler in filter section
+                onSearch = function() {
+                        getWorkPlaces();
                     },
-                    //search button handler in filter section
-                    onSearch = function() {
-                        getOperations();
-                    },
-                    //hide filte section
-                    hideFilterSection = function() {
+                //hide filte section
+                hideFilterSection = function() {
                         filterSectionVisilble(false);
                     },
-                    //Show filter section
-                    showFilterSection = function() {
+                //Show filter section
+                showFilterSection = function() {
                         filterSectionVisilble(true);
                     },
-                    //get operations
-                    getOperations = function() {
-                        dataservice.getWorkplaces(
-                        {
-                            WorkplaceCodeText: workplaceCodeTextFilter(),
-                            WorkplaceNameText: workplaceNameTextFilter(),
-                            WorkplaceTypeId: workplaceTypeFilter(),
-                            CompanyId: companyFilter(),
-                            PageSize: pager().pageSize(),
-                            PageNo: pager().currentPage(),
-                            SortBy: sortOn(),
-                            IsAsc: sortIsAsc()
+                //get WorkPlaces
+                getWorkPlaces = function() {
+                    dataservice.getWorkplaces({
+                        WorkplaceCodeText: workplaceCodeTextFilter(),
+                        WorkplaceNameText: workplaceNameTextFilter(),
+                        WorkplaceTypeId: workplaceTypeFilter(),
+                        CompanyId: companyFilter(),
+                        PageSize: pager().pageSize(),
+                        PageNo: pager().currentPage(),
+                        SortBy: sortOn(),
+                        IsAsc: sortIsAsc()
+                    },
+                    {
+                        success: function(data) {
+                            workplaces.removeAll();
+                            pager().totalCount(data.TotalCount);
+                            _.each(data.WorkPlaces, function(item) {
+                                workplaces.push(model.OperationServertoClientMapper(item));
+                            });
                         },
-                        {
-                            success: function (data) {
-                                operations.removeAll();
-                                pager().totalCount(data.TotalCount);
-                                _.each(data.WorkPlaces, function (item) {
-                                    operations.push(model.OperationServertoClientMapper(item));
-                                });
-                            },
-                            error: function() {
-                                toastr.error(ist.resourceText.OperationLoadFailError);
+                        error: function() {
+                            toastr.error(ist.resourceText.WorkPlaceLoadFailError);
+                        }
+                    });
+                },
+                //get WorkPlace base data
+                getWorkPlaceBaseData = function() {
+                    dataservice.getWorkplaceBaseData(null, {
+                        success: function(baseDataFromServer) {
+                            poulateBaseData(baseDataFromServer); 
+                        },
+                        error: function(exceptionMessage, exceptionType) {
+                            if (exceptionType === ist.exceptionType.CaresGeneralException) {
+                                toastr.error(exceptionMessage);
+                            } else {
+                                toastr.error(ist.resourceText.WorkPlaceLoadBaseFailError);
                             }
-                        });
+                        }
+                    });
                     },
-                    //get operation base data
-                    getOperationBaseData = function () {
-                        dataservice.getWorkplaceBaseData(null, {
-                            success: function (baseDataFromServer) {
-                                baseCompniesList.removeAll();
-                                baseWorkplaceTypeList.removeAll();
-                                baseWorkLocationsList.removeAll();
-                                baseFleetPoolList.removeAll();
-                                baseOperationsList.removeAll();
-
-                                ko.utils.arrayPushAll(baseCompniesList(), baseDataFromServer.Companies);
-                                baseCompniesList.valueHasMutated();
-                                ko.utils.arrayPushAll(baseWorkplaceTypeList(), baseDataFromServer.WorkPlaceTypes);
-                                baseWorkplaceTypeList.valueHasMutated();
-                                ko.utils.arrayPushAll(baseWorkLocationsList(), baseDataFromServer.WorkLocations);
-                                baseWorkLocationsList.valueHasMutated();
-
-                                ko.utils.arrayPushAll(baseFleetPoolList(), baseDataFromServer.FleetPools);
-                                baseFleetPoolList.valueHasMutated();
-                                ko.utils.arrayPushAll(baseOperationsList(), baseDataFromServer.Operations);
-                                baseOperationsList.valueHasMutated();
-
-
-                            },
-                            error: function (exceptionMessage, exceptionType) {
-                                if (exceptionType === ist.exceptionType.CaresGeneralException) {
-                                    toastr.error(exceptionMessage);
-                                } else {
-                                    toastr.error(ist.resourceText.OperationBaseLoadFailError);
-                                }
-                            }
+                //set the base data 
+                poulateBaseData = function (baseDataFromServer) {
+                    baseCompniesList.removeAll();
+                    baseWorkplaceTypeList.removeAll();
+                    baseWorkLocationsList.removeAll();
+                    baseFleetPoolList.removeAll();
+                    baseOperationsList.removeAll();
+                    parentWorkPlaceList.removeAll();
+                    ko.utils.arrayPushAll(parentWorkPlaceList(), baseDataFromServer.ParentWorkPlaces);
+                    parentWorkPlaceList.valueHasMutated();
+                    ko.utils.arrayPushAll(baseCompniesList(), baseDataFromServer.Companies);
+                    baseCompniesList.valueHasMutated();
+                    ko.utils.arrayPushAll(baseWorkplaceTypeList(), baseDataFromServer.WorkPlaceTypes);
+                    baseWorkplaceTypeList.valueHasMutated();
+                    ko.utils.arrayPushAll(baseWorkLocationsList(), baseDataFromServer.WorkLocations);
+                    baseWorkLocationsList.valueHasMutated();
+                    ko.utils.arrayPushAll(baseFleetPoolList(), baseDataFromServer.FleetPools);
+                    baseFleetPoolList.valueHasMutated();
+                    ko.utils.arrayPushAll(baseOperationsList(), baseDataFromServer.Operations);
+                    baseOperationsList.valueHasMutated();
+                },
+                workPalceClientToServerMapper = function (operation) {
+                        _.each(operationsTabList(), function(item) {
+                            var v = item.convertToServerData();
+                            operation.OperationsWorkPlaces.push(v);
                         });
+                        return operation.convertToServerData();
+                },
+                getWorkplaceOperations = function(workPlaceId) {
+                    dataservice.getWorkplaceOperations(
+                    {
+                        WorkPlaceId: workPlaceId
                     },
-                    // Initialize the view model
-                    initialize = function (specifiedView) {
+                    {
+                        success: function(data) {
+                            operationsTabList.removeAll();
+                            _.each(data.OperationWorkPlaces, function(item) {
+                                var v = model.operationWorkplaceServertoClientMapper(item);
+                                operationsTabList.push(v);
+                            });
+                        },
+                        error: function() {
+                            toastr.error(ist.resourceText.OperationLoadFailError);
+                        }
+                    });
+                },
+                // Initialize the view model
+                initialize = function(specifiedView) {
                         view = specifiedView;
                         ko.applyBindings(view.viewModel, view.bindingRoot);
-                        pager(pagination.Pagination({ PageSize: 5}, operations, getOperations));
-                        getOperationBaseData();
-                        getOperations();
-                       
+                        pager(pagination.Pagination({ PageSize: 5 }, workplaces, getWorkPlaces));
+                        getWorkPlaceBaseData();
+                        getWorkPlaces();
                     };
                 return {
                     workplaceCodeTextFilter: workplaceCodeTextFilter,
                     workplaceNameTextFilter: workplaceNameTextFilter,
                     workplaceTypeFilter: workplaceTypeFilter,
                     companyFilter: companyFilter,
-                    baseCompniesList:baseCompniesList,
+                    baseCompniesList: baseCompniesList,
                     baseWorkplaceTypeList: baseWorkplaceTypeList,
-                    baseWorkLocationsList:baseWorkLocationsList,
-                    isOperationEditorVisible:isOperationEditorVisible,
+                    baseWorkLocationsList: baseWorkLocationsList,
+                    isWorkPlaceEditorVisible: isWorkPlaceEditorVisible,
                     initialize: initialize,
-                    onCreateOperationForm:onCreateOperationForm,
+                    onCreateWorkPlaceForm: onCreateWorkPlaceForm,
                     sortOn: sortOn,
-                    getOperations: getOperations,
+                    getWorkPlaces: getWorkPlaces,
                     baseOperationsList: baseOperationsList,
                     sortIsAsc: sortIsAsc,
                     filterSectionVisilble: filterSectionVisilble,
                     hideFilterSection: hideFilterSection,
                     showFilterSection: showFilterSection,
                     pager: pager,
-                    operationChanged:operationChanged,
-                    baseFleetPoolList:baseFleetPoolList,
-                    selectedOperation:selectedOperation,
+                    baseFleetPoolList: baseFleetPoolList,
                     onResetResuults: onResetResuults,
-                    onEditOperation:onEditOperation,
-                    onDeleteOperation:onDeleteOperation,
-                    onSaveOperation: onSaveOperation,
+                    onEditworkplace: onEditworkplace,
+                    onDeleteWorkplace: onDeleteWorkplace,
+                    onSaveWorkPlace: onSaveWorkPlace,
                     onSearch: onSearch,
-                    operations:operations,
-                    onCancelSaveOperation: onCancelSaveOperation,
+                    workplaces: workplaces,
+                    onCancelSaveWorkPlace: onCancelSaveWorkPlace,
                     operationsTabList: operationsTabList,
                     onAddOperation: onAddOperation,
-                    selectedTab: selectedTab
+                    selectedWorkPlace: selectedWorkPlace,
+                    operationString: operationString,
+                    fleelPoolString: fleelPoolString,
+                    deleteOperationDetail: deleteOperationDetail,
+                    parentWorkPlaceList: parentWorkPlaceList,
+                    filteredParentWorkPlaceList: filteredParentWorkPlaceList
                 };
             })()
         };
-        return ist.Operation.viewModel;
+        return ist.WorkPlace.viewModel;
     });

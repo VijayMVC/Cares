@@ -18,7 +18,7 @@ define("workplace/workplace.dataservice", function () {
                         type: 'GET'
                     });
                     //save Workplace
-                    amplify.request.define('saveWorkplace', 'ajax', { 
+                    amplify.request.define('saveWorkplace', 'ajax', {
                         url: '/Api/Workplace',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
@@ -38,6 +38,20 @@ define("workplace/workplace.dataservice", function () {
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
+                    //delete Workplace
+                    amplify.request.define('getWorkplaceOperations', 'ajax', {
+                        url: '/Api/OperationsWorkPlace',
+                        dataType: 'json',
+                        decoder: amplify.request.decoders.istStatusDecoder,
+                        type: 'GET'
+                    });
+                    //update parent Workplace
+                    amplify.request.define('updateParentWorkplace', 'ajax', {
+                        url: '/Api/WorkPlace',
+                        dataType: 'json',
+                        decoder: amplify.request.decoders.istStatusDecoder,
+                        type: 'GET'
+                    });
                     isInitialized = true;
                 }
             },
@@ -52,7 +66,7 @@ define("workplace/workplace.dataservice", function () {
                 });
             },
             //get Workplaces
-            getWorkplaces = function (params, callbacks) {
+            getWorkplaces = function(params, callbacks) {
                 return amplify.request({
                     resourceId: 'getWorkplaces',
                     success: callbacks.success,
@@ -61,7 +75,9 @@ define("workplace/workplace.dataservice", function () {
                 });
             },
             //save Workplace
-            saveWorkplace = function (params, callbacks) {
+            saveWorkplace = function(params, callbacks) {
+                debugger;
+
                 return amplify.request({
                     resourceId: 'saveWorkplace',
                     success: callbacks.success,
@@ -70,9 +86,28 @@ define("workplace/workplace.dataservice", function () {
                 });
             },
             //delete Workplace
-            deleteWorkplace = function (params, callbacks) {
+            deleteWorkplace = function(params, callbacks) {
                 return amplify.request({
                     resourceId: 'deleteWorkplace',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: params
+                });
+            },
+
+             //update Parent Workplace
+            updateParentWorkplace = function (params, callbacks) {
+                return amplify.request({
+                    resourceId: 'updateParentWorkplace',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: params
+                });
+            },
+            //get workplace operations
+            getWorkplaceOperations = function(params, callbacks) {
+                return amplify.request({
+                    resourceId: 'getWorkplaceOperations',
                     success: callbacks.success,
                     error: callbacks.error,
                     data: params
@@ -82,7 +117,9 @@ define("workplace/workplace.dataservice", function () {
             getWorkplaceBaseData: getWorkplaceBaseData,
             getWorkplaces: getWorkplaces,
             saveWorkplace: saveWorkplace,
-            deleteWorkplace: deleteWorkplace
+            deleteWorkplace: deleteWorkplace,
+            getWorkplaceOperations: getWorkplaceOperations,
+            updateParentWorkplace: updateParentWorkplace
         };
     })();
     return dataService;
