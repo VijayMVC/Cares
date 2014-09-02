@@ -40,7 +40,14 @@ namespace Cares.Models.DomainModels
         /// </summary>
         [ForeignKey("FleetPool")]
         public long? FleetPoolId { get; set; }
-        
+
+
+
+        /// <summary>
+        /// CostCenter
+        /// </summary>
+        public int CostCenter { get; set; }
+
         /// <summary>
         /// Row Version
         /// </summary>

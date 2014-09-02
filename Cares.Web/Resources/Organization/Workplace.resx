@@ -120,8 +120,23 @@
   <data name="Company" xml:space="preserve">
     <value>Company</value>
   </data>
+  <data name="CostCenter" xml:space="preserve">
+    <value>Cost Center</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
+  </data>
+  <data name="FleetPool" xml:space="preserve">
+    <value>Fleet Pool</value>
+  </data>
+  <data name="LocationCode" xml:space="preserve">
+    <value>Location Code</value>
+  </data>
+  <data name="LocationName" xml:space="preserve">
+    <value>Location Name</value>
+  </data>
+  <data name="Operations" xml:space="preserve">
+    <value>Operations</value>
   </data>
   <data name="ParentWorkplace" xml:space="preserve">
     <value>Parent Workplace</value>
@@ -132,13 +147,34 @@
   <data name="WorkplaceCode" xml:space="preserve">
     <value>Workplace Code</value>
   </data>
+  <data name="WorkPlaceDeleteFailError" xml:space="preserve">
+    <value>Failed to delete workplace!</value>
+  </data>
+  <data name="WorkPlaceDeleteSuccessMessage" xml:space="preserve">
+    <value>WorkPlace deleted sucessfully!</value>
+  </data>
   <data name="WorkplaceLabel" xml:space="preserve">
     <value>Workplace</value>
+  </data>
+  <data name="WorkPlaceLoadBaseFailError" xml:space="preserve">
+    <value>Failed to load WorkPlace base data</value>
+  </data>
+  <data name="WorkPlaceLoadFailError" xml:space="preserve">
+    <value>Failed to load WorkPlace</value>
   </data>
   <data name="WorkplaceName" xml:space="preserve">
     <value>Workplace Name</value>
   </data>
+  <data name="WorkPlaceSaveFailError" xml:space="preserve">
+    <value>WorkPlace failed to save !</value>
+  </data>
+  <data name="WorkPlaceSaveSuccessMessage" xml:space="preserve">
+    <value>WorkPlace saved successfully!</value>
+  </data>
   <data name="WorkplaceType" xml:space="preserve">
     <value>Workplace Type</value>
+  </data>
+  <data name="WorkPlaceDetail" xml:space="preserve">
+    <value>Work Place Detail</value>
   </data>
 </root>

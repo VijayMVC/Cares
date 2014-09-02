@@ -5,7 +5,7 @@ define("workplace/workplace.view",
     ["jquery", "workplace/workplace.viewModel"], function ($, operationViewModel) {
         var ist = window.ist || {};
         // View 
-        ist.Operation.view = (function (specifiedViewModel) {
+        ist.WorkPlace.view = (function (specifiedViewModel) {
             var
                 // View model 
                 viewModel = specifiedViewModel,
@@ -17,7 +17,7 @@ define("workplace/workplace.view",
                         return;
                     }
                     // Handle Sorting
-                    handleSorting("OperationsTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getOperations);
+                    handleSorting("OperationsTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getWorkPlaces);
                 };
             initialize();
             return {
@@ -26,8 +26,8 @@ define("workplace/workplace.view",
             };
         })(operationViewModel);
         // Initialize the view model
-        if (ist.Operation.view.bindingRoot) {
-            operationViewModel.initialize(ist.Operation.view);
+        if (ist.WorkPlace.view.bindingRoot) {
+            operationViewModel.initialize(ist.WorkPlace.view);
         }
-        return ist.Operation.view;
+        return ist.WorkPlace.view;
     });

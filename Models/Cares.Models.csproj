@@ -237,6 +237,7 @@
     <Compile Include="ResponseModels\InsuranceRtMainContent.cs" />
     <Compile Include="ResponseModels\OperationBaseDataResponse.cs" />
     <Compile Include="ResponseModels\OperationSearchResponse.cs" />
+    <Compile Include="ResponseModels\OperationWorkplaceSearchByIdResponse.cs" />
     <Compile Include="ResponseModels\OrgGroupResponse.cs" />
     <Compile Include="ResponseModels\ProductResponse.cs" />
     <Compile Include="ResponseModels\RegionResponse.cs" />

@@ -27,6 +27,25 @@
         /// Operation Id
         /// </summary>
         public long OperationId { get; set; }
+
+        /// <summary>
+        /// Operation Name
+        /// </summary>
+        public string OperationName { get; set; }
+
+        /// <summary>
+        /// FleetPool Id
+        /// </summary>
+        public long? FleetPoolId { get; set; }
+        /// <summary>
+        /// FleetPool Name
+        /// </summary>
+        public string FleetPoolName { get; set; }
+
+        /// <summary>
+        /// CostCenter
+        /// </summary>
+        public int CostCenter { get; set; }
         
         #endregion
     }

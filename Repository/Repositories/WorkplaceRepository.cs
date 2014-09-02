@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using Cares.Interfaces.Repository;
+﻿using Cares.Interfaces.Repository;
 using Cares.Models.Common;
 using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace Cares.Repository.Repositories
 {
@@ -27,10 +25,8 @@ namespace Cares.Repository.Repositories
                         { WorkplaceByColumn.Description, c => c.WorkPlaceDescription },
                         { WorkplaceByColumn.WorkplaceType, c => c.WorkPlaceType },
                         { WorkplaceByColumn.Company, c => c.WorkLocation.CompanyId },
-                        { WorkplaceByColumn.WorkLocation, c => c.WorkLocation },
+                        { WorkplaceByColumn.WorkLocation, c => c.WorkLocation.WorkLocationId },
                         { WorkplaceByColumn.ParentWorkPlace, c => c.ParentWorkPlaceId },
-
-                       
                     };
         #endregion
         #region Constructor
@@ -93,10 +89,19 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Include(opp => opp.WorkLocation)
                 .Include(opp => opp.WorkLocation.Company)
+                .Include(opp => opp.OperationsWorkPlaces)
                 .Include(opp => opp.WorkPlaceType)
+                .Include(opp => opp.ParentWorkPlace)
                 .FirstOrDefault(opp => opp.WorkPlaceId == id);
         }
 
+        /// <summary>
+        /// Get All Workplaces
+        /// </summary>
+        public override IEnumerable<WorkPlace> GetAll()
+        {
+            return DbSet.Where(workPlace => workPlace.UserDomainKey == UserDomainKey).ToList();
+        }
         #endregion
     }
 }

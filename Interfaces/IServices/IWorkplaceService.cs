@@ -22,16 +22,12 @@ namespace Cares.Interfaces.IServices
         /// <summary>
         /// Save WorkPlace
         /// </summary>
-        WorkPlace SaveWorkPlace(WorkPlace workPlace);
+        WorkPlace SaveWorkPlace(WorkPlace workPlaceRequest);
 
 
         /// <summary>
         /// Delete WorkPlace
         /// </summary>
         void DeleteWorkPlace(WorkPlace workPlace);
-
-
-
-
     }
 }

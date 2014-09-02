@@ -237,6 +237,7 @@
     <Compile Include="Areas\Api\Controllers\InsuranceRtDetailController.cs" />
     <Compile Include="Areas\Api\Controllers\OperationBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\OperationController.cs" />
+    <Compile Include="Areas\Api\Controllers\OperationsWorkPlaceController.cs" />
     <Compile Include="Areas\Api\Controllers\RentalAgreementBusinessPartnerController.cs" />
     <Compile Include="Areas\Api\Controllers\GetBusinessPartnerDetailsController.cs" />
     <Compile Include="Areas\Api\Controllers\GetHireGroupDetailDataController.cs" />
@@ -363,6 +364,7 @@
     <Compile Include="Models\InsuranceRtMainContent.cs" />
     <Compile Include="Models\Operation.cs" />
     <Compile Include="Models\OperationBaseDataResponse.cs" />
+    <Compile Include="Models\OperationWorkplaceSearchByIdResponse.cs" />
     <Compile Include="Models\OrgGroupDropDown.cs" />
     <Compile Include="Models\PaymentTerm.cs" />
     <Compile Include="Models\ServiceRateBaseResponse.cs" />
@@ -453,6 +455,7 @@
     <Compile Include="Models\WorkLocationDropDown.cs" />
     <Compile Include="Models\Workplace.cs" />
     <Compile Include="Models\WorkplaceBaseDataResponse.cs" />
+    <Compile Include="Models\WorkPlaceDropdown.cs" />
     <Compile Include="Models\WorkplaceSearchRequestResponse.cs" />
     <Compile Include="Models\WorkplaceTypeDropDown.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1424,6 +1427,7 @@
     <Folder Include="Areas\Api\Views\Department\" />
     <Folder Include="Areas\Api\Views\FleetPool\" />
     <Folder Include="Areas\Api\Views\OperationBase\" />
+    <Folder Include="Areas\Api\Views\OperationsWorkPlace\" />
     <Folder Include="Areas\Api\Views\Operation\" />
     <Folder Include="Areas\Api\Views\OrganizationGroup\" />
     <Folder Include="Areas\Api\Views\Shared\" />

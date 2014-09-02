@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Cares.Models.ResponseModels
 {
+    /// <summary>
+    /// Work place Search Request Response
+    /// </summary>
     public sealed class WorkplaceSearchRequestResponse
     {
         #region Public

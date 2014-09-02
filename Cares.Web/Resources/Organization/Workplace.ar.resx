@@ -120,8 +120,23 @@
   <data name="Company" xml:space="preserve">
     <value>شركة</value>
   </data>
+  <data name="CostCenter" xml:space="preserve">
+    <value>مركز التكلفة</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>وصف</value>
+  </data>
+  <data name="FleetPool" xml:space="preserve">
+    <value>أسطول بركة</value>
+  </data>
+  <data name="LocationCode" xml:space="preserve">
+    <value>موقع كود</value>
+  </data>
+  <data name="LocationName" xml:space="preserve">
+    <value>اسم الموقع</value>
+  </data>
+  <data name="Operations" xml:space="preserve">
+    <value>العمليات</value>
   </data>
   <data name="ParentWorkplace" xml:space="preserve">
     <value>مكان العمل الوالد</value>
@@ -132,13 +147,34 @@
   <data name="WorkplaceCode" xml:space="preserve">
     <value>كود مكان العمل</value>
   </data>
+  <data name="WorkPlaceDeleteFailError" xml:space="preserve">
+    <value>فشل في حذف مكان العمل</value>
+  </data>
+  <data name="WorkPlaceDeleteSuccessMessage" xml:space="preserve">
+    <value>حذف مكان العمل بنجاح</value>
+  </data>
   <data name="WorkplaceLabel" xml:space="preserve">
     <value>مكان العمل</value>
+  </data>
+  <data name="WorkPlaceLoadBaseFailError" xml:space="preserve">
+    <value>فشل تحميل قاعدة بيانات مكان العمل</value>
+  </data>
+  <data name="WorkPlaceLoadFailError" xml:space="preserve">
+    <value>فشل تحميل مكان العمل</value>
   </data>
   <data name="WorkplaceName" xml:space="preserve">
     <value>اسم مكان العمل</value>
   </data>
+  <data name="WorkPlaceSaveFailError" xml:space="preserve">
+    <value>فشل مكان العمل لإنقاذ</value>
+  </data>
+  <data name="WorkPlaceSaveSuccessMessage" xml:space="preserve">
+    <value>حفظ مكان العمل بنجاح</value>
+  </data>
   <data name="WorkplaceType" xml:space="preserve">
     <value>مكان العمل نوع</value>
+  </data>
+  <data name="WorkPlaceDetail" xml:space="preserve">
+    <value>مكان العمل التفاصيل</value>
   </data>
 </root>
