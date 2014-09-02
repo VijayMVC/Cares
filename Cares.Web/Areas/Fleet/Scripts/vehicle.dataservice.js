@@ -27,12 +27,12 @@ define("vehicle/vehicle.dataservice", function () {
                     amplify.request.define('saveVehicle', 'ajax', {
                         url: '/Api/Vehicle',
                         dataType: 'json',
-                        type: 'PUT'
+                        type: 'POST'
                     });
 
                     // Define request to get Vehicle
                     amplify.request.define('getVehicleDetailById', 'ajax', {
-                        url: '/Api/GetVehicleDetailData',
+                        url: '/Api/VehicleDetail',
                         dataType: 'json',
                         type: 'GET'
                     });

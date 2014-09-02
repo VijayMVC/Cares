@@ -13,6 +13,8 @@ define("vehicle/vehicle.viewModel",
                    selectedVehicle = ko.observable(),
                     //Active Vehicle Copy 
                    selectedVehicleCopy = ko.observable(),
+                    //Active Vehicle Id
+                    selectedVehicleId = ko.observable(),
                       // Show Filter Section
                     filterSectionVisilble = ko.observable(false),
                     // #region Arrays
@@ -110,7 +112,7 @@ define("vehicle/vehicle.viewModel",
                     },
                      //Create Vehicle Rate
                     createVehicle = function () {
-                        var vehicle = new model.VehicleDetail();
+                        var vehicle = new model.VehicleDetail.Create();
                         //VehicleDetails.removeAll();
                         //VehicleUpGradeList.removeAll();
                         //Select the newly added Vehicle
@@ -123,13 +125,13 @@ define("vehicle/vehicle.viewModel",
                     onEditVehicle = function (vehicle, e) {
                         //VehicleDetails.removeAll();
                         //VehicleUpGradeList.removeAll();
-                        //selectedVehicle(Vehicle);
-                        //selectedVehicleId(Vehicle.VehicleId());
+                        //selectedVehicle(vehicle);
+                        //selectedVehicleId(vehicle.vehicleId());
                         //selectedVehicle().vehicleDetail(new model.VehicleDetail());
                         //selectedVehicle().VehicleUpGrade(new model.VehicleUpGrade());
                         //virtualIsChecked(Vehicle.isParent());
                         ////selectedtariffRateCopy(model.TariffRateCoppier(selectedtariffRate()));
-                        //getVehicleById();
+                        getVehicleById(vehicle);
                         showVehicleEditor();
                         e.stopImmediatePropagation();
                     },
@@ -142,56 +144,41 @@ define("vehicle/vehicle.viewModel",
                             //}
                         }),
                     // //Get Vehicle data By Id
-                    getVehicleById = function () {
-                        //    isLoadingVehicles(true);
-                        //    dataservice.getVehicleDetailById({
-                        //        id: selectedVehicleId()
-
-                        //    }, {
-                        //        success: function (data) {
-                        //            var hirGroupDetailItems = [];
-                        //            //Vehicle Details
-                        //            _.each(data.VehicleDetails, function (item) {
-                        //                hirGroupDetailItems.push(model.VehicleDetailClientMapper(item));
-                        //            });
-                        //            ko.utils.arrayPushAll(VehicleDetails(), hirGroupDetailItems);
-                        //            VehicleDetails.valueHasMutated();
-                        //            //Up grade Vehicle
-                        //            _.each(data.VehicleUpGrades, function (item) {
-                        //                VehicleUpGradeList.push(model.VehicleUpGradeClientMapper(item));
-                        //            });
-                        //            VehicleUpGradeList.valueHasMutated();
-                        //            isLoadingVehicles(false);
-                        //        },
-                        //        error: function () {
-                        //            isLoadingVehicles(false);
-                        //            toastr.error(ist.resourceText.VehicleDetailFailedMsg);
-                        //        }
-                        //    });
+                    getVehicleById = function (vehicle) {
+                        isLoadingVehicles(true);
+                        dataservice.getVehicleDetailById(model.VehicleDetailServerMappeForDelete(vehicle), {
+                            success: function (data) {
+                                isLoadingVehicles(false);
+                            },
+                            error: function () {
+                                isLoadingVehicles(false);
+                                toastr.error(ist.resourceText.VehicleDetailFailedMsg);
+                            }
+                        });
                     },
                           // Delete a Vehicle
                     onDeleteVehicle = function (vehicle) {
                         if (!vehicle.vehicleId()) {
-                            //Vehicles.remove(Vehicle);
+                            vehicles.remove(vehicle);
                             return;
                         }
                         // Ask for confirmation
                         confirmation.afterProceed(function () {
-                            //deleteVehicle(Vehicle);
+                            deleteVehicle(vehicle);
                         });
                         confirmation.show();
                     },
                     // Delete Vehicle
                     deleteVehicle = function (vehicle) {
-                        //dataservice.deleteVehicle(model.VehicleServerMapper(Vehicle), {
-                        //    success: function () {
-                        //        Vehicles.remove(Vehicle);
-                        //        toastr.success(ist.resourceText.VehicleDeleteSuccessMsg);
-                        //    },
-                        //    error: function () {
-                        //        toastr.error(ist.resourceText.VehicleDeleteFailedMsg);
-                        //    }
-                        //});
+                        dataservice.deleteVehicle(model.VehicleDetailServerMappeForDelete(vehicle), {
+                            success: function () {
+                                vehicles.remove(vehicle);
+                                toastr.success("Vehicle Succesfully delete.");
+                            },
+                            error: function () {
+                                toastr.error("error");
+                            }
+                        });
                     },
                     //    // Do Before Logic
                     doBeforeAdd = function () {
@@ -213,57 +200,39 @@ define("vehicle/vehicle.viewModel",
                     },
                     //  // Save Vehicle
                     onSaveVehicle = function (vehicle) {
-                        //    if (doBeforeSave()) {
-                        //        Vehicle.VehicleDetailList.removeAll();
-                        //        Vehicle.upgragedVehicleList.removeAll();
-                        //        _.each(VehicleDetails(), function (item) {
-                        //            Vehicle.VehicleDetailList.push(model.VehicleDetailServerMapper(item));
-                        //        });
-                        //        _.each(VehicleUpGradeList(), function (item) {
-                        //            Vehicle.upgragedVehicleList.push(model.VehicleUpGradeServerMapper(item));
-                        //        });
-                        //        saveVehicle(Vehicle);
-                        //}
+                        if (doBeforeSave()) {
+
+                            saveVehicle(vehicle);
+                        }
                     },
                     //   // Do Before Logic
                     doBeforeSave = function () {
-                        //    var flag = true;
-                        //    if (!selectedVehicle().isValid()) {
-                        //        selectedVehicle().errors.showAllMessages();
-                        //        flag = false;
-                        //    }
-                        //    return flag;
+                        var flag = true;
+                        if (!selectedVehicle().isValid()) {
+                            selectedVehicle().errors.showAllMessages();
+                            flag = false;
+                        }
+                        return flag;
                     },
                     //// Save Vehicle
                     saveVehicle = function (vehicle) {
-                        //    var method = "updateVehicle";
-                        //    if (!Vehicle.VehicleId()) {
-                        //        method = "createVehicle";
-                        // }
+                        dataservice.saveVehicle(model.VehicleDetailServerMapper(vehicle), {
+                            success: function (data) {
+                                var vehicleResult = new model.VehicleClientMapper(data);
+                                if ((selectedVehicle().vehicleId() === undefined) || (selectedVehicle().vehicleId() ===0)) {
+                                    vehicles.splice(0, 0, vehicleResult);
+                                } else {
+                                    // selectedVehicle().VehicleCode(VehicleResult.VehicleCode());
 
-                        //    dataservice[method](model.VehicleServerMapper(Vehicle), {
-                        //        success: function (data) {
-                        //            var VehicleResult = new model.VehicleClientMapper(data);
-                        //            if (selectedVehicle().VehicleId() === undefined) {
-                        //                Vehicles.splice(0, 0, VehicleResult);
-                        //            } else {
-                        //                selectedVehicle().VehicleCode(VehicleResult.VehicleCode());
-                        //                selectedVehicle().VehicleName(VehicleResult.VehicleName());
-                        //                selectedVehicle().companyName(VehicleResult.companyName());
-                        //                selectedVehicle().companyId(VehicleResult.companyId());
-                        //                selectedVehicle().parentVehicleId(VehicleResult.parentVehicleId());
-                        //                selectedVehicle().isParent(VehicleResult.isParent());
-                        //                selectedVehicle().description(VehicleResult.description());
-                        //                selectedVehicle().virtualIsParent(VehicleResult.isParent());
 
-                        //            }
-                        //            closeVehicleEditor();
-                        //            toastr.success(ist.resourceText.hirGroupAddSuccesMsg);
-                        //        },
-                        //        error: function () {
-                        //            toastr.error(ist.resourceText.hirGroupAddFailedMsg);
-                        //        }
-                        //    });
+                                }
+                                closeVehicleEditor();
+                                toastr.success(ist.resourceText.hirGroupAddSuccesMsg);
+                            },
+                            error: function () {
+                                toastr.error(ist.resourceText.hirGroupAddFailedMsg);
+                            }
+                        });
                     },
                     // //Get Base Data
                     getBaseData = function (callBack) {
@@ -448,6 +417,7 @@ define("vehicle/vehicle.viewModel",
                     modelYears: modelYears,
                     filteredDepartments: filteredDepartments,
                     filteredOperations: filteredOperations,
+                    locations: locations,
                     //Filters
                     searchFilter: searchFilter,
                     hireGroupFilter: hireGroupFilter,
@@ -467,7 +437,9 @@ define("vehicle/vehicle.viewModel",
                     createVehicle: createVehicle,
                     onSelectedCompany: onSelectedCompany,
                     onSelectedDepartemnt: onSelectedDepartemnt,
-                    onDeleteVehicle: onDeleteVehicle
+                    onDeleteVehicle: onDeleteVehicle,
+                    onSaveVehicle: onSaveVehicle,
+                    onEditVehicle: onEditVehicle
                     // Utility Methods
 
                 };

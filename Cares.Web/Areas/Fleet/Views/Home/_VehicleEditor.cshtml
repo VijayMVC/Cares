@@ -44,7 +44,7 @@
             </div>
             <label for="location" class="control-label h5 col-sm-2"> At location  </label>
             <div class="col-md-2">
-                <select id="location" class="form-control" data-bind="options: $root.locations, optionsText: 'LocationCodeName', optionsValue: 'LocationId', optionsCaption: 'Location '  , value: locationId, validationTooltip: locationId"></select>
+                <select id="location" class="form-control" data-bind="options: $root.locations, optionsText: 'LocationCode', optionsValue: 'OperationsWorkPlaceId', optionsCaption: 'Location '  , value: locationId, validationTooltip: locationId"></select>
             </div>
         </div>
 
@@ -73,13 +73,13 @@
             </div>
             <label for="modelYear" class="control-label h5 col-sm-2">Model Year *  </label>
             <div class="col-md-2">
-                <select id="modelYear" class="form-control" data-bind="options: $root.modelYears, optionsText: 'Text', optionsValue: 'Id', optionsCaption: 'Model Year '  , value: modelYear, validationTooltip: modelYear"></select>
+                <select id="modelYear" class="form-control" data-bind="options: $root.modelYears, optionsText: 'Text', optionsValue: 'Id', optionsCaption: 'Model Year ', value: modelYear, validationTooltip: modelYear"></select>
             </div>
         </div>
         <div class="form-group">
             <label for="status" class="control-label h5 col-sm-2">Status * </label>
             <div class="col-md-2">
-                <select id="status" class="form-control" data-bind="options: $root.vehicleStatuses, optionsText: 'VehicleStatusCodeName', optionsValue: 'statusId', optionsCaption: 'Status', value:statusId "></select>
+                <select id="status" class="form-control" data-bind="options: $root.vehicleStatuses, optionsText: 'VehicleStatusCodeName', optionsValue: 'VehicleStatusId', optionsCaption: 'Status', value:statusId "></select>
             </div>
             <label for="transmission" class="control-label h5 col-sm-2">Transmission * </label>
             <div class="col-md-2">

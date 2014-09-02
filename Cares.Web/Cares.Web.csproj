@@ -260,6 +260,7 @@
     <Compile Include="Areas\Api\Controllers\TariffTypeController.cs" />
     <Compile Include="Areas\Api\Controllers\VehicleBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\VehicleController.cs" />
+    <Compile Include="Areas\Api\Controllers\VehicleDetailController.cs" />
     <Compile Include="Areas\Api\Controllers\WorkplaceBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\WorkplaceController.cs" />
     <Compile Include="Areas\BusinessPartner\BusinessPartnerAreaRegistration.cs" />
@@ -377,6 +378,7 @@
     <Compile Include="Models\VehicleBaseDataResponse.cs" />
     <Compile Include="Models\VehicleCategory.cs" />
     <Compile Include="Models\VehicleCheckListDropDown.cs" />
+    <Compile Include="Models\VehicleDetail.cs" />
     <Compile Include="Models\VehicleListViewContent.cs" />
     <Compile Include="Models\VehicleMake.cs" />
     <Compile Include="Models\VehicleModel.cs" />

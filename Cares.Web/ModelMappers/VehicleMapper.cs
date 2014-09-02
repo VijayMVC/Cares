@@ -65,6 +65,7 @@ namespace Cares.Web.ModelMappers
 
             return vehicle;
         }
+        
         /// <summary>
         ///  Create web model from entity
         /// </summary>
@@ -86,6 +87,7 @@ namespace Cares.Web.ModelMappers
                 OperationCodeName = source.OperationsWorkPlace.Operation.OperationCode + " - " + source.OperationsWorkPlace.Operation.OperationName,
             };
         }
+        
         /// <summary>
         /// Create Vehicle Search Response from domain Vehicle Search Response
         /// </summary>
@@ -95,6 +97,75 @@ namespace Cares.Web.ModelMappers
             {
                 Vehicles = source.Vehicles.Select(hg => hg.CreateFromListViewContent()),
                 TotalCount = source.TotalCount
+            };
+        }
+
+        /// <summary>
+        /// Create entity from web model
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static DomainModels.Vehicle CreateFrom(this VehicleDetail source)
+        {
+            return new DomainModels.Vehicle
+                   {
+                       VehicleId = source.VehicleId,
+                       IsBranchOwner = source.IsBranchOwner,
+                       PlateNumber = source.PlateNumber,
+                       VehicleName = source.VehicleName,
+                       ModelYear = source.ModelYear,
+                       FleetPoolId = source.FleetPoolId,
+                       Color = source.Color,
+                       OperationsWorkPlaceId = source.OperationsWorkPlaceId,
+                       FuelLevel = source.FuelLevel,
+                       TankSize = source.TankSize,
+                       InitialOdometer = source.InitialOdometer,
+                       CurrentOdometer = source.CurrentOdometer,
+                       RegistrationDate = source.RegistrationDate,
+                       VehicleMakeId = source.VehicleMakeId,
+                       VehicleCategoryId = source.VehicleCategoryId,
+                       VehicleModelId = source.VehicleModelId,
+                       VehicleStatusId = source.VehicleStatusId,
+                       FuelTypeId = source.FuelTypeId,
+                       TransmissionTypeId = source.TransmissionTypeId,
+                       RegistrationExpiryDate = source.RegistrationExpiryDate,
+                       VehicleCondition = source.VehicleCondition,
+
+                   };
+        }
+
+
+        /// <summary>
+        /// Create web model from entity
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static VehicleDetail CreateFromDetail(this DomainModels.Vehicle source)
+        {
+            return new VehicleDetail
+            {
+                VehicleId = source.VehicleId,
+                IsBranchOwner = source.IsBranchOwner,
+                PlateNumber = source.PlateNumber,
+                VehicleName = source.VehicleName,
+                ModelYear = source.ModelYear,
+                FleetPoolId = source.FleetPoolId,
+                Color = source.Color,
+                OperationsWorkPlaceId = source.OperationsWorkPlaceId,
+                FuelLevel = source.FuelLevel,
+                TankSize = source.TankSize,
+                InitialOdometer = source.InitialOdometer,
+                CurrentOdometer = source.CurrentOdometer,
+                RegistrationDate = source.RegistrationDate,
+                VehicleMakeId = source.VehicleMakeId,
+                VehicleCategoryId = source.VehicleCategoryId,
+                VehicleModelId = source.VehicleModelId,
+                VehicleStatusId = source.VehicleStatusId,
+                FuelTypeId = source.FuelTypeId,
+                TransmissionTypeId = source.TransmissionTypeId,
+                RegistrationExpiryDate = source.RegistrationExpiryDate,
+                VehicleCondition = source.VehicleCondition,
+
             };
         }
 
@@ -126,10 +197,11 @@ namespace Cares.Web.ModelMappers
                        InsuranceType = source.InsuranceType.Select(it => it.CreateFromDropDown()),
                        MaintenanceTypes = source.MaintenanceTypes.Select(mt => mt.CreateFromDropDown()),
                        VehicleCheckList = source.VehicleCheckList.Select(vcl => vcl.CreateFromDropDown()),
-                       //Locations = source.Locations.Select(loc => loc.CreateFrom())
+                       Locations = source.Locations.Select(loc => loc.CreateFrom())
                    };
         }
 
         #endregion
     }
+
 }

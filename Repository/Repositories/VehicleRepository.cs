@@ -108,6 +108,17 @@ namespace Cares.Repository.Repositories
 
             return new GetVehicleResponse { Vehicles = vehicles, TotalCount = DbSet.Count(query) };
         }
+
+        /// <summary>
+        /// Load Dependencies
+        /// </summary>
+        public void LoadDependencies(Vehicle vehicle)
+        {
+            LoadProperty(vehicle, () => vehicle.OperationsWorkPlace);
+            LoadProperty(vehicle, () => vehicle.VehicleMake);
+            LoadProperty(vehicle, () => vehicle.VehicleStatus);
+            LoadProperty(vehicle, () => vehicle.FleetPool);
+        }
         #endregion
     }
 }

@@ -19,6 +19,11 @@ namespace Cares.Interfaces.Repository
         /// Get Vehicle List Based On Search Criteria
         /// </summary>
         GetVehicleResponse GetVehicles(VehicleSearchRequest request);
+
+        /// <summary>
+        /// Load Dependencies
+        /// </summary>
+        void LoadDependencies(Vehicle vehicle);
     }
 }
 

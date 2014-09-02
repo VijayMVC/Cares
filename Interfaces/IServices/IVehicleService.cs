@@ -43,5 +43,20 @@ namespace Cares.Interfaces.IServices
         /// <param name="vehicleId"></param>
         /// <returns></returns>
         Vehicle FindById(long vehicleId);
+
+        /// <summary>
+        /// Save Vehicle
+        /// </summary>
+        /// <param name="vehicle"></param>
+        /// <returns></returns>
+        Vehicle SaveVehicle(Vehicle vehicle);
+
+
+        /// <summary>
+        /// Get Vehicle Detail By ID
+        /// </summary>
+        /// <param name="vehicleId">vehicleId</param>
+        /// <returns></returns>
+        Vehicle GetVehicleDetail(long vehicleId);
     }
 }
