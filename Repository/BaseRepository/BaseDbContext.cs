@@ -7,6 +7,7 @@ using Cares.Models.DomainModels;
 using Cares.Models.IdentityModels;
 using Cares.Models.LoggerModels;
 using Cares.Models.MenuModels;
+using Cares.Repository.Repositories;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Practices.Unity;
 using Repository.BaseRepository;
@@ -384,6 +385,42 @@ namespace Cares.Repository.BaseRepository
         /// Transmission Type  Db Set 
         /// </summary>
         public DbSet<TransmissionType> TransmissionTypes { get; set; }
+
+        /// <summary>
+        /// Vehicle Disposal Infos Db Set
+        /// </summary>
+        public DbSet<VehicleDisposalInfo> VehicleDisposalInfos { get; set; }
+
+        /// <summary>
+        /// Vehicle Depreciations Db Set
+        /// </summary>
+        public DbSet<VehicleDepreciation> VehicleDepreciations { get; set; }
+
+        /// <summary>
+        /// Vehicle Maintenance Type Frequencies Db Set
+        /// </summary>
+        public DbSet<VehicleMaintenanceTypeFrequency> VehicleMaintenanceTypeFrequencies { get; set; }
+
+        /// <summary>
+        /// Vehicle Leased Infos Db Set
+        /// </summary>
+        public DbSet<VehicleLeasedInfo> VehicleLeasedInfos { get; set; }
+
+        /// <summary>
+        /// Vehicle Purchase Infos Db Set
+        /// </summary>
+        public DbSet<VehiclePurchaseInfo> VehiclePurchaseInfos { get; set; }
+
+        /// <summary>
+        /// Vehicle Insurance Infos Db Set
+        /// </summary>
+        public DbSet<VehicleInsuranceInfo> VehicleInsuranceInfos { get; set; }
+
+        /// <summary>
+        /// Vehicle Other Details Db Set
+        /// </summary>
+        public DbSet<VehicleOtherDetail> VehicleOtherDetails { get; set; }
+
         #endregion
     }
 }

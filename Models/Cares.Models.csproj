@@ -137,6 +137,9 @@
     <Compile Include="DomainModels\ServiceRtMain.cs" />
     <Compile Include="DomainModels\ServiceType.cs" />
     <Compile Include="DomainModels\VehicleCheckList.cs" />
+    <Compile Include="DomainModels\VehicleCheckListItem.cs" />
+    <Compile Include="DomainModels\VehicleDepreciation.cs" />
+    <Compile Include="DomainModels\VehicleDisposalInfo.cs" />
     <Compile Include="DomainModels\VehicleImageHireGroupDetail.cs" />
     <Compile Include="DomainModels\MarketingChannel.cs" />
     <Compile Include="DomainModels\TransmissionType.cs" />
@@ -156,6 +159,11 @@
     <Compile Include="DomainModels\OperationsWorkPlace.cs" />
     <Compile Include="DomainModels\Vehicle.cs" />
     <Compile Include="DomainModels\VehicleImage.cs" />
+    <Compile Include="DomainModels\VehicleInsuranceInfo.cs" />
+    <Compile Include="DomainModels\VehicleLeasedInfo.cs" />
+    <Compile Include="DomainModels\VehicleMaintenanceTypeFrequency.cs" />
+    <Compile Include="DomainModels\VehicleOtherDetail.cs" />
+    <Compile Include="DomainModels\VehiclePurchaseInfo.cs" />
     <Compile Include="DomainModels\WorkPlace.cs" />
     <Compile Include="DomainModels\WorkPlaceType.cs" />
     <Compile Include="DomainModels\WorkLocation.cs" />

@@ -201,6 +201,347 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         };
         return self;
     };
+    //Other Vehicle Detail Entity
+    // ReSharper disable once InconsistentNaming
+    var OtherVehicleDetail = function () {
+        var // Reference to this object
+          self,
+          // Unique key
+          otherVehicleDetailId = ko.observable(),
+          //Number Of Doors
+          numberOfDoors = ko.observable(),
+          //Engine CC
+          horsePowerCc = ko.observable(),
+          //Number Of Cylinders
+          numberOfCylinders = ko.observable(),
+          //is Alloy Rim
+          isAlloyRim = ko.observable(),
+          //Chasis Number
+          chasisNumber = ko.observable().extend({ required: true }),
+          //Engine Number
+          engineNumber = ko.observable().extend({ required: true }),
+          //Key Code
+          keyCode = ko.observable(),
+          //Radio Code
+          radioCode = ko.observable(),
+          //Accessories
+          accessories = ko.observable(),
+          //Top Speed
+          topSpeed = ko.observable(),
+          //Interior Description
+          interiorDescription = ko.observable(),
+          //Front Wheel Size
+          frontWheelSize = ko.observable(),
+          //Back Wheel Size
+          backWheelSize = ko.observable(),
+          
+
+            // Errors
+            errors = ko.validation.group({
+                chasisNumber: chasisNumber,
+                engineNumber: engineNumber
+            }),
+            // Is Valid
+            isValid = ko.computed(function () {
+                return errors().length === 0;
+            }),
+
+            // True if the booking has been changed
+            // ReSharper disable InconsistentNaming
+            dirtyFlag = new ko.dirtyFlag({
+
+            }),
+            // Has Changes
+            hasChanges = ko.computed(function () {
+                return dirtyFlag.isDirty();
+            }),
+            // Reset
+            reset = function () {
+                dirtyFlag.reset();
+            };
+
+        self = {
+            errors: errors,
+            isValid: isValid,
+            dirtyFlag: dirtyFlag,
+            hasChanges: hasChanges,
+            reset: reset,
+        };
+        return self;
+    };
+    //Purchase Info Entity
+    // ReSharper disable once InconsistentNaming
+    var PurchaseInfo = function () {
+        var // Reference to this object
+          self,
+          // Unique key
+          purchaseInfoId = ko.observable(),
+            // Errors
+            errors = ko.validation.group({
+
+            }),
+            // Is Valid
+            isValid = ko.computed(function () {
+                return errors().length === 0;
+            }),
+
+            // True if the booking has been changed
+            // ReSharper disable InconsistentNaming
+            dirtyFlag = new ko.dirtyFlag({
+
+            }),
+            // Has Changes
+            hasChanges = ko.computed(function () {
+                return dirtyFlag.isDirty();
+            }),
+            // Reset
+            reset = function () {
+                dirtyFlag.reset();
+            };
+
+        self = {
+            errors: errors,
+            isValid: isValid,
+            dirtyFlag: dirtyFlag,
+            hasChanges: hasChanges,
+            reset: reset,
+        };
+        return self;
+    };
+    //Leased Info Entity
+    // ReSharper disable once InconsistentNaming
+    var LeasedInfo = function () {
+        var // Reference to this object
+          self,
+          // Unique key
+          leasedInfoId = ko.observable(),
+            // Errors
+            errors = ko.validation.group({
+
+            }),
+            // Is Valid
+            isValid = ko.computed(function () {
+                return errors().length === 0;
+            }),
+
+            // True if the booking has been changed
+            // ReSharper disable InconsistentNaming
+            dirtyFlag = new ko.dirtyFlag({
+
+            }),
+            // Has Changes
+            hasChanges = ko.computed(function () {
+                return dirtyFlag.isDirty();
+            }),
+            // Reset
+            reset = function () {
+                dirtyFlag.reset();
+            };
+
+        self = {
+            errors: errors,
+            isValid: isValid,
+            dirtyFlag: dirtyFlag,
+            hasChanges: hasChanges,
+            reset: reset,
+        };
+        return self;
+    };
+    //Insurance Info Entity
+    // ReSharper disable once InconsistentNaming
+    var InsuranceInfo = function () {
+        var // Reference to this object
+          self,
+          // Unique key
+          insuranceInfoId = ko.observable(),
+            // Errors
+            errors = ko.validation.group({
+
+            }),
+            // Is Valid
+            isValid = ko.computed(function () {
+                return errors().length === 0;
+            }),
+
+            // True if the booking has been changed
+            // ReSharper disable InconsistentNaming
+            dirtyFlag = new ko.dirtyFlag({
+
+            }),
+            // Has Changes
+            hasChanges = ko.computed(function () {
+                return dirtyFlag.isDirty();
+            }),
+            // Reset
+            reset = function () {
+                dirtyFlag.reset();
+            };
+
+        self = {
+            errors: errors,
+            isValid: isValid,
+            dirtyFlag: dirtyFlag,
+            hasChanges: hasChanges,
+            reset: reset,
+        };
+        return self;
+    };
+    //Maintenance Schedule Entity
+    // ReSharper disable once InconsistentNaming
+    var MaintenanceSchedule = function () {
+        var // Reference to this object
+          self,
+          // Unique key
+          maintenanceScheduleId = ko.observable(),
+            // Errors
+            errors = ko.validation.group({
+
+            }),
+            // Is Valid
+            isValid = ko.computed(function () {
+                return errors().length === 0;
+            }),
+
+            // True if the booking has been changed
+            // ReSharper disable InconsistentNaming
+            dirtyFlag = new ko.dirtyFlag({
+
+            }),
+            // Has Changes
+            hasChanges = ko.computed(function () {
+                return dirtyFlag.isDirty();
+            }),
+            // Reset
+            reset = function () {
+                dirtyFlag.reset();
+            };
+
+        self = {
+            errors: errors,
+            isValid: isValid,
+            dirtyFlag: dirtyFlag,
+            hasChanges: hasChanges,
+            reset: reset,
+        };
+        return self;
+    };
+    //Check List Item Entity
+    // ReSharper disable once InconsistentNaming
+    var CheckListItem = function () {
+        var // Reference to this object
+          self,
+          // Unique key
+          checkListItemId = ko.observable(),
+            // Errors
+            errors = ko.validation.group({
+
+            }),
+            // Is Valid
+            isValid = ko.computed(function () {
+                return errors().length === 0;
+            }),
+
+            // True if the booking has been changed
+            // ReSharper disable InconsistentNaming
+            dirtyFlag = new ko.dirtyFlag({
+
+            }),
+            // Has Changes
+            hasChanges = ko.computed(function () {
+                return dirtyFlag.isDirty();
+            }),
+            // Reset
+            reset = function () {
+                dirtyFlag.reset();
+            };
+
+        self = {
+            errors: errors,
+            isValid: isValid,
+            dirtyFlag: dirtyFlag,
+            hasChanges: hasChanges,
+            reset: reset,
+        };
+        return self;
+    };
+    //Depriciation Info Entity
+    // ReSharper disable once InconsistentNaming
+    var DepriciationInfo = function () {
+        var // Reference to this object
+          self,
+          // Unique key
+          depriciationInfoId = ko.observable(),
+            // Errors
+            errors = ko.validation.group({
+
+            }),
+            // Is Valid
+            isValid = ko.computed(function () {
+                return errors().length === 0;
+            }),
+
+            // True if the booking has been changed
+            // ReSharper disable InconsistentNaming
+            dirtyFlag = new ko.dirtyFlag({
+
+            }),
+            // Has Changes
+            hasChanges = ko.computed(function () {
+                return dirtyFlag.isDirty();
+            }),
+            // Reset
+            reset = function () {
+                dirtyFlag.reset();
+            };
+
+        self = {
+            errors: errors,
+            isValid: isValid,
+            dirtyFlag: dirtyFlag,
+            hasChanges: hasChanges,
+            reset: reset,
+        };
+        return self;
+    };
+    //Disposal Info Entity
+    // ReSharper disable once InconsistentNaming
+    var DisposalInfo = function () {
+        var // Reference to this object
+          self,
+          // Unique key
+          disposalInfoId = ko.observable(),
+            // Errors
+            errors = ko.validation.group({
+
+            }),
+            // Is Valid
+            isValid = ko.computed(function () {
+                return errors().length === 0;
+            }),
+
+            // True if the booking has been changed
+            // ReSharper disable InconsistentNaming
+            dirtyFlag = new ko.dirtyFlag({
+
+            }),
+            // Has Changes
+            hasChanges = ko.computed(function () {
+                return dirtyFlag.isDirty();
+            }),
+            // Reset
+            reset = function () {
+                dirtyFlag.reset();
+            };
+
+        self = {
+            errors: errors,
+            isValid: isValid,
+            dirtyFlag: dirtyFlag,
+            hasChanges: hasChanges,
+            reset: reset,
+        };
+        return self;
+    };
     // Convert (Vehicle Detail) Client to server
     var VehicleDetailServerMapper = function (source) {
         var result = {};
@@ -231,7 +572,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         return result;
     };
     // Convert (Vehicle Detail) Client to server
-    var VehicleDetailServerMappeForDelete= function (source) {
+    var VehicleDetailServerMappeForDelete = function (source) {
         var result = {};
         // Main top section
         result.VehicleId = source.vehicleId();
@@ -240,7 +581,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
     // Vehicle Detail Factory
     VehicleDetail.Create = function () {
         return new VehicleDetail(0, "", "", undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined,
-        undefined, undefined, undefined, undefined, "", "",undefined, true, undefined, undefined);
+        undefined, undefined, undefined, undefined, "", "", undefined, true, undefined, undefined);
     };
     // ReSharper disable once InconsistentNaming
     var VehicleClientMapper = function (source) {
@@ -263,6 +604,14 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         VehicleClientMapper: VehicleClientMapper,
         VehicleDetail: VehicleDetail,
         VehicleDetailServerMapper: VehicleDetailServerMapper,
-        VehicleDetailServerMappeForDelete: VehicleDetailServerMappeForDelete
+        VehicleDetailServerMappeForDelete: VehicleDetailServerMappeForDelete,
+        OtherVehicleDetail: OtherVehicleDetail,
+        PurchaseInfo: PurchaseInfo,
+        LeasedInfo: LeasedInfo,
+        InsuranceInfo: InsuranceInfo,
+        MaintenanceSchedule: MaintenanceSchedule,
+        CheckListItem: CheckListItem,
+        DepriciationInfo: DepriciationInfo,
+        DisposalInfo: DisposalInfo
     };
 });
