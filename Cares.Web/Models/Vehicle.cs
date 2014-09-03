@@ -7,9 +7,9 @@ namespace Cares.Web.Models
     /// </summary>
     public class Vehicle
     {
-        
+
         #region Public Properties
-        
+
         /// <summary>
         /// Vehicle Id
         /// </summary>
@@ -200,6 +200,6 @@ namespace Cares.Web.Models
         }
 
         #endregion
-
+       
     }
 }

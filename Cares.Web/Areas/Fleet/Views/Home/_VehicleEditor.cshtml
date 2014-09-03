@@ -58,7 +58,7 @@
             </div>
             <label for="vMake" class="control-label h5 col-sm-2">Vehicle Make *  </label>
             <div class="col-md-2">
-                <select id="vMake" class="form-control" data-bind="options: $root.vehicleMakes, optionsText: 'VehicleMakeCodeName', optionsValue: 'VehicleMakeId', optionsCaption: 'Location '  , value: vehicleMakeId, validationTooltip: vehicleMakeId"></select>
+                <select id="vMake" class="form-control" data-bind="options: $root.vehicleMakes, optionsText: 'VehicleMakeCodeName', optionsValue: 'VehicleMakeId', optionsCaption: '<Vehicle Make> '  , value: vehicleMakeId, validationTooltip: vehicleMakeId"></select>
             </div>
         </div>
         <div class="form-group">
@@ -135,195 +135,195 @@
             <div class="tab-content">
                 <br />
                 <!-- first tab - Other Details-->
-                <div class="tab-pane active" id="otherDetail">
+                <div class="tab-pane active" id="otherDetail" data-bind="with: otherVehicleDetail">
                     <div class="form-group">
                         <label for="numberOfDoors" class="control-label h5 col-sm-2">Number of Doors </label>
                         <div class="col-md-2">
-                            <input type="text" id="numberOfDoors" class="form-control" placeholder='<Number of Doors >' />
+                            <input type="text" id="numberOfDoors" class="form-control" placeholder='<Number of Doors >' data-bind="value:numberOfDoors, validationTooltip:numberOfDoors" />
                         </div>
                         <label for="engineCC" class="control-label h5 col-sm-2">Engine CC *</label>
                         <div class="col-md-2">
-                            <input type="text" id="engineCC" class="form-control" placeholder='<Engine CC>' />
+                            <input type="text" id="engineCC" class="form-control" placeholder='<Engine CC>' data-bind="value:horsePowerCc, validationTooltip:horsePowerCc" />
                         </div>
                         <label for="cylinders" class="control-label h5 col-sm-2">No. Of Cylinders</label>
                         <div class="col-md-2">
-                            <input type="text" id="cylinders" class="form-control" placeholder='<No. Of Cylinders>' />
+                            <input type="text" id="cylinders" class="form-control" placeholder='<No. Of Cylinders>' data-bind="value:numberOfCylinders, validationTooltip:numberOfCylinders" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="numberOfDoors" class="control-label h5 col-sm-2">Alloy Rim </label>
                         <div class="col-md-2">
-                            <input type="checkbox" class="form-control" />
+                            <input type="checkbox" class="form-control" data-bind="checked: isAlloyRim" />
                         </div>
                         <label for="chasisNumber" class="control-label h5 col-sm-2">Chasis Number *</label>
                         <div class="col-md-2">
-                            <input type="text" id="chasisNumber" class="form-control" placeholder='<Chasis Number *>' />
+                            <input type="text" id="chasisNumber" class="form-control" placeholder='<Chasis Number *>' data-bind="value:chasisNumber, validationTooltip:chasisNumber" />
                         </div>
                         <label for="engineNumber" class="control-label h5 col-sm-2">Engine Number </label>
                         <div class="col-md-2">
-                            <input type="text" id="engineNumber" class="form-control" placeholder='<Engine Number>' />
+                            <input type="text" id="engineNumber" class="form-control" placeholder='<Engine Number>' data-bind="value:engineNumber, validationTooltip:engineNumber" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="keyCode" class="control-label h5 col-sm-2">Key Code  </label>
                         <div class="col-md-2">
-                            <input type="text" id="keyCode" class="form-control" placeholder='<Key Code  >' />
+                            <input type="text" id="keyCode" class="form-control" placeholder='<Key Code  >' data-bind="value:keyCode , validationTooltip:keyCode " />
                         </div>
                         <label for="radioCode" class="control-label h5 col-sm-2">Radio Code </label>
                         <div class="col-md-2">
-                            <input type="text" id="radioCode" class="form-control" placeholder='<Radio Code >' />
+                            <input type="text" id="radioCode" class="form-control" placeholder='<Radio Code >' data-bind="value:radioCode , validationTooltip:radioCode " />
                         </div>
                         <label for="topSpeed" class="control-label h5 col-sm-2">Top Speed (km/h) </label>
                         <div class="col-md-2">
-                            <input type="text" id="topSpeed" class="form-control" placeholder='<Top Speed (km/h) >' />
+                            <input type="text" id="topSpeed" class="form-control" placeholder='<Top Speed>' data-bind="value:topSpeed , validationTooltip:topSpeed " />
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="fWheelSize" class="control-label h5 col-sm-2">F/Wheel Size (Inches) </label>
                         <div class="col-md-2">
-                            <input type="text" id="fWheelSize" class="form-control" placeholder='<F/Wheel Size>' />
+                            <input type="text" id="fWheelSize" class="form-control" placeholder='<F/Wheel Size>' data-bind="value:frontWheelSize, validationTooltip:frontWheelSize" />
                         </div>
                         <label for="bWheelSize" class="control-label h5 col-sm-2"> 	B/Wheel Size (Inches) </label>
                         <div class="col-md-2">
-                            <input type="text" id="bWheelSize" class="form-control" placeholder='<B/Wheel Size>' />
+                            <input type="text" id="bWheelSize" class="form-control" placeholder='<B/Wheel Size>' data-bind="value:backWheelSize  , validationTooltip:backWheelSize" />
                         </div>
                         <label for="accessories" class="control-label h5 col-sm-2">Accessories </label>
                         <div class="col-md-2">
-                            <textarea class="form-control" rows="2" placeholder='Accessories' id="accessories"></textarea>
+                            <textarea class="form-control" rows="2" placeholder='Accessories' id="accessories" data-bind="value: accessories, valueUpdate: 'keyup'"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="interiorDes" class="control-label h5 col-sm-2">Interior Description</label>
                         <div class="col-md-2">
-                            <textarea class="form-control" rows="2" placeholder='Interior Description' id="interiorDes"></textarea>
+                            <textarea class="form-control" rows="2" placeholder='Interior Description' id="interiorDes" data-bind="value: interiorDescription , valueUpdate: 'keyup'"></textarea>
                         </div>
                     </div>
                 </div>
                 <!-- second tab - Purchase Info-->
-                <div class="tab-pane" id="purchaseInfo">
+                <div class="tab-pane" id="purchaseInfo" data-bind="with: vehiclePurchaseInfo">
                     <div class="form-group">
                         <label for="purchaseDate" class="control-label h5 col-sm-2">Purchase Date </label>
                         <div class="col-md-2">
-                            <input id="purchaseDate" type="text" placeholder="<Purchase Date>" class="form-control">
+                            <input id="purchaseDate" type="text" placeholder="<Purchase Date>" class="form-control" data-bind="datepicker: purchaseDate , validationTooltip: purchaseDate " />
                         </div>
                         <label for="pOrderNum" class="control-label h5 col-sm-2">Purchase Order Number </label>
                         <div class="col-md-2">
-                            <input type="text" id="pOrderNum" class="form-control" placeholder='<Purchase Order Number >' />
+                            <input type="text" id="pOrderNum" class="form-control" placeholder='<Purchase Order Number >' data-bind="value:purchaseOrderNumber, validationTooltip:purchaseOrderNumber" />
                         </div>
                         <label for="pCost" class="control-label h5 col-sm-2">Purchase Cost</label>
                         <div class="col-md-2">
-                            <input type="text" id="pCost" class="form-control" placeholder='<Purchase Cost>' />
+                            <input type="text" id="pCost" class="form-control" placeholder='<Purchase Cost>' data-bind="value:purchaseCost , validationTooltip:purchaseCost " />
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="usedVehicle" class="control-label h5 col-sm-2">Used Vehicle? </label>
                         <div class="col-md-2">
-                            <input type="checkbox" id="usedVehicle" class="form-control" />
+                            <input type="checkbox" id="usedVehicle" class="form-control" data-bind="checked: isUsedVehicle " />
                         </div>
                         <label for="pDescription" class="control-label h5 col-sm-2">Purchase Description </label>
                         <div class="col-md-2">
-                            <textarea class="form-control" rows="2" placeholder='<Purchase Description>' id="pDescription"></textarea>
+                            <textarea class="form-control" rows="2" placeholder='<Purchase Description>' id="pDescription" data-bind="value: purchaseDescription , valueUpdate: 'keyup'"></textarea>
                         </div>
                         <label for="bPartner" class="control-label h5 col-sm-2">Business Partner </label>
                         <div class="col-md-2">
-                            <select id="bPartner" class="form-control" data-bind="options: $root.businessPartners, optionsText: 'BusinessPartnerCodeName', optionsValue: 'BusinessPartnerId', optionsCaption: 'Business Partner Code' "></select>
+                            <select id="bPartner" class="form-control" data-bind="options: $root.businessPartners, optionsText: 'BusinessPartnerCodeName', optionsValue: 'BusinessPartnerId', optionsCaption: 'Business Partner Code', value: bPMainId , validationTooltip: bPMainId "></select>
                         </div>
                     </div>
 
                 </div>
                 <!-- third tab - Lease Info-->
-                <div class="tab-pane" id="leaseInfo">
+                <div class="tab-pane" id="leaseInfo" data-bind="with: vehicleLeasedInfo">
                     <div class="form-group">
                         <label for="downPay" class="control-label h5 col-sm-2">Down Payment</label>
                         <div class="col-md-2">
-                            <input id="downPay" type="text" placeholder="<Down Payment>" class="form-control">
+                            <input id="downPay" type="text" placeholder="<Down Payment>" class="form-control" data-bind="value:downPayment, validationTooltip:downPayment " />
                         </div>
                         <label for="leasedStartDt" class="control-label h5 col-sm-2">Leased Start Date </label>
                         <div class="col-md-2">
-                            <input type="text" id="leasedStartDt" class="form-control" placeholder='<Leased Start Date >' />
+                            <input type="text" id="leasedStartDt" class="form-control" placeholder='<Leased Start Date >' data-bind="datepicker: leasedStartDate, validationTooltip: leasedStartDate" />
                         </div>
                         <label for="leasedFinishDt" class="control-label h5 col-sm-2">Leased Finish Date</label>
                         <div class="col-md-2">
-                            <input type="text" id="leasedFinishDt" class="form-control" placeholder='<Leased Finish Date>' />
+                            <input type="text" id="leasedFinishDt" class="form-control" placeholder='<Leased Finish Date>' data-bind="datepicker: leasedFinishDate, validationTooltip: leasedFinishDate" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="leasedOwnerShip" class="control-label h5 col-sm-2">Leased Ownership? </label>
                         <div class="col-md-2">
-                            <input type="checkbox" id="leasedOwnerShip" class="form-control" />
+                            <input type="checkbox" id="leasedOwnerShip" class="form-control" data-bind="checked: leaseToOwnership  " />
                         </div>
                         <label for="monthlyPayment" class="control-label h5 col-sm-2">Monthly Payment </label>
                         <div class="col-md-2">
-                            <input type="text" id="monthlyPayment" class="form-control" placeholder='<Monthly Payment>' />
+                            <input type="text" id="monthlyPayment" class="form-control" placeholder='<Monthly Payment>' data-bind="value:monthlyPayment , validationTooltip:monthlyPayment " />
                         </div>
                         <label for="insuranceRt" class="control-label h5 col-sm-2">Interest Rate (%)</label>
                         <div class="col-md-2">
-                            <input type="text" id="insuranceRt" class="form-control" placeholder='<Interest Rate>' />
+                            <input type="text" id="insuranceRt" class="form-control" placeholder='<Interest Rate>' data-bind="value:interestRate , validationTooltip:interestRate " />
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="principalPayment" class="control-label h5 col-sm-2">Prinicipal Payment</label>
                         <div class="col-md-2">
-                            <input type="text" id="principalPayment" class="form-control" placeholder='<Prinicipal Payment>' />
+                            <input type="text" id="principalPayment" class="form-control" placeholder='<Prinicipal Payment>' data-bind="value:prinicipalPayment , validationTooltip:prinicipalPayment " />
                         </div>
                         <label for="firstPaymentDt" class="control-label h5 col-sm-2">First Payment Date </label>
                         <div class="col-md-2">
-                            <input type="text" id="firstPaymentDt" class="form-control" placeholder='<First Payment Date >' />
+                            <input type="text" id="firstPaymentDt" class="form-control" placeholder='<First Payment Date >' data-bind="datepicker: firstPaymentDate , validationTooltip: firstPaymentDate " />
                         </div>
                         <label for="firstPayment" class="control-label h5 col-sm-2">First Payment</label>
                         <div class="col-md-2">
-                            <input type="text" id="firstPayment" class="form-control" placeholder='<First Payment>' />
+                            <input type="text" id="firstPayment" class="form-control" placeholder='<First Payment>' data-bind="value:firstPaymentDate , validationTooltip:firstPaymentDate " />
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="lastPayment" class="control-label h5 col-sm-2">Last Payment </label>
                         <div class="col-md-2">
-                            <input type="text" id="lastPayment" class="form-control" placeholder='<Last Payment>' />
+                            <input type="text" id="lastPayment" class="form-control" placeholder='<Last Payment>' data-bind="value:firstMonthPayment , validationTooltip:firstMonthPayment " />
                         </div>
                         <label for="bPartner" class="control-label h5 col-sm-2">Business Partner </label>
                         <div class="col-md-2">
-                            <select id="bPartner" class="form-control" data-bind="options: $root.businessPartners, optionsText: 'BusinessPartnerCodeName', optionsValue: 'BusinessPartnerId', optionsCaption: 'Business Partner Code' "></select>
+                            <select id="bPartner" class="form-control" data-bind="options: $root.businessPartners, optionsText: 'BusinessPartnerCodeName', optionsValue: 'BusinessPartnerId', optionsCaption: 'Business Partner Code', value: bPMainId , validationTooltip: bPMainId"></select>
                         </div>
                     </div>
                 </div>
                 <!-- fourth tab - Insuran Info-->
-                <div class="tab-pane" id="insuranceInfo">
+                <div class="tab-pane" id="insuranceInfo" data-bind="with: vehicleInsuranceInfo">
                     <div class="form-group">
                         <label for="insAgent" class="control-label h5 col-sm-2">Insurance Agent </label>
                         <div class="col-md-2">
-                            <input id="insAgent" type="text" placeholder="<Insurance Agent>" class="form-control">
+                            <input id="insAgent" type="text" placeholder="<Insurance Agent>" class="form-control" data-bind="value:insuranceAgent  , validationTooltip:insuranceAgent  " />
                         </div>
                         <label for="insStartDt" class="control-label h5 col-sm-2">Insurance Start Date </label>
                         <div class="col-md-2">
-                            <input type="text" id="insStartDt" class="form-control" placeholder='<Insurance Start Date >' />
+                            <input type="text" id="insStartDt" class="form-control" placeholder='<Insurance Start Date >' data-bind="datepicker: insuranceDate, validationTooltip: insuranceDate" />
                         </div>
                         <label for="insRenewalDt" class="control-label h5 col-sm-2">Insurance Renewal Date </label>
                         <div class="col-md-2">
-                            <input type="text" id="insRenewalDt" class="form-control" placeholder='<Insurance Renewal Date >' />
+                            <input type="text" id="insRenewalDt" class="form-control" placeholder='<Insurance Renewal Date >' data-bind="datepicker: renewalDate , validationTooltip: renewalDate " />
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="coverageLimit" class="control-label h5 col-sm-2">Coverage Limit</label>
                         <div class="col-md-2">
-                            <input id="coverageLimit" type="text" placeholder="<Coverage Limit>" class="form-control">
+                            <input id="coverageLimit" type="text" placeholder="<Coverage Limit>" class="form-control" data-bind="value:coverageLimit  , validationTooltip:coverageLimit  " />
                         </div>
                         <label for="premium" class="control-label h5 col-sm-2">Premium </label>
                         <div class="col-md-2">
-                            <input type="text" id="premium" class="form-control" placeholder='<Premium >' />
+                            <input type="text" id="premium" class="form-control" placeholder='<Premium >' data-bind="value:premium  , validationTooltip:premium  " />
                         </div>
                         <label for="insValue" class="control-label h5 col-sm-2">Insured Value</label>
                         <div class="col-md-2">
-                            <input type="text" id="insValue" class="form-control" placeholder='<Insured Value>' />
+                            <input type="text" id="insValue" class="form-control" placeholder='<Insured Value>' data-bind="value:insuredValue   , validationTooltip:insuredValue   " />
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="insuranceType" class="control-label h5 col-sm-2">Insurance Type *</label>
                         <div class="col-md-2">
-                            <select id="insuranceType" class="form-control" data-bind="options: $root.insuranceType, optionsText: 'InsuranceTypeCodeName', optionsValue: 'InsuranceTypeId', optionsCaption: '<Insurance Type>' "></select>
+                            <select id="insuranceType" class="form-control" data-bind="options: $root.insuranceType, optionsText: 'InsuranceTypeCodeName', optionsValue: 'InsuranceTypeId', optionsCaption: '<Insurance Type>' , value: insuranceTypeId  , validationTooltip: insuranceTypeId "></select>
                         </div>
                         <label for="bPartnerInsuranceInfo" class="control-label h5 col-sm-2">Business Partner </label>
                         <div class="col-md-2">
-                            <select id="bPartnerInsuranceInfo" class="form-control" data-bind="options: $root.businessPartners, optionsText: 'BusinessPartnerCodeName', optionsValue: 'BusinessPartnerId', optionsCaption: '<Business Partner Code>' "></select>
+                            <select id="bPartnerInsuranceInfo" class="form-control" data-bind="options: $root.businessPartners, optionsText: 'BusinessPartnerCodeName', optionsValue: 'BusinessPartnerId', optionsCaption: '<Business Partner Code>' , value: bPMainId , validationTooltip: bPMainId"></select>
                         </div>
                     </div>
                 </div>
@@ -360,57 +360,57 @@
                     </div>
                 </div>
                 <!-- seventh tab - Depriciation Info-->
-                <div class="tab-pane" id="depriciationInfo">
+                <div class="tab-pane" id="depriciationInfo" data-bind="with: vehicleDepreciation">
                     <div class="form-group">
                         <label for="upStartDt" class="control-label h5 col-sm-2">Useful Period Start Date </label>
                         <div class="col-md-2">
-                            <input id="upStartDt" type="text" placeholder="<Useful Period Start Date >" class="form-control">
+                            <input id="upStartDt" type="text" placeholder="<Useful Period Start Date >" class="form-control" data-bind="datepicker: usefulPeriodStartDate , validationTooltip: usefulPeriodStartDate " />
                         </div>
                         <label for="upEndDt" class="control-label h5 col-sm-2">Useful Period End Date </label>
                         <div class="col-md-2">
-                            <input type="text" id="upEndDt" class="form-control" placeholder='<Useful Period End Date >' />
+                            <input type="text" id="upEndDt" class="form-control" placeholder='<Useful Period End Date >' data-bind="datepicker: usefulPeriodEndDate , validationTooltip: usefulPeriodEndDate " />
                         </div>
                         <label for="firstMonthDep" class="control-label h5 col-sm-2">First Month Dep.</label>
                         <div class="col-md-2">
-                            <input type="text" id="firstMonthDep" class="form-control" placeholder='<First Month Dep.>' />
+                            <input type="text" id="firstMonthDep" class="form-control" placeholder='<First Month Dep.>' data-bind="value:firstMonthDepAmount, validationTooltip:firstMonthDepAmount" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="monthlyDep" class="control-label h5 col-sm-2">Monthly Dep.</label>
                         <div class="col-md-2">
-                            <input id="monthlyDep" type="text" placeholder="<Monthly Dep.>" class="form-control">
+                            <input id="monthlyDep" type="text" placeholder="<Monthly Dep.>" class="form-control" data-bind="value:monthlyDepAmount, validationTooltip:monthlyDepAmount" />
                         </div>
                         <label for="lastMonthDep" class="control-label h5 col-sm-2">Last Month Dep.</label>
                         <div class="col-md-2">
-                            <input type="text" id="lastMonthDep" class="form-control" placeholder='<Last Month Dep.>' />
+                            <input type="text" id="lastMonthDep" class="form-control" placeholder='<Last Month Dep.>' data-bind="value:lastMonthDepAmount, validationTooltip:lastMonthDepAmount" />
                         </div>
                         <label for="residualVal" class="control-label h5 col-sm-2">Residual Value </label>
                         <div class="col-md-2">
-                            <input type="text" id="residualVal" class="form-control" placeholder='<Residual Value >' />
+                            <input type="text" id="residualVal" class="form-control" placeholder='<Residual Value >' data-bind="value:residualValue, validationTooltip:residualValue" />
                         </div>
                     </div>
 
                 </div>
                 <!-- eight tab - Disposal Info-->
-                <div class="tab-pane" id="disposalInfo">
+                <div class="tab-pane" id="disposalInfo" data-bind="with: vehicleDisposalInfo">
                     <div class="form-group">
                         <label for="dispDt" class="control-label h5 col-sm-2">Disposal Date</label>
                         <div class="col-md-2">
-                            <input id="dispDt" type="text" placeholder="<Disposal Date>" class="form-control">
+                            <input id="dispDt" type="text" placeholder="<Disposal Date>" class="form-control" data-bind="datepicker: saleDate  , validationTooltip: saleDate  " />
                         </div>
                         <label for="dsipCost" class="control-label h5 col-sm-2">Disposal Cost </label>
                         <div class="col-md-2">
-                            <input type="text" id="dsipCost" class="form-control" placeholder='<Disposal Cost >' />
+                            <input type="text" id="dsipCost" class="form-control" placeholder='<Disposal Cost >' data-bind="value:salePrice , validationTooltip:salePrice " />
                         </div>
                         <label for="bPartnerInsuranceInfo" class="control-label h5 col-sm-2">Business Partner </label>
                         <div class="col-md-2">
-                            <select id="bPartnerInsuranceInfo" class="form-control" data-bind="options: $root.businessPartners, optionsText: 'BusinessPartnerCodeName', optionsValue: 'BusinessPartnerId', optionsCaption: '<Business Partner Code>' "></select>
+                            <select id="bPartnerInsuranceInfo" class="form-control" data-bind="options: $root.businessPartners, optionsText: 'BusinessPartnerCodeName', optionsValue: 'BusinessPartnerId', optionsCaption: '<Business Partner Code>',value:bPMainId "></select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="disposalDes" class="control-label h5 col-sm-2">Disposal Description</label>
                         <div class="col-md-2">
-                            <textarea class="form-control" rows="2" placeholder='<Disposal Description>' id="disposalDes"></textarea>
+                            <textarea class="form-control" rows="2" placeholder='<Disposal Description>' id="disposalDes" data-bind="value: disposalDescription, valueUpdate: 'keyup'"></textarea>
                         </div>
                     </div>
                 </div>

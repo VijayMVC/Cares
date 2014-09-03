@@ -180,46 +180,30 @@ define("vehicle/vehicle.viewModel",
                             }
                         });
                     },
-                    //    // Do Before Logic
-                    doBeforeAdd = function () {
-                        //    var flag = true;
-                        //    if (!selectedVehicle().vehicleDetail().isValid()) {
-                        //        selectedVehicle().vehicleDetail().errors.showAllMessages();
-                        //        flag = false;
-                        //    }
-                        //    return flag;
-                    },
-                    // // Do Before Logic
-                    doBeforeAddVehicleUpGrade = function () {
-                        //    var flag = true;
-                        //    if (!selectedVehicle().VehicleUpGrade().isValid()) {
-                        //        selectedVehicle().VehicleUpGrade().errors.showAllMessages();
-                        //        flag = false;
-                        //    }
-                        //    return flag;
-                    },
-                    //  // Save Vehicle
+                    
+                   // Save Vehicle
                     onSaveVehicle = function (vehicle) {
                         if (doBeforeSave()) {
 
                             saveVehicle(vehicle);
                         }
                     },
-                    //   // Do Before Logic
+                    // Do Before Logic
                     doBeforeSave = function () {
                         var flag = true;
-                        if (!selectedVehicle().isValid()) {
+                        if (!selectedVehicle().isValid() || !selectedVehicle().otherVehicleDetail().isValid()) {
                             selectedVehicle().errors.showAllMessages();
+                            selectedVehicle().otherVehicleDetail().errors.showAllMessages();
                             flag = false;
                         }
                         return flag;
                     },
-                    //// Save Vehicle
+                    // Save Vehicle
                     saveVehicle = function (vehicle) {
                         dataservice.saveVehicle(model.VehicleDetailServerMapper(vehicle), {
                             success: function (data) {
                                 var vehicleResult = new model.VehicleClientMapper(data);
-                                if ((selectedVehicle().vehicleId() === undefined) || (selectedVehicle().vehicleId() ===0)) {
+                                if ((selectedVehicle().vehicleId() === undefined) || (selectedVehicle().vehicleId() === 0)) {
                                     vehicles.splice(0, 0, vehicleResult);
                                 } else {
                                     // selectedVehicle().VehicleCode(VehicleResult.VehicleCode());

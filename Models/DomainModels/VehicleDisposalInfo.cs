@@ -27,12 +27,12 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Sale Date
         /// </summary>
-        public DateTime SaleDate { get; set; }
+        public DateTime? SaleDate { get; set; }
 
         /// <summary>
         /// Sale Price
         /// </summary>
-        public decimal SalePrice { get; set; }
+        public decimal? SalePrice { get; set; }
 
         /// <summary>
         ///Sold To
@@ -55,36 +55,33 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Created Date
         /// </summary>
-        [Required]
-        public DateTime RecCreatedDt { get; set; }
+       public DateTime RecCreatedDt { get; set; }
+        
         /// <summary>
         /// Record Last Updated Date
         /// </summary>
-        [Required]
-        public DateTime RecLastUpdatedDt { get; set; }
+       public DateTime RecLastUpdatedDt { get; set; }
 
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100), Required]
+        [StringLength(100)]
         public string RecLastUpdatedBy { get; set; }
 
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100), Required]
+        [StringLength(100)]
         public string RecCreatedBy { get; set; }
 
         /// <summary>
         /// Row Version
         /// </summary>
-        [Required]
         public long RowVersion { get; set; }
 
         /// <summary>
         /// User Domain Key
         /// </summary>
-        [Required]
         public long UserDomainKey { get; set; }
 
 

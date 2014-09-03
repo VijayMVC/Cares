@@ -1,4 +1,5 @@
 ﻿using System;
+using Cares.Models.DomainModels;
 
 namespace Cares.Web.Models
 {
@@ -137,6 +138,39 @@ namespace Cares.Web.Models
         
         #endregion
 
+        #region refrence Data
+
+        /// <summary>
+        /// Vehicle Other Detail
+        /// </summary>
+        public VehicleOtherDetail VehicleOtherDetail { get; set; }
+
+
+        /// <summary>
+        /// Vehicle Purchase Info
+        /// </summary>
+        public VehiclePurchaseInfo VehiclePurchaseInfo { get; set; }
+
+        /// <summary>
+        /// Vehicle Leased Info
+        /// </summary>
+        public VehicleLeasedInfo VehicleLeasedInfo { get; set; }
+
+        /// <summary>
+        /// Vehicle Insurance Info
+        /// </summary>
+        public VehicleInsuranceInfo VehicleInsuranceInfo { get; set; }
+
+        /// <summary>
+        /// Vehicle Insurance Info
+        /// </summary>
+        public VehicleDepreciation VehicleDepreciation { get; set; }
+
+        /// <summary>
+        /// Vehicle Disposal Info
+        /// </summary>
+        public VehicleDisposalInfo VehicleDisposalInfo { get; set; }
+        #endregion
 
     }
 }

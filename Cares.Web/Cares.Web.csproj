@@ -380,10 +380,16 @@
     <Compile Include="Models\VehicleBaseDataResponse.cs" />
     <Compile Include="Models\VehicleCategory.cs" />
     <Compile Include="Models\VehicleCheckListDropDown.cs" />
+    <Compile Include="Models\VehicleDepreciation.cs" />
     <Compile Include="Models\VehicleDetail.cs" />
+    <Compile Include="Models\VehicleDisposalInfo.cs" />
+    <Compile Include="Models\VehicleInsuranceInfo.cs" />
+    <Compile Include="Models\VehicleLeasedInfo.cs" />
     <Compile Include="Models\VehicleListViewContent.cs" />
     <Compile Include="Models\VehicleMake.cs" />
     <Compile Include="Models\VehicleModel.cs" />
+    <Compile Include="Models\VehicleOtherDetail.cs" />
+    <Compile Include="Models\VehiclePurchaseInfo.cs" />
     <Compile Include="Models\VehicleStatus.cs" />
     <Compile Include="Models\VehicleSearchResponse.cs" />
     <Compile Include="Models\HireGroupDataDetailResponse.cs" />

@@ -87,6 +87,10 @@ namespace Cares.Models.DomainModels
         /// Parent Hire Group
         /// </summary>
         public virtual HireGroup HireGroup { get; set; }
+
+        /// <summary>
+        /// Allowed Hire Group
+        /// </summary>
         public virtual HireGroup AllowedHireGroup { get; set; }
         #endregion
     }

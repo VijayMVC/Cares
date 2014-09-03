@@ -24,7 +24,7 @@ namespace Cares.Repository.BaseRepository
         // ReSharper disable once NotAccessedField.Local
         private IUnityContainer container;
         #endregion
-        
+
         #region Protected
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -84,11 +84,40 @@ namespace Cares.Repository.BaseRepository
                 .HasRequired(c => c.SecondaryBusinessPartner)
                 .WithMany()
                 .WillCascadeOnDelete(false);
-           
+
+            modelBuilder.Entity<Vehicle>()
+              .HasRequired(c => c.VehicleOtherDetail)
+             .WithRequiredPrincipal()
+              .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Vehicle>()
+              .HasRequired(c => c.VehiclePurchaseInfo)
+             .WithRequiredPrincipal()
+              .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Vehicle>()
+            .HasRequired(c => c.VehicleLeasedInfo)
+           .WithRequiredPrincipal()
+            .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Vehicle>()
+          .HasRequired(c => c.VehicleInsuranceInfo)
+         .WithRequiredPrincipal()
+          .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Vehicle>()
+         .HasRequired(c => c.VehicleDepreciation)
+        .WithRequiredPrincipal()
+         .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Vehicle>()
+        .HasRequired(c => c.VehicleDisposalInfo)
+       .WithRequiredPrincipal()
+        .WillCascadeOnDelete(false);
 
         }
         #endregion
-        
+
         #region Constructor
         public BaseDbContext()
         {
@@ -117,7 +146,7 @@ namespace Cares.Repository.BaseRepository
         }
 
         #endregion
-        
+
         #region Public
 
         public BaseDbContext(IUnityContainer container, string connectionString)
@@ -313,7 +342,7 @@ namespace Cares.Repository.BaseRepository
         /// Business Partner Marketing Channels Db Set
         /// </summary>
         public DbSet<BusinessPartnerMarketingChannel> BusinessPartnerMarketingChannels { get; set; }
-        
+
         /// <summary>
         /// Business Partner Relationship item list Db Set
         /// </summary>

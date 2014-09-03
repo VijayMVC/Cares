@@ -26,66 +26,63 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Useful Period Start Date
         /// </summary>
-        public DateTime UsefulPeriodStartDate { get; set; }
+        public DateTime? UsefulPeriodStartDate { get; set; }
 
         /// <summary>
         /// First Month Dep Amount
         /// </summary>
-        public decimal FirstMonthDepAmount { get; set; }
+        public decimal? FirstMonthDepAmount { get; set; }
 
         /// <summary>
         ///Monthly Dep Amount
         /// </summary>
-        public decimal MonthlyDepAmount { get; set; }
+        public decimal? MonthlyDepAmount { get; set; }
 
         /// <summary>
         ///Last Month Dep Amount
         /// </summary>
-        public decimal LastMonthDepAmount { get; set; }
+        public decimal? LastMonthDepAmount { get; set; }
 
         /// <summary>
         /// Residual Value
         /// </summary>
-        public decimal ResidualValue { get; set; }
+        public decimal? ResidualValue { get; set; }
 
         /// <summary>
         /// Useful Period End Date
         /// </summary>
-        public DateTime UsefulPeriodEndDate { get; set; }
+        public DateTime? UsefulPeriodEndDate { get; set; }
 
         /// <summary>
         /// Record Created Date
         /// </summary>
-        [Required]
         public DateTime RecCreatedDt { get; set; }
+
         /// <summary>
         /// Record Last Updated Date
         /// </summary>
-        [Required]
         public DateTime RecLastUpdatedDt { get; set; }
 
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100), Required]
+        [StringLength(100)]
         public string RecLastUpdatedBy { get; set; }
 
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100), Required]
+        [StringLength(100)]
         public string RecCreatedBy { get; set; }
 
         /// <summary>
         /// Row Version
         /// </summary>
-        [Required]
         public long RowVersion { get; set; }
 
         /// <summary>
         /// User Domain Key
         /// </summary>
-        [Required]
         public long UserDomainKey { get; set; }
 
 

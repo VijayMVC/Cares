@@ -124,6 +124,55 @@ namespace Cares.Implementation.Services
                 vehicle.RecLastUpdatedBy = vehicleRepository.LoggedInUserIdentity;
                 vehicle.RowVersion = 0;
                 vehicle.VehicleCode = "CaresVehicle";
+                //Other detail
+                vehicle.VehicleOtherDetail.UserDomainKey = vehicleRepository.UserDomainKey;
+                vehicle.VehicleOtherDetail.IsActive = true;
+                vehicle.VehicleOtherDetail.IsDeleted = false;
+                vehicle.VehicleOtherDetail.IsPrivate = false;
+                vehicle.VehicleOtherDetail.IsReadOnly = false;
+                vehicle.VehicleOtherDetail.RecCreatedDt = DateTime.Now;
+                vehicle.VehicleOtherDetail.RecLastUpdatedDt = DateTime.Now;
+                vehicle.VehicleOtherDetail.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
+                vehicle.VehicleOtherDetail.RecLastUpdatedBy = vehicleRepository.LoggedInUserIdentity;
+                vehicle.VehicleOtherDetail.RowVersion = 0;
+                //Purchase Info
+                vehicle.VehiclePurchaseInfo.UserDomainKey = vehicleRepository.UserDomainKey;
+                vehicle.VehiclePurchaseInfo.RecCreatedDt = DateTime.Now;
+                vehicle.VehiclePurchaseInfo.RecLastUpdatedDt = DateTime.Now;
+                vehicle.VehiclePurchaseInfo.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
+                vehicle.VehiclePurchaseInfo.RecLastUpdatedBy = vehicleRepository.LoggedInUserIdentity;
+                vehicle.VehiclePurchaseInfo.RowVersion = 0;
+                //Leased Info
+                vehicle.VehicleLeasedInfo.UserDomainKey = vehicleRepository.UserDomainKey;
+                vehicle.VehicleLeasedInfo.RecCreatedDt = DateTime.Now;
+                vehicle.VehicleLeasedInfo.RecLastUpdatedDt = DateTime.Now;
+                vehicle.VehicleLeasedInfo.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
+                vehicle.VehicleLeasedInfo.RecLastUpdatedBy = vehicleRepository.LoggedInUserIdentity;
+                vehicle.VehicleLeasedInfo.RowVersion = 0;
+                //Insurance Info
+                vehicle.VehicleInsuranceInfo.UserDomainKey = vehicleRepository.UserDomainKey;
+                vehicle.VehicleInsuranceInfo.RecCreatedDt = DateTime.Now;
+                vehicle.VehicleInsuranceInfo.RecLastUpdatedDt = DateTime.Now;
+                vehicle.VehicleInsuranceInfo.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
+                vehicle.VehicleInsuranceInfo.RecLastUpdatedBy = vehicleRepository.LoggedInUserIdentity;
+                vehicle.VehicleInsuranceInfo.RowVersion = 0;
+                //Dericiation Info
+                vehicle.VehicleDepreciation.UserDomainKey = vehicleRepository.UserDomainKey;
+                vehicle.VehicleDepreciation.RecCreatedDt = DateTime.Now;
+                vehicle.VehicleDepreciation.RecLastUpdatedDt = DateTime.Now;
+                vehicle.VehicleDepreciation.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
+                vehicle.VehicleDepreciation.RecLastUpdatedBy = vehicleRepository.LoggedInUserIdentity;
+                vehicle.VehicleOtherDetail.RowVersion = 0;
+                //Disposal Info
+                vehicle.VehicleDisposalInfo.UserDomainKey = vehicleRepository.UserDomainKey;
+                vehicle.VehicleDisposalInfo.RecCreatedDt = DateTime.Now;
+                vehicle.VehicleDisposalInfo.RecLastUpdatedDt = DateTime.Now;
+                vehicle.VehicleDisposalInfo.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
+                vehicle.VehicleDisposalInfo.RecLastUpdatedBy = vehicleRepository.LoggedInUserIdentity;
+                vehicle.VehicleDisposalInfo.RowVersion = 0;
+          
+
+
                 vehicleRepository.Add(vehicle);
                 vehicleRepository.SaveChanges();
             }
