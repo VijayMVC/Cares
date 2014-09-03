@@ -144,6 +144,13 @@
     <Compile Include="Repositories\ServiceTypeRepository.cs" />
     <Compile Include="Repositories\TransmissionTypeRepository.cs" />
     <Compile Include="Repositories\VehicleCheckListRepository.cs" />
+    <Compile Include="Repositories\VehicleDepreciationRepository.cs" />
+    <Compile Include="Repositories\VehicleDisposalInfoRepository.cs" />
+    <Compile Include="Repositories\VehicleInsuranceInfoRepository.cs" />
+    <Compile Include="Repositories\VehicleLeasedInfoRepository.cs" />
+    <Compile Include="Repositories\VehicleMaintenanceTypeFrequencyRepository.cs" />
+    <Compile Include="Repositories\VehicleOtherDetailRepository.cs" />
+    <Compile Include="Repositories\VehiclePurchaseInfoRepository.cs" />
     <Compile Include="Repositories\VehicleRepository.cs" />
     <Compile Include="Repositories\HireGroupUpGradeRepository.cs" />
     <Compile Include="Repositories\OperationsWorkPlaceRepository.cs" />

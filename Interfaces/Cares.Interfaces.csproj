@@ -106,6 +106,13 @@
     <Compile Include="Repository\IInsuranceTypeRepository.cs" />
     <Compile Include="Repository\ITransmissionTypeRepository.cs" />
     <Compile Include="Repository\IVehicleCheckListRepository.cs" />
+    <Compile Include="Repository\IVehicleDepreciationRepository.cs" />
+    <Compile Include="Repository\IVehicleDisposalInfoRepository.cs" />
+    <Compile Include="Repository\IVehicleInsuranceInfoRepository.cs" />
+    <Compile Include="Repository\IVehicleLeasedInfoRepository.cs" />
+    <Compile Include="Repository\IVehicleMaintenanceTypeFrequencyRepository.cs" />
+    <Compile Include="Repository\IVehicleOtherDetailRepository.cs" />
+    <Compile Include="Repository\IVehiclePurchaseInfoRepository.cs" />
     <Compile Include="Repository\IVehicleRepository.cs" />
     <Compile Include="Repository\IOperationsWorkPlaceRepository.cs" />
     <Compile Include="Repository\IMarketingChannelRepository.cs" />

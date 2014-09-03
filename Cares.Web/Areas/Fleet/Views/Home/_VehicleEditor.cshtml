@@ -47,7 +47,6 @@
                 <select id="location" class="form-control" data-bind="options: $root.locations, optionsText: 'LocationCode', optionsValue: 'OperationsWorkPlaceId', optionsCaption: 'Location '  , value: locationId, validationTooltip: locationId"></select>
             </div>
         </div>
-
         <div class="form-group">
             <label for="fuelType" class="control-label h5 col-sm-2">Fuel Type* </label>
             <div class="col-md-2">
@@ -118,43 +117,309 @@
                 <input id="registrationExpDate" type="text" class="form-control" data-bind="datepicker: registrationExpDate, validationTooltip: registrationExpDate" />
             </div>
         </div>
-    </form>
-    <div class="panel panel-info">
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
-            <li class="active"><a href="#otherDetail" role="tab" data-toggle="tab">Other Details</a></li>
-            <li><a href="#purchaseLeaseInfo" role="tab" data-toggle="tab">Purchase/Lease Info</a></li>
-            <li><a href="#insuranceInfo" role="tab" data-toggle="tab">Insurance Info</a></li>
-            <li><a href="#maintenanceSchedule" role="tab" data-toggle="tab">Maintenance Schedule</a></li>
-            <li><a href="#checkListItem" role="tab" data-toggle="tab">CheckList Item</a></li>
-            <li><a href="#depriciationDisposalInfo" role="tab" data-toggle="tab">Depriciation/Disposal Info</a></li>
-            <li><a href="#uploadImages" role="tab" data-toggle="tab">Upload Image</a></li>
-        </ul>
-        <!-- Tab panes -->
-        <div class="tab-content">
-            <br />
-            <!-- first tab - Other Details-->
-            <div class="tab-pane active" id="otherDetail">
-            </div>
-            <!-- second tab - Purchase/Lease Info-->
-            <div class="tab-pane" id="purchaseLeaseInfo">
-            </div>
-            <!-- third tab - Insuran Info-->
-            <div class="tab-pane" id="insuranceInfo">
-            </div>
-            <!-- fourth tab - Maintenance Schedule-->
-            <div class="tab-pane" id="maintenanceSchedule">
-            </div>
-            <!-- fifth tab - Check List item-->
-            <div class="tab-pane" id="checkListItem">
-            </div>
-            <!-- sixth tab - Depriciation/Disposal Info-->
-            <div class="tab-pane" id="depriciationDisposalInfo">
-            </div> 
-            <!-- seventh tab - Upload Image-->
-            <div class="tab-pane" id="uploadImages">
-            </div>
 
+        <div class="panel panel-info">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="active"><a href="#otherDetail" role="tab" data-toggle="tab">Other Details</a></li>
+                <li><a href="#purchaseInfo" role="tab" data-toggle="tab">Purchase Info</a></li>
+                <li><a href="#leaseInfo" role="tab" data-toggle="tab">Lease Info</a></li>
+                <li><a href="#insuranceInfo" role="tab" data-toggle="tab">Insurance Info</a></li>
+                <li><a href="#maintenanceSchedule" role="tab" data-toggle="tab">Maintenance Schedule</a></li>
+                <li><a href="#checkListItem" role="tab" data-toggle="tab">CheckList Item</a></li>
+                <li><a href="#depriciationInfo" role="tab" data-toggle="tab">Depriciation Info</a></li>
+                <li><a href="#disposalInfo" role="tab" data-toggle="tab">Disposal Info</a></li>
+                <li><a href="#uploadImages" role="tab" data-toggle="tab">Upload Image</a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <br />
+                <!-- first tab - Other Details-->
+                <div class="tab-pane active" id="otherDetail">
+                    <div class="form-group">
+                        <label for="numberOfDoors" class="control-label h5 col-sm-2">Number of Doors </label>
+                        <div class="col-md-2">
+                            <input type="text" id="numberOfDoors" class="form-control" placeholder='<Number of Doors >' />
+                        </div>
+                        <label for="engineCC" class="control-label h5 col-sm-2">Engine CC *</label>
+                        <div class="col-md-2">
+                            <input type="text" id="engineCC" class="form-control" placeholder='<Engine CC>' />
+                        </div>
+                        <label for="cylinders" class="control-label h5 col-sm-2">No. Of Cylinders</label>
+                        <div class="col-md-2">
+                            <input type="text" id="cylinders" class="form-control" placeholder='<No. Of Cylinders>' />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="numberOfDoors" class="control-label h5 col-sm-2">Alloy Rim </label>
+                        <div class="col-md-2">
+                            <input type="checkbox" class="form-control" />
+                        </div>
+                        <label for="chasisNumber" class="control-label h5 col-sm-2">Chasis Number *</label>
+                        <div class="col-md-2">
+                            <input type="text" id="chasisNumber" class="form-control" placeholder='<Chasis Number *>' />
+                        </div>
+                        <label for="engineNumber" class="control-label h5 col-sm-2">Engine Number </label>
+                        <div class="col-md-2">
+                            <input type="text" id="engineNumber" class="form-control" placeholder='<Engine Number>' />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="keyCode" class="control-label h5 col-sm-2">Key Code  </label>
+                        <div class="col-md-2">
+                            <input type="text" id="keyCode" class="form-control" placeholder='<Key Code  >' />
+                        </div>
+                        <label for="radioCode" class="control-label h5 col-sm-2">Radio Code </label>
+                        <div class="col-md-2">
+                            <input type="text" id="radioCode" class="form-control" placeholder='<Radio Code >' />
+                        </div>
+                        <label for="topSpeed" class="control-label h5 col-sm-2">Top Speed (km/h) </label>
+                        <div class="col-md-2">
+                            <input type="text" id="topSpeed" class="form-control" placeholder='<Top Speed (km/h) >' />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fWheelSize" class="control-label h5 col-sm-2">F/Wheel Size (Inches) </label>
+                        <div class="col-md-2">
+                            <input type="text" id="fWheelSize" class="form-control" placeholder='<F/Wheel Size>' />
+                        </div>
+                        <label for="bWheelSize" class="control-label h5 col-sm-2"> 	B/Wheel Size (Inches) </label>
+                        <div class="col-md-2">
+                            <input type="text" id="bWheelSize" class="form-control" placeholder='<B/Wheel Size>' />
+                        </div>
+                        <label for="accessories" class="control-label h5 col-sm-2">Accessories </label>
+                        <div class="col-md-2">
+                            <textarea class="form-control" rows="2" placeholder='Accessories' id="accessories"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="interiorDes" class="control-label h5 col-sm-2">Interior Description</label>
+                        <div class="col-md-2">
+                            <textarea class="form-control" rows="2" placeholder='Interior Description' id="interiorDes"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <!-- second tab - Purchase Info-->
+                <div class="tab-pane" id="purchaseInfo">
+                    <div class="form-group">
+                        <label for="purchaseDate" class="control-label h5 col-sm-2">Purchase Date </label>
+                        <div class="col-md-2">
+                            <input id="purchaseDate" type="text" placeholder="<Purchase Date>" class="form-control">
+                        </div>
+                        <label for="pOrderNum" class="control-label h5 col-sm-2">Purchase Order Number </label>
+                        <div class="col-md-2">
+                            <input type="text" id="pOrderNum" class="form-control" placeholder='<Purchase Order Number >' />
+                        </div>
+                        <label for="pCost" class="control-label h5 col-sm-2">Purchase Cost</label>
+                        <div class="col-md-2">
+                            <input type="text" id="pCost" class="form-control" placeholder='<Purchase Cost>' />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="usedVehicle" class="control-label h5 col-sm-2">Used Vehicle? </label>
+                        <div class="col-md-2">
+                            <input type="checkbox" id="usedVehicle" class="form-control" />
+                        </div>
+                        <label for="pDescription" class="control-label h5 col-sm-2">Purchase Description </label>
+                        <div class="col-md-2">
+                            <textarea class="form-control" rows="2" placeholder='<Purchase Description>' id="pDescription"></textarea>
+                        </div>
+                        <label for="bPartner" class="control-label h5 col-sm-2">Business Partner </label>
+                        <div class="col-md-2">
+                            <select id="bPartner" class="form-control" data-bind="options: $root.businessPartners, optionsText: 'BusinessPartnerCodeName', optionsValue: 'BusinessPartnerId', optionsCaption: 'Business Partner Code' "></select>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- third tab - Lease Info-->
+                <div class="tab-pane" id="leaseInfo">
+                    <div class="form-group">
+                        <label for="downPay" class="control-label h5 col-sm-2">Down Payment</label>
+                        <div class="col-md-2">
+                            <input id="downPay" type="text" placeholder="<Down Payment>" class="form-control">
+                        </div>
+                        <label for="leasedStartDt" class="control-label h5 col-sm-2">Leased Start Date </label>
+                        <div class="col-md-2">
+                            <input type="text" id="leasedStartDt" class="form-control" placeholder='<Leased Start Date >' />
+                        </div>
+                        <label for="leasedFinishDt" class="control-label h5 col-sm-2">Leased Finish Date</label>
+                        <div class="col-md-2">
+                            <input type="text" id="leasedFinishDt" class="form-control" placeholder='<Leased Finish Date>' />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="leasedOwnerShip" class="control-label h5 col-sm-2">Leased Ownership? </label>
+                        <div class="col-md-2">
+                            <input type="checkbox" id="leasedOwnerShip" class="form-control" />
+                        </div>
+                        <label for="monthlyPayment" class="control-label h5 col-sm-2">Monthly Payment </label>
+                        <div class="col-md-2">
+                            <input type="text" id="monthlyPayment" class="form-control" placeholder='<Monthly Payment>' />
+                        </div>
+                        <label for="insuranceRt" class="control-label h5 col-sm-2">Interest Rate (%)</label>
+                        <div class="col-md-2">
+                            <input type="text" id="insuranceRt" class="form-control" placeholder='<Interest Rate>' />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="principalPayment" class="control-label h5 col-sm-2">Prinicipal Payment</label>
+                        <div class="col-md-2">
+                            <input type="text" id="principalPayment" class="form-control" placeholder='<Prinicipal Payment>' />
+                        </div>
+                        <label for="firstPaymentDt" class="control-label h5 col-sm-2">First Payment Date </label>
+                        <div class="col-md-2">
+                            <input type="text" id="firstPaymentDt" class="form-control" placeholder='<First Payment Date >' />
+                        </div>
+                        <label for="firstPayment" class="control-label h5 col-sm-2">First Payment</label>
+                        <div class="col-md-2">
+                            <input type="text" id="firstPayment" class="form-control" placeholder='<First Payment>' />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastPayment" class="control-label h5 col-sm-2">Last Payment </label>
+                        <div class="col-md-2">
+                            <input type="text" id="lastPayment" class="form-control" placeholder='<Last Payment>' />
+                        </div>
+                        <label for="bPartner" class="control-label h5 col-sm-2">Business Partner </label>
+                        <div class="col-md-2">
+                            <select id="bPartner" class="form-control" data-bind="options: $root.businessPartners, optionsText: 'BusinessPartnerCodeName', optionsValue: 'BusinessPartnerId', optionsCaption: 'Business Partner Code' "></select>
+                        </div>
+                    </div>
+                </div>
+                <!-- fourth tab - Insuran Info-->
+                <div class="tab-pane" id="insuranceInfo">
+                    <div class="form-group">
+                        <label for="insAgent" class="control-label h5 col-sm-2">Insurance Agent </label>
+                        <div class="col-md-2">
+                            <input id="insAgent" type="text" placeholder="<Insurance Agent>" class="form-control">
+                        </div>
+                        <label for="insStartDt" class="control-label h5 col-sm-2">Insurance Start Date </label>
+                        <div class="col-md-2">
+                            <input type="text" id="insStartDt" class="form-control" placeholder='<Insurance Start Date >' />
+                        </div>
+                        <label for="insRenewalDt" class="control-label h5 col-sm-2">Insurance Renewal Date </label>
+                        <div class="col-md-2">
+                            <input type="text" id="insRenewalDt" class="form-control" placeholder='<Insurance Renewal Date >' />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="coverageLimit" class="control-label h5 col-sm-2">Coverage Limit</label>
+                        <div class="col-md-2">
+                            <input id="coverageLimit" type="text" placeholder="<Coverage Limit>" class="form-control">
+                        </div>
+                        <label for="premium" class="control-label h5 col-sm-2">Premium </label>
+                        <div class="col-md-2">
+                            <input type="text" id="premium" class="form-control" placeholder='<Premium >' />
+                        </div>
+                        <label for="insValue" class="control-label h5 col-sm-2">Insured Value</label>
+                        <div class="col-md-2">
+                            <input type="text" id="insValue" class="form-control" placeholder='<Insured Value>' />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="insuranceType" class="control-label h5 col-sm-2">Insurance Type *</label>
+                        <div class="col-md-2">
+                            <select id="insuranceType" class="form-control" data-bind="options: $root.insuranceType, optionsText: 'InsuranceTypeCodeName', optionsValue: 'InsuranceTypeId', optionsCaption: '<Insurance Type>' "></select>
+                        </div>
+                        <label for="bPartnerInsuranceInfo" class="control-label h5 col-sm-2">Business Partner </label>
+                        <div class="col-md-2">
+                            <select id="bPartnerInsuranceInfo" class="form-control" data-bind="options: $root.businessPartners, optionsText: 'BusinessPartnerCodeName', optionsValue: 'BusinessPartnerId', optionsCaption: '<Business Partner Code>' "></select>
+                        </div>
+                    </div>
+                </div>
+                <!-- fifth tab - Maintenance Schedule-->
+                <div class="tab-pane" id="maintenanceSchedule">
+                    <div class="form-group">
+                        <label for="maintStartDt" class="control-label h5 col-sm-2">Maintenance Start Date *</label>
+                        <div class="col-md-2">
+                            <input id="maintStartDt" type="text" placeholder="<Maintenance Start Date >" class="form-control">
+                        </div>
+                        <label for="frequencyDays" class="control-label h5 col-sm-2">Frequency (Days) </label>
+                        <div class="col-md-2">
+                            <input type="text" id="frequencyDays" class="form-control" placeholder='<Frequency (Days) >' />
+                        </div>
+                        <label for="frequencyKm" class="control-label h5 col-sm-2">Frequency KM </label>
+                        <div class="col-md-2">
+                            <input type="text" id="frequencyKm" class="form-control" placeholder='<Frequency KM>' />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="maintainceType" class="control-label h5 col-sm-2">Maintenance Type *</label>
+                        <div class="col-md-2">
+                            <select id="maintainceType" class="form-control" data-bind="options: $root.maintenanceTypes, optionsText: 'MaintenanceTypeCodeName', optionsValue: 'MaintenanceTypeId', optionsCaption: '<Maintenance Type>' "></select>
+                        </div>
+                    </div>
+                </div>
+                <!-- sixth tab - Check List item-->
+                <div class="tab-pane" id="checkListItem">
+                    <div class="form-group">
+                        <label for="vCheckList" class="control-label h5 col-sm-2">Vehicle Check List *</label>
+                        <div class="col-md-2">
+                            <select id="vCheckList" class="form-control" data-bind="options: $root.vehicleCheckList, optionsText: 'VehicleCheckListCodeName', optionsValue: 'VehicleCheckListId', optionsCaption: '<Vehicle Check List>' "></select>
+                        </div>
+                    </div>
+                </div>
+                <!-- seventh tab - Depriciation Info-->
+                <div class="tab-pane" id="depriciationInfo">
+                    <div class="form-group">
+                        <label for="upStartDt" class="control-label h5 col-sm-2">Useful Period Start Date </label>
+                        <div class="col-md-2">
+                            <input id="upStartDt" type="text" placeholder="<Useful Period Start Date >" class="form-control">
+                        </div>
+                        <label for="upEndDt" class="control-label h5 col-sm-2">Useful Period End Date </label>
+                        <div class="col-md-2">
+                            <input type="text" id="upEndDt" class="form-control" placeholder='<Useful Period End Date >' />
+                        </div>
+                        <label for="firstMonthDep" class="control-label h5 col-sm-2">First Month Dep.</label>
+                        <div class="col-md-2">
+                            <input type="text" id="firstMonthDep" class="form-control" placeholder='<First Month Dep.>' />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="monthlyDep" class="control-label h5 col-sm-2">Monthly Dep.</label>
+                        <div class="col-md-2">
+                            <input id="monthlyDep" type="text" placeholder="<Monthly Dep.>" class="form-control">
+                        </div>
+                        <label for="lastMonthDep" class="control-label h5 col-sm-2">Last Month Dep.</label>
+                        <div class="col-md-2">
+                            <input type="text" id="lastMonthDep" class="form-control" placeholder='<Last Month Dep.>' />
+                        </div>
+                        <label for="residualVal" class="control-label h5 col-sm-2">Residual Value </label>
+                        <div class="col-md-2">
+                            <input type="text" id="residualVal" class="form-control" placeholder='<Residual Value >' />
+                        </div>
+                    </div>
+
+                </div>
+                <!-- eight tab - Disposal Info-->
+                <div class="tab-pane" id="disposalInfo">
+                    <div class="form-group">
+                        <label for="dispDt" class="control-label h5 col-sm-2">Disposal Date</label>
+                        <div class="col-md-2">
+                            <input id="dispDt" type="text" placeholder="<Disposal Date>" class="form-control">
+                        </div>
+                        <label for="dsipCost" class="control-label h5 col-sm-2">Disposal Cost </label>
+                        <div class="col-md-2">
+                            <input type="text" id="dsipCost" class="form-control" placeholder='<Disposal Cost >' />
+                        </div>
+                        <label for="bPartnerInsuranceInfo" class="control-label h5 col-sm-2">Business Partner </label>
+                        <div class="col-md-2">
+                            <select id="bPartnerInsuranceInfo" class="form-control" data-bind="options: $root.businessPartners, optionsText: 'BusinessPartnerCodeName', optionsValue: 'BusinessPartnerId', optionsCaption: '<Business Partner Code>' "></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="disposalDes" class="control-label h5 col-sm-2">Disposal Description</label>
+                        <div class="col-md-2">
+                            <textarea class="form-control" rows="2" placeholder='<Disposal Description>' id="disposalDes"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <!-- ninth tab - Upload Image-->
+                <div class="tab-pane" id="uploadImages">
+                </div>
+
+            </div>
         </div>
-    </div>
+    </form>
+
 </div>
