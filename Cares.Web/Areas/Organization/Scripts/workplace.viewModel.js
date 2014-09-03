@@ -1,5 +1,5 @@
 ﻿/*
-    Module with the view model for the Operation
+    Module with the view model for the workplace
 */
 define("workplace/workplace.viewModel",
     ["jquery", "amplify", "ko", "workplace/workplace.dataservice", "workplace/workplace.model",
@@ -26,7 +26,8 @@ define("workplace/workplace.viewModel",
                     baseCompniesList = ko.observableArray([]),
                     //WorkLocations list for base data
                     baseWorkLocationsList = ko.observableArray([]),
-
+                    //Filtered WorkLocations list for base data
+                    filteredBaseWorkLocationsList = ko.observableArray([]),
                     //filters
                     workplaceCodeTextFilter = ko.observable(),
                     workplaceNameTextFilter = ko.observable(),
@@ -46,37 +47,40 @@ define("workplace/workplace.viewModel",
                     //to control the visibility of filter ec
                     filterSectionVisilble = ko.observable(false),
                     //selected tab
-                    selectedWorkPlace = ko.observable(),
+                 //   selectedWorkPlace = ko.observable(),
                     // Editor View Model
                     editorViewModel = new ist.ViewModel(model.workPlace),
-
+                    selectedWorkPlace = editorViewModel.itemForEditing,
                 //save button handler
                 onSaveWorkPlace = function () {
-                    debugger;
                         if (dobeforeworkplace())
                             saveWorkplace(selectedWorkPlace());
                     },
                 //cancel button handler
                 onCancelSaveWorkPlace = function() {
-                        //    editorViewModel.revertItem();
-                        isWorkPlaceEditorVisible(false);
+                    editorViewModel.revertItem();
+                    $("#baseCompniesList").prop("disabled", false);
+                    isWorkPlaceEditorVisible(false);
                     },
                 // create new org group handler
-                onCreateWorkPlaceForm = function() {
-                        //  var operation =new model.operation();
-                        //   editorViewModel.selectItem(operation);
-                        operationsTabList.removeAll();
-                        var workPlace = new model.workPlace();
-                        // Select the newly added Hire Group
-                        selectedWorkPlace(workPlace);
+                onCreateWorkPlaceForm = function () {
+                    var workPlace = new model.workPlace();
+                    editorViewModel.selectItem(workPlace);
                         selectedWorkPlace().tabDetail(new model.operationWorkplace());
-//                        selectedTab().tabDetail().parentWorkPlaceId('undefined');
                         filteredParentWorkPlaceList(_.filter(parentWorkPlaceList(), function(workplace) {
                             return workplace;
                         }));
-
+                        filteredBaseWorkLocationsList.removeAll();
+                        fleelPoolString(undefined);
+                        operationString(undefined);
                         isWorkPlaceEditorVisible(true);
-                    },
+                },
+                filterWorkLocations = function (item) {
+                    filteredBaseWorkLocationsList.removeAll();
+                    filteredBaseWorkLocationsList(_.filter(baseWorkLocationsList(), function (WorkLocation) {
+                        return WorkLocation.CompanyId === item.companyId();
+                    }));
+                },
                 //reset butto handle 
                 onResetResuults = function() {
                         workplaceCodeTextFilter(undefined);
@@ -98,47 +102,62 @@ define("workplace/workplace.viewModel",
                         confirmation.show();
                     },
                 //edit button handler
-                onEditworkplace = function(item) {
-                        operationsTabList.removeAll();
-
+                onEditworkplace = function (item) {
+                    filterWorkLocations(item);
+                    operationsTabList.removeAll();
                         filteredParentWorkPlaceList(_.filter(parentWorkPlaceList(), function(workplace) {
                             return workplace.WorkPlaceId !== item.id();
                         }));
                         getWorkplaceOperations(item.id());
-                        selectedWorkPlace(item);
+                        editorViewModel.selectItem(item);
                         selectedWorkPlace().tabDetail(new model.operationWorkplace());
                         selectedWorkPlace().tabDetail().parentWorkPlaceId(item.id());
                         isWorkPlaceEditorVisible(true);
+                        $("#baseCompniesList").prop("disabled", true);
                     },
-                //validation check 
+                //validation check  for workplace
                 dobeforeworkplace = function() {
                         if (!selectedWorkPlace().isValid()) {
                             selectedWorkPlace().errors.showAllMessages();
                             return false;
                         }
                         return true;
-                    },
+                },
+                //validation check  for operation-workplace
+                dobeforeoperationWorkplace = function () {
+                    if (!selectedWorkPlace().tabDetail().isValid()) {
+                        selectedWorkPlace().tabDetail().errors.showAllMessages();
+                        return false;
+                    }
+                    return true;
+                },
                 //add operation worklplace  handler
-                onAddOperation = function(operationDetail) {
-                        var selectedFleetPoolname = baseFleetPoolList.find(function(temp) {
-                            if (temp.FleetPoold == fleelPoolString())
-                                return temp.FleetPoolCodeName;
-                            else return "";
-                        });
+                onAddOperation = function (operationDetail) {
+                    debugger;
+                        if (dobeforeoperationWorkplace()) {
+                            var selectedFleetPoolname = baseFleetPoolList.find(function (temp) {
+                                if (temp.FleetPoolId == fleelPoolString() && fleelPoolString() != 'undefined')
+                                    return temp.FleetPoolCodeName;
+                                else return "";
+                            });
                         var selectedOperationname = baseOperationsList.find(function(temp) {
-                            if (temp.OperationId == operationString())
+                            if (temp.OperationId == operationString() && operationString() != 'undefined')
                                 return temp.OperationCodeName;
                             else return "";
                         });
+                        if (fleelPoolString() != undefined && operationString() != undefined)
                         operationDetail.fleelPoolName(selectedFleetPoolname.FleetPoolCodeName);
                         operationDetail.fleelPoolId(fleelPoolString());
+                        if (fleelPoolString() != undefined && operationString() != undefined)
                         operationDetail.operationName(selectedOperationname.OperationCodeName);
                         operationDetail.operationId(operationString());
                         operationsTabList.push(operationDetail);
                         fleelPoolString(undefined);
                         operationString(undefined);
                         selectedWorkPlace().tabDetail(new model.operationWorkplace());
-                    },
+                        }
+                    return false;
+                },
                 //delete operation worklplace
                 deleteOperationDetail = function(item) {
                     operationsTabList.remove(item);
@@ -147,7 +166,6 @@ define("workplace/workplace.viewModel",
                 saveWorkplace = function (operation) {
                     dataservice.saveWorkplace(workPalceClientToServerMapper(operation), {
                         success: function (uodatedOperation) {
-                            debugger;
                             var newItem = model.OperationServertoClientMapper(uodatedOperation);
                             if (selectedWorkPlace().id() != undefined) {
                                 var newObjtodelete = workplaces.find(function(temp) {
@@ -159,6 +177,7 @@ define("workplace/workplace.viewModel",
                                 workplaces.push(newItem);
                             updateParentWorkplaces();
                             isWorkPlaceEditorVisible(false);
+                            $("#baseCompniesList").prop("disabled", false);
                             toastr.success(ist.resourceText.WorkPlaceSaveSuccessMessage);
                         },
                         error: function(exceptionMessage, exceptionType) {
@@ -225,7 +244,7 @@ define("workplace/workplace.viewModel",
                         IsAsc: sortIsAsc()
                     },
                     {
-                        success: function(data) {
+                        success: function (data) {
                             workplaces.removeAll();
                             pager().totalCount(data.TotalCount);
                             _.each(data.WorkPlaces, function(item) {
@@ -340,7 +359,9 @@ define("workplace/workplace.viewModel",
                     fleelPoolString: fleelPoolString,
                     deleteOperationDetail: deleteOperationDetail,
                     parentWorkPlaceList: parentWorkPlaceList,
-                    filteredParentWorkPlaceList: filteredParentWorkPlaceList
+                    filteredParentWorkPlaceList: filteredParentWorkPlaceList,
+                    filterWorkLocations: filterWorkLocations,
+                    filteredBaseWorkLocationsList: filteredBaseWorkLocationsList
                 };
             })()
         };

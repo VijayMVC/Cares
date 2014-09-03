@@ -14,7 +14,6 @@ namespace Cares.Repository.Repositories
     /// </summary>
     public sealed class OperationsWorkPlaceRepository : BaseRepository<OperationsWorkPlace>, IOperationsWorkPlaceRepository
     {
-
         #region Constructor
         
         /// <summary>
@@ -38,7 +37,6 @@ namespace Cares.Repository.Repositories
         }
 
         #endregion
-
         #region Public
 
         /// <summary>
@@ -68,6 +66,5 @@ namespace Cares.Repository.Repositories
                    .FirstOrDefault(opp => opp.OperationsWorkPlaceId == id);
         }
         #endregion
-
     }
 }

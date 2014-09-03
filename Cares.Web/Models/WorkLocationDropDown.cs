@@ -13,6 +13,12 @@ namespace Cares.Web.Models
         /// </summary>
         public long WorkLocationId { get; set; }
 
+
+        /// <summary>
+        /// Company Id
+        /// </summary>
+        public long CompanyId { get; set; }
+
         /// <summary>
         /// Work Location Code  Name
         /// </summary>

@@ -81,11 +81,14 @@ namespace Cares.Implementation.Services
         /// </summary>
         public WorkPlace SaveWorkPlace(WorkPlace workPlaceRequest)
         {
+            // Check the availability of workplace code
+            if (workplaceRepository.DoesWorkPlaceCodeExists(workPlaceRequest))
+                throw new CaresException(Resources.Organization.Workplace.WorkPlaceWithSameCodeExistsAlready);
             WorkPlace dbVersion = workplaceRepository.Find(workPlaceRequest.WorkPlaceId);
             #region UPDATE
             if (dbVersion != null)
             {
-                IEnumerable<OperationsWorkPlace> operationWorkPlaces = operationsWorkPlaceRepository.GetWorkPlaceOperationByWorkPlaceId(workPlaceRequest.WorkPlaceId);
+                IEnumerable<OperationsWorkPlace> dBVersionperationWorkPlaces = operationsWorkPlaceRepository.GetWorkPlaceOperationByWorkPlaceId(workPlaceRequest.WorkPlaceId);
                 // Updating object properties
                 dbVersion.RecLastUpdatedBy = workplaceRepository.LoggedInUserIdentity;
                 dbVersion.RecLastUpdatedDt = DateTime.Now;
@@ -102,10 +105,10 @@ namespace Cares.Implementation.Services
                     foreach (OperationsWorkPlace operation in workPlaceRequest.OperationsWorkPlaces)
                     {
                         // if there is any recored in operationWorkplace table in DB
-                        if (operationWorkPlaces.Count()!=0)
+                        if (dBVersionperationWorkPlaces.Count()!=0)
                         {
                             // for every operation in dbVersionOperation object
-                            foreach (OperationsWorkPlace dbVersionOperation in operationWorkPlaces)
+                            foreach (OperationsWorkPlace dbVersionOperation in dBVersionperationWorkPlaces)
                             {
                                 // If operation is newly created with id = 0 
                                 if (operation.OperationsWorkPlaceId == 0)
@@ -147,7 +150,7 @@ namespace Cares.Implementation.Services
                 }   // request object does not contain any operation , so delete all associated operation entities 
                 else
                 {
-                    foreach (OperationsWorkPlace dbVersionOperation in operationWorkPlaces)
+                    foreach (OperationsWorkPlace dbVersionOperation in dBVersionperationWorkPlaces)
                     {
                         OperationsWorkPlace operationsWorkPlaces = operationsWorkPlaceRepository.Find(dbVersionOperation.OperationsWorkPlaceId);
                         if (operationsWorkPlaces != null)
@@ -191,13 +194,18 @@ namespace Cares.Implementation.Services
         public void DeleteWorkPlace(WorkPlace workPlace)
         {
             WorkPlace dbVersion = workplaceRepository.Find(workPlace.WorkPlaceId);
+            if (!workplaceRepository.IsWorkPalceParrent(workPlace.WorkPlaceId))
             {
-                if (dbVersion != null)
                 {
-                    workplaceRepository.Delete(dbVersion);
-                    workplaceRepository.SaveChanges();
+                    if (dbVersion != null)
+                    {
+                        workplaceRepository.Delete(dbVersion);
+                        workplaceRepository.SaveChanges();
+                    }
                 }
             }
+            else
+                throw new CaresException(Resources.Organization.Workplace.WorkplaceIsAssociatedwWithOtherWorkplace);
         }
         #endregion
     }

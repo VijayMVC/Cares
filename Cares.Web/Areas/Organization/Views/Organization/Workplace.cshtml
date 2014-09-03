@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = Cares.Web.Resources.Organization.Workplace.WorkplaceLabel;
 }
-<div class="row" id="OperationBinding">
+<div class="row" id="WorkPlaceBinding">
     <div class="row " data-bind="visible: !isWorkPlaceEditorVisible()">
         <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.Organization.Workplace.WorkplaceLabel</h3>
         <div class="header-toolsSection">
@@ -20,7 +20,7 @@
                     <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Workplace.WorkplaceName+">")" data-bind="value:workplaceNameTextFilter" />
                 </div>
                 <div class="col-xs-2">
-                    <select class="form-control" data-bind="options: $root.baseCompniesList, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.Workplace.Company '+'&gt;', value:companyFilter"></select>
+                    <select class="form-control"  data-bind="options: $root.baseCompniesList, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.Workplace.Company '+'&gt;', value:companyFilter"></select>
                 </div>
                 <div class="col-xs-2">
                     <select class="form-control" data-bind="options: $root.baseWorkplaceTypeList, optionsText: 'WorkPlaceTypeCodeName', optionsValue: 'WorkPlaceTypeId',  optionsCaption:'&lt;' +'@Cares.Web.Resources.Organization.Workplace.WorkplaceType'+'&gt;', value:workplaceTypeFilter"></select>
@@ -38,13 +38,13 @@
             <table id="OperationsTable" class="table table-condensed">
                 <thead>
                     <tr>
-                        <th> <span id="1">@Cares.Web.Resources.Organization.Workplace.WorkplaceCode<span class="icon-up"></span></span></th>
-                        <th> <span id="2">@Cares.Web.Resources.Organization.Workplace.WorkplaceName<span></span></span></th>
-                        <th> <span id="3">@Cares.Web.Resources.Organization.Workplace.Description<span></span></span></th>
-                        <th> <span id="4">@Cares.Web.Resources.Organization.Workplace.WorkplaceType<span></span></span></th>
-                        <th> <span id="5">@Cares.Web.Resources.Organization.Workplace.Company<span></span></span></th>
-                        <th> <span id="6">@Cares.Web.Resources.Organization.Workplace.WorkLocation<span></span></span></th>
-                        <th> <span id="7">@Cares.Web.Resources.Organization.Workplace.ParentWorkplace<span></span></span></th>
+                        <th class="WPcode"> <span id="1">@Cares.Web.Resources.Organization.Workplace.WorkplaceCode<span class="icon-up"></span></span></th>
+                        <th class="WPname"> <span id="2">@Cares.Web.Resources.Organization.Workplace.WorkplaceName<span></span></span></th>
+                        <th class="WPDescription"> <span id="3">@Cares.Web.Resources.Organization.Workplace.Description<span></span></span></th>
+                        <th class="WPType"> <span id="4">@Cares.Web.Resources.Organization.Workplace.WorkplaceType<span></span></span></th>
+                        <th class="WPCompany"> <span id="5">@Cares.Web.Resources.Organization.Workplace.Company<span></span></span></th>
+                        <th class="WPLocation"> <span id="6">@Cares.Web.Resources.Organization.Workplace.WorkLocation<span></span></span></th>
+                        <th class="WPParent"> <span id="7">@Cares.Web.Resources.Organization.Workplace.ParentWorkplace<span></span></span></th>
                         <th> <span></span></th>
                         <th> <span></span></th>
                     </tr>
@@ -70,7 +70,7 @@
         <tr>
             <td data-bind="text: code"></td>
             <td data-bind="text: name"></td>
-            <td data-bind="text: companyName"></td>
+            <td data-bind="text: description"></td>
             <td data-bind="text: workplaceTypeName"></td>
             <td data-bind="text: companyName"></td>
             <td data-bind="text: workLocationName"></td>

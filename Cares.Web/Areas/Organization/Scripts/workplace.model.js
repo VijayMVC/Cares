@@ -101,22 +101,25 @@
                 parentWorkPlaceId = ko.observable(specifiedWorkPlaceId),
 
                 locationId = ko.observable(specifiedId),
-                locationCode = ko.observable(specifiedCode),
+                locationCode = ko.observable(specifiedCode).extend({ required: true }),
                 locationName = ko.observable(specifiedName),
                 locationDescription = ko.observable(specifiedDescription),
                 operationId = ko.observable(specifiedoperationId),
                 operationName = ko.observable(specifiedoperationName),
-               fleelPoolId = ko.observable(specifiedfleelPoolId),
-               fleelPoolName = ko.observable(specifiedfleelPoolName),
-                costCenter = ko.observable(specifiedcostCenter),
+                fleelPoolId = ko.observable(specifiedfleelPoolId),
+                fleelPoolName = ko.observable(specifiedfleelPoolName),
+                costCenter = ko.observable(specifiedcostCenter).extend({ required: true }),
                 errors = ko.validation.group({
+                    locationCode: locationCode,
+                    costCenter: costCenter
                }),
                // Is Valid
                isValid = ko.computed(function () {
                    return errors().length === 0;
                }),
                dirtyFlag = new ko.dirtyFlag({
-                  
+                   locationCode: locationCode,
+                   costCenter: costCenter
                }),
                // Has Changes
                hasChanges = ko.computed(function () {
@@ -157,7 +160,7 @@
        };
     // operation Workplace Server to Client Mapper
     var operationWorkplaceServertoClientMapper = function (itemFromServer) {
-        var pob = new operationWorkplace(itemFromServer.OperationsWorkPlaceId, itemFromServer.LocationCode, "[No Name]", "[No Des.]",
+        var pob = new operationWorkplace(itemFromServer.OperationsWorkPlaceId, itemFromServer.LocationCode, "-", "-",
             itemFromServer.OperationId, itemFromServer.OperationName,
           itemFromServer.FleetPoolId, itemFromServer.FleetPoolName, itemFromServer.CostCenter, itemFromServer.WorkPlaceId,false);
         return pob;

@@ -1,5 +1,5 @@
 ﻿
-<div class="well col-md-12" id="OperationEditor" data-bind="visible: isWorkPlaceEditorVisible , with:selectedWorkPlace" style="display: none;">
+<div class="well col-md-12" id="WorkplaceEditor" data-bind="visible: isWorkPlaceEditorVisible , with:selectedWorkPlace" style="display: none;">
     <div class="float-left detailsContainer">
         <h3 class="page-header detailsHeaderSection">@Cares.Web.Resources.Organization.Workplace.WorkPlaceDetail</h3>
         <button class="btn  btn-info" data-bind="click:$root.onSaveWorkPlace">@Cares.Web.Resources.Shared.Common.Save</button>
@@ -28,12 +28,12 @@
 
             <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.Company</label>
             <div class="col-md-2">
-                <select class="form-control" data-bind="options: $root.baseCompniesList, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.Workplace.Company '+'&gt;', value:companyId"></select>
+                <select class="form-control" id="baseCompniesList" data-bind="options: $root.baseCompniesList, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.Workplace.Company '+'&gt;', value:companyId, event: { change : $root.filterWorkLocations}"></select>
             </div>
 
             <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.WorkLocation</label>
             <div class="col-md-2">
-                <select class="form-control" data-bind="options: $root.baseWorkLocationsList, optionsText: 'WorkLocationCodeName', optionsValue: 'WorkLocationId', optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.Workplace.WorkplaceType '+'&gt;', value:workLocationId"></select>
+                <select class="form-control" data-bind="options: $root.filteredBaseWorkLocationsList, optionsText: 'WorkLocationCodeName', optionsValue: 'WorkLocationId', optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.Workplace.WorkplaceType '+'&gt;', value:workLocationId"></select>
             </div>
         </div>
         <div class="form-group">

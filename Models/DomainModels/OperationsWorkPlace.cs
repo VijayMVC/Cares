@@ -27,13 +27,13 @@ namespace Cares.Models.DomainModels
         /// Work Place Id
         /// </summary>
         [ForeignKey("WorkPlace")]
-        public long WorkPlaceId { get; set; }
+        public long? WorkPlaceId { get; set; }
 
         /// <summary>
         /// Operation Id
         /// </summary>
         [ForeignKey("Operation")]
-        public long OperationId { get; set; }
+        public long? OperationId { get; set; }
 
         /// <summary>
         /// Fleet Pool Id
