@@ -15,6 +15,7 @@ namespace Cares.Web.ModelMappers
         {
             return new WorkLocationDropDown
             {
+                CompanyId = source.CompanyId,
                 WorkLocationId = source.WorkLocationId,
                 WorkLocationCodeName = source.WorkLocationCode + " - " + source.WorkLocationName
             };

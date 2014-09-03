@@ -102,6 +102,23 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(workPlace => workPlace.UserDomainKey == UserDomainKey).ToList();
         }
+
+        /// <summary>
+        /// Check if workplace is parrent of some other workplace
+        /// </summary>
+        /// <returns></returns>
+        public bool IsWorkPalceParrent(long workplaceId)
+        {
+           return DbSet.Count(workplace => workplace.ParentWorkPlaceId == workplaceId)>0;
+        }
+
+        /// <summary>
+        /// To check the availbility of workplace code
+        /// </summary>
+        public bool DoesWorkPlaceCodeExists(WorkPlace workplace)
+        {
+            return (DbSet.Count(dbWorkplace => dbWorkplace.WorkPlaceCode == workplace.WorkPlaceCode) > 0);
+        }
         #endregion
     }
 }

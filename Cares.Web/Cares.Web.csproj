@@ -854,6 +854,12 @@
     </Content>
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
+    <Content Include="Content\WorkPlace.css">
+      <DependentUpon>WorkPlace.less</DependentUpon>
+    </Content>
+    <Content Include="Content\WorkPlace.min.css">
+      <DependentUpon>WorkPlace.css</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1283,6 +1289,10 @@
     <Content Include="Areas\Fleet\Views\Home\_VehicleEditor.cshtml" />
     <Content Include="Areas\Organization\Views\Organization\Workplace.cshtml" />
     <Content Include="Areas\Organization\Views\Organization\_WorkplaceEditor.cshtml" />
+    <Content Include="Content\WorkPlace.less" />
+    <Content Include="Content\WorkPlace.css.map">
+      <DependentUpon>WorkPlace.css</DependentUpon>
+    </Content>
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />

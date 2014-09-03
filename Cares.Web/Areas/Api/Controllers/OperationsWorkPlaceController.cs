@@ -1,16 +1,15 @@
-﻿using System.Collections.Generic;
-using Cares.Interfaces.IServices;
-using Cares.Models.RequestModels;
+﻿using Cares.Interfaces.IServices;
 using Cares.Web.ModelMappers;
-using Cares.Web.Models;
 using System.Net;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
-using OperationWorkplaceSearchByIdResponse = Cares.Models.ResponseModels.OperationWorkplaceSearchByIdResponse;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
+    /// <summary>
+    /// Operations Work Place Controller
+    /// </summary>
     public class OperationsWorkPlaceController : ApiController
     {
         #region Private
@@ -35,10 +34,8 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            Models.OperationWorkplaceSearchByIdResponse operationWorkplaceSearchByIdResponse = 
-                iOperationsWorkPlaceService.GetOperationsWorkPlaceByWorkplaceId(workPlaceId).CreateFrommm();
-
-            return operationWorkplaceSearchByIdResponse;
+            return 
+            iOperationsWorkPlaceService.GetOperationsWorkPlaceByWorkplaceId(workPlaceId).CreateFrommm();
         }
         #endregion
     }

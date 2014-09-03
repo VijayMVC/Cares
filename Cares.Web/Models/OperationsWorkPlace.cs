@@ -21,12 +21,12 @@
         /// <summary>
         /// Work Place Id
         /// </summary>
-        public long WorkPlaceId { get; set; }
+        public long? WorkPlaceId { get; set; }
 
         /// <summary>
         /// Operation Id
         /// </summary>
-        public long OperationId { get; set; }
+        public long? OperationId { get; set; }
 
         /// <summary>
         /// Operation Name

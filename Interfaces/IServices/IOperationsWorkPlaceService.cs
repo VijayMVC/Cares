@@ -1,6 +1,4 @@
 ﻿
-using System.Collections.Generic;
-using Cares.Models.DomainModels;
 using Cares.Models.ResponseModels;
 
 namespace Cares.Interfaces.IServices

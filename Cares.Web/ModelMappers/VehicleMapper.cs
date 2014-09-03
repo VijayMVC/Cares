@@ -52,7 +52,8 @@ namespace Cares.Web.ModelMappers
             vehicle.FuelType = source.FuelType.CreateFrom();
             vehicle.TransmissionTypeId = source.TransmissionTypeId;
             vehicle.TransmissionType = source.TransmissionType.CreateFrom();
-            vehicle.OperationId = source.OperationsWorkPlace.OperationId;
+            if (source.OperationsWorkPlace.OperationId != null)
+                vehicle.OperationId = (int)source.OperationsWorkPlace.OperationId;
             vehicle.Operation = source.OperationsWorkPlace.Operation.CreateFrom();
             vehicle.OperationsWorkPlaceId = source.OperationsWorkPlaceId;
             vehicle.OperationsWorkPlace = source.OperationsWorkPlace.CreateFrom();

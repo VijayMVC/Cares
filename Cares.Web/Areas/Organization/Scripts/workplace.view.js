@@ -10,7 +10,7 @@ define("workplace/workplace.view",
                 // View model 
                 viewModel = specifiedViewModel,
                 // Binding root used with knockout
-                bindingRoot = $("#OperationBinding")[0],
+                bindingRoot = $("#WorkPlaceBinding")[0],
                 // Initialize
                 initialize = function () {
                     if (!bindingRoot) {

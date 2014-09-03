@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using Cares.Interfaces.IServices;
+﻿using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
-using Cares.Models.DomainModels;
 using Cares.Models.ResponseModels;
 
 namespace Cares.Implementation.Services
@@ -12,7 +10,7 @@ namespace Cares.Implementation.Services
     public class OperationsWorkPlaceService : IOperationsWorkPlaceService
     {
 
-        #region Private
+       #region Private
        
         private readonly IOperationsWorkPlaceRepository operationsWorkPlaceRepository;
         #endregion

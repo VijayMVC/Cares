@@ -72,8 +72,9 @@ namespace Cares.Repository.BaseRepository
             modelBuilder.Entity<OperationsWorkPlace>()
                 .HasRequired(c => c.WorkPlace)
                 .WithMany()
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
 
+            
             modelBuilder.Entity<HireGroupUpGrade>()
                .HasRequired(c => c.AllowedHireGroup)
                .WithMany()

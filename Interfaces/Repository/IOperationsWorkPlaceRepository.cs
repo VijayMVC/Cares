@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using Cares.Models.DomainModels;
-using Cares.Models.RequestModels;
+﻿using Cares.Models.DomainModels;
+using System.Collections.Generic;
 
 namespace Cares.Interfaces.Repository
 {
@@ -24,8 +23,6 @@ namespace Cares.Interfaces.Repository
         /// Get Operation Work Place With Details
         /// </summary>
         OperationsWorkPlace GetOperationWorkPlaceWithDetails(long id);
-
-
     }
 }
  

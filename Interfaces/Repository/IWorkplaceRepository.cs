@@ -17,7 +17,17 @@ namespace Cares.Interfaces.Repository
         /// <summary>
         /// Get Workplace With Details 
         /// </summary>
-        WorkPlace GetWorkplaceWithDetails(long id);
+        WorkPlace GetWorkplaceWithDetails(long workplaceId);
+
+        /// <summary>
+        /// Check if workplace is parrent of some other workplace
+        /// </summary>
+        bool IsWorkPalceParrent(long workplaceId);
+
+        /// <summary>
+        /// To check the availbility of workplace code
+        /// </summary>
+        bool DoesWorkPlaceCodeExists(WorkPlace workplace);
     }
 }
    
