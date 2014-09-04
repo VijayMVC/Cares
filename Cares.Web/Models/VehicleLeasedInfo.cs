@@ -58,6 +58,11 @@ namespace Cares.Web.Models
         public DateTime? FirstPaymentDate { get; set; }
 
         /// <summary>
+        /// Last Month Payment
+        /// </summary>
+        public decimal? LastMonthPayment { get; set; }
+
+        /// <summary>
         /// Lease To Ownership
         /// </summary>
         public bool? LeaseToOwnership { get; set; }

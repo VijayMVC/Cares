@@ -81,11 +81,11 @@ namespace Cares.Web.ModelMappers
                 CurrentOdometer = source.CurrentOdometer,
                 FuelLevel = source.FuelLevel,
                 ModelYear = source.ModelYear,
-                Location = source.OperationsWorkPlace.LocationCode,
-                VehicleMakeCodeName = source.VehicleMake.VehicleMakeCode + " - " + source.VehicleMake.VehicleMakeName,
-                VehicleStatusCodeName = source.VehicleStatus.VehicleStatusCode + " - " + source.VehicleStatus.VehicleStatusName,
-                FleetPoolCodeName = source.FleetPool.FleetPoolCode + " - " + source.FleetPool.FleetPoolName,
-                OperationCodeName = source.OperationsWorkPlace.Operation.OperationCode + " - " + source.OperationsWorkPlace.Operation.OperationName,
+                Location = source.OperationsWorkPlace != null ? source.OperationsWorkPlace.LocationCode : string.Empty,
+                VehicleMakeCodeName = source.VehicleMake != null ? source.VehicleMake.VehicleMakeCode + " - " + source.VehicleMake.VehicleMakeName : string.Empty,
+                VehicleStatusCodeName = source.VehicleStatus != null ? source.VehicleStatus.VehicleStatusCode + " - " + source.VehicleStatus.VehicleStatusName : string.Empty,
+                FleetPoolCodeName = source.FleetPool != null ? source.FleetPool.FleetPoolCode + " - " + source.FleetPool.FleetPoolName : string.Empty,
+                OperationCodeName = source.OperationsWorkPlace != null ? source.OperationsWorkPlace.Operation.OperationCode + " - " + source.OperationsWorkPlace.Operation.OperationName : string.Empty,
 
             };
         }
@@ -138,6 +138,8 @@ namespace Cares.Web.ModelMappers
                        VehicleInsuranceInfo = source.VehicleInsuranceInfo.CreateFrom(),
                        VehicleDepreciation = source.VehicleDepreciation.CreateFrom(),
                        VehicleDisposalInfo = source.VehicleDisposalInfo.CreateFrom(),
+                       VehicleMaintenanceTypeFrequencies = source.VehicleMaintenanceTypeFrequency!=null?source.VehicleMaintenanceTypeFrequency.Select(vm => vm.CreateFrom()).ToList():null,
+                       VehicleCheckListItems = source.VehicleCheckListItems!=null?source.VehicleCheckListItems.Select(vm => vm.CreateFrom()).ToList():null
                    };
         }
 
@@ -171,7 +173,14 @@ namespace Cares.Web.ModelMappers
                 TransmissionTypeId = source.TransmissionTypeId,
                 RegistrationExpiryDate = source.RegistrationExpiryDate,
                 VehicleCondition = source.VehicleCondition,
-
+                VehicleOtherDetail = source.VehicleOtherDetail != null ? source.VehicleOtherDetail.CreateFrom() : null,
+                VehiclePurchaseInfo = source.VehiclePurchaseInfo != null ? source.VehiclePurchaseInfo.CreateFrom() : null,
+                VehicleLeasedInfo = source.VehicleLeasedInfo != null ? source.VehicleLeasedInfo.CreateFrom() : null,
+                VehicleInsuranceInfo = source.VehicleInsuranceInfo != null ? source.VehicleInsuranceInfo.CreateFrom() : null,
+                VehicleDepreciation = source.VehicleDepreciation != null ? source.VehicleDepreciation.CreateFrom() : null,
+                VehicleDisposalInfo = source.VehicleDisposalInfo != null ? source.VehicleDisposalInfo.CreateFrom() : null,
+                VehicleMaintenanceTypeFrequency = source.VehicleMaintenanceTypeFrequencies != null ? source.VehicleMaintenanceTypeFrequencies.Select(mt => mt.CreateFrom()).ToList() : null,
+                VehicleCheckListItems = source.VehicleCheckListItems != null ? source.VehicleCheckListItems.Select(mt => mt.CreateFrom()).ToList() : null,
             };
         }
 
@@ -330,9 +339,11 @@ namespace Cares.Web.ModelMappers
                 InterestRate = source.InterestRate,
                 PrinicipalPayment = source.PrinicipalPayment,
                 FirstPaymentDate = source.FirstPaymentDate,
+                LastMonthPayment = source.LastMonthPayment,
                 LeaseToOwnership = source.LeaseToOwnership,
                 FirstMonthPayment = source.FirstMonthPayment,
                 BPMainId = source.BPMainId,
+                
 
             };
         }
@@ -358,6 +369,7 @@ namespace Cares.Web.ModelMappers
                 LeaseToOwnership = source.LeaseToOwnership,
                 FirstMonthPayment = source.FirstMonthPayment,
                 BPMainId = source.BPMainId,
+                LastMonthPayment = source.LastMonthPayment
 
             };
         }
@@ -384,7 +396,7 @@ namespace Cares.Web.ModelMappers
                 InsuredFrom = source.InsuredFrom,
                 BPMainId = source.BPMainId,
                 InsuranceTypeId = source.InsuranceTypeId,
-
+                InsuredValue = source.InsuredValue
             };
         }
         /// <summary>
@@ -406,6 +418,9 @@ namespace Cares.Web.ModelMappers
                 InsuredFrom = source.InsuredFrom,
                 BPMainId = source.BPMainId,
                 InsuranceTypeId = source.InsuranceTypeId,
+                InsuredValue = source.InsuredValue,
+                
+                
             };
         }
 
@@ -490,6 +505,77 @@ namespace Cares.Web.ModelMappers
                 SoldTo = source.SoldTo,
                 DisposalDescription = source.DisposalDescription,
                 BPMainId = source.BPMainId
+            };
+        }
+
+        #endregion
+
+        #region Vehicle Maintenance Type Frequency
+        /// <summary>
+        /// Create entity from web model
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static DomainModels.VehicleMaintenanceTypeFrequency CreateFrom(this VehicleMaintenanceTypeFrequency source)
+        {
+            return new DomainModels.VehicleMaintenanceTypeFrequency
+            {
+                MaintenanceTypeFrequencyId = source.MaintenanceTypeFrequencyId,
+                MaintenanceStartDate = source.MaintenanceStartDate,
+                Frequency = source.Frequency,
+                FrequencyKiloMeter = source.FrequencyKiloMeter,
+                MaintenanceTypeId = source.MaintenanceTypeId,
+            };
+        }
+        /// <summary>
+        /// Create web model from Entity
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static VehicleMaintenanceTypeFrequency CreateFrom(this DomainModels.VehicleMaintenanceTypeFrequency source)
+        {
+            return new VehicleMaintenanceTypeFrequency
+            {
+                MaintenanceTypeFrequencyId = source.MaintenanceTypeFrequencyId,
+                VehicleId = source.VehicleId,
+                MaintenanceStartDate = source.MaintenanceStartDate,
+                Frequency = source.Frequency,
+                FrequencyKiloMeter = source.FrequencyKiloMeter,
+                MaintenanceTypeId = source.MaintenanceTypeId,
+                MaintenanceTypeCodeName = source.MaintenanceType != null ? source.MaintenanceType.MaintenanceTypeCode + " - " + source.MaintenanceType.MaintenanceTypeName : string.Empty,
+            };
+        }
+
+        #endregion
+
+        #region Vehicle Check List Item
+        /// <summary>
+        /// Create entity from web model
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static DomainModels.VehicleCheckListItem CreateFrom(this VehicleCheckListItem source)
+        {
+            return new DomainModels.VehicleCheckListItem
+            {
+                VehicleCheckListItemId = source.VehicleCheckListItemId,
+                VehicleCheckListId = source.VehicleCheckListId,
+
+            };
+        }
+        /// <summary>
+        /// Create web model from Entity
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static VehicleCheckListItem CreateFrom(this DomainModels.VehicleCheckListItem source)
+        {
+            return new VehicleCheckListItem
+            {
+                VehicleCheckListItemId = source.VehicleCheckListItemId,
+                VehicleId = source.VehicleId,
+                VehicleCheckListId = source.VehicleCheckListId,
+                VehicleCheckListCodeName = source.VehicleCheckList != null ? source.VehicleCheckList.VehicleCheckListCode + " - " + source.VehicleCheckList.VehicleCheckListName : string.Empty,
             };
         }
 

@@ -62,6 +62,11 @@ namespace Cares.Models.DomainModels
         /// First Payment Date
         /// </summary>
         public DateTime? FirstPaymentDate { get; set; }
+        
+        /// <summary>
+        /// Last Month Payment
+        /// </summary>
+        public decimal? LastMonthPayment { get; set; }
 
         /// <summary>
         /// Lease To Ownership

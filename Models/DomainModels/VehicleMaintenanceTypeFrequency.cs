@@ -26,30 +26,30 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Maintenance Start Date
         /// </summary>
-        [Required]
-        public DateTime MaintenanceStartDate { get; set; }
+          public DateTime? MaintenanceStartDate { get; set; }
 
         /// <summary>
         /// Frequency
         /// </summary>
-        public int Frequency { get; set; }
+        public int? Frequency { get; set; }
 
         /// <summary>
         /// Frequency Kilo Meter
         /// </summary>
-        public int FrequencyKiloMeter { get; set; }
+        public int? FrequencyKiloMeter { get; set; }
 
         /// <summary>
         /// Maintenance Type ID
         /// </summary>
         [ForeignKey("MaintenanceType")]
-        public short MaintenanceTypeId { get; set; }
+        public short? MaintenanceTypeId { get; set; }
 
         /// <summary>
         /// Record Created Date
         /// </summary>
         [Required]
         public DateTime RecCreatedDt { get; set; }
+       
         /// <summary>
         /// Record Last Updated Date
         /// </summary>

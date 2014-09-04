@@ -127,7 +127,7 @@
                 <li><a href="#insuranceInfo" role="tab" data-toggle="tab">Insurance Info</a></li>
                 <li><a href="#maintenanceSchedule" role="tab" data-toggle="tab">Maintenance Schedule</a></li>
                 <li><a href="#checkListItem" role="tab" data-toggle="tab">CheckList Item</a></li>
-                <li><a href="#depriciationInfo" role="tab" data-toggle="tab">Depriciation Info</a></li>
+                <li><a href="#depriciationInfo" role="tab" data-toggle="tab">Depreciation Info</a></li>
                 <li><a href="#disposalInfo" role="tab" data-toggle="tab">Disposal Info</a></li>
                 <li><a href="#uploadImages" role="tab" data-toggle="tab">Upload Image</a></li>
             </ul>
@@ -272,13 +272,13 @@
                         </div>
                         <label for="firstPayment" class="control-label h5 col-sm-2">First Payment</label>
                         <div class="col-md-2">
-                            <input type="text" id="firstPayment" class="form-control" placeholder='<First Payment>' data-bind="value:firstPaymentDate , validationTooltip:firstPaymentDate " />
+                            <input type="text" id="firstPayment" class="form-control" placeholder='<First Payment>' data-bind="value:firstMonthPayment , validationTooltip:firstMonthPayment " />
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="lastPayment" class="control-label h5 col-sm-2">Last Payment </label>
                         <div class="col-md-2">
-                            <input type="text" id="lastPayment" class="form-control" placeholder='<Last Payment>' data-bind="value:firstMonthPayment , validationTooltip:firstMonthPayment " />
+                            <input type="text" id="lastPayment" class="form-control" placeholder='<Last Payment>' data-bind="value:lastMonthPayment , validationTooltip:lastMonthPayment " />
                         </div>
                         <label for="bPartner" class="control-label h5 col-sm-2">Business Partner </label>
                         <div class="col-md-2">
@@ -299,7 +299,7 @@
                         </div>
                         <label for="insRenewalDt" class="control-label h5 col-sm-2">Insurance Renewal Date </label>
                         <div class="col-md-2">
-                            <input type="text" id="insRenewalDt" class="form-control" placeholder='<Insurance Renewal Date >' data-bind="datepicker: renewalDate , validationTooltip: renewalDate " />
+                            <input type="text" id="insRenewalDt" class="form-control" placeholder='<Insurance Renewal Date >' data-bind="datepicker: renewalDate , validationTooltip: renewalDate" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -328,36 +328,64 @@
                     </div>
                 </div>
                 <!-- fifth tab - Maintenance Schedule-->
-                <div class="tab-pane" id="maintenanceSchedule">
+                <div class="tab-pane" id="maintenanceSchedule" data-bind="with: maintenanceSchedule">
+                    <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onAddMaintenanceSchedule">Add To List</button>
                     <div class="form-group">
                         <label for="maintStartDt" class="control-label h5 col-sm-2">Maintenance Start Date *</label>
                         <div class="col-md-2">
-                            <input id="maintStartDt" type="text" placeholder="<Maintenance Start Date >" class="form-control">
+                            <input id="maintStartDt" type="text" placeholder="<Maintenance Start Date >" class="form-control" data-bind="datepicker: maintenanceStartDate, validationTooltip: maintenanceStartDate " />
                         </div>
                         <label for="frequencyDays" class="control-label h5 col-sm-2">Frequency (Days) </label>
                         <div class="col-md-2">
-                            <input type="text" id="frequencyDays" class="form-control" placeholder='<Frequency (Days) >' />
+                            <input type="text" id="frequencyDays" class="form-control" placeholder='<Frequency (Days) >' data-bind="value:frequency , validationTooltip:frequency " />
                         </div>
                         <label for="frequencyKm" class="control-label h5 col-sm-2">Frequency KM </label>
                         <div class="col-md-2">
-                            <input type="text" id="frequencyKm" class="form-control" placeholder='<Frequency KM>' />
+                            <input type="text" id="frequencyKm" class="form-control" placeholder='<Frequency KM>' data-bind="value:frequencyKiloMeter , validationTooltip:frequencyKiloMeter " />
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="maintainceType" class="control-label h5 col-sm-2">Maintenance Type *</label>
                         <div class="col-md-2">
-                            <select id="maintainceType" class="form-control" data-bind="options: $root.maintenanceTypes, optionsText: 'MaintenanceTypeCodeName', optionsValue: 'MaintenanceTypeId', optionsCaption: '<Maintenance Type>' "></select>
+                            <select id="maintainceType" class="form-control" data-bind="options: $root.maintenanceTypes, optionsText: 'MaintenanceTypeCodeName', optionsValue: 'MaintenanceTypeId', optionsCaption: '<Maintenance Type>',value:maintenanceTypeId "></select>
                         </div>
                     </div>
+                    <table id="maintenanceScheduleTable" class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th> <span>Maintenance Type<span></span></span></th>
+                                <th> <span>Maintenance Start Date<span></span></span></th>
+                                <th> <span>Frequency<span></span></span></th>
+                                <th> <span>Krequency (KM)<span></span></span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- ko template: { name: 'itemMaintenanceScheduleTemplate' , foreach: $root.maintenanceScheduleList } -->
+                            <!-- /ko -->
+                        </tbody>
+                    </table>
                 </div>
                 <!-- sixth tab - Check List item-->
-                <div class="tab-pane" id="checkListItem">
+                <div class="tab-pane" id="checkListItem" data-bind="with: checkListItem">
+                    <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onAddCheckListItem">Add To List</button>
                     <div class="form-group">
                         <label for="vCheckList" class="control-label h5 col-sm-2">Vehicle Check List *</label>
                         <div class="col-md-2">
-                            <select id="vCheckList" class="form-control" data-bind="options: $root.vehicleCheckList, optionsText: 'VehicleCheckListCodeName', optionsValue: 'VehicleCheckListId', optionsCaption: '<Vehicle Check List>' "></select>
+                            <select id="vCheckList" class="form-control" data-bind="options: $root.vehicleCheckList, optionsText: 'VehicleCheckListCodeName', optionsValue: 'VehicleCheckListId', optionsCaption: '<Vehicle Check List>',value:vehicleCheckListId "></select>
                         </div>
                     </div>
+                    <table id="checkListItemTable" class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th> <span>CheckList Item<span></span></span></th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- ko template: { name: 'itemCheckListItemTemplate' , foreach: $root.checkListItemList } -->
+                            <!-- /ko -->
+                        </tbody>
+                    </table>
                 </div>
                 <!-- seventh tab - Depriciation Info-->
                 <div class="tab-pane" id="depriciationInfo" data-bind="with: vehicleDepreciation">
@@ -421,5 +449,31 @@
             </div>
         </div>
     </form>
-
+    <script id="deleteActionMaintenanceScheduleTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.deleteMaintenanceSchedule" title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
+    </script>
+    <script id="itemMaintenanceScheduleTemplate" type="text/html">
+        <tr>
+            <td data-bind="text: maintenanceTypCodeName"></td>
+            <td data-bind="dateString: maintenanceStartDate"></td>
+            <td data-bind="text: frequency"></td>
+            <td data-bind="text: frequencyKiloMeter"></td>
+            <td>
+                <!-- ko template: { name: 'deleteActionMaintenanceScheduleTemplate' } -->
+                <!-- /ko -->
+            </td>
+        </tr>
+    </script>
+    <script id="deleteActionCheckListItemTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.deleteCheckListItem" title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
+    </script>
+    <script id="itemCheckListItemTemplate" type="text/html">
+        <tr>
+            <td data-bind="text: vehicleCheckListCodeName"></td>
+            <td>
+                <!-- ko template: { name: 'deleteActionCheckListItemTemplate' } -->
+                <!-- /ko -->
+            </td>
+        </tr>
+    </script>
 </div>

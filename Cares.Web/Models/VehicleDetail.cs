@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Cares.Models.DomainModels;
 
 namespace Cares.Web.Models
@@ -170,6 +171,16 @@ namespace Cares.Web.Models
         /// Vehicle Disposal Info
         /// </summary>
         public VehicleDisposalInfo VehicleDisposalInfo { get; set; }
+
+        /// <summary>
+        /// Vehicle Maintenance Type Frequency List
+        /// </summary>
+        public List<VehicleMaintenanceTypeFrequency> VehicleMaintenanceTypeFrequency { get; set; }
+
+        /// <summary>
+        /// Vehicle Check List Item List
+        /// </summary>
+        public List<VehicleCheckListItem> VehicleCheckListItems { get; set; }
         #endregion
 
     }

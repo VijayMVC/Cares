@@ -75,7 +75,6 @@ namespace Cares.Repository.BaseRepository
                 .WithMany()
                 .WillCascadeOnDelete(true);
 
-            
             modelBuilder.Entity<HireGroupUpGrade>()
                .HasRequired(c => c.AllowedHireGroup)
                .WithMany()
@@ -93,29 +92,33 @@ namespace Cares.Repository.BaseRepository
 
             modelBuilder.Entity<Vehicle>()
               .HasRequired(c => c.VehiclePurchaseInfo)
-             .WithRequiredPrincipal()
+              .WithRequiredPrincipal()
               .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Vehicle>()
+             modelBuilder.Entity<Vehicle>()
             .HasRequired(c => c.VehicleLeasedInfo)
            .WithRequiredPrincipal()
             .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Vehicle>()
-          .HasRequired(c => c.VehicleInsuranceInfo)
-         .WithRequiredPrincipal()
-          .WillCascadeOnDelete(false);
+            .HasRequired(c => c.VehicleInsuranceInfo)
+            .WithRequiredPrincipal()
+            .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Vehicle>()
-         .HasRequired(c => c.VehicleDepreciation)
-        .WithRequiredPrincipal()
-         .WillCascadeOnDelete(false);
+            .HasRequired(c => c.VehicleDepreciation)
+            .WithRequiredPrincipal()
+            .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Vehicle>()
-        .HasRequired(c => c.VehicleDisposalInfo)
-       .WithRequiredPrincipal()
-        .WillCascadeOnDelete(false);
+            .HasRequired(c => c.VehicleDisposalInfo)
+            .WithRequiredPrincipal()
+            .WillCascadeOnDelete(false);
 
+            //modelBuilder.Entity<OperationsWorkPlace>()
+            //  .HasRequired(c => c.Vehicles)
+            //  .WithMany()
+            //  .WillCascadeOnDelete(true);
         }
         #endregion
 

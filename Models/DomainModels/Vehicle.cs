@@ -277,6 +277,16 @@ namespace Cares.Models.DomainModels
         ///Vehicle Disposal Info assocaited to this Entity
         /// </summary>
         public virtual VehicleDisposalInfo VehicleDisposalInfo { get; set; }
+
+        /// <summary>
+        /// Vehicle Maintenance Type Frequency List
+        /// </summary>
+        public virtual ICollection<VehicleMaintenanceTypeFrequency> VehicleMaintenanceTypeFrequencies { get; set; }
+
+        /// <summary>
+        /// Vehicle Check List Items
+        /// </summary>
+        public virtual ICollection<VehicleCheckListItem> VehicleCheckListItems { get; set; }
         #endregion
     }
 }
