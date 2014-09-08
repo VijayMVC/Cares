@@ -390,8 +390,8 @@ define("businessPartner/businessPartner.viewModel",
                                 selectedBusinessPartner().businessPartnerAddressNew().webPage(),
                                 selectedBusinessPartner().businessPartnerAddressNew().zipCode(),
                                 selectedBusinessPartner().businessPartnerAddressNew().poBox(),
-                                selectedBusinessPartner().businessPartnerAddressNew().countryId()!== undefined ?  selectedBusinessPartner().businessPartnerAddressNew().countryId().CountryId : undefined,
-                                selectedBusinessPartner().businessPartnerAddressNew().countryId()!== undefined ? selectedBusinessPartner().businessPartnerAddressNew().countryId().CountryCodeName : undefined,
+                                selectedBusinessPartner().businessPartnerAddressNew().countryId() !== undefined ? selectedBusinessPartner().businessPartnerAddressNew().countryId().CountryId : undefined,
+                                selectedBusinessPartner().businessPartnerAddressNew().countryId() !== undefined ? selectedBusinessPartner().businessPartnerAddressNew().countryId().CountryCodeName : undefined,
                                 selectedBusinessPartner().businessPartnerAddressNew().regionId() !== undefined ? selectedBusinessPartner().businessPartnerAddressNew().regionId().RegionId : undefined,
                                 selectedBusinessPartner().businessPartnerAddressNew().regionId() !== undefined ? selectedBusinessPartner().businessPartnerAddressNew().regionId().RegionCodeName : undefined,
                                 selectedBusinessPartner().businessPartnerAddressNew().subRegionId() !== undefined ? selectedBusinessPartner().businessPartnerAddressNew().subRegionId().SubRegionId : undefined,
@@ -400,7 +400,7 @@ define("businessPartner/businessPartner.viewModel",
                                 selectedBusinessPartner().businessPartnerAddressNew().cityId() !== undefined ? selectedBusinessPartner().businessPartnerAddressNew().cityId().CityCodeName : undefined,
                                 selectedBusinessPartner().businessPartnerAddressNew().areaId() !== undefined ? selectedBusinessPartner().businessPartnerAddressNew().areaId().AreaId : undefined,
                                 selectedBusinessPartner().businessPartnerAddressNew().areaId() !== undefined ? selectedBusinessPartner().businessPartnerAddressNew().areaId().AreaCodeName : undefined,
-                                selectedBusinessPartner().businessPartnerAddressNew().addressTypeId() !== undefined ? selectedBusinessPartner().businessPartnerAddressNew().addressTypeId().AddressTypeId :undefined,
+                                selectedBusinessPartner().businessPartnerAddressNew().addressTypeId() !== undefined ? selectedBusinessPartner().businessPartnerAddressNew().addressTypeId().AddressTypeId : undefined,
                                 selectedBusinessPartner().businessPartnerAddressNew().addressTypeId() !== undefined ? selectedBusinessPartner().businessPartnerAddressNew().addressTypeId().AddressTypeCodeName : undefined,
                                 selectedBusinessPartner().businessPartnerId()
                             );
@@ -482,12 +482,21 @@ define("businessPartner/businessPartner.viewModel",
                     // Do Before Logic
                     doBeforeSave = function () {
                         var flag = true;
-                        if (!selectedBusinessPartner().isValid()) {
-                            selectedBusinessPartner().errors.showAllMessages();
-                            selectedBusinessPartner().businessPartnerIndividual().errors.showAllMessages();
-                            selectedBusinessPartner().businessPartnerCompany().errors.showAllMessages();
-                            flag = false;
+                        if (selectedBusinessPartner().isIndividual()) {
+                            if (!selectedBusinessPartner().isValid() || !selectedBusinessPartner().businessPartnerIndividual().isValid()) {
+                                selectedBusinessPartner().errors.showAllMessages();
+                                selectedBusinessPartner().businessPartnerIndividual().errors.showAllMessages();
+                                flag = false;
+                            }
                         }
+                        if (!selectedBusinessPartner().isIndividual()) {
+                            if (!selectedBusinessPartner().isValid() || !selectedBusinessPartner().businessPartnerCompany().isValid()) {
+                                selectedBusinessPartner().errors.showAllMessages();
+                                selectedBusinessPartner().businessPartnerCompany().errors.showAllMessages();
+                                flag = false;
+                            }
+                        }
+
                         return flag;
                     },
                     // Initialize the view model
@@ -609,7 +618,7 @@ define("businessPartner/businessPartner.viewModel",
                         selectFilter(undefined);
                         pager().reset();
                         getBusinessPartners();
-                     },
+                    },
                     // Get businessPartners
                     getBusinessPartners = function () {
                         isLoadingBusinessPartners(true);
@@ -715,7 +724,7 @@ define("businessPartner/businessPartner.viewModel",
                     areas: areas,
                     filteredSubRegions: filteredSubRegions,
                     filteredCountryCities: filteredCountryCities,
-                    filteredcountryRegions:filteredcountryRegions,
+                    filteredcountryRegions: filteredcountryRegions,
                     onSubRegionSelectionChange: onSubRegionSelectionChange,
                     filteredAreas: filteredAreas,
                     onCitySelectionChange: onCitySelectionChange,
@@ -727,7 +736,7 @@ define("businessPartner/businessPartner.viewModel",
                     onDeleteBusinessPartnerRelationshipItem: onDeleteBusinessPartnerRelationshipItem,
                     filterSectionVisilble: filterSectionVisilble,
                     collapseFilterSection: collapseFilterSection,
-                    showFilterSection: showFilterSection,                
+                    showFilterSection: showFilterSection,
                     // Utility Methods
                 };
             })()

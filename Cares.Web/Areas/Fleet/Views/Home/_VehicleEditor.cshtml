@@ -8,7 +8,7 @@
         <div class="form-group">
             <label for="plateNumber" class="control-label h5 col-sm-2">@Cares.Web.Resources.Vehicle.Vehicle.PlateNumber *</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" placeholder='@("<" +Cares.Web.Resources.Vehicle.Vehicle.PlateNumber + ">")' id="plateNumber" data-bind="value:plateNumber , validationTooltip:plateNumber ,disable :(vehicleId()!==0)" />
+                <input type="text" class="form-control" placeholder='@("<" +Cares.Web.Resources.Vehicle.Vehicle.PlateNumber + ">")' id="plateNumber" data-bind="value:plateNumber , validationTooltip:plateNumber" />
             </div>
             <label for="vName" class="control-label h5 col-sm-2">@Cares.Web.Resources.Vehicle.Vehicle.VehicleName </label>
             <div class="col-md-2">
@@ -119,6 +119,7 @@
         </div>
 
         <div class="panel panel-info">
+            <div class="panel-heading"></div>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
                 <li class="active"><a href="#otherDetail" role="tab" data-toggle="tab">@Cares.Web.Resources.Vehicle.Vehicle.OtherDetails</a></li>

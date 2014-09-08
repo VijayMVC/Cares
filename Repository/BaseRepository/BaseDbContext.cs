@@ -115,6 +115,12 @@ namespace Cares.Repository.BaseRepository
             .WithRequiredPrincipal()
             .WillCascadeOnDelete(false);
 
+            //modelBuilder.Entity<BusinessPartner>()
+            //    .HasOptional(c => c.BusinessPartnerCompany);
+            //modelBuilder.Entity<BusinessPartner>()
+            //  .HasOptional(c => c.BusinessPartnerIndividual).WithOptionalDependent().WillCascadeOnDelete(false); 
+
+
         }
         #endregion
 

@@ -9,31 +9,30 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         // ReSharper restore InconsistentNaming
         var // Reference to this object
             self = {};
-            // 
+        // 
         // Map data to self
         ko.mapping.fromJS(data, null, self);
 
         return {
-            businessPartnerListId:self.BusinessPartnerListId,
-            businessPartnerListName:self.BusinessPartnerListName,
+            businessPartnerListId: self.BusinessPartnerListId,
+            businessPartnerListName: self.BusinessPartnerListName,
             businessPartnerName: self.BusinessPartnerName,
             businessPartnerId: self.BusinessPartnerId,
             isIndividual: self.IsIndividual,
             bPRatingType: self.BPRatingTypeName,
             company: self.CompanyName
         };
-    };   
+    };
     var
    // Business Partner entity
    // ReSharper disable InconsistentNaming
    BusinessPartnerDetail = function (specifiedKey, specifiedBPName, specifiedDescription, specifiedisIndividual,
    specifiedisSystemGuarantor, specifiednonSystemGuarantor, specifiedbusinessPartnerEmailAddress,
    specifiedbusinessPartnerIsValid, specifiedCompany, specifiedPaymentTerm, specifiedBPRatigType,
-   specifiedBusinessLegalStatus, specifiedSystemGuarantor, specifiedDealingEmployee)
-   { 
+   specifiedBusinessLegalStatus, specifiedSystemGuarantor, specifiedDealingEmployee) {
        // ReSharper restore InconsistentNaming
        var // Reference to this object
-           self,           
+           self,
            // Main Top Section 
            // Unique key
            businessPartnerId = ko.observable(specifiedKey),
@@ -48,7 +47,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
            // Non System Guarantor
            nonSystemGuarantor = ko.observable(specifiednonSystemGuarantor),
            // Business Partner Email Address
-           businessPartnerEmailAddress = ko.observable(specifiedbusinessPartnerEmailAddress).extend({ email: true}),
+           businessPartnerEmailAddress = ko.observable(specifiedbusinessPartnerEmailAddress).extend({ email: true }),
            // Company Id
            companyId = ko.observable(specifiedCompany).extend({ required: true }),
            // Payment Term Id
@@ -60,7 +59,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
            // System Guarantor Id
            systemGuarantorId = ko.observable(specifiedSystemGuarantor),
            // Dealing Employee Id
-           dealingEmployeeId = ko.observable(specifiedDealingEmployee),     
+           dealingEmployeeId = ko.observable(specifiedDealingEmployee),
            // Business Partner Individual
            businessPartnerIndividual = ko.observable(BusinessPartnerIndividual.Create()),
            // Business Partner Company
@@ -96,10 +95,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
                businessPartnerEmailAddress: businessPartnerEmailAddress
            }),
            // Is Valid
-           isValid = ko.computed(function() {
-               return errors().length === 0
-                   && businessPartnerIndividual().errors().length === 0
-                   && businessPartnerCompany().errors().length === 0;
+           isValid = ko.computed(function () {
+               return errors().length === 0;
            }),
            // True if the booking has been changed
            // ReSharper disable InconsistentNaming
@@ -125,14 +122,14 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
                businessPartnerPhoneNumbers: businessPartnerPhoneNumbers,
                businessPartnerAddressList: businessPartnerAddressList,
                businessPartnerMarketingChannels: businessPartnerMarketingChannels,
-               businessPartnerRelationshipItemList:businessPartnerRelationshipItemList
+               businessPartnerRelationshipItemList: businessPartnerRelationshipItemList
            }),
            // Has Changes
-           hasChanges = ko.computed(function() {
+           hasChanges = ko.computed(function () {
                return dirtyFlag.isDirty();
            }),
            // Reset
-           reset = function() {
+           reset = function () {
                dirtyFlag.reset();
            };
        self = {
@@ -151,8 +148,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
            systemGuarantorId: systemGuarantorId,
            dealingEmployeeId: dealingEmployeeId,
            businessPartnerIndividual: businessPartnerIndividual,
-           businessPartnerCompany:businessPartnerCompany,
-           businessPartnerInTypes:businessPartnerInTypes,
+           businessPartnerCompany: businessPartnerCompany,
+           businessPartnerInTypes: businessPartnerInTypes,
            businessPartnerInTypeNew: businessPartnerInTypeNew,
            businessPartnerPhoneNumbers: businessPartnerPhoneNumbers,
            businessPartnerPhoneNumberNew: businessPartnerPhoneNumberNew,
@@ -161,7 +158,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
            businessPartnerMarketingChannels: businessPartnerMarketingChannels,
            businessPartnerMarketingChannelNew: businessPartnerMarketingChannelNew,
            businessPartnerRelationshipItemList: businessPartnerRelationshipItemList,
-           businessPartnerRelationshipItemNew:businessPartnerRelationshipItemNew,
+           businessPartnerRelationshipItemNew: businessPartnerRelationshipItemNew,
            errors: errors,
            isValid: isValid,
            dirtyFlag: dirtyFlag,
@@ -185,75 +182,111 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
     specifiedIndividualPassportCountryId, specifiedIndividualIqamaNo, specifiedIndividualIqamaExpiryDate
     ) {
 
-    // ReSharper restore InconsistentNaming
-    var // Reference to this object
-        // First tab - Individual Info
-        // Individual First Name
-        individualFirstName = ko.observable(specifiedIndividualFirstName).extend({ required: true }),
-        // Individual Middle Name
-        individualMiddleName = ko.observable(specifiedIndividualMiddleName),
-         // Individual Last Name
-        individualLastName = ko.observable(specifiedIndividualLastName).extend({ required: true }),
-         // Individual Initials
-        individualInitials = ko.observable(specifiedIndividualInitials).extend({maxLength: 5}),
-         // Individual Liscense Number
-        individualLiscenseNumber = ko.observable(specifiedIndividualLiscenseNumber),
-        // Individual Liscense Expiry Date
-        individualLiscenseExpiryDate = ko.observable(specifiedIndividualLiscenseExpiryDate),
-        // Individual Gender Status
-        individualGenderStatus = ko.observable(specifiedIndividualGenderStatus),
-        // Individual Passport Number
-        individualPassportNumber = ko.observable(specifiedIndividualPassportNumber),
-        // Individual Nic Number
-        individualNicNumber = ko.observable(specifiedIndividualNicNumber),
-        // Individual Marital Status Code
-        individualMaritalStatusCode = ko.observable(specifiedIndividualMaritalStatusCode),
-        // Individual Tax Registration Code
-        individualTaxRegisterationCode = ko.observable(specifiedIndividualTaxRegisterationCode),
-        // Individual Tax Number
-        individualTaxNumber = ko.observable(specifiedIndividualTaxNumber),
-        // Individual Date Of Birth
-        individualDateOfBirth = ko.observable(specifiedIndividualDateOfBirth).extend({ required: true }),
-        // Individual Occupation Type Id
-        individualOccupationTypeId = ko.observable(specifiedIndividualOccupationTypeId),
-        // Individual IsCompanyExternal
-        individualIsCompanyExternal = ko.observable(specifiedIndividualIsCompanyExternal),
-        // Individual Company Name
-        individualCompanyName = ko.observable(specifiedIndividualCompanyName),
-        // Individual Company Address
-        individualCompanyAddress = ko.observable(specifiedIndividualCompanyAddress),
-        // Individual Company Phone
-        individualCompanyPhone = ko.observable(specifiedIndividualCompanyPhone),
-        // Individual Business Partner Compnay Id
-        individualBusinessPartnerCompnayId = ko.observable(specifiedIndividualBusinessPartnerCompnayId),
-        // Individual Nic Expiry Date
-        individualNicExpiryDate = ko.observable(specifiedIndividualNicExpiryDate),
-        // Individual Passport Expiry Date
-        individualPassportExpiryDate = ko.observable(specifiedIndividualPassportExpiryDate),
-         // Individual Passport Country Id
-        individualPassportCountryId = ko.observable(specifiedIndividualPassportCountryId),
-        // Individual Iqama No
-        individualIqamaNo = ko.observable(specifiedIndividualIqamaNo),
-         // Individual Iqama Expiry Date
-        individualIqamaExpiryDate = ko.observable(specifiedIndividualIqamaExpiryDate),
-        // Is Busy
-        isBusy = ko.observable(false),
-        // Errors
-        errors = ko.validation.group({
-            individualFirstName: individualFirstName,
-            individualLastName: individualLastName,
-            individualDateOfBirth: individualDateOfBirth,
-            individualInitials: individualInitials
-        }),
-        // Is Valid
-        isValid = ko.computed(function () {
-            return errors().length === 0;
-        }),
-        // True if the booking has been changed
-        // ReSharper disable InconsistentNaming
-        dirtyFlag = new ko.dirtyFlag({
-            // ReSharper restore InconsistentNaming
+        // ReSharper restore InconsistentNaming
+        var // Reference to this object
+            // First tab - Individual Info
+            // Individual First Name
+            individualFirstName = ko.observable(specifiedIndividualFirstName).extend({ required: true }),
+            // Individual Middle Name
+            individualMiddleName = ko.observable(specifiedIndividualMiddleName),
+             // Individual Last Name
+            individualLastName = ko.observable(specifiedIndividualLastName).extend({ required: true }),
+             // Individual Initials
+            individualInitials = ko.observable(specifiedIndividualInitials).extend({ maxLength: 5 }),
+             // Individual Liscense Number
+            individualLiscenseNumber = ko.observable(specifiedIndividualLiscenseNumber),
+            // Individual Liscense Expiry Date
+            individualLiscenseExpiryDate = ko.observable(specifiedIndividualLiscenseExpiryDate),
+            // Individual Gender Status
+            individualGenderStatus = ko.observable(specifiedIndividualGenderStatus),
+            // Individual Passport Number
+            individualPassportNumber = ko.observable(specifiedIndividualPassportNumber),
+            // Individual Nic Number
+            individualNicNumber = ko.observable(specifiedIndividualNicNumber),
+            // Individual Marital Status Code
+            individualMaritalStatusCode = ko.observable(specifiedIndividualMaritalStatusCode),
+            // Individual Tax Registration Code
+            individualTaxRegisterationCode = ko.observable(specifiedIndividualTaxRegisterationCode),
+            // Individual Tax Number
+            individualTaxNumber = ko.observable(specifiedIndividualTaxNumber),
+            // Individual Date Of Birth
+            individualDateOfBirth = ko.observable(specifiedIndividualDateOfBirth).extend({ required: true }),
+            // Individual Occupation Type Id
+            individualOccupationTypeId = ko.observable(specifiedIndividualOccupationTypeId),
+            // Individual IsCompanyExternal
+            individualIsCompanyExternal = ko.observable(specifiedIndividualIsCompanyExternal),
+            // Individual Company Name
+            individualCompanyName = ko.observable(specifiedIndividualCompanyName),
+            // Individual Company Address
+            individualCompanyAddress = ko.observable(specifiedIndividualCompanyAddress),
+            // Individual Company Phone
+            individualCompanyPhone = ko.observable(specifiedIndividualCompanyPhone),
+            // Individual Business Partner Compnay Id
+            individualBusinessPartnerCompnayId = ko.observable(specifiedIndividualBusinessPartnerCompnayId),
+            // Individual Nic Expiry Date
+            individualNicExpiryDate = ko.observable(specifiedIndividualNicExpiryDate),
+            // Individual Passport Expiry Date
+            individualPassportExpiryDate = ko.observable(specifiedIndividualPassportExpiryDate),
+             // Individual Passport Country Id
+            individualPassportCountryId = ko.observable(specifiedIndividualPassportCountryId),
+            // Individual Iqama No
+            individualIqamaNo = ko.observable(specifiedIndividualIqamaNo),
+             // Individual Iqama Expiry Date
+            individualIqamaExpiryDate = ko.observable(specifiedIndividualIqamaExpiryDate),
+            // Is Busy
+            isBusy = ko.observable(false),
+            // Errors
+            errors = ko.validation.group({
+                individualFirstName: individualFirstName,
+                individualLastName: individualLastName,
+                individualDateOfBirth: individualDateOfBirth,
+                individualInitials: individualInitials
+            }),
+            // Is Valid
+            isValid = ko.computed(function () {
+                return errors().length === 0;
+            }),
+            // True if the booking has been changed
+            // ReSharper disable InconsistentNaming
+            dirtyFlag = new ko.dirtyFlag({
+                // ReSharper restore InconsistentNaming
 
+                // First Tab Controls
+                individualFirstName: individualFirstName,
+                individualMiddleName: individualMiddleName,
+                individualLastName: individualLastName,
+                individualInitials: individualInitials,
+                individualLiscenseNumber: individualLiscenseNumber,
+                individualLiscenseExpiryDate: individualLiscenseExpiryDate,
+                individualGenderStatus: individualGenderStatus,
+                individualPassportNumber: individualPassportNumber,
+                individualNicNumber: individualNicNumber,
+                individualMaritalStatusCode: individualMaritalStatusCode,
+                individualTaxRegisterationCode: individualTaxRegisterationCode,
+                individualTaxNumber: individualTaxNumber,
+                individualDateOfBirth: individualDateOfBirth,
+                individualOccupationTypeId: individualOccupationTypeId,
+                individualIsCompanyExternal: individualIsCompanyExternal,
+                individualCompanyName: individualCompanyName,
+                individualCompanyAddress: individualCompanyAddress,
+                individualCompanyPhone: individualCompanyPhone,
+                individualBusinessPartnerCompnayId: individualBusinessPartnerCompnayId,
+                individualNicExpiryDate: individualNicExpiryDate,
+                individualPassportExpiryDate: individualPassportExpiryDate,
+                individualPassportCountryId: individualPassportCountryId,
+                individualIqamaNo: individualIqamaNo,
+                individualIqamaExpiryDate: individualIqamaExpiryDate
+
+            }),
+            // Has Changes
+            hasChanges = ko.computed(function () {
+                return dirtyFlag.isDirty();
+            }),
+            // Reset
+            reset = function () {
+                dirtyFlag.reset();
+            };
+        return {
             // First Tab Controls
             individualFirstName: individualFirstName,
             individualMiddleName: individualMiddleName,
@@ -278,391 +311,355 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             individualPassportExpiryDate: individualPassportExpiryDate,
             individualPassportCountryId: individualPassportCountryId,
             individualIqamaNo: individualIqamaNo,
-            individualIqamaExpiryDate: individualIqamaExpiryDate
-
-        }),
-        // Has Changes
-        hasChanges = ko.computed(function () {
-            return dirtyFlag.isDirty();
-        }),
-        // Reset
-        reset = function () {
-            dirtyFlag.reset();
+            individualIqamaExpiryDate: individualIqamaExpiryDate,
+            errors: errors,
+            isValid: isValid,
+            dirtyFlag: dirtyFlag,
+            hasChanges: hasChanges,
+            reset: reset,
+            isBusy: isBusy
         };
-    return {  
-        // First Tab Controls
-        individualFirstName: individualFirstName,
-        individualMiddleName: individualMiddleName,
-        individualLastName: individualLastName,
-        individualInitials: individualInitials,
-        individualLiscenseNumber: individualLiscenseNumber,
-        individualLiscenseExpiryDate: individualLiscenseExpiryDate,
-        individualGenderStatus: individualGenderStatus,
-        individualPassportNumber: individualPassportNumber,
-        individualNicNumber: individualNicNumber,
-        individualMaritalStatusCode: individualMaritalStatusCode,
-        individualTaxRegisterationCode: individualTaxRegisterationCode,
-        individualTaxNumber: individualTaxNumber,
-        individualDateOfBirth: individualDateOfBirth,
-        individualOccupationTypeId: individualOccupationTypeId,
-        individualIsCompanyExternal: individualIsCompanyExternal,
-        individualCompanyName: individualCompanyName,
-        individualCompanyAddress: individualCompanyAddress,
-        individualCompanyPhone: individualCompanyPhone,
-        individualBusinessPartnerCompnayId: individualBusinessPartnerCompnayId,
-        individualNicExpiryDate: individualNicExpiryDate,
-        individualPassportExpiryDate: individualPassportExpiryDate,
-        individualPassportCountryId: individualPassportCountryId,
-        individualIqamaNo: individualIqamaNo,
-        individualIqamaExpiryDate: individualIqamaExpiryDate,
-        errors: errors,
-        isValid: isValid,
-        dirtyFlag: dirtyFlag,
-        hasChanges: hasChanges,
-        reset: reset,
-        isBusy: isBusy
     };
-};
     var
   // Business Partner Company entity
   // ReSharper disable InconsistentNaming
     BusinessPartnerCompany = function (specifiedBusinessPartnerCompanyCode, specifiedBusinessPartnerCompanyName,
     specifiedEstablishedSince, specifiedSwiftCode, specifiedisAccountNumber, specifiedBusinessSegmentId) {
-      // ReSharper restore InconsistentNaming
-      var // Reference to this object
-          self,
-          // Main Top Section 
-          // Business Partner Company Code
-          businessPartnerCompanyCode = ko.observable(specifiedBusinessPartnerCompanyCode).extend({ required: true }),
-          // Busiess Partner Company Name
-          businessPartnerCompanyName = ko.observable(specifiedBusinessPartnerCompanyName),
-          // Established Since
-          businessPartnerCompanyEstablishedSince = ko.observable(specifiedEstablishedSince),
-          // Swift Code
-          businessPartnerCompanySwiftCode = ko.observable(specifiedSwiftCode),
-          // Account Number
-          businessPartnerCompanyAccountNumber = ko.observable(specifiedisAccountNumber),
-          // Non System Guarantor
-          businessPartnerCompanyBusinessSegmentId = ko.observable(specifiedBusinessSegmentId),     
-          // Is Busy
-          isBusy = ko.observable(false),
-          // Errors
-          errors = ko.validation.group({
-              businessPartnerCompanyCode: businessPartnerCompanyCode
-          }),
-          // Is Valid
-          isValid = ko.computed(function () {
-              return errors().length === 0;
-          }),
-          // True if the booking has been changed
-          // ReSharper disable InconsistentNaming
-          dirtyFlag = new ko.dirtyFlag({
-              // ReSharper restore InconsistentNaming
-              businessPartnerCompanyCode: businessPartnerCompanyCode,
-              businessPartnerCompanyName: businessPartnerCompanyName,
-              businessPartnerCompanyEstablishedSince: businessPartnerCompanyEstablishedSince,
-              businessPartnerCompanySwiftCode: businessPartnerCompanySwiftCode,
-              businessPartnerCompanyAccountNumber: businessPartnerCompanyAccountNumber,
-              businessPartnerCompanyBusinessSegmentId: businessPartnerCompanyBusinessSegmentId
-          }),
-          // Has Changes
-          hasChanges = ko.computed(function () {
-              return dirtyFlag.isDirty();
-          }),
-          // Reset
-          reset = function () {
-              dirtyFlag.reset();
-          };
-      self = {
-          businessPartnerCompanyCode: businessPartnerCompanyCode,
-          businessPartnerCompanyName: businessPartnerCompanyName,
-          businessPartnerCompanyEstablishedSince: businessPartnerCompanyEstablishedSince,
-          businessPartnerCompanySwiftCode: businessPartnerCompanySwiftCode,
-          businessPartnerCompanyAccountNumber: businessPartnerCompanyAccountNumber,
-          businessPartnerCompanyBusinessSegmentId: businessPartnerCompanyBusinessSegmentId,
-          errors: errors,
-          isValid: isValid,
-          dirtyFlag: dirtyFlag,
-          hasChanges: hasChanges,
-          reset: reset,
-          isBusy: isBusy
-      };
-      return self;
-  };
+        // ReSharper restore InconsistentNaming
+        var // Reference to this object
+            self,
+            // Main Top Section 
+            // Business Partner Company Code
+            businessPartnerCompanyCode = ko.observable(specifiedBusinessPartnerCompanyCode).extend({ required: true }),
+            // Busiess Partner Company Name
+            businessPartnerCompanyName = ko.observable(specifiedBusinessPartnerCompanyName),
+            // Established Since
+            businessPartnerCompanyEstablishedSince = ko.observable(specifiedEstablishedSince),
+            // Swift Code
+            businessPartnerCompanySwiftCode = ko.observable(specifiedSwiftCode),
+            // Account Number
+            businessPartnerCompanyAccountNumber = ko.observable(specifiedisAccountNumber),
+            // Non System Guarantor
+            businessPartnerCompanyBusinessSegmentId = ko.observable(specifiedBusinessSegmentId),
+            // Is Busy
+            isBusy = ko.observable(false),
+            // Errors
+            errors = ko.validation.group({
+                businessPartnerCompanyCode: businessPartnerCompanyCode
+            }),
+            // Is Valid
+            isValid = ko.computed(function () {
+                return errors().length === 0;
+            }),
+            // True if the booking has been changed
+            // ReSharper disable InconsistentNaming
+            dirtyFlag = new ko.dirtyFlag({
+                // ReSharper restore InconsistentNaming
+                businessPartnerCompanyCode: businessPartnerCompanyCode,
+                businessPartnerCompanyName: businessPartnerCompanyName,
+                businessPartnerCompanyEstablishedSince: businessPartnerCompanyEstablishedSince,
+                businessPartnerCompanySwiftCode: businessPartnerCompanySwiftCode,
+                businessPartnerCompanyAccountNumber: businessPartnerCompanyAccountNumber,
+                businessPartnerCompanyBusinessSegmentId: businessPartnerCompanyBusinessSegmentId
+            }),
+            // Has Changes
+            hasChanges = ko.computed(function () {
+                return dirtyFlag.isDirty();
+            }),
+            // Reset
+            reset = function () {
+                dirtyFlag.reset();
+            };
+        self = {
+            businessPartnerCompanyCode: businessPartnerCompanyCode,
+            businessPartnerCompanyName: businessPartnerCompanyName,
+            businessPartnerCompanyEstablishedSince: businessPartnerCompanyEstablishedSince,
+            businessPartnerCompanySwiftCode: businessPartnerCompanySwiftCode,
+            businessPartnerCompanyAccountNumber: businessPartnerCompanyAccountNumber,
+            businessPartnerCompanyBusinessSegmentId: businessPartnerCompanyBusinessSegmentId,
+            errors: errors,
+            isValid: isValid,
+            dirtyFlag: dirtyFlag,
+            hasChanges: hasChanges,
+            reset: reset,
+            isBusy: isBusy
+        };
+        return self;
+    };
     var
  // Business Partner Phone entity
  // ReSharper disable InconsistentNaming
     BusinessPartnerPhone = function (specifiedPhoneId, specifiedIsDefault,
     specifiedPhoneNumber, specifiedbusinessPartnerId, specifiedPhoneTypeId, specifiedPhoneTypeName) {
-     // ReSharper restore InconsistentNaming
-     var // Reference to this object
-         self,
-         // Main Top Section 
-         // Phone Id
-         phoneId = ko.observable(specifiedPhoneId),
-         // Is Default
-         isDefault = ko.observable(specifiedIsDefault),
-         // Phone Number
-         phoneNumber = ko.observable(specifiedPhoneNumber).extend({ required: true }),
-         // Business Partner Id
-         businessPartnerId = ko.observable(specifiedbusinessPartnerId),
-         // Phone Type Id
-         phoneTypeId = ko.observable(specifiedPhoneTypeId).extend({ required: true }),
-          // Phone Type Name
-         phoneTypeName = ko.observable(specifiedPhoneTypeName),
-         // Is Busy
-         isBusy = ko.observable(false),
-         // Errors
-         errors = ko.validation.group({
-             phoneTypeId: phoneTypeId,
-             phoneNumber:phoneNumber
-         }),
-         // Is Valid
-         isValid = ko.computed(function () {
-             return errors().length === 0;
-         }),
-         // True if the booking has been changed
-         // ReSharper disable InconsistentNaming
-         dirtyFlag = new ko.dirtyFlag({
-             // ReSharper restore InconsistentNaming
-             phoneId: phoneId,
-             isDefault: isDefault,
-             phoneNumber: phoneNumber,
-             phoneTypeId: phoneTypeId,
-             businessPartnerId: businessPartnerId
-        }),
-         // Has Changes
-         hasChanges = ko.computed(function () {
-             return dirtyFlag.isDirty();
-         }),
-         // Reset
-         reset = function () {
-             dirtyFlag.reset();
-         };
-     self = {
-         phoneId: phoneId,
-         isDefault: isDefault,
-         phoneNumber: phoneNumber,
-         phoneTypeId: phoneTypeId,
-         phoneTypeName:phoneTypeName,
-         businessPartnerId: businessPartnerId,
-         errors: errors,
-         isValid: isValid,
-         dirtyFlag: dirtyFlag,
-         hasChanges: hasChanges,
-         reset: reset,
-         isBusy: isBusy
-     };
-     return self;
+        // ReSharper restore InconsistentNaming
+        var // Reference to this object
+            self,
+            // Main Top Section 
+            // Phone Id
+            phoneId = ko.observable(specifiedPhoneId),
+            // Is Default
+            isDefault = ko.observable(specifiedIsDefault),
+            // Phone Number
+            phoneNumber = ko.observable(specifiedPhoneNumber).extend({ required: true }),
+            // Business Partner Id
+            businessPartnerId = ko.observable(specifiedbusinessPartnerId),
+            // Phone Type Id
+            phoneTypeId = ko.observable(specifiedPhoneTypeId).extend({ required: true }),
+             // Phone Type Name
+            phoneTypeName = ko.observable(specifiedPhoneTypeName),
+            // Is Busy
+            isBusy = ko.observable(false),
+            // Errors
+            errors = ko.validation.group({
+                phoneTypeId: phoneTypeId,
+                phoneNumber: phoneNumber
+            }),
+            // Is Valid
+            isValid = ko.computed(function () {
+                return errors().length === 0;
+            }),
+            // True if the booking has been changed
+            // ReSharper disable InconsistentNaming
+            dirtyFlag = new ko.dirtyFlag({
+                // ReSharper restore InconsistentNaming
+                phoneId: phoneId,
+                isDefault: isDefault,
+                phoneNumber: phoneNumber,
+                phoneTypeId: phoneTypeId,
+                businessPartnerId: businessPartnerId
+            }),
+            // Has Changes
+            hasChanges = ko.computed(function () {
+                return dirtyFlag.isDirty();
+            }),
+            // Reset
+            reset = function () {
+                dirtyFlag.reset();
+            };
+        self = {
+            phoneId: phoneId,
+            isDefault: isDefault,
+            phoneNumber: phoneNumber,
+            phoneTypeId: phoneTypeId,
+            phoneTypeName: phoneTypeName,
+            businessPartnerId: businessPartnerId,
+            errors: errors,
+            isValid: isValid,
+            dirtyFlag: dirtyFlag,
+            hasChanges: hasChanges,
+            reset: reset,
+            isBusy: isBusy
+        };
+        return self;
     };
     var
     // Business Partner Address entity
     // ReSharper disable InconsistentNaming
     BusinessPartnerAddress = function (specifiedAddressId, specifiedContactPerson, specifiedStreetAddress,
-    specifiedEmailAddress, specifiedWebPage, specifiedZipCode, specifiedPoBox, specifiedCountryId,specifiedCountryName,
+    specifiedEmailAddress, specifiedWebPage, specifiedZipCode, specifiedPoBox, specifiedCountryId, specifiedCountryName,
     specifiedRegionId, specifiedRegionName, specifiedSubRegionId, specifiedSubRegionName, specifiedCityId, specifiedCityName,
-    specifiedAreaId,specifiedAreaName, specifiedAddressTypeId, specifiedAddressTypeName,
+    specifiedAreaId, specifiedAreaName, specifiedAddressTypeId, specifiedAddressTypeName,
     specifiedbusinessPartnerId) {
-      // ReSharper restore InconsistentNaming
-      var // Reference to this object
-          self,
-          // Main Top Section 
-          // Address Id
-          addressId = ko.observable(specifiedAddressId),
-          // Contact Person
-          contactPerson = ko.observable(specifiedContactPerson),
-          // Street Address
-          streetAddress = ko.observable(specifiedStreetAddress).extend({ required: true }),
-          // Email Address
-          emailAddress = ko.observable(specifiedEmailAddress).extend({email:true}),
-          // Web Page
-          webPage = ko.observable(specifiedWebPage),
-          // Zip Code
-          zipCode = ko.observable(specifiedZipCode),
-          // PO Box
-          poBox = ko.observable(specifiedPoBox),
-          // Country Id
-          countryId = ko.observable(specifiedCountryId).extend({ required: true }),
-           // Country Name
-          countryName = ko.observable(specifiedCountryName),
-          // Region Id
-          regionId = ko.observable(specifiedRegionId),
-           // Region Name
-          regionName = ko.observable(specifiedRegionName),
-          // Sub Region Id
-          subRegionId = ko.observable(specifiedSubRegionId),
-           // Sub Region Name
-          subRegionName = ko.observable(specifiedSubRegionName),
-          // City Id
-          cityId = ko.observable(specifiedCityId),
-          // City Name
-          cityName = ko.observable(specifiedCityName),
-          // Area Id
-          areaId = ko.observable(specifiedAreaId),
-          // Area Name
-          areaName = ko.observable(specifiedAreaName),
-          // Address Type Id
-          addressTypeId = ko.observable(specifiedAddressTypeId).extend({ required: true }),
-           // Address Type Name
-          addressTypeName = ko.observable(specifiedAddressTypeName),
-          // Business Partner Id
-          businessPartnerId = ko.observable(specifiedbusinessPartnerId),
-          // Is Busy
-          isBusy = ko.observable(false),
-          // Errors
-          errors = ko.validation.group({
-              streetAddress: streetAddress,
-              countryId: countryId,
-              addressTypeId: addressTypeId,
-              emailAddress:emailAddress
-          }),
-          // Is Valid
-          isValid = ko.computed(function () {
-              return errors().length === 0;
-          }),
-          // True if the booking has been changed
-          // ReSharper disable InconsistentNaming
-          dirtyFlag = new ko.dirtyFlag({
-              // ReSharper restore InconsistentNaming
-              addressId: addressId,
-              contactPerson: contactPerson,
-              streetAddress: streetAddress,
-              emailAddress: emailAddress,
-              webPage: webPage,
-              zipCode: zipCode,
-              poBox: poBox,
-              countryId: countryId,
-              regionId: regionId,
-              subRegionId: subRegionId,
-              cityId: cityId,
-              areaId: areaId,
-              addressTypeId: addressTypeId,
-              businessPartnerId: businessPartnerId
-          }),
-          // Has Changes
-          hasChanges = ko.computed(function () {
-              return dirtyFlag.isDirty();
-          }),
-          // Reset
-          reset = function () {
-              dirtyFlag.reset();
-          };
-      self = {
-          addressId: addressId,
-          contactPerson: contactPerson,
-          streetAddress: streetAddress,
-          emailAddress: emailAddress,
-          webPage: webPage,
-          zipCode: zipCode,
-          poBox: poBox,
-          countryId: countryId,
-          countryName:countryName,
-          regionId: regionId,
-          regionName:regionName,
-          subRegionId: subRegionId,
-          subRegionName:subRegionName,
-          cityId: cityId,
-          cityName:cityName,
-          areaId: areaId,
-          areaName:areaName,
-          addressTypeId: addressTypeId,
-          addressTypeName:addressTypeName,
-          businessPartnerId: businessPartnerId,
-          errors: errors,
-          isValid: isValid,
-          dirtyFlag: dirtyFlag,
-          hasChanges: hasChanges,
-          reset: reset,
-          isBusy: isBusy
-      };
-      return self;
-  };
+        // ReSharper restore InconsistentNaming
+        var // Reference to this object
+            self,
+            // Main Top Section 
+            // Address Id
+            addressId = ko.observable(specifiedAddressId),
+            // Contact Person
+            contactPerson = ko.observable(specifiedContactPerson),
+            // Street Address
+            streetAddress = ko.observable(specifiedStreetAddress).extend({ required: true }),
+            // Email Address
+            emailAddress = ko.observable(specifiedEmailAddress).extend({ email: true }),
+            // Web Page
+            webPage = ko.observable(specifiedWebPage),
+            // Zip Code
+            zipCode = ko.observable(specifiedZipCode),
+            // PO Box
+            poBox = ko.observable(specifiedPoBox),
+            // Country Id
+            countryId = ko.observable(specifiedCountryId).extend({ required: true }),
+             // Country Name
+            countryName = ko.observable(specifiedCountryName),
+            // Region Id
+            regionId = ko.observable(specifiedRegionId),
+             // Region Name
+            regionName = ko.observable(specifiedRegionName),
+            // Sub Region Id
+            subRegionId = ko.observable(specifiedSubRegionId),
+             // Sub Region Name
+            subRegionName = ko.observable(specifiedSubRegionName),
+            // City Id
+            cityId = ko.observable(specifiedCityId),
+            // City Name
+            cityName = ko.observable(specifiedCityName),
+            // Area Id
+            areaId = ko.observable(specifiedAreaId),
+            // Area Name
+            areaName = ko.observable(specifiedAreaName),
+            // Address Type Id
+            addressTypeId = ko.observable(specifiedAddressTypeId).extend({ required: true }),
+             // Address Type Name
+            addressTypeName = ko.observable(specifiedAddressTypeName),
+            // Business Partner Id
+            businessPartnerId = ko.observable(specifiedbusinessPartnerId),
+            // Is Busy
+            isBusy = ko.observable(false),
+            // Errors
+            errors = ko.validation.group({
+                streetAddress: streetAddress,
+                countryId: countryId,
+                addressTypeId: addressTypeId,
+                emailAddress: emailAddress
+            }),
+            // Is Valid
+            isValid = ko.computed(function () {
+                return errors().length === 0;
+            }),
+            // True if the booking has been changed
+            // ReSharper disable InconsistentNaming
+            dirtyFlag = new ko.dirtyFlag({
+                // ReSharper restore InconsistentNaming
+                addressId: addressId,
+                contactPerson: contactPerson,
+                streetAddress: streetAddress,
+                emailAddress: emailAddress,
+                webPage: webPage,
+                zipCode: zipCode,
+                poBox: poBox,
+                countryId: countryId,
+                regionId: regionId,
+                subRegionId: subRegionId,
+                cityId: cityId,
+                areaId: areaId,
+                addressTypeId: addressTypeId,
+                businessPartnerId: businessPartnerId
+            }),
+            // Has Changes
+            hasChanges = ko.computed(function () {
+                return dirtyFlag.isDirty();
+            }),
+            // Reset
+            reset = function () {
+                dirtyFlag.reset();
+            };
+        self = {
+            addressId: addressId,
+            contactPerson: contactPerson,
+            streetAddress: streetAddress,
+            emailAddress: emailAddress,
+            webPage: webPage,
+            zipCode: zipCode,
+            poBox: poBox,
+            countryId: countryId,
+            countryName: countryName,
+            regionId: regionId,
+            regionName: regionName,
+            subRegionId: subRegionId,
+            subRegionName: subRegionName,
+            cityId: cityId,
+            cityName: cityName,
+            areaId: areaId,
+            areaName: areaName,
+            addressTypeId: addressTypeId,
+            addressTypeName: addressTypeName,
+            businessPartnerId: businessPartnerId,
+            errors: errors,
+            isValid: isValid,
+            dirtyFlag: dirtyFlag,
+            hasChanges: hasChanges,
+            reset: reset,
+            isBusy: isBusy
+        };
+        return self;
+    };
     var
     // Business Partner InType entity
     // ReSharper disable InconsistentNaming
     BusinessPartnerInType = function (specifiedBusinessPartnerInTypeId, specifiedBusinessPartnerInTypeDescription,
     specifiedfromDate, specifiedtoDate, specifiedbusinessPartnerId, specifiedbusinessPartnerSubTypeId, specifiedbusinessPartnerSubTypeName,
     specifiedbpRatingTypeId, specifiedbpRatingTypeName) {
-    // ReSharper restore InconsistentNaming
-    var // Reference to this object
-        self,
-        // Main Top Section 
-        // Business Partner In Type Id
-        businessPartnerInTypeId = ko.observable(specifiedBusinessPartnerInTypeId),
-        // Busiess Partner In Type Description
-        businessPartnerInTypeDescription = ko.observable(specifiedBusinessPartnerInTypeDescription),
-        // Business Partner In Type From Date
-        fromDate = ko.observable(specifiedfromDate),
-        // Business Partner In Type To Date 
-        toDate = ko.observable(specifiedtoDate).extend({
-            validation: {
-                validator: function (val, someOtherVal) {
-                    return val != undefined ? (moment(val) >= moment(someOtherVal())) : true;
-                },
-                message: 'Must be greater or equal to From Date',
-                params: fromDate
-            }
-        }),
-        // Business Partner Id
-        businessPartnerId = ko.observable(specifiedbusinessPartnerId),
-        // Business Partner Sub Type Id
-        businessPartnerSubTypeId = ko.observable(specifiedbusinessPartnerSubTypeId).extend({ required: true }),
-         // Business Partner Sub Type Name
-        businessPartnerSubTypeName = ko.observable(specifiedbusinessPartnerSubTypeName),
-        // Business Partner Rating Type Id
-        bpRatingTypeId = ko.observable(specifiedbpRatingTypeId),
-          // Business Partner Rating Type Name
-        bpRatingTypeName = ko.observable(specifiedbpRatingTypeName),
-        // Is Busy
-        isBusy = ko.observable(false),
-        // Errors
-        errors = ko.validation.group({
-            businessPartnerSubTypeId: businessPartnerSubTypeId,
-            toDate: toDate
-        }),
-        // Is Valid
-        isValid = ko.computed(function () {
-            return errors().length === 0;
-        }),
-        // True if the booking has been changed
-        // ReSharper disable InconsistentNaming
-        dirtyFlag = new ko.dirtyFlag({
-            // ReSharper restore InconsistentNaming
+        // ReSharper restore InconsistentNaming
+        var // Reference to this object
+            self,
+            // Main Top Section 
+            // Business Partner In Type Id
+            businessPartnerInTypeId = ko.observable(specifiedBusinessPartnerInTypeId),
+            // Busiess Partner In Type Description
+            businessPartnerInTypeDescription = ko.observable(specifiedBusinessPartnerInTypeDescription),
+            // Business Partner In Type From Date
+            fromDate = ko.observable(specifiedfromDate),
+            // Business Partner In Type To Date 
+            toDate = ko.observable(specifiedtoDate).extend({
+                validation: {
+                    validator: function (val, someOtherVal) {
+                        return val != undefined ? (moment(val) >= moment(someOtherVal())) : true;
+                    },
+                    message: 'Must be greater or equal to From Date',
+                    params: fromDate
+                }
+            }),
+            // Business Partner Id
+            businessPartnerId = ko.observable(specifiedbusinessPartnerId),
+            // Business Partner Sub Type Id
+            businessPartnerSubTypeId = ko.observable(specifiedbusinessPartnerSubTypeId).extend({ required: true }),
+             // Business Partner Sub Type Name
+            businessPartnerSubTypeName = ko.observable(specifiedbusinessPartnerSubTypeName),
+            // Business Partner Rating Type Id
+            bpRatingTypeId = ko.observable(specifiedbpRatingTypeId),
+              // Business Partner Rating Type Name
+            bpRatingTypeName = ko.observable(specifiedbpRatingTypeName),
+            // Is Busy
+            isBusy = ko.observable(false),
+            // Errors
+            errors = ko.validation.group({
+                businessPartnerSubTypeId: businessPartnerSubTypeId,
+                toDate: toDate
+            }),
+            // Is Valid
+            isValid = ko.computed(function () {
+                return errors().length === 0;
+            }),
+            // True if the booking has been changed
+            // ReSharper disable InconsistentNaming
+            dirtyFlag = new ko.dirtyFlag({
+                // ReSharper restore InconsistentNaming
+                businessPartnerInTypeId: businessPartnerInTypeId,
+                businessPartnerInTypeDescription: businessPartnerInTypeDescription,
+                fromDate: fromDate,
+                toDate: toDate,
+                businessPartnerId: businessPartnerId,
+                businessPartnerSubTypeId: businessPartnerSubTypeId,
+                bpRatingTypeId: bpRatingTypeId
+            }),
+            // Has Changes
+            hasChanges = ko.computed(function () {
+                return dirtyFlag.isDirty();
+            }),
+            // Reset
+            reset = function () {
+                dirtyFlag.reset();
+            };
+        self = {
             businessPartnerInTypeId: businessPartnerInTypeId,
             businessPartnerInTypeDescription: businessPartnerInTypeDescription,
             fromDate: fromDate,
             toDate: toDate,
             businessPartnerId: businessPartnerId,
             businessPartnerSubTypeId: businessPartnerSubTypeId,
-            bpRatingTypeId: bpRatingTypeId
-        }),
-        // Has Changes
-        hasChanges = ko.computed(function () {
-            return dirtyFlag.isDirty();
-        }),
-        // Reset
-        reset = function () {
-            dirtyFlag.reset();
+            businessPartnerSubTypeName: businessPartnerSubTypeName,
+            bpRatingTypeId: bpRatingTypeId,
+            bpRatingTypeName: bpRatingTypeName,
+            errors: errors,
+            isValid: isValid,
+            dirtyFlag: dirtyFlag,
+            hasChanges: hasChanges,
+            reset: reset,
+            isBusy: isBusy
         };
-    self = {
-        businessPartnerInTypeId: businessPartnerInTypeId,
-        businessPartnerInTypeDescription: businessPartnerInTypeDescription,
-        fromDate: fromDate,
-        toDate: toDate,
-        businessPartnerId: businessPartnerId,
-        businessPartnerSubTypeId: businessPartnerSubTypeId,
-        businessPartnerSubTypeName: businessPartnerSubTypeName,
-        bpRatingTypeId: bpRatingTypeId,
-        bpRatingTypeName: bpRatingTypeName,
-        errors: errors,
-        isValid: isValid,
-        dirtyFlag: dirtyFlag,
-        hasChanges: hasChanges,
-        reset: reset,
-        isBusy: isBusy
+        return self;
     };
-    return self;
-};
     var
     // Business Partner MarketingChannel entity
     // ReSharper disable InconsistentNaming
@@ -674,7 +671,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
              // Business Partner Marketing Channel Id
             businessPartnerMarketingChannelId = ko.observable(),
             // marketing Channel Id
-            marketingChannelId = ko.observable(specifiedBusinessPartnerMarketingChannelId).extend({required :true}),
+            marketingChannelId = ko.observable(specifiedBusinessPartnerMarketingChannelId).extend({ required: true }),
             // marketing Channel Name
             marketingChannelName = ko.observable(specifiedBusinessPartnerMarketingChannelName),
             // Business Partner Id
@@ -705,9 +702,9 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             };
         self = {
             businessPartnerMarketingChannelId: businessPartnerMarketingChannelId,
-            marketingChannelId:marketingChannelId,
+            marketingChannelId: marketingChannelId,
             marketingChannelName: marketingChannelName,
-            businessPartnerId:businessPartnerId,
+            businessPartnerId: businessPartnerId,
             errors: errors,
             isValid: isValid,
             dirtyFlag: dirtyFlag,
@@ -767,7 +764,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             businessPartnerRelationshipId: businessPartnerRelationshipId,
             businessPartnerId: businessPartnerId,
             businessPartnerRelationshipTypeId: businessPartnerRelationshipTypeId,
-            businessPartnerRelationshipTypeName:businessPartnerRelationshipTypeName,
+            businessPartnerRelationshipTypeName: businessPartnerRelationshipTypeName,
             secondaryBusinessPartnerId: secondaryBusinessPartnerId,
             secondaryBusinessPartnerName: secondaryBusinessPartnerName,
             errors: errors,
@@ -784,12 +781,12 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         return new BusinessPartnerDetail("", "", "", false, false, "", "", false, undefined, undefined, undefined, undefined, undefined);
     };
     // BusinessPartnerIndividual Factory
-    BusinessPartnerIndividual.Create = function() {
+    BusinessPartnerIndividual.Create = function () {
         return new BusinessPartnerIndividual("", "", "", "", "", undefined, "", "", "", "", "", "", undefined, undefined, false, "", "", "", undefined, undefined, undefined, undefined,
             "", undefined);
     };
     // BusinessPartnerCompany Factory
-    BusinessPartnerCompany.Create = function() {
+    BusinessPartnerCompany.Create = function () {
         return new BusinessPartnerCompany("", "", undefined, "", "", undefined);
     };
     // BusinessPartnerInType Factory
@@ -797,23 +794,23 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         return new BusinessPartnerInType(undefined, "", undefined, undefined, undefined, undefined, "", undefined, "");
     };
     // Business Partner Phone Factory
-    BusinessPartnerPhone.Create = function() {
-        return new BusinessPartnerPhone(undefined, false, undefined, undefined, undefined,undefined);
+    BusinessPartnerPhone.Create = function () {
+        return new BusinessPartnerPhone(undefined, false, undefined, undefined, undefined, undefined);
     };
     // Business Partner Address Factory
     BusinessPartnerAddress.Create = function () {
-        return new BusinessPartnerAddress(undefined,"","", "", "", "", "", undefined, undefined, undefined, undefined, undefined, undefined, undefined,undefined,undefined,undefined,undefined,undefined,undefined);
+        return new BusinessPartnerAddress(undefined, "", "", "", "", "", "", undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined);
     };
     // BusinessPartner Marketing Channel
-    BusinessPartnerMarketingChannel.Create = function() {
-        return new BusinessPartnerMarketingChannel(undefined, undefined,undefined);
+    BusinessPartnerMarketingChannel.Create = function () {
+        return new BusinessPartnerMarketingChannel(undefined, undefined, undefined);
     };
     // BusinessPartner Relationship Item Factory
     BusinessPartnerRelationshipItem.Create = function () {
-        return new BusinessPartnerRelationshipItem(undefined, undefined, undefined,undefined,undefined,undefined);
+        return new BusinessPartnerRelationshipItem(undefined, undefined, undefined, undefined, undefined, undefined);
     };
     // Convert (Business Partner) Client to server
-    var BusinessPartnerServerMapper = function(clientData) {
+    var BusinessPartnerServerMapper = function (clientData) {
         var result = {};
         // Main top section
         result.BusinessPartnerId = clientData.businessPartnerId();
@@ -976,9 +973,9 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.SecondaryBusinessPartnerId = item.secondaryBusinessPartnerId() === undefined ? undefined : item.secondaryBusinessPartnerId();
         return result;
     };
-    
+
     // Convert (Business Partner) Server to Client
-    var BusinessPartnerClientMapper = function(serverData) {
+    var BusinessPartnerClientMapper = function (serverData) {
         var businessPartner = new BusinessPartnerDetail();
         // Main Top Section
         businessPartner.businessPartnerId(serverData.BusinessPartnerId === null ? undefined : serverData.BusinessPartnerId);
@@ -999,26 +996,26 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         // Second tab : Company Info
         businessPartner.businessPartnerCompany(BusinessPartnerCompanyClientMapper(serverData));
         // third tab : BusinessPartner InTypes
-         _.each(serverData.BusinessPartnerInTypes, function (item) {
+        _.each(serverData.BusinessPartnerInTypes, function (item) {
             businessPartner.businessPartnerInTypes.push(BusinessPartnerInTypeClientMapper(item));
-         });
+        });
         // fourth tab : BusinessPartner Phones
-         _.each(serverData.BusinessPartnerPhoneNumbers, function (item) {
-             businessPartner.businessPartnerPhoneNumbers.push(BusinessPartnerPhoneClientMapper(item));
-         });
+        _.each(serverData.BusinessPartnerPhoneNumbers, function (item) {
+            businessPartner.businessPartnerPhoneNumbers.push(BusinessPartnerPhoneClientMapper(item));
+        });
         // fifth tab : BusinessPartner Address List
-         _.each(serverData.BusinessPartnerAddressList, function (item) {
-             businessPartner.businessPartnerAddressList.push(BusinessPartnerAddressClientMapper(item));
-         });
+        _.each(serverData.BusinessPartnerAddressList, function (item) {
+            businessPartner.businessPartnerAddressList.push(BusinessPartnerAddressClientMapper(item));
+        });
         // sixth tab : BusinessPartner Marketing Channels
-         _.each(serverData.BusinessPartnerMarketingChannels, function (item) {
-             businessPartner.businessPartnerMarketingChannels.push(BusinessPartnerMarketingChannelClientMapper(item));
-         });
+        _.each(serverData.BusinessPartnerMarketingChannels, function (item) {
+            businessPartner.businessPartnerMarketingChannels.push(BusinessPartnerMarketingChannelClientMapper(item));
+        });
         // seventh tab : BusinessPartner Relationship Items
-         _.each(serverData.BusinessPartnerRelationshipItemList, function (item) {
-             businessPartner.businessPartnerRelationshipItemList.push(BusinessPartnerRelationshipClientMapper(item));
-         });
-         
+        _.each(serverData.BusinessPartnerRelationshipItemList, function (item) {
+            businessPartner.businessPartnerRelationshipItemList.push(BusinessPartnerRelationshipClientMapper(item));
+        });
+
         return businessPartner;
     };
     // Convert (Business Partner Individual) Server to Client
@@ -1073,19 +1070,19 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
     };
     // Convert (Business Partner InType) Server to Client
     var BusinessPartnerInTypeClientMapper = function (item) {
-            var businessPartnerInType = new BusinessPartnerInType();
-            // Third Tab : Business Partner In Type
-            businessPartnerInType.businessPartnerInTypeId(item.BusinessPartnerInTypeId === null ? undefined : item.BusinessPartnerInTypeId);
-            businessPartnerInType.businessPartnerInTypeDescription(item.BusinessPartnerInTypeDescription === null ? undefined : item.businessPartnerInTypeDescription);
-            businessPartnerInType.fromDate(item.FromDate === null ? undefined : moment(item.fromDate).toDate());
-            businessPartnerInType.toDate(item.ToDate === null ? undefined :moment(item.toDate).toDate());
-            businessPartnerInType.businessPartnerId(item.BusinessPartnerId === null ? undefined : item.BusinessPartnerId);
-            businessPartnerInType.businessPartnerSubTypeId(item.BusinessPartnerSubTypeId === null ? undefined : item.BusinessPartnerSubTypeId);
-            businessPartnerInType.businessPartnerSubTypeName(item.BusinessPartnerSubTypeName === null ? undefined : item.BusinessPartnerSubTypeName);
-            businessPartnerInType.bpRatingTypeId(item.BpRatingTypeId === null ? undefined : item.BpRatingTypeId);
-            businessPartnerInType.bpRatingTypeName(item.BpRatingTypeName === null ? undefined : item.BpRatingTypeName);
-            return businessPartnerInType;
-    };  
+        var businessPartnerInType = new BusinessPartnerInType();
+        // Third Tab : Business Partner In Type
+        businessPartnerInType.businessPartnerInTypeId(item.BusinessPartnerInTypeId === null ? undefined : item.BusinessPartnerInTypeId);
+        businessPartnerInType.businessPartnerInTypeDescription(item.BusinessPartnerInTypeDescription === null ? undefined : item.businessPartnerInTypeDescription);
+        businessPartnerInType.fromDate(item.FromDate === null ? undefined : moment(item.fromDate).toDate());
+        businessPartnerInType.toDate(item.ToDate === null ? undefined : moment(item.toDate).toDate());
+        businessPartnerInType.businessPartnerId(item.BusinessPartnerId === null ? undefined : item.BusinessPartnerId);
+        businessPartnerInType.businessPartnerSubTypeId(item.BusinessPartnerSubTypeId === null ? undefined : item.BusinessPartnerSubTypeId);
+        businessPartnerInType.businessPartnerSubTypeName(item.BusinessPartnerSubTypeName === null ? undefined : item.BusinessPartnerSubTypeName);
+        businessPartnerInType.bpRatingTypeId(item.BpRatingTypeId === null ? undefined : item.BpRatingTypeId);
+        businessPartnerInType.bpRatingTypeName(item.BpRatingTypeName === null ? undefined : item.BpRatingTypeName);
+        return businessPartnerInType;
+    };
     // Convert (Business Partner Phone ) Server to Client
     var BusinessPartnerPhoneClientMapper = function (item) {
         var businessPartnerPhone = new BusinessPartnerPhone();
@@ -1122,7 +1119,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         businessPartnerAddress.addressTypeId(item.AddressTypeId === undefined ? undefined : item.AddressTypeId);
         businessPartnerAddress.addressTypeName(item.AddressTypeName === undefined ? undefined : item.AddressTypeName);
         businessPartnerAddress.businessPartnerId(item.BusinessPartnerId === undefined ? undefined : item.BusinessPartnerId);
-        return businessPartnerAddress;        
+        return businessPartnerAddress;
     };
     // Convert (Business Partner Marketing Channel ) Server to Client
     var BusinessPartnerMarketingChannelClientMapper = function (item) {
@@ -1164,6 +1161,6 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         BusinessPartnerPhoneClientMapper: BusinessPartnerPhoneClientMapper,
         BusinessPartnerAddress: BusinessPartnerAddress,
         BusinessPartnerMarketingChannel: BusinessPartnerMarketingChannel,
-        BusinessPartnerRelationshipItem:BusinessPartnerRelationshipItem
+        BusinessPartnerRelationshipItem: BusinessPartnerRelationshipItem
     };
 });

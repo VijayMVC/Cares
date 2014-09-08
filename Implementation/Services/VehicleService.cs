@@ -125,7 +125,7 @@ namespace Cares.Implementation.Services
 
             if (vehicleDbVersion == null)
             {
-                if (vehicleRepository.DuplicateVehiclePlateNumber(vehicle.PlateNumber))
+                if (vehicleRepository.DuplicateVehiclePlateNumber(vehicle.PlateNumber, vehicle.VehicleId))
                 {
                     throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Vehicle.Vehicle.DuplicatePlateNumber));
                 }

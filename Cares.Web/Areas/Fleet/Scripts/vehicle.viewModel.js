@@ -130,7 +130,6 @@ define("vehicle/vehicle.viewModel",
                         checkListItemList.removeAll();
                         maintenanceScheduleList.removeAll();
                         selectedVehicle(vehicle);
-                        //selectedtariffRateCopy(model.TariffRateCoppier(selectedtariffRate()));
                         getVehicleById(vehicle);
                         showVehicleEditor();
                         e.stopImmediatePropagation();
@@ -211,10 +210,9 @@ define("vehicle/vehicle.viewModel",
                         dataservice.saveVehicle(model.VehicleDetailServerMapper(vehicle), {
                             success: function (data) {
                                 var vehicleResult = new model.VehicleClientMapper(data);
-                                if ((selectedVehicle().vehicleId() === undefined) || (selectedVehicle().vehicleId() === 0)) {
+                                if ((addVehicleItem().vehicleId() === undefined) || (addVehicleItem().vehicleId() === 0)) {
                                     vehicles.splice(0, 0, vehicleResult);
                                 } else {
-                                    //selectedVehicle().vehicleCode(vehicleResult.vehicleCode());
                                     selectedVehicle().vehicleName(vehicleResult.vehicleName());
                                     selectedVehicle().modelYear(vehicleResult.modelYear());
                                     selectedVehicle().fuelLevel(vehicleResult.fuelLevel());

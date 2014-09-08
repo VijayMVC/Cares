@@ -124,14 +124,9 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Check Vehicle Plate Number Already Exist
         /// </summary>
-        public bool DuplicateVehiclePlateNumber(string plateNumber)
+        public bool DuplicateVehiclePlateNumber(string plateNumber, long vehiclId)
         {
-            List<Vehicle> vehicles = DbSet.ToList();
-            if (vehicles.Any(x => x.PlateNumber == plateNumber))
-            {
-                return true;
-            }
-            return false;
+            return DbSet.Any(x => x.PlateNumber == plateNumber && x.VehicleId != vehiclId);
         }
         #endregion
     }

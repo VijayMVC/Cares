@@ -29,7 +29,7 @@ namespace Cares.Interfaces.Repository
         /// <summary>
         /// Check Vehicle Plate Number Already Exist
         /// </summary>
-        bool DuplicateVehiclePlateNumber(string plateNumber);
+        bool DuplicateVehiclePlateNumber(string plateNumber, long vehicleId);
     }
 }
 

@@ -21,7 +21,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Individual First Name
         /// </summary>
-        [Required]
         [StringLength(255)]
         public string FirstName { get; set; }
 
@@ -34,7 +33,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Individual Last Name
         /// </summary>
-        [Required]
         [StringLength(255)]
         public string LastName { get; set; }
 
@@ -94,7 +92,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Date of birth
         /// </summary>
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
 
         /// <summary>
         /// Individual Occupation Type Id
@@ -131,7 +129,7 @@ namespace Cares.Models.DomainModels
         /// </summary>
         [ForeignKey("BusinessPartnerCompany")]
         public long? BusinessPartnerCompnayId { get; set; }
-        
+
         /// <summary>
         /// Row Version
         /// </summary>
@@ -196,7 +194,7 @@ namespace Cares.Models.DomainModels
         /// Inidividual Iqama expiry date
         /// </summary>
         public DateTime? IqamaExpiryDate { get; set; }
-    
+
         #endregion
 
         #region Reference Properties
@@ -205,17 +203,17 @@ namespace Cares.Models.DomainModels
         /// Occupation Type
         /// </summary>
         public virtual OccupationType OccupationType { get; set; }
-        
+
         /// <summary>
         /// Business Partner Company
         /// </summary>
         public virtual BusinessPartnerCompany BusinessPartnerCompany { get; set; }
-        
+
         /// <summary>
         /// Passport Country
         /// </summary>
         public virtual Country PassportCountry { get; set; }
-        
+
         /// <summary>
         /// Business Partner
         /// </summary>
