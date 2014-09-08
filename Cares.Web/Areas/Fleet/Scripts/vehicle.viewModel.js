@@ -152,7 +152,7 @@ define("vehicle/vehicle.viewModel",
                             },
                             error: function () {
                                 isLoadingVehicles(false);
-                                toastr.error(ist.resourceText.VehicleDetailFailedMsg);
+                                toastr.error(ist.resourceText.vehicleDetailFailedMsg);
                             }
                         });
                     },
@@ -173,10 +173,10 @@ define("vehicle/vehicle.viewModel",
                         dataservice.deleteVehicle(model.VehicleDetailServerMappeForDelete(vehicle), {
                             success: function () {
                                 vehicles.remove(vehicle);
-                                toastr.success("Vehicle Succesfully delete.");
+                                toastr.success(ist.resourceText.vehicleDeleteSuccessMsg);
                             },
                             error: function () {
-                                toastr.error("error");
+                                toastr.error(ist.resourceText.vehicleDeleteErrorMsg);
                             }
                         });
                     },
@@ -212,15 +212,26 @@ define("vehicle/vehicle.viewModel",
                                 if ((selectedVehicle().vehicleId() === undefined) || (selectedVehicle().vehicleId() === 0)) {
                                     vehicles.splice(0, 0, vehicleResult);
                                 } else {
-                                    // selectedVehicle().VehicleCode(VehicleResult.VehicleCode());
-
-
+                                    //selectedVehicle().vehicleCode(vehicleResult.vehicleCode());
+                                    selectedVehicle().vehicleName(vehicleResult.vehicleName());
+                                    selectedVehicle().modelYear(vehicleResult.modelYear());
+                                    selectedVehicle().fuelLevel(vehicleResult.fuelLevel());
                                 }
                                 closeVehicleEditor();
-                                toastr.success(ist.resourceText.hirGroupAddSuccesMsg);
+                                toastr.success(ist.resourceText.vehicleSaveSuccessMsg);
                             },
-                            error: function () {
-                                toastr.error(ist.resourceText.hirGroupAddFailedMsg);
+                            error: function (exceptionMessage, exceptionType) {
+
+                                if (exceptionType === ist.exceptionType.CaresGeneralException) {
+
+                                    toastr.error(exceptionMessage);
+
+                                } else {
+
+                                    toastr.error(ist.resourceText.vehicleSaveErrorMsg);
+
+                                }
+
                             }
                         });
                     },
@@ -418,7 +429,7 @@ define("vehicle/vehicle.viewModel",
                             },
                             error: function () {
                                 isLoadingVehicles(false);
-                                toastr.error(ist.resourceText.VehicleLoadFailedMsg);
+                                toastr.error(ist.resourceText.vehicleLoadFailedMsg);
                             }
                         });
                     };

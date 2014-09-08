@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Cares.Interfaces.IServices;
@@ -6,6 +7,7 @@ using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
+using Cares.ExceptionHandling;
 
 namespace Cares.Implementation.Services
 {
@@ -118,10 +120,15 @@ namespace Cares.Implementation.Services
         {
             Vehicle vehicleDbVersion = vehicleRepository.Find(vehicle.VehicleId);
 
+
             #region Add
 
             if (vehicleDbVersion == null)
             {
+                if (vehicleRepository.DuplicateVehiclePlateNumber(vehicle.PlateNumber))
+                {
+                    throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Vehicle.Vehicle.DuplicatePlateNumber));
+                }
                 vehicle.UserDomainKey = vehicleRepository.UserDomainKey;
                 vehicle.IsActive = true;
                 vehicle.IsReadOnly = vehicle.IsPrivate = vehicle.IsDeleted = false;
@@ -334,15 +341,31 @@ namespace Cares.Implementation.Services
                         }
                     }
                 }
-                //Remove Maintenance Type Frequency Items
-                foreach (VehicleMaintenanceTypeFrequency dbVersionMaintenanceTypeFrequency in vehicleDbVersion.VehicleMaintenanceTypeFrequencies)
+                //find missing items
+                List<VehicleMaintenanceTypeFrequency> missingItems = new List<VehicleMaintenanceTypeFrequency>();
+                foreach (VehicleMaintenanceTypeFrequency dbversionItemeMaintenanceTypeFrequency in vehicleDbVersion.VehicleMaintenanceTypeFrequencies)
                 {
-                    if (vehicle.VehicleMaintenanceTypeFrequencies != null && vehicle.VehicleMaintenanceTypeFrequencies.All(x => x.MaintenanceTypeFrequencyId != dbVersionMaintenanceTypeFrequency.MaintenanceTypeFrequencyId))
+                    if (vehicle.VehicleMaintenanceTypeFrequencies != null && vehicle.VehicleMaintenanceTypeFrequencies.All(x => x.MaintenanceTypeFrequencyId != dbversionItemeMaintenanceTypeFrequency.MaintenanceTypeFrequencyId))
                     {
-                        vehicleDbVersion.VehicleMaintenanceTypeFrequencies.Remove(dbVersionMaintenanceTypeFrequency);
-                        maintenanceTypeFrequencyRepository.Delete(dbVersionMaintenanceTypeFrequency);
+                        missingItems.Add(dbversionItemeMaintenanceTypeFrequency);
+                    }
+                    if (vehicle.VehicleMaintenanceTypeFrequencies==null)
+                    {
+                        missingItems.Add(dbversionItemeMaintenanceTypeFrequency);
                     }
                 }
+                //remove missing items
+                foreach (VehicleMaintenanceTypeFrequency missingMaintenanceTypeFrequency in missingItems)
+                {
+                    VehicleMaintenanceTypeFrequency dbVersionMissingItem = vehicleDbVersion.VehicleMaintenanceTypeFrequencies.First(x => x.MaintenanceTypeFrequencyId == missingMaintenanceTypeFrequency.MaintenanceTypeFrequencyId);
+                    if (dbVersionMissingItem.MaintenanceTypeFrequencyId > 0)
+                    {
+                        vehicleDbVersion.VehicleMaintenanceTypeFrequencies.Remove(dbVersionMissingItem);
+                        maintenanceTypeFrequencyRepository.Delete(dbVersionMissingItem);
+                        maintenanceTypeFrequencyRepository.SaveChanges();
+                    }
+                }
+
                 #endregion
 
                 #region Vehicle CheckList Items
@@ -366,15 +389,31 @@ namespace Cares.Implementation.Services
                         }
                     }
                 }
-                //Remove Vehicle Check List Item
-                foreach (VehicleCheckListItem dbVersionVehicleCheckListItem in vehicleDbVersion.VehicleCheckListItems)
+                //find missing items
+                List<VehicleCheckListItem> missingCheckListItems = new List<VehicleCheckListItem>();
+                foreach (VehicleCheckListItem dbversionCheckListItem in vehicleDbVersion.VehicleCheckListItems)
                 {
-                    if (vehicle.VehicleCheckListItems != null && vehicle.VehicleCheckListItems.All(x => x.VehicleCheckListItemId != dbVersionVehicleCheckListItem.VehicleCheckListItemId))
+                    if (vehicle.VehicleCheckListItems != null && vehicle.VehicleCheckListItems.All(x => x.VehicleCheckListItemId != dbversionCheckListItem.VehicleCheckListItemId))
                     {
-                        vehicleDbVersion.VehicleCheckListItems.Remove(dbVersionVehicleCheckListItem);
-                        vehicleCheckListItemRepository.Delete(dbVersionVehicleCheckListItem);
+                        missingCheckListItems.Add(dbversionCheckListItem);
+                    }
+                    if (vehicle.VehicleMaintenanceTypeFrequencies == null)
+                    {
+                        missingCheckListItems.Add(dbversionCheckListItem);
                     }
                 }
+                //remove missing items
+                foreach (VehicleCheckListItem missingCheckListItem in missingCheckListItems)
+                {
+                    VehicleCheckListItem dbVersionMissingItem = vehicleDbVersion.VehicleCheckListItems.First(x => x.VehicleCheckListItemId == missingCheckListItem.VehicleCheckListItemId);
+                    if (dbVersionMissingItem.VehicleCheckListItemId > 0)
+                    {
+                        vehicleDbVersion.VehicleCheckListItems.Remove(dbVersionMissingItem);
+                        vehicleCheckListItemRepository.Delete(dbVersionMissingItem);
+                        vehicleCheckListItemRepository.SaveChanges();
+                    }
+                }
+
                 #endregion
 
             }

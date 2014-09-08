@@ -597,6 +597,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TariffType.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Vehicle\Vehicle.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Vehicle.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Vehicle\Vehicle.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Vehicle.resx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="TypeRegistrations.cs" />
     <Compile Include="ViewModels\Common\MenuViewModel.cs" />
@@ -1595,6 +1605,14 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>TariffType.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Vehicle\Vehicle.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Vehicle.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Vehicle\Vehicle.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Vehicle.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
