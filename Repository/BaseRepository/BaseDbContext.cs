@@ -115,10 +115,6 @@ namespace Cares.Repository.BaseRepository
             .WithRequiredPrincipal()
             .WillCascadeOnDelete(false);
 
-            //modelBuilder.Entity<OperationsWorkPlace>()
-            //  .HasRequired(c => c.Vehicles)
-            //  .WithMany()
-            //  .WillCascadeOnDelete(true);
         }
         #endregion
 
@@ -453,6 +449,11 @@ namespace Cares.Repository.BaseRepository
         /// Vehicle Other Details Db Set
         /// </summary>
         public DbSet<VehicleOtherDetail> VehicleOtherDetails { get; set; }
+
+        /// <summary>
+        /// Vehicle Check List Item Db Set
+        /// </summary>
+        public DbSet<VehicleCheckListItem> VehicleCheckListItems { get; set; }
 
         #endregion
     }

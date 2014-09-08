@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -34,6 +35,8 @@ namespace Cares.Implementation.Services
         private readonly IVehicleModelRepository vehicleModelRepository;
         private readonly IVehicleCategoryRepository vehicleCategoryRepository;
         private readonly IOperationsWorkPlaceRepository operationsWorkPlaceRepository;
+        private readonly IVehicleMaintenanceTypeFrequencyRepository maintenanceTypeFrequencyRepository;
+        private readonly IVehicleCheckListItemRepository vehicleCheckListItemRepository;
         #endregion
 
         #region Constructors
@@ -46,7 +49,8 @@ namespace Cares.Implementation.Services
             IVehicleMakeRepository vehicleMakeRepository, IVehicleStatusRepository vehicleStatusRepository, IDepartmentRepository departmentRepository,
                ITransmissionTypeRepository transmissionTypeResposirory, IBusinessPartnerRepository businessPartnerRepository,
             IInsuranceTypeRepository insuranceTypeRepository, IMaintenanceTypeRepository maintenanceTypeRepository, IVehicleCheckListRepository vehicleCheckListRepository,
-            IVehicleModelRepository vehicleModelRepository, IVehicleCategoryRepository vehicleCategoryRepository, IOperationsWorkPlaceRepository operationsWorkPlaceRepository)
+            IVehicleModelRepository vehicleModelRepository, IVehicleCategoryRepository vehicleCategoryRepository, IOperationsWorkPlaceRepository operationsWorkPlaceRepository,
+            IVehicleMaintenanceTypeFrequencyRepository maintenanceTypeFrequencyRepository, IVehicleCheckListItemRepository vehicleCheckListItemRepository)
         {
             if (vehicleRepository == null)
             {
@@ -70,6 +74,8 @@ namespace Cares.Implementation.Services
             this.vehicleModelRepository = vehicleModelRepository;
             this.vehicleCategoryRepository = vehicleCategoryRepository;
             this.operationsWorkPlaceRepository = operationsWorkPlaceRepository;
+            this.maintenanceTypeFrequencyRepository = maintenanceTypeFrequencyRepository;
+            this.vehicleCheckListItemRepository = vehicleCheckListItemRepository;
         }
 
         #endregion
@@ -102,6 +108,7 @@ namespace Cares.Implementation.Services
         {
             return vehicleRepository.Find(vehicleId);
         }
+
         /// <summary>
         /// Save Vehicle
         /// </summary>
@@ -110,6 +117,7 @@ namespace Cares.Implementation.Services
         public Vehicle SaveVehicle(Vehicle vehicle)
         {
             Vehicle vehicleDbVersion = vehicleRepository.Find(vehicle.VehicleId);
+
             #region Add
 
             if (vehicleDbVersion == null)
@@ -121,39 +129,50 @@ namespace Cares.Implementation.Services
                 vehicle.RecLastUpdatedBy = vehicle.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
                 vehicle.RowVersion = 0;
                 vehicle.VehicleCode = "CaresVehicle";
-                //Other detail
+
+                #region Other detail
                 vehicle.VehicleOtherDetail.UserDomainKey = vehicleRepository.UserDomainKey;
                 vehicle.VehicleOtherDetail.IsActive = true;
-                vehicle.IsReadOnly = vehicle.IsPrivate = vehicle.IsDeleted = false;
-                vehicle.RecLastUpdatedDt = vehicle.RecCreatedDt = DateTime.Now;
-                vehicle.RecLastUpdatedBy = vehicle.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
+                vehicle.VehicleOtherDetail.IsReadOnly = vehicle.VehicleOtherDetail.IsPrivate = vehicle.VehicleOtherDetail.IsDeleted = false;
+                vehicle.VehicleOtherDetail.RecLastUpdatedDt = vehicle.VehicleOtherDetail.RecCreatedDt = DateTime.Now;
+                vehicle.VehicleOtherDetail.RecLastUpdatedBy = vehicle.VehicleOtherDetail.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
                 vehicle.VehicleOtherDetail.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
                 vehicle.VehicleOtherDetail.RecLastUpdatedBy = vehicleRepository.LoggedInUserIdentity;
                 vehicle.VehicleOtherDetail.RowVersion = 0;
-                //Purchase Info
+                #endregion
+
+                #region Purchase Info
                 vehicle.VehiclePurchaseInfo.UserDomainKey = vehicleRepository.UserDomainKey;
-                vehicle.RecLastUpdatedDt = vehicle.RecCreatedDt = DateTime.Now;
-                vehicle.RecLastUpdatedBy = vehicle.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
+                vehicle.VehiclePurchaseInfo.RecLastUpdatedDt = vehicle.VehiclePurchaseInfo.RecCreatedDt = DateTime.Now;
+                vehicle.VehiclePurchaseInfo.RecLastUpdatedBy = vehicle.VehiclePurchaseInfo.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
                 vehicle.VehiclePurchaseInfo.RowVersion = 0;
-                //Leased Info
+                #endregion
+
+                #region Leased Info
                 vehicle.VehicleLeasedInfo.UserDomainKey = vehicleRepository.UserDomainKey;
-                vehicle.RecLastUpdatedDt = vehicle.RecCreatedDt = DateTime.Now;
-                vehicle.RecLastUpdatedBy = vehicle.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
+                vehicle.VehicleLeasedInfo.RecLastUpdatedDt = vehicle.VehicleLeasedInfo.RecCreatedDt = DateTime.Now;
+                vehicle.VehicleLeasedInfo.RecLastUpdatedBy = vehicle.VehicleLeasedInfo.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
                 vehicle.VehicleLeasedInfo.RowVersion = 0;
-                //Insurance Info
+                #endregion
+
+                #region Insurance Info
                 vehicle.VehicleInsuranceInfo.UserDomainKey = vehicleRepository.UserDomainKey;
-                vehicle.RecLastUpdatedDt = vehicle.RecCreatedDt = DateTime.Now;
-                vehicle.RecLastUpdatedBy = vehicle.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
+                vehicle.VehicleInsuranceInfo.RecLastUpdatedDt = vehicle.VehicleInsuranceInfo.RecCreatedDt = DateTime.Now;
+                vehicle.VehicleInsuranceInfo.RecLastUpdatedBy = vehicle.VehicleInsuranceInfo.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
                 vehicle.VehicleInsuranceInfo.RowVersion = 0;
-                //Dericiation Info
+                #endregion
+
+                #region Dericiation Info
                 vehicle.VehicleDepreciation.UserDomainKey = vehicleRepository.UserDomainKey;
-                vehicle.RecLastUpdatedDt = vehicle.RecCreatedDt = DateTime.Now;
-                vehicle.RecLastUpdatedBy = vehicle.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
-                vehicle.VehicleOtherDetail.RowVersion = 0;
-                //Disposal Info
+                vehicle.VehicleDepreciation.RecLastUpdatedDt = vehicle.VehicleDepreciation.RecCreatedDt = DateTime.Now;
+                vehicle.VehicleDepreciation.RecLastUpdatedBy = vehicle.VehicleDepreciation.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
+                vehicle.VehicleDepreciation.RowVersion = 0;
+                #endregion
+
+                #region Disposal Info
                 vehicle.VehicleDisposalInfo.UserDomainKey = vehicleRepository.UserDomainKey;
-                vehicle.RecLastUpdatedDt = vehicle.RecCreatedDt = DateTime.Now;
-                vehicle.RecLastUpdatedBy = vehicle.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
+                vehicle.VehicleDisposalInfo.RecLastUpdatedDt = vehicle.VehicleDisposalInfo.RecCreatedDt = DateTime.Now;
+                vehicle.VehicleDisposalInfo.RecLastUpdatedBy = vehicle.VehicleDisposalInfo.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
                 vehicle.VehicleDisposalInfo.RowVersion = 0;
                 //Vehicle Maintenance Type Frequency Items
                 if (vehicle.VehicleMaintenanceTypeFrequencies != null)
@@ -166,7 +185,9 @@ namespace Cares.Implementation.Services
                         item.RowVersion = 0;
                     }
                 }
-                //Vehicle Check List Item List
+                #endregion
+
+                #region Vehicle Check List Item List
                 if (vehicle.VehicleCheckListItems != null)
                 {
                     foreach (var item in vehicle.VehicleCheckListItems)
@@ -178,12 +199,18 @@ namespace Cares.Implementation.Services
                         item.RowVersion = 0;
                     }
                 }
+                #endregion
 
                 vehicleRepository.Add(vehicle);
 
             }
+            #endregion
+
+            #region Edit
             else
             {
+
+
                 vehicleDbVersion.IsBranchOwner = vehicle.IsBranchOwner;
                 vehicleDbVersion.PlateNumber = vehicle.PlateNumber;
                 vehicleDbVersion.VehicleName = vehicle.VehicleName;
@@ -205,7 +232,7 @@ namespace Cares.Implementation.Services
                 vehicleDbVersion.RegistrationExpiryDate = vehicle.RegistrationExpiryDate;
                 vehicleDbVersion.VehicleCondition = vehicle.VehicleCondition;
 
-                //Vehicle other Detail
+                #region Vehicle other Detail
                 vehicleDbVersion.VehicleOtherDetail.NumberOfDoors = vehicle.VehicleOtherDetail.NumberOfDoors;
                 vehicleDbVersion.VehicleOtherDetail.HorsePower_CC = vehicle.VehicleOtherDetail.HorsePower_CC;
                 vehicleDbVersion.VehicleOtherDetail.NumberOfCylinders = vehicle.VehicleOtherDetail.NumberOfCylinders;
@@ -221,8 +248,9 @@ namespace Cares.Implementation.Services
                 vehicleDbVersion.VehicleOtherDetail.BackWheelSize = vehicle.VehicleOtherDetail.BackWheelSize;
                 vehicleDbVersion.VehicleOtherDetail.RecLastUpdatedBy = vehicleRepository.LoggedInUserIdentity;
                 vehicleDbVersion.VehicleOtherDetail.RecLastUpdatedDt = DateTime.Now;
+                #endregion
 
-                //Vehicle Purchase Info
+                #region Vehicle Purchase Info
                 vehicleDbVersion.VehiclePurchaseInfo.PurchaseDate = vehicle.VehiclePurchaseInfo.PurchaseDate;
                 vehicleDbVersion.VehiclePurchaseInfo.PurchaseDescription = vehicle.VehiclePurchaseInfo.PurchaseDescription;
                 vehicleDbVersion.VehiclePurchaseInfo.PurchasedFrom = vehicle.VehiclePurchaseInfo.PurchasedFrom;
@@ -231,8 +259,9 @@ namespace Cares.Implementation.Services
                 vehicleDbVersion.VehiclePurchaseInfo.IsUsedVehicle = vehicle.VehiclePurchaseInfo.IsUsedVehicle;
                 vehicleDbVersion.VehiclePurchaseInfo.RecLastUpdatedBy = vehicleRepository.LoggedInUserIdentity;
                 vehicleDbVersion.VehiclePurchaseInfo.RecLastUpdatedDt = DateTime.Now;
+                #endregion
 
-                //Vehicle Leased Info
+                #region Vehicle Leased Info
                 vehicleDbVersion.VehicleLeasedInfo.DownPayment = vehicle.VehicleLeasedInfo.DownPayment;
                 vehicleDbVersion.VehicleLeasedInfo.LeasedStartDate = vehicle.VehicleLeasedInfo.LeasedStartDate;
                 vehicleDbVersion.VehicleLeasedInfo.LeasedFinishDate = vehicle.VehicleLeasedInfo.LeasedFinishDate;
@@ -247,8 +276,9 @@ namespace Cares.Implementation.Services
                 vehicleDbVersion.VehicleLeasedInfo.BPMainId = vehicle.VehicleLeasedInfo.BPMainId;
                 vehicleDbVersion.VehicleLeasedInfo.RecLastUpdatedBy = vehicleRepository.LoggedInUserIdentity;
                 vehicleDbVersion.VehicleLeasedInfo.RecLastUpdatedDt = DateTime.Now;
-                 
-                //Vehicle Insurance Info
+                #endregion
+
+                #region Vehicle Insurance Info
                 vehicleDbVersion.VehicleInsuranceInfo.InsuranceAgent = vehicle.VehicleInsuranceInfo.InsuranceAgent;
                 vehicleDbVersion.VehicleInsuranceInfo.CoverageLimit = vehicle.VehicleInsuranceInfo.CoverageLimit;
                 vehicleDbVersion.VehicleInsuranceInfo.RenewalDate = vehicle.VehicleInsuranceInfo.RenewalDate;
@@ -260,8 +290,9 @@ namespace Cares.Implementation.Services
                 vehicleDbVersion.VehicleInsuranceInfo.InsuredValue = vehicle.VehicleInsuranceInfo.InsuredValue;
                 vehicleDbVersion.VehicleInsuranceInfo.RecLastUpdatedBy = vehicleRepository.LoggedInUserIdentity;
                 vehicleDbVersion.VehicleInsuranceInfo.RecLastUpdatedDt = DateTime.Now;
+                #endregion
 
-                //Vehicle Dereciation Info
+                #region Vehicle Dereciation Info
                 vehicleDbVersion.VehicleDepreciation.UsefulPeriodStartDate = vehicle.VehicleDepreciation.UsefulPeriodStartDate;
                 vehicleDbVersion.VehicleDepreciation.FirstMonthDepAmount = vehicle.VehicleDepreciation.FirstMonthDepAmount;
                 vehicleDbVersion.VehicleDepreciation.MonthlyDepAmount = vehicle.VehicleDepreciation.MonthlyDepAmount;
@@ -270,8 +301,9 @@ namespace Cares.Implementation.Services
                 vehicleDbVersion.VehicleDepreciation.UsefulPeriodEndDate = vehicle.VehicleDepreciation.UsefulPeriodEndDate;
                 vehicleDbVersion.VehicleDepreciation.RecLastUpdatedBy = vehicleRepository.LoggedInUserIdentity;
                 vehicleDbVersion.VehicleDepreciation.RecLastUpdatedDt = DateTime.Now;
+                #endregion
 
-                //Vehicle Disposal Info
+                #region Vehicle Disposal Info
                 vehicleDbVersion.VehicleDisposalInfo.SaleDate = vehicle.VehicleDisposalInfo.SaleDate;
                 vehicleDbVersion.VehicleDisposalInfo.SalePrice = vehicle.VehicleDisposalInfo.SalePrice;
                 vehicleDbVersion.VehicleDisposalInfo.SoldTo = vehicle.VehicleDisposalInfo.SoldTo;
@@ -279,10 +311,76 @@ namespace Cares.Implementation.Services
                 vehicleDbVersion.VehicleDisposalInfo.BPMainId = vehicle.VehicleDisposalInfo.BPMainId;
                 vehicleDbVersion.VehicleDisposalInfo.RecLastUpdatedBy = vehicleRepository.LoggedInUserIdentity;
                 vehicleDbVersion.VehicleDisposalInfo.RecLastUpdatedDt = DateTime.Now;
+                #endregion
+
+                #region Vehicle Maintenance Type Frequency Items
+                //Add vehicle maintenenace items
+                if (vehicle.VehicleMaintenanceTypeFrequencies != null)
+                {
+                    foreach (var item in vehicle.VehicleMaintenanceTypeFrequencies)
+                    {
+                        if (
+                            vehicleDbVersion.VehicleMaintenanceTypeFrequencies.All(
+                                x =>
+                                    x.MaintenanceTypeFrequencyId != item.MaintenanceTypeFrequencyId ||
+                                    item.MaintenanceTypeFrequencyId == 0))
+                        {
+                            item.UserDomainKey = vehicleRepository.UserDomainKey;
+                            item.RecLastUpdatedDt = item.RecCreatedDt = DateTime.Now;
+                            item.RecLastUpdatedBy = item.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
+                            item.RowVersion = 0;
+
+                            vehicleDbVersion.VehicleMaintenanceTypeFrequencies.Add(item);
+                        }
+                    }
+                }
+                //Remove Maintenance Type Frequency Items
+                foreach (VehicleMaintenanceTypeFrequency dbVersionMaintenanceTypeFrequency in vehicleDbVersion.VehicleMaintenanceTypeFrequencies)
+                {
+                    if (vehicle.VehicleMaintenanceTypeFrequencies != null && vehicle.VehicleMaintenanceTypeFrequencies.All(x => x.MaintenanceTypeFrequencyId != dbVersionMaintenanceTypeFrequency.MaintenanceTypeFrequencyId))
+                    {
+                        vehicleDbVersion.VehicleMaintenanceTypeFrequencies.Remove(dbVersionMaintenanceTypeFrequency);
+                        maintenanceTypeFrequencyRepository.Delete(dbVersionMaintenanceTypeFrequency);
+                    }
+                }
+                #endregion
+
+                #region Vehicle CheckList Items
+                //Add  Vehicle CheckList Items
+                if (vehicle.VehicleCheckListItems != null)
+                {
+                    foreach (var item in vehicle.VehicleCheckListItems)
+                    {
+                        if (
+                            vehicleDbVersion.VehicleCheckListItems.All(
+                                x =>
+                                    x.VehicleCheckListItemId != item.VehicleCheckListItemId ||
+                                    item.VehicleCheckListItemId == 0))
+                        {
+                            item.UserDomainKey = vehicleRepository.UserDomainKey;
+                            item.RecLastUpdatedDt = item.RecCreatedDt = DateTime.Now;
+                            item.RecLastUpdatedBy = item.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
+                            item.RowVersion = 0;
+
+                            vehicleDbVersion.VehicleCheckListItems.Add(item);
+                        }
+                    }
+                }
+                //Remove Vehicle Check List Item
+                foreach (VehicleCheckListItem dbVersionVehicleCheckListItem in vehicleDbVersion.VehicleCheckListItems)
+                {
+                    if (vehicle.VehicleCheckListItems != null && vehicle.VehicleCheckListItems.All(x => x.VehicleCheckListItemId != dbVersionVehicleCheckListItem.VehicleCheckListItemId))
+                    {
+                        vehicleDbVersion.VehicleCheckListItems.Remove(dbVersionVehicleCheckListItem);
+                        vehicleCheckListItemRepository.Delete(dbVersionVehicleCheckListItem);
+                    }
+                }
+                #endregion
 
             }
             vehicleRepository.SaveChanges();
             #endregion
+
             vehicleRepository.LoadDependencies(vehicle);
             return vehicle;
         }

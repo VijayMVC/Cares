@@ -117,12 +117,10 @@ define("vehicle/vehicle.viewModel",
                      //Create Vehicle Rate
                     createVehicle = function () {
                         var vehicle = new model.VehicleDetail.Create();
-                        //VehicleDetails.removeAll();
-                        //VehicleUpGradeList.removeAll();
+                        checkListItemList.removeAll();
+                        maintenanceScheduleList.removeAll();
                         //Select the newly added Vehicle
                         selectedVehicle(vehicle);
-                        //selectedVehicle().vehicleDetail(new model.VehicleDetail());
-                        //selectedVehicle().VehicleUpGrade(new model.VehicleUpGrade());
                         showVehicleEditor();
                     },
                       //Edit Vehicle
@@ -130,7 +128,6 @@ define("vehicle/vehicle.viewModel",
                         checkListItemList.removeAll();
                         maintenanceScheduleList.removeAll();
                         //selectedVehicle(vehicle);
-                        //selectedVehicleId(vehicle.vehicleId());
                         //selectedtariffRateCopy(model.TariffRateCoppier(selectedtariffRate()));
                         getVehicleById(vehicle);
                         showVehicleEditor();

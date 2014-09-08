@@ -77,6 +77,8 @@ namespace Cares.Repository
             unityContainer.RegisterType<IWorkplaceRepository, WorkplaceRepository>();
             unityContainer.RegisterType<IWorkLocationRepository, WorkLocationRepository>();
             unityContainer.RegisterType<IWorkplaceTypeRepository, WorkplaceTypeRepository>();
+            unityContainer.RegisterType<IVehicleCheckListItemRepository, VehicleCheckListItemRepository>();
+            unityContainer.RegisterType<IVehicleMaintenanceTypeFrequencyRepository, VehicleMaintenanceTypeFrequencyRepository>();
 
         }
     }

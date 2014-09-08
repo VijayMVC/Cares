@@ -96,8 +96,9 @@ namespace Cares.Repository.Repositories
             int fromRow = (request.PageNo - 1) * request.PageSize;
             int toRow = request.PageSize;
             Expression<Func<Vehicle, bool>> query =
-                s =>
-                    (request.OperationId == null || s.OperationsWorkPlace.Operation.OperationId == request.OperationId) &&
+                s => (string.IsNullOrEmpty(request.SearchString) || s.VehicleName.Contains(request.SearchString) || s.PlateNumber.Contains(request.SearchString))
+                    && (string.IsNullOrEmpty(request.HireGroupString) || s.VehicleMake.VehicleMakeName.Contains(request.HireGroupString) || s.VehicleStatus.VehicleStatusName.Contains(request.HireGroupString))
+                    &&(request.OperationId == null || s.OperationsWorkPlace.Operation.OperationId == request.OperationId) &&
                      (request.FleetPoolId == null ||
                       s.FleetPoolId == request.FleetPoolId);
 
@@ -114,7 +115,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public void LoadDependencies(Vehicle vehicle)
         {
-            LoadProperty(vehicle, () => vehicle.OperationsWorkPlace);
+            //LoadProperty(vehicle, () => vehicle.OperationsWorkPlace);
             LoadProperty(vehicle, () => vehicle.VehicleMake);
             LoadProperty(vehicle, () => vehicle.VehicleStatus);
             LoadProperty(vehicle, () => vehicle.FleetPool);
