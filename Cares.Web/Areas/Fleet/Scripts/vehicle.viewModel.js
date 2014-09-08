@@ -13,8 +13,10 @@ define("vehicle/vehicle.viewModel",
                    selectedVehicle = ko.observable(),
                     //Active Vehicle Copy 
                    selectedVehicleCopy = ko.observable(),
-                    //Active Vehicle Id
+                    //Active Vehicle 
                     selectedVehicleId = ko.observable(),
+                    //Add/Edit Vehicle Item
+                     addVehicleItem = ko.observable(),
                       // Show Filter Section
                     filterSectionVisilble = ko.observable(false),
                     // #region Arrays
@@ -120,14 +122,14 @@ define("vehicle/vehicle.viewModel",
                         checkListItemList.removeAll();
                         maintenanceScheduleList.removeAll();
                         //Select the newly added Vehicle
-                        selectedVehicle(vehicle);
+                        addVehicleItem(vehicle);
                         showVehicleEditor();
                     },
                       //Edit Vehicle
                     onEditVehicle = function (vehicle, e) {
                         checkListItemList.removeAll();
                         maintenanceScheduleList.removeAll();
-                        //selectedVehicle(vehicle);
+                        selectedVehicle(vehicle);
                         //selectedtariffRateCopy(model.TariffRateCoppier(selectedtariffRate()));
                         getVehicleById(vehicle);
                         showVehicleEditor();
@@ -139,7 +141,7 @@ define("vehicle/vehicle.viewModel",
                         dataservice.getVehicleDetailById(model.VehicleDetailServerMappeForDelete(vehicle), {
                             success: function (data) {
                                 var vehicleDetail = model.VehicleDetailClientMapper(data);
-                                selectedVehicle(vehicleDetail);
+                                addVehicleItem(vehicleDetail);
                                 _.each(data.VehicleCheckListItems, function (item) {
                                     var checkListItem = model.CheckListItemClientMapper(item);
                                     checkListItemList.push(checkListItem);
@@ -197,9 +199,9 @@ define("vehicle/vehicle.viewModel",
                     // Do Before Logic
                     doBeforeSave = function () {
                         var flag = true;
-                        if (!selectedVehicle().isValid() || !selectedVehicle().otherVehicleDetail().isValid()) {
-                            selectedVehicle().errors.showAllMessages();
-                            selectedVehicle().otherVehicleDetail().errors.showAllMessages();
+                        if (!addVehicleItem().isValid() || !addVehicleItem().otherVehicleDetail().isValid()) {
+                            addVehicleItem().errors.showAllMessages();
+                            addVehicleItem().otherVehicleDetail().errors.showAllMessages();
                             flag = false;
                         }
                         return flag;
@@ -333,8 +335,8 @@ define("vehicle/vehicle.viewModel",
                     // Do Before Logic
                     doBeforeSaveMaintenanceSchedule = function () {
                         var flag = true;
-                        if (!selectedVehicle().maintenanceSchedule().isValid()) {
-                            selectedVehicle().maintenanceSchedule().errors.showAllMessages();
+                        if (!addVehicleItem().maintenanceSchedule().isValid()) {
+                            addVehicleItem().maintenanceSchedule().errors.showAllMessages();
                             flag = false;
                         }
                         return flag;
@@ -357,8 +359,8 @@ define("vehicle/vehicle.viewModel",
                     // Do Before Logic
                     doBeforeSaveCheckListItem = function () {
                         var flag = true;
-                        if (!selectedVehicle().checkListItem().isValid()) {
-                            selectedVehicle().checkListItem().errors.showAllMessages();
+                        if (!addVehicleItem().checkListItem().isValid()) {
+                            addVehicleItem().checkListItem().errors.showAllMessages();
                             flag = false;
                         }
                         return flag;
@@ -446,6 +448,7 @@ define("vehicle/vehicle.viewModel",
                     sortIsAscHg: sortIsAscHg,
                     isVehicleEditorVisible: isVehicleEditorVisible,
                     filterSectionVisilble: filterSectionVisilble,
+                    addVehicleItem: addVehicleItem,
                     //Arrays
                     vehicles: vehicles,
                     operations: operations,

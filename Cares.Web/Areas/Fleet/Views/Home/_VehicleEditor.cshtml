@@ -1,4 +1,4 @@
-﻿<div class="well col-md-12" id="vehicleEditor" data-bind="visible: isVehicleEditorVisible, with: selectedVehicle" style="display: none;">
+﻿<div class="well col-md-12" id="vehicleEditor" data-bind="visible: isVehicleEditorVisible, with: addVehicleItem" style="display: none;">
     <div class="detailsContainer">
         <h3 class="page-header detailsHeaderSection">@Cares.Web.Resources.Vehicle.Vehicle.VehicleDetail </h3>
         <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onSaveVehicle, enable: hasChanges, css: { 'btn-warning': hasChanges }">@Cares.Web.Resources.Shared.Common.Save</button>
@@ -16,7 +16,7 @@
             </div>
             <label for="vPictorialCondition" class="control-label h5 col-sm-2">@Cares.Web.Resources.Vehicle.Vehicle.VehiclePictorialCondition </label>
             <div class="col-md-2">
-                <input type="button" class="form-control"  id="vPictorialCondition" />
+                <input type="button" class="form-control" id="vPictorialCondition" />
             </div>
         </div>
         <div class="form-group">
@@ -252,7 +252,7 @@
                         <div class="col-md-2">
                             <input type="checkbox" id="leasedOwnerShip" class="form-control" data-bind="checked: leaseToOwnership  " />
                         </div>
-                        <label for="monthlyPayment" class="control-label h5 col-sm-2" >@Cares.Web.Resources.Vehicle.Vehicle.MonthlyPayment </label>
+                        <label for="monthlyPayment" class="control-label h5 col-sm-2">@Cares.Web.Resources.Vehicle.Vehicle.MonthlyPayment </label>
                         <div class="col-md-2">
                             <input type="text" id="monthlyPayment" class="form-control" placeholder='@("<" +Cares.Web.Resources.Vehicle.Vehicle.MonthlyPayment + ">")' data-bind="value:monthlyPayment , validationTooltip:monthlyPayment " />
                         </div>
