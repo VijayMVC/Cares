@@ -240,11 +240,11 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
           // Unique key
           otherVehicleDetailId = ko.observable(),
           //Number Of Doors
-          numberOfDoors = ko.observable(),
+          numberOfDoors = ko.observable().extend({ number: true }),
           //Engine CC
-          horsePowerCc = ko.observable().extend({ required: true }),
+          horsePowerCc = ko.observable().extend({ required: true, number: true }),
           //Number Of Cylinders
-          numberOfCylinders = ko.observable(),
+          numberOfCylinders = ko.observable().extend({ number: true }),
           //is Alloy Rim
           isAlloyRim = ko.observable(),
           //Chasis Number
@@ -258,17 +258,22 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
           //Accessories
           accessories = ko.observable(),
           //Top Speed
-          topSpeed = ko.observable(),
+          topSpeed = ko.observable().extend({ number: true }),
           //Interior Description
           interiorDescription = ko.observable(),
           //Front Wheel Size
-          frontWheelSize = ko.observable(),
+          frontWheelSize = ko.observable().extend({ number: true }),
           //Back Wheel Size
-          backWheelSize = ko.observable(),
+          backWheelSize = ko.observable().extend({ number: true }),
             // Errors
             errors = ko.validation.group({
                 chasisNumber: chasisNumber,
-                horsePowerCc: horsePowerCc
+                horsePowerCc: horsePowerCc,
+                numberOfDoors: numberOfDoors,
+                numberOfCylinders: numberOfCylinders,
+                topSpeed: topSpeed,
+                frontWheelSize: frontWheelSize,
+                backWheelSize: backWheelSize
             }),
             // Is Valid
             isValid = ko.computed(function () {
@@ -326,7 +331,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
           //Purchased From
           purchasedFrom = ko.observable(),
           //Purchase Cost
-          purchaseCost = ko.observable(),
+          purchaseCost = ko.observable().extend({ number: true }),
           //Is Used Vehicle
           isUsedVehicle = ko.observable(),
           //Business Partner MainId
@@ -338,6 +343,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
 
             // Errors
             errors = ko.validation.group({
+                purchaseCost: purchaseCost
             }),
             // Is Valid
             isValid = ko.computed(function () {
@@ -384,34 +390,39 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
           // Unique key
           leasedInfoId = ko.observable(),
           //Down Payment
-          downPayment = ko.observable(),
+          downPayment = ko.observable().extend({ number: true }),
           //Leased Start Date
           leasedStartDate = ko.observable(),
           //Leased Finish Date
           leasedFinishDate = ko.observable(),
           //Monthly Payment
-          monthlyPayment = ko.observable(),
+          monthlyPayment = ko.observable().extend({ number: true }),
           //Leased From
           leasedFrom = ko.observable(),
           //Interest Rate
-          interestRate = ko.observable(),
+          interestRate = ko.observable().extend({ number: true }),
           //Prinicipal Payment
-          prinicipalPayment = ko.observable(),
+          prinicipalPayment = ko.observable().extend({ number: true }),
           //First Payment Date
           firstPaymentDate = ko.observable(),
           //Lease To Ownership
           leaseToOwnership = ko.observable(),
           //First Month Payment
-          firstMonthPayment = ko.observable(),
+          firstMonthPayment = ko.observable().extend({ number: true }),
           //Last Month Payment
-          lastMonthPayment = ko.observable(),
+          lastMonthPayment = ko.observable().extend({ number: true }),
           //Business Partner Id
           bPMainId = ko.observable(),
 
 
             // Errors
             errors = ko.validation.group({
-
+                downPayment: downPayment,
+                monthlyPayment: monthlyPayment,
+                interestRate: interestRate,
+                prinicipalPayment: prinicipalPayment,
+                firstMonthPayment: firstMonthPayment,
+                lastMonthPayment: lastMonthPayment
             }),
             // Is Valid
             isValid = ko.computed(function () {
@@ -464,15 +475,15 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
           //Insurance Agent
           insuranceAgent = ko.observable(),
           //Coverage Limit
-          coverageLimit = ko.observable(),
+          coverageLimit = ko.observable().extend({ number: true }),
           //Renewal Date
           renewalDate = ko.observable(),
           //Insurance Date
           insuranceDate = ko.observable(),
           //Premium
-          premium = ko.observable(),
+          premium = ko.observable().extend({ number: true }),
           //Insured Value
-          insuredValue = ko.observable(),
+          insuredValue = ko.observable().extend({ number: true }),
           //Insured From
           insuredFrom = ko.observable(),
           //Business partner ID
@@ -483,7 +494,9 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
 
             // Errors
             errors = ko.validation.group({
-                insuranceTypeId: insuranceTypeId
+                coverageLimit: coverageLimit,
+                premium: premium,
+                insuredValue: insuredValue
             }),
             // Is Valid
             isValid = ko.computed(function () {
@@ -533,9 +546,9 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
           //Maintenance Start Date
           maintenanceStartDate = ko.observable().extend({ required: true }),
           //Frequency
-          frequency = ko.observable(),
+          frequency = ko.observable().extend({ number: true }),
           //Frequency In Kilo Meter
-          frequencyKiloMeter = ko.observable(),
+          frequencyKiloMeter = ko.observable().extend({ number: true }),
           //Maintenance Type Id
           maintenanceTypeId = ko.observable().extend({ required: true }),
           //Maintenance Typ Code Name 
@@ -543,7 +556,9 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             // Errors
             errors = ko.validation.group({
                 maintenanceStartDate: maintenanceStartDate,
-                maintenanceTypeId: maintenanceTypeId
+                maintenanceTypeId:maintenanceTypeId,
+                frequency: frequency,
+                frequencyKiloMeter: frequencyKiloMeter
             }),
             // Is Valid
             isValid = ko.computed(function () {
@@ -636,19 +651,22 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
           //Useful Period Start Date
           usefulPeriodStartDate = ko.observable(),
           //First Month Dep. Amount
-          firstMonthDepAmount = ko.observable(),
+          firstMonthDepAmount = ko.observable().extend({ number: true }),
           //Monthly Dep. Amount
-          monthlyDepAmount = ko.observable(),
+          monthlyDepAmount = ko.observable().extend({ number: true }),
           //Last Month Dep Amount
-          lastMonthDepAmount = ko.observable(),
+          lastMonthDepAmount = ko.observable().extend({ number: true }),
           //Residual Value
-          residualValue = ko.observable(),
+          residualValue = ko.observable().extend({ number: true }),
           //Useful Period End Date
           usefulPeriodEndDate = ko.observable(),
 
            // Errors
             errors = ko.validation.group({
-
+                firstMonthDepAmount: firstMonthDepAmount,
+                monthlyDepAmount: monthlyDepAmount,
+                lastMonthDepAmount: lastMonthDepAmount,
+                residualValue: residualValue
             }),
             // Is Valid
             isValid = ko.computed(function () {
@@ -695,7 +713,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
           //Sale Date
           saleDate = ko.observable(),
           //Sale Price
-          salePrice = ko.observable(),
+          salePrice = ko.observable().extend({ number: true }),
           //Sold To
           soldTo = ko.observable(),
           //Disposal Description
@@ -705,7 +723,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
 
             // Errors
             errors = ko.validation.group({
-
+                salePrice: salePrice
             }),
             // Is Valid
             isValid = ko.computed(function () {
@@ -842,7 +860,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         vehicleDetail.vehicleDepreciation(VehicleDepreciationClientMapper(source.VehicleDepreciation));
         //Vehicle Disposal Info
         vehicleDetail.vehicleDisposalInfo(VehicleDisposalInfoClientMapper(source.VehicleDisposalInfo));
-       
+
         return vehicleDetail;
     };
     // Convert (Vehicle Detail) Client to server

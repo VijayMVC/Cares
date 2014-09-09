@@ -198,9 +198,16 @@ define("vehicle/vehicle.viewModel",
                     // Do Before Logic
                     doBeforeSave = function () {
                         var flag = true;
-                        if (!addVehicleItem().isValid() || !addVehicleItem().otherVehicleDetail().isValid()) {
+                        if (!addVehicleItem().isValid() || !addVehicleItem().otherVehicleDetail().isValid() || !addVehicleItem().vehiclePurchaseInfo().isValid() ||
+                        !addVehicleItem().vehicleLeasedInfo().isValid() || !addVehicleItem().vehicleInsuranceInfo().isValid() ||
+                        !addVehicleItem().vehicleDepreciation().isValid() || !addVehicleItem().vehicleDisposalInfo().isValid()) {
                             addVehicleItem().errors.showAllMessages();
                             addVehicleItem().otherVehicleDetail().errors.showAllMessages();
+                            addVehicleItem().vehiclePurchaseInfo().errors.showAllMessages();
+                            addVehicleItem().vehicleLeasedInfo().errors.showAllMessages();
+                            addVehicleItem().vehicleInsuranceInfo().errors.showAllMessages();
+                            addVehicleItem().vehicleDepreciation().errors.showAllMessages();
+                            addVehicleItem().vehicleDisposalInfo().errors.showAllMessages();
                             flag = false;
                         }
                         return flag;
@@ -328,6 +335,7 @@ define("vehicle/vehicle.viewModel",
                              });
 
                              maintenanceScheduleList.splice(0, 0, maintenanceSchedule);
+                             addVehicleItem().maintenanceSchedule(new model.MaintenanceSchedule());
                          }
                      },
                     // Do Before Logic
@@ -352,6 +360,7 @@ define("vehicle/vehicle.viewModel",
                             });
 
                             checkListItemList.splice(0, 0, checkListItem);
+                            addVehicleItem().checkListItem(new model.CheckListItem());
                         }
                     },
                     // Do Before Logic
