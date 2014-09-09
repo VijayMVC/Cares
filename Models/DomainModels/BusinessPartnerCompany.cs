@@ -21,8 +21,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Business Partner Company Code
         /// </summary>
-        [Required]
-        [StringLength(100)]
+         [StringLength(100)]
         public string BusinessPartnerCompanyCode { get; set; }
 
         /// <summary>

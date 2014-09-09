@@ -26,7 +26,7 @@ namespace Cares.Models.DomainModels
         /// Vehicle Check List ID
         /// </summary>
         [ForeignKey("VehicleCheckList")]
-        public short VehicleCheckListId { get; set; }
+        public short? VehicleCheckListId { get; set; }
 
         /// <summary>
         /// Is Active

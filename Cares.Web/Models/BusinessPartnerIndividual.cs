@@ -64,7 +64,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Date of birth
         /// </summary>
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
         /// <summary>
         /// Individual Occupation Type Id
         /// </summary>

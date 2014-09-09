@@ -20,7 +20,7 @@ namespace Cares.Models.RequestModels
         /// <summary>
         /// Hire Group Search Text
         /// </summary>
-        public string HireGroup { get; set; }
+        public string HireGroupString { get; set; }
 
         /// <summary>
         /// Operation ID

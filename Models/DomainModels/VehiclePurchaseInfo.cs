@@ -25,7 +25,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Purchase Date
         /// </summary>
-        public DateTime PurchaseDate { get; set; }
+        public DateTime? PurchaseDate { get; set; }
 
         /// <summary>
         /// Purchased From
@@ -34,14 +34,26 @@ namespace Cares.Models.DomainModels
         public string PurchasedFrom { get; set; }
 
         /// <summary>
+        /// Purchase Order Number
+        /// </summary>
+        [StringLength(50)]
+        public string PurchaseOrderNumber { get; set; } 
+        
+        /// <summary>
+        /// Purchase Description
+        /// </summary>
+        [StringLength(500)]
+        public string PurchaseDescription { get; set; }
+
+        /// <summary>
         /// Purchase Cost
         /// </summary>
-        public decimal PurchaseCost { get; set; }
+        public decimal? PurchaseCost { get; set; }
 
         /// <summary>
         /// Is Used Vehicle
         /// </summary>
-        public bool IsUsedVehicle { get; set; }
+        public bool? IsUsedVehicle { get; set; }
 
         /// <summary>
         /// BP Main ID
@@ -52,36 +64,32 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Created Date
         /// </summary>
-        [Required]
-        public DateTime RecCreatedDt { get; set; }
+         public DateTime RecCreatedDt { get; set; }
+        
         /// <summary>
         /// Record Last Updated Date
         /// </summary>
-        [Required]
-        public DateTime RecLastUpdatedDt { get; set; }
+         public DateTime RecLastUpdatedDt { get; set; }
 
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100), Required]
-        public string RecLastUpdatedBy { get; set; }
+          public string RecLastUpdatedBy { get; set; }
 
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100), Required]
-        public string RecCreatedBy { get; set; }
+          public string RecCreatedBy { get; set; }
 
         /// <summary>
         /// Row Version
         /// </summary>
-        [Required]
-        public long RowVersion { get; set; }
+          public long RowVersion { get; set; }
 
         /// <summary>
         /// User Domain Key
         /// </summary>
-        [Required]
+       
         public long UserDomainKey { get; set; }
 
 

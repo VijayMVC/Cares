@@ -24,7 +24,7 @@ namespace Cares.Repository.BaseRepository
         // ReSharper disable once NotAccessedField.Local
         private IUnityContainer container;
         #endregion
-        
+
         #region Protected
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -75,7 +75,6 @@ namespace Cares.Repository.BaseRepository
                 .WithMany()
                 .WillCascadeOnDelete(true);
 
-            
             modelBuilder.Entity<HireGroupUpGrade>()
                .HasRequired(c => c.AllowedHireGroup)
                .WithMany()
@@ -90,11 +89,45 @@ namespace Cares.Repository.BaseRepository
                 .HasRequired(c => c.Address)
                 .WithMany()
                 .WillCascadeOnDelete(true);
+            modelBuilder.Entity<Vehicle>()
+              .HasRequired(c => c.VehicleOtherDetail)
+             .WithRequiredPrincipal()
+              .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Vehicle>()
+              .HasRequired(c => c.VehiclePurchaseInfo)
+              .WithRequiredPrincipal()
+              .WillCascadeOnDelete(false);
+
+             modelBuilder.Entity<Vehicle>()
+            .HasRequired(c => c.VehicleLeasedInfo)
+           .WithRequiredPrincipal()
+            .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Vehicle>()
+            .HasRequired(c => c.VehicleInsuranceInfo)
+            .WithRequiredPrincipal()
+            .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Vehicle>()
+            .HasRequired(c => c.VehicleDepreciation)
+            .WithRequiredPrincipal()
+            .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Vehicle>()
+            .HasRequired(c => c.VehicleDisposalInfo)
+            .WithRequiredPrincipal()
+            .WillCascadeOnDelete(false);
+
+            //modelBuilder.Entity<BusinessPartner>()
+            //    .HasOptional(c => c.BusinessPartnerCompany);
+            //modelBuilder.Entity<BusinessPartner>()
+            //  .HasOptional(c => c.BusinessPartnerIndividual).WithOptionalDependent().WillCascadeOnDelete(false); 
 
           
         }
         #endregion
-        
+
         #region Constructor
         public BaseDbContext()
         {
@@ -123,7 +156,7 @@ namespace Cares.Repository.BaseRepository
         }
 
         #endregion
-        
+
         #region Public
 
         public BaseDbContext(IUnityContainer container, string connectionString)
@@ -319,7 +352,7 @@ namespace Cares.Repository.BaseRepository
         /// Business Partner Marketing Channels Db Set
         /// </summary>
         public DbSet<BusinessPartnerMarketingChannel> BusinessPartnerMarketingChannels { get; set; }
-        
+
         /// <summary>
         /// Business Partner Relationship item list Db Set
         /// </summary>
@@ -426,6 +459,11 @@ namespace Cares.Repository.BaseRepository
         /// Vehicle Other Details Db Set
         /// </summary>
         public DbSet<VehicleOtherDetail> VehicleOtherDetails { get; set; }
+
+        /// <summary>
+        /// Vehicle Check List Item Db Set
+        /// </summary>
+        public DbSet<VehicleCheckListItem> VehicleCheckListItems { get; set; }
 
         #endregion
     }

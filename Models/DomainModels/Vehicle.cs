@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -247,6 +248,45 @@ namespace Cares.Models.DomainModels
         /// </summary>
         public virtual OperationsWorkPlace OperationsWorkPlace { get; set; }
 
+        /// <summary>
+        ///Vehicle Other Detail assocaited to this Entity
+        /// </summary>
+        public virtual VehicleOtherDetail VehicleOtherDetail { get; set; }
+
+        /// <summary>
+        ///Vehicle Purchase Info assocaited to this Entity
+        /// </summary>
+        public virtual VehiclePurchaseInfo VehiclePurchaseInfo { get; set; }
+
+        /// <summary>
+        ///Vehicle Leased Info assocaited to this Entity
+        /// </summary>
+        public virtual VehicleLeasedInfo VehicleLeasedInfo { get; set; }
+
+        /// <summary>
+        ///Vehicle Insurance Info assocaited to this Entity
+        /// </summary>
+        public virtual VehicleInsuranceInfo VehicleInsuranceInfo { get; set; }
+
+        /// <summary>
+        ///Vehicle Depreciation assocaited to this Entity
+        /// </summary>
+        public virtual VehicleDepreciation VehicleDepreciation { get; set; }
+
+        /// <summary>
+        ///Vehicle Disposal Info assocaited to this Entity
+        /// </summary>
+        public virtual VehicleDisposalInfo VehicleDisposalInfo { get; set; }
+
+        /// <summary>
+        /// Vehicle Maintenance Type Frequency List
+        /// </summary>
+        public virtual ICollection<VehicleMaintenanceTypeFrequency> VehicleMaintenanceTypeFrequencies { get; set; }
+
+        /// <summary>
+        /// Vehicle Check List Items
+        /// </summary>
+        public virtual ICollection<VehicleCheckListItem> VehicleCheckListItems { get; set; }
         #endregion
     }
 }

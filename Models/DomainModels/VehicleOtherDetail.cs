@@ -25,7 +25,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Number Of Doors
         /// </summary>
-        public short NumberOfDoors { get; set; }
+        public short? NumberOfDoors { get; set; }
 
         /// <summary>
         /// Horse Power_CC
@@ -36,12 +36,12 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Number Of Cylinders
         /// </summary>
-        public short NumberOfCylinders { get; set; }
+        public short? NumberOfCylinders { get; set; }
 
         /// <summary>
         /// is Alloy Rim
         /// </summary>
-        public bool isAlloyRim { get; set; }
+        public bool? IsAlloyRim { get; set; }
 
         /// <summary>
         /// Chasis Number
@@ -76,7 +76,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Top Speed
         /// </summary>
-        public short TopSpeed { get; set; }
+        public short? TopSpeed { get; set; }
 
         /// <summary>
         /// Interior Description
@@ -87,12 +87,12 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Front Wheel Size
         /// </summary>
-        public float FrontWheelSize { get; set; }
+        public float? FrontWheelSize { get; set; }
 
         /// <summary>
         /// Back Wheel Size
         /// </summary>
-        public float BackWheelSize { get; set; }
+        public float? BackWheelSize { get; set; }
 
 
         /// <summary>

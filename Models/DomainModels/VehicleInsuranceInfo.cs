@@ -31,22 +31,27 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Coverage Limit
         /// </summary>
-        public int CoverageLimit { get; set; }
+        public int? CoverageLimit { get; set; }
 
         /// <summary>
         /// Renewal Date
         /// </summary>
-        public DateTime RenewalDate { get; set; }
+        public DateTime? RenewalDate { get; set; }
+
+        /// <summary>
+        /// Insurance Date
+        /// </summary>
+        public DateTime? InsuranceDate { get; set; }
 
         /// <summary>
         /// Premium
         /// </summary>
-        public float Premium { get; set; }
+        public float? Premium { get; set; }
 
         /// <summary>
         /// Insured Value
         /// </summary>
-        public decimal InsuredValue { get; set; }
+        public decimal? InsuredValue { get; set; }
 
         /// <summary>
         /// Insured From
@@ -64,41 +69,38 @@ namespace Cares.Models.DomainModels
         /// Insurance Type ID
         /// </summary>
         [ForeignKey("InsuranceType")]
-        public short InsuranceTypeId { get; set; }
+        public short? InsuranceTypeId { get; set; }
         /// <summary>
         /// Record Created Date
         /// </summary>
-        [Required]
         public DateTime RecCreatedDt { get; set; }
+        
         /// <summary>
         /// Record Last Updated Date
         /// </summary>
-        [Required]
         public DateTime RecLastUpdatedDt { get; set; }
 
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100), Required]
+        [StringLength(100)]
         public string RecLastUpdatedBy { get; set; }
 
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100), Required]
+        [StringLength(100)]
         public string RecCreatedBy { get; set; }
 
         /// <summary>
         /// Row Version
         /// </summary>
-        [Required]
-        public long RowVersion { get; set; }
+         public long RowVersion { get; set; }
 
         /// <summary>
         /// User Domain Key
         /// </summary>
-        [Required]
-        public long UserDomainKey { get; set; }
+         public long UserDomainKey { get; set; }
 
 
         #endregion

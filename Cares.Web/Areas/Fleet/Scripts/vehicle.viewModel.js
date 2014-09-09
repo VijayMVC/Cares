@@ -13,8 +13,10 @@ define("vehicle/vehicle.viewModel",
                    selectedVehicle = ko.observable(),
                     //Active Vehicle Copy 
                    selectedVehicleCopy = ko.observable(),
-                    //Active Vehicle Id
+                    //Active Vehicle 
                     selectedVehicleId = ko.observable(),
+                    //Add/Edit Vehicle Item
+                     addVehicleItem = ko.observable(),
                       // Show Filter Section
                     filterSectionVisilble = ko.observable(false),
                     // #region Arrays
@@ -57,6 +59,10 @@ define("vehicle/vehicle.viewModel",
                     filteredOperations = ko.observableArray([]),
                     //Locations
                     locations = ko.observableArray([]),
+                    //Maintenance Schedule List
+                    maintenanceScheduleList = ko.observableArray([]),
+                     //Maintenance Schedule List
+                    checkListItemList = ko.observableArray([]),
                     // #endregion Arrays
 
                     // #region Busy Indicators
@@ -113,50 +119,45 @@ define("vehicle/vehicle.viewModel",
                      //Create Vehicle Rate
                     createVehicle = function () {
                         var vehicle = new model.VehicleDetail.Create();
-                        //VehicleDetails.removeAll();
-                        //VehicleUpGradeList.removeAll();
+                        checkListItemList.removeAll();
+                        maintenanceScheduleList.removeAll();
                         //Select the newly added Vehicle
-                        selectedVehicle(vehicle);
-                        //selectedVehicle().vehicleDetail(new model.VehicleDetail());
-                        //selectedVehicle().VehicleUpGrade(new model.VehicleUpGrade());
+                        addVehicleItem(vehicle);
                         showVehicleEditor();
                     },
                       //Edit Vehicle
                     onEditVehicle = function (vehicle, e) {
-                        //VehicleDetails.removeAll();
-                        //VehicleUpGradeList.removeAll();
-                        //selectedVehicle(vehicle);
-                        //selectedVehicleId(vehicle.vehicleId());
-                        //selectedVehicle().vehicleDetail(new model.VehicleDetail());
-                        //selectedVehicle().VehicleUpGrade(new model.VehicleUpGrade());
-                        //virtualIsChecked(Vehicle.isParent());
-                        ////selectedtariffRateCopy(model.TariffRateCoppier(selectedtariffRate()));
+                        checkListItemList.removeAll();
+                        maintenanceScheduleList.removeAll();
+                        selectedVehicle(vehicle);
                         getVehicleById(vehicle);
                         showVehicleEditor();
                         e.stopImmediatePropagation();
                     },
-
-                        isChecked = ko.computed(function () {
-                            //if (selectedVehicle() != undefined) {
-                            //    return virtualIsChecked(selectedVehicle().isParent());
-                            //} else {
-                            //    return false;
-                            //}
-                        }),
-                    // //Get Vehicle data By Id
+                      //Get Vehicle data By Id
                     getVehicleById = function (vehicle) {
                         isLoadingVehicles(true);
                         dataservice.getVehicleDetailById(model.VehicleDetailServerMappeForDelete(vehicle), {
                             success: function (data) {
+                                var vehicleDetail = model.VehicleDetailClientMapper(data);
+                                addVehicleItem(vehicleDetail);
+                                _.each(data.VehicleCheckListItems, function (item) {
+                                    var checkListItem = model.CheckListItemClientMapper(item);
+                                    checkListItemList.push(checkListItem);
+                                });
+                                _.each(data.VehicleMaintenanceTypeFrequency, function (item) {
+                                    var maintenanceScheduleItem = model.MaintenanceScheduleClientMapper(item);
+                                    maintenanceScheduleList.push(maintenanceScheduleItem);
+                                });
                                 isLoadingVehicles(false);
                             },
                             error: function () {
                                 isLoadingVehicles(false);
-                                toastr.error(ist.resourceText.VehicleDetailFailedMsg);
+                                toastr.error(ist.resourceText.vehicleDetailFailedMsg);
                             }
                         });
                     },
-                          // Delete a Vehicle
+                    // Delete a Vehicle
                     onDeleteVehicle = function (vehicle) {
                         if (!vehicle.vehicleId()) {
                             vehicles.remove(vehicle);
@@ -173,64 +174,71 @@ define("vehicle/vehicle.viewModel",
                         dataservice.deleteVehicle(model.VehicleDetailServerMappeForDelete(vehicle), {
                             success: function () {
                                 vehicles.remove(vehicle);
-                                toastr.success("Vehicle Succesfully delete.");
+                                toastr.success(ist.resourceText.vehicleDeleteSuccessMsg);
                             },
                             error: function () {
-                                toastr.error("error");
+                                toastr.error(ist.resourceText.vehicleDeleteErrorMsg);
                             }
                         });
                     },
-                    //    // Do Before Logic
-                    doBeforeAdd = function () {
-                        //    var flag = true;
-                        //    if (!selectedVehicle().vehicleDetail().isValid()) {
-                        //        selectedVehicle().vehicleDetail().errors.showAllMessages();
-                        //        flag = false;
-                        //    }
-                        //    return flag;
-                    },
-                    // // Do Before Logic
-                    doBeforeAddVehicleUpGrade = function () {
-                        //    var flag = true;
-                        //    if (!selectedVehicle().VehicleUpGrade().isValid()) {
-                        //        selectedVehicle().VehicleUpGrade().errors.showAllMessages();
-                        //        flag = false;
-                        //    }
-                        //    return flag;
-                    },
-                    //  // Save Vehicle
+                   // Save Vehicle
                     onSaveVehicle = function (vehicle) {
                         if (doBeforeSave()) {
-
+                            if (vehicle.maintenanceScheduleListInVehicle().length !== 0) {
+                                vehicle.maintenanceScheduleListInVehicle.removeAll();
+                            }
+                            if (vehicle.checkListItemListInVehicle().length !== 0) {
+                                vehicle.checkListItemListInVehicle.removeAll();
+                            }
+                            ko.utils.arrayPushAll(vehicle.maintenanceScheduleListInVehicle(), maintenanceScheduleList());
+                            ko.utils.arrayPushAll(vehicle.checkListItemListInVehicle(), checkListItemList());
                             saveVehicle(vehicle);
                         }
                     },
-                    //   // Do Before Logic
+                    // Do Before Logic
                     doBeforeSave = function () {
                         var flag = true;
-                        if (!selectedVehicle().isValid()) {
-                            selectedVehicle().errors.showAllMessages();
+                        if (!addVehicleItem().isValid() || !addVehicleItem().otherVehicleDetail().isValid() || !addVehicleItem().vehiclePurchaseInfo().isValid() ||
+                        !addVehicleItem().vehicleLeasedInfo().isValid() || !addVehicleItem().vehicleInsuranceInfo().isValid() ||
+                        !addVehicleItem().vehicleDepreciation().isValid() || !addVehicleItem().vehicleDisposalInfo().isValid()) {
+                            addVehicleItem().errors.showAllMessages();
+                            addVehicleItem().otherVehicleDetail().errors.showAllMessages();
+                            addVehicleItem().vehiclePurchaseInfo().errors.showAllMessages();
+                            addVehicleItem().vehicleLeasedInfo().errors.showAllMessages();
+                            addVehicleItem().vehicleInsuranceInfo().errors.showAllMessages();
+                            addVehicleItem().vehicleDepreciation().errors.showAllMessages();
+                            addVehicleItem().vehicleDisposalInfo().errors.showAllMessages();
                             flag = false;
                         }
                         return flag;
                     },
-                    //// Save Vehicle
+                    // Save Vehicle
                     saveVehicle = function (vehicle) {
                         dataservice.saveVehicle(model.VehicleDetailServerMapper(vehicle), {
                             success: function (data) {
                                 var vehicleResult = new model.VehicleClientMapper(data);
-                                if ((selectedVehicle().vehicleId() === undefined) || (selectedVehicle().vehicleId() ===0)) {
+                                if ((addVehicleItem().vehicleId() === undefined) || (addVehicleItem().vehicleId() === 0)) {
                                     vehicles.splice(0, 0, vehicleResult);
                                 } else {
-                                    // selectedVehicle().VehicleCode(VehicleResult.VehicleCode());
-
-
+                                    selectedVehicle().vehicleName(vehicleResult.vehicleName());
+                                    selectedVehicle().modelYear(vehicleResult.modelYear());
+                                    selectedVehicle().fuelLevel(vehicleResult.fuelLevel());
                                 }
                                 closeVehicleEditor();
-                                toastr.success(ist.resourceText.hirGroupAddSuccesMsg);
+                                toastr.success(ist.resourceText.vehicleSaveSuccessMsg);
                             },
-                            error: function () {
-                                toastr.error(ist.resourceText.hirGroupAddFailedMsg);
+                            error: function (exceptionMessage, exceptionType) {
+
+                                if (exceptionType === ist.exceptionType.CaresGeneralException) {
+
+                                    toastr.error(exceptionMessage);
+
+                                } else {
+
+                                    toastr.error(ist.resourceText.vehicleSaveErrorMsg);
+
+                                }
+
                             }
                         });
                     },
@@ -318,6 +326,56 @@ define("vehicle/vehicle.viewModel",
                         pager().reset();
                         getVehicles();
                     },
+                    //Add Maintenance Schedule Item To Maintennace Schedule List
+                     onAddMaintenanceSchedule = function (maintenanceSchedule) {
+                         if (doBeforeSaveMaintenanceSchedule()) {
+                             _.each(maintenanceTypes(), function (item) {
+                                 if (item.MaintenanceTypeId === maintenanceSchedule.maintenanceTypeId())
+                                     maintenanceSchedule.maintenanceTypCodeName(item.MaintenanceTypeCodeName);
+                             });
+
+                             maintenanceScheduleList.splice(0, 0, maintenanceSchedule);
+                             addVehicleItem().maintenanceSchedule(new model.MaintenanceSchedule());
+                         }
+                     },
+                    // Do Before Logic
+                    doBeforeSaveMaintenanceSchedule = function () {
+                        var flag = true;
+                        if (!addVehicleItem().maintenanceSchedule().isValid()) {
+                            addVehicleItem().maintenanceSchedule().errors.showAllMessages();
+                            flag = false;
+                        }
+                        return flag;
+                    },
+                    //Delete Maintenance Schedule Item
+                    deleteMaintenanceSchedule = function (maintenanceSchedule) {
+                        maintenanceScheduleList.remove(maintenanceSchedule);
+                    },
+                    //Add Maintenance Schedule Item To Maintennace Schedule List
+                    onAddCheckListItem = function (checkListItem) {
+                        if (doBeforeSaveCheckListItem()) {
+                            _.each(vehicleCheckList(), function (item) {
+                                if (item.VehicleCheckListId === checkListItem.vehicleCheckListId())
+                                    checkListItem.vehicleCheckListCodeName(item.VehicleCheckListCodeName);
+                            });
+
+                            checkListItemList.splice(0, 0, checkListItem);
+                            addVehicleItem().checkListItem(new model.CheckListItem());
+                        }
+                    },
+                    // Do Before Logic
+                    doBeforeSaveCheckListItem = function () {
+                        var flag = true;
+                        if (!addVehicleItem().checkListItem().isValid()) {
+                            addVehicleItem().checkListItem().errors.showAllMessages();
+                            flag = false;
+                        }
+                        return flag;
+                    },
+                    //Delete Maintenance Schedule Item
+                    deleteCheckListItem = function (checkListItem) {
+                        checkListItemList.remove(checkListItem);
+                    },
                     mapVehicles = function (data) {
                         var vehicleList = [];
                         _.each(data.Vehicles, function (item) {
@@ -380,7 +438,7 @@ define("vehicle/vehicle.viewModel",
                             },
                             error: function () {
                                 isLoadingVehicles(false);
-                                toastr.error(ist.resourceText.VehicleLoadFailedMsg);
+                                toastr.error(ist.resourceText.vehicleLoadFailedMsg);
                             }
                         });
                     };
@@ -397,6 +455,7 @@ define("vehicle/vehicle.viewModel",
                     sortIsAscHg: sortIsAscHg,
                     isVehicleEditorVisible: isVehicleEditorVisible,
                     filterSectionVisilble: filterSectionVisilble,
+                    addVehicleItem: addVehicleItem,
                     //Arrays
                     vehicles: vehicles,
                     operations: operations,
@@ -418,6 +477,8 @@ define("vehicle/vehicle.viewModel",
                     filteredDepartments: filteredDepartments,
                     filteredOperations: filteredOperations,
                     locations: locations,
+                    maintenanceScheduleList: maintenanceScheduleList,
+                    checkListItemList: checkListItemList,
                     //Filters
                     searchFilter: searchFilter,
                     hireGroupFilter: hireGroupFilter,
@@ -439,7 +500,11 @@ define("vehicle/vehicle.viewModel",
                     onSelectedDepartemnt: onSelectedDepartemnt,
                     onDeleteVehicle: onDeleteVehicle,
                     onSaveVehicle: onSaveVehicle,
-                    onEditVehicle: onEditVehicle
+                    onEditVehicle: onEditVehicle,
+                    onAddMaintenanceSchedule: onAddMaintenanceSchedule,
+                    deleteMaintenanceSchedule: deleteMaintenanceSchedule,
+                    onAddCheckListItem: onAddCheckListItem,
+                    deleteCheckListItem: deleteCheckListItem
                     // Utility Methods
 
                 };

@@ -384,10 +384,18 @@
     <Compile Include="Models\VehicleBaseDataResponse.cs" />
     <Compile Include="Models\VehicleCategory.cs" />
     <Compile Include="Models\VehicleCheckListDropDown.cs" />
+    <Compile Include="Models\VehicleCheckListItem.cs" />
+    <Compile Include="Models\VehicleDepreciation.cs" />
     <Compile Include="Models\VehicleDetail.cs" />
+    <Compile Include="Models\VehicleDisposalInfo.cs" />
+    <Compile Include="Models\VehicleInsuranceInfo.cs" />
+    <Compile Include="Models\VehicleLeasedInfo.cs" />
     <Compile Include="Models\VehicleListViewContent.cs" />
+    <Compile Include="Models\VehicleMaintenanceTypeFrequency.cs" />
     <Compile Include="Models\VehicleMake.cs" />
     <Compile Include="Models\VehicleModel.cs" />
+    <Compile Include="Models\VehicleOtherDetail.cs" />
+    <Compile Include="Models\VehiclePurchaseInfo.cs" />
     <Compile Include="Models\VehicleStatus.cs" />
     <Compile Include="Models\VehicleSearchResponse.cs" />
     <Compile Include="Models\HireGroupDataDetailResponse.cs" />
@@ -605,6 +613,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TariffType.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Vehicle\Vehicle.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Vehicle.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Vehicle\Vehicle.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Vehicle.resx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="TypeRegistrations.cs" />
@@ -1621,6 +1639,14 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>TariffType.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Vehicle\Vehicle.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Vehicle.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Vehicle\Vehicle.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Vehicle.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

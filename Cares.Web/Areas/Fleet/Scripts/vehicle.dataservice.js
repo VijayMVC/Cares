@@ -27,6 +27,7 @@ define("vehicle/vehicle.dataservice", function () {
                     amplify.request.define('saveVehicle', 'ajax', {
                         url: '/Api/Vehicle',
                         dataType: 'json',
+                        decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
                     });
 

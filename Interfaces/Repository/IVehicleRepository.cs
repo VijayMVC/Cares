@@ -24,6 +24,12 @@ namespace Cares.Interfaces.Repository
         /// Load Dependencies
         /// </summary>
         void LoadDependencies(Vehicle vehicle);
+
+
+        /// <summary>
+        /// Check Vehicle Plate Number Already Exist
+        /// </summary>
+        bool DuplicateVehiclePlateNumber(string plateNumber, long vehicleId);
     }
 }
 

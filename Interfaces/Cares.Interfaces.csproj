@@ -107,6 +107,7 @@
     <Compile Include="Repository\IInsuranceRtRepository.cs" />
     <Compile Include="Repository\IInsuranceTypeRepository.cs" />
     <Compile Include="Repository\ITransmissionTypeRepository.cs" />
+    <Compile Include="Repository\IVehicleCheckListItemRepository.cs" />
     <Compile Include="Repository\IVehicleCheckListRepository.cs" />
     <Compile Include="Repository\IVehicleDepreciationRepository.cs" />
     <Compile Include="Repository\IVehicleDisposalInfoRepository.cs" />

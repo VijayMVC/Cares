@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Cares.Models.DomainModels;
 
 namespace Cares.Web.Models
 {
@@ -137,6 +139,49 @@ namespace Cares.Web.Models
         
         #endregion
 
+        #region refrence Data
+
+        /// <summary>
+        /// Vehicle Other Detail
+        /// </summary>
+        public VehicleOtherDetail VehicleOtherDetail { get; set; }
+
+
+        /// <summary>
+        /// Vehicle Purchase Info
+        /// </summary>
+        public VehiclePurchaseInfo VehiclePurchaseInfo { get; set; }
+
+        /// <summary>
+        /// Vehicle Leased Info
+        /// </summary>
+        public VehicleLeasedInfo VehicleLeasedInfo { get; set; }
+
+        /// <summary>
+        /// Vehicle Insurance Info
+        /// </summary>
+        public VehicleInsuranceInfo VehicleInsuranceInfo { get; set; }
+
+        /// <summary>
+        /// Vehicle Insurance Info
+        /// </summary>
+        public VehicleDepreciation VehicleDepreciation { get; set; }
+
+        /// <summary>
+        /// Vehicle Disposal Info
+        /// </summary>
+        public VehicleDisposalInfo VehicleDisposalInfo { get; set; }
+
+        /// <summary>
+        /// Vehicle Maintenance Type Frequency List
+        /// </summary>
+        public List<VehicleMaintenanceTypeFrequency> VehicleMaintenanceTypeFrequency { get; set; }
+
+        /// <summary>
+        /// Vehicle Check List Item List
+        /// </summary>
+        public List<VehicleCheckListItem> VehicleCheckListItems { get; set; }
+        #endregion
 
     }
 }
