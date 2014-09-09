@@ -5,7 +5,7 @@ namespace Cares.Interfaces.Repository
     /// <summary>
     /// Phone Type Repository Interface
     /// </summary>
-    public interface IPhoneTypeRepository : IBaseRepository<PhoneType, int>
+    public interface IPhoneTypeRepository : IBaseRepository<PhoneType, long>
     {
     }
 }

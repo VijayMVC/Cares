@@ -9,15 +9,15 @@ using Microsoft.Practices.Unity;
 namespace Cares.Repository.Repositories
 {
     /// <summary>
-    /// Phone Type Repository
+    /// Designation Repository
     /// </summary>
-    public sealed class PhoneTypeRepository : BaseRepository<PhoneType>, IPhoneTypeRepository
+    public sealed class DesignationRepository : BaseRepository<Designation>, IDesignationRepository
     {
         #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>
-        public PhoneTypeRepository(IUnityContainer container)
+        public DesignationRepository(IUnityContainer container)
             : base(container)
         {
 
@@ -25,25 +25,25 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Primary database set
         /// </summary>
-        protected override IDbSet<PhoneType> DbSet
+        protected override IDbSet<Designation> DbSet
         {
             get
             {
-                return db.PhoneTypes;
+                return db.Designations;
             }
         }
-
         #endregion
 
         #region Public
+
         /// <summary>
-        /// Get All Phone Types for User Domain Key
+        /// Get Designation for User Domain Key
         /// </summary>
-        public override IEnumerable<PhoneType> GetAll()
+        public override IEnumerable<Designation> GetAll()
         {
-            return DbSet.Where(phoneTypes => phoneTypes.UserDomainKey == UserDomainKey).ToList();
+            return DbSet.Where(empStatus => empStatus.UserDomainKey == UserDomainKey).ToList();
         }
-      
+
         #endregion
     }
 }

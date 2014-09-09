@@ -414,8 +414,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
           //Business Partner Id
           bPMainId = ko.observable(),
 
-
-            // Errors
+        // Errors
             errors = ko.validation.group({
                 downPayment: downPayment,
                 monthlyPayment: monthlyPayment,
@@ -491,7 +490,6 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
           //Insurance Type Id
           insuranceTypeId = ko.observable().extend({ required: true }),
 
-
             // Errors
             errors = ko.validation.group({
                 coverageLimit: coverageLimit,
@@ -556,7 +554,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             // Errors
             errors = ko.validation.group({
                 maintenanceStartDate: maintenanceStartDate,
-                maintenanceTypeId:maintenanceTypeId,
+                maintenanceTypeId: maintenanceTypeId,
                 frequency: frequency,
                 frequencyKiloMeter: frequencyKiloMeter
             }),

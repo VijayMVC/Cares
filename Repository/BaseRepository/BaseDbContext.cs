@@ -114,14 +114,7 @@ namespace Cares.Repository.BaseRepository
             .HasRequired(c => c.VehicleDisposalInfo)
             .WithRequiredPrincipal()
             .WillCascadeOnDelete(false);
-
-            //modelBuilder.Entity<BusinessPartner>()
-            //    .HasOptional(c => c.BusinessPartnerCompany);
-            //modelBuilder.Entity<BusinessPartner>()
-            //  .HasOptional(c => c.BusinessPartnerIndividual).WithOptionalDependent().WillCascadeOnDelete(false); 
-
-
-        }
+      }
         #endregion
 
         #region Constructor
@@ -460,6 +453,31 @@ namespace Cares.Repository.BaseRepository
         /// Vehicle Check List Item Db Set
         /// </summary>
         public DbSet<VehicleCheckListItem> VehicleCheckListItems { get; set; }
+        
+        /// <summary>
+        /// Employee Status Db Set
+        /// </summary>
+        public DbSet<EmpStatus> EmpStatuses { get; set; }
+        
+        /// <summary>
+        /// Designation Db Set
+        /// </summary>
+        public DbSet<Designation> Designations { get; set; }
+
+        /// <summary>
+        /// Designation Grade Db Set
+        /// </summary>
+        public DbSet<DesigGrade> DesigGrades { get; set; }
+
+        /// <summary>
+        /// License Type Db Set
+        /// </summary>
+        public DbSet<LicenseType> LicenseTypes { get; set; }
+
+        /// <summary>
+        /// Job Type Db Set
+        /// </summary>
+        public DbSet<JobType> JobTypes { get; set; }
 
         #endregion
     }
