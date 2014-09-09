@@ -85,6 +85,10 @@ namespace Cares.Repository.BaseRepository
                 .WithMany()
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<WorkLocation>()
+                .HasRequired(c => c.Address)
+                .WithMany()
+                .WillCascadeOnDelete(true);
             modelBuilder.Entity<Vehicle>()
               .HasRequired(c => c.VehicleOtherDetail)
              .WithRequiredPrincipal()
@@ -114,6 +118,13 @@ namespace Cares.Repository.BaseRepository
             .HasRequired(c => c.VehicleDisposalInfo)
             .WithRequiredPrincipal()
             .WillCascadeOnDelete(false);
+
+            //modelBuilder.Entity<BusinessPartner>()
+            //    .HasOptional(c => c.BusinessPartnerCompany);
+            //modelBuilder.Entity<BusinessPartner>()
+            //  .HasOptional(c => c.BusinessPartnerIndividual).WithOptionalDependent().WillCascadeOnDelete(false); 
+
+          
       }
         #endregion
 

@@ -105,6 +105,12 @@ namespace Cares.Models.DomainModels
 
         #region Reference Properties
 
+
+        /// <summary>
+        /// Address
+        /// </summary>
+        public virtual Address Address { get; set; }
+
         /// <summary>
         /// Company
         /// </summary>

@@ -1,6 +1,9 @@
 ﻿
 namespace Cares.Models.Common
 {
+    /// <summary>
+    /// Company By Column
+    /// </summary>
     public enum CompanyByColumn
     {
         CompanyCode=1,

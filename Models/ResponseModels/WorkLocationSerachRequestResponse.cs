@@ -4,19 +4,19 @@ using System.Collections.Generic;
 namespace Cares.Models.ResponseModels
 {
     /// <summary>
-    /// Company Search Request Response
+    /// Work Locations Serach response
     /// </summary>
-    public class CompanySearchRequestResponse
+    public class WorkLocationSerachRequestResponse
     {
         #region Public
         /// <summary>
-        /// Companies List
+        /// Work Locations List
         /// </summary>
-        public IEnumerable<Company> Companies { get; set; }
+        public IEnumerable<WorkLocation> WorkLocations { get; set; }
 
-      /// <summary>
-        /// Total Count of Companies
-      /// </summary>
+        /// <summary>
+        /// Total Count of WorkLocations
+        /// </summary>
         public int TotalCount { get; set; }
         #endregion
     }
