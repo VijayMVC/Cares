@@ -85,8 +85,13 @@ namespace Cares.Repository.BaseRepository
                 .HasRequired(c => c.SecondaryBusinessPartner)
                 .WithMany()
                 .WillCascadeOnDelete(false);
-           
 
+            modelBuilder.Entity<WorkLocation>()
+                .HasRequired(c => c.Address)
+                .WithMany()
+                .WillCascadeOnDelete(true);
+
+          
         }
         #endregion
         

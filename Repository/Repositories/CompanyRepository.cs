@@ -30,7 +30,6 @@ namespace Cares.Repository.Repositories
                         {CompanyByColumn.CompanyDescription, d => d.CompanyDescription}
                     };
         #endregion
-        
         #region Constructor
         /// <summary>
         /// Constructor
@@ -52,7 +51,6 @@ namespace Cares.Repository.Repositories
         }
 
         #endregion
-       
         #region Public
         /// <summary>
         /// Search Company

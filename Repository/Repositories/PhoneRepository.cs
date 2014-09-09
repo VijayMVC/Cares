@@ -39,6 +39,7 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get All Phone for User Domain Key
         /// </summary>
+        /// 
         public override IEnumerable<Phone> GetAll()
         {
             return DbSet.Where(phones => phones.UserDomainKey == UserDomainKey).ToList();
@@ -46,11 +47,17 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Find Phone by Id
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         public PhoneType Find(int id)
         {
             throw new System.NotImplementedException();
+        }
+
+        /// <summary>
+        /// Get associated Phones with Work Location Id
+        /// </summary>
+        public IEnumerable<Phone> GetPhonesByWorkLocationId(long workLocationId)
+        {
+            return DbSet.Where(phone => phone.UserDomainKey == UserDomainKey && phone.WorkLocation.WorkLocationId == workLocationId).ToList();
         }
         #endregion
     }

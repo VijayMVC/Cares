@@ -34,6 +34,10 @@
         /// Phone Type Name
         /// </summary>
         public string PhoneTypeName { get; set; }
+        /// <summary>
+        /// Work Location ID
+        /// </summary>
+        public long? WorkLocationId { get; set; }
         #endregion
     }
 }

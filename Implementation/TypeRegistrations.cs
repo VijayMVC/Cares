@@ -51,6 +51,9 @@ namespace Cares.Implementation
             unityContainer.RegisterType<IVehicleService, VehicleService>();
             unityContainer.RegisterType<IWorkplaceService, WorkplaceService>();
             unityContainer.RegisterType<IOperationsWorkPlaceService, OperationsWorkPlaceService>();
+            unityContainer.RegisterType<IWorkLocationService, WorkLocationService>();
+            unityContainer.RegisterType<IPhoneService, PhoneService>();
+         
          
         }
     }

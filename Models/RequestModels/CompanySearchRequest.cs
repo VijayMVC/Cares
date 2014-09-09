@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Cares.Models.Common;
+﻿using Cares.Models.Common;
 
 namespace Cares.Models.RequestModels
 {
@@ -16,6 +11,9 @@ namespace Cares.Models.RequestModels
         public string CompanyNameText { get; set; }
         public int? OrganizationGroupId  { get; set; }
         public int? BusinessSegmentId  { get; set; }
+        /// <summary>
+        /// Company By Column for sorting
+        /// </summary>
         public CompanyByColumn CompanyOrderBy
         {
             

@@ -7,6 +7,9 @@ namespace Cares.Models.ResponseModels
     /// </summary>
     public class OperationWorkplaceSearchByIdResponse
     {
+        /// <summary>
+        /// list of workplace operations
+        /// </summary>
         public IEnumerable<DomainModels.OperationsWorkPlace> OperationWorkPlaces { get; set; }
     }
 }

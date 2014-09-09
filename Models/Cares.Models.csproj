@@ -109,6 +109,7 @@
     <Compile Include="Common\HireGroupDetailByColumn.cs" />
     <Compile Include="Common\OrgGroupByColumn.cs" />
     <Compile Include="Common\TariffRateByColumn.cs" />
+    <Compile Include="Common\WorkLocationByColumn.cs" />
     <Compile Include="Common\WorkplaceByColumn.cs" />
     <Compile Include="DomainModels\BusinessPartnerMarketingChannel.cs" />
     <Compile Include="DomainModels\BusinessPartnerInType.cs" />
@@ -216,6 +217,7 @@
     <Compile Include="RequestModels\HireGroupDetailRequest.cs" />
     <Compile Include="RequestModels\TariffRateRequest.cs" />
     <Compile Include="RequestModels\TariffTypeRequest.cs" />
+    <Compile Include="RequestModels\WorkLocationSearchRequest.cs" />
     <Compile Include="RequestModels\WorkplaceSearchRequest.cs" />
     <Compile Include="ResponseModels\BusinessPartnerBaseDataResponse.cs" />
     <Compile Include="ResponseModels\CompanyBaseDataResponse.cs" />
@@ -239,6 +241,7 @@
     <Compile Include="ResponseModels\OperationSearchResponse.cs" />
     <Compile Include="ResponseModels\OperationWorkplaceSearchByIdResponse.cs" />
     <Compile Include="ResponseModels\OrgGroupResponse.cs" />
+    <Compile Include="ResponseModels\PhonesSearchByWorkLocationIdResponse.cs" />
     <Compile Include="ResponseModels\ProductResponse.cs" />
     <Compile Include="ResponseModels\RegionResponse.cs" />
     <Compile Include="ResponseModels\ServiceRateBaseResponse.cs" />
@@ -255,8 +258,11 @@
     <Compile Include="ResponseModels\TariffTypeBaseResponse.cs" />
     <Compile Include="ResponseModels\TariffTypeResponse.cs" />
     <Compile Include="ResponseModels\VehicleBaseDataResponse.cs" />
+    <Compile Include="ResponseModels\WorkLocationBaseDataResponse.cs" />
+    <Compile Include="ResponseModels\WorkLocationSerachRequestResponse.cs" />
     <Compile Include="ResponseModels\WorkplaceBaseDataResponse.cs" />
     <Compile Include="ResponseModels\WorkplaceSearchRequestResponse.cs" />
+    <Compile Include="ResponseModels\WorkPlaceSerachRequestResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

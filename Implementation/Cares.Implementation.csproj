@@ -213,6 +213,7 @@
     <Compile Include="Services\BusinessLegalStatusService.cs" />
     <Compile Include="Services\InsuranceRateService.cs" />
     <Compile Include="Services\OperationsWorkPlaceService.cs" />
+    <Compile Include="Services\PhoneService.cs" />
     <Compile Include="Services\ServiceRtService.cs" />
     <Compile Include="Services\VehicleService.cs" />
     <Compile Include="Services\HireGroupService.cs" />
@@ -235,6 +236,7 @@
     <Compile Include="Services\TariffRateService.cs" />
     <Compile Include="Services\RentalAgreementService.cs" />
     <Compile Include="Services\TariffTypeService.cs" />
+    <Compile Include="Services\WorkLocationService.cs" />
     <Compile Include="Services\WorkplaceService.cs" />
     <Compile Include="TypeRegistrations.cs" />
   </ItemGroup>

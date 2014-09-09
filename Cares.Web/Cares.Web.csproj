@@ -238,6 +238,7 @@
     <Compile Include="Areas\Api\Controllers\OperationBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\OperationController.cs" />
     <Compile Include="Areas\Api\Controllers\OperationsWorkPlaceController.cs" />
+    <Compile Include="Areas\Api\Controllers\PhoneController.cs" />
     <Compile Include="Areas\Api\Controllers\RentalAgreementBusinessPartnerController.cs" />
     <Compile Include="Areas\Api\Controllers\GetBusinessPartnerDetailsController.cs" />
     <Compile Include="Areas\Api\Controllers\GetHireGroupDetailDataController.cs" />
@@ -262,6 +263,8 @@
     <Compile Include="Areas\Api\Controllers\VehicleBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\VehicleController.cs" />
     <Compile Include="Areas\Api\Controllers\VehicleDetailController.cs" />
+    <Compile Include="Areas\Api\Controllers\WorkLocationBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\WorkLocationController.cs" />
     <Compile Include="Areas\Api\Controllers\WorkplaceBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\WorkplaceController.cs" />
     <Compile Include="Areas\BusinessPartner\BusinessPartnerAreaRegistration.cs" />
@@ -367,6 +370,7 @@
     <Compile Include="Models\OperationWorkplaceSearchByIdResponse.cs" />
     <Compile Include="Models\OrgGroupDropDown.cs" />
     <Compile Include="Models\PaymentTerm.cs" />
+    <Compile Include="Models\PhonesSearchByWorkLocationIdResponse.cs" />
     <Compile Include="Models\ServiceRateBaseResponse.cs" />
     <Compile Include="Models\ServiceRateSearchResponse.cs" />
     <Compile Include="Models\ServiceRtDetailContent.cs" />
@@ -452,7 +456,10 @@
     <Compile Include="Models\VehicleMakeDropDown.cs" />
     <Compile Include="Models\VehicleModelDropDown.cs" />
     <Compile Include="Models\VehicleStatusDropDown.cs" />
+    <Compile Include="Models\WorkLocation.cs" />
+    <Compile Include="Models\WorkLocationBaseDataResponse.cs" />
     <Compile Include="Models\WorkLocationDropDown.cs" />
+    <Compile Include="Models\WorkLocationSerachRequestResponse.cs" />
     <Compile Include="Models\Workplace.cs" />
     <Compile Include="Models\WorkplaceBaseDataResponse.cs" />
     <Compile Include="Models\WorkPlaceDropdown.cs" />
@@ -508,6 +515,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>OrganizationGroup.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\WorkLocation.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WorkLocation.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\WorkLocation.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WorkLocation.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Organization\Workplace.ar.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -623,9 +640,13 @@
     <Content Include="Areas\Organization\Scripts\department.model.js" />
     <Content Include="Areas\Organization\Scripts\department.view.js" />
     <Content Include="Areas\Organization\Scripts\department.viewModel.js" />
+    <Content Include="Areas\Organization\Scripts\workLocation.dataservice.js" />
+    <Content Include="Areas\Organization\Scripts\workLocation.model.js" />
+    <Content Include="Areas\Organization\Scripts\workLocation.viewModel.js" />
     <Content Include="Areas\Organization\Scripts\workplace.viewModel.js" />
     <Content Include="Areas\Organization\Scripts\workplace.dataservice.js" />
     <Content Include="Areas\Organization\Scripts\operation.dataservice.js" />
+    <Content Include="Areas\Organization\Scripts\workLocation.view.js" />
     <Content Include="Areas\Organization\Scripts\workplace.view.js" />
     <Content Include="Areas\Organization\Scripts\workplace.model.js" />
     <Content Include="Areas\Organization\Scripts\operation.model.js" />
@@ -1293,6 +1314,8 @@
     <Content Include="Content\WorkPlace.css.map">
       <DependentUpon>WorkPlace.css</DependentUpon>
     </Content>
+    <Content Include="Areas\Organization\Views\Organization\WorkLocation.cshtml" />
+    <Content Include="Areas\Organization\Views\Organization\_WorkLocationEditor.cshtml" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
@@ -1440,7 +1463,10 @@
     <Folder Include="Areas\Api\Views\OperationsWorkPlace\" />
     <Folder Include="Areas\Api\Views\Operation\" />
     <Folder Include="Areas\Api\Views\OrganizationGroup\" />
+    <Folder Include="Areas\Api\Views\Phone\" />
     <Folder Include="Areas\Api\Views\Shared\" />
+    <Folder Include="Areas\Api\Views\WorkLocationBase\" />
+    <Folder Include="Areas\Api\Views\WorkLocation\" />
     <Folder Include="Areas\Api\Views\WorkplaceBase\" />
     <Folder Include="Areas\Api\Views\Workplace\" />
     <Folder Include="Areas\BusinessPartner\Models\" />
@@ -1521,6 +1547,14 @@
     <EmbeddedResource Include="Resources\Organization\OrganizationGroup.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>OrganizationGroup.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\WorkLocation.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>WorkLocation.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\WorkLocation.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>WorkLocation.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Organization\Workplace.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

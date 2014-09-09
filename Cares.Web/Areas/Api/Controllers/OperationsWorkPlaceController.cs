@@ -3,7 +3,6 @@ using Cares.Web.ModelMappers;
 using System.Net;
 using System.Web;
 using System.Web.Http;
-using System.Web.Mvc;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
@@ -13,15 +12,15 @@ namespace Cares.Web.Areas.Api.Controllers
     public class OperationsWorkPlaceController : ApiController
     {
         #region Private
-        private readonly IOperationsWorkPlaceService iOperationsWorkPlaceService;
+        private readonly IOperationsWorkPlaceService operationsWorkPlaceService;
         #endregion
         #region Constructor
         /// <summary>
         /// Operations WorkPlace Constructor
         /// </summary>
-        public OperationsWorkPlaceController(IOperationsWorkPlaceService iOperationsWorkPlaceService)
+        public OperationsWorkPlaceController(IOperationsWorkPlaceService operationsWorkPlaceService)
         {
-            this.iOperationsWorkPlaceService = iOperationsWorkPlaceService;
+            this.operationsWorkPlaceService = operationsWorkPlaceService;
         }
         #endregion
         #region public
@@ -35,7 +34,7 @@ namespace Cares.Web.Areas.Api.Controllers
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
             return 
-            iOperationsWorkPlaceService.GetOperationsWorkPlaceByWorkplaceId(workPlaceId).CreateFrommm();
+            operationsWorkPlaceService.GetOperationsWorkPlaceByWorkplaceId(workPlaceId).CreateFrommm();
         }
         #endregion
     }

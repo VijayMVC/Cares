@@ -1,4 +1,6 @@
-﻿using Cares.Models.DomainModels;
+﻿using System.Linq;
+using Cares.Models.DomainModels;
+using Cares.Models.ResponseModels;
 using ApiModel = Cares.Web.Models;
 using DomainModel = Cares.Models.DomainModels;
 namespace Cares.Web.ModelMappers
@@ -23,6 +25,7 @@ namespace Cares.Web.ModelMappers
                 BusinessPartnerId = source.BusinessPartnerId
             };
         }
+
         /// <summary>
         ///  Create Web Api model from domain model
         /// </summary>
@@ -36,9 +39,23 @@ namespace Cares.Web.ModelMappers
                 PhoneTypeId = source.PhoneTypeId,
                 PhoneTypeKey = source.PhoneType != null ? source.PhoneType.PhoneTypeKey : null,
                 PhoneTypeName = source.PhoneType != null ? (source.PhoneType.PhoneTypeCode + '-' + source.PhoneType.PhoneTypeName) : string.Empty,
-                BusinessPartnerId = source.BusinessPartnerId
+                BusinessPartnerId = source.BusinessPartnerId,
+             //   WorkLocationId = source.WorkLocationId
             };
         }
+
+        /// <summary>
+        ///  Create Web Api model for worklocation associated phones from domain model []
+        /// </summary>
+        public static ApiModel.PhonesSearchByWorkLocationIdResponse CreateFrom(this PhonesSearchByWorkLocationIdResponse source)
+        {
+            return new ApiModel.PhonesSearchByWorkLocationIdResponse
+            {
+                PhonesAssociatedWithWorkLocation = source.PhonesAssociatedWithWorkLocation.Select(phone => phone.CreateFrom())
+            };
+        }
+
+
         #endregion
     }
 }

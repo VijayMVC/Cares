@@ -273,6 +273,7 @@ define("workplace/workplace.viewModel",
                     },
                 //set the base data 
                 poulateBaseData = function (baseDataFromServer) {
+                    debugger;
                     baseCompniesList.removeAll();
                     baseWorkplaceTypeList.removeAll();
                     baseWorkLocationsList.removeAll();

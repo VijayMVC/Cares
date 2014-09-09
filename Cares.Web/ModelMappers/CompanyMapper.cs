@@ -33,7 +33,7 @@ namespace Cares.Web.ModelMappers
             };
         }
         /// <summary>
-        /// Crete From company Responsemodel
+        /// Crete From company Response domain model
         /// </summary>
         public static Models.CompanySearchRequestResponse CreateFrom(this CompanySearchRequestResponse source)
         {
@@ -62,7 +62,7 @@ namespace Cares.Web.ModelMappers
                 Uan = source.Uan,
                 Ntn = source.Ntn,
                 OrgGroupId = source.OrgGroupId,
-                OrgGroupName = source.OrgGroupId !=null ? source.OrgGroup.OrgGroupName: "[No Org-Group]",
+                OrgGroupName = source.OrgGroupId !=null ? source.OrgGroup.OrgGroupName: "",
                 BusinessSegmentId = source.BusinessSegmentId,
                 BusinessSegmentName = source.BusinessSegment.BusinessSegmentName 
             };

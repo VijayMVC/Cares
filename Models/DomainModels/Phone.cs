@@ -78,16 +78,17 @@ namespace Cares.Models.DomainModels
         public long UserDomainKey { get; set; }
 
         /// <summary>
-        /// Work Location
-        /// </summary>
-        [ForeignKey("WorkLocation")]
-        public long? WorkLocationId { get; set; }
-
-        /// <summary>
         /// Employee
         /// </summary>
         [ForeignKey("Employee")]
         public long? EmployeeId { get; set; }
+
+        /// <summary>
+        /// work Location Id
+        /// </summary>
+        [ForeignKey("WorkLocation")]
+        public long? WorkLocationId { get; set; }
+
 
         #endregion
 
