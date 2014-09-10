@@ -5,7 +5,7 @@
   width: 15%;
 }
 #fleetRootBinding table thead tr .fleetName {
-  width: 20%;
+  width: 15%;
 }
 #fleetRootBinding table thead tr .fleetOpp {
   width: 15%;
@@ -15,6 +15,10 @@
 }
 #fleetRootBinding table thead tr .fleetRegion {
   width: 15%;
+}
+#fleetRootBinding #deleteActionFleetPoolTemplate {
+  width: 20%;
+  float: left;
 }
 #FleetPoolEditor {
   margin-top: 15px;

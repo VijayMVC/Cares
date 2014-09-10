@@ -49,7 +49,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            workplaceService.DeleteWorkPlace(workPlace.CreateFrom());
+            workplaceService.DeleteWorkPlace(workPlace.WorkPlaceId);
             return true;
         }
 

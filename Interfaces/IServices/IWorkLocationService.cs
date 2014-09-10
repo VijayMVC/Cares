@@ -24,12 +24,14 @@ namespace Cares.Interfaces.IServices
         /// <summary>
         /// Delete Work Location
         /// </summary>
-        void DeleteWorkLocation(WorkLocation request);
+        void DeleteWorkLocation(long workLocationId);
 
 
         /// <summary>
         /// Save / Update Work Location
         /// </summary>
         WorkLocation SaveWorkLocation(WorkLocation workLocationrequest);
+
+        
     }
 }

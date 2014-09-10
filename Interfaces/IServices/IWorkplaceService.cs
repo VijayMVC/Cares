@@ -28,6 +28,6 @@ namespace Cares.Interfaces.IServices
         /// <summary>
         /// Delete WorkPlace
         /// </summary>
-        void DeleteWorkPlace(WorkPlace workPlace);
+        void DeleteWorkPlace(long workPlaceId);
     }
 }

@@ -31,12 +31,7 @@ define("workLocation/workLocation.viewModel",
                     phonesList = ko.observableArray([]),
 
                     //filters
-                    workLocationCodeFilter = ko.observable(),
-                    workLocationNameFilter = ko.observable(),
-                    companyFilter = ko.observable(),
-                    countryFilter = ko.observable(),
-                    regionFilter = ko.observable(),
-                    subRegionFilter = ko.observable(),
+                    workLocationFilter = ko.observable(),
                     cityFilter = ko.observable(),
                     areaFilter = ko.observable(),
 
@@ -81,12 +76,7 @@ define("workLocation/workLocation.viewModel",
                     },
                     //reset butto handle 
                     onResetResuults = function() {
-                    workLocationCodeFilter(undefined),
-                        workLocationNameFilter(undefined),
-                        companyFilter(undefined),
-                        countryFilter(undefined),
-                        regionFilter(undefined),
-                        subRegionFilter(undefined),
+                    workLocationFilter(undefined),
                         cityFilter(undefined),
                         areaFilter(undefined),
                         getWorkLocations(undefined);
@@ -172,13 +162,13 @@ define("workLocation/workLocation.viewModel",
                                 } else
                                     workLocations.push(newItem);
                                 isWorkLocationEditorVisible(false);
-                                toastr.success(ist.resourceText.WorkPlaceSaveSuccessMessage);
+                                toastr.success(ist.resourceText.WorkLocationSaveSuccessMessage);
                             },
                             error: function(exceptionMessage, exceptionType) {
                                 if (exceptionType === ist.exceptionType.CaresGeneralException)
                                     toastr.error(exceptionMessage);
                                 else
-                                    toastr.error(ist.resourceText.WorkPlaceSaveFailError);
+                                    toastr.error(ist.resourceText.WorkLocationSaveFailError);
                             }
                         });
                     },
@@ -188,13 +178,13 @@ define("workLocation/workLocation.viewModel",
                             success: function() {
                                 workLocations.remove(operation);
                                 getWorkLocationBaseData();
-                                toastr.success(ist.resourceText.WorkPlaceDeleteSuccessMessage);
+                                toastr.success(ist.resourceText.WorkLocationDeleteSuccessMessage);
                             },
                             error: function(exceptionMessage, exceptionType) {
                                 if (exceptionType === ist.exceptionType.CaresGeneralException)
                                     toastr.error(exceptionMessage);
                                 else
-                                    toastr.error(ist.resourceText.WorkPlaceDeleteFailError);
+                                    toastr.error(ist.resourceText.WorkLocationDeleteFailError);
                             }
                         });
                     },
@@ -213,12 +203,7 @@ define("workLocation/workLocation.viewModel",
                     //get WorkPlaces
                     getWorkLocations = function() {
                         dataservice.getWorkLocations({
-                            WorkLocationCodeText: workLocationCodeFilter(),
-                            WorkLocationNameText: workLocationNameFilter(),
-                            CompanyId: companyFilter(),
-                            CountryId: countryFilter(),
-                            RegionId: regionFilter(),
-                            SubRegionId: subRegionFilter(),
+                            WorkLocationFilterText: workLocationFilter(),
                             CityId: cityFilter(),
                             AreaId: areaFilter(),
                             PageSize: pager().pageSize(),
@@ -235,7 +220,7 @@ define("workLocation/workLocation.viewModel",
                                 });
                             },
                             error: function() {
-                                toastr.error(ist.resourceText.WorkPlaceLoadFailError);
+                                toastr.error(ist.resourceText.WorkLocationLoadFailError);
                             }
                         });
                     },
@@ -249,7 +234,7 @@ define("workLocation/workLocation.viewModel",
                                 if (exceptionType === ist.exceptionType.CaresGeneralException) {
                                     toastr.error(exceptionMessage);
                                 } else {
-                                    toastr.error(ist.resourceText.WorkPlaceLoadBaseFailError);
+                                    toastr.error(ist.resourceText.WorkLocationLoadBaseFailError);
                                 }
                             }
                         });
@@ -277,11 +262,14 @@ define("workLocation/workLocation.viewModel",
                         baseAreasList.valueHasMutated();
                         ko.utils.arrayPushAll(basePhoneTypesList(), baseDataFromServer.PhoneTypes);
                         basePhoneTypesList.valueHasMutated();
+
+                        ko.utils.arrayPushAll(filteredAreasList(), baseAreasList());
+                        filteredAreasList.valueHasMutated();
+
                     },
                     //country dropdown handler
-                    onCountryChanged = function(item) {
-                        countryFilter(item.countryId());
-                        populateRegionDropDown(countryFilter());
+                    onCountryChanged = function (item) {
+                        populateRegionDropDown(item.countryId());
                         return false;
                     },
                     // country dropdown changed for regions
@@ -292,11 +280,10 @@ define("workLocation/workLocation.viewModel",
                         return false;
                     },
                     //Region dropdown handler
-                    onRegionChanged = function(item) {
+                    onRegionChanged = function (item) {
                         if (item.id() != -1) {
                             var v = item.regionId();
-                            regionFilter(v);
-                            populateSubRegionDropDown(regionFilter());
+                            populateSubRegionDropDown(v);
                         }
                     },
                     // region dropdown changed for subregions
@@ -306,11 +293,9 @@ define("workLocation/workLocation.viewModel",
                         }));
                     },
                     //SubRegion dropdown handler
-                    onSubRegionChanged = function(item) {
+                    onSubRegionChanged = function (item) {
                         if (item.id() != -1) {
-                            subRegionFilter(item.subRegionId());
-                            regionFilter(item.regionId());
-                            populateCityDropDown(subRegionFilter(), regionFilter());
+                            populateCityDropDown(item.subRegionId(), item.regionId());
                         }
                     },
                     //sub Region dropdown changed for cities
@@ -320,7 +305,7 @@ define("workLocation/workLocation.viewModel",
                         }));
                     },
                     //City dropdown handler
-                    onCityChanged = function(item) {
+                    onCityChanged = function (item) {
                         if (item.id() != -1) {
                             cityFilter(item.cityId());
                             populateAreaDropDown(cityFilter());
@@ -328,9 +313,16 @@ define("workLocation/workLocation.viewModel",
                     },
                     //city dropdown changed for area
                     populateAreaDropDown = function(cityId) {
-                        filteredAreasList(_.filter(baseAreasList(), function(area) {
-                            return area.CityId === cityId;
+                        filteredAreasList(_.filter(baseAreasList(), function (area) {
+                            if (cityId !== undefined)
+                                return area.CityId === cityId;
+                            else
+                                return area;
                         }));
+                    },
+                    // city dropdown in filter section
+                    onCityChangedinFilter = function () {
+                        populateAreaDropDown(cityFilter());
                     },
                     // work location client to server mapper
                     workLocationClientToServerMapper = function(operation) {
@@ -378,7 +370,6 @@ define("workLocation/workLocation.viewModel",
                     filteredCitiesList:filteredCitiesList,
                     baseAreasList: baseAreasList,
                     filteredAreasList:filteredAreasList,
-                    companyFilter: companyFilter,
                     isWorkLocationEditorVisible: isWorkLocationEditorVisible,
                     initialize: initialize,
                     onCreateWorkLocationForm: onCreateWorkLocationForm,
@@ -401,16 +392,13 @@ define("workLocation/workLocation.viewModel",
                     selectedWorkLocation: selectedWorkLocation,
                     deletePhoneDetail: deletePhoneDetail,
                     onCountryChanged: onCountryChanged,
-                    countryFilter: countryFilter,
                     onRegionChanged: onRegionChanged,
-                    regionFilter: regionFilter,
-                    subRegionFilter: subRegionFilter,
                     cityFilter: cityFilter,
                     onSubRegionChanged: onSubRegionChanged,
                     onCityChanged: onCityChanged,
+                    onCityChangedinFilter:onCityChangedinFilter,
                     areaFilter:areaFilter,
-                    workLocationCodeFilter:workLocationCodeFilter,
-                    workLocationNameFilter: workLocationNameFilter,
+                    workLocationFilter: workLocationFilter,
                     isWorklocationCreateMode: isWorklocationCreateMode,
 
                     basePhoneTypesList: basePhoneTypesList,

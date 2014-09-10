@@ -76,23 +76,12 @@ namespace Cares.Repository.Repositories
 
             Expression<Func<WorkLocation, bool>> query =
                 workLocation =>
-                    (string.IsNullOrEmpty(request.WorkLocationCodeText) ||
-                     (workLocation.WorkLocationCode.Contains(request.WorkLocationCodeText))) && (
-                         (string.IsNullOrEmpty(request.WorkLocationNameText) ||
-                          (workLocation.WorkLocationName.Contains(request.WorkLocationNameText)))) &&
-                   
-                    (!request.CompanyId.HasValue || request.CompanyId == workLocation.CompanyId) &&
-                    (!request.CountryId.HasValue || request.CountryId == workLocation.Address.CountryId)
-                    &&
-
-                    (!request.RegionId.HasValue || request.RegionId == workLocation.Address.RegionId) &&
-                    (!request.SubRegionId.HasValue || request.SubRegionId == workLocation.Address.SubRegionId)
-                    &&
-
+                    (string.IsNullOrEmpty(request.WorkLocationFilterText) ||
+                     (workLocation.WorkLocationCode.Contains(request.WorkLocationFilterText)) ||
+                     (workLocation.WorkLocationName.Contains(request.WorkLocationFilterText))) && 
                     (!request.CityId.HasValue || request.CityId == workLocation.Address.CityId) &&
                     (!request.AreaId.HasValue || request.AreaId == workLocation.Address.AreaId)
                     ;
-
 
             rowCount = DbSet.Count(query);
             return request.IsAsc
@@ -122,6 +111,14 @@ namespace Cares.Repository.Repositories
                 .Include(opp => opp.Address.Area)
                 .Include(opp => opp.Phones)
                 .FirstOrDefault(workLocation => workLocation.WorkLocationId == workLocationId);
+        }
+
+        /// <summary>
+        /// To check the availbility of worklocation code
+        /// </summary>
+        public bool DoesWorkLocationCodeExists(WorkLocation workLocation)
+        {
+            return (DbSet.Count(dbWorkLocation => workLocation.WorkLocationCode == dbWorkLocation.WorkLocationCode && dbWorkLocation.WorkLocationId != workLocation.WorkLocationId) > 0);
         }
 
         #endregion

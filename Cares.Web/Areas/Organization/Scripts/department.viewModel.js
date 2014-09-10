@@ -16,8 +16,7 @@ define("department/department.viewModel",
                     // pre-defined Department Types List
                     baseDepartmentTypesList = ko.observableArray(["Sales","Support"]),
                     // Filters
-                    departmentCodeTextFilter = ko.observable(),
-                    departmentNameTextFilter = ko.observable(),
+                    departmentFilter = ko.observable(),
                     companyFilter = ko.observable(),
                     departmentTypeFilter = ko.observable(),
                     //pager
@@ -54,8 +53,7 @@ define("department/department.viewModel",
                     },
                     //reset butto handle 
                     onResetResuults = function () {
-                        departmentCodeTextFilter(undefined);
-                        departmentNameTextFilter(undefined);
+                        departmentFilter(undefined);
                         departmentTypeFilter(undefined);
                         companyFilter(undefined);
                         getDepartments();
@@ -143,8 +141,7 @@ define("department/department.viewModel",
                     getDepartments = function() {
                         dataservice.getDepartments(
                         {
-                            DepartmentCodeText: departmentCodeTextFilter(),
-                            DepartmentNameText: departmentNameTextFilter(),
+                            DepartmentFilterText: departmentFilter(),
                             DepartmentTypeText: departmentTypeFilter(),
                             CompanyId: companyFilter(),
                             PageSize: pager().pageSize(),
@@ -154,7 +151,6 @@ define("department/department.viewModel",
                         },
                         {
                             success: function (data) {
-                                debugger;
                                 departments.removeAll();
                                 pager().totalCount(data.TotalCount);
                                 _.each(data.Departments, function (item) {
@@ -196,8 +192,7 @@ define("department/department.viewModel",
                        
                     };
                 return {
-                    departmentCodeTextFilter: departmentCodeTextFilter,
-                    departmentNameTextFilter: departmentNameTextFilter,
+                    departmentFilter: departmentFilter,
                     departmentTypeFilter:departmentTypeFilter,
                     companyFilter: companyFilter,
                     baseDepartmentTypesList:baseDepartmentTypesList,

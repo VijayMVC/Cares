@@ -53,6 +53,7 @@ namespace Cares.Repository.Repositories
 
         #endregion
         #region Public
+
         /// <summary>
         /// SearchFleet Pool for the given parameters by user
         /// </summary>
@@ -72,16 +73,18 @@ namespace Cares.Repository.Repositories
             return request.IsAsc ? DbSet.Where(query).OrderBy(fleetPoolOrderByClause[request.FleetPoolOrderBy]).Skip(fromRow).Take(toRow).ToList() :
                                    DbSet.Where(query).OrderByDescending(fleetPoolOrderByClause[request.FleetPoolOrderBy]).Skip(fromRow).Take(toRow).ToList();
         }
+
         /// <summary>
         /// Find fleet pool with reference data
         /// </summary>
-        public FleetPool GetFleetPoolWithDetails(long id)
+        public FleetPool GetFleetPoolWithDetails(long fleetPoolId)
         {
             return DbSet.Include(fleetPool => fleetPool.Operation)
                 .Include(fleetPool => fleetPool.Region)
                 .Include(fleetPool => fleetPool.Region.Country)
-                .FirstOrDefault(fleetPool => fleetPool.UserDomainKey == UserDomainKey && fleetPool.FleetPoolId == id);
+                .FirstOrDefault(fleetPool => fleetPool.UserDomainKey == UserDomainKey && fleetPool.FleetPoolId == fleetPoolId);
         }
+
 
         /// <summary>
         /// Fleet Pool  Code Check
@@ -92,14 +95,15 @@ namespace Cares.Repository.Repositories
             return DbSet.Count(query) > 0;
         }
 
+
         /// <summary>
         /// To chechk does fleetPool contain any operation 
         /// </summary>
-        public bool IsOperationAssocisiatedWithAnyFleetPool(Operation operation)
+        public bool IsOperationAssocisiatedWithAnyFleetPool(long operationId)
         {
-            Expression<Func<FleetPool, bool>> query = fleetPool => fleetPool.OperationId == operation.OperationId;
-            return DbSet.Count(query) > 0;
+            return DbSet.Count(fleetPool => fleetPool.OperationId == operationId) > 0;
         }
+
 
         /// <summary>
         /// Get All Fleet Pools for User Domain Key
@@ -108,6 +112,7 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(fp => fp.UserDomainKey == UserDomainKey).ToList();
         }
+
     
         #endregion 
     }

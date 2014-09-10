@@ -180,4 +180,7 @@
   <data name="CompanySaveSuccessMessage" xml:space="preserve">
     <value>أنقذت الشركة بنجاح</value>
   </data>
+  <data name="Serach" xml:space="preserve">
+    <value>البحث</value>
+  </data>
 </root>

@@ -54,7 +54,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            companyService.DeleteCompany(request.CreateFrom());
+            companyService.DeleteCompany(request.CompanyId);
             return true;
         }
 

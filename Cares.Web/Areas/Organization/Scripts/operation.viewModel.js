@@ -18,10 +18,7 @@ define("operation/operation.viewModel",
                     //Department list for base data
                     baseDepartmentTypesList = ko.observableArray([]),
                     //filters
-                    opperationCodeTextFilter = ko.observable(),
-                    opperationNameTextFilter = ko.observable(),
-                    companyFilter = ko.observable(),
-                    departmentFilter = ko.observable(),
+                    opperationFilter = ko.observable(),
                     departmentTypeFilter = ko.observable(),
                     //pager
                     pager = ko.observable(),
@@ -56,11 +53,8 @@ define("operation/operation.viewModel",
                     },
                     //reset butto handle 
                     onResetResuults = function () {
-                        opperationCodeTextFilter(undefined);
-                        opperationNameTextFilter(undefined);
+                        opperationFilter(undefined);
                         departmentTypeFilter(undefined);
-                        departmentFilter(undefined);
-                        companyFilter(undefined);
                         getOperations();
 
                     },
@@ -147,11 +141,8 @@ define("operation/operation.viewModel",
                     getOperations = function() {
                         dataservice.getOperations(
                         {
-                            OperationCodeText: opperationCodeTextFilter(),
-                            OperationNameText: opperationNameTextFilter(),
+                            OperationFilterText: opperationFilter(),
                             DepartmentTypeText: departmentTypeFilter(),
-                            DepartmentId: departmentFilter(),
-                            CompanyId: companyFilter(),
                             PageSize: pager().pageSize(),
                             PageNo: pager().currentPage(),
                             SortBy: sortOn(),
@@ -204,11 +195,8 @@ define("operation/operation.viewModel",
                        
                     };
                 return {
-                    opperationCodeTextFilter: opperationCodeTextFilter,
-                    opperationNameTextFilter: opperationNameTextFilter,
-                    departmentFilter: departmentFilter,
+                    opperationFilter: opperationFilter,
                     departmentTypeFilter:departmentTypeFilter,
-                    companyFilter: companyFilter,
                     baseDepartmentTypesList:baseDepartmentTypesList,
                     baseCompniesList:baseCompniesList,
                     baseDepartmentsList:baseDepartmentsList,

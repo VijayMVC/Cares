@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = Cares.Web.Resources.Organization.WorkLocation.WorkLocationLabel;
 }
-<div class="row" id="WorkPlaceBinding">
+<div class="row" id="WorkLocationBinding">
     <div class="row " data-bind="visible: !isWorkLocationEditorVisible()">
         <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.Organization.WorkLocation.WorkLocationLabel</h3>
         <div class="header-toolsSection">
@@ -14,26 +14,12 @@
         <div class=" well">
             <form class="form-horizontal">
                 <div class="col-xs-2">
-                    <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.Organization.WorkLocation.WorkLocationCode + ">")" data-bind="value:workLocationCodeFilter" />
-                </div>
-                <div class="col-xs-2">
-                    <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.Organization.WorkLocation.WorkLocationName + ">")" data-bind="value:workLocationNameFilter" />
-                </div>
-                <div class="col-xs-2">
-                    <select class="form-control" data-bind="options: $root.baseCompaniesList, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.WorkLocation.Company '+'&gt;', value:companyFilter"></select>
-                </div>
-                <div class="col-xs-2">
-                    <select class="form-control" data-bind="options: $root.baseCountriesList, optionsText: 'CountryCodeName', optionsValue: 'CountryId',  optionsCaption:'&lt;' +'@Cares.Web.Resources.Organization.WorkLocation.Country'+'&gt;', value:countryFilter, event{change:$root.onCountryChanged }"></select>
+                    <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.Organization.WorkLocation.Serach + ">")" data-bind="value:workLocationFilter" />
                 </div>
 
+
                 <div class="col-xs-2">
-                    <select class="form-control" data-bind="options: $root.filteredRegionsList, optionsText: 'RegionCodeName', optionsValue: 'RegionId',  optionsCaption:'&lt;' +'@Cares.Web.Resources.Organization.WorkLocation.Region'+'&gt;' , value:regionFilter, event{change:$root.onRegionChanged }"></select>
-                </div>
-                <div class="col-xs-2">
-                    <select class="form-control" data-bind="options: $root.filteredSubRegiosnList, optionsText: 'SubRegionCodeName', optionsValue: 'SubRegionId',  optionsCaption:'&lt;' +'@Cares.Web.Resources.Organization.WorkLocation.SubRegion'+'&gt;' ,  value:subRegionFilter, event{change:$root.onSubRegionChanged }"></select>
-                </div>
-                <div class="col-xs-2">
-                    <select class="form-control" data-bind="options: $root.filteredCitiesList, optionsText: 'CityCodeName', optionsValue: 'CityId',  optionsCaption:'&lt;' +'@Cares.Web.Resources.Organization.WorkLocation.City'+'&gt;' ,  value:cityFilter, event{change:$root.onCityChanged }"></select>
+                    <select class="form-control" data-bind="options: $root.baseCitiesList, optionsText: 'CityCodeName', optionsValue: 'CityId',  optionsCaption:'&lt;' +'@Cares.Web.Resources.Organization.WorkLocation.City'+'&gt;' ,  value:cityFilter, event{change:$root.onCityChangedinFilter }"></select>
                 </div>
                 <div class="col-xs-2">
                     <select class="form-control" data-bind="options: $root.filteredAreasList, optionsText: 'AreaCodeName', optionsValue: 'AreaId',  optionsCaption:'&lt;' +'@Cares.Web.Resources.Organization.WorkLocation.Area'+'&gt;' , value:areaFilter"></select>
@@ -48,18 +34,18 @@
 
     <div class="row searchFilterResultSection" data-bind="visible: !isWorkLocationEditorVisible()">
         <div class="well">
-            <table id="OperationsTable" class="table table-condensed">
+            <table id="workLocationTable" class="table table-condensed">
                 <thead>
                     <tr>
-                        <th class="WPcode"> <span id="1">@Cares.Web.Resources.Organization.WorkLocation.WorkLocationCode<span class="icon-up"></span></span></th>
-                        <th class="WPname"> <span id="2">@Cares.Web.Resources.Organization.WorkLocation.WorkLocationName<span></span></span></th>
-                        <th class="WPDescription"> <span id="3">@Cares.Web.Resources.Organization.WorkLocation.Description<span></span></span></th>
-                        <th class="WPCompany"> <span id="4">@Cares.Web.Resources.Organization.WorkLocation.Company<span></span></span></th>
-                        <th class="WPLocation"> <span id="5">@Cares.Web.Resources.Organization.WorkLocation.Country<span></span></span></th>
-                        <th class="WPParent"> <span id="6">@Cares.Web.Resources.Organization.WorkLocation.Region<span></span></span></th>
-                        <th class="WPParent"> <span id="7">@Cares.Web.Resources.Organization.WorkLocation.SubRegion<span></span></span></th>
-                        <th class="WPParent"> <span id="8">@Cares.Web.Resources.Organization.WorkLocation.City<span></span></span></th>
-                        <th class="WPParent"> <span id="9">@Cares.Web.Resources.Organization.WorkLocation.Area<span></span></span></th>
+                        <th class="WLcode"> <span id="1">@Cares.Web.Resources.Organization.WorkLocation.WorkLocationCode<span class="icon-up"></span></span></th>
+                        <th class="WLname"> <span id="2">@Cares.Web.Resources.Organization.WorkLocation.WorkLocationName<span></span></span></th>
+                        <th class="WLDescription"> <span id="3">@Cares.Web.Resources.Organization.WorkLocation.Description<span></span></span></th>
+                        <th class="WLCompany"> <span id="4">@Cares.Web.Resources.Organization.WorkLocation.Company<span></span></span></th>
+                        <th class="WLCountry"> <span id="5">@Cares.Web.Resources.Organization.WorkLocation.Country<span></span></span></th>
+                        <th class="WLregion"> <span id="6">@Cares.Web.Resources.Organization.WorkLocation.Region<span></span></span></th>
+                        <th class="WLSubregion"> <span id="7">@Cares.Web.Resources.Organization.WorkLocation.SubRegion<span></span></span></th>
+                        <th class="WLCity"> <span id="8">@Cares.Web.Resources.Organization.WorkLocation.City<span></span></span></th>
+                        <th class="WLArea"> <span id="9">@Cares.Web.Resources.Organization.WorkLocation.Area<span></span></span></th>
                         <th> <span></span></th>
                         <th> <span></span></th>
                     </tr>
@@ -116,12 +102,12 @@
         var ist = window.ist;
     @{
         <text>
-        ist.resourceText.WorkPlaceSaveSuccessMessage = '@Cares.Web.Resources.Organization.Workplace.WorkPlaceSaveSuccessMessage'
-        ist.resourceText.WorkPlaceSaveFailError = '@Cares.Web.Resources.Organization.Workplace.WorkPlaceSaveFailError';
-        ist.resourceText.WorkPlaceLoadFailError = '@Cares.Web.Resources.Organization.Workplace.WorkPlaceLoadFailError';
-        ist.resourceText.WorkPlaceLoadBaseFailError = '@Cares.Web.Resources.Organization.Workplace.WorkPlaceLoadBaseFailError';
-        ist.resourceText.WorkPlaceDeleteSuccessMessage = '@Cares.Web.Resources.Organization.Workplace.WorkPlaceDeleteSuccessMessage';
-        ist.resourceText.WorkPlaceDeleteFailError = '@Cares.Web.Resources.Organization.Workplace.WorkPlaceDeleteFailError';
+        ist.resourceText.WorkLocationSaveSuccessMessage = '@Cares.Web.Resources.Organization.WorkLocation.WorkLocationSaveSuccessMessage'
+        ist.resourceText.WorkLocationSaveFailError = '@Cares.Web.Resources.Organization.WorkLocation.WorkLocationSaveFailError';
+        ist.resourceText.WorkLocationLoadFailError = '@Cares.Web.Resources.Organization.WorkLocation.WorkLocationLoadFailError';
+        ist.resourceText.WorkLocationLoadBaseFailErrorl = '@Cares.Web.Resources.Organization.WorkLocation.WorkLocationLoadBaseFailError';
+        ist.resourceText.WorkLocationDeleteSuccessMessage = '@Cares.Web.Resources.Organization.WorkLocation.WorkLocationDeleteSuccessMessage';
+        ist.resourceText.WorkLocationDeleteFailError = '@Cares.Web.Resources.Organization.WorkLocation.WorkLocationDeleteFailError';
         </text>
         }
     </script>

@@ -32,6 +32,6 @@ namespace Cares.Interfaces.Repository
         /// <summary>
         /// To check either company have any department
         /// </summary>
-        bool IsCompanyContainDepartment(Company company);
+        bool IsCompanyContainDepartment(long companyId);
     }
 }

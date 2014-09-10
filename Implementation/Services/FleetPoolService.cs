@@ -51,23 +51,6 @@ namespace Cares.Implementation.Services
              };
          }
 
-         /// <summary>
-         /// Add new FleetPool
-         /// </summary>
-         public FleetPool AddNewFleetPool(FleetPool fleetPool) //later
-         {
-
-             fleetPool.RecCreatedDt = fleetPool.RecLastUpdatedDt = DateTime.Now;
-             fleetPool.RecCreatedBy = fleetPool.RecLastUpdatedBy = fleetPoolRepository.LoggedInUserIdentity;
-             fleetPool.RowVersion = 0;
-             fleetPool.IsActive = true;
-             fleetPool.IsDeleted = fleetPool.IsPrivate = fleetPool.IsReadOnly = false;
-             fleetPool.UserDomainKey = fleetPoolRepository.UserDomainKey;
-
-             //fleet=fleetPoolRepository.Add(fleetPool);
-             fleetPoolRepository.SaveChanges();
-             return fleetPool;
-         }
 
          /// <summary>
          /// Load Fleet Pool Base Data
@@ -85,13 +68,13 @@ namespace Cares.Implementation.Services
          /// <summary>
          /// Delete FleetPool
          /// </summary>
-         public void DeleteFleetPool(int id)
+         public void DeleteFleetPool(long fleetPoolId)
          {
-             FleetPool dbVersion = FindFleetPool(id);
+             FleetPool dbVersion = FindFleetPool(fleetPoolId);
                  if (dbVersion == null)
                  {
                      throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                         "FleetPool with Id {0} not found!", id));
+                         "FleetPool with Id {0} not found!", fleetPoolId));
                  }
                  fleetPoolRepository.Delete(dbVersion);
                  fleetPoolRepository.SaveChanges();
@@ -100,9 +83,9 @@ namespace Cares.Implementation.Services
          /// <summary>
          /// Find FleetPool by id
          /// </summary>
-         public FleetPool FindFleetPool(int id)
+         public FleetPool FindFleetPool(long fleetPoolId)
          {
-             return fleetPoolRepository.Find(id);
+             return fleetPoolRepository.Find(fleetPoolId);
 
          }
 
@@ -127,7 +110,6 @@ namespace Cares.Implementation.Services
                  }
                  else //Update Case
                  {
-
                      fleetPoolDbVersion.FleetPoolCode = fleetPool.FleetPoolCode;
                      fleetPoolDbVersion.FleetPoolName = fleetPool.FleetPoolName;
                      fleetPoolDbVersion.FleetPoolDescription = fleetPool.FleetPoolDescription;

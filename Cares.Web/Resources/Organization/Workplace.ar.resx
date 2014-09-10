@@ -177,4 +177,7 @@
   <data name="WorkPlaceDetail" xml:space="preserve">
     <value>مكان العمل التفاصيل</value>
   </data>
+  <data name="Search" xml:space="preserve">
+    <value>البحث</value>
+  </data>
 </root>

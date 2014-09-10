@@ -14,11 +14,9 @@
         <div class=" well">
             <form class="form-horizontal">
                 <div class="col-xs-2">
-                    <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Department.DepartmentCode +">")" data-bind="value:departmentCodeTextFilter "/>
+                    <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Department.Search +">")" data-bind="value:departmentFilter "/>
                 </div>
-                <div class="col-xs-2">
-                    <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Department.DepartmentName+ ">")" data-bind="value:departmentNameTextFilter" />
-                </div>
+                
 
                 <div class="col-xs-2">
                     <select class="form-control" data-bind="options: $root.baseCompniesList, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '&lt;' + '@Cares.Web.Resources.Organization.Department.Comapny'+ '&gt;' , value:companyFilter"></select>

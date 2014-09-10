@@ -893,6 +893,12 @@
     </Content>
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
+    <Content Include="Content\WorkLocation.css">
+      <DependentUpon>WorkLocation.less</DependentUpon>
+    </Content>
+    <Content Include="Content\WorkLocation.min.css">
+      <DependentUpon>WorkLocation.css</DependentUpon>
+    </Content>
     <Content Include="Content\WorkPlace.css">
       <DependentUpon>WorkPlace.less</DependentUpon>
     </Content>
@@ -1334,6 +1340,10 @@
     </Content>
     <Content Include="Areas\Organization\Views\Organization\WorkLocation.cshtml" />
     <Content Include="Areas\Organization\Views\Organization\_WorkLocationEditor.cshtml" />
+    <Content Include="Content\WorkLocation.less" />
+    <Content Include="Content\WorkLocation.css.map">
+      <DependentUpon>WorkLocation.css</DependentUpon>
+    </Content>
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />

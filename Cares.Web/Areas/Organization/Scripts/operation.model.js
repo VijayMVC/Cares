@@ -7,7 +7,7 @@
                 id = ko.observable(specifiedId),
                 code = ko.observable(specifiedCode).extend({ required: true }),
                 name = ko.observable(specifiedName).extend({ required: true }),
-                description = ko.observable(specifiedDescription).extend({ required: true }),
+                description = ko.observable(specifiedDescription),
                 companyName = ko.observable(spcCompanyName).extend({ required: true }),
                 departmentName = ko.observable(specifiedDepartment).extend({ required: true }),
                 DepartmentId=  ko.observable(specifiedDepartmentId).extend({ required: true }),

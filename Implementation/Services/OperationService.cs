@@ -1,4 +1,5 @@
-﻿using Cares.ExceptionHandling;
+﻿using System.Globalization;
+using Cares.ExceptionHandling;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -70,10 +71,10 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Delete Operation
         /// </summary>
-        public void DeleteOperation(Operation operationobeDeleted)
+        public void DeleteOperation(long operationoId)
         {
-            Operation dbVersion = operationRepository.Find(operationobeDeleted.OperationId);
-            if (!fleetPoolRepository.IsOperationAssocisiatedWithAnyFleetPool(dbVersion))
+            Operation dbVersion = operationRepository.Find(operationoId);
+            if (!fleetPoolRepository.IsOperationAssocisiatedWithAnyFleetPool(operationoId))
             {
                 if (dbVersion != null)
                 {
@@ -81,6 +82,10 @@ namespace Cares.Implementation.Services
                     operationRepository.Delete(dbVersion);
                     operationRepository.SaveChanges();
                 }
+                else throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
+                         "Operation with Id {0} not found!", operationoId));
+
+               
             }
             else
                 throw new CaresException(Resources.Organization.Operation.OperationIsAssociatedWithFleetPool);

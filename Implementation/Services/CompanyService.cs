@@ -86,17 +86,17 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Delete Company 
         /// </summary>
-        public void DeleteCompany(Company company)
+        public void DeleteCompany(long companyId)
         {
-            Company dbversion = companyRepository.Find(company.CompanyId);
+            Company dbversion = companyRepository.Find(companyId);
             if (
-                !((companyRepository.IsComapnyParent(company)) ||
-                  departmentRepository.IsCompanyContainDepartment(company)))
+                !((companyRepository.IsComapnyParent(companyId)) ||
+                  departmentRepository.IsCompanyContainDepartment(companyId)))
             {
                 if (dbversion == null)
                 {
                     throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                        "Company with Id {0} not found!", company.CompanyId));
+                        "Company with Id {0} not found!", companyId));
                 }
                 companyRepository.Delete(dbversion);
                 companyRepository.SaveChanges();

@@ -133,6 +133,15 @@ namespace Cares.Web.Resources.Organization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Work Location.
         /// </summary>
         public static string WorkLocation {
@@ -142,7 +151,7 @@ namespace Cares.Web.Resources.Organization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Workplace Code.
+        ///   Looks up a localized string similar to  Code.
         /// </summary>
         public static string WorkplaceCode {
             get {
@@ -205,7 +214,7 @@ namespace Cares.Web.Resources.Organization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Workplace Name.
+        ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string WorkplaceName {
             get {

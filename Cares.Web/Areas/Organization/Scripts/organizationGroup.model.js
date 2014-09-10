@@ -58,7 +58,7 @@
             id = ko.observable(specifiedId),
             code = ko.observable(specifiedCode).extend({ required: true }),
             name = ko.observable(specifiedName).extend({ required: true }),
-            description = ko.observable(specifieddescription).extend({ required: true }),
+            description = ko.observable(specifieddescription),
             errors = ko.validation.group({
                 name: name,
                 code: code,

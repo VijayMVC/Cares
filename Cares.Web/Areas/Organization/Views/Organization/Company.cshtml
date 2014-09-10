@@ -14,16 +14,13 @@
             <form class="form-horizontal">
 
                 <div class="col-xs-2">
-                    <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Company.CompanyCode+">")" data-bind="value:companyCodeTextFilter" />
+                    <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Company.Serach+">")" data-bind="value:companyFilter" />
                 </div>
 
                 <div class="col-xs-2">
-                    <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Company.CompanyName+">")"T data-bind="value:companyNameTextFilter" />
-                </div>
-                <div class="col-xs-3">
                     <select class="form-control" data-bind="options: $root.orgGroupList, optionsText: 'OrgGroupName', optionsValue: 'OrgGroupId', optionsCaption: '&lt;' + '@Cares.Web.Resources.Organization.Company.OrganizationGroup'+ '&gt;' , value: orgGroupFilter"></select>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-xs-2">
                     <select class="form-control" data-bind="options: $root.businessSegList, optionsText: 'BusinessSegmentCodeName', optionsValue: 'BusinessSegmentId', optionsCaption:'&lt;' +  '@Cares.Web.Resources.Organization.Company.BusinessSegment'+ '&gt;' , value: busiNessSegmentFilter"></select>
                 </div>
                 <button type="submit" class="btn btn-success" data-bind="click: onSearch">@Cares.Web.Resources.Shared.Common.Search</button>
@@ -38,7 +35,7 @@
             <table id="CompanyTable" class="table table-condensed">
                 <thead>
                     <tr>
-                        <th class="CompanyCodeH"> <span id="1">@Cares.Web.Resources.Organization.Company.Code<span class="icon-up"></span></span></thclass="">
+                        <th class="CompanyCodeH"> <span id="1">@Cares.Web.Resources.Organization.Company.Code<span class="icon-up"></span></span></th>
                         <th class="CompanyNameH"> <span id="2">@Cares.Web.Resources.Organization.Company.Name<span></span></span></th>
                         <th class="CompanydesH"> <span id="3">@Cares.Web.Resources.Organization.Company.Description<span></span></span></th>
                         <th class="CompanyOrgGroupH"> <span id="4">@Cares.Web.Resources.Organization.Company.OrganizationGroup<span></span></span></th>

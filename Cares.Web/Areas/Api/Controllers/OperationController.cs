@@ -49,7 +49,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            operationService.DeleteOperation(oppRequest.CreateFrom());
+            operationService.DeleteOperation(oppRequest.OperationId);
             return true;
         }
         /// <summary>

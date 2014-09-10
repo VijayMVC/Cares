@@ -28,7 +28,7 @@ namespace Cares.Interfaces.IServices
         /// <summary>
         /// Delete Department
         /// </summary>
-        void DeleteDepartment(Department department);
+        void DeleteDepartment(long departmentId);
 
         /// <summary>
         /// Save or Update Department

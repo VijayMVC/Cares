@@ -25,11 +25,11 @@ namespace Cares.Interfaces.Repository
         /// <summary>
         /// To identify if company is parent 
         /// </summary>
-        bool IsComapnyParent(Company company);
+        bool IsComapnyParent(long companyId);
 
         /// <summary>
         /// To identify if OrgGroup contains any company
         /// </summary>
-        bool IsOrgGroupContainCompany(OrgGroup orgGroup);
+        bool IsOrgGroupContainCompany(long orgGroupId);
     }
 }

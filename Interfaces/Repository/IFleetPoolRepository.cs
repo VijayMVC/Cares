@@ -18,7 +18,7 @@ namespace Cares.Interfaces.Repository
         /// <summary>
         /// Get Fleet pool with reference data details
         /// </summary>
-        FleetPool GetFleetPoolWithDetails(long id);
+        FleetPool GetFleetPoolWithDetails(long fleetPoolId);
 
         /// <summary>
         /// Fleet Pool  Code Check
@@ -29,6 +29,6 @@ namespace Cares.Interfaces.Repository
         /// <summary>
         /// To chechk does operation contain any fleetpool
         /// </summary>
-        bool IsOperationAssocisiatedWithAnyFleetPool(Operation operation);
+        bool IsOperationAssocisiatedWithAnyFleetPool(long operationId);
     }
 }

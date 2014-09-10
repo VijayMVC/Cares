@@ -81,14 +81,12 @@ namespace Cares.Repository.Repositories
             int toRow = request.PageSize;
             Expression<Func<Operation, bool>> query =
                 operation =>
-                    (string.IsNullOrEmpty(request.OperationCodeText) ||
-                     (operation.OperationCode.Contains(request.OperationCodeText))) && (
-                         (string.IsNullOrEmpty(request.OperationNameText) ||
-                          (operation.OperationName.Contains(request.OperationNameText)))) &&
+                    (string.IsNullOrEmpty(request.OperationFilterText) ||
+                     (operation.OperationCode.Contains(request.OperationFilterText)) ||
+                     (operation.OperationName.Contains(request.OperationFilterText))) &&
                     (string.IsNullOrEmpty(request.DepartmentTypeText) ||
-                     (operation.Department.DepartmentType.Contains(request.DepartmentTypeText))) &&
-                    (!request.DepartmentId.HasValue || request.DepartmentId == operation.DepartmentId) &&
-                    (!request.CompanyId.HasValue || request.CompanyId == operation.Department.CompanyId);
+                     (operation.Department.DepartmentType.Contains(request.DepartmentTypeText)));
+
             rowCount = DbSet.Count(query);
             return request.IsAsc
                 ? DbSet.Where(query)
@@ -117,17 +115,15 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsOperationCodeExists(Operation operation)
         {
-            Expression<Func<Operation, bool>> query = opp => opp.OperationCode.ToLower()==operation.OperationCode.ToLower() && opp.OperationId != operation.OperationId;
-            return DbSet.Count(query) > 0;
+            return DbSet.Count(opp => opp.OperationCode==operation.OperationCode && opp.OperationId != operation.OperationId) > 0;
         }
 
         /// <summary>
         /// To check if department is associated with any operation
         /// </summary>
-        public bool IsDepartmentAssociatedWithAnyOperation(Department department)
+        public bool IsDepartmentAssociatedWithAnyOperation(long departmentId)
         {
-            Expression<Func<Operation, bool>> query = opp => opp.DepartmentId == department.DepartmentId;
-            return DbSet.Count(query) > 0;
+            return DbSet.Count(opp => opp.DepartmentId == departmentId) > 0;
         }
 
         #endregion

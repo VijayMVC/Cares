@@ -5,7 +5,7 @@
   width: 10%;
 }
 #WorkPlaceBinding table thead tr .WPname {
-  width: 15%;
+  width: 10%;
 }
 #WorkPlaceBinding table thead tr .WPDescription {
   width: 15%;
@@ -33,5 +33,12 @@
   width: 85%;
   margin-bottom: 20px;
   margin-top: 10px;
+}
+#WorkPlaceBinding #WorkplaceEditor .addToBtn {
+  float: right;
+}
+#WorkPlaceBinding #WorkplaceEditor .addToBtnDiv {
+  width: 100%;
+  margin-bottom: 15px;
 }
 /*# sourceMappingURL=WorkPlace.css.map */

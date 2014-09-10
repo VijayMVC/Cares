@@ -18,5 +18,10 @@ namespace Cares.Interfaces.Repository
         /// Get Work Location With Details
         /// </summary>
         WorkLocation GetWorkLocationWithDetails(long workLocationId);
+
+        /// <summary>
+        /// To check the availbility of worklocation code
+        /// </summary>
+        bool DoesWorkLocationCodeExists(WorkLocation workLocation);
     }
 }

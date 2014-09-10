@@ -17,7 +17,7 @@ namespace Cares.Interfaces.IServices
         /// <summary>
         /// Delete Compny
         /// </summary>
-        void DeleteCompany(Company company);
+        void DeleteCompany(long companyId);
 
         /// <summary>
         /// Load Base data of compnies

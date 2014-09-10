@@ -138,11 +138,26 @@
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
+  <data name="IsDefault" xml:space="preserve">
+    <value>Is Default</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Phone Number</value>
+  </data>
+  <data name="Phones" xml:space="preserve">
+    <value>Phones</value>
+  </data>
+  <data name="PhoneType" xml:space="preserve">
+    <value>Phone Type</value>
+  </data>
   <data name="POBox" xml:space="preserve">
     <value>P.O.Box</value>
   </data>
   <data name="Region" xml:space="preserve">
     <value>Region</value>
+  </data>
+  <data name="Serach" xml:space="preserve">
+    <value>Serach</value>
   </data>
   <data name="StreetAddress" xml:space="preserve">
     <value>Street Address</value>
@@ -154,7 +169,13 @@
     <value>Web Page</value>
   </data>
   <data name="WorkLocationCode" xml:space="preserve">
-    <value>Work Location Code</value>
+    <value> Code</value>
+  </data>
+  <data name="WorkLocationDeleteFailError" xml:space="preserve">
+    <value>Work Location failed to delete</value>
+  </data>
+  <data name="WorkLocationDeleteSuccessMessage" xml:space="preserve">
+    <value>Work Location successfully deleted</value>
   </data>
   <data name="WorkLocationDetail" xml:space="preserve">
     <value>Work Location Detail</value>
@@ -162,8 +183,20 @@
   <data name="WorkLocationLabel" xml:space="preserve">
     <value>Work Location</value>
   </data>
+  <data name="WorkLocationLoadBaseFailError" xml:space="preserve">
+    <value>Work Location base data failed to load</value>
+  </data>
+  <data name="WorkLocationLoadFailError" xml:space="preserve">
+    <value>Work Location failed to load</value>
+  </data>
   <data name="WorkLocationName" xml:space="preserve">
-    <value>Work Location Name</value>
+    <value> Name</value>
+  </data>
+  <data name="WorkLocationSaveFailError" xml:space="preserve">
+    <value>Work Location failed to save</value>
+  </data>
+  <data name="WorkLocationSaveSuccessMessage" xml:space="preserve">
+    <value>Work Location successfully saved</value>
   </data>
   <data name="ZipCode" xml:space="preserve">
     <value>Zip Code</value>

@@ -1,4 +1,5 @@
-﻿using Cares.ExceptionHandling;
+﻿using System.Globalization;
+using Cares.ExceptionHandling;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -46,16 +47,19 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Delete Organization Group
         /// </summary>
-        public void DeleteOrgGroup(OrgGroup request)
+        public void DeleteOrgGroup(long orgGroupId)
         {
-            OrgGroup dbVersion = organizationGroupRepository.Find(request.OrgGroupId);
-            if (!companyRepository.IsOrgGroupContainCompany(request))
+            OrgGroup dbVersion = organizationGroupRepository.Find(orgGroupId);
+            if (!companyRepository.IsOrgGroupContainCompany(orgGroupId))
             {
                 if (dbVersion != null)
                 {
                     organizationGroupRepository.Delete(dbVersion);
                     organizationGroupRepository.SaveChanges();
                 }
+                else
+                    throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
+                              "OrgGroup with Id {0} not found!", orgGroupId));
             }
             else 
                 throw new CaresException(Resources.Organization.OrganizationGroup.OrganizationGroupIsAssociatedWithCompanyError);

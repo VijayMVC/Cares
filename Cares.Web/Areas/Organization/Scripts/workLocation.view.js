@@ -2,7 +2,7 @@
     View for the operation. Used to keep the viewmodel clear of UI related logic
 */
 define("workLocation/workLocation.view",
-    ["jquery", "workLocation/workLocation.viewModel"], function ($, operationViewModel) {
+    ["jquery", "workLocation/workLocation.viewModel"], function ($, workLocationViewModel) {
         var ist = window.ist || {};
         // View 
         ist.WorkLocaion.view = (function (specifiedViewModel) {
@@ -10,24 +10,24 @@ define("workLocation/workLocation.view",
                 // View model 
                 viewModel = specifiedViewModel,
                 // Binding root used with knockout
-                bindingRoot = $("#WorkPlaceBinding")[0],
+                bindingRoot = $("#WorkLocationBinding")[0],
                 // Initialize
                 initialize = function () {
                     if (!bindingRoot) {
                         return;
                     }
                     // Handle Sorting
-                    handleSorting("OperationsTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getWorkLocations);
+                    handleSorting("workLocationTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getWorkLocations);
                 };
             initialize();
             return {
                 bindingRoot: bindingRoot,
                 viewModel: viewModel
             };
-        })(operationViewModel);
+        })(workLocationViewModel);
         // Initialize the view model
         if (ist.WorkLocaion.view.bindingRoot) {
-            operationViewModel.initialize(ist.WorkLocaion.view);
+            workLocationViewModel.initialize(ist.WorkLocaion.view);
         }
         return ist.WorkLocaion.view;
     });

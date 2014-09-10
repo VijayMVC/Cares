@@ -129,6 +129,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FleetPool.ar.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Organization\WorkLocation.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WorkLocation.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\WorkLocation.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WorkLocation.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Organization\Workplace.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -287,6 +297,14 @@
     <EmbeddedResource Include="Resources\Organization\Company.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Company.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\WorkLocation.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>WorkLocation.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\WorkLocation.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>WorkLocation.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Organization\Workplace.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

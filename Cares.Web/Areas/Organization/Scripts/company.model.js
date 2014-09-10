@@ -55,7 +55,7 @@
               id = ko.observable(specifiedId),
               parentCompanyName = ko.observable(specifiedparentCompanyName),
               parentCompanyId = ko.observable(specifiedparentCompanyId),
-              orgGroupId = ko.observable(specifiedorgGroupId).extend({ required: true }),
+              orgGroupId = ko.observable(specifiedorgGroupId),
               orgGroupName = ko.observable(specifiedorgGroup),
               legalName = ko.observable(specifiedlegalName),
               crNumber = ko.observable(specifiedcrNumber),
@@ -70,7 +70,6 @@
               errors = ko.validation.group({
                 name:name,
                 code:code,
-                orgGroupId:orgGroupId,
                 businessSegmentId:businessSegmentId,
                 paidUpCapital: paidUpCapital
              }),

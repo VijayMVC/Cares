@@ -138,11 +138,26 @@
   <data name="Email" xml:space="preserve">
     <value>البريد الإلكتروني</value>
   </data>
+  <data name="IsDefault" xml:space="preserve">
+    <value>هو الافتراضي</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>رقم الهاتف</value>
+  </data>
+  <data name="Phones" xml:space="preserve">
+    <value>الهواتف</value>
+  </data>
+  <data name="PhoneType" xml:space="preserve">
+    <value>نوع الهاتف</value>
+  </data>
   <data name="POBox" xml:space="preserve">
     <value>صندوق بريد</value>
   </data>
   <data name="Region" xml:space="preserve">
     <value>المنطقة</value>
+  </data>
+  <data name="Serach" xml:space="preserve">
+    <value>البحث</value>
   </data>
   <data name="StreetAddress" xml:space="preserve">
     <value>العنوان</value>
@@ -156,14 +171,32 @@
   <data name="WorkLocationCode" xml:space="preserve">
     <value>عمل الموقع كود</value>
   </data>
+  <data name="WorkLocationDeleteFailError" xml:space="preserve">
+    <value>العمل فشلت في حذف الموقع</value>
+  </data>
+  <data name="WorkLocationDeleteSuccessMessage" xml:space="preserve">
+    <value>عمل الموقع حذف بنجاح</value>
+  </data>
   <data name="WorkLocationDetail" xml:space="preserve">
     <value>العمل تفاصيل الموقع</value>
   </data>
   <data name="WorkLocationLabel" xml:space="preserve">
     <value>عمل الموقع</value>
   </data>
+  <data name="WorkLocationLoadBaseFailError" xml:space="preserve">
+    <value>فشلت قاعدة بيانات الموقع لتحميل العمل</value>
+  </data>
+  <data name="WorkLocationLoadFailError" xml:space="preserve">
+    <value>عمل الموقع فشل تحميل</value>
+  </data>
   <data name="WorkLocationName" xml:space="preserve">
     <value>العمل اسم الموقع</value>
+  </data>
+  <data name="WorkLocationSaveFailError" xml:space="preserve">
+    <value>عمل الموقع فاشلة لإنقاذ</value>
+  </data>
+  <data name="WorkLocationSaveSuccessMessage" xml:space="preserve">
+    <value>عمل الموقع حفظها بنجاح</value>
   </data>
   <data name="ZipCode" xml:space="preserve">
     <value>الرمز البريدي</value>

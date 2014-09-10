@@ -95,14 +95,14 @@
     var
        // operation Workplace entity
        // ReSharper disable InconsistentNaming
-       operationWorkplace = function (specifiedId, specifiedCode, specifiedName, specifiedDescription, specifiedoperationId, specifiedoperationName,
-          specifiedfleelPoolId, specifiedfleelPoolName, specifiedcostCenter, specifiedWorkPlaceId, isCretedNewvalue) {
+       operationWorkplace = function (specifiedoperationsWorkPlaceId, specifiedLocationCode, specifiedLocationName, specifiedDescription, specifiedoperationId, specifiedoperationName,
+          specifiedfleelPoolId, specifiedfleelPoolName, specifiedcostCenter, specifiedWorkPlaceId) {
            var
                 parentWorkPlaceId = ko.observable(specifiedWorkPlaceId),
 
-                locationId = ko.observable(specifiedId),
-                locationCode = ko.observable(specifiedCode).extend({ required: true }),
-                locationName = ko.observable(specifiedName),
+                operationsWorkPlaceId = ko.observable(specifiedoperationsWorkPlaceId),
+                locationCode = ko.observable(specifiedLocationCode).extend({ required: true }),
+                locationName = ko.observable(specifiedLocationName),
                 locationDescription = ko.observable(specifiedDescription),
                 operationId = ko.observable(specifiedoperationId),
                 operationName = ko.observable(specifiedoperationName),
@@ -132,7 +132,7 @@
                // Convert to server data
                convertToServerData = function () {
                    return {
-                       OperationsWorkPlaceId: locationId(),
+                       OperationsWorkPlaceId: operationsWorkPlaceId(),
                        LocationCode: locationCode(),
                        OperationId: operationId(),
                        FleetPoolId: fleelPoolId(),
@@ -141,7 +141,6 @@
                    };
                };
            return {
-               locationId: locationId,
                locationCode: locationCode,
                locationName: locationName,
                locationDescription:locationDescription,
@@ -150,7 +149,9 @@
                fleelPoolId:fleelPoolId,
                fleelPoolName:fleelPoolName,
                costCenter:costCenter,
-               parentWorkPlaceId:parentWorkPlaceId,
+               parentWorkPlaceId: parentWorkPlaceId,
+               operationsWorkPlaceId: operationsWorkPlaceId,
+
                hasChanges: hasChanges,
                reset: reset,
                convertToServerData: convertToServerData,
@@ -162,7 +163,7 @@
     var operationWorkplaceServertoClientMapper = function (itemFromServer) {
         var pob = new operationWorkplace(itemFromServer.OperationsWorkPlaceId, itemFromServer.LocationCode, "-", "-",
             itemFromServer.OperationId, itemFromServer.OperationName,
-          itemFromServer.FleetPoolId, itemFromServer.FleetPoolName, itemFromServer.CostCenter, itemFromServer.WorkPlaceId,false);
+          itemFromServer.FleetPoolId, itemFromServer.FleetPoolName, itemFromServer.CostCenter, itemFromServer.WorkPlaceId);
         return pob;
     };
     return {

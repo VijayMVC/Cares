@@ -15,9 +15,8 @@ define("Organization/organizationGroup.viewModel",
                     //pager%
                     pager = ko.observable(),
                     //org code filter in filter sec
-                    orgGroupCodeFilter = ko.observable(),
-                    //org name filter in filter sec
-                    orgGroupNameFilter = ko.observable(),
+                    orgGroupFilter = ko.observable(),
+        
                     //sorting
                     sortOn = ko.observable(1),
                     //Assending  / Desending
@@ -73,8 +72,7 @@ define("Organization/organizationGroup.viewModel",
                     },
                     //reset butto handle 
                     resetResuults = function() {
-                        orgGroupCodeFilter(undefined);
-                        orgGroupNameFilter(undefined);
+                        orgGroupFilter(undefined);
                         getOrganizationGroups();
                         pager.reset();
                     },
@@ -127,8 +125,7 @@ define("Organization/organizationGroup.viewModel",
                     getOrganizationGroups = function() {
                         dataservice.getOrganizationGroups(
                         {
-                            OrgGroupCode: orgGroupCodeFilter(),
-                            OrgGroupName: orgGroupNameFilter(),
+                            OrgGroupText: orgGroupFilter(),
                             PageSize: pager().pageSize(),
                             PageNo: pager().currentPage(),
                             SortBy: sortOn(),
@@ -159,8 +156,7 @@ define("Organization/organizationGroup.viewModel",
                     organizationGroups: organizationGroups,
                     initialize: initialize,
                     search: search,
-                    orgGroupCodeFilter: orgGroupCodeFilter,
-                    orgGroupNameFilter: orgGroupNameFilter,
+                    orgGroupFilter: orgGroupFilter,
                     sortOn: sortOn,
                     sortIsAsc: sortIsAsc,
                     onCreateOrgGroupForm: onCreateOrgGroupForm,
