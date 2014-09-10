@@ -80,10 +80,8 @@
         </div>
     </form>
     <div class="panel panel-info">
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
-            <li class="active"><a href="#detail" role="tab" data-toggle="tab">@Cares.Web.Resources.Organization.WorkLocation.Phones</a></li>
-        </ul>
+        <div class="panel-heading">@Cares.Web.Resources.Organization.WorkLocation.Phones</div>
+       
         <!-- Tab panes -->
         <div class="tab-content">
             <br />
@@ -94,21 +92,21 @@
                     <div class="addToBtnDiv row">
                         <button class="btn  btn-info addToBtn"  id="saveBtn" data-bind="click: $root.onAddPhone ">@Cares.Web.Resources.Shared.Common.Add</button>
                     </div>
-                        <div class="form-group">
-                            <label for="" class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.PhoneType*:</label>
-                            <div class="col-md-2">
-                                <select class="form-control" data-bind="options: $root.basePhoneTypesList, optionsText: 'PhoneTypeCodeName', optionsValue: 'PhoneTypeId',  optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.WorkLocation.PhoneType '+'&gt;' , value :$root.selectedPhoneTypeString"></select>
-                            </div>
-                            <label for="" class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.PhoneNumber*:</label>
-                            <div class="col-md-2">
-                                <input type="text" class="form-control" onkeypress="return onlyNumbers(this)" placeholder="@("<" + @Cares.Web.Resources.Organization.WorkLocation.PhoneNumber + ">")" data-bind="value:phoneNumber" />
-                            </div>
-                            <label for="" class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.IsDefault:</label>
-                            <div class="col-md-2">
-                                <input type="checkbox" class="form-control" placeholder="@("<" + @Cares.Web.Resources.Organization.WorkLocation.IsDefault + ">")" data-bind="value:isDefault" />
-                            </div>
+                    <div class="form-group">
+                        <label for="" class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.PhoneType*:</label>
+                        <div class="col-md-2">
+                            <select class="form-control" data-bind="options: $root.basePhoneTypesList, optionsText: 'PhoneTypeCodeName', optionsValue: 'PhoneTypeId',  optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.WorkLocation.PhoneType '+'&gt;' , value :$root.selectedPhoneTypeString"></select>
                         </div>
-</form>
+                        <label for="" class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.PhoneNumber*:</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" onkeypress="return onlyNumbers(this)" placeholder="@("<" + @Cares.Web.Resources.Organization.WorkLocation.PhoneNumber + ">")" data-bind="value:phoneNumber" />
+                        </div>
+                        <label for="" class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.IsDefault:</label>
+                        <div class="col-md-2">
+                            <input type="checkbox" class="form-control" placeholder="@("<" + @Cares.Web.Resources.Organization.WorkLocation.IsDefault + ">")" data-bind="value:isDefault" />
+                        </div>
+                    </div>
+                </form>
                 <!--here -->
                 <table id="hireGroupDetail" class="table table-condensed">
                     <thead>
