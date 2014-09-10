@@ -196,6 +196,15 @@ namespace Cares.Web.Resources.Tariff {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hire Group Rate.
+        /// </summary>
+        public static string HireGroupRate {
+            get {
+                return ResourceManager.GetString("HireGroupRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed to load Hire Group Rates.
         /// </summary>
         public static string HireGroupRateLoadFailedMsg {

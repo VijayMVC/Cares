@@ -34,7 +34,7 @@ namespace Cares.Web.Areas.Api.Controllers
         #endregion
         #region Public
         // GET api/<controller>
-        public TariffTypeSearchResponse Get([FromUri] TariffTypeRequest request)
+        public TariffTypeSearchResponse Get([FromUri] TariffTypeSearchRequest request)
         {
             return tariffTypeService.LoadtariffTypes((request)).CreateFrom();
         }
@@ -49,7 +49,7 @@ namespace Cares.Web.Areas.Api.Controllers
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
 
-            return tariffTypeService.AddtariffType(tariffType.CreateFrom()).CreateFrom();
+            return tariffTypeService.SaveTariffType(tariffType.CreateFrom()).CreateFrom();
         }
 
         #endregion

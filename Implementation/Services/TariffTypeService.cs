@@ -41,6 +41,10 @@ namespace Cares.Implementation.Services
 
         #region Public
 
+        /// <summary>
+        /// Get Tariff Type Base Data
+        /// </summary>
+        /// <returns></returns>
         public TariffTypeBaseResponse GetBaseData()
         {
             return new TariffTypeBaseResponse
@@ -54,19 +58,26 @@ namespace Cares.Implementation.Services
             };
 
         }
+        
+        /// <summary>
+        /// Load All Tariff Type 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<TariffType> LoadAll()
         {
             return tariffTypeRepository.GetAll();
         }
+        
         /// <summary>
         /// Load tariff type, based on search filters
         /// </summary>
         /// <param name="tariffTypeRequest"></param>
         /// <returns></returns>
-        public TariffTypeResponse LoadtariffTypes(TariffTypeRequest tariffTypeRequest)
+        public TariffTypeResponse LoadtariffTypes(TariffTypeSearchRequest tariffTypeRequest)
         {
             return tariffTypeRepository.GettariffTypes(tariffTypeRequest);
         }
+        
         /// <summary>
         /// Find Tariff Type By Id
         /// </summary>
@@ -92,12 +103,13 @@ namespace Cares.Implementation.Services
             }
             return new TariffTypeDetailResponse { TariffType = tariffType, TariffTypeRevisions = revisionList };
         }
+        
         /// <summary>
         /// Add Tariff Type
         /// </summary>
         /// <param name="tariffType"></param>
         /// <returns></returns>
-        public TariffType AddtariffType(TariffType tariffType)
+        public TariffType SaveTariffType(TariffType tariffType)
         {
             long oldRecordId = tariffType.TariffTypeId;
             if (tariffType.TariffTypeId == 0) //Add Case

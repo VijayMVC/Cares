@@ -220,8 +220,8 @@
     <Compile Include="RequestModels\OrgGroupSearchRequest.cs" />
     <Compile Include="RequestModels\ProductSearchRequest.cs" />
     <Compile Include="RequestModels\HireGroupDetailRequest.cs" />
-    <Compile Include="RequestModels\TariffRateRequest.cs" />
-    <Compile Include="RequestModels\TariffTypeRequest.cs" />
+    <Compile Include="RequestModels\TariffRateSearchRequest.cs" />
+    <Compile Include="RequestModels\TariffTypeSearchRequest.cs" />
     <Compile Include="RequestModels\WorkLocationSearchRequest.cs" />
     <Compile Include="RequestModels\WorkplaceSearchRequest.cs" />
     <Compile Include="ResponseModels\BusinessPartnerBaseDataResponse.cs" />

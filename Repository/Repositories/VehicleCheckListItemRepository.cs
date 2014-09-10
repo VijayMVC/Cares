@@ -13,7 +13,7 @@ namespace Cares.Repository.Repositories
     /// </summary>
     public class VehicleCheckListItemRepository : BaseRepository<VehicleCheckListItem>, IVehicleCheckListItemRepository
     {
-         #region Constructor
+        #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>
@@ -42,7 +42,7 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(vCheckListItem => vCheckListItem.UserDomainKey == UserDomainKey).ToList();
         }
-       
+
         #endregion
     }
 }

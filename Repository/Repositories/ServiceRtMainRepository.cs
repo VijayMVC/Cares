@@ -17,7 +17,7 @@ namespace Cares.Repository.Repositories
     /// </summary>
     public class ServiceRtMainRepository : BaseRepository<ServiceRtMain>, IServiceRtMainRepository
     {
-         #region Private
+        #region Private
         private readonly Dictionary<ServiceRateByColumn, Func<ServiceRtMainContent, object>> serviceRateClause =
              new Dictionary<ServiceRateByColumn, Func<ServiceRtMainContent, object>>
                     {
@@ -28,7 +28,7 @@ namespace Cares.Repository.Repositories
                     };
 
         #endregion
-         
+
         #region Constructor
         /// <summary>
         /// Constructor
@@ -51,6 +51,7 @@ namespace Cares.Repository.Repositories
         #endregion
 
         #region Public
+
         /// <summary>
         /// Get All Service Rate Main for User Domain Key
         /// </summary>
@@ -70,7 +71,8 @@ namespace Cares.Repository.Repositories
             var getInsuranceRateQuery = from serviceRtMain in DbSet
                                         join tariffType in db.TariffTypes on serviceRtMain.TariffTypeCode equals tariffType.TariffTypeCode
                                         where
-                                            ((!serviceRateSearchRequest.OperationId.HasValue ||
+                                            ((string.IsNullOrEmpty(serviceRateSearchRequest.SearchString) || serviceRtMain.ServiceRtMainCode.Contains(serviceRateSearchRequest.SearchString) || serviceRtMain.ServiceRtMainName.Contains(serviceRateSearchRequest.SearchString)) &&
+                                            (!serviceRateSearchRequest.OperationId.HasValue ||
                                               tariffType.OperationId == serviceRateSearchRequest.OperationId.Value) &&
                                              (!serviceRateSearchRequest.TariffTypeId.HasValue ||
                                               tariffType.TariffTypeId == serviceRateSearchRequest.TariffTypeId))
@@ -97,6 +99,7 @@ namespace Cares.Repository.Repositories
 
             return new ServiceRateSearchResponse { ServiceRtMains = insuranceRtMains, TotalCount = getInsuranceRateQuery.Count() };
         }
+
         /// <summary>
         /// Get  Service Rate Main By Tariff Type Code
         /// </summary>

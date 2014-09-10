@@ -8,15 +8,16 @@ using System.Linq;
 
 namespace Cares.Repository.Repositories
 {
-      /// <summary>
-      /// Workplace Type Repository
-      /// </summary>
+    /// <summary>
+    /// Workplace Type Repository
+    /// </summary>
     public sealed class WorkplaceTypeRepository : BaseRepository<WorkPlaceType>, IWorkplaceTypeRepository
     {
-       #region Private
-      
+        #region Private
+
         #endregion
-       #region Constructor
+
+        #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>
@@ -37,7 +38,8 @@ namespace Cares.Repository.Repositories
         }
 
         #endregion
-       #region public
+
+        #region public
 
         /// <summary>
         /// Get all WorkPlace Types

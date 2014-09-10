@@ -76,7 +76,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             //Fuel Type Id
             fuelTypeId = ko.observable(specifiedFuelTypeId).extend({ required: true }),
             //Fuel Level
-            fuelLevel = ko.observable(specifiedFuelLevel),
+            fuelLevel = ko.observable(specifiedFuelLevel).extend({ required: true }),
             //Vehicle Make ID
             vehicleMakeId = ko.observable(specifiedVehicleMakeId).extend({ required: true }),
             //Vehicle Model ID
@@ -141,6 +141,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
                 initialOdemeter: initialOdemeter,
                 currentOdemeter: currentOdemeter,
                 tankSize: tankSize,
+                fuelLevel: fuelLevel
             }),
             // Is Valid
             isValid = ko.computed(function () {
@@ -164,8 +165,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
                 fleetPoolId: fleetPoolId,
                 locationId: locationId,
                 fuelTypeId: fuelTypeId,
-                fuelLevel: fuelLevel,
-                vehicleMakeId: vehicleMakeId,
+                 vehicleMakeId: vehicleMakeId,
                 vehicleModelId: vehicleModelId,
                 vehicleCategoryId: vehicleCategoryId,
                 statusId: statusId,

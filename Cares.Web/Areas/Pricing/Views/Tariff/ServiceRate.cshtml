@@ -23,6 +23,7 @@
                     <select class="form-control" data-bind="options: $root.tariffTypes, optionsText: 'TariffTypeCodeName', optionsValue: 'TariffTypeId', optionsCaption: '&lt;' + '@Cares.Web.Resources.Tariff.ServiceRate.TariffType' + '&gt;', value: tariffTypeFilter"></select>
                 </div>
                 <button type="submit" class="btn btn-success" data-bind="click: search">@Cares.Web.Resources.Shared.Common.Search</button>
+                <button type="submit" class="btn btn-default" data-bind="click: reset">@Cares.Web.Resources.Shared.Common.Reset</button>
                 <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection" title='@Cares.Web.Resources.Shared.Common.HideSection'></a>
             </form>
         </div>
@@ -32,12 +33,11 @@
             <table id="serviceRateTable" class="table table-condensed">
                 <thead>
                     <tr>
-                        <th> <span id="1">@Cares.Web.Resources.Tariff.ServiceRate.ServiceRateText<br />@Cares.Web.Resources.Tariff.ServiceRate.Code<span class="icon-up"></span></span></th>
-                        <th> <span id="2">@Cares.Web.Resources.Tariff.ServiceRate.ServiceRateText<br />@Cares.Web.Resources.Tariff.ServiceRate.Name<span></span></span></th>
-                        <th> <span>@Cares.Web.Resources.Tariff.ServiceRate.Operation<span></span></span></th>
-                        <th> <span>@Cares.Web.Resources.Tariff.ServiceRate.TariffType<span></span></span></th>
-                        <th> <span>@Cares.Web.Resources.Tariff.ServiceRate.TariffType<span></span></span></th>
-                        <th> <span id="5">@Cares.Web.Resources.Tariff.ServiceRate.StartEffective<br /> @Cares.Web.Resources.Tariff.ServiceRate.Date<span></span></span></th>
+                        <th class="code"> <span id="1">@Cares.Web.Resources.Tariff.ServiceRate.Code<span class="icon-up"></span></span></th>
+                        <th class="name"> <span id="2">@Cares.Web.Resources.Tariff.ServiceRate.Name<span></span></span></th>
+                        <th class="operation"> <span>@Cares.Web.Resources.Tariff.ServiceRate.Operation<span></span></span></th>
+                        <th class="tariffType"> <span>@Cares.Web.Resources.Tariff.ServiceRate.TariffType<span></span></span></th>
+                        <th class="startDate"> <span id="5">@Cares.Web.Resources.Tariff.ServiceRate.StartEffective @Cares.Web.Resources.Tariff.ServiceRate.Date<span></span></span></th>
                     </tr>
                 </thead>
                 <tbody>

@@ -13,9 +13,9 @@ namespace Cares.Interfaces.Repository
         /// <summary>
         ///  Get all tariff types, based on filters
         /// </summary>
-        /// <param name="tariffTypeRequest"></param>
+        /// <param name="tariffTypeSearchRequest"></param>
         /// <returns></returns>
-        TariffTypeResponse GettariffTypes(TariffTypeRequest tariffTypeRequest);
+        TariffTypeResponse GettariffTypes(TariffTypeSearchRequest tariffTypeSearchRequest);
 
         /// <summary>
         /// Load Dependencies
@@ -25,9 +25,9 @@ namespace Cares.Interfaces.Repository
         /// <summary>
         /// Get Revisions
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="tariffTypeId"></param>
         /// <returns></returns>
-        TariffType GetRevison(long id);
+        TariffType GetRevison(long tariffTypeId);
 
         /// <summary>
         /// Get Tariff Type By Code

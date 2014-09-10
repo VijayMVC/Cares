@@ -34,6 +34,7 @@ namespace Cares.Repository.Repositories
         }
 
         #endregion
+        
         #region Public
         /// <summary>
         /// Get All Vehicle Categories for User Domain Key

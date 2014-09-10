@@ -23,6 +23,7 @@
                     <select class="form-control" data-bind="options: $root.tariffTypes, optionsText: 'TariffTypeName', optionsValue: 'TariffTypeId', optionsCaption: '&lt;' +  '@Cares.Web.Resources.Tariff.TariffRate.TariffTypes' + '&gt;', value: tariffTypeFilter"></select>
                 </div>
                 <button type="submit" class="btn btn-success" data-bind="click: search ">@Cares.Web.Resources.Shared.Common.Search</button>
+                <button type="submit" class="btn btn-default" data-bind="click: reset">@Cares.Web.Resources.Shared.Common.Reset</button>
                 <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection " title='@Cares.Web.Resources.Shared.Common.HideSection'></a>
             </form>
         </div>

@@ -16,6 +16,7 @@ namespace Cares.Interfaces.Repository
         /// <param name="insuranceRateSearchRequest"></param>
         /// <returns></returns>
         InsuranceRateSearchResponse GetInsuranceRates(InsuranceRateSearchRequest insuranceRateSearchRequest);
+        
         /// <summary>
         /// Get Insurance Rate Main By Tariff Type Code
         /// </summary>

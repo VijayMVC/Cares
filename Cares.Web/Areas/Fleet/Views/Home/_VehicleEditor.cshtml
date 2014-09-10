@@ -54,7 +54,7 @@
             </div>
             <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Vehicle.Vehicle.FuelLevel * </label>
             <div class="col-md-2">
-
+                <div style="margin: 10px" data-bind="slider: fuelLevel, sliderOptions: {min: undefined, max: 100, range: 'min', step: 1}"></div>
             </div>
             <label for="vMake" class="control-label h5 col-sm-2">@Cares.Web.Resources.Vehicle.Vehicle.VehicleMake *  </label>
             <div class="col-md-2">
@@ -119,7 +119,7 @@
         </div>
 
         <div class="panel panel-info">
-            <div class="panel-heading"></div>
+            <div class="panel-heading">.</div>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
                 <li class="active"><a href="#otherDetail" role="tab" data-toggle="tab">@Cares.Web.Resources.Vehicle.Vehicle.OtherDetails</a></li>
@@ -188,15 +188,16 @@
                         <div class="col-md-2">
                             <input type="text" id="bWheelSize" class="form-control" placeholder='@("<" +Cares.Web.Resources.Vehicle.Vehicle.BackWheelSize + ">")' data-bind="value:backWheelSize  , validationTooltip:backWheelSize" />
                         </div>
-                        <label for="accessories" class="control-label h5 col-sm-2">@Cares.Web.Resources.Vehicle.Vehicle.Accessories </label>
-                        <div class="col-md-2">
-                            <textarea class="form-control" rows="2" placeholder='@("<" +Cares.Web.Resources.Vehicle.Vehicle.Accessories + ">")' id="accessories" data-bind="value: accessories, valueUpdate: 'keyup'"></textarea>
-                        </div>
+
                     </div>
                     <div class="form-group">
+                        <label for="accessories" class="control-label h5 col-sm-2">@Cares.Web.Resources.Vehicle.Vehicle.Accessories </label>
+                        <div class="col-md-2">
+                            <textarea class="form-control" rows="4" placeholder='@("<" +Cares.Web.Resources.Vehicle.Vehicle.Accessories + ">")' id="accessories" data-bind="value: accessories, valueUpdate: 'keyup'"></textarea>
+                        </div>
                         <label for="interiorDes" class="control-label h5 col-sm-2">@Cares.Web.Resources.Vehicle.Vehicle.InteriorDescription</label>
                         <div class="col-md-2">
-                            <textarea class="form-control" rows="2" placeholder='@("<" +Cares.Web.Resources.Vehicle.Vehicle.InteriorDescription + ">")' id="interiorDes" data-bind="value: interiorDescription , valueUpdate: 'keyup'"></textarea>
+                            <textarea class="form-control" rows="4" placeholder='@("<" +Cares.Web.Resources.Vehicle.Vehicle.InteriorDescription + ">")' id="interiorDes" data-bind="value: interiorDescription , valueUpdate: 'keyup'"></textarea>
                         </div>
                     </div>
                 </div>
@@ -221,13 +222,13 @@
                         <div class="col-md-2">
                             <input type="checkbox" id="usedVehicle" class="form-control" data-bind="checked: isUsedVehicle " />
                         </div>
-                        <label for="pDescription" class="control-label h5 col-sm-2">@Cares.Web.Resources.Vehicle.Vehicle.PurchaseDescription </label>
-                        <div class="col-md-2">
-                            <textarea class="form-control" rows="2" placeholder='@("<" +Cares.Web.Resources.Vehicle.Vehicle.PurchaseDescription + ">")' id="pDescription" data-bind="value: purchaseDescription , valueUpdate: 'keyup'"></textarea>
-                        </div>
                         <label for="bPartner" class="control-label h5 col-sm-2">@Cares.Web.Resources.Vehicle.Vehicle.BusinessPartner </label>
                         <div class="col-md-2">
                             <select id="bPartner" class="form-control" data-bind="options: $root.businessPartners, optionsText: 'BusinessPartnerCodeName', optionsValue: 'BusinessPartnerId', optionsCaption: '&lt;' + '@Cares.Web.Resources.Vehicle.Vehicle.BusinessPartner' + '&gt;', value: bPMainId , validationTooltip: bPMainId "></select>
+                        </div>
+                        <label for="pDescription" class="control-label h5 col-sm-2">@Cares.Web.Resources.Vehicle.Vehicle.PurchaseDescription </label>
+                        <div class="col-md-2">
+                            <textarea class="form-control" rows="4" placeholder='@("<" +Cares.Web.Resources.Vehicle.Vehicle.PurchaseDescription + ">")' id="pDescription" data-bind="value: purchaseDescription , valueUpdate: 'keyup'"></textarea>
                         </div>
                     </div>
 
@@ -330,7 +331,7 @@
                 </div>
                 <!-- fifth tab - Maintenance Schedule-->
                 <div class="tab-pane" id="maintenanceSchedule" data-bind="with: maintenanceSchedule">
-                    <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onAddMaintenanceSchedule">@Cares.Web.Resources.Vehicle.Vehicle.AddToList</button>
+                    <div class="addToBtnDiv row"><button class="btn btn-info addToBtn" id="saveBtn" data-bind="click: $root.onAddMaintenanceSchedule">@Cares.Web.Resources.Vehicle.Vehicle.AddToList</button></div>
                     <div class="form-group">
                         <label for="maintStartDt" class="control-label h5 col-sm-2">@Cares.Web.Resources.Vehicle.Vehicle.MaintenanceStartDate *</label>
                         <div class="col-md-2">
@@ -354,10 +355,10 @@
                     <table id="maintenanceScheduleTable" class="table table-condensed">
                         <thead>
                             <tr>
-                                <th> <span>@Cares.Web.Resources.Vehicle.Vehicle.MaintenanceType<span></span></span></th>
-                                <th> <span>@Cares.Web.Resources.Vehicle.Vehicle.MaintenanceStartDate<span></span></span></th>
-                                <th> <span>@Cares.Web.Resources.Vehicle.Vehicle.FrequencyInDays<span></span></span></th>
-                                <th> <span>@Cares.Web.Resources.Vehicle.Vehicle.FrequencyInKM<span></span></span></th>
+                                <th class="maintenanceType"> <span>@Cares.Web.Resources.Vehicle.Vehicle.MaintenanceType<span></span></span></th>
+                                <th class="maintenanceStartDate"> <span>@Cares.Web.Resources.Vehicle.Vehicle.MaintenanceStartDate<span></span></span></th>
+                                <th class="frequencyInDays"> <span>@Cares.Web.Resources.Vehicle.Vehicle.FrequencyInDays<span></span></span></th>
+                                <th class="frequencyInKM"> <span>@Cares.Web.Resources.Vehicle.Vehicle.FrequencyInKM<span></span></span></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -368,7 +369,7 @@
                 </div>
                 <!-- sixth tab - Check List item-->
                 <div class="tab-pane" id="checkListItem" data-bind="with: checkListItem">
-                    <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onAddCheckListItem">@Cares.Web.Resources.Vehicle.Vehicle.AddToList</button>
+                    <div class="addToBtnDiv row"><button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onAddCheckListItem">@Cares.Web.Resources.Vehicle.Vehicle.AddToList</button></div>
                     <div class="form-group">
                         <label for="vCheckList" class="control-label h5 col-sm-2">@Cares.Web.Resources.Vehicle.Vehicle.VehicleCheckList *</label>
                         <div class="col-md-2">
@@ -378,7 +379,7 @@
                     <table id="checkListItemTable" class="table table-condensed">
                         <thead>
                             <tr>
-                                <th> <span>@Cares.Web.Resources.Vehicle.Vehicle.CheckListItem<span></span></span></th>
+                                <th class="checkListItem"> <span>@Cares.Web.Resources.Vehicle.Vehicle.CheckListItem<span></span></span></th>
 
                             </tr>
                         </thead>
@@ -439,7 +440,7 @@
                     <div class="form-group">
                         <label for="disposalDes" class="control-label h5 col-sm-2">@Cares.Web.Resources.Vehicle.Vehicle.DisposalDescription</label>
                         <div class="col-md-2">
-                            <textarea class="form-control" rows="2" placeholder='@("<" +Cares.Web.Resources.Vehicle.Vehicle.DisposalDescription + ">")' id="disposalDes" data-bind="value: disposalDescription, valueUpdate: 'keyup'"></textarea>
+                            <textarea class="form-control" rows="4" placeholder='@("<" +Cares.Web.Resources.Vehicle.Vehicle.DisposalDescription + ">")' id="disposalDes" data-bind="value: disposalDescription, valueUpdate: 'keyup'"></textarea>
                         </div>
                     </div>
                 </div>
@@ -449,6 +450,7 @@
 
             </div>
         </div>
+
     </form>
     <script id="deleteActionMaintenanceScheduleTemplate" type="text/html">
         <a href="#" data-bind="click: $root.deleteMaintenanceSchedule" title='@Cares.Web.Resources.Shared.Common.Delete'><span class="glyphicon glyphicon-remove"></span></a>

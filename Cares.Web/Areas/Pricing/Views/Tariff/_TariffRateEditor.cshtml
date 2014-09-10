@@ -15,16 +15,14 @@
                 <div class="col-md-2">
                     <input type="text" class="form-control" placeholder='@("<" + Cares.Web.Resources.Tariff.TariffRate.TariffRateName + ">")' id="tariffRateName" data-bind="value: tariffRateName, validationTooltip: tariffRateName, disable :(tariffRateId()!=undefined)" />
                 </div>
-                <label for="description" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.TariffRate.Description</label>
-                <div class="col-md-2">
-                    <textarea class="form-control" rows="2" placeholder='@("<" + Cares.Web.Resources.Tariff.TariffRate.Description + ">")' id="description" data-bind="value: tariffRateDescription, valueUpdate: 'keyup', disable :(tariffRateId()!=undefined)"></textarea>
-                </div>
-            </div>
-            <div class="form-group">
                 <label for="operation" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.TariffRate.Operation *</label>
                 <div class="col-md-2">
                     <select id="operation" class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '&lt;' + '@(Cares.Web.Resources.Tariff.TariffRate.Operation )' + '&gt;' , value: operationId, validationTooltip: operationId, disable :(tariffRateId()!=undefined)"></select>
                 </div>
+
+            </div>
+            <div class="form-group">
+               
                 <label for="tariffType" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.TariffRate.TariffType *</label>
                 <div class="col-xs-2">
                     <select id="tariffType" class="form-control" data-bind="options: $root.tariffTypes, optionsText: 'TariffTypeName', optionsValue: 'TariffTypeId', optionsCaption: '&lt;' + '@(Cares.Web.Resources.Tariff.TariffRate.TariffType )' + '&gt;', value: tariffTypeId, disable :(tariffRateId()!=undefined)"></select>
@@ -33,11 +31,15 @@
                 <div class="col-md-2">
                     <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.TariffRate.StartEffectiveDate + ">")' class="form-control" id="startEffectiveDate" data-bind="datepicker: startEffectiveDate, validationTooltip: startEffectiveDate, disable :(tariffRateId()!=undefined)" />
                 </div>
-            </div>
-            <div class="form-group">
                 <label for="endTypeEffectiveDate" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.TariffRate.EndEffectiveDate *</label>
                 <div class="col-md-2">
                     <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.TariffRate.EndEffectiveDate + ">")' class="form-control" id="endTypeEffectiveDate" data-bind="datepicker: endEffectiveDate, validationTooltip: endEffectiveDate, disable :(tariffRateId()!=undefined)" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.TariffRate.Description</label>
+                <div class="col-md-2">
+                    <textarea class="form-control" rows="4" placeholder='@("<" + Cares.Web.Resources.Tariff.TariffRate.Description + ">")' id="description" data-bind="value: tariffRateDescription, valueUpdate: 'keyup', disable :(tariffRateId()!=undefined)"></textarea>
                 </div>
             </div>
         </form>
@@ -51,25 +53,26 @@
     <div class="row searchFilterSection" data-bind="visible: $root.filterSectionVisilble()" style="display: none">
         <div class=" well">
             <form class="form-horizontal" data-bind="submit: $root.searchHireGroups">
-                <div class="col-xs-3">
+                <div class="col-xs-2">
                     <select class="form-control" data-bind="options: $root.hireGroups, optionsText: 'HireGroupName', optionsValue: 'HireGroupId', optionsCaption: '&lt;' + '@(Cares.Web.Resources.Tariff.TariffRate.HireGroup )' + '&gt;', value: $root.hireGroupFilter "></select>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-xs-2">
                     <select class="form-control" data-bind="options: $root.vehicleMakes, optionsText: 'VehicleMakeCodeName', optionsValue: 'VehicleMakeId', optionsCaption: '&lt;' + '@(Cares.Web.Resources.Tariff.TariffRate.VehicleMake )' + '&gt;', value: $root.vehicleMakeFilter "></select>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-xs-2">
                     <select class="form-control" data-bind="options: $root.vehicleModels, optionsText: 'VehicleModelCodeName', optionsValue: 'VehicleModeld', optionsCaption: '&lt;' + '@(Cares.Web.Resources.Tariff.TariffRate.VehicleModel )' + '&gt;', value: $root.vehicleModelFilter "></select>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-xs-2">
                     <select class="form-control" data-bind="options: $root.vehicleCategories, optionsText: 'VehicleCategoryCodeName', optionsValue: 'VehicleCategoryId', optionsCaption: '&lt;' + '@(Cares.Web.Resources.Tariff.TariffRate.VehicleCategory )' + '&gt;', value: $root.vehicleCategoryFilter "></select>
                 </div>
                 <button type="submit" class="btn btn-success" data-bind="click: $root.searchHireGroups">@Cares.Web.Resources.Shared.Common.Search</button>
+                <button type="submit" class="btn btn-default" data-bind="click: reset">@Cares.Web.Resources.Shared.Common.Reset</button>
                 <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: $root.collapseFilterSection" title=@Cares.Web.Resources.Shared.Common.ShowFilter></a>
             </form>
         </div>
     </div>
     <div class="panel panel-info searchFilterResultSection">
-        <div class="panel-heading"></div>
+        <div class="panel-heading">@Cares.Web.Resources.Tariff.TariffRate.HireGroupRate</div>
         <table id="hireGroupRate" class="table table-condensed">
             <thead>
                 <tr>
@@ -112,20 +115,20 @@
                 <td class="col-md-2">
                     <span data-bind="text: modelYear"></span>
                 </td>
-                <td class="col-md-2">
-                    <input type="text" data-bind="value: allowMileage, validationTooltip: allowMileage" />
+                <td class="col-md-2" >
+                    <input class="allowMileage" type="text" data-bind="value: allowMileage, validationTooltip: allowMileage" />
+                </td>
+                <td class="col-md-2" >
+                    <input class="excessMileageCharge" style="width: 70px;" type="text" data-bind="value: excessMileageCharge, validationTooltip: excessMileageCharge" />
                 </td>
                 <td class="col-md-2">
-                    <input type="text" data-bind="value: excessMileageCharge, validationTooltip: excessMileageCharge" />
+                    <input class="standardRt" type="text" data-bind="value: standardRt, validationTooltip: standardRt" />
                 </td>
                 <td class="col-md-2">
-                    <input type="text" data-bind="value: standardRt, validationTooltip: standardRt" />
+                    <input class="startDate" type="text" data-bind="datepicker: startDate, validationTooltip: startDate" />
                 </td>
                 <td class="col-md-2">
-                    <input type="text" data-bind="datepicker: startDate, validationTooltip: startDate" />
-                </td>
-                <td class="col-md-2">
-                    <input type="text" data-bind="datepicker: endDate, validationTooltip: endDate" />
+                    <input class="endDate" type="text" data-bind="datepicker: endDate, validationTooltip: endDate" />
                 </td>
                 <td class="col-md-2">
                     <span data-bind="text: revisionNumber"></span>

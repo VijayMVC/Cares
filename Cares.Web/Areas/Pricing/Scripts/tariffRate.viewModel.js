@@ -103,7 +103,7 @@ define("tariffRate/tariffRate.viewModel",
                         pager(new pagination.Pagination({}, tariffRates, getTariffRates));
 
                         // Set Pager
-                       // editorPager(new pagination.Pagination({}, hireGroupDetails, getHireGroupDetails));
+                        // editorPager(new pagination.Pagination({}, hireGroupDetails, getHireGroupDetails));
 
                         getTariffRates();
 
@@ -166,6 +166,13 @@ define("tariffRate/tariffRate.viewModel",
                     search = function () {
                         pager().reset();
                         getTariffRates();
+                    },
+                    //Reset
+                    reset = function () {
+                        searchFilter(undefined);
+                        tariffTypeFilter(undefined);
+                        operationFilter(undefined);
+                        search();
                     },
                     //Search Hire Group
                     searchHireGroups = function () {
@@ -432,7 +439,8 @@ define("tariffRate/tariffRate.viewModel",
                     showFilterSection: showFilterSection,
                     saveTariffRate: saveTariffRate,
                     searchHireGroups: searchHireGroups,
-                    getHireGroupDetails: getHireGroupDetails
+                    getHireGroupDetails: getHireGroupDetails,
+                    reset: reset
                     // Utility Methods
 
                 };

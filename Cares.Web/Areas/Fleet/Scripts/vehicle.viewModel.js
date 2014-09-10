@@ -13,11 +13,9 @@ define("vehicle/vehicle.viewModel",
                    selectedVehicle = ko.observable(),
                     //Active Vehicle Copy 
                    selectedVehicleCopy = ko.observable(),
-                    //Active Vehicle 
-                    selectedVehicleId = ko.observable(),
-                    //Add/Edit Vehicle Item
-                     addVehicleItem = ko.observable(),
-                      // Show Filter Section
+                   //Add/Edit Vehicle Item
+                   addVehicleItem = ko.observable(),
+                    // Show Filter Section
                     filterSectionVisilble = ko.observable(false),
                     // #region Arrays
                     // Operations
@@ -64,7 +62,6 @@ define("vehicle/vehicle.viewModel",
                      //Maintenance Schedule List
                     checkListItemList = ko.observableArray([]),
                     // #endregion Arrays
-
                     // #region Busy Indicators
                     isLoadingVehicles = ko.observable(false),
                     // #endregion Busy Indicators
@@ -221,8 +218,14 @@ define("vehicle/vehicle.viewModel",
                                     vehicles.splice(0, 0, vehicleResult);
                                 } else {
                                     selectedVehicle().vehicleName(vehicleResult.vehicleName());
+                                    selectedVehicle().plateNumber(vehicleResult.plateNumber());
                                     selectedVehicle().modelYear(vehicleResult.modelYear());
                                     selectedVehicle().fuelLevel(vehicleResult.fuelLevel());
+                                    selectedVehicle().vehicleMakeCodeName(vehicleResult.vehicleMakeCodeName());
+                                    selectedVehicle().operationCodeName(vehicleResult.operationCodeName());
+                                    selectedVehicle().location(vehicleResult.location());
+                                    selectedVehicle().currentOdometer(vehicleResult.currentOdometer());
+                                    selectedVehicle().vehicleStatusCodeName(vehicleResult.vehicleStatusCodeName());
                                 }
                                 closeVehicleEditor();
                                 toastr.success(ist.resourceText.vehicleSaveSuccessMsg);
@@ -246,6 +249,11 @@ define("vehicle/vehicle.viewModel",
                     getBaseData = function (callBack) {
                         dataservice.getVehicleBase({
                             success: function (data) {
+
+                                //Model Years 
+                                modelYears.removeAll();
+                                ko.utils.arrayPushAll(modelYears(), modelYearsGlobal);
+                                modelYears.valueHasMutated();
                                 //Operations 
                                 operations.removeAll();
                                 ko.utils.arrayPushAll(operations(), data.Operations);
@@ -325,6 +333,14 @@ define("vehicle/vehicle.viewModel",
                     search = function () {
                         pager().reset();
                         getVehicles();
+                    },
+                     //Reset
+                    reset = function () {
+                        searchFilter(undefined);
+                        hireGroupFilter(undefined);
+                        operationFilter(undefined);
+                        fleetPoolFilter(undefined);
+                        search();
                     },
                     //Add Maintenance Schedule Item To Maintennace Schedule List
                      onAddMaintenanceSchedule = function (maintenanceSchedule) {
@@ -409,14 +425,8 @@ define("vehicle/vehicle.viewModel",
                             filteredOperations.valueHasMutated();
                         }
                     },
-                    modelYears = [{ Id: 2001, Text: '2001' },
-                        { Id: 2002, Text: '2002' },
-                        { Id: 2003, Text: '2003' },
-                         { Id: 2004, Text: '2004' },
-                        { Id: 2005, Text: '2005' },
-                        { Id: 2006, Text: '2006' },
-                        { Id: 2007, Text: '2007' }
-                    ],
+                    //Model Year
+                    modelYears = ko.observableArray([]),
                     // Get Vehicles
                     getVehicles = function () {
                         isLoadingVehicles(true);
@@ -504,7 +514,8 @@ define("vehicle/vehicle.viewModel",
                     onAddMaintenanceSchedule: onAddMaintenanceSchedule,
                     deleteMaintenanceSchedule: deleteMaintenanceSchedule,
                     onAddCheckListItem: onAddCheckListItem,
-                    deleteCheckListItem: deleteCheckListItem
+                    deleteCheckListItem: deleteCheckListItem,
+                    reset: reset
                     // Utility Methods
 
                 };

@@ -6,7 +6,7 @@ namespace Cares.Models.RequestModels
     /// <summary>
     /// tariffT ype Request
     /// </summary>
-    public class TariffTypeRequest:GetPagedListRequest
+    public class TariffTypeSearchRequest:GetPagedListRequest
     {
         /// <summary>
         /// tariff Type Code

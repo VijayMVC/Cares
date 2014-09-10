@@ -5,16 +5,16 @@
   width: 10%;
 }
 #tariffTypeBinding table thead tr .tariffTypeName {
-  width: 15%;
+  width: 13%;
 }
 #tariffTypeBinding table thead tr .pricingScheme {
   width: 13%;
 }
 #tariffTypeBinding table thead tr .operation {
-  width: 13%;
+  width: 17%;
 }
 #tariffTypeBinding table thead tr .measurementUnit {
-  width: 10%;
+  width: 12%;
 }
 #tariffTypeBinding table thead tr .from {
   width: 7%;
@@ -44,19 +44,19 @@
   margin-top: 10px;
 }
 #tariffRateBinding table thead tr .tarrifratecode {
-  width: 8%;
+  width: 15%;
 }
 #tariffRateBinding table thead tr .tarrifrateName {
-  width: 10%;
+  width: 15%;
 }
 #tariffRateBinding table thead tr .tarrifrateOperation {
-  width: 10%;
+  width: 20%;
 }
 #tariffRateBinding table thead tr .tarrifrateType {
-  width: 10%;
+  width: 14%;
 }
 #tariffRateBinding table thead tr .tarrifrateSEdate {
-  width: 12%;
+  width: 15%;
 }
 #tariffRateBinding table thead tr .tarrifrateEFDate {
   width: 15%;
@@ -73,20 +73,62 @@
   margin-bottom: 20px;
   margin-top: 10px;
 }
+#tariffRateBinding #tariffRateEditor .excessMileageCharge {
+  width: 70px;
+}
+#tariffRateBinding #tariffRateEditor .allowMileage {
+  width: 70px;
+}
+#tariffRateBinding #tariffRateEditor .standardRt {
+  width: 70px;
+}
+#tariffRateBinding #tariffRateEditor .startDate {
+  width: 90px;
+}
+#tariffRateBinding #tariffRateEditor .endDate {
+  width: 90px;
+}
+#serviceRateBinding table thead tr .code {
+  width: 18%;
+}
+#serviceRateBinding table thead tr .name {
+  width: 18%;
+}
+#serviceRateBinding table thead tr .operation {
+  width: 21%;
+}
+#serviceRateBinding table thead tr .tariffType {
+  width: 18%;
+}
+#serviceRateBinding table thead tr .startDate {
+  width: 18%;
+}
+#serviceRateBinding #serviceRateEditor {
+  margin-top: 15px;
+}
+#serviceRateBinding #serviceRateEditor .detailsContainer {
+  width: 100%;
+}
+#serviceRateBinding #serviceRateEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
 #insuranceRateBinding table thead tr .IRCode {
-  width: 10%;
+  width: 18%;
 }
 #insuranceRateBinding table thead tr .IRName {
-  width: 10%;
+  width: 18%;
 }
 #insuranceRateBinding table thead tr .IROperation {
-  width: 10%;
+  width: 22%;
 }
 #insuranceRateBinding table thead tr .IRType {
-  width: 10%;
+  width: 18%;
 }
 #insuranceRateBinding table thead tr .IRDate {
-  width: 12%;
+  width: 18%;
 }
 #insuranceRateBinding #insuranceRateEditor {
   margin-top: 15px;

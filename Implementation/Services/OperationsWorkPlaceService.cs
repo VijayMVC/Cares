@@ -10,21 +10,23 @@ namespace Cares.Implementation.Services
     public class OperationsWorkPlaceService : IOperationsWorkPlaceService
     {
 
-       #region Private
-       
+        #region Private
+
         private readonly IOperationsWorkPlaceRepository operationsWorkPlaceRepository;
         #endregion
-       #region Constructors
-         /// <summary>
-         /// Constructors
-         /// </summary>
-        public OperationsWorkPlaceService(IOperationsWorkPlaceRepository operationsWorkPlaceRepository)
-         {
-             this.operationsWorkPlaceRepository = operationsWorkPlaceRepository;
-         }
 
-         #endregion
-       #region Public
+        #region Constructors
+        /// <summary>
+        /// Constructors
+        /// </summary>
+        public OperationsWorkPlaceService(IOperationsWorkPlaceRepository operationsWorkPlaceRepository)
+        {
+            this.operationsWorkPlaceRepository = operationsWorkPlaceRepository;
+        }
+
+        #endregion
+
+        #region Public
 
         /// <summary>
         /// Get Operations Work Place By Workplace Id
@@ -36,7 +38,6 @@ namespace Cares.Implementation.Services
                 OperationWorkPlaces = operationsWorkPlaceRepository.GetWorkPlaceOperationByWorkPlaceId(workPlaceId)
             };
         }
-       #endregion
+        #endregion
     }
 }
- 

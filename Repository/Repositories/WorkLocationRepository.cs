@@ -35,6 +35,7 @@ namespace Cares.Repository.Repositories
                        
                     };
         #endregion
+        
         #region Constructor
         /// <summary>
         /// Constructor
@@ -56,6 +57,7 @@ namespace Cares.Repository.Repositories
         }
 
         #endregion
+        
         #region Public
 
         /// <summary>

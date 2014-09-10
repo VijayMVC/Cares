@@ -69,7 +69,7 @@ namespace Cares.Repository.Repositories
             int fromRow = (hireGroupSearchRequest.PageNo - 1) * hireGroupSearchRequest.PageSize;
             int toRow = hireGroupSearchRequest.PageSize;
             Expression<Func<HireGroup, bool>> query =
-                s =>
+                s => (string.IsNullOrEmpty(hireGroupSearchRequest.SearchString) || s.HireGroupCode.Contains(hireGroupSearchRequest.SearchString) || s.HireGroupName.Contains(hireGroupSearchRequest.SearchString)) &&
                     (hireGroupSearchRequest.CompanyId == null || s.Company.CompanyId == hireGroupSearchRequest.CompanyId) &&
                      (hireGroupSearchRequest.ParentHireGroupId == null ||
                       s.ParentHireGroupId == hireGroupSearchRequest.ParentHireGroupId);
@@ -81,6 +81,7 @@ namespace Cares.Repository.Repositories
 
             return new HireGroupSearchResponse { HireGroups = hireGroups, TotalCount = DbSet.Count(query) };
         }
+        
         /// <summary>
         /// Get All Parent Hire Groups 
         /// </summary>
@@ -88,6 +89,7 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(hireGroup => hireGroup.UserDomainKey == UserDomainKey && hireGroup.IsParent);
         }
+        
         /// <summary>
         /// Get Hire Groups that are not parent hire groups 
         /// </summary>
@@ -95,6 +97,7 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(hireGroup => hireGroup.UserDomainKey == UserDomainKey && !hireGroup.IsParent);
         }
+        
         /// <summary>
         /// Load Dependencies
         /// </summary>

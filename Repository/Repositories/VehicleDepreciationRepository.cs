@@ -11,7 +11,7 @@ namespace Cares.Repository.Repositories
     /// </summary>
     public class VehicleDepreciationRepository : BaseRepository<VehicleDepreciation>, IVehicleDepreciationRepository
     {
-          #region Constructor
+        #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>

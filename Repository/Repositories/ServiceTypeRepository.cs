@@ -35,6 +35,7 @@ namespace Cares.Repository.Repositories
         #endregion
 
         #region Public
+        
         /// <summary>
         /// Get All ServiceT ype for User Domain Key
         /// </summary>

@@ -121,8 +121,8 @@ define("hireGroup/hireGroup.viewModel",
                         showHireGroupEditor();
                         e.stopImmediatePropagation();
                     },
-
-                isChecked = ko.computed(function () {
+                    //Is checked
+                    isChecked = ko.computed(function () {
                     if (selectedHireGroup() != undefined) {
                         return virtualIsChecked(selectedHireGroup().isParent());
                     } else {
@@ -361,6 +361,14 @@ define("hireGroup/hireGroup.viewModel",
                         ko.utils.arrayPushAll(hireGroups(), hireGroupList);
                         hireGroups.valueHasMutated();
                     },
+                      //Reset
+                      reset = function () {
+                          hireGroupCodeFilter(undefined);
+                          companyFilter(undefined);
+                          parentHireGroupFilter(undefined);
+                          search();
+                      },
+                    //Model Year
                     modelYears = [{ Id: 2001, Text: '2001' },
                         { Id: 2002, Text: '2002' },
                         { Id: 2003, Text: '2003' },
@@ -376,9 +384,8 @@ define("hireGroup/hireGroup.viewModel",
                     getHireGroup = function () {
                         isLoadingHireGroups(true);
                         dataservice.getHireGroup({
-                            HireGroupCode: hireGroupCodeFilter(),
-                            HireGroupName: hireGroupNameFilter,
-                            CompanyId: companyFilter(),
+                            SearchString: hireGroupCodeFilter(),
+                             CompanyId: companyFilter(),
                             ParentHireGroupId: parentHireGroupFilter(),
                             PageSize: pager().pageSize(),
                             PageNo: pager().currentPage(),
@@ -455,6 +462,7 @@ define("hireGroup/hireGroup.viewModel",
                     //selectHireGroup: selectHireGroup,
                     collapseFilterSection: collapseFilterSection,
                     showFilterSection: showFilterSection,
+                    reset: reset
                     // Utility Methods
 
                 };

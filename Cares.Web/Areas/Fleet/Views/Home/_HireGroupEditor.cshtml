@@ -36,6 +36,7 @@
         </div>
     </form>
     <div class="panel panel-info">
+        <div class="panel-heading">.</div>
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li class="active"><a href="#detail" role="tab" data-toggle="tab">@Cares.Web.Resources.Shared.Common.Detail</a></li>
@@ -47,7 +48,7 @@
             <!-- first tab - Detail-->
             <div class="tab-pane active" id="detail" data-bind="with:vehicleDetail">
                 <form class="form-horizontal">
-                    <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onAddVehicleDetail , disable :$root.virtualIsChecked()">@Cares.Web.Resources.Shared.Common.Add</button>
+                    <div class="addToBtnDiv row"> <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onAddVehicleDetail , disable :$root.virtualIsChecked()">@Cares.Web.Resources.Shared.Common.Add</button></div>
                     <div class="form-group">
                         <label for="vehicleMake" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.HireGroup.VehicleMake*</label>
                         <div class="col-md-2">
@@ -74,10 +75,10 @@
                 <table id="hireGroupDetail" class="table table-condensed">
                     <thead>
                         <tr>
-                            <th> <span>@Cares.Web.Resources.Tariff.HireGroup.VehicleMake<span></span></span></th>
-                            <th> <span>@Cares.Web.Resources.Tariff.HireGroup.VehicleModel<span></span></span></th>
-                            <th> <span>@Cares.Web.Resources.Tariff.HireGroup.VehicleCategory<span></span></span></th>
-                            <th> <span>@Cares.Web.Resources.Tariff.HireGroup.ModelYear<span></span></span></th>
+                            <th class="make"> <span>@Cares.Web.Resources.Tariff.HireGroup.VehicleMake<span></span></span></th>
+                            <th class="model"> <span>@Cares.Web.Resources.Tariff.HireGroup.VehicleModel<span></span></span></th>
+                            <th class="category"> <span>@Cares.Web.Resources.Tariff.HireGroup.VehicleCategory<span></span></span></th>
+                            <th class="modelYear"> <span>@Cares.Web.Resources.Tariff.HireGroup.ModelYear<span></span></span></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -104,7 +105,9 @@
             <!-- second tab - Upgraded HireGroups-->
             <div class="tab-pane" id="upgradedHireGroups" data-bind="with:hireGroupUpGrade">
                 <form class="form-horizontal">
-                    <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onAddHireGroupUpGrade, disable :$root.virtualIsChecked()">@Cares.Web.Resources.Shared.Common.Add</button>
+                    <div class="addToBtnDiv row">
+                        <button class="btn btn-info addToBtn" id="saveBtn" data-bind="click: $root.onAddHireGroupUpGrade, disable :$root.virtualIsChecked()">@Cares.Web.Resources.Shared.Common.Add</button>
+                    </div>
                     <div class="form-group">
                         <label for="hireGroups" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.HireGroup.HireGroups *</label>
                         <div class="col-md-2">

@@ -141,6 +141,13 @@ define("serviceRate/serviceRate.viewModel",
                         pager().reset();
                         getServiceRates();
                     },
+                     //Reset
+                    reset = function () {
+                        searchFilter(undefined);
+                        tariffTypeFilter(undefined);
+                        operationFilter(undefined);
+                        search();
+                    },
                     // Map Service Rates - Server to Client
                     mapServiceRates = function (data) {
                         var serviceRateList = [];
@@ -331,6 +338,7 @@ define("serviceRate/serviceRate.viewModel",
                     selectServiceRtItem: selectServiceRtItem,
                     getServiceRates: getServiceRates,
                     clientPagerRecords: clientPagerRecords,
+                    reset: reset
                     // Utility Methods
 
                 };
