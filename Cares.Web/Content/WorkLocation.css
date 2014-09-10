@@ -2,13 +2,13 @@
   margin-left: 5px;
 }
 #WorkLocationBinding table thead tr .WLcode {
-  width: 8%;
+  width: 12%;
 }
 #WorkLocationBinding table thead tr .WLname {
-  width: 8%;
+  width: 12%;
 }
 #WorkLocationBinding table thead tr .WLDescription {
-  width: 14%;
+  width: 16%;
 }
 #WorkLocationBinding table thead tr .WLCompany {
   width: 10%;

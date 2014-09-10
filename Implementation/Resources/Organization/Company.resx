@@ -117,8 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CompanyHasCompanyDepartmentAssociationError" xml:space="preserve">
-    <value>Company has company/department association with it !</value>
+  <data name="CompanyIsAssociatedWithDepartmentError" xml:space="preserve">
+    <value>Company is associated with departments!</value>
+  </data>
+  <data name="CompanyIsParentOfOtherCompanyError" xml:space="preserve">
+    <value>Company is parent of other company. Can't Delete!</value>
   </data>
   <data name="CompanyWithSameCodeAlreadyExistsError" xml:space="preserve">
     <value>Company with same code already exists!</value>

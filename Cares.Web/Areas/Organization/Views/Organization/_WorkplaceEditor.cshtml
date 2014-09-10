@@ -7,11 +7,11 @@
     </div>
     <form class="form-horizontal">
         <div class="form-group">
-            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.WorkplaceCode</label>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.WorkplaceCode*</label>
             <div class="col-md-2">
                 <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Workplace.WorkplaceCode+">")" id="tariffTypeCode" data-bind="value: code" />
             </div>
-            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.WorkplaceName</label>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.WorkplaceName*</label>
             <div class="col-md-2">
                 <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Workplace.WorkplaceName+">")" id="tariffTypeName" data-bind="value:name" />
             </div>
@@ -21,17 +21,17 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.WorkplaceType</label>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.WorkplaceType*</label>
             <div class="col-md-2">
                 <select class="form-control" data-bind="options: $root.baseWorkplaceTypeList, optionsText: 'WorkPlaceTypeCodeName', optionsValue: 'WorkPlaceTypeId',  optionsCaption:'&lt;' +'@Cares.Web.Resources.Organization.Workplace.WorkplaceType'+'&gt;', value:workplaceTypeId"></select>
             </div>
 
-            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.Company</label>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.Company*</label>
             <div class="col-md-2">
                 <select class="form-control" id="baseCompniesList" data-bind="options: $root.baseCompniesList, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.Workplace.Company '+'&gt;', value:companyId, event: { change : $root.filterWorkLocations}"></select>
             </div>
 
-            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.WorkLocation</label>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.WorkLocation*</label>
             <div class="col-md-2">
                 <select class="form-control" data-bind="options: $root.filteredBaseWorkLocationsList, optionsText: 'WorkLocationCodeName', optionsValue: 'WorkLocationId', optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.Workplace.WorkplaceType '+'&gt;', value:workLocationId"></select>
             </div>
@@ -62,7 +62,7 @@
                         <div class="col-md-2">
                             <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Workplace.LocationCode+">")"  data-bind="value:locationCode" />
                         </div>
-                        <label for="" class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.LocationName</label>
+                        <label for="" class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.LocationName*</label>
                         <div class="col-md-2">
                             <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Workplace.LocationName+">")"  data-bind="value:locationName" />
                         </div>
@@ -82,7 +82,7 @@
                             <select class="form-control" data-bind="options: $root.baseFleetPoolList, optionsText: 'FleetPoolCodeName', optionsValue: 'FleetPoolId', optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.Workplace.FleetPool '+'&gt;', value:$root.fleelPoolDropDownId"></select>
                         </div>
 
-                        <label for="" class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.CostCenter</label>
+                        <label for="" class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.CostCenter*</label>
                         <div class="col-md-2">
                             <input type="text" onkeypress="return onlyNumbers(this)" placeholder="@("<"+Cares.Web.Resources.Organization.Workplace.CostCenter+">")"  class="form-control" data-bind="    value: costCenter" />
                         </div>

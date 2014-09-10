@@ -7,15 +7,15 @@
     </div>
     <form class="form-horizontal">
         <div class="form-group">
-            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.FleetPool.FleetPool.FleetPoolCode</label>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.FleetPool.FleetPool.FleetPoolCode*</label>
             <div class="col-md-2">
                 <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.FleetPool.FleetPool.FleetPoolCode + ">")" id="tariffTypeCode" data-bind="value: code" />
             </div>
-            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.FleetPool.FleetPool.FleetPoolName</label>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.FleetPool.FleetPool.FleetPoolName*</label>
             <div class="col-md-2">
                 <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.FleetPool.FleetPool.FleetPoolName + ">")" id="tariffTypeName" data-bind="value:name" />
             </div>
-            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.FleetPool.FleetPool.VehiclesAssigned</label>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.FleetPool.FleetPool.VehiclesAssigned*</label>
             <div class="col-md-2">
                 <input type="text" class="form-control" onkeypress="return onlyNumbers(this)" placeholder="@("<" + Cares.Web.Resources.FleetPool.FleetPool.VehiclesAssigned + ">")" id="tariffTypeDescription" data-bind="value:vehiclesAssigned" />
             </div>
@@ -25,17 +25,17 @@
             <div class="col-md-2">
                 <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.FleetPool.FleetPool.Description + ">")" id="tariffTypeCompany" data-bind="value:description" />
             </div>
-            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.FleetPool.FleetPool.Country</label>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.FleetPool.FleetPool.Country*</label>
             <div class="col-md-2">
                 <select class="form-control" id="tariffTypeDepartment" data-bind="options: $root.countryList, optionsText: 'CountryCodeName', optionsValue: 'CountryId', optionsCaption:'&lt;' +  '@Cares.Web.Resources.FleetPool.FleetPool.Country'+'&gt;', value: countryId, event: { change : $root.filterRegions}"></select>
             </div>
-            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.FleetPool.FleetPool.Region</label>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.FleetPool.FleetPool.Region*</label>
             <div class="col-md-2">
                 <select class="form-control" id="tariffTypeOperation" data-bind="options: $root.contryBaseRegionList, optionsText: 'RegionCodeName', optionsValue: 'RegionId', optionsCaption:'&lt;' +  '@Cares.Web.Resources.FleetPool.FleetPool.Region'+'&gt;', value: regionId"></select>
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.FleetPool.FleetPool.Operation</label>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.FleetPool.FleetPool.Operation*</label>
             <div class="col-md-2">
                 <select class="form-control" data-bind="options: $root.operationsList, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption:'&lt;' +  '@Cares.Web.Resources.FleetPool.FleetPool.Operation'+'&gt;', value: operationId"></select>
             </div>

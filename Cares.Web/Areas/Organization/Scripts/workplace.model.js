@@ -7,7 +7,7 @@
             var
                 id = ko.observable(specifiedId),
                 code = ko.observable(specifiedCode).extend({ required: true }),
-                name = ko.observable(specifiedName),
+                name = ko.observable(specifiedName).extend({ required: true }),
                 description = ko.observable(specifiedDescription),
                 companyId = ko.observable(cmpId),
                 companyName = ko.observable(spcCompanyName),
@@ -21,6 +21,7 @@
                 tabDetail = ko.observable(),
                 errors = ko.validation.group({
                     code: code,
+                    name:name,
                     workplaceTypeId: workplaceTypeId,
                     workLocationId: workLocationId
                 }),
@@ -102,7 +103,7 @@
 
                 operationsWorkPlaceId = ko.observable(specifiedoperationsWorkPlaceId),
                 locationCode = ko.observable(specifiedLocationCode).extend({ required: true }),
-                locationName = ko.observable(specifiedLocationName),
+                locationName = ko.observable(specifiedLocationName).extend({ required: true }),
                 locationDescription = ko.observable(specifiedDescription),
                 operationId = ko.observable(specifiedoperationId),
                 operationName = ko.observable(specifiedoperationName),
@@ -111,6 +112,7 @@
                 costCenter = ko.observable(specifiedcostCenter).extend({ required: true }),
                 errors = ko.validation.group({
                     locationCode: locationCode,
+                    locationName:locationName,
                     costCenter: costCenter
                }),
                // Is Valid

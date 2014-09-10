@@ -2,13 +2,13 @@
   margin-left: 5px;
 }
 #WorkPlaceBinding table thead tr .WPcode {
-  width: 10%;
+  width: 12%;
 }
 #WorkPlaceBinding table thead tr .WPname {
-  width: 10%;
+  width: 12%;
 }
 #WorkPlaceBinding table thead tr .WPDescription {
-  width: 15%;
+  width: 21%;
 }
 #WorkPlaceBinding table thead tr .WPType {
   width: 15%;

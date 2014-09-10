@@ -2,23 +2,19 @@
   margin-left: 5px;
 }
 #fleetRootBinding table thead tr .fleetCode {
-  width: 15%;
+  width: 20%;
 }
 #fleetRootBinding table thead tr .fleetName {
-  width: 15%;
+  width: 20%;
 }
 #fleetRootBinding table thead tr .fleetOpp {
-  width: 15%;
+  width: 20%;
 }
 #fleetRootBinding table thead tr .fleetCountry {
-  width: 15%;
+  width: 20%;
 }
 #fleetRootBinding table thead tr .fleetRegion {
-  width: 15%;
-}
-#fleetRootBinding #deleteActionFleetPoolTemplate {
   width: 20%;
-  float: left;
 }
 #FleetPoolEditor {
   margin-top: 15px;

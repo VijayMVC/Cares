@@ -89,20 +89,22 @@ namespace Cares.Implementation.Services
         public void DeleteCompany(long companyId)
         {
             Company dbversion = companyRepository.Find(companyId);
-            if (
-                !((companyRepository.IsComapnyParent(companyId)) ||
-                  departmentRepository.IsCompanyContainDepartment(companyId)))
-            {
+            
+            // company-department association checking
+            if (departmentRepository.IsCompanyContainDepartment(companyId))
+                throw new CaresException(Resources.Organization.Company.CompanyIsAssociatedWithDepartmentError);
+            //if company is parent of other companies
+            if (companyRepository.IsComapnyParent(companyId)) 
+                throw new CaresException(Resources.Organization.Company.CompanyIsParentOfOtherCompanyError);
+
+            
                 if (dbversion == null)
                 {
                     throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
                         "Company with Id {0} not found!", companyId));
                 }
                 companyRepository.Delete(dbversion);
-                companyRepository.SaveChanges();
-            }
-            else
-                throw new CaresException(Resources.Organization.Company.CompanyHasCompanyDepartmentAssociationError);
+                companyRepository.SaveChanges();                
         }
         /// <summary>
         /// Search Company

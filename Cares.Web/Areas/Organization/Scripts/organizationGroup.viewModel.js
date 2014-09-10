@@ -74,7 +74,6 @@ define("Organization/organizationGroup.viewModel",
                     resetResuults = function() {
                         orgGroupFilter(undefined);
                         getOrganizationGroups();
-                        pager.reset();
                     },
                     //delete button handler
                     onDeleteOrgGroup = function(item) {
