@@ -241,6 +241,15 @@ namespace Cares.Web.Resources.Organization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Serach.
+        /// </summary>
+        public static string Serach {
+            get {
+                return ResourceManager.GetString("Serach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to UAN.
         /// </summary>
         public static string UAN {

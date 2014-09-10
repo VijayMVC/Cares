@@ -17,7 +17,7 @@ namespace Cares.Interfaces.IServices
         /// <summary>
         /// Delete Organization Group 
         /// </summary>
-        void DeleteOrgGroup(OrgGroup request);
+        void DeleteOrgGroup(long orgGroupId);
 
         /// <summary>
         /// Add / Update Organization Group 

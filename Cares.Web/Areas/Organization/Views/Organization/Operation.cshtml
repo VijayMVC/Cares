@@ -14,18 +14,9 @@
         <div class=" well">
             <form class="form-horizontal">
                 <div class="col-xs-2">
-                    <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Operation.OperationCode+">")" data-bind="value:opperationCodeTextFilter" />
+                    <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Operation.Serach+">")" data-bind="value:opperationFilter" />
                 </div>
-                <div class="col-xs-2">
-                    <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Operation.OperationName+">")"  data-bind="value:opperationNameTextFilter" />
-                </div>
-                <div class="col-xs-2">
-                    <select class="form-control" data-bind="options: $root.baseDepartmentsList, optionsText: 'DepartmentCodeName', optionsValue: 'DepartmentId', optionsCaption:'&lt;' +  '@Cares.Web.Resources.Organization.Operation.Department'+'&gt;', value:departmentFilter"></select>
-                </div>
-
-                <div class="col-xs-2">
-                    <select class="form-control" data-bind="options: $root.baseCompniesList, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.Operation.Company '+'&gt;', value:companyFilter"></select>
-                </div>
+              
                 <div class="col-xs-2">
                     <select class="form-control" data-bind="options: $root.baseDepartmentTypesList, optionsCaption:'&lt;' +'@Cares.Web.Resources.Organization.Operation.DepartmentType'+'&gt;', value:departmentTypeFilter"></select>
                 </div>
@@ -44,7 +35,7 @@
                     <tr>
                         <th class="code"> <span id="1">@Cares.Web.Resources.Organization.Operation.Code<span class="icon-up"></span></span></th>
                         <th class="name"> <span id="2">@Cares.Web.Resources.Organization.Operation.Name<span></span></span></th>
-                        <th class="company"> <span id="4">@Cares.Web.Resources.Organization.Operation.Company<span></span></span></thclass>
+                        <th class="company"> <span id="4">@Cares.Web.Resources.Organization.Operation.Company<span></span></span></th>
                         <th class="department"> <span id="6">@Cares.Web.Resources.Organization.Operation.Department<span></span></span></th>
                         <th class="departmentType"> <span id="5">@Cares.Web.Resources.Organization.Operation.DepartmentType <span></span></span></th>
                         <th> <span></span></th>

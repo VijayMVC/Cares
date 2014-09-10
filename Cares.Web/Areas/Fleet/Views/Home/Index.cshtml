@@ -14,13 +14,13 @@
         <div class="well">
             <form class="form-horizontal" data-bind="submit: search">
 
-                <div class="col-xs-3">
+                <div class="col-xs-2">
                     <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.FleetPool.FleetPool.FleetPoolLabel+">")" data-bind="value: fleetPoolSeachFilter" />
                 </div>
-                <div class="col-xs-3">
+                <div class="col-xs-2">
                     <select class="form-control" data-bind="options: $root.regionsList, optionsText: 'RegionCodeName', optionsValue: 'RegionId', optionsCaption:'&lt;' + '@Cares.Web.Resources.FleetPool.FleetPool.Region' +'&gt;', value: fleetPoolRegionFilter"></select>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-xs-2">
                     <select class="form-control" data-bind="options: $root.operationsList, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption:'&lt;' + '@Cares.Web.Resources.FleetPool.FleetPool.Operation'+'&gt;', value: fleetPoolOperationFilter"></select>
                 </div>
                 <button type="submit" class="btn btn-success" data-bind="click: search">@Cares.Web.Resources.Shared.Common.Search</button>
@@ -55,7 +55,7 @@
         </div>
     </div>
     <script id="deleteActionFleetPoolTemplate" type="text/html">
-        <a href="#" data-bind="click: $root.onDeleteFleetPool" title="@Cares.Web.Resources.Shared.Common.Delete"><span class="glyphicon glyphicon-remove"></span></a>
+       <a href="#" data-bind="click: $root.onDeleteFleetPool" title="@Cares.Web.Resources.Shared.Common.Delete"><span  class="glyphicon glyphicon-remove"></span></a>
     </script>
 
     <script id="editActionFleetPoolTemplate" type="text/html">

@@ -10,12 +10,7 @@ namespace Cares.Models.RequestModels
         /// <summary>
         /// DepartmentCode
         /// </summary>
-        public string DepartmentCodeText { get; set; }
-
-        /// <summary>
-        /// DepartmentName
-        /// </summary>
-        public string DepartmentNameText { get; set; }
+        public string DepartmentFilterText { get; set; }
 
         /// <summary>
         /// DepartmentType

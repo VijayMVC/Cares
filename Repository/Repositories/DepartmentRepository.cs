@@ -76,20 +76,16 @@ namespace Cares.Repository.Repositories
        public IEnumerable<Department> SearchDepartment(DepartmentSearchRequest request, out int rowCount)
         {
             int fromRow = (request.PageNo - 1) * request.PageSize;
-            int toRow = request.PageSize;
+            int toRow = request.PageSize; 
             Expression<Func<Department, bool>> query =
                 department =>
-                    (string.IsNullOrEmpty(request.DepartmentCodeText) ||
-                     (department.DepartmentCode.Contains(request.DepartmentCodeText))) && (
-                         (string.IsNullOrEmpty(request.DepartmentNameText) ||
-                          (department.DepartmentName.Contains(request.DepartmentNameText)))) &&
+                    (string.IsNullOrEmpty(request.DepartmentFilterText) ||
+                     (department.DepartmentCode.Contains(request.DepartmentFilterText)) ||
+                     (department.DepartmentName.Contains(request.DepartmentFilterText)))  &&
                     (string.IsNullOrEmpty(request.DepartmentTypeText) ||
                      (department.DepartmentType.Contains(request.DepartmentTypeText))) &&
                     (!request.CompanyId.HasValue || request.CompanyId == department.CompanyId);
-
-
             rowCount = DbSet.Count(query);
-
             return request.IsAsc
                 ? DbSet.Where(query)
                     .OrderBy(departmentOrderByClause[request.OperationOrderBy])
@@ -106,10 +102,10 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get Department With Details
         /// </summary>
-        public Department GetDepartmentWithDetails(long id)
+       public Department GetDepartmentWithDetails(long departmentId)
         {
             return DbSet.Include(opp => opp.Company)
-                .FirstOrDefault(opp => opp.DepartmentId == id);
+                .FirstOrDefault(opp => opp.DepartmentId == departmentId);
         }
 
         /// <summary>
@@ -117,18 +113,16 @@ namespace Cares.Repository.Repositories
         /// </summary>
        public bool IsDepartmentCodeExists(Department dep)
         {
-            Expression<Func<Department, bool>> query = department => department.DepartmentCode.ToLower()==dep.DepartmentCode.ToLower() &&
-            department.DepartmentId != dep.DepartmentId;
-            return DbSet.Count(query) > 0;
+            return DbSet.Count(department => department.DepartmentCode.ToLower() == dep.DepartmentCode.ToLower() &&
+            department.DepartmentId != dep.DepartmentId) > 0;
         }
 
         /// <summary>
         /// To check either company have any department
         /// </summary>
-        public bool IsCompanyContainDepartment(Company company)
+        public bool IsCompanyContainDepartment(long companyId)
         {
-            Expression<Func<Department, bool>> query = department => department.CompanyId == company.CompanyId;
-            return DbSet.Count(query) > 0;
+            return DbSet.Count(department => department.CompanyId == companyId) > 0;
         }
         #endregion
     }

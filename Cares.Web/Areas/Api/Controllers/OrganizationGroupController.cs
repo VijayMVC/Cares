@@ -30,6 +30,7 @@ namespace Cares.Web.Areas.Api.Controllers
 
         #endregion
         #region Public
+
         /// <summary>to
         /// Get OrgGroups
         /// </summary>
@@ -41,6 +42,7 @@ namespace Cares.Web.Areas.Api.Controllers
             }
             return orgGroupService.SerchOrgGroup(request).CreateFrom();
         }
+
         /// <summary>
         /// Delete org group
         /// </summary>
@@ -51,9 +53,10 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            orgGroupService.DeleteOrgGroup(orgGroup.CreateFrom());
+            orgGroupService.DeleteOrgGroup(orgGroup.OrgGroupId);
             return false;
         }
+
         /// <summary>
         /// Add/Update org group
         /// </summary>
@@ -66,6 +69,7 @@ namespace Cares.Web.Areas.Api.Controllers
             }
             return orgGroupService.AddUpdateOrgGroup((orgGroup).CreateFrom()).CreateFromm();
         }
+
         #endregion 
     }
 }

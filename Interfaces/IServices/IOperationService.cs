@@ -28,7 +28,7 @@ namespace Cares.Interfaces.IServices
         /// <summary>
         /// Delete Operation
         /// </summary>
-        void DeleteOperation(Operation operationobeDeleted);
+        void DeleteOperation(long operationoId);
 
         /// <summary>
         /// Save Operation

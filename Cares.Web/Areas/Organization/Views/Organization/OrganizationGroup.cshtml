@@ -13,13 +13,10 @@
     <div class="row searchFilterSection" data-bind="visible: !isOrgGroupEditorVisible() && filterSectionVisilble()" style="display: none">
         <div class="well">
             <form class="form-horizontal">
-                <div class="col-xs-3">
-                    <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.OrganizationGroup.OrganizationGroupCode+">")" data-bind="value: orgGroupCodeFilter" />
+                <div class="col-xs-2">
+                    <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.OrganizationGroup.Search+">")" data-bind="value: orgGroupFilter" />
                 </div>
-                <div class="col-xs-3">
-                    <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.OrganizationGroup.OrganizationGroupName+">")" data-bind="value: orgGroupNameFilter" />
-                </div>
-
+               
                 <button type="submit" class="btn btn-success" data-bind="click: search">@Cares.Web.Resources.Shared.Common.Search</button>
                 <button type="submit" class="btn btn-default" data-bind="click:resetResuults">@Cares.Web.Resources.Shared.Common.Reset</button>
                 <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click:hideFilterSection" title="@Cares.Web.Resources.Shared.Common.HideSection"></a>
@@ -31,9 +28,9 @@
             <table id="OrgGroupTable" class="table table-condensed">
                 <thead>
                     <tr>
-                        <th class="Orgcode"> <span id="1">@Cares.Web.Resources.Organization.OrganizationGroup.Code<span class="icon-up"></span></span></th>
-                        <th class="Orgname"> <span id="2">@Cares.Web.Resources.Organization.OrganizationGroup.Name<span></span></span></th>
-                        <th> <span id="3">@Cares.Web.Resources.Organization.OrganizationGroup.Description<span></span></span></th>
+                        <th class="OrgGroupcode"> <span id="1">@Cares.Web.Resources.Organization.OrganizationGroup.Code<span class="icon-up"></span></span></th>
+                        <th class="OrgGroupname"> <span id="2">@Cares.Web.Resources.Organization.OrganizationGroup.Name<span></span></span></th>
+                        <th class="OrgGroupDes"> <span id="3">@Cares.Web.Resources.Organization.OrganizationGroup.Description<span></span></span></th>
                         <th> <span></span></th>
                         <th> <span></span></th>
                     </tr>

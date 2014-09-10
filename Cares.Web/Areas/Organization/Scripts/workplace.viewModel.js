@@ -29,12 +29,11 @@ define("workplace/workplace.viewModel",
                     //Filtered WorkLocations list for base data
                     filteredBaseWorkLocationsList = ko.observableArray([]),
                     //filters
-                    workplaceCodeTextFilter = ko.observable(),
-                    workplaceNameTextFilter = ko.observable(),
+                    workplaceFilter = ko.observable(),
                     companyFilter = ko.observable(),
                     workplaceTypeFilter = ko.observable(),
-                    operationString = ko.observable(),
-                    fleelPoolString = ko.observable(),
+                    operationDropDownId = ko.observable(),
+                    fleelPoolDropDownId = ko.observable(),
 
                     //pager
                     pager = ko.observable(),
@@ -66,13 +65,14 @@ define("workplace/workplace.viewModel",
                 onCreateWorkPlaceForm = function () {
                     var workPlace = new model.workPlace();
                     editorViewModel.selectItem(workPlace);
-                        selectedWorkPlace().tabDetail(new model.operationWorkplace());
+                    selectedWorkPlace().tabDetail(new model.operationWorkplace());
+                    selectedWorkPlace().tabDetail().parentWorkPlaceId(0);
                         filteredParentWorkPlaceList(_.filter(parentWorkPlaceList(), function(workplace) {
                             return workplace;
                         }));
                         filteredBaseWorkLocationsList.removeAll();
-                        fleelPoolString(undefined);
-                        operationString(undefined);
+                        fleelPoolDropDownId(undefined);
+                        operationDropDownId(undefined);
                         isWorkPlaceEditorVisible(true);
                 },
                 filterWorkLocations = function (item) {
@@ -83,8 +83,7 @@ define("workplace/workplace.viewModel",
                 },
                 //reset butto handle 
                 onResetResuults = function() {
-                        workplaceCodeTextFilter(undefined);
-                        workplaceNameTextFilter(undefined);
+                        workplaceFilter(undefined);
                         workplaceTypeFilter(undefined);
                         companyFilter(undefined);
                         getWorkPlaces();
@@ -112,6 +111,7 @@ define("workplace/workplace.viewModel",
                         editorViewModel.selectItem(item);
                         selectedWorkPlace().tabDetail(new model.operationWorkplace());
                         selectedWorkPlace().tabDetail().parentWorkPlaceId(item.id());
+
                         isWorkPlaceEditorVisible(true);
                         $("#baseCompniesList").prop("disabled", true);
                     },
@@ -133,28 +133,33 @@ define("workplace/workplace.viewModel",
                 },
                 //add operation worklplace  handler
                 onAddOperation = function (operationDetail) {
-                    debugger;
                         if (dobeforeoperationWorkplace()) {
                             var selectedFleetPoolname = baseFleetPoolList.find(function (temp) {
-                                if (temp.FleetPoolId == fleelPoolString() && fleelPoolString() != 'undefined')
+                                if (temp.FleetPoolId == fleelPoolDropDownId() && fleelPoolDropDownId() != 'undefined')
                                     return temp.FleetPoolCodeName;
                                 else return "";
                             });
                         var selectedOperationname = baseOperationsList.find(function(temp) {
-                            if (temp.OperationId == operationString() && operationString() != 'undefined')
+                            if (temp.OperationId == operationDropDownId() && operationDropDownId() != 'undefined')
                                 return temp.OperationCodeName;
                             else return "";
                         });
-                        if (fleelPoolString() != undefined && operationString() != undefined)
+                        if (fleelPoolDropDownId() != undefined )
                         operationDetail.fleelPoolName(selectedFleetPoolname.FleetPoolCodeName);
-                        operationDetail.fleelPoolId(fleelPoolString());
-                        if (fleelPoolString() != undefined && operationString() != undefined)
+                        operationDetail.fleelPoolId(fleelPoolDropDownId());
+                        if ( operationDropDownId() != undefined)
                         operationDetail.operationName(selectedOperationname.OperationCodeName);
-                        operationDetail.operationId(operationString());
+                        operationDetail.operationId(operationDropDownId());
+                        if (operationDetail.parentWorkPlaceId() == undefined)
+                            operationDetail.parentWorkPlaceId (0);
                         operationsTabList.push(operationDetail);
-                        fleelPoolString(undefined);
-                        operationString(undefined);
+                        fleelPoolDropDownId(undefined);
+                        operationDropDownId(undefined);
+                        if (selectedWorkPlace().tabDetail().parentWorkPlaceId() == undefined)
+                        if (selectedWorkPlace().tabDetail().parentWorkPlaceId() == undefined)
+                            selectedWorkPlace().tabDetail().parentWorkPlaceId(0);
                         selectedWorkPlace().tabDetail(new model.operationWorkplace());
+                       
                         }
                     return false;
                 },
@@ -234,8 +239,7 @@ define("workplace/workplace.viewModel",
                 //get WorkPlaces
                 getWorkPlaces = function() {
                     dataservice.getWorkplaces({
-                        WorkplaceCodeText: workplaceCodeTextFilter(),
-                        WorkplaceNameText: workplaceNameTextFilter(),
+                        WorkplaceFilterText: workplaceFilter(),
                         WorkplaceTypeId: workplaceTypeFilter(),
                         CompanyId: companyFilter(),
                         PageSize: pager().pageSize(),
@@ -259,7 +263,7 @@ define("workplace/workplace.viewModel",
                 //get WorkPlace base data
                 getWorkPlaceBaseData = function() {
                     dataservice.getWorkplaceBaseData(null, {
-                        success: function(baseDataFromServer) {
+                        success: function (baseDataFromServer) {
                             poulateBaseData(baseDataFromServer); 
                         },
                         error: function(exceptionMessage, exceptionType) {
@@ -273,7 +277,6 @@ define("workplace/workplace.viewModel",
                     },
                 //set the base data 
                 poulateBaseData = function (baseDataFromServer) {
-                    debugger;
                     baseCompniesList.removeAll();
                     baseWorkplaceTypeList.removeAll();
                     baseWorkLocationsList.removeAll();
@@ -294,7 +297,7 @@ define("workplace/workplace.viewModel",
                     baseOperationsList.valueHasMutated();
                 },
                 workPalceClientToServerMapper = function (operation) {
-                        _.each(operationsTabList(), function(item) {
+                    _.each(operationsTabList(), function (item) {
                             var v = item.convertToServerData();
                             operation.OperationsWorkPlaces.push(v);
                         });
@@ -306,7 +309,7 @@ define("workplace/workplace.viewModel",
                         WorkPlaceId: workPlaceId
                     },
                     {
-                        success: function(data) {
+                        success: function (data) {
                             operationsTabList.removeAll();
                             _.each(data.OperationWorkPlaces, function(item) {
                                 var v = model.operationWorkplaceServertoClientMapper(item);
@@ -327,8 +330,7 @@ define("workplace/workplace.viewModel",
                         getWorkPlaces();
                     };
                 return {
-                    workplaceCodeTextFilter: workplaceCodeTextFilter,
-                    workplaceNameTextFilter: workplaceNameTextFilter,
+                    workplaceFilter: workplaceFilter,
                     workplaceTypeFilter: workplaceTypeFilter,
                     companyFilter: companyFilter,
                     baseCompniesList: baseCompniesList,
@@ -356,8 +358,8 @@ define("workplace/workplace.viewModel",
                     operationsTabList: operationsTabList,
                     onAddOperation: onAddOperation,
                     selectedWorkPlace: selectedWorkPlace,
-                    operationString: operationString,
-                    fleelPoolString: fleelPoolString,
+                    operationDropDownId: operationDropDownId,
+                    fleelPoolDropDownId: fleelPoolDropDownId,
                     deleteOperationDetail: deleteOperationDetail,
                     parentWorkPlaceList: parentWorkPlaceList,
                     filteredParentWorkPlaceList: filteredParentWorkPlaceList,

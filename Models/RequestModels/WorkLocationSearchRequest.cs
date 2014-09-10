@@ -10,12 +10,7 @@ namespace Cares.Models.RequestModels
         /// <summary>
         /// Declarations
         /// </summary>
-        public string WorkLocationCodeText { get; set; }
-        public string WorkLocationNameText { get; set; }
-        public long? CompanyId { get; set; }
-        public long? CountryId { get; set; }
-        public long? RegionId { get; set; }
-        public long? SubRegionId { get; set; }
+        public string WorkLocationFilterText { get; set; }
         public long? CityId { get; set; }
         public long? AreaId { get; set; }
 

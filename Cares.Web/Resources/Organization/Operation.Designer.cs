@@ -203,5 +203,14 @@ namespace Cares.Web.Resources.Organization {
                 return ResourceManager.GetString("OperationSaveSuccessMessage", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Serach.
+        /// </summary>
+        public static string Serach {
+            get {
+                return ResourceManager.GetString("Serach", resourceCulture);
+            }
+        }
     }
 }

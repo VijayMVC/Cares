@@ -33,7 +33,7 @@ namespace Cares.Interfaces.Repository
         /// <summary>
         /// To check if department is associated with any operation
         /// </summary>
-        bool IsDepartmentAssociatedWithAnyOperation(Department department);
+        bool IsDepartmentAssociatedWithAnyOperation(long departmentId);
 
     }
 }

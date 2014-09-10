@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using Cares.ExceptionHandling;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -66,6 +68,19 @@ namespace Cares.Implementation.Services
             }
         }
 
+        /// <summary>
+        /// Deletion of Phone with iD
+        /// </summary>
+        /// <param name="phoneId"></param>
+        private void DeletePhone(long phoneId)
+        {
+            Phone phone = phoneRepository.Find(phoneId);
+            if (phone != null)
+            {
+                phoneRepository.Delete(phone);
+            }
+        }
+
         #endregion
         #region Constructor
         /// <summary>
@@ -124,14 +139,17 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Delete Work Location
         /// </summary>
-        public void DeleteWorkLocation(WorkLocation request)
+        public void DeleteWorkLocation(long workLocationId)
         {
-            WorkLocation dBworkLocation = workLocationRepository.Find(request.WorkLocationId);
+            WorkLocation dBworkLocation = workLocationRepository.Find(workLocationId);
             if (dBworkLocation != null)
             {
                 workLocationRepository.Delete(dBworkLocation);
                 workLocationRepository.SaveChanges();
             }
+            else
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
+                              "WorkLocation with Id {0} not found!", workLocationId));
         }
 
         /// <summary>
@@ -139,91 +157,77 @@ namespace Cares.Implementation.Services
         /// </summary>
         public WorkLocation SaveWorkLocation(WorkLocation workLocationRequest)
         {
+            // Check the availability of workLocation code
+            if (workLocationRepository.DoesWorkLocationCodeExists(workLocationRequest))
+                throw new CaresException(Resources.Organization.WorkLocation.WorkLocationWithSameCodeExistsError); 
+
             WorkLocation dbWorkLocation = workLocationRepository.Find(workLocationRequest.WorkLocationId);
-            // Edit Existing record
-            #region EDIT
+            bool isFind = false;
+
+            #region Edit
             if (dbWorkLocation != null)
             {
                 IEnumerable<Phone> dBVersionPhones = phoneRepository.GetPhonesByWorkLocationId(dbWorkLocation.WorkLocationId);
                 SetUpdateedProperties(dbWorkLocation, workLocationRequest, "update");
-
-                // Checking if there is any Phone  in Worklocation request object
-                if (workLocationRequest.Phones != null)
+                #region Phones already exists in DB
+                // ReSharper disable once PossibleMultipleEnumeration
+                if (dBVersionPhones.Any())
                 {
-                    // for every Phone in Worklocation request object
-                    foreach (Phone phone in workLocationRequest.Phones)
+                    // check for every phone in DB
+                    foreach (Phone dBPhone in dBVersionPhones)
                     {
-                        // if there is any recored in Phone table in DB associated with worklocation
-                        // ReSharper disable once PossibleMultipleEnumeration
-                        if (dBVersionPhones.Count() != 0)
+                        //If DbPhone matches to any of request phone than dont delete it else delete 
+                        if (workLocationRequest.Phones!=null)
                         {
-                            // for every Phone in dBVersionPhones object
-                            foreach (Phone dbVersionPhone in dBVersionPhones)
-                            {
-                                // If Phone is newly created with id = 0 
-                                if (phone.PhoneId == 0)
-                                {
-                                    phone.RecCreatedBy =
-                                    phone.RecLastUpdatedBy = phoneRepository.LoggedInUserIdentity;
-                                    phone.RecCreatedDt = phone.RecLastUpdatedDt = DateTime.Now;
-                                    phone.UserDomainKey = 1;
-                                //    phone.WorkLocationId = workLocationRequest.WorkLocationId;
-                                    phone.IsActive = true;
-                                    phone.IsDeleted = false;
-                                    phone.IsPrivate = false;
-                                    dbWorkLocation.Phones.Add(phone);
-                                } // delete those Phone objects that are not in request obj
-                                else if (phone.PhoneId != dbVersionPhone.PhoneId)
-                                {
-                                    Phone operationsWorkPlaces =
-                                        phoneRepository.Find(dbVersionPhone.PhoneId);
-                                    if (operationsWorkPlaces != null)
-                                    {
-                                        dbWorkLocation.Phones.Remove(operationsWorkPlaces);
-                                        phoneRepository.Delete(operationsWorkPlaces);
-                                    }
-                                }
-                            }
-                        } // Add them for first time
+                            if (workLocationRequest.Phones.Any(reqPhone => reqPhone.PhoneId == dBPhone.PhoneId))
+                                isFind = true;
+                        }
                         else
-                        {
-                            phone.RecCreatedBy = phone.RecLastUpdatedBy = phoneRepository.LoggedInUserIdentity;
-                            phone.RecCreatedDt = phone.RecLastUpdatedDt = DateTime.Now;
-                            phone.UserDomainKey = 1;
-                          //  phone.wo = workLocationRequest.WorkLocationId;
-                            phone.IsActive = true;
-                            phone.IsDeleted = false;
-                            phone.IsPrivate = false;
-                            if (dbWorkLocation.Phones == null)
-                            {
-                                dbWorkLocation.Phones = new List<Phone>();
-                            }
-                            dbWorkLocation.Phones.Add(phone);
-                        }
-                    }
-                    //phoneRepository.SaveChanges();
-                    workLocationRepository.Update(dbWorkLocation);
-                    //workLocationRepository.SaveChanges();
-                }   // request object does not contain any Phone , so delete all associated Phones entities 
-                else
-                {
-                    foreach (Phone dbVersionOPhone in dBVersionPhones)
-                    {
-                        Phone phone = phoneRepository.Find(dbVersionOPhone.PhoneId);
-                        if (phone != null)
-                        {
-                            dbWorkLocation.Phones.Remove(phone);
-                            phoneRepository.Delete(phone);
-                        }
+                            DeletePhone(dBPhone.PhoneId);
+                        if (!isFind)
+                            DeletePhone(dBPhone.PhoneId);
+                        isFind = false;
                     }
                 }
+                #endregion
+                #region Adding New Phones 
+                else
+                {
+                    foreach (var newPhone in workLocationRequest.Phones)
+                    {
+                        newPhone.RecCreatedBy = newPhone.RecLastUpdatedBy = phoneRepository.LoggedInUserIdentity;
+                        newPhone.RecCreatedDt = newPhone.RecLastUpdatedDt = DateTime.Now;
+                        newPhone.UserDomainKey = 1;
+                        newPhone.IsActive = true;
+                        newPhone.IsDeleted = false;
+                        newPhone.IsPrivate = false;
+                        dbWorkLocation.Phones.Add(newPhone);
+                    }
+                }
+                #endregion
+                #region Adding Phones when there are more phones in request thatn in DB
+                if (workLocationRequest.Phones != null && workLocationRequest.Phones.Count > dBVersionPhones.Count())
+                foreach (var newPhonee in workLocationRequest.Phones)
+                {
+                    if (newPhonee.PhoneId == 0)
+                    {
+                        newPhonee.RecCreatedBy = newPhonee.RecLastUpdatedBy = phoneRepository.LoggedInUserIdentity;
+                        newPhonee.RecCreatedDt = newPhonee.RecLastUpdatedDt = DateTime.Now;
+                        newPhonee.UserDomainKey = 1;
+                        newPhonee.IsActive = true;
+                        newPhonee.IsDeleted = false;
+                        newPhonee.IsPrivate = false;
+                        dbWorkLocation.Phones.Add(newPhonee);
+                    }
+                }
+                #endregion
+                workLocationRepository.Update(dbWorkLocation);
             }
             #endregion
-            // Add new record
             #region ADD
             else
             {
-               SetUpdateedProperties(null, workLocationRequest, "insert");
+                SetUpdateedProperties(null, workLocationRequest, "insert");
                 if (workLocationRequest.Phones != null)
                 {
                     foreach (var phone in (workLocationRequest.Phones))
@@ -237,13 +241,11 @@ namespace Cares.Implementation.Services
                     }
                 }
                 workLocationRepository.Add(workLocationRequest);
-            //    workLocationRepository.SaveChanges();
             }
             #endregion
 
-            workLocationRepository.SaveChanges();
             phoneRepository.SaveChanges();
-
+            workLocationRepository.SaveChanges();
             // Get detailed object of worklocation
             return workLocationRepository.GetWorkLocationWithDetails(workLocationRequest.WorkLocationId);
         }

@@ -23,7 +23,7 @@ namespace Cares.Interfaces.IServices
         /// <summary>
         /// Dalete Fleet Pool
         /// </summary>
-        void DeleteFleetPool(int id);
+        void DeleteFleetPool(long fleetPoolId);
 
         /// <summary>
         /// Add/update fleetpool 

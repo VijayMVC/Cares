@@ -51,7 +51,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            departmentService.DeleteDepartment(request.CreateFromm());
+            departmentService.DeleteDepartment(request.DepartmentId);
             return true;
         }
         /// <summary>

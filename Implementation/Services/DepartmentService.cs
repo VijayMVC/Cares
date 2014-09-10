@@ -49,10 +49,10 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Delete Department
         /// </summary>
-        public void DeleteDepartment(Department department)
+        public void DeleteDepartment(long departmentId)
         {
-            Department dbVersion = departmentRepository.Find(department.DepartmentId);
-            if (!operationRepository.IsDepartmentAssociatedWithAnyOperation(department))
+            Department dbVersion = departmentRepository.Find(departmentId);
+            if (!operationRepository.IsDepartmentAssociatedWithAnyOperation(departmentId))
             {
                 if (dbVersion != null)
                 {
@@ -61,7 +61,7 @@ namespace Cares.Implementation.Services
                     return;
                 }
                 throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                         "Department with Id {0} not found!", department.DepartmentId));
+                         "Department with Id {0} not found!", departmentId));
             }
             throw new CaresException(Resources.Organization.Department.DepartmentIsAssociatedWithOperationError);
         }
@@ -79,7 +79,6 @@ namespace Cares.Implementation.Services
         /// </summary>
         public DepartmentBaseDataResponse LoadDepartmentBaseData()
         {
-
             return new DepartmentBaseDataResponse
             {
                Companies = companyRepository.GetAll()

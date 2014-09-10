@@ -8,9 +8,7 @@ namespace Cares.Models.RequestModels
     public class WorkplaceSearchRequest : GetPagedListRequest
     {
 
-        public string WorkplaceCodeText { get; set; }
-
-        public string WorkplaceNameText { get; set; }
+        public string WorkplaceFilterText { get; set; }
 
         public int? WorkplaceTypeId { get; set; }
 

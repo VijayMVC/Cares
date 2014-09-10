@@ -54,7 +54,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            workLocationService.DeleteWorkLocation(workLocation.CreateFrom());
+            workLocationService.DeleteWorkLocation(workLocation.WorkLocationId);
             return true;
         }
 

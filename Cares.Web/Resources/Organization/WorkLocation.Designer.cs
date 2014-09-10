@@ -124,6 +124,42 @@ namespace Cares.Web.Resources.Organization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Is Default.
+        /// </summary>
+        public static string IsDefault {
+            get {
+                return ResourceManager.GetString("IsDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone Number.
+        /// </summary>
+        public static string PhoneNumber {
+            get {
+                return ResourceManager.GetString("PhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phones.
+        /// </summary>
+        public static string Phones {
+            get {
+                return ResourceManager.GetString("Phones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone Type.
+        /// </summary>
+        public static string PhoneType {
+            get {
+                return ResourceManager.GetString("PhoneType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to P.O.Box.
         /// </summary>
         public static string POBox {
@@ -138,6 +174,15 @@ namespace Cares.Web.Resources.Organization {
         public static string Region {
             get {
                 return ResourceManager.GetString("Region", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Serach.
+        /// </summary>
+        public static string Serach {
+            get {
+                return ResourceManager.GetString("Serach", resourceCulture);
             }
         }
         
@@ -169,11 +214,29 @@ namespace Cares.Web.Resources.Organization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Work Location Code.
+        ///   Looks up a localized string similar to  Code.
         /// </summary>
         public static string WorkLocationCode {
             get {
                 return ResourceManager.GetString("WorkLocationCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Work Location failed to delete.
+        /// </summary>
+        public static string WorkLocationDeleteFailError {
+            get {
+                return ResourceManager.GetString("WorkLocationDeleteFailError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Work Location successfully deleted.
+        /// </summary>
+        public static string WorkLocationDeleteSuccessMessage {
+            get {
+                return ResourceManager.GetString("WorkLocationDeleteSuccessMessage", resourceCulture);
             }
         }
         
@@ -196,11 +259,47 @@ namespace Cares.Web.Resources.Organization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Work Location Name.
+        ///   Looks up a localized string similar to Work Location base data failed to load.
+        /// </summary>
+        public static string WorkLocationLoadBaseFailError {
+            get {
+                return ResourceManager.GetString("WorkLocationLoadBaseFailError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Work Location failed to load.
+        /// </summary>
+        public static string WorkLocationLoadFailError {
+            get {
+                return ResourceManager.GetString("WorkLocationLoadFailError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Name.
         /// </summary>
         public static string WorkLocationName {
             get {
                 return ResourceManager.GetString("WorkLocationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Work Location failed to save.
+        /// </summary>
+        public static string WorkLocationSaveFailError {
+            get {
+                return ResourceManager.GetString("WorkLocationSaveFailError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Work Location successfully saved.
+        /// </summary>
+        public static string WorkLocationSaveSuccessMessage {
+            get {
+                return ResourceManager.GetString("WorkLocationSaveSuccessMessage", resourceCulture);
             }
         }
         

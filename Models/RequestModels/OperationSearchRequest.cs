@@ -7,11 +7,8 @@ namespace Cares.Models.RequestModels
     /// </summary>
     public class OperationSearchRequest : GetPagedListRequest
     {
-        public string OperationCodeText { get; set; }
-        public string OperationNameText { get; set; }
+        public string OperationFilterText { get; set; }
         public string DepartmentTypeText { get; set; }
-        public int? DepartmentId { get; set; }
-        public int? CompanyId { get; set; }
 
         /// <summary>
         /// Operation By Column to sort the data

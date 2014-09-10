@@ -165,4 +165,7 @@
   <data name="OperationSaveSuccessMessage" xml:space="preserve">
     <value>Operation saved successfully!</value>
   </data>
+  <data name="Serach" xml:space="preserve">
+    <value>Serach</value>
+  </data>
 </root>

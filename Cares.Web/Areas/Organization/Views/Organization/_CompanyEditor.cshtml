@@ -52,7 +52,7 @@
         <div class="form-group">
             <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Company.PaidUpCapital</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" data-bind="value:paidUpCapital" placeholder="@("<"+Cares.Web.Resources.Organization.Company.PaidUpCapital+">")" />
+                <input type="text" class="form-control" onkeypress="return onlyNumbers(this)"  data-bind="value:paidUpCapital" placeholder="@("<"+Cares.Web.Resources.Organization.Company.PaidUpCapital+">")" />
             </div>
             <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Company.CrNumber</label>
             <div class="col-md-2">
@@ -61,3 +61,12 @@
        </div>
     </form>
 </div>
+<script>
+    function onlyNumbers(evt) {
+        var e = event || evt; // for trans-browser compatibility
+        var charCode = e.which || e.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+</script>

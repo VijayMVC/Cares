@@ -8,17 +8,17 @@
             var
                 id = ko.observable(specifiedId),
                 code = ko.observable(specifiedCode).extend({ required: true }),
-                name = ko.observable(specifiedName),
+                name = ko.observable(specifiedName).extend({ required: true }),
                 description = ko.observable(specifiedDescription),
-                companyId = ko.observable(cmpId),
+                companyId = ko.observable(cmpId).extend({ required: true }),
                 companyName = ko.observable(spcCompanyName),
 
                  contatctPerson = ko.observable(spccontatctPerson),
 
-                 streatAdress = ko.observable(spstreatAdress),
+                 streatAdress = ko.observable(spstreatAdress).extend({ required: true }),
                  email = ko.observable(spEmail),
 
-                countryId = ko.observable(spcountryId),
+                countryId = ko.observable(spcountryId).extend({ required: true }),
                 countryName = ko.observable(spcountryName),
 
                 regionId = ko.observable(spregionId),
@@ -28,7 +28,7 @@
                 subRegionName = ko.observable(spsubRegionName),
 
                 cityId = ko.observable(spcityId),
-                cityName = ko.observable(spcityName).extend({ required: true }),
+                cityName = ko.observable(spcityName),
 
                 areaId = ko.observable(spareaId),
                 areaName = ko.observable(spareaName),
@@ -42,7 +42,11 @@
 
                 phoneDetail = ko.observable(),
                 errors = ko.validation.group({
-                   
+                    code: code,
+                    name: name,
+                    companyId: companyId,
+                    streatAdress: streatAdress,
+                    countryId: countryId,
                 }),
                 // Is Valid
                 isValid = ko.computed(function() {
@@ -148,11 +152,11 @@
                 phoneTypeId = ko.observable(specifiedphoneTypeId),
                 phoneTypeName = ko.observable(specifiedphoneTypeName).extend({ required: true }),
                 isDefault = ko.observable(specifiedisDefault),
-                phoneNumber = ko.observable(specifiedphoneNumber),
+                phoneNumber = ko.observable(specifiedphoneNumber).extend({ required: true }),
                 workLocationId = ko.observable(specifiedworkLocationId),
 
                 errors = ko.validation.group({
-
+                    phoneNumber: phoneNumber,
                 }),
                 // Is Valid
                 isValid = ko.computed(function() {
@@ -194,15 +198,14 @@
         };
     // operation Workplace Server to Client Mapper
     var phoneServertoClientMapper = function (itemFromServer) {
-        var pob = new phone(itemFromServer.PhoneId, itemFromServer.PhoneTypeId, itemFromServer.PhoneTypeName, itemFromServer.PhoneNumber,
+        var ph = new phone(itemFromServer.PhoneId, itemFromServer.PhoneTypeId, itemFromServer.PhoneTypeName, itemFromServer.PhoneNumber,
             itemFromServer.IsDefault, itemFromServer.WorkLocationID);
-        return pob;
+        return ph;
     };
     var createPhone = function (isDefaultValue) {
-        debugger;
-        var pob = new phone(undefined, undefined, undefined, undefined,
+        var ph = new phone(undefined, undefined, undefined, undefined,
          isDefaultValue, undefined);
-        return pob;
+        return ph;
     };
     return {
         phone: phone,

@@ -24,9 +24,8 @@ define("company/company.viewModel",
                     // Org Group Filter
                     orgGroupFilter = ko.observable(undefined),
                     // Company Code Filter
-                    companyCodeTextFilter = ko.observable(undefined),
-                    // Company name Filter
-                    companyNameTextFilter = ko.observable(undefined),
+                    companyFilter = ko.observable(undefined),
+                   
                     // Filter section visibility
                     filterSectionVisilble = ko.observable(false),
                     // Parent Company List
@@ -68,8 +67,7 @@ define("company/company.viewModel",
                     },
                     // reset event hander
                     onReset = function() {
-                        companyCodeTextFilter(undefined);
-                        companyNameTextFilter(undefined);
+                        companyFilter(undefined);
                         busiNessSegmentFilter(undefined);
                         orgGroupFilter(undefined);
                         getCompanies();
@@ -158,7 +156,6 @@ define("company/company.viewModel",
                                 toastr.success(ist.resourceText.CompanyDeleteSuccessMessage);
                             },
                             error: function (exceptionMessage, exceptionType) {
-                                debugger;
                                 if (exceptionType === ist.exceptionType.CaresGeneralException)
                                     toastr.error(exceptionMessage);
                                 else
@@ -170,8 +167,7 @@ define("company/company.viewModel",
                     getCompanies = function() {
                         dataservice.getCompanies(
                         {
-                            CompanyCodeText: companyCodeTextFilter(),
-                            CompanyNameText: companyNameTextFilter(),
+                            CompanyText: companyFilter(),
                             OrganizationGroupId: orgGroupFilter(),
                             BusinessSegmentId: busiNessSegmentFilter(),
                             PageSize: pager().pageSize(),
@@ -235,8 +231,7 @@ define("company/company.viewModel",
                         getCompanies();
                     };
                 return {
-                    companyCodeTextFilter: companyCodeTextFilter,
-                    companyNameTextFilter: companyNameTextFilter,
+                    companyFilter: companyFilter,
                     parentCompanyList: parentCompanyList,
                     onCancelCompanySave: onCancelCompanySave,
                     orgGroupList: orgGroupList,

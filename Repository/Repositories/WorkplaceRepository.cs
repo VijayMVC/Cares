@@ -67,10 +67,9 @@ namespace Cares.Repository.Repositories
             int toRow = request.PageSize;
             Expression<Func<WorkPlace, bool>> query =
                 operation =>
-                    (string.IsNullOrEmpty(request.WorkplaceCodeText) ||
-                     (operation.WorkPlaceCode.Contains(request.WorkplaceCodeText))) && (
-                         (string.IsNullOrEmpty(request.WorkplaceNameText) ||
-                          (operation.WorkPlaceName.Contains(request.WorkplaceNameText)))) &&
+                    (string.IsNullOrEmpty(request.WorkplaceFilterText) ||
+                     (operation.WorkPlaceCode.Contains(request.WorkplaceFilterText)) ||
+                     (operation.WorkPlaceName.Contains(request.WorkplaceFilterText)))  &&
                     (!request.CompanyId.HasValue || request.CompanyId == operation.WorkLocation.CompanyId) &&
                     (!request.WorkplaceTypeId.HasValue || request.WorkplaceTypeId == operation.WorkPlaceTypeId);
             rowCount = DbSet.Count(query);
@@ -122,7 +121,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool DoesWorkPlaceCodeExists(WorkPlace workplace)
         {
-            return (DbSet.Count(dbWorkplace => dbWorkplace.WorkPlaceCode == workplace.WorkPlaceCode) > 0);
+            return (DbSet.Count(dbWorkplace => dbWorkplace.WorkPlaceCode == workplace.WorkPlaceCode && dbWorkplace.WorkPlaceId != workplace.WorkPlaceId) > 0);
         }
         #endregion
     }

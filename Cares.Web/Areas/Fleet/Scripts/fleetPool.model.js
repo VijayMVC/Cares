@@ -89,7 +89,7 @@
             name = ko.observable(specifiedName).extend({ required: true }),
             operationName = ko.observable(specifiedOperationName),
             description = ko.observable(specifieddescription),
-            operationId = ko.observable(specifiedOperationId),
+            operationId = ko.observable(specifiedOperationId).extend({ required: true }),
             regionName = ko.observable(specifiedRegionName),
             regionId = ko.observable(specifiedRegionId).extend({ required: true }),
             countryName = ko.observable(specifiedCountryName),
@@ -101,6 +101,7 @@
                 code: code,
                 regionId: regionId,
                 countryId: countryId,
+                operationId:operationId,
                 vehiclesAssigned: vehiclesAssigned
             }),
             // Is Valid

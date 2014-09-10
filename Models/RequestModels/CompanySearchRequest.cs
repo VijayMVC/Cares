@@ -7,8 +7,7 @@ namespace Cares.Models.RequestModels
     /// </summary>
     public class CompanySearchRequest : GetPagedListRequest
     {
-        public string CompanyCodeText { get; set; }
-        public string CompanyNameText { get; set; }
+        public string CompanyText { get; set; }
         public int? OrganizationGroupId  { get; set; }
         public int? BusinessSegmentId  { get; set; }
         /// <summary>

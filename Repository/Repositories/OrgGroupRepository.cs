@@ -58,9 +58,12 @@ namespace Cares.Repository.Repositories
             int fromRow = (request.PageNo - 1) * request.PageSize;
             int toRow = request.PageSize;
             Expression<Func<OrgGroup, bool>> query =
-              orgGroup =>
-                      (string.IsNullOrEmpty(request.OrgGroupCode) || (orgGroup.OrgGroupCode.Contains(request.OrgGroupCode ) ))&& (
-                      (string.IsNullOrEmpty(request.OrgGroupName) || ( orgGroup.OrgGroupName.Contains(request.OrgGroupName) ))    );
+                orgGroup =>
+                    (string.IsNullOrEmpty(request.OrgGroupText) ||
+                     (orgGroup.OrgGroupCode.Contains(request.OrgGroupText)) ||
+                     (orgGroup.OrgGroupName.Contains(request.OrgGroupText))); 
+                  
+
             rowCount = DbSet.Count(query);
            return request.IsAsc ?
                DbSet.Where(query)
@@ -88,8 +91,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsOrgGroupCodeExists(OrgGroup orgGroup)
         {
-            Expression<Func<OrgGroup, bool>> query = orgG => orgG.OrgGroupCode == orgGroup.OrgGroupCode && orgGroup.OrgGroupId != orgG.OrgGroupId;
-            return DbSet.Count(query) > 0;
+            return DbSet.Count(orgG => orgG.OrgGroupCode == orgGroup.OrgGroupCode && orgGroup.OrgGroupId != orgG.OrgGroupId) > 0;
         }
         #endregion
     }

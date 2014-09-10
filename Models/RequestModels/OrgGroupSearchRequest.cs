@@ -6,11 +6,8 @@ namespace Cares.Models.RequestModels
        /// <summary>
        /// Org Group Code
        /// </summary>
-        public string OrgGroupCode { get; set; }
-        /// <summary>
-        /// Org Group Name
-        /// </summary>
-        public string OrgGroupName { get; set; }
+        public string OrgGroupText { get; set; }
+       
         public OrgGroupByColumn OrgGroupOrderBy
         {
             get

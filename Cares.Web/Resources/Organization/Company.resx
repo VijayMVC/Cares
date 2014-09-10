@@ -180,4 +180,7 @@
   <data name="CompanySaveSuccessMessage" xml:space="preserve">
     <value>Company saved successfully!</value>
   </data>
+  <data name="Serach" xml:space="preserve">
+    <value>Serach</value>
+  </data>
 </root>

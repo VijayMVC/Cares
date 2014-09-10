@@ -1,11 +1,14 @@
 ﻿#OrgGroupBinding table thead tr .ttypesearchButton {
   margin-left: 5px;
 }
-#OrgGroupBinding table thead tr .Orgcode {
-  width: 20%;
+#OrgGroupBinding table thead tr .OrgGroupcode {
+  width: 30%;
 }
-#OrgGroupBinding table thead tr .Orgname {
-  width: 20%;
+#OrgGroupBinding table thead tr .OrgGroupname {
+  width: 30%;
+}
+#OrgGroupBinding table thead tr .OrgGroupDes {
+  width: 30%;
 }
 #OrgGroupBinding #_OrgGroupEditor {
   margin-top: 15px;

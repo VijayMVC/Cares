@@ -117,55 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Code" xml:space="preserve">
-    <value>كود</value>
-  </data>
-  <data name="Company" xml:space="preserve">
-    <value>شركة</value>
-  </data>
-  <data name="Department" xml:space="preserve">
-    <value>قسم</value>
-  </data>
-  <data name="DepartmentType" xml:space="preserve">
-    <value>نوع القسم</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>اسم</value>
-  </data>
-  <data name="OperationBaseLoadFailError" xml:space="preserve">
-    <value>تشغيل قاعدة البيانات فشل تحميل</value>
-  </data>
-  <data name="OperationCode" xml:space="preserve">
-    <value>كود العملية</value>
-  </data>
-  <data name="OperationDeleteFailError" xml:space="preserve">
-    <value>فشل عملية حذف</value>
-  </data>
-  <data name="OperationDeleteSuccessMessage" xml:space="preserve">
-    <value>حذف العملية بنجاح</value>
-  </data>
-  <data name="OperationDescription" xml:space="preserve">
-    <value>عملية الوصف</value>
-  </data>
-  <data name="OperationDetails" xml:space="preserve">
-    <value>تفاصيل عملية</value>
-  </data>
-  <data name="OperationLabel" xml:space="preserve">
-    <value>عملية</value>
-  </data>
-  <data name="OperationLoadFailError" xml:space="preserve">
-    <value>فشل عملية تحميل</value>
-  </data>
-  <data name="OperationName" xml:space="preserve">
-    <value>اسم العملية</value>
-  </data>
-  <data name="OperationSaveFailError" xml:space="preserve">
-    <value>فشلت عملية لانقاذ</value>
-  </data>
-  <data name="OperationSaveSuccessMessage" xml:space="preserve">
-    <value>حفظ العملية بنجاح</value>
-  </data>
-  <data name="Serach" xml:space="preserve">
-    <value>البحث</value>
+  <data name="WorkLocationWithSameCodeExistsError" xml:space="preserve">
+    <value>الموقع العمل مع نفس رمز موجود بالفعل</value>
   </data>
 </root>

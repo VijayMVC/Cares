@@ -1,17 +1,17 @@
 ﻿#companyBinding table thead tr .CompanyCodeH {
-  width: 10%;
+  width: 15%;
 }
 #companyBinding table thead tr .CompanyNameH {
-  width: 10%;
+  width: 15%;
 }
 #companyBinding table thead tr .CompanydesH {
   width: 15%;
 }
 #companyBinding table thead tr .CompanyOrgGroupH {
-  width: 20%;
+  width: 15%;
 }
 #companyBinding table thead tr .CompanyBSegH {
-  width: 20%;
+  width: 15%;
 }
 #companyBinding table thead tr .CompanyPCompanyH {
   width: 15%;

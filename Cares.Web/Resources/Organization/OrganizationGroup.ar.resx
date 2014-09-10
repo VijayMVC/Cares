@@ -156,4 +156,7 @@
   <data name="OrganizationGroupSaveSuccessMessage" xml:space="preserve">
     <value>حفظ بنجاح المجموعات المنظمة</value>
   </data>
+  <data name="Search" xml:space="preserve">
+    <value>البحث</value>
+  </data>
 </root>

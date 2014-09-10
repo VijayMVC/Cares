@@ -44,35 +44,36 @@
             </div>
         </form>
     </div>
-    <div class="row ">
-        <h3 class="page-header float-left pageHeaderSection"></h3>
-        <div class="header-toolsSection">
-            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !$root.filterSectionVisilble(), click: $root.showFilterSection" title=@Cares.Web.Resources.Shared.Common.ShowFilter style="display: none"></a>
-        </div>
-    </div>
-    <div class="row searchFilterSection" data-bind="visible: $root.filterSectionVisilble()" style="display: none">
-        <div class=" well">
-            <form class="form-horizontal" data-bind="submit: $root.searchHireGroups">
-                <div class="col-xs-2">
-                    <select class="form-control" data-bind="options: $root.hireGroups, optionsText: 'HireGroupName', optionsValue: 'HireGroupId', optionsCaption: '&lt;' + '@(Cares.Web.Resources.Tariff.TariffRate.HireGroup )' + '&gt;', value: $root.hireGroupFilter "></select>
-                </div>
-                <div class="col-xs-2">
-                    <select class="form-control" data-bind="options: $root.vehicleMakes, optionsText: 'VehicleMakeCodeName', optionsValue: 'VehicleMakeId', optionsCaption: '&lt;' + '@(Cares.Web.Resources.Tariff.TariffRate.VehicleMake )' + '&gt;', value: $root.vehicleMakeFilter "></select>
-                </div>
-                <div class="col-xs-2">
-                    <select class="form-control" data-bind="options: $root.vehicleModels, optionsText: 'VehicleModelCodeName', optionsValue: 'VehicleModeld', optionsCaption: '&lt;' + '@(Cares.Web.Resources.Tariff.TariffRate.VehicleModel )' + '&gt;', value: $root.vehicleModelFilter "></select>
-                </div>
-                <div class="col-xs-2">
-                    <select class="form-control" data-bind="options: $root.vehicleCategories, optionsText: 'VehicleCategoryCodeName', optionsValue: 'VehicleCategoryId', optionsCaption: '&lt;' + '@(Cares.Web.Resources.Tariff.TariffRate.VehicleCategory )' + '&gt;', value: $root.vehicleCategoryFilter "></select>
-                </div>
-                <button type="submit" class="btn btn-success" data-bind="click: $root.searchHireGroups">@Cares.Web.Resources.Shared.Common.Search</button>
-                <button type="submit" class="btn btn-default" data-bind="click: reset">@Cares.Web.Resources.Shared.Common.Reset</button>
-                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: $root.collapseFilterSection" title=@Cares.Web.Resources.Shared.Common.ShowFilter></a>
-            </form>
-        </div>
-    </div>
+  
     <div class="panel panel-info searchFilterResultSection">
         <div class="panel-heading">@Cares.Web.Resources.Tariff.TariffRate.HireGroupRate</div>
+        <div class="row">
+            <h3 class="page-header float-left pageHeaderSection"></h3>
+            <div class="header-toolsSection">
+                <a href="#" class="glyphicon glyphicon-filter" id="hgRateFilterIcon" data-bind="visible: !$root.filterSectionVisilble(), click: $root.showFilterSection" title=@Cares.Web.Resources.Shared.Common.ShowFilter style="display: none"></a>
+            </div>
+        </div>
+        <div class="row searchFilterSection" data-bind="visible: $root.filterSectionVisilble()" style="display: none">
+            <div class=" well">
+                <form class="form-horizontal" data-bind="submit: $root.searchHireGroups">
+                    <div class="col-xs-2">
+                        <select class="form-control" data-bind="options: $root.hireGroups, optionsText: 'HireGroupName', optionsValue: 'HireGroupId', optionsCaption: '&lt;' + '@(Cares.Web.Resources.Tariff.TariffRate.HireGroup )' + '&gt;', value: $root.hireGroupFilter "></select>
+                    </div>
+                    <div class="col-xs-2">
+                        <select class="form-control" data-bind="options: $root.vehicleMakes, optionsText: 'VehicleMakeCodeName', optionsValue: 'VehicleMakeId', optionsCaption: '&lt;' + '@(Cares.Web.Resources.Tariff.TariffRate.VehicleMake )' + '&gt;', value: $root.vehicleMakeFilter "></select>
+                    </div>
+                    <div class="col-xs-2">
+                        <select class="form-control" data-bind="options: $root.vehicleModels, optionsText: 'VehicleModelCodeName', optionsValue: 'VehicleModeld', optionsCaption: '&lt;' + '@(Cares.Web.Resources.Tariff.TariffRate.VehicleModel )' + '&gt;', value: $root.vehicleModelFilter "></select>
+                    </div>
+                    <div class="col-xs-2">
+                        <select class="form-control" data-bind="options: $root.vehicleCategories, optionsText: 'VehicleCategoryCodeName', optionsValue: 'VehicleCategoryId', optionsCaption: '&lt;' + '@(Cares.Web.Resources.Tariff.TariffRate.VehicleCategory )' + '&gt;', value: $root.vehicleCategoryFilter "></select>
+                    </div>
+                    <button type="submit" class="btn btn-success" data-bind="click: $root.searchHireGroups">@Cares.Web.Resources.Shared.Common.Search</button>
+                    <button type="submit" class="btn btn-default" data-bind="click: reset">@Cares.Web.Resources.Shared.Common.Reset</button>
+                    <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: $root.collapseFilterSection" title=@Cares.Web.Resources.Shared.Common.ShowFilter></a>
+                </form>
+            </div>
+        </div>
         <table id="hireGroupRate" class="table table-condensed">
             <thead>
                 <tr>

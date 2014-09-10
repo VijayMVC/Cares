@@ -38,7 +38,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            fleetPoolService.DeleteFleetPool(Convert.ToInt32(fleetPool.FleetPoolId));
+            fleetPoolService.DeleteFleetPool(fleetPool.FleetPoolId);
             return true;
         }
 
