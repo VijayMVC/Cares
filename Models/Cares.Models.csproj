@@ -127,10 +127,15 @@
     <Compile Include="DomainModels\BusinessPartnerRelaionshipType.cs" />
     <Compile Include="DomainModels\BusinessPartnerSubType.cs" />
     <Compile Include="DomainModels\Area.cs" />
+    <Compile Include="DomainModels\DesigGrade.cs" />
+    <Compile Include="DomainModels\Designation.cs" />
+    <Compile Include="DomainModels\EmpStatus.cs" />
     <Compile Include="DomainModels\HireGroupUpGrade.cs" />
     <Compile Include="DomainModels\InsuranceRt.cs" />
     <Compile Include="DomainModels\InsuranceRtMain.cs" />
     <Compile Include="DomainModels\InsuranceType.cs" />
+    <Compile Include="DomainModels\JobType.cs" />
+    <Compile Include="DomainModels\LicenseType.cs" />
     <Compile Include="DomainModels\MaintenanceType.cs" />
     <Compile Include="DomainModels\MaintenanceTypeGroup.cs" />
     <Compile Include="DomainModels\ServiceItem.cs" />
@@ -224,6 +229,7 @@
     <Compile Include="ResponseModels\CompanySearchResponse.cs" />
     <Compile Include="ResponseModels\DepartmentBaseDataResponse.cs" />
     <Compile Include="ResponseModels\DepartmentSearchRequestResponse.cs" />
+    <Compile Include="ResponseModels\EmployeeBaseResponse.cs" />
     <Compile Include="ResponseModels\EmployeeResponse.cs" />
     <Compile Include="ResponseModels\FleetPoolBaseDataResponse.cs" />
     <Compile Include="ResponseModels\FleetPoolResponse.cs" />

@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "";
+        
+}
+
+<div class="row" id="employeeBinding">
+    <div class="row " data-bind="visible: !isEmployeeEditorVisible()">
+        <h3 class="page-header float-left pageHeaderSection">Employees</h3>
+        <div class="header-toolsSection">
+            <a href="#" class="label label-default create-new-icon" data-bind="click: createEmployee" title='CreateNewEmployee'>@Cares.Web.Resources.Shared.Common.New</a>
+            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title='@Cares.Web.Resources.Shared.Common.ShowFilter' style="display: none"></a>
+        </div>
+    </div>
+    <div class="row searchFilterSection" data-bind="visible: !isEmployeeEditorVisible() && filterSectionVisilble()" style="display: none">
+        <div class=" well">
+            <form class="form-horizontal" data-bind="submit: search">
+                <div class="col-xs-3">
+                    <input type="text" class="form-control" placeholder='@("<"+Cares.Web.Resources.Shared.Common.Search+">")' data-bind="value: searchFilter" />
+                </div>
+                
+                <button type="submit" class="btn btn-success" data-bind="click: search">@Cares.Web.Resources.Shared.Common.Search</button>
+                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection" title='@Cares.Web.Resources.Shared.Common.HideSection'></a>
+              
+            </form>
+        </div>
+    </div>
+    <div class="row searchFilterResultSection" data-bind="visible: !isEmployeeEditorVisible()">
+        <div class="well">
+            <table id="employeeTable" class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th> <span id="1">PlateNumber<span class="icon-up"></span></span></th>
+                        
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @*<!-- ko template: { name: 'itemEmployeeTemplate' , foreach: vehicles } -->
+                    <!-- /ko -->*@
+                </tbody>
+            </table>
+            <!-- ko with: pager -->
+            @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
+            <!-- /ko -->
+        </div>
+    </div>
+    @*<script id="editActionEmployeeTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onEditEmployee" title=@Cares.Web.Resources.Shared.Common.Edit><span class="glyphicon glyphicon-edit"></span></a>
+    </script>
+    <script id="deleteActionEmployeeTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onDeleteEmployee" title=@Cares.Web.Resources.Shared.Common.Delete><span class="glyphicon glyphicon-remove"></span></a>
+    </script>
+    <script id="itemEmployeeTemplate" type="text/html">
+        <tr>
+            <td data-bind="text: plateNumber"></td>
+            <td data-bind="text: vehicleName"></td>
+            <td data-bind="text: modelYear"></td>
+            <td data-bind="text: fuelLevel"></td>
+            <td data-bind="text: currentOdometer"></td>
+            <td data-bind="text: location"></td>
+            <td data-bind="text: vehicleMakeCodeName"></td>
+            <td data-bind="text: vehicleStatusCodeName"></td>
+            <td data-bind="text: operationCodeName"></td>
+            <td>
+                <!-- ko template: { name: 'editActionEmployeeTemplate' } -->
+                <!-- /ko -->
+            </td>
+            <td>
+                <!-- ko template: { name: 'deleteActionEmployeeTemplate' } -->
+                <!-- /ko -->
+            </td>
+        </tr>
+    </script>*@
+    @*@Html.Partial("_EmployeeEditor")*@
+
+</div>
+<!-- ko stopBinding: true -->
+@Html.Partial("~/Areas/Common/Views/Shared/_ConfirmationDialog.cshtml")
+<!-- /ko -->
+@section inlinescripts
+{
+    <script type="text/javascript">
+        require(["employee/employee.view", "common/confirmation.view"]);
+    </script>
+}

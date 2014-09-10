@@ -133,10 +133,15 @@
     <Compile Include="Repositories\BusinessPartnerCompanyRepository.cs" />
     <Compile Include="Repositories\AddressTypeRepository.cs" />
     <Compile Include="Repositories\AreaRepository.cs" />
+    <Compile Include="Repositories\DesigGradeRepository.cs" />
+    <Compile Include="Repositories\DesignationRepository.cs" />
+    <Compile Include="Repositories\EmpStatusRepository.cs" />
     <Compile Include="Repositories\FuelTypeRepository.cs" />
     <Compile Include="Repositories\InsuranceRtMainRepository.cs" />
     <Compile Include="Repositories\InsuranceRtRepository.cs" />
     <Compile Include="Repositories\InsuranceTypeRepository.cs" />
+    <Compile Include="Repositories\JobTypeRepository.cs" />
+    <Compile Include="Repositories\LicenseTypeRepository.cs" />
     <Compile Include="Repositories\MaintenanceTypeRepository.cs" />
     <Compile Include="Repositories\ServiceRtRepository.cs" />
     <Compile Include="Repositories\ServiceRtMainRepository.cs" />

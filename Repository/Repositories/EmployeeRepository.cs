@@ -13,7 +13,7 @@ using Microsoft.Practices.Unity;
 
 namespace Cares.Repository.Repositories
 {
-    public sealed class EmployeeRepository: BaseRepository<Employee>, IEmployeeRepository
+    public sealed class EmployeeRepository : BaseRepository<Employee>, IEmployeeRepository
     {
         #region Private
         /// <summary>
@@ -47,14 +47,16 @@ namespace Cares.Repository.Repositories
             }
         }
         #endregion
+        
+        #region Public
         public EmployeeResponse GetAllEmployees(EmployeeSearchRequest searchRequest)
         {
             int fromRow = (searchRequest.PageNo - 1) * searchRequest.PageSize;
             int toRow = searchRequest.PageSize;
 
-            Expression<Func<Employee, bool>> query = 
+            Expression<Func<Employee, bool>> query =
                 s => (!searchRequest.DepartmentId.HasValue || s.DepartmentId == searchRequest.DepartmentId) &&
-                     (string.IsNullOrEmpty(searchRequest.SearchString) ||s.Name.Contains(searchRequest.SearchString));
+                     (string.IsNullOrEmpty(searchRequest.SearchString) || s.Name.Contains(searchRequest.SearchString));
 
             IEnumerable<Employee> employees = searchRequest.IsAsc ? DbSet.Where(query).Include("Department")
                                             .OrderBy(employeeClause[searchRequest.EmployeeOrderBy]).Skip(fromRow).Take(toRow).ToList()
@@ -80,5 +82,6 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(employee => employee.UserDomainKey == UserDomainKey).ToList();
         }
+        #endregion
     }
 }
