@@ -163,6 +163,30 @@ require(["ko", "knockout-validation"], function (ko) {
             }
         }
     };
+    //Slider Binding Handler
+    ko.bindingHandlers.slider = {
+        init: function (element, valueAccessor, allBindingsAccessor) {
+            var sliderOptions = allBindingsAccessor().sliderOptions || {};
+            $(element).slider(sliderOptions);
+            ko.utils.registerEventHandler(element, "slidechange", function (event, ui) {
+                var observable = valueAccessor();
+                observable(ui.value);
+            });
+            ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
+                $(element).slider("destroy");
+            });
+            ko.utils.registerEventHandler(element, "slide", function (event, ui) {
+                var observable = valueAccessor();
+                observable(ui.value);
+            });
+        },
+        update: function (element, valueAccessor) {
+            var value = ko.utils.unwrapObservable(valueAccessor());
+            if (isNaN(value)) value = 0;
+            $(element).slider("value", value);
+
+        }
+    };
     
     // date formatting. Example <div class="date" data-bind="dateString: today, datePattern: 'dddd, MMMM dd, yyyy'">Thursday, April 05, 2012</div>
     ko.bindingHandlers.dateString = {
@@ -322,3 +346,12 @@ function handleSorting(tableId, sortOn, sortAsc, callback) {
         }
     });
 }
+//Model Year
+modelYearsGlobal = [{ Id: 2001, Text: '2001' },
+    { Id: 2002, Text: '2002' },
+    { Id: 2003, Text: '2003' },
+    { Id: 2004, Text: '2004' },
+    { Id: 2005, Text: '2005' },
+    { Id: 2006, Text: '2006' },
+    { Id: 2007, Text: '2007' }
+];

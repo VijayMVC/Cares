@@ -12,6 +12,9 @@ using System.Linq.Expressions;
 
 namespace Cares.Repository.Repositories
 {
+    /// <summary>
+    /// Workplace Repository
+    /// </summary>
     public sealed class WorkplaceRepository : BaseRepository<WorkPlace>, IWorkplaceRepository
     {
         #region Private
@@ -29,6 +32,7 @@ namespace Cares.Repository.Repositories
                         { WorkplaceByColumn.ParentWorkPlace, c => c.ParentWorkPlaceId },
                     };
         #endregion
+        
         #region Constructor
         /// <summary>
         /// Constructor
@@ -50,6 +54,7 @@ namespace Cares.Repository.Repositories
         }
 
         #endregion
+        
         #region public
 
         /// <summary>

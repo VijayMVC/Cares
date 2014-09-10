@@ -15,18 +15,22 @@ namespace Cares.Interfaces.IServices
         /// Get All tariff Types
         /// </summary>
         IEnumerable<TariffType> LoadAll();
+        
         /// <summary>
         /// Load tariff type, based on search filters
         /// </summary>
-        TariffTypeResponse LoadtariffTypes(TariffTypeRequest tariffTypeRequest);
+        TariffTypeResponse LoadtariffTypes(TariffTypeSearchRequest tariffTypeRequest);
+        
         /// <summary>
         /// Find tariff Type By ID
         /// </summary>
         TariffTypeDetailResponse FindDetailById(long id);
+       
         /// <summary>
         /// Add tariff Type
         /// </summary>
-        TariffType AddtariffType(TariffType tariffType);
+        TariffType SaveTariffType(TariffType tariffType);
+       
         /// <summary>
         /// Get All Base Data
         /// </summary>

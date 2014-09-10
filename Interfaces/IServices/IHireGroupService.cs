@@ -27,32 +27,37 @@ namespace Cares.Interfaces.IServices
         /// </summary>
         /// <returns></returns>
         HireGroupBaseResponse LoadBaseData();
+        
         /// <summary>
         /// Find Hire Group By ID
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="hireGroupId"></param>
         /// <returns></returns>
-        HireGroup FindById(long id);
+        HireGroup FindById(long hireGroupId);
+        
         /// <summary>
         /// Delete Hire Group
         /// </summary>
         /// <param name="instance"></param>
         void DeleteHireGroup(HireGroup instance);
+        
         /// <summary>
         /// Add Hire Group
         /// </summary>
         /// <param name="request"></param>
         HireGroup AddHireGroup(HireGroupAddRequest request);
+       
         /// <summary>
         /// Update Hire Group
         /// </summary>
         /// <param name="request"></param>
         HireGroup UpdateHireGroup(HireGroupAddRequest request);
+        
         /// <summary>
         /// Get Hire Group Deatil Data By id
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="hireGroupId"></param>
         /// <returns></returns>
-        HireGroupDataDetailResponse FindHireGroupId(long id);
+        HireGroupDataDetailResponse FindHireGroupId(long hireGroupId);
     }
 }

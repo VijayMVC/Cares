@@ -28,6 +28,7 @@ namespace Cares.Repository.Repositories
                     };
 
         #endregion
+        
         #region Constructor
         /// <summary>
         /// Constructor
@@ -49,7 +50,9 @@ namespace Cares.Repository.Repositories
         }
 
         #endregion
+        
         #region Public
+       
         /// <summary>
         /// Get All Standard Rates Main for User Domain Key
         /// </summary>
@@ -57,10 +60,11 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(department => department.UserDomainKey == UserDomainKey).ToList();
         }
+       
         /// <summary>
         /// Get All Tariff Rates based on search crateria
         /// </summary>
-        public TariffRateResponse GetTariffRates(TariffRateRequest tariffRateRequest)
+        public TariffRateResponse GetTariffRates(TariffRateSearchRequest tariffRateRequest)
         {
             int fromRow = (tariffRateRequest.PageNo - 1) * tariffRateRequest.PageSize;
             int toRow = tariffRateRequest.PageSize;
@@ -68,7 +72,8 @@ namespace Cares.Repository.Repositories
             var getTariffRateQuery = from tariffRate in DbSet
                 join tariffType in db.TariffTypes on tariffRate.TariffTypeCode equals tariffType.TariffTypeCode
                 where
-                    ((!tariffRateRequest.OperationId.HasValue ||
+                    ((string.IsNullOrEmpty(tariffRateRequest.SearchString) || tariffRate.StandardRtMainCode.Contains(tariffRateRequest.SearchString) || tariffRate.StandardRtMainName.Contains(tariffRateRequest.SearchString)) &&
+                    (!tariffRateRequest.OperationId.HasValue ||
                       tariffType.OperationId == tariffRateRequest.OperationId.Value) &&
                      (!tariffRateRequest.TariffTypeId.HasValue ||
                       tariffType.TariffTypeId == tariffRateRequest.TariffTypeId))
@@ -96,13 +101,15 @@ namespace Cares.Repository.Repositories
 
             return new TariffRateResponse { TariffRates = tariffRates, TotalCount = getTariffRateQuery.Count() };
         }
+        
         /// <summary>
         /// Find By Id
         /// </summary>
-        public override StandardRateMain Find(long id)
+        public override StandardRateMain Find(long standardRateMainId)
         {
-            return DbSet.FirstOrDefault(standardRateMain => standardRateMain.StandardRtMainId == id);
+            return DbSet.FirstOrDefault(standardRateMain => standardRateMain.StandardRtMainId == standardRateMainId);
         }
+        
         /// <summary>
         /// Find By Tariff Type Code
         /// </summary>

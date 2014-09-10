@@ -913,10 +913,16 @@
     </Content>
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
-    <Content Include="Content\WorkLocation.css">
+    <Content Include="Content\Vehicle.css">
+      <DependentUpon>Vehicle.less</DependentUpon>
+    </Content>
+     <Content Include="Content\WorkLocation.css">
       <DependentUpon>WorkLocation.less</DependentUpon>
     </Content>
-    <Content Include="Content\WorkLocation.min.css">
+    <Content Include="Content\Vehicle.min.css">
+      <DependentUpon>Vehicle.css</DependentUpon>
+    </Content>
+     <Content Include="Content\WorkLocation.min.css">
       <DependentUpon>WorkLocation.css</DependentUpon>
     </Content>
     <Content Include="Content\WorkPlace.css">
@@ -1312,7 +1318,6 @@
     <Content Include="Areas\Pricing\Views\Tariff\TariffRate.cshtml" />
     <Content Include="Areas\Pricing\Views\Tariff\_TariffRateEditor.cshtml" />
     <Content Include="Areas\Pricing\Views\Tariff\_HireGroupRateDialog.cshtml" />
-    <Content Include="Content\TariffRate.less" />
     <Content Include="Areas\Fleet\Views\Home\_FleetPoolEditor.cshtml" />
     <Content Include="Areas\RentalAgreement\Views\_ViewStart.cshtml" />
     <Content Include="Areas\RentalAgreement\Views\Home\Index.cshtml" />
@@ -1368,6 +1373,10 @@
     </Content>
      <Content Include="Areas\EmployeeManagement\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\EmployeeManagement\Views\Home\Index.cshtml" />
+    <Content Include="Content\Vehicle.less" />
+    <Content Include="Content\Vehicle.css.map">
+      <DependentUpon>Vehicle.css</DependentUpon>
+    </Content>
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
@@ -1664,6 +1673,7 @@
     <EmbeddedResource Include="Resources\Tariff\TariffRate.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>TariffRate.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tariff\TariffType.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

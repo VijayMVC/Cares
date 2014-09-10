@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -14,6 +13,7 @@ namespace Cares.Implementation.Services
         #region Private
         private readonly IPricingStrategyRepository pricingStrategyRepository;
         #endregion
+       
         #region Constructor
 
         public PricingStrategyService(IPricingStrategyRepository pricingStrategyRepository)
@@ -21,7 +21,12 @@ namespace Cares.Implementation.Services
             this.pricingStrategyRepository = pricingStrategyRepository;
         }
         #endregion
+       
         #region Public
+        /// <summary>
+        /// Load All Pricing Stragety
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<PricingStrategy> LoadAll()
         {
             return pricingStrategyRepository.GetAll();

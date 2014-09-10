@@ -8,6 +8,10 @@ namespace Cares.Interfaces.IServices
     /// </summary>
     public interface IMeasurementUnitService
     {
+        /// <summary>
+        /// Load All Measurement Unit
+        /// </summary>
+        /// <returns></returns>
         IEnumerable<MeasurementUnit> LoadAll();
     }
 }

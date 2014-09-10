@@ -177,4 +177,10 @@
   <data name="VehicleModel" xml:space="preserve">
     <value>المركبة الموديل</value>
   </data>
+  <data name="Code" xml:space="preserve">
+    <value>كود</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>اسم</value>
+  </data>
 </root>

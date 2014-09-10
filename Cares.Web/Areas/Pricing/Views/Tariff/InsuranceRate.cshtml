@@ -23,6 +23,7 @@
                     <select class="form-control" data-bind="options: $root.tariffTypes, optionsText: 'TariffTypeCodeName', optionsValue: 'TariffTypeId', optionsCaption: '&lt;' + '@Cares.Web.Resources.Tariff.ServiceRate.TariffType' + '&gt;', value: tariffTypeFilter"></select>
                 </div>
                 <button type="submit" class="btn btn-success" data-bind="click: search">@Cares.Web.Resources.Shared.Common.Search</button>
+                <button type="submit" class="btn btn-default" data-bind="click: reset">@Cares.Web.Resources.Shared.Common.Reset</button>
                 <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection" title='@Cares.Web.Resources.Shared.Common.HideSection'></a>
             </form>
         </div>
@@ -32,8 +33,8 @@
             <table id="insuranceRateTable" class="table table-condensed">
                 <thead>
                     <tr>
-                        <th class="IRCode"> <span id="1">@Cares.Web.Resources.Tariff.InsuranceRate.InsuranceRateText<br />@Cares.Web.Resources.Tariff.InsuranceRate.Code<span class="icon-up"></span></span></th>
-                        <th class="IRName"> <span id="2">@Cares.Web.Resources.Tariff.InsuranceRate.InsuranceRateText<br />@Cares.Web.Resources.Tariff.InsuranceRate.Name<span></span></span></th>
+                        <th class="IRCode"> <span id="1">@Cares.Web.Resources.Tariff.InsuranceRate.Code<span class="icon-up"></span></span></th>
+                        <th class="IRName"> <span id="2">@Cares.Web.Resources.Tariff.InsuranceRate.Name<span></span></span></th>
                         <th class="IROperation"> <span>@Cares.Web.Resources.Tariff.InsuranceRate.Operation<span></span></span></th>
                         <th class="IRType"> <span>@Cares.Web.Resources.Tariff.InsuranceRate.TariffType<span></span></span></th>
                         <th class="IRDate"> <span id="5">@Cares.Web.Resources.Tariff.InsuranceRate.StartEffectiveDate<span></span></span></th>

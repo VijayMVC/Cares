@@ -11,9 +11,9 @@ namespace Cares.Repository.Repositories
     /// <summary>
     /// Vehicle Check List Repository
     /// </summary>
-    public sealed class VehicleCheckListRepository: BaseRepository<VehicleCheckList>, IVehicleCheckListRepository
+    public sealed class VehicleCheckListRepository : BaseRepository<VehicleCheckList>, IVehicleCheckListRepository
     {
-         #region Constructor
+        #region Constructor
         /// <summary>
         /// Vehicle Check List Repository Constructor
         /// </summary>
@@ -44,7 +44,6 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(vcl => vcl.UserDomainKey == UserDomainKey).ToList();
         }
-
 
         #endregion
     }

@@ -51,6 +51,7 @@ namespace Cares.Repository.Repositories
         #endregion
 
         #region Public
+        
         /// <summary>
         /// Get All Insurance Rate Main for User Domain Key
         /// </summary>
@@ -70,7 +71,8 @@ namespace Cares.Repository.Repositories
             var getInsuranceRateQuery = from insuranceRtMain in DbSet
                                         join tariffType in db.TariffTypes on insuranceRtMain.TariffTypeCode equals tariffType.TariffTypeCode
                                         where
-                                            ((!insuranceRateSearchRequest.OperationId.HasValue ||
+                                            ((string.IsNullOrEmpty(insuranceRateSearchRequest.SearchString) || insuranceRtMain.InsuranceRtMainCode.Contains(insuranceRateSearchRequest.SearchString) || insuranceRtMain.InsuranceRtMainName.Contains(insuranceRateSearchRequest.SearchString)) &&
+                                            (!insuranceRateSearchRequest.OperationId.HasValue ||
                                               tariffType.OperationId == insuranceRateSearchRequest.OperationId.Value) &&
                                              (!insuranceRateSearchRequest.TariffTypeId.HasValue ||
                                               tariffType.TariffTypeId == insuranceRateSearchRequest.TariffTypeId))
@@ -97,6 +99,7 @@ namespace Cares.Repository.Repositories
 
             return new InsuranceRateSearchResponse { InsuranceRtMains = insuranceRtMains, TotalCount = getInsuranceRateQuery.Count() };
         }
+        
         /// <summary>
         /// Get  Insurance Rate Main By Tariff Type Code
         /// </summary>
@@ -104,6 +107,7 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(insuranceRtMain => insuranceRtMain.UserDomainKey == UserDomainKey && insuranceRtMain.TariffTypeCode == tariffTypeCode).ToList();
         }
+        
         #endregion
     }
 }

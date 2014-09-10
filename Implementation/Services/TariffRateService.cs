@@ -85,7 +85,7 @@ namespace Cares.Implementation.Services
         /// </summary>
         /// <param name="tariffRateRequest"></param>
         /// <returns></returns>
-        public TariffRateResponse LoadTariffRates(TariffRateRequest tariffRateRequest)
+        public TariffRateResponse LoadTariffRates(TariffRateSearchRequest tariffRateRequest)
         {
             return standardRateMainRepository.GetTariffRates(tariffRateRequest);
         }
@@ -252,6 +252,7 @@ namespace Cares.Implementation.Services
         {
             return standardRateMainRepository.FindByTariffTypeCode(tariffTypeCode);
         }
+        
         /// <summary>
         /// Find Tariff Type By Tariff Type ID
         /// </summary>

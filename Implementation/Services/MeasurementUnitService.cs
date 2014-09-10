@@ -5,18 +5,34 @@ using Cares.Models.DomainModels;
 
 namespace Cares.Implementation.Services
 {
-    public class MeasurementUnitService:IMeasurementUnitService
+    /// <summary>
+    /// Measurement Unit Service
+    /// </summary>
+    public class MeasurementUnitService : IMeasurementUnitService
     {
         private readonly IMeasurementUnit measurementUnitRepo;
 
+        #region Constructor
+       
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="measurementUnitRepo"></param>
         public MeasurementUnitService(IMeasurementUnit measurementUnitRepo)
         {
             this.measurementUnitRepo = measurementUnitRepo;
         }
+        #endregion
 
+        #region Public
+        /// <summary>
+        /// Get All Measurement
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<MeasurementUnit> LoadAll()
         {
             return measurementUnitRepo.GetAll();
         }
+        #endregion
     }
 }

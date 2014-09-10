@@ -7,22 +7,17 @@ namespace Cares.Models.RequestModels
     /// </summary>
     public sealed class HireGroupSearchRequest : GetPagedListRequest
     {
-        /// <summary>
-        /// Hire Group Code
-        /// </summary>
-        public string HireGroupCode { get; set; }
-        /// <summary>
-        /// Hire Group Name
-        /// </summary>
-        public string HireGroupName { get; set; }
+           
         /// <summary>
         /// Company Id
         /// </summary>
         public long? CompanyId { get; set; }
+        
         /// <summary>
         /// Parent Hire Group ID
         /// </summary>
         public long? ParentHireGroupId { get; set; }
+       
         /// <summary>
         /// Hire Group Order By
         /// </summary>

@@ -12,6 +12,7 @@ namespace Cares.Interfaces.Repository
         /// Get Standard Rate For Tariff Rate
         /// </summary>
         IEnumerable<StandardRate> GetStandardRateForTariffRate(long standardRtMainId);
+        
         /// <summary>
         /// Find By Hire Group Id and standard Rate Main Id
         /// </summary>

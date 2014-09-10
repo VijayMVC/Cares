@@ -264,4 +264,7 @@
   <data name="TariffRateSaveSuccessMsg" xml:space="preserve">
     <value>تعرفة حفظها بنجاح.</value>
   </data>
+  <data name="HireGroupRate" xml:space="preserve">
+    <value>أسعار استئجار المجموعة</value>
+  </data>
 </root>

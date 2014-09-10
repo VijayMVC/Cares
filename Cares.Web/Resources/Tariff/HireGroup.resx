@@ -180,4 +180,10 @@
   <data name="VehicleModel" xml:space="preserve">
     <value>Vehicle Model</value>
   </data>
+  <data name="Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
 </root>

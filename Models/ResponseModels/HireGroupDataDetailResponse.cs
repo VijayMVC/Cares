@@ -7,10 +7,15 @@ namespace Cares.Models.ResponseModels
     /// Hire Group Data Response its detail that get by hire group id
     /// </summary>
     public sealed class HireGroupDataDetailResponse
-    {/// <summary>
+    {
+        /// <summary>
         /// Hire Group Details List
         /// </summary>
         public IEnumerable<HireGroupDetail> HireGroupDetails { get; set; }
+        
+        /// <summary>
+        /// Hire Group Up Grades
+        /// </summary>
         public IEnumerable<HireGroupUpGrade> HireGroupUpGrades { get; set; }
     }
 }

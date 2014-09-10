@@ -49,6 +49,7 @@ namespace Cares.Repository.Repositories
         #endregion
        
         #region Protected
+       
         /// <summary>
         /// Primary database set
         /// </summary>
@@ -59,6 +60,7 @@ namespace Cares.Repository.Repositories
                 return db.TariffTypes;
             }
         }
+        
         #endregion
         
         #region Public
@@ -75,12 +77,13 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get All Tariff Types based on search crateria
         /// </summary>
-        public TariffTypeResponse GettariffTypes(TariffTypeRequest tariffTypeRequest)
+        public TariffTypeResponse GettariffTypes(TariffTypeSearchRequest tariffTypeRequest)
         {
             int fromRow = (tariffTypeRequest.PageNo - 1) * tariffTypeRequest.PageSize;
             int toRow = tariffTypeRequest.PageSize;
             Expression<Func<TariffType, bool>> query =
-                            s => ((!(tariffTypeRequest.OperationId > 0) || s.OperationId == tariffTypeRequest.OperationId) &&
+                            s => ((string.IsNullOrEmpty(tariffTypeRequest.SearchString) || s.TariffTypeCode.Contains(tariffTypeRequest.SearchString) || s.TariffTypeName.Contains(tariffTypeRequest.SearchString)) &&
+                                (!(tariffTypeRequest.OperationId > 0) || s.OperationId == tariffTypeRequest.OperationId) &&
                                 (!(tariffTypeRequest.MeasurementUnitId > 0) || s.MeasurementUnitId == tariffTypeRequest.MeasurementUnitId) &&
                                  (string.IsNullOrEmpty(tariffTypeRequest.TariffTypeCode) || s.TariffTypeCode.Contains(tariffTypeRequest.TariffTypeCode))) &&
                                  (s.ChildTariffTypeId == 0 || s.ChildTariffTypeId == null);
@@ -107,25 +110,25 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Find Tariff Type By Id
         /// </summary>
-        public override TariffType Find(long id)
+        public override TariffType Find(long tariffTypeId)
         {
             return
               DbSet.Include(tariffType => tariffType.Operation)
                   .Include(tariffType => tariffType.Operation.Department)
                   .Include(tariffType => tariffType.Operation.Department.Company)
-                  .FirstOrDefault(tariffType => tariffType.TariffTypeId == id);
+                  .FirstOrDefault(tariffType => tariffType.TariffTypeId == tariffTypeId);
         }
 
         /// <summary>
         /// Get Revision
         /// </summary>
-        public TariffType GetRevison(long id)
+        public TariffType GetRevison(long tariffTypeId)
         {
             return
               DbSet.Include(tariffType => tariffType.Operation)
                   .Include(tariffType => tariffType.Operation.Department)
                   .Include(tariffType => tariffType.Operation.Department.Company)
-                  .FirstOrDefault(tariffType => tariffType.ChildTariffTypeId == id);
+                  .FirstOrDefault(tariffType => tariffType.ChildTariffTypeId == tariffTypeId);
         }
 
         /// <summary>

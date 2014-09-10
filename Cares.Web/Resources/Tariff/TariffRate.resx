@@ -264,4 +264,7 @@
   <data name="TariffRateSaveSuccessMsg" xml:space="preserve">
     <value>Tariff Rate saved successfully.</value>
   </data>
+  <data name="HireGroupRate" xml:space="preserve">
+    <value>Hire Group Rate</value>
+  </data>
 </root>

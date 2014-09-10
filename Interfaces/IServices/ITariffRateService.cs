@@ -14,41 +14,51 @@ namespace Cares.Interfaces.IServices
         /// Get Base Data
         /// </summary>
         TariffRateBaseResponse GetBaseData();
+       
         /// <summary>
         /// Load Tariff Rates
         /// </summary>
-        TariffRateResponse LoadTariffRates(TariffRateRequest tariffRateRequest);
+        TariffRateResponse LoadTariffRates(TariffRateSearchRequest tariffRateRequest);
+        
         /// <summary>
         /// Get Hire Group Details For Tariff Rate
         /// </summary>
         HireGroupDetailResponse GetHireGroupDetailsForTariffRate(long standardRtMainId);
-        /// <summary> 
+       
+       /// <summary>
         /// Find Standard Rate Main By ID
-        /// </summary>
-        StandardRateMain Find(long id);
+       /// </summary>
+       /// <param name="standardRateMain"></param>
+       /// <returns></returns>
+        StandardRateMain Find(long standardRateMain);
+       
         /// <summary>
         /// Delete Standard Rate Main
         /// </summary>
         void DeleteTariffRate(StandardRateMain standardRateMain);
+        
         /// <summary>
         /// Add Standard Rate Main
         /// </summary>
         TariffRateContent SaveTariffRate(StandardRateMain standardRateMain);
+        
         /// <summary>
         /// Find Standard Rate 
         /// </summary>
         IEnumerable<StandardRate> FindStandardRate(long standardRtMainId, long hireGroupDetailId);
+       
         /// <summary>
         /// Find By Tariff Type Code
         /// </summary>
         /// <param name="tariffTypeCode"></param>
         /// <returns></returns>
         IEnumerable<StandardRateMain> FindByTariffTypeCode(string tariffTypeCode);
+        
         /// <summary>
         ///Find Tariff Type By Id
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="tariffTypeId"></param>
         /// <returns></returns>
-        TariffType FindTariffTypeById(long id);
+        TariffType FindTariffTypeById(long tariffTypeId);
     }
 }

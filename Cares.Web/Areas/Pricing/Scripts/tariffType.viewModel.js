@@ -149,11 +149,18 @@ define("tariffType/tariffType.viewModel",
                         pager().reset();
                         getTariffType();
                     },
+                    //Reset
+                      reset = function () {
+                          tariffTypeCodeFilter(undefined);
+                          operationFilter(undefined);
+                          measurementUnitFilter(undefined);
+                          search();
+                      },
                     // Get tariff Types
                     getTariffType = function () {
                         isLoadingTariffTypes(true);
                         dataservice.getTariffType({
-                            tariffTypeCode: tariffTypeCodeFilter(),
+                            SearchString: tariffTypeCodeFilter(),
                             CompanyId: companyFilter(),
                             MeasurementUnitId: measurementUnitFilter(),
                             tariffTypeName: tariffTypeNameFilter(),
@@ -190,7 +197,7 @@ define("tariffType/tariffType.viewModel",
                                 var date = new Date();
                                 date.setHours(0, 0, 0, 0);
                                 if (addTariffType().effectiveDate() >= date) {
-                                    
+
                                     // Commits and Selects the Row
                                     saveTariffType(tariffType);
                                 } else {
@@ -362,7 +369,8 @@ define("tariffType/tariffType.viewModel",
                     collapseFilterSection: collapseFilterSection,
                     showFilterSection: showFilterSection,
                     onSelectedCompany: onSelectedCompany,
-                    onSelectedDepartemnt: onSelectedDepartemnt
+                    onSelectedDepartemnt: onSelectedDepartemnt,
+                    reset: reset
                     // Utility Methods
                 };
             })()

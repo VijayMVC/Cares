@@ -145,6 +145,13 @@ define("insuranceRate/insuranceRate.viewModel",
                         pager().reset();
                         getInsuranceRates();
                     },
+                    //Reset
+                      reset = function () {
+                          tariffTypeFilter(undefined);
+                          operationFilter(undefined);
+                          searchFilter(undefined);
+                          search();
+                      },
                     // Map Insurance Rates - Server to Client
                     mapInsuranceRates = function (data) {
                         var insuranceRateList = [];
@@ -207,10 +214,10 @@ define("insuranceRate/insuranceRate.viewModel",
                                 if (selectedInsuranceRtMain().insuranceRtMainId() > 0) {
                                     selectedInsuranceRtMainCopy(undefined);
                                     selectedInsuranceRtMain().startDt(insuranceRtResult.startDt()),
-                                    closeServiceRateEditor();
+                                    closeInsuranceRateEditor();
                                 } else {
                                     insuranceRtMains.splice(0, 0, insuranceRtResult);
-                                    closeServiceRateEditor();
+                                    closeInsuranceRateEditor();
                                 }
                                 toastr.success(ist.resourceText.insuranceRateAddSuccessMsg);
                             },
@@ -338,7 +345,8 @@ define("insuranceRate/insuranceRate.viewModel",
                     templateToUse: templateToUse,
                     selectInsuranceRt: selectInsuranceRt,
                     getInsuranceRates: getInsuranceRates,
-                    clientPagerRecords:clientPagerRecords,
+                    clientPagerRecords: clientPagerRecords,
+                    reset: reset
                     // Utility Methods
 
                 };

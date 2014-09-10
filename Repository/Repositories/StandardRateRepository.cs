@@ -35,7 +35,9 @@ namespace Cares.Repository.Repositories
         }
 
         #endregion
+        
         #region Public
+        
         /// <summary>
         /// Get All Standard Rates for User Domain Key
         /// </summary>
@@ -43,11 +45,18 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(vehicleModel => vehicleModel.UserDomainKey == UserDomainKey).ToList();
         }
+
+        /// <summary>
+        /// Get Standard Rate For Tariff Rate
+        /// </summary>
+        /// <param name="standardRtMainId"></param>
+        /// <returns></returns>
         public IEnumerable<StandardRate> GetStandardRateForTariffRate(long standardRtMainId)
         {
             return DbSet.Where(s => s.UserDomainKey == UserDomainKey && s.StandardRtMainId == standardRtMainId && s.ChildStandardRtId == null).ToList();
 
         }
+        
         /// <summary>
         /// Find by hire group and standard rate main id
         /// </summary>

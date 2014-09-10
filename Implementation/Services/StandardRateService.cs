@@ -10,16 +10,21 @@ namespace Cares.Implementation.Services
     /// </summary>
     public class StandardRateService : IStandardRateService
     {
+        #region Private
+
         private readonly IStandardRateRepository iRepository;
+        #endregion
+        
         #region Constructor
         public StandardRateService(IStandardRateRepository xRepository)
         {
             iRepository = xRepository;
         }
         #endregion
+
         #region Public
         /// <summary>
-        /// 
+        /// Find Standard Rate
         /// </summary>
         /// <param name="standardRtMainId"></param>
         /// <param name="hireGroupDetailId"></param>

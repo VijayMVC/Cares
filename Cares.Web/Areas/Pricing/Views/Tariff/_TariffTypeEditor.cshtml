@@ -15,13 +15,12 @@
             <div class="col-md-2">
                 <input type="text" class="form-control" placeholder='@("<" + Cares.Web.Resources.Tariff.TariffType.TariffTypeName + ">")' id="tariffTypeName" data-bind="value: tariffTypeName, validationTooltip: tariffTypeName" />
             </div>
-            <label for="tariffTypeDescription" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.TariffType.Description</label>
+            <label for="tariffTypepricingStrategies" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.TariffType.PricingStrategy *</label>
             <div class="col-md-2">
-                <textarea class="form-control" rows="2" placeholder='@("<" + Cares.Web.Resources.Tariff.TariffType.Description + ">")' id="tariffTypeDescription" data-bind="value: tariffTypeDescription, valueUpdate: 'keyup'"></textarea>
+                <select id="tariffTypepricingStrategies" class="form-control" data-bind="options: $root.pricingStrategies, optionsText: 'PricingStrategyCodeName', optionsValue: 'PricingStrategyId', optionsCaption: '@("<" + Cares.Web.Resources.Tariff.TariffType.PricingStrategy + ">")' , value: pricingStrategyId, validationTooltip: pricingStrategyId"></select>
             </div>
         </div>
         <div class="form-group">
-
             <label for="tariffTypeCompany" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.TariffType.Company *</label>
             <div class="col-md-2">
                 <select id="tariffTypeCompany" class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption:  '@("<" + Cares.Web.Resources.Tariff.TariffType.Company + ">")' , value: companyId, validationTooltip: companyId, event:{change:$root.onSelectedCompany }"></select>
@@ -35,14 +34,11 @@
                 <select id="tariffTypeOperation" class="form-control" data-bind="options: $root.filteredOperations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '@("<" + Cares.Web.Resources.Tariff.TariffType.Operation + ">")'  , value: operationId, validationTooltip: operationId"></select>
             </div>
         </div>
-
         <div class="form-group">
             <label for="tariffTypeMeasurementUnit" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.TariffType.MeasurementUnit *</label>
-            <div class="col-md-4">
+            <div class="col-md-2">
                 <select id="tariffTypeMeasurementUnit" class="form-control" data-bind="options: $root.measurementUnits, optionsText: 'MeasurementUnitCodeName', optionsValue: 'MeasurementUnitId', optionsCaption:  '@("<" + Cares.Web.Resources.Tariff.TariffType.MeasurementUnit + ">")', value: measurementUnitId, validationTooltip: measurementUnitId"></select>
             </div>
-        </div>
-        <div class="form-group">
             <label for="tariffTypeStartFrom" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.TariffType.StartFrom *</label>
             <div class="col-md-2">
                 <input type="text" class="form-control" placeholder='@("<" + Cares.Web.Resources.Tariff.TariffType.StartFrom + ">")' id="tariffTypeStartFrom" data-bind="value: durationFrom, validationTooltip: durationFrom" />
@@ -51,25 +47,22 @@
             <div class="col-md-2">
                 <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.TariffType.EndTo + ">")' class="form-control" id="tariffTypeEndTo" data-bind="value: durationTo, validationTooltip: durationTo" />
             </div>
+        </div>
+        <div class="form-group">
             <label for="tariffTypeGraceCode" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.TariffType.GracePeriod *</label>
             <div class="col-md-2">
                 <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.TariffType.GracePeriod + ">")' class="form-control" id="tariffTypeGraceCode" data-bind="value: gracePeriod, validationTooltip: gracePeriod" />
             </div>
-        </div>
-        <div class="form-group">
             <label for="tariffTypeEffectiveDate" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.TariffType.EffectiveStartDate *</label>
             <div class="col-md-2">
                 <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.TariffType.EffectiveStartDate + ">")' class="form-control" id="tariffTypeEffectiveDate" data-bind="datepicker: effectiveDate, validationTooltip: effectiveDate" />
             </div>
-            <label for="tariffTypepricingStrategies" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.TariffType.PricingStrategy *</label>
+            <label for="tariffTypeDescription" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.TariffType.Description</label>
             <div class="col-md-2">
-                <select id="tariffTypepricingStrategies" class="form-control" data-bind="options: $root.pricingStrategies, optionsText: 'PricingStrategyCodeName', optionsValue: 'PricingStrategyId', optionsCaption: '@("<" + Cares.Web.Resources.Tariff.TariffType.PricingStrategy + ">")' , value: pricingStrategyId, validationTooltip: pricingStrategyId"></select>
+                <textarea class="form-control" rows="4" placeholder='@("<" + Cares.Web.Resources.Tariff.TariffType.Description + ">")' id="tariffTypeDescription" data-bind="value: tariffTypeDescription, valueUpdate: 'keyup'"></textarea>
             </div>
         </div>
 
-        <div class="form-group">
-
-        </div>
     </form>
     <div class="panel panel-info">
 

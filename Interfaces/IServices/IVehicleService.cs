@@ -51,7 +51,6 @@ namespace Cares.Interfaces.IServices
         /// <returns></returns>
         Vehicle SaveVehicle(Vehicle vehicle);
 
-
         /// <summary>
         /// Get Vehicle Detail By ID
         /// </summary>
