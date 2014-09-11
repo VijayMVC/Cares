@@ -62,5 +62,15 @@ namespace Cares.Web.Areas.Organization.Controllers
         {
             return View();
         }
+
+        /// <summary>
+         /// Business Segment Area
+        /// </summary>
+        /// <returns></returns>
+         public ActionResult BusinessSegment()
+         {
+             return View();
+         }
+
     }
 }

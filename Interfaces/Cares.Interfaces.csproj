@@ -50,6 +50,7 @@
     <Compile Include="IServices\IBPRatingTypeService.cs" />
     <Compile Include="IServices\IBusinessLegalStatusService.cs" />
     <Compile Include="IServices\IBusinessPartnerBaseDataService.cs" />
+    <Compile Include="IServices\IBusinessSegmentService.cs" />
     <Compile Include="IServices\ICountryService.cs" />
     <Compile Include="IServices\IInsuranceRateService.cs" />
     <Compile Include="IServices\IOperationsWorkPlaceService.cs" />

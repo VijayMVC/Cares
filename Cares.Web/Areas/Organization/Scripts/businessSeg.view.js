@@ -1,8 +1,8 @@
 ﻿/*
     View for the workplaceType. Used to keep the viewmodel clear of UI related logic
 */
-define("workplaceType/workplaceType.view",
-    ["jquery", "workplaceType/workplaceType.viewModel"], function ($, workplacetypeGroupViewModel) {
+define("businessSeg/businessSeg.view",
+    ["jquery", "businessSeg/businessSeg.viewModel"], function ($, workplacetypeGroupViewModel) {
         var ist = window.ist || {};
         // View 
         ist.WorkPlaceType.view = (function (specifiedViewModel) {

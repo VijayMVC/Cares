@@ -29,10 +29,8 @@
             "workplace": "/Areas/Organization/Scripts",
             "workLocation": "/Areas/Organization/Scripts",
             "workplaceType": "/Areas/Organization/Scripts",
+            "businessSeg": "/Areas/Organization/Scripts",
             "employee": "/Areas/EmployeeManagement/Scripts"
-
-
-
         }
 
     });

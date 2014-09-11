@@ -1,8 +1,8 @@
 ﻿/*
     Module with the view model for the workplaceType
 */
-define("workplaceType/workplaceType.viewModel",
-    ["jquery", "amplify", "ko", "workplaceType/workplaceType.dataservice", "workplaceType/workplaceType.model",
+define("businessSeg/businessSeg.viewModel",
+    ["jquery", "amplify", "ko", "businessSeg/businessSeg.dataservice", "businessSeg/businessSeg.model",
     "common/confirmation.viewModel", "common/pagination"],
     function($, amplify, ko, dataservice, model, confirmation, pagination) {
         var ist = window.ist || {};
@@ -135,9 +135,9 @@ define("workplaceType/workplaceType.viewModel",
                     },
                     //get workplace list from Dataservice
                     getWorkPlaceType = function() {
-                        dataservice.getWorkPlaceTypes(
+                        dataservice.getBusinessSeg(
                         {
-                            WorkplaceTypeFilterText: searchFilter(),
+                            BusinessSegmentFilterText: searchFilter(),
                             PageSize: pager().pageSize(),
                             PageNo: pager().currentPage(),
                             SortBy: sortOn(),

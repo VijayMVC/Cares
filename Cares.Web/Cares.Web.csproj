@@ -225,6 +225,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
+    <Compile Include="Areas\Api\Controllers\BusinessSegmentController.cs" />
     <Compile Include="Areas\Api\Controllers\CompanyBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Api\Controllers\DepartmentBaseController.cs" />
@@ -311,6 +312,8 @@
     <Compile Include="ModelMappers\WorkLocationMapper.cs" />
     <Compile Include="ModelMappers\WorkplaceMapper.cs" />
     <Compile Include="ModelMappers\WorkplaceTypeMapper.cs" />
+    <Compile Include="Models\BusinessSegment.cs" />
+    <Compile Include="Models\BusinessSegmentSearchRequestResponse.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\DepartmentBaseDataResponse.cs" />
     <Compile Include="Models\DepartmentSearchRequestResponse.cs" />
@@ -693,6 +696,10 @@
     <Content Include="Areas\Organization\Scripts\department.model.js" />
     <Content Include="Areas\Organization\Scripts\department.view.js" />
     <Content Include="Areas\Organization\Scripts\department.viewModel.js" />
+    <Content Include="Areas\Organization\Scripts\businessSeg.dataservice.js" />
+    <Content Include="Areas\Organization\Scripts\businessSeg.model.js" />
+    <Content Include="Areas\Organization\Scripts\businessSeg.view.js" />
+    <Content Include="Areas\Organization\Scripts\businessSeg.viewModel.js" />
     <Content Include="Areas\Organization\Scripts\workLocation.dataservice.js" />
     <Content Include="Areas\Organization\Scripts\workLocation.model.js" />
     <Content Include="Areas\Organization\Scripts\workLocation.viewModel.js" />
@@ -1408,6 +1415,7 @@
     <Content Include="Content\WorkPlaceType.css.map">
       <DependentUpon>WorkPlaceType.css</DependentUpon>
     </Content>
+    <Content Include="Areas\Organization\Views\Organization\BusinessSegment.cshtml" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
@@ -1547,6 +1555,7 @@
   <ItemGroup>
     <Folder Include="App_Data\ProfileImages\" />
     <Folder Include="Areas\Api\Models\" />
+    <Folder Include="Areas\Api\Views\BusinessSegment\" />
     <Folder Include="Areas\Api\Views\CompanyBase\" />
     <Folder Include="Areas\Api\Views\Company\" />
     <Folder Include="Areas\Api\Views\Department\" />
