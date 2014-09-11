@@ -1,4 +1,6 @@
-﻿using Cares.Models.DomainModels;
+﻿using System.Linq;
+using Cares.Models.DomainModels;
+using Cares.Models.ResponseModels;
 using ApiModel = Cares.Web.Models;
 using DomainModel = Cares.Models.DomainModels;
 
@@ -22,6 +24,33 @@ namespace Cares.Web.ModelMappers
                 BusinessSegmentCodeName = source.BusinessSegmentCode + " - " + source.BusinessSegmentName
             };
         }
+
+        /// <summary>
+        /// create from domain search request response model
+        /// </summary>
+        public static Models.BusinessSegmentSearchRequestResponse CreateFrom(this BusinessSegmentSearchRequestResponse source)
+        {
+            return new Models.BusinessSegmentSearchRequestResponse
+            {
+                BusinessSegments = source.BusinessSegments.Select(bSeg => bSeg.CreateFromm()),
+                TotalCount = source.TotalCount
+            };
+        }
+
+        /// <summary>
+        /// Create from domain model
+        /// </summary>
+        public static ApiModel.BusinessSegment CreateFromm(this BusinessSegment source)
+        {
+            return new ApiModel.BusinessSegment
+            {
+                BusinessSegmentId = source.BusinessSegmentId,
+                BusinessSegmentCode = source.BusinessSegmentCode,
+                BusinessSegmentName = source.BusinessSegmentName,
+                BusinessSegmentDescription = source.BusinessSegmentDescription,
+            };
+        }
+
         #endregion
         #region Model To Entity
         /// <summary>

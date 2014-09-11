@@ -61,11 +61,20 @@ namespace Cares.Implementation.Resources.Organization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Company has company/department association with it !.
+        ///   Looks up a localized string similar to Company is associated with departments!.
         /// </summary>
-        public static string CompanyHasCompanyDepartmentAssociationError {
+        public static string CompanyIsAssociatedWithDepartmentError {
             get {
-                return ResourceManager.GetString("CompanyHasCompanyDepartmentAssociationError", resourceCulture);
+                return ResourceManager.GetString("CompanyIsAssociatedWithDepartmentError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Company is parent of other company. Can&apos;t Delete!.
+        /// </summary>
+        public static string CompanyIsParentOfOtherCompanyError {
+            get {
+                return ResourceManager.GetString("CompanyIsParentOfOtherCompanyError", resourceCulture);
             }
         }
         

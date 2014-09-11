@@ -1,8 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using Cares.Interfaces.Repository;
+using Cares.Models.Common;
 using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
 using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
 
@@ -13,6 +17,18 @@ namespace Cares.Repository.Repositories
     /// </summary>
     public sealed class BusinessSegmentRepository : BaseRepository<BusinessSegment>, IBusinessSegmentRepository
     {
+        #region Public
+        /// <summary>
+        /// BusinessSegment Orderby clause
+        /// </summary>
+        private readonly Dictionary<BusinessSegmentByColumn, Func<BusinessSegment, object>> businessSegmentOrderByClause = new Dictionary<BusinessSegmentByColumn, Func<BusinessSegment, object>>
+                    {
+
+                        {BusinessSegmentByColumn.BusinessSegmentCode, c => c.BusinessSegmentCode},
+                        {BusinessSegmentByColumn.BusinessSegmentName, n => n.BusinessSegmentName},
+                        {BusinessSegmentByColumn.BusinessSegmentDescription, d=> d.BusinessSegmentDescription},
+                    };
+        #endregion
         #region Constructor
         /// <summary>
         /// Constructor
@@ -44,6 +60,46 @@ namespace Cares.Repository.Repositories
             return DbSet.Where(businessSegment => businessSegment.UserDomainKey == UserDomainKey).ToList();
         }
 
+
+
+        /// <summary>
+        /// Search BusinessSegment
+        /// </summary>
+        public IEnumerable<BusinessSegment> SearchBusinessSegment(BusinessSegmentSearchRequest businessSegmentSearchRequest,
+            out int rowCount)
+        {
+
+            int fromRow = (businessSegmentSearchRequest.PageNo - 1) * businessSegmentSearchRequest.PageSize;
+            int toRow = businessSegmentSearchRequest.PageSize;
+            Expression<Func<BusinessSegment, bool>> query =
+                operation =>
+                    (string.IsNullOrEmpty(businessSegmentSearchRequest.BusinessSegmentFilterText) ||
+                     (operation.BusinessSegmentCode.Contains(businessSegmentSearchRequest.BusinessSegmentFilterText)) ||
+                     (operation.BusinessSegmentName.Contains(businessSegmentSearchRequest.BusinessSegmentFilterText)));
+
+            rowCount = DbSet.Count(query);
+            return businessSegmentSearchRequest.IsAsc
+                ? DbSet.Where(query)
+                    .OrderBy(businessSegmentOrderByClause[businessSegmentSearchRequest.BusinessSegmentOrderBy])
+                    .Skip(fromRow)
+                    .Take(toRow)
+                    .ToList()
+                : DbSet.Where(query)
+                    .OrderByDescending(businessSegmentOrderByClause[businessSegmentSearchRequest.BusinessSegmentOrderBy])
+                    .Skip(fromRow)
+                    .Take(toRow)
+                    .ToList();
+        }
+
+
+        /// <summary>
+        /// WorkPlaceType Code validation check
+        /// </summary>
+        public bool IsBusinessSegmentCodeExists(BusinessSegment businessSegment)
+        {
+            return DbSet.Count(dbbusinessSegment=> dbbusinessSegment.BusinessSegmentCode.ToLower() == businessSegment.BusinessSegmentCode.ToLower() && dbbusinessSegment.BusinessSegmentId != businessSegment.BusinessSegmentId) > 0;
+
+        }
         #endregion
 
     }

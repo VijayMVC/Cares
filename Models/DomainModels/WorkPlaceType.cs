@@ -35,6 +35,13 @@ namespace Cares.Models.DomainModels
         public string WorkPlaceTypeDescription { get; set; }
 
         /// <summary>
+        /// WorkPlace Type Code
+        /// </summary>
+        [StringLength(100), Required]
+        public string WorkPlaceNature { get; set; }
+
+
+        /// <summary>
         /// Work Place Type Cat
         /// </summary>
         public short WorkPlaceTypeCat { get; set; }

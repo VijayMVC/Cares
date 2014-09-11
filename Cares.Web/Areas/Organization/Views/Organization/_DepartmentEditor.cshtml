@@ -7,11 +7,11 @@
     </div>
     <form class="form-horizontal">
         <div class="form-group">
-            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Department.DepartmentCode</label>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Department.DepartmentCode*</label>
             <div class="col-md-2">
                 <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Department.DepartmentCode+">")" id="tariffTypeCode" data-bind="value: code" />
             </div>
-            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Department.DepartmentName</label>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Department.DepartmentName*</label>
             <div class="col-md-2">
                 <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Department.DepartmentName+">")" id="tariffTypeName" data-bind="value:name" />
             </div>
@@ -21,11 +21,11 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Department.DepartmentType</label>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Department.DepartmentType*</label>
             <div class="col-md-2">
                 <select class="form-control" data-bind="options: $root.baseDepartmentTypesList, optionsCaption: '&lt;' + '@Cares.Web.Resources.Organization.Department.DepartmentType'+ '&gt;', value:departmentType "></select>
             </div>
-            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Department.Comapny</label>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Department.Comapny*</label>
             <div class="col-md-2">
                 <select class="form-control" data-bind="options: $root.baseCompniesList, optionsText:  'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.Department.Comapny'+ '&gt;' , value:companyId"></select>
             </div>

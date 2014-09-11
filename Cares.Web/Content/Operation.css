@@ -2,19 +2,19 @@
   margin-left: 5px;
 }
 #OperationBinding table thead tr .code {
-  width: 18%;
+  width: 20%;
 }
 #OperationBinding table thead tr .name {
-  width: 18%;
+  width: 20%;
 }
 #OperationBinding table thead tr .company {
-  width: 18%;
+  width: 20%;
 }
 #OperationBinding table thead tr .department {
-  width: 18%;
+  width: 20%;
 }
 #OperationBinding table thead tr .departmentType {
-  width: 18%;
+  width: 20%;
 }
 #OperationBinding #OperationEditor {
   margin-top: 15px;

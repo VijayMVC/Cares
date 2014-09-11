@@ -7,11 +7,11 @@
     </div>
     <form class="form-horizontal">
         <div class="form-group">
-            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Company.CompanyCode</label>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Company.CompanyCode*</label>
             <div class="col-md-2">
                 <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Company.CompanyCode+">")" id="tariffTypeCode" data-bind="value: companyCode" />
             </div>
-            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Company.CompanyName</label>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Company.CompanyName*</label>
             <div class="col-md-2">
                 <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Company.CompanyName+">")" id="tariffTypeName" data-bind="value:companyName" />
             </div>
@@ -25,7 +25,7 @@
             <div class="col-md-2">
                 <select class="form-control" data-bind="options: $root.orgGroupList, optionsText: 'OrgGroupCode', optionsValue: 'OrgGroupId', optionsCaption: '&lt;' +'@Cares.Web.Resources.Organization.Company.OrganizationGroup'+'&gt;', value:orgGroupId "></select>
             </div>
-            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Company.BusinessSegment</label>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Company.BusinessSegment*</label>
             <div class="col-md-2">
                 <select class="form-control" data-bind="options: $root.businessSegList, optionsText: 'BusinessSegmentCodeName', optionsValue: 'BusinessSegmentId', optionsCaption: '&lt;' + '@Cares.Web.Resources.Organization.Company.BusinessSegment' + '&gt;', value:businessSegmentId"></select>
             </div>
@@ -50,7 +50,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Company.PaidUpCapital</label>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Company.PaidUpCapital*</label>
             <div class="col-md-2">
                 <input type="text" class="form-control" onkeypress="return onlyNumbers(this)"  data-bind="value:paidUpCapital" placeholder="@("<"+Cares.Web.Resources.Organization.Company.PaidUpCapital+">")" />
             </div>

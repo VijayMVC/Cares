@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = Cares.Web.Resources.Organization.WorkplaceType.WorkplaceTypeLabel;
+}
+<div class="row" id="WorkPlaceTypeBinding">
+
+    <div class="row " data-bind="visible: !isWorkPlaceTypeEditorVisible()">
+        <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.Organization.WorkplaceType.WorkplaceTypeLabel</h3>
+        <div class="header-toolsSection">
+            <a href="#" class="label label-default create-new-icon" data-bind="click: onCreateForm" title="@Cares.Web.Resources.Shared.Common.CreateNew">@Cares.Web.Resources.Shared.Common.New</a>
+            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title="@Cares.Web.Resources.Shared.Common.ShowFilter" style="display: none"></a>
+        </div>
+    </div>
+    <div class="row searchFilterSection" data-bind="visible: !isWorkPlaceTypeEditorVisible() && filterSectionVisilble()" style="display: none">
+        <div class="well">
+            <form class="form-horizontal">
+                <div class="col-xs-2">
+                    <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.WorkplaceType.Search+">")" data-bind="value: searchFilter" />
+                </div>
+
+                <button type="submit" class="btn btn-success" data-bind="click: search">@Cares.Web.Resources.Shared.Common.Search</button>
+                <button type="submit" class="btn btn-default" data-bind="click:resetResuults">@Cares.Web.Resources.Shared.Common.Reset</button>
+                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click:hideFilterSection" title="@Cares.Web.Resources.Shared.Common.HideSection"></a>
+            </form>
+        </div>
+    </div>
+    <div class="row searchFilterResultSection" data-bind="visible: !isWorkPlaceTypeEditorVisible()">
+        <div class="well">
+            <table id="OrgGroupTable" class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th class="WPTcode"> <span id="1">@Cares.Web.Resources.Organization.WorkplaceType.Code<span class="icon-up"></span></span></th>
+                        <th class="WPTname"> <span id="2">@Cares.Web.Resources.Organization.WorkplaceType.Name<span></span></span></th>
+                        <th class="WPTDes"> <span id="3">@Cares.Web.Resources.Organization.WorkplaceType.Description<span></span></span></th>
+                        <th class="WPTnature"> <span id="4">@Cares.Web.Resources.Organization.WorkplaceType.WorkPlaceNature<span></span></span></th>
+                        <th> <span></span></th>
+                        <th> <span></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- ko template: { name: 'WorkplaceTypeFilterResultTemplate' , foreach: workPlaceTypes } -->
+                    <!-- /ko -->
+                </tbody>
+            </table>
+            <!-- ko with: pager -->
+            @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
+            <!-- /ko -->
+        </div>
+    </div>
+    <script id="deleteActionOrgGroupTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onDeleteWorkPlaceType" title="@Cares.Web.Resources.Shared.Common.Delete"><span class="glyphicon glyphicon-remove"></span></a>
+    </script>
+
+    <script id="editActionOrgRoupTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onEditWorkplaceType" title="@Cares.Web.Resources.Shared.Common.Edit"><span class="glyphicon glyphicon-edit"></span></a>
+    </script>
+    <script id="WorkplaceTypeFilterResultTemplate" type="text/html">
+        <tr>
+            <td data-bind="text: code"></td>
+            <td data-bind="text: name"></td>
+            <td data-bind="text: description"></td>
+            <td data-bind="text: workplaceNature"></td>
+            <td>
+                <!-- ko template: { name: 'editActionOrgRoupTemplate' } -->
+                <!-- /ko -->
+            </td>
+            <td>
+                <!-- ko template: { name: 'deleteActionOrgGroupTemplate' } -->
+                <!-- /ko -->
+            </td>
+        </tr>
+    </script>
+    @Html.Partial("_WorkplaceTypeEditor")
+</div>
+<!-- ko stopBinding: true -->
+@Html.Partial("~/Areas/Common/Views/Shared/_ConfirmationDialog.cshtml")
+<!-- /ko -->
+@section inlinescripts
+{
+    <script type="text/javascript">
+        require(["workplaceType/workplaceType.view", "common/confirmation.view"]);
+    var ist = window.ist;
+    @{
+        <text>
+        ist.resourceText.WorkPlaceTypeSaveSuccessMessage = '@Cares.Web.Resources.Organization.WorkplaceType.WorkPlaceTypeSaveSuccessMessage';
+        ist.resourceText.WorkPlaceTypeSaveFailError = '@Cares.Web.Resources.Organization.WorkplaceType.WorkPlaceTypeSaveFailError';
+        ist.resourceText.WorkPlaceTypeLoadFailError = '@Cares.Web.Resources.Organization.WorkplaceType.WorkPlaceTypeLoadFailError';
+        ist.resourceText.WorkPlaceTypeDeleteSuccessMessage = '@Cares.Web.Resources.Organization.WorkplaceType.WorkPlaceTypeDeleteSuccessMessage';
+        ist.resourceText.WorkPlaceTypeDeleteFailError = '@Cares.Web.Resources.Organization.WorkplaceType.WorkPlaceTypeDeleteFailError';
+        </text>
+       }
+    </script>
+
+}

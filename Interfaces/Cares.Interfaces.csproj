@@ -50,6 +50,7 @@
     <Compile Include="IServices\IBPRatingTypeService.cs" />
     <Compile Include="IServices\IBusinessLegalStatusService.cs" />
     <Compile Include="IServices\IBusinessPartnerBaseDataService.cs" />
+    <Compile Include="IServices\IBusinessSegmentService.cs" />
     <Compile Include="IServices\ICountryService.cs" />
     <Compile Include="IServices\IInsuranceRateService.cs" />
     <Compile Include="IServices\IOperationsWorkPlaceService.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="IServices\IServiceRtService.cs" />
     <Compile Include="IServices\IWorkLocationService.cs" />
     <Compile Include="IServices\IWorkplaceService.cs" />
+    <Compile Include="IServices\IWorkplaceTypeService.cs" />
     <Compile Include="Repository\IDesigGradeRepository.cs" />
     <Compile Include="Repository\IDesignationRepository.cs" />
     <Compile Include="Repository\IEmpStatusRepository.cs" />

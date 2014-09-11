@@ -2,10 +2,10 @@
   margin-left: 5px;
 }
 #fleetRootBinding table thead tr .fleetCode {
-  width: 15%;
+  width: 20%;
 }
 #fleetRootBinding table thead tr .fleetName {
-  width: 15%;
+  width: 20%;
 }
 #fleetRootBinding table thead tr .fleetOpp {
   width: 20%;
@@ -271,16 +271,16 @@
   width: 15%;
 }
 #companyBinding table thead tr .CompanyNameH {
-  width: 15%;
+  width: 17%;
 }
 #companyBinding table thead tr .CompanydesH {
-  width: 15%;
+  width: 18%;
 }
 #companyBinding table thead tr .CompanyOrgGroupH {
   width: 15%;
 }
 #companyBinding table thead tr .CompanyBSegH {
-  width: 15%;
+  width: 17%;
 }
 #companyBinding table thead tr .CompanyPCompanyH {
   width: 15%;
@@ -301,19 +301,19 @@
   margin-left: 5px;
 }
 #OperationBinding table thead tr .code {
-  width: 18%;
+  width: 20%;
 }
 #OperationBinding table thead tr .name {
-  width: 18%;
+  width: 20%;
 }
 #OperationBinding table thead tr .company {
-  width: 18%;
+  width: 20%;
 }
 #OperationBinding table thead tr .department {
-  width: 18%;
+  width: 20%;
 }
 #OperationBinding table thead tr .departmentType {
-  width: 18%;
+  width: 20%;
 }
 #OperationBinding #OperationEditor {
   margin-top: 15px;
@@ -331,13 +331,13 @@
   margin-left: 5px;
 }
 #OrgGroupBinding table thead tr .OrgGroupcode {
-  width: 30%;
+  width: 33%;
 }
 #OrgGroupBinding table thead tr .OrgGroupname {
-  width: 30%;
+  width: 33%;
 }
 #OrgGroupBinding table thead tr .OrgGroupDes {
-  width: 30%;
+  width: 33%;
 }
 #OrgGroupBinding #_OrgGroupEditor {
   margin-top: 15px;
@@ -355,13 +355,13 @@
   margin-left: 5px;
 }
 #WorkPlaceBinding table thead tr .WPcode {
-  width: 10%;
+  width: 12%;
 }
 #WorkPlaceBinding table thead tr .WPname {
-  width: 10%;
+  width: 12%;
 }
 #WorkPlaceBinding table thead tr .WPDescription {
-  width: 15%;
+  width: 21%;
 }
 #WorkPlaceBinding table thead tr .WPType {
   width: 15%;
@@ -459,13 +459,13 @@
   margin-left: 5px;
 }
 #WorkLocationBinding table thead tr .WLcode {
-  width: 8%;
+  width: 12%;
 }
 #WorkLocationBinding table thead tr .WLname {
-  width: 8%;
+  width: 12%;
 }
 #WorkLocationBinding table thead tr .WLDescription {
-  width: 14%;
+  width: 16%;
 }
 #WorkLocationBinding table thead tr .WLCompany {
   width: 10%;
@@ -503,6 +503,33 @@
 #WorkLocationBinding #WorkplaceEditor .addToBtnDiv {
   width: 100%;
   margin-bottom: 15px;
+}
+#WorkPlaceTypeBinding table thead tr .ttypesearchButton {
+  margin-left: 5px;
+}
+#WorkPlaceTypeBinding table thead tr .WPTcode {
+  width: 25%;
+}
+#WorkPlaceTypeBinding table thead tr .WPTname {
+  width: 25%;
+}
+#WorkPlaceTypeBinding table thead tr .WPTDes {
+  width: 25%;
+}
+#WorkPlaceTypeBinding table thead tr .WPTnature {
+  width: 25%;
+}
+#WorkPlaceTypeBinding #WorkPlaceTypeEditor {
+  margin-top: 15px;
+}
+#WorkPlaceTypeBinding #WorkPlaceTypeEditor .detailsContainer {
+  width: 100%;
+}
+#WorkPlaceTypeBinding #WorkPlaceTypeEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
 }
 .float-left {
   float: left;
