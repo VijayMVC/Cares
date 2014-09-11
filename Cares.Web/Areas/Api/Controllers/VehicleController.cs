@@ -48,7 +48,7 @@ namespace Cares.Web.Areas.Api.Controllers
         }
 
         /// <summary>
-        /// Update/Update a Vehicle
+        /// Add/Update a Vehicle
         /// </summary>
         [ApiException]
         public VehicleListViewContent Post(VehicleDetail vehicleDetail)

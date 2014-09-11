@@ -6,12 +6,12 @@ namespace Cares.Models.ResponseModels
     /// <summary>
     /// Employee Response
     /// </summary>
-    public sealed class EmployeeResponse
+    public sealed class EmployeeSearchResponse
     {
         /// <summary>
         /// Constructor
         /// </summary>
-        public EmployeeResponse()
+        public EmployeeSearchResponse()
         {
             Employees = new List<Employee>();
         }

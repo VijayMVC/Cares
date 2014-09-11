@@ -231,6 +231,7 @@
     <Compile Include="Areas\Api\Controllers\DepartmentController.cs" />
     <Compile Include="Areas\Api\Controllers\EmployeeBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\EmployeeController.cs" />
+    <Compile Include="Areas\Api\Controllers\EmployeeDetailController.cs" />
     <Compile Include="Areas\Api\Controllers\FleetPoolBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\FleetPoolController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessPartnerBaseController.cs" />
@@ -314,8 +315,10 @@
     <Compile Include="Models\DepartmentSearchRequestResponse.cs" />
     <Compile Include="Models\DesigGradeDropDown.cs" />
     <Compile Include="Models\DesignationDropDown.cs" />
+    <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EmployeeListViewContent.cs" />
     <Compile Include="Models\EmployeeBaseResponse.cs" />
+    <Compile Include="Models\EmployeeSearchResponse.cs" />
     <Compile Include="Models\EmpStatusDropDown.cs" />
     <Compile Include="Models\FleetPoolDropDown.cs" />
     <Compile Include="Models\FuelTypeDropDown.cs" />
@@ -916,13 +919,13 @@
     <Content Include="Content\Vehicle.css">
       <DependentUpon>Vehicle.less</DependentUpon>
     </Content>
-     <Content Include="Content\WorkLocation.css">
+    <Content Include="Content\WorkLocation.css">
       <DependentUpon>WorkLocation.less</DependentUpon>
     </Content>
     <Content Include="Content\Vehicle.min.css">
       <DependentUpon>Vehicle.css</DependentUpon>
     </Content>
-     <Content Include="Content\WorkLocation.min.css">
+    <Content Include="Content\WorkLocation.min.css">
       <DependentUpon>WorkLocation.css</DependentUpon>
     </Content>
     <Content Include="Content\WorkPlace.css">
@@ -1371,12 +1374,13 @@
     <Content Include="Content\WorkLocation.css.map">
       <DependentUpon>WorkLocation.css</DependentUpon>
     </Content>
-     <Content Include="Areas\EmployeeManagement\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\EmployeeManagement\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\EmployeeManagement\Views\Home\Index.cshtml" />
     <Content Include="Content\Vehicle.less" />
     <Content Include="Content\Vehicle.css.map">
       <DependentUpon>Vehicle.css</DependentUpon>
     </Content>
+    <Content Include="Areas\EmployeeManagement\Views\Home\_EmployeeEditor.cshtml" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />

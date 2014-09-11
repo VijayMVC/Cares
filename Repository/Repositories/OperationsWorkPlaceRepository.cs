@@ -37,6 +37,7 @@ namespace Cares.Repository.Repositories
         }
 
         #endregion
+        
         #region Public
 
         /// <summary>
@@ -64,6 +65,14 @@ namespace Cares.Repository.Repositories
             return DbSet.Include(opp => opp.Operation)
                    .Include(opp => opp.FleetPool)
                    .FirstOrDefault(opp => opp.OperationsWorkPlaceId == id);
+        }
+        
+        /// <summary>
+        /// Get Employee Status for User Domain Key
+        /// </summary>
+        public override IEnumerable<OperationsWorkPlace> GetAll()
+        {
+            return DbSet.Where(oWorkPlace => oWorkPlace.UserDomainKey == UserDomainKey).ToList();
         }
         #endregion
     }

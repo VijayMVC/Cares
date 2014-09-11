@@ -1,0 +1,163 @@
+﻿<div class="well col-md-12" id="vehicleEditor" data-bind="visible: isEmployeeEditorVisible, with: addEmployeeItem" style="display: none;">
+    <div class="detailsContainer">
+        <h3 class="page-header detailsHeaderSection">Employee Detail </h3>
+        <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onSaveEmployee, enable: hasChanges, css: { 'btn-warning': hasChanges }">@Cares.Web.Resources.Shared.Common.Save</button>
+        <button class="btn btn-default" id="saveBtn" data-bind="click: $root.closeEmployeeEditor">@Cares.Web.Resources.Shared.Common.Cancel</button>
+    </div>
+    <form class="form-horizontal">
+
+        <div class="form-group">
+            <label for="code" class="control-label h5 col-sm-1">Employee Code*</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control" placeholder='Employee Code' id="code" data-bind="value:code , validationTooltip:code" />
+            </div>
+            <label for="company" class="control-label h5 col-sm-1">Company *</label>
+            <div class="col-md-3">
+                <select id="company" class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '&lt;' + 'Company' + '&gt;' ,value:companyId "></select>
+            </div>
+            <label for="company" class="control-label h5 col-sm-1">Employee Status * </label>
+            <div class="col-md-3">
+                <select id="company" class="form-control" data-bind="options: $root.employeeStatuses, optionsText: 'EmpStatusCodeName', optionsValue: 'EmpStatusId', optionsCaption: '&lt;' + 'Employee Status' + '&gt;' , value:statusId"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="fName" class="control-label h5 col-sm-1">First Name *</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control" placeholder='First Name' id="fName" data-bind="value:fName , validationTooltip:fName" />
+            </div>
+            <label for="mName" class="control-label h5 col-sm-1">Middle Name *</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control" placeholder='Middle Name' id="mName" data-bind="value:mName , validationTooltip:mName" />
+            </div>
+            <label for="lName" class="control-label h5 col-sm-1">Last Name *</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control" placeholder='Middle Name' id="lName" data-bind="value:lName , validationTooltip:lName" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="dOB" class="control-label h5 col-sm-1">DOB *</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control" placeholder='DOB' id="dOB" data-bind="datepicker:dOB , validationTooltip:dOB" />
+            </div>
+            <label for="company" class="control-label h5 col-sm-1">Gender </label>
+            <div class="col-md-3">
+                <select id="company" class="form-control" data-bind="options: $root.genders, optionsText: 'Text', optionsValue: 'Id', optionsCaption: '&lt;' + 'Gender' + '&gt;' ,value:gender "></select>
+            </div>
+            <label for="nationality" class="control-label h5 col-sm-1"> Nationality </label>
+            <div class="col-md-3">
+                <select id="nationality" class="form-control" data-bind="options: $root.nationalities, optionsText: 'CountryCodeName', optionsValue: 'CountryId', optionsCaption: '&lt;' + 'Nationalty' + '&gt;' , value:nationalityId"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="notes" class="control-label h5 col-sm-1">Notes</label>
+            <div class="col-md-3">
+                <textarea class="form-control" rows="4" placeholder='Notes' id="notes" data-bind="value: notes , valueUpdate: 'keyup'"></textarea>
+            </div>
+            <label for="notes1" class="control-label h5 col-sm-1">Notes 1</label>
+            <div class="col-md-3">
+                <textarea class="form-control" rows="4" placeholder='Notes 1' id="notes1" data-bind="value: notes1 , valueUpdate: 'keyup'"></textarea>
+            </div>
+            <label for="notes2" class="control-label h5 col-sm-1">Notes 2</label>
+            <div class="col-md-3">
+                <textarea class="form-control" rows="4" placeholder='Notes 2' id="notes2" data-bind="value: notes2 , valueUpdate: 'keyup'"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="notes3" class="control-label h5 col-sm-1">Notes 3</label>
+            <div class="col-md-3">
+                <textarea class="form-control" rows="4" placeholder='Notes 3' id="notes3" data-bind="value: notes3 , valueUpdate: 'keyup'"></textarea>
+            </div>
+            <label for="notes4" class="control-label h5 col-sm-1">Notes 4</label>
+            <div class="col-md-3">
+                <textarea class="form-control" rows="4" placeholder='Notes 5' id="notes4" data-bind="value: notes4 , valueUpdate: 'keyup'"></textarea>
+            </div>
+            <label for="notes5" class="control-label h5 col-sm-1">Notes 5</label>
+            <div class="col-md-3">
+                <textarea class="form-control" rows="4" placeholder='Notes 5' id="notes5" data-bind="value: notes5 , valueUpdate: 'keyup'"></textarea>
+            </div>
+        </div>
+        <br />
+        <div class="panel panel-info">
+            <div class="panel-heading">.</div>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="active"><a href="#jobInfo" role="tab" data-toggle="tab">Job Info.</a></li>
+                <li><a href="#address" role="tab" data-toggle="tab">Address</a></li>
+                <li><a href="#phone" role="tab" data-toggle="tab">Phone</a></li>
+                <li><a href="#documentInfo" role="tab" data-toggle="tab">Document Info.</a></li>
+                <li><a href="#jobProgress" role="tab" data-toggle="tab">Job Progress</a></li>
+                <li><a href="#authorizedLocations" role="tab" data-toggle="tab">Authorized Locations</a></li>
+
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <br />
+                <!-- first tab - Job Info.-->
+                <div class="tab-pane active" id="jobInfo" data-bind="with: jobInfo">
+                    <div class="form-group">
+                        <label for="jobTypes" class="control-label h5 col-sm-1">Job Type * </label>
+                        <div class="col-md-3">
+                            <select id="jobTypes" class="form-control" data-bind="options: $root.jobTypes, optionsText: 'Text', JobTypeCodeName: 'JobTypeId', optionsCaption: '&lt;' + 'Job Type' + '&gt;' ,value:jobTypeId "></select>
+                        </div>
+                        <label for="designation" class="control-label h5 col-sm-1"> Designation * </label>
+                        <div class="col-md-3">
+                            <select id="designation" class="form-control" data-bind="options: $root.designations, optionsText: 'DesignationCodeName', optionsValue: 'DesignationId', optionsCaption: '&lt;' + 'Designation' + '&gt;' , value:desgId"></select>
+                        </div>
+                        <label for="desgGrade" class="control-label h5 col-sm-1"> Designation Grade * </label>
+                        <div class="col-md-3">
+                            <select id="desgGrade" class="form-control" data-bind="options: $root.designationGrades, optionsText: 'DesigGradeCodeName', optionsValue: 'DesigGradeId', optionsCaption: '&lt;' + 'Designation Grade' + '&gt;' , value:desgGardeId"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="jobTypes" class="control-label h5 col-sm-1">Job Type * </label>
+                        <div class="col-md-3">
+                            <select id="jobTypes" class="form-control" data-bind="options: $root.jobTypes, optionsText: 'Text', JobTypeCodeName: 'JobTypeId', optionsCaption: '&lt;' + 'Job Type' + '&gt;' ,value:depId "></select>
+                        </div>
+                        <label for="designation" class="control-label h5 col-sm-1">Workplace * </label>
+                        <div class="col-md-3">
+                            <select id="designation" class="form-control" data-bind="options: $root.workPlaces, optionsText: 'WorkPlaceCodeName', optionsValue: 'WorkPlaceId', optionsCaption: '&lt;' + 'Designation' + '&gt;' , value:workPlaceId"></select>
+                        </div>
+                        <label for="desgGrade" class="control-label h5 col-sm-1">  Supervisor  </label>
+                        <div class="col-md-3">
+                            <select id="desgGrade" class="form-control" data-bind="options: $root.supervisors, optionsText: 'EmployeeCodeName', optionsValue: 'EmployeeId', optionsCaption: '&lt;' + 'Designation Grade' + '&gt;' , value:supervisorId"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="joiningDate" class="control-label h5 col-sm-1">joining Date </label>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" placeholder='joining Date' id="joiningDate" data-bind="datePicker:joiningDate , validationTooltip:joiningDate" />
+                        </div>
+                        <label for="salary" class="control-label h5 col-sm-1">Salary</label>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" placeholder='Salary' id="salary" data-bind="value:salary , validationTooltip:salary" />
+                        </div>
+                    </div>
+                </div>
+                <!-- second tab - Address-->
+                <div class="tab-pane" id="address">
+
+                </div>
+                <!-- third tab - Phone-->
+                <div class="tab-pane" id="phone">
+
+                </div>
+                <!-- fourth tab - Document Info.-->
+                <div class="tab-pane" id="documentInfo">
+
+                </div>
+                <!-- fifth tab - Job Progress-->
+                <div class="tab-pane" id="jobProgress">
+
+                </div>
+                <!-- sixth tab - Authorized Locations-->
+                <div class="tab-pane" id="authorizedLocations">
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </form>
+
+</div>

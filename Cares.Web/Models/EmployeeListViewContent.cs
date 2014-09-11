@@ -1,7 +1,7 @@
 ﻿namespace Cares.Web.Models
 {
     /// <summary>
-    /// 
+    /// Employee List View Content
     /// </summary>
     public sealed class EmployeeListViewContent
     {
@@ -9,6 +9,11 @@
         /// Id
         /// </summary>
         public long Id { get; set; }
+
+        /// <summary>
+        /// Code
+        /// </summary>
+        public string Code { get; set; }
 
         /// <summary>
         /// Last Name

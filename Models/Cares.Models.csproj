@@ -230,7 +230,7 @@
     <Compile Include="ResponseModels\DepartmentBaseDataResponse.cs" />
     <Compile Include="ResponseModels\DepartmentSearchRequestResponse.cs" />
     <Compile Include="ResponseModels\EmployeeBaseResponse.cs" />
-    <Compile Include="ResponseModels\EmployeeResponse.cs" />
+    <Compile Include="ResponseModels\EmployeeSearchResponse.cs" />
     <Compile Include="ResponseModels\FleetPoolBaseDataResponse.cs" />
     <Compile Include="ResponseModels\FleetPoolResponse.cs" />
     <Compile Include="ResponseModels\BusinessPartnerSearchResponse.cs" />

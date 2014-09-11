@@ -3,17 +3,20 @@
     public enum EmployeeByColumn
     {
         /// <summary>
-        /// Name
+        /// Code
         /// </summary>
-        Name = 1,
+        Code=1,
 
         /// <summary>
-        /// Department Name
+        /// First Name
         /// </summary>
-        DepartmentName = 3,
+        FName = 2,
+        
         /// <summary>
-        /// Department Name
+        ///Last Name 
         /// </summary>
-        DateOfBirth = 2
+        LName=3,
+
+       
     }
 }

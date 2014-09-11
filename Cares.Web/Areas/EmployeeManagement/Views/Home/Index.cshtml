@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = "";
-        
+
 }
 
 <div class="row" id="employeeBinding">
@@ -17,10 +17,16 @@
                 <div class="col-xs-3">
                     <input type="text" class="form-control" placeholder='@("<"+Cares.Web.Resources.Shared.Common.Search+">")' data-bind="value: searchFilter" />
                 </div>
-                
-                <button type="submit" class="btn btn-success" data-bind="click: search">@Cares.Web.Resources.Shared.Common.Search</button>
+                <div class="col-xs-3">
+                    <select class="form-control" data-bind="options: $root.companies , optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '&lt;' + 'Company' + '&gt;', value: companyFilter"></select>
+                </div>
+                <div class="col-xs-3">
+                    <select class="form-control" data-bind="options: $root.employeeStatuses, optionsText: 'EmpStatusCodeName', optionsValue: 'EmpStatusId', optionsCaption: '&lt;' +  'Employee Status' + '&gt;', value: employeeStatusFilter"></select>
+                </div>
+                <button type="submit" class="btn btn-success" data-bind="click: search ">@Cares.Web.Resources.Shared.Common.Search</button>
+                <button type="submit" class="btn btn-default" data-bind="click: reset">@Cares.Web.Resources.Shared.Common.Reset</button>
                 <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection" title='@Cares.Web.Resources.Shared.Common.HideSection'></a>
-              
+
             </form>
         </div>
     </div>
@@ -29,14 +35,17 @@
             <table id="employeeTable" class="table table-condensed">
                 <thead>
                     <tr>
-                        <th> <span id="1">PlateNumber<span class="icon-up"></span></span></th>
-                        
-
+                        <th><span id="1">Code<span class="icon-up"></span></span></th>
+                        <th><span id="2">First Name<span></span></span></th>
+                        <th><span id="3">Last Name<span></span></span></th>
+                        <th><span id="4">Status<span></span></span></th>
+                        <th><span id="5">Company<span></span></span></th>
+                        <th><span id="6">Nationality<span></span></span></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @*<!-- ko template: { name: 'itemEmployeeTemplate' , foreach: vehicles } -->
-                    <!-- /ko -->*@
+                    <!-- ko template: { name: 'itemEmployeeTemplate' , foreach: employees } -->
+                    <!-- /ko -->
                 </tbody>
             </table>
             <!-- ko with: pager -->
@@ -44,7 +53,7 @@
             <!-- /ko -->
         </div>
     </div>
-    @*<script id="editActionEmployeeTemplate" type="text/html">
+    <script id="editActionEmployeeTemplate" type="text/html">
         <a href="#" data-bind="click: $root.onEditEmployee" title=@Cares.Web.Resources.Shared.Common.Edit><span class="glyphicon glyphicon-edit"></span></a>
     </script>
     <script id="deleteActionEmployeeTemplate" type="text/html">
@@ -52,15 +61,12 @@
     </script>
     <script id="itemEmployeeTemplate" type="text/html">
         <tr>
-            <td data-bind="text: plateNumber"></td>
-            <td data-bind="text: vehicleName"></td>
-            <td data-bind="text: modelYear"></td>
-            <td data-bind="text: fuelLevel"></td>
-            <td data-bind="text: currentOdometer"></td>
-            <td data-bind="text: location"></td>
-            <td data-bind="text: vehicleMakeCodeName"></td>
-            <td data-bind="text: vehicleStatusCodeName"></td>
-            <td data-bind="text: operationCodeName"></td>
+            <td data-bind="text: code"></td>
+            <td data-bind="text: fName"></td>
+            <td data-bind="text: lName"></td>
+            <td data-bind="text: status"></td>
+            <td data-bind="text: company"></td>
+            <td data-bind="text: nationality"></td>
             <td>
                 <!-- ko template: { name: 'editActionEmployeeTemplate' } -->
                 <!-- /ko -->
@@ -70,8 +76,8 @@
                 <!-- /ko -->
             </td>
         </tr>
-    </script>*@
-    @*@Html.Partial("_EmployeeEditor")*@
+    </script>
+    @Html.Partial("_EmployeeEditor")
 
 </div>
 <!-- ko stopBinding: true -->

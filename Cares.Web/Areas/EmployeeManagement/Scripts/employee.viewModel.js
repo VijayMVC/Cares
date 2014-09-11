@@ -9,8 +9,9 @@ define("employee/employee.viewModel",
             viewModel: (function () {
                 var // the view 
                     view,
+
                      // Active Employee
-                   selectedEmployee = ko.observable(),
+                    selectedEmployee = ko.observable(),
                     //Active Employee 
                     selectedEmployeeId = ko.observable(),
                     //Add/Edit Employee Item
@@ -24,9 +25,7 @@ define("employee/employee.viewModel",
                     employeeStatuses = ko.observableArray([]),
                      //Companies
                     companies = ko.observableArray([]),
-                    //Gender
-                    gender = ko.observableArray([]),
-                    //Nationalitiies
+                     //Nationalitiies
                     nationalities = ko.observableArray([]),
                     //Job Types
                     jobTypes = ko.observableArray([]),
@@ -38,16 +37,16 @@ define("employee/employee.viewModel",
                     departments = ko.observableArray([]),
                     //Work Places
                     workPlaces = ko.observableArray([]),
-                    //Supervisiors
-                    supervisiors = ko.observableArray([]),
+                    //Supervisors
+                    supervisors = ko.observableArray([]),
                     //Countries
                     countries = ko.observableArray([]),
-                      //Regions
+                    //Regions
                     regions = ko.observableArray([]),
                     //Sub Regions
                     subRegions = ko.observableArray([]),
                     //Cities
-                    cites = ko.observableArray([]),
+                    cities = ko.observableArray([]),
                     //Areas
                     areas = ko.observableArray([]),
                     //Phone Types
@@ -62,9 +61,7 @@ define("employee/employee.viewModel",
                     operations = ko.observableArray([]),
                     //operation Wor kPlaces
                     operationWorkPlaces = ko.observableArray([]),
-
                     // #endregion Arrays
-
                     // #region Busy Indicators
                     isLoadingEmployees = ko.observable(false),
                     // #endregion Busy Indicators
@@ -73,29 +70,28 @@ define("employee/employee.viewModel",
                     sortOn = ko.observable(1),
                     // Sort Order -  true means asc, false means desc
                     sortIsAsc = ko.observable(true),
-                    // Sort On Employee
-                    sortOnHg = ko.observable(1),
-                    // Sort Order -  true means asc, false means desc
-                    sortIsAscHg = ko.observable(true),
-                    // Is Employee Editor Visible
+                         // Is Employee Editor Visible
                     isEmployeeEditorVisible = ko.observable(false),
                     // Pagination
                     pager = ko.observable(),
+                    // #region Filters
                      //Search filter
                     searchFilter = ko.observable(),
                     //Employee Status Filter
                     employeeStatusFilter = ko.observable(),
                        //Company Filter
                     companyFilter = ko.observable(),
+                    // #endregion
+
                     // #region Utility Functions
                     // Initialize the view model
                     initialize = function (specifiedView) {
                         view = specifiedView;
                         ko.applyBindings(view.viewModel, view.bindingRoot);
-                        //getBaseData();
+                        getBaseData();
                         // Set Pager
-                        //pager(new pagination.Pagination({}, employees, getEmployees));
-                        // getEmployees();
+                        pager(new pagination.Pagination({}, employees, getEmployees));
+                        getEmployees();
 
                     },
                      // Collapase filter section
@@ -116,37 +112,37 @@ define("employee/employee.viewModel",
                     },
                      //Create Employee Rate
                     createEmployee = function () {
-                        //var employee = new model.EmployeeDetail.Create();
+                        var employee = new model.EmployeeDetail();
                         //checkListItemList.removeAll();
                         //maintenanceScheduleList.removeAll();
-                        ////Select the newly added Employee
-                        //addEmployeeItem(employee);
+                        //Select the newly added Employee
+                        addEmployeeItem(employee);
                         showEmployeeEditor();
                     },
                       //Edit Employee
                     onEditEmployee = function (employee, e) {
                         //checkListItemList.removeAll();
                         //maintenanceScheduleList.removeAll();
-                        //selectedEmployee(employee);
-                        //getEmployeeById(employee);
+                        selectedEmployee(employee);
+                        getEmployeeById(employee);
                         showEmployeeEditor();
                         e.stopImmediatePropagation();
                     },
                       //Get Employee data By Id
                     getEmployeeById = function (employee) {
                         isLoadingEmployees(true);
-                        dataservice.getEmployeeDetailById(model.EmployeeDetailServerMappeForDelete(employee), {
+                        dataservice.getEmployeeDetailById(model.EmployeeDetailServerMapperForId(employee), {
                             success: function (data) {
                                 var employeeDetail = model.EmployeeDetailClientMapper(data);
                                 addEmployeeItem(employeeDetail);
-                                _.each(data.EmployeeCheckListItems, function (item) {
-                                    var checkListItem = model.CheckListItemClientMapper(item);
-                                    checkListItemList.push(checkListItem);
-                                });
-                                _.each(data.EmployeeMaintenanceTypeFrequency, function (item) {
-                                    var maintenanceScheduleItem = model.MaintenanceScheduleClientMapper(item);
-                                    maintenanceScheduleList.push(maintenanceScheduleItem);
-                                });
+                                //_.each(data.EmployeeCheckListItems, function (item) {
+                                //    var checkListItem = model.CheckListItemClientMapper(item);
+                                //    checkListItemList.push(checkListItem);
+                                //});
+                                //_.each(data.EmployeeMaintenanceTypeFrequency, function (item) {
+                                //    var maintenanceScheduleItem = model.MaintenanceScheduleClientMapper(item);
+                                //    maintenanceScheduleList.push(maintenanceScheduleItem);
+                                //});
                                 isLoadingEmployees(false);
                             },
                             error: function () {
@@ -190,24 +186,16 @@ define("employee/employee.viewModel",
                             //}
                             //ko.utils.arrayPushAll(employee.maintenanceScheduleListInEmployee(), maintenanceScheduleList());
                             //ko.utils.arrayPushAll(employee.checkListItemListInEmployee(), checkListItemList());
-                            //saveEmployee(employee);
+                            saveEmployee(employee);
                         }
                     },
                     // Do Before Logic
                     doBeforeSave = function () {
                         var flag = true;
-                        //if (!addEmployeeItem().isValid() || !addEmployeeItem().otherEmployeeDetail().isValid() || !addEmployeeItem().employeePurchaseInfo().isValid() ||
-                        //!addEmployeeItem().employeeLeasedInfo().isValid() || !addEmployeeItem().employeeInsuranceInfo().isValid() ||
-                        //!addEmployeeItem().employeeDepreciation().isValid() || !addEmployeeItem().employeeDisposalInfo().isValid()) {
-                        //    addEmployeeItem().errors.showAllMessages();
-                        //    addEmployeeItem().otherEmployeeDetail().errors.showAllMessages();
-                        //    addEmployeeItem().employeePurchaseInfo().errors.showAllMessages();
-                        //    addEmployeeItem().employeeLeasedInfo().errors.showAllMessages();
-                        //    addEmployeeItem().employeeInsuranceInfo().errors.showAllMessages();
-                        //    addEmployeeItem().employeeDepreciation().errors.showAllMessages();
-                        //    addEmployeeItem().employeeDisposalInfo().errors.showAllMessages();
-                        //    flag = false;
-                        //}
+                        if (!addEmployeeItem().isValid()) {
+                            addEmployeeItem().errors.showAllMessages();
+                            flag = false;
+                        }
                         return flag;
                     },
                     // Save Employee
@@ -215,12 +203,10 @@ define("employee/employee.viewModel",
                         dataservice.saveEmployee(model.EmployeeDetailServerMapper(employee), {
                             success: function (data) {
                                 var employeeResult = new model.EmployeeClientMapper(data);
-                                if ((addEmployeeItem().employeeId() === undefined) || (addEmployeeItem().employeeId() === 0)) {
+                                if ((addEmployeeItem().empId() === undefined) || (addEmployeeItem().empId() === 0)) {
                                     employees.splice(0, 0, employeeResult);
                                 } else {
-                                    selectedEmployee().employeeName(employeeResult.employeeName());
-                                    selectedEmployee().modelYear(employeeResult.modelYear());
-                                    selectedEmployee().fuelLevel(employeeResult.fuelLevel());
+                                    //selectedEmployee().employeeName(employeeResult.employeeName());
                                 }
                                 closeEmployeeEditor();
                                 toastr.success(ist.resourceText.employeeSaveSuccessMsg);
@@ -242,27 +228,109 @@ define("employee/employee.viewModel",
                     },
                     // //Get Base Data
                     getBaseData = function (callBack) {
-                        dataservice.getEmployeeBase({
+                        dataservice.getEmployeeBaseData({
                             success: function (data) {
                                 //Operations 
                                 operations.removeAll();
                                 ko.utils.arrayPushAll(operations(), data.Operations);
                                 operations.valueHasMutated();
-
+                                //Operations 
+                                companies.removeAll();
+                                ko.utils.arrayPushAll(companies(), data.Companies);
+                                companies.valueHasMutated();
+                                //Employee Statuses 
+                                employeeStatuses.removeAll();
+                                ko.utils.arrayPushAll(employeeStatuses(), data.EmpStatuses);
+                                employeeStatuses.valueHasMutated();
+                                //Regions
+                                regions.removeAll();
+                                ko.utils.arrayPushAll(regions(), data.Regions);
+                                regions.valueHasMutated();
+                                //Nationalities
+                                nationalities.removeAll();
+                                ko.utils.arrayPushAll(nationalities(), data.Countries);
+                                nationalities.valueHasMutated();
+                                //Job Types
+                                jobTypes.removeAll();
+                                ko.utils.arrayPushAll(jobTypes(), data.JobTypes);
+                                jobTypes.valueHasMutated();
+                                //Designations
+                                designations.removeAll();
+                                ko.utils.arrayPushAll(designations(), data.Designations);
+                                designations.valueHasMutated();
+                                //Designation Grades 
+                                designationGrades.removeAll();
+                                ko.utils.arrayPushAll(designationGrades(), data.DesigGrades);
+                                designationGrades.valueHasMutated();
+                                //Work Places
+                                workPlaces.removeAll();
+                                ko.utils.arrayPushAll(workPlaces(), data.WorkPlaces);
+                                workPlaces.valueHasMutated();
+                                //Supervisors
+                                supervisors.removeAll();
+                                ko.utils.arrayPushAll(supervisors(), data.Supervisors);
+                                supervisors.valueHasMutated();
+                                //Countries
+                                countries.removeAll();
+                                ko.utils.arrayPushAll(countries(), data.Countries);
+                                countries.valueHasMutated();
+                                //Sub Regions
+                                subRegions.removeAll();
+                                ko.utils.arrayPushAll(subRegions(), data.SubRegions);
+                                subRegions.valueHasMutated();
+                                //Cities
+                                cities.removeAll();
+                                ko.utils.arrayPushAll(cities(), data.Cities);
+                                cities.valueHasMutated();
+                                //Areas
+                                areas.removeAll();
+                                ko.utils.arrayPushAll(areas(), data.Areas);
+                                areas.valueHasMutated();
+                                //Phone Types
+                                phoneTypes.removeAll();
+                                ko.utils.arrayPushAll(phoneTypes(), data.PhoneTypes);
+                                phoneTypes.valueHasMutated();
+                                //Passport Countries
+                                passportCountries.removeAll();
+                                ko.utils.arrayPushAll(passportCountries(), data.Countries);
+                                passportCountries.valueHasMutated();
+                                //VisaIssue Countries
+                                visaIssueCountries.removeAll();
+                                ko.utils.arrayPushAll(visaIssueCountries(), data.Countries);
+                                visaIssueCountries.valueHasMutated();
+                                //License Types
+                                licenseTypes.removeAll();
+                                ko.utils.arrayPushAll(licenseTypes(), data.LicenseTypes);
+                                licenseTypes.valueHasMutated();
+                                //Operations Work Places
+                                operationWorkPlaces.removeAll();
+                                ko.utils.arrayPushAll(operationWorkPlaces(), data.OperationsWorkPlaces);
+                                operationWorkPlaces.valueHasMutated();
+                                //Employee Statuses
+                                employeeStatuses.removeAll();
+                                ko.utils.arrayPushAll(employeeStatuses(), data.EmpStatuses);
+                                employeeStatuses.valueHasMutated();
 
                                 if (callBack && typeof callBack === 'function') {
                                     callBack();
                                 }
                             },
                             error: function () {
-                                toastr.error(ist.resourceText.loadBaseDataFailedMsg);
+                                toastr.error("loadBaseDataFailedMsg");
                             }
                         });
                     },
                     // Search 
                     search = function () {
                         pager().reset();
-                        //getEmployees();
+                        getEmployees();
+                    },
+                      // Reset 
+                    reset = function () {
+                        searchFilter(undefined);
+                        employeeStatusFilter(undefined);
+                        companyFilter(undefined);
+                        search();
                     },
                     //Add Maintenance Schedule Item To Maintennace Schedule List
                      onAddMaintenanceSchedule = function (maintenanceSchedule) {
@@ -347,22 +415,19 @@ define("employee/employee.viewModel",
                             filteredOperations.valueHasMutated();
                         }
                     },
-                    modelYears = [{ Id: 2001, Text: '2001' },
-                        { Id: 2002, Text: '2002' },
-                        { Id: 2003, Text: '2003' },
-                         { Id: 2004, Text: '2004' },
-                        { Id: 2005, Text: '2005' },
-                        { Id: 2006, Text: '2006' },
-                        { Id: 2007, Text: '2007' }
+                    //Gender
+                    //Gender
+                    genders = [{ Id: 'M', Text: 'Male' },
+                        { Id: 'F', Text: 'Female' }
+
                     ],
                     // Get Employees
                     getEmployees = function () {
                         isLoadingEmployees(true);
                         dataservice.getEmployees({
                             SearchString: searchFilter(),
-                            HireGroupString: hireGroupFilter(),
-                            OperationId: operationFilter(),
-                            FleetPoolId: fleetPoolFilter(),
+                            EmployeeStatusId: employeeStatusFilter(),
+                            CompanyId: companyFilter(),
                             PageSize: pager().pageSize(),
                             PageNo: pager().currentPage(),
                             SortBy: sortOn(),
@@ -395,10 +460,28 @@ define("employee/employee.viewModel",
                     employees: employees,
                     operations: operations,
                     companies: companies,
+                    genders: genders,
                     regions: regions,
-
+                    nationalities: nationalities,
+                    jobTypes: jobTypes,
+                    designations: designations,
+                    designationGrades: designationGrades,
+                    workPlaces: workPlaces,
+                    supervisors: supervisors,
+                    countries: countries,
+                    subRegions: subRegions,
+                    cities: cities,
+                    areas: areas,
+                    phoneTypes: phoneTypes,
+                    passportCountries: passportCountries,
+                    visaIssueCountries: visaIssueCountries,
+                    licenseTypes: licenseTypes,
+                    operationWorkPlaces: operationWorkPlaces,
+                    employeeStatuses: employeeStatuses,
                     //Filters
                     searchFilter: searchFilter,
+                    employeeStatusFilter: employeeStatusFilter,
+                    companyFilter: companyFilter,
                     // Utility Methods
                     initialize: initialize,
                     search: search,
@@ -406,11 +489,15 @@ define("employee/employee.viewModel",
                     mapEmployees: mapEmployees,
                     getBaseData: getBaseData,
                     pager: pager,
-                    createEmployee :createEmployee,
+                    createEmployee: createEmployee,
                     closeEmployeeEditor: closeEmployeeEditor,
                     showEmployeeEditor: showEmployeeEditor,
                     collapseFilterSection: collapseFilterSection,
                     showFilterSection: showFilterSection,
+                    reset: reset,
+                    onEditEmployee: onEditEmployee,
+                    onDeleteEmployee: onDeleteEmployee,
+                    onSaveEmployee: onSaveEmployee
                     // Utility Methods
 
                 };

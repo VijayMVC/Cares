@@ -13,7 +13,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// </summary>
     public class VehicleDetailController : ApiController
     {
-         #region Private
+        #region Private
 
         private readonly IVehicleService vehicleService;
 

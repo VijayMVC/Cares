@@ -5,11 +5,6 @@ namespace Cares.Models.RequestModels
     public class EmployeeSearchRequest : GetPagedListRequest
     {
         /// <summary>
-        /// Department Id
-        /// </summary>
-        public long? DepartmentId { get; set; }
-      
-        /// <summary>
         /// Employee Status Id
         /// </summary>
         public long? EmployeeStatusId { get; set; }

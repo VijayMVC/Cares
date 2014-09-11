@@ -8,8 +8,12 @@ using Cares.Models.ResponseModels;
 
 namespace Cares.Implementation.Services
 {
+    /// <summary>
+    /// Employee Service
+    /// </summary>
     public sealed class EmployeeService : IEmployeeService
     {
+        #region Private
         private readonly IEmployeeRepository employeeRepository;
         private readonly IEmpStatusRepository empStatusRepository;
         private readonly ICompanyRepository companyRepository;
@@ -27,8 +31,30 @@ namespace Cares.Implementation.Services
         private readonly ILicenseTypeRepository licenseTypeRepository;
         private readonly IOperationRepository operationRepository;
         private readonly IOperationsWorkPlaceRepository operationsWorkPlaceRepository;
+        #endregion
 
-        public EmployeeService(IEmployeeRepository empRepository, IEmployeeRepository empStatusRepository, ICompanyRepository companyRepository,
+        #region Constructor
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="empRepository"></param>
+        /// <param name="empStatusRepository"></param>
+        /// <param name="companyRepository"></param>
+        /// <param name="jobTypeRepository"></param>
+        /// <param name="designationRepository"></param>
+        /// <param name="desigGradeRepository"></param>
+        /// <param name="departmentRepository"></param>
+        /// <param name="workplaceRepository"></param>
+        /// <param name="countryRepository"></param>
+        /// <param name="regionRepository"></param>
+        /// <param name="subRegionRepository"></param>
+        /// <param name="cityRepository"></param>
+        /// <param name="areaRepository"></param>
+        /// <param name="phoneTypeRepository"></param>
+        /// <param name="licenseTypeRepository"></param>
+        /// <param name="operationRepository"></param>
+        /// <param name="operationsWorkPlaceRepository"></param>
+        public EmployeeService(IEmployeeRepository empRepository, IEmpStatusRepository empStatusRepository, ICompanyRepository companyRepository,
             IJobTypeRepository jobTypeRepository, IDesignationRepository designationRepository, IDesigGradeRepository desigGradeRepository,
             IDepartmentRepository departmentRepository, IWorkplaceRepository workplaceRepository, ICountryRepository countryRepository,
             IRegionRepository regionRepository, ISubRegionRepository subRegionRepository, ICityRepository cityRepository,
@@ -36,40 +62,63 @@ namespace Cares.Implementation.Services
             IOperationRepository operationRepository, IOperationsWorkPlaceRepository operationsWorkPlaceRepository)
         {
             employeeRepository = empRepository;
-            empStatusRepository = empStatusRepository;
-            companyRepository = companyRepository;
-            jobTypeRepository = jobTypeRepository;
-            designationRepository = designationRepository;
-            desigGradeRepository = desigGradeRepository;
-            departmentRepository = departmentRepository;
-            workplaceRepository = workplaceRepository;
-            regionRepository = regionRepository;
-            countryRepository = countryRepository;
-            subRegionRepository = subRegionRepository;
-            cityRepository = cityRepository;
-            areaRepository = areaRepository;
-            phoneTypeRepository = phoneTypeRepository;
-            licenseTypeRepository = licenseTypeRepository;
-            operationRepository = operationRepository;
-            operationsWorkPlaceRepository = operationsWorkPlaceRepository;
+            this.empStatusRepository = empStatusRepository;
+            this.companyRepository = companyRepository;
+            this.jobTypeRepository = jobTypeRepository;
+            this.designationRepository = designationRepository;
+            this.desigGradeRepository = desigGradeRepository;
+            this.departmentRepository = departmentRepository;
+            this.workplaceRepository = workplaceRepository;
+            this.regionRepository = regionRepository;
+            this.countryRepository = countryRepository;
+            this.subRegionRepository = subRegionRepository;
+            this.cityRepository = cityRepository;
+            this.areaRepository = areaRepository;
+            this.phoneTypeRepository = phoneTypeRepository;
+            this.licenseTypeRepository = licenseTypeRepository;
+            this.operationRepository = operationRepository;
+            this.operationsWorkPlaceRepository = operationsWorkPlaceRepository;
         }
 
-        public EmployeeResponse LoadAll(EmployeeSearchRequest searchRequest)
+        #endregion
+
+        #region Public
+
+        /// <summary>
+        /// Loa dAll Employees
+        /// </summary>
+        /// <param name="searchRequest"></param>
+        /// <returns></returns>
+        public EmployeeSearchResponse LoadAll(EmployeeSearchRequest searchRequest)
         {
             return employeeRepository.GetAllEmployees(searchRequest);
         }
 
-        public Employee Find(int id)
+        /// <summary>
+        /// Find By Id
+        /// </summary>
+        /// <param name="employeeId"></param>
+        /// <returns></returns>
+        public Employee Find(int employeeId)
         {
-            return employeeRepository.Find(id);
+            return employeeRepository.Find(employeeId);
         }
 
+        /// <summary>
+        /// Delete Employee
+        /// </summary>
+        /// <param name="product"></param>
         public void Delete(Employee product)
         {
             employeeRepository.Delete(product);
             employeeRepository.SaveChanges();
         }
 
+        /// <summary>
+        /// Add New Employee
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
         public bool Add(Employee product)
         {
             if (Validate(product))
@@ -83,46 +132,8 @@ namespace Cares.Implementation.Services
 
         private bool Validate(Employee x)
         {
-            Employee productDbVersion = employeeRepository.GetEmployeeByName(x.Name, Convert.ToInt32(x.Id));
+            Employee productDbVersion = employeeRepository.GetEmployeeByName(x.EmpFName, Convert.ToInt32(x.EmployeeId));
             return productDbVersion == null;
-        }
-
-        public bool Update(Employee product)
-        {
-
-            //Product productDbVersion =  productRepository.Find(product.Id);
-
-            //if (productDbVersion != null)
-            //{
-            //    //productDbVersion.Category =
-            //    //    categoryRepository.GetAllCategories().Where(x => x.Id == product.CategoryId).FirstOrDefault();
-            //    using (TransactionScope transaction = new TransactionScope())
-            //    {
-            //        productDbVersion.Category.Name = "KHurram U" + DateTime.Now.Minute;
-            //        productDbVersion.Name = product.Name;
-
-            //        //Thread.Sleep(20*1000);
-            //        productRepository.SaveChanges();
-            //        throw new Exception();
-
-            //        transaction.Complete();
-
-            //    }
-            //}
-
-            if (Validate(product))
-            {
-                employeeRepository.Update(product);
-                employeeRepository.SaveChanges();
-                return true;
-            }
-
-            return false;
-        }
-
-        public IEnumerable<Employee> FindByDepartment(int depId)
-        {
-            return employeeRepository.GetEmployeesByDepartment(depId);
         }
 
         /// <summary>
@@ -131,26 +142,60 @@ namespace Cares.Implementation.Services
         /// <returns></returns>
         public EmployeeBaseResponse GetBaseData()
         {
-                    return new EmployeeBaseResponse
-                   {
-                       EmpStatuses = empStatusRepository.GetAll(),
-                       Companies = companyRepository.GetAll(),
-                       JobTypes = jobTypeRepository.GetAll(),
-                       Departments = departmentRepository.GetAll(),
-                       DesigGrades = desigGradeRepository.GetAll(),
-                       WorkPlaces = workplaceRepository.GetAll(),
-                       Regions = regionRepository.GetAll(),
-                       Countries = countryRepository.GetAll(),
-                       SubRegions = subRegionRepository.GetAll(),
-                       Cities = cityRepository.GetAll(),
-                       Areas = areaRepository.GetAll(),
-                       PhoneTypes = phoneTypeRepository.GetAll(),
-                       LicenseTypes = licenseTypeRepository.GetAll(),
-                       Operations = operationRepository.GetAll(),
-                       OperationsWorkPlaces = operationsWorkPlaceRepository.GetAll(),
-                       Supervisors = employeeRepository.GetAll(),
-                       
-                   };
+            return new EmployeeBaseResponse
+           {
+               EmpStatuses = empStatusRepository.GetAll(),
+               Companies = companyRepository.GetAll(),
+               JobTypes = jobTypeRepository.GetAll(),
+               Departments = departmentRepository.GetAll(),
+               DesigGrades = desigGradeRepository.GetAll(),
+               WorkPlaces = workplaceRepository.GetAll(),
+               Regions = regionRepository.GetAll(),
+               Countries = countryRepository.GetAll(),
+               SubRegions = subRegionRepository.GetAll(),
+               Cities = cityRepository.GetAll(),
+               Areas = areaRepository.GetAll(),
+               PhoneTypes = phoneTypeRepository.GetAll(),
+               LicenseTypes = licenseTypeRepository.GetAll(),
+               Operations = operationRepository.GetAll(),
+               OperationsWorkPlaces = operationsWorkPlaceRepository.GetAll(),
+               Supervisors = employeeRepository.GetAll(),
+               Designations = designationRepository.GetAll()
+           };
         }
+
+        /// <summary>
+        /// Add/Edit Employee
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <returns></returns>
+        public Employee SaveEmployee(Employee employee)
+        {
+            Employee empDbVersion = employeeRepository.Find(employee.EmployeeId);
+            if (empDbVersion == null)
+            {
+                employee.UserDomainKey = employeeRepository.UserDomainKey;
+                employee.IsActive = true;
+                employee.IsReadOnly = employee.IsPrivate = employee.IsDeleted = false;
+                employee.RecLastUpdatedDt = employee.RecCreatedDt = DateTime.Now;
+                employee.RecLastUpdatedBy = employee.RecCreatedBy = employeeRepository.LoggedInUserIdentity;
+                employee.RowVersion = 0;
+                employeeRepository.Add(employee);
+            }
+            employeeRepository.SaveChanges();
+
+            return employeeRepository.Find(employee.EmployeeId);
+        }
+
+        /// <summary>
+        /// Get Employee Detail
+        /// </summary>
+        /// <returns></returns>
+        public Employee GetEmployeeDetail(long employeeId)
+        {
+            return employeeRepository.Find(employeeId);
+        }
+        #endregion
     }
 }
+

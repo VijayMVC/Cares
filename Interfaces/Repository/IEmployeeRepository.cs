@@ -15,15 +15,8 @@ namespace Cares.Interfaces.Repository
         /// </summary>
         /// <param name="searchRequest"></param>
         /// <returns></returns>
-        EmployeeResponse GetAllEmployees(EmployeeSearchRequest searchRequest);
+        EmployeeSearchResponse GetAllEmployees(EmployeeSearchRequest searchRequest);
 
-        /// <summary>
-        /// Get Employees By Department
-        /// </summary>
-        /// <param name="depId"></param>
-        /// <returns></returns>
-        IQueryable<Employee> GetEmployeesByDepartment(int depId);
-        
         /// <summary>
         /// Get Employee By Name
         /// </summary>

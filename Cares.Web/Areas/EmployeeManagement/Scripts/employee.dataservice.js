@@ -23,20 +23,20 @@ define("employee/employee.dataservice", function () {
                         dataType: 'json',
                         type: 'GET'
                     });
-                    //// Define request to save Vehicle
-                    //amplify.request.define('saveVehicle', 'ajax', {
-                    //    url: '/Api/Vehicle',
-                    //    dataType: 'json',
-                    //    decoder: amplify.request.decoders.istStatusDecoder,
-                    //    type: 'POST'
-                    //});
+                    // Define request to save Employee
+                    amplify.request.define('saveEmployee', 'ajax', {
+                        url: '/Api/Employee',
+                        dataType: 'json',
+                        decoder: amplify.request.decoders.istStatusDecoder,
+                        type: 'POST'
+                    });
 
-                    //// Define request to get Vehicle
-                    //amplify.request.define('getVehicleDetailById', 'ajax', {
-                    //    url: '/Api/VehicleDetail',
-                    //    dataType: 'json',
-                    //    type: 'GET'
-                    //});
+                    // Define request to get Employee
+                    amplify.request.define('getEmployeeDetailById', 'ajax', {
+                        url: '/Api/EmployeeDetail',
+                        dataType: 'json',
+                        type: 'GET'
+                    });
                     //// Define request to delete Vehicle
                     //amplify.request.define('deleteVehicle', 'ajax', {
                     //    url: '/Api/Vehicle',
@@ -56,7 +56,7 @@ define("employee/employee.dataservice", function () {
                 });
             },
             // Get Employee List
-            getEmployees = function (params, callbacks) {
+            getEmployees = function(params, callbacks) {
                 initialize();
                 return amplify.request({
                     resourceId: 'getEmployees',
@@ -64,28 +64,27 @@ define("employee/employee.dataservice", function () {
                     error: callbacks.error,
                     data: params
                 });
+            },
+            // Create Employee
+            saveEmployee = function(param, callbacks) {
+                initialize();
+                return amplify.request({
+                    resourceId: 'saveEmployee',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: param
+                });
+            },
+            // Get Vehicle Data By Employee id 
+            getEmployeeDetailById = function(params, callbacks) {
+                initialize();
+                return amplify.request({
+                    resourceId: 'getEmployeeDetailById',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: params
+                });
             };
-
-        //// Create Vehicle
-        //saveVehicle = function (param, callbacks) {
-        //    initialize();
-        //    return amplify.request({
-        //        resourceId: 'saveVehicle',
-        //        success: callbacks.success,
-        //        error: callbacks.error,
-        //        data: param
-        //    });
-        //},
-        //  // Get Vehicle Data By Vehicle id 
-        //getVehicleDetailById = function (params, callbacks) {
-        //    initialize();
-        //    return amplify.request({
-        //        resourceId: 'getVehicleDetailById',
-        //        success: callbacks.success,
-        //        error: callbacks.error,
-        //        data: params
-        //    });
-        //},
         //// Delete
         //deleteVehicle = function (param, callbacks) {
         //    initialize();
@@ -100,8 +99,8 @@ define("employee/employee.dataservice", function () {
         return {
             getEmployeeBaseData: getEmployeeBaseData,
             getEmployees: getEmployees,
-            //saveVehicle: saveVehicle,
-            //getVehicleDetailById: getVehicleDetailById,
+            saveEmployee: saveEmployee,
+            getEmployeeDetailById: getEmployeeDetailById,
             //deleteVehicle: deleteVehicle
 
         };

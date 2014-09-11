@@ -1,47 +1,54 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Web;
 using System.Web.Http;
 using Cares.Interfaces.IServices;
 using Cares.Web.ModelMappers;
-using Cares.WebBase.Mvc;
+using Cares.Web.Models;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
     /// <summary>
-    /// Employee Base Api Controller
+    /// Employee Detail Api Controller
     /// </summary>
-    public class EmployeeBaseController : ApiController
+    public class EmployeeDetailController : ApiController
     {
-        #region Private
+         #region Private
+
         private readonly IEmployeeService employeeService;
+
         #endregion
 
         #region Constructors
         /// <summary>
         /// Constructor
         /// </summary>
-        public EmployeeBaseController(IEmployeeService employeeService)
+        public EmployeeDetailController(IEmployeeService employeeService)
         {
-            if (employeeService == null) throw new ArgumentNullException("employeeService");
+            if (employeeService == null && !ModelState.IsValid)
+            {
+                throw new ArgumentNullException("employeeService");
+            }
+
             this.employeeService = employeeService;
         }
-
         #endregion
 
         #region Public
-        // GET api/<controller>
-        [ValidateFilter]
-        public Models.EmployeeBaseResponse Get()
+        /// <summary>
+        /// Vehicle Detail
+        /// </summary>
+        /// <returns></returns>
+        public Employee Get([FromUri]Employee employee)
         {
             if (!ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return employeeService.GetBaseData().CreateFrom();
+            return employeeService.GetEmployeeDetail(employee.EmployeeId).CreateFromEmployeeDetail();
         }
-        #endregion
 
+        #endregion
+       
     }
 }
