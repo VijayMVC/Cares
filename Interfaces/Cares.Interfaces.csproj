@@ -57,6 +57,7 @@
     <Compile Include="IServices\IServiceRtService.cs" />
     <Compile Include="IServices\IWorkLocationService.cs" />
     <Compile Include="IServices\IWorkplaceService.cs" />
+    <Compile Include="IServices\IWorkplaceTypeService.cs" />
     <Compile Include="Repository\IDesigGradeRepository.cs" />
     <Compile Include="Repository\IDesignationRepository.cs" />
     <Compile Include="Repository\IEmpStatusRepository.cs" />

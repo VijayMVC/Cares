@@ -54,5 +54,13 @@ namespace Cares.Web.Areas.Organization.Controllers
         {
             return View();
         }
+
+        /// <summary>
+        /// WorkplaceType Area
+        /// </summary>
+         public ActionResult WorkplaceType()
+        {
+            return View();
+        }
     }
 }

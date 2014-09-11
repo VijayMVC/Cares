@@ -111,6 +111,7 @@
     <Compile Include="Common\TariffRateByColumn.cs" />
     <Compile Include="Common\WorkLocationByColumn.cs" />
     <Compile Include="Common\WorkplaceByColumn.cs" />
+    <Compile Include="Common\WorkplaceTypeByColumn.cs" />
     <Compile Include="DomainModels\BusinessPartnerMarketingChannel.cs" />
     <Compile Include="DomainModels\BusinessPartnerInType.cs" />
     <Compile Include="DomainModels\BusinessPartnerIndividual.cs" />
@@ -224,6 +225,7 @@
     <Compile Include="RequestModels\TariffTypeSearchRequest.cs" />
     <Compile Include="RequestModels\WorkLocationSearchRequest.cs" />
     <Compile Include="RequestModels\WorkplaceSearchRequest.cs" />
+    <Compile Include="RequestModels\WorkplaceTypeSearchRequest.cs" />
     <Compile Include="ResponseModels\BusinessPartnerBaseDataResponse.cs" />
     <Compile Include="ResponseModels\CompanyBaseDataResponse.cs" />
     <Compile Include="ResponseModels\CompanySearchResponse.cs" />
@@ -269,6 +271,8 @@
     <Compile Include="ResponseModels\WorkplaceBaseDataResponse.cs" />
     <Compile Include="ResponseModels\WorkplaceSearchRequestResponse.cs" />
     <Compile Include="ResponseModels\WorkPlaceSerachRequestResponse.cs" />
+    <Compile Include="ResponseModels\WorkPlaceTypeBaseDataResponse.cs" />
+    <Compile Include="ResponseModels\WorkPlaceTypeSearchRequestResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -52,8 +52,6 @@ namespace Cares.Implementation.Services
                     companyRequest.RecLastUpdatedBy = organizationGroupRepository.LoggedInUserIdentity;
                     companyRequest.RecLastUpdatedDt = DateTime.Now;
                     companyRequest.RowVersion = dbVersion.RowVersion + 1;
-                    companyRequest.RecCreatedBy = dbVersion.RecCreatedBy;
-                    companyRequest.RecCreatedDt = dbVersion.RecCreatedDt;
                     companyRequest.UserDomainKey = dbVersion.UserDomainKey;
                 }
                 else

@@ -269,6 +269,8 @@
     <Compile Include="Areas\Api\Controllers\WorkLocationController.cs" />
     <Compile Include="Areas\Api\Controllers\WorkplaceBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\WorkplaceController.cs" />
+    <Compile Include="Areas\Api\Controllers\WorkplaceTypeBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\WorkPlaceTypeController.cs" />
     <Compile Include="Areas\BusinessPartner\BusinessPartnerAreaRegistration.cs" />
     <Compile Include="Areas\BusinessPartner\Controllers\HomeController.cs" />
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
@@ -488,7 +490,10 @@
     <Compile Include="Models\WorkplaceBaseDataResponse.cs" />
     <Compile Include="Models\WorkPlaceDropdown.cs" />
     <Compile Include="Models\WorkplaceSearchRequestResponse.cs" />
+    <Compile Include="Models\WorkPlaceType.cs" />
+    <Compile Include="Models\WorkPlaceTypeBaseDataResponse.cs" />
     <Compile Include="Models\WorkplaceTypeDropDown.cs" />
+    <Compile Include="Models\WorkPlaceTypeSearchRequestResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\FleetPool\FleetPool.ar.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -559,6 +564,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Workplace.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\WorkplaceType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WorkplaceType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\WorkplaceType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WorkplaceType.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Shared\Common.ar.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -694,6 +709,10 @@
     <Content Include="Areas\Organization\Scripts\organizationGroup.dataservice.js" />
     <Content Include="Areas\Organization\Scripts\organizationGroup.viewModel.js" />
     <Content Include="Areas\Organization\Scripts\organizationGroup.model.js" />
+    <Content Include="Areas\Organization\Scripts\workplaceType.dataservice.js" />
+    <Content Include="Areas\Organization\Scripts\workplaceType.model.js" />
+    <Content Include="Areas\Organization\Scripts\workplaceType.view.js" />
+    <Content Include="Areas\Organization\Scripts\workplaceType.viewModel.js" />
     <Content Include="Areas\Pricing\Scripts\serviceRate.dataservice.js" />
     <Content Include="Areas\Pricing\Scripts\serviceRate.model.js" />
     <Content Include="Areas\Pricing\Scripts\serviceRate.view.js" />
@@ -916,13 +935,13 @@
     <Content Include="Content\Vehicle.css">
       <DependentUpon>Vehicle.less</DependentUpon>
     </Content>
-     <Content Include="Content\WorkLocation.css">
+    <Content Include="Content\WorkLocation.css">
       <DependentUpon>WorkLocation.less</DependentUpon>
     </Content>
     <Content Include="Content\Vehicle.min.css">
       <DependentUpon>Vehicle.css</DependentUpon>
     </Content>
-     <Content Include="Content\WorkLocation.min.css">
+    <Content Include="Content\WorkLocation.min.css">
       <DependentUpon>WorkLocation.css</DependentUpon>
     </Content>
     <Content Include="Content\WorkPlace.css">
@@ -930,6 +949,12 @@
     </Content>
     <Content Include="Content\WorkPlace.min.css">
       <DependentUpon>WorkPlace.css</DependentUpon>
+    </Content>
+    <Content Include="Content\WorkPlaceType.css">
+      <DependentUpon>WorkPlaceType.less</DependentUpon>
+    </Content>
+    <Content Include="Content\WorkPlaceType.min.css">
+      <DependentUpon>WorkPlaceType.css</DependentUpon>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -1371,11 +1396,17 @@
     <Content Include="Content\WorkLocation.css.map">
       <DependentUpon>WorkLocation.css</DependentUpon>
     </Content>
-     <Content Include="Areas\EmployeeManagement\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\EmployeeManagement\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\EmployeeManagement\Views\Home\Index.cshtml" />
     <Content Include="Content\Vehicle.less" />
     <Content Include="Content\Vehicle.css.map">
       <DependentUpon>Vehicle.css</DependentUpon>
+    </Content>
+    <Content Include="Areas\Organization\Views\Organization\WorkplaceType.cshtml" />
+    <Content Include="Areas\Organization\Views\Organization\_WorkplaceTypeEditor.cshtml" />
+    <Content Include="Content\WorkPlaceType.less" />
+    <Content Include="Content\WorkPlaceType.css.map">
+      <DependentUpon>WorkPlaceType.css</DependentUpon>
     </Content>
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
@@ -1529,6 +1560,8 @@
     <Folder Include="Areas\Api\Views\WorkLocationBase\" />
     <Folder Include="Areas\Api\Views\WorkLocation\" />
     <Folder Include="Areas\Api\Views\WorkplaceBase\" />
+    <Folder Include="Areas\Api\Views\WorkPlaceTypeBase\" />
+    <Folder Include="Areas\Api\Views\workplaceType\" />
     <Folder Include="Areas\Api\Views\Workplace\" />
     <Folder Include="Areas\BusinessPartner\Models\" />
     <Folder Include="Areas\Common\Controllers\" />
@@ -1625,6 +1658,14 @@
     <EmbeddedResource Include="Resources\Organization\Workplace.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Workplace.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\WorkplaceType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>WorkplaceType.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\WorkplaceType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>WorkplaceType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Shared\Common.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

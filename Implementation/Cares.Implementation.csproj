@@ -149,6 +149,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Workplace.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Organization\WorkPlaceType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WorkPlaceType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\WorkPlaceType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WorkPlaceType.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Tariff\InsuranceRate.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -261,6 +271,7 @@
     <Compile Include="Services\TariffTypeService.cs" />
     <Compile Include="Services\WorkLocationService.cs" />
     <Compile Include="Services\WorkplaceService.cs" />
+    <Compile Include="Services\WorkPlaceTypeService.cs" />
     <Compile Include="TypeRegistrations.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -313,6 +324,14 @@
     <EmbeddedResource Include="Resources\Organization\Workplace.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Workplace.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\WorkPlaceType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>WorkPlaceType.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\WorkPlaceType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>WorkPlaceType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tariff\InsuranceRate.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
