@@ -51,6 +51,21 @@ namespace Cares.Web.ModelMappers
             };
         }
 
+
+        /// <summary>
+        /// Create from web model
+        /// </summary>
+        public static  BusinessSegment CreateFrom(this ApiModel.BusinessSegment source)
+        {
+            return new BusinessSegment
+            {
+                BusinessSegmentId = source.BusinessSegmentId,
+                BusinessSegmentCode = source.BusinessSegmentCode,
+                BusinessSegmentName = source.BusinessSegmentName,
+                BusinessSegmentDescription = source.BusinessSegmentDescription,
+            };
+        }
+
         #endregion
         #region Model To Entity
         /// <summary>

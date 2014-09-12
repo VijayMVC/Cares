@@ -1,33 +1,33 @@
 ﻿/*
-    View for the workplaceType. Used to keep the viewmodel clear of UI related logic
+    View for the Business Segment. Used to keep the viewmodel clear of UI related logic
 */
 define("businessSeg/businessSeg.view",
-    ["jquery", "businessSeg/businessSeg.viewModel"], function ($, workplacetypeGroupViewModel) {
+    ["jquery", "businessSeg/businessSeg.viewModel"], function ($, businessSegmentViewModel) {
         var ist = window.ist || {};
         // View 
-        ist.WorkPlaceType.view = (function (specifiedViewModel) {
+        ist.BusinessSegment.view = (function (specifiedViewModel) {
             var
                 // View model 
                 viewModel = specifiedViewModel,
                 // Binding root used with knockout
-                bindingRoot = $("#WorkPlaceTypeBinding")[0],
+                bindingRoot = $("#BusinessSegmentBinding")[0],
                 // Initialize
                 initialize = function () {
                     if (!bindingRoot) {
                         return;
                     }
                     // Handle Sorting
-                    handleSorting("OrgGroupTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getWorkPlaceType);
+                    handleSorting("OrgGroupTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getBusinessSegment);
                 };
             initialize();
             return {
                 bindingRoot: bindingRoot,
                 viewModel: viewModel
             };
-        })(workplacetypeGroupViewModel);
+        })(businessSegmentViewModel);
         // Initialize the view model
-        if (ist.WorkPlaceType.view.bindingRoot) {
-            workplacetypeGroupViewModel.initialize(ist.WorkPlaceType.view);
+        if (ist.BusinessSegment.view.bindingRoot) {
+            businessSegmentViewModel.initialize(ist.BusinessSegment.view);
         }
-        return ist.WorkPlaceType.view;
+        return ist.BusinessSegment.view;
     });
