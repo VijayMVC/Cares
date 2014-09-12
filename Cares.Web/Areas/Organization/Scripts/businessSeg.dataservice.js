@@ -18,16 +18,16 @@ define("businessSeg/businessSeg.dataservice", function () {
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
-                    // Define request to delete OrganizationGroup
-                    amplify.request.define('deleteWorkPlaceType', 'ajax', {
-                        url: '/Api/WorkPlaceType',
+                    // Define request to delete Business Segment
+                    amplify.request.define('deleteBusinessSeg', 'ajax', {
+                        url: '/Api/BusinessSegment',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
-                    // Define request to add/update OrganizationGroup
-                    amplify.request.define('saveWorkPlaceType', 'ajax', {
-                        url: '/Api/WorkPlaceType',
+                    // Define request to add/update saveBusinessSegment
+                    amplify.request.define('saveBusinessSeg', 'ajax', {
+                        url: '/Api/BusinessSegment',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
@@ -47,20 +47,20 @@ define("businessSeg/businessSeg.dataservice", function () {
                     data: params
                 });
             },
-            //add-update OrganizationGroup
-            saveWorkPlaceType = function(params, callbacks) {
+            //add-update BusinessSeg.
+            saveBusinessSeg = function (params, callbacks) {
                 return amplify.request({
-                    resourceId: 'saveWorkPlaceType',
+                    resourceId: 'saveBusinessSeg',
                     success: callbacks.success,
                     error: callbacks.error,
                     data: params
                 });
             },
-            //delete OrganizationGroup
-            deleteWorkPlaceType = function (params, callbacks) {
+            //delete BusinessSeg.
+            deleteBusinessSeg = function (params, callbacks) {
                 debugger;
                 return amplify.request({
-                    resourceId: 'deleteWorkPlaceType',
+                    resourceId: 'deleteBusinessSeg',
                     success: callbacks.success,
                     error: callbacks.error,
                     data: params
@@ -68,9 +68,9 @@ define("businessSeg/businessSeg.dataservice", function () {
             };
       
         return {
-            saveWorkPlaceType: saveWorkPlaceType,
+            saveBusinessSegment: saveBusinessSeg,
             getBusinessSeg: getBusinessSeg,
-            deleteWorkPlaceType: deleteWorkPlaceType,
+            deleteBusinessSegment: deleteBusinessSeg,
 
         };
     })();

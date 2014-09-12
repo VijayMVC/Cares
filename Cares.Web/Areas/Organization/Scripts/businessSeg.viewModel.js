@@ -1,174 +1,167 @@
 ﻿/*
-    Module with the view model for the workplaceType
+    Module with the view model for the Business Segment
 */
 define("businessSeg/businessSeg.viewModel",
     ["jquery", "amplify", "ko", "businessSeg/businessSeg.dataservice", "businessSeg/businessSeg.model",
     "common/confirmation.viewModel", "common/pagination"],
     function($, amplify, ko, dataservice, model, confirmation, pagination) {
         var ist = window.ist || {};
-        ist.WorkPlaceType = {
+        ist.BusinessSegment = {
             viewModel: (function() { 
                 var view,
                     //array to save org groups
-                    workPlaceTypes = ko.observableArray([]),
+                    businessSegments = ko.observableArray([]),
                     //pager%
                     pager = ko.observable(),
                     //org code filter in filter sec
                     searchFilter = ko.observable(),
         
-                   // pre-defined Department Types List
-                    baseWorkplaceNatureList = ko.observableArray(["Sales", "Support"]),
                     //sorting
                     sortOn = ko.observable(1),
                     //Assending  / Desending
                     sortIsAsc = ko.observable(true),
                     //to control the visibility of editor sec
-                    isWorkPlaceTypeEditorVisible = ko.observable(false),
+                    isBusinessSegmentEditorVisible = ko.observable(false),
                     //to control the visibility of filter ec
                     filterSectionVisilble = ko.observable(false),
 
 
                      // Editor View Model
-                    editorViewModel = new ist.ViewModel(model.workPlaceTypeDetail),
-                    // Selected company
-                    selectedWorkPlaceType = editorViewModel.itemForEditing,
+                    editorViewModel = new ist.ViewModel(model.businessSegmentDetail),
+                    // Selected Business Segment
+                    selectedBusinessSegment = editorViewModel.itemForEditing,
 
                     //save button handler
-                    onSavebtn = function () {
-                        if (dobeforeWorkPlapeceTy())
-                        saveWorkPlaceType(selectedWorkPlaceType());
-                    },
-                    //save WorkPlace Type
-                    saveWorkPlaceType = function(item) {
-                        dataservice.saveWorkPlaceType(item.convertToServerData(), {
-                            success: function (dataFromServer) {
-                                debugger;
-                                var newItem = model.workPlaceTypeServertoClinetMapper(dataFromServer);
-                                if (item.id() !== undefined) {
-                                    var newObjtodelete = workPlaceTypes.find(function(temp) {
-                                        return temp.id() == newItem.id();
-                                    });
-                                    workPlaceTypes.remove(newObjtodelete);
-                                    workPlaceTypes.push(newItem);
-                                }
-                                else
-                                    workPlaceTypes.push(newItem);
-                                isWorkPlaceTypeEditorVisible(false);
-                                toastr.success(ist.resourceText.WorkPlaceTypeSaveSuccessMessage);
-                            },
-                            error: function (exceptionMessage, exceptionType) {
-                                if (exceptionType === ist.exceptionType.CaresGeneralException)
-                                    toastr.error(exceptionMessage);
-                                else
-                                    toastr.error(ist.resourceText.WorkPlaceTypeSaveFailError);
-                            }
-                        });
-                    }, 
-                    //validation check 
-                    dobeforeWorkPlapeceTy = function() {
-                        if (!selectedWorkPlaceType().isValid()) {
-                            selectedWorkPlaceType().errors.showAllMessages();
-                            return false;
+                    onSavebtn = function() {
+                    if (dobeforeBusinessSegment())
+                        saveBusinessSegment(selectedBusinessSegment());
+                },
+                //Save Business Segment
+                    saveBusinessSegment = function(item) {
+                      dataservice.saveBusinessSegment(item.convertToServerData(), {
+                        success: function(dataFromServer) {
+                            var newItem = model.businessSegmentServertoClinetMapper(dataFromServer);
+                            if (item.id() !== undefined) {
+                                var newObjtodelete = businessSegments.find(function(temp) {
+                                    return temp.id() == newItem.id();
+                                });
+                                businessSegments.remove(newObjtodelete);
+                                businessSegments.push(newItem);
+                            } else
+                                businessSegments.push(newItem);
+                            isBusinessSegmentEditorVisible(false);
+                            toastr.success(ist.resourceText.BusinessSegmentSaveSuccessMessage);
+                        },
+                        error: function(exceptionMessage, exceptionType) {
+                            if (exceptionType === ist.exceptionType.CaresGeneralException)
+                                toastr.error(exceptionMessage);
+                            else
+                                toastr.error(ist.resourceText.BusinessSegmentSaveFailError);
                         }
-                        return true;
-                    },
-                    //cancel button handler
-                    onCancelbtn = function () {
-                        editorViewModel.revertItem();
-                        isWorkPlaceTypeEditorVisible(false);
-                    },
-                    // create new workplace type
-                    onCreateForm = function () {
-                        var workPlacetype = new model.workPlaceTypeDetail();
-                        editorViewModel.selectItem(workPlacetype);
-                        isWorkPlaceTypeEditorVisible(true);
-                    },
-                    //reset butto handle 
+                    });
+                },
+                //validation check 
+                    dobeforeBusinessSegment = function() {
+                    if (!selectedBusinessSegment().isValid()) {
+                        selectedBusinessSegment().errors.showAllMessages();
+                        return false;
+                    }
+                    return true;
+                },
+                //cancel button handler
+                    onCancelbtn = function() {
+                    editorViewModel.revertItem();
+                    isBusinessSegmentEditorVisible(false);
+                },
+                // create new Business Segment
+                    onCreateForm = function() {
+                    var businessSegment = new model.businessSegmentDetail();
+                    editorViewModel.selectItem(businessSegment);
+                    isBusinessSegmentEditorVisible(true);
+                },
+                //reset butto handle 
                     resetResuults = function() {
-                        searchFilter(undefined);
-                        getWorkPlaceType();
-                    },
-                    //delete button handler
-                    onDeleteWorkPlaceType = function(item) {
-                        if (!item.id()) {
-                            workPlaceTypes.remove(item);
-                            return;
-                        }
+                    searchFilter(undefined);
+                    getBusinessSegment();
+                },
+                //delete button handler
+                    onDeletItem = function(item) {
+                    if (!item.id()) {
+                        businessSegments.remove(item);
+                        return;
+                    }
                     // Ask for confirmation
-                        confirmation.afterProceed(function() {
-                            deleteWorkPlaceType(item);
-                        });
-                        confirmation.show();
-                    },
-                    //edit button handler
-                    onEditWorkplaceType = function(item) {
-                        editorViewModel.selectItem(item);
-                        isWorkPlaceTypeEditorVisible(true);
-                    },
-                    //delete workplace
-                    deleteWorkPlaceType = function(workPlaceType) {
-                        dataservice.deleteWorkPlaceType(workPlaceType.convertToServerData(), {
-                            success: function() {
-                                workPlaceTypes.remove(workPlaceType);
-                                toastr.success(ist.resourceText.WorkPlaceTypeDeleteSuccessMessage);
-                            },
-                            error: function (exceptionMessage, exceptionType) {
-                                if (exceptionType === ist.exceptionType.CaresGeneralException)
-                                    toastr.error(exceptionMessage);
-                                else
-                                    toastr.error(ist.resourceText.WorkPlaceTypeDeleteFailError);
-                            }
-                        });
-                    },
-                    //search button handler in filter section
+                    confirmation.afterProceed(function() {
+                        deleteBusinessSeg(item);
+                    });
+                    confirmation.show();
+                },
+                //edit button handler
+                    onEditItem = function(item) {
+                    editorViewModel.selectItem(item);
+                    isBusinessSegmentEditorVisible(true);
+                },
+                //delete Business Segment
+                    deleteBusinessSeg = function(businessSeg) {
+                       dataservice.deleteBusinessSegment(businessSeg.convertToServerData(), {
+                        success: function() {
+                            businessSegments.remove(businessSeg);
+                            toastr.success(ist.resourceText.BusinessSegmentDeleteSuccessMessage);
+                        },
+                        error: function(exceptionMessage, exceptionType) {
+                            if (exceptionType === ist.exceptionType.CaresGeneralException)
+                                toastr.error(exceptionMessage);
+                            else
+                                toastr.error(ist.resourceText.BusinessSegmentDeleteFailError);
+                        }
+                    });
+                },
+                //search button handler in filter section
                     search = function() {
-                        pager().reset();
-                        getWorkPlaceType();
-                    },
-                    //hide filte section
+                    pager().reset();
+                    getBusinessSegment();
+                },
+                //hide filte section
                     hideFilterSection = function() {
-                        filterSectionVisilble(false);
-                    },
-                    //Show filter section
+                    filterSectionVisilble(false);
+                },
+                //Show filter section
                     showFilterSection = function() {
                         filterSectionVisilble(true);
                     },
                     //get workplace list from Dataservice
-                    getWorkPlaceType = function() {
-                        dataservice.getBusinessSeg(
-                        {
-                            BusinessSegmentFilterText: searchFilter(),
-                            PageSize: pager().pageSize(),
-                            PageNo: pager().currentPage(),
-                            SortBy: sortOn(),
-                            IsAsc: sortIsAsc()
-                        },
-                        {
-                            success: function(data) {
-                                workPlaceTypes.removeAll();
-                                debugger;
-                                pager().totalCount(data.TotalCount);
-                                _.each(data.WorkPlaceTypes, function (item) {
-                                    workPlaceTypes.push(model.workPlaceTypeServertoClinetMapper(item));
-                                });
-                            },
-                            error: function() {
-                                isLoadingFleetPools(false);
-                                toastr.error(ist.resourceText.WorkPlaceTypeLoadFailError);
-                            }
-                        });
+                    getBusinessSegment = function() {
+                    dataservice.getBusinessSeg(
+                    {
+                        BusinessSegmentFilterText: searchFilter(),
+                        PageSize: pager().pageSize(),
+                        PageNo: pager().currentPage(),
+                        SortBy: sortOn(),
+                        IsAsc: sortIsAsc()
                     },
-
-                  
-                    // Initialize the view model
+                    {
+                        success: function(data) {
+                            businessSegments.removeAll();
+                            pager().totalCount(data.TotalCount);
+                            _.each(data.BusinessSegments, function(item) {
+                                businessSegments.push(model.businessSegmentServertoClinetMapper(item));
+                            });
+                        },
+                        error: function() {
+                            isLoadingFleetPools(false);
+                            toastr.error(ist.resourceText.BusinessSegmentLoadFailError);
+                        }
+                    });
+                },
+                // Initialize the view model
                     initialize = function(specifiedView) {
                         view = specifiedView;
                         ko.applyBindings(view.viewModel, view.bindingRoot);
-                        pager(pagination.Pagination({ PageSize: 10 }, workPlaceTypes, getWorkPlaceType));
-                        getWorkPlaceType();
+                        pager(pagination.Pagination({ PageSize: 10 }, businessSegments, getBusinessSegment));
+                        getBusinessSegment();
                     };
                 return {
-                    workPlaceTypes: workPlaceTypes,
+                    businessSegments: businessSegments,
                     initialize: initialize,
                     search: search,
                     searchFilter: searchFilter,
@@ -176,22 +169,20 @@ define("businessSeg/businessSeg.viewModel",
                     sortIsAsc: sortIsAsc,
                     onCreateForm: onCreateForm,
                     filterSectionVisilble: filterSectionVisilble,
-                    isWorkPlaceTypeEditorVisible: isWorkPlaceTypeEditorVisible,
+                    isBusinessSegmentEditorVisible: isBusinessSegmentEditorVisible,
                     hideFilterSection: hideFilterSection,
                     showFilterSection: showFilterSection,
                     pager: pager,
                     resetResuults: resetResuults,
-                    onDeleteWorkPlaceType: onDeleteWorkPlaceType,
-                    onEditWorkplaceType: onEditWorkplaceType,
+                    onDeletItem: onDeletItem,
+                    onEditItem: onEditItem,
                     onCancelbtn: onCancelbtn,
-                    selectedWorkPlaceType: selectedWorkPlaceType,
+                    selectedBusinessSegment: selectedBusinessSegment,
                     onSavebtn: onSavebtn,
-                    getWorkPlaceType: getWorkPlaceType,
-
-                    baseWorkplaceNatureList: baseWorkplaceNatureList
+                    getBusinessSegment: getBusinessSegment,
 
                 };
             })()
         };
-        return ist.WorkPlaceType.viewModel;
+        return ist.BusinessSegment.viewModel;
     });

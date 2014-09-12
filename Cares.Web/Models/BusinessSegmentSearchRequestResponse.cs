@@ -9,7 +9,7 @@ namespace Cares.Web.Models
     {
          #region Public
         /// <summary>
-        /// BusinessSegments List
+        /// Business Segment List
         /// </summary>
         public IEnumerable<BusinessSegment> BusinessSegments { get; set; }
 

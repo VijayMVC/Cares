@@ -17,13 +17,12 @@ namespace Cares.Repository.Repositories
     /// </summary>
     public sealed class BusinessSegmentRepository : BaseRepository<BusinessSegment>, IBusinessSegmentRepository
     {
-        #region Public
+        #region Private
         /// <summary>
-        /// BusinessSegment Orderby clause
+        /// Business Segment Orderby clause
         /// </summary>
         private readonly Dictionary<BusinessSegmentByColumn, Func<BusinessSegment, object>> businessSegmentOrderByClause = new Dictionary<BusinessSegmentByColumn, Func<BusinessSegment, object>>
                     {
-
                         {BusinessSegmentByColumn.BusinessSegmentCode, c => c.BusinessSegmentCode},
                         {BusinessSegmentByColumn.BusinessSegmentName, n => n.BusinessSegmentName},
                         {BusinessSegmentByColumn.BusinessSegmentDescription, d=> d.BusinessSegmentDescription},
@@ -50,8 +49,8 @@ namespace Cares.Repository.Repositories
         }
 
         #endregion
-
         #region Public
+
         /// <summary>
         /// Get All Business Segments for User Domain Key
         /// </summary>
@@ -60,10 +59,8 @@ namespace Cares.Repository.Repositories
             return DbSet.Where(businessSegment => businessSegment.UserDomainKey == UserDomainKey).ToList();
         }
 
-
-
         /// <summary>
-        /// Search BusinessSegment
+        /// Search Business Segment
         /// </summary>
         public IEnumerable<BusinessSegment> SearchBusinessSegment(BusinessSegmentSearchRequest businessSegmentSearchRequest,
             out int rowCount)
@@ -72,10 +69,10 @@ namespace Cares.Repository.Repositories
             int fromRow = (businessSegmentSearchRequest.PageNo - 1) * businessSegmentSearchRequest.PageSize;
             int toRow = businessSegmentSearchRequest.PageSize;
             Expression<Func<BusinessSegment, bool>> query =
-                operation =>
+                businessSeg =>
                     (string.IsNullOrEmpty(businessSegmentSearchRequest.BusinessSegmentFilterText) ||
-                     (operation.BusinessSegmentCode.Contains(businessSegmentSearchRequest.BusinessSegmentFilterText)) ||
-                     (operation.BusinessSegmentName.Contains(businessSegmentSearchRequest.BusinessSegmentFilterText)));
+                     (businessSeg.BusinessSegmentCode.Contains(businessSegmentSearchRequest.BusinessSegmentFilterText)) ||
+                     (businessSeg.BusinessSegmentName.Contains(businessSegmentSearchRequest.BusinessSegmentFilterText)));
 
             rowCount = DbSet.Count(query);
             return businessSegmentSearchRequest.IsAsc
@@ -93,7 +90,7 @@ namespace Cares.Repository.Repositories
 
 
         /// <summary>
-        /// WorkPlaceType Code validation check
+        ///  Business Segment Code validation check
         /// </summary>
         public bool IsBusinessSegmentCodeExists(BusinessSegment businessSegment)
         {

@@ -11,14 +11,14 @@ namespace Cares.Interfaces.Repository
     {
 
         /// <summary>
-        /// Search BusinessSegment
+        /// Search Business Segment
         /// </summary>
         IEnumerable<BusinessSegment> SearchBusinessSegment(BusinessSegmentSearchRequest businessSegmentSearchRequest,
             out int rowCount);
 
 
         /// <summary>
-        /// BusinessSegment Code validation check
+        /// Business Segment Code validation check
         /// </summary>
         bool IsBusinessSegmentCodeExists(BusinessSegment businessSegment);
     }
