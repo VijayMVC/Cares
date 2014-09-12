@@ -228,6 +228,7 @@
     <Compile Include="Areas\Api\Controllers\BusinessSegmentController.cs" />
     <Compile Include="Areas\Api\Controllers\CompanyBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\CompanyController.cs" />
+    <Compile Include="Areas\Api\Controllers\RegionBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\DepartmentBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\DepartmentController.cs" />
     <Compile Include="Areas\Api\Controllers\EmployeeBaseController.cs" />
@@ -243,6 +244,7 @@
     <Compile Include="Areas\Api\Controllers\OperationController.cs" />
     <Compile Include="Areas\Api\Controllers\OperationsWorkPlaceController.cs" />
     <Compile Include="Areas\Api\Controllers\PhoneController.cs" />
+    <Compile Include="Areas\Api\Controllers\RegionController.cs" />
     <Compile Include="Areas\Api\Controllers\RentalAgreementBusinessPartnerController.cs" />
     <Compile Include="Areas\Api\Controllers\GetBusinessPartnerDetailsController.cs" />
     <Compile Include="Areas\Api\Controllers\GetHireGroupDetailDataController.cs" />
@@ -280,6 +282,8 @@
     <Compile Include="Areas\EmployeeManagement\EmployeeManagementAreaRegistration.cs" />
     <Compile Include="Areas\Fleet\Controllers\HomeController.cs" />
     <Compile Include="Areas\Fleet\FleetPoolAreaRegistration.cs" />
+    <Compile Include="Areas\GeographicalHierarchy\Controllers\GeographicalHierarchyController.cs" />
+    <Compile Include="Areas\GeographicalHierarchy\GeographicalHierarchyAreaRegistration.cs" />
     <Compile Include="Areas\Organization\Controllers\OrganizationController.cs" />
     <Compile Include="Areas\Organization\OrganizationGroupAreaRegistration.cs" />
     <Compile Include="Areas\RentalAgreement\Controllers\HomeController.cs" />
@@ -315,6 +319,7 @@
     <Compile Include="ModelMappers\WorkplaceTypeMapper.cs" />
     <Compile Include="Models\BusinessSegment.cs" />
     <Compile Include="Models\BusinessSegmentSearchRequestResponse.cs" />
+    <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\DepartmentBaseDataResponse.cs" />
     <Compile Include="Models\DepartmentSearchRequestResponse.cs" />
@@ -395,6 +400,9 @@
     <Compile Include="Models\OrgGroupDropDown.cs" />
     <Compile Include="Models\PaymentTerm.cs" />
     <Compile Include="Models\PhonesSearchByWorkLocationIdResponse.cs" />
+    <Compile Include="Models\Region.cs" />
+    <Compile Include="Models\RegionBaseDataResponse.cs" />
+    <Compile Include="Models\RegionSearchRequestResponse.cs" />
     <Compile Include="Models\ServiceRateBaseResponse.cs" />
     <Compile Include="Models\ServiceRateSearchResponse.cs" />
     <Compile Include="Models\ServiceRtDetailContent.cs" />
@@ -510,6 +518,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FleetPool.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\GeographicalHierarchy\Region.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Region.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\GeographicalHierarchy\Region.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Region.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Organization\BusinessSegment.ar.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -701,6 +719,10 @@
     <Content Include="Areas\Fleet\Scripts\hireGroup.view.js" />
     <Content Include="Areas\Fleet\Scripts\vehicle.viewModel.js" />
     <Content Include="Areas\Fleet\Scripts\hireGroup.viewModel.js" />
+    <Content Include="Areas\GeographicalHierarchy\Scripts\region.dataservice.js" />
+    <Content Include="Areas\GeographicalHierarchy\Scripts\region.model.js" />
+    <Content Include="Areas\GeographicalHierarchy\Scripts\region.view.js" />
+    <Content Include="Areas\GeographicalHierarchy\Scripts\region.viewModel.js" />
     <Content Include="Areas\Organization\Scripts\company.dataservice.js" />
     <Content Include="Areas\Organization\Scripts\company.model.js" />
     <Content Include="Areas\Organization\Scripts\company.view.js" />
@@ -818,6 +840,12 @@
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\PagedList.min.css">
       <DependentUpon>PagedList.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Region.css">
+      <DependentUpon>Region.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Region.min.css">
+      <DependentUpon>Region.css</DependentUpon>
     </Content>
     <Content Include="Content\RentalAgreement.css">
       <DependentUpon>RentalAgreement.less</DependentUpon>
@@ -1441,6 +1469,15 @@
     <Content Include="Content\BusinessSegment.css.map">
       <DependentUpon>BusinessSegment.css</DependentUpon>
     </Content>
+    <Content Include="Areas\GeographicalHierarchy\Views\web.config" />
+    <Content Include="Areas\GeographicalHierarchy\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\GeographicalHierarchy\Views\GeographicalHierarchy\Region.cshtml" />
+    <Content Include="Areas\GeographicalHierarchy\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\GeographicalHierarchy\Views\GeographicalHierarchy\_RegionEditor.cshtml" />
+    <Content Include="Content\Region.less" />
+    <Content Include="Content\Region.css.map">
+      <DependentUpon>Region.css</DependentUpon>
+    </Content>
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
@@ -1590,6 +1627,7 @@
     <Folder Include="Areas\Api\Views\Operation\" />
     <Folder Include="Areas\Api\Views\OrganizationGroup\" />
     <Folder Include="Areas\Api\Views\Phone\" />
+    <Folder Include="Areas\Api\Views\Region\" />
     <Folder Include="Areas\Api\Views\Shared\" />
     <Folder Include="Areas\Api\Views\WorkLocationBase\" />
     <Folder Include="Areas\Api\Views\WorkLocation\" />
@@ -1602,6 +1640,7 @@
     <Folder Include="Areas\Common\Models\" />
     <Folder Include="Areas\EmployeeManagement\Models\" />
     <Folder Include="Areas\Fleet\Models\" />
+    <Folder Include="Areas\GeographicalHierarchy\Models\" />
     <Folder Include="Areas\Organization\Models\" />
     <Folder Include="Areas\Pricing\Models\" />
     <Folder Include="Areas\Product\Models\" />
@@ -1644,6 +1683,14 @@
     <EmbeddedResource Include="Resources\FleetPool\FleetPool.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>FleetPool.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\GeographicalHierarchy\Region.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Region.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\GeographicalHierarchy\Region.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Region.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Organization\BusinessSegment.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

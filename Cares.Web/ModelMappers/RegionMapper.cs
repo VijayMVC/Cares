@@ -1,4 +1,6 @@
-﻿using Cares.Models.DomainModels;
+﻿using System.Linq;
+using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
 using ApiModel = Cares.Web.Models;
 
 namespace Cares.Web.ModelMappers
@@ -10,7 +12,7 @@ namespace Cares.Web.ModelMappers
         #region Region
         #region Entity To Model
         /// <summary>
-        ///  Create web model from entity
+        ///  Create web dropdoen model from entity
         /// </summary>
         public static ApiModel.RegionDropDown CreateFrom(this Region source)
         {
@@ -22,6 +24,63 @@ namespace Cares.Web.ModelMappers
                 CountryId = source.CountryId
             };
         }
+
+
+        /// <summary>
+        /// Crete From Domain base data model 
+        /// </summary>
+        public static ApiModel.RegionBaseDataResponse CreateFrom(this Cares.Models.ResponseModels.RegionBaseDataResponse source)
+        {
+            return new ApiModel.RegionBaseDataResponse
+            {
+                Countries = source.Countries.Select(country => country.CreateFrom())
+            };
+        }
+
+
+        /// <summary>
+        ///  Create from domain model to web model
+        /// </summary>
+        public static ApiModel.Region CreateFromm(this Region source)
+        {
+            return new ApiModel.Region
+            {
+                RegionId = source.RegionId,
+                RegionCode = source.RegionCode,
+                RegionName = source.RegionName,
+                RegionDescription = source.RegionDescription,
+                CountryId = source.CountryId,
+                CountryName = source.Country.CountryName
+            };
+        }
+
+        /// <summary>
+        ///  Create from web model
+        /// </summary>
+        public static Region CreateFrom(this ApiModel.Region source)
+        {
+            return new Region
+            {
+                RegionId = source.RegionId,
+                RegionCode = source.RegionCode,
+                RegionName = source.RegionName,
+                RegionDescription = source.RegionDescription,
+                CountryId = source.CountryId,
+            };
+        }
+
+        /// <summary>
+        /// Create From Response model to web search response
+        /// </summary>
+        public static ApiModel.RegionSearchRequestResponse CreateFrom(this RegionSearchRequestResponse source)
+        {
+            return new ApiModel.RegionSearchRequestResponse
+            {
+                Regions = source.Regions.Select(region => region.CreateFromm()),
+                TotalCount = source.TotalCount
+            };
+        }
+
         #endregion        
         #endregion
 
@@ -32,7 +91,7 @@ namespace Cares.Web.ModelMappers
         /// </summary>
         public static ApiModel.SubRegionDropDown CreateFrom(this SubRegion source)
         {
-            return new ApiModel.SubRegionDropDown()
+            return new ApiModel.SubRegionDropDown
             {
                 SubRegionId = source.SubRegionId,
                 SubRegionCodeName = source.SubRegionCode+" - "+source.SubRegionName,

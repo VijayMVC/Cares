@@ -11,8 +11,12 @@ namespace Cares.Interfaces.Repository
         /// <summary>
         /// Get Cities by Country 
         /// </summary>
-        /// <param name="countryId"></param>
-        /// <returns></returns>
         IQueryable<City> GetCitiesByCountry(int countryId);
+
+        /// <summary>
+        /// Check if region is asssociated with any city
+        /// </summary>
+        bool IsRegionAssociatedWithCity(long regionId);
+
     }
 }

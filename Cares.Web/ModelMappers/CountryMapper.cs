@@ -12,7 +12,7 @@ namespace Cares.Web.ModelMappers
         #region Public
         #region Entity To Model
         /// <summary>
-        ///  Create web model from entity
+        ///  Create  dropdown web model from entity
         /// </summary>
         public static ApiModel.CountryDropDown CreateFrom(this Country source)
         {
@@ -20,6 +20,21 @@ namespace Cares.Web.ModelMappers
             {
                 CountryId = source.CountryId,
                 CountryCodeName = source.CountryCode + " - " + source.CountryName,
+            };
+        }
+
+
+        /// <summary>
+        ///  Create   web model from entity
+        /// </summary>
+        public static ApiModel.Country CreateFromm(this Country source)
+        {
+            return new ApiModel.Country
+            {
+                CountryId = source.CountryId,
+                CountryCode = source.CountryCode,
+                CountryName = source.CountryName,
+                CountryDescription = source.CountryDescription
             };
         }
         #endregion

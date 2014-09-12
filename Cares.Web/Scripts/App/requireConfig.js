@@ -30,7 +30,10 @@
             "workLocation": "/Areas/Organization/Scripts",
             "workplaceType": "/Areas/Organization/Scripts",
             "businessSeg": "/Areas/Organization/Scripts",
-            "employee": "/Areas/EmployeeManagement/Scripts"
+            "employee": "/Areas/EmployeeManagement/Scripts",
+
+            "region": "/Areas/GeographicalHierarchy/Scripts"
+
         }
 
     });

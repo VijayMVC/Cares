@@ -103,6 +103,7 @@
     <Compile Include="Common\CompanyByColumn.cs" />
     <Compile Include="Common\DepartmentByColumn.cs" />
     <Compile Include="Common\InsuranceRateByColumn.cs" />
+    <Compile Include="Common\RegionByColumn.cs" />
     <Compile Include="Common\ServiceRateByColumn.cs" />
     <Compile Include="Common\OperationByColumn.cs" />
     <Compile Include="Common\VehicleOrderByColumn.cs" />
@@ -216,6 +217,8 @@
     <Compile Include="RequestModels\GetHireGroupRequest.cs" />
     <Compile Include="RequestModels\HireGroupAddRequest.cs" />
     <Compile Include="RequestModels\InsuranceRateSearchRequest.cs" />
+    <Compile Include="RequestModels\RegionSearchRequest.cs" />
+    <Compile Include="RequestModels\RegionSearchRequestResponse.cs" />
     <Compile Include="RequestModels\ServiceRateSearchRequest.cs" />
     <Compile Include="RequestModels\OperationSearchRequest.cs" />
     <Compile Include="RequestModels\VehicleSearchRequest.cs" />
@@ -254,6 +257,7 @@
     <Compile Include="ResponseModels\OrgGroupResponse.cs" />
     <Compile Include="ResponseModels\PhonesSearchByWorkLocationIdResponse.cs" />
     <Compile Include="ResponseModels\ProductResponse.cs" />
+    <Compile Include="ResponseModels\RegionBaseDataResponse.cs" />
     <Compile Include="ResponseModels\RegionResponse.cs" />
     <Compile Include="ResponseModels\ServiceRateBaseResponse.cs" />
     <Compile Include="ResponseModels\ServiceRateSearchResponse.cs" />

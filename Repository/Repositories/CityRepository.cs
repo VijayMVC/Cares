@@ -46,8 +46,6 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Find City By Id
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         public City Find(int id)
         {
             throw new System.NotImplementedException();
@@ -55,11 +53,18 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get Cities By Country
         /// </summary>
-        /// <param name="countryId"></param>
-        /// <returns></returns>
         public IQueryable<City> GetCitiesByCountry(int countryId)
         {
             return DbSet.Where(city => city.UserDomainKey == UserDomainKey && city.CountryId == countryId);
+        }
+
+
+        /// <summary>
+        /// Check if region is asssociated with any city
+        /// </summary>
+        public bool IsRegionAssociatedWithCity(long regionId)
+        {
+            return DbSet.Count(city => city.UserDomainKey == UserDomainKey && city.RegionId == regionId)>0;
         }
         #endregion
     }
