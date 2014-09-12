@@ -18,7 +18,8 @@ namespace Cares.Web.ModelMappers
             return new EmployeeDropDown
             {
                 EmployeeId = source.EmployeeId,
-                EmployeeName = source.EmpFName + "  " + source.EmpLName
+                EmployeeName = source.EmpFName + "  " + source.EmpLName,
+                EmployeeCodeName = source.EmpFName + "  " + source.EmpLName
             };
         }
         /// <summary>
@@ -44,7 +45,7 @@ namespace Cares.Web.ModelMappers
                 Notes4 = source.Notes4,
                 Notes5 = source.Notes5,
                 NationalityId = source.NationalityId,
-               
+
             };
         }
 
@@ -98,8 +99,8 @@ namespace Cares.Web.ModelMappers
         {
             return new EmployeeSearchResponse
             {
-               Employees = source.Employees.Select(emp=>emp.CreateFromListViewContent()),
-               TotalCount = source.TotalCount
+                Employees = source.Employees.Select(emp => emp.CreateFromListViewContent()),
+                TotalCount = source.TotalCount
 
             };
         }
@@ -130,6 +131,7 @@ namespace Cares.Web.ModelMappers
                 LicenseTypes = source.LicenseTypes.Select(x => x.CreateFrom()),
                 Operations = source.Operations.Select(x => x.CreateFrom()),
                 OperationsWorkPlaces = source.OperationsWorkPlaces.Select(x => x.CreateFrom()),
+                AddressTypes = source.AddressTypes.Select(x => x.CreateFrom()),
             };
         }
         #endregion

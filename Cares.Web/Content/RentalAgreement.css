@@ -1,12 +1,95 @@
-﻿#rentalAgreementBinding .well {
+﻿#rentalAgreementBinding {
+  color: gray;
+}
+#rentalAgreementBinding .well {
   padding-top: 0;
+}
+#rentalAgreementBinding .form-control {
+  padding: 2px;
+  height: 25px;
+}
+#rentalAgreementBinding .control-label {
+  padding-top: 3px;
 }
 #rentalAgreementBinding .form-group {
   margin-bottom: 5px;
 }
+#rentalAgreementBinding .form-group input,
+#rentalAgreementBinding .form-group select,
+#rentalAgreementBinding .form-group textarea {
+  max-width: 100%;
+}
+#rentalAgreementBinding .form-group .col-xs-1,
+#rentalAgreementBinding .form-group .col-xs-2,
+#rentalAgreementBinding .form-group .col-xs-3,
+#rentalAgreementBinding .form-group .col-xs-4,
+#rentalAgreementBinding .form-group .col-xs-5,
+#rentalAgreementBinding .form-group .col-xs-6,
+#rentalAgreementBinding .form-group .col-xs-7,
+#rentalAgreementBinding .form-group .col-xs-8,
+#rentalAgreementBinding .form-group .col-xs-9,
+#rentalAgreementBinding .form-group .col-xs-10,
+#rentalAgreementBinding .form-group .col-xs-11,
+#rentalAgreementBinding .form-group .col-xs-12,
+#rentalAgreementBinding .form-group .col-sm-1,
+#rentalAgreementBinding .form-group .col-sm-2,
+#rentalAgreementBinding .form-group .col-sm-3,
+#rentalAgreementBinding .form-group .col-sm-4,
+#rentalAgreementBinding .form-group .col-sm-5,
+#rentalAgreementBinding .form-group .col-sm-6,
+#rentalAgreementBinding .form-group .col-sm-7,
+#rentalAgreementBinding .form-group .col-sm-8,
+#rentalAgreementBinding .form-group .col-sm-9,
+#rentalAgreementBinding .form-group .col-sm-10,
+#rentalAgreementBinding .form-group .col-sm-11,
+#rentalAgreementBinding .form-group .col-sm-12,
+#rentalAgreementBinding .form-group .col-md-1,
+#rentalAgreementBinding .form-group .col-md-2,
+#rentalAgreementBinding .form-group .col-md-3,
+#rentalAgreementBinding .form-group .col-md-4,
+#rentalAgreementBinding .form-group .col-md-5,
+#rentalAgreementBinding .form-group .col-md-6,
+#rentalAgreementBinding .form-group .col-md-7,
+#rentalAgreementBinding .form-group .col-md-8,
+#rentalAgreementBinding .form-group .col-md-9,
+#rentalAgreementBinding .form-group .col-md-10,
+#rentalAgreementBinding .form-group .col-md-11,
+#rentalAgreementBinding .form-group .col-md-12,
+#rentalAgreementBinding .form-group .col-lg-1,
+#rentalAgreementBinding .form-group .col-lg-2,
+#rentalAgreementBinding .form-group .col-lg-3,
+#rentalAgreementBinding .form-group .col-lg-4,
+#rentalAgreementBinding .form-group .col-lg-5,
+#rentalAgreementBinding .form-group .col-lg-6,
+#rentalAgreementBinding .form-group .col-lg-7,
+#rentalAgreementBinding .form-group .col-lg-8,
+#rentalAgreementBinding .form-group .col-lg-9,
+#rentalAgreementBinding .form-group .col-lg-10,
+#rentalAgreementBinding .form-group .col-lg-11,
+#rentalAgreementBinding .form-group .col-lg-12 {
+  padding-right: 0;
+  padding-left: 8px;
+}
+#rentalAgreementBinding .form-group label {
+  font-weight: normal;
+  text-align: left;
+}
+#rentalAgreementBinding .form-group .checkBoxCol {
+  width: 4.5%;
+}
+#rentalAgreementBinding .form-group .checkBoxCol input[type="checkbox"] {
+  height: 15px;
+  margin-top: 6px;
+}
 #rentalAgreementBinding #raPanels {
   width: 25.9%;
   float: left;
+}
+#rentalAgreementBinding #raPanels .panel-heading {
+  color: gray;
+}
+#rentalAgreementBinding #raPanels a {
+  text-decoration: underline;
 }
 #rentalAgreementBinding #raMain {
   width: 36.5%;
@@ -15,16 +98,52 @@
   margin-right: .5%;
 }
 #rentalAgreementBinding #raMain #ra {
-  min-height: 300px;
+  min-height: 236px;
+}
+#rentalAgreementBinding #raMain #ra label.col-sm-2 {
+  width: 16.5%;
+}
+#rentalAgreementBinding #raMain #ra label.notFirstColumn {
+  margin-left: 11px;
+}
+#rentalAgreementBinding #raMain #ra #rentalPaymentTermLabel {
+  width: 14%;
+}
+@media (min-width: 992px) {
+  #rentalAgreementBinding #raMain #ra .dateTimeControl {
+    width: 39.3%;
+  }
+  #rentalAgreementBinding #raMain #ra .dateTimeControl .dateControl {
+    width: 57%;
+    float: left;
+  }
+  #rentalAgreementBinding #raMain #ra .dateTimeControl .timeControl {
+    width: 39%;
+    margin-left: 5px;
+    float: left;
+  }
+  #rentalAgreementBinding #raMain #ra #bookingNumberControl {
+    width: 43%;
+  }
+  #rentalAgreementBinding #raMain #ra #rentalPaymentTermControl {
+    width: 28.5%;
+    padding-left: 0;
+  }
+  #rentalAgreementBinding #raMain #ra #returnLocationControl {
+    width: 36.4%;
+  }
+  #rentalAgreementBinding #raMain #ra .rentalHireGroupControl {
+    width: 78%;
+  }
+}
+@media (min-width: 768px) {
+  #rentalAgreementBinding #raMain #ra .input-small {
+    width: 26.15%;
+  }
 }
 #rentalAgreementBinding #raMain #vehicle {
   margin-top: .5%;
-  min-height: 105px;
-}
-#rentalAgreementBinding #raMain input,
-#rentalAgreementBinding #raMain select,
-#rentalAgreementBinding #raMain textarea {
-  max-width: 100%;
+  min-height: 268px;
 }
 #rentalAgreementBinding #raMain #vehicleImage {
   max-width: 32px;
@@ -35,9 +154,27 @@
   float: left;
 }
 #rentalAgreementBinding #raBilling #customer {
-  min-height: 300px;
+  min-height: 173px;
+}
+#rentalAgreementBinding #raBilling #customer #isIndividualLabel {
+  width: 18%;
+  margin-left: 11px;
+}
+#rentalAgreementBinding #raBilling #customer label.col-sm-2 {
+  width: 20%;
 }
 #rentalAgreementBinding #raBilling #billing {
   margin-top: .5%;
   min-height: 105px;
 }
+#rentalAgreementBinding #raBilling #billing .Bold {
+  font-weight: bold;
+}
+#rentalAgreementBinding #raBilling #billing div.form-group {
+  margin-right: 0;
+  margin-left: 0;
+}
+#rentalAgreementBinding #raBilling #billing div.form-group div {
+  border-bottom: 1px solid black;
+}
+/*# sourceMappingURL=RentalAgreement.css.map */

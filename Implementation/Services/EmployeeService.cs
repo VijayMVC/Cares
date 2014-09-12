@@ -31,6 +31,7 @@ namespace Cares.Implementation.Services
         private readonly ILicenseTypeRepository licenseTypeRepository;
         private readonly IOperationRepository operationRepository;
         private readonly IOperationsWorkPlaceRepository operationsWorkPlaceRepository;
+        private readonly IAddressTypeRepository addressTypeRepository;
         #endregion
 
         #region Constructor
@@ -59,7 +60,7 @@ namespace Cares.Implementation.Services
             IDepartmentRepository departmentRepository, IWorkplaceRepository workplaceRepository, ICountryRepository countryRepository,
             IRegionRepository regionRepository, ISubRegionRepository subRegionRepository, ICityRepository cityRepository,
             IAreaRepository areaRepository, IPhoneTypeRepository phoneTypeRepository, ILicenseTypeRepository licenseTypeRepository,
-            IOperationRepository operationRepository, IOperationsWorkPlaceRepository operationsWorkPlaceRepository)
+            IOperationRepository operationRepository, IOperationsWorkPlaceRepository operationsWorkPlaceRepository,IAddressTypeRepository addressTypeRepository)
         {
             employeeRepository = empRepository;
             this.empStatusRepository = empStatusRepository;
@@ -78,6 +79,7 @@ namespace Cares.Implementation.Services
             this.licenseTypeRepository = licenseTypeRepository;
             this.operationRepository = operationRepository;
             this.operationsWorkPlaceRepository = operationsWorkPlaceRepository;
+            this.addressTypeRepository = addressTypeRepository;
         }
 
         #endregion
@@ -160,7 +162,8 @@ namespace Cares.Implementation.Services
                Operations = operationRepository.GetAll(),
                OperationsWorkPlaces = operationsWorkPlaceRepository.GetAll(),
                Supervisors = employeeRepository.GetAll(),
-               Designations = designationRepository.GetAll()
+               Designations = designationRepository.GetAll(),
+               AddressTypes = addressTypeRepository.GetAll()
            };
         }
 

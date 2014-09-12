@@ -1,18 +1,76 @@
 ﻿#rentalAgreementBinding {
  
+    color: gray;
+    
     .well
     {
         padding-top: 0;
     }
 
+    .form-control
+    {
+        padding: 2px;
+        height: 25px;
+    }
+
+    .control-label
+    {
+        padding-top: 3px;
+    }
+
     .form-group
     {
         margin-bottom: 5px;
+
+        input,
+        select,
+        textarea {
+            max-width: 100%;
+        }
+
+        .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, 
+        .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12, .col-sm-1, .col-sm-2, 
+        .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, 
+        .col-sm-10, .col-sm-11, .col-sm-12, .col-md-1, .col-md-2, .col-md-3, .col-md-4, 
+        .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, 
+        .col-md-12, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, 
+        .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12
+        {
+            padding-right: 0;
+            padding-left: 8px;
+        }
+
+        label
+        {
+            font-weight: normal;
+            text-align: left;
+        }
+
+        .checkBoxCol
+        {
+            width: 4.5%;
+
+            input[type="checkbox"]
+            {
+                height: 15px;
+                margin-top: 6px;
+            }
+        }
     }
 
     #raPanels {
         width: 25.9%;
         float: left;
+
+        .panel-heading
+        {
+            color: gray;
+        }
+
+        a
+        {
+            text-decoration: underline;
+        }
     }
 
     #raMain {
@@ -22,18 +80,76 @@
         margin-right: .5%;
 
         #ra{
-            min-height: 300px;
+            min-height: 236px;
+
+            label.col-sm-2
+            {
+                width: 16.5%;
+            }
+
+            label.notFirstColumn
+            {
+                margin-left: 11px;
+            }
+
+            #rentalPaymentTermLabel
+            {
+                width: 14%;
+            }
+                        
+            @media (min-width: 992px){
+                .dateTimeControl 
+                {
+                    width: 39.3%;
+
+                    .dateControl
+                    {
+                        width: 57%;
+                        float: left;
+                    }
+
+                    .timeControl
+                    {
+                        width: 39%;
+                        margin-left: 5px;
+                        float: left;
+                    }
+                }
+
+                #bookingNumberControl 
+                {
+                    width: 43%;
+                }
+
+                #rentalPaymentTermControl
+                {
+                    width: 28.5%;
+                    padding-left: 0;
+                }
+
+                #returnLocationControl
+                {
+                    width: 36.4%;
+                }
+
+                .rentalHireGroupControl
+                {
+                    width: 78%;
+                }
+            }
+
+            @media (min-width: 768px){
+                .input-small 
+                {
+                    width: 26.15%;
+                }
+            }
+
         }
 
         #vehicle{
             margin-top: .5%;
-            min-height: 105px;
-        }
-
-        input,
-        select,
-        textarea {
-            max-width: 100%;
+            min-height: 268px;
         }
 
         #vehicleImage
@@ -48,13 +164,40 @@
         float: left;
 
         #customer{
-            min-height: 300px;
+            min-height: 173px;
+
+            #isIndividualLabel
+            {
+                width: 18%;
+                margin-left: 11px;
+            }
+
+            label.col-sm-2
+            {
+                width: 20%;
+            }
         }
 
         #billing
         {
             margin-top: .5%;
             min-height: 105px;
+
+            .Bold
+            {
+                font-weight: bold;
+            }
+
+            div.form-group
+            {
+                margin-right: 0;
+                margin-left: 0;
+
+                div
+                {
+                    border-bottom: 1px solid black;
+                }
+            }
         }
     }
 }
