@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Cares.Web.Models
 {
@@ -86,5 +87,30 @@ namespace Cares.Web.Models
         /// Notes5
         /// </summary>
         public string Notes5 { get; set; }
+
+        /// <summary>
+        /// Job Info
+        /// </summary>
+        public EmpJobInfo EmpJobInfo { get; set; }
+
+        /// <summary>
+        /// List Of Address
+        /// </summary>
+        public List<Address> Addresses { get; set; }
+
+        /// <summary>
+        /// Employee Phone Number List
+        /// </summary>
+        public List<Phone> PhoneNumbers { get; set; }
+
+        /// <summary>
+        /// Employee Job Progress List
+        /// </summary>
+        public List<EmpJobProg> EmpJobProgs { get; set; }
+
+        /// <summary>
+        /// Employee Auth Operations Workplace List
+        /// </summary>
+        public List<EmpAuthOperationsWorkplace> AuthorizedLocations { get; set; }
     }
 }

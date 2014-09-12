@@ -82,7 +82,7 @@ namespace Cares.Implementation.Services
                     dbVersion.RecLastUpdatedDt = DateTime.Now;
                     dbVersion.RowVersion = dbVersion.RowVersion + 1;
                     dbVersion.WorkPlaceTypeCode = workPlaceType.WorkPlaceTypeCode;
-                    dbVersion.WorkPlaceTypeName = workPlaceType.WorkPlaceNature;
+                    dbVersion.WorkPlaceTypeName = workPlaceType.WorkPlaceTypeName;
                     dbVersion.WorkPlaceTypeDescription = workPlaceType.WorkPlaceTypeDescription;
                     dbVersion.WorkPlaceNature = workPlaceType.WorkPlaceNature;
                     workplaceTypeRepository.Update(dbVersion);

@@ -94,6 +94,11 @@ namespace Cares.Models.ResponseModels
         /// </summary>
         public IEnumerable<Employee> Supervisors { get; set; }
 
+        /// <summary>
+        /// Address Types
+        /// </summary>
+        public IEnumerable<AddressType> AddressTypes { get; set; }
+
 
     }
 }

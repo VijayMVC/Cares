@@ -1,30 +1,24 @@
 ﻿define(["ko", "underscore", "underscore-ko"], function(ko) {
     
     //workPlaceType Detail
-    var workPlaceTypeDetail = function (specifiedId, specifiedCode, specifiedName, specifieddescription, specifiedworkplaceNature) {
+    var businessSegmentDetail = function (specifiedId, specifiedCode, specifiedName, specifieddescription) {
         var            
             id = ko.observable(specifiedId),
             code = ko.observable(specifiedCode).extend({ required: true }),
             name = ko.observable(specifiedName).extend({ required: true }),
-            workplaceNature = ko.observable(specifiedworkplaceNature).extend({ required: true }),
             description = ko.observable(specifieddescription),
             errors = ko.validation.group({
                 name: name,
                 code: code,
                 description: description,
-                workplaceNature: workplaceNature
             }),
             // Is Valid
             isValid = ko.computed(function() {
                 return errors().length === 0;
             }),
-            // True if the booking has been changed        
             dirtyFlag = new ko.dirtyFlag({
-                id:id,
                 name: name,
                 code: code,
-                description: description,
-                workplaceNature:workplaceNature
             }),
             // Has Changes
             hasChanges = ko.computed(function() {
@@ -36,13 +30,12 @@
             },
             // Convert to server
             convertToServerData = function () {
-               
+                debugger;
                 return {
-                    WorkPlaceTypeId: id(),
-                    WorkPlaceTypeCode: code(),
-                    WorkPlaceTypeName: name(),
-                    WorkPlaceTypeDescription: description(),
-                    WorkPlaceNature: workplaceNature()
+                    BusinessSegmentId: id(),
+                    BusinessSegmentCode: code(),
+                    BusinessSegmentName: name(),
+                    BusinessSegmentDescription: description(),
                 };
             };
         return {
@@ -50,7 +43,6 @@
             code: code,
             name: name,
             description: description,
-            workplaceNature:workplaceNature,
             errors: errors,
             isValid: isValid,
             dirtyFlag: dirtyFlag,
@@ -61,22 +53,22 @@
         };
     };
     // server to client mapper
-    var workPlaceTypeServertoClinetMapper = function (source) {
-        return workPlaceTypeDetail.Create(source);
+    var businessSegmentServertoClinetMapper = function (source) {
+        return businessSegmentDetail.Create(source);
     };
     
     // FleetPool Factory
-    workPlaceTypeDetail.Create = function (source) {
-        return new workPlaceTypeDetail(source.WorkPlaceTypeId, source.WorkPlaceTypeCode, source.WorkPlaceTypeName, source.WorkPlaceTypeDescription, source.WorkPlaceNature);
+    businessSegmentDetail.Create = function (source) {
+        return new businessSegmentDetail(source.BusinessSegmentId, source.BusinessSegmentCode, source.BusinessSegmentName, source.BusinessSegmentDescription);
     };
 
     //function to attain cancel button functionality 
-    workPlaceTypeDetail.CreateFromClientModel = function (itemFromServer) {
-        return new workPlaceTypeDetail(itemFromServer.id, itemFromServer.code, itemFromServer.name,
-            itemFromServer.description, itemFromServer.workplaceNature);
+    businessSegmentDetail.CreateFromClientModel = function (itemFromServer) {
+        return new businessSegmentDetail(itemFromServer.id, itemFromServer.code, itemFromServer.name,
+            itemFromServer.description);
     };
     return {
-        workPlaceTypeDetail: workPlaceTypeDetail,
-        workPlaceTypeServertoClinetMapper: workPlaceTypeServertoClinetMapper,
+        businessSegmentDetail: businessSegmentDetail,
+        businessSegmentServertoClinetMapper: businessSegmentServertoClinetMapper,
     };
 });

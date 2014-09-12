@@ -36,7 +36,7 @@ define("employee/employee.viewModel",
                      //Departments
                     departments = ko.observableArray([]),
                     //Work Places
-                    workPlaces = ko.observableArray([]),
+                    workPlacesServer = ko.observableArray([]),
                     //Supervisors
                     supervisors = ko.observableArray([]),
                     //Countries
@@ -61,6 +61,26 @@ define("employee/employee.viewModel",
                     operations = ko.observableArray([]),
                     //operation Wor kPlaces
                     operationWorkPlaces = ko.observableArray([]),
+                    //Address Types
+                    addressTypes = ko.observableArray([]),
+                     //Filtered Departments
+                    filteredDepartments = ko.observableArray([]),
+                     //operation Wor kPlaces
+                    filteredWorkplaces = ko.observableArray([]),
+                    //filtered Regions
+                    filteredRegions = ko.observableArray([]),
+                    //filtered Cities
+                    filteredCities = ko.observableArray([]),
+                    //filtered Areas
+                    filteredAreas = ko.observableArray([]),
+                    //filtered Sub Regions
+                    filteredSubRegions = ko.observableArray([]),
+                    //Address List
+                    addressList = ko.observableArray([]),
+                    //Phone Number List
+                    phoneNumbersList = ko.observableArray([]),
+                    //Job Progress List
+                    jobProgList = ko.observableArray([]),
                     // #endregion Arrays
                     // #region Busy Indicators
                     isLoadingEmployees = ko.observable(false),
@@ -82,8 +102,248 @@ define("employee/employee.viewModel",
                        //Company Filter
                     companyFilter = ko.observable(),
                     // #endregion
+                    //#region  filter Arrays
+                    //on selected company
+                    onSelectedCompany = function (company) {
+                        filteredDepartments.removeAll();
+                        filteredWorkplaces.removeAll();
+                        if (company.companyId() != undefined) {
+                            _.each(departments(), function (item) {
+                                if (item.CompanyId === company.companyId())
+                                    filteredDepartments.push(item);
+                            });
 
+                            _.each(workPlacesServer(), function (item) {
+                                if (item.CompanyId === company.companyId())
+                                    filteredWorkplaces.push(item);
+                            });
+                        }
+
+                    },
+                      //country selection change event
+                    onCountrySelectionChange = function (value) {
+                        if (addEmployeeItem().address().countryId() !== undefined) {
+                            getRegionsByCountry(addEmployeeItem().address().countryId());
+                            _.each(countries(), function (item) {
+                                if (item.CountryId === addEmployeeItem().address().countryId())
+                                    addEmployeeItem().address().countryName(item.CountryCodeName);
+                            });
+
+                        }
+                    },
+                    //get regions by country          
+                    getRegionsByCountry = function (countryId) {
+                        //filter Regions by country
+                        filteredRegions.removeAll();
+                        _.each(regions(), function (item) {
+                            if (item.CountryId === countryId)
+                                filteredRegions.push(item);
+                        });
+                        filteredRegions.valueHasMutated();
+                        //filter cities by country
+                        filteredCities.removeAll();
+                        _.each(cities(), function (item) {
+                            if (item.CountryId === countryId)
+                                filteredCities.push(item);
+                        });
+                        filteredCities.valueHasMutated();
+
+                    },
+                     //region selection change event
+                    onRegionSelectionChange = function (value) {
+                        if (addEmployeeItem().address().regionId() !== undefined) {
+                            getSubRegionsByRegion(addEmployeeItem().address().regionId());
+                            _.each(regions(), function (item) {
+                                if (item.RegionId === addEmployeeItem().address().regionId())
+                                    addEmployeeItem().address().regionName(item.RegionCodeName);
+                            });
+                        } else {
+                            // empty sub regions
+                            filteredSubRegions.removeAll();
+                            filteredSubRegions.valueHasMutated();
+                        }
+                    },
+                    //get sub regions by region          
+                    getSubRegionsByRegion = function (regionId) {
+                        // get filtered sub regions
+                        filteredSubRegions.removeAll();
+                        _.each(subRegions(), function (item) {
+                            if (item.RegionId === regionId)
+                                filteredSubRegions.push(item);
+                        });
+                        filteredSubRegions.valueHasMutated();
+                        // get filtered cities
+                        filteredCities.removeAll();
+                        _.each(cities(), function (item) {
+                            if (item.RegionId === regionId)
+                                filteredCities.push(item);
+                        });
+                        filteredCities.valueHasMutated();
+                    },
+                      //sub region selection change event
+                    onSubRegionSelectionChange = function (value) {
+                        if (addEmployeeItem().address().subRegionId() !== undefined) {
+                            getCitiesBySubRegion(addEmployeeItem().address().subRegionId());
+                            _.each(subRegions(), function (item) {
+                                if (item.SubRegionId === addEmployeeItem().address().subRegionId())
+                                    addEmployeeItem().address().subRegionName(item.SubRegionCodeName);
+                            });
+                        }
+                    },
+                     //get cities by sub region          
+                    getCitiesBySubRegion = function (subRegionId) {
+                        // get filtered cities
+                        filteredCities.removeAll();
+                        _.each(cities(), function (item) {
+                            if (item.SubRegionId === subRegionId)
+                                filteredCities.push(item);
+                        });
+                        filteredCities.valueHasMutated();
+                    },
+                      //city selection change event
+                    onCitySelectionChange = function (value) {
+                        if (addEmployeeItem().address().cityId() !== undefined) {
+                            getAreasByCity(addEmployeeItem().address().cityId());
+                            _.each(cities(), function (item) {
+                                if (item.CityId === addEmployeeItem().address().cityId())
+                                    addEmployeeItem().address().cityName(item.CityCodeName);
+                            });
+                        } else {
+                            // empty area list
+                            filteredAreas.removeAll();
+                            filteredAreas.valueHasMutated();
+                        }
+                    },
+                    //get Areas by city          
+                    getAreasByCity = function (cityId) {
+                        // get areas by city
+                        filteredAreas.removeAll();
+                        _.each(areas(), function (item) {
+                            if (item.CityId === cityId)
+                                filteredAreas.push(item);
+                        });
+                        filteredAreas.valueHasMutated();
+                    },
+                      //sub Area selection change event
+                    onAreaSelectionChange = function (value) {
+                        if (addEmployeeItem().address().areaId() !== undefined) {
+                            _.each(areas(), function (item) {
+                                if (item.AreaId === addEmployeeItem().address().areaId())
+                                    addEmployeeItem().address().areaName(item.AreaCodeName);
+                            });
+                        }
+                    },
+                      //sub Address Type selection change event
+                    onAddressTypeSelectionChange = function (value) {
+                        if (addEmployeeItem().address().addressTypeId() !== undefined) {
+                            _.each(addressTypes(), function (item) {
+                                if (item.AddressTypeId === addEmployeeItem().address().addressTypeId())
+                                    addEmployeeItem().address().addressTypeName(item.AddressTypeCodeName);
+                            });
+                        }
+                    },
+                    // #endregion
                     // #region Utility Functions
+                      // Add a Address
+                    onAddAddress = function () {
+                        // check validation error before add
+                        if (doBeforeAddAddressItem()) {
+                            var address = model.Address();
+                            address.contactPerson(addEmployeeItem().address().contactPerson());
+                            address.streetAddress(addEmployeeItem().address().streetAddress());
+                            address.emailAddress(addEmployeeItem().address().emailAddress());
+                            address.countryName(addEmployeeItem().address().countryName());
+                            address.countryId(addEmployeeItem().address().countryId());
+                            address.webPage(addEmployeeItem().address().webPage());
+                            address.zipCode(addEmployeeItem().address().zipCode());
+                            address.poBox(addEmployeeItem().address().poBox());
+                            address.regionId(addEmployeeItem().address().regionId());
+                            address.regionName(addEmployeeItem().address().regionName());
+                            address.subRegionId(addEmployeeItem().address().subRegionId());
+                            address.subRegionName(addEmployeeItem().address().subRegionName());
+                            address.cityId(addEmployeeItem().address().cityId());
+                            address.cityName(addEmployeeItem().address().cityName());
+                            address.areaId(addEmployeeItem().address().areaId());
+                            address.areaName(addEmployeeItem().address().areaName());
+                            address.addressTypeId(addEmployeeItem().address().addressTypeId());
+                            address.addressTypeName(addEmployeeItem().address().addressTypeName());
+                            addressList.push(address);
+                            // emplty input fields
+                            addEmployeeItem().address(model.Address());
+                        }
+                    },
+                     // Do Before Add Address Item
+                    doBeforeAddAddressItem = function () {
+                        var flag = true;
+                        if (!addEmployeeItem().address().isValid()) {
+                            addEmployeeItem().address().errors.showAllMessages();
+                            flag = false;
+                        }
+                        return flag;
+                    },
+                      // Add a Employee Phone
+                    onAddEmployeePhone = function () {
+                        // check validation error before add
+                        if (doBeforeAddPhoneItem()) {
+                            var phoneItem = model.Phone();
+                            phoneItem.isDefault(addEmployeeItem().phone().isDefault());
+                            phoneItem.phoneNumber(addEmployeeItem().phone().phoneNumber());
+                            phoneItem.phoneTypeId(addEmployeeItem().phone().phoneTypeId().PhoneTypeId);
+                            phoneItem.phoneTypeName(addEmployeeItem().phone().phoneTypeId().PhoneTypeCodeName);
+                            phoneNumbersList.push(phoneItem);
+
+                            // emplty input fields
+                            addEmployeeItem().phone(model.Phone());
+                        }
+                    },
+                        // Do Before Add BusinessPartner Phone Item
+                    doBeforeAddPhoneItem = function () {
+                        var flag = true;
+                        if (!addEmployeeItem().phone().isValid()) {
+                            addEmployeeItem().phone().errors.showAllMessages();
+                            flag = false;
+                        } else {
+                            // check if isdefault true entry already there
+                            var isDefaultAlreadyThere = false;
+                            _.each(phoneNumbersList(), function (item) {
+                                if (item.isDefault() == true)
+                                    isDefaultAlreadyThere = true;
+                            });
+                            if (isDefaultAlreadyThere && addEmployeeItem().phone().isDefault()) {
+                                toastr.info("Default record already there!");
+                                return false;
+                            }
+                        }
+                        return flag;
+                    },
+                        // Add a Employee Job Progress
+                     onAddJobProgress = function () {
+                        // check validation error before add
+                         if (doBeforeAddJobProgressItem()) {
+                             var jobProgress = model.JobProgress();
+                             jobProgress.empJobProgId(addEmployeeItem().jobProgress().empJobProgId());
+                             jobProgress.designationId(addEmployeeItem().jobProgress().designationId().DesignationId);
+                             jobProgress.desigName(addEmployeeItem().jobProgress().designationId().DesignationCodeName);
+                             jobProgress.workplaceId(addEmployeeItem().jobProgress().workplaceId().WorkPlaceId);
+                             jobProgress.workplaceName(addEmployeeItem().jobProgress().workplaceId().WorkPlaceCodeName);
+                             jobProgress.desigStDt(addEmployeeItem().jobProgress().desigStDt());
+                             jobProgress.desigEndDt(addEmployeeItem().jobProgress().desigEndDt());
+                             jobProgList.push(jobProgress);
+
+                            // emplty input fields
+                             addEmployeeItem().jobProgress(model.JobProgress());
+                        }
+                    },
+                     // Do Before Add Address Item
+                    doBeforeAddJobProgressItem = function () {
+                        var flag = true;
+                        if (!addEmployeeItem().jobProgress().isValid()) {
+                            addEmployeeItem().jobProgress().errors.showAllMessages();
+                            flag = false;
+                        }
+                        return flag;
+                    },
+
                     // Initialize the view model
                     initialize = function (specifiedView) {
                         view = specifiedView;
@@ -113,6 +373,13 @@ define("employee/employee.viewModel",
                      //Create Employee Rate
                     createEmployee = function () {
                         var employee = new model.EmployeeDetail();
+                        filteredDepartments.removeAll();
+                        filteredWorkplaces.removeAll();
+                        filteredCities.removeAll();
+                        filteredRegions.removeAll();
+                        filteredAreas.removeAll();
+                        filteredSubRegions.removeAll();
+                        addressList.removeAll();
                         //checkListItemList.removeAll();
                         //maintenanceScheduleList.removeAll();
                         //Select the newly added Employee
@@ -178,14 +445,20 @@ define("employee/employee.viewModel",
                    // Save Employee
                     onSaveEmployee = function (employee) {
                         if (doBeforeSave()) {
-                            //if (employee.maintenanceScheduleListInEmployee().length !== 0) {
-                            //    employee.maintenanceScheduleListInEmployee.removeAll();
-                            //}
-                            //if (employee.checkListItemListInEmployee().length !== 0) {
-                            //    employee.checkListItemListInEmployee.removeAll();
-                            //}
-                            //ko.utils.arrayPushAll(employee.maintenanceScheduleListInEmployee(), maintenanceScheduleList());
-                            //ko.utils.arrayPushAll(employee.checkListItemListInEmployee(), checkListItemList());
+                            if (employee.employeeAddressList().length !== 0) {
+                                employee.employeeAddressList.removeAll();
+                            }
+                            if (employee.phonesList().length !== 0) {
+                                employee.phonesList.removeAll();
+                            }
+                            if (employee.jobProgressList().length !== 0) {
+                                employee.jobProgressList.removeAll();
+                            }
+                            
+                            ko.utils.arrayPushAll(employee.phonesList(), phoneNumbersList());
+                            ko.utils.arrayPushAll(employee.employeeAddressList(), addressList());
+                            ko.utils.arrayPushAll(employee.jobProgressList(), jobProgList());
+
                             saveEmployee(employee);
                         }
                     },
@@ -234,6 +507,14 @@ define("employee/employee.viewModel",
                                 operations.removeAll();
                                 ko.utils.arrayPushAll(operations(), data.Operations);
                                 operations.valueHasMutated();
+                                //Address Types 
+                                addressTypes.removeAll();
+                                ko.utils.arrayPushAll(addressTypes(), data.AddressTypes);
+                                addressTypes.valueHasMutated();
+                                //departments
+                                departments.removeAll();
+                                ko.utils.arrayPushAll(departments(), data.Departments);
+                                departments.valueHasMutated();
                                 //Operations 
                                 companies.removeAll();
                                 ko.utils.arrayPushAll(companies(), data.Companies);
@@ -263,9 +544,9 @@ define("employee/employee.viewModel",
                                 ko.utils.arrayPushAll(designationGrades(), data.DesigGrades);
                                 designationGrades.valueHasMutated();
                                 //Work Places
-                                workPlaces.removeAll();
-                                ko.utils.arrayPushAll(workPlaces(), data.WorkPlaces);
-                                workPlaces.valueHasMutated();
+                                workPlacesServer.removeAll();
+                                ko.utils.arrayPushAll(workPlacesServer(), data.WorkPlaces);
+                                workPlacesServer.valueHasMutated();
                                 //Supervisors
                                 supervisors.removeAll();
                                 ko.utils.arrayPushAll(supervisors(), data.Supervisors);
@@ -332,91 +613,17 @@ define("employee/employee.viewModel",
                         companyFilter(undefined);
                         search();
                     },
-                    //Add Maintenance Schedule Item To Maintennace Schedule List
-                     onAddMaintenanceSchedule = function (maintenanceSchedule) {
-                         if (doBeforeSaveMaintenanceSchedule()) {
-                             _.each(maintenanceTypes(), function (item) {
-                                 if (item.MaintenanceTypeId === maintenanceSchedule.maintenanceTypeId())
-                                     maintenanceSchedule.maintenanceTypCodeName(item.MaintenanceTypeCodeName);
-                             });
-
-                             maintenanceScheduleList.splice(0, 0, maintenanceSchedule);
-                             addEmployeeItem().maintenanceSchedule(new model.MaintenanceSchedule());
-                         }
-                     },
-                    // Do Before Logic
-                    doBeforeSaveMaintenanceSchedule = function () {
-                        var flag = true;
-                        if (!addEmployeeItem().maintenanceSchedule().isValid()) {
-                            addEmployeeItem().maintenanceSchedule().errors.showAllMessages();
-                            flag = false;
-                        }
-                        return flag;
-                    },
-                    //Delete Maintenance Schedule Item
-                    deleteMaintenanceSchedule = function (maintenanceSchedule) {
-                        maintenanceScheduleList.remove(maintenanceSchedule);
-                    },
-                    //Add Maintenance Schedule Item To Maintennace Schedule List
-                    onAddCheckListItem = function (checkListItem) {
-                        if (doBeforeSaveCheckListItem()) {
-                            _.each(employeeCheckList(), function (item) {
-                                if (item.EmployeeCheckListId === checkListItem.employeeCheckListId())
-                                    checkListItem.employeeCheckListCodeName(item.EmployeeCheckListCodeName);
-                            });
-
-                            checkListItemList.splice(0, 0, checkListItem);
-                            addEmployeeItem().checkListItem(new model.CheckListItem());
-                        }
-                    },
-                    // Do Before Logic
-                    doBeforeSaveCheckListItem = function () {
-                        var flag = true;
-                        if (!addEmployeeItem().checkListItem().isValid()) {
-                            addEmployeeItem().checkListItem().errors.showAllMessages();
-                            flag = false;
-                        }
-                        return flag;
-                    },
-                    //Delete Maintenance Schedule Item
-                    deleteCheckListItem = function (checkListItem) {
-                        checkListItemList.remove(checkListItem);
-                    },
-                    mapEmployees = function (data) {
-                        var employeeList = [];
-                        _.each(data.Employees, function (item) {
-                            var employee = new model.EmployeeClientMapper(item);
-                            employeeList.push(employee);
-                        });
-                        ko.utils.arrayPushAll(employees(), employeeList);
-                        employees.valueHasMutated();
-                    },
-                      //on selected company
-                    onSelectedCompany = function (company) {
-                        filteredDepartments.removeAll();
-                        filteredOperations.removeAll();
-                        if (company.companyId() != undefined) {
-                            _.each(departments(), function (item) {
-                                if (item.CompanyId === company.companyId())
-                                    filteredDepartments.push(item);
-                            });
-                            filteredDepartments.valueHasMutated();
-                        }
-
-                    },
-                      //on selected Department 
-                    onSelectedDepartemnt = function (department) {
-                        filteredOperations.removeAll();
-                        if (department.departmentId() != undefined) {
-                            _.each(operations(), function (item) {
-                                if (item.DepartmentId === department.departmentId())
-                                    filteredOperations.push(item);
-                            });
-                            filteredOperations.valueHasMutated();
-                        }
-                    },
-                    //Gender
-                    //Gender
+                    //map Employees
+                   mapEmployees = function (data) {
+                               var employeeList = [];
+                               _.each(data.Employees, function (item) {
+                                   var employee = new model.EmployeeClientMapper(item);
+                                   employeeList.push(employee);
+                               });
+                               ko.utils.arrayPushAll(employees(), employeeList);
+                               employees.valueHasMutated();
+                           },
+                     //Gender
                     genders = [{ Id: 'M', Text: 'Male' },
                         { Id: 'F', Text: 'Female' }
 
@@ -466,7 +673,7 @@ define("employee/employee.viewModel",
                     jobTypes: jobTypes,
                     designations: designations,
                     designationGrades: designationGrades,
-                    workPlaces: workPlaces,
+                    workPlacesServer: workPlacesServer,
                     supervisors: supervisors,
                     countries: countries,
                     subRegions: subRegions,
@@ -478,6 +685,16 @@ define("employee/employee.viewModel",
                     licenseTypes: licenseTypes,
                     operationWorkPlaces: operationWorkPlaces,
                     employeeStatuses: employeeStatuses,
+                    filteredDepartments: filteredDepartments,
+                    filteredWorkplaces: filteredWorkplaces,
+                    addressTypes: addressTypes,
+                    filteredCities: filteredCities,
+                    filteredRegions: filteredRegions,
+                    filteredAreas: filteredAreas,
+                    filteredSubRegions: filteredSubRegions,
+                    addressList: addressList,
+                    phoneNumbersList: phoneNumbersList,
+                    jobProgList: jobProgList,
                     //Filters
                     searchFilter: searchFilter,
                     employeeStatusFilter: employeeStatusFilter,
@@ -497,7 +714,17 @@ define("employee/employee.viewModel",
                     reset: reset,
                     onEditEmployee: onEditEmployee,
                     onDeleteEmployee: onDeleteEmployee,
-                    onSaveEmployee: onSaveEmployee
+                    onSaveEmployee: onSaveEmployee,
+                    onSelectedCompany: onSelectedCompany,
+                    onCountrySelectionChange: onCountrySelectionChange,
+                    onRegionSelectionChange: onRegionSelectionChange,
+                    onSubRegionSelectionChange: onSubRegionSelectionChange,
+                    onCitySelectionChange: onCitySelectionChange,
+                    onAddAddress: onAddAddress,
+                    onAreaSelectionChange: onAreaSelectionChange,
+                    onAddressTypeSelectionChange: onAddressTypeSelectionChange,
+                    onAddEmployeePhone: onAddEmployeePhone,
+                    onAddJobProgress: onAddJobProgress
                     // Utility Methods
 
                 };

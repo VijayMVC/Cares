@@ -19,7 +19,7 @@ namespace Cares.Web.ModelMappers
         {
             return new Models.WorkplaceBaseDataResponse
             {
-                Companies =      source.Companies.Select(company => company.CreateFrom()),
+                Companies = source.Companies.Select(company => company.CreateFrom()),
                 WorkPlaceTypes = source.WorkPlaceTypes.Select(workplce => workplce.CreateFrom()),
                 WorkLocations = source.WorkLocations.Select(workLocation => workLocation.CreateFrom()),
                 Operations = source.Operations.Select(opperation => opperation.CreateFrom()),
@@ -51,10 +51,10 @@ namespace Cares.Web.ModelMappers
                 WorkPlaceCode = source.WorkPlaceCode,
                 WorkPlaceName = source.WorkPlaceName,
                 WorkPlaceDescription = source.WorkPlaceDescription,
-                CompanyId = source.WorkLocation.CompanyId ,
-                CompanyName =  source.WorkLocation.Company.CompanyName,
+                CompanyId = source.WorkLocation.CompanyId,
+                CompanyName = source.WorkLocation.Company.CompanyName,
                 ParentWorkPlaceId = source.ParentWorkPlaceId,
-                ParentWorkPlaceName = source.ParentWorkPlaceId!=null ? source.ParentWorkPlace.WorkPlaceName : "",
+                ParentWorkPlaceName = source.ParentWorkPlaceId != null ? source.ParentWorkPlace.WorkPlaceName : "",
                 WorkPlaceTypeId = source.WorkPlaceTypeId,
                 WorkPlaceTypeName = source.WorkPlaceType.WorkPlaceTypeName,
                 WorkLocationId = source.WorkLocationId,
@@ -67,11 +67,12 @@ namespace Cares.Web.ModelMappers
         /// </summary>
         public static WorkPlaceDropdown CreateFromm(this WorkPlace source)
         {
-           return new WorkPlaceDropdown
-            {
-                WorkPlaceId = source.WorkPlaceId,
-                WorkPlaceCodeName = source.WorkPlaceCode + " - " + source.WorkPlaceName
-            };
+            return new WorkPlaceDropdown
+             {
+                 WorkPlaceId = source.WorkPlaceId,
+                 WorkPlaceCodeName = source.WorkPlaceCode + " - " + source.WorkPlaceName,
+                 CompanyId = source.WorkLocation.Company != null ? source.WorkLocation.Company.CompanyId : 0
+             };
         }
 
         /// <summary>
@@ -79,19 +80,19 @@ namespace Cares.Web.ModelMappers
         /// </summary>
         public static WorkPlace CreateFrom(this Models.WorkPlace source)
         {
-           return new WorkPlace
-            {
-                WorkPlaceId = source.WorkPlaceId,
-                WorkPlaceCode = source.WorkPlaceCode,
-                WorkPlaceName = source.WorkPlaceName,
-                WorkPlaceDescription = source.WorkPlaceDescription,
-                ParentWorkPlaceId = source.ParentWorkPlaceId,
-                WorkPlaceTypeId = source.WorkPlaceTypeId,
-                WorkLocationId = source.WorkLocationId,
-                OperationsWorkPlaces = source.OperationsWorkPlaces != null ? source.OperationsWorkPlaces.Select(operationWorkPlace => operationWorkPlace.CreateFrom()).ToList() : null,
-                
-            };
-        } 
+            return new WorkPlace
+             {
+                 WorkPlaceId = source.WorkPlaceId,
+                 WorkPlaceCode = source.WorkPlaceCode,
+                 WorkPlaceName = source.WorkPlaceName,
+                 WorkPlaceDescription = source.WorkPlaceDescription,
+                 ParentWorkPlaceId = source.ParentWorkPlaceId,
+                 WorkPlaceTypeId = source.WorkPlaceTypeId,
+                 WorkLocationId = source.WorkLocationId,
+                 OperationsWorkPlaces = source.OperationsWorkPlaces != null ? source.OperationsWorkPlaces.Select(operationWorkPlace => operationWorkPlace.CreateFrom()).ToList() : null,
+
+             };
+        }
         #endregion
     }
 }

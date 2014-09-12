@@ -320,6 +320,9 @@
     <Compile Include="Models\DepartmentSearchRequestResponse.cs" />
     <Compile Include="Models\DesigGradeDropDown.cs" />
     <Compile Include="Models\DesignationDropDown.cs" />
+    <Compile Include="Models\EmpAuthOperationsWorkplace.cs" />
+    <Compile Include="Models\EmpJobInfo.cs" />
+    <Compile Include="Models\EmpJobProg.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EmployeeListViewContent.cs" />
     <Compile Include="Models\EmployeeBaseResponse.cs" />
@@ -510,6 +513,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FleetPool.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\BusinessSegment.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessSegment.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\BusinessSegment.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessSegment.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Organization\Company.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -752,6 +765,12 @@
     <Content Include="asadtest.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\BusinessSegment.css">
+      <DependentUpon>BusinessSegment.less</DependentUpon>
+    </Content>
+    <Content Include="Content\BusinessSegment.min.css">
+      <DependentUpon>BusinessSegment.css</DependentUpon>
+    </Content>
     <Content Include="Content\Company.css">
       <DependentUpon>Company.less</DependentUpon>
     </Content>
@@ -1423,6 +1442,11 @@
     <Content Include="Content\RentalAgreement.css.map">
       <DependentUpon>RentalAgreement.css</DependentUpon>
     </Content>
+    <Content Include="Areas\Organization\Views\Organization\_BusinessSegmentEditor.cshtml" />
+    <Content Include="Content\BusinessSegment.less" />
+    <Content Include="Content\BusinessSegment.css.map">
+      <DependentUpon>BusinessSegment.css</DependentUpon>
+    </Content>
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
@@ -1626,6 +1650,14 @@
     <EmbeddedResource Include="Resources\FleetPool\FleetPool.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>FleetPool.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\BusinessSegment.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BusinessSegment.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\BusinessSegment.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BusinessSegment.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Organization\Company.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

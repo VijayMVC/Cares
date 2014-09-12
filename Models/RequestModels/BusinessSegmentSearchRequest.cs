@@ -10,11 +10,10 @@ namespace Cares.Models.RequestModels
         public string BusinessSegmentFilterText { get; set; }
       
         /// <summary>
-        ///  BusinessSegment By Column for sorting
+        ///  Business Segment By Column for sorting
         /// </summary>
         public BusinessSegmentByColumn BusinessSegmentOrderBy
         {
-
             get
             {
                 return (BusinessSegmentByColumn)SortBy;
