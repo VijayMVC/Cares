@@ -20,6 +20,11 @@ namespace Cares.Web.Models
         /// <summary>
         /// Department Id
         /// </summary>
-        public string DepartmentId { get; set; }
+        public long DepartmentId { get; set; }
+
+        /// <summary>
+        /// Company Id
+        /// </summary>
+        public long CompanyId { get; set; }
     }
 }

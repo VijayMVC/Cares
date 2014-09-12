@@ -35,7 +35,7 @@ namespace Cares.Web.Areas.Api.Controllers
         #region Public
         // GET api/<controller>
         [ValidateFilter]
-        public Models.EmployeeSearchResponse Get([FromUri] EmployeeSearchRequest request)
+        public EmployeeSearchResponse Get([FromUri] EmployeeSearchRequest request)
         {
             if (!ModelState.IsValid)
             {

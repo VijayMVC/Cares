@@ -320,6 +320,9 @@
     <Compile Include="Models\DepartmentSearchRequestResponse.cs" />
     <Compile Include="Models\DesigGradeDropDown.cs" />
     <Compile Include="Models\DesignationDropDown.cs" />
+    <Compile Include="Models\EmpAuthOperationsWorkplace.cs" />
+    <Compile Include="Models\EmpJobInfo.cs" />
+    <Compile Include="Models\EmpJobProg.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EmployeeListViewContent.cs" />
     <Compile Include="Models\EmployeeBaseResponse.cs" />

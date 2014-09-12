@@ -131,6 +131,9 @@
     <Compile Include="DomainModels\Area.cs" />
     <Compile Include="DomainModels\DesigGrade.cs" />
     <Compile Include="DomainModels\Designation.cs" />
+    <Compile Include="DomainModels\EmpAuthOperationsWorkplace.cs" />
+    <Compile Include="DomainModels\EmpJobInfo.cs" />
+    <Compile Include="DomainModels\EmpJobProg.cs" />
     <Compile Include="DomainModels\EmpStatus.cs" />
     <Compile Include="DomainModels\HireGroupUpGrade.cs" />
     <Compile Include="DomainModels\InsuranceRt.cs" />

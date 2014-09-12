@@ -40,46 +40,59 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
     // ReSharper disable once InconsistentNaming
     var EmployeeDetail = function () {
         var // Reference to this object
-          self,
-          // Unique key
-          empId = ko.observable(),
-          //Company Id
-          companyId = ko.observable().extend({ required: true }),
-          //Employee Status Id
-          statusId = ko.observable().extend({ required: true }),
-          //Code
-          code = ko.observable().extend({ required: true }),
-          //First Name
-          fName = ko.observable().extend({ required: true }),
-          //Middle Name
-          mName = ko.observable(),
-          //Last Name
-          lName = ko.observable(),
-          //Date Of birth
-          dOB = ko.observable().extend({ required: true }),
-          //Gender
-          gender = ko.observable(),
-          //Nationality Id
-          nationalityId = ko.observable(),
-          //Notes
-          notes = ko.observable(),
-           //Notes 1
-          notes1 = ko.observable(),
-           //Notes2
-          notes2 = ko.observable(),
-           //Notes 3
-          notes3 = ko.observable(),
-           //Notes 4
-          notes4 = ko.observable(),
-           //Notes 5
-          notes5 = ko.observable(),
-
-           //#region Other Tabs object
-            //Vehicle Other Detail
+            self,
+            // Unique key
+            empId = ko.observable(),
+            //Company Id
+            companyId = ko.observable().extend({ required: true }),
+            //Employee Status Id
+            statusId = ko.observable().extend({ required: true }),
+            //Code
+            code = ko.observable().extend({ required: true }),
+            //First Name
+            fName = ko.observable().extend({ required: true }),
+            //Middle Name
+            mName = ko.observable(),
+            //Last Name
+            lName = ko.observable(),
+            //Date Of birth
+            dOB = ko.observable().extend({ required: true }),
+            //Gender
+            gender = ko.observable(),
+            //Nationality Id
+            nationalityId = ko.observable(),
+            //Notes
+            notes = ko.observable(),
+            //Notes 1
+            notes1 = ko.observable(),
+            //Notes2
+            notes2 = ko.observable(),
+            //Notes 3
+            notes3 = ko.observable(),
+            //Notes 4
+            notes4 = ko.observable(),
+            //Notes 5
+            notes5 = ko.observable(),
+            //#region Other Tabs object
+           //Job Info
             jobInfo = ko.observable(new JobInfo()),
-          
+            //Addess 
+            address = ko.observable(new Address()),
+            //Phone
+            phone = ko.observable(new Phone()),
+            //Job Progress
+            jobProgress = ko.observable(new JobProgress()),
+            //Authorized Location
+            authorizedLocation = ko.observable(new AuthorizedLocation()),
+            //Employee Address List
+            employeeAddressList = ko.observableArray([]),
+            //Employee Phone List
+            phonesList = ko.observableArray([]),
+            //job Progress List
+            jobProgressList = ko.observableArray([]),
+
           //#endregion
-          
+
                  // Errors
             errors = ko.validation.group({
                 companyId: companyId,
@@ -138,7 +151,14 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             notes4: notes4,
             notes5: notes5,
             gender: gender,
-            jobInfo :jobInfo,
+            jobInfo: jobInfo,
+            address: address,
+            phone: phone,
+            employeeAddressList: employeeAddressList,
+            phonesList: phonesList,
+            jobProgress: jobProgress,
+            jobProgressList: jobProgressList,
+            authorizedLocation: authorizedLocation,
             errors: errors,
             isValid: isValid,
             dirtyFlag: dirtyFlag,
@@ -148,7 +168,6 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         return self;
     };
     //Employee Detail Entity
-    // ReSharper disable once InconsistentNaming
     var JobInfo = function () {
         var // Reference to this object
           self,
@@ -169,11 +188,11 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
           //Joining DAte
           joiningDate = ko.observable(),
           //Salary
-          salary = ko.observable(),
-        
+          salary = ko.observable().extend({ number: true }),
+
               // Errors
             errors = ko.validation.group({
-               
+
             }),
             // Is Valid
             isValid = ko.computed(function () {
@@ -183,7 +202,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             // True if the booking has been changed
             // ReSharper disable InconsistentNaming
             dirtyFlag = new ko.dirtyFlag({
-               
+
             }),
             // Has Changes
             hasChanges = ko.computed(function () {
@@ -196,7 +215,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
 
         self = {
             jobInfoId: jobInfoId,
-            jobTypeId:jobTypeId,
+            jobTypeId: jobTypeId,
             desgId: desgId,
             desgGardeId: desgGardeId,
             depId: depId,
@@ -209,6 +228,303 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             dirtyFlag: dirtyFlag,
             hasChanges: hasChanges,
             reset: reset,
+        };
+        return self;
+    };
+    // Business Partner Address entity
+    var Address = function () {
+        // ReSharper restore InconsistentNaming
+        var // Reference to this object
+            self,
+            // Main Top Section 
+            // Address Id
+            addressId = ko.observable(),
+            // Contact Person
+            contactPerson = ko.observable(),
+            // Street Address
+            streetAddress = ko.observable().extend({ required: true }),
+            // Email Address
+            emailAddress = ko.observable().extend({ email: true }),
+            // Web Page
+            webPage = ko.observable(),
+            // Zip Code
+            zipCode = ko.observable(),
+            // PO Box
+            poBox = ko.observable(),
+            // Country Id
+            countryId = ko.observable().extend({ required: true }),
+             // Country Name
+            countryName = ko.observable(),
+            // Region Id
+            regionId = ko.observable(),
+             // Region Name
+            regionName = ko.observable(),
+            // Sub Region Id
+            subRegionId = ko.observable(),
+             // Sub Region Name
+            subRegionName = ko.observable(),
+            // City Id
+            cityId = ko.observable(),
+            // City Name
+            cityName = ko.observable(),
+            // Area Id
+            areaId = ko.observable(),
+            // Area Name
+            areaName = ko.observable(),
+            // Address Type Id
+            addressTypeId = ko.observable().extend({ required: true }),
+             // Address Type Name
+            addressTypeName = ko.observable(),
+              // Is Busy
+            isBusy = ko.observable(false),
+            // Errors
+            errors = ko.validation.group({
+                streetAddress: streetAddress,
+                countryId: countryId,
+                addressTypeId: addressTypeId,
+                emailAddress: emailAddress
+            }),
+            // Is Valid
+            isValid = ko.computed(function () {
+                return errors().length === 0;
+            }),
+            // True if the booking has been changed
+            // ReSharper disable InconsistentNaming
+            dirtyFlag = new ko.dirtyFlag({
+                // ReSharper restore InconsistentNaming
+                addressId: addressId,
+                contactPerson: contactPerson,
+                streetAddress: streetAddress,
+                emailAddress: emailAddress,
+                webPage: webPage,
+                zipCode: zipCode,
+                poBox: poBox,
+                countryId: countryId,
+                regionId: regionId,
+                subRegionId: subRegionId,
+                cityId: cityId,
+                areaId: areaId,
+                addressTypeId: addressTypeId,
+            }),
+            // Has Changes
+            hasChanges = ko.computed(function () {
+                return dirtyFlag.isDirty();
+            }),
+            // Reset
+            reset = function () {
+                dirtyFlag.reset();
+            };
+        self = {
+            addressId: addressId,
+            contactPerson: contactPerson,
+            streetAddress: streetAddress,
+            emailAddress: emailAddress,
+            webPage: webPage,
+            zipCode: zipCode,
+            poBox: poBox,
+            countryId: countryId,
+            countryName: countryName,
+            regionId: regionId,
+            regionName: regionName,
+            subRegionId: subRegionId,
+            subRegionName: subRegionName,
+            cityId: cityId,
+            cityName: cityName,
+            areaId: areaId,
+            areaName: areaName,
+            addressTypeId: addressTypeId,
+            addressTypeName: addressTypeName,
+            errors: errors,
+            isValid: isValid,
+            dirtyFlag: dirtyFlag,
+            hasChanges: hasChanges,
+            reset: reset,
+            isBusy: isBusy
+        };
+        return self;
+    };
+    // Phone entity
+    var Phone = function () {
+        // ReSharper restore InconsistentNaming
+        var // Reference to this object
+            self,
+            // Main Top Section 
+            // Phone Id
+            phoneId = ko.observable(),
+            // Is Default
+            isDefault = ko.observable(),
+            // Phone Number
+            phoneNumber = ko.observable().extend({ required: true }),
+              // Phone Type Id
+            phoneTypeId = ko.observable().extend({ required: true }),
+             // Phone Type Name
+            phoneTypeName = ko.observable(),
+            // Is Busy
+            isBusy = ko.observable(false),
+            // Errors
+            errors = ko.validation.group({
+                phoneTypeId: phoneTypeId,
+                phoneNumber: phoneNumber
+            }),
+            // Is Valid
+            isValid = ko.computed(function () {
+                return errors().length === 0;
+            }),
+            // True if the booking has been changed
+            // ReSharper disable InconsistentNaming
+            dirtyFlag = new ko.dirtyFlag({
+                // ReSharper restore InconsistentNaming
+                phoneId: phoneId,
+                isDefault: isDefault,
+                phoneNumber: phoneNumber,
+                phoneTypeId: phoneTypeId,
+            }),
+            // Has Changes
+            hasChanges = ko.computed(function () {
+                return dirtyFlag.isDirty();
+            }),
+            // Reset
+            reset = function () {
+                dirtyFlag.reset();
+            };
+        self = {
+            phoneId: phoneId,
+            isDefault: isDefault,
+            phoneNumber: phoneNumber,
+            phoneTypeId: phoneTypeId,
+            phoneTypeName: phoneTypeName,
+            errors: errors,
+            isValid: isValid,
+            dirtyFlag: dirtyFlag,
+            hasChanges: hasChanges,
+            reset: reset,
+            isBusy: isBusy
+        };
+        return self;
+    };
+    // Job Progress entity
+    // ReSharper disable once InconsistentNaming
+    var JobProgress = function () {
+        // ReSharper restore InconsistentNaming
+        var // Reference to this object
+            self,
+            // Main Top Section 
+            // Job Progress Id
+            empJobProgId = ko.observable(),
+            // Designation Id
+            designationId = ko.observable().extend({ required: true }),
+            // Workplace Id
+            workplaceId = ko.observable().extend({ required: true }),
+              //Designation Start Date
+            desigStDt = ko.observable().extend({ required: true }),
+             // Designation End Date
+            desigEndDt = ko.observable().extend({ required: true }),
+            //Designation Name
+            desigName = ko.observable(),
+            //Work place Name
+            workplaceName = ko.observable(),
+            // Is Busy
+            isBusy = ko.observable(false),
+            // Errors
+            errors = ko.validation.group({
+                designationId: designationId,
+                workplaceId: workplaceId,
+                desigStDt: desigStDt,
+                desigEndDt: desigEndDt,
+            }),
+            // Is Valid
+            isValid = ko.computed(function () {
+                return errors().length === 0;
+            }),
+            // True if the booking has been changed
+            // ReSharper disable InconsistentNaming
+            dirtyFlag = new ko.dirtyFlag({
+
+            }),
+            // Has Changes
+            hasChanges = ko.computed(function () {
+                return dirtyFlag.isDirty();
+            }),
+            // Reset
+            reset = function () {
+                dirtyFlag.reset();
+            };
+        self = {
+            empJobProgId: empJobProgId,
+            designationId: designationId,
+            workplaceId: workplaceId,
+            desigStDt: desigStDt,
+            desigEndDt: desigEndDt,
+            desigName: desigName,
+            workplaceName: workplaceName,
+            errors: errors,
+            isValid: isValid,
+            dirtyFlag: dirtyFlag,
+            hasChanges: hasChanges,
+            reset: reset,
+            isBusy: isBusy
+        };
+        return self;
+    };
+    // Authorized Location entity
+    // ReSharper disable once InconsistentNaming
+    var AuthorizedLocation = function () {
+        // ReSharper restore InconsistentNaming
+        var // Reference to this object
+            self,
+            // Main Top Section 
+            //  Id
+            id = ko.observable(),
+            // Operations Workplace Id
+            operationsWorkplaceId = ko.observable().extend({ required: true }),
+            // Workplace Id
+            isDefault = ko.observable(true),
+            //Is Operation Default
+            isOperationDefault = ko.observable(true),
+             // operations Workplace Name
+            operationsWorkplaceName = ko.observable(),
+            //Operation Name
+            operationName = ko.observable(),
+            //Operation Id
+            operationId = ko.observable(),
+             // Is Busy
+            isBusy = ko.observable(false),
+            // Errors
+            errors = ko.validation.group({
+                operationsWorkplaceId: operationsWorkplaceId,
+               
+            }),
+            // Is Valid
+            isValid = ko.computed(function () {
+                return errors().length === 0;
+            }),
+            // True if the booking has been changed
+            // ReSharper disable InconsistentNaming
+            dirtyFlag = new ko.dirtyFlag({
+
+            }),
+            // Has Changes
+            hasChanges = ko.computed(function () {
+                return dirtyFlag.isDirty();
+            }),
+            // Reset
+            reset = function () {
+                dirtyFlag.reset();
+            };
+        self = {
+            id: id,
+            operationsWorkplaceId: operationsWorkplaceId,
+            isDefault: isDefault,
+            isOperationDefault: isOperationDefault,
+            operationsWorkplaceName: operationsWorkplaceName,
+            operationName: operationName,
+            operationId: operationId,
+            errors: errors,
+            isValid: isValid,
+            dirtyFlag: dirtyFlag,
+            hasChanges: hasChanges,
+            reset: reset,
+            isBusy: isBusy
         };
         return self;
     };
@@ -226,7 +542,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
 
         return employee;
     };
-    //Client To Server(Vehicle Other Detail)
+    //Client To ServerEmployee Detail)
     var EmployeeDetailServerMapper = function (source) {
         var result = {};
         result.EmployeeId = source.empId() === undefined ? 0 : source.empId();
@@ -245,11 +561,82 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.Notes4 = source.notes4() === undefined ? null : source.notes4();
         result.Notes5 = source.notes5() === undefined ? null : source.notes5();
         result.DOB = source.dOB() === undefined || source.dOB() === null ? null : moment(source.dOB()).format(ist.utcFormat);
+        // Address tab
+        result.Addresses = [];
+        _.each(source.employeeAddressList(), function (item) {
+            result.Addresses.push(AddressServerMapper(item));
+        });
+        //Job Info Tab
+        result.EmpJobInfo = JobInfoServerMapper(source.jobInfo());
+
+        // Phone tab
+        result.PhoneNumbers = [];
+        _.each(source.phonesList(), function (item) {
+            result.PhoneNumbers.push(PhoneServerMapper(item));
+        });
+
+        // Job Progress tab
+        result.EmpJobProgs = [];
+        _.each(source.jobProgressList(), function (item) {
+            result.EmpJobProgs.push(JobProgressServerMapper(item));
+        });
+
 
         return result;
     };
+    // Convert Address Client to Server
+    var AddressServerMapper = function (item) {
+        var result = {};
+        result.AddressId = item.addressId() === undefined ? undefined : item.addressId();
+        result.ContactPerson = item.contactPerson() === undefined ? undefined : item.contactPerson();
+        result.StreetAddress = item.streetAddress() === undefined ? undefined : item.streetAddress();
+        result.EmailAddress = item.emailAddress() === undefined ? undefined : item.emailAddress();
+        result.WebPage = item.webPage() === undefined ? undefined : item.webPage();
+        result.ZipCode = item.zipCode() === undefined ? undefined : item.zipCode();
+        result.PoBox = item.poBox() === undefined ? undefined : item.poBox();
+        result.CountryId = item.countryId() === undefined ? undefined : item.countryId();
+        result.RegionId = item.regionId() === undefined ? undefined : item.regionId();
+        result.SubRegionId = item.subRegionId() === undefined ? undefined : item.subRegionId();
+        result.CityId = item.cityId() === undefined ? undefined : item.cityId();
+        result.AreaId = item.areaId() === undefined ? undefined : item.areaId();
+        result.AddressTypeId = item.addressTypeId() === undefined ? undefined : item.addressTypeId();
+        return result;
+    };
+    // Convert Phone Client to Server
+    var PhoneServerMapper = function (item) {
+        var result = {};
+        // Fourth Tab : Business Partner Phone
+        result.PhoneId = item.phoneId() === undefined ? undefined : item.phoneId();
+        result.IsDefault = item.isDefault() === undefined ? undefined : item.isDefault();
+        result.PhoneNumber = item.phoneNumber() === undefined ? undefined : item.phoneNumber();
+        result.PhoneTypeId = item.phoneTypeId() === undefined ? undefined : item.phoneTypeId();
+        return result;
+    };
+    // Convert Job Progress Client to Server
+    var JobProgressServerMapper = function (item) {
+        var result = {};
+        result.EmpJobProgId = item.empJobProgId() === undefined ? null : item.empJobProgId();
+        result.DesignationId = item.designationId() === undefined ? null : item.designationId();
+        result.WorkplaceId = item.workplaceId() === undefined ? null : item.workplaceId();
+        result.DesigStDt = item.desigStDt() === undefined || item.desigStDt() === null ? null : moment(item.desigStDt()).format(ist.utcFormat);
+        result.DesigEndDt = item.desigEndDt() === undefined || item.desigEndDt() === null ? null : moment(item.desigEndDt()).format(ist.utcFormat);
+        return result;
+    };
+    // Convert Phone Client to Server
+    var JobInfoServerMapper = function (item) {
+        var result = {};
+        result.JobInfoId = item.jobInfoId() === undefined ? null : item.jobInfoId();
+        result.DesignationId = item.desgId() === undefined ? null : item.desgId();
+        result.DesigGradeId = item.desgGardeId() === undefined ? null : item.desgGardeId();
+        result.JobTypeId = item.jobTypeId() === undefined ? null : item.jobTypeId();
+        result.DepartmentId = item.depId() === undefined ? null : item.depId();
+        result.WorkplaceId = item.workPlaceId() === undefined ? null : item.workPlaceId();
+        result.SupervisorId = item.supervisorId() === undefined ? null : item.supervisorId();
+        result.Salary = item.salary() === undefined ? null : item.salary();
+        result.JoiningDt = item.joiningDate() === undefined || item.joiningDate() === null ? null : moment(item.joiningDate()).format(ist.utcFormat);
+        return result;
+    };
     //Server To Client Mapper
-    // ReSharper disable once InconsistentNaming
     var EmployeeDetailClientMapper = function (source) {
         var empDetail = new EmployeeDetail();
         empDetail.empId(source.EmployeeId === null ? undefined : source.EmployeeId);
@@ -268,22 +655,32 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         empDetail.notes5(source.Notes5 === null ? undefined : source.Notes5);
         empDetail.gender(source.Gender === null ? undefined : source.Gender);
         empDetail.dOB(source.DOB !== null ? moment(source.DOB, ist.utcFormat).toDate() : undefined);
-       
+
         return empDetail;
     };
+    //Server To Client
     var EmployeeDetailServerMapperForId = function (source) {
         var result = {};
         result.EmployeeId = source.id() === undefined ? 0 : source.id();
-       
+
         return result;
     };
     return {
         Employee: Employee,
         EmployeeDetail: EmployeeDetail,
-        JobInfo:JobInfo,
+        JobInfo: JobInfo,
+        Address: Address,
+        Phone: Phone,
+        JobProgress: JobProgress,
+        AuthorizedLocation: AuthorizedLocation,
+
         EmployeeClientMapper: EmployeeClientMapper,
-        EmployeeDetailClientMapper:EmployeeDetailClientMapper,
+        EmployeeDetailClientMapper: EmployeeDetailClientMapper,
+
         EmployeeDetailServerMapper: EmployeeDetailServerMapper,
+        AddressServerMapper: AddressServerMapper,
+        PhoneServerMapper: PhoneServerMapper,
+        JobProgressServerMapper: JobProgressServerMapper,
         EmployeeDetailServerMapperForId: EmployeeDetailServerMapperForId
 
     };

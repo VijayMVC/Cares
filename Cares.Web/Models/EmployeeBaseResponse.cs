@@ -13,6 +13,11 @@ namespace Cares.Web.Models
         public IEnumerable<EmpStatusDropDown> EmpStatuses { get; set; }
 
         /// <summary>
+        /// Address Types Drop down
+        /// </summary>
+        public IEnumerable<AddressTypeDropDown> AddressTypes { get; set; }
+
+        /// <summary>
         /// Companies
         /// </summary>
         public IEnumerable<CompanyDropDown> Companies { get; set; }
