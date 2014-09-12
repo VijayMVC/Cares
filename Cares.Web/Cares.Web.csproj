@@ -1420,6 +1420,9 @@
       <DependentUpon>WorkPlaceType.css</DependentUpon>
     </Content>
     <Content Include="Areas\Organization\Views\Organization\BusinessSegment.cshtml" />
+    <Content Include="Content\RentalAgreement.css.map">
+      <DependentUpon>RentalAgreement.css</DependentUpon>
+    </Content>
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />

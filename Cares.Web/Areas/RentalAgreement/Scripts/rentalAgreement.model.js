@@ -85,6 +85,8 @@
             rentalAgreementHireGroups = ko.observableArray([]),
             // Business Partner
             businessPartner = ko.observable(BusinessPartner.Create(specifiedBusinessPartner || {}, callbacks)),
+            // Billing
+            billing = ko.observable(Billing.Create({})),
             // Start Date Time
             internalStartDateTime = ko.observable(specifiedStartDate || moment().toDate()),
             // End Date Time
@@ -125,6 +127,7 @@
                     }
                     var time = moment(value, ist.timePattern);
                     start(new Date(start().getFullYear(), start().getMonth(), start().getDate(), time.hours(), time.minutes()));
+                    endDate(new Date(end().getFullYear(), end().getMonth(), end().getDate(), 0, 0));
                 }
             }),
             // End Date
@@ -170,6 +173,7 @@
                     }
                     var time = moment(value, ist.timePattern);
                     end(new Date(end().getFullYear(), end().getMonth(), end().getDate(), time.hours(), time.minutes()));
+                    endDate(new Date(end().getFullYear(), end().getMonth(), end().getDate(), 0, 0));
                 }
             }),
             // Date part of from
@@ -186,8 +190,8 @@
                     var delta = moment.duration(end() - start());
                     
                     internalDays(!isNaN(delta.asDays()) ? Number(delta.asDays()).toFixed(0) : undefined);
-                    internalHours(!isNaN(delta.asHours()) ? Number(delta.asHours()).toFixed(0) : undefined);
-                    internalMinutes(!isNaN(delta.asMinutes()) ? Number(delta.asMinutes()).toFixed(0) : undefined);
+                    internalHours(!isNaN(delta.asHours()) ? Number(delta.hours()).toFixed(0) : undefined);
+                    internalMinutes(!isNaN(delta.asMinutes()) ? Number(delta.minutes()).toFixed(0) : undefined);
                 }
             }),
             // Days
@@ -283,7 +287,8 @@
             rentalAgreementHireGroups: rentalAgreementHireGroups,
             locations: locations,
             availableLocations: availableLocations,
-            businessPartner: businessPartner
+            businessPartner: businessPartner,
+            billing: billing
         };
     },
     
@@ -405,7 +410,7 @@
                    return internalNicNo();
                },
                write: function(value) {
-                   if (internalNicNo() === value) {
+                   if (!value || internalNicNo() === value) {
                        return;
                    }
 
@@ -423,7 +428,7 @@
                     return internalPassportNo();
                 },
                 write: function (value) {
-                    if (internalPassportNo() === value) {
+                    if (!value || internalPassportNo() === value) {
                         return;
                     }
 
@@ -441,7 +446,7 @@
                     return internalLicenseNo();
                 },
                 write: function(value) {
-                    if (internalLicenseNo() === value) {
+                    if (!value || internalLicenseNo() === value) {
                         return;
                     }
 
@@ -480,7 +485,7 @@
                     return id();
                 },
                 write: function (value) {
-                    if (id() === value) {
+                    if (!value || id() === value) {
                         return;
                     }
 
@@ -491,7 +496,7 @@
                 }
             }),
             // Is Individual
-            isIndividual = ko.observable(specifiedIsIndividual || undefined),
+            isIndividual = ko.observable(specifiedIsIndividual || true),
             // Email
             email = ko.observable(specifiedEmail || undefined),
             // Payment Term
@@ -514,7 +519,7 @@
                     return internalHomePhone();
                 },
                 write: function(value) {
-                    if (internalHomePhone() === value) {
+                    if (!value || internalHomePhone() === value) {
                         return;
                     }
 
@@ -532,7 +537,7 @@
                     return internalMobile();
                 },
                 write: function (value) {
-                    if (internalMobile() === value) {
+                    if (!value || internalMobile() === value) {
                         return;
                     }
 
@@ -557,6 +562,73 @@
             mobile: mobile,
             internalHomePhone: internalHomePhone,
             internalMobile: internalMobile
+        };
+    },
+        
+    // Billing entity
+    // ReSharper disable InconsistentNaming
+    Billing = function (specifiedVehicleCharge, specifiedStandardDiscount, specifiedSeasonalDiscount, specifiedVoucherDiscount, specifiedSpecialDiscount,
+        specifiedExcessMileage, specifiedServiceCharge, specifiedInsuranceCharge, specifiedDriverCharge, specifiedAdditionalCharge, specifiedAmountPaid) {
+        // ReSharper restore InconsistentNaming
+        var
+            // Vehicle Charge
+            vehicleCharge = ko.observable(specifiedVehicleCharge || 0),
+            // Standard Discount
+            standardDiscount = ko.observable(specifiedSeasonalDiscount || 0),
+            // Seasonal Discount
+            seasonalDiscount = ko.observable(specifiedSeasonalDiscount || 0),
+            // Voucher Discount
+            voucherDiscount = ko.observable(specifiedVoucherDiscount || 0),
+            // Special Discount
+            specialDiscount = ko.observable(specifiedSpecialDiscount || 0),
+            // Excess Mileage
+            excessMileage = ko.observable(specifiedExcessMileage || 0),
+            // Service Charge
+            serviceCharge = ko.observable(specifiedServiceCharge || 0),
+            // Insurance Charge
+            insuranceCharge = ko.observable(specifiedInsuranceCharge || 0),
+            // Driver Charge
+            driverCharge = ko.observable(specifiedDriverCharge || 0),
+            // Additional Charge
+            additionalCharge = ko.observable(specifiedAdditionalCharge || 0),
+            // Net Billing
+            netBilling = ko.computed({
+                read: function () {
+                    return parseInt(vehicleCharge()) + parseInt(standardDiscount()) + parseInt(seasonalDiscount()) + parseInt(voucherDiscount()) +
+                        parseInt(specialDiscount());
+                }
+            }),
+            // Total Charges
+            totalCharges = ko.computed({
+                read: function () {
+                    return parseInt(netBilling()) + parseInt(excessMileage()) + parseInt(serviceCharge()) + parseInt(insuranceCharge()) +
+                        parseInt(driverCharge()) + parseInt(additionalCharge());
+                }
+            }),
+            // Amount Paid
+            amountPaid = ko.observable(specifiedAmountPaid || 0),
+            // Balance
+            balance = ko.computed({
+                read: function () {
+                    return parseInt(totalCharges()) - parseInt(amountPaid());
+                }
+            });
+
+        return {
+            vehicleCharge: vehicleCharge,
+            standardDiscount: standardDiscount,
+            seasonalDiscount: seasonalDiscount,
+            voucherDiscount: voucherDiscount,
+            specialDiscount: specialDiscount,
+            excessMileage: excessMileage,
+            serviceCharge: serviceCharge,
+            insuranceCharge: insuranceCharge,
+            driverCharge: driverCharge,
+            additionalCharge: additionalCharge,
+            netBilling: netBilling,
+            totalCharges: totalCharges,
+            amountPaid: amountPaid,
+            balance: balance
         };
     };
 
@@ -660,6 +732,12 @@
         source.BusinessPartner || {}, callbacks);
     };
     
+    // Billing Factory
+    Billing.Create = function (source) {
+        return new Billing(source.VehicleCharge, source.StandardDiscount, source.SeasonalDiscount, source.VoucherDiscount, source.SpecialDiscount,
+            source.ExcessMileage, source.ServiceCharge, source.InsuranceCharge, source.driverCharge, source.additionalCharge, source.AmountPaid);
+    };
+
     return {
         // Vehicle Constructor
         Vehicle: Vehicle,
@@ -676,6 +754,8 @@
         // Rental Agreement HireGroup Constructor
         RentalAgreementHireGroup: RentalAgreementHireGroup,
         // Business Partner Constructor
-        BusinessPartner: BusinessPartner
+        BusinessPartner: BusinessPartner,
+        // Billing Constructor
+        Billing: Billing
     };
 });
