@@ -67,6 +67,10 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         var id = selectedVehicle().id;
                         return id ? "/VehicleImage/Index?id=" + id : "";
                     }),
+                    // Stop Event Bubbling
+                    stopEventBubbling = function(data, e) {
+                        e.stopImmediatePropagation();
+                    },
                     // #endregion Utility Functions
                     // #region Observables
                     // Initialize the view model
@@ -233,7 +237,8 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     // Utility Methods
                     initialize: initialize,
                     selectVehicle: selectVehicle,
-                    getHireGroups: getHireGroups
+                    getHireGroups: getHireGroups,
+                    stopEventBubbling: stopEventBubbling
                     // Utility Methods
                 };
             })()

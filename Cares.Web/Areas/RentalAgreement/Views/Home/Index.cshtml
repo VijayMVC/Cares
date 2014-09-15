@@ -7,44 +7,32 @@
     <div id="raPanels">
         <div class="panel-group" id="accordion">
             <div class="panel panel-default">
-                <div class="panel-heading" data-bind="click: function(){ $('#collapseOne').collapse('toggle'); }">
+                <div id="extrasHeading" class="panel-heading">
+                    <div style="display: none;" class="well well-small popOverBody">
+                        <span data-bind="text: 'Add Extras'"></span>
+                    </div>
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                            Vehicle
+                        <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            Extras
                         </a>
+                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Extras', elementNode: '#extrasHeading .popOverBody' }, attr:{ title: 'Add Extras' }"></a>
                     </h4>
                 </div>
-                <div id="collapseOne" class="panel-collapse collapse in">
-                    <div class="panel-body searchFilterResultSection">
-                        <table class="table table-condensed">
-                            <thead>
-                                <tr>
-                                    <th>Plate Number</th>
-                                    <th>Hire Group</th>
-                                    <th>Make</th>
-                                    <th>Model</th>
-                                    <th>Model Year</th>
-                                </tr>
-                            </thead>
-                            <tbody data-bind="foreach: vehicles">
-                                <tr data-bind="click: $root.selectVehicle">
-                                    <td data-bind="text: plateNumber"></td>
-                                    <td data-bind="text: code"></td>
-                                    <td data-bind="text: vehicleMake"></td>
-                                    <td data-bind="text: vehicleModel"></td>
-                                    <td data-bind="text: modelYear"></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <div id="collapseOne" class="panel-collapse collapse">
+                    <div class="panel-body">
                     </div>
                 </div>
             </div>
             <div class="panel panel-default">
-                <div class="panel-heading" data-bind="click: function(){ $('#collapseTwo').collapse('toggle'); }">
+                <div id="driversHeading" class="panel-heading">
+                    <div style="display: none;" class="well well-small popOverBody">
+                        <span data-bind="text: 'Add Drivers'"></span>
+                    </div>
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                            Extras
+                        <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                            Drivers
                         </a>
+                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Drivers', elementNode: '#driversHeading .popOverBody' }, attr:{ title: 'Add Drivers' }"></a>
                     </h4>
                 </div>
                 <div id="collapseTwo" class="panel-collapse collapse">
@@ -54,11 +42,15 @@
                 </div>
             </div>
             <div class="panel panel-default">
-                <div class="panel-heading" data-bind="click: function(){ $('#collapseThree').collapse('toggle'); }">
+                <div id="chauffersHeading" class="panel-heading">
+                    <div style="display: none;" class="well well-small popOverBody">
+                        <span data-bind="text: 'Add Chauffers'"></span>
+                    </div>
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                            Drivers
+                        <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                            Chauffers
                         </a>
+                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Chauffers', elementNode: '#chauffersHeading .popOverBody' }, attr:{ title: 'Add Chauffers' }"></a>
                     </h4>
                 </div>
                 <div id="collapseThree" class="panel-collapse collapse">
@@ -68,11 +60,15 @@
                 </div>
             </div>
             <div class="panel panel-default">
-                <div class="panel-heading" data-bind="click: function(){ $('#collapseFour').collapse('toggle'); }">
+                <div id="discountsHeading" class="panel-heading">
+                    <div style="display: none;" class="well well-small popOverBody">
+                        <span data-bind="text: 'Add Discounts'"></span>
+                    </div>
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                        <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
                             Discounts
                         </a>
+                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Discounts', elementNode: '#discountsHeading .popOverBody' }, attr:{ title: 'Add Discounts' }"></a>
                     </h4>
                 </div>
                 <div id="collapseFour" class="panel-collapse collapse">
@@ -82,11 +78,15 @@
                 </div>
             </div>
             <div class="panel panel-default">
-                <div class="panel-heading" data-bind="click: function(){ $('#collapseFive').collapse('toggle'); }">
+                <div id="damagesHeading" class="panel-heading">
+                    <div style="display: none;" class="well well-small popOverBody">
+                        <span data-bind="text: 'Add Damages'"></span>
+                    </div>
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                        <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
                             Damages
                         </a>
+                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Damages', elementNode: '#damagesHeading .popOverBody' }, attr:{ title: 'Add Damages' }"></a>
                     </h4>
                 </div>
                 <div id="collapseFive" class="panel-collapse collapse">
@@ -95,249 +95,328 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     <div id="raMain">
-        <form id="ra" class="well form-horizontal" data-bind="with: rentalAgreement">
-            <h4>Rental Agreement</h4>
-            <div class="form-group">
-                <label for="rentalAgreementNumber" class="control-label col-sm-2">RA #</label>
-                <div class="col-md-2">
-                    <input type="text" class="form-control" placeholder="<RA #>" id="rentalAgreementNumber"  data-bind="enable: false, value: id"/>
+        <div class="panel-group" id="accordion2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="headingLink" data-toggle="collapse" data-parent="#accordion2" href="#collapseSix">
+                            Customer
+                        </a>
+                    </h4>
                 </div>
-                <label for="rentalAgreementBookingNumber" class="control-label col-sm-2 notFirstColumn">Booking #</label>
-                <div class="col-md-3" id="bookingNumberControl">
-                    <input type="text" class="form-control" placeholder="<Booking No>" id="rentalAgreementBookingNumber" data-bind="enable: false" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="rentalAgreementDuration" class="control-label col-sm-2">Duration</label>
-                <div class="col-md-2 input-small">
-                    <input type="text" class="form-control" placeholder="<Days>" id="rentalAgreementDuration" data-bind="value: days" />
-                </div>
-                <div class="col-md-2 input-small">
-                    <input type="text" class="form-control" placeholder="<Hours>" id="rentalAgreementHours" data-bind="value: hours" />
-                </div>
-                <div class="col-md-2 input-small">
-                    <input type="text" class="form-control" placeholder="<Mins>" id="rentalAgreementMins" data-bind="value: minutes" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="rentalAgreementStartDate" class="control-label col-sm-2"></label>
-                <div class="col-md-4 dateTimeControl">
-                    <input type="text" class="form-control dateControl" placeholder="<Start Date>" id="rentalAgreementStartDate" data-bind="datepicker: startDate" />
-                    <input type="text" class="form-control timeControl" placeholder="<Time>" id="rentalAgreementStartDate" data-bind="value: startTime" />
-                </div>
-                <div class="col-md-4 dateTimeControl">
-                    <input type="text" class="form-control dateControl" placeholder="<End Date>" id="rentalAgreementEndDate" data-bind="datepicker: endDate" />
-                    <input type="text" class="form-control timeControl" placeholder="<Time>" id="rentalAgreementEndDate" data-bind="value: endTime" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="rentalAgreementOperation" class="control-label col-sm-2">Operation</label>
-                <div class="col-md-4">
-                    <select class="form-control" id="rentalAgreementOperation" data-bind="options: $root.operations, optionsCaption: '<Operation>', optionsText: 'codeName', optionsValue: 'id', value: operationId"></select>
-                </div>
-                <label for="rentalAgreementOperation" id="rentalPaymentTermLabel" class="control-label col-sm-2 notFirstColumn">Payment</label>
-                <div class="col-md-4" id="rentalPaymentTermControl">
-                    <select class="form-control" id="rentalAgreementPaymentTerm" data-bind="options: $root.paymentTerms, optionsCaption: '<Payment Term>', optionsText: 'codeName', optionsValue: 'id', value: paymentTermId"></select>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="rentalAgreementOutLocation" class="control-label col-sm-2">Location</label>
-                <div class="col-md-5">
-                    <select class="form-control" id="rentalAgreementOutLocation" data-bind="options: availableLocations, optionsCaption: '<Out Location>', optionsText: 'code', optionsValue: 'id', value: openLocation"></select>
-                </div>
-                <div class="col-md-4" id="returnLocationControl">
-                    <select class="form-control" id="rentalAgreementReturnLocation" data-bind="options: availableLocations, optionsCaption: '<Return Location>', optionsText: 'code', optionsValue: 'id', value: closeLocation"></select>
-                </div>
-            </div>
-            <div class="form-group" data-bind="with: $parent">
-                <label for="rentalAgreementHireGroup" class="control-label col-sm-2">Hire Group</label>
-                <div class="col-md-9 rentalHireGroupControl">
-                    <input type="text" class="form-control" placeholder="<Hire Group>" id="rentalAgreementHireGroup" data-bind="value: searchForHireGroupText" />
-                </div>
-                <label class="control-label col-sm-2"></label>
-                <div class="col-md-9 rentalHireGroupControl" data-bind="visible: hireGroups().length > 0" style="display: none">
-                    <table class="table table-condensed">
-                        <thead>
-                            <tr>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody data-bind="foreach: hireGroups">
-                            <tr data-bind="click: $root.selectHireGroup">
-                                <td data-bind="text: hireGroup"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                <div id="collapseSix" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <form id="customer" class="form-horizontal" data-bind="with: rentalAgreement().businessPartner">
+                            <div class="form-group">
+                                <label for="customerNumber" class="control-label col-sm-2">Customer #</label>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" placeholder="<Customer #>" id="customerNumber" data-bind="value: customerNo" />
+                                </div>
+                                <label for="isCustomerIndividual" id="isIndividualLabel" class="control-label col-sm-3">Is Individual</label>
+                                @* ReSharper disable UnknownCssClass *@
+                                <div class="col-md-1 checkBoxCol">
+                                    @* ReSharper restore UnknownCssClass *@
+                                    <input type="checkbox" class="form-control" id="isCustomerIndividual" data-bind="checked: isIndividual" />
+                                </div>
+                                <div class="col-md-4">
+                                    <select class="form-control" id="customerPaymentTerm" data-bind="options: $root.paymentTerms, optionsCaption: '<Payment Term>', optionsText: 'codeName', optionsValue: 'id', value: paymentTermId"></select>
+                                </div>
+                            </div>
+                            <!-- ko if: isIndividual -->
+                            <!-- ko with: businessPartnerIndividual -->
+                            <div class="form-group">
+                                <label for="customerFirstName" class="control-label col-sm-2">Name</label>
+                                <div class="col-md-5">
+                                    <input type="text" class="form-control" placeholder="<First Name>" id="customerFirstName" data-bind="value: firstName" />
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" placeholder="<Last Name>" id="customerLastName" data-bind="value: lastName" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="customerNic" class="control-label col-sm-2">NIC</label>
+                                <div class="col-md-5">
+                                    <input type="text" class="form-control" placeholder="<NIC No.>" id="customerNic" data-bind="value: nicNo" />
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" placeholder="<NIC Expiry>" id="customerNicExpiry" data-bind="datepicker: nicExpiry" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="customerPassport" class="control-label col-sm-2">Passport</label>
+                                <div class="col-md-5">
+                                    <input type="text" class="form-control" placeholder="<Passport No.>" id="customerPassport" data-bind="value: passportNo" />
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" placeholder="<Passport Expiry>" id="customerPassportExpiry" data-bind="datepicker: passportExpiry" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="customerLicense" class="control-label col-sm-2">License</label>
 
-        </form>
-        <form id="vehicle" class="well form-horizontal" data-bind="with: $root.selectedVehicle">
-            <h4>Vehicle</h4>
-            <div class="form-group">
-                <label for="vehiclePlateNumber" class="control-label col-sm-2">Plate #</label>
-                <div class="col-md-2">
-                    <span id="vehiclePlateNumber" data-bind="text: plateNumber"></span>
-                </div>
-                <label for="vehicleHireGroup" class="control-label col-sm-2">Hire Group</label>
-                <div class="col-md-2">
-                    <span id="vehicleHireGroup" data-bind="text: code"></span>
-                </div>
-                <label for="vehicleMakeText" class="control-label col-sm-2">Make</label>
-                <div class="col-md-2">
-                    <span id="vehicleMakeText" data-bind="text: vehicleMake"></span>
-                </div>
-                <div class="col-md-2">
-                    <img id="vehicleImage" src="#" alt="" data-bind="attr:{ src: $root.vehicleImage }" />
+                                <div class="col-md-5">
+                                    <input type="text" class="form-control" placeholder="<License No.>" id="customerLicense" data-bind="value: licenseNo" />
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" placeholder="<License Expiry>" id="customerLicenseExpiry" data-bind="datepicker: licenseExpiry" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="customerDOB" class="control-label col-sm-2">DOB/Sponsor</label>
+                                <div class="col-md-5">
+                                    <input type="text" class="form-control" placeholder="<DOB>" id="customerDOB" data-bind="datepicker: dateOfBirth" />
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" placeholder="<Sponsor/Kafeel>" id="customerSponsor" />
+                                </div>
+                            </div>
+                            <!-- /ko -->
+                            <!-- /ko -->
+                            <div class="form-group" data-bind="with: businessPartnerCompany, visible: !isIndividual()" style="display: none">
+                                <label for="customerCompanyCode" class="control-label col-sm-2">Company</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" placeholder="<Company Code>" id="customerCompanyCode" data-bind="value: code" />
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" placeholder="<Company Name>" id="customerCompanyName" data-bind="value: name" />
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" placeholder="<Renter's Name>" id="customerCompanyRenterName" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="customerPhone" class="control-label col-sm-2">Phone/Mobile</label>
+                                <div class="col-md-5">
+                                    <input type="text" class="form-control" placeholder="<Phone>" id="customerPhone" data-bind="value: homePhone" />
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" placeholder="<Mobile>" id="customerMobile" data-bind="value: mobile" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="customerPhone" class="control-label col-sm-2">Email</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" placeholder="<Email>" id="customerEmail" data-bind="value: email" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </form>
+        </div>
+        <div class="panel-group" id="accordion3">
+            <div class="panel panel-default">
+                <div id="addVehiclesHeading" class="panel-heading">
+                    <div style="display: none;" class="well well-small popOverBody">
+                        <div class="searchFilterResultSection">
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Plate Number</th>
+                                        <th>Hire Group</th>
+                                        <th>Make</th>
+                                        <th>Model</th>
+                                        <th>Model Year</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: vehicles">
+                                    <tr data-bind="click: $root.selectVehicle">
+                                        <td data-bind="text: plateNumber"></td>
+                                        <td data-bind="text: code"></td>
+                                        <td data-bind="text: vehicleMake"></td>
+                                        <td data-bind="text: vehicleModel"></td>
+                                        <td data-bind="text: modelYear"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <h4 class="panel-title">
+                        <a class="headingLink" data-toggle="collapse" data-parent="#accordion3" href="#collapseSeven">
+                            Vehicles
+                        </a>
+                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Vehicles', elementNode: '#addVehiclesHeading .popOverBody' }, attr:{ title: 'Add Vehicles' }"></a>
+                    </h4>
+                </div>
+                <div id="collapseSeven" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <form id="vehicle" class="form-horizontal" data-bind="with: $root.selectedVehicle">
+                            <div class="form-group">
+                                <label for="vehiclePlateNumber" class="control-label col-sm-2">Plate #</label>
+                                <div class="col-md-2">
+                                    <span id="vehiclePlateNumber" data-bind="text: plateNumber"></span>
+                                </div>
+                                <label for="vehicleHireGroup" class="control-label col-sm-2">Hire Group</label>
+                                <div class="col-md-2">
+                                    <span id="vehicleHireGroup" data-bind="text: code"></span>
+                                </div>
+                                <label for="vehicleMakeText" class="control-label col-sm-2">Make</label>
+                                <div class="col-md-2">
+                                    <span id="vehicleMakeText" data-bind="text: vehicleMake"></span>
+                                </div>
+                                <div class="col-md-2">
+                                    <img id="vehicleImage" src="#" alt="" data-bind="attr:{ src: $root.vehicleImage }" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div id="raBilling">
-        <form id="customer" class="well form-horizontal" data-bind="with: rentalAgreement().businessPartner">
-            <h4>Customer</h4>
-            <div class="form-group">
-                <label for="customerNumber" class="control-label col-sm-2">Customer #</label>
-                <div class="col-md-2">
-                    <input type="text" class="form-control" placeholder="<Customer #>" id="customerNumber" data-bind="value: customerNo" />
+        <div class="panel-group" id="accordion4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="headingLink" data-toggle="collapse" data-parent="#accordion4" href="#collapseEight">
+                            Rental Agreement
+                        </a>
+                    </h4>
                 </div>
-                <label for="isCustomerIndividual" id="isIndividualLabel" class="control-label col-sm-3">Is Individual</label>
-                @* ReSharper disable UnknownCssClass *@
-                <div class="col-md-1 checkBoxCol">
-                    @* ReSharper restore UnknownCssClass *@
-                    <input type="checkbox" class="form-control" id="isCustomerIndividual" data-bind="checked: isIndividual" />
-                </div>
-                <div class="col-md-4">
-                    <select class="form-control" id="customerPaymentTerm" data-bind="options: $root.paymentTerms, optionsCaption: '<Payment Term>', optionsText: 'codeName', optionsValue: 'id', value: paymentTermId"></select>
-                </div>
-            </div>
-            <!-- ko if: isIndividual -->
-            <!-- ko with: businessPartnerIndividual -->
-            <div class="form-group">
-                <label for="customerFirstName" class="control-label col-sm-2">Name</label>
-                <div class="col-md-5">
-                    <input type="text" class="form-control" placeholder="<First Name>" id="customerFirstName" data-bind="value: firstName" />
-                </div>
-                <div class="col-md-4">
-                    <input type="text" class="form-control" placeholder="<Last Name>" id="customerLastName" data-bind="value: lastName" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="customerNic" class="control-label col-sm-2">NIC</label>
-                <div class="col-md-5">
-                    <input type="text" class="form-control" placeholder="<NIC No.>" id="customerNic" data-bind="value: nicNo" />
-                </div>
-                <div class="col-md-4">
-                    <input type="text" class="form-control" placeholder="<NIC Expiry>" id="customerNicExpiry" data-bind="datepicker: nicExpiry" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="customerPassport" class="control-label col-sm-2">Passport</label>
-                <div class="col-md-5">
-                    <input type="text" class="form-control" placeholder="<Passport No.>" id="customerPassport" data-bind="value: passportNo" />
-                </div>
-                <div class="col-md-4">
-                    <input type="text" class="form-control" placeholder="<Passport Expiry>" id="customerPassportExpiry" data-bind="datepicker: passportExpiry" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="customerLicense" class="control-label col-sm-2">License</label>
-
-                <div class="col-md-5">
-                    <input type="text" class="form-control" placeholder="<License No.>" id="customerLicense" data-bind="value: licenseNo" />
-                </div>
-                <div class="col-md-4">
-                    <input type="text" class="form-control" placeholder="<License Expiry>" id="customerLicenseExpiry" data-bind="datepicker: licenseExpiry" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="customerDOB" class="control-label col-sm-2">DOB/Sponsor</label>
-                <div class="col-md-5">
-                    <input type="text" class="form-control" placeholder="<DOB>" id="customerDOB" data-bind="datepicker: dateOfBirth" />
-                </div>
-                <div class="col-md-4">
-                    <input type="text" class="form-control" placeholder="<Sponsor/Kafeel>" id="customerSponsor" />
-                </div>
-            </div>
-            <!-- /ko -->
-            <!-- /ko -->
-            <div class="form-group" data-bind="with: businessPartnerCompany, visible: !isIndividual()" style="display: none">
-                <label for="customerCompanyCode" class="control-label col-sm-2">Company</label>
-                <div class="col-md-3">
-                    <input type="text" class="form-control" placeholder="<Company Code>" id="customerCompanyCode" data-bind="value: code" />
-                </div>
-                <div class="col-md-3">
-                    <input type="text" class="form-control" placeholder="<Company Name>" id="customerCompanyName" data-bind="value: name" />
-                </div>
-                <div class="col-md-3">
-                    <input type="text" class="form-control" placeholder="<Renter's Name>" id="customerCompanyRenterName" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="customerPhone" class="control-label col-sm-2">Phone/Mobile</label>
-                <div class="col-md-5">
-                    <input type="text" class="form-control" placeholder="<Phone>" id="customerPhone" data-bind="value: homePhone" />
-                </div>
-                <div class="col-md-4">
-                    <input type="text" class="form-control" placeholder="<Mobile>" id="customerMobile" data-bind="value: mobile" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="customerPhone" class="control-label col-sm-2">Email</label>
-                <div class="col-md-9">
-                    <input type="text" class="form-control" placeholder="<Email>" id="customerEmail" data-bind="value: email" />
+                <div id="collapseEight" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <form id="ra" class="form-horizontal" data-bind="with: rentalAgreement">
+                            <div class="form-group">
+                                <label for="rentalAgreementNumber" class="control-label col-sm-2">RA #</label>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" placeholder="<RA #>" id="rentalAgreementNumber" data-bind="enable: false, value: id" />
+                                </div>
+                                <label for="rentalAgreementBookingNumber" class="control-label col-sm-2 notFirstColumn">Booking #</label>
+                                <div class="col-md-3" id="bookingNumberControl">
+                                    <input type="text" class="form-control" placeholder="<Booking No>" id="rentalAgreementBookingNumber" data-bind="enable: false" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="rentalAgreementDuration" class="control-label col-sm-2">Duration</label>
+                                <div class="col-md-2 input-small">
+                                    <input type="text" class="form-control" placeholder="<Days>" id="rentalAgreementDuration" data-bind="value: days" />
+                                </div>
+                                <div class="col-md-2 input-small">
+                                    <input type="text" class="form-control" placeholder="<Hours>" id="rentalAgreementHours" data-bind="value: hours" />
+                                </div>
+                                <div class="col-md-2 input-small">
+                                    <input type="text" class="form-control" placeholder="<Mins>" id="rentalAgreementMins" data-bind="value: minutes" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="rentalAgreementStartDate" class="control-label col-sm-2"></label>
+                                <div class="col-md-4 dateTimeControl">
+                                    <input type="text" class="form-control dateControl" placeholder="<Start Date>" id="rentalAgreementStartDate" data-bind="datepicker: startDate" />
+                                    <input type="text" class="form-control timeControl" placeholder="<Time>" id="rentalAgreementStartDate" data-bind="value: startTime" />
+                                </div>
+                                <div class="col-md-4 dateTimeControl">
+                                    <input type="text" class="form-control dateControl" placeholder="<End Date>" id="rentalAgreementEndDate" data-bind="datepicker: endDate" />
+                                    <input type="text" class="form-control timeControl" placeholder="<Time>" id="rentalAgreementEndDate" data-bind="value: endTime" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="rentalAgreementOperation" class="control-label col-sm-2">Operation</label>
+                                <div class="col-md-4">
+                                    <select class="form-control" id="rentalAgreementOperation" data-bind="options: $root.operations, optionsCaption: '<Operation>', optionsText: 'codeName', optionsValue: 'id', value: operationId"></select>
+                                </div>
+                                <label for="rentalAgreementOperation" id="rentalPaymentTermLabel" class="control-label col-sm-2 notFirstColumn">Payment</label>
+                                <div class="col-md-4" id="rentalPaymentTermControl">
+                                    <select class="form-control" id="rentalAgreementPaymentTerm" data-bind="options: $root.paymentTerms, optionsCaption: '<Payment Term>', optionsText: 'codeName', optionsValue: 'id', value: paymentTermId"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="rentalAgreementOutLocation" class="control-label col-sm-2">Location</label>
+                                <div class="col-md-5">
+                                    <select class="form-control" id="rentalAgreementOutLocation" data-bind="options: availableLocations, optionsCaption: '<Out Location>', optionsText: 'code', optionsValue: 'id', value: openLocation"></select>
+                                </div>
+                                <div class="col-md-4" id="returnLocationControl">
+                                    <select class="form-control" id="rentalAgreementReturnLocation" data-bind="options: availableLocations, optionsCaption: '<Return Location>', optionsText: 'code', optionsValue: 'id', value: closeLocation"></select>
+                                </div>
+                            </div>
+                            <div class="form-group" data-bind="with: $parent">
+                                <label for="rentalAgreementHireGroup" class="control-label col-sm-2">Hire Group</label>
+                                <div class="col-md-9 rentalHireGroupControl">
+                                    <input type="text" class="form-control" placeholder="<Hire Group>" id="rentalAgreementHireGroup" data-bind="value: searchForHireGroupText" />
+                                </div>
+                                <label class="control-label col-sm-2"></label>
+                                <div class="col-md-9 rentalHireGroupControl" data-bind="visible: hireGroups().length > 0" style="display: none">
+                                    <table class="table table-condensed">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody data-bind="foreach: hireGroups">
+                                            <tr data-bind="click: $root.selectHireGroup">
+                                                <td data-bind="text: hireGroup"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </form>
-        <form id="billing" class="well form-horizontal" data-bind="with: rentalAgreement().billing">
-            <h4>Billing</h4>
-            <div class="form-group">
-                <div>
-                    <span>Vehicle Charge</span>
-                    <span class="float-right" data-bind="text: vehicleCharge"></span>
+        </div>
+        <div class="panel-group" id="accordion5">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="headingLink" data-toggle="collapse" data-parent="#accordion5" href="#collapseNine">
+                            Billing
+                        </a>
+                    </h4>
                 </div>
-                <div>
-                    <span class="Bold">Net Billing</span>
-                    <span class="float-right" data-bind="text: netBilling"></span>
-                </div>
-                <div>
-                    <span>Excess Mileage</span>
-                    <span class="float-right" data-bind="text: excessMileage"></span>
-                </div>
-                <div>
-                    <span>Service Charge</span>
-                    <span class="float-right" data-bind="text: serviceCharge"></span>
-                </div>
-                <div>
-                    <span>Insurance Charge</span>
-                    <span class="float-right" data-bind="text: insuranceCharge"></span>
-                </div>
-                <div>
-                    <span>Driver Charge</span>
-                    <span class="float-right" data-bind="text: driverCharge"></span>
-                </div>
-                <div>
-                    <span>Additional Charge</span>
-                    <span class="float-right" data-bind="text: additionalCharge"></span>
-                </div>
-                <div>
-                    <span class="Bold">Total Charges</span>
-                    <span class="float-right" data-bind="text: totalCharges"></span>
-                </div>
-                <div>
-                    <span class="Bold">Amount Paid</span>
-                    <span class="float-right" data-bind="text: amountPaid"></span>
-                </div>
-                <div>
-                    <span class="Bold">Balance</span>
-                    <span class="float-right" data-bind="text: balance"></span>
+                <div id="collapseNine" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <form id="billing" class="form-horizontal" data-bind="with: rentalAgreement().billing">
+                            <div class="form-group">
+                                <div>
+                                    <span>Vehicle Charge</span>
+                                    <span class="float-right" data-bind="text: vehicleCharge"></span>
+                                </div>
+                                <div>
+                                    <span class="Bold">Net Billing</span>
+                                    <span class="float-right" data-bind="text: netBilling"></span>
+                                </div>
+                                <div>
+                                    <span>Excess Mileage</span>
+                                    <span class="float-right" data-bind="text: excessMileage"></span>
+                                </div>
+                                <div>
+                                    <span>Service Charge</span>
+                                    <span class="float-right" data-bind="text: serviceCharge"></span>
+                                </div>
+                                <div>
+                                    <span>Insurance Charge</span>
+                                    <span class="float-right" data-bind="text: insuranceCharge"></span>
+                                </div>
+                                <div>
+                                    <span>Driver Charge</span>
+                                    <span class="float-right" data-bind="text: driverCharge"></span>
+                                </div>
+                                <div>
+                                    <span>Additional Charge</span>
+                                    <span class="float-right" data-bind="text: additionalCharge"></span>
+                                </div>
+                                <div>
+                                    <span class="Bold">Total Charges</span>
+                                    <span class="float-right" data-bind="text: totalCharges"></span>
+                                </div>
+                                <div>
+                                    <span class="Bold">Amount Paid</span>
+                                    <span class="float-right" data-bind="text: amountPaid"></span>
+                                </div>
+                                <div>
+                                    <span class="Bold">Balance</span>
+                                    <span class="float-right" data-bind="text: balance"></span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 </div>
 
