@@ -55,6 +55,7 @@
     <Compile Include="IServices\IInsuranceRateService.cs" />
     <Compile Include="IServices\IOperationsWorkPlaceService.cs" />
     <Compile Include="IServices\IPhoneService.cs" />
+    <Compile Include="IServices\ISubRegionService.cs" />
     <Compile Include="IServices\IRegionService.cs" />
     <Compile Include="IServices\IServiceRtService.cs" />
     <Compile Include="IServices\IWorkLocationService.cs" />

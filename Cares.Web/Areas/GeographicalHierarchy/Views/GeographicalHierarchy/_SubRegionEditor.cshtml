@@ -1,0 +1,34 @@
+﻿
+<div class="well col-md-12" id="SubRegionEditor" data-bind="visible: isSubRegionEditorVisible, with: selectedSubRegion " style="display: none; margin-top:15px">
+    <div class="float-left detailsContainer">
+        <h3 class="page-header detailsHeaderSection">@Cares.Web.Resources.GeographicalHierarchy.SubRegion.SubRegionDetail</h3>
+        <button class="btn  btn-info" id="saveFleetPoolbtn" data-bind="click: $root.onSavebtn">@Cares.Web.Resources.Shared.Common.Save</button>
+        <button class="btn  btn-default" id="cancelOrgGroupbtn" data-bind="click: $root.onCancelbtn">@Cares.Web.Resources.Shared.Common.Cancel</button>
+    </div>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.GeographicalHierarchy.SubRegion.Code*</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.GeographicalHierarchy.SubRegion.Code + ">")" data-bind="value: code" />
+            </div>
+            <label class="control-label h5 col-sm-1">@Cares.Web.Resources.GeographicalHierarchy.SubRegion.Name*</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.GeographicalHierarchy.SubRegion.Name + ">")" data-bind="value:name" />
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.GeographicalHierarchy.SubRegion.RegionName*</label>
+            <div class="col-md-3">
+                <select class="form-control" data-bind="options: $root.baseRegionList, optionsText: 'RegionCodeName', optionsValue: 'RegionId', optionsCaption: '&lt;' + '@Cares.Web.Resources.GeographicalHierarchy.SubRegion.RegionName'+ '&gt;', value:regionId "></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.GeographicalHierarchy.SubRegion.Description</label>
+            <div class="col-md-3">
+                <textarea class="form-control" rows="4" placeholder="@("<" + Cares.Web.Resources.GeographicalHierarchy.SubRegion.Description + ">")" data-bind="value: description"></textarea>
+            </div>
+        </div>
+
+    </form>
+</div>

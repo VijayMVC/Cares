@@ -8,7 +8,18 @@ namespace Cares.Web.Areas.GeographicalHierarchy.Controllers
     public class GeographicalHierarchyController : Controller
     {
         
+        /// <summary>
+        /// Region Area
+        /// </summary>
         public ActionResult Region()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Sub region area
+        /// </summary>
+        public ActionResult SubRegion()
         {
             return View();
         }

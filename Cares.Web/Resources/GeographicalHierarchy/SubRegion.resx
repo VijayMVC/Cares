@@ -117,13 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="RegionCodeDuplicationError" xml:space="preserve">
-    <value>Region with same code already exists. Try different code!</value>
+  <data name="Code" xml:space="preserve">
+    <value>Code</value>
   </data>
-  <data name="RegionIsAssociatedWithCityError" xml:space="preserve">
-    <value>Region is associated with city(s) !</value>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
   </data>
-  <data name="RegionIsAssociatedWithSubRegionError" xml:space="preserve">
-    <value>Region is associated with sub-region(s) !</value>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="RegionName" xml:space="preserve">
+    <value>Region</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="SubRegionBaseDataLoadFailError" xml:space="preserve">
+    <value>Failed to load base data!</value>
+  </data>
+  <data name="SubRegionDeleteFailError" xml:space="preserve">
+    <value>Failed to delete sub- region !</value>
+  </data>
+  <data name="SubRegionDeleteSuccessMessage" xml:space="preserve">
+    <value>Sub-Region deleted successfully!</value>
+  </data>
+  <data name="SubRegionDetail" xml:space="preserve">
+    <value>Sub-Region Detail</value>
+  </data>
+  <data name="SubRegionLabel" xml:space="preserve">
+    <value>Sub-Region</value>
+  </data>
+  <data name="SubRegionLoadFailError" xml:space="preserve">
+    <value>Failed to load Sub-Regions!</value>
+  </data>
+  <data name="SubRegionSaveFailError" xml:space="preserve">
+    <value>Failed to save sub-Region!</value>
+  </data>
+  <data name="SubRegionSaveSuccessMessage" xml:space="preserve">
+    <value>Sub-Region successfully saved!</value>
   </data>
 </root>

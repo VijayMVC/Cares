@@ -58,7 +58,8 @@ namespace Cares.Implementation
             unityContainer.RegisterType<IBusinessSegmentService, BusinessSegmentService>();
             unityContainer.RegisterType<IRegionService, RegionService>();
 
-         
+            unityContainer.RegisterType<ISubRegionService, SubRegionService>();
+
          
         }
     }

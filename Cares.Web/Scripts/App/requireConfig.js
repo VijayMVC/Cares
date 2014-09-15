@@ -32,10 +32,10 @@
             "businessSeg": "/Areas/Organization/Scripts",
             "employee": "/Areas/EmployeeManagement/Scripts",
 
-            "region": "/Areas/GeographicalHierarchy/Scripts"
+            "region": "/Areas/GeographicalHierarchy/Scripts",
+            "subRegion": "/Areas/GeographicalHierarchy/Scripts"
 
         }
-
     });
 
     function defineThirdPartyModules() {
