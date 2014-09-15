@@ -228,6 +228,8 @@
     <Compile Include="Areas\Api\Controllers\BusinessSegmentController.cs" />
     <Compile Include="Areas\Api\Controllers\CompanyBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\CompanyController.cs" />
+    <Compile Include="Areas\Api\Controllers\SubRegionController.cs" />
+    <Compile Include="Areas\Api\Controllers\SubRegionBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\RegionBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\DepartmentBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\DepartmentController.cs" />
@@ -413,6 +415,9 @@
     <Compile Include="Models\ServiceRtDetailContent.cs" />
     <Compile Include="Models\ServiceRtDetailResponse.cs" />
     <Compile Include="Models\ServiceRtMainContent.cs" />
+    <Compile Include="Models\SubRegion.cs" />
+    <Compile Include="Models\SubRegionBaseDataResponse.cs" />
+    <Compile Include="Models\SubRegionSearchRequestResponse.cs" />
     <Compile Include="Models\TariffTypeDropDown.cs" />
     <Compile Include="Models\TransmissionType.cs" />
     <Compile Include="Models\HireGroupDetail.cs" />
@@ -523,6 +528,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FleetPool.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\GeographicalHierarchy\SubRegion.Designer.cs">
+      <DependentUpon>SubRegion.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\GeographicalHierarchy\SubRegion.ar.Designer.cs">
+      <DependentUpon>SubRegion.ar.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Resources\GeographicalHierarchy\Region.ar.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -724,6 +739,10 @@
     <Content Include="Areas\Fleet\Scripts\hireGroup.view.js" />
     <Content Include="Areas\Fleet\Scripts\vehicle.viewModel.js" />
     <Content Include="Areas\Fleet\Scripts\hireGroup.viewModel.js" />
+    <Content Include="Areas\GeographicalHierarchy\Scripts\subRegion.dataservice.js" />
+    <Content Include="Areas\GeographicalHierarchy\Scripts\subRegion.model.js" />
+    <Content Include="Areas\GeographicalHierarchy\Scripts\subRegion.view.js" />
+    <Content Include="Areas\GeographicalHierarchy\Scripts\subRegion.viewModel.js" />
     <Content Include="Areas\GeographicalHierarchy\Scripts\region.dataservice.js" />
     <Content Include="Areas\GeographicalHierarchy\Scripts\region.model.js" />
     <Content Include="Areas\GeographicalHierarchy\Scripts\region.view.js" />
@@ -872,6 +891,12 @@
     </Content>
     <Content Include="Content\Site.min.css">
       <DependentUpon>Site.css</DependentUpon>
+    </Content>
+    <Content Include="Content\SubRegion.css">
+      <DependentUpon>SubRegion.less</DependentUpon>
+    </Content>
+    <Content Include="Content\SubRegion.min.css">
+      <DependentUpon>SubRegion.css</DependentUpon>
     </Content>
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -1496,6 +1521,12 @@
     <Content Include="Content\EmployeeManagement.css.map">
       <DependentUpon>EmployeeManagement.css</DependentUpon>
     </Content>
+    <Content Include="Areas\GeographicalHierarchy\Views\GeographicalHierarchy\SubRegion.cshtml" />
+    <Content Include="Areas\GeographicalHierarchy\Views\GeographicalHierarchy\_SubRegionEditor.cshtml" />
+    <Content Include="Content\SubRegion.less" />
+    <Content Include="Content\SubRegion.css.map">
+      <DependentUpon>SubRegion.css</DependentUpon>
+    </Content>
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
@@ -1701,6 +1732,14 @@
     <EmbeddedResource Include="Resources\FleetPool\FleetPool.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>FleetPool.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\GeographicalHierarchy\SubRegion.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SubRegion.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\GeographicalHierarchy\SubRegion.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SubRegion.ar.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\GeographicalHierarchy\Region.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

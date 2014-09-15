@@ -120,7 +120,7 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get Region with detail
         /// </summary>
-        public Region LoadReionWithDetail(long regionId)
+        public Region LoadRegionWithDetail(long regionId)
         {
             return DbSet.Include(region => region.Country)
                .FirstOrDefault(region => region.UserDomainKey == UserDomainKey && region.RegionId == regionId);

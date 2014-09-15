@@ -33,6 +33,6 @@ namespace Cares.Interfaces.Repository
         /// <summary>
         /// Get Region with detail
         /// </summary>
-        Region LoadReionWithDetail(long regionId);
+        Region LoadRegionWithDetail(long regionId);
     }
 }

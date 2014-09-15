@@ -66,6 +66,14 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Count(city => city.UserDomainKey == UserDomainKey && city.RegionId == regionId)>0;
         }
+
+        /// <summary>
+        /// Check if sub region is asssociated with any city
+        /// </summary>
+        public bool IsSubRegionAssociatedWithCity(long subRegionId)
+        {
+            return DbSet.Count(city => city.UserDomainKey == UserDomainKey && city.SubRegionId == subRegionId) > 0;
+        }
         #endregion
     }
 }

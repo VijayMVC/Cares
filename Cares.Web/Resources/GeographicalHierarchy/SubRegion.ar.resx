@@ -117,13 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="RegionCodeDuplicationError" xml:space="preserve">
-    <value>Region with same code already exists. Try different code!</value>
+  <data name="Code" xml:space="preserve">
+    <value>كود</value>
   </data>
-  <data name="RegionIsAssociatedWithCityError" xml:space="preserve">
-    <value>Region is associated with city(s) !</value>
+  <data name="Description" xml:space="preserve">
+    <value>وصف</value>
   </data>
-  <data name="RegionIsAssociatedWithSubRegionError" xml:space="preserve">
-    <value>Region is associated with sub-region(s) !</value>
+  <data name="Name" xml:space="preserve">
+    <value>اسم</value>
+  </data>
+  <data name="RegionName" xml:space="preserve">
+    <value>المنطقة</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>البحث</value>
+  </data>
+  <data name="SubRegionBaseDataLoadFailError" xml:space="preserve">
+    <value>فشل تحميل قاعدة البيانات !</value>
+  </data>
+  <data name="SubRegionDeleteFailError" xml:space="preserve">
+    <value>فشل في حذف المنطقة الفرعية</value>
+  </data>
+  <data name="SubRegionDeleteSuccessMessage" xml:space="preserve">
+    <value>حذف المنطقة الفرعية من بنجاح</value>
+  </data>
+  <data name="SubRegionDetail" xml:space="preserve">
+    <value>التفاصيل</value>
+  </data>
+  <data name="SubRegionLabel" xml:space="preserve">
+    <value>المنطقة الفرعية</value>
+  </data>
+  <data name="SubRegionLoadFailError" xml:space="preserve">
+    <value>فشل تحميل الأقاليم الفرعية</value>
+  </data>
+  <data name="SubRegionSaveFailError" xml:space="preserve">
+    <value>فشلت في انقاذ المنطقة الفرعية</value>
+  </data>
+  <data name="SubRegionSaveSuccessMessage" xml:space="preserve">
+    <value>المنطقة الفرعية حفظها بنجاح !</value>
   </data>
 </root>

@@ -117,13 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="RegionCodeDuplicationError" xml:space="preserve">
-    <value>Region with same code already exists. Try different code!</value>
+  <data name="SubRegionCodeDuplicationError" xml:space="preserve">
+    <value>المنطقة الفرعية مع نفس الرمز موجود بالفعل. حاول رمز مختلف</value>
   </data>
-  <data name="RegionIsAssociatedWithCityError" xml:space="preserve">
-    <value>Region is associated with city(s) !</value>
-  </data>
-  <data name="RegionIsAssociatedWithSubRegionError" xml:space="preserve">
-    <value>Region is associated with sub-region(s) !</value>
+  <data name="SubRegionIsAssociatedWithCityError" xml:space="preserve">
+    <value>ويرتبط المنطقة الفرعية مع المدينة (ق) !</value>
   </data>
 </root>

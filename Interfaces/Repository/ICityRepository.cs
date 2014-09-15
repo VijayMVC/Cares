@@ -18,5 +18,10 @@ namespace Cares.Interfaces.Repository
         /// </summary>
         bool IsRegionAssociatedWithCity(long regionId);
 
+        /// <summary>
+        /// Check if sub region is asssociated with any city
+        /// </summary>
+        bool IsSubRegionAssociatedWithCity(long subRegionId);
+
     }
 }

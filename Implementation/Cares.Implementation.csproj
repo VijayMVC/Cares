@@ -129,6 +129,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FleetPool.ar.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\GeographicalHierarchy\SubRegion.Designer.cs">
+      <DependentUpon>SubRegion.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\GeographicalHierarchy\SubRegion.ar.Designer.cs">
+      <DependentUpon>SubRegion.ar.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Resources\GeographicalHierarchy\Region.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -268,6 +278,7 @@
     <Compile Include="Services\InsuranceRateService.cs" />
     <Compile Include="Services\OperationsWorkPlaceService.cs" />
     <Compile Include="Services\PhoneService.cs" />
+    <Compile Include="Services\SubRegionService.cs" />
     <Compile Include="Services\RegionService.cs" />
     <Compile Include="Services\ServiceRtService.cs" />
     <Compile Include="Services\VehicleService.cs" />
@@ -326,6 +337,14 @@
     <EmbeddedResource Include="Resources\FleetPool\FleetPool.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>FleetPool.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\GeographicalHierarchy\SubRegion.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SubRegion.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\GeographicalHierarchy\SubRegion.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SubRegion.ar.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\GeographicalHierarchy\Region.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
