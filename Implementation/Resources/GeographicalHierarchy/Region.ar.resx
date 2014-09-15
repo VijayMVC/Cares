@@ -123,4 +123,7 @@
   <data name="RegionIsAssociatedWithCityError" xml:space="preserve">
     <value>ويرتبط مع منطقة المدينة!</value>
   </data>
+  <data name="RegionIsAssociatedWithSubRegionError" xml:space="preserve">
+    <value>ويرتبط المنطقة مع المنطقة الفرعية</value>
+  </data>
 </root>

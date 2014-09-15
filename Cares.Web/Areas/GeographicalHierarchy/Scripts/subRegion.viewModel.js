@@ -1,74 +1,74 @@
 ﻿/*
-    Module with the view model for the Region
+    Module with the view model for the Sub Region
 */
-define("region/region.viewModel",
-    ["jquery", "amplify", "ko", "region/region.dataservice", "region/region.model",
+define("subRegion/subRegion.viewModel",
+    ["jquery", "amplify", "ko", "subRegion/subRegion.dataservice", "subRegion/subRegion.model",
     "common/confirmation.viewModel", "common/pagination"],
     function($, amplify, ko, dataservice, model, confirmation, pagination) {
         var ist = window.ist || {};
-        ist.Region = {
+        ist.SubRegion = {
             viewModel: (function() { 
                 var view,
-                    //array to save Regions
-                    regions = ko.observableArray([]),
+                    //array to save Sub Regions
+                    subRegions = ko.observableArray([]),
 
                     //array to save basa data country list
-                    baseCountriesList = ko.observableArray([]),
+                    baseRegionList = ko.observableArray([]),
 
                     //pager%
                     pager = ko.observable(),
                     //org code filter in filter sec
                     searchFilter = ko.observable(),
-                    baseCountryFilter = ko.observable(),
+                    baseRegionFilter = ko.observable(),
 
                     //sorting
                     sortOn = ko.observable(1),
                     //Assending  / Desending
                     sortIsAsc = ko.observable(true),
                     //to control the visibility of editor sec
-                    isRegionEditorVisible = ko.observable(false),
+                    isSubRegionEditorVisible = ko.observable(false),
                     //to control the visibility of filter ec
                     filterSectionVisilble = ko.observable(false),
 
 
                      // Editor View Model
-                    editorViewModel = new ist.ViewModel(model.regionDetail),
+                    editorViewModel = new ist.ViewModel(model.subRegionDetail),
                     // Selected Business Segment
-                    selectedRegion = editorViewModel.itemForEditing,
+                    selectedSubRegion = editorViewModel.itemForEditing,
 
                     //save button handler
                     onSavebtn = function() {
-                    if (dobeforeRegion())
-                        saveRegion(selectedRegion());
+                    if (dobeforeSubRegion())
+                        saveSubRegion(selectedSubRegion());
                 },
-                //Save Regions
-                    saveRegion = function(item) {
-                        dataservice.saveRegion(item.convertToServerData(), {
+                //Save sub  Region
+                    saveSubRegion = function(item) {
+                        dataservice.saveSubRegion(item.convertToServerData(), {
                         success: function(dataFromServer) {
                             var newItem = model.regionServertoClinetMapper(dataFromServer);
                             if (item.id() !== undefined) {
-                                var newObjtodelete = regions.find(function(temp) {
+                                var newObjtodelete = subRegions.find(function(temp) {
                                     return temp.id() == newItem.id();
                                 });
-                                regions.remove(newObjtodelete);
-                                regions.push(newItem);
+                                subRegions.remove(newObjtodelete);
+                                subRegions.push(newItem);
                             } else
-                                regions.push(newItem);
-                            isRegionEditorVisible(false);
-                            toastr.success(ist.resourceText.RegionSaveSuccessMessage);
+                                subRegions.push(newItem);
+                            isSubRegionEditorVisible(false);
+                            toastr.success(ist.resourceText.SubRegionSaveSuccessMessage);
                         },
                         error: function(exceptionMessage, exceptionType) {
                             if (exceptionType === ist.exceptionType.CaresGeneralException)
                                 toastr.error(exceptionMessage);
                             else
-                                toastr.error(ist.resourceText.RegionSaveFailError);
+                                toastr.error(ist.resourceText.SubRegionSaveFailError);
                         }
                     });
                 },
                 //validation check 
-                    dobeforeRegion = function() {
-                    if (!selectedRegion().isValid()) {
-                        selectedRegion().errors.showAllMessages();
+                    dobeforeSubRegion = function() {
+                    if (!selectedSubRegion().isValid()) {
+                        selectedSubRegion().errors.showAllMessages();
                         return false;
                     }
                     return true;
@@ -76,57 +76,56 @@ define("region/region.viewModel",
                 //cancel button handler
                     onCancelbtn = function() {
                     editorViewModel.revertItem();
-                    isRegionEditorVisible(false);
+                    isSubRegionEditorVisible(false);
                 },
-                // create new Region
+                // create new Sub Region
                     onCreateForm = function () {
-                        debugger;
-                        var region = new model.regionDetail();
+                        var region = new model.subRegionDetail();
                     editorViewModel.selectItem(region);
-                    isRegionEditorVisible(true);
+                    isSubRegionEditorVisible(true);
                 },
                 //reset butto handle 
                     resetResuults = function() {
-                    searchFilter(undefined);
-                    baseCountryFilter(undefined);
-                    getRegions();
+                        searchFilter(undefined);
+                        baseRegionFilter(undefined);
+                    getSubRegions();
                 },
                 //delete button handler
                     onDeleteItem = function(item) {
                     if (!item.id()) {
-                        regions.remove(item);
+                        subRegions.remove(item);
                         return;
                     }
                     // Ask for confirmation
                     confirmation.afterProceed(function() {
-                        deleteRegion(item);
+                        deleteSubRegion(item);
                     });
                     confirmation.show();
                 },
                 //edit button handler
                     onEditItem = function(item) {
                     editorViewModel.selectItem(item);
-                    isRegionEditorVisible(true);
+                    isSubRegionEditorVisible(true);
                 },
-                //delete Region
-                    deleteRegion = function(region) {
-                       dataservice.deleteRegion(region.convertToServerData(), {
+                //delete Sub Region
+                    deleteSubRegion = function(region) {
+                        dataservice.deleteSubRegion(region.convertToServerData(), {
                         success: function() {
-                            regions.remove(region);
-                            toastr.success(ist.resourceText.RegionDeleteSuccessMessage);
+                            subRegions.remove(region);
+                            toastr.success(ist.resourceText.SubRegionDeleteSuccessMessage);
                         },
                         error: function(exceptionMessage, exceptionType) {
                             if (exceptionType === ist.exceptionType.CaresGeneralException)
                                 toastr.error(exceptionMessage);
                             else
-                                toastr.error(ist.resourceText.RegionDeleteFailError);
+                                toastr.error(ist.resourceText.SubRegionDeleteFailError);
                         }
                     });
                 },
                 //search button handler in filter section
                     search = function() {
                     pager().reset();
-                    getRegions();
+                    getSubRegions();
                 },
                 //hide filte section
                     hideFilterSection = function() {
@@ -136,12 +135,12 @@ define("region/region.viewModel",
                     showFilterSection = function() {
                         filterSectionVisilble(true);
                     },
-                    //get Regions list from Dataservice
-                    getRegions = function() {
-                        dataservice.getRegions(
+                    //get Sub Regions list from Dataservice
+                    getSubRegions = function() {
+                        dataservice.getSubRegions(
                         {
-                            RegionFilterText: searchFilter(),
-                            CountryId: baseCountryFilter(),
+                            SubRegionFilterText: searchFilter(),
+                            RegionId: baseRegionFilter(),
                             PageSize: pager().pageSize(),
                             PageNo: pager().currentPage(),
                             SortBy: sortOn(),
@@ -150,32 +149,32 @@ define("region/region.viewModel",
                     {
                         success: function (data) {
                             debugger;
-                            regions.removeAll();
+                            subRegions.removeAll();
                             pager().totalCount(data.TotalCount);
-                            _.each(data.Regions, function (item) {
-                                regions.push(model.regionServertoClinetMapper(item));
+                            _.each(data.SubRegions, function (item) {
+                                subRegions.push(model.regionServertoClinetMapper(item));
                             });
                         },
                         error: function() {
                             isLoadingFleetPools(false);
-                            toastr.error(ist.resourceText.RegionLoadFailError);
+                            toastr.error(ist.resourceText.SubRegionLoadFailError);
                         }
                     });
                     },
-                     //get Region base data
+                     //get Sub Region base data
                     getBaseData = function () {
-                        dataservice.getRegionBaseData(null, {
+                        dataservice.getSubRegionBaseData(null, {
                             success: function (data) {
 
-                                baseCountriesList.removeAll();
-                                ko.utils.arrayPushAll(baseCountriesList(), data.Countries);
-                                baseCountriesList.valueHasMutated();
+                                baseRegionList.removeAll();
+                                ko.utils.arrayPushAll(baseRegionList(), data.RegionsDropDowns);
+                                baseRegionList.valueHasMutated();
                             },
                             error: function (exceptionMessage, exceptionType) {
                                 if (exceptionType === ist.exceptionType.CaresGeneralException) {
                                     toastr.error(exceptionMessage);
                                 } else {
-                                    toastr.error(ist.resourceText.RegionBaseDataLoadFailError);
+                                    toastr.error(ist.resourceText.SubRegionBaseDataLoadFailError);
                                 }
                             }
                         });
@@ -184,12 +183,12 @@ define("region/region.viewModel",
                     initialize = function(specifiedView) {
                         view = specifiedView;
                         ko.applyBindings(view.viewModel, view.bindingRoot);
-                        pager(pagination.Pagination({ PageSize: 10 }, regions, getRegions));
+                        pager(pagination.Pagination({ PageSize: 10 }, subRegions, getSubRegions));
                         getBaseData();
-                        getRegions();
+                        getSubRegions();
                     };
                 return {
-                    regions: regions,
+                    subRegions: subRegions,
                     initialize: initialize,
                     search: search,
                     searchFilter: searchFilter,
@@ -197,7 +196,7 @@ define("region/region.viewModel",
                     sortIsAsc: sortIsAsc,
                     onCreateForm: onCreateForm,
                     filterSectionVisilble: filterSectionVisilble,
-                    isRegionEditorVisible: isRegionEditorVisible,
+                    isSubRegionEditorVisible: isSubRegionEditorVisible,
                     hideFilterSection: hideFilterSection,
                     showFilterSection: showFilterSection,
                     pager: pager,
@@ -205,16 +204,16 @@ define("region/region.viewModel",
                     onDeleteItem: onDeleteItem,
                     onEditItem: onEditItem,
                     onCancelbtn: onCancelbtn,
-                    selectedRegion: selectedRegion,
+                    selectedSubRegion: selectedSubRegion,
                     onSavebtn: onSavebtn,
-                    getRegions: getRegions,
+                    getSubRegions: getSubRegions,
 
                     getBaseData: getBaseData,
-                    baseCountriesList: baseCountriesList,
-                    baseCountryFilter: baseCountryFilter
+                    baseRegionList: baseRegionList,
+                    baseRegionFilter: baseRegionFilter
 
                 };
             })()
         };
-        return ist.Region.viewModel;
+        return ist.SubRegion.viewModel;
     });

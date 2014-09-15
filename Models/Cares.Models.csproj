@@ -106,6 +106,7 @@
     <Compile Include="Common\RegionByColumn.cs" />
     <Compile Include="Common\ServiceRateByColumn.cs" />
     <Compile Include="Common\OperationByColumn.cs" />
+    <Compile Include="Common\SubRegionByColumn.cs" />
     <Compile Include="Common\VehicleOrderByColumn.cs" />
     <Compile Include="Common\HireGroupByColumn.cs" />
     <Compile Include="Common\HireGroupDetailByColumn.cs" />
@@ -224,6 +225,8 @@
     <Compile Include="RequestModels\RegionSearchRequestResponse.cs" />
     <Compile Include="RequestModels\ServiceRateSearchRequest.cs" />
     <Compile Include="RequestModels\OperationSearchRequest.cs" />
+    <Compile Include="RequestModels\SubRegionSearchRequest.cs" />
+    <Compile Include="RequestModels\SubRegionSearchRequestResponse.cs" />
     <Compile Include="RequestModels\VehicleSearchRequest.cs" />
     <Compile Include="RequestModels\HireGroupSearchRequest.cs" />
     <Compile Include="RequestModels\OrgGroupSearchRequest.cs" />
@@ -267,6 +270,7 @@
     <Compile Include="ResponseModels\ServiceRtDetailContent.cs" />
     <Compile Include="ResponseModels\ServiceRtDetailResponse.cs" />
     <Compile Include="ResponseModels\ServiceRtMainContent.cs" />
+    <Compile Include="ResponseModels\SubRegionBaseDataResponse.cs" />
     <Compile Include="ResponseModels\TariffRateBaseResponse.cs" />
     <Compile Include="ResponseModels\TariffRateContent.cs" />
     <Compile Include="ResponseModels\HireGroupDetailResponse.cs" />

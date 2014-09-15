@@ -19,6 +19,7 @@ namespace Cares.Implementation.Services
         private readonly IRegionRepository regionRepository;
         private readonly ICountryRepository countryRepository;
         private readonly ICityRepository cityRepository;
+        private readonly ISubRegionRepository subRegionRepository;
 
         /// <summary>
         /// Set newly created Region object Properties in case of adding
@@ -48,16 +49,29 @@ namespace Cares.Implementation.Services
             dbVersion.CountryId = region.CountryId;
         }
 
+        //Validation check for deletion
+        private void ValidateBeforeDeletion(long regionId)
+        {
+            // Assocoation with city check 
+            if (cityRepository.IsRegionAssociatedWithCity(regionId))
+                throw new CaresException(Resources.GeographicalHierarchy.Region.RegionIsAssociatedWithCityError);
+
+            // Assocoation with sub region check 
+            if (subRegionRepository.IsRegionAssocistedWithSubRegion(regionId))
+                throw new CaresException(Resources.GeographicalHierarchy.Region.RegionIsAssociatedWithSubRegionError);
+        }
+
         #endregion
         #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>
-        public RegionService(IRegionRepository regionRepository, ICountryRepository countryRepository, ICityRepository cityRepository)
+        public RegionService(IRegionRepository regionRepository, ICountryRepository countryRepository, ICityRepository cityRepository, ISubRegionRepository subRegionRepository)
         {
             this.regionRepository = regionRepository;
             this.countryRepository = countryRepository;
             this.cityRepository = cityRepository;
+            this.subRegionRepository = subRegionRepository;
         }
         #endregion
         #region Public
@@ -100,15 +114,11 @@ namespace Cares.Implementation.Services
         public void DeleteRegion(long regionId)
         {
             Region dbversion = regionRepository.Find((int) regionId);
-
-            // Assocoation with city check 
-            if(cityRepository.IsRegionAssociatedWithCity(regionId))
-                throw new CaresException(Resources.GeographicalHierarchy.Region.RegionIsAssociatedWithCityError); 
-
+            ValidateBeforeDeletion(regionId);
             if (dbversion == null)
             {
                 throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                    "Company with Id {0} not found!", regionId));
+                    "Region with Id {0} not found!", regionId));
             }
             regionRepository.Delete(dbversion);
             regionRepository.SaveChanges();  
@@ -137,7 +147,7 @@ namespace Cares.Implementation.Services
             }
             regionRepository.SaveChanges();
             // To Load the proprties
-            return regionRepository.LoadReionWithDetail(dbVersion.RegionId);
+            return regionRepository.LoadRegionWithDetail(dbVersion.RegionId);
         }
 
       

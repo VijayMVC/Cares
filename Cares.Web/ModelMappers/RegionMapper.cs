@@ -83,11 +83,10 @@ namespace Cares.Web.ModelMappers
 
         #endregion        
         #endregion
-
         #region Sub Region
         #region Entity To Model
         /// <summary>
-        ///  Create web model from entity
+        ///  Create web model[DropDown] from entity
         /// </summary>
         public static ApiModel.SubRegionDropDown CreateFrom(this SubRegion source)
         {
@@ -98,9 +97,67 @@ namespace Cares.Web.ModelMappers
                 RegionId = source.RegionId
             };
         }
+
+
+        /// <summary>
+        /// Crete From Domain base data model 
+        /// </summary>
+        public static ApiModel.SubRegionBaseDataResponse CreateFrom(this Cares.Models.ResponseModels.SubRegionBaseDataResponse source)
+        {
+            return new ApiModel.SubRegionBaseDataResponse
+            {
+                RegionsDropDowns = source.Regions.Select(region => region.CreateFrom())
+            };
+        }
+
+
+        /// <summary>
+        /// Create From Response model to web search response
+        /// </summary>
+        public static ApiModel.SubRegionSearchRequestResponse CreateFrom(this SubRegionSearchRequestResponse source)
+        {
+            return new ApiModel.SubRegionSearchRequestResponse
+            {
+                SubRegions = source.SubRegions.Select(region => region.CreateFromm()),
+                TotalCount = source.TotalCount
+            };
+        }
+
+        /// <summary>
+        ///  Create from domain model to web model
+        /// </summary>
+        public static ApiModel.SubRegion CreateFromm(this SubRegion source)
+        {
+            return new ApiModel.SubRegion
+            {
+                SubRegionId = source.SubRegionId,
+                SubRegionCode = source.SubRegionCode,
+                SubRegionName = source.SubRegionName,
+                SubRegionDescription = source.SubRegionDescription,
+
+                RegionId = source.RegionId,
+                RegionName = source.Region.RegionName
+            };
+        }
+
+
+        /// <summary>
+        ///  Create from web model 
+        /// </summary>
+        public static SubRegion CreateFrom(this ApiModel.SubRegion source)
+        {
+            return new SubRegion
+            {
+                SubRegionId = source.SubRegionId,
+                SubRegionCode = source.SubRegionCode,
+                SubRegionName = source.SubRegionName,
+                SubRegionDescription = source.SubRegionDescription,
+                RegionId = source.RegionId
+            };
+        }
         #endregion
         #endregion
-        
+
         #endregion
     }
 }

@@ -37,7 +37,7 @@ namespace Cares.Web.Areas.Api.Controllers
        #region Public
 
         /// <summary>
-        /// Get Regions Base Data
+        /// Get Regions
         /// </summary>
         public RegionSearchRequestResponse Get([FromUri] RegionSearchRequest request)
         {

@@ -22,14 +22,14 @@ namespace Cares.Implementation.Resources.GeographicalHierarchy {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Region {
+    public class SubRegion {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Region() {
+        internal SubRegion() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Cares.Implementation.Resources.GeographicalHierarchy {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Cares.Implementation.Resources.GeographicalHierarchy.Region", typeof(Region).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Cares.Implementation.Resources.GeographicalHierarchy.SubRegion", typeof(SubRegion).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,29 +61,20 @@ namespace Cares.Implementation.Resources.GeographicalHierarchy {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Region with same code already exists. Try different code!.
+        ///   Looks up a localized string similar to Sub-Region with same code already exists. Try different code!.
         /// </summary>
-        public static string RegionCodeDuplicationError {
+        public static string SubRegionCodeDuplicationError {
             get {
-                return ResourceManager.GetString("RegionCodeDuplicationError", resourceCulture);
+                return ResourceManager.GetString("SubRegionCodeDuplicationError", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Region is associated with city(s) !.
+        ///   Looks up a localized string similar to Sub-Region is associated with city(s) !.
         /// </summary>
-        public static string RegionIsAssociatedWithCityError {
+        public static string SubRegionIsAssociatedWithCityError {
             get {
-                return ResourceManager.GetString("RegionIsAssociatedWithCityError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Region is associated with sub-region(s) !.
-        /// </summary>
-        public static string RegionIsAssociatedWithSubRegionError {
-            get {
-                return ResourceManager.GetString("RegionIsAssociatedWithSubRegionError", resourceCulture);
+                return ResourceManager.GetString("SubRegionIsAssociatedWithCityError", resourceCulture);
             }
         }
     }

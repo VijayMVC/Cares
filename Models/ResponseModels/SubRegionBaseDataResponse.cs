@@ -1,19 +1,18 @@
-﻿
+﻿using Cares.Models.DomainModels;
 using System.Collections.Generic;
-using Cares.Models.DomainModels;
 
 namespace Cares.Models.ResponseModels
 {
     /// <summary>
-    /// Region Base Data Response
+    /// Sub Region Base Data Response 
     /// </summary>
-    public class RegionBaseDataResponse
+    public class SubRegionBaseDataResponse
     {
         #region Public
         /// <summary>
-        /// Countries
+        /// Regions
         /// </summary>
-        public IEnumerable<Country> Countries { get; set; }
+        public IEnumerable<Region> Regions { get; set; }
         #endregion 
     }
 }
