@@ -87,8 +87,9 @@ namespace Cares.Repository.BaseRepository
 
             modelBuilder.Entity<WorkLocation>()
                 .HasRequired(c => c.Address)
-                .WithMany()
+                .WithRequiredPrincipal()
                 .WillCascadeOnDelete(true);
+
             modelBuilder.Entity<Vehicle>()
               .HasRequired(c => c.VehicleOtherDetail)
              .WithRequiredPrincipal()
@@ -99,10 +100,10 @@ namespace Cares.Repository.BaseRepository
               .WithRequiredPrincipal()
               .WillCascadeOnDelete(false);
 
-             modelBuilder.Entity<Vehicle>()
-            .HasRequired(c => c.VehicleLeasedInfo)
-           .WithRequiredPrincipal()
-            .WillCascadeOnDelete(false);
+            modelBuilder.Entity<Vehicle>()
+           .HasRequired(c => c.VehicleLeasedInfo)
+          .WithRequiredPrincipal()
+           .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Vehicle>()
             .HasRequired(c => c.VehicleInsuranceInfo)
@@ -119,13 +120,45 @@ namespace Cares.Repository.BaseRepository
             .WithRequiredPrincipal()
             .WillCascadeOnDelete(false);
 
-            //modelBuilder.Entity<BusinessPartner>()
-            //    .HasOptional(c => c.BusinessPartnerCompany);
-            //modelBuilder.Entity<BusinessPartner>()
-            //  .HasOptional(c => c.BusinessPartnerIndividual).WithOptionalDependent().WillCascadeOnDelete(false); 
+            modelBuilder.Entity<WorkLocation>()
+                .HasRequired(c => c.Company).WithRequiredPrincipal().WillCascadeOnDelete(false);
 
-          
-      }
+            //modelBuilder.Entity<EmpJobInfo>().HasRequired(e=> e.Employee).WithOptional(e=>e.EmpJobInfo)
+            // .WillCascadeOnDelete(false);
+
+            //modelBuilder.Entity<EmpJobInfo>().HasOptional(e => e.Supervisor).WithOptionalPrincipal()
+            // .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Employee>()
+           .HasRequired(c => c.EmpDocsInfo)
+           .WithRequiredPrincipal()
+            .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Employee>()
+            .HasMany(c => c.Addresses)
+            .WithOptional()
+            .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Employee>()
+            .HasMany(c => c.PhoneNumbers)
+            .WithOptional()
+           .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Employee>()
+            .HasMany(c => c.EmpJobProgs)
+            .WithOptional()
+            .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Employee>()
+          .HasMany(c => c.EmpAuthOperationsWorkplaces)
+          .WithOptional()
+          .WillCascadeOnDelete(false);
+            //   modelBuilder.Entity<EmpJobInfo>()
+            //.HasOptional(c => c.WorkPlace)
+            //.WithMany()
+            //.WillCascadeOnDelete(false);
+
+        }
         #endregion
 
         #region Constructor
@@ -464,12 +497,12 @@ namespace Cares.Repository.BaseRepository
         /// Vehicle Check List Item Db Set
         /// </summary>
         public DbSet<VehicleCheckListItem> VehicleCheckListItems { get; set; }
-        
+
         /// <summary>
         /// Employee Status Db Set
         /// </summary>
         public DbSet<EmpStatus> EmpStatuses { get; set; }
-        
+
         /// <summary>
         /// Designation Db Set
         /// </summary>
@@ -489,6 +522,26 @@ namespace Cares.Repository.BaseRepository
         /// Job Type Db Set
         /// </summary>
         public DbSet<JobType> JobTypes { get; set; }
+
+        /// <summary>
+        /// Employee Jo bInfo  Db Set
+        /// </summary>
+        public DbSet<EmpJobInfo> EmpJobInfos { get; set; }
+
+        /// <summary>
+        /// Employee Docs Info  Db Set
+        /// </summary>
+        public DbSet<EmpDocsInfo> EmpDocsInfos { get; set; }
+
+        /// <summary>
+        /// Employee Authorized Operations Workplace  Db Set
+        /// </summary>
+        public DbSet<EmpAuthOperationsWorkplace> EmpAuthOperationsWorkplaces { get; set; }
+
+        /// <summary>
+        /// Employee Job Progrss  Db Set
+        /// </summary>
+        public DbSet<EmpJobProg> EmpJobProgs { get; set; }
 
         #endregion
     }

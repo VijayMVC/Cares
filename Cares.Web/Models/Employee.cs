@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Cares.Models.DomainModels;
 
 namespace Cares.Web.Models
 {
@@ -102,6 +103,11 @@ namespace Cares.Web.Models
         /// Employee Phone Number List
         /// </summary>
         public List<Phone> PhoneNumbers { get; set; }
+
+        /// <summary>
+        /// Employee Docs Info
+        /// </summary>
+        public EmpDocsInfo EmpDocsInfo { get; set; }
 
         /// <summary>
         /// Employee Job Progress List

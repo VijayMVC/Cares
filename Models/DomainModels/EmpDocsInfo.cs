@@ -1,70 +1,109 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.InteropServices;
 
 namespace Cares.Models.DomainModels
 {
     /// <summary>
-    /// Employee Job Info
+    /// Employee Document Info Domain Model
     /// </summary>
-    public class EmpJobInfo
+    public class EmpDocsInfo
     {
         #region Persisted Properties
 
         /// <summary>
-        /// Job Info Id
+        /// Employee ID
         /// </summary>
         [Key, ForeignKey("Employee")]
         public long EmployeeId { get; set; }
-        
 
         /// <summary>
-        /// Supervisor Id
-        /// </summary>        
-        [ForeignKey("Supervisor")]
-        public long? SupervisorId { get; set; }
-
-        /// <summary>
-        /// Designation Id
+        /// NIC
         /// </summary>
-        [ForeignKey("Designation"), Required]
-        public long DesignationId { get; set; }
-
-
-        /// <summary>
-        /// Designation Grade Id
-        /// </summary>
-        [ForeignKey("DesigGrade"), Required]
-        public long DesigGradeId { get; set; }
+        [StringLength(100)]
+        public string NIC { get; set; }
 
         /// <summary>
-        /// Job Type ID
+        /// NIC Expiry Date
         /// </summary>
-        [ForeignKey("JobType"), Required]
-        public long JobTypeId { get; set; }
+        public DateTime? NICExpDt { get; set; }
 
         /// <summary>
-        /// Department ID
+        /// Iqama Number
         /// </summary>
-        [ForeignKey("Department"), Required]
-        public long DepartmentId { get; set; }
+        [StringLength(100)]
+        public string IqamaNo { get; set; }
 
         /// <summary>
-        ///Workplace ID
+        /// Iqama Expiry Date
         /// </summary>
-        [ForeignKey("WorkPlace"), Required]
-        public long WorkPlaceId { get; set; }
+        public DateTime? IqamaExpDt { get; set; }
 
         /// <summary>
-        ///Joining Date
+        /// Passport Number
         /// </summary>
-        public DateTime JoiningDt { get; set; }
+        [StringLength(100)]
+        public string PassportNo { get; set; }
 
         /// <summary>
-        ///Salary
+        /// Passport Exp Dt
         /// </summary>
-        public decimal? Salary { get; set; }
+        public DateTime? PassportExpDt { get; set; }
+
+        /// <summary>
+        /// Passport Country ID
+        /// </summary>
+        public short? PassportCountryId { get; set; }
+
+        /// <summary>
+        /// Visa Number
+        /// </summary>
+        [StringLength(100)]
+        public string VisaNo { get; set; }
+
+        /// <summary>
+        /// Visa Expiry Date
+        /// </summary>
+        public DateTime? VisaExpDt { get; set; }
+
+        /// <summary>
+        /// VisaIssue Country ID
+        /// </summary>
+        public short? VisaIssueCountryId { get; set; }
+
+        /// <summary>
+        /// License Number
+        /// </summary>
+        [StringLength(100)]
+        public string LicenseNo { get; set; }
+
+        /// <summary>
+        /// License Expiry Date
+        /// </summary>
+        public DateTime? LicenseExpDt { get; set; }
+
+        /// <summary>
+        /// License Type ID
+        /// </summary>
+        [ForeignKey("LicenseType")]
+        public long? LicenseTypeId { get; set; }
+
+        /// <summary>
+        /// Insurance Number
+        /// </summary>
+        [StringLength(100)]
+        public string InsuranceNo { get; set; }
+
+        /// <summary>
+        /// Insurance Company
+        /// </summary>
+        [StringLength(100)]
+        public string InsuranceCompany { get; set; }
+
+        /// <summary>
+        /// Insurance Date
+        /// </summary>
+        public DateTime? InsuranceDt { get; set; }
 
         /// <summary>
         /// Row Version
@@ -125,25 +164,9 @@ namespace Cares.Models.DomainModels
         /// </summary>
         [Required]
         public long UserDomainKey { get; set; }
-
         #endregion
 
         #region Reference Properties
-
-        /// <summary>
-        /// Department
-        /// </summary>
-        public virtual Department Department { get; set; }
-
-        /// <summary>
-        /// Designation Grade
-        /// </summary>
-        public virtual DesigGrade DesigGrade { get; set; }
-
-        /// <summary>
-        /// Designation
-        /// </summary>
-        public virtual Designation Designation { get; set; }
 
         /// <summary>
         /// Employee
@@ -151,19 +174,11 @@ namespace Cares.Models.DomainModels
         public virtual Employee Employee { get; set; }
 
         /// <summary>
-        ///  Supervisor
+        /// License Type
         /// </summary>
-        public virtual Employee Supervisor { get; set; }
+        public virtual LicenseType LicenseType { get; set; }
 
-        /// <summary>
-        /// Job Type
-        /// </summary>
-        public virtual JobType JobType { get; set; }
 
-        /// <summary>
-        /// WorkPlace
-        /// </summary>
-        public virtual WorkPlace WorkPlace { get; set; }
         #endregion
     }
 }

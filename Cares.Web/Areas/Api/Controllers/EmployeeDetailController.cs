@@ -13,7 +13,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// </summary>
     public class EmployeeDetailController : ApiController
     {
-         #region Private
+        #region Private
 
         private readonly IEmployeeService employeeService;
 
@@ -49,6 +49,6 @@ namespace Cares.Web.Areas.Api.Controllers
         }
 
         #endregion
-       
+
     }
 }

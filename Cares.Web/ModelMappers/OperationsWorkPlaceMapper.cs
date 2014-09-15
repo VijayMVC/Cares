@@ -16,7 +16,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static ApiModel.OperationsWorkPlace CreateFrom(this OperationsWorkPlace source) 
+        public static ApiModel.OperationsWorkPlace CreateFrom(this OperationsWorkPlace source)
         {
             return new ApiModel.OperationsWorkPlace
             {
@@ -28,9 +28,23 @@ namespace Cares.Web.ModelMappers
                 FleetPoolId = source.FleetPoolId,
             };
         }
+
+
+        /// <summary>
+        ///  Create web model from entity
+        /// </summary>
+        public static ApiModel.OperationsWorkPlaceDropDown CreateFromDropDown(this OperationsWorkPlace source)
+        {
+            return new ApiModel.OperationsWorkPlaceDropDown
+            {
+                OperationsWorkPlaceId = source.OperationsWorkPlaceId,
+                OperationId = source.OperationId,
+                OperationsWorkPlaceCodeName = source.LocationCode
+            };
+        }
         #endregion
         #region Model To Entity
-        
+
         /// <summary>
         ///  Create entity from web model
         /// </summary>
@@ -58,12 +72,12 @@ namespace Cares.Web.ModelMappers
                 OperationsWorkPlaceId = source.OperationsWorkPlaceId,
                 LocationCode = source.LocationCode,
                 OperationId = source.OperationId,
-                OperationName = source.OperationId!=null ?source.Operation.OperationName : "",
+                OperationName = source.OperationId != null ? source.Operation.OperationName : "",
                 CostCenter = source.CostCenter,
                 FleetPoolId = source.FleetPoolId,
-                FleetPoolName = source.FleetPoolId!=null ? source.FleetPool.FleetPoolName : ""
+                FleetPoolName = source.FleetPoolId != null ? source.FleetPool.FleetPoolName : ""
             };
-        } 
+        }
 
 
         /// <summary>

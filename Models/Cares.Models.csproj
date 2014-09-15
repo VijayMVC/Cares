@@ -54,6 +54,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
@@ -133,6 +136,7 @@
     <Compile Include="DomainModels\DesigGrade.cs" />
     <Compile Include="DomainModels\Designation.cs" />
     <Compile Include="DomainModels\EmpAuthOperationsWorkplace.cs" />
+    <Compile Include="DomainModels\EmpDocsInfo.cs" />
     <Compile Include="DomainModels\EmpJobInfo.cs" />
     <Compile Include="DomainModels\EmpJobProg.cs" />
     <Compile Include="DomainModels\EmpStatus.cs" />

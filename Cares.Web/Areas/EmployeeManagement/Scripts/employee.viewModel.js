@@ -67,20 +67,26 @@ define("employee/employee.viewModel",
                     filteredDepartments = ko.observableArray([]),
                      //operation Wor kPlaces
                     filteredWorkplaces = ko.observableArray([]),
-                    //filtered Regions
+                    //Filtered Regions
                     filteredRegions = ko.observableArray([]),
                     //filtered Cities
                     filteredCities = ko.observableArray([]),
                     //filtered Areas
                     filteredAreas = ko.observableArray([]),
-                    //filtered Sub Regions
+                    //Filtered Sub Regions
                     filteredSubRegions = ko.observableArray([]),
-                    //Address List
+                    //Filtered Operations
+                    filteredOperations = ko.observableArray([]),
+                    //Filtered Operations Workplaces
+                    filteredOperationsWorkplaces = ko.observableArray([]),
+                      //Address List
                     addressList = ko.observableArray([]),
                     //Phone Number List
                     phoneNumbersList = ko.observableArray([]),
                     //Job Progress List
                     jobProgList = ko.observableArray([]),
+                    //Authorized Locations List
+                    authLocationsList = ko.observableArray([]),
                     // #endregion Arrays
                     // #region Busy Indicators
                     isLoadingEmployees = ko.observable(false),
@@ -107,6 +113,7 @@ define("employee/employee.viewModel",
                     onSelectedCompany = function (company) {
                         filteredDepartments.removeAll();
                         filteredWorkplaces.removeAll();
+                        filteredOperations.removeAll();
                         if (company.companyId() != undefined) {
                             _.each(departments(), function (item) {
                                 if (item.CompanyId === company.companyId())
@@ -117,10 +124,24 @@ define("employee/employee.viewModel",
                                 if (item.CompanyId === company.companyId())
                                     filteredWorkplaces.push(item);
                             });
+
+                            _.each(operations(), function (item) {
+                                filteredOperations.push(item);
+                            });
                         }
 
                     },
-                      //country selection change event
+                    //on selected Operation
+                    onSelectedOperation = function (operation) {
+                        filteredOperationsWorkplaces.removeAll();
+                        if (operation.operationId() != undefined) {
+                            _.each(operationWorkPlaces(), function (item) {
+                                if (item.OperationId === operation.operationId().OperationId)
+                                    filteredOperationsWorkplaces.push(item);
+                            });
+                        }
+                    },
+                    //country selection change event
                     onCountrySelectionChange = function (value) {
                         if (addEmployeeItem().address().countryId() !== undefined) {
                             getRegionsByCountry(addEmployeeItem().address().countryId());
@@ -316,9 +337,9 @@ define("employee/employee.viewModel",
                         }
                         return flag;
                     },
-                        // Add a Employee Job Progress
+                      // Add a Employee Job Progress
                      onAddJobProgress = function () {
-                        // check validation error before add
+                         // check validation error before add
                          if (doBeforeAddJobProgressItem()) {
                              var jobProgress = model.JobProgress();
                              jobProgress.empJobProgId(addEmployeeItem().jobProgress().empJobProgId());
@@ -330,15 +351,42 @@ define("employee/employee.viewModel",
                              jobProgress.desigEndDt(addEmployeeItem().jobProgress().desigEndDt());
                              jobProgList.push(jobProgress);
 
-                            // emplty input fields
+                             // emplty input fields
                              addEmployeeItem().jobProgress(model.JobProgress());
-                        }
-                    },
-                     // Do Before Add Address Item
+                         }
+                     },
+                     // Do Before Employee Job Progress Item
                     doBeforeAddJobProgressItem = function () {
                         var flag = true;
                         if (!addEmployeeItem().jobProgress().isValid()) {
                             addEmployeeItem().jobProgress().errors.showAllMessages();
+                            flag = false;
+                        }
+                        return flag;
+                    },
+                       // Add a Employee Authorized Location 
+                     onAddAuthorizedLocation = function () {
+                         // check validation error before add
+                         if (doBeforeAddAuthorizedLocationItem()) {
+                             var authorizedLocation = model.AuthorizedLocation();
+                             authorizedLocation.id(addEmployeeItem().authorizedLocation().id());
+                             authorizedLocation.operationsWorkplaceId(addEmployeeItem().authorizedLocation().operationsWorkplaceId().OperationsWorkPlaceId);
+                             authorizedLocation.operationsWorkplaceName(addEmployeeItem().authorizedLocation().operationsWorkplaceId().OperationsWorkPlaceCodeName);
+                             authorizedLocation.operationId(addEmployeeItem().authorizedLocation().operationId().OperationId);
+                             authorizedLocation.operationName(addEmployeeItem().authorizedLocation().operationId().OperationCodeName);
+                             authorizedLocation.isDefault(addEmployeeItem().authorizedLocation().isDefault());
+                             authorizedLocation.isOperationDefault(addEmployeeItem().authorizedLocation().isOperationDefault());
+                             authLocationsList.push(authorizedLocation);
+
+                             // emplty input fields
+                             addEmployeeItem().authorizedLocation(model.AuthorizedLocation());
+                         }
+                     },
+                     // Do Before Employee Authorized Location Item
+                    doBeforeAddAuthorizedLocationItem = function () {
+                        var flag = true;
+                        if (!addEmployeeItem().authorizedLocation().isValid()) {
+                            addEmployeeItem().authorizedLocation().errors.showAllMessages();
                             flag = false;
                         }
                         return flag;
@@ -380,16 +428,12 @@ define("employee/employee.viewModel",
                         filteredAreas.removeAll();
                         filteredSubRegions.removeAll();
                         addressList.removeAll();
-                        //checkListItemList.removeAll();
-                        //maintenanceScheduleList.removeAll();
                         //Select the newly added Employee
                         addEmployeeItem(employee);
                         showEmployeeEditor();
                     },
                       //Edit Employee
                     onEditEmployee = function (employee, e) {
-                        //checkListItemList.removeAll();
-                        //maintenanceScheduleList.removeAll();
                         selectedEmployee(employee);
                         getEmployeeById(employee);
                         showEmployeeEditor();
@@ -454,11 +498,14 @@ define("employee/employee.viewModel",
                             if (employee.jobProgressList().length !== 0) {
                                 employee.jobProgressList.removeAll();
                             }
-                            
+                            if (employee.authorizedLocationList().length !== 0) {
+                                employee.authorizedLocationList.removeAll();
+                            }
                             ko.utils.arrayPushAll(employee.phonesList(), phoneNumbersList());
                             ko.utils.arrayPushAll(employee.employeeAddressList(), addressList());
                             ko.utils.arrayPushAll(employee.jobProgressList(), jobProgList());
-
+                            ko.utils.arrayPushAll(employee.authorizedLocationList(), authLocationsList());
+                            
                             saveEmployee(employee);
                         }
                     },
@@ -615,14 +662,14 @@ define("employee/employee.viewModel",
                     },
                     //map Employees
                    mapEmployees = function (data) {
-                               var employeeList = [];
-                               _.each(data.Employees, function (item) {
-                                   var employee = new model.EmployeeClientMapper(item);
-                                   employeeList.push(employee);
-                               });
-                               ko.utils.arrayPushAll(employees(), employeeList);
-                               employees.valueHasMutated();
-                           },
+                       var employeeList = [];
+                       _.each(data.Employees, function (item) {
+                           var employee = new model.EmployeeClientMapper(item);
+                           employeeList.push(employee);
+                       });
+                       ko.utils.arrayPushAll(employees(), employeeList);
+                       employees.valueHasMutated();
+                   },
                      //Gender
                     genders = [{ Id: 'M', Text: 'Male' },
                         { Id: 'F', Text: 'Female' }
@@ -692,9 +739,12 @@ define("employee/employee.viewModel",
                     filteredRegions: filteredRegions,
                     filteredAreas: filteredAreas,
                     filteredSubRegions: filteredSubRegions,
+                    filteredOperations: filteredOperations,
+                    filteredOperationsWorkplaces: filteredOperationsWorkplaces,
                     addressList: addressList,
                     phoneNumbersList: phoneNumbersList,
                     jobProgList: jobProgList,
+                    authLocationsList: authLocationsList,
                     //Filters
                     searchFilter: searchFilter,
                     employeeStatusFilter: employeeStatusFilter,
@@ -724,7 +774,9 @@ define("employee/employee.viewModel",
                     onAreaSelectionChange: onAreaSelectionChange,
                     onAddressTypeSelectionChange: onAddressTypeSelectionChange,
                     onAddEmployeePhone: onAddEmployeePhone,
-                    onAddJobProgress: onAddJobProgress
+                    onAddJobProgress: onAddJobProgress,
+                    onAddAuthorizedLocation: onAddAuthorizedLocation,
+                    onSelectedOperation: onSelectedOperation
                     // Utility Methods
 
                 };

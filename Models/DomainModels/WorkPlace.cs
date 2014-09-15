@@ -134,7 +134,12 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Operations Workplaces that use this workspace
         /// </summary>
-        public virtual ICollection<OperationsWorkPlace> OperationsWorkPlaces { get; set; } 
+        public virtual ICollection<OperationsWorkPlace> OperationsWorkPlaces { get; set; }
+
+
+        public virtual ICollection<EmpJobInfo> EmployeEmpJobInfos { get; set; } 
+
+        
 
         #endregion
     }
