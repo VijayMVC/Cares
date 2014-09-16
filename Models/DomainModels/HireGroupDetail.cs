@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Models.DomainModels
+namespace Cares.Models.DomainModels
 {
     /// <summary>
     /// Hire Group Detail Domain Model
@@ -9,22 +11,28 @@ namespace Models.DomainModels
     public class HireGroupDetail
     {
         #region Persisted Properties
+
         /// <summary>
-        /// Vehicle Make ID
+        /// Hire Group Detail Id
         /// </summary>
-        [Key]
         public long HireGroupDetailId { get; set; }
+
         /// <summary>
         /// User Domain Key
         /// </summary>
+        [Required]
         public long UserDomainKey { get; set; }
+
         /// <summary>
         /// Hire Group ID
         /// </summary>
+        [ForeignKey("HireGroup")]
         public long HireGroupId { get; set; }
+
         /// <summary>
         /// Vehicle Category ID
         /// </summary>
+        [ForeignKey("VehicleCategory")]
         public short VehicleCategoryId { get; set; }
         /// <summary>
         /// Model Year
@@ -33,10 +41,12 @@ namespace Models.DomainModels
         /// <summary>
         /// Vehicle Model ID
         /// </summary>
+        [ForeignKey("VehicleModel")]
         public short VehicleModelId { get; set; }
         /// <summary>
         /// Vehicle Make ID
         /// </summary>
+        [ForeignKey("VehicleMake")]
         public short VehicleMakeId { get; set; }
         /// <summary>
         /// Is Active
@@ -65,12 +75,12 @@ namespace Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100)]
+        [StringLength(100), Required]
         public string RecLastUpdatedBy { get; set; }
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100)]
+        [StringLength(100), Required]
         public string RecCreatedBy { get; set; }
         /// <summary>
         /// Row Version
@@ -78,11 +88,12 @@ namespace Models.DomainModels
         public long RowVersion { get; set; }
 
         #endregion
+
         #region Reference Properties
         /// <summary>
         /// Hire Group
         /// </summary>
-        public virtual HireGroup Hire { get; set; }
+        public virtual HireGroup HireGroup { get; set; }
         /// <summary>
         /// Vehicle Category
         /// </summary>
@@ -95,6 +106,12 @@ namespace Models.DomainModels
         /// Vehicle Model
         /// </summary>
         public virtual VehicleModel VehicleModel { get; set; }
+
+        /// <summary>
+        /// Vehicle Image Hire Group Details Associated to this Hire Group Detail
+        /// </summary>
+        public virtual ICollection<VehicleImageHireGroupDetail> VehicleImageHireGroupDetails { get; set; }
+
         #endregion
     }
 }

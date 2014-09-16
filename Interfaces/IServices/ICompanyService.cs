@@ -1,7 +1,8 @@
-﻿using System.Linq;
-using Models.DomainModels;
-
-namespace Interfaces.IServices
+﻿using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
+using Cares.Models.ResponseModels;
+using System.Collections.Generic;
+namespace Cares.Interfaces.IServices
 {
     /// <summary>
     /// Company Service Interface
@@ -11,7 +12,26 @@ namespace Interfaces.IServices
         /// <summary>
         /// Load all companies
         /// </summary>
-        /// <returns></returns>
-        IQueryable<Company> LoadAll();
+        IEnumerable<Company> LoadAll();
+
+        /// <summary>
+        /// Delete Compny
+        /// </summary>
+        void DeleteCompany(long companyId);
+
+        /// <summary>
+        /// Load Base data of compnies
+        /// </summary>
+        CompanyBaseDataResponse LoadCompanyBaseData();
+
+        /// <summary>
+        /// Search Compny
+        /// </summary>
+        CompanySearchRequestResponse SearchCompany(CompanySearchRequest request);
+
+        /// <summary>
+        /// Add / Update Company
+        /// </summary>
+        Company AddUpdateCompany(Company companyRequest);
     }
 }

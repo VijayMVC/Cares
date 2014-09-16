@@ -1,16 +1,18 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using Interfaces.Repository;
+using Cares.Interfaces.Repository;
+using Cares.Models.DomainModels;
+using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
-using Models.DomainModels;
-using Repository.BaseRepository;
 
-namespace Repository.Repositories
+
+namespace Cares.Repository.Repositories
 {
     /// <summary>
     /// Standard Rate Repository
     /// </summary>
-    public sealed class StandardRateRepository : BaseRepository<StandardRate>,IStandardRateRepository
+    public sealed class StandardRateRepository : BaseRepository<StandardRate>, IStandardRateRepository
     {
         #region Constructor
         /// <summary>
@@ -33,15 +35,39 @@ namespace Repository.Repositories
         }
 
         #endregion
+        
         #region Public
+        
         /// <summary>
         /// Get All Standard Rates for User Domain Key
         /// </summary>
-        public override IQueryable<StandardRate> GetAll()
+        public override IEnumerable<StandardRate> GetAll()
         {
-            return DbSet.Where(vehicleModel => vehicleModel.UserDomainKey == UserDomainKey);
+            return DbSet.Where(vehicleModel => vehicleModel.UserDomainKey == UserDomainKey).ToList();
         }
 
+        /// <summary>
+        /// Get Standard Rate For Tariff Rate
+        /// </summary>
+        /// <param name="standardRtMainId"></param>
+        /// <returns></returns>
+        public IEnumerable<StandardRate> GetStandardRateForTariffRate(long standardRtMainId)
+        {
+            return DbSet.Where(s => s.UserDomainKey == UserDomainKey && s.StandardRtMainId == standardRtMainId && s.ChildStandardRtId == null).ToList();
+
+        }
+        
+        /// <summary>
+        /// Find by hire group and standard rate main id
+        /// </summary>
+        /// <param name="standardRtMainId"></param>
+        /// <param name="hireGroupDetailId"></param>
+        /// <returns></returns>
+        public IEnumerable<StandardRate> FindByHireGroupId(long standardRtMainId, long hireGroupDetailId)
+        {
+            return DbSet.Where(s => s.UserDomainKey == UserDomainKey && s.StandardRtMainId == standardRtMainId && s.ChildStandardRtId == null && s.HireGroupDetailId == hireGroupDetailId);
+
+        }
         #endregion
     }
 }

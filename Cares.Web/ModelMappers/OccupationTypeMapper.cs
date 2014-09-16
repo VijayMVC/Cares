@@ -1,5 +1,5 @@
-﻿using ApiModel = Cares.Web.Models;
-using DomainModel = Models.DomainModels;
+﻿using Cares.Models.DomainModels;
+using ApiModel = Cares.Web.Models;
 
 namespace Cares.Web.ModelMappers
 {
@@ -10,33 +10,33 @@ namespace Cares.Web.ModelMappers
     {
         #region Public
         #region Entity To Model
+
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static ApiModel.OccupationType CreateFrom(this DomainModel.OccupationType source)
-            {
-                return new ApiModel.OccupationType
-                {
-                    OccupationTypeId = source.OccupationTypeId,
-                    OccupationTypeName = source.OccupationTypeName,
-                    OccupationTypeCode = source.OccupationTypeCode
-                };
-            }
+        public static ApiModel.OccupationTypeDropDown CreateFrom(this OccupationType source)
+        {
+            return new ApiModel.OccupationTypeDropDown
+                   {
+                       OccupationTypeId = source.OccupationTypeId,
+                       OccupationTypeCodeName = source.OccupationTypeCode + " - " + source.OccupationTypeName
+                   };
+        }
+
         #endregion
         #region Model To Entity
         /// <summary>
         ///  Create entity from web model
         /// </summary>
-        public static DomainModel.OccupationType CreateFrom(this ApiModel.OccupationType source)
+        public static OccupationType CreateFrom(this ApiModel.OccupationTypeDropDown source)
         {
-            return new DomainModel.OccupationType
+            return new OccupationType
             {
                 OccupationTypeId = source.OccupationTypeId,
-                OccupationTypeName = source.OccupationTypeName,
-                OccupationTypeCode = source.OccupationTypeCode
+                OccupationTypeName = source.OccupationTypeCodeName,
             };
         }
-        
+
         #endregion
         #endregion
     }

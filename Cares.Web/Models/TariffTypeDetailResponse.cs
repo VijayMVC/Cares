@@ -6,7 +6,7 @@ namespace Cares.Web.Models
     /// </summary>
     public class TariffTypeDetailResponse
     {
-        public TariffTypeDetail TarrifType { get; set; }
-        public IEnumerable<TariffTypeDetail> TarrifTypeRevisions { get; set; }
+        public TariffTypeDetail TariffType { get; set; }
+        public IEnumerable<TariffTypeDetail> TariffTypeRevisions { get; set; }
     }
 }

@@ -1,15 +1,25 @@
-﻿namespace Cares.Web.Models
+﻿
+namespace Cares.Web.Models
 {
     /// <summary>
-    /// Region Model
+    /// Region web model
     /// </summary>
     public class Region
     {
-        #region Persisted Properties
         /// <summary>
         /// Region ID
         /// </summary>
-        public int RegionId { get; set; }
+        public short RegionId { get; set; }
+        /// <summary>
+        /// Country ID
+        /// </summary>
+        public short? CountryId { get; set; }
+
+        /// <summary>
+        /// Country Name
+        /// </summary>
+        public string CountryName { get; set; }
+
         /// <summary>
         /// Region Code
         /// </summary>
@@ -19,9 +29,8 @@
         /// </summary>
         public string RegionName { get; set; }
         /// <summary>
-        /// Country
+        /// Region Description
         /// </summary>
-        public string Country { get; set; }
-        #endregion
+        public string RegionDescription { get; set; }
     }
 }

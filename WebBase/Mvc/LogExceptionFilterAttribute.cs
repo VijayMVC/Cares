@@ -4,10 +4,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http.Filters;
 using System.Web.Mvc;
-using Interfaces.IServices;
+using Cares.Interfaces.IServices;
 using Microsoft.Practices.Unity;
 
-namespace WebBase.Mvc
+namespace Cares.WebBase.Mvc
 {
     /// <summary>
     /// Log Exception Filter Attribut
@@ -61,7 +61,9 @@ namespace WebBase.Mvc
         public ILogger Logger { get; set; }
 
         #endregion
-
+        /// <summary>
+        /// Not implemented Async Call for Logging
+        /// </summary>
         public Task ExecuteExceptionFilterAsync(HttpActionExecutedContext actionExecutedContext, CancellationToken cancellationToken)
         {
             throw new System.NotImplementedException();

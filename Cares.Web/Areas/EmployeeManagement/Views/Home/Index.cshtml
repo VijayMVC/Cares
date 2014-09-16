@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "";
+
+}
+
+<div class="row" id="employeeBinding">
+    <div class="row " data-bind="visible: !isEmployeeEditorVisible()">
+        <h3 class="page-header float-left pageHeaderSection">Employees</h3>
+        <div class="header-toolsSection">
+            <a href="#" class="label label-default create-new-icon" data-bind="click: createEmployee" title='CreateNewEmployee'>@Cares.Web.Resources.Shared.Common.New</a>
+            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title='@Cares.Web.Resources.Shared.Common.ShowFilter' style="display: none"></a>
+        </div>
+    </div>
+    <div class="row searchFilterSection" data-bind="visible: !isEmployeeEditorVisible() && filterSectionVisilble()" style="display: none">
+        <div class=" well">
+            <form class="form-horizontal" data-bind="submit: search">
+                <div class="col-xs-3">
+                    <input type="text" class="form-control" placeholder='@("<"+Cares.Web.Resources.Shared.Common.Search+">")' data-bind="value: searchFilter" />
+                </div>
+                <div class="col-xs-3">
+                    <select class="form-control" data-bind="options: $root.companies , optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '&lt;' + 'Company' + '&gt;', value: companyFilter"></select>
+                </div>
+                <div class="col-xs-3">
+                    <select class="form-control" data-bind="options: $root.employeeStatuses, optionsText: 'EmpStatusCodeName', optionsValue: 'EmpStatusId', optionsCaption: '&lt;' +  'Employee Status' + '&gt;', value: employeeStatusFilter"></select>
+                </div>
+                <button type="submit" class="btn btn-success" data-bind="click: search ">@Cares.Web.Resources.Shared.Common.Search</button>
+                <button type="submit" class="btn btn-default" data-bind="click: reset">@Cares.Web.Resources.Shared.Common.Reset</button>
+                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection" title='@Cares.Web.Resources.Shared.Common.HideSection'></a>
+
+            </form>
+        </div>
+    </div>
+    <div class="row searchFilterResultSection" data-bind="visible: !isEmployeeEditorVisible()">
+        <div class="well">
+            <table id="employeeTable" class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th class="code"><span id="1">Code<span class="icon-up"></span></span></th>
+                        <th class="fName"><span id="2">First Name<span></span></span></th>
+                        <th class="lName"><span id="3">Last Name<span></span></span></th>
+                        <th class="status"><span id="4">Status<span></span></span></th>
+                        <th class="company"><span id="5">Company<span></span></span></th>
+                        <th class="nationality"><span id="6">Nationality<span></span></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- ko template: { name: 'itemEmployeeTemplate' , foreach: employees } -->
+                    <!-- /ko -->
+                </tbody>
+            </table>
+            <!-- ko with: pager -->
+            @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
+            <!-- /ko -->
+        </div>
+    </div>
+    <script id="editActionEmployeeTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onEditEmployee" title=@Cares.Web.Resources.Shared.Common.Edit><span class="glyphicon glyphicon-edit"></span></a>
+    </script>
+    <script id="deleteActionEmployeeTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onDeleteEmployee" title=@Cares.Web.Resources.Shared.Common.Delete><span class="glyphicon glyphicon-remove"></span></a>
+    </script>
+    <script id="itemEmployeeTemplate" type="text/html">
+        <tr>
+            <td data-bind="text: code"></td>
+            <td data-bind="text: fName"></td>
+            <td data-bind="text: lName"></td>
+            <td data-bind="text: status"></td>
+            <td data-bind="text: company"></td>
+            <td data-bind="text: nationality"></td>
+            <td>
+                <!-- ko template: { name: 'editActionEmployeeTemplate' } -->
+                <!-- /ko -->
+            </td>
+            <td>
+                <!-- ko template: { name: 'deleteActionEmployeeTemplate' } -->
+                <!-- /ko -->
+            </td>
+        </tr>
+    </script>
+    @Html.Partial("_EmployeeEditor")
+
+</div>
+<!-- ko stopBinding: true -->
+@Html.Partial("~/Areas/Common/Views/Shared/_ConfirmationDialog.cshtml")
+<!-- /ko -->
+@section inlinescripts
+{
+    <script type="text/javascript">
+        require(["employee/employee.view", "common/confirmation.view"]);
+    </script>
+}

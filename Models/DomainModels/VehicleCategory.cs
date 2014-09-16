@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Models.DomainModels
+namespace Cares.Models.DomainModels
 {
     /// <summary>
     /// Vehicle Category Domain Model
@@ -12,7 +13,6 @@ namespace Models.DomainModels
         /// <summary>
         /// Vehicle Category ID
         /// </summary>
-        [Key]
         public short VehicleCategoryId { get; set; }
         /// <summary>
         /// User Domain Key
@@ -21,7 +21,7 @@ namespace Models.DomainModels
         /// <summary>
         /// Vehicle Category Code
         /// </summary>
-        [StringLength(100)]
+        [StringLength(100), Required]
         public string VehicleCategoryCode { get; set; }
         /// <summary>
         /// Vehicle Category Name
@@ -60,17 +60,31 @@ namespace Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100)]
+        [StringLength(100), Required]
         public string RecLastUpdatedBy { get; set; }
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100)]
+        [StringLength(100), Required]
         public string RecCreatedBy { get; set; }
         /// <summary>
         /// Row Version
         /// </summary>
         public long RowVersion { get; set; }
+        
+        #endregion
+
+        #region Reference Properties
+
+        /// <summary>
+        /// Hire Group Details having this Category
+        /// </summary>
+        public virtual ICollection<HireGroupDetail> HireGroupDetails { get; set; }
+
+        /// <summary>
+        /// Vehicles having this Vehicle Category
+        /// </summary>
+        public virtual ICollection<Vehicle> Vehicles { get; set; }
 
         #endregion
     }

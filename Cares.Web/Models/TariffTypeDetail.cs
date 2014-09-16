@@ -14,19 +14,19 @@ namespace Cares.Web.Models
         /// <summary>
         /// Operation Id
         /// </summary>
-        public int OperationId { get; set; }
+        public long OperationId { get; set; }
         /// <summary>
         /// Measurement Unit Id
         /// </summary>
-        public int MeasurementUnitId { get; set; }
+        public int? MeasurementUnitId { get; set; }
         /// <summary>
         /// Company Id
         /// </summary>
-        public int CompanyId { get; set; }
+        public long CompanyId { get; set; }
         /// <summary>
         /// Department ID
         /// </summary>
-        public int DepartmentId { get; set; }
+        public long DepartmentId { get; set; }
         /// <summary>
         /// Tariff Type Code
         /// </summary>

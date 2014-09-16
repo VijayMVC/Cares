@@ -1,8 +1,8 @@
-﻿using Models.DomainModels;
-using Models.RequestModels;
-using Models.ResponseModels;
+﻿using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
+using Cares.Models.ResponseModels;
 
-namespace Interfaces.Repository
+namespace Cares.Interfaces.Repository
 {
     /// <summary>
     /// Business Partner Repository Interface
@@ -12,21 +12,34 @@ namespace Interfaces.Repository
         /// <summary>
         /// Get All business partners
         /// </summary>
-        /// <param name="businessPartnerSearchRequest"></param>
-        /// <returns></returns>
-        BusinessPartnerResponse GetAllBusinessPartners(BusinessPartnerSearchRequest businessPartnerSearchRequest);
+        BusinessPartnerSearchResponse GetAllBusinessPartners(BusinessPartnerSearchRequest businessPartnerSearchRequest);
         /// <summary>
         /// Get Busienss partner by Name and Id
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="id"></param>
-        /// <returns></returns>
         BusinessPartner GetBusinessPartnerByName(string name, int id);
         /// <summary>
         /// Get business partner by Id
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         BusinessPartner GetById(long id);
+
+        /// <summary>
+        /// Get business partnere by License No
+        /// </summary>
+        BusinessPartner GetByLicenseNo(string licenseNo);
+
+        /// <summary>
+        /// Get business partnere by Nic No
+        /// </summary>
+        BusinessPartner GetByNicNo(string nicNo);
+
+        /// <summary>
+        /// Get business partnere by Passport No
+        /// </summary>
+        BusinessPartner GetByPassportNo(string passportNo);
+
+        /// <summary>
+        /// Get business partnere by Phone No
+        /// </summary>
+        BusinessPartner GetByPhoneNo(string phoneNo, Models.CommonTypes.PhoneType phoneType);
     }
 }

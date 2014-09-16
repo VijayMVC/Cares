@@ -1,83 +1,129 @@
-﻿using System;
+﻿using Cares.ExceptionHandling;
+using Cares.Interfaces.IServices;
+using Cares.Interfaces.Repository;
+using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
+using Cares.Models.ResponseModels;
+using System;
 using System.Globalization;
-using System.Linq;
-using Interfaces.IServices;
-using Interfaces.Repository;
-using Models.DomainModels;
-using Models.RequestModels;
-using Models.ResponseModels;
 
-namespace Implementation.Services
+namespace Cares.Implementation.Services
 {
     /// <summary>
     /// FleetPool Service
     /// </summary>
     public sealed class FleetPoolService : IFleetPoolService
     {
-        #region Public
-        /// <summary>
-        /// Load All Fleet Pools
-        /// </summary>
-        public FleetPoolResponse SerchFleetPool(FleetPoolSearchRequest searchRequest)
-        {
-            int rowCount;
-            return new FleetPoolResponse
-            {
-                FleetPools = fleetPoolRepository.SearchFleetPool(searchRequest, out rowCount),
-                TotalCount = rowCount
-            };
-        }
-
-        /// <summary>
-        /// Load Fleet Pool Base Data
-        /// </summary>
-        public FleetPoolBaseDataResponse LoadFleetPoolBaseData()
-        {
-            return new FleetPoolBaseDataResponse
-            {
-                Operations = operationRepository.GetAll(),
-                Regions = regionRepository.GetAll()
-            };
-        }
-        public void DeleteFleetPool(int id)
-        {
-            FleetPool dbVersion = FindFleetPool(id);
-            if (dbVersion == null)
-            {
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, "FleetPool with Id {0} not found!", id));
-            }
-
-            fleetPoolRepository.Delete(dbVersion);
-            fleetPoolRepository.SaveChanges();
-        }
-        public FleetPool FindFleetPool(int id)
-        {
-            return fleetPoolRepository.Find(id);
-        }
-        #endregion
-
-        #region Constructor
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public FleetPoolService(IFleetPoolRepository iFleetPoolRepositoryService, IRegionRepository regionRepository, IOperationRepository operationRepository)
-        {
-            if (iFleetPoolRepositoryService == null) throw new ArgumentNullException("iFleetPoolRepositoryService");
-            if (regionRepository == null) throw new ArgumentNullException("regionRepository");
-            if (operationRepository == null) throw new ArgumentNullException("operationRepository");
-
-            fleetPoolRepository = iFleetPoolRepositoryService;
-            this.regionRepository = regionRepository;
-            this.operationRepository = operationRepository;
-        }
-
-        #endregion
-
-        #region Private
-        private readonly IFleetPoolRepository fleetPoolRepository;
-        private readonly IRegionRepository regionRepository;
+       #region Private
+       
         private readonly IOperationRepository operationRepository;
+        private readonly ICountryRepository countryRepository;
+        private readonly IRegionRepository regionRepository;
+         private readonly IFleetPoolRepository fleetPoolRepository;
 
         #endregion
+       #region Constructors
+         /// <summary>
+         /// Constructors
+         /// </summary>
+         public FleetPoolService(
+             IOperationRepository operationRepository, ICountryRepository countryRepository,
+             IRegionRepository regionRepository, IFleetPoolRepository fleetPoolRepository)
+         {
+             this.operationRepository = operationRepository;
+             this.countryRepository = countryRepository;
+             this.regionRepository = regionRepository;
+             this.fleetPoolRepository = fleetPoolRepository;
+         }
+
+         #endregion
+       #region Public
+         /// <summary>
+         /// Load All Fleet Pools 
+         /// </summary>
+         public FleetPoolResponse SerchFleetPool(FleetPoolSearchRequest searchRequest)
+         {
+             int rowCount;
+             return new FleetPoolResponse
+             {
+                 FleetPools = fleetPoolRepository.SearchFleetPool(searchRequest, out rowCount),
+                 TotalCount = rowCount
+             };
+         }
+
+
+         /// <summary>
+         /// Load Fleet Pool Base Data
+         /// </summary>
+         public FleetPoolBaseDataResponse LoadFleetPoolBaseData()
+         {
+             return new FleetPoolBaseDataResponse
+             {
+                 Operations = operationRepository.GetSalesOperation(),
+                 Regions = regionRepository.GetAll(),
+                 Countries = countryRepository.GetAll()
+             };
+         }
+
+         /// <summary>
+         /// Delete FleetPool
+         /// </summary>
+         public void DeleteFleetPool(long fleetPoolId)
+         {
+             FleetPool dbVersion = FindFleetPool(fleetPoolId);
+                 if (dbVersion == null)
+                 {
+                     throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
+                         "FleetPool with Id {0} not found!", fleetPoolId));
+                 }
+                 fleetPoolRepository.Delete(dbVersion);
+                 fleetPoolRepository.SaveChanges();
+         }
+
+         /// <summary>
+         /// Find FleetPool by id
+         /// </summary>
+         public FleetPool FindFleetPool(long fleetPoolId)
+         {
+             return fleetPoolRepository.Find(fleetPoolId);
+
+         }
+
+         /// <summary>
+         /// update fleetpool 
+         /// </summary>
+         public FleetPool SaveFleetPool(FleetPool fleetPool)
+         {
+             FleetPool fleetPoolDbVersion = fleetPoolRepository.Find(fleetPool.FleetPoolId);
+             // To check the code availability 
+             if (!fleetPoolRepository.IsFleetPoolCodeExists(fleetPool))
+             {
+                 if (fleetPoolDbVersion == null) //Add Case
+                 {
+                     fleetPool.IsActive = true;
+                     fleetPool.IsDeleted = fleetPool.IsPrivate = fleetPool.IsReadOnly = false;
+                     fleetPool.RecLastUpdatedBy = fleetPool.RecCreatedBy = fleetPoolRepository.LoggedInUserIdentity;
+                     fleetPool.RecCreatedDt = fleetPool.RecLastUpdatedDt = DateTime.Now;
+                     fleetPool.RowVersion = 0;
+                     fleetPool.UserDomainKey = fleetPoolRepository.UserDomainKey;
+                     fleetPoolRepository.Add(fleetPool);
+                 }
+                 else //Update Case
+                 {
+                     fleetPoolDbVersion.FleetPoolCode = fleetPool.FleetPoolCode;
+                     fleetPoolDbVersion.FleetPoolName = fleetPool.FleetPoolName;
+                     fleetPoolDbVersion.FleetPoolDescription = fleetPool.FleetPoolDescription;
+                     fleetPoolDbVersion.RecLastUpdatedDt = DateTime.Now;
+                     fleetPoolDbVersion.RegionId = fleetPool.RegionId;
+                     fleetPoolDbVersion.OperationId = fleetPool.OperationId;
+                     fleetPoolDbVersion.RecLastUpdatedBy = fleetPoolRepository.LoggedInUserIdentity;
+                     fleetPoolDbVersion.RowVersion = fleetPoolDbVersion.RowVersion + 1;
+                 }
+                 fleetPoolRepository.SaveChanges();
+                 return fleetPoolRepository.GetFleetPoolWithDetails(fleetPool.FleetPoolId);
+             }
+             throw new CaresException(Resources.FleetPool.FleetPool.FleetPoolWithSameCodeAlreadyExistsError);
+         }
+         #endregion 
     }
 }

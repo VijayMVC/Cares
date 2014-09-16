@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using Models.DomainModels;
+﻿using System.Collections.Generic;
+using Cares.Models.DomainModels;
 
-namespace Models.ResponseModels
+namespace Cares.Models.ResponseModels
 {
     /// <summary>
     /// Business Parnter Base Data Domain Model
@@ -44,10 +42,49 @@ namespace Models.ResponseModels
         /// </summary>
         public IEnumerable<BusinessPartnerCompany> ResponseBusinessPartnerCompanies { get; set; }
         /// <summary>
-        /// Passport Countries
+        /// Countries
         /// </summary>
-        public IEnumerable<Country> ResponsePassportCountries { get; set; }
-   
+        public IEnumerable<Country> ResponseCountries { get; set; }
+        /// <summary>
+        /// Business Segments
+        /// </summary>
+        public IEnumerable<BusinessSegment> ResponseBusinessSegments { get; set; }
+        /// <summary>
+        /// Business Partner SubTypes
+        /// </summary>
+        public IEnumerable<BusinessPartnerSubType> ResponseBusinessPartnerSubTypes { get; set; }
+        /// <summary>
+        /// Phone Types
+        /// </summary>
+        public IEnumerable<PhoneType> ResponsePhoneTypes { get; set; }
+        /// <summary>
+        /// Address Types
+        /// </summary>
+        public IEnumerable<AddressType> ResponseAddressTypes { get; set; }
+        /// <summary>
+        /// Marketing Channels
+        /// </summary>
+        public IEnumerable<MarketingChannel> ResponseMarketingChannels { get; set; }
+        /// <summary>
+        /// Business Partner Relationship Types
+        /// </summary>
+        public IEnumerable<BusinessPartnerRelationshipType> ResponseBusinessPartnerRelationshipTypes { get; set; }
+        /// <summary>
+        /// Regions
+        /// </summary>
+        public IEnumerable<Region> ResponseRegions { get; set; }
+        /// <summary>
+        /// Sub Regions
+        /// </summary>
+        public IEnumerable<SubRegion> ResponseSubRegions { get; set; }
+        /// <summary>
+        /// Cities 
+        /// </summary>
+        public IEnumerable<City> ResponseCities { get; set; }
+        /// <summary>
+        /// Areas
+        /// </summary>
+        public IEnumerable<Area> ResponseAreas { get; set; }
         #endregion
     }
 }

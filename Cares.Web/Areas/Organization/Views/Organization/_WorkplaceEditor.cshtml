@@ -1,0 +1,140 @@
+﻿
+<div class="well col-md-12" id="WorkplaceEditor" data-bind="visible: isWorkPlaceEditorVisible , with:selectedWorkPlace" style="display: none;">
+    <div class="float-left detailsContainer">
+        <h3 class="page-header detailsHeaderSection">@Cares.Web.Resources.Organization.Workplace.WorkPlaceDetail</h3>
+        <button class="btn  btn-info" data-bind="click:$root.onSaveWorkPlace">@Cares.Web.Resources.Shared.Common.Save</button>
+        <button class="btn  btn-default" data-bind="click:$root.onCancelSaveWorkPlace">@Cares.Web.Resources.Shared.Common.Cancel</button>
+    </div>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.WorkplaceCode*</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Workplace.WorkplaceCode+">")" id="tariffTypeCode" data-bind="value: code" />
+            </div>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.WorkplaceName*</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Workplace.WorkplaceName+">")" id="tariffTypeName" data-bind="value:name" />
+            </div>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.Description</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Workplace.Description+">")" id="tariffTypeDescription" data-bind="value:description" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.WorkplaceType*</label>
+            <div class="col-md-2">
+                <select class="form-control" data-bind="options: $root.baseWorkplaceTypeList, optionsText: 'WorkPlaceTypeCodeName', optionsValue: 'WorkPlaceTypeId',  optionsCaption:'&lt;' +'@Cares.Web.Resources.Organization.Workplace.WorkplaceType'+'&gt;', value:workplaceTypeId"></select>
+            </div>
+
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.Company*</label>
+            <div class="col-md-2">
+                <select class="form-control" id="baseCompniesList" data-bind="options: $root.baseCompniesList, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.Workplace.Company '+'&gt;', value:companyId, event: { change : $root.filterWorkLocations}"></select>
+            </div>
+
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.WorkLocation*</label>
+            <div class="col-md-2">
+                <select class="form-control" data-bind="options: $root.filteredBaseWorkLocationsList, optionsText: 'WorkLocationCodeName', optionsValue: 'WorkLocationId', optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.Workplace.WorkplaceType '+'&gt;', value:workLocationId"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.ParentWorkplace</label>
+            <div class="col-md-2">
+                <select class="form-control" data-bind="options: $root.filteredParentWorkPlaceList, optionsText: 'WorkPlaceCodeName', optionsValue: 'WorkPlaceId',  optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.Workplace.ParentWorkplace '+'&gt;', value:parentWorkPlaceId"></select>
+            </div>
+        </div>
+    </form>
+    <div class="panel panel-info">
+        <div class="panel-heading">@Cares.Web.Resources.Organization.Workplace.Operations</div>
+        <!-- 
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="active"><a href="#detail" role="tab" data-toggle="tab">@Cares.Web.Resources.Organization.Workplace.Operations</a></li>
+        </ul> tabs -->
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <br />
+            <!-- first tab - Detail-->
+            <div class="tab-pane active" id="detail" data-bind="with:tabDetail">
+                <form class="form-horizontal">
+                    <div class="addToBtnDiv row">
+                        <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onAddOperation ">@Cares.Web.Resources.Shared.Common.Add</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.LocationCode*</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Workplace.LocationCode+">")"  data-bind="value:locationCode" />
+                        </div>
+                        <label for="" class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.LocationName*</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Workplace.LocationName+">")"  data-bind="value:locationName" />
+                        </div>
+                        <label for="" class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.Description</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Workplace.Description+">")"  data-bind="value:locationDescription" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.Operations</label>
+                        <div class="col-md-2">
+                            <select class="form-control" data-bind="options: $root.baseOperationsList, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.Workplace.Operations '+'&gt;', value:$root.operationDropDownId"></select>
+                        </div>
+
+                        <label for="" class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.FleetPool</label>
+                        <div class="col-md-2">
+                            <select class="form-control" data-bind="options: $root.baseFleetPoolList, optionsText: 'FleetPoolCodeName', optionsValue: 'FleetPoolId', optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.Workplace.FleetPool '+'&gt;', value:$root.fleelPoolDropDownId"></select>
+                        </div>
+
+                        <label for="" class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.CostCenter*</label>
+                        <div class="col-md-2">
+                            <input type="text" onkeypress="return onlyNumbers(this)" placeholder="@("<"+Cares.Web.Resources.Organization.Workplace.CostCenter+">")"  class="form-control" data-bind="    value: costCenter" />
+                        </div>
+
+                    </div>
+                </form>
+                <!--here -->
+                <table  class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th> <span>@Cares.Web.Resources.Organization.Workplace.LocationCode<span></span></span></th>
+                            <th> <span>@Cares.Web.Resources.Organization.Workplace.LocationName<span></span></span></th>
+                            <th> <span>@Cares.Web.Resources.Organization.Workplace.Description<span></span></span></th>
+                            <th> <span>@Cares.Web.Resources.Organization.Workplace.Operations<span></span></span></th>
+                            <th> <span>@Cares.Web.Resources.Organization.Workplace.FleetPool<span></span></span></th>
+                            <th> <span>@Cares.Web.Resources.Organization.Workplace.CostCenter<span></span></span></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- ko template: { name: 'itemHireGroupDetailTemplate' , foreach: $root.operationsTabList } -->
+                        <!-- /ko -->
+                    </tbody>
+                </table>
+                <script id="deleteActionOpeartionTemplate" type="text/html">
+                    <a href="#" data-bind="click: $root.deleteOperationDetail" title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
+                </script>
+                <script id="itemHireGroupDetailTemplate" type="text/html">
+                    <tr>
+                        <td data-bind="text: locationCode"></td>
+                        <td data-bind="text: locationName"></td>
+                        <td data-bind="text: locationDescription"></td>
+                        <td data-bind="text: operationName"></td>
+                        <td data-bind="text: fleelPoolName"></td>
+                        <td data-bind="text: costCenter"></td>
+                        <td>
+                            <!-- ko template: { name: 'deleteActionOpeartionTemplate' } -->
+                            <!-- /ko -->
+                        </td>
+                    </tr>
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function onlyNumbers(evt) {
+        var e = event || evt; // for trans-browser compatibility
+        var charCode = e.which || e.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+</script>

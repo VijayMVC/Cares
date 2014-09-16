@@ -1,7 +1,8 @@
 ﻿using System.Linq;
-using Models.ResponseModels;
-using ApiModel=Cares.Web.Models;
-using Models.DomainModels;
+using Cares.Models.DomainModels;
+using Cares.Models.ResponseModels;
+using ApiModel = Cares.Web.Models;
+
 namespace Cares.Web.ModelMappers
 {
     /// <summary>
@@ -10,26 +11,40 @@ namespace Cares.Web.ModelMappers
     public static class FleetPoolMapper
     {
         #region Fleet Pool
-        #region Entity To Model
         /// <summary>
         ///  Create web model from entity
         /// </summary>
         public static ApiModel.FleetPool CreateFrom(this FleetPool source)
         {
             return new ApiModel.FleetPool
+                   {
+                       FleetPoolId = source.FleetPoolId,
+                       FleetPoolCode = source.FleetPoolCode,
+                       FleetPoolName = source.FleetPoolName,
+                       ApproximateVehiclesAsgnd = source.ApproximateVehiclesAsgnd,
+                       Description = source.FleetPoolDescription,
+                       OperationId = source.Operation.OperationId,
+                       OperationName = source.Operation.OperationName,
+                       RegionId = source.Region.RegionId,
+                       RegionName = source.Region.RegionName,
+                       CountryId = source.Region.CountryId,
+                       CountryName = source.Region.Country.CountryName,
+                   };
+        }
+
+        /// <summary>
+        /// Fleet Pool Drop Down
+        /// </summary>
+        public static ApiModel.FleetPoolDropDown CreateFromm(this FleetPool source)
+        {
+            return new ApiModel.FleetPoolDropDown
             {
                 FleetPoolId = source.FleetPoolId,
-                FleetPoolCode = source.FleetPoolCode,
-                FleetPoolName = source.FleetPoolName,
-                Operation = source.Operation.CreateFrom(),
-                Region = source.Region.CreateFrom()
+                FleetPoolCodeName = source.FleetPoolCode + " - " + source.FleetPoolName
             };
         }
-        #endregion     
         #endregion
-
         #region FleetPoolBase
-
         /// <summary>
         /// Fleet Pool Base Data Response
         /// </summary>
@@ -38,11 +53,11 @@ namespace Cares.Web.ModelMappers
             return new ApiModel.FleetPoolBaseDataResponse
              {
                  Operations = source.Operations.Select(operation => operation.CreateFrom()),
-                 Regions = source.Regions.Select(region => region.CreateFrom())
+                 Regions = source.Regions.Select(region => region.CreateFrom()),
+                 Countries = source.Countries.Select(country => country.CreateFrom())
              };
         }
         #endregion
-
         #region FleetPoolResponse
 
         /// <summary>
@@ -56,7 +71,24 @@ namespace Cares.Web.ModelMappers
                 TotalCount = source.TotalCount
             };
         }
-
+        /// <summary>
+        /// web model to domain model mapper
+        /// </summary>
+        public static FleetPool CreateFrom(this ApiModel.FleetPool source)
+        {
+            return new FleetPool
+            {
+                FleetPoolId = source.FleetPoolId,
+                FleetPoolCode = source.FleetPoolCode,
+                FleetPoolName = source.FleetPoolName,
+                FleetPoolDescription = source.Description,
+                ApproximateVehiclesAsgnd = source.ApproximateVehiclesAsgnd,
+                OperationId = source.OperationId,
+                RegionId = source.RegionId
+            };
+        }
         #endregion
+
+
     }
 }

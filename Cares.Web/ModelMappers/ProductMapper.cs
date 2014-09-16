@@ -1,4 +1,5 @@
 ﻿using Product = Cares.Web.Models.Product;
+using DomainModels = Cares.Models.DomainModels;
 
 namespace Cares.Web.ModelMappers
 {
@@ -9,7 +10,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static Product CreateFrom(this global::Models.DomainModels.Product source)
+        public static Product CreateFrom(this DomainModels.Product source)
         {
              return new Product
             {
@@ -26,9 +27,9 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create entity from web model
         /// </summary>
-        public static global::Models.DomainModels.Product CreateFrom(this Product source)
+        public static DomainModels.Product CreateFrom(this Product source)
         {
-             return new global::Models.DomainModels.Product
+             return new DomainModels.Product
             {
                 Id = source.Id,
                 Name = source.Name,

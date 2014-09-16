@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Models.DomainModels;
 
-namespace Models.ResponseModels
+namespace Cares.Models.ResponseModels
 {
     /// <summary>
     /// Tariff Rate Domain Response Model
@@ -14,14 +13,15 @@ namespace Models.ResponseModels
         /// </summary>
         public TariffRateResponse()
         {
-            TariffRates = new List<StandardRateMain>();
+            TariffRates = new List<TariffRateContent>();
         }
         #endregion
+        
         #region Public
         /// <summary>
-        /// Tarrif Rates
+        /// tariff Rates
         /// </summary>
-        public IEnumerable<StandardRateMain> TariffRates { get; set; }
+        public IEnumerable<TariffRateContent> TariffRates { get; set; }
 
         /// <summary>
         /// Total Count

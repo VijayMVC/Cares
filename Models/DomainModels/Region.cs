@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Models.DomainModels
+namespace Cares.Models.DomainModels
 {
     public class Region
     {
@@ -9,14 +11,16 @@ namespace Models.DomainModels
         /// <summary>
         /// Region ID
         /// </summary>
-        public int RegionId { get; set; }
+        public short RegionId { get; set; }
         /// <summary>
         /// Country ID
         /// </summary>
-        public int? CountryId { get; set; }
+        [ForeignKey("Country")]
+        public short? CountryId { get; set; }
         /// <summary>
         /// Region Code
         /// </summary>
+        [StringLength(100), Required]
         public string RegionCode { get; set; }
         /// <summary>
         /// Region Name
@@ -51,7 +55,7 @@ namespace Models.DomainModels
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100)]
+        [StringLength(100), Required]
         public string RecCreatedBy { get; set; }
         /// <summary>
         /// Record Last Updated Date
@@ -60,12 +64,17 @@ namespace Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100)]
+        [StringLength(100), Required]
         public string RecLastUpdatedBy { get; set; }
         /// <summary>
         /// User Domain Key
         /// </summary>
         public long UserDomainKey { get; set; }
+
+        /// <summary>
+        /// Row Version
+        /// </summary>
+        public long RowVersion { get; set; }
 
         #endregion
 
@@ -75,6 +84,15 @@ namespace Models.DomainModels
         /// Country
         /// </summary>
         public virtual Country Country { get; set; }
+
+        /// <summary>
+        /// Fleet Pools this region has
+        /// </summary>
+        public virtual ICollection<FleetPool> FleetPools { get; set; }
+        /// <summary>
+        /// City
+        /// </summary>
+        public virtual ICollection<City> Cities { get; set; }
 
         #endregion
     }

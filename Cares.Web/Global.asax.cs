@@ -8,9 +8,7 @@ using Microsoft.Practices.Unity.Mvc;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using Microsoft.Practices.EnterpriseLibrary.Logging;
-using WebBase.WebAPI;
 using System.Web.Http;
-using WebBase.UnityConfiguration;
 
 namespace Cares.Web
 {
@@ -45,7 +43,7 @@ namespace Cares.Web
         /// </summary>
         private static void RegisterTypes()
         {
-            WebBase.TypeRegistrations.RegisterTypes(container);
+            Cares.WebBase.TypeRegistrations.RegisterTypes(container);
             Implementation.TypeRegistrations.RegisterType(container);
 
         }

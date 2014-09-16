@@ -1,15 +1,11 @@
-﻿using Interfaces.Repository;
-using Microsoft.Practices.Unity;
-using Models.MenuModels;
-using Repository.BaseRepository;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Cares.Interfaces.Repository;
+using Cares.Models.MenuModels;
+using Cares.Repository.BaseRepository;
+using Microsoft.Practices.Unity;
 
-namespace Repository.Repositories
+namespace Cares.Repository.Repositories
 {
     /// <summary>
     /// Menu Repository

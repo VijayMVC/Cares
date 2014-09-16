@@ -1,0 +1,516 @@
+﻿<div class="well col-md-12" id="employeeEditor" data-bind="visible: isEmployeeEditorVisible, with: addEmployeeItem" style="display: none;">
+    <div class="detailsContainer">
+        <h3 class="page-header detailsHeaderSection">Employee Detail </h3>
+        <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onSaveEmployee, enable: hasChanges, css: { 'btn-warning': hasChanges }">@Cares.Web.Resources.Shared.Common.Save</button>
+        <button class="btn btn-default" id="saveBtn" data-bind="click: $root.closeEmployeeEditor">@Cares.Web.Resources.Shared.Common.Cancel</button>
+    </div>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="code" class="control-label h5 col-sm-1">Code*</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control" placeholder='Employee Code' id="code" data-bind="value:code , validationTooltip:code" />
+            </div>
+            <label for="company" class="control-label h5 col-sm-1">Company *</label>
+            <div class="col-md-3">
+                <select id="company" class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '&lt;' + 'Company' + '&gt;' ,value:companyId, event:{change:$root.onSelectedCompany } "></select>
+            </div>
+            <label for="company" class="control-label h5 col-sm-1">Employee Status * </label>
+            <div class="col-md-3">
+                <select id="company" class="form-control" data-bind="options: $root.employeeStatuses, optionsText: 'EmpStatusCodeName', optionsValue: 'EmpStatusId', optionsCaption: '&lt;' + 'Employee Status' + '&gt;' , value:statusId"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="fName" class="control-label h5 col-sm-1">First Name *</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control" placeholder='First Name' id="fName" data-bind="value:fName , validationTooltip:fName" />
+            </div>
+            <label for="mName" class="control-label h5 col-sm-1">Middle Name *</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control" placeholder='Middle Name' id="mName" data-bind="value:mName , validationTooltip:mName" />
+            </div>
+            <label for="lName" class="control-label h5 col-sm-1">Last Name *</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control" placeholder='Middle Name' id="lName" data-bind="value:lName , validationTooltip:lName" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="dOB" class="control-label h5 col-sm-1">DOB *</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control" placeholder='DOB' id="dOB" data-bind="datepicker:dOB , validationTooltip:dOB" />
+            </div>
+            <label for="company" class="control-label h5 col-sm-1">Gender </label>
+            <div class="col-md-3">
+                <select id="company" class="form-control" data-bind="options: $root.genders, optionsText: 'Text', optionsValue: 'Id', optionsCaption: '&lt;' + 'Gender' + '&gt;' ,value:gender "></select>
+            </div>
+            <label for="nationality" class="control-label h5 col-sm-1"> Nationality </label>
+            <div class="col-md-3">
+                <select id="nationality" class="form-control" data-bind="options: $root.nationalities, optionsText: 'CountryCodeName', optionsValue: 'CountryId', optionsCaption: '&lt;' + 'Nationalty' + '&gt;' , value:nationalityId"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="notes" class="control-label h5 col-sm-1">Notes</label>
+            <div class="col-md-3">
+                <textarea class="form-control" rows="4" placeholder='Notes' id="notes" data-bind="value: notes , valueUpdate: 'keyup'"></textarea>
+            </div>
+            <label for="notes1" class="control-label h5 col-sm-1">Notes 1</label>
+            <div class="col-md-3">
+                <textarea class="form-control" rows="4" placeholder='Notes 1' id="notes1" data-bind="value: notes1 , valueUpdate: 'keyup'"></textarea>
+            </div>
+            <label for="notes2" class="control-label h5 col-sm-1">Notes 2</label>
+            <div class="col-md-3">
+                <textarea class="form-control" rows="4" placeholder='Notes 2' id="notes2" data-bind="value: notes2 , valueUpdate: 'keyup'"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="notes3" class="control-label h5 col-sm-1">Notes 3</label>
+            <div class="col-md-3">
+                <textarea class="form-control" rows="4" placeholder='Notes 3' id="notes3" data-bind="value: notes3 , valueUpdate: 'keyup'"></textarea>
+            </div>
+            <label for="notes4" class="control-label h5 col-sm-1">Notes 4</label>
+            <div class="col-md-3">
+                <textarea class="form-control" rows="4" placeholder='Notes 5' id="notes4" data-bind="value: notes4 , valueUpdate: 'keyup'"></textarea>
+            </div>
+            <label for="notes5" class="control-label h5 col-sm-1">Notes 5</label>
+            <div class="col-md-3">
+                <textarea class="form-control" rows="4" placeholder='Notes 5' id="notes5" data-bind="value: notes5 , valueUpdate: 'keyup'"></textarea>
+            </div>
+        </div>
+        <br />
+        <div class="panel panel-info">
+            <div class="panel-heading">.</div>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="active"><a href="#jobInfo" role="tab" data-toggle="tab">Job Info.</a></li>
+                <li><a href="#address" role="tab" data-toggle="tab">Address</a></li>
+                <li><a href="#phone" role="tab" data-toggle="tab">Phone</a></li>
+                <li><a href="#documentInfo" role="tab" data-toggle="tab">Document Info.</a></li>
+                <li><a href="#jobProgress" role="tab" data-toggle="tab">Job Progress.</a></li>
+                <li><a href="#authorizedLocations" role="tab" data-toggle="tab">Authorized Locations</a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <br />
+                <!-- first tab - Job Info.-->
+                <div class="tab-pane active" id="jobInfo" data-bind="with: jobInfo">
+                    <div class="form-group">
+                        <label for="jobTypes" class="control-label h5 col-sm-1">Job Type * </label>
+                        <div class="col-md-3">
+                            <select id="jobTypes" class="form-control" data-bind="options: $root.jobTypes, optionsText: 'JobTypeCodeName', optionsValue: 'JobTypeId', optionsCaption: '&lt;' + 'Job Type' + '&gt;' ,value:jobTypeId "></select>
+                        </div>
+                        <label for="designation" class="control-label h5 col-sm-1"> Designation * </label>
+                        <div class="col-md-3">
+                            <select id="designation" class="form-control" data-bind="options: $root.designations, optionsText: 'DesignationCodeName', optionsValue: 'DesignationId', optionsCaption: '&lt;' + 'Designation' + '&gt;' , value:desgId"></select>
+                        </div>
+                        <label for="desgGrade" class="control-label h5 col-sm-1"> Designation Grade * </label>
+                        <div class="col-md-3">
+                            <select id="desgGrade" class="form-control" data-bind="options: $root.designationGrades, optionsText: 'DesigGradeCodeName', optionsValue: 'DesigGradeId', optionsCaption: '&lt;' + 'Designation Grade' + '&gt;' , value:desgGardeId"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="jobTypes" class="control-label h5 col-sm-1">Department *</label>
+                        <div class="col-md-3">
+                            <select id="jobTypes" class="form-control" data-bind="options: $root.filteredDepartments, optionsText: 'DepartmentCodeName', optionsValue: 'DepartmentId', optionsCaption: '&lt;' + 'Department' + '&gt;' ,value:depId "></select>
+                        </div>
+                        <label for="designation" class="control-label h5 col-sm-1">Workplace * </label>
+                        <div class="col-md-3">
+                            <select id="designation" class="form-control" data-bind="options: $root.filteredWorkplaces, optionsText: 'WorkPlaceCodeName', optionsValue: 'WorkPlaceId', optionsCaption: '&lt;' + 'Work place ' + '&gt;' , value:workPlaceId"></select>
+                        </div>
+                        <label for="supervisors" class="control-label h5 col-sm-1">  Supervisor  </label>
+                        <div class="col-md-3">
+                            <select id="supervisors" class="form-control" data-bind="options: $root.supervisors, optionsText: 'EmployeeCodeName', optionsValue: 'EmployeeId', optionsCaption: '&lt;' + 'Designation Grade' + '&gt;' , value:supervisorId"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="joiningDate" class="control-label h5 col-sm-1">joining Date *</label>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" placeholder='joining Date' id="joiningDate" data-bind="datepicker:joiningDate , validationTooltip:joiningDate" />
+                        </div>
+                        <label for="salary" class="control-label h5 col-sm-1">Salary</label>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" placeholder='Salary' id="salary" data-bind="value:salary , validationTooltip:salary" />
+                        </div>
+                    </div>
+                </div>
+                <!-- second tab - Address-->
+                <div class="tab-pane" id="address">
+                    <div data-bind="with:address">
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                <button class="btn btn-sm pull-right" id="businessPartnerAddressItemSave" data-bind="click: $root.onAddAddress">Add To List</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="country" class="control-label h5 col-sm-1">Country * </label>
+                            <div class="col-md-3">
+                                <select id="country" class="form-control" data-bind="options: $root.countries, optionsText: 'CountryCodeName', optionsValue: 'CountryId', optionsCaption: '&lt;' + 'Country' + '&gt;' ,value:countryId,event:{change:$root.onCountrySelectionChange} "></select>
+                            </div>
+                            <label for="region" class="control-label h5 col-sm-1"> Region </label>
+                            <div class="col-md-3">
+                                <select id="region" class="form-control" data-bind="options: $root.filteredRegions, optionsText: 'RegionCodeName', optionsValue: 'RegionId', optionsCaption: '&lt;' + 'Region' + '&gt;' , value:regionId,event:{change:$root.onRegionSelectionChange}"></select>
+                            </div>
+                            <label for="subRegion" class="control-label h5 col-sm-1"> Sub Region </label>
+                            <div class="col-md-3">
+                                <select id="subRegion" class="form-control" data-bind="options: $root.filteredSubRegions, optionsText: 'SubRegionCodeName', optionsValue: 'SubRegionId', optionsCaption: '&lt;' + 'Sub Region' + '&gt;' , value:subRegionId,event:{change:$root.onSubRegionSelectionChange}"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="city" class="control-label h5 col-sm-1">City</label>
+                            <div class="col-md-3">
+                                <select id="city" class="form-control" data-bind="options: $root.filteredCities, optionsText: 'CityCodeName', optionsValue: 'CityId', optionsCaption: '&lt;' + 'City' + '&gt;' ,value:cityId,event:{change:$root.onCitySelectionChange} "></select>
+                            </div>
+                            <label for="area" class="control-label h5 col-sm-1">Area</label>
+                            <div class="col-md-3">
+                                <select id="area" class="form-control" data-bind="options: $root.filteredAreas, optionsText: 'AreaCodeName', optionsValue: 'AreaId', optionsCaption: '&lt;' + 'Area' + '&gt;' , value:areaId,event:{change:$root.onAreaSelectionChange}"></select>
+                            </div>
+                            <label for="poBox" class="control-label h5 col-sm-1">PO Box Number</label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" placeholder='PO Box Number' id="poBox" data-bind="value:poBox , validationTooltip:poBox" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="addressType" class="control-label h5 col-sm-1">Address Type *</label>
+                            <div class="col-md-3">
+                                <select id="addressType" class="form-control" data-bind="options: $root.addressTypes, optionsText: 'AddressTypeCodeName', optionsValue: 'AddressTypeId', optionsCaption: '&lt;' + 'City' + '&gt;' ,value:addressTypeId,event:{change:$root.onAddressTypeSelectionChange} "></select>
+                            </div>
+                            <label for="zipCode" class="control-label h5 col-sm-1">Zip Code </label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" placeholder='Zip Code' id="zipCode" data-bind="value:zipCode , validationTooltip:zipCode" />
+                            </div>
+                            <label for="conPerson" class="control-label h5 col-sm-1">Contact Person</label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" placeholder='Contact Person' id="conPerson" data-bind="value:contactPerson , validationTooltip:contactPerson" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="stAddress" class="control-label h5 col-sm-1">Street Address *</label>
+                            <div class="col-md-3">
+                                <textarea class="form-control" rows="4" placeholder='Street Address' id="stAddress" data-bind="value: streetAddress, valueUpdate: 'keyup'"></textarea>
+                            </div>
+                            <label for="email" class="control-label h5 col-sm-1">Email Address </label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" placeholder='Email Address ' id="email" data-bind="value:emailAddress , validationTooltip:emailAddress" />
+                            </div>
+                            <label for="webPage" class="control-label h5 col-sm-1">Web Page</label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" placeholder='Web Page' id="webPage" data-bind="value:webPage , validationTooltip:webPage" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class=" col-md-12 well">
+                            <table id="addressTable" class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th> <span id="1">Address Type<span></span></span></th>
+                                        <th> <span id="2">Country<span></span></span></th>
+                                        <th> <span id="3">Region<span></span></span></th>
+                                        <th> <span id="4">Sub Region<span></span></span></th>
+                                        <th> <span id="5">City<span></span></span></th>
+                                        <th> <span id="6">Area<span></span></span></th>
+                                        <th> <span id="7">PO Box#<span></span></span></th>
+                                        <th> <span id="8">Zip Code<span></span></span></th>
+                                        <th> <span id="9">Web Address<span></span></span></th>
+                                        <th> <span id="10">Email Address<span></span></span></th>
+                                        <th> <span id="11">Address<span></span></span></th>
+                                        <th> <span id="12">Contact Person<span></span></span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- ko template: { name: 'itemAddressTemplate' , foreach: $root.addressList } -->
+                                    <!-- /ko -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- third tab - Phone-->
+                <div class="tab-pane" id="phone">
+                    <div data-bind="with:phone">
+                        <br />
+                        <div class="form-group">
+                            <label for="phoneTypes" class="control-label h5  col-sm-2">Phone Type *</label>
+                            <div class="col-md-2">
+                                <select id="phoneTypes" class="form-control" data-bind="options: $root.phoneTypes, optionsText: 'PhoneTypeCodeName', optionsCaption: '<Phone Type>',value:phoneTypeId"></select>
+                            </div>
+                            <label for="phoneNumber" class="control-label h5  col-sm-2">Phone Number *</label>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" placeholder="<Phone Number>" id="phoneNumber" data-bind="value: phoneNumber, valueUpdate: 'keyup'" />
+                            </div>
+                            <label for="isDefault" class="control-label  h5 col-sm-2">Is Default</label>
+                            <div class="col-md-2">
+                                <input type="checkbox" class="form-control" id="isDefault" data-bind="checked: isDefault">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                <button class="btn btn-sm pull-right" id="empPhone" data-bind="click: $root.onAddEmployeePhone">Add To List</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class=" col-md-8 well">
+                            <table id="phonesTable" class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th> <span id="1">Phone Type<span></span></span></th>
+                                        <th> <span id="2">Phone #<span></span></span></th>
+                                        <th> <span id="3">Is Default<span></span></span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- ko template: { name: 'itemEmployeePhoneTemplate' , foreach: $root.phoneNumbersList } -->
+                                    <!-- /ko -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- fourth tab - Document Info.-->
+                <div class="tab-pane" id="documentInfo">
+                    <div data-bind="with:documentInfo">
+                        <div class="form-group">
+                            <label for="nic" class="control-label h5 col-sm-1">NIC</label>
+                            <div class="col-md-3">
+                                <input id="nic" type="text" class="form-control" placeholder='NIC' data-bind="value:nic , validationTooltip:nic" />
+                            </div>
+                            <label for="nicExpDt" class="control-label h5 col-sm-1">NIC Expiry Date </label>
+                            <div class="col-md-3">
+                                <input id="nicExpDt" type="text" class="form-control" placeholder='NIC Expiry Date' data-bind="datepicker:nicExpDt , validationTooltip:nicExpDt" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="iqamaNum" class="control-label h5 col-sm-1">Iqama Number </label>
+                            <div class="col-md-3">
+                                <input id="iqamaNum" type="text" class="form-control" placeholder='Iqama Number ' data-bind="value:iqamaNum , validationTooltip:iqamaNum" />
+                            </div>
+                            <label for="iqamaExpDt" class="control-label h5 col-sm-1">Iqama Expiry Date </label>
+                            <div class="col-md-3">
+                                <input id="iqamaExpDt" type="text" class="form-control" placeholder='Iqama Expiry Date' data-bind="datepicker:iqamaExpDt , validationTooltip:iqamaExpDt" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="passportNum" class="control-label h5 col-sm-1">Passport Number  </label>
+                            <div class="col-md-3">
+                                <input id="passportNum" type="text" class="form-control" placeholder='Passport Number  ' data-bind="value:passportNum , validationTooltip:passportNum" />
+                            </div>
+                            <label for="passportExpDt" class="control-label h5 col-sm-1">Iqama Expiry Date </label>
+                            <div class="col-md-3">
+                                <input id="passportExpDt" type="text" class="form-control" placeholder='Passport Expiry Date' data-bind="datepicker:passportExpDt , validationTooltip:passportExpDt" />
+                            </div>
+                            <label for="passportCountry" class="control-label h5 col-sm-1">Passport Country </label>
+                            <div class="col-md-3">
+                                <select id="passportCountry" class="form-control" data-bind="options: $root.countries, optionsText: 'CountryCodeName', optionsValue: 'CountryId', optionsCaption: '&lt;' + 'Passport Country' + '&gt;' ,value:passCountryId "></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="visaNum" class="control-label h5 col-sm-1">Visa Number   </label>
+                            <div class="col-md-3">
+                                <input id="visaNum" type="text" class="form-control" placeholder='Visa Number' data-bind="value:visaNum , validationTooltip:visaNum" />
+                            </div>
+                            <label for="visaExpDt" class="control-label h5 col-sm-1">Visa Expiry Date </label>
+                            <div class="col-md-3">
+                                <input id="visaExpDt" type="text" class="form-control" placeholder='Visa Expiry Date' data-bind="datepicker:visaExpDt , validationTooltip:visaExpDt" />
+                            </div>
+                            <label for="visaIssuingCountry" class="control-label h5 col-sm-1">Visa Issuing  Country </label>
+                            <div class="col-md-3">
+                                <select id="visaIssuingCountry" class="form-control" data-bind="options: $root.countries, optionsText: 'CountryCodeName', optionsValue: 'CountryId', optionsCaption: '&lt;' + 'Visa Issuing Country' + '&gt;' ,value:visaIssuingCountry "></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="licenseNum" class="control-label h5 col-sm-1">License Number </label>
+                            <div class="col-md-3">
+                                <input id="licenseNum" type="text" class="form-control" placeholder='License Number ' data-bind="value:licenseNum , validationTooltip:licenseNum" />
+                            </div>
+                            <label for="licenseExpDt" class="control-label h5 col-sm-1">License  Expiry Date </label>
+                            <div class="col-md-3">
+                                <input id="licenseExpDt" type="text" class="form-control" placeholder='License  Expiry Date' data-bind="datepicker:licenseExpDt , validationTooltip:licenseExpDt" />
+                            </div>
+                            <label for="licenseType" class="control-label h5 col-sm-1">License Type </label>
+                            <div class="col-md-3">
+                                <select id="licenseType" class="form-control" data-bind="options: $root.licenseTypes, optionsText: 'LicenseTypeCodeName', optionsValue: 'LicenseTypeId', optionsCaption: '&lt;' + 'License Type' + '&gt;' ,value:licenseTypeId "></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="insuranceNum" class="control-label h5 col-sm-1">Insurance Number </label>
+                            <div class="col-md-3">
+                                <input id="insuranceNum" type="text" class="form-control" placeholder='License Number ' data-bind="value:insuranceNum , validationTooltip:insuranceNum" />
+                            </div>
+                            <label for="insuranceComp" class="control-label h5 col-sm-1">Insurance Company </label>
+                            <div class="col-md-3">
+                                <input id="insuranceComp" type="text" class="form-control" placeholder='License Number ' data-bind="value:insuranceComp , validationTooltip:insuranceComp" />
+                            </div>
+                            <label for="insuranceDt" class="control-label h5 col-sm-1">Insurance Date </label>
+                            <div class="col-md-3">
+                                <input id="insuranceDt" type="text" class="form-control" placeholder='Insurance Date' data-bind="datepicker:insuranceDt , validationTooltip:insuranceDt" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- fifth tab - Job Progress-->
+                <div class="tab-pane" id="jobProgress">
+                    <div data-bind="with:jobProgress">
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                <button class="btn btn-sm pull-right" id="addJobProgress" data-bind="click: $root.onAddJobProgress">Add To List</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="designation" class="control-label h5 col-sm-1"> Designation * </label>
+                            <div class="col-md-3">
+                                <select id="designation" class="form-control" data-bind="options: $root.designations, optionsText: 'DesignationCodeName', optionsCaption: '&lt;' + 'Designation' + '&gt;' , value:designationId"></select>
+                            </div>
+                            <label for="joiningStartDate" class="control-label h5 col-sm-1">joining Start Date *</label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" placeholder='joining Start Date' id="joiningStartDate" data-bind="datepicker:desigStDt , validationTooltip:desigStDt" />
+                            </div>
+                            <label for="joiningEndDate" class="control-label h5 col-sm-1">joining End Date *</label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" placeholder='joining End Date' id="joiningEndDate" data-bind="datepicker:desigEndDt , validationTooltip:desigEndDt" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="workplaces" class="control-label h5 col-sm-1">Workplace * </label>
+                            <div class="col-md-3">
+                                <select id="workplaces" class="form-control" data-bind="options: $root.workPlacesServer, optionsText: 'WorkPlaceCodeName', optionsCaption: '&lt;' + 'Work place ' + '&gt;' , value:workplaceId"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class=" col-md-8 well">
+                            <table id="jobProgressTable" class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th> <span id="1">Designation<span></span></span></th>
+                                        <th> <span id="2">Start Date<span></span></span></th>
+                                        <th> <span id="3">End Date<span></span></span></th>
+                                        <th> <span id="3">Work Place<span></span></span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- ko template: { name: 'itemEmployeeJobProgressTemplate' , foreach: $root.jobProgList } -->
+                                    <!-- /ko -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- sixth tab - Authorized Locations-->
+                <div class="tab-pane" id="authorizedLocations">
+                    <div data-bind="with:authorizedLocation">
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                <button class="btn btn-sm pull-right" id="addJobProgress" data-bind="click: $root.onAddAuthorizedLocation">Add To List</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="operation" class="control-label h5 col-sm-1"> Operation * </label>
+                            <div class="col-md-3">
+                                <select id="operation" class="form-control" data-bind="options: $root.filteredOperations, optionsText: 'OperationCodeName', optionsCaption: '&lt;' + 'Operation' + '&gt;' , value:operationId, event:{change:$root.onSelectedOperation }"></select>
+                            </div>
+                            <label for="defaultOpr" class="control-label  h5 col-sm-2">Default Operation? </label>
+                            <div class="col-md-2">
+                                <input type="checkbox" class="form-control" id="defaultOpr" data-bind="checked: isDefault">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="operationWorkplaces" class="control-label h5 col-sm-1">Operation Workplace * </label>
+                            <div class="col-md-3">
+                                <select id="operationWorkplaces" class="form-control" data-bind="options: $root.filteredOperationsWorkplaces, optionsText: 'OperationsWorkPlaceCodeName', optionsCaption: '&lt;' + 'Operation Workplace' + '&gt;' , value:operationsWorkplaceId"></select>
+                            </div>
+                            <label for="defaultOprWP" class="control-label  h5 col-sm-2">Default Operation Workplace? </label>
+                            <div class="col-md-2">
+                                <input type="checkbox" class="form-control" id="defaultOprWP" data-bind="checked: isOperationDefault">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class=" col-md-8 well">
+                            <table id="authLocationTable" class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th> <span id="1">Operation<span></span></span></th>
+                                        <th> <span id="2">Default Operation?<span></span></span></th>
+                                        <th> <span id="3">Operations Workpace<span></span></span></th>
+                                        <th> <span id="3">Default Operations Workpace<span></span></span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- ko template: { name: 'itemAuthLocationTemplate' , foreach: $root.authLocationsList } -->
+                                    <!-- /ko -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script id="itemAuthLocationTemplate" type="text/html">
+    <tr>
+        <td data-bind="text: operationName"></td>
+        <td data-bind="text: isDefault"></td>
+        <td data-bind="text: operationsWorkplaceName"></td>
+        <td data-bind="text: isOperationDefault"></td>
+        <td>
+            <!-- ko template: { name: 'deleteActionAuthLocationTemplate' } -->
+            <!-- /ko -->
+        </td>
+    </tr>
+</script>
+<script id="deleteActionAuthLocationTemplate" type="text/html">
+    <a href="#" data-bind="click: $root.onDeletePhone" title="Delete "><span class="glyphicon glyphicon-remove"></span></a>
+</script>
+<script id="itemEmployeeJobProgressTemplate" type="text/html">
+    <tr>
+        <td data-bind="text: desigName"></td>
+        <td data-bind="dateString: desigStDt"></td>
+        <td data-bind="dateString: desigEndDt"></td>
+        <td data-bind="text: workplaceName"></td>
+        <td>
+            <!-- ko template: { name: 'deleteActionJobProgressTemplate' } -->
+            <!-- /ko -->
+        </td>
+    </tr>
+</script>
+<script id="deleteActionJobProgressTemplate" type="text/html">
+    <a href="#" data-bind="click: $root.onDeletePhone" title="Delete "><span class="glyphicon glyphicon-remove"></span></a>
+</script>
+<script id="itemEmployeePhoneTemplate" type="text/html">
+    <tr>
+        <td data-bind="text: phoneTypeName"></td>
+        <td data-bind="text: phoneNumber"></td>
+        <td data-bind="text: isDefault"></td>
+        <td>
+            <!-- ko template: { name: 'deleteActionEmployeePhoneTemplate' } -->
+            <!-- /ko -->
+        </td>
+    </tr>
+</script>
+<script id="deleteActionEmployeePhoneTemplate" type="text/html">
+    <a href="#" data-bind="click: $root.onDeletePhone" title="Delete Employee Phone"><span class="glyphicon glyphicon-remove"></span></a>
+</script>
+<script id="itemAddressTemplate" type="text/html">
+    <tr>
+        <td data-bind="text: addressTypeName"></td>
+        <td data-bind="text: countryName"></td>
+        <td data-bind="text: regionName"></td>
+        <td data-bind="text: subRegionName"></td>
+        <td data-bind="text: cityName"></td>
+        <td data-bind="text: areaName"></td>
+        <td data-bind="text: poBox"></td>
+        <td data-bind="text: zipCode"></td>
+        <td data-bind="text: webPage"></td>
+        <td data-bind="text: emailAddress"></td>
+        <td data-bind="text: streetAddress"></td>
+        <td data-bind="text: contactPerson"></td>
+        <td>
+            <!-- ko template: { name: 'deleteActionAddressTemplate' } -->
+            <!-- /ko -->
+        </td>
+    </tr>
+</script>
+<script id="deleteActionAddressTemplate" type="text/html">
+    <a href="#" data-bind="click: $root.onDeleteBusinessPartnerAddress" title="Delete Business Partner Address"><span class="glyphicon glyphicon-remove"></span></a>
+</script>

@@ -1,13 +1,14 @@
-﻿using System.Linq;
-using Models.DomainModels;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Cares.Models.DomainModels;
 
-namespace Interfaces.IServices
+namespace Cares.Interfaces.IServices
 {
     /// <summary>
     /// Business partner Rating Type Service Interface
     /// </summary>
     public interface IBPRatingTypeService
     {
-        IQueryable<BpRatingType> LoadAll();
+        IEnumerable<BpRatingType> LoadAll();
     }
 }

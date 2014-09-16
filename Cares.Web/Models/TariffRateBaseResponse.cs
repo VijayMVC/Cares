@@ -4,29 +4,14 @@ namespace Cares.Web.Models
 {
     /// <summary>
     /// Tariff Rate Base Web Response 
-    /// </summary>
+    /// </summary>    
     public class TariffRateBaseResponse
     {  
-        #region Constructors
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public TariffRateBaseResponse()
-        {
-            Companies = new List<Company>();
-            Departments = new List<Department>();
-            Operations = new List<Operation>();
-            HireGroups = new List<HireGroup>();
-            VehicleCategories = new List<VehicleCategory>();
-            VehicleMakes = new List<VehicleMake>();
-            VehicleModels = new List<VehicleModel>();
-        }
-        #endregion
         #region Public
         /// <summary>
         /// Companies
         /// </summary>
-        public IEnumerable<Company> Companies { get; set; }
+        public IEnumerable<CompanyDropDown> Companies { get; set; }
         /// <summary>
         /// Hire Group 
         /// </summary>
@@ -34,27 +19,27 @@ namespace Cares.Web.Models
         /// <summary>
         /// Departments 
         /// </summary>
-        public IEnumerable<Department> Departments { get; set; }
+        public IEnumerable<DepartmentDropDown> Departments { get; set; }
         /// <summary>
         /// Operations 
         /// </summary>
-        public IEnumerable<Operation> Operations { get; set; }
+        public IEnumerable<OperationDropDown> Operations { get; set; }
         /// <summary>
         /// Vehicle Categories
         /// </summary>
-        public IEnumerable<VehicleCategory> VehicleCategories { get; set; }
+        public IEnumerable<VehicleCategoryDropDown> VehicleCategories { get; set; }
         /// <summary>
         /// Vehicle Makes
         /// </summary>
-        public IEnumerable<VehicleMake> VehicleMakes { get; set; }
+        public IEnumerable<VehicleMakeDropDown> VehicleMakes { get; set; }
         /// <summary>
         /// Vehicle Models
         /// </summary>
-        public IEnumerable<VehicleModel> VehicleModels { get; set; }
+        public IEnumerable<VehicleModelDropDown> VehicleModels { get; set; }
         /// <summary>
         /// Tariff types
         /// </summary>
-        public IEnumerable<TarrifType> TariffTypes { get; set; }
+        public IEnumerable<TariffType> TariffTypes { get; set; }
 
         #endregion
     }

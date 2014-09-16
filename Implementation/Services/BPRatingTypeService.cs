@@ -1,9 +1,10 @@
-﻿using System.Linq;
-using Interfaces.IServices;
-using Interfaces.Repository;
-using Models.DomainModels;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Cares.Interfaces.IServices;
+using Cares.Interfaces.Repository;
+using Cares.Models.DomainModels;
 
-namespace Implementation.Services
+namespace Cares.Implementation.Services
 {
     /// <summary>
     /// Bisness Partner Rating Type Service
@@ -28,7 +29,7 @@ namespace Implementation.Services
         /// Load All
         /// </summary>
         /// <returns></returns>
-        public IQueryable<BpRatingType> LoadAll()
+        public IEnumerable<BpRatingType> LoadAll()
         {
             return bpRatingTypeRepository.GetAll();
         }

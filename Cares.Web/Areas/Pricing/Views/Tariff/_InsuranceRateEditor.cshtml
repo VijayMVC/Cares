@@ -1,0 +1,117 @@
+﻿<div class="well col-md-12" id="insuranceRateEditor" data-bind="visible: isInsuranceRtEditorVisible" style="display: none;">
+    <div data-bind="with: selectedInsuranceRtMain">
+        <div class="detailsContainer">
+            <h3 class="page-header detailsHeaderSection">@Cares.Web.Resources.Tariff.InsuranceRate.InsuranceRateDetail</h3>
+            <button class="btn btn-info" id="saveBtn" data-bind="click:$root.onSaveInsuranceRate,enable: hasChanges, css: { 'btn-warning': hasChanges }">@Cares.Web.Resources.Shared.Common.Save</button>
+            <button class="btn btn-default" id="saveBtn" data-bind="click: $root.closeInsuranceRateEditor">@Cares.Web.Resources.Shared.Common.Cancel</button>
+        </div>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="code" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.InsuranceRate.InsuranceRateCode *</label>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder='@("<" + Cares.Web.Resources.Tariff.InsuranceRate.InsuranceRateCode + ">")' id="code" data-bind="value: insuranceRtMainCode, validationTooltip: insuranceRtMainCode, disable :(insuranceRtMainId()!=undefined)" />
+                </div>
+                <label for="name" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.InsuranceRate.InsuranceRateName</label>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder='@("<" + Cares.Web.Resources.Tariff.InsuranceRate.InsuranceRateCode + ">")' id="name" data-bind="value: insuranceRtName, validationTooltip: insuranceRtName, disable :(insuranceRtMainId()!=undefined)" />
+                </div>
+                <label for="description" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.InsuranceRate.Description</label>
+                <div class="col-md-2">
+                    <textarea class="form-control" rows="2" placeholder='@("<" + Cares.Web.Resources.Tariff.InsuranceRate.Description + ">")' id="description" data-bind="value: description, valueUpdate: 'keyup', disable :(insuranceRtMainId()!=undefined)"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="operation" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.InsuranceRate.Operation *</label>
+                <div class="col-md-2">
+                    <select id="operation" class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '@("<" + Cares.Web.Resources.Tariff.InsuranceRate.Operation + ">")' , value: operationId, validationTooltip: operationId, disable :(insuranceRtMainId()!=undefined)"></select>
+                </div>
+                <label for="tariffType" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.InsuranceRate.TariffType *</label>
+                <div class="col-xs-2">
+                    <select id="tariffType" class="form-control" data-bind="options: $root.tariffTypes, optionsText: 'TariffTypeCodeName', optionsValue: 'TariffTypeId', optionsCaption: '@("<" + Cares.Web.Resources.Tariff.InsuranceRate.TariffType + ">")', value: tariffTypeId, disable :(insuranceRtMainId()!=undefined)"></select>
+                </div>
+                <label for="sDate" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.InsuranceRate.EffectiveFrom *</label>
+                <div class="col-md-2">
+                    <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.InsuranceRate.EffectiveFrom + ">")' class="form-control" id="sDate" data-bind="datepicker: startDt, validationTooltip: startDt" />
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="panel panel-info searchFilterResultSection">
+        <div class="panel-heading">@Cares.Web.Resources.Tariff.InsuranceRate.InsuranceTypeRate</div>
+        <table id="insuranceTypeRate" class="table table-condensed">
+            <thead>
+                <tr>
+                    <th> <span></span></th>
+                    <th> <span>@Cares.Web.Resources.Tariff.InsuranceRate.Insurance<br />@Cares.Web.Resources.Tariff.InsuranceRate.Type<span></span></span></th>
+                    <th> <span>@Cares.Web.Resources.Tariff.InsuranceRate.Hire<br />@Cares.Web.Resources.Tariff.InsuranceRate.Group<span></span></span></th>
+                    <th> <span>@Cares.Web.Resources.Tariff.InsuranceRate.Vehicle<br />@Cares.Web.Resources.Tariff.InsuranceRate.Make<span></span></span></th>
+                    <th> <span>@Cares.Web.Resources.Tariff.InsuranceRate.Vehicle<br />@Cares.Web.Resources.Tariff.InsuranceRate.Model<span></span></span></th>
+                    <th> <span>@Cares.Web.Resources.Tariff.InsuranceRate.Vehicle<br />@Cares.Web.Resources.Tariff.InsuranceRate.Category<span></span></span></th>
+                    <th> <span>@Cares.Web.Resources.Tariff.InsuranceRate.Model<br />@Cares.Web.Resources.Tariff.InsuranceRate.Year<span></span></span></th>
+                    <th> <span>@Cares.Web.Resources.Tariff.InsuranceRate.Insurance<br />@Cares.Web.Resources.Tariff.InsuranceRate.Rate<span></span></span></th>
+                    <th> <span>@Cares.Web.Resources.Tariff.InsuranceRate.Start<br />@Cares.Web.Resources.Tariff.InsuranceRate.Date<span></span></span></th>
+                    <th> <span>@Cares.Web.Resources.Tariff.InsuranceRate.Revision<br />@Cares.Web.Resources.Tariff.InsuranceRate.Number<span></span></span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- ko template: { name: templateToUse , foreach: clientPagerRecords } -->
+                <!-- /ko -->
+            </tbody>
+        </table>
+        <div class="well">
+
+            <!-- ko with: clientPager -->
+            @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
+            <!-- /ko -->
+        </div>
+        <script id="editInsuranceTypeRtTemplate" type="text/html">
+            <tr data-bind="css: { selectedRow: $data === $root.selectedInsuranceRt() }">
+                <td class="col-md-2">
+                    <input type="checkbox" data-bind="checked: isChecked, disable :isChecked() && (virtualInsuranceRtId()!=0) " />
+                </td>
+                <td class="col-md-2">
+                    <span data-bind="text: insuranceTypeCodeName"></span>
+                </td>
+                <td class="col-md-2">
+                    <span data-bind="text: hireGroupDetailCodeName"></span>
+                </td>
+                <td class="col-md-2">
+                    <span data-bind="text: vehicleMakeCodeName"></span>
+                </td>
+                <td class="col-md-2">
+                    <span data-bind="text: vehicleModelCodeName"></span>
+                </td>
+                <td class="col-md-2">
+                    <span data-bind="text: vehicleCategoryCodeName"></span>
+                </td>
+                <td class="col-md-2">
+                    <span data-bind="text: modelYear"></span>
+                </td>
+                <td class="col-md-2">
+                    <input type="text" data-bind="value: insuranceRate, validationTooltip: insuranceRate" />
+                </td>
+                <td class="col-md-2">
+                    <input type="text" data-bind="datepicker: startDate, validationTooltip: startDate" />
+                </td>
+                <td class="col-md-2">
+                    <span data-bind="text: revisionNumber"></span>
+                </td>
+            </tr>
+        </script>
+        <script id="itemInsuranceTypeRtTemplate" type="text/html">
+            <tr data-bind="click: $root.selectInsuranceRt, css: { selectedRow: $data === $root.selectedInsuranceRt() }">
+                <td><input type="checkbox" data-bind="checked: isChecked, disable :isChecked() && (virtualInsuranceRtId()!=0)" /></td>
+                <td data-bind="text: insuranceTypeCodeName"></td>
+                <td data-bind="text: hireGroupDetailCodeName"></td>
+                <td data-bind="text: vehicleMakeCodeName"></td>
+                <td data-bind="text: vehicleModelCodeName"></td>
+                <td data-bind="text: vehicleCategoryCodeName"></td>
+                <td data-bind="text: modelYear"></td>
+                <td data-bind="text: insuranceRate"></td>
+                <td data-bind="dateString: startDate"></td>
+                <td data-bind="text: revisionNumber"></td>
+            </tr>
+        </script>
+    </div>
+</div>

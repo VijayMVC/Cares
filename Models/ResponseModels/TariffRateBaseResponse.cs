@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Models.DomainModels;
+using Cares.Models.DomainModels;
 
-namespace Models.ResponseModels
+namespace Cares.Models.ResponseModels
 {
     /// <summary>
     /// Tariff Rate Base Domain Response 
@@ -21,8 +21,10 @@ namespace Models.ResponseModels
             VehicleCategories = new List<VehicleCategory>();
             VehicleMakes = new List<VehicleMake>();
             VehicleModels = new List<VehicleModel>();
+            TariffTypes = new List<TariffType>();
         }
         #endregion
+        
         #region Public
         /// <summary>
         /// Companies
@@ -55,7 +57,7 @@ namespace Models.ResponseModels
         /// <summary>
         /// Tariff types
         /// </summary>
-        public IEnumerable<TarrifType> TariffTypes { get; set; }
+        public IEnumerable<TariffType> TariffTypes { get; set; }
 
         #endregion
     }

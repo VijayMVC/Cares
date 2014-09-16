@@ -1,7 +1,8 @@
-﻿
-using DomainModels = Models.DomainModels;
-using Cares.Web.Models;
-
+﻿using Cares.Web.Models;
+using System.Linq;
+using CompanyBaseDataResponse = Cares.Web.Models.CompanyBaseDataResponse;
+using CompanySearchRequestResponse = Cares.Models.ResponseModels.CompanySearchRequestResponse;
+using DomainModels = Cares.Models.DomainModels;
 namespace Cares.Web.ModelMappers
 {
     /// <summary>
@@ -11,30 +12,84 @@ namespace Cares.Web.ModelMappers
     {
         #region Public
         /// <summary>
-        ///  Create web model from entity
+        /// Crete From web model
         /// </summary>
-        public static Company CreateFrom(this DomainModels.Company source)
+        public static DomainModels.Company CreateFrom(this Company source)
+        {
+            return new DomainModels.Company
+            {
+                CompanyId = source.CompanyId,
+                CompanyCode = source.CompanyCode,
+                CompanyName = source.CompanyName,
+                CompanyLegalName = source.CompanyLegalName ?? string.Empty,
+                ParentCompanyId = source.ParentCompanyId,
+                CompanyDescription = source.CompanyDescription,
+                CrNumber = source.CrNumber,
+                PaidUpCapital = source.PaidUpCapital,
+                Uan = source.Uan,
+                Ntn = source.Ntn,
+                OrgGroupId = source.OrgGroupId,
+                BusinessSegmentId = source.BusinessSegmentId,
+            };
+        }
+        /// <summary>
+        /// Crete From company Response domain model
+        /// </summary>
+        public static Models.CompanySearchRequestResponse CreateFrom(this CompanySearchRequestResponse source)
+        {
+            return new Models.CompanySearchRequestResponse
+            {
+                Companies = source.Companies.Select(company => company.CreateFromm()),
+                TotalCount = source.TotalCount
+            };
+        }
+        /// <summary>
+        /// Crete From Domain model
+        /// </summary>
+        public static Company CreateFromm(this DomainModels.Company source)
         {
             return new Company
             {
                 CompanyId = source.CompanyId,
-                CompanyName = source.CompanyCode+"-" +source.CompanyName,
+                CompanyCode = source.CompanyCode ,
+                CompanyName = source.CompanyName,
+                CompanyLegalName = source.CompanyLegalName,
+                ParentCompanyId = source.ParentCompanyId,
+                ParentCompanyName = source.ParentCompanyId != null ? source.ParentCompany.CompanyName : "",
+                CompanyDescription = source.CompanyDescription,
+                CrNumber = source.CrNumber,
+                PaidUpCapital = source.PaidUpCapital,
+                Uan = source.Uan,
+                Ntn = source.Ntn,
+                OrgGroupId = source.OrgGroupId,
+                OrgGroupName = source.OrgGroupId !=null ? source.OrgGroup.OrgGroupName: "",
+                BusinessSegmentId = source.BusinessSegmentId,
+                BusinessSegmentName = source.BusinessSegment.BusinessSegmentName 
             };
         }
         /// <summary>
-        ///  Create entity from web model
+        /// Crete From domain model to dropdown
         /// </summary>
-        public static DomainModels.Company CreateFrom(this Company source)
+        public static CompanyDropDown CreateFrom(this DomainModels.Company source)
         {
-            if (source != null)
+            return new CompanyDropDown
             {
-                return new DomainModels.Company
-                {
-                    CompanyId = source.CompanyId,
-                    CompanyName = source.CompanyName,
-                };
-            }
-            return new DomainModels.Company();
+                CompanyId = source.CompanyId,
+                CompanyCodeName = source.CompanyCode+" - " +source.CompanyName,
+                ParentCompanyId = source.CompanyId
+            };
+        }
+        /// <summary>
+        /// Crete From response model to web base data
+        /// </summary>
+        public static CompanyBaseDataResponse CreateFrom(this Cares.Models.ResponseModels.CompanyBaseDataResponse source)
+        {
+            return new CompanyBaseDataResponse
+            {
+                ParrentCompanies = source.ParrentCompanies.Select(company => company.CreateFrom()),
+                OrgGroups = source.OrgGroups.Select(orgGroup => orgGroup.CreateFrom()),
+                BusinessSegments = source.BusinessSegments.Select(businessSegmen => businessSegmen.CreateFrom())
+            };
         }
         #endregion
     }

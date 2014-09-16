@@ -1,8 +1,9 @@
-﻿using Models.DomainModels;
-using Models.RequestModels;
-using Models.ResponseModels;
+﻿using System;
+using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
+using Cares.Models.ResponseModels;
 
-namespace Interfaces.IServices
+namespace Cares.Interfaces.IServices
 {
     /// <summary>
     /// FleetPool Interface
@@ -22,7 +23,13 @@ namespace Interfaces.IServices
         /// <summary>
         /// Dalete Fleet Pool
         /// </summary>
-        /// <param name="id"></param>
-        void DeleteFleetPool(int id);
+        void DeleteFleetPool(long fleetPoolId);
+
+        /// <summary>
+        /// Add/update fleetpool 
+        /// </summary>
+        FleetPool SaveFleetPool(FleetPool request);
+
+      
     }
 }

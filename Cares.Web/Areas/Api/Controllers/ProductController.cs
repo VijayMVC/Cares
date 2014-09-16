@@ -2,9 +2,9 @@
 using System.Net;
 using System.Web;
 using System.Web.Http;
+using Cares.Interfaces.IServices;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
-using Interfaces.IServices;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
@@ -28,7 +28,7 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Get Products
         /// </summary>
-        public ProductResponse Get([FromUri] global::Models.RequestModels.ProductSearchRequest request)
+        public ProductResponse Get([FromUri] Cares.Models.RequestModels.ProductSearchRequest request)
         {
             if (request == null || !ModelState.IsValid)
             {
@@ -41,7 +41,7 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Update a product
         /// </summary>
-        public void Post(Cares.Web.Models.Product product)
+        public void Post(Models.Product product)
         {
             if (product == null || !ModelState.IsValid)
             {
@@ -54,7 +54,7 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Adds a product
         /// </summary>
-        public void Put(Cares.Web.Models.Product product)
+        public void Put(Models.Product product)
         {
             if (product == null || !ModelState.IsValid)
             {
@@ -67,7 +67,7 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Delete a Product
         /// </summary>
-        public void Delete(Cares.Web.Models.Product product)
+        public void Delete(Models.Product product)
         {
             if (product == null || !ModelState.IsValid)
             {

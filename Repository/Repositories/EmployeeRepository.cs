@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using Interfaces.Repository;
+using Cares.Interfaces.Repository;
+using Cares.Models.Common;
+using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
+using Cares.Models.ResponseModels;
+using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
-using Models.Common;
-using Models.DomainModels;
-using Models.RequestModels;
-using Models.ResponseModels;
-using Repository.BaseRepository;
 
-namespace Repository.Repositories
+namespace Cares.Repository.Repositories
 {
-    public sealed class EmployeeRepository: BaseRepository<Employee>, IEmployeeRepository
+    public sealed class EmployeeRepository : BaseRepository<Employee>, IEmployeeRepository
     {
         #region Private
         /// <summary>
@@ -22,8 +22,9 @@ namespace Repository.Repositories
         private readonly Dictionary<EmployeeByColumn, Func<Employee, object>> employeeClause =
               new Dictionary<EmployeeByColumn, Func<Employee, object>>
                     {
-                        { EmployeeByColumn.Name, c => c.Name },
-                        { EmployeeByColumn.DepartmentName, c => c.Department }
+                        { EmployeeByColumn.Code, c => c.EmpCode },
+                        { EmployeeByColumn.FName, c => c.EmpFName },
+                        { EmployeeByColumn.LName, c => c.EmpLName }
                     };
         #endregion
 
@@ -47,38 +48,62 @@ namespace Repository.Repositories
             }
         }
         #endregion
-        public EmployeeResponse GetAllEmployees(EmployeeSearchRequest searchRequest)
+
+        #region Public
+
+        /// <summary>
+        /// Get All Employees
+        /// </summary>
+        /// <param name="searchRequest"></param>
+        /// <returns></returns>
+        public EmployeeSearchResponse GetAllEmployees(EmployeeSearchRequest searchRequest)
         {
             int fromRow = (searchRequest.PageNo - 1) * searchRequest.PageSize;
             int toRow = searchRequest.PageSize;
 
-            Expression<Func<Employee, bool>> query = 
-                s => (!searchRequest.DepartmentId.HasValue || s.DepartmentId == searchRequest.DepartmentId) &&
-                     (string.IsNullOrEmpty(searchRequest.SearchString) ||s.Name.Contains(searchRequest.SearchString));
+            Expression<Func<Employee, bool>> query =
+                s => (!searchRequest.CompanyId.HasValue || s.Company.CompanyId == searchRequest.CompanyId) && (!searchRequest.EmployeeStatusId.HasValue || s.EmpStatus.EmpStatusId == searchRequest.EmployeeStatusId) &&
+                     (string.IsNullOrEmpty(searchRequest.SearchString) || s.EmpCode.Contains(searchRequest.SearchString) || s.EmpFName.Contains(searchRequest.SearchString)
+                     || s.EmpLName.Contains(searchRequest.SearchString) || s.EmpMName.Contains(searchRequest.SearchString));
 
-            IEnumerable<Employee> employees = searchRequest.IsAsc ? DbSet.Where(query).Include("Department")
+            IEnumerable<Employee> employees = searchRequest.IsAsc ? DbSet.Where(query)
                                             .OrderBy(employeeClause[searchRequest.EmployeeOrderBy]).Skip(fromRow).Take(toRow).ToList()
-                                            : DbSet.Where(query).Include("Department")
+                                            : DbSet.Where(query)
                                                 .OrderByDescending(employeeClause[searchRequest.EmployeeOrderBy]).Skip(fromRow).Take(toRow).ToList();
 
-            return new EmployeeResponse { Employees = employees, TotalCount = DbSet.Count(query) };
+            return new EmployeeSearchResponse { Employees = employees, TotalCount = DbSet.Count(query) };
         }
 
+        /// <summary>
+        /// Get Employee By Name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Employee GetEmployeeByName(string name, int id)
         {
-            return DbSet.FirstOrDefault(x => x.Name == name && x.Id != id);
+            return DbSet.FirstOrDefault(x => x.EmpFName == name && x.EmployeeId != id);
         }
 
-        public IQueryable<Employee> GetEmployeesByDepartment(int Id)
-        {
-            return DbSet.Where(x => x.DepartmentId == Id).AsQueryable();
-        }
         /// <summary>
         /// Get All Employees for User Domain Key
         /// </summary>
-        public override IQueryable<Employee> GetAll()
+        public override IEnumerable<Employee> GetAll()
         {
-            return DbSet.Where(employee => employee.UserDomainKey == UserDomainKey);
+            return DbSet.Where(employee => employee.UserDomainKey == UserDomainKey).ToList();
         }
+
+        /// <summary>
+        /// Find Employee By Id
+        /// </summary>
+        public override Employee Find(long empId)
+        {
+            return
+              DbSet.Include(emp => emp.Company)
+                  .Include(emp => emp.EmpStatus)
+                  .Include(emp => emp.Nationality)
+                  .FirstOrDefault(emp => emp.EmployeeId == empId);
+        }
+        #endregion
     }
 }

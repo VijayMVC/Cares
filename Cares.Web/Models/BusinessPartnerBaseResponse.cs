@@ -1,54 +1,85 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Cares.Models.DomainModels;
 
 namespace Cares.Web.Models
 {
     public class BusinessPartnerBaseResponse
     {
-        #region Private
-        #endregion
-
-        #region Protected
-        #endregion
-
-        #region Public
         /// <summary>
         /// Companies
         /// </summary>
-        public IEnumerable<Company> ResponseCompanies { get; set; }
+        public IEnumerable<CompanyDropDown> ResponseCompanies { get; set; }
         /// <summary>
         /// Payment Terms
         /// </summary>
-        public IEnumerable<PaymentTerm> ResponsePaymentTerms { get; set; }
+        public IEnumerable<PaymentTermDropDown> ResponsePaymentTerms { get; set; }
         /// <summary>
         /// Business Partner Payment Types 
         /// </summary>
-        public IEnumerable<BpRatingType> ResponseBPRatingTypes { get; set; }
+        public IEnumerable<BpRatingTypeDropDown> ResponseBPRatingTypes { get; set; }
         /// <summary>
         /// Departments 
         /// </summary>
-        public IEnumerable<BusinessLegalStatus> ResponseBusinessLegalStatuses { get; set; }
+        public IEnumerable<BusinessLegalStatusDropDown> ResponseBusinessLegalStatuses { get; set; }
         /// <summary>
         /// System Guarnator 
         /// </summary>
-        public IEnumerable<BusinessPartnerListView> ResponseBusinessPartners { get; set; }
+        public IEnumerable<BusinessPartnerDropDown> ResponseBusinessPartners { get; set; }
         /// <summary>
         /// Dealing Employees 
         /// </summary>
-        public IEnumerable<Employee> ResponseDealingEmployees { get; set; }
+        public IEnumerable<EmployeeDropDown> ResponseDealingEmployees { get; set; }
         /// <summary>
         /// Occupation Types
         /// </summary>
-        public IEnumerable<OccupationType> ResponseOccupationTypes { get; set; }
+        public IEnumerable<OccupationTypeDropDown> ResponseOccupationTypes { get; set; }
         /// <summary>
         /// Business Partner Companies 
         /// </summary>
         public IEnumerable<BusinessPartnerCompany> ResponseBusinessPartnerCompanies { get; set; }
         /// <summary>
-        /// Passport Countries
+        /// Countries
         /// </summary>
-        public IEnumerable<Country> ResponsePassportCountries { get; set; }
-
-        #endregion
+        public IEnumerable<CountryDropDown> ResponseCountries { get; set; }
+        /// <summary>
+        /// Business Segments
+        /// </summary>
+        public IEnumerable<BusinessSegmentDropDown> ResponseBusinessSegments { get; set; }
+        /// <summary>
+        /// Business Partner SubTypes
+        /// </summary>
+        public IEnumerable<BusinessPartnerSubTypeDropDown> ResponseBusinessPartnerSubTypes { get; set; }
+        /// <summary>
+        /// Phone Types
+        /// </summary>
+        public IEnumerable<PhoneTypeDropDown> ResponsePhoneTypes { get; set; }
+        /// <summary>
+        /// Address Types
+        /// </summary>
+        public IEnumerable<AddressTypeDropDown> ResponseAddressTypes { get; set; }
+        /// <summary>
+        /// Marketing Channels
+        /// </summary>
+        public IEnumerable<MarketingChannelDropDown> ResponseMarketingChannels { get; set; }
+        /// <summary>
+        /// Business Partner Relationship type
+        /// </summary>
+        public IEnumerable<BusinessPartnerRelationshipTypeDropDown> ResponseBusinessPartnerRelationshipTypes { get; set; }
+        /// <summary>
+        /// Regions
+        /// </summary>
+        public IEnumerable<RegionDropDown> ResponseRegions { get; set; }
+        /// <summary>
+        /// Sub Regions
+        /// </summary>
+        public IEnumerable<SubRegionDropDown> ResponseSubRegions { get; set; }
+        /// <summary>
+        /// Cities 
+        /// </summary>
+        public IEnumerable<CityDropDown> ResponseCities { get; set; }
+        /// <summary>
+        /// Areas
+        /// </summary>
+        public IEnumerable<AreaDropDown> ResponseAreas { get; set; }
     }
 }

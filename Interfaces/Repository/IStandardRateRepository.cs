@@ -1,11 +1,21 @@
-﻿using Models.DomainModels;
+﻿using System.Collections.Generic;
+using Cares.Models.DomainModels;
 
-namespace Interfaces.Repository
+namespace Cares.Interfaces.Repository
 {
     /// <summary>
     /// Standard Rate Interface
     /// </summary>
     public interface IStandardRateRepository : IBaseRepository<StandardRate, long>
     {
+        /// <summary>
+        /// Get Standard Rate For Tariff Rate
+        /// </summary>
+        IEnumerable<StandardRate> GetStandardRateForTariffRate(long standardRtMainId);
+        
+        /// <summary>
+        /// Find By Hire Group Id and standard Rate Main Id
+        /// </summary>
+        IEnumerable<StandardRate> FindByHireGroupId(long standardRtMainId, long hireGroupDetailId);
     }
 }

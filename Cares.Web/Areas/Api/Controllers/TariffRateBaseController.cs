@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Web;
 using System.Web.Http;
+using Cares.Interfaces.IServices;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
-using Interfaces.IServices;
+using Cares.WebBase.Mvc;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
@@ -30,13 +30,15 @@ namespace Cares.Web.Areas.Api.Controllers
         #endregion
         #region Public
         // GET api/<controller>
+        [ValidateFilter]
         public TariffRateBaseResponse Get()
         {
             if (!ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return tariffRateService.GetBaseData().CreateFrom();
+            var returnData = tariffRateService.GetBaseData().CreateFrom();
+            return returnData;
         }
         #endregion
 

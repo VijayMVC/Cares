@@ -1,4 +1,6 @@
-﻿namespace Cares.Web.Models
+﻿using System.Collections.Generic;
+
+namespace Cares.Web.Models
 {
     /// <summary>
     /// Business Partner Api Detail Model
@@ -6,6 +8,8 @@
     public sealed class BusinessPartnerDetail
     {
         #region Public Properties
+
+        #region Business Partner Properties
         /// <summary>
         /// Business Partner Id
         /// </summary>
@@ -22,19 +26,19 @@
         /// Business Partnere descritpion
         /// </summary>
         public string BusinessPartnerDesciption { get; set; }
-         /// <summary>
+        /// <summary>
         /// System Guarantor Check
         /// </summary>
         public bool IsSystemGuarantor { get; set; }
         /// <summary>
         /// Non System Guarantor
         /// </summary>
-        public string NonSystemGuarantor { get; set; } 
+        public string NonSystemGuarantor { get; set; }
         /// <summary>
         /// Individual Check
         /// </summary>
         public bool IsIndividual { get; set; }
-        
+
         /// <summary>
         /// Business Partner Email Address
         /// </summary>
@@ -46,15 +50,15 @@
         /// <summary>
         /// Company Id
         /// </summary>
-        public int CompanyId { get; set; }
+        public long CompanyId { get; set; }
         /// <summary>
         /// Payment Term Id
         /// </summary>
-        public int PaymentTermId { get; set; }
+        public short PaymentTermId { get; set; }
         /// <summary>
         /// Business Partner Rating Type Id
         /// </summary>
-        public int? BPRatingTypeId { get; set; }
+        public short? BPRatingTypeId { get; set; }
         /// <summary>
         /// System Guarantor ID
         /// </summary>
@@ -66,7 +70,45 @@
         /// <summary>
         /// Business Legal Status Id
         /// </summary>
-        public int? BusinessLegalStatusId { get; set; }
+        public short? BusinessLegalStatusId { get; set; }
+        #endregion
+
+        #region Reference Properties
+        /// <summary>
+        /// Business Partner Individual 
+        /// </summary>
+        public BusinessPartnerIndividual BusinessPartnerIndividual { get; set; }
+        /// <summary>
+        /// Business Partner Company 
+        /// </summary>
+        public BusinessPartnerCompany BusinessPartnerCompany { get; set; }
+        /// <summary>
+        /// Business Partner InTypes 
+        /// </summary>
+        public List<BusinessPartnerInType> BusinessPartnerInTypes { get; set; }
+        /// <summary>
+        /// Business Partner Phones 
+        /// </summary>
+        public List<Phone> BusinessPartnerPhoneNumbers { get; set; }
+        /// <summary>
+        /// Business Partner Address List 
+        /// </summary>
+        public List<Address> BusinessPartnerAddressList { get; set; }
+        /// <summary>
+        /// Business Partner Marketing Channels 
+        /// </summary>
+        public List<BusinessPartnerMarketingChannel> BusinessPartnerMarketingChannels { get; set; }
+        /// <summary>
+        /// Business Partner Relationship Item List 
+        /// </summary>
+        public List<BusinessPartnerRelationship> BusinessPartnerRelationshipItemList { get; set; }
+
+        /// <summary>
+        /// Payment Term 
+        /// </summary>
+        public PaymentTermDropDown PaymentTerm { get; set; }
+        
+        #endregion
 
         #endregion
     }

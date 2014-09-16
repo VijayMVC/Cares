@@ -1,11 +1,13 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using Interfaces.Repository;
+using Cares.Interfaces.Repository;
+using Cares.Models.DomainModels;
+using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
-using Models.DomainModels;
-using Repository.BaseRepository;
 
-namespace Repository.Repositories
+
+namespace Cares.Repository.Repositories
 {
     /// <summary>
     /// Vehicle Make Repository
@@ -37,11 +39,10 @@ namespace Repository.Repositories
         /// <summary>
         /// Get All Vehicle Makes for User Domain Key
         /// </summary>
-        public override IQueryable<VehicleMake> GetAll()
+        public override IEnumerable<VehicleMake> GetAll()
         {
-            return DbSet.Where(vehicleModel => vehicleModel.UserDomainKey == UserDomainKey);
+            return DbSet.Where(vehicleModel => vehicleModel.UserDomainKey == UserDomainKey).ToList();
         }
-
         #endregion
     }
 }

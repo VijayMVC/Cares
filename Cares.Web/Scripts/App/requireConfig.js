@@ -10,11 +10,32 @@
             "businessPartner": "/Areas/BusinessPartner/Scripts",
             "product": "/Areas/Product/Scripts",
             "common": "/Areas/Common/Scripts",
-            "Fleet": "/Areas/Fleet/Scripts",
-            "tarrifType": "/Areas/Pricing/Scripts",
-            "tariffRate": "/Areas/Pricing/Scripts"
-        }
 
+            "Fleet": "/Areas/Fleet/Scripts",
+            "hireGroup": "/Areas/Fleet/Scripts",
+            "vehicle": "/Areas/Fleet/Scripts",
+
+            "tariffType": "/Areas/Pricing/Scripts",
+            "tariffRate": "/Areas/Pricing/Scripts",
+            "insuranceRate": "/Areas/Pricing/Scripts",
+            "serviceRate": "/Areas/Pricing/Scripts",
+
+            "rentalAgreement": "/Areas/RentalAgreement/Scripts",
+
+            "Organization": "/Areas/Organization/Scripts",
+            "company": "/Areas/Organization/Scripts",
+            "operation": "/Areas/Organization/Scripts",
+            "department": "/Areas/Organization/Scripts",
+            "workplace": "/Areas/Organization/Scripts",
+            "workLocation": "/Areas/Organization/Scripts",
+            "workplaceType": "/Areas/Organization/Scripts",
+            "businessSeg": "/Areas/Organization/Scripts",
+            "employee": "/Areas/EmployeeManagement/Scripts",
+
+            "region": "/Areas/GeographicalHierarchy/Scripts",
+            "subRegion": "/Areas/GeographicalHierarchy/Scripts"
+
+        }
     });
 
     function defineThirdPartyModules() {

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Models.DomainModels;
-using Models.RequestModels;
-using Models.ResponseModels;
+using Cares.Models.RequestModels;
+using Cares.Models.ResponseModels;
+using Cares.Models.DomainModels;
 
-namespace Interfaces.IServices
+namespace Cares.Interfaces.IServices
 {
     public interface IProductService
     {

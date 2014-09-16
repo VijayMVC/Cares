@@ -1,11 +1,12 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using Interfaces.Repository;
+using Cares.Interfaces.Repository;
+using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
-using Models.DomainModels;
-using Repository.BaseRepository;
+using Cares.Models.DomainModels;
 
-namespace Repository.Repositories
+namespace Cares.Repository.Repositories
 {
     public sealed class BusinessLegalStatusRepository : BaseRepository<BusinessLegalStatus>, IBusinessLegalStatusRepository
     {
@@ -35,9 +36,9 @@ namespace Repository.Repositories
         /// <summary>
         /// Get All Business Segments for User Domain Key
         /// </summary>
-        public override IQueryable<BusinessLegalStatus> GetAll()
+        public override IEnumerable<BusinessLegalStatus> GetAll()
         {
-            return DbSet.Where(businessLegalStatus => businessLegalStatus.UserDomainKey == UserDomainKey);
+            return DbSet.Where(businessLegalStatus => businessLegalStatus.UserDomainKey == UserDomainKey).ToList();
         }
 
         #endregion

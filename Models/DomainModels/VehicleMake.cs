@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Models.DomainModels
+namespace Cares.Models.DomainModels
 {
     /// <summary>
     /// Vehicle Make Domain Model
@@ -21,7 +22,7 @@ namespace Models.DomainModels
         /// <summary>
         /// Vehicle Make Code
         /// </summary>
-        [StringLength(100)]
+        [StringLength(100), Required]
         public string VehicleMakeCode { get; set; }
         /// <summary>
         /// Vehicle Make Name
@@ -60,17 +61,31 @@ namespace Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100)]
+        [StringLength(100), Required]
         public string RecLastUpdatedBy { get; set; }
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100)]
+        [StringLength(100), Required]
         public string RecCreatedBy { get; set; }
         /// <summary>
         /// Row Version
         /// </summary>
         public long RowVersion { get; set; }
+
+        #endregion
+
+        #region Reference Properties
+
+        /// <summary>
+        /// Hire Group Details having this Vehicle Make
+        /// </summary>
+        public virtual ICollection<HireGroupDetail> HireGroupDetails { get; set; }
+
+        /// <summary>
+        /// Vehicles having this Vehicle Make
+        /// </summary>
+        public virtual ICollection<Vehicle> Vehicles { get; set; }
 
         #endregion
     }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace Models.MenuModels
+namespace Cares.Models.MenuModels
 {
     /// <summary>
     /// MenuRights class for menu assoication with role

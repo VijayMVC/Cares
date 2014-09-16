@@ -1,6 +1,4 @@
-﻿
-using DomainModels = Models.DomainModels;
-using Cares.Web.Models;
+﻿using Cares.Web.Models;
 
 namespace Cares.Web.ModelMappers
 {
@@ -9,33 +7,31 @@ namespace Cares.Web.ModelMappers
     /// </summary>
     public static class BPRatingTypeMapper
     {
-        #region Public
         /// <summary>
         ///  Create web api model from domail model
         /// </summary>
-        public static BpRatingType CreateFrom(this DomainModels.BpRatingType source)
+        public static BpRatingTypeDropDown CreateFrom(this Cares.Models.DomainModels.BpRatingType source)
         {
-            return new BpRatingType
+            return new BpRatingTypeDropDown
             {
                 BpRatingTypeId = source.BpRatingTypeId,
-                BpRatingTypeName = source.BpRatingTypeName
+                BpRatingTypeCodeName = source.BpRatingTypeCode +'-'+ source.BpRatingTypeName
             };
         }
         /// <summary>
         ///  Create domain model from web api model
         /// </summary>
-        public static DomainModels.BpRatingType CreateFrom(this BpRatingType source)
+        public static Cares.Models.DomainModels.BpRatingType CreateFrom(this BpRatingTypeDropDown source)
         {
             if (source != null)
             {
-                return new DomainModels.BpRatingType
+                return new Cares.Models.DomainModels.BpRatingType
                 {
                     BpRatingTypeId = source.BpRatingTypeId,
-                    BpRatingTypeName = source.BpRatingTypeName
+                    BpRatingTypeName = source.BpRatingTypeCodeName
                 };
             }
-            return new DomainModels.BpRatingType();
+            return new Cares.Models.DomainModels.BpRatingType();
         }
-        #endregion
     }
 }

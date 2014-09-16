@@ -1,0 +1,145 @@
+﻿
+<div class="well col-md-12" id="hireGroupEditor" data-bind="visible: isHireGroupEditorVisible, with: selectedHireGroup" style="display: none;">
+    <div class="detailsContainer">
+        <h3 class="page-header detailsHeaderSection">@Cares.Web.Resources.Tariff.HireGroup.HireGroupDetail</h3>
+        <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onSaveHireGroup">@Cares.Web.Resources.Shared.Common.Save</button>
+        <button class="btn btn-default" id="saveBtn" data-bind="click: $root.closeHireGroupEditor">@Cares.Web.Resources.Shared.Common.Cancel</button>
+    </div>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="hireGroupCode" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.HireGroup.HireGroupCode *</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder='@("<" + Cares.Web.Resources.Tariff.HireGroup.HireGroupCode + ">")' id="hireGroupCode" data-bind="value: hireGroupCode, validationTooltip: hireGroupCode" />
+            </div>
+            <label for="hireGroupName" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.HireGroup.HireGroupName</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder='@("<" + Cares.Web.Resources.Tariff.HireGroup.HireGroupName + ">")' id="hireGroupName" data-bind="value: hireGroupName, validationTooltip: hireGroupName" />
+            </div>
+            <label for="company" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.HireGroup.Company *</label>
+            <div class="col-md-2">
+                <select id="company" class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '&lt;' + '@Cares.Web.Resources.Tariff.HireGroup.Company' + '&gt;', value: companyId, validationTooltip: companyId, disable :virtualIsParent(), event:{change:$root.onSelectedCompany}, disable :(hireGroupId()!=undefined)"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="isParent" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.HireGroup.IsParent  </label>
+            <div class="col-md-2">
+                <input type="checkbox" class="form-control" id="isParent" data-bind="checked: isParent, validationTooltip: isParent" />
+            </div>
+            <label for="isParentHireGroup" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.HireGroup.ParentHireGroup </label>
+            <div class="col-xs-2">
+                <select id="isParentHireGroup" class="form-control" data-bind="options: $root.filteredParentHireGroups, optionsText: 'ParentHireGroupName', optionsValue: 'ParentHireGroupId', optionsCaption:'&lt;' + '@Cares.Web.Resources.Tariff.HireGroup.ParentHireGroup' + '&gt;', value: parentHireGroupId,validationTooltip: parentHireGroupId"></select>
+            </div>
+            <label for="description" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.HireGroup.Description</label>
+            <div class="col-md-2">
+                <textarea class="form-control" rows="2" placeholder='@("<" + Cares.Web.Resources.Tariff.HireGroup.Description + ">")' id="description" data-bind="value: description, valueUpdate: 'keyup'"></textarea>
+            </div>
+        </div>
+    </form>
+    <div class="panel panel-info">
+        <div class="panel-heading">.</div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="active"><a href="#detail" role="tab" data-toggle="tab">@Cares.Web.Resources.Shared.Common.Detail</a></li>
+            <li><a href="#upgradedHireGroups" role="tab" data-toggle="tab">@Cares.Web.Resources.Tariff.HireGroup.UpgradedHireGroups</a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <br />
+            <!-- first tab - Detail-->
+            <div class="tab-pane active" id="detail" data-bind="with:vehicleDetail">
+                <form class="form-horizontal">
+                    <div class="addToBtnDiv row"> <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onAddVehicleDetail , disable :$root.virtualIsChecked()">@Cares.Web.Resources.Shared.Common.Add</button></div>
+                    <div class="form-group">
+                        <label for="vehicleMake" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.HireGroup.VehicleMake*</label>
+                        <div class="col-md-2">
+                            <select id="vehicleMake" class="form-control" data-bind="options: $root.vehicleMakes, optionsText: 'VehicleMakeCodeName', optionsCaption:'&lt;' + '@Cares.Web.Resources.Tariff.HireGroup.VehicleMake' + '&gt;', value:vehicleMakeId, event:{change:$root.onVehicleMakeChange}, disable :$root.virtualIsChecked()"></select>
+                        </div>
+                        <label for="vehicleModel" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.HireGroup.VehicleModel*</label>
+                        <div class="col-md-2">
+                            <select id="vehicleModel" class="form-control" data-bind="options: $root.vehicleModels, optionsText: 'VehicleModelCodeName', optionsCaption:'&lt;' + '@Cares.Web.Resources.Tariff.HireGroup.VehicleModel' + '&gt;', value: vehicleModelId, event:{change:$root.onVehicleModelChange}, disable :$root.virtualIsChecked() "></select>
+                        </div>
+                        <label for="vehicleCategory" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.HireGroup.VehicleCategory</label>
+                        <div class="col-md-2">
+                            <select id="vehicleCategory" class="form-control" data-bind="options: $root.vehicleCategories, optionsText: 'VehicleCategoryCodeName', optionsCaption:'&lt;' + '@Cares.Web.Resources.Tariff.HireGroup.VehicleCategory' + '&gt;', value: vehicleCategoryId, event:{change:$root.onVehicleCategoryChange}, disable :$root.virtualIsChecked() "></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="modelYear" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.HireGroup.ModelYear*</label>
+                        <div class="col-md-2">
+                            <select id="modelYear" class="form-control" data-bind="options: $root.modelYears, optionsText: 'Text',optionsValue:'Id', optionsCaption:'&lt;' + '@Cares.Web.Resources.Tariff.HireGroup.ModelYear' + '&gt;', value: vehicleModelYear, disable :$root.virtualIsChecked() "></select>
+                        </div>
+
+                    </div>
+                </form>
+
+                <table id="hireGroupDetail" class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th class="make"> <span>@Cares.Web.Resources.Tariff.HireGroup.VehicleMake<span></span></span></th>
+                            <th class="model"> <span>@Cares.Web.Resources.Tariff.HireGroup.VehicleModel<span></span></span></th>
+                            <th class="category"> <span>@Cares.Web.Resources.Tariff.HireGroup.VehicleCategory<span></span></span></th>
+                            <th class="modelYear"> <span>@Cares.Web.Resources.Tariff.HireGroup.ModelYear<span></span></span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- ko template: { name: 'itemHireGroupDetailTemplate' , foreach: $root.hireGroupDetails } -->
+                        <!-- /ko -->
+                    </tbody>
+                </table>
+                <script id="deleteActionHireGroupDetailTemplate" type="text/html">
+                    <a href="#" data-bind="click: $root.deleteHireGroupDetail" title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
+                </script>
+                <script id="itemHireGroupDetailTemplate" type="text/html">
+                    <tr>
+                        <td data-bind="text: vehicleMakeName"></td>
+                        <td data-bind="text: vehicleModelName"></td>
+                        <td data-bind="text: vehicleCategoryName"></td>
+                        <td data-bind="text: vehicleModelYear"></td>
+                        <td>
+                            <!-- ko template: { name: 'deleteActionHireGroupDetailTemplate' } -->
+                            <!-- /ko -->
+                        </td>
+                    </tr>
+                </script>
+            </div>
+            <!-- second tab - Upgraded HireGroups-->
+            <div class="tab-pane" id="upgradedHireGroups" data-bind="with:hireGroupUpGrade">
+                <form class="form-horizontal">
+                    <div class="addToBtnDiv row">
+                        <button class="btn btn-info addToBtn" id="saveBtn" data-bind="click: $root.onAddHireGroupUpGrade, disable :$root.virtualIsChecked()">@Cares.Web.Resources.Shared.Common.Add</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="hireGroups" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.HireGroup.HireGroups *</label>
+                        <div class="col-md-2">
+                            <select id="hireGroups" class="form-control" data-bind="options: $root.filteredHireGroupsForDdList, optionsText: 'HireGroupCodeName', optionsCaption: '&lt;' + '@Cares.Web.Resources.Tariff.HireGroup.HireGroupText' + '&gt;',value:hireGroupIdForUpGrade, event:{change:$root.upGradedHireGroupChange}, disable :$root.virtualIsChecked() "></select>
+                        </div>
+                    </div>
+                </form>
+
+                <table id="hireGroupUpgraded" class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th> <span>@Cares.Web.Resources.Tariff.HireGroup.HireGroups<span></span></span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- ko template: { name: 'itemHireGroupUpgradedTemplate' , foreach: $root.hireGroupUpGradeList } -->
+                        <!-- /ko -->
+                    </tbody>
+                </table>
+                <script id="deleteActionHireGroupUpGradeTemplate" type="text/html">
+                    <a href="#" data-bind="click: $root.deleteHireGroupUpGrade" title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
+                </script>
+                <script id="itemHireGroupUpgradedTemplate" type="text/html">
+                    <tr>
+                        <td data-bind="text: hireGroupCodeName"></td>
+                        <td>
+                            <!-- ko template: { name: 'deleteActionHireGroupUpGradeTemplate' } -->
+                            <!-- /ko -->
+                        </td>
+                    </tr>
+                </script>
+            </div>
+        </div>
+    </div>
+</div>

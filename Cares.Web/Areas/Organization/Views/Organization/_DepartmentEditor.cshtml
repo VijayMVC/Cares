@@ -1,0 +1,34 @@
+﻿
+<div class="well col-md-12" id="OperationEditor" data-bind="visible: isDepartmentEditorVisible , with:selectedDepartment" style="display: none;">
+    <div class="float-left detailsContainer">
+        <h3 class="page-header detailsHeaderSection">@Cares.Web.Resources.Organization.Department.DepartmentDetail</h3>
+        <button class="btn  btn-info" data-bind="click:$root.onSaveDepartment">@Cares.Web.Resources.Shared.Common.Save</button>
+        <button class="btn  btn-default" data-bind="click:$root.onCancelDepartment">@Cares.Web.Resources.Shared.Common.Cancel</button>
+    </div>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Department.DepartmentCode*</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Department.DepartmentCode+">")" id="tariffTypeCode" data-bind="value: code" />
+            </div>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Department.DepartmentName*</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Department.DepartmentName+">")" id="tariffTypeName" data-bind="value:name" />
+            </div>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Department.Description</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Department.Description+">")" id="tariffTypeDescription" data-bind="value:description" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Department.DepartmentType*</label>
+            <div class="col-md-2">
+                <select class="form-control" data-bind="options: $root.baseDepartmentTypesList, optionsCaption: '&lt;' + '@Cares.Web.Resources.Organization.Department.DepartmentType'+ '&gt;', value:departmentType "></select>
+            </div>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Department.Comapny*</label>
+            <div class="col-md-2">
+                <select class="form-control" data-bind="options: $root.baseCompniesList, optionsText:  'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.Department.Comapny'+ '&gt;' , value:companyId"></select>
+            </div>
+        </div>
+    </form>
+</div>

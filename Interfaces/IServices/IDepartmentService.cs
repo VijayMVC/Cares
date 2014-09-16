@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
-using Models.DomainModels;
+using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
+using Cares.Models.ResponseModels;
 
-namespace Interfaces.IServices
+namespace Cares.Interfaces.IServices
 {
     /// <summary>
     /// Department Service Interface
@@ -11,7 +13,26 @@ namespace Interfaces.IServices
         /// <summary>
         /// Get All Departments
         /// </summary>
-        /// <returns></returns>
         IEnumerable<Department> LoadAll();
+
+        /// <summary>
+        /// Load Department BaseData
+        /// </summary>
+        DepartmentBaseDataResponse LoadDepartmentBaseData();
+
+        /// <summary>
+        /// Search Department
+        /// </summary>
+        DepartmentSearchRequestResponse SearchDepartment(DepartmentSearchRequest request);
+
+        /// <summary>
+        /// Delete Department
+        /// </summary>
+        void DeleteDepartment(long departmentId);
+
+        /// <summary>
+        /// Save or Update Department
+        /// </summary>
+        Department SaveUpdateDepartment(Department request);
     }
 }

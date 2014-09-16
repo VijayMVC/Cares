@@ -79,7 +79,7 @@
             }),
             // Go to the next page of products
             nextPage = function() {
-                if (currentPage() < totalPages() - 1) {
+                if (currentPage() < totalPages()) {
                     currentPage(currentPage() + 1);
                     if (callback && typeof callback === "function") {
                         callback();
@@ -88,7 +88,7 @@
             },
             // Go to the previous page of products
             previousPage = function() {
-                if (currentPage() > 0) {
+                if (currentPage() > 1) {
                     currentPage(currentPage() - 1);
                     if (callback && typeof callback === "function") {
                         callback();
@@ -119,7 +119,7 @@
                 if (totalCount() > 0) {
                     startIndex += 1;
                 }
-                return "Showing " + startIndex + " - " + total + " of " + totalCount();
+                return ist.resourceText.showing + startIndex + " - " + total + " "+ist.resourceText.of +" "+ + totalCount();
             }),
             // Reset
             reset = function() {

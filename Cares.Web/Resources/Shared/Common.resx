@@ -120,11 +120,20 @@
   <data name="About" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
   <data name="BackToList" xml:space="preserve">
     <value>Back To List</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>Confirmation</value>
   </data>
   <data name="Contact" xml:space="preserve">
     <value>Contact</value>
@@ -135,14 +144,23 @@
   <data name="CreateNew" xml:space="preserve">
     <value>Create New</value>
   </data>
+  <data name="DefaultConfirmationText" xml:space="preserve">
+    <value>Do you want to proceed with the request?</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
+  </data>
+  <data name="Detail" xml:space="preserve">
+    <value>Detail</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
   </data>
   <data name="EditDelete" xml:space="preserve">
     <value>Edit/Delete</value>
   </data>
-  <data name="Employee" xml:space="preserve">
-    <value>Employee</value>
+  <data name="HideSection" xml:space="preserve">
+    <value>Hide Section</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
@@ -150,11 +168,23 @@
   <data name="Login" xml:space="preserve">
     <value>Log in</value>
   </data>
+  <data name="New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Of" xml:space="preserve">
+    <value>of </value>
+  </data>
   <data name="Page" xml:space="preserve">
     <value>Page</value>
   </data>
-  <data name="Product" xml:space="preserve">
-    <value>Product</value>
+  <data name="Prev" xml:space="preserve">
+    <value>Prev</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>Register</value>
@@ -168,10 +198,19 @@
   <data name="Search" xml:space="preserve">
     <value>Search</value>
   </data>
+  <data name="ShowFilter" xml:space="preserve">
+    <value>Show Filters</value>
+  </data>
+  <data name="Showing" xml:space="preserve">
+    <value>Showing </value>
+  </data>
   <data name="TextDirection" xml:space="preserve">
     <value>ltr</value>
   </data>
   <data name="TotalRecords" xml:space="preserve">
     <value>Total # of records:</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
 </root>

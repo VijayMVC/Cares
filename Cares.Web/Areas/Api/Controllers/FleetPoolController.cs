@@ -2,10 +2,11 @@
 using System.Net;
 using System.Web;
 using System.Web.Http;
+using Cares.Interfaces.IServices;
+using Cares.Models.RequestModels;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
-using Interfaces.IServices;
-using Domain = Models.RequestModels;
+using Cares.WebBase.Mvc;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
@@ -14,11 +15,37 @@ namespace Cares.Web.Areas.Api.Controllers
     /// </summary>
     public class FleetPoolController : ApiController
     {
+        #region Private
+        private readonly IFleetPoolService fleetPoolService;
+        #endregion
+        #region Constructor
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public FleetPoolController(IFleetPoolService ifleetPoolService)
+        {
+            fleetPoolService = ifleetPoolService;
+        }
+        #endregion
         #region Public
+        /// <summary>
+        /// Dalete Fleet Pool
+        /// </summary>
+        [ApiException]
+        public bool Delete(FleetPool fleetPool)
+        {
+            if (!ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+            fleetPoolService.DeleteFleetPool(fleetPool.FleetPoolId);
+            return true;
+        }
+
         /// <summary>
         /// Get FleetPools
         /// </summary>
-        public FleetPoolResponse Get([FromUri] Domain.FleetPoolSearchRequest request)
+        public FleetPoolResponse Get([FromUri] FleetPoolSearchRequest request)
         {
             if (request == null || !ModelState.IsValid)
             {
@@ -29,29 +56,17 @@ namespace Cares.Web.Areas.Api.Controllers
         }
 
         /// <summary>
-        /// Delete a FleetPool
+        /// ADD/update FleetPool
         /// </summary>
-        public void Delete(Object fleetPoolId)
+        [ApiException]
+        public FleetPool Post(FleetPool fleetPool)
         {
-            if ( !ModelState.IsValid)
+            if (fleetPool == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-
-            fleetPoolService.DeleteFleetPool(2);
+            return fleetPoolService.SaveFleetPool(fleetPool.CreateFrom()).CreateFrom();
         }
-        #endregion
-        #region Constructor
-
-        public FleetPoolController(IFleetPoolService ifleetPoolService)
-        {
-            fleetPoolService = ifleetPoolService;
-        }
-        #endregion
-        #region Private
-
-        private readonly IFleetPoolService fleetPoolService;
-
         #endregion
     }
 }

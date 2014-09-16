@@ -70,6 +70,15 @@ namespace Cares.Web.Resources.Shared {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back To List.
         /// </summary>
         public static string BackToList {
@@ -84,6 +93,24 @@ namespace Cares.Web.Resources.Shared {
         public static string Cancel {
             get {
                 return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string Close {
+            get {
+                return ResourceManager.GetString("Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirmation.
+        /// </summary>
+        public static string Confirmation {
+            get {
+                return ResourceManager.GetString("Confirmation", resourceCulture);
             }
         }
         
@@ -115,11 +142,38 @@ namespace Cares.Web.Resources.Shared {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you want to proceed with the request?.
+        /// </summary>
+        public static string DefaultConfirmationText {
+            get {
+                return ResourceManager.GetString("DefaultConfirmationText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string Delete {
             get {
                 return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detail.
+        /// </summary>
+        public static string Detail {
+            get {
+                return ResourceManager.GetString("Detail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
             }
         }
         
@@ -133,11 +187,11 @@ namespace Cares.Web.Resources.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Employee.
+        ///   Looks up a localized string similar to Hide Section.
         /// </summary>
-        public static string Employee {
+        public static string HideSection {
             get {
-                return ResourceManager.GetString("Employee", resourceCulture);
+                return ResourceManager.GetString("HideSection", resourceCulture);
             }
         }
         
@@ -160,6 +214,42 @@ namespace Cares.Web.Resources.Shared {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New.
+        /// </summary>
+        public static string New {
+            get {
+                return ResourceManager.GetString("New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next.
+        /// </summary>
+        public static string Next {
+            get {
+                return ResourceManager.GetString("Next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to of .
+        /// </summary>
+        public static string Of {
+            get {
+                return ResourceManager.GetString("Of", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Page.
         /// </summary>
         public static string Page {
@@ -169,11 +259,11 @@ namespace Cares.Web.Resources.Shared {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Product.
+        ///   Looks up a localized string similar to Prev.
         /// </summary>
-        public static string Product {
+        public static string Prev {
             get {
-                return ResourceManager.GetString("Product", resourceCulture);
+                return ResourceManager.GetString("Prev", resourceCulture);
             }
         }
         
@@ -214,6 +304,24 @@ namespace Cares.Web.Resources.Shared {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show Filters.
+        /// </summary>
+        public static string ShowFilter {
+            get {
+                return ResourceManager.GetString("ShowFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Showing .
+        /// </summary>
+        public static string Showing {
+            get {
+                return ResourceManager.GetString("Showing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ltr.
         /// </summary>
         public static string TextDirection {
@@ -228,6 +336,15 @@ namespace Cares.Web.Resources.Shared {
         public static string TotalRecords {
             get {
                 return ResourceManager.GetString("TotalRecords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }

@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using Cares.Web.Models;
-using DomainResponseModels=Models.ResponseModels;
+
 namespace Cares.Web.ModelMappers
 {
     /// <summary>
@@ -13,7 +13,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Tariff Type Base Response Mapper
         /// </summary>
-        public static TariffTypeDetailResponse CreateFrom(this DomainResponseModels.TariffTypeDetailResponse source)
+        public static TariffTypeDetailResponse CreateFrom(this Cares.Models.ResponseModels.TariffTypeDetailResponse source)
         {
             return new TariffTypeDetailResponse
             {

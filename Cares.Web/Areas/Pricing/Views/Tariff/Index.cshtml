@@ -1,0 +1,106 @@
+﻿@{
+    ViewBag.Title = @Cares.Web.Resources.Tariff.TariffType.TariffTypeText;
+}
+
+<div class="row" id="tariffTypeBinding">
+    <div class="row " data-bind="visible: !isTariffTypeEditorVisible()">
+        <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.Tariff.TariffType.TariffTypes</h3>
+        <div class="header-toolsSection">
+            <a href="#" class="label label-default create-new-icon" data-bind="click: createTariffTypeInForm" title='@Cares.Web.Resources.Tariff.TariffType.CreateNewTariffType'>@Cares.Web.Resources.Shared.Common.New</a>
+            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title='@Cares.Web.Resources.Shared.Common.ShowFilter' style="display: none"></a>
+        </div>
+    </div>
+    <div class="row searchFilterSection" data-bind="visible: !isTariffTypeEditorVisible() && filterSectionVisilble()" style="display: none">
+        <div class="well">
+            <form class="form-horizontal" data-bind="submit: search">
+                <div class="col-xs-3">
+                    <input type="text" class="form-control" placeholder='@("<"+Cares.Web.Resources.Shared.Common.Search+">")' data-bind="value: tariffTypeCodeFilter" />
+                    
+                </div>
+                <div class="col-xs-3">
+                    <select class="form-control" data-bind="options: $root.measurementUnits, optionsText: 'MeasurementUnitCodeName', optionsValue: 'MeasurementUnitId', optionsCaption: '&lt;' +'@Cares.Web.Resources.Tariff.TariffType.MeasurementUnit'+ '&gt;', value: measurementUnitFilter"></select>
+                </div>
+                <div class="col-xs-3">
+                    <select class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '&lt;' +'@Cares.Web.Resources.Tariff.TariffType.Operation'+ '&gt;', value: operationFilter"></select>
+                </div>
+                <button type="submit" class="btn btn-success" data-bind="click: search">@Cares.Web.Resources.Shared.Common.Search</button>
+                <button type="submit" class="btn btn-default" data-bind="click: reset">@Cares.Web.Resources.Shared.Common.Reset</button>
+                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection" title='@Cares.Web.Resources.Shared.Common.HideSection'></a>
+            </form>
+        </div>
+    </div>
+    <div class="row searchFilterResultSection" data-bind="visible: !isTariffTypeEditorVisible()">
+        <div class="well">
+            <table id="tariffTypeTable" class="table table-condensed ">
+                <thead>
+                    <tr>
+                        <th class="tariffTypeCode"> <span id="1">@Cares.Web.Resources.Tariff.TariffType.Code<span class="icon-up"></span></span></th>
+                        <th class="tariffTypeName"> <span id="2">@Cares.Web.Resources.Tariff.TariffType.Name<span></span></span></th>
+                        <th class="pricingScheme"> <span id="3">@Cares.Web.Resources.Tariff.TariffType.Pricing<br />@Cares.Web.Resources.Tariff.TariffType.Scheme<span></span></span></th>
+                        <th class="operation"> <span id="4">@Cares.Web.Resources.Tariff.TariffType.Operation<span></span></span></th>
+                        <th class="measurementUnit"> <span id="5">@Cares.Web.Resources.Tariff.TariffType.Measurement<br />@Cares.Web.Resources.Tariff.TariffType.Unit<span></span></span></th>
+                        <th class="from"> <span id="6">@Cares.Web.Resources.Tariff.TariffType.Duration<br />@Cares.Web.Resources.Tariff.TariffType.From<span></span></span></th>
+                        <th class="to"> <span id="7">@Cares.Web.Resources.Tariff.TariffType.Duration<br />@Cares.Web.Resources.Tariff.TariffType.To<span></span></span></th>
+                        <th class="gracePeriod"> <span id="8">@Cares.Web.Resources.Tariff.TariffType.Grace <br />@Cares.Web.Resources.Tariff.TariffType.Period<span></span></span></th>
+                        <th class="effectiveDate"> <span id="9">@Cares.Web.Resources.Tariff.TariffType.Effective<br />@Cares.Web.Resources.Tariff.TariffType.Date<span></span></span></th>
+                        <th class="revision"> <span>@Cares.Web.Resources.Tariff.TariffType.Revision<span></span></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- ko template: { name: 'itemtariffTypeTemplate' , foreach: tariffTypes } -->
+                    <!-- /ko -->
+                </tbody>
+            </table>
+            <!-- ko with: pager -->
+            @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
+            <!-- /ko -->
+        </div>
+    </div>
+    <script id="editActiontariffTypeTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onEditTariffType" title=@Cares.Web.Resources.Shared.Common.Edit><span class="glyphicon glyphicon-edit"></span></a>
+    </script>
+
+    <script id="itemtariffTypeTemplate" type="text/html">
+        <tr data-bind="click: $root.selecttariffType">
+            <td data-bind="text: tariffTypeCode"></td>
+            <td data-bind="text: tariffTypeName"></td>
+            <td data-bind="text: pricingScheme"></td>
+            <td data-bind="text: operation"></td>
+            <td data-bind="text: measurementUnit"></td>
+            <td data-bind="text: durationFrom"></td>
+            <td data-bind="text: durationTo"></td>
+            <td data-bind="text: gracePeriod"></td>
+            <td data-bind="text: effectiveDate"></td>
+            <td data-bind="text: revisionNumber"></td>
+            <td>
+                <!-- ko template: { name: 'editActiontariffTypeTemplate' } -->
+                <!-- /ko -->
+            </td>
+        </tr>
+    </script>
+
+    @Html.Partial("_TariffTypeEditor")
+
+</div>
+
+<!-- ko stopBinding: true -->
+@Html.Partial("~/Areas/Common/Views/Shared/_ConfirmationDialog.cshtml")
+<!-- /ko -->
+@section inlinescripts
+{
+    <script type="text/javascript">
+        require(["tariffType/tariffType.view", "common/confirmation.view"]);
+
+        var ist = window.ist;
+        @{
+            <text>
+        ist.resourceText.tariffTypeAddSuccess = '@Cares.Web.Resources.Tariff.TariffType.TariffTypeAddSucessMsg';
+        ist.resourceText.loadBaseDataFailedMsg = '@Cares.Web.Resources.Tariff.TariffType.LoadBaseDataFailedMsg';
+        ist.resourceText.loadTariffTypesFailedMsg = '@Cares.Web.Resources.Tariff.TariffType.LoadTariffTypesFailedMsg';
+        ist.resourceText.tariffTypeSaveFailedMsg = '@Cares.Web.Resources.Tariff.TariffType.TariffTypeSaveFailedMsg';
+        ist.resourceText.tariffTypeDetailFailedMsg = '@Cares.Web.Resources.Tariff.TariffType.TariffTypeDetailFailedMsg';
+        </text>
+        }
+
+    </script>
+}

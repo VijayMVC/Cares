@@ -1,0 +1,106 @@
+﻿@{
+    ViewBag.Title = Cares.Web.Resources.Organization.Company.CompanyLabel;
+}
+<div class="row" id="companyBinding">
+    <div class="row " data-bind="visible: !isCompanyEditorVisible()">
+        <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.Organization.Company.CompanyLabel</h3>
+        <div class="header-toolsSection">
+            <a href="#" class="label label-default create-new-icon" data-bind="click: onCreateCompany" title=@Cares.Web.Resources.Shared.Common.CreateNew>@Cares.Web.Resources.Shared.Common.New</a>
+            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title=@Cares.Web.Resources.Shared.Common.ShowFilter style="display: none"></a>
+        </div>
+    </div>
+    <div class="row searchFilterSection" data-bind="visible: !isCompanyEditorVisible() && filterSectionVisilble()" style="display: none">
+        <div class="well">
+            <form class="form-horizontal">
+
+                <div class="col-xs-2">
+                    <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Company.Serach+">")" data-bind="value:companyFilter" />
+                </div>
+
+                <div class="col-xs-2">
+                    <select class="form-control" data-bind="options: $root.orgGroupList, optionsText: 'OrgGroupName', optionsValue: 'OrgGroupId', optionsCaption: '&lt;' + '@Cares.Web.Resources.Organization.Company.OrganizationGroup'+ '&gt;' , value: orgGroupFilter"></select>
+                </div>
+                <div class="col-xs-2">
+                    <select class="form-control" data-bind="options: $root.businessSegList, optionsText: 'BusinessSegmentCodeName', optionsValue: 'BusinessSegmentId', optionsCaption:'&lt;' +  '@Cares.Web.Resources.Organization.Company.BusinessSegment'+ '&gt;' , value: busiNessSegmentFilter"></select>
+                </div>
+                <button type="submit" class="btn btn-success" data-bind="click: onSearch">@Cares.Web.Resources.Shared.Common.Search</button>
+                <button type="submit" class="btn btn-default" data-bind="click: onReset">@Cares.Web.Resources.Shared.Common.Reset</button>
+                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection" title=@Cares.Web.Resources.Shared.Common.HideSection></a>
+            </form>
+        </div>
+    </div>
+
+    <div class="row searchFilterResultSection" data-bind="visible: !isCompanyEditorVisible()">
+        <div class="well">
+            <table id="CompanyTable" class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th class="CompanyCodeH"> <span id="1">@Cares.Web.Resources.Organization.Company.Code<span class="icon-up"></span></span></th>
+                        <th class="CompanyNameH"> <span id="2">@Cares.Web.Resources.Organization.Company.Name<span></span></span></th>
+                        <th class="CompanydesH"> <span id="3">@Cares.Web.Resources.Organization.Company.Description<span></span></span></th>
+                        <th class="CompanyOrgGroupH"> <span id="4">@Cares.Web.Resources.Organization.Company.OrganizationGroup<span></span></span></th>
+                        <th class="CompanyBSegH"> <span id="5">@Cares.Web.Resources.Organization.Company.BusinessSegment<span></span></span></th>
+                        <th class="CompanyPCompanyH"> <span id="6">@Cares.Web.Resources.Organization.Company.ParentCompany<span></span></span></th>
+                        <th> <span></span></th>
+                        <th> <span></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- ko template: { name: 'companyFilterResultTemplate' , foreach: companies } -->
+                    <!-- /ko -->
+                </tbody>
+            </table>
+            <!-- ko with: pager -->
+            @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
+            <!-- /ko -->
+        </div>
+    </div>
+    <script id="deleteActionCompanyTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onDeleteCompany" title="@Cares.Web.Resources.Shared.Common.Delete"><span class="glyphicon glyphicon-remove"></span></a>
+    </script>
+
+    <script id="editActionCompanyTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onEditCompany" title="@Cares.Web.Resources.Shared.Common.Edit"><span class="glyphicon glyphicon-edit"></span></a>
+    </script>
+    <script id="companyFilterResultTemplate" type="text/html">
+        <tr>
+            <td data-bind="text: companyCode"></td>
+            <td data-bind="text: companyName"></td>
+            <td data-bind="text: companyDescription"></td>
+            <td data-bind="text: orgGroupName"></td>
+            <td data-bind="text: businessSegmentName"></td>
+            <td data-bind="text: parentCompanyName"></td>
+            <td>
+                <!-- ko template: { name: 'editActionCompanyTemplate' } -->
+                <!-- /ko -->
+            </td>
+            <td>
+                <!-- ko template: { name: 'deleteActionCompanyTemplate' } -->
+                <!-- /ko -->
+            </td>
+        </tr>
+    </script>
+    @Html.Partial("_CompanyEditor")
+
+</div>
+<!-- ko stopBinding: true -->
+@Html.Partial("~/Areas/Common/Views/Shared/_ConfirmationDialog.cshtml")
+<!-- /ko -->
+@section inlinescripts
+{
+    <script type="text/javascript">
+        require(["company/company.view", "common/confirmation.view"]);
+        var ist = window.ist;
+    @{
+        <text>
+        ist.resourceText.CompanySaveSuccessMessage = '@Cares.Web.Resources.Organization.Company.CompanySaveSuccessMessage'
+        ist.resourceText.CompanySaveFailError = '@Cares.Web.Resources.Organization.Company.CompanySaveFailError';
+        ist.resourceText.CompanyLoadFailError = '@Cares.Web.Resources.Organization.Company.CompanyLoadFailError';
+        ist.resourceText.CompanyBaseLoadFailError = '@Cares.Web.Resources.Organization.Company.CompanyBaseLoadFailError';
+        ist.resourceText.CompanyDeleteSuccessMessage = '@Cares.Web.Resources.Organization.Company.CompanyDeleteSuccessMessage';
+        ist.resourceText.CompanyDeleteFailError = '@Cares.Web.Resources.Organization.Company.CompanyDeleteFailError'; 
+            </text>
+    }
+    </script>
+
+}

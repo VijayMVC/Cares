@@ -1,12 +1,12 @@
-﻿
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using Interfaces.Repository;
+using Cares.Interfaces.Repository;
+using Cares.Models.DomainModels;
+using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
-using Models.DomainModels;
-using Repository.BaseRepository;
 
-namespace Repository.Repositories
+namespace Cares.Repository.Repositories
 {
     /// <summary>
     /// Country Repository
@@ -32,18 +32,25 @@ namespace Repository.Repositories
                 return db.Countries;
             }
         }
-
         #endregion
 
         #region Public
         /// <summary>
-        /// Get All Business Segments for User Domain Key
+        /// Get All Countries for User Domain Key
         /// </summary>
-        public override IQueryable<Country> GetAll()
+        public override IEnumerable<Country> GetAll()
         {
-            return DbSet.Where(country => country.UserDomainKey == UserDomainKey);
+            return DbSet.Where(country => country.UserDomainKey == UserDomainKey).ToList();
         }
-
+        /// <summary>
+        /// Find by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Country Find(int id)
+        {
+            return DbSet.FirstOrDefault(country => country.UserDomainKey == UserDomainKey && country.CountryId == id);
+        }
         #endregion
     }
 }

@@ -1,5 +1,5 @@
 ﻿
-using DomainModels = Models.DomainModels;
+using DomainModels = Cares.Models.DomainModels;
 using Cares.Web.Models;
 
 namespace Cares.Web.ModelMappers
@@ -9,33 +9,31 @@ namespace Cares.Web.ModelMappers
     /// </summary>
     public static class BusinessLegalStatusMapper
     {
-        #region Public
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static BusinessLegalStatus CreateFrom(this DomainModels.BusinessLegalStatus source)
+        public static BusinessLegalStatusDropDown CreateFrom(this DomainModels.BusinessLegalStatus source)
         {
-            return new BusinessLegalStatus
+            return new BusinessLegalStatusDropDown
             {
                 BusinessLegalStatusId = source.BusinessLegalStatusId,
-                BusinessLegalStatusName = source.BusinessLegalStatusName
+                BusinessLegalStatusCodeName = source.BusinessLegalStatusCode + " - " + source.BusinessLegalStatusName
             };
         }
         /// <summary>
         ///  Create entity from web model
         /// </summary>
-        public static DomainModels.BusinessLegalStatus CreateFrom(this BusinessLegalStatus source)
+        public static DomainModels.BusinessLegalStatus CreateFrom(this BusinessLegalStatusDropDown source)
         {
             if (source != null)
             {
                 return new DomainModels.BusinessLegalStatus
                 {
                     BusinessLegalStatusId = source.BusinessLegalStatusId,
-                    BusinessLegalStatusName = source.BusinessLegalStatusName
+                    BusinessLegalStatusName = source.BusinessLegalStatusCodeName
                 };
             }
             return new DomainModels.BusinessLegalStatus();
         }
-        #endregion
     }
 }

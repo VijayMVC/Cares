@@ -4,7 +4,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace WebBase.Mvc
+namespace Cares.WebBase.Mvc
 {
     /// <summary>
     /// Site Authorize Attribute

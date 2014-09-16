@@ -6,10 +6,10 @@ using System.Data.Entity.Migrations;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Linq.Expressions;
-using Interfaces.Repository;
+using Cares.Interfaces.Repository;
 using Microsoft.Practices.Unity;
 
-namespace Repository.BaseRepository
+namespace Cares.Repository.BaseRepository
 {
     /// <summary>
     /// Base Repository
@@ -43,8 +43,7 @@ namespace Repository.BaseRepository
             }
             this.container = container;
             string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            db = new BaseDbContext(connectionString, container);
-
+            db = (BaseDbContext)container.Resolve(typeof(BaseDbContext), new ResolverOverride[] { new ParameterOverride("connectionString", connectionString) });
         }
 
         #endregion
@@ -81,7 +80,7 @@ namespace Repository.BaseRepository
         /// Get All Entites 
         /// </summary>
         /// <returns></returns>
-        public virtual IQueryable<TDomainClass> GetAll()
+        public virtual IEnumerable<TDomainClass> GetAll()
         {
             throw new NotImplementedException();
         }
@@ -97,16 +96,12 @@ namespace Repository.BaseRepository
             catch (DbEntityValidationException ex)
             {
                 // Retrieve the error messages as a list of strings.
-                List<string> errorMessages = new List<string>();
+                var errorMessages = new List<string>();
                 foreach (DbEntityValidationResult validationResult in ex.EntityValidationErrors)
                 {
-                    string entityName = validationResult.Entry.Entity.GetType().Name;
-                    foreach (DbValidationError error in validationResult.ValidationErrors)
-                    {
-                        errorMessages.Add(entityName + "." + error.PropertyName + ": " + error.ErrorMessage);
-                    }
+                    var entityName = validationResult.Entry.Entity.GetType().Name;
+                    errorMessages.AddRange(validationResult.ValidationErrors.Select(error => entityName + "." + error.PropertyName + ": " + error.ErrorMessage));
                 }
-                int i = 0;
             }
         }
         /// <summary>
@@ -130,13 +125,7 @@ namespace Repository.BaseRepository
         {
             DbSet.AddOrUpdate(instance);
         }
-        /// <summary>
-        /// Eager Load Property
-        /// </summary>
-        public void LoadProperty<T>(object entity, string propertyName, bool isCollection = false)
-        {
-            db.LoadProperty<T>(entity, propertyName, isCollection);
-        }
+        
         /// <summary>
         /// Eager load property
         /// </summary>
@@ -151,8 +140,9 @@ namespace Repository.BaseRepository
         /// <summary>
         /// Logged in User Identity
         /// </summary>
-        public string LoggedInUserIdentity { get; set; }
+        public string LoggedInUserIdentity { get { return "cares"; }  }
 
         #endregion
+
     }
 }

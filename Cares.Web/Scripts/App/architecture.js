@@ -1,7 +1,8 @@
 ﻿// Global Variable
 var ist = {
     datePattern: "DD/MM/YY",
-    shortDatePattern : "dd-M-yy",
+    shortDatePattern: "dd-M-yy",
+    customShortDatePattern: "dd-mm-yy",
     timePattern: "HH:mm",
     dateTimePattern: "DD/MM/YY HH:mm",
     dateTimeWithSecondsPattern: "DD/MM/YY HH:mm:ss",
@@ -9,8 +10,8 @@ var ist = {
     utcFormat: "YYYY-MM-DDTHH:mm:ss",
     //server exceptions enumeration 
     exceptionType: {
-        UserException: 1,
-        UnspecifiedException: 2
+        CaresGeneralException: 'CaresGeneralException',
+        UnspecifiedException: 'UnspecifiedException'
     },
     //verify if the string is a valid json
     verifyValidJSON: function (str) {
@@ -26,7 +27,9 @@ var ist = {
     validateUrl: function (field) {
         var regex = /^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!10(?:\.\d{1,3}){3})(?!127(?:\.\d{1,3}){3})(?!169\.254(?:\.\d{1,3}){2})(?!192\.168(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/[^\s]*)?$/i;
         return (regex.test(field)) ? true : false;
-    }
+    },
+    // Resource Text
+    resourceText: {}
 };
 
 // Busy Indicator
@@ -52,25 +55,27 @@ function hideProgress() {
 };
 
 
-// Amplify Decoders
 //status decoder for parsing the exception type and message
 amplify.request.decoders = {
-    odyStatusDecoder: function (data, status, xhr, success, error) {
+    istStatusDecoder: function(data, status, xhr, success, error) {
         if (status === "success") {
             success(data);
         } else {
             if (status === "fail" || status === "error") {
                 var errorObject = {};
-                errorObject.errorType = ody.exceptionType.UnspecifiedException;
-                if (ody.verifyValidJSON(xhr.responseText)) {
+                errorObject.errorType = ist.exceptionType.UnspecifiedException;
+                if (ist.verifyValidJSON(xhr.responseText)) {
                     errorObject.errorDetail = JSON.parse(xhr.responseText);;
-                    if (errorObject.errorDetail.ErrorCode) {
-                        errorObject.errorType = ody.exceptionType.UserException;
+                    if (errorObject.errorDetail.ExceptionType === ist.exceptionType.CaresGeneralException) {
+                        error(errorObject.errorDetail.Message, ist.exceptionType.CaresGeneralException);
+                    } else {
+                        error("Unspecified exception", ist.exceptionType.UnspecifiedException);
                     }
+                } else {
+                    error(xhr.responseText);
                 }
-                error(xhr.responseText, errorObject);
             } else {
-                error(xhr.responseText, "fatal");
+                error(xhr.responseText);
             }
         }
     }
@@ -113,7 +118,7 @@ require(["ko", "knockout-validation"], function (ko) {
             var options = allBindingsAccessor().datepickerOptions || {};
             // ReSharper restore DuplicatingLocalDeclaration
             $(element).datepicker(options);
-            $(element).datepicker("option", "dateFormat", ist.shortDatePattern);
+            $(element).datepicker("option", "dateFormat", options.dateFormat || ist.customShortDatePattern);
             //handle the field changing
             ko.utils.registerEventHandler(element, "change", function () {
                 var observable = valueAccessor();
@@ -156,6 +161,30 @@ require(["ko", "knockout-validation"], function (ko) {
                     $(element).removeClass('errorFill');
                 }
             }
+        }
+    };
+    //Slider Binding Handler
+    ko.bindingHandlers.slider = {
+        init: function (element, valueAccessor, allBindingsAccessor) {
+            var sliderOptions = allBindingsAccessor().sliderOptions || {};
+            $(element).slider(sliderOptions);
+            ko.utils.registerEventHandler(element, "slidechange", function (event, ui) {
+                var observable = valueAccessor();
+                observable(ui.value);
+            });
+            ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
+                $(element).slider("destroy");
+            });
+            ko.utils.registerEventHandler(element, "slide", function (event, ui) {
+                var observable = valueAccessor();
+                observable(ui.value);
+            });
+        },
+        update: function (element, valueAccessor) {
+            var value = ko.utils.unwrapObservable(valueAccessor());
+            if (isNaN(value)) value = 0;
+            $(element).slider("value", value);
+
         }
     };
     
@@ -222,6 +251,60 @@ require(["ko", "knockout-validation"], function (ko) {
         return result;
     };
     // KO Dirty Flag - Change Tracking
+    
+    // Common View Model - Editor (Save, Cancel - Reverts changes, Select Item)
+    ist.ViewModel = function (model) {
+        
+        //hold the currently selected item
+        this.selectedItem = ko.observable();
+        
+        // hold the model
+        this.model = model;
+
+        //make edits to a copy
+        this.itemForEditing = ko.observable();
+        
+    };
+
+    ko.utils.extend(ist.ViewModel.prototype, {
+        //select an item and make a copy of it for editing
+        selectItem: function (item) {
+            this.selectedItem(item);
+            this.itemForEditing(this.model.CreateFromClientModel(ko.toJS(item)));
+        },
+        
+        acceptItem: function(data) {
+            
+            //apply updates from the edited item to the selected item
+            this.selectedItem().update(data);
+
+            //clear selected item
+            this.selectedItem(null);
+            this.itemForEditing(null);
+        },
+
+        //just throw away the edited item and clear the selected observables
+        revertItem: function () {
+            this.itemForEditing().reset(); // Resets Changed State
+            this.selectedItem(null);
+            this.itemForEditing(null);
+        }
+    });
+    
+    // Common View Model
+
+    // Used to show popover
+    ko.bindingHandlers.bootstrapPopover = {
+        init: function (element, valueAccessor) {
+            // ReSharper disable DuplicatingLocalDeclaration
+            var options = valueAccessor();
+            // ReSharper restore DuplicatingLocalDeclaration
+            var value = $(options.elementNode);
+            var defaultOptions = { trigger: 'click', content: value.html() };
+            options = $.extend(true, {}, defaultOptions, options);
+            $(element).popover(options);
+        }
+    };
 
     // Can be used to have a parent with one binding and children with another. Child areas should be surrounded with <!-- ko stopBinding: true --> <!-- /ko -->
     ko.bindingHandlers.stopBinding = {
@@ -252,7 +335,7 @@ function handleSorting(tableId, sortOn, sortAsc, callback) {
         var sortBy = e.target.id;
         var targetEl = $(e.target).children("span")[0];
         // Remove other header sorting
-        _.each($('.searchFilterResultSection table thead tr th span'), function (item) {
+        _.each($('#' + tableId + ' thead tr th span'), function (item) {
             if (item.parentElement !== e.target) {
                 item.className = '';
             }
@@ -276,3 +359,12 @@ function handleSorting(tableId, sortOn, sortAsc, callback) {
         }
     });
 }
+//Model Year
+modelYearsGlobal = [{ Id: 2001, Text: '2001' },
+    { Id: 2002, Text: '2002' },
+    { Id: 2003, Text: '2003' },
+    { Id: 2004, Text: '2004' },
+    { Id: 2005, Text: '2005' },
+    { Id: 2006, Text: '2006' },
+    { Id: 2007, Text: '2007' }
+];

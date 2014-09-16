@@ -1,17 +1,46 @@
 ﻿using System.Collections.Generic;
-using Models.DomainModels;
-using Models.RequestModels;
-using Models.ResponseModels;
+using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
+using Cares.Models.ResponseModels;
 
-namespace Interfaces.IServices
+namespace Cares.Interfaces.IServices
 {
+    /// <summary>
+    /// Employee Service Interface
+    /// </summary>
     public interface IEmployeeService
     {
-        EmployeeResponse LoadAll(EmployeeSearchRequest searchRequest);
-        Employee Find(int id);
-        IEnumerable<Employee> FindByDepartment(int depId);
+        /// <summary>
+        /// Load All Employee based on search criteria
+        /// </summary>
+        /// <param name="searchRequest"></param>
+        /// <returns></returns>
+        EmployeeSearchResponse LoadAll(EmployeeSearchRequest searchRequest);
+
+        /// <summary>
+        /// Delete Employee
+        /// </summary>
+        /// <param name="employee"></param>
         void Delete(Employee employee);
-        bool Add(Employee employee);
-        bool Update(Employee employee);
+
+
+        /// <summary>
+        /// Add/Edit Employee
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <returns></returns>
+        Employee SaveEmployee(Employee employee);
+
+        /// <summary>
+        /// Get Base Data
+        /// </summary>
+        /// <returns></returns>
+        EmployeeBaseResponse GetBaseData();
+
+        /// <summary>
+        /// Get Employee Detail
+        /// </summary>
+        /// <returns></returns>
+        Employee GetEmployeeDetail(long employeeId);
     }
 }

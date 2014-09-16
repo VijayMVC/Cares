@@ -1,0 +1,104 @@
+﻿
+<div class="well col-md-12" id="serviceRateEditor" data-bind="visible: isServiceRtEditorVisible" style="display: none;">
+    <div data-bind="with: selectedServiceRtMain">
+        <div class="detailsContainer">
+            <h3 class="page-header detailsHeaderSection">@Cares.Web.Resources.Tariff.ServiceRate.ServiceRateDetail</h3>
+            <button class="btn btn-info" id="saveBtn" data-bind="click:$root.onSaveServiceRate,enable: hasChanges, css: { 'btn-warning': hasChanges }">@Cares.Web.Resources.Shared.Common.Save</button>
+            <button class="btn btn-default" id="saveBtn" data-bind="click: $root.closeServiceRateEditor">@Cares.Web.Resources.Shared.Common.Cancel</button>
+        </div>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="code" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.ServiceRate.ServiceRateCode *</label>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder='@("<" + Cares.Web.Resources.Tariff.ServiceRate.ServiceRateCode + ">")' id="code" data-bind="value: serviceRtMainCode, validationTooltip: serviceRtMainCode, disable :(serviceRtMainId()!=undefined)" />
+                </div>
+                <label for="name" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.ServiceRate.ServiceRateName</label>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder='@("<" + Cares.Web.Resources.Tariff.ServiceRate.ServiceRateName + ">")' id="name" data-bind="value: serviceRtMainName, validationTooltip: serviceRtMainName, disable :(serviceRtMainId()!=undefined)" />
+                </div>
+                <label for="description" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.ServiceRate.Description</label>
+                <div class="col-md-2">
+                    <textarea class="form-control" rows="2" placeholder='@("<" + Cares.Web.Resources.Tariff.ServiceRate.Description + ">")' id="description" data-bind="value: description, valueUpdate: 'keyup', disable :(serviceRtMainId()!=undefined)"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="operation" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.ServiceRate.Operation *</label>
+                <div class="col-md-2">
+                    <select id="operation" class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '&lt;' + '@(Cares.Web.Resources.Tariff.TariffRate.Operation )' + '&gt;' , value: operationId, validationTooltip: operationId, disable :(serviceRtMainId()!=undefined)"></select>
+                </div>
+                <label for="tariffType" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.ServiceRate.TariffType *</label>
+                <div class="col-xs-2">
+                    <select id="tariffType" class="form-control" data-bind="options: $root.tariffTypes, optionsText: 'TariffTypeCodeName', optionsValue: 'TariffTypeId', optionsCaption: '&lt;' + '@(Cares.Web.Resources.Tariff.TariffRate.TariffType )' + '&gt;', value: tariffTypeId, disable :(serviceRtMainId()!=undefined)"></select>
+                </div>
+                <label for="sDate" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.ServiceRate.EffectiveFrom *</label>
+                <div class="col-md-2">
+                    <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.ServiceRate.EffectiveFrom + ">")' class="form-control" id="sDate" data-bind="datepicker: startDt, validationTooltip: startDt" />
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="panel panel-info searchFilterResultSection">
+        <div class="panel-heading">@Cares.Web.Resources.Tariff.ServiceRate.ServiceItemRate</div>
+        <table id="serviceItemRate" class="table table-condensed">
+            <thead>
+                <tr>
+                    <th> <span></span></th>
+                    <th> <span>@Cares.Web.Resources.Tariff.ServiceRate.ServiceItem<br />@Cares.Web.Resources.Tariff.ServiceRate.Code<span></span></span></th>
+                    <th> <span>@Cares.Web.Resources.Tariff.ServiceRate.ServiceItem<br />@Cares.Web.Resources.Tariff.ServiceRate.Name<span></span></span></th>
+                    <th> <span>@Cares.Web.Resources.Tariff.ServiceRate.ServiceType<span></span></span></th>
+                    <th> <span>@Cares.Web.Resources.Tariff.ServiceRate.ServiceRateText<span></span></span></th>
+                    <th> <span>@Cares.Web.Resources.Tariff.ServiceRate.Start<br />@Cares.Web.Resources.Tariff.ServiceRate.Date<span></span></span></th>
+                    <th> <span>@Cares.Web.Resources.Tariff.ServiceRate.Revision<br />@Cares.Web.Resources.Tariff.ServiceRate.Number<span></span></span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- ko template: { name: templateToUse , foreach: clientPagerRecords } -->
+                <!-- /ko -->
+            </tbody>
+        </table>
+        <div class="well">
+
+            <!-- ko with: clientPager -->
+            @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
+            <!-- /ko -->
+        </div>
+        <script id="editServiceRtItemTemplate" type="text/html">
+            <tr data-bind="css: { selectedRow: $data === $root.selectedServiceRtItem() }">
+                <td class="col-md-2">
+                    <input type="checkbox" data-bind="checked: isChecked, disable :isChecked() && (virtualServiceRtId()!=0) " />
+                </td>
+                <td class="col-md-2">
+                    <span data-bind="text: serviceItemCode"></span>
+                </td>
+                <td class="col-md-2">
+                    <span data-bind="text: serviceItemName"></span>
+                </td>
+                <td class="col-md-2">
+                    <span data-bind="text: serviceTypeCodeName"></span>
+                </td>
+                <td class="col-md-2">
+                    <input type="text" data-bind="value: serviceRate, validationTooltip: serviceRate" />
+                </td>
+                <td class="col-md-2">
+                    <input type="text" data-bind="datepicker: startDt, validationTooltip: startDt" />
+                </td>
+                <td class="col-md-2">
+                    <span data-bind="text: revisionNumber"></span>
+                </td>
+            </tr>
+        </script>
+        <script id="itemServiceRtItemTemplate" type="text/html">
+            <tr data-bind="click: $root.selectServiceRtItem, css: { selectedRow: $data === $root.selectedServiceRtItem() }">
+                <td><input type="checkbox" data-bind="checked: isChecked, disable :isChecked() && (virtualServiceRtId()!=0)" /></td>
+                <td data-bind="text: serviceItemCode"></td>
+                <td data-bind="text: serviceItemName"></td>
+                <td data-bind="text: serviceTypeCodeName"></td>
+                <td data-bind="text: serviceRate"></td>
+                <td data-bind="dateString: startDt"></td>
+                <td data-bind="text: revisionNumber"></td>
+
+            </tr>
+        </script>
+    </div>
+</div>

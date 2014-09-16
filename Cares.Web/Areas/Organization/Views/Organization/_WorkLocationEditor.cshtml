@@ -1,0 +1,151 @@
+﻿
+<div class="well col-md-12" id="WorkplaceEditor" data-bind="visible: isWorkLocationEditorVisible , with:selectedWorkLocation" style="display: none;">
+    <div class="float-left detailsContainer">
+        <h3 class="page-header detailsHeaderSection">@Cares.Web.Resources.Organization.WorkLocation.WorkLocationLabel</h3>
+        <button class="btn  btn-info" data-bind="click:$root.onSaveWorkLocation">@Cares.Web.Resources.Shared.Common.Save</button>
+        <button class="btn  btn-default" data-bind="click:$root.onCancelSaveWorkLocation">@Cares.Web.Resources.Shared.Common.Cancel</button>
+    </div>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.WorkLocationCode*</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.Organization.WorkLocation.WorkLocationCode + ">")" id="tariffTypeCode" data-bind="value:code" />
+            </div>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.WorkLocationName*</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.Organization.WorkLocation.WorkLocationName + ">")" id="tariffTypeName" data-bind="value:name" />
+            </div>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.Description</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.Organization.WorkLocation.Description + ">")" id="tariffTypeDescription" data-bind="value:description" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.Company*</label>
+            <div class="col-md-2">
+                <select class="form-control" id="companyEditorDropDown" data-bind="options: $root.baseCompaniesList, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId',enable:$root.isWorklocationCreateMode ,  optionsCaption:'&lt;' +'@Cares.Web.Resources.Organization.WorkLocation.Company'+'&gt;',value : companyId "></select>
+            </div>
+
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.Country*</label>
+            <div class="col-md-2">
+                <select class="form-control" data-bind="options: $root.baseCountriesList, optionsText: 'CountryCodeName', optionsValue: 'CountryId', optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.WorkLocation.Country '+'&gt;', value:countryId, event{change:$root.onCountryChanged }"></select>
+            </div>
+
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.Region</label>
+            <div class="col-md-2">
+                <select class="form-control" data-bind="options: $root.filteredRegionsList, optionsText: 'RegionCodeName', optionsValue: 'RegionId', optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.WorkLocation.Region '+'&gt;', value: regionId,    event{change:$root.onRegionChanged }"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.SubRegion</label>
+            <div class="col-md-2">
+                <select class="form-control" data-bind="options: $root.filteredSubRegiosnList, optionsText: 'SubRegionCodeName', optionsValue: 'SubRegionId',  optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.WorkLocation.SubRegion '+'&gt;', value: subRegionId, event{change:$root.onSubRegionChanged }"></select>
+            </div>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.City</label>
+            <div class="col-md-2">
+                <select class="form-control" data-bind="options: $root.filteredCitiesList, optionsText: 'CityCodeName', optionsValue: 'CityId',  optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.WorkLocation.City '+'&gt;', value:cityId, event{change:$root.onCityChanged }"></select>
+            </div>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.Area</label>
+            <div class="col-md-2">
+                <select class="form-control" data-bind="options: $root.filteredAreasList, optionsText: 'AreaCodeName', optionsValue: 'AreaId',  optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.WorkLocation.Area '+'&gt;', value : areaId"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.ContactPerson</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.Organization.WorkLocation.ContactPerson + ">")" id="tariffTypeCode" data-bind="value:contatctPerson" />
+            </div>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.StreetAddress*</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.Organization.WorkLocation.StreetAddress + ">")" id="tariffTypeCode" data-bind="value:streatAdress" />
+            </div>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.Email</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.Organization.WorkLocation.Email + ">")" id="tariffTypeCode" data-bind="value:email" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.WebPage</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.Organization.WorkLocation.WebPage + ">")" id="tariffTypeCode" data-bind="value:webPage" />
+            </div>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.ZipCode</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" onkeypress="return onlyNumbers(this)" placeholder="@("<" + Cares.Web.Resources.Organization.WorkLocation.ZipCode + ">")" id="tariffTypeCode" data-bind="value:zipCode" />
+            </div>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.POBox</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.Organization.WorkLocation.POBox + ">")" id="tariffTypeCode" data-bind="value:poBox" />
+            </div>
+        </div>
+    </form>
+    <div class="panel panel-info">
+        <div class="panel-heading">@Cares.Web.Resources.Organization.WorkLocation.Phones</div>
+       
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <br />
+            <!-- first tab - Detail-->
+            <div class="tab-pane active" id="detail" data-bind="with:phoneDetail">
+                <!--bind here-->
+                <form class="form-horizontal">
+                    <div class="addToBtnDiv row">
+                        <button class="btn  btn-info addToBtn"  id="saveBtn" data-bind="click: $root.onAddPhone ">@Cares.Web.Resources.Shared.Common.Add</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.PhoneType*:</label>
+                        <div class="col-md-2">
+                            <select class="form-control" data-bind="options: $root.basePhoneTypesList, optionsText: 'PhoneTypeCodeName', optionsValue: 'PhoneTypeId',  optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.WorkLocation.PhoneType '+'&gt;' , value :$root.selectedPhoneTypeString"></select>
+                        </div>
+                        <label for="" class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.PhoneNumber*:</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" onkeypress="return onlyNumbers(this)" placeholder="@("<" + @Cares.Web.Resources.Organization.WorkLocation.PhoneNumber + ">")" data-bind="value:phoneNumber" />
+                        </div>
+                        <label for="" class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.IsDefault:</label>
+                        <div class="col-md-2">
+                            <input type="checkbox" class="form-control" placeholder="@("<" + @Cares.Web.Resources.Organization.WorkLocation.IsDefault + ">")" data-bind="value:isDefault" />
+                        </div>
+                    </div>
+                </form>
+                <!--here -->
+                <table id="hireGroupDetail" class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th> <span>@Cares.Web.Resources.Organization.WorkLocation.PhoneType<span></span></span></th>
+                            <th> <span>@Cares.Web.Resources.Organization.WorkLocation.PhoneNumber<span></span></span></th>
+                            <th> <span>@Cares.Web.Resources.Organization.WorkLocation.IsDefault<span></span></span></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- ko template: { name: 'itemHireGroupDetailTemplate' , foreach: $root.phonesList } -->
+                        <!-- /ko -->
+                    </tbody>
+                </table>
+                <script id="deleteActionOpeartionTemplate" type="text/html">
+                    <a href="#" data-bind="click: $root.deletePhoneDetail" title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
+                </script>
+                <script id="itemHireGroupDetailTemplate" type="text/html">
+                    <tr>
+                        <td data-bind="text: phoneTypeName"></td>
+                        <td data-bind="text: phoneNumber"></td>
+                        <td data-bind="text: isDefault"></td>
+                        <td>
+                            <!-- ko template: { name: 'deleteActionOpeartionTemplate' } -->
+                            <!-- /ko -->
+                        </td>
+                    </tr>
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function onlyNumbers(evt) {
+        var e = event || evt; // for trans-browser compatibility
+        var charCode = e.which || e.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+</script>

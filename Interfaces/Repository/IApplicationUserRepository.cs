@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using Models.DomainModels;
+﻿using Cares.Models.DomainModels;
 
-namespace Interfaces.Repository
+namespace Cares.Interfaces.Repository
 {
     public interface IApplicationUserRepository : IBaseRepository<Category, int>
-    {
-        
+    {        
     }
 }

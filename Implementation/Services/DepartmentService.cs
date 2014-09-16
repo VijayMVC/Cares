@@ -1,22 +1,119 @@
-﻿using System.Collections.Generic;
-using Interfaces.IServices;
-using Interfaces.Repository;
-using Models.DomainModels;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using Cares.ExceptionHandling;
+using Cares.Interfaces.IServices;
+using Cares.Interfaces.Repository;
+using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
+using Cares.Models.ResponseModels;
 
-namespace Implementation.Services
+namespace Cares.Implementation.Services
 {
-    public class DepartmentService: IDepartmentService
+    /// <summary>
+    /// Department Service
+    /// </summary>
+    public class DepartmentService : IDepartmentService
     {
-        private readonly IDepartmentRepository iRepository;
+        #region Private
+        private readonly IDepartmentRepository departmentRepository;
+        private readonly ICompanyRepository companyRepository;
+        private readonly IOperationRepository operationRepository;
 
-          public DepartmentService(IDepartmentRepository xRepository)
+        #endregion
+        #region Constructor
+        /// <summary>
+        /// Department Constructor
+        /// </summary>
+        public DepartmentService(IDepartmentRepository xRepository, ICompanyRepository crRepository, IOperationRepository operationRepository)
         {
-            iRepository = xRepository;
+            departmentRepository = xRepository;
+            companyRepository = crRepository;
+            this.operationRepository = operationRepository;
+        }
+        #endregion
+        #region Public
+        /// <summary>
+        /// Search Department
+        /// </summary>
+        public DepartmentSearchRequestResponse SearchDepartment(DepartmentSearchRequest request)
+        {
+            int rowCount;
+            return new DepartmentSearchRequestResponse
+            {
+                Departments = departmentRepository.SearchDepartment(request, out rowCount),
+                TotalCount = rowCount
+            };
         }
 
+        /// <summary>
+        /// Delete Department
+        /// </summary>
+        public void DeleteDepartment(long departmentId)
+        {
+            Department dbVersion = departmentRepository.Find(departmentId);
+            if (!operationRepository.IsDepartmentAssociatedWithAnyOperation(departmentId))
+            {
+                if (dbVersion != null)
+                {
+                    departmentRepository.Delete(dbVersion);
+                    departmentRepository.SaveChanges();
+                    return;
+                }
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
+                         "Department with Id {0} not found!", departmentId));
+            }
+            throw new CaresException(Resources.Organization.Department.DepartmentIsAssociatedWithOperationError);
+        }
+
+        /// <summary>
+        /// Load All DEpartments
+        /// </summary>
         public IEnumerable<Department> LoadAll()
         {
-            return iRepository.GetAll();
+            return departmentRepository.GetAll();
         }
+
+        /// <summary>
+        /// Load Department Base Data
+        /// </summary>
+        public DepartmentBaseDataResponse LoadDepartmentBaseData()
+        {
+            return new DepartmentBaseDataResponse
+            {
+               Companies = companyRepository.GetAll()
+            };
+        }
+
+        /// <summary>
+        /// Save or Update Department
+        /// </summary>
+        public Department SaveUpdateDepartment(Department department)
+        {
+            Department dbVersion = departmentRepository.Find(department.DepartmentId);
+            if (!departmentRepository.IsDepartmentCodeExists(department))
+            {
+                if (dbVersion != null)
+                {
+                    department.RecLastUpdatedBy = departmentRepository.LoggedInUserIdentity;
+                    department.RecLastUpdatedDt = DateTime.Now;
+                    department.RecCreatedBy = dbVersion.RecCreatedBy;
+                    department.RecCreatedDt = dbVersion.RecCreatedDt;
+                    department.UserDomainKey = dbVersion.UserDomainKey;
+                }
+                else
+                {
+                    department.RecCreatedBy = department.RecLastUpdatedBy = departmentRepository.LoggedInUserIdentity;
+                    department.RecCreatedDt = department.RecLastUpdatedDt = DateTime.Now;
+                    department.UserDomainKey = 1;
+                }
+                departmentRepository.Update(department);
+                departmentRepository.SaveChanges();
+                // To Load the proprties
+                return departmentRepository.GetDepartmentWithDetails(department.DepartmentId);
+            }
+            throw new CaresException(Resources.Organization.Department.DepartmentWithSameCodeAlreadyExistsError);
+        }
+        #endregion
     }
 }

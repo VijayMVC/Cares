@@ -1,25 +1,29 @@
-﻿using System;
-
+﻿
 namespace Cares.Web.Models
 {
     /// <summary>
-    /// Country Model
+    /// Country web model
     /// </summary>
     public class Country
     {
-        #region Persisted Properties
-            /// <summary>
-            /// Country ID
-            /// </summary>
-            public int CountryId { get; set; }
-            /// <summary>
-            /// Country Code
-            /// </summary>
-            public string CountryCode { get; set; }
-            /// <summary>
-            /// Country Name
-            /// </summary>
-            public string CountryName { get; set; }
-        #endregion
+        /// <summary>
+        /// Country ID
+        /// </summary>
+        public short CountryId { get; set; }
+
+        /// <summary>
+        /// Country Code
+        /// </summary>
+        public string CountryCode { get; set; }
+
+        /// <summary>
+        /// Country Name
+        /// </summary>
+        public string CountryName { get; set; }
+
+        /// <summary>
+        /// Country Description
+        /// </summary>
+        public string CountryDescription { get; set; }
     }
 }

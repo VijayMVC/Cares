@@ -41,13 +41,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Castle.Core.3.0.0.4001\lib\net40-client\Castle.Core.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -150,7 +154,7 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.Helpers.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.30506.0\lib\net40\System.Web.Http.dll</HintPath>
@@ -158,7 +162,7 @@
     <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.1.1\lib\net45\System.Web.Mvc.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.1.2\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -166,19 +170,19 @@
     </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.Razor.3.1.1\lib\net45\System.Web.Razor.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.1.2\lib\net45\System.Web.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.WebPages.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
@@ -220,108 +224,411 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="App_Start\UnityConfig.cs" />
-    <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
+    <Compile Include="Areas\Api\Controllers\BusinessSegmentController.cs" />
+    <Compile Include="Areas\Api\Controllers\CompanyBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\CompanyController.cs" />
+    <Compile Include="Areas\Api\Controllers\SubRegionController.cs" />
+    <Compile Include="Areas\Api\Controllers\SubRegionBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\RegionBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\DepartmentBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\DepartmentController.cs" />
+    <Compile Include="Areas\Api\Controllers\EmployeeBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\EmployeeController.cs" />
+    <Compile Include="Areas\Api\Controllers\EmployeeDetailController.cs" />
     <Compile Include="Areas\Api\Controllers\FleetPoolBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\FleetPoolController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessPartnerBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\InsuranceRateBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\InsuranceRateController.cs" />
+    <Compile Include="Areas\Api\Controllers\InsuranceRtDetailController.cs" />
+    <Compile Include="Areas\Api\Controllers\OperationBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\OperationController.cs" />
+    <Compile Include="Areas\Api\Controllers\OperationsWorkPlaceController.cs" />
+    <Compile Include="Areas\Api\Controllers\PhoneController.cs" />
+    <Compile Include="Areas\Api\Controllers\RegionController.cs" />
+    <Compile Include="Areas\Api\Controllers\RentalAgreementBusinessPartnerController.cs" />
     <Compile Include="Areas\Api\Controllers\GetBusinessPartnerDetailsController.cs" />
-    <Compile Include="Areas\Api\Controllers\GetTariffDetailsController.cs" />
+    <Compile Include="Areas\Api\Controllers\GetHireGroupDetailDataController.cs" />
+    <Compile Include="Areas\Api\Controllers\GetTariffTypeDetailsController.cs" />
+    <Compile Include="Areas\Api\Controllers\GetHireGroupDetailTariffRateController.cs" />
+    <Compile Include="Areas\Api\Controllers\HireGroupBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\HireGroupVehiclesController.cs" />
+    <Compile Include="Areas\Api\Controllers\OrganizationGroupController.cs" />
+    <Compile Include="Areas\Api\Controllers\RentalAgreementHireGroupsController.cs" />
+    <Compile Include="Areas\Api\Controllers\HireGroupController.cs" />
     <Compile Include="Areas\Api\Controllers\ProductBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessPartnerController.cs" />
     <Compile Include="Areas\Api\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Api\Controllers\ServiceRtBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\ServiceRtController.cs" />
+    <Compile Include="Areas\Api\Controllers\ServiceRtDetailController.cs" />
     <Compile Include="Areas\Api\Controllers\TariffRateBaseController.cs" />
-    <Compile Include="Areas\Api\Controllers\TarrifTypeBaseController.cs" />
-    <Compile Include="Areas\Api\Controllers\TarrifTypeController.cs" />
+    <Compile Include="Areas\Api\Controllers\TariffRateController.cs" />
+    <Compile Include="Areas\Api\Controllers\RentalAgreementBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\TariffTypeBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\TariffTypeController.cs" />
+    <Compile Include="Areas\Api\Controllers\VehicleBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\VehicleController.cs" />
+    <Compile Include="Areas\Api\Controllers\VehicleDetailController.cs" />
+    <Compile Include="Areas\Api\Controllers\WorkLocationBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\WorkLocationController.cs" />
+    <Compile Include="Areas\Api\Controllers\WorkplaceBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\WorkplaceController.cs" />
+    <Compile Include="Areas\Api\Controllers\WorkplaceTypeBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\WorkPlaceTypeController.cs" />
     <Compile Include="Areas\BusinessPartner\BusinessPartnerAreaRegistration.cs" />
     <Compile Include="Areas\BusinessPartner\Controllers\HomeController.cs" />
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
+    <Compile Include="Areas\EmployeeManagement\Controllers\HomeController.cs" />
+    <Compile Include="Areas\EmployeeManagement\EmployeeManagementAreaRegistration.cs" />
     <Compile Include="Areas\Fleet\Controllers\HomeController.cs" />
     <Compile Include="Areas\Fleet\FleetPoolAreaRegistration.cs" />
+    <Compile Include="Areas\GeographicalHierarchy\Controllers\GeographicalHierarchyController.cs" />
+    <Compile Include="Areas\GeographicalHierarchy\GeographicalHierarchyAreaRegistration.cs" />
+    <Compile Include="Areas\Organization\Controllers\OrganizationController.cs" />
+    <Compile Include="Areas\Organization\OrganizationGroupAreaRegistration.cs" />
+    <Compile Include="Areas\RentalAgreement\Controllers\HomeController.cs" />
+    <Compile Include="Areas\RentalAgreement\RentalAgreementAreaRegistration.cs" />
     <Compile Include="Areas\Product\Controllers\HomeController.cs" />
     <Compile Include="Areas\Product\ProductAreaRegistration.cs" />
-    <Compile Include="Areas\Pricing\TarrifTypeAreaRegistration.cs" />
-    <Compile Include="Areas\Pricing\Controllers\TarrifController.cs" />
+    <Compile Include="Areas\Pricing\TariffTypeAreaRegistration.cs" />
+    <Compile Include="Areas\Pricing\Controllers\TariffController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\VehicleImageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\UnauthorizedRequestController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
-    <Compile Include="ExceptionUtilities\CommonException .cs" />
-    <Compile Include="ExceptionUtilities\CustomExceptionFilterAttribute.cs" />
-    <Compile Include="ExceptionUtilities\IstUtilityException.cs" />
-    <Compile Include="ExceptionUtilities\IstUtilityResourceManager.cs" />
-    <Compile Include="ExceptionUtilities\Tag.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\CultureHelper.cs" />
-    <Compile Include="ModelMappers\BusinessPartnerResponseMapper.cs" />
+    <Compile Include="ModelMappers\DesigGradeMapper.cs" />
+    <Compile Include="ModelMappers\DesignationMapper.cs" />
+    <Compile Include="ModelMappers\EmpStatusMapper.cs" />
+    <Compile Include="ModelMappers\InsuranceRateMapper.cs" />
+    <Compile Include="ModelMappers\InsuranceTypeMapper.cs" />
+    <Compile Include="ModelMappers\JobTypeMapper.cs" />
+    <Compile Include="ModelMappers\LicenseTypeMapper.cs" />
+    <Compile Include="ModelMappers\MaintenanceTypeMapper.cs" />
+    <Compile Include="ModelMappers\ServiceRtMapper.cs" />
+    <Compile Include="ModelMappers\VehicleCheckListMapper.cs" />
+    <Compile Include="ModelMappers\WorkLocationMapper.cs" />
+    <Compile Include="ModelMappers\WorkplaceMapper.cs" />
+    <Compile Include="ModelMappers\WorkplaceTypeMapper.cs" />
+    <Compile Include="Models\BusinessSegment.cs" />
+    <Compile Include="Models\BusinessSegmentSearchRequestResponse.cs" />
+    <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\DepartmentBaseDataResponse.cs" />
+    <Compile Include="Models\DepartmentSearchRequestResponse.cs" />
+    <Compile Include="Models\DesigGradeDropDown.cs" />
+    <Compile Include="Models\DesignationDropDown.cs" />
+    <Compile Include="Models\EmpAuthOperationsWorkplace.cs" />
+    <Compile Include="Models\EmpDocsInfo.cs" />
+    <Compile Include="Models\EmpJobInfo.cs" />
+    <Compile Include="Models\EmpJobProg.cs" />
+    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\EmployeeListViewContent.cs" />
+    <Compile Include="Models\EmployeeBaseResponse.cs" />
+    <Compile Include="Models\EmployeeSearchResponse.cs" />
+    <Compile Include="Models\EmpStatusDropDown.cs" />
+    <Compile Include="Models\FleetPoolDropDown.cs" />
+    <Compile Include="Models\FuelTypeDropDown.cs" />
+    <Compile Include="Models\InsuranceTypeDropDown.cs" />
+    <Compile Include="Models\JobTypeDropDown.cs" />
+    <Compile Include="Models\LicenseTypeDropDown.cs" />
+    <Compile Include="Models\MaintenanceTypeDropDown.cs" />
+    <Compile Include="Models\OperationSearchResponse.cs" />
+    <Compile Include="ModelMappers\VehicleMapper.cs" />
+    <Compile Include="ModelMappers\MarketingChannelMapper.cs" />
+    <Compile Include="ModelMappers\BusinessSegmentMapper.cs" />
     <Compile Include="ModelMappers\CategoryMapper.cs" />
     <Compile Include="ModelMappers\BusinessPartnerMapper.cs" />
     <Compile Include="ModelMappers\BPRatingTypeMapper.cs" />
     <Compile Include="ModelMappers\BusinessLegalStatusMapper.cs" />
+    <Compile Include="ModelMappers\AddressTypeMapper.cs" />
+    <Compile Include="ModelMappers\AddressMapper.cs" />
+    <Compile Include="ModelMappers\OperationsWorkPlaceMapper.cs" />
+    <Compile Include="ModelMappers\OrgGroupMapper.cs" />
+    <Compile Include="ModelMappers\PhoneTypeMapper.cs" />
+    <Compile Include="ModelMappers\HireGroupDetailMapper.cs" />
     <Compile Include="ModelMappers\OccupationTypeMapper.cs" />
     <Compile Include="ModelMappers\CountryMapper.cs" />
     <Compile Include="ModelMappers\EmployeeMapper.cs" />
     <Compile Include="ModelMappers\HireGroupMapper.cs" />
-    <Compile Include="ModelMappers\BusinessPartnerCompanyMapper.cs" />
     <Compile Include="ModelMappers\PaymentTermMapper.cs" />
     <Compile Include="ModelMappers\FleetPoolMapper.cs" />
-    <Compile Include="ModelMappers\BusinessPartnerResponseBaseDataMapper.cs" />
     <Compile Include="ModelMappers\OperationMapper.cs" />
     <Compile Include="ModelMappers\CompanyMapper.cs" />
     <Compile Include="ModelMappers\DepartmentMapper.cs" />
     <Compile Include="ModelMappers\MeasurementUnitMapper.cs" />
     <Compile Include="ModelMappers\PricingStrategyMapper.cs" />
+    <Compile Include="ModelMappers\PhoneMapper.cs" />
     <Compile Include="ModelMappers\ProductResponseMapper.cs" />
     <Compile Include="ModelMappers\ProductMapper.cs" />
+    <Compile Include="ModelMappers\AreaMapper.cs" />
+    <Compile Include="ModelMappers\CityMapper.cs" />
     <Compile Include="ModelMappers\RegionMapper.cs" />
-    <Compile Include="ModelMappers\TariffRateBaseResponseMapper.cs" />
-    <Compile Include="ModelMappers\TariffTypeBaseResponseMapper.cs" />
-    <Compile Include="ModelMappers\TarrifTypeDetailResponseMapper.cs" />
-    <Compile Include="ModelMappers\TarrifTypeMapper.cs" />
+    <Compile Include="ModelMappers\RegionResponseMapper.cs" />
+    <Compile Include="ModelMappers\StandardRateMainMapper.cs" />
+    <Compile Include="ModelMappers\StandardRateMapper.cs" />
+    <Compile Include="ModelMappers\TariffRateMapper.cs" />
+    <Compile Include="ModelMappers\RentalAgreementBaseMapper.cs" />
+    <Compile Include="ModelMappers\TariffTypeMapper.cs" />
     <Compile Include="ModelMappers\VehicleCategoryMapper.cs" />
     <Compile Include="ModelMappers\VehicleMakesMapper.cs" />
+    <Compile Include="ModelMappers\FuelTypeMapper.cs" />
+    <Compile Include="ModelMappers\TransmissionTypeMapper.cs" />
+    <Compile Include="ModelMappers\VehicleStatusMapper.cs" />
     <Compile Include="ModelMappers\VehicleModelMapper.cs" />
+    <Compile Include="Models\AddressBaseResponse.cs" />
+    <Compile Include="Models\AddressTypeDropDown.cs" />
+    <Compile Include="Models\BusinessPartnerRelationship.cs" />
+    <Compile Include="Models\BusinessPartnerDropDown.cs" />
+    <Compile Include="Models\BusinessPartnerMarketingChannel.cs" />
+    <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\CompanyBaseDataResponse.cs" />
+    <Compile Include="Models\CompanySearchRequestResponse.cs" />
+    <Compile Include="Models\DepartmentTypeDropDown.cs" />
+    <Compile Include="Models\FuelType.cs" />
+    <Compile Include="Models\InsuranceRateBaseResponse.cs" />
+    <Compile Include="Models\InsuranceRateSearchResponse.cs" />
+    <Compile Include="Models\InsuranceRtDetailContent.cs" />
+    <Compile Include="Models\InsuranceRtDetailResponse.cs" />
+    <Compile Include="Models\InsuranceRtMainContent.cs" />
+    <Compile Include="Models\Operation.cs" />
+    <Compile Include="Models\OperationBaseDataResponse.cs" />
+    <Compile Include="Models\OperationsWorkPlaceDropDown.cs" />
+    <Compile Include="Models\OperationWorkplaceSearchByIdResponse.cs" />
+    <Compile Include="Models\OrgGroupDropDown.cs" />
+    <Compile Include="Models\PaymentTerm.cs" />
+    <Compile Include="Models\PhonesSearchByWorkLocationIdResponse.cs" />
+    <Compile Include="Models\Region.cs" />
+    <Compile Include="Models\RegionBaseDataResponse.cs" />
+    <Compile Include="Models\RegionSearchRequestResponse.cs" />
+    <Compile Include="Models\ServiceRateBaseResponse.cs" />
+    <Compile Include="Models\ServiceRateSearchResponse.cs" />
+    <Compile Include="Models\ServiceRtDetailContent.cs" />
+    <Compile Include="Models\ServiceRtDetailResponse.cs" />
+    <Compile Include="Models\ServiceRtMainContent.cs" />
+    <Compile Include="Models\SubRegion.cs" />
+    <Compile Include="Models\SubRegionBaseDataResponse.cs" />
+    <Compile Include="Models\SubRegionSearchRequestResponse.cs" />
+    <Compile Include="Models\TariffTypeDropDown.cs" />
+    <Compile Include="Models\TransmissionType.cs" />
+    <Compile Include="Models\HireGroupDetail.cs" />
+    <Compile Include="Models\TransmissionTypeDropDown.cs" />
+    <Compile Include="Models\Vehicle.cs" />
+    <Compile Include="Models\VehicleBaseDataResponse.cs" />
+    <Compile Include="Models\VehicleCategory.cs" />
+    <Compile Include="Models\VehicleCheckListDropDown.cs" />
+    <Compile Include="Models\VehicleCheckListItem.cs" />
+    <Compile Include="Models\VehicleDepreciation.cs" />
+    <Compile Include="Models\VehicleDetail.cs" />
+    <Compile Include="Models\VehicleDisposalInfo.cs" />
+    <Compile Include="Models\VehicleInsuranceInfo.cs" />
+    <Compile Include="Models\VehicleLeasedInfo.cs" />
+    <Compile Include="Models\VehicleListViewContent.cs" />
+    <Compile Include="Models\VehicleMaintenanceTypeFrequency.cs" />
+    <Compile Include="Models\VehicleMake.cs" />
+    <Compile Include="Models\VehicleModel.cs" />
+    <Compile Include="Models\VehicleOtherDetail.cs" />
+    <Compile Include="Models\VehiclePurchaseInfo.cs" />
+    <Compile Include="Models\VehicleStatus.cs" />
+    <Compile Include="Models\VehicleSearchResponse.cs" />
+    <Compile Include="Models\HireGroupDataDetailResponse.cs" />
+    <Compile Include="Models\HireGroupDetailContentForHireGroup.cs" />
+    <Compile Include="Models\HireGroupDetailForHireGroup.cs" />
+    <Compile Include="Models\HireGroupDropDown.cs" />
+    <Compile Include="Models\HireGroupUpgradeForHireGroup.cs" />
+    <Compile Include="Models\MarketingChannelDropDown.cs" />
+    <Compile Include="Models\BusinessPartnerInType.cs" />
+    <Compile Include="Models\BusinessPartnerSubTypeDropDown.cs" />
+    <Compile Include="Models\BusinessSegmentDropDown.cs" />
+    <Compile Include="Models\BusinessPartnerIndividual.cs" />
     <Compile Include="Models\BusinessPartnerDetail.cs" />
-    <Compile Include="ModelMappers\TarrifTypeResponseMapper.cs" />
     <Compile Include="Models\BusinessPartnerListView.cs" />
-    <Compile Include="Models\BusinessPartnerResponse.cs" />
-    <Compile Include="Models\BpRatingType.cs" />
-    <Compile Include="Models\BusinessLegalStatus.cs" />
-    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\BusinessPartnerSearchResponse.cs" />
+    <Compile Include="Models\BpRatingTypeDropDown.cs" />
+    <Compile Include="Models\BusinessLegalStatusDropDown.cs" />
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\AreaDropDown.cs" />
+    <Compile Include="Models\CountryRegions.cs" />
+    <Compile Include="Models\BusinessPartnerRelationshipTypeDropDown.cs" />
+    <Compile Include="Models\HireGroupBaseResponse.cs" />
+    <Compile Include="Models\HireGroupSearchResponse.cs" />
+    <Compile Include="Models\OperationsWorkPlace.cs" />
+    <Compile Include="Models\OrgGroup.cs" />
+    <Compile Include="Models\OrgGroupRequestResponse.cs" />
+    <Compile Include="Models\ParentHireGroup.cs" />
+    <Compile Include="Models\Phone.cs" />
+    <Compile Include="Models\PhoneTypeDropDown.cs" />
+    <Compile Include="Models\EmployeeDropDown.cs" />
     <Compile Include="Models\HireGroup.cs" />
     <Compile Include="Models\BusinessPartnerCompany.cs" />
-    <Compile Include="Models\OccupationType.cs" />
-    <Compile Include="Models\PaymentTerm.cs" />
+    <Compile Include="Models\HireGroupDetailContent.cs" />
+    <Compile Include="Models\OccupationTypeDropDown.cs" />
+    <Compile Include="Models\PaymentTermDropDown.cs" />
     <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\Company.cs" />
-    <Compile Include="Models\Country.cs" />
-    <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\CompanyDropDown.cs" />
+    <Compile Include="Models\CountryDropDown.cs" />
+    <Compile Include="Models\DepartmentDropDown.cs" />
     <Compile Include="Models\FleetPool.cs" />
     <Compile Include="Models\FleetPoolBaseDataResponse.cs" />
     <Compile Include="Models\FleetPoolResponse.cs" />
-    <Compile Include="Models\MeasurementUnit.cs" />
-    <Compile Include="Models\Operation.cs" />
-    <Compile Include="Models\PricingStrategy.cs" />
+    <Compile Include="Models\MeasurementUnitDropDown.cs" />
+    <Compile Include="Models\OperationDropDown.cs" />
+    <Compile Include="Models\PricingStrategyDropDown.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductResponse.cs" />
-    <Compile Include="Models\Region.cs" />
+    <Compile Include="Models\CityDropDown.cs" />
+    <Compile Include="Models\SubRegionDropDown.cs" />
+    <Compile Include="Models\RegionDropDown.cs" />
+    <Compile Include="Models\RegionResponse.cs" />
+    <Compile Include="Models\StandardRate.cs" />
+    <Compile Include="Models\StandardRateMain.cs" />
     <Compile Include="Models\TariffRateBaseResponse.cs" />
+    <Compile Include="Models\TariffRateContent.cs" />
+    <Compile Include="Models\HireGroupDetailResponse.cs" />
+    <Compile Include="Models\TariffRateSearchResponse.cs" />
     <Compile Include="Models\TariffTypeDetail.cs" />
     <Compile Include="Models\TariffTypeDetailResponse.cs" />
-    <Compile Include="Models\TarrifType.cs" />
+    <Compile Include="Models\TariffType.cs" />
     <Compile Include="Models\BusinessPartnerBaseResponse.cs" />
-    <Compile Include="Models\TarrifTypeBaseResponse.cs" />
-    <Compile Include="Models\TarrifTypeResponse.cs" />
-    <Compile Include="Models\VehicleCategory.cs" />
-    <Compile Include="Models\VehicleMake.cs" />
-    <Compile Include="Models\VehicleModel.cs" />
+    <Compile Include="Models\RentalAgreementBaseDataResponse.cs" />
+    <Compile Include="Models\TariffTypeBaseResponse.cs" />
+    <Compile Include="Models\TariffTypeSearchResponse.cs" />
+    <Compile Include="Models\VehicleCategoryDropDown.cs" />
+    <Compile Include="Models\VehicleMakeDropDown.cs" />
+    <Compile Include="Models\VehicleModelDropDown.cs" />
+    <Compile Include="Models\VehicleStatusDropDown.cs" />
+    <Compile Include="Models\WorkLocation.cs" />
+    <Compile Include="Models\WorkLocationBaseDataResponse.cs" />
+    <Compile Include="Models\WorkLocationDropDown.cs" />
+    <Compile Include="Models\WorkLocationSerachRequestResponse.cs" />
+    <Compile Include="Models\Workplace.cs" />
+    <Compile Include="Models\WorkplaceBaseDataResponse.cs" />
+    <Compile Include="Models\WorkPlaceDropdown.cs" />
+    <Compile Include="Models\WorkplaceSearchRequestResponse.cs" />
+    <Compile Include="Models\WorkPlaceType.cs" />
+    <Compile Include="Models\WorkPlaceTypeBaseDataResponse.cs" />
+    <Compile Include="Models\WorkplaceTypeDropDown.cs" />
+    <Compile Include="Models\WorkPlaceTypeSearchRequestResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\FleetPool\FleetPool.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FleetPool.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\FleetPool\FleetPool.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FleetPool.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\GeographicalHierarchy\SubRegion.Designer.cs">
+      <DependentUpon>SubRegion.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\GeographicalHierarchy\SubRegion.ar.Designer.cs">
+      <DependentUpon>SubRegion.ar.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\GeographicalHierarchy\Region.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Region.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\GeographicalHierarchy\Region.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Region.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\BusinessSegment.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessSegment.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\BusinessSegment.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessSegment.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\Company.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Company.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\Company.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Company.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\Department.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Department.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\Department.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Department.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\Operation.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Operation.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\Operation.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Operation.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\OrganizationGroup.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OrganizationGroup.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\OrganizationGroup.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OrganizationGroup.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\WorkLocation.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WorkLocation.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\WorkLocation.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WorkLocation.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\Workplace.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Workplace.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\Workplace.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Workplace.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\WorkplaceType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WorkplaceType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Organization\WorkplaceType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WorkplaceType.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Shared\Common.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -342,6 +649,66 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Resources\Tariff\HireGroup.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HireGroup.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tariff\HireGroup.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HireGroup.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tariff\InsuranceRate.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InsuranceRate.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tariff\InsuranceRate.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InsuranceRate.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tariff\ServiceRate.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceRate.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tariff\ServiceRate.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceRate.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tariff\TariffRate.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TariffRate.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tariff\TariffRate.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TariffRate.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tariff\TariffType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TariffType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tariff\TariffType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TariffType.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Vehicle\Vehicle.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Vehicle.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Vehicle\Vehicle.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Vehicle.resx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="TypeRegistrations.cs" />
     <Compile Include="ViewModels\Common\MenuViewModel.cs" />
@@ -352,35 +719,126 @@
     <Content Include="Areas\BusinessPartner\Scripts\businessPartner.viewModel.js" />
     <Content Include="Areas\BusinessPartner\Scripts\businessPartner.dataservice.js" />
     <Content Include="Areas\BusinessPartner\Scripts\businessPartnerWithKoMapping.model.js" />
-    <Content Include="Areas\BusinessPartner\Scripts\businessPartner.model.js" />
     <Content Include="Areas\Common\Scripts\confirmation.view.js" />
     <Content Include="Areas\Common\Scripts\confirmation.viewModel.js" />
+    <Content Include="Areas\Common\Scripts\clientSidePagination.js" />
     <Content Include="Areas\Common\Scripts\pagination.js" />
+    <Content Include="Areas\EmployeeManagement\Scripts\employee.dataservice.js" />
+    <Content Include="Areas\EmployeeManagement\Scripts\employee.model.js" />
+    <Content Include="Areas\EmployeeManagement\Scripts\employee.view.js" />
+    <Content Include="Areas\EmployeeManagement\Scripts\employee.viewModel.js" />
     <Content Include="Areas\Fleet\Scripts\fleetPool.viewModel.js" />
     <Content Include="Areas\Fleet\Scripts\fleetPool.model.js" />
     <Content Include="Areas\Fleet\Scripts\fleetPool.view.js" />
     <Content Include="Areas\Fleet\Scripts\fleetPoolWithKoMapping.model.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicle.dataservice.js" />
+    <Content Include="Areas\Fleet\Scripts\hireGroup.dataservice.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicle.model.js" />
+    <Content Include="Areas\Fleet\Scripts\hireGroup.model.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicle.view.js" />
+    <Content Include="Areas\Fleet\Scripts\hireGroup.view.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicle.viewModel.js" />
+    <Content Include="Areas\Fleet\Scripts\hireGroup.viewModel.js" />
+    <Content Include="Areas\GeographicalHierarchy\Scripts\subRegion.dataservice.js" />
+    <Content Include="Areas\GeographicalHierarchy\Scripts\subRegion.model.js" />
+    <Content Include="Areas\GeographicalHierarchy\Scripts\subRegion.view.js" />
+    <Content Include="Areas\GeographicalHierarchy\Scripts\subRegion.viewModel.js" />
+    <Content Include="Areas\GeographicalHierarchy\Scripts\region.dataservice.js" />
+    <Content Include="Areas\GeographicalHierarchy\Scripts\region.model.js" />
+    <Content Include="Areas\GeographicalHierarchy\Scripts\region.view.js" />
+    <Content Include="Areas\GeographicalHierarchy\Scripts\region.viewModel.js" />
+    <Content Include="Areas\Organization\Scripts\company.dataservice.js" />
+    <Content Include="Areas\Organization\Scripts\company.model.js" />
+    <Content Include="Areas\Organization\Scripts\company.view.js" />
+    <Content Include="Areas\Organization\Scripts\company.viewModel.js" />
+    <Content Include="Areas\Organization\Scripts\department.dataservice.js" />
+    <Content Include="Areas\Organization\Scripts\department.model.js" />
+    <Content Include="Areas\Organization\Scripts\department.view.js" />
+    <Content Include="Areas\Organization\Scripts\department.viewModel.js" />
+    <Content Include="Areas\Organization\Scripts\businessSeg.dataservice.js" />
+    <Content Include="Areas\Organization\Scripts\businessSeg.model.js" />
+    <Content Include="Areas\Organization\Scripts\businessSeg.view.js" />
+    <Content Include="Areas\Organization\Scripts\businessSeg.viewModel.js" />
+    <Content Include="Areas\Organization\Scripts\workLocation.dataservice.js" />
+    <Content Include="Areas\Organization\Scripts\workLocation.model.js" />
+    <Content Include="Areas\Organization\Scripts\workLocation.viewModel.js" />
+    <Content Include="Areas\Organization\Scripts\workplace.viewModel.js" />
+    <Content Include="Areas\Organization\Scripts\workplace.dataservice.js" />
+    <Content Include="Areas\Organization\Scripts\operation.dataservice.js" />
+    <Content Include="Areas\Organization\Scripts\workLocation.view.js" />
+    <Content Include="Areas\Organization\Scripts\workplace.view.js" />
+    <Content Include="Areas\Organization\Scripts\workplace.model.js" />
+    <Content Include="Areas\Organization\Scripts\operation.model.js" />
+    <Content Include="Areas\Organization\Scripts\operation.view.js" />
+    <Content Include="Areas\Organization\Scripts\operation.viewModel.js" />
+    <Content Include="Areas\Organization\Scripts\organizationGroup.view.js" />
+    <Content Include="Areas\Organization\Scripts\organizationGroup.dataservice.js" />
+    <Content Include="Areas\Organization\Scripts\organizationGroup.viewModel.js" />
+    <Content Include="Areas\Organization\Scripts\organizationGroup.model.js" />
+    <Content Include="Areas\Organization\Scripts\workplaceType.dataservice.js" />
+    <Content Include="Areas\Organization\Scripts\workplaceType.model.js" />
+    <Content Include="Areas\Organization\Scripts\workplaceType.view.js" />
+    <Content Include="Areas\Organization\Scripts\workplaceType.viewModel.js" />
+    <Content Include="Areas\Pricing\Scripts\serviceRate.dataservice.js" />
+    <Content Include="Areas\Pricing\Scripts\serviceRate.model.js" />
+    <Content Include="Areas\Pricing\Scripts\serviceRate.view.js" />
+    <Content Include="Areas\Pricing\Scripts\serviceRate.viewModel.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.dataservice.js" />
+    <Content Include="Areas\Pricing\Scripts\insuranceRate.model.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.model.js" />
+    <Content Include="Areas\Pricing\Scripts\insuranceRate.view.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.view.js" />
+    <Content Include="Areas\Pricing\Scripts\insuranceRate.viewModel.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.viewModel.js" />
+    <Content Include="Areas\Pricing\Scripts\insuranceRate.dataservice.js" />
+    <Content Include="Areas\RentalAgreement\Scripts\Mocks\rentalAgreement.dataservice.js" />
+    <Content Include="Areas\RentalAgreement\Scripts\rentalAgreement.dataservice.js" />
+    <Content Include="Areas\RentalAgreement\Scripts\rentalAgreement.model.js" />
+    <Content Include="Areas\RentalAgreement\Scripts\rentalAgreement.view.js" />
+    <Content Include="Areas\RentalAgreement\Scripts\rentalAgreement.viewModel.js" />
     <Content Include="Areas\Product\Scripts\product.dataservice.js" />
     <Content Include="Areas\Product\Scripts\productWithKoMapping.model.js" />
     <Content Include="Areas\Product\Scripts\product.model.js" />
     <Content Include="Areas\Product\Scripts\product.view.js" />
     <Content Include="Areas\Product\Scripts\product.viewModel.js" />
-    <Content Include="Areas\Pricing\Scripts\tarrifType.dataservice.js" />
-    <Content Include="Areas\Pricing\Scripts\tarrifType.model.js" />
-    <Content Include="Areas\Pricing\Scripts\tarrifType.view.js" />
-    <Content Include="Areas\Pricing\Scripts\tarrifType.viewModel.js" />
-    <Content Include="Areas\Pricing\Scripts\tarrifTypeWithKoMapping.model.js" />
+    <Content Include="Areas\Pricing\Scripts\tariffType.dataservice.js" />
+    <Content Include="Areas\Pricing\Scripts\tariffType.view.js" />
+    <Content Include="Areas\Pricing\Scripts\tariffType.viewModel.js" />
+    <Content Include="Areas\Pricing\Scripts\tariffType.model.js" />
     <Content Include="asadtest.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\BusinessSegment.css">
+      <DependentUpon>BusinessSegment.less</DependentUpon>
+    </Content>
+    <Content Include="Content\BusinessSegment.min.css">
+      <DependentUpon>BusinessSegment.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Company.css">
+      <DependentUpon>Company.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Company.min.css">
+      <DependentUpon>Company.css</DependentUpon>
+    </Content>
     <Content Include="Content\CSS\architecture.css" />
+    <Content Include="Content\CSS\architecture.min.css">
+      <DependentUpon>architecture.css</DependentUpon>
+    </Content>
     <Content Include="Content\CSS\bootstrap-rtl.css" />
+    <Content Include="Content\CSS\bootstrap-rtl.min.css">
+      <DependentUpon>bootstrap-rtl.css</DependentUpon>
+    </Content>
     <Content Include="Content\CSS\PagedList.css" />
+    <Content Include="Content\CSS\PagedList.min.css">
+      <DependentUpon>PagedList.css</DependentUpon>
+    </Content>
     <Content Include="Content\CSS\spinner.gif" />
+    <Content Include="Content\EmployeeManagement.css">
+      <DependentUpon>EmployeeManagement.less</DependentUpon>
+    </Content>
+    <Content Include="Content\EmployeeManagement.min.css">
+      <DependentUpon>EmployeeManagement.css</DependentUpon>
+    </Content>
     <Content Include="Content\Fleet.css">
       <DependentUpon>Fleet.less</DependentUpon>
     </Content>
@@ -388,6 +846,7 @@
       <DependentUpon>Fleet.css</DependentUpon>
     </Content>
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Images\arrow-down-small.png" />
     <Content Include="Content\Images\arrow-up-small.png" />
     <Content Include="Content\Images\up-arrow-small.png" />
     <Content Include="Content\Images\arrow-down.png" />
@@ -402,12 +861,42 @@
     <Content Include="Content\MainSite.min.css">
       <DependentUpon>MainSite.css</DependentUpon>
     </Content>
+    <Content Include="Content\Operation.css">
+      <DependentUpon>Operation.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Operation.min.css">
+      <DependentUpon>Operation.css</DependentUpon>
+    </Content>
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\PagedList.min.css">
+      <DependentUpon>PagedList.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Region.css">
+      <DependentUpon>Region.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Region.min.css">
+      <DependentUpon>Region.css</DependentUpon>
+    </Content>
+    <Content Include="Content\RentalAgreement.css">
+      <DependentUpon>RentalAgreement.less</DependentUpon>
+    </Content>
     <Content Include="Content\Pricing.css">
       <DependentUpon>Pricing.less</DependentUpon>
     </Content>
     <Content Include="Content\Pricing.min.css">
       <DependentUpon>Pricing.css</DependentUpon>
+    </Content>
+    <Content Include="Content\RentalAgreement.min.css">
+      <DependentUpon>RentalAgreement.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.min.css">
+      <DependentUpon>Site.css</DependentUpon>
+    </Content>
+    <Content Include="Content\SubRegion.css">
+      <DependentUpon>SubRegion.less</DependentUpon>
+    </Content>
+    <Content Include="Content\SubRegion.min.css">
+      <DependentUpon>SubRegion.css</DependentUpon>
     </Content>
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -424,23 +913,77 @@
     <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
     <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery-ui.min.css">
+      <DependentUpon>jquery-ui.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.min.css">
+      <DependentUpon>jquery.ui.accordion.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.min.css">
+      <DependentUpon>jquery.ui.all.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.min.css">
+      <DependentUpon>jquery.ui.autocomplete.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.min.css">
+      <DependentUpon>jquery.ui.base.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.min.css">
+      <DependentUpon>jquery.ui.button.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.min.css">
+      <DependentUpon>jquery.ui.core.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.min.css">
+      <DependentUpon>jquery.ui.datepicker.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.min.css">
+      <DependentUpon>jquery.ui.dialog.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.menu.css" />
+    <Content Include="Content\themes\base\jquery.ui.menu.min.css">
+      <DependentUpon>jquery.ui.menu.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.min.css">
+      <DependentUpon>jquery.ui.progressbar.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.min.css">
+      <DependentUpon>jquery.ui.resizable.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.min.css">
+      <DependentUpon>jquery.ui.selectable.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.min.css">
+      <DependentUpon>jquery.ui.slider.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.spinner.css" />
+    <Content Include="Content\themes\base\jquery.ui.spinner.min.css">
+      <DependentUpon>jquery.ui.spinner.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.min.css">
+      <DependentUpon>jquery.ui.tabs.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.min.css">
+      <DependentUpon>jquery.ui.theme.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\jquery.ui.tooltip.css" />
+    <Content Include="Content\themes\base\jquery.ui.tooltip.min.css">
+      <DependentUpon>jquery.ui.tooltip.css</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\minified\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -471,8 +1014,38 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="Content\OrgGroup.css">
+      <DependentUpon>OrgGroup.less</DependentUpon>
+    </Content>
+    <Content Include="Content\OrgGroup.min.css">
+      <DependentUpon>OrgGroup.css</DependentUpon>
+    </Content>
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
+    <Content Include="Content\Vehicle.css">
+      <DependentUpon>Vehicle.less</DependentUpon>
+    </Content>
+    <Content Include="Content\WorkLocation.css">
+      <DependentUpon>WorkLocation.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Vehicle.min.css">
+      <DependentUpon>Vehicle.css</DependentUpon>
+    </Content>
+    <Content Include="Content\WorkLocation.min.css">
+      <DependentUpon>WorkLocation.css</DependentUpon>
+    </Content>
+    <Content Include="Content\WorkPlace.css">
+      <DependentUpon>WorkPlace.less</DependentUpon>
+    </Content>
+    <Content Include="Content\WorkPlace.min.css">
+      <DependentUpon>WorkPlace.css</DependentUpon>
+    </Content>
+    <Content Include="Content\WorkPlaceType.css">
+      <DependentUpon>WorkPlaceType.less</DependentUpon>
+    </Content>
+    <Content Include="Content\WorkPlaceType.min.css">
+      <DependentUpon>WorkPlaceType.css</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -836,7 +1409,7 @@
     <Content Include="Areas\Fleet\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Fleet\Views\web.config" />
     <Content Include="Areas\Fleet\Scripts\fleetPool.dataservice.js" />
-    <Content Include="Areas\Pricing\Views\Tarrif\Index.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\Index.cshtml" />
     <Content Include="Areas\Pricing\Views\web.config" />
     <Content Include="Areas\Pricing\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Pricing\Views\_ViewStart.cshtml" />
@@ -845,25 +1418,122 @@
     <Content Include="Areas\BusinessPartner\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\BusinessPartner\Views\Home\Index.cshtml" />
     <Content Include="Areas\BusinessPartner\Views\Home\_BusinessPartnerEditor.cshtml" />
-    <Content Include="Areas\Pricing\Views\Tarrif\_TariffTypeEditor.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\_TariffTypeEditor.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\ServiceRate.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\_ServiceRateEditor.cshtml" />
     <Content Include="Content\MainSite.less" />
     <Content Include="Content\Fleet.less" />
     <Content Include="Content\Pricing.less" />
     <Content Include="Content\Pricing.css.map">
       <DependentUpon>Pricing.css</DependentUpon>
     </Content>
-    <Content Include="Content\MainSite.css.map">
-      <DependentUpon>MainSite.css</DependentUpon>
-    </Content>
     <Content Include="Content\Fleet.css.map">
       <DependentUpon>Fleet.css</DependentUpon>
     </Content>
-    <Content Include="Areas\Pricing\Views\Tarrif\TariffRate.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\TariffRate.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\_TariffRateEditor.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\_HireGroupRateDialog.cshtml" />
+    <Content Include="Areas\Fleet\Views\Home\_FleetPoolEditor.cshtml" />
+    <Content Include="Areas\RentalAgreement\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\RentalAgreement\Views\Home\Index.cshtml" />
+    <Content Include="Areas\RentalAgreement\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\RentalAgreement\Views\web.config" />
+    <Content Include="Content\RentalAgreement.less" />
+    <Content Include="Areas\Fleet\Views\Home\HireGroup.cshtml" />
+    <Content Include="Areas\Fleet\Views\Home\_HireGroupEditor.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\test.cshtml" />
+    <Content Include="Areas\Organization\Views\web.config" />
+    <Content Include="Areas\Organization\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Organization\Views\Shared\_Layout.cshtml" />
+    <Content Include="Content\OrgGroup.less" />
+    <Content Include="Content\OrgGroup.css.map">
+      <DependentUpon>OrgGroup.css</DependentUpon>
+    </Content>
+    <Content Include="Areas\Organization\Views\Organization\_OrgGroupEditor.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\InsuranceRate.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\_InsuranceRateEditor.cshtml" />
+    <Content Include="Content\Company.less" />
+    <Content Include="Content\Company.css.map">
+      <DependentUpon>Company.css</DependentUpon>
+    </Content>
+    <Content Include="Content\MainSite.css.map">
+      <DependentUpon>MainSite.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Operation.less" />
+    <Content Include="Content\Operation.css.map">
+      <DependentUpon>Operation.css</DependentUpon>
+    </Content>
+    <Content Include="Areas\Organization\Views\Organization\OrganizationGroup.cshtml" />
+    <Content Include="Areas\Organization\Views\Organization\Company.cshtml" />
+    <Content Include="Areas\Organization\Views\Organization\Department.cshtml" />
+    <Content Include="Areas\Organization\Views\Organization\Operation.cshtml" />
+    <Content Include="Areas\Organization\Views\Organization\_CompanyEditor.cshtml" />
+    <Content Include="Areas\Organization\Views\Organization\_DepartmentEditor.cshtml" />
+    <Content Include="Areas\Organization\Views\Organization\_OperationEditor.cshtml" />
+    <Content Include="Areas\Fleet\Views\Home\Vehicle.cshtml" />
+    <Content Include="Areas\Fleet\Views\Home\_VehicleEditor.cshtml" />
+    <Content Include="Areas\Organization\Views\Organization\Workplace.cshtml" />
+    <Content Include="Areas\Organization\Views\Organization\_WorkplaceEditor.cshtml" />
+    <Content Include="Content\WorkPlace.less" />
+    <Content Include="Content\WorkPlace.css.map">
+      <DependentUpon>WorkPlace.css</DependentUpon>
+    </Content>
+    <Content Include="Areas\EmployeeManagement\Views\web.config" />
+    <Content Include="Areas\EmployeeManagement\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Organization\Views\Organization\WorkLocation.cshtml" />
+    <Content Include="Areas\Organization\Views\Organization\_WorkLocationEditor.cshtml" />
+    <Content Include="Content\WorkLocation.less" />
+    <Content Include="Content\WorkLocation.css.map">
+      <DependentUpon>WorkLocation.css</DependentUpon>
+    </Content>
+    <Content Include="Areas\EmployeeManagement\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\EmployeeManagement\Views\Home\Index.cshtml" />
+    <Content Include="Content\Vehicle.less" />
+    <Content Include="Content\Vehicle.css.map">
+      <DependentUpon>Vehicle.css</DependentUpon>
+    </Content>
+    <Content Include="Areas\EmployeeManagement\Views\Home\_EmployeeEditor.cshtml" />
+    <Content Include="Areas\Organization\Views\Organization\WorkplaceType.cshtml" />
+    <Content Include="Areas\Organization\Views\Organization\_WorkplaceTypeEditor.cshtml" />
+    <Content Include="Content\WorkPlaceType.less" />
+    <Content Include="Content\WorkPlaceType.css.map">
+      <DependentUpon>WorkPlaceType.css</DependentUpon>
+    </Content>
+    <Content Include="Areas\Organization\Views\Organization\BusinessSegment.cshtml" />
+    <Content Include="Content\RentalAgreement.css.map">
+      <DependentUpon>RentalAgreement.css</DependentUpon>
+    </Content>
+    <Content Include="Areas\Organization\Views\Organization\_BusinessSegmentEditor.cshtml" />
+    <Content Include="Content\BusinessSegment.less" />
+    <Content Include="Content\BusinessSegment.css.map">
+      <DependentUpon>BusinessSegment.css</DependentUpon>
+    </Content>
+    <Content Include="Areas\GeographicalHierarchy\Views\web.config" />
+    <Content Include="Areas\GeographicalHierarchy\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\GeographicalHierarchy\Views\GeographicalHierarchy\Region.cshtml" />
+    <Content Include="Areas\GeographicalHierarchy\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\GeographicalHierarchy\Views\GeographicalHierarchy\_RegionEditor.cshtml" />
+    <Content Include="Content\Region.less" />
+    <Content Include="Content\Region.css.map">
+      <DependentUpon>Region.css</DependentUpon>
+    </Content>
+    <Content Include="Content\EmployeeManagement.less" />
+    <Content Include="Content\EmployeeManagement.css.map">
+      <DependentUpon>EmployeeManagement.css</DependentUpon>
+    </Content>
+    <Content Include="Areas\GeographicalHierarchy\Views\GeographicalHierarchy\SubRegion.cshtml" />
+    <Content Include="Areas\GeographicalHierarchy\Views\GeographicalHierarchy\_SubRegionEditor.cshtml" />
+    <Content Include="Content\SubRegion.less" />
+    <Content Include="Content\SubRegion.css.map">
+      <DependentUpon>SubRegion.css</DependentUpon>
+    </Content>
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
     <Content Include="Scripts\App\architecture.js" />
     <Content Include="Scripts\App\requireConfig.js" />
+    <Content Include="Scripts\bloodhound.js" />
+    <Content Include="Scripts\bloodhound.min.js" />
     <Content Include="Scripts\bootstrap-rtl.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -929,6 +1599,10 @@
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\tooltip.js" />
     <Content Include="Scripts\transition.js" />
+    <Content Include="Scripts\typeahead.bundle.js" />
+    <Content Include="Scripts\typeahead.bundle.min.js" />
+    <Content Include="Scripts\typeahead.jquery.js" />
+    <Content Include="Scripts\typeahead.jquery.min.js" />
     <Content Include="Scripts\underscore-ko-1.6.0.js" />
     <Content Include="Scripts\underscore-ko-1.6.0.min.js" />
     <Content Include="Scripts\underscore-min.js" />
@@ -992,17 +1666,38 @@
   <ItemGroup>
     <Folder Include="App_Data\ProfileImages\" />
     <Folder Include="Areas\Api\Models\" />
+    <Folder Include="Areas\Api\Views\BusinessSegment\" />
+    <Folder Include="Areas\Api\Views\CompanyBase\" />
+    <Folder Include="Areas\Api\Views\Company\" />
+    <Folder Include="Areas\Api\Views\Department\" />
     <Folder Include="Areas\Api\Views\FleetPool\" />
+    <Folder Include="Areas\Api\Views\OperationBase\" />
+    <Folder Include="Areas\Api\Views\OperationsWorkPlace\" />
+    <Folder Include="Areas\Api\Views\Operation\" />
+    <Folder Include="Areas\Api\Views\OrganizationGroup\" />
+    <Folder Include="Areas\Api\Views\Phone\" />
+    <Folder Include="Areas\Api\Views\Region\" />
     <Folder Include="Areas\Api\Views\Shared\" />
+    <Folder Include="Areas\Api\Views\WorkLocationBase\" />
+    <Folder Include="Areas\Api\Views\WorkLocation\" />
+    <Folder Include="Areas\Api\Views\WorkplaceBase\" />
+    <Folder Include="Areas\Api\Views\WorkPlaceTypeBase\" />
+    <Folder Include="Areas\Api\Views\workplaceType\" />
+    <Folder Include="Areas\Api\Views\Workplace\" />
     <Folder Include="Areas\BusinessPartner\Models\" />
     <Folder Include="Areas\Common\Controllers\" />
     <Folder Include="Areas\Common\Models\" />
+    <Folder Include="Areas\EmployeeManagement\Models\" />
     <Folder Include="Areas\Fleet\Models\" />
+    <Folder Include="Areas\GeographicalHierarchy\Models\" />
+    <Folder Include="Areas\Organization\Models\" />
     <Folder Include="Areas\Pricing\Models\" />
     <Folder Include="Areas\Product\Models\" />
+    <Folder Include="Areas\RentalAgreement\Models\" />
     <Folder Include="Migrations\" />
     <Folder Include="Resources\Employees\" />
     <Folder Include="Views\Menu\" />
+    <Folder Include="Views\OperationBaseDataResponse\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1012,24 +1707,112 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Implementation\Implementation.csproj">
+    <ProjectReference Include="..\Implementation\Cares.Implementation.csproj">
       <Project>{42d2e6c0-74f1-46fb-b7ba-43251156275d}</Project>
-      <Name>Implementation</Name>
+      <Name>Cares.Implementation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
+    <ProjectReference Include="..\Interfaces\Cares.Interfaces.csproj">
       <Project>{98F7A831-6D93-48E9-950F-623772AA607A}</Project>
-      <Name>Interfaces</Name>
+      <Name>Cares.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Models\Models.csproj">
+    <ProjectReference Include="..\Models\Cares.Models.csproj">
       <Project>{81067904-2176-4648-87ab-014b0d76b85e}</Project>
-      <Name>Models</Name>
+      <Name>Cares.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WebBase\WebBase.csproj">
+    <ProjectReference Include="..\WebBase\Cares.WebBase.csproj">
       <Project>{bcb8bcfd-0163-430c-8088-224074d6e384}</Project>
-      <Name>WebBase</Name>
+      <Name>Cares.WebBase</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\FleetPool\FleetPool.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FleetPool.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FleetPool\FleetPool.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FleetPool.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\GeographicalHierarchy\SubRegion.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SubRegion.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\GeographicalHierarchy\SubRegion.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SubRegion.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\GeographicalHierarchy\Region.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Region.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\GeographicalHierarchy\Region.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Region.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\BusinessSegment.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BusinessSegment.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\BusinessSegment.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BusinessSegment.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\Company.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Company.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\Company.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Company.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\Department.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Department.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\Department.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Department.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\Operation.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Operation.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\Operation.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Operation.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\OrganizationGroup.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>OrganizationGroup.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\OrganizationGroup.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>OrganizationGroup.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\WorkLocation.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>WorkLocation.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\WorkLocation.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>WorkLocation.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\Workplace.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Workplace.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\Workplace.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Workplace.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\WorkplaceType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>WorkplaceType.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Organization\WorkplaceType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>WorkplaceType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Shared\Common.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Common.ar.Designer.cs</LastGenOutput>
@@ -1045,6 +1828,57 @@
     <EmbeddedResource Include="Resources\Products\Product.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Product.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tariff\HireGroup.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HireGroup.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tariff\HireGroup.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HireGroup.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tariff\InsuranceRate.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>InsuranceRate.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tariff\InsuranceRate.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>InsuranceRate.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tariff\ServiceRate.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceRate.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tariff\ServiceRate.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceRate.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tariff\TariffRate.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TariffRate.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tariff\TariffRate.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TariffRate.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tariff\TariffType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TariffType.ar.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tariff\TariffType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TariffType.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Vehicle\Vehicle.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Vehicle.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Vehicle\Vehicle.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Vehicle.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

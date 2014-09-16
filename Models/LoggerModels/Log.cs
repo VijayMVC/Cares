@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Models.LoggerModels
+namespace Cares.Models.LoggerModels
 {
     /// <summary>
     /// Log class for database logging

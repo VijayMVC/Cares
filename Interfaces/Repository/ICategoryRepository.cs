@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
-using Models.DomainModels;
+using Cares.Models.DomainModels;
 
-namespace Interfaces.Repository
+namespace Cares.Interfaces.Repository
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface ICategoryRepository : IBaseRepository<Category, long>
     {
         IEnumerable<Category> GetAllCategories();

@@ -1,10 +1,18 @@
-﻿using Models.Common;
+﻿using Cares.Models.Common;
 
-namespace Models.RequestModels
+namespace Cares.Models.RequestModels
 {
     public class EmployeeSearchRequest : GetPagedListRequest
     {
-        public int? DepartmentId { get; set; }
+        /// <summary>
+        /// Employee Status Id
+        /// </summary>
+        public long? EmployeeStatusId { get; set; }
+
+        /// <summary>
+        /// Company ID
+        /// </summary>
+        public long? CompanyId { get; set; }
 
         /// <summary>
         /// Employee Order By

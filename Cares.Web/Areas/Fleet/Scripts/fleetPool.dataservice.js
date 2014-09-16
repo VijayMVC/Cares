@@ -11,47 +11,36 @@ define("Fleet/fleetPool.dataservice", function () {
             // Initialize
             initialize = function() {
                 if (!isInitialized) {
-
                     // Define request to get FleetPool Base data
                     amplify.request.define('getFleetPoolBasedata', 'ajax', {
                         url: '/Api/FleetPoolBase',
                         dataType: 'json',
+                        decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
-
+                    //save new added fleetpool
+                    amplify.request.define('saveFleetPool', 'ajax', {
+                        url: '/Api/FleetPool',
+                        dataType: 'json',
+                        decoder: amplify.request.decoders.istStatusDecoder,
+                        type: 'POST'
+                    });
                     // Define request to get FleetPools
                     amplify.request.define('getFleetPools', 'ajax', {
                         url: '/Api/FleetPool',
                         dataType: 'json',
                         type: 'GET'
                     });
-
-
-                    //// Define request to save product
-                    //amplify.request.define('createProduct', 'ajax', {
-                    //    url: '/Api/FleetPool',
-                    //    dataType: 'json',
-                    //    type: 'PUT'
-                    //});
-
-                    //// Define request to update product
-                    //amplify.request.define('updateProduct', 'ajax', {
-                    //    url: '/Api/FleetPool',
-                    //    dataType: 'json',
-                    //    type: 'POST'
-                    //});
-
                     // Define request to delete FleetPool
                     amplify.request.define('deleteFleetPool', 'ajax', {
                         url: '/Api/FleetPool',
                         dataType: 'json',
-                        type: 'DELETE'
-                    });
-
+                        decoder: amplify.request.decoders.istStatusDecoder,
+                        type: 'Delete'
+                    });                    
                     isInitialized = true;
                 }
             },
-
             // Get Fleet Pool Base Data
             getFleetPoolBasedata = function(params, callbacks) {
                 initialize();
@@ -62,9 +51,17 @@ define("Fleet/fleetPool.dataservice", function () {
                     data: params
                 });
             },
-
-            ///get Fleet Pools
-            getFleetPools = function(params, callbacks) {
+            //add new fleetpool
+            saveFleetPool = function (params, callbacks) {
+                return amplify.request({
+                    resourceId: 'saveFleetPool',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: params
+                });
+            },            
+        ///get Fleet Pools
+            getFleetPools = function (params, callbacks) {
                 initialize();
                 return amplify.request({
                     resourceId: 'getFleetPools',
@@ -73,46 +70,21 @@ define("Fleet/fleetPool.dataservice", function () {
                     data: params
                 });
             },
-
-            //// Create Product
-            //createProduct = function (param, callbacks) {
-            //    initialize();
-            //    return amplify.request({
-            //        resourceId: 'createProduct',
-            //        success: callbacks.success,
-            //        error: callbacks.error,
-            //        data: param
-            //    });
-            //},
-
-            //// Update a Product
-            //updateProduct = function (param, callbacks) {
-            //    initialize();
-            //    return amplify.request({
-            //        resourceId: 'updateProduct',
-            //        success: callbacks.success,
-            //        error: callbacks.error,
-            //        data: param
-            //    });
-            //},
-
             // save Forecast
-        deleteFleetPool = function(param, callbacks) {
-            initialize();
+        deleteFleetPool = function (params, callbacks) {
             return amplify.request({
                 resourceId: 'deleteFleetPool',
                 success: callbacks.success,
                 error: callbacks.error,
-                data: param
+                data: params
             });
         };
-
         return {
             getFleetPoolBasedata: getFleetPoolBasedata,
             getFleetPools: getFleetPools,
-            deleteFleetPool: deleteFleetPool
+            deleteFleetPool: deleteFleetPool,
+            saveFleetPool: saveFleetPool
         };
     })();
-
     return dataService;
 });

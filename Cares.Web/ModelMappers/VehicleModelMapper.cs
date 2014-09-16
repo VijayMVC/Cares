@@ -1,8 +1,10 @@
 ﻿using Cares.Web.Models;
-using DomainModels = Models.DomainModels;
 
 namespace Cares.Web.ModelMappers
 {
+    /// <summary>
+    /// Vehicle Model Mapper
+    /// </summary>
     public static class VehicleModelMapper
     {
         #region Public
@@ -10,12 +12,12 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static VehicleModel CreateFrom(this DomainModels.VehicleModel source)
+        public static VehicleModelDropDown CreateFrom(this Cares.Models.DomainModels.VehicleModel source)
         {
-            return new VehicleModel
+            return new VehicleModelDropDown
             {
-                VehicleModeld = source.VehicleModeld,
-                VehicleModelName = source.VehicleModelCode + "-" + source.VehicleModelName,
+                VehicleModeld = source.VehicleModelId,
+                VehicleModelCodeName = source.VehicleModelCode + "-" + source.VehicleModelName
             };
         }
 

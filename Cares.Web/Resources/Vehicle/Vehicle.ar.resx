@@ -1,0 +1,435 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Accessories" xml:space="preserve">
+    <value>الاكسسوارات</value>
+  </data>
+  <data name="AddToList" xml:space="preserve">
+    <value>إضافة إلى قائمة</value>
+  </data>
+  <data name="AlloyRim" xml:space="preserve">
+    <value>سبائك ريم</value>
+  </data>
+  <data name="AtLocation" xml:space="preserve">
+    <value>في موقع</value>
+  </data>
+  <data name="BackWheelSize" xml:space="preserve">
+    <value>الخلفي عجلة الحجم (بوصة)</value>
+  </data>
+  <data name="BranchOwner" xml:space="preserve">
+    <value>فرع المالك</value>
+  </data>
+  <data name="BusinessPartner" xml:space="preserve">
+    <value>شريك تجاري</value>
+  </data>
+  <data name="ChasisNumber" xml:space="preserve">
+    <value>الشاسيه عدد</value>
+  </data>
+  <data name="CheckListItem" xml:space="preserve">
+    <value>قائمة مرجعية البند</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>اللون</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>شركة</value>
+  </data>
+  <data name="CoverageLimit" xml:space="preserve">
+    <value>تغطية الحد</value>
+  </data>
+  <data name="CreateNewVehicle" xml:space="preserve">
+    <value>خلق جديدة للسيارات</value>
+  </data>
+  <data name="Current" xml:space="preserve">
+    <value>التيار</value>
+  </data>
+  <data name="CurrentOdometer" xml:space="preserve">
+    <value>عداد المسافات الحالي</value>
+  </data>
+  <data name="Department" xml:space="preserve">
+    <value>قسم</value>
+  </data>
+  <data name="DepreciationInfo" xml:space="preserve">
+    <value>معلومات الاستهلاك</value>
+  </data>
+  <data name="DisposalCost" xml:space="preserve">
+    <value>تكلفة التخلص</value>
+  </data>
+  <data name="DisposalDate" xml:space="preserve">
+    <value>التخلص التسجيل</value>
+  </data>
+  <data name="DisposalDescription" xml:space="preserve">
+    <value>التخلص الوصف</value>
+  </data>
+  <data name="DisposalInfo" xml:space="preserve">
+    <value>معلومات التخلص</value>
+  </data>
+  <data name="DownPayment" xml:space="preserve">
+    <value>دفعة أولى</value>
+  </data>
+  <data name="EngineCC" xml:space="preserve">
+    <value>المحرك سم مكعب</value>
+  </data>
+  <data name="EngineNumber" xml:space="preserve">
+    <value>عدد المحرك</value>
+  </data>
+  <data name="FirstMonthDep" xml:space="preserve">
+    <value>أول شهر الودائع</value>
+  </data>
+  <data name="FirstPayment" xml:space="preserve">
+    <value>الأول الدفع</value>
+  </data>
+  <data name="FirstPaymentDate" xml:space="preserve">
+    <value>الأول تاريخ الدفع</value>
+  </data>
+  <data name="FleetPool" xml:space="preserve">
+    <value>أسطول بركة</value>
+  </data>
+  <data name="FrequencyInDays" xml:space="preserve">
+    <value>تردد (أيام)</value>
+  </data>
+  <data name="FrequencyInKM" xml:space="preserve">
+    <value>تردد (كم)</value>
+  </data>
+  <data name="FrontWheelSize" xml:space="preserve">
+    <value>جر الحجم (بوصة)</value>
+  </data>
+  <data name="Fuel" xml:space="preserve">
+    <value>الوقود</value>
+  </data>
+  <data name="FuelLevel" xml:space="preserve">
+    <value>مستوى الوقود (٪)</value>
+  </data>
+  <data name="FuelType" xml:space="preserve">
+    <value>نوع الوقود</value>
+  </data>
+  <data name="HireGroup" xml:space="preserve">
+    <value>استئجار المجموعة</value>
+  </data>
+  <data name="InitialOdometer" xml:space="preserve">
+    <value>عداد المسافات الأولي</value>
+  </data>
+  <data name="InsuranceAgent" xml:space="preserve">
+    <value>وسيط التأمين</value>
+  </data>
+  <data name="InsuranceInfo" xml:space="preserve">
+    <value>معلومات التأمين</value>
+  </data>
+  <data name="InsuranceRenewalDate" xml:space="preserve">
+    <value>التأمين تجديد التسجيل</value>
+  </data>
+  <data name="InsuranceStartDate" xml:space="preserve">
+    <value>تاريخ بدء التأمين</value>
+  </data>
+  <data name="InsuranceType" xml:space="preserve">
+    <value>نوع التأمين</value>
+  </data>
+  <data name="InsuredValue" xml:space="preserve">
+    <value>القيمة المؤمن</value>
+  </data>
+  <data name="InterestRate" xml:space="preserve">
+    <value>سعر الفائدة (٪)</value>
+  </data>
+  <data name="InteriorDescription" xml:space="preserve">
+    <value>الداخلية الوصف</value>
+  </data>
+  <data name="KeyCode" xml:space="preserve">
+    <value>رمز المفتاح</value>
+  </data>
+  <data name="LastMonthDep" xml:space="preserve">
+    <value>شهر الماضي الودائع</value>
+  </data>
+  <data name="LastPayment" xml:space="preserve">
+    <value>آخر دفعة</value>
+  </data>
+  <data name="LeasedFinishDate" xml:space="preserve">
+    <value>المؤجرة إنهاء التسجيل</value>
+  </data>
+  <data name="LeasedOwnership" xml:space="preserve">
+    <value>المؤجرة ملكية؟</value>
+  </data>
+  <data name="LeasedStartDate" xml:space="preserve">
+    <value>المؤجرة تاريخ بدء</value>
+  </data>
+  <data name="LeaseInfo" xml:space="preserve">
+    <value>معلومات الإيجار</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>مستوى</value>
+  </data>
+  <data name="LoadBaseDataFailedMsg" xml:space="preserve">
+    <value>فشل تحميل قاعدة البيانات.</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>موقع</value>
+  </data>
+  <data name="MaintenanceSchedule" xml:space="preserve">
+    <value>جدول الصيانة</value>
+  </data>
+  <data name="MaintenanceStartDate" xml:space="preserve">
+    <value>تاريخ بدء الصيانة</value>
+  </data>
+  <data name="MaintenanceType" xml:space="preserve">
+    <value>نوع الصيانة</value>
+  </data>
+  <data name="Make" xml:space="preserve">
+    <value>جعل</value>
+  </data>
+  <data name="Model" xml:space="preserve">
+    <value>نموذج</value>
+  </data>
+  <data name="ModelYear" xml:space="preserve">
+    <value>سنة الصنع</value>
+  </data>
+  <data name="MonthlyDep" xml:space="preserve">
+    <value>إيداع الشهري</value>
+  </data>
+  <data name="MonthlyPayment" xml:space="preserve">
+    <value>الدفع الشهري</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>اسم</value>
+  </data>
+  <data name="NumberOfCylinders" xml:space="preserve">
+    <value>لكم رقم الاسطوانات</value>
+  </data>
+  <data name="NumberofDoors" xml:space="preserve">
+    <value>عدد الأبواب</value>
+  </data>
+  <data name="Odometer" xml:space="preserve">
+    <value>عداد المسافات</value>
+  </data>
+  <data name="Operation" xml:space="preserve">
+    <value>عملية</value>
+  </data>
+  <data name="OtherDetails" xml:space="preserve">
+    <value>تفاصيل أخرى</value>
+  </data>
+  <data name="PlateNumber" xml:space="preserve">
+    <value>لوحة #</value>
+  </data>
+  <data name="Premium" xml:space="preserve">
+    <value>قسط</value>
+  </data>
+  <data name="PrincipalPayment" xml:space="preserve">
+    <value>الدفع الرئيسي</value>
+  </data>
+  <data name="PurchaseCost" xml:space="preserve">
+    <value>شراء التكلفة</value>
+  </data>
+  <data name="PurchaseDate" xml:space="preserve">
+    <value>تاريخ الشراء</value>
+  </data>
+  <data name="PurchaseDescription" xml:space="preserve">
+    <value>شراء الوصف</value>
+  </data>
+  <data name="PurchaseInfo" xml:space="preserve">
+    <value>شراء معلومات</value>
+  </data>
+  <data name="PurchaseOrderNumber" xml:space="preserve">
+    <value>شراء الأمر رقم</value>
+  </data>
+  <data name="RadioCode" xml:space="preserve">
+    <value>كود الراديو</value>
+  </data>
+  <data name="Region" xml:space="preserve">
+    <value>المنطقة</value>
+  </data>
+  <data name="RegisterationDate" xml:space="preserve">
+    <value>رخصه التسجيل</value>
+  </data>
+  <data name="RegisterationExpDate" xml:space="preserve">
+    <value>رخصه التصدير. التاريخ</value>
+  </data>
+  <data name="ResidualValue" xml:space="preserve">
+    <value>القيمة المتبقية</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>الوضع</value>
+  </data>
+  <data name="TankSize" xml:space="preserve">
+    <value>خزان الحجم (لتر)</value>
+  </data>
+  <data name="TopSpeed" xml:space="preserve">
+    <value>السرعة القصوى (كم / سا)</value>
+  </data>
+  <data name="TransmissionType" xml:space="preserve">
+    <value>نوع الناقل</value>
+  </data>
+  <data name="UploadImage" xml:space="preserve">
+    <value>تحميل صورة</value>
+  </data>
+  <data name="UsedVehicle" xml:space="preserve">
+    <value>الحالة مستعملة؟</value>
+  </data>
+  <data name="UsefulPeriodEndDate" xml:space="preserve">
+    <value>المفيد تاريخ نهاية الفترة</value>
+  </data>
+  <data name="UsefulPeriodStartDate" xml:space="preserve">
+    <value>الفترة مفيدة ابدأ التسجيل</value>
+  </data>
+  <data name="VehicleCategory" xml:space="preserve">
+    <value>سيارة الفئة</value>
+  </data>
+  <data name="VehicleCheckList" xml:space="preserve">
+    <value>المرجعية السيارة</value>
+  </data>
+  <data name="VehicleDeleteErrorMsg" xml:space="preserve">
+    <value>السيارة لحذف الفاشلة.</value>
+  </data>
+  <data name="VehicleDeleteSuccessMsg" xml:space="preserve">
+    <value>السيارة حذف بنجاح.</value>
+  </data>
+  <data name="VehicleDetail" xml:space="preserve">
+    <value>تفاصيل السيارة</value>
+  </data>
+  <data name="VehicleDetailFailedMsg" xml:space="preserve">
+    <value>حمولة المركبة التفاصيل إلى فشل.</value>
+  </data>
+  <data name="VehicleLabel" xml:space="preserve">
+    <value>السيارة</value>
+  </data>
+  <data name="VehicleLoadFailedMsg" xml:space="preserve">
+    <value>مركبات الحمل إلى فشل.</value>
+  </data>
+  <data name="VehicleMake" xml:space="preserve">
+    <value>السيارة جعل</value>
+  </data>
+  <data name="VehicleModel" xml:space="preserve">
+    <value>المركبة الموديل</value>
+  </data>
+  <data name="VehicleName" xml:space="preserve">
+    <value>اسم السيارة</value>
+  </data>
+  <data name="VehiclePictorialCondition" xml:space="preserve">
+    <value>السيارة المصورة الحالة</value>
+  </data>
+  <data name="Vehicles" xml:space="preserve">
+    <value>المركبات</value>
+  </data>
+  <data name="VehicleSaveErrorMsg" xml:space="preserve">
+    <value>مركبة أضف للفشل.</value>
+  </data>
+  <data name="VehicleSaveSuccessMsg" xml:space="preserve">
+    <value>مركبة إنقاذ بنجاح.</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>العام</value>
+  </data>
+</root>

@@ -1,13 +1,14 @@
-﻿using System.Linq;
-using Models.DomainModels;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Cares.Models.DomainModels;
 
-namespace Interfaces.IServices
+namespace Cares.Interfaces.IServices
 {
     /// <summary>
     /// Pricing Strategy Interface
     /// </summary>
     public interface IPricingStrategyService
     {
-        IQueryable<PricingStrategy> LoadAll();
+        IEnumerable<PricingStrategy> LoadAll();
     }
 }

@@ -1,0 +1,114 @@
+﻿@{
+    ViewBag.Title = Cares.Web.Resources.Organization.WorkLocation.WorkLocationLabel;
+}
+<div class="row" id="WorkLocationBinding">
+    <div class="row " data-bind="visible: !isWorkLocationEditorVisible()">
+        <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.Organization.WorkLocation.WorkLocationLabel</h3>
+        <div class="header-toolsSection">
+            <a href="#" class="label label-default create-new-icon" data-bind="click: onCreateWorkLocationForm" title=@Cares.Web.Resources.Shared.Common.CreateNew>@Cares.Web.Resources.Shared.Common.New</a>
+            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title=@Cares.Web.Resources.Shared.Common.ShowFilter style="display: none"></a>
+        </div>
+    </div>
+    <!--"-->
+    <div class="row searchFilterSection" style="display: none" data-bind="visible: !isWorkLocationEditorVisible() && filterSectionVisilble()">
+        <div class=" well">
+            <form class="form-horizontal">
+                <div class="col-xs-2">
+                    <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.Organization.WorkLocation.Serach + ">")" data-bind="value:workLocationFilter" />
+                </div>
+
+
+                <div class="col-xs-2">
+                    <select class="form-control" data-bind="options: $root.baseCitiesList, optionsText: 'CityCodeName', optionsValue: 'CityId',  optionsCaption:'&lt;' +'@Cares.Web.Resources.Organization.WorkLocation.City'+'&gt;' ,  value:cityFilter, event{change:$root.onCityChangedinFilter }"></select>
+                </div>
+                <div class="col-xs-2">
+                    <select class="form-control" data-bind="options: $root.filteredAreasList, optionsText: 'AreaCodeName', optionsValue: 'AreaId',  optionsCaption:'&lt;' +'@Cares.Web.Resources.Organization.WorkLocation.Area'+'&gt;' , value:areaFilter"></select>
+                </div>
+                <button type="submit" class="btn btn-success" data-bind="click: onSearch">@Cares.Web.Resources.Shared.Common.Search</button>
+                <button type="submit" class="btn btn-default" data-bind="click:onResetResuults">@Cares.Web.Resources.Shared.Common.Reset</button>
+                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click:hideFilterSection" title=@Cares.Web.Resources.Shared.Common.HideSection></a>
+            </form>
+
+        </div>
+    </div>
+
+    <div class="row searchFilterResultSection" data-bind="visible: !isWorkLocationEditorVisible()">
+        <div class="well">
+            <table id="workLocationTable" class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th class="WLcode"> <span id="1">@Cares.Web.Resources.Organization.WorkLocation.WorkLocationCode<span class="icon-up"></span></span></th>
+                        <th class="WLname"> <span id="2">@Cares.Web.Resources.Organization.WorkLocation.WorkLocationName<span></span></span></th>
+                        <th class="WLDescription"> <span id="3">@Cares.Web.Resources.Organization.WorkLocation.Description<span></span></span></th>
+                        <th class="WLCompany"> <span id="4">@Cares.Web.Resources.Organization.WorkLocation.Company<span></span></span></th>
+                        <th class="WLCountry"> <span id="5">@Cares.Web.Resources.Organization.WorkLocation.Country<span></span></span></th>
+                        <th class="WLregion"> <span id="6">@Cares.Web.Resources.Organization.WorkLocation.Region<span></span></span></th>
+                        <th class="WLSubregion"> <span id="7">@Cares.Web.Resources.Organization.WorkLocation.SubRegion<span></span></span></th>
+                        <th class="WLCity"> <span id="8">@Cares.Web.Resources.Organization.WorkLocation.City<span></span></span></th>
+                        <th class="WLArea"> <span id="9">@Cares.Web.Resources.Organization.WorkLocation.Area<span></span></span></th>
+                        <th> <span></span></th>
+                        <th> <span></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- ko template: { name: 'OperationsFilterResultTemplate' , foreach: workLocations } -->
+                    <!-- /ko -->
+                </tbody>
+            </table>
+            <!-- ko with: pager -->
+            @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
+            <!-- /ko -->
+        </div>
+    </div>
+    <script id="deleteActionOperationTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onDeleteWorkLocation" title="@Cares.Web.Resources.Shared.Common.Delete"><span class="glyphicon glyphicon-remove"></span></a>
+    </script>
+
+    <script id="editActionOperationTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onEditworkLocation" title="@Cares.Web.Resources.Shared.Common.Edit"><span class="glyphicon glyphicon-edit"></span></a>
+    </script>
+    <script id="OperationsFilterResultTemplate" type="text/html">
+        <tr>
+            <td data-bind="text: code"></td>
+            <td data-bind="text: name"></td>
+            <td data-bind="text: description"></td>
+            <td data-bind="text: companyName"></td>
+            <td data-bind="text: countryName"></td>
+            <td data-bind="text: regionName"></td>
+            <td data-bind="text: subRegionName"></td>
+            <td data-bind="text: cityName"></td>
+            <td data-bind="text: areaName"></td>
+
+            <td>
+                <!-- ko template: { name: 'editActionOperationTemplate' } -->
+                <!-- /ko -->
+            </td>
+            <td>
+                <!-- ko template: { name: 'deleteActionOperationTemplate' } -->
+                <!-- /ko -->
+            </td>
+        </tr>
+    </script>
+    @Html.Partial("_WorkLocationEditor")
+
+</div>
+<!-- ko stopBinding: true -->
+@Html.Partial("~/Areas/Common/Views/Shared/_ConfirmationDialog.cshtml")
+<!-- /ko -->
+@section inlinescripts
+{
+    <script type="text/javascript">
+        require(["workLocation/workLocation.view", "common/confirmation.view"]);
+        var ist = window.ist;
+    @{
+        <text>
+        ist.resourceText.WorkLocationSaveSuccessMessage = '@Cares.Web.Resources.Organization.WorkLocation.WorkLocationSaveSuccessMessage'
+        ist.resourceText.WorkLocationSaveFailError = '@Cares.Web.Resources.Organization.WorkLocation.WorkLocationSaveFailError';
+        ist.resourceText.WorkLocationLoadFailError = '@Cares.Web.Resources.Organization.WorkLocation.WorkLocationLoadFailError';
+        ist.resourceText.WorkLocationLoadBaseFailErrorl = '@Cares.Web.Resources.Organization.WorkLocation.WorkLocationLoadBaseFailError';
+        ist.resourceText.WorkLocationDeleteSuccessMessage = '@Cares.Web.Resources.Organization.WorkLocation.WorkLocationDeleteSuccessMessage';
+        ist.resourceText.WorkLocationDeleteFailError = '@Cares.Web.Resources.Organization.WorkLocation.WorkLocationDeleteFailError';
+        </text>
+        }
+    </script>
+}

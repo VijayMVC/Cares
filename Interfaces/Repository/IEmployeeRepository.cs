@@ -1,13 +1,28 @@
 ﻿using System.Linq;
-using Models.DomainModels;
-using Models.RequestModels;
-using Models.ResponseModels;
-namespace Interfaces.Repository
+using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
+using Cares.Models.ResponseModels;
+
+namespace Cares.Interfaces.Repository
 {
+    /// <summary>
+    /// Employee Repository Interface
+    /// </summary>
     public interface IEmployeeRepository : IBaseRepository<Employee, long>
     {
-        EmployeeResponse GetAllEmployees(EmployeeSearchRequest searchRequest);
-        IQueryable<Employee> GetEmployeesByDepartment(int depId);
+        /// <summary>
+        /// Get All Employees
+        /// </summary>
+        /// <param name="searchRequest"></param>
+        /// <returns></returns>
+        EmployeeSearchResponse GetAllEmployees(EmployeeSearchRequest searchRequest);
+
+        /// <summary>
+        /// Get Employee By Name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         Employee GetEmployeeByName(string name, int id);
     }
 }

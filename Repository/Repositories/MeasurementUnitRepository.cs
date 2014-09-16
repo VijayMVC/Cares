@@ -1,11 +1,12 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using Interfaces.Repository;
+using Cares.Interfaces.Repository;
+using Cares.Models.DomainModels;
+using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
-using Models.DomainModels;
-using Repository.BaseRepository;
 
-namespace Repository.Repositories
+namespace Cares.Repository.Repositories
 {
     /// <summary>
     /// Measurement Unit Repository
@@ -37,11 +38,10 @@ namespace Repository.Repositories
         /// <summary>
         /// Get All Measurement Units for User Domain Key
         /// </summary>
-        public override IQueryable<MeasurementUnit> GetAll()
+        public override IEnumerable <MeasurementUnit> GetAll()
         {
-            return DbSet.Where(measurementUnit => measurementUnit.UserDomainKey == UserDomainKey);
+            return DbSet.Where(measurementUnit => measurementUnit.UserDomainKey == UserDomainKey).ToList();
         }
-
         #endregion
     }
 }

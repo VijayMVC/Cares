@@ -120,11 +120,20 @@
   <data name="About" xml:space="preserve">
     <value>حول</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>إضافة</value>
+  </data>
   <data name="BackToList" xml:space="preserve">
     <value>العودة إلى قائمة</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>إلغاء</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>قريبا</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>تأكيدا</value>
   </data>
   <data name="Contact" xml:space="preserve">
     <value>اتصال</value>
@@ -135,11 +144,23 @@
   <data name="CreateNew" xml:space="preserve">
     <value>خلق جديد</value>
   </data>
+  <data name="DefaultConfirmationText" xml:space="preserve">
+    <value>هل تريد المتابعة مع الطلب؟</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>حذف</value>
   </data>
+  <data name="Detail" xml:space="preserve">
+    <value>التفاصيل</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>تحرير</value>
+  </data>
   <data name="EditDelete" xml:space="preserve">
     <value>تحرير / حذف</value>
+  </data>
+  <data name="HideSection" xml:space="preserve">
+    <value>اخفاء القسم</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>منزل</value>
@@ -147,8 +168,23 @@
   <data name="Login" xml:space="preserve">
     <value>تسجيل الدخول</value>
   </data>
+  <data name="New" xml:space="preserve">
+    <value>جديد</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>التالي</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>لا</value>
+  </data>
+  <data name="Of" xml:space="preserve">
+    <value>من  </value>
+  </data>
   <data name="Page" xml:space="preserve">
     <value>صفحة</value>
+  </data>
+  <data name="Prev" xml:space="preserve">
+    <value>السابق</value>
   </data>
   <data name="Product" xml:space="preserve">
     <value>نتاج</value>
@@ -165,10 +201,19 @@
   <data name="Search" xml:space="preserve">
     <value>بحث</value>
   </data>
+  <data name="ShowFilter" xml:space="preserve">
+    <value>مشاهدة مرشحات</value>
+  </data>
+  <data name="Showing" xml:space="preserve">
+    <value>عرض </value>
+  </data>
   <data name="TextDirection" xml:space="preserve">
     <value>rtl</value>
   </data>
   <data name="TotalRecords" xml:space="preserve">
     <value>إجمالي عدد السجلات:</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>نعم</value>
   </data>
 </root>

@@ -1,11 +1,12 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using Interfaces.Repository;
+using Cares.Interfaces.Repository;
+using Cares.Models.DomainModels;
+using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
-using Models.DomainModels;
-using Repository.BaseRepository;
 
-namespace Repository.Repositories
+namespace Cares.Repository.Repositories
 {
     /// <summary>
     /// Business Partner Company Repository
@@ -39,17 +40,10 @@ namespace Repository.Repositories
         /// <summary>
         /// Get All Business Partner Companies for User Domain Key
         /// </summary>
-        public override IQueryable<BusinessPartnerCompany> GetAll()
+        public override IEnumerable<BusinessPartnerCompany> GetAll()
         {
-            return DbSet.Where(businessPartnerCompany => businessPartnerCompany.UserDomainKey == UserDomainKey);
+            return DbSet.Where(businessPartnerCompany => businessPartnerCompany.UserDomainKey == UserDomainKey).ToList();
         }
-
-        #endregion
-
-
-
-
-
-       
+        #endregion       
     }
 }

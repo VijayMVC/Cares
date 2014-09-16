@@ -1,4 +1,4 @@
-﻿namespace Models.Common
+﻿namespace Cares.Models.Common
 {
     /// <summary>
     /// Sort by FleetPool columns
@@ -14,20 +14,16 @@
         /// </summary>
         FleetPoolName=2,
         /// <summary>
-        /// FleetPool Description
+        /// FleetPool Operation
         /// </summary>
-        Description=3,
-        /// <summary>
-        /// Company Name
-        /// </summary>
-        Company=4,
+        Operation=3,
         /// <summary>
         /// Country Name
         /// </summary>
-        Country=5,
+        Country=4,
         /// <summary>
         /// Region Name
         /// </summary>
-        Region=6
+        Region=5
     }
 }

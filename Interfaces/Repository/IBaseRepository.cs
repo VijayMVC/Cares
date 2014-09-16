@@ -1,6 +1,7 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
-namespace Interfaces.Repository
+namespace Cares.Interfaces.Repository
 {
     /// <summary>
     /// Base repository interface
@@ -41,7 +42,7 @@ namespace Interfaces.Repository
         /// <summary>
         /// Get all
         /// </summary>
-        IQueryable<TDomainClass> GetAll();
+        IEnumerable<TDomainClass> GetAll();
 
         /// <summary>
         /// Save changes
@@ -56,6 +57,6 @@ namespace Interfaces.Repository
         /// <summary>
         /// Logged in user identity
         /// </summary>
-        string LoggedInUserIdentity { get; set; }
+        string LoggedInUserIdentity { get; }
     }
 }

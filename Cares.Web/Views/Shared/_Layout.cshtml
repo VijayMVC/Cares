@@ -3,17 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title | Cares</title>
     @Styles.Render("~/Content/css" + (Cares.Web.Helper.CultureHelper.IsRighToLeft() ? "-rtl" : ""))
     @Styles.Render("~/Content/siteCss")
     @Styles.Render("~/Content/themes/base/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/Bundle/BaseLibs")
-    
+
     @Scripts.Render("~/bundles/bootstrap" + (Cares.Web.Helper.CultureHelper.IsRighToLeft() ? "-rtl" : ""))
     <script src="~/Scripts/App/requireConfig.js"></script>
     <script src="~/Scripts/App/architecture.js"></script>
+    <script src="~/Scripts/typeahead.bundle.js"></script>
     <link rel="stylesheet" type="text/css" href="~/Content/MainSite.css" />
 
 
@@ -31,24 +32,36 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                      
-                      @{ Html.RenderAction("LoadMenu", "Menu", new { area = "" } ); }
+
+                    @{ Html.RenderAction("LoadMenu", "Menu", new { area = "" }); }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div class="container body-content @(ViewBag.FluidLayout != null && ViewBag.FluidLayout ? "container-fluid" : "")">
         @RenderBody()
         <div id="spinner">
         </div>
-        <hr />        
+        <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - CaReS</p>
         </footer>
     </div>
-
     @RenderSection("scripts", required: false)
 
 </body>
 </html>
+
+    <script type="text/javascript">
+        var ist = window.ist;
+        @{
+            <text>
+        ist.resourceText.defaultConfirmationText = '@Cares.Web.Resources.Shared.Common.DefaultConfirmationText';
+        ist.resourceText.defaultHeaderText = '@Cares.Web.Resources.Shared.Common.Confirmation';
+        ist.resourceText.showing = '@Cares.Web.Resources.Shared.Common.Showing';
+        ist.resourceText.of = '@Cares.Web.Resources.Shared.Common.Of';
+        </text>
+        }
+    </script>
+

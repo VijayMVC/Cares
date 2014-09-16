@@ -1,8 +1,9 @@
-﻿using Models.DomainModels;
-using Models.RequestModels;
-using Models.ResponseModels;
+﻿using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
+using Cares.Models.ResponseModels;
+using CommonTypes = Cares.Models.CommonTypes;
 
-namespace Interfaces.IServices
+namespace Cares.Interfaces.IServices
 {
     /// <summary>
     /// Business Partner Service Interface
@@ -12,30 +13,49 @@ namespace Interfaces.IServices
         /// <summary>
         /// Get all business partneres
         /// </summary>
-        /// <param name="businessPartnerSearchRequest"></param>
-        /// <returns></returns>
-        BusinessPartnerResponse LoadAllBusinessPartners(BusinessPartnerSearchRequest businessPartnerSearchRequest);
+        BusinessPartnerSearchResponse LoadAllBusinessPartners(BusinessPartnerSearchRequest businessPartnerSearchRequest);
         /// <summary>
         /// Delete businsess partner
         /// </summary>
-        /// <param name="businessPartner"></param>
         void DeleteBusinessPartner(BusinessPartner businessPartner);
         /// <summary>
         /// Add business partner
         /// </summary>
-        /// <param name="businessPartner"></param>
-        /// <returns></returns>
         bool AddBusinessPartner(BusinessPartner businessPartner);
         /// <summary>
         /// Update business partner
         /// </summary>
-        /// <param name="businessPartner"></param>
-        /// <returns></returns>
         bool UpdateBusinessPartner(BusinessPartner businessPartner);
+
+        /// <summary>
+        /// Get For Rental Agreement
+        /// </summary>
+        BusinessPartner GetForRentalAgreement(GetBusinessPartnerRequest request);
+
         /// <summary>
         /// Get business partnere by Id
         /// </summary>
-        BusinessPartner FindBusinessPartnerById(long id);
-      
+        BusinessPartner FindBusinessPartnerById(long id);      
+
+        /// <summary>
+        /// Get business partnere by License No
+        /// </summary>
+        BusinessPartner GetByLicenseNo(string licenseNo);
+
+        /// <summary>
+        /// Get business partnere by Nic No
+        /// </summary>
+        BusinessPartner GetByNicNo(string nicNo);
+
+        /// <summary>
+        /// Get business partnere by Passport No
+        /// </summary>
+        BusinessPartner GetByPassportNo(string passportNo);
+
+        /// <summary>
+        /// Get business partnere by Phone No
+        /// </summary>
+        BusinessPartner GetByPhoneNo(string phoneNo, CommonTypes.PhoneType phoneType);
+
     }
 }

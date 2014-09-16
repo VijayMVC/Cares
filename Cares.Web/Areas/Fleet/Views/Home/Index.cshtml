@@ -1,44 +1,47 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = @Cares.Web.Resources.FleetPool.FleetPool.FleetPoolLabel;
 }
 
 <div class="row" id="fleetRootBinding">
-    <div class="row searchFilterSection">
+    <div class="row " data-bind="visible: !isFleetPoolEditorVisible()" >
+        <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.FleetPool.FleetPool.FleetPoolLabel</h3>
+        <div class="header-toolsSection">
+            <a href="#" class="label label-default create-new-icon" data-bind="click: createFleetForm" title="@Cares.Web.Resources.Shared.Common.CreateNew">@Cares.Web.Resources.Shared.Common.New</a>
+            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title="@Cares.Web.Resources.Shared.Common.ShowFilter" style="display: none"></a>
+        </div>
+    </div>
+    <div class="row searchFilterSection" data-bind="visible: !isFleetPoolEditorVisible() && filterSectionVisilble()" style="display: none">
         <div class="well">
             <form class="form-horizontal" data-bind="submit: search">
-                <div class="row">
-                    <div class="col-xs-2 float-left">
-                        <input type="text" class="form-control" placeholder="<Fleet Pool>" data-bind="value: fleetPoolSeachFilter" />
-                    </div>
-                    <div class="col-xs-2 float-left">
-                        <select class="form-control" data-bind="options: $root.regionsList, optionsText: 'RegionCode', optionsValue: 'RegionId', optionsCaption: '<Region>', value: regionFilter"></select>
-                    </div>
-                    <div class="col-xs-2 float-left">
-                        <select class="form-control" data-bind="options: $root.operationsList, optionsText: 'OperationCode', optionsValue: 'OperationId', optionsCaption: '<Operation>', value: operationFilter"></select>
-                    </div>
-                    <div class="col-xs-3 float-left">
-                        <button type="button" class="btn btn-info float-left" data-bind="click: reset">Reset</button>
-                        <button type="submit" class="btn btn-success float-left searchButton" data-bind="click: search">Search</button>
-                    </div>
+
+                <div class="col-xs-2">
+                    <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.FleetPool.FleetPool.FleetPoolLabel+">")" data-bind="value: fleetPoolSeachFilter" />
                 </div>
-
-
+                <div class="col-xs-2">
+                    <select class="form-control" data-bind="options: $root.regionsList, optionsText: 'RegionCodeName', optionsValue: 'RegionId', optionsCaption:'&lt;' + '@Cares.Web.Resources.FleetPool.FleetPool.Region' +'&gt;', value: fleetPoolRegionFilter"></select>
+                </div>
+                <div class="col-xs-2">
+                    <select class="form-control" data-bind="options: $root.operationsList, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption:'&lt;' + '@Cares.Web.Resources.FleetPool.FleetPool.Operation'+'&gt;', value: fleetPoolOperationFilter"></select>
+                </div>
+                <button type="submit" class="btn btn-success" data-bind="click: search">@Cares.Web.Resources.Shared.Common.Search</button>
+                <button type="submit" class="btn btn-default" data-bind="click: reset">@Cares.Web.Resources.Shared.Common.Reset</button>
+                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection" title="@Cares.Web.Resources.Shared.Common.HideSection"></a>
             </form>
         </div>
     </div>
     
     <div class="row searchFilterResultSection" data-bind="visible: !isFleetPoolEditorVisible()">
         <div class="well">
-            <table id="resultTable" class="table table-condensed">
+            <table id="fleetPoolTable" class="table table-condensed">
                 <thead>
-                    <tr>
-                        <th> <span id="1">Code<span class="icon-up"></span></span></th>
-                        <th> <span id="2">Name<span></span></span></th>
-                        <th> <span id="3">Operation</span></th>
-                        <th> <span id="4">Country<span></span></span></th>
-                        <th> <span id="5">Region<span></span></span></th>
-                        <th> <span ></span></th>
-                        <th> <span ></span></th>
+                    <tr> 
+                        <th class="fleetCode"> <span id="1">@Cares.Web.Resources.FleetPool.FleetPool.Code<span class="icon-up"></span></span></th>
+                        <th class="fleetName"> <span id="2">@Cares.Web.Resources.FleetPool.FleetPool.Name<span></span></span></th>
+                        <th class="fleetOpp"> <span id="3">@Cares.Web.Resources.FleetPool.FleetPool.Operation<span></span></span></th>
+                        <th class="fleetCountry"> <span id="4">@Cares.Web.Resources.FleetPool.FleetPool.Country<span></span></span></th>
+                        <th class="fleetRegion"> <span id="5">@Cares.Web.Resources.FleetPool.FleetPool.Region<span></span></span></th>
+                        <th> <span></span></th>
+                        <th> <span></span></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,23 +49,25 @@
                     <!-- /ko -->
                 </tbody>
             </table>
+            <!-- ko with: pager -->
             @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
+            <!-- /ko -->
         </div>
     </div>
     <script id="deleteActionFleetPoolTemplate" type="text/html">
-        <a href="#" data-bind="click: $root.onDeleteFleetPool" title="Delete Fleet Pool"><span class="glyphicon glyphicon-remove"></span></a>
+       <a href="#" data-bind="click: $root.onDeleteFleetPool" title="@Cares.Web.Resources.Shared.Common.Delete"><span  class="glyphicon glyphicon-remove"></span></a>
     </script>
 
     <script id="editActionFleetPoolTemplate" type="text/html">
-        <a href="#" data-bind="click: $root.onEditFleetPool" title="Edit in Form"><span class="glyphicon glyphicon-edit"></span></a>
+        <a href="#" data-bind="click: $root.onEditFleetPool" title="@Cares.Web.Resources.Shared.Common.Edit"><span class="glyphicon glyphicon-edit"></span></a>
     </script>
     <script id="fleetPoolFilterResultTemplate" type="text/html">
         <tr>
             <td data-bind="text: code"></td>
             <td data-bind="text: name"></td> 
-            <td data-bind="text: operation"></td>
-            <td data-bind="text: country"></td>
-            <td data-bind="text: region"></td>
+            <td data-bind="text: operationName"></td>
+            <td data-bind="text: countryName"></td>
+            <td data-bind="text: regionName"></td>
             <td>
                 <!-- ko template: { name: 'editActionFleetPoolTemplate' } -->
                 <!-- /ko -->
@@ -72,17 +77,29 @@
                 <!-- /ko -->
             </td>
         </tr>
-    </script>        
+    </script>    
+    @Html.Partial("_FleetPoolEditor")
 </div>
-
 <!-- ko stopBinding: true -->
 @Html.Partial("~/Areas/Common/Views/Shared/_ConfirmationDialog.cshtml")
 <!-- /ko -->
+
 
 @section inlinescripts
 {
     <script type="text/javascript">
         require(["Fleet/fleetPool.view", "common/confirmation.view"]);
+        var ist = window.ist;
+    @{
+            <text>
+        ist.resourceText.FleetPoolSaveSuccessMessage = '@Cares.Web.Resources.FleetPool.FleetPool.FleetPoolSaveSuccessMessage'
+        ist.resourceText.FleetPoolSaveFailError = '@Cares.Web.Resources.FleetPool.FleetPool.FleetPoolSaveFailError';
+        ist.resourceText.FleetPoolLoadFailError = '@Cares.Web.Resources.FleetPool.FleetPool.FleetPoolLoadFailError';
+        ist.resourceText.FleetPoolBaseLoadFailError = '@Cares.Web.Resources.FleetPool.FleetPool.FleetPoolBaseLoadFailError';
+        ist.resourceText.FleetPoolDeleteSuccessMessage = '@Cares.Web.Resources.FleetPool.FleetPool.FleetPoolDeleteSuccessMessage';
+        ist.resourceText.FleetPoolDeleteFailError = '@Cares.Web.Resources.FleetPool.FleetPool.FleetPoolDeleteFailError'; 
+            </text>
+        }
 </script>
 
 }

@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Models.DomainModels
+namespace Cares.Models.DomainModels
 {
     /// <summary>
     /// Measurement Unit Domain Model
@@ -16,7 +17,7 @@ namespace Models.DomainModels
         /// <summary>
         /// Measurement Unit Code
         /// </summary>
-        [StringLength(100)]
+        [StringLength(100), Required]
         public string MeasurementUnitCode { get; set; }
         /// <summary>
         /// Measurement Unit Name
@@ -51,7 +52,7 @@ namespace Models.DomainModels
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100)]
+        [StringLength(100), Required]
         public string RecCreatedBy { get; set; }
         /// <summary>
         /// Record Last Updated Date
@@ -60,12 +61,21 @@ namespace Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100)]
+        [StringLength(100), Required]
         public string RecLastUpdatedBy { get; set; }
         /// <summary>
         /// User Domain Key
         /// </summary>
         public long UserDomainKey { get; set; }
+
+        #endregion
+
+        #region Reference Properties
+
+        /// <summary>
+        /// tariff Types that use this Unit
+        /// </summary>
+        public virtual ICollection<TariffType> TariffTypes { get; set; } 
 
         #endregion
     }

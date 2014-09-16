@@ -1,5 +1,8 @@
 ﻿
 using Cares.Web.Models;
+using System.Linq;
+using DepartmentBaseDataResponse = Cares.Web.Models.DepartmentBaseDataResponse;
+using DomainModels = Cares.Models.DomainModels;
 
 namespace Cares.Web.ModelMappers
 {
@@ -9,35 +12,74 @@ namespace Cares.Web.ModelMappers
     public static class DepartmentMapper
     {
         #region Public
-
         /// <summary>
-        ///  Create web model from entity
+        /// Create From DomainModel
         /// </summary>
-        public static Department CreateFrom(this global::Models.DomainModels.Department source)
+        public static DepartmentDropDown CreateFrom(this DomainModels.Department source)
         {
-            return new Department
+            return new DepartmentDropDown
             {
                 DepartmentId = source.DepartmentId,
-                DepartmentName = source.DepartmentCode+"-"+source.DepartmentName,
+                DepartmentCodeName = source.DepartmentCode+" - "+source.DepartmentName,
+                CompanyId=source.Company!=null?source.Company.CompanyId:0,
             };
         }
 
         /// <summary>
-        ///  Create entity from web model
+        /// Create From response model to web base data 
         /// </summary>
-        public static global::Models.DomainModels.Department CreateFrom(this Department source)
+        public static DepartmentBaseDataResponse CreateFrom(this Cares.Models.ResponseModels.DepartmentBaseDataResponse source)
         {
-            if (source != null)
+            return new DepartmentBaseDataResponse
             {
-                return new global::Models.DomainModels.Department
-                {
-                    DepartmentId = source.DepartmentId,
-                    DepartmentName = source.DepartmentName,
-                };
-            }
-            return new global::Models.DomainModels.Department();
+                Companies = source.Companies.Select(company => company.CreateFrom())      
+            };
         }
 
+        /// <summary>
+        /// Create From ResponseModel to web model
+        /// </summary>
+        public static DepartmentSearchRequestResponse CreateFrom(this Cares.Models.ResponseModels.DepartmentSearchRequestResponse source)
+        {
+            return new DepartmentSearchRequestResponse
+            {
+                Departments = source.Departments.Select(operation => operation.CreateFromm()),
+                TotalCount = source.TotalCount
+            };
+        }
+
+        /// <summary>
+        /// Create From Domain model
+        /// </summary>
+        public static Department CreateFromm(this DomainModels.Department source)
+        {
+            return new Department
+            {
+                DepartmentId = source.DepartmentId,
+                DepartmentCode = source.DepartmentCode,
+                DepartmentName = source.DepartmentName,
+                DepartmentDescription = source.DepartmentDescription,
+                DepartmentType = source.DepartmentType,
+                CompanyId = source.CompanyId,
+                CompanyName = source.Company.CompanyName
+            };
+        }
+
+        /// <summary>
+        /// Crete from web model
+        /// </summary>
+        public static DomainModels.Department CreateFromm(this Department source)
+        {
+            return new DomainModels.Department
+            {
+                DepartmentId = source.DepartmentId,
+                DepartmentCode = source.DepartmentCode,
+                DepartmentName = source.DepartmentName,
+                DepartmentDescription = source.DepartmentDescription,
+                DepartmentType = source.DepartmentType,
+                CompanyId = source.CompanyId
+            };
+        } 
         #endregion
     }
 }

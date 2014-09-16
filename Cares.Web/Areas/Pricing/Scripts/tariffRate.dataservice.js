@@ -9,16 +9,48 @@ define("tariffRate/tariffRate.dataservice", function () {
             // True if initialized
             isInitialized = false,
             // Initialize
-            initialize = function() {
+            initialize = function () {
                 if (!isInitialized) {
-                    
+
                     // Define request to get Tariff Rate base 
                     amplify.request.define('getTariffRateBase', 'ajax', {
                         url: '/Api/TariffRateBase',
                         dataType: 'json',
                         type: 'GET'
                     });
+                    // Define request to get tariff type  
+                    amplify.request.define('getTariffRate', 'ajax', {
+                        url: '/Api/TariffRate',
+                        dataType: 'json',
+                        type: 'GET'
+                    });
+                    // Define request to save Tariff Rate
+                    amplify.request.define('createTariffRate', 'ajax', {
+                        url: '/Api/TariffRate',
+                        dataType: 'json',
+                        decoder: amplify.request.decoders.istStatusDecoder,
+                        type: 'POST'
+                    });
 
+                    // Define request to update Tariff rate
+                    amplify.request.define('updateTariffRate', 'ajax', {
+                        url: '/Api/TariffRate',
+                        dataType: 'json',
+                        decoder: amplify.request.decoders.istStatusDecoder,
+                        type: 'POST'
+                    });
+                    // Define request to get Hire Group detail
+                    amplify.request.define('getHireGroupDetails', 'ajax', {
+                        url: '/Api/GetHireGroupDetailTariffRate',
+                        dataType: 'json',
+                        type: 'GET'
+                    });
+                    // Define request to delete Tariff Rate
+                    amplify.request.define('deleteTariffRate', 'ajax', {
+                        url: '/Api/TariffRate',
+                        dataType: 'json',
+                        type: 'DELETE'
+                    });
                     isInitialized = true;
                 }
             },
@@ -30,12 +62,64 @@ define("tariffRate/tariffRate.dataservice", function () {
                     success: callbacks.success,
                     error: callbacks.error,
                 });
-            };// Get Tariff Rate 
-          
-
+            },
+             // Get Tariff Rates 
+            getTariffRate = function (params, callbacks) {
+                initialize();
+                return amplify.request({
+                    resourceId: 'getTariffRate',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: params
+                });
+            },
+             // Create Tariff Rate
+            createTariffRate = function (param, callbacks) {
+                initialize();
+                return amplify.request({
+                    resourceId: 'createTariffRate',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: param
+                });
+            },
+            // Update a Tariff Rate
+            updateTariffRate = function (param, callbacks) {
+                initialize();
+                return amplify.request({
+                    resourceId: 'updateTariffRate',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: param
+                });
+            },
+             // Get tariff type by id 
+            getHireGroupDetails = function (params,callbacks) {
+                initialize();
+                return amplify.request({
+                    resourceId: 'getHireGroupDetails',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: params
+                });
+            },
+            // Delete
+            deleteTariffRate = function (param, callbacks) {
+                initialize();
+                return amplify.request({
+                    resourceId: 'deleteTariffRate',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: param
+                });
+            };
         return {
             getTariffRateBase: getTariffRateBase,
-          
+            getTariffRate: getTariffRate,
+            createTariffRate: createTariffRate,
+            updateTariffRate: updateTariffRate,
+            deleteTariffRate: deleteTariffRate,
+            getHireGroupDetails: getHireGroupDetails
         };
     })();
 
