@@ -42,15 +42,22 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(addresslist => addresslist.UserDomainKey == UserDomainKey).ToList();
         }
+
         /// <summary>
         /// Find Address by Id
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public AddressType Find(int id)
+        public Address Find(int id)
         {
-            throw new System.NotImplementedException();
-        }    
+           return DbSet.Find(id);
+        }
+
+        /// <summary>
+        /// To check the association of area with address
+        /// </summary>
+        public bool IsAreaAssociatedWithAddress(long areaId)
+        {
+            return DbSet.Count(address => address.UserDomainKey == UserDomainKey && address.AreaId == areaId) > 0;
+        }
         #endregion
     }
 }

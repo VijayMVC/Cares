@@ -2,7 +2,7 @@
 namespace Cares.Models.Common
 {
     /// <summary>
-    /// RegionBy Column
+    /// Region By Column
     /// </summary>
     public enum RegionByColumn
     {

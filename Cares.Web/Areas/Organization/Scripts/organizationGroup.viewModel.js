@@ -35,12 +35,19 @@ define("Organization/organizationGroup.viewModel",
                     //save Organization group
                     saveOrgGroup = function(item) {
                         dataservice.addOrganizationGroup(model.organizationGroupClienttoServerMapper(item), {
-                            success: function(dataFromServer) {
+                            success: function (dataFromServer) {
                                 var newItem = model.organizationGroupServertoClinetMapper(dataFromServer);
-                                if (selectedOrgGroup().id() !== undefined)
-                                    organizationGroups.replace(selectedOrgGroup(), newItem);
+                                if (item.id() !== undefined)
+                                {
+                                    var newObjtodelete = organizationGroups.find(function (temp) {
+                                        return temp.id() == newItem.id();
+                                    });
+                                    organizationGroups.remove(newObjtodelete);
+                                    organizationGroups.push(newItem);
+                                }
                                 else
                                     organizationGroups.push(newItem);
+
                                 isOrgGroupEditorVisible(false);
                                 toastr.success(ist.resourceText.OrganizationGroupSaveSuccessMessage);
                             },
@@ -61,14 +68,15 @@ define("Organization/organizationGroup.viewModel",
                         return true;
                     },
                     //cancel button handler
-                    onCancelOrgGroupbtn = function() {
+                    onCancelOrgGroupbtn = function () {
+                        editorViewModel.revertItem();
                         isOrgGroupEditorVisible(false);
                     },
                     // create new org group handler
                     onCreateOrgGroupForm = function() {
                         isOrgGroupEditorVisible(true);
-                        var v = model.organizationGroupDetail();
-                        selectedOrgGroup(v);
+                        var orgGroup = new model.organizationGroupDetail();
+                        editorViewModel.selectItem(orgGroup);
                     },
                     //reset butto handle 
                     resetResuults = function() {
@@ -89,7 +97,7 @@ define("Organization/organizationGroup.viewModel",
                     },
                     //edit button handler
                     onEditFleetPool = function(item) {
-                        selectedOrgGroup(item);
+                        editorViewModel.selectItem(item);
                         isOrgGroupEditorVisible(true);
                     },
                     //delete Organization group

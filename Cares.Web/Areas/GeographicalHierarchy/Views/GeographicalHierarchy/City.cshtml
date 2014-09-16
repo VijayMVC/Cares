@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = Cares.Web.Resources.GeographicalHierarchy.city.CityLabel;
+}
+<div class="row" id="CityBinding">
+
+    <div class="row " data-bind="visible: !isCityEditorVisible()">
+        <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.GeographicalHierarchy.city.CityLabel</h3>
+        <div class="header-toolsSection">
+            <a href="#" class="label label-default create-new-icon" data-bind="click: onCreateForm" title="@Cares.Web.Resources.Shared.Common.CreateNew">@Cares.Web.Resources.Shared.Common.New</a>
+            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title="@Cares.Web.Resources.Shared.Common.ShowFilter" style="display: none"></a>
+        </div>
+    </div>
+    <div class="row searchFilterSection" data-bind="visible: !isCityEditorVisible() && filterSectionVisilble()" style="display: none">
+        <div class="well">
+            <form class="form-horizontal">
+                <div class="col-xs-3">
+                    <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.GeographicalHierarchy.Region.Search+">")" data-bind="value: searchFilter" />
+                </div>
+
+                <div class="col-md-3">
+                    <select class="form-control" data-bind="options: $root.baseCountriesList, optionsText: 'CountryCodeName', optionsValue: 'CountryId', optionsCaption: '&lt;' + '@Cares.Web.Resources.GeographicalHierarchy.city.Country'+ '&gt;' , value:baseCountryFilter "></select>
+                </div>
+
+                <button type="submit" class="btn btn-success" data-bind="click: search">@Cares.Web.Resources.Shared.Common.Search</button>
+                <button type="submit" class="btn btn-default" data-bind="click:resetResuults">@Cares.Web.Resources.Shared.Common.Reset</button>
+                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click:hideFilterSection" title="@Cares.Web.Resources.Shared.Common.HideSection"></a>
+            </form>
+        </div>
+    </div>
+    <div class="row searchFilterResultSection" data-bind="visible: !isCityEditorVisible()">
+        <div class="well">
+            <table id="OrgGroupTable" class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th class="Citycode"> <span id="1">@Cares.Web.Resources.GeographicalHierarchy.city.Code<span class="icon-up"></span></span></th>
+                        <th class="CityName"> <span id="2">@Cares.Web.Resources.GeographicalHierarchy.city.Name<span></span></span></th>
+                        <th class="CityDiscription"> <span id="3">@Cares.Web.Resources.GeographicalHierarchy.city.Description<span></span></span></th>
+                        <th class="CityCountry"> <span id="4">@Cares.Web.Resources.GeographicalHierarchy.city.Country<span></span></span></th>
+                        <th class="CityRegion"> <span id="5">@Cares.Web.Resources.GeographicalHierarchy.city.Region<span></span></span></th>
+                        <th class="CitySubRegion"> <span id="6">@Cares.Web.Resources.GeographicalHierarchy.city.SubRegion<span></span></span></th>
+                        <th> <span></span></th>
+                        <th> <span></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- ko template: { name: 'WorkplaceTypeFilterResultTemplate' , foreach: cities } -->
+                    <!-- /ko -->
+                </tbody>
+            </table>
+            <!-- ko with: pager -->
+            @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
+            <!-- /ko -->
+        </div>
+    </div>
+    <script id="deleteActionOrgGroupTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onDeleteItem" title="@Cares.Web.Resources.Shared.Common.Delete"><span class="glyphicon glyphicon-remove"></span></a>
+    </script>
+
+    <script id="editActionOrgRoupTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onEditItem" title="@Cares.Web.Resources.Shared.Common.Edit"><span class="glyphicon glyphicon-edit"></span></a>
+    </script>
+    <script id="WorkplaceTypeFilterResultTemplate" type="text/html">
+        <tr>
+            <td data-bind="text: code"></td>
+            <td data-bind="text: name"></td>
+            <td data-bind="text: description"></td>
+            <td data-bind="text: countryName"></td>
+            <td data-bind="text: regionName"></td>
+            <td data-bind="text: subRegionName"></td>
+            <td>
+                <!-- ko template: { name: 'editActionOrgRoupTemplate' } -->
+                <!-- /ko -->
+            </td>
+            <td>
+                <!-- ko template: { name: 'deleteActionOrgGroupTemplate' } -->
+                <!-- /ko -->
+            </td>
+        </tr>
+    </script>
+    @Html.Partial("_CityEditor")
+</div>
+<!-- ko stopBinding: true -->
+@Html.Partial("~/Areas/Common/Views/Shared/_ConfirmationDialog.cshtml")
+<!-- /ko -->
+@section inlinescripts
+{
+    <script type="text/javascript">
+        require(["city/city.view", "common/confirmation.view"]);
+    var ist = window.ist;
+    @{
+        <text>
+        ist.resourceText.CitySaveSuccessMessage = '@Cares.Web.Resources.GeographicalHierarchy.city.CitySavedSuccessFullyMessage';
+        ist.resourceText.CitySaveFailError = '@Cares.Web.Resources.GeographicalHierarchy.city.CityFailedToSaveError';
+        ist.resourceText.CityLoadFailError = '@Cares.Web.Resources.GeographicalHierarchy.city.FailedToLoadCities';
+        ist.resourceText.CityDeleteSuccessMessage = '@Cares.Web.Resources.GeographicalHierarchy.city.CityDeletedSuccessFully';
+        ist.resourceText.CityDeleteFailError = '@Cares.Web.Resources.GeographicalHierarchy.city.CityFailedToDeleteError';
+        ist.resourceText.CityBaseDataLoadFailError = '@Cares.Web.Resources.GeographicalHierarchy.city.FailedToLoadBaseData';
+        </text>
+       }
+    </script>
+
+}
