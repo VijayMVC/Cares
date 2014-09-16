@@ -26,6 +26,12 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         },
                         OnPhoneChanged: function (value, type) {
                             getCustomerByPhoneNo(value, type);
+                        },
+                        OnRentalDurationChange: function() {
+                            getHireGroups();
+                        },
+                        OnOutLocationChange: function() {
+                            getHireGroups();
                         }
                     },
                     // Main RA
@@ -140,7 +146,33 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     }),
                     // Get Hire Groups
                     getHireGroups = function () {
-                        dataservice.getHireGroupsByCodeAndVehicleInfo({ SearchText: searchForHireGroupText() }, {
+                        hireGroups.removeAll();
+
+                        if (!searchForHireGroupText()) {
+                            return;
+                        }
+
+                        if (!rentalAgreement().start()) {
+                            toastr.info("Please select Start Date Time!");
+                            return;
+                        }
+
+                        if (!rentalAgreement().end()) {
+                            toastr.info("Please select End Date Time!");
+                            return;
+                        }
+
+                        if (!rentalAgreement().openLocation()) {
+                            toastr.info("Please select Out Location!");
+                            return;
+                        }
+                        
+                        dataservice.getHireGroupsByCodeAndVehicleInfo({
+                            SearchText: searchForHireGroupText(),
+                            OperationWorkPlaceId: rentalAgreement().openLocation(),
+                            StartDtTime: moment(rentalAgreement().start()).format(ist.utcFormat) + 'Z',
+                            EndDtTime: moment(rentalAgreement().end()).format(ist.utcFormat) + 'Z'
+                        }, {
                             success: function (data) {
                                 hireGroups.removeAll();
                                 var hireGroupList = [];

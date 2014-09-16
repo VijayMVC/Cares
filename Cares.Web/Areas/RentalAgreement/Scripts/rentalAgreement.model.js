@@ -110,6 +110,9 @@
                        internalStartDateTime(undefined);
                    } else {
                        internalStartDateTime(value);
+                       if (callbacks && callbacks.OnRentalDurationChange) {
+                           callbacks.OnRentalDurationChange();
+                       }
                    }
                }
             }),
@@ -143,6 +146,9 @@
                         internalEndDateTime(undefined);
                     } else {
                         internalEndDateTime(value);
+                        if (callbacks && callbacks.OnRentalDurationChange) {
+                            callbacks.OnRentalDurationChange();
+                        }
                     }
                 }
             }),
@@ -171,6 +177,7 @@
                     if (!value) {
                         return;
                     }
+                    
                     var time = moment(value, ist.timePattern);
                     end(new Date(end().getFullYear(), end().getMonth(), end().getDate(), time.hours(), time.minutes()));
                     endDate(new Date(end().getFullYear(), end().getMonth(), end().getDate(), 0, 0));
@@ -253,7 +260,24 @@
             // Operation
             operationId = ko.observable(specifiedOperationId || undefined),
             // Open Location
-            openLocation = ko.observable(specifiedOpenLocation || undefined),
+            internalOpenLocation = ko.observable(specifiedOpenLocation || undefined),
+            // Open Location
+            openLocation = ko.computed({
+               read: function() {
+                   return internalOpenLocation();
+               },
+               write: function(value) {
+                   if (!value || value === internalOpenLocation()) {
+                       return;
+                   }
+
+                   internalOpenLocation(value);
+
+                   if (callbacks && callbacks.OnOutLocationChange) {
+                       callbacks.OnOutLocationChange();
+                   }
+               }
+            }),
             // Close Location
             closeLocation = ko.observable(specifiedCloseLocation || undefined),
             // Locations

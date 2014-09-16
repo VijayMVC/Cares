@@ -1,4 +1,5 @@
-﻿using Cares.Models.Common;
+﻿using System;
+using Cares.Models.Common;
 
 namespace Cares.Models.RequestModels
 {
@@ -11,6 +12,21 @@ namespace Cares.Models.RequestModels
         /// Search Text
         /// </summary>
         public string SearchText { get; set; }
+
+        /// <summary>
+        /// Operation WorkPlace Id
+        /// </summary>
+        public long OperationWorkPlaceId { get; set; }
+
+        /// <summary>
+        /// Start Date Time
+        /// </summary>
+        public DateTime StartDtTime { get; set; }
+
+        /// <summary>
+        /// End Date Time
+        /// </summary>
+        public DateTime EndDtTime { get; set; }
         
     }
 }

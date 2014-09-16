@@ -177,6 +177,7 @@
     <Compile Include="DomainModels\VehicleMaintenanceTypeFrequency.cs" />
     <Compile Include="DomainModels\VehicleOtherDetail.cs" />
     <Compile Include="DomainModels\VehiclePurchaseInfo.cs" />
+    <Compile Include="DomainModels\VehicleReservation.cs" />
     <Compile Include="DomainModels\WorkPlace.cs" />
     <Compile Include="DomainModels\WorkPlaceType.cs" />
     <Compile Include="DomainModels\WorkLocation.cs" />

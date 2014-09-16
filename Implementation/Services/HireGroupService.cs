@@ -72,9 +72,10 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Get Hire Groups By Code, Vehicle Make / Category / Model / Model Year
         /// </summary>
-        public IEnumerable<HireGroupDetail> GetByCodeAndVehicleInfo(string searchText)
+        public IEnumerable<HireGroupDetail> GetByCodeAndVehicleInfo(string searchText, long operationWorkPlaceId, DateTime startDtTime,
+            DateTime endDtTime)
         {
-            return hireGroupDetailRepository.GetByCodeAndVehicleInfo(searchText);
+            return hireGroupDetailRepository.GetByCodeAndVehicleInfo(searchText, operationWorkPlaceId, startDtTime, endDtTime);
         }
 
         /// <summary>

@@ -287,6 +287,12 @@ namespace Cares.Models.DomainModels
         /// Vehicle Check List Items
         /// </summary>
         public virtual ICollection<VehicleCheckListItem> VehicleCheckListItems { get; set; }
+
+        /// <summary>
+        /// Vehicle Reservations
+        /// </summary>
+        public virtual ICollection<VehicleReservation> VehicleReservations { get; set; }
+
         #endregion
     }
 }
