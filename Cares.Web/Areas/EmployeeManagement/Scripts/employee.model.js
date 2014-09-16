@@ -84,12 +84,16 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             jobProgress = ko.observable(new JobProgress()),
             //Authorized Location
             authorizedLocation = ko.observable(new AuthorizedLocation()),
+            //Document Info
+            documentInfo = ko.observable(new DocumentInfo()),
             //Employee Address List
             employeeAddressList = ko.observableArray([]),
             //Employee Phone List
             phonesList = ko.observableArray([]),
             //job Progress List
             jobProgressList = ko.observableArray([]),
+            //Authorized Location List
+            authorizedLocationList = ko.observableArray([]),
 
           //#endregion
 
@@ -159,6 +163,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             jobProgress: jobProgress,
             jobProgressList: jobProgressList,
             authorizedLocation: authorizedLocation,
+            documentInfo: documentInfo,
+            authorizedLocationList: authorizedLocationList,
             errors: errors,
             isValid: isValid,
             dirtyFlag: dirtyFlag,
@@ -492,7 +498,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             // Errors
             errors = ko.validation.group({
                 operationsWorkplaceId: operationsWorkplaceId,
-               
+                operationId: operationId
+
             }),
             // Is Valid
             isValid = ko.computed(function () {
@@ -519,6 +526,95 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             operationsWorkplaceName: operationsWorkplaceName,
             operationName: operationName,
             operationId: operationId,
+            errors: errors,
+            isValid: isValid,
+            dirtyFlag: dirtyFlag,
+            hasChanges: hasChanges,
+            reset: reset,
+            isBusy: isBusy
+        };
+        return self;
+    };
+    //Document Info. entity
+    // ReSharper disable once InconsistentNaming
+    var DocumentInfo = function () {
+        // ReSharper restore InconsistentNaming
+        var // Reference to this object
+            self,
+           //  Id
+            id = ko.observable(),
+            //NIC
+            nic = ko.observable(),
+            //NIC expiry date
+            nicExpDt = ko.observable(),
+            //Iqama Number
+            iqamaNum = ko.observable(),
+            //Iqama Expiry Date
+            iqamaExpDt = ko.observable(),
+            //Passport Number
+            passportNum = ko.observable(),
+            //Passport Expiry Date
+            passportExpDt = ko.observable(),
+            //Passport Country
+            passCountryId = ko.observable(),
+            //Visa Number
+            visaNum = ko.observable(),
+            //Visa Expiry Date
+            visaExpDt = ko.observable(),
+            //Visa IssuingCountry
+            visaIssuingCountry = ko.observable(),
+            //License Num
+            licenseNum = ko.observable(),
+            //license Expiry Date
+            licenseExpDt = ko.observable(),
+            //License Type Id
+            licenseTypeId = ko.observable(),
+            //Insurance Number
+            insuranceNum = ko.observable(),
+            //Insurance Company
+            insuranceComp = ko.observable(),
+            //Insurance Date
+            insuranceDt = ko.observable(),
+             // Is Busy
+            isBusy = ko.observable(false),
+            // Errors
+            errors = ko.validation.group({
+            }),
+            // Is Valid
+            isValid = ko.computed(function () {
+                return errors().length === 0;
+            }),
+            // True if the booking has been changed
+            // ReSharper disable InconsistentNaming
+            dirtyFlag = new ko.dirtyFlag({
+
+            }),
+            // Has Changes
+            hasChanges = ko.computed(function () {
+                return dirtyFlag.isDirty();
+            }),
+            // Reset
+            reset = function () {
+                dirtyFlag.reset();
+            };
+        self = {
+            id: id,
+            nic: nic,
+            nicExpDt: nicExpDt,
+            iqamaNum: iqamaNum,
+            iqamaExpDt: iqamaExpDt,
+            passportNum: passportNum,
+            passportExpDt: passportExpDt,
+            passCountryId: passCountryId,
+            visaNum: visaNum,
+            visaExpDt: visaExpDt,
+            visaIssuingCountry: visaIssuingCountry,
+            licenseNum: licenseNum,
+            licenseExpDt: licenseExpDt,
+            licenseTypeId: licenseTypeId,
+            insuranceNum: insuranceNum,
+            insuranceComp: insuranceComp,
+            insuranceDt: insuranceDt,
             errors: errors,
             isValid: isValid,
             dirtyFlag: dirtyFlag,
@@ -561,24 +657,29 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.Notes4 = source.notes4() === undefined ? null : source.notes4();
         result.Notes5 = source.notes5() === undefined ? null : source.notes5();
         result.DOB = source.dOB() === undefined || source.dOB() === null ? null : moment(source.dOB()).format(ist.utcFormat);
-        // Address tab
-        result.Addresses = [];
         _.each(source.employeeAddressList(), function (item) {
             result.Addresses.push(AddressServerMapper(item));
         });
         //Job Info Tab
         result.EmpJobInfo = JobInfoServerMapper(source.jobInfo());
-
+        // Address tab
+        result.Addresses = [];
+        //Employee Document Info tab
+        result.EmpDocsInfo = DocumentInfoServerMapper(source.documentInfo());
         // Phone tab
         result.PhoneNumbers = [];
         _.each(source.phonesList(), function (item) {
             result.PhoneNumbers.push(PhoneServerMapper(item));
         });
-
         // Job Progress tab
         result.EmpJobProgs = [];
         _.each(source.jobProgressList(), function (item) {
             result.EmpJobProgs.push(JobProgressServerMapper(item));
+        });
+        // Job Progress tab
+        result.AuthorizedLocations = [];
+        _.each(source.authorizedLocationList(), function (item) {
+            result.AuthorizedLocations.push(AuthorizedLocationServerMapper(item));
         });
 
 
@@ -625,7 +726,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
     // Convert Phone Client to Server
     var JobInfoServerMapper = function (item) {
         var result = {};
-        result.JobInfoId = item.jobInfoId() === undefined ? null : item.jobInfoId();
+        result.EmployeeId = item.jobInfoId() === undefined ? null : item.jobInfoId();
         result.DesignationId = item.desgId() === undefined ? null : item.desgId();
         result.DesigGradeId = item.desgGardeId() === undefined ? null : item.desgGardeId();
         result.JobTypeId = item.jobTypeId() === undefined ? null : item.jobTypeId();
@@ -634,6 +735,37 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.SupervisorId = item.supervisorId() === undefined ? null : item.supervisorId();
         result.Salary = item.salary() === undefined ? null : item.salary();
         result.JoiningDt = item.joiningDate() === undefined || item.joiningDate() === null ? null : moment(item.joiningDate()).format(ist.utcFormat);
+        return result;
+    };
+    // Convert Phone Client to Server
+    var DocumentInfoServerMapper = function (item) {
+        var result = {};
+        result.EmployeeId = item.id() === undefined ? null : item.id();
+        result.NIC = item.nic() === undefined ? null : item.nic();
+        result.NICExpDt = item.nicExpDt() === undefined || item.nicExpDt() === null ? null : moment(item.nicExpDt()).format(ist.utcFormat);
+        result.IqamaNo = item.iqamaNum() === undefined ? null : item.iqamaNum();
+        result.IqamaExpDt = item.iqamaExpDt() === undefined || item.iqamaExpDt() === null ? null : moment(item.iqamaExpDt()).format(ist.utcFormat);
+        result.PassportNo = item.passportNum() === undefined ? null : item.passportNum();
+        result.PassportExpDt = item.passportExpDt() === undefined || item.passportExpDt() === null ? null : moment(item.passportExpDt()).format(ist.utcFormat);
+        result.PassportCountryId = item.passCountryId() === undefined ? null : item.passCountryId();
+        result.VisaNo = item.visaNum() === undefined ? null : item.visaNum();
+        result.VisaExpDt = item.visaExpDt() === undefined || item.visaExpDt() === null ? null : moment(item.visaExpDt()).format(ist.utcFormat);
+        result.VisaIssueCountryId = item.visaIssuingCountry() === undefined ? null : item.visaIssuingCountry();
+        result.LicenseNo = item.licenseNum() === undefined ? null : item.licenseNum();
+        result.LicenseExpDt = item.licenseExpDt() === undefined || item.licenseExpDt() === null ? null : moment(item.licenseExpDt()).format(ist.utcFormat);
+        result.LicenseTypeId = item.licenseTypeId() === undefined ? null : item.licenseTypeId();
+        result.InsuranceNo = item.insuranceNum() === undefined ? null : item.insuranceNum();
+        result.InsuranceCompany = item.insuranceComp() === undefined ? null : item.insuranceComp();
+        result.InsuranceDt = item.insuranceDt() === undefined || item.insuranceDt() === null ? null : moment(item.insuranceDt()).format(ist.utcFormat);
+        return result;
+    };
+    //Convert Authorized Location Client to Server
+    var AuthorizedLocationServerMapper = function (source) {
+        var result = {};
+        result.EmpAuthLocationId = source.id() === undefined ? 0 : source.id();
+        result.OperationsWorkplaceId = source.operationsWorkplaceId() === undefined ? 0 : source.operationsWorkplaceId();
+        result.IsDefault = source.isDefault() === undefined ? true : source.isDefault();
+        result.IsOperationDefault = source.isOperationDefault() === undefined ? true : source.isOperationDefault();
         return result;
     };
     //Server To Client Mapper
@@ -673,6 +805,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         Phone: Phone,
         JobProgress: JobProgress,
         AuthorizedLocation: AuthorizedLocation,
+        DocumentInfo: DocumentInfo,
 
         EmployeeClientMapper: EmployeeClientMapper,
         EmployeeDetailClientMapper: EmployeeDetailClientMapper,
@@ -681,6 +814,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         AddressServerMapper: AddressServerMapper,
         PhoneServerMapper: PhoneServerMapper,
         JobProgressServerMapper: JobProgressServerMapper,
+        DocumentInfoServerMapper: DocumentInfoServerMapper,
+        AuthorizedLocationServerMapper:AuthorizedLocationServerMapper,
         EmployeeDetailServerMapperForId: EmployeeDetailServerMapperForId
 
     };

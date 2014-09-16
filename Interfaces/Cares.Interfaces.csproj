@@ -61,8 +61,12 @@
     <Compile Include="IServices\IWorkLocationService.cs" />
     <Compile Include="IServices\IWorkplaceService.cs" />
     <Compile Include="IServices\IWorkplaceTypeService.cs" />
+    <Compile Include="Repository\IEmpAuthOperationsWorkplaceRepository.cs" />
     <Compile Include="Repository\IDesigGradeRepository.cs" />
     <Compile Include="Repository\IDesignationRepository.cs" />
+    <Compile Include="Repository\IEmpDocsInfoRepository.cs" />
+    <Compile Include="Repository\IEmpJobInfoRepository.cs" />
+    <Compile Include="Repository\IEmpJobProgRepository.cs" />
     <Compile Include="Repository\IEmpStatusRepository.cs" />
     <Compile Include="Repository\IFuelTypeRepository.cs" />
     <Compile Include="Repository\IJobTypeRepository.cs" />

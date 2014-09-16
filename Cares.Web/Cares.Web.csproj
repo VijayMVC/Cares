@@ -328,6 +328,7 @@
     <Compile Include="Models\DesigGradeDropDown.cs" />
     <Compile Include="Models\DesignationDropDown.cs" />
     <Compile Include="Models\EmpAuthOperationsWorkplace.cs" />
+    <Compile Include="Models\EmpDocsInfo.cs" />
     <Compile Include="Models\EmpJobInfo.cs" />
     <Compile Include="Models\EmpJobProg.cs" />
     <Compile Include="Models\Employee.cs" />
@@ -401,6 +402,7 @@
     <Compile Include="Models\InsuranceRtMainContent.cs" />
     <Compile Include="Models\Operation.cs" />
     <Compile Include="Models\OperationBaseDataResponse.cs" />
+    <Compile Include="Models\OperationsWorkPlaceDropDown.cs" />
     <Compile Include="Models\OperationWorkplaceSearchByIdResponse.cs" />
     <Compile Include="Models\OrgGroupDropDown.cs" />
     <Compile Include="Models\PaymentTerm.cs" />
@@ -831,6 +833,12 @@
       <DependentUpon>PagedList.css</DependentUpon>
     </Content>
     <Content Include="Content\CSS\spinner.gif" />
+    <Content Include="Content\EmployeeManagement.css">
+      <DependentUpon>EmployeeManagement.less</DependentUpon>
+    </Content>
+    <Content Include="Content\EmployeeManagement.min.css">
+      <DependentUpon>EmployeeManagement.css</DependentUpon>
+    </Content>
     <Content Include="Content\Fleet.css">
       <DependentUpon>Fleet.less</DependentUpon>
     </Content>
@@ -1508,6 +1516,10 @@
     <Content Include="Content\Region.less" />
     <Content Include="Content\Region.css.map">
       <DependentUpon>Region.css</DependentUpon>
+    </Content>
+    <Content Include="Content\EmployeeManagement.less" />
+    <Content Include="Content\EmployeeManagement.css.map">
+      <DependentUpon>EmployeeManagement.css</DependentUpon>
     </Content>
     <Content Include="Areas\GeographicalHierarchy\Views\GeographicalHierarchy\SubRegion.cshtml" />
     <Content Include="Areas\GeographicalHierarchy\Views\GeographicalHierarchy\_SubRegionEditor.cshtml" />
