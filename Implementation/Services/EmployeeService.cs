@@ -175,15 +175,92 @@ namespace Cares.Implementation.Services
         public Employee SaveEmployee(Employee employee)
         {
             Employee empDbVersion = employeeRepository.Find(employee.EmployeeId);
+            
             if (empDbVersion == null)
             {
+                
                 employee.UserDomainKey = employeeRepository.UserDomainKey;
                 employee.IsActive = true;
                 employee.IsReadOnly = employee.IsPrivate = employee.IsDeleted = false;
                 employee.RecLastUpdatedDt = employee.RecCreatedDt = DateTime.Now;
                 employee.RecLastUpdatedBy = employee.RecCreatedBy = employeeRepository.LoggedInUserIdentity;
                 employee.RowVersion = 0;
+
+                //Job Info
+                employee.EmpJobInfo.UserDomainKey = employeeRepository.UserDomainKey;
+                employee.EmpJobInfo.IsActive = true;
+                employee.EmpJobInfo.IsReadOnly = employee.EmpJobInfo.IsPrivate = employee.EmpJobInfo.IsDeleted = false;
+                employee.EmpJobInfo.RecLastUpdatedDt = employee.EmpJobInfo.RecCreatedDt = DateTime.Now;
+                employee.EmpJobInfo.RecLastUpdatedBy = employee.EmpJobInfo.RecCreatedBy = employeeRepository.LoggedInUserIdentity;
+                
+                //Address List
+                if (employee.Addresses!=null)
+                {
+                    foreach (var item in employee.Addresses)
+                    {
+                        item.UserDomainKey = employeeRepository.UserDomainKey;
+                        item.IsActive = true;
+                        item.IsReadOnly = item.IsPrivate = item.IsDeleted = false;
+                        item.RecLastUpdatedDt = item.RecCreatedDt = DateTime.Now;
+                        item.RecLastUpdatedBy = item.RecCreatedBy = employeeRepository.LoggedInUserIdentity;
+                        item.RowVersion = 0;
+                    }
+                }
+                //Phone List
+                if (employee.PhoneNumbers != null)
+                {
+                    foreach (var item in employee.PhoneNumbers)
+                    {
+                        item.UserDomainKey = employeeRepository.UserDomainKey;
+                        item.IsActive = true;
+                        item.IsReadOnly = item.IsPrivate = item.IsDeleted = false;
+                        item.RecLastUpdatedDt = item.RecCreatedDt = DateTime.Now;
+                        item.RecLastUpdatedBy = item.RecCreatedBy = employeeRepository.LoggedInUserIdentity;
+                        item.RowVersion = 0;
+                    }
+                }
+
+                 //Docs Info
+                employee.EmpJobInfo.UserDomainKey = employeeRepository.UserDomainKey;
+                employee.EmpJobInfo.IsActive = true;
+                employee.EmpJobInfo.IsReadOnly = employee.EmpJobInfo.IsPrivate = employee.EmpJobInfo.IsDeleted = false;
+                employee.EmpJobInfo.RecLastUpdatedDt = employee.EmpJobInfo.RecCreatedDt = DateTime.Now;
+                employee.EmpJobInfo.RecLastUpdatedBy = employee.EmpJobInfo.RecCreatedBy = employeeRepository.LoggedInUserIdentity;
+              
+                //Job Progress List
+                if (employee.EmpJobProgs != null)
+                {
+                    foreach (var item in employee.EmpJobProgs)
+                    {
+                        item.UserDomainKey = employeeRepository.UserDomainKey;
+                        item.IsActive = true;
+                        item.IsReadOnly = item.IsPrivate = item.IsDeleted = false;
+                        item.RecLastUpdatedDt = item.RecCreatedDt = DateTime.Now;
+                        item.RecLastUpdatedBy = item.RecCreatedBy = employeeRepository.LoggedInUserIdentity;
+                        item.RowVersion = 0;
+                    }
+                }
+
+                //Authorized Locations List
+                if (employee.EmpAuthOperationsWorkplaces != null)
+                {
+                    foreach (var item in employee.EmpAuthOperationsWorkplaces)
+                    {
+                        item.UserDomainKey = employeeRepository.UserDomainKey;
+                        item.IsActive = true;
+                        item.IsReadOnly = item.IsPrivate = item.IsDeleted = false;
+                        item.RecLastUpdatedDt = item.RecCreatedDt = DateTime.Now;
+                        item.RecLastUpdatedBy = item.RecCreatedBy = employeeRepository.LoggedInUserIdentity;
+                        item.RowVersion = 0;
+                    }
+                }
                 employeeRepository.Add(employee);
+
+            }
+            else
+            {
+                
+                
             }
             employeeRepository.SaveChanges();
 

@@ -135,6 +135,10 @@
     <Compile Include="Repositories\AreaRepository.cs" />
     <Compile Include="Repositories\DesigGradeRepository.cs" />
     <Compile Include="Repositories\DesignationRepository.cs" />
+    <Compile Include="Repositories\EmpAuthOperationsWorkplaceRepository.cs" />
+    <Compile Include="Repositories\EmpDocsInfoRepository.cs" />
+    <Compile Include="Repositories\EmpJobInfoRepository.cs" />
+    <Compile Include="Repositories\EmpJobProgRepository.cs" />
     <Compile Include="Repositories\EmpStatusRepository.cs" />
     <Compile Include="Repositories\FuelTypeRepository.cs" />
     <Compile Include="Repositories\InsuranceRtMainRepository.cs" />

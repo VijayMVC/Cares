@@ -84,6 +84,10 @@ namespace Cares.Repository
             unityContainer.RegisterType<IDesigGradeRepository, DesigGradeRepository>();
             unityContainer.RegisterType<ILicenseTypeRepository, LicenseTypeRepository>();
             unityContainer.RegisterType<IJobTypeRepository, JobTypeRepository>();
+            unityContainer.RegisterType<IEmpJobInfoRepository, EmpJobInfoRepository>();
+            unityContainer.RegisterType<IEmpJobProgRepository, EmpJobProgRepository>();
+            unityContainer.RegisterType<IEmpDocsInfoRepository, EmpDocsInfoRepository>();
+            unityContainer.RegisterType<IEmpAuthOperationsWorkplaceRepository, EmpAuthOperationsWorkplaceRepository>();
 
         }
     }

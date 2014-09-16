@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -185,6 +186,37 @@ namespace Cares.Models.DomainModels
         /// </summary>
         public virtual Country Nationality { get; set; }
 
+        /// <summary>
+        /// Employee Job Info
+        /// </summary>
+        public virtual EmpJobInfo EmpJobInfo { get; set; }
+
+        /// <summary>
+        /// Employee Addresses
+        /// </summary>
+        public virtual ICollection<Address> Addresses { get; set; }
+
+        /// <summary>
+        /// Phone Numbers
+        /// </summary>
+        public virtual ICollection<Phone> PhoneNumbers { get; set; }
+
+        /// <summary>
+        /// Employee Documents Info
+        /// </summary>
+        public virtual EmpDocsInfo EmpDocsInfo { get; set; }
+
+        /// <summary>
+        /// Employee Job Progress
+        /// </summary>
+        public virtual ICollection<EmpJobProg> EmpJobProgs { get; set; }
+
+        /// <summary>
+        /// Employee  Authorized Operations Workplace
+        /// </summary>
+        public virtual ICollection<EmpAuthOperationsWorkplace> EmpAuthOperationsWorkplaces { get; set; }
+
+        
         #endregion
     }
 }

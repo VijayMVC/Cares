@@ -10,6 +10,7 @@ namespace Cares.Web.ModelMappers
     public static class EmployeeMapper
     {
         #region Public
+
         /// <summary>
         ///  Create web model from entity
         /// </summary>
@@ -22,6 +23,82 @@ namespace Cares.Web.ModelMappers
                 EmployeeCodeName = source.EmpFName + "  " + source.EmpLName
             };
         }
+
+        /// <summary>
+        ///  Create entity from web model
+        /// </summary>
+        public static DomainModels.EmpJobInfo CreateFrom(this EmpJobInfo source)
+        {
+            return new DomainModels.EmpJobInfo
+            {
+
+                EmployeeId = source.EmployeeId,
+                DepartmentId = source.DepartmentId,
+                DesigGradeId = source.DesigGradeId,
+                DesignationId = source.DesignationId,
+                JobTypeId = source.JobTypeId,
+                SupervisorId = source.SupervisorId,
+                WorkPlaceId = source.WorkplaceId,
+                JoiningDt = source.JoiningDt,
+                Salary = source.Salary,
+            };
+        }
+
+        /// <summary>
+        ///  Create entity from web model
+        /// </summary>
+        public static DomainModels.EmpDocsInfo CreateFrom(this EmpDocsInfo source)
+        {
+            return new DomainModels.EmpDocsInfo
+            {
+                EmployeeId = source.EmployeeId,
+                InsuranceCompany = source.InsuranceCompany,
+                InsuranceDt = source.InsuranceDt,
+                InsuranceNo = source.InsuranceNo,
+                IqamaExpDt = source.IqamaExpDt,
+                IqamaNo = source.IqamaNo,
+                LicenseExpDt = source.LicenseExpDt,
+                LicenseNo = source.LicenseNo,
+                LicenseTypeId = source.LicenseTypeId,
+                PassportCountryId = source.PassportCountryId,
+                VisaIssueCountryId = source.VisaIssueCountryId,
+                PassportNo = source.PassportNo,
+                PassportExpDt = source.PassportExpDt,
+                VisaNo = source.VisaNo,
+                VisaExpDt = source.VisaExpDt,
+            };
+        }
+
+        /// <summary>
+        ///  Create entity from web model
+        /// </summary>
+        public static DomainModels.EmpJobProg CreateFrom(this EmpJobProg source)
+        {
+            return new DomainModels.EmpJobProg
+            {
+                EmpJobProgId = source.EmpJobProgId,
+                EmployeeId = source.EmployeeId,
+                WorkplaceId = source.WorkplaceId,
+                DesignationId = source.DesignationId,
+                DesigStDt = source.DesigStDt,
+                DesigEndDt = source.DesigEndDt,
+            };
+        }
+        /// <summary>
+        ///  Create entity from web model
+        /// </summary>
+        public static DomainModels.EmpAuthOperationsWorkplace CreateFrom(this EmpAuthOperationsWorkplace source)
+        {
+            return new DomainModels.EmpAuthOperationsWorkplace
+            {
+                EmpAuthOperationsWorkplaceId = source.EmpAuthLocationId,
+                EmployeeId = source.EmployeeId,
+                IsDefault = source.IsDefault,
+                IsOperationDefault = source.IsOperationDefault,
+                OperationsWorkplaceId = source.OperationsWorkplaceId,
+            };
+        }
+
         /// <summary>
         ///  Create entity from  web model
         /// </summary>
@@ -45,7 +122,12 @@ namespace Cares.Web.ModelMappers
                 Notes4 = source.Notes4,
                 Notes5 = source.Notes5,
                 NationalityId = source.NationalityId,
-
+                EmpJobInfo = source.EmpJobInfo.CreateFrom(),
+                Addresses = source.Addresses.Select(add => add.CreateFrom()).ToList(),
+                PhoneNumbers = source.PhoneNumbers.Select(phone => phone.CreateFrom()).ToList(),
+                EmpDocsInfo = source.EmpDocsInfo.CreateFrom(),
+                EmpJobProgs = source.EmpJobProgs.Select(empJobProg => empJobProg.CreateFrom()).ToList(),
+                EmpAuthOperationsWorkplaces = source.AuthorizedLocations.Select(location => location.CreateFrom()).ToList(),
             };
         }
 
@@ -130,7 +212,7 @@ namespace Cares.Web.ModelMappers
                 PhoneTypes = source.PhoneTypes.Select(x => x.CreateFrom()),
                 LicenseTypes = source.LicenseTypes.Select(x => x.CreateFrom()),
                 Operations = source.Operations.Select(x => x.CreateFrom()),
-                OperationsWorkPlaces = source.OperationsWorkPlaces.Select(x => x.CreateFrom()),
+                OperationsWorkPlaces = source.OperationsWorkPlaces.Select(x => x.CreateFromDropDown()),
                 AddressTypes = source.AddressTypes.Select(x => x.CreateFrom()),
             };
         }

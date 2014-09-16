@@ -1,6 +1,11 @@
 ﻿#rentalAgreementBinding {
  
     color: gray;
+
+    .popover
+    {
+        max-width: none;
+    }
     
     .well
     {
@@ -61,16 +66,21 @@
     #raPanels {
         width: 25.9%;
         float: left;
+    }
 
-        .panel-heading
-        {
-            color: gray;
-        }
+    .panel-heading
+    {
+        color: gray;
+    }
 
-        a
-        {
-            text-decoration: underline;
-        }
+    a.headingLink
+    {
+        text-decoration: underline;
+    }
+
+    a.glyphicon
+    {
+        text-decoration: none;
     }
 
     #raMain {
@@ -78,6 +88,48 @@
         float: left;
         margin-left: .5%;
         margin-right: .5%;
+
+        #customer
+         {
+            min-height: 173px;
+
+            #isIndividualLabel
+            {
+                width: 18%;
+                margin-left: 11px;
+            }
+
+            label.col-sm-2
+            {
+                width: 20%;
+            }
+        }
+        
+        #accordion3
+        {
+            margin-top: 5px;
+        }
+
+        #vehicle{
+            margin-top: .5%;
+            min-height: 268px;
+        }
+
+        #vehicleImage
+		{
+			max-width: 32px;
+			max-height: 32px;
+		}
+    }
+
+    #raBilling {
+        width: 36.5%;
+        float: left;
+
+        #accordion5
+        {
+            margin-top: 5px;
+        }
 
         #ra{
             min-height: 236px;
@@ -146,38 +198,7 @@
             }
 
         }
-
-        #vehicle{
-            margin-top: .5%;
-            min-height: 268px;
-        }
-
-        #vehicleImage
-		{
-			max-width: 32px;
-			max-height: 32px;
-		}
-    }
-
-    #raBilling {
-        width: 36.5%;
-        float: left;
-
-        #customer{
-            min-height: 173px;
-
-            #isIndividualLabel
-            {
-                width: 18%;
-                margin-left: 11px;
-            }
-
-            label.col-sm-2
-            {
-                width: 20%;
-            }
-        }
-
+        
         #billing
         {
             margin-top: .5%;

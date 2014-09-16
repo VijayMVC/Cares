@@ -19,19 +19,19 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Employee ID 
         /// </summary>
-        [ForeignKey("")]
+        [ForeignKey("Employee")]
         public long EmployeeId { get; set; }
 
         /// <summary>
         /// Designation Id
         /// </summary>
-        [ForeignKey(""), Required]
+        [ForeignKey("Designation"), Required]
         public long DesignationId { get; set; }
 
         /// <summary>
         ///Workplace ID
         /// </summary>
-        [ForeignKey(""), Required]
+        [ForeignKey("WorkPlace"), Required]
         public long WorkplaceId { get; set; }
 
         /// <summary>
@@ -105,5 +105,23 @@ namespace Cares.Models.DomainModels
         public long UserDomainKey { get; set; }
 
         #endregion
+
+        #region Reference Properties
+        /// <summary>
+        /// Designation
+        /// </summary>
+        public virtual Designation Designation { get; set; }
+
+        /// <summary>
+        /// Employee
+        /// </summary>
+        public virtual Employee Employee { get; set; }
+
+        /// <summary>
+        /// WorkPlace
+        /// </summary>
+        public virtual WorkPlace WorkPlace { get; set; }
+        #endregion
+
     }
 }

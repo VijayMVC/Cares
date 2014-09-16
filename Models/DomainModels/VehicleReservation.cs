@@ -1,63 +1,51 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cares.Models.DomainModels
 {
     /// <summary>
-    /// Work Place Domain Model
+    /// Vehicle Reservation Domain Model
     /// </summary>
-    public class WorkPlace
+    public class VehicleReservation
     {
         #region Persisted Properties
         
         /// <summary>
-        /// Work Place Id
+        /// Vehicle Reservation ID
         /// </summary>
-        public long WorkPlaceId { get; set; }
+        public long VehicleReservationId { get; set; }
 
         /// <summary>
-        /// Work Location Id
+        /// Start Date Time
         /// </summary>
-        [ForeignKey("WorkLocation")]
-        public long WorkLocationId { get; set; }
+        [Required]
+        public DateTime StartDtTime { get; set; }
 
         /// <summary>
-        /// Work Place Code
+        /// End Date Time
         /// </summary>
-        [StringLength(100), Required]
-        public string WorkPlaceCode { get; set; }
-
+        [Required]
+        public DateTime EndDtTime { get; set; }
+        
         /// <summary>
-        /// Work Place Name
-        /// </summary>
-        [StringLength(255)]
-        public string WorkPlaceName { get; set; }
-
-        /// <summary>
-        /// Work Place Description
+        /// Vehicle Reservation Description
         /// </summary>
         [StringLength(500)]
-        public string WorkPlaceDescription { get; set; }
+        public string VehicleReservationDescription { get; set; }
 
         /// <summary>
-        /// Parent Work Place Id
+        /// Vehicle Id
         /// </summary>
-        [ForeignKey("ParentWorkPlace")]
-        public long? ParentWorkPlaceId { get; set; }
-
-        /// <summary>
-        /// Work Place Type Id
-        /// </summary>
-        [ForeignKey("WorkPlaceType")]
-        public short WorkPlaceTypeId { get; set; }
-
+        [ForeignKey("Vehicle")]
+        public long VehicleId { get; set; }
+        
         /// <summary>
         /// Row Version
         /// </summary>
         [Required]
         public long RowVersion { get; set; }
+
 
         /// <summary>
         /// Is Active
@@ -110,36 +98,16 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// User Domain Key
         /// </summary>
-        [Required]
         public long UserDomainKey { get; set; }
+        
         #endregion
 
         #region Reference Properties
 
         /// <summary>
-        /// Work Place
+        /// Vehicle
         /// </summary>
-        public virtual WorkPlace ParentWorkPlace { get; set; }
-
-        /// <summary>
-        /// Work Place Type
-        /// </summary>
-        public virtual WorkPlaceType WorkPlaceType { get; set; }
-
-        /// <summary>
-        /// Work Location
-        /// </summary>
-        public virtual WorkLocation WorkLocation { get; set; }
-
-        /// <summary>
-        /// Operations Workplaces that use this workspace
-        /// </summary>
-        public virtual ICollection<OperationsWorkPlace> OperationsWorkPlaces { get; set; }
-
-
-        public virtual ICollection<EmpJobInfo> EmployeEmpJobInfos { get; set; } 
-
-        
+        public virtual Vehicle Vehicle { get; set; }
 
         #endregion
     }

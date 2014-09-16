@@ -90,7 +90,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Operations Work Places
         /// </summary>
-        public IEnumerable<OperationsWorkPlace> OperationsWorkPlaces { get; set; }
+        public IEnumerable<OperationsWorkPlaceDropDown> OperationsWorkPlaces { get; set; }
 
         /// <summary>
         /// Supervisors
