@@ -1,6 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cares.Models.DomainModels
 {
@@ -19,86 +17,88 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Start Date Time
         /// </summary>
-        [Required]
         public DateTime StartDtTime { get; set; }
 
         /// <summary>
         /// End Date Time
         /// </summary>
-        [Required]
         public DateTime EndDtTime { get; set; }
         
         /// <summary>
         /// Vehicle Reservation Description
         /// </summary>
-        [StringLength(500)]
         public string VehicleReservationDescription { get; set; }
 
         /// <summary>
         /// Vehicle Id
         /// </summary>
-        [ForeignKey("Vehicle")]
         public long VehicleId { get; set; }
         
         /// <summary>
         /// Row Version
         /// </summary>
-        [Required]
         public long RowVersion { get; set; }
 
 
         /// <summary>
         /// Is Active
         /// </summary>
-        [Required]
         public bool IsActive { get; set; }
 
         /// <summary>
         /// Is Deleted
         /// </summary>
-        [Required]
         public bool IsDeleted { get; set; }
 
         /// <summary>
         /// Is Private
         /// </summary>
-        [Required]
         public bool IsPrivate { get; set; }
 
         /// <summary>
         /// Is Readonly
         /// </summary>
-        [Required]
         public bool IsReadOnly { get; set; }
 
         /// <summary>
         /// Record Created Date
         /// </summary>
-        [Required]
         public DateTime RecCreatedDt { get; set; }
 
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100), Required]
         public string RecCreatedBy { get; set; }
 
         /// <summary>
         /// Record Last Updated Date
         /// </summary>
-        [Required]
         public DateTime RecLastUpdatedDt { get; set; }
 
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100), Required]
         public string RecLastUpdatedBy { get; set; }
 
         /// <summary>
         /// User Domain Key
         /// </summary>
         public long UserDomainKey { get; set; }
+
+        /// <summary>
+        /// BookingMain Id
+        /// </summary>
+        public long? BookingMainId { get; set; }
+
+        /// <summary>
+        /// NrtMain Id
+        /// </summary>
+        public long? NRTMainId { get; set; }
+
+        /// <summary>
+        /// RaMian Id
+        /// </summary>
+        public long? RAMainId { get; set; }
         
         #endregion
 

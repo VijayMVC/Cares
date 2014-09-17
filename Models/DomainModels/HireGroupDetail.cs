@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace Cares.Models.DomainModels
 {
     /// <summary>
@@ -20,19 +17,16 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// User Domain Key
         /// </summary>
-        [Required]
         public long UserDomainKey { get; set; }
 
         /// <summary>
         /// Hire Group ID
         /// </summary>
-        [ForeignKey("HireGroup")]
         public long HireGroupId { get; set; }
 
         /// <summary>
         /// Vehicle Category ID
         /// </summary>
-        [ForeignKey("VehicleCategory")]
         public short VehicleCategoryId { get; set; }
         /// <summary>
         /// Model Year
@@ -41,12 +35,10 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Vehicle Model ID
         /// </summary>
-        [ForeignKey("VehicleModel")]
         public short VehicleModelId { get; set; }
         /// <summary>
         /// Vehicle Make ID
         /// </summary>
-        [ForeignKey("VehicleMake")]
         public short VehicleMakeId { get; set; }
         /// <summary>
         /// Is Active
@@ -75,12 +67,10 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100), Required]
         public string RecLastUpdatedBy { get; set; }
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100), Required]
         public string RecCreatedBy { get; set; }
         /// <summary>
         /// Row Version
@@ -111,6 +101,16 @@ namespace Cares.Models.DomainModels
         /// Vehicle Image Hire Group Details Associated to this Hire Group Detail
         /// </summary>
         public virtual ICollection<VehicleImageHireGroupDetail> VehicleImageHireGroupDetails { get; set; }
+
+        /// <summary>
+        /// Standard Rates
+        /// </summary>
+        public virtual ICollection<StandardRate> StandardRates { get; set; }
+
+        /// <summary>
+        /// Insurance Rates
+        /// </summary>
+        public virtual ICollection<InsuranceRt> InsuranceRates { get; set; }
 
         #endregion
     }

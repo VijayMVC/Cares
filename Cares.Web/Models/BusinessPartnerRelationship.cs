@@ -17,7 +17,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Business Partner Relationship Type Id
         /// </summary>
-        public int BusinessPartnerRelationshipTypeId { get; set; }
+        public short BusinessPartnerRelationshipTypeId { get; set; }
         /// <summary>
         /// Business Partner Relationship Type Name
         /// </summary>

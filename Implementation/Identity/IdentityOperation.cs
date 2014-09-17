@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Data.Entity;
 using System.Threading.Tasks;
 using Cares.Models.IdentityModels;
 using Cares.Repository.BaseRepository;
@@ -37,7 +38,7 @@ namespace Cares.Implementation.Identity
             string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
 
-            BaseDbContext db = new BaseDbContext(UnityConfig.UnityContainer, connectionString);
+            IdentityDbContext db = new IdentityDbContext(connectionString);
 
 
 
@@ -99,7 +100,7 @@ namespace Cares.Implementation.Identity
             string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             //BaseDbContext db = UnityConfig.UnityContainer.Resolve<BaseDbContext>();
 
-            BaseDbContext db = new BaseDbContext(UnityConfig.UnityContainer, connectionString);
+            DbContext db = new DbContext(connectionString);
 
             return new ApplicationRoleManager(new RoleStore<IdentityRole>(db));
             

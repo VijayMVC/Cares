@@ -1,6 +1,5 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 
 namespace Cares.Models.DomainModels
 {
@@ -17,73 +16,58 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Contact Person
         /// </summary>
-        [StringLength(255)]
         public string ContactPerson { get; set; }
         /// <summary>
         /// Street Address
         /// </summary>
-        [Required]
-        [StringLength(500)]
         public string StreetAddress { get; set; }
         /// <summary>
         /// Email Address
         /// </summary>
-        [StringLength(255)]
         public string EmailAddress { get; set; }
         /// <summary>
         /// Web Page
         /// </summary>
-        [StringLength(500)]
         public string WebPage { get; set; }
         /// <summary>
         /// Contact Person
         /// </summary>
-        [StringLength(10)]
         public string ZipCode { get; set; }
         /// <summary>
         /// Po Box
         /// </summary>
-        [StringLength(20)]
         public string POBox { get; set; }
         /// <summary>
         /// Country
         /// </summary>
-        [ForeignKey("Country")]
         public short CountryId { get; set; }
         /// <summary>
         /// Region id
         /// </summary>
-        [ForeignKey("Region")]
         public short? RegionId { get; set; }
         /// <summary>
         /// SubRegion ID
         /// </summary>
-        [ForeignKey("SubRegion")]
         public short? SubRegionId { get; set; }
         /// <summary>
         /// City
         /// </summary>
-        [ForeignKey("City")]
         public short? CityId { get; set; }
         /// <summary>
         /// Area
         /// </summary>
-        [ForeignKey("Area")]
         public short? AreaId { get; set; }
         /// <summary>
         /// Address Type ID
         /// </summary>
-        [ForeignKey("AddressType")]
         public short AddressTypeId { get; set; }
         /// <summary>
         /// Business Partner Id
         /// </summary>
-        [ForeignKey("BusinessPartner")]
         public long? BusinessPartnerId { get; set; }
         /// <summary>
         /// Row Version
         /// </summary>
-        [Required]
         public long RowVersion { get; set; }
         /// <summary>
         /// Is Active
@@ -108,7 +92,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100)]
         public string RecCreatedBy { get; set; }
         /// <summary>
         /// Record Last Updated Date
@@ -117,12 +100,16 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100)]
         public string RecLastUpdatedBy { get; set; }
         /// <summary>
         /// User Domain Key
         /// </summary>
         public long UserDomainKey { get; set; }
+
+        /// <summary>
+        /// Employee Id
+        /// </summary>
+        public long? EmployeeId { get; set; }
 
         #endregion
 
@@ -155,6 +142,16 @@ namespace Cares.Models.DomainModels
         /// Area
         /// </summary>
         public virtual Area Area { get; set; }
+
+        /// <summary>
+        /// Employee
+        /// </summary>
+        public virtual Employee Employee { get; set; }
+
+        /// <summary>
+        /// WorkLocation
+        /// </summary>
+        public virtual ICollection<WorkLocation> WorkLocations { get; set; }
         #endregion
     }
 }

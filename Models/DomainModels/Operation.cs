@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cares.Models.DomainModels
 {
@@ -20,24 +18,20 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Operation Code
         /// </summary>
-        [StringLength(100)]
         public string OperationCode { get; set; }
 
         /// <summary>
         /// Operation Name
         /// </summary>
-        [StringLength(255)]
         public string OperationName { get; set; }
         /// <summary>
         /// Operation Description
         /// </summary>
-        [StringLength(500)]
         public string OperationDescription { get; set; }
         
         /// <summary>
         /// Department ID
         /// </summary>
-        [ForeignKey("Department"), Required]
         public long DepartmentId { get; set; }
         
         /// <summary>
@@ -64,7 +58,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100)]
         public string RecCreatedBy { get; set; }
         /// <summary>
         /// Record Last Updated Date
@@ -73,12 +66,16 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100)]
         public string RecLastUpdatedBy { get; set; }
         /// <summary>
         /// User Domain Key
         /// </summary>
         public long UserDomainKey { get; set; }
+
+        /// <summary>
+        /// Row Version
+        /// </summary>
+        public long RowVersion { get; set; }
 
         #endregion
         #region Reference Properties
@@ -96,7 +93,12 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Operations Workplaces that use this workspace
         /// </summary>
-        public virtual ICollection<OperationsWorkPlace> OperationsWorkPlaces { get; set; } 
+        public virtual ICollection<OperationsWorkPlace> OperationsWorkplaces { get; set; }
+
+        /// <summary>
+        /// Tarrif Types
+        /// </summary>
+        public virtual ICollection<TariffType> TariffTypes { get; set; } 
 
         #endregion
     }

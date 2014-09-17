@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Cares.Models.DomainModels
 {
@@ -13,21 +12,18 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Measurement Unit ID
         /// </summary>
-        public int MeasurementUnitId { get; set; }
+        public short MeasurementUnitId { get; set; }
         /// <summary>
         /// Measurement Unit Code
         /// </summary>
-        [StringLength(100), Required]
         public string MeasurementUnitCode { get; set; }
         /// <summary>
         /// Measurement Unit Name
         /// </summary>
-        [StringLength(255)]
         public string MeasurementUnitName { get; set; }
         /// <summary>
         /// Measurement Unit Description
         /// </summary>
-        [StringLength(500)]
         public string MeasurementUnitDescription { get; set; }
         /// <summary>
         /// Is Active
@@ -52,7 +48,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100), Required]
         public string RecCreatedBy { get; set; }
         /// <summary>
         /// Record Last Updated Date
@@ -61,12 +56,21 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100), Required]
         public string RecLastUpdatedBy { get; set; }
         /// <summary>
         /// User Domain Key
         /// </summary>
         public long UserDomainKey { get; set; }
+
+        /// <summary>
+        /// Row Version
+        /// </summary>
+        public long RowVersion { get; set; }
+
+        /// <summary>
+        /// Measurement Unit Key
+        /// </summary>
+        public short MeasurementUnitKey { get; set; }
 
         #endregion
 

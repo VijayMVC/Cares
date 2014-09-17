@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0c64bbf4dc9445619e056242daa0f9af" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="DomainModels.OrgGroup" Width="2.875" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DomainModels.Company" Width="1.5" PointX="4.75" PointY="0.75" />
+        <AssociationConnector Association="DomainModels.RefCompany263" />
+        <AssociationConnector Association="DomainModels.RefOrgGroup291" />
+        <EntityTypeShape EntityType="DomainModels.BusinessSegment" Width="1.5" PointX="0.75" PointY="6" />
+        <AssociationConnector Association="DomainModels.RefBusinessSegment1401" />
+        <EntityTypeShape EntityType="DomainModels.AddressType" Width="1.5" PointX="13.375" PointY="48.5" />
+        <EntityTypeShape EntityType="DomainModels.Area" Width="1.5" PointX="13.375" PointY="58.875" />
+        <EntityTypeShape EntityType="DomainModels.BusinessPartnerCompany" Width="1.5" PointX="12.625" PointY="12.375" />
+        <EntityTypeShape EntityType="DomainModels.BusinessPartnerIndividual" Width="1.5" PointX="15.625" PointY="4.5" />
+        <EntityTypeShape EntityType="DomainModels.BusinessPartnerInType" Width="1.5" PointX="12.875" PointY="0.625" />
+        <EntityTypeShape EntityType="DomainModels.BusinessPartner" Width="1.5" PointX="7.375" PointY="4.25" />
+        <EntityTypeShape EntityType="DomainModels.BusinessPartnerMainType" Width="1.5" PointX="8.125" PointY="13.375" />
+        <EntityTypeShape EntityType="DomainModels.BusinessPartnerMarketingChannel" Width="1.5" PointX="9.625" PointY="48.125" />
+        <EntityTypeShape EntityType="DomainModels.BusinessPartnerRelationship" Width="1.5" PointX="9.625" PointY="51.875" />
+        <EntityTypeShape EntityType="DomainModels.BusinessPartnerSubType" Width="1.5" PointX="10.375" PointY="13.125" />
+        <EntityTypeShape EntityType="DomainModels.BusinessLegalStatus" Width="1.5" PointX="5.125" PointY="18" />
+        <EntityTypeShape EntityType="DomainModels.City" Width="1.5" PointX="11.125" PointY="58.375" />
+        <EntityTypeShape EntityType="DomainModels.Country" Width="1.5" PointX="13.375" PointY="33.125" />
+        <EntityTypeShape EntityType="DomainModels.Department" Width="1.5" PointX="7.375" PointY="35.5" />
+        <EntityTypeShape EntityType="DomainModels.DesigGrade" Width="1.5" PointX="10.375" PointY="67.375" />
+        <EntityTypeShape EntityType="DomainModels.Designation" Width="1.5" PointX="10.375" PointY="19.375" />
+        <EntityTypeShape EntityType="DomainModels.EmpAuthOperationsWorkplace" Width="1.5" PointX="21.375" PointY="21.75" />
+        <EntityTypeShape EntityType="DomainModels.EmpDocsInfo" Width="1.5" PointX="12.625" PointY="5.125" />
+        <EntityTypeShape EntityType="DomainModels.EmpJobInfo" Width="1.5" PointX="12.625" PointY="19.375" />
+        <EntityTypeShape EntityType="DomainModels.EmpJobProg" Width="1.5" PointX="18.625" PointY="20.125" />
+        <EntityTypeShape EntityType="DomainModels.Employee" Width="1.5" PointX="10.375" PointY="4.375" />
+        <EntityTypeShape EntityType="DomainModels.EmpStatus" Width="1.5" PointX="8.125" PointY="18.25" />
+        <EntityTypeShape EntityType="DomainModels.FleetPool" Width="1.5" PointX="14.875" PointY="41.875" />
+        <EntityTypeShape EntityType="DomainModels.FuelType" Width="1.5" PointX="17.125" PointY="27.5" />
+        <EntityTypeShape EntityType="DomainModels.HireGroup" Width="1.5" PointX="17.125" PointY="44.5" />
+        <EntityTypeShape EntityType="DomainModels.HireGroupDetail" Width="1.5" PointX="19.375" PointY="51.875" />
+        <EntityTypeShape EntityType="DomainModels.Operation" Width="1.5" PointX="9.625" PointY="42" />
+        <EntityTypeShape EntityType="DomainModels.OperationsWorkPlace" Width="1.5" PointX="17.125" PointY="38.5" />
+        <EntityTypeShape EntityType="DomainModels.PaymentTerm" Width="1.5" PointX="5.125" PointY="13.125" />
+        <EntityTypeShape EntityType="DomainModels.Phone" Width="1.5" PointX="12.625" PointY="26.75" />
+        <EntityTypeShape EntityType="DomainModels.PhoneType" Width="1.5" PointX="10.375" PointY="27.25" />
+        <EntityTypeShape EntityType="DomainModels.Region" Width="1.5" PointX="8.875" PointY="56" />
+        <EntityTypeShape EntityType="DomainModels.SubRegion" Width="1.5" PointX="8.875" PointY="61.625" />
+        <EntityTypeShape EntityType="DomainModels.TariffType" Width="1.5" PointX="11.875" PointY="41.375" />
+        <EntityTypeShape EntityType="DomainModels.TransmissionType" Width="1.5" PointX="17.125" PointY="64.875" />
+        <EntityTypeShape EntityType="DomainModels.Vehicle" Width="1.5" PointX="19.375" PointY="37.875" />
+        <EntityTypeShape EntityType="DomainModels.VehicleCategory" Width="1.5" PointX="17.125" PointY="50.25" />
+        <EntityTypeShape EntityType="DomainModels.VehicleCheckList" Width="1.5" PointX="19.375" PointY="32.5" />
+        <EntityTypeShape EntityType="DomainModels.VehicleCheckListItem" Width="1.5" PointX="21.625" PointY="39.75" />
+        <EntityTypeShape EntityType="DomainModels.VehicleImage" Width="1.5" PointX="0.75" PointY="16" />
+        <EntityTypeShape EntityType="DomainModels.VehicleMake" Width="1.5" PointX="17.125" PointY="60" />
+        <EntityTypeShape EntityType="DomainModels.VehicleModel" Width="1.5" PointX="17.125" PointY="55.125" />
+        <EntityTypeShape EntityType="DomainModels.VehicleReservation" Width="1.5" PointX="21.625" PointY="45" />
+        <EntityTypeShape EntityType="DomainModels.VehicleStatus" Width="1.5" PointX="17.125" PointY="30.25" />
+        <EntityTypeShape EntityType="DomainModels.VehicleSubStatus" Width="1.5" PointX="19.375" PointY="27.5" />
+        <EntityTypeShape EntityType="DomainModels.WorkLocation" Width="1.5" PointX="7.375" PointY="41.5" />
+        <EntityTypeShape EntityType="DomainModels.WorkPlace" Width="1.5" PointX="9.625" PointY="35.125" />
+        <EntityTypeShape EntityType="DomainModels.WorkPlaceType" Width="1.5" PointX="7.375" PointY="29.875" />
+        <AssociationConnector Association="DomainModels.RefCity3041" />
+        <AssociationConnector Association="DomainModels.RefBPMain122" />
+        <AssociationConnector Association="DomainModels.RefBusinessSegment297" />
+        <AssociationConnector Association="DomainModels.RefBPMain123" />
+        <AssociationConnector Association="DomainModels.RefBPMain296" />
+        <AssociationConnector Association="DomainModels.RefCountry617" />
+        <AssociationConnector Association="DomainModels.RefBPMain119" />
+        <AssociationConnector Association="DomainModels.RefBPSubType120" />
+        <AssociationConnector Association="DomainModels.RefBPMain125" />
+        <AssociationConnector Association="DomainModels.RefBPMain242" />
+        <AssociationConnector Association="DomainModels.RefBPMain295" />
+        <AssociationConnector Association="DomainModels.RefBPMain299" />
+        <AssociationConnector Association="DomainModels.RefBusinessLegalStatus291" />
+        <AssociationConnector Association="DomainModels.RefCompany325" />
+        <AssociationConnector Association="DomainModels.RefPaymentTerm618" />
+        <AssociationConnector Association="DomainModels.RefBPMainType288" />
+        <AssociationConnector Association="DomainModels.RefCountry291" />
+        <AssociationConnector Association="DomainModels.RefRegion291" />
+        <AssociationConnector Association="DomainModels.RefSubRegion291" />
+        <AssociationConnector Association="DomainModels.RefCompany1931" />
+        <AssociationConnector Association="DomainModels.RefCompany3011" />
+        <AssociationConnector Association="DomainModels.RefCompany354" />
+        <AssociationConnector Association="DomainModels.RefCountry41" />
+        <AssociationConnector Association="DomainModels.RefNationality355" />
+        <AssociationConnector Association="DomainModels.RefDepartment1821" />
+        <AssociationConnector Association="DomainModels.RefDepartment340" />
+        <AssociationConnector Association="DomainModels.RefDesigGrade354" />
+        <AssociationConnector Association="DomainModels.RefDesignation346" />
+        <AssociationConnector Association="DomainModels.RefDesignation350" />
+        <AssociationConnector Association="DomainModels.RefEmployee612" />
+        <AssociationConnector Association="DomainModels.RefOperationsWorkplace611" />
+        <AssociationConnector Association="DomainModels.RefEmployee348" />
+        <AssociationConnector Association="DomainModels.RefEmployee345" />
+        <AssociationConnector Association="DomainModels.RefEmployee352" />
+        <AssociationConnector Association="DomainModels.RefWorkplace342" />
+        <AssociationConnector Association="DomainModels.RefEmployee349" />
+        <AssociationConnector Association="DomainModels.RefWorkplace351" />
+        <AssociationConnector Association="DomainModels.RefEmployee344" />
+        <AssociationConnector Association="DomainModels.RefEmpStatus353" />
+        <AssociationConnector Association="DomainModels.RefFleetPool136" />
+        <AssociationConnector Association="DomainModels.RefFleetPool1913" />
+        <AssociationConnector Association="DomainModels.RefOperation207" />
+        <AssociationConnector Association="DomainModels.RefRegion278" />
+        <AssociationConnector Association="DomainModels.RefFuelType330" />
+        <AssociationConnector Association="DomainModels.RefHireGroup308" />
+        <AssociationConnector Association="DomainModels.RefHireGroup360" />
+        <AssociationConnector Association="DomainModels.RefHireGroup95" />
+        <AssociationConnector Association="DomainModels.RefVehicleCategory361" />
+        <AssociationConnector Association="DomainModels.RefVehicleMake363" />
+        <AssociationConnector Association="DomainModels.RefVehicleModel362" />
+        <AssociationConnector Association="DomainModels.RefOperation2561" />
+        <AssociationConnector Association="DomainModels.RefOperation257" />
+        <AssociationConnector Association="DomainModels.RefOperationsWorkplace209" />
+        <AssociationConnector Association="DomainModels.RefWorkplace1811" />
+        <AssociationConnector Association="DomainModels.RefPhoneType1941" />
+        <AssociationConnector Association="DomainModels.RefworkLocation1942" />
+        <AssociationConnector Association="DomainModels.RefsubRegion1973" />
+        <AssociationConnector Association="DomainModels.RefTariffType364" />
+        <AssociationConnector Association="DomainModels.RefTransmissionType331" />
+        <AssociationConnector Association="DomainModels.FK_Vehicle_VehicleStatus" />
+        <AssociationConnector Association="DomainModels.RefVehicle509" />
+        <AssociationConnector Association="DomainModels.RefVehicle609" />
+        <AssociationConnector Association="DomainModels.RefVehicleCategory316" />
+        <AssociationConnector Association="DomainModels.RefVehicleMake311" />
+        <AssociationConnector Association="DomainModels.RefVehicleModel324" />
+        <AssociationConnector Association="DomainModels.RefVehicleCheckList608" />
+        <AssociationConnector Association="DomainModels.RefVehicleStatus321" />
+        <AssociationConnector Association="DomainModels.RefWorkLocation3031" />
+        <AssociationConnector Association="DomainModels.RefWorkplace2301" />
+        <AssociationConnector Association="DomainModels.RefWorkplaceType1751" />
+        <EntityTypeShape EntityType="DomainModels.HireGroupUpGrade" Width="1.5" PointX="19.75" PointY="68.25" />
+        <EntityTypeShape EntityType="DomainModels.InsuranceRt" Width="1.5" PointX="22" PointY="51.75" />
+        <EntityTypeShape EntityType="DomainModels.InsuranceRtMain" Width="1.5" PointX="19.75" PointY="58" />
+        <EntityTypeShape EntityType="DomainModels.InsuranceType" Width="1.5" PointX="19.75" PointY="63.125" />
+        <EntityTypeShape EntityType="DomainModels.JobType" Width="1.5" PointX="20.75" PointY="13" />
+        <EntityTypeShape EntityType="DomainModels.LicenseType" Width="1.5" PointX="0.75" PointY="21" />
+        <EntityTypeShape EntityType="DomainModels.MaintenanceType" Width="1.5" PointX="23" PointY="7" />
+        <EntityTypeShape EntityType="DomainModels.MaintenanceTypeGroup" Width="1.5" PointX="20.75" PointY="7.125" />
+        <EntityTypeShape EntityType="DomainModels.MarketingChannel" Width="1.5" PointX="18.75" PointY="12" />
+        <EntityTypeShape EntityType="DomainModels.MeasurementUnit" Width="1.5" PointX="10" PointY="72.5" />
+        <EntityTypeShape EntityType="DomainModels.OccupationType" Width="1.5" PointX="18.75" PointY="7" />
+        <EntityTypeShape EntityType="DomainModels.PricingStrategy" Width="1.5" PointX="3.75" PointY="9" />
+        <EntityTypeShape EntityType="DomainModels.ServiceRt" Width="1.5" PointX="21" PointY="1.125" />
+        <EntityTypeShape EntityType="DomainModels.ServiceRtMain" Width="1.5" PointX="18.75" PointY="1.375" />
+        <EntityTypeShape EntityType="DomainModels.ServiceType" Width="1.5" PointX="15.75" PointY="13.75" />
+        <EntityTypeShape EntityType="DomainModels.StandardRate" Width="1.5" PointX="22" PointY="58" />
+        <AssociationConnector Association="DomainModels.RefOccupationType292" />
+        <AssociationConnector Association="DomainModels.RefMarketingChannel298" />
+        <AssociationConnector Association="DomainModels.RefLicenseType418" />
+        <AssociationConnector Association="DomainModels.RefJobType339" />
+        <AssociationConnector Association="DomainModels.RefHireGroup613" />
+        <AssociationConnector Association="DomainModels.RefHireGroup615" />
+        <AssociationConnector Association="DomainModels.RefHireGroupDetail377" />
+        <AssociationConnector Association="DomainModels.RefHireGroupDetail404" />
+        <AssociationConnector Association="DomainModels.RefInsuranceRt391" />
+        <AssociationConnector Association="DomainModels.RefInsuranceRtMain390" />
+        <AssociationConnector Association="DomainModels.RefInsuranceType392" />
+        <AssociationConnector Association="DomainModels.RefMaintenanceTypeGroup313" />
+        <AssociationConnector Association="DomainModels.RefMeasurementUnit358" />
+        <AssociationConnector Association="DomainModels.RefPricingStrategy376" />
+        <AssociationConnector Association="DomainModels.RefServiceRt386" />
+        <AssociationConnector Association="DomainModels.RefServiceRtMain385" />
+        <AssociationConnector Association="DomainModels.RefStandardRt371" />
+        <EntityTypeShape EntityType="DomainModels.StandardRateMain" Width="1.5" PointX="19.75" PointY="85.625" />
+        <EntityTypeShape EntityType="DomainModels.VehicleDisposalInfo" Width="1.5" PointX="26.625" PointY="19.75" />
+        <EntityTypeShape EntityType="DomainModels.VehicleImageHireGroupDetail" Width="1.5" PointX="24.625" PointY="34.75" />
+        <EntityTypeShape EntityType="DomainModels.VehicleInsuranceInfo" Width="1.5" PointX="22" PointY="33.375" />
+        <EntityTypeShape EntityType="DomainModels.VehicleLeasedInfo" Width="1.5" PointX="23.625" PointY="24" />
+        <EntityTypeShape EntityType="DomainModels.VehicleMaintenanceTypeFrequency" Width="1.5" PointX="25.25" PointY="30.125" />
+        <EntityTypeShape EntityType="DomainModels.VehicleOtherDetail" Width="1.5" PointX="21.625" PointY="73.875" />
+        <EntityTypeShape EntityType="DomainModels.VehiclePurchaseInfo" Width="1.5" PointX="26.625" PointY="24.5" />
+        <AssociationConnector Association="DomainModels.RefBPMain284" />
+        <AssociationConnector Association="DomainModels.RefBPMain285" />
+        <AssociationConnector Association="DomainModels.RefBPMain286" />
+        <AssociationConnector Association="DomainModels.RefBPMain287" />
+        <AssociationConnector Association="DomainModels.RefHireGroupDetail627" />
+        <AssociationConnector Association="DomainModels.RefInsuranceType315" />
+        <AssociationConnector Association="DomainModels.RefMaintenanceType314" />
+        <AssociationConnector Association="DomainModels.RefStandardRtMain148" />
+        <AssociationConnector Association="DomainModels.RefVehicle210" />
+        <AssociationConnector Association="DomainModels.RefVehicle211" />
+        <AssociationConnector Association="DomainModels.RefVehicle212" />
+        <AssociationConnector Association="DomainModels.RefVehicle213" />
+        <AssociationConnector Association="DomainModels.RefVehicle220" />
+        <AssociationConnector Association="DomainModels.RefVehicle327" />
+        <AssociationConnector Association="DomainModels.RefVehicleImage626" />
+        <EntityTypeShape EntityType="DomainModels.BpRatingType" Width="1.5" PointX="3.375" PointY="23" />
+        <EntityTypeShape EntityType="DomainModels.BusinessPartnerRelationshipType" Width="1.5" PointX="7.375" PointY="50.625" />
+        <AssociationConnector Association="DomainModels.RefBPRatingType552" />
+        <AssociationConnector Association="DomainModels.RefBPRatingType6191" />
+        <AssociationConnector Association="DomainModels.RefBPRelationshipType127" />
+        <EntityTypeShape EntityType="DomainModels.ServiceItem" Width="1.5" PointX="18" PointY="73.5" />
+        <AssociationConnector Association="DomainModels.RefServiceItem383" />
+        <AssociationConnector Association="DomainModels.RefServiceType382" />
+        <EntityTypeShape EntityType="DomainModels.VehicleDepreciation" Width="1.5" PointX="21.625" PointY="80.5" />
+        <AssociationConnector Association="DomainModels.RefVehicle2251" />
+        <EntityTypeShape EntityType="DomainModels.Address" Width="1.5" PointX="24.625" PointY="39.375" />
+        <AssociationConnector Association="DomainModels.RefAddress" />
+        <AssociationConnector Association="DomainModels.RefAddressType1971" />
+        <AssociationConnector Association="DomainModels.RefArea1973" />
+        <AssociationConnector Association="DomainModels.RefBPMain241" />
+        <AssociationConnector Association="DomainModels.RefCity1973" />
+        <AssociationConnector Association="DomainModels.RefCountry1971" />
+        <AssociationConnector Association="DomainModels.RefEmployee343" />
+        <AssociationConnector Association="DomainModels.RefRegion332" />
+        <AssociationConnector Association="DomainModels.RefSubRegion333" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

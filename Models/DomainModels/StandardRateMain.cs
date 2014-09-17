@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
 namespace Cares.Models.DomainModels
 {
     /// <summary>
@@ -13,7 +11,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Standard Rate Main ID
         /// </summary>
-        [Key]
         public long StandardRtMainId { get; set; }
         
         /// <summary>
@@ -24,24 +21,20 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Standard Rate Main Code
         /// </summary>
-        [StringLength(100), Required]
         public string StandardRtMainCode { get; set; }
         
         /// <summary>
         /// Tariff Type Code
         /// </summary>
-        [StringLength(100), Required]
         public string TariffTypeCode { get; set; }
         
         /// <summary>
         ///Standard Rate Main Name
         /// </summary>
-        [StringLength(255)]
         public string StandardRtMainName { get; set; }
         /// <summary>
         /// Standard Rate Main Description
         /// </summary>
-        [StringLength(500)]
         public string StandardRtMainDescription { get; set; }
         
         /// <summary>
@@ -86,13 +79,11 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100), Required]
         public string RecLastUpdatedBy { get; set; }
         
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100), Required]
         public string RecCreatedBy { get; set; }
         
         /// <summary>

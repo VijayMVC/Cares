@@ -75,11 +75,11 @@
         /// <summary>
         /// Front Wheel Size
         /// </summary>
-        public float? FrontWheelSize { get; set; }
+        public double? FrontWheelSize { get; set; }
 
         /// <summary>
         /// Back Wheel Size
         /// </summary>
-        public float? BackWheelSize { get; set; }
+        public double? BackWheelSize { get; set; }
     }
 }

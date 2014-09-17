@@ -228,7 +228,6 @@ namespace Cares.Web.ModelMappers
         {
             return new DomainModels.VehicleOtherDetail
             {
-                VehicleOtherDetailId = source.VehicleOtherDetailId,
                 VehicleId = source.VehicleId,
                 NumberOfDoors = source.NumberOfDoors,
                 HorsePower_CC = source.HorsePower_CC,
@@ -255,7 +254,6 @@ namespace Cares.Web.ModelMappers
         {
             return new VehicleOtherDetail
             {
-                VehicleOtherDetailId = source.VehicleOtherDetailId,
                 VehicleId = source.VehicleId,
                 NumberOfDoors = source.NumberOfDoors,
                 HorsePower_CC = source.HorsePower_CC,
@@ -286,7 +284,6 @@ namespace Cares.Web.ModelMappers
         {
             return new DomainModels.VehiclePurchaseInfo
             {
-                VehiclePurchaseInfoId = source.VehiclePurchaseInfoId,
                 VehicleId = source.VehicleId,
                 PurchaseDate = source.PurchaseDate,
                 PurchaseDescription = source.PurchaseDescription,
@@ -306,7 +303,6 @@ namespace Cares.Web.ModelMappers
         {
             return new VehiclePurchaseInfo
             {
-                VehiclePurchaseInfoId = source.VehiclePurchaseInfoId,
                 VehicleId = source.VehicleId,
                 PurchaseDate = source.PurchaseDate,
                 PurchaseDescription = source.PurchaseDescription,
@@ -329,7 +325,6 @@ namespace Cares.Web.ModelMappers
         {
             return new DomainModels.VehicleLeasedInfo
             {
-                VehicleLeasedInfoId = source.VehicleLeasedInfoId,
                 VehicleId = source.VehicleId,
                 DownPayment = source.DownPayment,
                 LeasedStartDate = source.LeasedStartDate,
@@ -356,7 +351,6 @@ namespace Cares.Web.ModelMappers
         {
             return new VehicleLeasedInfo
             {
-                VehicleLeasedInfoId = source.VehicleLeasedInfoId,
                 VehicleId = source.VehicleId,
                 DownPayment = source.DownPayment,
                 LeasedStartDate = source.LeasedStartDate,
@@ -386,7 +380,6 @@ namespace Cares.Web.ModelMappers
         {
             return new DomainModels.VehicleInsuranceInfo
             {
-                VehicleInsuranceInfoId = source.VehicleInsuranceInfoId,
                 VehicleId = source.VehicleId,
                 InsuranceAgent = source.InsuranceAgent,
                 CoverageLimit = source.CoverageLimit,
@@ -408,7 +401,6 @@ namespace Cares.Web.ModelMappers
         {
             return new VehicleInsuranceInfo
             {
-                VehicleInsuranceInfoId = source.VehicleInsuranceInfoId,
                 VehicleId = source.VehicleId,
                 InsuranceAgent = source.InsuranceAgent,
                 CoverageLimit = source.CoverageLimit,
@@ -436,7 +428,6 @@ namespace Cares.Web.ModelMappers
         {
             return new DomainModels.VehicleDepreciation
             {
-                VehicleDepreciationId = source.VehicleDepreciationId,
                 VehicleId = source.VehicleId,
                 UsefulPeriodStartDate = source.UsefulPeriodStartDate,
                 FirstMonthDepAmount = source.FirstMonthDepAmount,
@@ -456,7 +447,6 @@ namespace Cares.Web.ModelMappers
         {
             return new VehicleDepreciation
             {
-                VehicleDepreciationId = source.VehicleDepreciationId,
                 VehicleId = source.VehicleId,
                 UsefulPeriodStartDate = source.UsefulPeriodStartDate,
                 FirstMonthDepAmount = source.FirstMonthDepAmount,
@@ -480,7 +470,6 @@ namespace Cares.Web.ModelMappers
         {
             return new DomainModels.VehicleDisposalInfo
             {
-                VehicleDisposalInfoId = source.VehicleDisposalInfoId,
                 VehicleId = source.VehicleId,
                 SaleDate = source.SaleDate,
                 SalePrice = source.SalePrice,
@@ -498,7 +487,6 @@ namespace Cares.Web.ModelMappers
         {
             return new VehicleDisposalInfo
             {
-                VehicleDisposalInfoId = source.VehicleDisposalInfoId,
                 VehicleId = source.VehicleId,
                 SaleDate = source.SaleDate,
                 SalePrice = source.SalePrice,

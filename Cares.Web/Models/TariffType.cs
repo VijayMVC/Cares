@@ -47,7 +47,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Grace Period
         /// </summary>
-        public float GracePeriod { get; set; }
+        public double GracePeriod { get; set; }
         /// <summary>
         /// Effective Date
         /// </summary>

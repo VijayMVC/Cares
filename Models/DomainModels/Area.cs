@@ -1,5 +1,6 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+
 namespace Cares.Models.DomainModels
 {
     /// <summary>
@@ -15,18 +16,14 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Area Code
         /// </summary>
-        [Required]
-        [StringLength(100)]
         public string AreaCode { get; set; }
         /// <summary>
         /// Area Name
         /// </summary>
-        [StringLength(255)]
         public string AreaName { get; set; }
         /// <summary>
         /// Area Description
         /// </summary>
-        [StringLength(500)]
         public string AreaDescription { get; set; }
         /// <summary>
         /// City ID
@@ -35,7 +32,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Row Version
         /// </summary>
-        [Required]
         public long RowVersion { get; set; }
         /// <summary>
         /// Is Active
@@ -60,7 +56,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100)]
         public string RecCreatedBy { get; set; }
         /// <summary>
         /// Record Last Updated Date
@@ -69,7 +64,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100)]
         public string RecLastUpdatedBy { get; set; }
         /// <summary>
         /// User Domain Key
@@ -82,6 +76,12 @@ namespace Cares.Models.DomainModels
         /// City
         /// </summary>
         public virtual City City { get; set; }
+
+        /// <summary>
+        /// Addresses
+        /// </summary>
+        public virtual ICollection<Address> Addresses { get; set; }
+
         #endregion
     }
 }

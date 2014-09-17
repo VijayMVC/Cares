@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cares.Models.DomainModels
 {
@@ -25,19 +23,16 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Plate Number
         /// </summary>
-        [StringLength(50)]
         public string PlateNumber { get; set; }
 
         /// <summary>
         /// Vehicle Code
         /// </summary>
-        [StringLength(100), Required]
         public string VehicleCode { get; set; }
         
         /// <summary>
         /// Vehicle Name
         /// </summary>
-        [StringLength(255)]
         public string VehicleName { get; set; }
 
         /// <summary>
@@ -48,25 +43,21 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// HireGroup ID
         /// </summary>
-        [ForeignKey("HireGroup")]
         public long? HireGroupId { get; set; }
 
         /// <summary>
         /// FleetPool ID
         /// </summary>
-        [ForeignKey("FleetPool")]
         public long? FleetPoolId { get; set; }
 
         /// <summary>
         /// Color
         /// </summary>
-        [StringLength(50), Required]
         public string Color { get; set; }
 
         /// <summary>
         /// Operations WorkPlace ID
         /// </summary>
-        [ForeignKey("OperationsWorkPlace")]
         public long? OperationsWorkPlaceId { get; set; }
 
         /// <summary>
@@ -97,49 +88,41 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Vehicle Make ID
         /// </summary>
-        [ForeignKey("VehicleMake")]
         public short VehicleMakeId { get; set; }
 
         /// <summary>
         /// Vehicle Category ID
         /// </summary>
-        [ForeignKey("VehicleCategory")]
         public short VehicleCategoryId { get; set; }
 
         /// <summary>
         /// Vehicle Model ID
         /// </summary>
-        [ForeignKey("VehicleModel")]
         public short VehicleModelId { get; set; }
 
         /// <summary>
         /// Vehicle Status ID
         /// </summary>
-        [ForeignKey("VehicleStatus")]
         public short VehicleStatusId { get; set; }
 
         /// <summary>
         /// Fuel Type ID
         /// </summary>
-        [ForeignKey("FuelType")]
         public short FuelTypeId { get; set; }
 
         /// <summary>
         /// Transmission Type ID
         /// </summary>
-        [ForeignKey("TransmissionType")]
         public short TransmissionTypeId { get; set; }
 
         /// <summary>
         /// Vehicle Condition
         /// </summary>
-        [StringLength(255)]
         public string VehicleCondition { get; set; }
 
         /// <summary>
         /// Vehicle Condition Description
         /// </summary>
-        [StringLength(1500)]
         public string VehicleConditionDescription { get; set; }
 
         /// <summary>
@@ -180,13 +163,11 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100), Required]
         public string RecLastUpdatedBy { get; set; }
         
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100), Required]
         public string RecCreatedBy { get; set; }
         
         /// <summary>

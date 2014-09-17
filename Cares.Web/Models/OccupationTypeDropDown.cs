@@ -9,7 +9,7 @@
         /// <summary>
         /// Occupation Type ID
         /// </summary>
-        public int OccupationTypeId { get; set; }
+        public short OccupationTypeId { get; set; }
         /// <summary>
         /// Occupation Code and Name
         /// </summary>        

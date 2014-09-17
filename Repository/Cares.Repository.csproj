@@ -68,11 +68,14 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -116,42 +119,86 @@
   <ItemGroup>
     <Compile Include="BaseRepository\BaseDbContext.cs" />
     <Compile Include="BaseRepository\BaseRespository.cs" />
+    <Compile Include="BaseRepository\Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="BaseRepository\Model.Views.cs">
+      <DependentUpon>Model.Views.tt</DependentUpon>
+      <SubType>Code</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Include="BaseRepository\PropertyReference.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AddressRepository.cs" />
+    <Compile Include="Repositories\AddressTypeRepository.cs" />
     <Compile Include="Repositories\ApplicationUserRepository.cs" />
-    <Compile Include="Repositories\BusinessPartnerRelationshipTypeRepository.cs" />
-    <Compile Include="Repositories\BusinessPartnerMarketingChannelRepository.cs" />
-    <Compile Include="Repositories\BusinessPartnerRelationshipRepository.cs" />
-    <Compile Include="Repositories\CityRepository.cs" />
+    <Compile Include="Repositories\AreaRepository.cs" />
     <Compile Include="Repositories\BpRatingTypeRepository.cs" />
     <Compile Include="Repositories\BusinessLegalStatusRepository.cs" />
-    <Compile Include="Repositories\BusinessPartnerInTypeRepository.cs" />
-    <Compile Include="Repositories\BusinessPartnerSubTypeRepository.cs" />
-    <Compile Include="Repositories\BusinessPartnerIndividualRepository.cs" />
     <Compile Include="Repositories\BusinessPartnerCompanyRepository.cs" />
-    <Compile Include="Repositories\AddressTypeRepository.cs" />
-    <Compile Include="Repositories\AreaRepository.cs" />
+    <Compile Include="Repositories\BusinessPartnerIndividualRepository.cs" />
+    <Compile Include="Repositories\BusinessPartnerInTypeRepository.cs" />
+    <Compile Include="Repositories\BusinessPartnerMarketingChannelRepository.cs" />
+    <Compile Include="Repositories\BusinessPartnerRelationshipRepository.cs" />
+    <Compile Include="Repositories\BusinessPartnerRelationshipTypeRepository.cs" />
+    <Compile Include="Repositories\BusinessPartnerRepository.cs" />
+    <Compile Include="Repositories\BusinessPartnerSubTypeRepository.cs" />
+    <Compile Include="Repositories\BusinessSegmentRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="Repositories\CityRepository.cs" />
+    <Compile Include="Repositories\CompanyRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Repositories\CountryRepository.cs" />
+    <Compile Include="Repositories\DepartmentRepository.cs" />
     <Compile Include="Repositories\DesigGradeRepository.cs" />
     <Compile Include="Repositories\DesignationRepository.cs" />
     <Compile Include="Repositories\EmpAuthOperationsWorkplaceRepository.cs" />
     <Compile Include="Repositories\EmpDocsInfoRepository.cs" />
     <Compile Include="Repositories\EmpJobInfoRepository.cs" />
     <Compile Include="Repositories\EmpJobProgRepository.cs" />
+    <Compile Include="Repositories\EmployeeRepository.cs" />
     <Compile Include="Repositories\EmpStatusRepository.cs" />
+    <Compile Include="Repositories\FleetPoolRepository.cs" />
     <Compile Include="Repositories\FuelTypeRepository.cs" />
+    <Compile Include="Repositories\HireGroupDetailRepository.cs" />
+    <Compile Include="Repositories\HireGroupRepository.cs" />
+    <Compile Include="Repositories\HireGroupUpGradeRepository.cs" />
     <Compile Include="Repositories\InsuranceRtMainRepository.cs" />
     <Compile Include="Repositories\InsuranceRtRepository.cs" />
     <Compile Include="Repositories\InsuranceTypeRepository.cs" />
     <Compile Include="Repositories\JobTypeRepository.cs" />
     <Compile Include="Repositories\LicenseTypeRepository.cs" />
     <Compile Include="Repositories\MaintenanceTypeRepository.cs" />
-    <Compile Include="Repositories\ServiceRtRepository.cs" />
-    <Compile Include="Repositories\ServiceRtMainRepository.cs" />
+    <Compile Include="Repositories\MarketingChannelRepository.cs" />
+    <Compile Include="Repositories\MeasurementUnitRepository.cs" />
+    <Compile Include="Repositories\MenuRightRepository.cs" />
+    <Compile Include="Repositories\OccupationTypeRepository.cs" />
+    <Compile Include="Repositories\OperationRepository.cs" />
+    <Compile Include="Repositories\OperationsWorkPlaceRepository.cs" />
+    <Compile Include="Repositories\OrgGroupRepository.cs" />
+    <Compile Include="Repositories\PaymentTermRepository.cs" />
+    <Compile Include="Repositories\PhoneRepository.cs" />
+    <Compile Include="Repositories\PhoneTypeRepository.cs" />
+    <Compile Include="Repositories\PricingStrategyRepository.cs" />
+    <Compile Include="Repositories\ProductRepository.cs" />
+    <Compile Include="Repositories\RegionRepository.cs" />
     <Compile Include="Repositories\ServiceItemRepository.cs" />
+    <Compile Include="Repositories\ServiceRtMainRepository.cs" />
+    <Compile Include="Repositories\ServiceRtRepository.cs" />
     <Compile Include="Repositories\ServiceTypeRepository.cs" />
+    <Compile Include="Repositories\StandardRateMainRepository.cs" />
+    <Compile Include="Repositories\StandardRateRepository.cs" />
+    <Compile Include="Repositories\SubRegionRepository.cs" />
+    <Compile Include="Repositories\TariffTypeRepository.cs" />
     <Compile Include="Repositories\TransmissionTypeRepository.cs" />
+    <Compile Include="Repositories\VehicleCategoryRepository.cs" />
     <Compile Include="Repositories\VehicleCheckListItemRepository.cs" />
     <Compile Include="Repositories\VehicleCheckListRepository.cs" />
     <Compile Include="Repositories\VehicleDepreciationRepository.cs" />
@@ -159,40 +206,11 @@
     <Compile Include="Repositories\VehicleInsuranceInfoRepository.cs" />
     <Compile Include="Repositories\VehicleLeasedInfoRepository.cs" />
     <Compile Include="Repositories\VehicleMaintenanceTypeFrequencyRepository.cs" />
+    <Compile Include="Repositories\VehicleMakeRepository.cs" />
+    <Compile Include="Repositories\VehicleModelRepository.cs" />
     <Compile Include="Repositories\VehicleOtherDetailRepository.cs" />
     <Compile Include="Repositories\VehiclePurchaseInfoRepository.cs" />
     <Compile Include="Repositories\VehicleRepository.cs" />
-    <Compile Include="Repositories\HireGroupUpGradeRepository.cs" />
-    <Compile Include="Repositories\OperationsWorkPlaceRepository.cs" />
-    <Compile Include="Repositories\MarketingChannelRepository.cs" />
-    <Compile Include="Repositories\PhoneRepository.cs" />
-    <Compile Include="Repositories\SubRegionRepository.cs" />
-    <Compile Include="Repositories\PhoneTypeRepository.cs" />
-    <Compile Include="Repositories\BusinessSegmentRepository.cs" />
-    <Compile Include="Repositories\CategoryRepository.cs" />
-    <Compile Include="Repositories\CompanyRepository.cs" />
-    <Compile Include="Repositories\FleetPoolRepository.cs" />
-    <Compile Include="Repositories\CountryRepository.cs" />
-    <Compile Include="Repositories\HireGroupDetailRepository.cs" />
-    <Compile Include="Repositories\HireGroupRepository.cs" />
-    <Compile Include="Repositories\MeasurementUnitRepository.cs" />
-    <Compile Include="Repositories\MenuRightRepository.cs" />
-    <Compile Include="Repositories\DepartmentRepository.cs" />
-    <Compile Include="Repositories\EmployeeRepository.cs" />
-    <Compile Include="Repositories\OccupationTypeRepository.cs" />
-    <Compile Include="Repositories\OperationRepository.cs" />
-    <Compile Include="Repositories\OrgGroupRepository.cs" />
-    <Compile Include="Repositories\PaymentTermRepository.cs" />
-    <Compile Include="Repositories\PricingStrategyRepository.cs" />
-    <Compile Include="Repositories\ProductRepository.cs" />
-    <Compile Include="Repositories\StandardRateMainRepository.cs" />
-    <Compile Include="Repositories\StandardRateRepository.cs" />
-    <Compile Include="Repositories\TariffTypeRepository.cs" />
-    <Compile Include="Repositories\RegionRepository.cs" />
-    <Compile Include="Repositories\BusinessPartnerRepository.cs" />
-    <Compile Include="Repositories\VehicleCategoryRepository.cs" />
-    <Compile Include="Repositories\VehicleMakeRepository.cs" />
-    <Compile Include="Repositories\VehicleModelRepository.cs" />
     <Compile Include="Repositories\VehicleStatusRepository.cs" />
     <Compile Include="Repositories\WorkLocationRepository.cs" />
     <Compile Include="Repositories\WorkplaceRepository.cs" />
@@ -201,6 +219,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="BaseRepository\Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="BaseRepository\Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
+    </None>
+    <None Include="BaseRepository\Model.Views.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model.Views.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -212,6 +241,9 @@
       <Project>{81067904-2176-4648-87AB-014B0D76B85E}</Project>
       <Name>Cares.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

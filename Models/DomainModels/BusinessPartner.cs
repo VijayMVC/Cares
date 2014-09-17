@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cares.Models.DomainModels
 {
@@ -20,148 +18,121 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Business Partner Code
         /// </summary>
-        [Required]
-        [StringLength(100)]
         public string BusinessPartnerCode { get; set; }
         
         /// <summary>
         /// Business Partner Name
         /// </summary>
-        [StringLength(255)]
         public string BusinessPartnerName { get; set; }
         
         /// <summary>
         /// Business Partnere descritpion
         /// </summary>
-        [StringLength(500)]
         public string BusinessPartnerDesciption { get; set; }
         
         /// <summary>
         /// System Guarantor Check
         /// </summary>
-        [Required]
         public bool IsSystemGuarantor { get; set; }
 
         /// <summary>
         /// Non System Guarantor
         /// </summary>
-        [StringLength(500)]
         public string NonSystemGuarantor { get; set; }
 
         /// <summary>
         /// Individual Check
         /// </summary>
-        [Required]
         public bool IsIndividual { get; set; }
 
         /// <summary>
         /// Row Version
         /// </summary>
-        [Required]
         public long RowVersion { get; set; }
 
         /// <summary>
         /// Is Active
         /// </summary>
-        [Required]
         public bool IsActive { get; set; }
 
         /// <summary>
         /// Is Deleted
         /// </summary>
-        [Required]
         public bool IsDeleted { get; set; }
 
         /// <summary>
         /// Is Private
         /// </summary>
-        [Required]
         public bool IsPrivate { get; set; }
 
         /// <summary>
         /// Is Readonly
         /// </summary>
-        [Required]
         public bool IsReadOnly { get; set; }
 
         /// <summary>
         /// Record Created Date
         /// </summary>
-        [Required]
         public DateTime RecCreatedDt { get; set; }
 
         /// <summary>
         /// Record Created By
         /// </summary>
-        [Required]
-        [StringLength(100)]
         public string RecCreatedBy { get; set; }
 
         /// <summary>
         /// Record Last Updated Date
         /// </summary>
-        [Required]
         public DateTime RecLastUpdatedDt { get; set; }
 
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [Required]
-        [StringLength(100)]
         public String RecLastUpdatedBy { get; set; }
 
         /// <summary>
         /// Business Partner Email Address
         /// </summary>
-        [StringLength(100)]
         public string BusinessPartnerEmailAddress { get; set; }
 
         /// <summary>
         /// Business Partner Is Valid
         /// </summary>
-        [Required]
         public bool BusinessPartnerIsValid { get; set; }
 
         /// <summary>
         /// User Domain Key
         /// </summary>
-        [Required]
         public long UserDomainKey { get; set; }
 
         /// <summary>
         /// Company Id
         /// </summary>
-        [ForeignKey("Company"), Required]
         public long CompanyId { get; set; }
 
         /// <summary>
         /// System Guarantor ID
         /// </summary>
-        [ForeignKey("SystemGuarantor")]
         public long? SystemGuarantorId { get; set; }
 
         /// <summary>
         /// Business Legal Status Id
         /// </summary>
-        [ForeignKey("BusinessLegalStatus")]
         public short? BusinessLegalStatusId { get; set; }
 
         /// <summary>
         /// Dealing Employee Id
         /// </summary>
-        [ForeignKey("DealingEmployee")]
         public long? DealingEmployeeId { get; set; }
 
         /// <summary>
         /// Payment Term Id
         /// </summary>
-        [ForeignKey("PaymentTerm"), Required]
         public short PaymentTermId { get; set; }
 
         /// <summary>
         /// Business Partner Rating Type Id
         /// </summary>
-        [ForeignKey("BPRatingType")]
         public short? BPRatingTypeId { get; set; }
 
         #endregion
@@ -202,6 +173,11 @@ namespace Cares.Models.DomainModels
         /// Business Partnet Individual Info
         /// </summary>
         public virtual BusinessPartnerIndividual BusinessPartnerIndividual { get; set; }
+
+        /// <summary>
+        /// Business Partnet Individuals
+        /// </summary>
+        public virtual ICollection<BusinessPartnerIndividual> BusinessPartnerIndividuals { get; set; }
         
         /// <summary>
         /// Business Partner Company Info
@@ -229,6 +205,31 @@ namespace Cares.Models.DomainModels
         /// Business Partner RelationshipItems list
         /// </summary>
         public virtual ICollection<BusinessPartnerRelationship> BusinessPartnerRelationshipItemList { get; set; }
+
+        /// <summary>
+        /// Secondary Business Partner Relationships
+        /// </summary>
+        public virtual ICollection<BusinessPartnerRelationship> SecondaryBusinessPartnerRelationships { get; set; }
+
+        /// <summary>
+        /// Vehicle Purchase Infos
+        /// </summary>
+        public virtual ICollection<VehiclePurchaseInfo> VehiclePurchaseInfos { get; set; }
+
+        /// <summary>
+        /// Vehicle Insurance Infos
+        /// </summary>
+        public virtual ICollection<VehicleInsuranceInfo> VehicleInsuranceInfos { get; set; }
+
+        /// <summary>
+        /// Vehicle Leased Infos
+        /// </summary>
+        public virtual ICollection<VehicleLeasedInfo> VehicleLeasedInfos { get; set; }
+
+        /// <summary>
+        /// Vehicle Disposal Infos
+        /// </summary>
+        public virtual ICollection<VehicleDisposalInfo> VehicleDisposalInfos { get; set; }
 
         #endregion
     }

@@ -1,6 +1,5 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 
 namespace Cares.Models.DomainModels
 {
@@ -17,18 +16,14 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// City Code
         /// </summary>
-        [Required]
-        [StringLength(100)]
         public string CityCode { get; set; }
         /// <summary>
         /// City Name
         /// </summary>
-        [StringLength(255)]
         public string CityName { get; set; }
         /// <summary>
         /// City Description
         /// </summary>
-        [StringLength(500)]
         public string CityDescription { get; set; }
         /// <summary>
         /// Region ID
@@ -41,12 +36,10 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Country ID
         /// </summary>
-        [ForeignKey("Country"), Required]
         public short CountryId { get; set; }
         /// <summary>
         /// Row Version
         /// </summary>
-        [Required]
         public long RowVersion { get; set; }
         /// <summary>
         /// Is Active
@@ -71,7 +64,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100)]
         public string RecCreatedBy { get; set; }
         /// <summary>
         /// Record Last Updated Date
@@ -80,7 +72,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100)]
         public string RecLastUpdatedBy { get; set; }
         /// <summary>
         /// User Domain Key
@@ -101,6 +92,17 @@ namespace Cares.Models.DomainModels
         /// Country
         /// </summary>
         public virtual Country Country { get; set; }
+
+        /// <summary>
+        /// Areas
+        /// </summary>
+        public virtual ICollection<Area> Areas { get; set; }
+
+        /// <summary>
+        /// Addresses
+        /// </summary>
+        public virtual ICollection<Address> Addresses { get; set; }
+
         #endregion
     }
 }

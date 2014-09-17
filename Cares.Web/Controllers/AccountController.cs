@@ -51,9 +51,9 @@ namespace IdentitySample.Controllers
 
         #region Constructor
 
-        public AccountController(IMenuRightsService menuRightService)
+        public AccountController()
         {
-            this.menuRightService = menuRightService;
+            //this.menuRightService = menuRightService;
         }
 
         #endregion

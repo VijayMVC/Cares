@@ -81,7 +81,7 @@ namespace Cares.Implementation.Services
                     requestOrgGroup.RowVersion = dbVersion.RowVersion + 1;
                     requestOrgGroup.RecCreatedBy = dbVersion.RecCreatedBy;
                     requestOrgGroup.RecCreatedDt = dbVersion.RecCreatedDt;
-                    requestOrgGroup.UserDomainKey = dbVersion.UserDomainKey;
+                    //requestOrgGroup.UserDomainKey = dbVersion.UserDomainKey;
 
                 }
                 else
@@ -90,7 +90,7 @@ namespace Cares.Implementation.Services
                     requestOrgGroup.RecLastUpdatedBy = organizationGroupRepository.LoggedInUserIdentity;
                     requestOrgGroup.RecCreatedDt = requestOrgGroup.RecLastUpdatedDt = DateTime.Now;
                     requestOrgGroup.RowVersion = 0;
-                    requestOrgGroup.UserDomainKey = 1;
+                  //  requestOrgGroup.UserDomainKey = 1;
 
                 }
                 organizationGroupRepository.Update(requestOrgGroup);

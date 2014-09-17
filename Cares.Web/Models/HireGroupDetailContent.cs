@@ -50,11 +50,11 @@ namespace Cares.Web.Models
         /// <summary>
         /// Excess Mileage Charge
         /// </summary>
-        public float? ExcessMileageCharge { get; set; }
+        public double? ExcessMileageCharge { get; set; }
         /// <summary>
         /// Standard Rate
         /// </summary>
-        public float? StandardRt { get; set; }
+        public double? StandardRt { get; set; }
         /// <summary>
         /// Start Date
         /// </summary>

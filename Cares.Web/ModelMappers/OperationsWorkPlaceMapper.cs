@@ -72,7 +72,7 @@ namespace Cares.Web.ModelMappers
                 OperationsWorkPlaceId = source.OperationsWorkPlaceId,
                 LocationCode = source.LocationCode,
                 OperationId = source.OperationId,
-                OperationName = source.OperationId != null ? source.Operation.OperationName : "",
+                OperationName = source.Operation.OperationName,
                 CostCenter = source.CostCenter,
                 FleetPoolId = source.FleetPoolId,
                 FleetPoolName = source.FleetPoolId != null ? source.FleetPool.FleetPoolName : ""

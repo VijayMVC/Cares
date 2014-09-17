@@ -1,6 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cares.Models.DomainModels
 {
@@ -14,7 +12,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Standard Rate ID
         /// </summary>
-        [Key]
         public long StandardRtId { get; set; }
         
         /// <summary>
@@ -25,7 +22,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Standard Rate Main ID
         /// </summary>
-        [ForeignKey("StandardRateMain")]
         public long StandardRtMainId { get; set; }
         /// <summary>
         /// Allowed Mileage
@@ -34,11 +30,11 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Excess Mileage Charge
         /// </summary>
-        public float ExcessMileageChrg { get; set; }
+        public double ExcessMileageChrg { get; set; }
         /// <summary>
         /// Standard Rate
         /// </summary>
-        public float StandardRt { get; set; }
+        public double StandardRt { get; set; }
         /// <summary>
         /// Revision Number
         /// </summary>
@@ -70,7 +66,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Hire Group Detail ID
         /// </summary>
-        [ForeignKey("HireGroupDetail")]
         public long HireGroupDetailId { get; set; }
         /// <summary>
         /// Standard Rate End Date
@@ -84,20 +79,22 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100), Required]
         public string RecLastUpdatedBy { get; set; }
 
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100), Required]
         public string RecCreatedBy { get; set; }
 
         /// <summary>
         /// Child Standard Rate ID
         /// </summary>
-        [ForeignKey("ChildStandardRate")]
         public long? ChildStandardRtId { get; set; }
+
+        /// <summary>
+        /// Row Version
+        /// </summary>
+        public long RowVersion { get; set; }
 
         #endregion
         
@@ -111,7 +108,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Standard Rate Main
         /// </summary>
-        public virtual StandardRateMain StandardRateMain { get; set; }
+        public virtual StandardRateMain StandardRtMain { get; set; }
 
         /// <summary>
         /// Child Standard Rate

@@ -1,5 +1,6 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+
 namespace Cares.Models.DomainModels
 {
     /// <summary>
@@ -15,18 +16,14 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Sub Region Code
         /// </summary>
-        [Required]
-        [StringLength(255)]
         public string SubRegionCode { get; set; }
         /// <summary>
         /// Sub Region Name
         /// </summary>
-        [StringLength(255)]
         public string SubRegionName { get; set; }
         /// <summary>
         /// Sub Region Description
         /// </summary>
-        [StringLength(500)]
         public string SubRegionDescription { get; set; }
         /// <summary>
         /// Region ID
@@ -35,7 +32,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Row Version
         /// </summary>
-        [Required]
         public long RowVersion { get; set; }
         /// <summary>
         /// Is Active
@@ -60,7 +56,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100)]
         public string RecCreatedBy { get; set; }
         /// <summary>
         /// Record Last Updated Date
@@ -69,7 +64,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100)]
         public string RecLastUpdatedBy { get; set; }
         /// <summary>
         /// User Domain Key
@@ -78,10 +72,23 @@ namespace Cares.Models.DomainModels
         #endregion
 
         #region Reference Properties
+        
         /// <summary>
         /// Region
         /// </summary>
         public virtual Region Region { get; set; }
+
+        /// <summary>
+        /// Addresses
+        /// </summary>
+        public virtual ICollection<Address> Addresses { get; set; }
+
+        /// <summary>
+        /// Cities
+        /// </summary>
+        public virtual ICollection<City> Cities { get; set; }
+
+
         #endregion
     }
 }

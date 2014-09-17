@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cares.Models.DomainModels
 {
@@ -15,22 +13,18 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Country ID
         /// </summary>
-        [ForeignKey("Country")]
-        public short? CountryId { get; set; }
+        public short CountryId { get; set; }
         /// <summary>
         /// Region Code
         /// </summary>
-        [StringLength(100), Required]
         public string RegionCode { get; set; }
         /// <summary>
         /// Region Name
         /// </summary>
-        [StringLength(255)]
         public string RegionName { get; set; }
         /// <summary>
         /// Region Description
         /// </summary>
-        [StringLength(500)]
         public string RegionDescription { get; set; }
         /// <summary>
         /// Is Active
@@ -55,7 +49,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100), Required]
         public string RecCreatedBy { get; set; }
         /// <summary>
         /// Record Last Updated Date
@@ -64,7 +57,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100), Required]
         public string RecLastUpdatedBy { get; set; }
         /// <summary>
         /// User Domain Key
@@ -93,6 +85,16 @@ namespace Cares.Models.DomainModels
         /// City
         /// </summary>
         public virtual ICollection<City> Cities { get; set; }
+
+        /// <summary>
+        /// Addresses
+        /// </summary>
+        public virtual ICollection<Address> Addresses { get; set; }
+
+        /// <summary>
+        /// Sub Regions
+        /// </summary>
+        public virtual ICollection<SubRegion> SubRegions { get; set; }
 
         #endregion
     }

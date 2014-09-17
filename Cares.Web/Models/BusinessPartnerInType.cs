@@ -1,6 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.Drawing.Printing;
 
 namespace Cares.Web.Models
 {
@@ -33,7 +31,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Business Partner Sub Type Id
         /// </summary>
-        public int BusinessPartnerSubTypeId { get; set; }
+        public short BusinessPartnerSubTypeId { get; set; }
         /// <summary>
         /// Business Partner Sub Type Name
         /// </summary>

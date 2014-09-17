@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Cares.Models.DomainModels
 {
@@ -17,17 +16,18 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// PaymentTerm Code
         /// </summary>
-        [StringLength(100), Required]
         public string PaymentTermCode { get; set; }
         /// <summary>
         /// PaymentTerm Name
         /// </summary>
-        [StringLength(255)]
         public string PaymentTermName { get; set; }
+        /// <summary>
+        /// PaymentTerm Key
+        /// </summary>
+        public short? PaymentTermKey { get; set; }
         /// <summary>
         /// PaymentTerm Description
         /// </summary>
-        [StringLength(500)]
         public string PaymentTermDescription { get; set; }
         /// <summary>
         /// Is Active
@@ -52,7 +52,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100), Required]
         public string RecCreatedBy { get; set; }
         /// <summary>
         /// Record Last Updated Date
@@ -61,12 +60,16 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100), Required]
         public string RecLastUpdatedBy { get; set; }
         /// <summary>
         /// User Domain Key
         /// </summary>
         public long UserDomainKey { get; set; }
+
+        /// <summary>
+        /// Row Version
+        /// </summary>
+        public long RowVersion { get; set; }
 
         #endregion
 

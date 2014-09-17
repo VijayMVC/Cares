@@ -25,11 +25,11 @@
         /// <summary>
         /// Phone Type ID
         /// </summary>
-        public int PhoneTypeId { get; set; }
+        public short PhoneTypeId { get; set; }
         /// <summary>
         /// Phone Type Key
         /// </summary>
-        public int? PhoneTypeKey { get; set; }
+        public short? PhoneTypeKey { get; set; }
         /// <summary>
         /// Phone Type Name
         /// </summary>

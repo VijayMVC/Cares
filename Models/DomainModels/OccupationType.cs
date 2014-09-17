@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Cares.Models.DomainModels
 {
@@ -13,21 +12,18 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Occupation Type Id
         /// </summary>
-        public int OccupationTypeId { get; set; }
+        public short OccupationTypeId { get; set; }
         /// <summary>
         /// Occupation Type Code
         /// </summary>
-        [StringLength(100), Required]
         public string OccupationTypeCode { get; set; }
         /// <summary>
         /// Occupation Type Name
         /// </summary>
-        [StringLength(255)]
         public string OccupationTypeName { get; set; }
         /// <summary>
         /// Occupation Type Description
         /// </summary>
-        [StringLength(500)]
         public string OccupationTypeDescription { get; set; }
         /// <summary>
         /// Row Version
@@ -56,7 +52,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100), Required]
         public string RecCreatedBy { get; set; }
         /// <summary>
         /// Record Last Updated Date
@@ -65,7 +60,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100), Required]
         public string RecLastUpdatedBy { get; set; }
         /// <summary>
         /// User Domain Key

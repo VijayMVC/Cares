@@ -8,7 +8,7 @@
         /// <summary>
         /// Phone Type ID
         /// </summary>
-        public int PhoneTypeId { get; set; }
+        public short PhoneTypeId { get; set; }
         /// <summary>
         /// PhoneType Code and Name
         /// </summary>

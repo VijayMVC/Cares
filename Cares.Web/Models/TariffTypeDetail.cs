@@ -18,7 +18,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Measurement Unit Id
         /// </summary>
-        public int? MeasurementUnitId { get; set; }
+        public short? MeasurementUnitId { get; set; }
         /// <summary>
         /// Company Id
         /// </summary>
@@ -54,7 +54,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Grace Period
         /// </summary>
-        public float GracePeriod { get; set; }
+        public double GracePeriod { get; set; }
         /// <summary>
         /// Effective Date
         /// </summary>

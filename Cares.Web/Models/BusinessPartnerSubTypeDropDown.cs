@@ -9,7 +9,7 @@
         /// <summary>
         /// BusinessPartner SubType ID
         /// </summary>
-        public int BusinessPartnerSubTypeId { get; set; }
+        public short BusinessPartnerSubTypeId { get; set; }
         /// <summary>
         /// BusinessPartner SubType Name
         /// </summary>

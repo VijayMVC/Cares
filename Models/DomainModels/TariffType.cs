@@ -1,6 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 
 namespace Cares.Models.DomainModels
@@ -13,7 +11,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Tariff Type Id
         /// </summary>
-        [Key]
         public long TariffTypeId { get; set; }
         /// <summary>
         /// User Domain Key
@@ -26,27 +23,23 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Measurement Unit Id
         /// </summary>
-        public int? MeasurementUnitId { get; set; }
+        public short? MeasurementUnitId { get; set; }
         
         /// <summary>
         /// Tariff Type Code
         /// </summary>
-        [StringLength(100), Required]
         public string TariffTypeCode { get; set; }
         /// <summary>
         /// Tariff Type Name
         /// </summary>
-        [StringLength(255)]
         public string TariffTypeName { get; set; }
         /// <summary>
         /// Tariff Type Description
         /// </summary>
-        [StringLength(500)]
         public string TariffTypeDescription { get; set; }
         /// <summary>
         /// Pricing Strategy Id
         /// </summary>
-        [ForeignKey("PricingStrategy")]
         public int PricingStrategyId { get; set; }
         /// <summary>
         /// Duration From
@@ -59,7 +52,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Grace Period
         /// </summary>
-        public float GracePeriod { get; set; }
+        public double GracePeriod { get; set; }
         /// <summary>
         /// Effective Date
         /// </summary>
@@ -75,7 +68,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Child Tariff Type Id
         /// </summary>
-        [ForeignKey("ChildtariffType")]
         public long? ChildTariffTypeId { get; set; }
         /// <summary>
         /// Record Created Date
@@ -88,12 +80,10 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100), Required]
         public string RecLastUpdatedBy { get; set; }
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100), Required]
         public string RecCreatedBy { get; set; }
         /// <summary>
         /// Is Active
@@ -132,7 +122,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Child tariff Type
         /// </summary>
-        public virtual TariffType ChildtariffType { get; set; }
+        public virtual TariffType ChildTariffType { get; set; }
 
         #endregion
     }

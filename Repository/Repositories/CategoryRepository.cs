@@ -30,7 +30,7 @@ namespace Cares.Repository.Repositories
         {
             get
             {
-                return  db.Categories;
+                return  null;
             }
         }
 

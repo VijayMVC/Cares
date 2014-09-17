@@ -242,6 +242,7 @@
     <Compile Include="RequestModels\WorkLocationSearchRequest.cs" />
     <Compile Include="RequestModels\WorkplaceSearchRequest.cs" />
     <Compile Include="RequestModels\WorkplaceTypeSearchRequest.cs" />
+    <Compile Include="ResponseModels\AddressBaseDataResponse.cs" />
     <Compile Include="ResponseModels\BusinessPartnerBaseDataResponse.cs" />
     <Compile Include="ResponseModels\BusinessSegmentSearchRequestResponse.cs" />
     <Compile Include="ResponseModels\CompanyBaseDataResponse.cs" />

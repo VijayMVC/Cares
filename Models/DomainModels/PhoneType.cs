@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Cares.Models.DomainModels
 {
@@ -13,25 +12,22 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Phone Type ID
         /// </summary>
-        public int PhoneTypeId { get; set; }
+        public short PhoneTypeId { get; set; }
         /// <summary>
         /// PhoneType Code
         /// </summary>
-        [StringLength(100)]
         public string PhoneTypeCode { get; set; }
         /// <summary>
         /// PhoneType Name
         /// </summary>
-        [StringLength(255)]
         public string PhoneTypeName { get; set; }
         /// <summary>
         /// Phone Type Key
         /// </summary>
-        public int? PhoneTypeKey { get; set; }
+        public short? PhoneTypeKey { get; set; }
         /// <summary>
         /// PhoneType Description
         /// </summary>
-        [StringLength(500)]
         public string PhoneTypeDescription { get; set; }
         /// <summary>
         /// Is Active
@@ -56,7 +52,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100), Required]
         public string RecCreatedBy { get; set; }
         /// <summary>
         /// Record Last Updated Date
@@ -65,7 +60,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100), Required]
         public string RecLastUpdatedBy { get; set; }
         /// <summary>
         /// User Domain Key

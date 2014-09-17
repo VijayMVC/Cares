@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Cares.Models.DomainModels
 {
@@ -17,17 +16,14 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Marketing Channel Code
         /// </summary>
-        [StringLength(100), Required]
         public string MarketingChannelCode { get; set; }
         /// <summary>
         /// Marketing Channel Name
         /// </summary>
-        [StringLength(255)]
         public string MarketingChannelName { get; set; }
         /// <summary>
         /// Marketing Channel Description
         /// </summary>
-        [StringLength(500)]
         public string MarketingChannelDescription { get; set; }
         /// <summary>
         /// Row Version
@@ -56,7 +52,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100), Required]
         public string RecCreatedBy { get; set; }
         /// <summary>
         /// Record Last Updated Date
@@ -65,7 +60,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100), Required]
         public string RecLastUpdatedBy { get; set; }
         /// <summary>
         /// User Domain Key

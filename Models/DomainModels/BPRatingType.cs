@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Cares.Models.DomainModels
 {
@@ -19,19 +18,16 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Business Partner Rating Type Code
         /// </summary>
-        [StringLength(100), Required]
         public string BpRatingTypeCode { get; set; }
 
         /// <summary>
         /// Business Partner Rating Type Name
         /// </summary>
-        [StringLength(255)]
         public string BpRatingTypeName { get; set; }
 
         /// <summary>
         /// Business Partner Rating Type Description
         /// </summary>
-        [StringLength(500)]
         public string BpRatingTypeDescription { get; set; }
 
         /// <summary>
@@ -67,7 +63,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100), Required]
         public string RecCreatedBy { get; set; }
 
         /// <summary>
@@ -78,13 +73,11 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100), Required]
         public string RecLastUpdatedBy { get; set; }
 
         /// <summary>
         /// User Domain Key
         /// </summary>
-        [Required]
         public long UserDomainKey { get; set; }
 
         #endregion

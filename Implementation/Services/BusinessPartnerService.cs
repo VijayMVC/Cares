@@ -343,7 +343,7 @@ namespace Cares.Implementation.Services
                 businessPartnerDbVersion.BusinessPartnerIndividual.TaxRegisterationCode = businessPartner.BusinessPartnerIndividual.TaxRegisterationCode;
                 businessPartnerDbVersion.BusinessPartnerIndividual.TaxNumber = businessPartner.BusinessPartnerIndividual.TaxNumber;
                 businessPartnerDbVersion.BusinessPartnerIndividual.IsCompanyExternal = businessPartner.BusinessPartnerIndividual.IsCompanyExternal;
-                businessPartnerDbVersion.BusinessPartnerIndividual.BusinessPartnerCompnayId = businessPartner.BusinessPartnerIndividual.BusinessPartnerCompnayId;
+                businessPartnerDbVersion.BusinessPartnerIndividual.BusinessPartnerCompanyId = businessPartner.BusinessPartnerIndividual.BusinessPartnerCompanyId;
                 businessPartnerDbVersion.BusinessPartnerIndividual.CompanyName = businessPartner.BusinessPartnerIndividual.CompanyName;
                 businessPartnerDbVersion.BusinessPartnerIndividual.CompanyPhone = businessPartner.BusinessPartnerIndividual.CompanyPhone;
                 businessPartnerDbVersion.BusinessPartnerIndividual.CompanyAddress = businessPartner.BusinessPartnerIndividual.CompanyAddress;

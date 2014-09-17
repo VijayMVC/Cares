@@ -26,7 +26,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         protected override IDbSet<MenuRight> DbSet
         {
-            get { return db.MenuRights; }
+            get { return null; }
         }
         #endregion
 

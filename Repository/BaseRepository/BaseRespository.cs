@@ -42,7 +42,7 @@ namespace Cares.Repository.BaseRepository
                 throw new ArgumentNullException("container");
             }
             this.container = container;
-            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["BaseDbContext"].ConnectionString;
             db = (BaseDbContext)container.Resolve(typeof(BaseDbContext), new ResolverOverride[] { new ParameterOverride("connectionString", connectionString) });
         }
 

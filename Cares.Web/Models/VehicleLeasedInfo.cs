@@ -45,7 +45,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Interest Rate
         /// </summary>
-        public float? InterestRate { get; set; }
+        public double? InterestRate { get; set; }
 
         /// <summary>
         /// Prinicipal Payment

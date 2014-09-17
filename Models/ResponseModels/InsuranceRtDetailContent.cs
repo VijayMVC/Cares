@@ -50,7 +50,7 @@ namespace Cares.Models.ResponseModels
         /// <summary>
         /// Insurance Rate
         /// </summary>
-        public float InsuranceRate { get; set; }
+        public double InsuranceRate { get; set; }
         /// <summary>
         /// Start Date
         /// </summary>

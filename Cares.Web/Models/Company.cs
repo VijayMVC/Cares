@@ -56,7 +56,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Paid Capital
         /// </summary>
-        public double PaidUpCapital { get; set; }
+        public decimal PaidUpCapital { get; set; }
 
         /// <summary>
         /// Business Segment ID

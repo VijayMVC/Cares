@@ -1,6 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cares.Models.DomainModels
 {
@@ -12,14 +10,8 @@ namespace Cares.Models.DomainModels
         #region Persisted Properties
 
         /// <summary>
-        /// Vehicle Leased Info Id
-        /// </summary>
-        public long VehicleLeasedInfoId { get; set; }
-
-        /// <summary>
         /// Vehicle ID
         /// </summary>
-        [ForeignKey("Vehicle")]
         public long VehicleId { get; set; }
 
         /// <summary>
@@ -45,13 +37,12 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Purchased From
         /// </summary>
-        [StringLength(255)]
         public string LeasedFrom { get; set; }
 
         /// <summary>
         /// Interest Rate
         /// </summary>
-        public float? InterestRate { get; set; }
+        public double? InterestRate { get; set; }
 
         /// <summary>
         /// Prinicipal Payment
@@ -81,7 +72,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// BP Main ID
         /// </summary>
-        [ForeignKey("BusinessPartner")]
         public long? BPMainId { get; set; }
 
         /// <summary>
@@ -97,13 +87,11 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100)]
         public string RecLastUpdatedBy { get; set; }
 
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100)]
         public string RecCreatedBy { get; set; }
 
         /// <summary>

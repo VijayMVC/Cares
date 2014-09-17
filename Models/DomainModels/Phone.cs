@@ -1,6 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cares.Models.DomainModels
 {
@@ -21,22 +19,18 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Phone Number
         /// </summary>
-        [StringLength(255)]
         public string PhoneNumber { get; set; }
         /// <summary>
         /// Business Partner Id
         /// </summary>
-        [ForeignKey("BusinessPartner")]
         public long? BusinessPartnerId { get; set; }
         /// <summary>
         /// Phone Type ID
         /// </summary>
-        [ForeignKey("PhoneType")]
-        public int PhoneTypeId { get; set; }
+        public short PhoneTypeId { get; set; }
         /// <summary>
         /// Row Version
         /// </summary>
-        [Required]
         public long RowVersion { get; set; }
         /// <summary>
         /// Is Active
@@ -61,7 +55,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100), Required]
         public string RecCreatedBy { get; set; }
         /// <summary>
         /// Record Last Updated Date
@@ -70,7 +63,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100), Required]
         public string RecLastUpdatedBy { get; set; }
         /// <summary>
         /// User Domain Key
@@ -80,13 +72,11 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Employee
         /// </summary>
-        [ForeignKey("Employee")]
         public long? EmployeeId { get; set; }
 
         /// <summary>
         /// work Location Id
         /// </summary>
-        [ForeignKey("WorkLocation")]
         public long? WorkLocationId { get; set; }
 
 

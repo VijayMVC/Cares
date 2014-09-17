@@ -47,7 +47,7 @@ namespace Cares.Repository.Repositories
         {
             get
             {
-                return db.Products;
+                return null;
             }
         }
         #endregion

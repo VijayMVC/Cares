@@ -52,7 +52,7 @@ namespace Cares.Implementation.Services
                     companyRequest.RecLastUpdatedBy = organizationGroupRepository.LoggedInUserIdentity;
                     companyRequest.RecLastUpdatedDt = DateTime.Now;
                     companyRequest.RowVersion = dbVersion.RowVersion + 1;
-                    companyRequest.UserDomainKey = dbVersion.UserDomainKey;
+                    //companyRequest.UserDomainKey = dbVersion.UserDomainKey;
                 }
                 else
                 {
@@ -60,7 +60,7 @@ namespace Cares.Implementation.Services
                         companyRequest.RecLastUpdatedBy = organizationGroupRepository.LoggedInUserIdentity;
                     companyRequest.RecCreatedDt = companyRequest.RecLastUpdatedDt = DateTime.Now;
                     companyRequest.RowVersion = 0;
-                    companyRequest.UserDomainKey = 1;
+                    //companyRequest.UserDomainKey = 1;
                 }
                 companyRepository.Update(companyRequest);
                 companyRepository.SaveChanges();

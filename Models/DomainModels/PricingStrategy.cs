@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Cares.Models.DomainModels
 {
@@ -17,17 +16,14 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// PricingStrategy Code
         /// </summary>
-        [StringLength(100), Required]
         public string PricingStrategyCode { get; set; }
         /// <summary>
         /// PricingStrategy Name
         /// </summary>
-        [StringLength(255)]
         public string PricingStrategyName { get; set; }
         /// <summary>
         /// PricingStrategy Description
         /// </summary>
-        [StringLength(500)]
         public string PricingStrategyDescription { get; set; }
         /// <summary>
         /// Is Active
@@ -52,7 +48,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100), Required]
         public string RecCreatedBy { get; set; }
         /// <summary>
         /// Record Last Updated Date
@@ -61,7 +56,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100), Required]
         public string RecLastUpdatedBy { get; set; }
         /// <summary>
         /// User Domain Key

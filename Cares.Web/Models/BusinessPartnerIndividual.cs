@@ -68,7 +68,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Individual Occupation Type Id
         /// </summary>
-        public int? OccupationTypeId { get; set; }
+        public short? OccupationTypeId { get; set; }
         /// <summary>
         /// Individual Is Company External
         /// </summary>
@@ -88,7 +88,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Individual Business Partner Company Id
         /// </summary>
-        public long? BusinessPartnerCompnayId { get; set; }
+        public long? BusinessPartnerCompanyId { get; set; }
         /// <summary>
         /// Individual Nic Expiry date
         /// </summary>

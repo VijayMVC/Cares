@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Cares.Models.DomainModels
 {
@@ -13,7 +12,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Vehicle Mode ld
         /// </summary>
-        [Key]
         public short VehicleModelId { get; set; }
         /// <summary>
         /// User Domain Key
@@ -22,17 +20,14 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Vehicl eModel Code
         /// </summary>
-        [StringLength(100), Required]
         public string VehicleModelCode { get; set; }
         /// <summary>
         /// Vehicle Model Name
         /// </summary>
-        [StringLength(255)]
         public string VehicleModelName { get; set; }
         /// <summary>
         /// Vehicle Model Description
         /// </summary>
-        [StringLength(500)]
         public string VehicleModelDescription { get; set; }
         /// <summary>
         /// Is Active
@@ -61,12 +56,10 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100), Required]
         public string RecLastUpdatedBy { get; set; }
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100), Required]
         public string RecCreatedBy { get; set; }
         /// <summary>
         /// Row Version

@@ -8,7 +8,7 @@
         /// <summary>
         /// BusinessPartner Relationship Type ID
         /// </summary>
-        public int BusinessPartnerRelationshipTypeId { get; set; }
+        public short BusinessPartnerRelationshipTypeId { get; set; }
         /// <summary>
         /// BusinessPartner Relationship Type Name
         /// </summary>

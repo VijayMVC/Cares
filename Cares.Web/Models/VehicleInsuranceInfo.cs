@@ -40,7 +40,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Premium
         /// </summary>
-        public float? Premium { get; set; }
+        public double? Premium { get; set; }
 
         /// <summary>
         /// Insured Value

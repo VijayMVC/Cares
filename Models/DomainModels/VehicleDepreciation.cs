@@ -1,6 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cares.Models.DomainModels
 {
@@ -13,14 +11,8 @@ namespace Cares.Models.DomainModels
         #region Persisted Properties
 
         /// <summary>
-        /// Vehicle Depreciation Id
-        /// </summary>
-        public long VehicleDepreciationId { get; set; }
-
-        /// <summary>
         /// Vehicle ID
         /// </summary>
-        [ForeignKey("Vehicle")]
         public long VehicleId { get; set; }
 
         /// <summary>
@@ -66,13 +58,11 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100)]
         public string RecLastUpdatedBy { get; set; }
 
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100)]
         public string RecCreatedBy { get; set; }
 
         /// <summary>

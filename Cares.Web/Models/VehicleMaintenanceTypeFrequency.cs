@@ -7,7 +7,7 @@ namespace Cares.Web.Models
     /// </summary>
     public class VehicleMaintenanceTypeFrequency
     {
-        public short MaintenanceTypeFrequencyId { get; set; }
+        public long MaintenanceTypeFrequencyId { get; set; }
 
         /// <summary>
         /// Vehicle ID

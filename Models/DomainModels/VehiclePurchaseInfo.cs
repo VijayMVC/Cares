@@ -1,6 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cares.Models.DomainModels
 {
@@ -12,14 +10,8 @@ namespace Cares.Models.DomainModels
         #region Persisted Properties
 
         /// <summary>
-        /// Vehicle Purchase Info Id
-        /// </summary>
-        public long VehiclePurchaseInfoId { get; set; }
-
-        /// <summary>
         /// Vehicle ID
         /// </summary>
-        [ForeignKey("Vehicle")]
         public long VehicleId { get; set; }
 
         /// <summary>
@@ -30,19 +22,16 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Purchased From
         /// </summary>
-        [StringLength(100)]
         public string PurchasedFrom { get; set; }
 
         /// <summary>
         /// Purchase Order Number
         /// </summary>
-        [StringLength(50)]
         public string PurchaseOrderNumber { get; set; } 
         
         /// <summary>
         /// Purchase Description
         /// </summary>
-        [StringLength(500)]
         public string PurchaseDescription { get; set; }
 
         /// <summary>
@@ -56,10 +45,9 @@ namespace Cares.Models.DomainModels
         public bool? IsUsedVehicle { get; set; }
 
         /// <summary>
-        /// BP Main ID
+        /// Business Partner Id
         /// </summary>
-        [ForeignKey("BusinessPartner")]
-        public long? BPMainId { get; set; }
+        public long? BusinessPartnerId { get; set; }
 
         /// <summary>
         /// Record Created Date

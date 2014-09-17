@@ -1,5 +1,6 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Cares.Models.DomainModels
 {
@@ -16,17 +17,14 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Address Type Code
         /// </summary>
-        [StringLength(100)]
         public string AddressTypeCode { get; set; }
         /// <summary>
         /// Address Type Name
         /// </summary>
-        [StringLength(255)]
         public string AddressTypeName { get; set; }
         /// <summary>
         /// Address Type Description
         /// </summary>
-        [StringLength(500)]
         public string AddressTypeDescription { get; set; }
         /// <summary>
         /// Is Active
@@ -51,7 +49,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Created By
         /// </summary>
-        [StringLength(100)]
         public string RecCreatedBy { get; set; }
         /// <summary>
         /// Record Last Updated Date
@@ -60,12 +57,20 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        [StringLength(100)]
         public string RecLastUpdatedBy { get; set; }
         /// <summary>
         /// User Domain Key
         /// </summary>
         public long UserDomainKey { get; set; }
+        #endregion
+
+        #region Reference Properties
+
+        /// <summary>
+        /// Addresses
+        /// </summary>
+        public virtual ICollection<Address> Addresses { get; set; }
+
         #endregion
     }
 }

@@ -25,7 +25,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Service Rate
         /// </summary>
-        public float ServiceRate { get; set; }
+        public double ServiceRate { get; set; }
 
         /// <summary>
         /// Start Date

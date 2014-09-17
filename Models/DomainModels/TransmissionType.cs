@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 namespace Cares.Models.DomainModels
 {
     /// <summary>
@@ -17,19 +16,16 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Transmission Type Code
         /// </summary>
-        [StringLength(100), Required]
         public string TransmissionTypeCode { get; set; }
         
         /// <summary>
         /// Transmission Type Name
         /// </summary>
-        [StringLength(255)]
         public string TransmissionTypeName { get; set; }
 
         /// <summary>
         /// User Domain Key
         /// </summary>
-        [Required]
         public long UserDomainKey { get; set; }
         #endregion
 

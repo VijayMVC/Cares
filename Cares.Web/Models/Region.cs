@@ -13,7 +13,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Country ID
         /// </summary>
-        public short? CountryId { get; set; }
+        public short CountryId { get; set; }
 
         /// <summary>
         /// Country Name

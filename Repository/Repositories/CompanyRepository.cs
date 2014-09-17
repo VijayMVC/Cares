@@ -84,7 +84,8 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public override IEnumerable <Company> GetAll()
         {
-            return DbSet.Where(company => company.UserDomainKey == UserDomainKey).ToList();
+            return DbSet.ToList();
+           // return DbSet.Where(company => company.UserDomainKey == UserDomainKey).ToList();
         }
         /// <summary>
         /// Get Company With Details
@@ -94,7 +95,11 @@ namespace Cares.Repository.Repositories
             return DbSet.Include(company => company.OrgGroup)
                 .Include(company => company.BusinessSegment)
                 .Include(company => company.ParentCompany)
-                .FirstOrDefault(fleetPool => fleetPool.UserDomainKey == UserDomainKey && fleetPool.CompanyId == id);
+                .FirstOrDefault(fleetPool => fleetPool.CompanyId == id);
+            //return DbSet.Include(company => company.OrgGroup)
+            //    .Include(company => company.BusinessSegment)
+            //    .Include(company => company.ParentCompany)
+            //    .FirstOrDefault(fleetPool => fleetPool.UserDomainKey == UserDomainKey && fleetPool.CompanyId == id);
         }
 
         /// <summary>

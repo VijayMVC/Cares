@@ -52,7 +52,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Gender
         /// </summary>
-        public char? Gender { get; set; }
+        public string Gender { get; set; }
 
         /// <summary>
         /// Nationality
