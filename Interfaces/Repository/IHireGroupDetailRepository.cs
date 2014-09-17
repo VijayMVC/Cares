@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Cares.Models.DomainModels;
 
 namespace Cares.Interfaces.Repository
@@ -12,7 +13,7 @@ namespace Cares.Interfaces.Repository
         /// Get Hire Groups By Vehicle Make, Category, Model, Year and Hire Group Code
         /// For AutoComplete
         /// </summary>
-        IEnumerable<HireGroupDetail> GetByCodeAndVehicleInfo(string searchText);
+        IEnumerable<HireGroupDetail> GetByCodeAndVehicleInfo(string searchText, long operationWorkPlaceId, DateTime startDtTime, DateTime endDtTime);
 
         /// <summary>
         /// Get Hire Group Details For Tarif fRate

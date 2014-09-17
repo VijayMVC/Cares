@@ -1,6 +1,9 @@
 ﻿#rentalAgreementBinding {
   color: gray;
 }
+#rentalAgreementBinding .popover {
+  max-width: none;
+}
 #rentalAgreementBinding .well {
   padding-top: 0;
 }
@@ -85,11 +88,14 @@
   width: 25.9%;
   float: left;
 }
-#rentalAgreementBinding #raPanels .panel-heading {
+#rentalAgreementBinding .panel-heading {
   color: gray;
 }
-#rentalAgreementBinding #raPanels a {
+#rentalAgreementBinding a.headingLink {
   text-decoration: underline;
+}
+#rentalAgreementBinding a.glyphicon {
+  text-decoration: none;
 }
 #rentalAgreementBinding #raMain {
   width: 36.5%;
@@ -97,49 +103,18 @@
   margin-left: .5%;
   margin-right: .5%;
 }
-#rentalAgreementBinding #raMain #ra {
-  min-height: 236px;
+#rentalAgreementBinding #raMain #customer {
+  min-height: 173px;
 }
-#rentalAgreementBinding #raMain #ra label.col-sm-2 {
-  width: 16.5%;
-}
-#rentalAgreementBinding #raMain #ra label.notFirstColumn {
+#rentalAgreementBinding #raMain #customer #isIndividualLabel {
+  width: 18%;
   margin-left: 11px;
 }
-#rentalAgreementBinding #raMain #ra #rentalPaymentTermLabel {
-  width: 14%;
+#rentalAgreementBinding #raMain #customer label.col-sm-2 {
+  width: 20%;
 }
-@media (min-width: 992px) {
-  #rentalAgreementBinding #raMain #ra .dateTimeControl {
-    width: 39.3%;
-  }
-  #rentalAgreementBinding #raMain #ra .dateTimeControl .dateControl {
-    width: 57%;
-    float: left;
-  }
-  #rentalAgreementBinding #raMain #ra .dateTimeControl .timeControl {
-    width: 39%;
-    margin-left: 5px;
-    float: left;
-  }
-  #rentalAgreementBinding #raMain #ra #bookingNumberControl {
-    width: 43%;
-  }
-  #rentalAgreementBinding #raMain #ra #rentalPaymentTermControl {
-    width: 28.5%;
-    padding-left: 0;
-  }
-  #rentalAgreementBinding #raMain #ra #returnLocationControl {
-    width: 36.4%;
-  }
-  #rentalAgreementBinding #raMain #ra .rentalHireGroupControl {
-    width: 78%;
-  }
-}
-@media (min-width: 768px) {
-  #rentalAgreementBinding #raMain #ra .input-small {
-    width: 26.15%;
-  }
+#rentalAgreementBinding #raMain #accordion3 {
+  margin-top: 5px;
 }
 #rentalAgreementBinding #raMain #vehicle {
   margin-top: .5%;
@@ -153,15 +128,52 @@
   width: 36.5%;
   float: left;
 }
-#rentalAgreementBinding #raBilling #customer {
-  min-height: 173px;
+#rentalAgreementBinding #raBilling #accordion5 {
+  margin-top: 5px;
 }
-#rentalAgreementBinding #raBilling #customer #isIndividualLabel {
-  width: 18%;
+#rentalAgreementBinding #raBilling #ra {
+  min-height: 236px;
+}
+#rentalAgreementBinding #raBilling #ra label.col-sm-2 {
+  width: 16.5%;
+}
+#rentalAgreementBinding #raBilling #ra label.notFirstColumn {
   margin-left: 11px;
 }
-#rentalAgreementBinding #raBilling #customer label.col-sm-2 {
-  width: 20%;
+#rentalAgreementBinding #raBilling #ra #rentalPaymentTermLabel {
+  width: 14%;
+}
+@media (min-width: 992px) {
+  #rentalAgreementBinding #raBilling #ra .dateTimeControl {
+    width: 39.3%;
+  }
+  #rentalAgreementBinding #raBilling #ra .dateTimeControl .dateControl {
+    width: 57%;
+    float: left;
+  }
+  #rentalAgreementBinding #raBilling #ra .dateTimeControl .timeControl {
+    width: 39%;
+    margin-left: 5px;
+    float: left;
+  }
+  #rentalAgreementBinding #raBilling #ra #bookingNumberControl {
+    width: 43%;
+  }
+  #rentalAgreementBinding #raBilling #ra #rentalPaymentTermControl {
+    width: 28.5%;
+    padding-left: 0;
+  }
+  #rentalAgreementBinding #raBilling #ra #returnLocationControl {
+    width: 36.4%;
+  }
+  #rentalAgreementBinding #raBilling #ra .rentalHireGroupControl {
+    width: 78%;
+  }
+}
+@media (min-width: 768px) {
+  #rentalAgreementBinding #raBilling #ra .input-small {
+    width: 26.15%;
+  }
 }
 #rentalAgreementBinding #raBilling #billing {
   margin-top: .5%;
@@ -177,4 +189,3 @@
 #rentalAgreementBinding #raBilling #billing div.form-group div {
   border-bottom: 1px solid black;
 }
-/*# sourceMappingURL=RentalAgreement.css.map */

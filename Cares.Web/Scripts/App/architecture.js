@@ -293,6 +293,19 @@ require(["ko", "knockout-validation"], function (ko) {
     
     // Common View Model
 
+    // Used to show popover
+    ko.bindingHandlers.bootstrapPopover = {
+        init: function (element, valueAccessor) {
+            // ReSharper disable DuplicatingLocalDeclaration
+            var options = valueAccessor();
+            // ReSharper restore DuplicatingLocalDeclaration
+            var value = $(options.elementNode);
+            var defaultOptions = { trigger: 'click', content: value.html() };
+            options = $.extend(true, {}, defaultOptions, options);
+            $(element).popover(options);
+        }
+    };
+
     // Can be used to have a parent with one binding and children with another. Child areas should be surrounded with <!-- ko stopBinding: true --> <!-- /ko -->
     ko.bindingHandlers.stopBinding = {
         init: function () {

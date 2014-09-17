@@ -1,4 +1,5 @@
-﻿using Cares.Models.DomainModels;
+﻿using System;
+using Cares.Models.DomainModels;
 using System.Collections.Generic;
 using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
@@ -15,7 +16,8 @@ namespace Cares.Interfaces.IServices
         /// Get Hire Groups By Vehicle Make, Category, Model, Year and Hire Group Code
         /// For AutoComplete
         /// </summary>
-        IEnumerable<HireGroupDetail> GetByCodeAndVehicleInfo(string searchText);
+        IEnumerable<HireGroupDetail> GetByCodeAndVehicleInfo(string searchText, long operationWorkPlaceId, DateTime startDtTime,
+            DateTime endDtTime);
 
         /// <summary>
         /// Load roups, based on search filters

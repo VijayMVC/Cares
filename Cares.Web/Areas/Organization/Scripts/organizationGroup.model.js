@@ -114,6 +114,11 @@
     organizationGroupDetail.Create = function (source) {
         return new organizationGroupDetail(source.OrgGroupId, source.OrgGroupCode, source.OrgGroupName, source.OrgGroupDescription);
     };
+    // Function to attain cancel button functionality
+    organizationGroupDetail.CreateFromClientModel = function (item) {
+        return new organizationGroupDetail(item.id, item.code, item.name,
+            item.description);
+    };
     return {
         OrganizationGroup: OrganizationGroup,
         organizationGroupDetail: organizationGroupDetail,

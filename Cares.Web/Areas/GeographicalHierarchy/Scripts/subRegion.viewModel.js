@@ -45,7 +45,7 @@ define("subRegion/subRegion.viewModel",
                     saveSubRegion = function(item) {
                         dataservice.saveSubRegion(item.convertToServerData(), {
                         success: function(dataFromServer) {
-                            var newItem = model.regionServertoClinetMapper(dataFromServer);
+                            var newItem = model.subRegionServertoClinetMapper(dataFromServer);
                             if (item.id() !== undefined) {
                                 var newObjtodelete = subRegions.find(function(temp) {
                                     return temp.id() == newItem.id();
@@ -152,7 +152,7 @@ define("subRegion/subRegion.viewModel",
                             subRegions.removeAll();
                             pager().totalCount(data.TotalCount);
                             _.each(data.SubRegions, function (item) {
-                                subRegions.push(model.regionServertoClinetMapper(item));
+                                subRegions.push(model.subRegionServertoClinetMapper(item));
                             });
                         },
                         error: function() {

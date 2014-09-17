@@ -57,11 +57,11 @@
         };
     };
     // server to client mapper
-    var regionServertoClinetMapper = function (source) {
+    var subRegionServertoClinetMapper = function (source) {
         return subRegionDetail.Create(source);
     };
     
-    // Region Factory
+    // Sub Region Factory
     subRegionDetail.Create = function (source) {
         debugger;
         return new subRegionDetail(source.SubRegionId, source.SubRegionCode, source.SubRegionName, source.SubRegionDescription, source.RegionId, source.RegionName);
@@ -74,6 +74,6 @@
     };
     return {
         subRegionDetail: subRegionDetail,
-        regionServertoClinetMapper: regionServertoClinetMapper,
+        subRegionServertoClinetMapper: subRegionServertoClinetMapper,
     };
 });

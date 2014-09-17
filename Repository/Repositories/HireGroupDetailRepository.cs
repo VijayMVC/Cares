@@ -42,7 +42,7 @@ namespace Cares.Repository.Repositories
         /// Get Hire Groups By Code, Vehicle Make / Category / Model / Model Year
         /// Having no Parent Hire Group
         /// </summary>
-        public IEnumerable<HireGroupDetail> GetByCodeAndVehicleInfo(string searchText)
+        public IEnumerable<HireGroupDetail> GetByCodeAndVehicleInfo(string searchText, long operationWorkPlaceId, DateTime startDtTime, DateTime endDtTime)
         {
             short modelYear;
             bool isModelYear = Int16.TryParse(searchText, out modelYear);
@@ -52,12 +52,15 @@ namespace Cares.Repository.Repositories
                 .Include("VehicleMake")
                 .Include("VehicleModel")
                 .Where(hg => (string.IsNullOrEmpty(searchText) ||
-                                      (((hg.HireGroup.HireGroupCode.Contains(searchText) || hg.HireGroup.HireGroupName.Contains(searchText)) ||
+                                      ((hg.HireGroup.HireGroupCode.Contains(searchText) || hg.HireGroup.HireGroupName.Contains(searchText)) ||
                                        (hg.VehicleMake.VehicleMakeCode.Contains(searchText) || hg.VehicleMake.VehicleMakeName.Contains(searchText)) ||
                                        (hg.VehicleCategory.VehicleCategoryCode.Contains(searchText) || hg.VehicleCategory.VehicleCategoryName.Contains(searchText)) ||
                                        (hg.VehicleModel.VehicleModelCode.Contains(searchText) || hg.VehicleModel.VehicleModelName.Contains(searchText)) ||
-                                       (!isModelYear || hg.ModelYear == modelYear))
-                                       && !hg.HireGroup.ParentHireGroupId.HasValue)))
+                                       (!isModelYear || hg.ModelYear == modelYear)))
+                                       && (!hg.HireGroup.ParentHireGroupId.HasValue)
+                                       && (hg.HireGroup.Vehicles.Any(vehicle => vehicle.OperationsWorkPlaceId == operationWorkPlaceId && 
+                                           (vehicle.VehicleReservations.Count == 0 || 
+                                           !vehicle.VehicleReservations.Any(vehicleReservation => vehicleReservation.EndDtTime >= startDtTime && vehicleReservation.StartDtTime <= endDtTime)))))
                                       .OrderBy(hg => hg.HireGroup.HireGroupCode).ThenBy(hg => hg.HireGroup.HireGroupName).Take(10).ToList();
         }
 

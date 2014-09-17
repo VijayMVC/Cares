@@ -16,6 +16,8 @@
     "Region.less",
     "EmployeeManagement.less",
     "SubRegion.less",
+    "City.less",
+    "Area.less",
     "MainSite.less"
   ],
   "names": [],

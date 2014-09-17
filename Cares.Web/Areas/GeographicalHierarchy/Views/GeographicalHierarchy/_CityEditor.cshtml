@@ -1,0 +1,44 @@
+﻿
+<div class="well col-md-12" id="CityEditor" data-bind="visible: isCityEditorVisible, with: selectedCity " style="display: none; margin-top:15px">
+    <div class="float-left detailsContainer">
+        <h3 class="page-header detailsHeaderSection">@Cares.Web.Resources.GeographicalHierarchy.city.CityDetail</h3>
+        <button class="btn  btn-info" id="saveFleetPoolbtn" data-bind="click: $root.onSavebtn">@Cares.Web.Resources.Shared.Common.Save</button>
+        <button class="btn  btn-default" id="cancelOrgGroupbtn" data-bind="click: $root.onCancelbtn">@Cares.Web.Resources.Shared.Common.Cancel</button>
+    </div>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.GeographicalHierarchy.Region.Code*</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.GeographicalHierarchy.Region.Code + ">")" data-bind="value: code" />
+            </div>
+            <label class="control-label h5 col-sm-1">@Cares.Web.Resources.GeographicalHierarchy.Region.Name*</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.GeographicalHierarchy.Region.Name + ">")" data-bind="value:name" />
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.GeographicalHierarchy.city.Country*</label>
+            <div class="col-md-3">
+                <select class="form-control" data-bind="options: $root.baseCountriesList, optionsText: 'CountryCodeName', optionsValue: 'CountryId', optionsCaption: '&lt;' + '@Cares.Web.Resources.GeographicalHierarchy.city.Country'+ '&gt;', value:countryId, event{change:$root.onCountryChanged } "></select>
+            </div>
+            <label class="control-label h5 col-sm-1">@Cares.Web.Resources.GeographicalHierarchy.city.Region*</label>
+            <div class="col-md-3">
+                <select class="form-control" data-bind="options: $root.filteredRegionsList, optionsText: 'RegionCodeName', optionsValue: 'RegionId', optionsCaption: '&lt;' + '@Cares.Web.Resources.GeographicalHierarchy.city.Region'+ '&gt;', value:regionId , event{change:$root.onRegionChanged }"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.GeographicalHierarchy.city.SubRegion*</label>
+            <div class="col-md-3">
+                <select class="form-control" data-bind="options: $root.filteredSubRegionsList, optionsText: 'SubRegionCodeName', optionsValue: 'SubRegionId', optionsCaption: '&lt;' + '@Cares.Web.Resources.GeographicalHierarchy.city.SubRegion'+ '&gt;', value:subRegionId "></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.GeographicalHierarchy.Region.Description</label>
+            <div class="col-md-3">
+                <textarea class="form-control" rows="4" placeholder="@("<" + Cares.Web.Resources.GeographicalHierarchy.Region.Description + ">")" data-bind="value: description"></textarea>
+            </div>
+        </div>
+
+    </form>
+</div>
