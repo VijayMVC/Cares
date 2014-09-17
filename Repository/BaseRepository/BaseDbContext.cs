@@ -511,7 +511,7 @@ namespace Cares.Repository.BaseRepository
         /// <summary>
         /// Designation Grade Db Set
         /// </summary>
-        public DbSet<DesigGrade> DesigGrades { get; set; }
+        public DbSet<DesignGrade> DesigGrades { get; set; }
 
         /// <summary>
         /// License Type Db Set

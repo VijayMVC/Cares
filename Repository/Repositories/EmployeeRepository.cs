@@ -54,8 +54,6 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get All Employees
         /// </summary>
-        /// <param name="searchRequest"></param>
-        /// <returns></returns>
         public EmployeeSearchResponse GetAllEmployees(EmployeeSearchRequest searchRequest)
         {
             int fromRow = (searchRequest.PageNo - 1) * searchRequest.PageSize;
@@ -77,9 +75,6 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get Employee By Name
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="id"></param>
-        /// <returns></returns>
         public Employee GetEmployeeByName(string name, int id)
         {
             return DbSet.FirstOrDefault(x => x.EmpFName == name && x.EmployeeId != id);
@@ -103,6 +98,14 @@ namespace Cares.Repository.Repositories
                   .Include(emp => emp.EmpStatus)
                   .Include(emp => emp.Nationality)
                   .FirstOrDefault(emp => emp.EmployeeId == empId);
+        }
+
+        /// <summary>
+        /// To check the association of employee with employee status
+        /// </summary>
+        public bool IsEmployeeAssociatedWithEmployeeStatus(long empStatusId)
+        {
+            return DbSet.Count(emp => emp.EmpStatusId == empStatusId) > 0;
         }
         #endregion
     }

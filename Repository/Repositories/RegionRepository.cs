@@ -126,7 +126,5 @@ namespace Cares.Repository.Repositories
                .FirstOrDefault(region => region.UserDomainKey == UserDomainKey && region.RegionId == regionId);
         }
         #endregion
-
-
     }
 }

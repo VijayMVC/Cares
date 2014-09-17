@@ -32,7 +32,7 @@ namespace Cares.Models.ResponseModels
         /// <summary>
         /// Designation Grades
         /// </summary>
-        public IEnumerable<DesigGrade> DesigGrades { get; set; }
+        public IEnumerable<DesignGrade> DesigGrades { get; set; }
 
         /// <summary>
         /// Departments

@@ -760,6 +760,33 @@
   margin-bottom: 20px;
   margin-top: 10px;
 }
+#SubRegionBinding table thead tr .ttypesearchButton {
+  margin-left: 5px;
+}
+#SubRegionBinding table thead tr .SRcode {
+  width: 25%;
+}
+#SubRegionBinding table thead tr .SRname {
+  width: 25%;
+}
+#SubRegionBinding table thead tr .SRDes {
+  width: 25%;
+}
+#SubRegionBinding table thead tr .SRRegion {
+  width: 25%;
+}
+#SubRegionBinding #SubRegionEditor {
+  margin-top: 15px;
+}
+#SubRegionBinding #SubRegionEditor .detailsContainer {
+  width: 100%;
+}
+#SubRegionBinding #SubRegionEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
 #CityBinding table thead tr .ttypesearchButton {
   margin-left: 5px;
 }
@@ -820,6 +847,30 @@
   margin-bottom: 20px;
   margin-top: 10px;
 }
+#DesignGradeBinding table thead tr .ttypesearchButton {
+  margin-left: 5px;
+}
+#DesignGradeBinding table thead tr .DNcode {
+  width: 33%;
+}
+#DesignGradeBinding table thead tr .DNname {
+  width: 33%;
+}
+#DesignGradeBinding table thead tr .DNDes {
+  width: 33%;
+}
+#DesignGradeBinding #designationGradeEditor {
+  margin-top: 15px;
+}
+#DesignGradeBinding #designationGradeEditor .detailsContainer {
+  width: 100%;
+}
+#DesignGradeBinding #designationGradeEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
 .float-left {
   float: left;
 }
@@ -864,3 +915,4 @@
   }
 }
 /* Input Small */
+/*# sourceMappingURL=MainSite.css.map */

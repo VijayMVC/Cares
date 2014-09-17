@@ -34,7 +34,6 @@ namespace Cares.Repository.Repositories
         }
 
         #endregion
-
         #region Public
         /// <summary>
         /// Get All Employee Job Progress for User Domain Key
@@ -44,6 +43,13 @@ namespace Cares.Repository.Repositories
             return DbSet.Where(empJobProg => empJobProg.UserDomainKey == UserDomainKey).ToList();
         }
 
+        /// <summary>
+        /// To check the asssociation of designation and emp job info 
+        /// </summary>
+        public bool IsEmpJobProgressAssociatedWithDesignation(long designationId)
+        {
+            return DbSet.Count(empJobPro => empJobPro.DesignationId == designationId) > 0;
+        }
         #endregion
     }
 }

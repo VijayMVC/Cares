@@ -6,13 +6,14 @@ namespace Cares.Models.DomainModels
     /// <summary>
     /// Desig Grade Domain Model
     /// </summary>
-    public class DesigGrade
+    public class DesignGrade
     {
         #region Persisted Properties
 
         /// <summary>
         /// Designation Grade ID
         /// </summary>
+        [Key]
         public long DesigGradeId { get; set; }
 
         /// <summary>
