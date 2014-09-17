@@ -24,7 +24,10 @@ namespace Cares.Repository.Repositories
                     {
                         { EmployeeByColumn.Code, c => c.EmpCode },
                         { EmployeeByColumn.FName, c => c.EmpFName },
-                        { EmployeeByColumn.LName, c => c.EmpLName }
+                        { EmployeeByColumn.LName, c => c.EmpLName },
+                        { EmployeeByColumn.Status, c => c.EmpStatus.EmpStatusId },
+                        { EmployeeByColumn.Company, c => c.CompanyId },
+                        { EmployeeByColumn.Nationality, c => c.NationalityId }
                     };
         #endregion
 

@@ -13,6 +13,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Address Id
         /// </summary>
+        [Key]
         public long AddressId { get; set; }
         /// <summary>
         /// Contact Person
@@ -155,6 +156,11 @@ namespace Cares.Models.DomainModels
         /// Area
         /// </summary>
         public virtual Area Area { get; set; }
+
+        /// <summary>
+        /// Employee
+        /// </summary>
+        public virtual Employee Employee { get; set; }
         #endregion
     }
 }

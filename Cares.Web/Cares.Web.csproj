@@ -519,6 +519,16 @@
     <Compile Include="Models\WorkplaceTypeDropDown.cs" />
     <Compile Include="Models\WorkPlaceTypeSearchRequestResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\EmployeeManagement\Employee.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Employee.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\EmployeeManagement\Employee.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Employee.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\FleetPool\FleetPool.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1611,12 +1621,6 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -1695,7 +1699,6 @@
     <Folder Include="Areas\Product\Models\" />
     <Folder Include="Areas\RentalAgreement\Models\" />
     <Folder Include="Migrations\" />
-    <Folder Include="Resources\Employees\" />
     <Folder Include="Views\Menu\" />
     <Folder Include="Views\OperationBaseDataResponse\" />
   </ItemGroup>
@@ -1725,6 +1728,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\EmployeeManagement\Employee.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Employee.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\EmployeeManagement\Employee.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Employee.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\FleetPool\FleetPool.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>FleetPool.ar.Designer.cs</LastGenOutput>

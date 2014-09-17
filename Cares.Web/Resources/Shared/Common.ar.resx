@@ -123,6 +123,9 @@
   <data name="Add" xml:space="preserve">
     <value>إضافة</value>
   </data>
+  <data name="AddToList" xml:space="preserve">
+    <value>إضافة إلى قائمة</value>
+  </data>
   <data name="BackToList" xml:space="preserve">
     <value>العودة إلى قائمة</value>
   </data>

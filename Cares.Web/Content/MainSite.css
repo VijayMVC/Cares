@@ -719,30 +719,68 @@
   margin-top: 10px;
 }
 #employeeBinding table thead tr .code {
-  width: 8%;
+  width: 11%;
 }
 #employeeBinding table thead tr .fName {
-  width: 13%;
+  width: 15%;
 }
 #employeeBinding table thead tr .lName {
-  width: 13%;
+  width: 15%;
 }
 #employeeBinding table thead tr .status {
   width: 17%;
 }
 #employeeBinding table thead tr .company {
-  width: 12%;
+  width: 16%;
 }
 #employeeBinding table thead tr .nationality {
-  width: 7%;
+  width: 23%;
 }
 #employeeBinding #employeeEditor {
   margin-top: 15px;
+}
+#employeeBinding #employeeEditor .addToBtn {
+  float: right;
+}
+#employeeBinding #employeeEditor .addToBtnDiv {
+  width: 100%;
+  margin-bottom: 15px;
+}
+#employeeBinding #employeeEditor .emloyeeInnerWell {
+  width: 96%;
+  margin-left: 22px;
 }
 #employeeBinding #employeeEditor .detailsContainer {
   width: 100%;
 }
 #employeeBinding #employeeEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#SubRegionBinding table thead tr .ttypesearchButton {
+  margin-left: 5px;
+}
+#SubRegionBinding table thead tr .SRcode {
+  width: 25%;
+}
+#SubRegionBinding table thead tr .SRname {
+  width: 25%;
+}
+#SubRegionBinding table thead tr .SRDes {
+  width: 25%;
+}
+#SubRegionBinding table thead tr .SRRegion {
+  width: 25%;
+}
+#SubRegionBinding #SubRegionEditor {
+  margin-top: 15px;
+}
+#SubRegionBinding #SubRegionEditor .detailsContainer {
+  width: 100%;
+}
+#SubRegionBinding #SubRegionEditor .detailsContainer .detailsHeaderSection {
   float: left;
   width: 85%;
   margin-bottom: 20px;
