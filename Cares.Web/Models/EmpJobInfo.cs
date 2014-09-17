@@ -21,7 +21,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Supervisor Id
         /// </summary>
-        public long SupervisorId { get; set; }
+        public long? SupervisorId { get; set; }
 
         /// <summary>
         /// Designation Id

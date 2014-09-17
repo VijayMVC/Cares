@@ -80,7 +80,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// License Type ID
         /// </summary>
-        public long LicenseTypeId { get; set; }
+        public long? LicenseTypeId { get; set; }
 
         /// <summary>
         /// Insurance Number

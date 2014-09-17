@@ -17,6 +17,22 @@
         /// </summary>
         LName=3,
 
+        /// <summary>
+        /// Status
+        /// </summary>
+        Status=4,
+
+        /// <summary>
+        /// Company
+        /// </summary>
+        Company = 5,
+
+        /// <summary>
+        /// Nationality
+        /// </summary>
+        Nationality = 6,
+
+
        
     }
 }

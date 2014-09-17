@@ -121,42 +121,33 @@ namespace Cares.Repository.BaseRepository
             .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<WorkLocation>()
-                .HasRequired(c => c.Company).WithRequiredPrincipal().WillCascadeOnDelete(false);
-
-            //modelBuilder.Entity<EmpJobInfo>().HasRequired(e=> e.Employee).WithOptional(e=>e.EmpJobInfo)
-            // .WillCascadeOnDelete(false);
-
-            //modelBuilder.Entity<EmpJobInfo>().HasOptional(e => e.Supervisor).WithOptionalPrincipal()
-            // .WillCascadeOnDelete(false);
+                .HasRequired(c => c.Company).WithMany(d => d.WorkLocations).WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Employee>()
-           .HasRequired(c => c.EmpDocsInfo)
-           .WithRequiredPrincipal()
-            .WillCascadeOnDelete(false);
-
+                .HasOptional(c => c.EmpDocsInfo);
             modelBuilder.Entity<Employee>()
-            .HasMany(c => c.Addresses)
-            .WithOptional()
-            .WillCascadeOnDelete(false);
+               .HasOptional(c => c.EmpJobInfo);
 
-            modelBuilder.Entity<Employee>()
-            .HasMany(c => c.PhoneNumbers)
-            .WithOptional()
-           .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Employee>()
-            .HasMany(c => c.EmpJobProgs)
-            .WithOptional()
-            .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Employee>()
-          .HasMany(c => c.EmpAuthOperationsWorkplaces)
-          .WithOptional()
-          .WillCascadeOnDelete(false);
-            //   modelBuilder.Entity<EmpJobInfo>()
-            //.HasOptional(c => c.WorkPlace)
-            //.WithMany()
+            //modelBuilder.Entity<Employee>()
+            //.HasMany(c => c.Addresses)
+            //.WithOptional(c => c.Employee).Map(m => m.MapKey("EmployeeId"))
             //.WillCascadeOnDelete(false);
+
+            //  modelBuilder.Entity<Employee>()
+            //  .HasMany(c => c.PhoneNumbers)
+            //  .WithOptional()
+            // .WillCascadeOnDelete(false);
+
+            //  modelBuilder.Entity<Employee>()
+            //  .HasMany(c => c.EmpJobProgs)
+            //  .WithOptional()
+            //  .WillCascadeOnDelete(false);
+
+            //  modelBuilder.Entity<Employee>()
+            //.HasMany(c => c.EmpAuthOperationsWorkplaces)
+            //.WithOptional()
+            //.WillCascadeOnDelete(false);
+
 
         }
         #endregion
@@ -222,8 +213,8 @@ namespace Cares.Repository.BaseRepository
         /// </summary>
         public DbSet<Menu> Menus { get; set; }
         #endregion
-
         public DbSet<Product> Products { get; set; }
+
         public DbSet<Category> Categories { get; set; }
         public DbSet<Employee> Employees { get; set; }
         /// <summary>

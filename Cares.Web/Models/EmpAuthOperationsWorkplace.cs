@@ -29,5 +29,17 @@
         /// Is Operation Default
         /// </summary>
         public bool IsOperationDefault { get; set; }
+
+        /// <summary>
+        /// Operation Code Name
+        /// </summary>
+        public string OperationCodeName { get; set; }
+
+        /// <summary>
+        /// Operation workPalce Name
+        /// </summary>
+        public string OperationworkPalceCode { get; set; }
+
+
     }
 }

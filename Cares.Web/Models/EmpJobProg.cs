@@ -36,5 +36,15 @@ namespace Cares.Web.Models
         /// Joining End Date
         /// </summary>
         public DateTime? DesigEndDt { get; set; }
+
+        /// <summary>
+        /// Designation Code Name
+        /// </summary>
+        public string DesignationCodeName { get; set; }
+
+        /// <summary>
+        /// WorkplaceCodeName
+        /// </summary>
+        public string WorkplaceCodeName { get; set; }
     }
 }

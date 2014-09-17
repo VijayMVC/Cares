@@ -1,11 +1,11 @@
 ﻿@{
-    ViewBag.Title = "";
+    ViewBag.Title = @Cares.Web.Resources.EmployeeManagement.Employee.EmployeeLabel;
 
 }
 
 <div class="row" id="employeeBinding">
     <div class="row " data-bind="visible: !isEmployeeEditorVisible()">
-        <h3 class="page-header float-left pageHeaderSection">Employees</h3>
+        <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.EmployeeManagement.Employee.Employees</h3>
         <div class="header-toolsSection">
             <a href="#" class="label label-default create-new-icon" data-bind="click: createEmployee" title='CreateNewEmployee'>@Cares.Web.Resources.Shared.Common.New</a>
             <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title='@Cares.Web.Resources.Shared.Common.ShowFilter' style="display: none"></a>
@@ -18,10 +18,10 @@
                     <input type="text" class="form-control" placeholder='@("<"+Cares.Web.Resources.Shared.Common.Search+">")' data-bind="value: searchFilter" />
                 </div>
                 <div class="col-xs-3">
-                    <select class="form-control" data-bind="options: $root.companies , optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '&lt;' + 'Company' + '&gt;', value: companyFilter"></select>
+                    <select class="form-control" data-bind="options: $root.companies , optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '&lt;' + '@Cares.Web.Resources.EmployeeManagement.Employee.Company' + '&gt;', value: companyFilter"></select>
                 </div>
                 <div class="col-xs-3">
-                    <select class="form-control" data-bind="options: $root.employeeStatuses, optionsText: 'EmpStatusCodeName', optionsValue: 'EmpStatusId', optionsCaption: '&lt;' +  'Employee Status' + '&gt;', value: employeeStatusFilter"></select>
+                    <select class="form-control" data-bind="options: $root.employeeStatuses, optionsText: 'EmpStatusCodeName', optionsValue: 'EmpStatusId', optionsCaption: '&lt;' +  '@Cares.Web.Resources.EmployeeManagement.Employee.EmployeeStatus' + '&gt;', value: employeeStatusFilter"></select>
                 </div>
                 <button type="submit" class="btn btn-success" data-bind="click: search ">@Cares.Web.Resources.Shared.Common.Search</button>
                 <button type="submit" class="btn btn-default" data-bind="click: reset">@Cares.Web.Resources.Shared.Common.Reset</button>
@@ -35,12 +35,12 @@
             <table id="employeeTable" class="table table-condensed">
                 <thead>
                     <tr>
-                        <th class="code"><span id="1">Code<span class="icon-up"></span></span></th>
-                        <th class="fName"><span id="2">First Name<span></span></span></th>
-                        <th class="lName"><span id="3">Last Name<span></span></span></th>
-                        <th class="status"><span id="4">Status<span></span></span></th>
-                        <th class="company"><span id="5">Company<span></span></span></th>
-                        <th class="nationality"><span id="6">Nationality<span></span></span></th>
+                        <th class="code"><span id="1">@Cares.Web.Resources.EmployeeManagement.Employee.Code<span class="icon-up"></span></span></th>
+                        <th class="fName"><span id="2">@Cares.Web.Resources.EmployeeManagement.Employee.FirstName<span></span></span></th>
+                        <th class="lName"><span id="3">@Cares.Web.Resources.EmployeeManagement.Employee.LastName<span></span></span></th>
+                        <th class="status"><span id="4">@Cares.Web.Resources.EmployeeManagement.Employee.Status<span></span></span></th>
+                        <th class="company"><span id="5">@Cares.Web.Resources.EmployeeManagement.Employee.Company<span></span></span></th>
+                        <th class="nationality"><span id="6">@Cares.Web.Resources.EmployeeManagement.Employee.Nationality<span></span></span></th>
                     </tr>
                 </thead>
                 <tbody>

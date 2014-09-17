@@ -51,20 +51,21 @@ namespace Cares.Web.ModelMappers
                 ZipCode = source.ZipCode,
                 POBox = source.POBox,
                 CountryId = source.CountryId,
-                CountryName = (source.Country.CountryCode + "-" + source.Country.CountryName),
+                CountryName = (source.Country.CountryCode + " - " + source.Country.CountryName),
                 RegionId = source.RegionId,
                 RegionName =
-                    source.RegionId != null ? (source.Region.RegionCode + "-" + source.Region.RegionName) : string.Empty,
+                    source.RegionId != null ? (source.Region.RegionCode + " - " + source.Region.RegionName) : string.Empty,
                 SubRegionId = source.SubRegionId,
                 SubRegionName =
                     source.SubRegionId != null
-                        ? (source.SubRegion.SubRegionCode + "-" + source.SubRegion.SubRegionName)
+                        ? (source.SubRegion.SubRegionCode + " - " + source.SubRegion.SubRegionName)
                         : string.Empty,
                 CityId = source.CityId,
-                CityName = source.CityId != null ? (source.City.CityCode + "-" + source.City.CityName) : string.Empty,
+                CityName = source.CityId != null ? (source.City.CityCode + " - " + source.City.CityName) : string.Empty,
                 AreaId = source.AreaId,
-                AreaName = source.AreaId != null ? (source.Area.AreaCode + "-" + source.Area.AreaName) : string.Empty,
-                AddressTypeId = source.AddressTypeId
+                AreaName = source.AreaId != null ? (source.Area.AreaCode + " - " + source.Area.AreaName) : string.Empty,
+                AddressTypeId = source.AddressTypeId,
+                AddressTypeName = source.AddressType != null ? (source.AddressType.AddressTypeCode + " - " + source.AddressType.AddressTypeName) : string.Empty,
             };
 
             #endregion
