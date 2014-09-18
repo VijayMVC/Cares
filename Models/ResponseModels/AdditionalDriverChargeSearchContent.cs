@@ -25,7 +25,7 @@ namespace Cares.Models.ResponseModels
         /// <summary>
         /// Additional Driver Charge Rate
         /// </summary>
-        public float AdditionalDriverChargeRate { get; set; }
+        public double AdditionalDriverChargeRate { get; set; }
 
         /// <summary>
         /// Company Code Name
