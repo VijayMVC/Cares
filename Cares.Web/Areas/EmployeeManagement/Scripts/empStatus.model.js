@@ -1,19 +1,22 @@
 ﻿define(["ko", "underscore", "underscore-ko"], function(ko) {
     
     //Employee Status Detail
-   // ReSharper disable once InconsistentNaming
-    var EmployeeStatusDetail = function (specifiedId, specifiedCode, specifiedName, specifieddescription, specifiedcountryId, specifiedcountryName) {
+     // ReSharper disable once InconsistentNaming
+    var EmployeeStatusDetail = function (specifiedId, specifiedCode, specifiedName, specifieddescription, specifiedEmpStatusFlag) {
         var            
             id = ko.observable(specifiedId),
             code = ko.observable(specifiedCode).extend({ required: true }),
             name = ko.observable(specifiedName).extend({ required: true }),
             description = ko.observable(specifieddescription),
-            countryId = ko.observable(specifiedcountryId).extend({ required: true }),
-            countryName = ko.observable(specifiedcountryName),
+            empStatusFlag = ko.observable(specifiedEmpStatusFlag).extend({ required: true }), 
+            empStatusFlagString = ko.computed(function () {
+                if (specifiedEmpStatusFlag == true) return 'YES';
+                else return 'NO';
+            }),
             errors = ko.validation.group({
                 name: name,
                 code: code,
-                countryId: countryId
+                empStatusFlag: empStatusFlag
             }),
             // Is Valid
             isValid = ko.computed(function() {
@@ -33,13 +36,12 @@
             },
             // Convert to server
             convertToServerData = function () {
-                debugger;
                 return {
-                    RegionId: id(),
-                    RegionCode: code(),
-                    RegionName: name(),
-                    RegionDescription: description(),
-                    CountryId:countryId()
+                    EmpStatusId: id(),
+                    EmpStatusCode: code(),
+                    EmpStatusName: name(),
+                    EmpStatusDescription: description(),
+                    EmpStatusFlag: empStatusFlag()
                 };
             };
         return {
@@ -47,8 +49,8 @@
             code: code,
             name: name,
             description: description,
-            countryId: countryId,
-            countryName:countryName,
+            empStatusFlag: empStatusFlag,
+            empStatusFlagString:empStatusFlagString,
             errors: errors,
             isValid: isValid,
             dirtyFlag: dirtyFlag,
@@ -59,22 +61,23 @@
         };
     };
     // server to client mapper
-    var regionServertoClinetMapper = function (source) {
-        return EmployeeStatusDetail.Create(source);
+    var empStatusServertoClinetMapper = function (source) {
+        return new EmployeeStatusDetail(source.EmpStatusId, source.EmpStatusCode, source.EmpStatusName, source.EmpStatusDescription, source.EmpStatusFlag);
     };
     
-    // Region Factory
-    EmployeeStatusDetail.Create = function (source) {
-        return new EmployeeStatusDetail(source.RegionId, source.RegionCode, source.RegionName, source.RegionDescription, source.CountryId, source.CountryName);
+    // EmployeeStatus Factory
+    var createEmployeeStatusDetail = function (serviceStatus) {
+        return new EmployeeStatusDetail(undefined, undefined, undefined, undefined, serviceStatus);
     };
 
     //function to attain cancel button functionality 
     EmployeeStatusDetail.CreateFromClientModel = function (itemFromServer) {
         return new EmployeeStatusDetail(itemFromServer.id, itemFromServer.code, itemFromServer.name,
-            itemFromServer.description, itemFromServer.countryId, itemFromServer.countryName);
+            itemFromServer.description, itemFromServer.empStatusFlag);
     };
     return {
-        regionDetail: EmployeeStatusDetail,
-        regionServertoClinetMapper: regionServertoClinetMapper,
+        EmployeeStatusDetail: EmployeeStatusDetail,
+        CreateEmployeeStatusDetail: createEmployeeStatusDetail,
+        empStatusServertoClinetMapper: empStatusServertoClinetMapper,
     };
 });

@@ -19,6 +19,7 @@
     "City.less",
     "Area.less",
     "DesignationGrade.less",
+    "EmpStatus.less",
     "MainSite.less"
   ],
   "names": [],

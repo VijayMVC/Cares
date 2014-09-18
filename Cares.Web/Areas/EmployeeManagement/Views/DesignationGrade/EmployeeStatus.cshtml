@@ -1,0 +1,94 @@
+﻿@{
+    ViewBag.Title = Cares.Web.Resources.EmployeeManagement.EmpStatus.EmployeeStatusLabel;
+}
+<div class="row" id="EmployeeStatusBinding">
+
+    <div class="row " data-bind="visible: !isEmployeeStatusesEditorVisible()">
+        <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.EmployeeManagement.EmpStatus.EmployeeStatusLabel</h3>
+        <div class="header-toolsSection">
+            <a href="#" class="label label-default create-new-icon" data-bind="click: onCreateForm" title="@Cares.Web.Resources.Shared.Common.CreateNew">@Cares.Web.Resources.Shared.Common.New</a>
+            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title="@Cares.Web.Resources.Shared.Common.ShowFilter" style="display: none"></a>
+        </div>
+    </div>
+    <div class="row searchFilterSection" data-bind="visible: !isEmployeeStatusesEditorVisible() && filterSectionVisilble()" style="display: none">
+        <div class="well">
+            <form class="form-horizontal">
+                <div class="col-xs-3">
+                    <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.EmployeeManagement.EmpStatus.Search+">")" data-bind="value: searchFilter" />
+                </div>
+
+
+
+                <button type="submit" class="btn btn-success" data-bind="click: search">@Cares.Web.Resources.Shared.Common.Search</button>
+                <button type="submit" class="btn btn-default" data-bind="click:resetResuults">@Cares.Web.Resources.Shared.Common.Reset</button>
+                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click:hideFilterSection" title="@Cares.Web.Resources.Shared.Common.HideSection"></a>
+            </form>
+        </div>
+    </div>
+    <div class="row searchFilterResultSection" data-bind="visible: !isEmployeeStatusesEditorVisible()">
+        <div class="well">
+            <table id="OrgGroupTable" class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th class="Empcode"> <span id="1">@Cares.Web.Resources.EmployeeManagement.EmpStatus.Code<span class="icon-up"></span></span></th>
+                        <th class="Empname"> <span id="2">@Cares.Web.Resources.EmployeeManagement.EmpStatus.Name<span></span></span></th>
+                        <th class="EmpDes"> <span >@Cares.Web.Resources.EmployeeManagement.EmpStatus.Description<span></span></span></th>
+                        <th class="EmpStatus"> <span id="2">@Cares.Web.Resources.EmployeeManagement.EmpStatus.InService<span></span></span></th>
+                        <th> <span></span></th>
+                        <th> <span></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- ko template: { name: 'WorkplaceTypeFilterResultTemplate' , foreach: employeeStatuses } -->
+                    <!-- /ko -->
+                </tbody>
+            </table>
+            <!-- ko with: pager -->
+            @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
+            <!-- /ko -->
+        </div>
+    </div>
+    <script id="deleteActionOrgGroupTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onDeleteItem" title="@Cares.Web.Resources.Shared.Common.Delete"><span class="glyphicon glyphicon-remove"></span></a>
+    </script>
+
+    <script id="editActionOrgRoupTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onEditItem" title="@Cares.Web.Resources.Shared.Common.Edit"><span class="glyphicon glyphicon-edit"></span></a>
+    </script>
+    <script id="WorkplaceTypeFilterResultTemplate" type="text/html">
+        <tr>
+            <td data-bind="text: code"></td>
+            <td data-bind="text: name"></td>
+            <td data-bind="text: description"></td>
+            <td data-bind="text:empStatusFlagString"></td>
+            <td>
+                <!-- ko template: { name: 'editActionOrgRoupTemplate' } -->
+                <!-- /ko -->
+            </td>
+            <td>
+                <!-- ko template: { name: 'deleteActionOrgGroupTemplate' } -->
+                <!-- /ko -->
+            </td>
+        </tr>
+    </script>
+    @Html.Partial("_EmployeeStatusEditor")
+</div>
+<!-- ko stopBinding: true -->
+@Html.Partial("~/Areas/Common/Views/Shared/_ConfirmationDialog.cshtml")
+<!-- /ko -->
+@section inlinescripts
+{
+    <script type="text/javascript">
+        require(["empStatus/empStatus.view", "common/confirmation.view"]);
+    var ist = window.ist;
+    @{
+        <text>
+        ist.resourceText.EmployeeStatusSaveSuccessMessage = '@Cares.Web.Resources.EmployeeManagement.EmpStatus.EmployeeStatusSaveSuccessMessage';
+        ist.resourceText.EmployeeStatusSaveFailError = '@Cares.Web.Resources.EmployeeManagement.EmpStatus.EmployeeStatusSaveFailError';
+        ist.resourceText.EmployeeStatusLoadFailError = '@Cares.Web.Resources.EmployeeManagement.EmpStatus.EmployeeStatusLoadFailError';
+        ist.resourceText.EmployeeStatusDeleteSuccessMessage = '@Cares.Web.Resources.EmployeeManagement.EmpStatus.EmployeeStatusDeleteSuccessMessage';
+        ist.resourceText.EmployeeStatusDeleteFailError = '@Cares.Web.Resources.EmployeeManagement.EmpStatus.EmployeeStatusDeleteFailError';
+        </text>
+       }
+    </script>
+}

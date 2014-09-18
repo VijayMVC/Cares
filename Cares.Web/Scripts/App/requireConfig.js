@@ -32,9 +32,10 @@
             "subRegion": "/Areas/GeographicalHierarchy/Scripts",
             "city": "/Areas/GeographicalHierarchy/Scripts",
             "area": "/Areas/GeographicalHierarchy/Scripts",
-
-            "designGrade": "/Areas/EmployeeManagement/Scripts"
-
+            "empStatus": "/Areas/EmployeeManagement/Scripts",
+            "designGrade": "/Areas/EmployeeManagement/Scripts",
+            "designation": "/Areas/EmployeeManagement/Scripts"
+            
         }
     });
 
