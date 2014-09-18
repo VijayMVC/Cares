@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Web;
 using System.Web.Http;
@@ -57,6 +56,18 @@ namespace Cares.Web.Areas.Api.Controllers
             }
             EmployeeListViewContent employeeResult = employeeService.SaveEmployee(employee.CreateFrom()).CreateFromListViewContent();
             return employeeResult;
+        }
+
+        /// <summary>
+        /// Delete a Vehicle
+        /// </summary>
+        public void Delete(Employee employee)
+        {
+            if (employee == null || !ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+            employeeService.DeleteEmployee(employeeService.FindById(employee.EmployeeId));
         }
         #endregion
 

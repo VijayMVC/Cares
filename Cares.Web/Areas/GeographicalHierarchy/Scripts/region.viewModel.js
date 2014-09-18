@@ -80,8 +80,7 @@ define("region/region.viewModel",
                 },
                 // create new Region
                     onCreateForm = function () {
-                        debugger;
-                        var region = new model.regionDetail();
+                    var region = new model.regionDetail();
                     editorViewModel.selectItem(region);
                     isRegionEditorVisible(true);
                 },
@@ -208,11 +207,9 @@ define("region/region.viewModel",
                     selectedRegion: selectedRegion,
                     onSavebtn: onSavebtn,
                     getRegions: getRegions,
-
                     getBaseData: getBaseData,
                     baseCountriesList: baseCountriesList,
                     baseCountryFilter: baseCountryFilter
-
                 };
             })()
         };

@@ -180,7 +180,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
           // Unique key
           jobInfoId = ko.observable(),
           //Job Type Id
-          jobTypeId = ko.observable(),
+          jobTypeId = ko.observable().extend({ required: true }),
           //Desgnation Id
           desgId = ko.observable().extend({ required: true }),
           //Degnation Grade Id
@@ -192,13 +192,19 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
           //Supervisor ID
           supervisorId = ko.observable(),
           //Joining DAte
-          joiningDate = ko.observable(),
+          joiningDate = ko.observable().extend({ required: true }),
           //Salary
           salary = ko.observable().extend({ number: true }),
 
               // Errors
             errors = ko.validation.group({
-
+                jobTypeId: jobTypeId,
+                desgId: desgId,
+                desgGardeId: desgGardeId,
+                depId: depId,
+                workPlaceId: workPlaceId,
+                joiningDate: joiningDate,
+                salary: salary,
             }),
             // Is Valid
             isValid = ko.computed(function () {
@@ -657,13 +663,13 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.Notes4 = source.notes4() === undefined ? null : source.notes4();
         result.Notes5 = source.notes5() === undefined ? null : source.notes5();
         result.DOB = source.dOB() === undefined || source.dOB() === null ? null : moment(source.dOB()).format(ist.utcFormat);
+        // Address tab
+        result.Addresses = [];
         _.each(source.employeeAddressList(), function (item) {
             result.Addresses.push(AddressServerMapper(item));
         });
         //Job Info Tab
         result.EmpJobInfo = JobInfoServerMapper(source.jobInfo());
-        // Address tab
-        result.Addresses = [];
         //Employee Document Info tab
         result.EmpDocsInfo = DocumentInfoServerMapper(source.documentInfo());
         // Phone tab
@@ -703,6 +709,24 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.AddressTypeId = item.addressTypeId() === undefined ? undefined : item.addressTypeId();
         return result;
     };
+    // Convert Address Server to Client
+    var AddressClientMapper = function (source) {
+        var address = new Address();
+        address.addressId(source.AddressId === null ? undefined : source.AddressId);
+        address.contactPerson(source.ContactPerson === null ? undefined : source.ContactPerson);
+        address.streetAddress(source.StreetAddress === null ? undefined : source.StreetAddress);
+        address.emailAddress(source.EmailAddress === null ? undefined : source.EmailAddress);
+        address.webPage(source.WebPage === null ? undefined : source.WebPage);
+        address.zipCode(source.ZipCode === null ? undefined : source.ZipCode);
+        address.poBox(source.PoBox === null ? undefined : source.PoBox);
+        address.countryName(source.CountryName === null ? undefined : source.CountryName);
+        address.regionName(source.RegionName === null ? undefined : source.RegionName);
+        address.subRegionName(source.SubRegionName === null ? undefined : source.SubRegionName);
+        address.cityName(source.CityName === null ? undefined : source.CityName);
+        address.areaName(source.AreaName === null ? undefined : source.AreaName);
+        address.addressTypeName(source.AddressTypeName === null ? undefined : source.AddressTypeName);
+        return address;
+    };
     // Convert Phone Client to Server
     var PhoneServerMapper = function (item) {
         var result = {};
@@ -713,20 +737,40 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.PhoneTypeId = item.phoneTypeId() === undefined ? undefined : item.phoneTypeId();
         return result;
     };
+    // Convert Phone Server to Client
+    var PhoneClientMapper = function (source) {
+        var phone = new Phone();
+        phone.phoneId(source.PhoneId === null ? undefined : source.PhoneId);
+        phone.isDefault(source.IsDefault === null ? undefined : source.IsDefault);
+        phone.phoneNumber(source.PhoneNumber === null ? undefined : source.PhoneNumber);
+        phone.phoneTypeName(source.PhoneTypeName === null ? undefined : source.PhoneTypeName);
+        return result;
+    };
     // Convert Job Progress Client to Server
     var JobProgressServerMapper = function (item) {
         var result = {};
-        result.EmpJobProgId = item.empJobProgId() === undefined ? null : item.empJobProgId();
+        result.EmpJobProgId = item.empJobProgId() === undefined ? 0 : item.empJobProgId();
         result.DesignationId = item.designationId() === undefined ? null : item.designationId();
         result.WorkplaceId = item.workplaceId() === undefined ? null : item.workplaceId();
         result.DesigStDt = item.desigStDt() === undefined || item.desigStDt() === null ? null : moment(item.desigStDt()).format(ist.utcFormat);
         result.DesigEndDt = item.desigEndDt() === undefined || item.desigEndDt() === null ? null : moment(item.desigEndDt()).format(ist.utcFormat);
         return result;
     };
-    // Convert Phone Client to Server
+    // Convert Job Progress Server to Client
+    var JobProgressClientMapper = function (source) {
+        var jobProgress = new JobProgress();
+        jobProgress.empJobProgId(source.EmpJobProgId === null ? undefined : source.EmpJobProgId);
+        jobProgress.desigName(source.DesignationCodeName === null ? undefined : source.DesignationCodeName);
+        jobProgress.workplaceName(source.WorkplaceCodeName === null ? undefined : source.WorkplaceCodeName);
+        jobProgress.desigStDt(source.DesigStDt !== null ? moment(source.DesigStDt, ist.utcFormat).toDate() : undefined);
+        jobProgress.desigEndDt(source.DesigEndDt !== null ? moment(source.DesigEndDt, ist.utcFormat).toDate() : undefined);
+        return jobProgress;
+    };
+    // Convert Job Info Client to Server
     var JobInfoServerMapper = function (item) {
         var result = {};
-        result.EmployeeId = item.jobInfoId() === undefined ? null : item.jobInfoId();
+        result.JobInfoId = item.jobInfoId() === undefined ? 0 : item.jobInfoId();
+        result.EmployeeId = 0;
         result.DesignationId = item.desgId() === undefined ? null : item.desgId();
         result.DesigGradeId = item.desgGardeId() === undefined ? null : item.desgGardeId();
         result.JobTypeId = item.jobTypeId() === undefined ? null : item.jobTypeId();
@@ -737,10 +781,24 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.JoiningDt = item.joiningDate() === undefined || item.joiningDate() === null ? null : moment(item.joiningDate()).format(ist.utcFormat);
         return result;
     };
+    // Convert Phone Server to Client
+    var JobInfoClientMapper = function (source) {
+        var jobInfo = new JobInfo();
+        jobInfo.jobInfoId(source.EmployeeId === null ? undefined : source.EmployeeId);
+        jobInfo.desgId(source.DesignationId === null ? undefined : source.DesignationId);
+        jobInfo.desgGardeId(source.DesigGradeId === null ? undefined : source.DesigGradeId);
+        jobInfo.jobTypeId(source.JobTypeId === null ? undefined : source.JobTypeId);
+        jobInfo.depId(source.DepartmentId === null ? undefined : source.DepartmentId);
+        jobInfo.workPlaceId(source.WorkplaceId === null ? undefined : source.WorkplaceId);
+        jobInfo.supervisorId(source.SupervisorId === null ? undefined : source.SupervisorId);
+        jobInfo.salary(source.Salary === null ? undefined : source.Salary);
+        jobInfo.joiningDate(source.JoiningDt !== null ? moment(source.JoiningDt, ist.utcFormat).toDate() : undefined);
+        return jobInfo;
+    };
     // Convert Phone Client to Server
     var DocumentInfoServerMapper = function (item) {
         var result = {};
-        result.EmployeeId = item.id() === undefined ? null : item.id();
+        result.EmployeeId = item.id() === undefined ? 0 : item.id();
         result.NIC = item.nic() === undefined ? null : item.nic();
         result.NICExpDt = item.nicExpDt() === undefined || item.nicExpDt() === null ? null : moment(item.nicExpDt()).format(ist.utcFormat);
         result.IqamaNo = item.iqamaNum() === undefined ? null : item.iqamaNum();
@@ -759,6 +817,28 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.InsuranceDt = item.insuranceDt() === undefined || item.insuranceDt() === null ? null : moment(item.insuranceDt()).format(ist.utcFormat);
         return result;
     };
+    // Convert Phone Server to Client
+    var DocumentInfoClientMapper = function (source) {
+        var docInfo = new DocumentInfo();
+        docInfo.id(source.EmployeeId === null ? undefined : source.EmployeeId);
+        docInfo.nic(source.NIC === null ? undefined : source.NIC);
+        docInfo.nicExpDt(source.NICExpDt !== null ? moment(source.NICExpDt, ist.utcFormat).toDate() : undefined);
+        docInfo.iqamaNum(source.IqamaNo === null ? undefined : source.IqamaNo);
+        docInfo.iqamaExpDt(source.IqamaExpDt !== null ? moment(source.IqamaExpDt, ist.utcFormat).toDate() : undefined);
+        docInfo.passportNum(source.PassportNo === null ? undefined : source.PassportNo);
+        docInfo.passportExpDt(source.PassportExpDt !== null ? moment(source.PassportExpDt, ist.utcFormat).toDate() : undefined);
+        docInfo.passCountryId(source.PassportCountryId === null ? undefined : source.PassportCountryId);
+        docInfo.visaNum(source.VisaNo === null ? undefined : source.VisaNo);
+        docInfo.visaExpDt(source.VisaExpDt !== null ? moment(source.VisaExpDt, ist.utcFormat).toDate() : undefined);
+        docInfo.visaIssuingCountry(source.VisaIssueCountryId === null ? undefined : source.VisaIssueCountryId);
+        docInfo.licenseNum(source.LicenseNo === null ? undefined : source.LicenseNo);
+        docInfo.licenseExpDt(source.LicenseExpDt !== null ? moment(source.LicenseExpDt, ist.utcFormat).toDate() : undefined);
+        docInfo.licenseTypeId(source.LicenseTypeId === null ? undefined : source.LicenseTypeId);
+        docInfo.insuranceNum(source.InsuranceNo === null ? undefined : source.InsuranceNo);
+        docInfo.insuranceComp(source.InsuranceCompany === null ? undefined : source.InsuranceCompany);
+        docInfo.insuranceDt(source.InsuranceDt !== null ? moment(source.InsuranceDt, ist.utcFormat).toDate() : undefined);
+        return docInfo;
+    };
     //Convert Authorized Location Client to Server
     var AuthorizedLocationServerMapper = function (source) {
         var result = {};
@@ -767,6 +847,16 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.IsDefault = source.isDefault() === undefined ? true : source.isDefault();
         result.IsOperationDefault = source.isOperationDefault() === undefined ? true : source.isOperationDefault();
         return result;
+    };
+    //Convert Authorized Location Server to Client
+    var AuthorizedLocationClientMapper = function (source) {
+        var authLocation = new AuthorizedLocation();
+        authLocation.id(source.EmpAuthLocationId === null ? undefined : source.EmpAuthLocationId);
+        authLocation.operationsWorkplaceName(source.OperationworkPalceCode === null ? undefined : source.OperationworkPalceCode);
+        authLocation.operationName(source.OperationCodeName === null ? undefined : source.OperationCodeName);
+        authLocation.isDefault(source.IsDefault === null ? undefined : source.IsDefault);
+        authLocation.isOperationDefault(source.IsOperationDefault === null ? undefined : source.IsOperationDefault);
+        return authLocation;
     };
     //Server To Client Mapper
     var EmployeeDetailClientMapper = function (source) {
@@ -788,6 +878,11 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         empDetail.gender(source.Gender === null ? undefined : source.Gender);
         empDetail.dOB(source.DOB !== null ? moment(source.DOB, ist.utcFormat).toDate() : undefined);
 
+        //Job Info
+        //jobInfo(JobInfoClientMapper(source.JobInfo()));
+        //Document Info
+        //documentInfo(DocumentInfoClientMapper(source.DocumentInfo()));
+
         return empDetail;
     };
     //Server To Client
@@ -806,16 +901,20 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         JobProgress: JobProgress,
         AuthorizedLocation: AuthorizedLocation,
         DocumentInfo: DocumentInfo,
-
         EmployeeClientMapper: EmployeeClientMapper,
         EmployeeDetailClientMapper: EmployeeDetailClientMapper,
-
+        JobInfoClientMapper: JobInfoClientMapper,
+        AddressClientMapper: AddressClientMapper,
+        PhoneClientMapper: PhoneClientMapper,
+        JobProgressClientMapper: JobProgressClientMapper,
+        DocumentInfoClientMapper: DocumentInfoClientMapper,
+        AuthorizedLocationClientMapper: AuthorizedLocationClientMapper,
         EmployeeDetailServerMapper: EmployeeDetailServerMapper,
         AddressServerMapper: AddressServerMapper,
         PhoneServerMapper: PhoneServerMapper,
         JobProgressServerMapper: JobProgressServerMapper,
         DocumentInfoServerMapper: DocumentInfoServerMapper,
-        AuthorizedLocationServerMapper:AuthorizedLocationServerMapper,
+        AuthorizedLocationServerMapper: AuthorizedLocationServerMapper,
         EmployeeDetailServerMapperForId: EmployeeDetailServerMapperForId
 
     };

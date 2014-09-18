@@ -173,12 +173,12 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Employee Addresses
         /// </summary>
-        public virtual ICollection<Address> Addresses { get; set; }
+        //public virtual ICollection<Address> Addresses { get; set; }
 
         /// <summary>
         /// Phone Numbers
         /// </summary>
-        public virtual ICollection<Phone> PhoneNumbers { get; set; }
+        //public virtual ICollection<Phone> PhoneNumbers { get; set; }
 
         /// <summary>
         /// Employee Documents Info

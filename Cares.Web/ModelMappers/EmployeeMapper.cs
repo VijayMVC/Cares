@@ -25,81 +25,6 @@ namespace Cares.Web.ModelMappers
         }
 
         /// <summary>
-        ///  Create entity from web model
-        /// </summary>
-        public static DomainModels.EmpJobInfo CreateFrom(this EmpJobInfo source)
-        {
-            return new DomainModels.EmpJobInfo
-            {
-
-                EmployeeId = source.EmployeeId,
-                DepartmentId = source.DepartmentId,
-                DesigGradeId = source.DesigGradeId,
-                DesignationId = source.DesignationId,
-                JobTypeId = source.JobTypeId,
-                SupervisorId = source.SupervisorId,
-                WorkPlaceId = source.WorkplaceId,
-                JoiningDt = source.JoiningDt,
-                Salary = source.Salary,
-            };
-        }
-
-        /// <summary>
-        ///  Create entity from web model
-        /// </summary>
-        public static DomainModels.EmpDocsInfo CreateFrom(this EmpDocsInfo source)
-        {
-            return new DomainModels.EmpDocsInfo
-            {
-                EmployeeId = source.EmployeeId,
-                InsuranceCompany = source.InsuranceCompany,
-                InsuranceDt = source.InsuranceDt,
-                InsuranceNo = source.InsuranceNo,
-                IqamaExpDt = source.IqamaExpDt,
-                IqamaNo = source.IqamaNo,
-                LicenseExpDt = source.LicenseExpDt,
-                LicenseNo = source.LicenseNo,
-                LicenseTypeId = source.LicenseTypeId,
-                PassportCountryId = source.PassportCountryId,
-                VisaIssueCountryId = source.VisaIssueCountryId,
-                PassportNo = source.PassportNo,
-                PassportExpDt = source.PassportExpDt,
-                VisaNo = source.VisaNo,
-                VisaExpDt = source.VisaExpDt,
-            };
-        }
-
-        /// <summary>
-        ///  Create entity from web model
-        /// </summary>
-        public static DomainModels.EmpJobProg CreateFrom(this EmpJobProg source)
-        {
-            return new DomainModels.EmpJobProg
-            {
-                EmpJobProgId = source.EmpJobProgId,
-                EmployeeId = source.EmployeeId,
-                WorkplaceId = source.WorkplaceId,
-                DesignationId = source.DesignationId,
-                DesigStDt = source.DesigStDt,
-                DesigEndDt = source.DesigEndDt,
-            };
-        }
-        /// <summary>
-        ///  Create entity from web model
-        /// </summary>
-        public static DomainModels.EmpAuthOperationsWorkplace CreateFrom(this EmpAuthOperationsWorkplace source)
-        {
-            return new DomainModels.EmpAuthOperationsWorkplace
-            {
-                EmpAuthOperationsWorkplaceId = source.EmpAuthLocationId,
-                EmployeeId = source.EmployeeId,
-                IsDefault = source.IsDefault,
-                IsOperationDefault = source.IsOperationDefault,
-                OperationsWorkplaceId = source.OperationsWorkplaceId,
-            };
-        }
-
-        /// <summary>
         ///  Create entity from  web model
         /// </summary>
         public static DomainModels.Employee CreateFrom(this Employee source)
@@ -123,11 +48,11 @@ namespace Cares.Web.ModelMappers
                 Notes5 = source.Notes5,
                 NationalityId = source.NationalityId,
                 EmpJobInfo = source.EmpJobInfo.CreateFrom(),
-                Addresses = source.Addresses.Select(add => add.CreateFrom()).ToList(),
-                PhoneNumbers = source.PhoneNumbers.Select(phone => phone.CreateFrom()).ToList(),
+               // Addresses = source.Addresses!=null?source.Addresses.Select(add => add.CreateFrom()).ToList():null,
+                //PhoneNumbers = source.PhoneNumbers!=null?source.PhoneNumbers.Select(phone => phone.CreateFrom()).ToList():null,
                 EmpDocsInfo = source.EmpDocsInfo.CreateFrom(),
-                EmpJobProgs = source.EmpJobProgs.Select(empJobProg => empJobProg.CreateFrom()).ToList(),
-                EmpAuthOperationsWorkplaces = source.AuthorizedLocations.Select(location => location.CreateFrom()).ToList(),
+                EmpJobProgs = source.EmpJobProgs!=null?source.EmpJobProgs.Select(empJobProg => empJobProg.CreateFrom()).ToList():null,
+                EmpAuthOperationsWorkplaces = source.AuthorizedLocations!=null?source.AuthorizedLocations.Select(location => location.CreateFrom()).ToList():null,
             };
         }
 
@@ -154,9 +79,15 @@ namespace Cares.Web.ModelMappers
                 Notes4 = source.Notes4,
                 Notes5 = source.Notes5,
                 NationalityId = source.NationalityId,
-
+                EmpJobInfo = source.EmpJobInfo!=null?source.EmpJobInfo.CreateFrom():null,
+                //Addresses = source.Addresses!=null?source.Addresses.Select(add => add.CreateFrom()).ToList():null,
+               // PhoneNumbers = source.PhoneNumbers!=null?source.PhoneNumbers.Select(phone => phone.CreateFrom()).ToList():null,
+                EmpDocsInfo = source.EmpDocsInfo != null ? source.EmpDocsInfo.CreateFrom() : null,
+                EmpJobProgs = source.EmpJobProgs!=null?source.EmpJobProgs.Select(empJobProg => empJobProg.CreateFrom()).ToList():null,
+                AuthorizedLocations = source.EmpAuthOperationsWorkplaces!=null?source.EmpAuthOperationsWorkplaces.Select(location => location.CreateFrom()).ToList():null,
             };
         }
+       
         /// <summary>
         ///  Create web model from entity
         /// </summary>
@@ -174,6 +105,7 @@ namespace Cares.Web.ModelMappers
 
             };
         }
+       
         /// <summary>
         ///  Create web model from entity
         /// </summary>
@@ -214,6 +146,170 @@ namespace Cares.Web.ModelMappers
                 Operations = source.Operations.Select(x => x.CreateFrom()),
                 OperationsWorkPlaces = source.OperationsWorkPlaces.Select(x => x.CreateFromDropDown()),
                 AddressTypes = source.AddressTypes.Select(x => x.CreateFrom()),
+            };
+        }
+        #endregion
+        
+        #region Job Info Mappers
+        /// <summary>
+        ///  Create entity from web model
+        /// </summary>
+        public static DomainModels.EmpJobInfo CreateFrom(this EmpJobInfo source)
+        {
+            return new DomainModels.EmpJobInfo
+            {
+
+                EmployeeId = source.EmployeeId,
+                DepartmentId = source.DepartmentId,
+                DesigGradeId = source.DesigGradeId,
+                DesignationId = source.DesignationId,
+                JobTypeId = source.JobTypeId,
+                SupervisorId = source.SupervisorId,
+                WorkPlaceId = source.WorkplaceId,
+                JoiningDt = source.JoiningDt,
+                Salary = source.Salary,
+            };
+        }
+
+        /// <summary>
+        ///  Create  web model from entity
+        /// </summary>
+        public static EmpJobInfo CreateFrom(this DomainModels.EmpJobInfo source)
+        {
+            return new EmpJobInfo
+            {
+
+                EmployeeId = source.EmployeeId,
+                DepartmentId = source.DepartmentId,
+                DesigGradeId = source.DesigGradeId,
+                DesignationId = source.DesignationId,
+                JobTypeId = source.JobTypeId,
+                SupervisorId = source.SupervisorId,
+                WorkplaceId = source.WorkPlaceId,
+                JoiningDt = source.JoiningDt,
+                Salary = source.Salary,
+            };
+        }
+        #endregion
+
+        #region Employee Docs Info
+        /// <summary>
+        ///  Create entity from web model
+        /// </summary>
+        public static DomainModels.EmpDocsInfo CreateFrom(this EmpDocsInfo source)
+        {
+            return new DomainModels.EmpDocsInfo
+            {
+                EmployeeId = source.EmployeeId,
+                InsuranceCompany = source.InsuranceCompany,
+                InsuranceDt = source.InsuranceDt,
+                InsuranceNo = source.InsuranceNo,
+                IqamaExpDt = source.IqamaExpDt,
+                IqamaNo = source.IqamaNo,
+                LicenseExpDt = source.LicenseExpDt,
+                LicenseNo = source.LicenseNo,
+                LicenseTypeId = source.LicenseTypeId,
+                PassportCountryId = source.PassportCountryId,
+                VisaIssueCountryId = source.VisaIssueCountryId,
+                PassportNo = source.PassportNo,
+                PassportExpDt = source.PassportExpDt,
+                VisaNo = source.VisaNo,
+                VisaExpDt = source.VisaExpDt,
+            };
+        }
+
+        /// <summary>
+        /// Create  web model from entity
+        /// </summary>
+        public static EmpDocsInfo CreateFrom(this DomainModels.EmpDocsInfo source)
+        {
+            return new EmpDocsInfo
+            {
+                EmployeeId = source.EmployeeId,
+                InsuranceCompany = source.InsuranceCompany,
+                InsuranceDt = source.InsuranceDt,
+                InsuranceNo = source.InsuranceNo,
+                IqamaExpDt = source.IqamaExpDt,
+                IqamaNo = source.IqamaNo,
+                LicenseExpDt = source.LicenseExpDt,
+                LicenseNo = source.LicenseNo,
+                LicenseTypeId = source.LicenseTypeId,
+                PassportCountryId = source.PassportCountryId,
+                VisaIssueCountryId = source.VisaIssueCountryId,
+                PassportNo = source.PassportNo,
+                PassportExpDt = source.PassportExpDt,
+                VisaNo = source.VisaNo,
+                VisaExpDt = source.VisaExpDt,
+            };
+        }
+        #endregion
+
+        #region EmpJobProg
+        /// <summary>
+        ///  Create entity from web model
+        /// </summary>
+        public static DomainModels.EmpJobProg CreateFrom(this EmpJobProg source)
+        {
+            return new DomainModels.EmpJobProg
+            {
+                EmpJobProgId = source.EmpJobProgId,
+                EmployeeId = source.EmployeeId,
+                WorkplaceId = source.WorkplaceId,
+                DesignationId = source.DesignationId,
+                DesigStDt = source.DesigStDt,
+                DesigEndDt = source.DesigEndDt,
+            };
+        }
+
+        /// <summary>
+        ///  Create web model from entity
+        /// </summary>
+        public static EmpJobProg CreateFrom(this DomainModels.EmpJobProg source)
+        {
+            return new EmpJobProg
+            {
+                EmpJobProgId = source.EmpJobProgId,
+                EmployeeId = source.EmployeeId,
+                WorkplaceId = source.WorkplaceId,
+                DesignationId = source.DesignationId,
+                DesigStDt = source.DesigStDt,
+                DesigEndDt = source.DesigEndDt,
+                DesignationCodeName = source.Designation != null ? source.Designation.DesignationCode + " - " + source.Designation.DesignationName : string.Empty,
+                WorkplaceCodeName = source.WorkPlace != null ? source.WorkPlace.WorkPlaceCode + " - " + source.WorkPlace.WorkPlaceName : string.Empty,
+            };
+        }
+        #endregion
+
+        #region Employee Authorized Operation sWorkplace
+        /// <summary>
+        ///  Create entity from web model
+        /// </summary>
+        public static DomainModels.EmpAuthOperationsWorkplace CreateFrom(this EmpAuthOperationsWorkplace source)
+        {
+            return new DomainModels.EmpAuthOperationsWorkplace
+            {
+                EmpAuthOperationsWorkplaceId = source.EmpAuthLocationId,
+                EmployeeId = source.EmployeeId,
+                IsDefault = source.IsDefault,
+                IsOperationDefault = source.IsOperationDefault,
+                OperationsWorkplaceId = source.OperationsWorkplaceId,
+            };
+        }
+
+        /// <summary>
+        ///  Create web Model from entity
+        /// </summary>
+        public static EmpAuthOperationsWorkplace CreateFrom(this DomainModels.EmpAuthOperationsWorkplace source)
+        {
+            return new EmpAuthOperationsWorkplace
+            {
+                EmpAuthLocationId = source.EmpAuthOperationsWorkplaceId,
+                EmployeeId = source.EmployeeId,
+                IsDefault = source.IsDefault,
+                IsOperationDefault = source.IsOperationDefault,
+                OperationsWorkplaceId = source.OperationsWorkplaceId,
+                OperationCodeName = source.OperationsWorkPlace.Operation != null ? source.OperationsWorkPlace.Operation.OperationCode + " - " + source.OperationsWorkPlace.Operation.OperationName : string.Empty,
+                OperationworkPalceCode = source.OperationsWorkPlace != null ? source.OperationsWorkPlace.LocationCode : string.Empty,
             };
         }
         #endregion

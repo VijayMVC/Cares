@@ -124,10 +124,60 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Identity\IdentityOperation.cs" />
+    <Compile Include="Resources\EmployeeManagement\Designation.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Designation.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\EmployeeManagement\Designation.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Designation.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\EmployeeManagement\DesignationGrade.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DesignationGrade.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\EmployeeManagement\DesignationGrade.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DesignationGrade.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\EmployeeManagement\EmpStatus.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmpStatus.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\EmployeeManagement\EmpStatus.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmpStatus.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\FleetPool\FleetPool.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FleetPool.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\GeographicalHierarchy\Area.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Area.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\GeographicalHierarchy\Area.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Area.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\GeographicalHierarchy\City.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>City.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\GeographicalHierarchy\City.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>City.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\GeographicalHierarchy\SubRegion.Designer.cs">
       <DependentUpon>SubRegion.resx</DependentUpon>
@@ -281,6 +331,11 @@
     <Compile Include="Services\InsuranceRateService.cs" />
     <Compile Include="Services\OperationsWorkPlaceService.cs" />
     <Compile Include="Services\PhoneService.cs" />
+    <Compile Include="Services\CityService.cs" />
+    <Compile Include="Services\AreaService.cs" />
+    <Compile Include="Services\DesignGradeService.cs" />
+    <Compile Include="Services\EmpStatusService.cs" />
+    <Compile Include="Services\DesignationService.cs" />
     <Compile Include="Services\SubRegionService.cs" />
     <Compile Include="Services\RegionService.cs" />
     <Compile Include="Services\ServiceRtService.cs" />
@@ -333,6 +388,30 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\EmployeeManagement\Designation.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Designation.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\EmployeeManagement\Designation.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Designation.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\EmployeeManagement\DesignationGrade.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DesignationGrade.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\EmployeeManagement\DesignationGrade.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DesignationGrade.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\EmployeeManagement\EmpStatus.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EmpStatus.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\EmployeeManagement\EmpStatus.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EmpStatus.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\FleetPool\FleetPool.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>FleetPool.ar.Designer.cs</LastGenOutput>
@@ -340,6 +419,22 @@
     <EmbeddedResource Include="Resources\FleetPool\FleetPool.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>FleetPool.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\GeographicalHierarchy\Area.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Area.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\GeographicalHierarchy\Area.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Area.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\GeographicalHierarchy\City.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>City.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\GeographicalHierarchy\City.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>City.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\GeographicalHierarchy\SubRegion.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

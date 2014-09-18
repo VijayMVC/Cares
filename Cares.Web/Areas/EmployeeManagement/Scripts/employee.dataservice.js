@@ -8,7 +8,7 @@ define("employee/employee.dataservice", function () {
         var // True if initialized
             isInitialized = false,
             // Initializep
-            initialize = function() {
+            initialize = function () {
                 if (!isInitialized) {
 
                     // Define request to get Employee base data 
@@ -37,17 +37,18 @@ define("employee/employee.dataservice", function () {
                         dataType: 'json',
                         type: 'GET'
                     });
-                    //// Define request to delete Vehicle
-                    //amplify.request.define('deleteVehicle', 'ajax', {
-                    //    url: '/Api/Vehicle',
-                    //    dataType: 'json',
-                    //    type: 'DELETE'
-                    //});
+
+                    // Define request to delete Employee
+                    amplify.request.define('deleteEmployee', 'ajax', {
+                        url: '/Api/Employee',
+                        dataType: 'json',
+                        type: 'DELETE'
+                    });
                     isInitialized = true;
                 }
             },
             // Get Employee base
-            getEmployeeBaseData = function(callbacks) {
+            getEmployeeBaseData = function (callbacks) {
                 initialize();
                 return amplify.request({
                     resourceId: 'getEmployeeBaseData',
@@ -56,7 +57,7 @@ define("employee/employee.dataservice", function () {
                 });
             },
             // Get Employee List
-            getEmployees = function(params, callbacks) {
+            getEmployees = function (params, callbacks) {
                 initialize();
                 return amplify.request({
                     resourceId: 'getEmployees',
@@ -66,7 +67,7 @@ define("employee/employee.dataservice", function () {
                 });
             },
             // Create Employee
-            saveEmployee = function(param, callbacks) {
+            saveEmployee = function (param, callbacks) {
                 initialize();
                 return amplify.request({
                     resourceId: 'saveEmployee',
@@ -76,7 +77,7 @@ define("employee/employee.dataservice", function () {
                 });
             },
             // Get Vehicle Data By Employee id 
-            getEmployeeDetailById = function(params, callbacks) {
+            getEmployeeDetailById = function (params, callbacks) {
                 initialize();
                 return amplify.request({
                     resourceId: 'getEmployeeDetailById',
@@ -84,24 +85,24 @@ define("employee/employee.dataservice", function () {
                     error: callbacks.error,
                     data: params
                 });
-            };
-        //// Delete
-        //deleteVehicle = function (param, callbacks) {
-        //    initialize();
-        //    return amplify.request({
-        //        resourceId: 'deleteVehicle',
-        //        success: callbacks.success,
-        //        error: callbacks.error,
-        //        data: param
-        //    });
-        //};
+            },
+        // Delete
+        deleteEmployee = function (param, callbacks) {
+            initialize();
+            return amplify.request({
+                resourceId: 'deleteEmployee',
+                success: callbacks.success,
+                error: callbacks.error,
+                data: param
+            });
+        };
 
         return {
             getEmployeeBaseData: getEmployeeBaseData,
             getEmployees: getEmployees,
             saveEmployee: saveEmployee,
             getEmployeeDetailById: getEmployeeDetailById,
-            //deleteVehicle: deleteVehicle
+            deleteEmployee: deleteEmployee
 
         };
     })();

@@ -42,5 +42,19 @@ namespace Cares.Interfaces.IServices
         /// </summary>
         /// <returns></returns>
         Employee GetEmployeeDetail(long employeeId);
+
+        /// <summary>
+        /// Find By Id
+        /// </summary>
+        /// <param name="employeeId"></param>
+        /// <returns></returns>
+        Employee FindById(long employeeId);
+
+        /// <summary>
+        /// Delete Employee
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <returns></returns>
+        void DeleteEmployee(Employee employee);
     }
 }

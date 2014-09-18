@@ -19,6 +19,8 @@ namespace Cares.Repository.BaseRepository
         #endregion
 
         #region Protected
+   
+
         #endregion
 
         #region Constructor
@@ -83,6 +85,7 @@ namespace Cares.Repository.BaseRepository
         //public DbSet<Menu> Menus { get; set; }
         #endregion
         
+
         public DbSet<Employee> Employees { get; set; }
         /// <summary>
         /// Companies DB Set
@@ -369,7 +372,7 @@ namespace Cares.Repository.BaseRepository
         /// <summary>
         /// Designation Grade Db Set
         /// </summary>
-        public DbSet<DesigGrade> DesigGrades { get; set; }
+        public DbSet<DesignGrade> DesigGrades { get; set; }
 
         /// <summary>
         /// License Type Db Set

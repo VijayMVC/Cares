@@ -12,8 +12,6 @@ define("employee/employee.viewModel",
 
                      // Active Employee
                     selectedEmployee = ko.observable(),
-                    //Active Employee 
-                    selectedEmployeeId = ko.observable(),
                     //Add/Edit Employee Item
                      addEmployeeItem = ko.observable(),
                     // Show Filter Section
@@ -293,7 +291,7 @@ define("employee/employee.viewModel",
                             addEmployeeItem().address(model.Address());
                         }
                     },
-                     // Do Before Add Address Item
+                     //Do Before Add Address Item
                     doBeforeAddAddressItem = function () {
                         var flag = true;
                         if (!addEmployeeItem().address().isValid()) {
@@ -302,7 +300,7 @@ define("employee/employee.viewModel",
                         }
                         return flag;
                     },
-                      // Add a Employee Phone
+                    // Add a Employee Phone
                     onAddEmployeePhone = function () {
                         // check validation error before add
                         if (doBeforeAddPhoneItem()) {
@@ -317,7 +315,7 @@ define("employee/employee.viewModel",
                             addEmployeeItem().phone(model.Phone());
                         }
                     },
-                        // Do Before Add BusinessPartner Phone Item
+                    //Do Before Add BusinessPartner Phone Item
                     doBeforeAddPhoneItem = function () {
                         var flag = true;
                         if (!addEmployeeItem().phone().isValid()) {
@@ -337,7 +335,7 @@ define("employee/employee.viewModel",
                         }
                         return flag;
                     },
-                      // Add a Employee Job Progress
+                    //Add a Employee Job Progress
                      onAddJobProgress = function () {
                          // check validation error before add
                          if (doBeforeAddJobProgressItem()) {
@@ -355,7 +353,7 @@ define("employee/employee.viewModel",
                              addEmployeeItem().jobProgress(model.JobProgress());
                          }
                      },
-                     // Do Before Employee Job Progress Item
+                    // Do Before Employee Job Progress Item
                     doBeforeAddJobProgressItem = function () {
                         var flag = true;
                         if (!addEmployeeItem().jobProgress().isValid()) {
@@ -364,7 +362,7 @@ define("employee/employee.viewModel",
                         }
                         return flag;
                     },
-                       // Add a Employee Authorized Location 
+                    // Add a Employee Authorized Location 
                      onAddAuthorizedLocation = function () {
                          // check validation error before add
                          if (doBeforeAddAuthorizedLocationItem()) {
@@ -391,7 +389,6 @@ define("employee/employee.viewModel",
                         }
                         return flag;
                     },
-
                     // Initialize the view model
                     initialize = function (specifiedView) {
                         view = specifiedView;
@@ -428,12 +425,19 @@ define("employee/employee.viewModel",
                         filteredAreas.removeAll();
                         filteredSubRegions.removeAll();
                         addressList.removeAll();
+                        phoneNumbersList.removeAll();
+                        jobProgList.removeAll();
+                        authLocationsList.removeAll();
                         //Select the newly added Employee
                         addEmployeeItem(employee);
                         showEmployeeEditor();
                     },
                       //Edit Employee
                     onEditEmployee = function (employee, e) {
+                        addressList.removeAll();
+                        phoneNumbersList.removeAll();
+                        jobProgList.removeAll();
+                        authLocationsList.removeAll();
                         selectedEmployee(employee);
                         getEmployeeById(employee);
                         showEmployeeEditor();
@@ -446,14 +450,22 @@ define("employee/employee.viewModel",
                             success: function (data) {
                                 var employeeDetail = model.EmployeeDetailClientMapper(data);
                                 addEmployeeItem(employeeDetail);
-                                //_.each(data.EmployeeCheckListItems, function (item) {
-                                //    var checkListItem = model.CheckListItemClientMapper(item);
-                                //    checkListItemList.push(checkListItem);
-                                //});
-                                //_.each(data.EmployeeMaintenanceTypeFrequency, function (item) {
-                                //    var maintenanceScheduleItem = model.MaintenanceScheduleClientMapper(item);
-                                //    maintenanceScheduleList.push(maintenanceScheduleItem);
-                                //});
+                                _.each(data.Addresses, function (item) {
+                                    var address = model.AddressClientMapper(item);
+                                    addressList.push(address);
+                                });
+                                _.each(data.PhoneNumbers, function (item) {
+                                    var phone = model.PhoneClientMapper(item);
+                                    phoneNumbersList.push(phone);
+                                });
+                                _.each(data.EmpJobProgs, function (item) {
+                                    var jobProg = model.JobProgressClientMapper(item);
+                                    jobProgList.push(jobProg);
+                                });
+                                _.each(data.AuthorizedLocations, function (item) {
+                                    var location = model.AuthorizedLocationClientMapper(item);
+                                    authLocationsList.push(location);
+                                });
                                 isLoadingEmployees(false);
                             },
                             error: function () {
@@ -464,19 +476,19 @@ define("employee/employee.viewModel",
                     },
                     // Delete a Employee
                     onDeleteEmployee = function (employee) {
-                        //if (!employee.employeeId()) {
-                        //    employees.remove(employee);
-                        //    return;
-                        //}
-                        //// Ask for confirmation
-                        //confirmation.afterProceed(function () {
-                        //    deleteEmployee(employee);
-                        //});
-                        //confirmation.show();
+                        if (!employee.id()) {
+                            employees.remove(employee);
+                            return;
+                        }
+                        // Ask for confirmation
+                        confirmation.afterProceed(function () {
+                            deleteEmployee(employee);
+                        });
+                        confirmation.show();
                     },
                     // Delete Employee
                     deleteEmployee = function (employee) {
-                        dataservice.deleteEmployee(model.EmployeeDetailServerMappeForDelete(employee), {
+                        dataservice.deleteEmployee(model.EmployeeDetailServerMapperForId(employee), {
                             success: function () {
                                 employees.remove(employee);
                                 toastr.success(ist.resourceText.employeeDeleteSuccessMsg);
@@ -505,15 +517,16 @@ define("employee/employee.viewModel",
                             ko.utils.arrayPushAll(employee.employeeAddressList(), addressList());
                             ko.utils.arrayPushAll(employee.jobProgressList(), jobProgList());
                             ko.utils.arrayPushAll(employee.authorizedLocationList(), authLocationsList());
-                            
+
                             saveEmployee(employee);
                         }
                     },
                     // Do Before Logic
                     doBeforeSave = function () {
                         var flag = true;
-                        if (!addEmployeeItem().isValid()) {
+                        if (!addEmployeeItem().isValid() || !addEmployeeItem().jobInfo().isValid()) {
                             addEmployeeItem().errors.showAllMessages();
+                            addEmployeeItem().jobInfo().errors.showAllMessages();
                             flag = false;
                         }
                         return flag;
@@ -653,7 +666,7 @@ define("employee/employee.viewModel",
                         pager().reset();
                         getEmployees();
                     },
-                      // Reset 
+                    // Reset 
                     reset = function () {
                         searchFilter(undefined);
                         employeeStatusFilter(undefined);
@@ -661,20 +674,36 @@ define("employee/employee.viewModel",
                         search();
                     },
                     //map Employees
-                   mapEmployees = function (data) {
-                       var employeeList = [];
-                       _.each(data.Employees, function (item) {
-                           var employee = new model.EmployeeClientMapper(item);
-                           employeeList.push(employee);
-                       });
-                       ko.utils.arrayPushAll(employees(), employeeList);
-                       employees.valueHasMutated();
-                   },
+                    mapEmployees = function (data) {
+                        var employeeList = [];
+                        _.each(data.Employees, function (item) {
+                            var employee = new model.EmployeeClientMapper(item);
+                            employeeList.push(employee);
+                        });
+                        ko.utils.arrayPushAll(employees(), employeeList);
+                        employees.valueHasMutated();
+                    },
                      //Gender
                     genders = [{ Id: 'M', Text: 'Male' },
                         { Id: 'F', Text: 'Female' }
 
                     ],
+                     //Delete Address Item
+                    deleteAddressItem = function (address) {
+                        addressList.remove(address);
+                    },
+                     //Delete Phone Item
+                    deletePhoneItem = function (phone) {
+                        phoneNumbersList.remove(phone);
+                    },
+                       //Delete Job Progress. Item
+                    deleteJobProgressItem = function (jobProgress) {
+                        jobProgList.remove(jobProgress);
+                    },
+                    //Delete Authorized Location Item
+                    deleteAuthLocationItem = function (jobProgress) {
+                        authLocationsList.remove(jobProgress);
+                    },
                     // Get Employees
                     getEmployees = function () {
                         isLoadingEmployees(true);
@@ -776,7 +805,11 @@ define("employee/employee.viewModel",
                     onAddEmployeePhone: onAddEmployeePhone,
                     onAddJobProgress: onAddJobProgress,
                     onAddAuthorizedLocation: onAddAuthorizedLocation,
-                    onSelectedOperation: onSelectedOperation
+                    onSelectedOperation: onSelectedOperation,
+                    deleteAddressItem: deleteAddressItem,
+                    deletePhoneItem: deletePhoneItem,
+                    deleteJobProgressItem: deleteJobProgressItem,
+                    deleteAuthLocationItem: deleteAuthLocationItem,
                     // Utility Methods
 
                 };

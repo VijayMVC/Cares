@@ -228,6 +228,13 @@
     <Compile Include="Areas\Api\Controllers\BusinessSegmentController.cs" />
     <Compile Include="Areas\Api\Controllers\CompanyBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\CompanyController.cs" />
+    <Compile Include="Areas\Api\Controllers\CityBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\CityController.cs" />
+    <Compile Include="Areas\Api\Controllers\AreaBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\AreaController.cs" />
+    <Compile Include="Areas\Api\Controllers\DesignGradeController.cs" />
+    <Compile Include="Areas\Api\Controllers\EmployeeStatusController.cs" />
+    <Compile Include="Areas\Api\Controllers\DesignationController.cs" />
     <Compile Include="Areas\Api\Controllers\SubRegionController.cs" />
     <Compile Include="Areas\Api\Controllers\SubRegionBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\RegionBaseController.cs" />
@@ -280,7 +287,7 @@
     <Compile Include="Areas\BusinessPartner\BusinessPartnerAreaRegistration.cs" />
     <Compile Include="Areas\BusinessPartner\Controllers\HomeController.cs" />
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
-    <Compile Include="Areas\EmployeeManagement\Controllers\HomeController.cs" />
+    <Compile Include="Areas\EmployeeManagement\Controllers\DesignationGradeController.cs" />
     <Compile Include="Areas\EmployeeManagement\EmployeeManagementAreaRegistration.cs" />
     <Compile Include="Areas\Fleet\Controllers\HomeController.cs" />
     <Compile Include="Areas\Fleet\FleetPoolAreaRegistration.cs" />
@@ -319,13 +326,22 @@
     <Compile Include="ModelMappers\WorkLocationMapper.cs" />
     <Compile Include="ModelMappers\WorkplaceMapper.cs" />
     <Compile Include="ModelMappers\WorkplaceTypeMapper.cs" />
+    <Compile Include="Models\Area.cs" />
+    <Compile Include="Models\AreaBaseDataResponse.cs" />
+    <Compile Include="Models\AreaSearchRequestResponse.cs" />
     <Compile Include="Models\BusinessSegment.cs" />
     <Compile Include="Models\BusinessSegmentSearchRequestResponse.cs" />
+    <Compile Include="Models\City.cs" />
+    <Compile Include="Models\CityBaseDataResponse.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\DepartmentBaseDataResponse.cs" />
     <Compile Include="Models\DepartmentSearchRequestResponse.cs" />
     <Compile Include="Models\DesigGradeDropDown.cs" />
+    <Compile Include="Models\Designation.cs" />
+    <Compile Include="Models\DesignationSearchRequestResponse.cs" />
+    <Compile Include="Models\DesignGrade.cs" />
+    <Compile Include="Models\DesignGradeSearchRequestResponse.cs" />
     <Compile Include="Models\DesignationDropDown.cs" />
     <Compile Include="Models\EmpAuthOperationsWorkplace.cs" />
     <Compile Include="Models\EmpDocsInfo.cs" />
@@ -335,6 +351,8 @@
     <Compile Include="Models\EmployeeListViewContent.cs" />
     <Compile Include="Models\EmployeeBaseResponse.cs" />
     <Compile Include="Models\EmployeeSearchResponse.cs" />
+    <Compile Include="Models\EmpSearchRequestResponse.cs" />
+    <Compile Include="Models\EmpStatus.cs" />
     <Compile Include="Models\EmpStatusDropDown.cs" />
     <Compile Include="Models\FleetPoolDropDown.cs" />
     <Compile Include="Models\FuelTypeDropDown.cs" />
@@ -409,6 +427,7 @@
     <Compile Include="Models\PhonesSearchByWorkLocationIdResponse.cs" />
     <Compile Include="Models\Region.cs" />
     <Compile Include="Models\RegionBaseDataResponse.cs" />
+    <Compile Include="Models\CitySearchRequestResponse.cs" />
     <Compile Include="Models\RegionSearchRequestResponse.cs" />
     <Compile Include="Models\ServiceRateBaseResponse.cs" />
     <Compile Include="Models\ServiceRateSearchResponse.cs" />
@@ -519,6 +538,46 @@
     <Compile Include="Models\WorkplaceTypeDropDown.cs" />
     <Compile Include="Models\WorkPlaceTypeSearchRequestResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+   <Compile Include="Resources\EmployeeManagement\Designation.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Designation.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\EmployeeManagement\Designation.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Designation.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\EmployeeManagement\DesignationGrade.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DesignationGrade.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\EmployeeManagement\DesignationGrade.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DesignationGrade.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\EmployeeManagement\EmpStatus.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmpStatus.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\EmployeeManagement\EmpStatus.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmpStatus.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\EmployeeManagement\Employee.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Employee.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\EmployeeManagement\Employee.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Employee.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\FleetPool\FleetPool.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -528,6 +587,26 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FleetPool.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\GeographicalHierarchy\Area.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Area.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\GeographicalHierarchy\Area.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Area.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\GeographicalHierarchy\city.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>city.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\GeographicalHierarchy\city.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>city.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\GeographicalHierarchy\SubRegion.Designer.cs">
       <DependentUpon>SubRegion.resx</DependentUpon>
@@ -727,6 +806,10 @@
     <Content Include="Areas\EmployeeManagement\Scripts\employee.model.js" />
     <Content Include="Areas\EmployeeManagement\Scripts\employee.view.js" />
     <Content Include="Areas\EmployeeManagement\Scripts\employee.viewModel.js" />
+    <Content Include="Areas\EmployeeManagement\Scripts\designGrade.dataservice.js" />
+    <Content Include="Areas\EmployeeManagement\Scripts\designGrade.model.js" />
+    <Content Include="Areas\EmployeeManagement\Scripts\designGrade.view.js" />
+    <Content Include="Areas\EmployeeManagement\Scripts\designGrade.viewModel.js" />
     <Content Include="Areas\Fleet\Scripts\fleetPool.viewModel.js" />
     <Content Include="Areas\Fleet\Scripts\fleetPool.model.js" />
     <Content Include="Areas\Fleet\Scripts\fleetPool.view.js" />
@@ -739,6 +822,14 @@
     <Content Include="Areas\Fleet\Scripts\hireGroup.view.js" />
     <Content Include="Areas\Fleet\Scripts\vehicle.viewModel.js" />
     <Content Include="Areas\Fleet\Scripts\hireGroup.viewModel.js" />
+    <Content Include="Areas\GeographicalHierarchy\Scripts\area.dataservice.js" />
+    <Content Include="Areas\GeographicalHierarchy\Scripts\area.model.js" />
+    <Content Include="Areas\GeographicalHierarchy\Scripts\area.view.js" />
+    <Content Include="Areas\GeographicalHierarchy\Scripts\area.viewModel.js" />
+    <Content Include="Areas\GeographicalHierarchy\Scripts\city.dataservice.js" />
+    <Content Include="Areas\GeographicalHierarchy\Scripts\city.model.js" />
+    <Content Include="Areas\GeographicalHierarchy\Scripts\city.view.js" />
+    <Content Include="Areas\GeographicalHierarchy\Scripts\city.viewModel.js" />
     <Content Include="Areas\GeographicalHierarchy\Scripts\subRegion.dataservice.js" />
     <Content Include="Areas\GeographicalHierarchy\Scripts\subRegion.model.js" />
     <Content Include="Areas\GeographicalHierarchy\Scripts\subRegion.view.js" />
@@ -806,6 +897,12 @@
     <Content Include="Areas\Pricing\Scripts\tariffType.viewModel.js" />
     <Content Include="Areas\Pricing\Scripts\tariffType.model.js" />
     <Content Include="asadtest.html" />
+    <Content Include="Content\Area.css">
+      <DependentUpon>Area.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Area.min.css">
+      <DependentUpon>Area.css</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\BusinessSegment.css">
@@ -813,6 +910,12 @@
     </Content>
     <Content Include="Content\BusinessSegment.min.css">
       <DependentUpon>BusinessSegment.css</DependentUpon>
+    </Content>
+    <Content Include="Content\City.css">
+      <DependentUpon>City.less</DependentUpon>
+    </Content>
+    <Content Include="Content\City.min.css">
+      <DependentUpon>City.css</DependentUpon>
     </Content>
     <Content Include="Content\Company.css">
       <DependentUpon>Company.less</DependentUpon>
@@ -833,6 +936,12 @@
       <DependentUpon>PagedList.css</DependentUpon>
     </Content>
     <Content Include="Content\CSS\spinner.gif" />
+    <Content Include="Content\DesignationGrade.css">
+      <DependentUpon>DesignationGrade.less</DependentUpon>
+    </Content>
+    <Content Include="Content\DesignationGrade.min.css">
+      <DependentUpon>DesignationGrade.css</DependentUpon>
+    </Content>
     <Content Include="Content\EmployeeManagement.css">
       <DependentUpon>EmployeeManagement.less</DependentUpon>
     </Content>
@@ -1487,12 +1596,12 @@
       <DependentUpon>WorkLocation.css</DependentUpon>
     </Content>
     <Content Include="Areas\EmployeeManagement\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\EmployeeManagement\Views\Home\Index.cshtml" />
+    <Content Include="Areas\EmployeeManagement\Views\DesignationGrade\Index.cshtml" />
     <Content Include="Content\Vehicle.less" />
     <Content Include="Content\Vehicle.css.map">
       <DependentUpon>Vehicle.css</DependentUpon>
     </Content>
-    <Content Include="Areas\EmployeeManagement\Views\Home\_EmployeeEditor.cshtml" />
+    <Content Include="Areas\EmployeeManagement\Views\DesignationGrade\_EmployeeEditor.cshtml" />
     <Content Include="Areas\Organization\Views\Organization\WorkplaceType.cshtml" />
     <Content Include="Areas\Organization\Views\Organization\_WorkplaceTypeEditor.cshtml" />
     <Content Include="Content\WorkPlaceType.less" />
@@ -1526,6 +1635,24 @@
     <Content Include="Content\SubRegion.less" />
     <Content Include="Content\SubRegion.css.map">
       <DependentUpon>SubRegion.css</DependentUpon>
+    </Content>
+    <Content Include="Content\City.less" />
+    <Content Include="Content\City.css.map">
+      <DependentUpon>City.css</DependentUpon>
+    </Content>
+    <Content Include="Areas\GeographicalHierarchy\Views\GeographicalHierarchy\City.cshtml" />
+    <Content Include="Areas\GeographicalHierarchy\Views\GeographicalHierarchy\_CityEditor.cshtml" />
+    <Content Include="Areas\GeographicalHierarchy\Views\GeographicalHierarchy\Area.cshtml" />
+    <Content Include="Areas\GeographicalHierarchy\Views\GeographicalHierarchy\_AreaEditor.cshtml" />
+    <Content Include="Content\Area.less" />
+    <Content Include="Content\Area.css.map">
+      <DependentUpon>Area.css</DependentUpon>
+    </Content>
+    <Content Include="Areas\EmployeeManagement\Views\DesignationGrade\DesignGrade.cshtml" />
+    <Content Include="Areas\EmployeeManagement\Views\DesignationGrade\_DesignGradeEditor.cshtml" />
+    <Content Include="Content\DesignationGrade.less" />
+    <Content Include="Content\DesignationGrade.css.map">
+      <DependentUpon>DesignationGrade.css</DependentUpon>
     </Content>
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
@@ -1611,12 +1738,6 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -1695,7 +1816,6 @@
     <Folder Include="Areas\Product\Models\" />
     <Folder Include="Areas\RentalAgreement\Models\" />
     <Folder Include="Migrations\" />
-    <Folder Include="Resources\Employees\" />
     <Folder Include="Views\Menu\" />
     <Folder Include="Views\OperationBaseDataResponse\" />
   </ItemGroup>
@@ -1725,6 +1845,38 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\EmployeeManagement\Designation.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Designation.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\EmployeeManagement\Designation.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Designation.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\EmployeeManagement\DesignationGrade.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DesignationGrade.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\EmployeeManagement\DesignationGrade.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DesignationGrade.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\EmployeeManagement\EmpStatus.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EmpStatus.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\EmployeeManagement\EmpStatus.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EmpStatus.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+        <EmbeddedResource Include="Resources\EmployeeManagement\Employee.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Employee.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\EmployeeManagement\Employee.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Employee.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\FleetPool\FleetPool.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>FleetPool.ar.Designer.cs</LastGenOutput>
@@ -1732,6 +1884,22 @@
     <EmbeddedResource Include="Resources\FleetPool\FleetPool.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>FleetPool.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\GeographicalHierarchy\Area.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Area.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\GeographicalHierarchy\Area.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Area.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\GeographicalHierarchy\city.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>city.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\GeographicalHierarchy\city.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>city.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\GeographicalHierarchy\SubRegion.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -1792,10 +1960,12 @@
     <EmbeddedResource Include="Resources\Organization\WorkLocation.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>WorkLocation.ar.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Organization\WorkLocation.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>WorkLocation.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Organization\Workplace.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
