@@ -14,9 +14,25 @@ namespace Cares.Web.Areas.EmployeeManagement.Controllers
         }
 
         /// <summary>
-        /// Designation Grade
+        /// Designation Grade Area
         /// </summary>
         public ActionResult DesignGrade()
+        {
+            return View();
+        }
+
+        /// <summary>
+        ///Employee Status Area
+        /// </summary>
+        public ActionResult EmployeeStatus()
+        {
+            return View();
+        }
+
+        /// <summary>
+        ///Designation Area
+        /// </summary>
+        public ActionResult Designation()
         {
             return View();
         }

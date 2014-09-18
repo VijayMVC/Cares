@@ -1,0 +1,32 @@
+﻿
+<div class="well col-md-12" id="EmployeeStatusEditor" data-bind="visible: isEmployeeStatusesEditorVisible, with: selectedEmployeeStatus " style="display: none; margin-top:15px">
+    <div class="float-left detailsContainer">
+        <h3 class="page-header detailsHeaderSection">@Cares.Web.Resources.EmployeeManagement.EmpStatus.EmployeeStatusDetail</h3>
+        <button class="btn  btn-info" id="saveFleetPoolbtn" data-bind="click: $root.onSavebtn">@Cares.Web.Resources.Shared.Common.Save</button>
+        <button class="btn  btn-default" id="cancelOrgGroupbtn" data-bind="click: $root.onCancelbtn">@Cares.Web.Resources.Shared.Common.Cancel</button>
+    </div>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.GeographicalHierarchy.Region.Code*</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.EmployeeManagement.EmpStatus.Code + ">")" data-bind="value: code" />
+            </div>
+            <label class="control-label h5 col-sm-1">@Cares.Web.Resources.GeographicalHierarchy.Region.Name*</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.EmployeeManagement.EmpStatus.Name + ">")" data-bind="value:name" />
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.EmployeeManagement.EmpStatus.Description</label>
+            <div class="col-md-3">
+                <textarea class="form-control" rows="4" placeholder="@("<" + Cares.Web.Resources.EmployeeManagement.EmpStatus.Description + ">")" data-bind="value: description"></textarea>
+            </div>
+            <label class="control-label h5 col-sm-1">@Cares.Web.Resources.EmployeeManagement.EmpStatus.InService*</label>
+            <div class="col-md-1">
+                <input type="checkbox" class="form-control" placeholder="@("<" + Cares.Web.Resources.EmployeeManagement.EmpStatus.InService + ">")" data-bind="checked:empStatusFlag" />
+            </div>
+        </div>
+
+    </form>
+</div>
