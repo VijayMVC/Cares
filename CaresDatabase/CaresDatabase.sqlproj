@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>CaresDatabase</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{b8a8f2dd-de07-4f2d-a1d9-b9dbb01fd375}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>CaresDatabase</RootNamespace>
+    <AssemblyName>CaresDatabase</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <!-- Default to the v10.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\WorkplaceType.sql" />
+    <Build Include="dbo\Tables\Workplace.sql" />
+    <Build Include="dbo\Tables\WorkLocation.sql" />
+    <Build Include="dbo\Tables\VehicleSubStatus.sql" />
+    <Build Include="dbo\Tables\VehicleStatus.sql" />
+    <Build Include="dbo\Tables\VehicleReservation.sql" />
+    <Build Include="dbo\Tables\VehiclePurchaseInfo.sql" />
+    <Build Include="dbo\Tables\VehicleOtherDetail.sql" />
+    <Build Include="dbo\Tables\VehicleMovement.sql" />
+    <Build Include="dbo\Tables\VehicleModel.sql" />
+    <Build Include="dbo\Tables\VehicleMake.sql" />
+    <Build Include="dbo\Tables\VehicleMaintenanceTypeFrequency.sql" />
+    <Build Include="dbo\Tables\VehicleLeasedInfo.sql" />
+    <Build Include="dbo\Tables\VehicleInsuranceInfo.sql" />
+    <Build Include="dbo\Tables\VehicleImageHireGroupDetail.sql" />
+    <Build Include="dbo\Tables\VehicleImage.sql" />
+    <Build Include="dbo\Tables\VehicleDisposalInfo.sql" />
+    <Build Include="dbo\Tables\VehicleDepreciation.sql" />
+    <Build Include="dbo\Tables\VehicleCheckListItem.sql" />
+    <Build Include="dbo\Tables\VehicleCheckList.sql" />
+    <Build Include="dbo\Tables\VehicleCategory.sql" />
+    <Build Include="dbo\Tables\Vehicle.sql" />
+    <Build Include="dbo\Tables\UserPageAction.sql" />
+    <Build Include="dbo\Tables\UserFunction.sql" />
+    <Build Include="dbo\Tables\TransmissionType.sql" />
+    <Build Include="dbo\Tables\TariffType.sql" />
+    <Build Include="dbo\Tables\SubRegion.sql" />
+    <Build Include="dbo\Tables\StandardRtMain.sql" />
+    <Build Include="dbo\Tables\StandardRt.sql" />
+    <Build Include="dbo\Tables\StandardDiscountMain.sql" />
+    <Build Include="dbo\Tables\StandardDiscount.sql" />
+    <Build Include="dbo\Tables\ServiceType.sql" />
+    <Build Include="dbo\Tables\ServiceRtMain.sql" />
+    <Build Include="dbo\Tables\ServiceRt.sql" />
+    <Build Include="dbo\Tables\ServiceItem.sql" />
+    <Build Include="dbo\Tables\SeasonalDiscountMain.sql" />
+    <Build Include="dbo\Tables\SeasonalDiscount.sql" />
+    <Build Include="dbo\Tables\Role.sql" />
+    <Build Include="dbo\Tables\Region.sql" />
+    <Build Include="dbo\Tables\RAVehicleCheckList.sql" />
+    <Build Include="dbo\Tables\RAStatusLog.sql" />
+    <Build Include="dbo\Tables\RAStatus.sql" />
+    <Build Include="dbo\Tables\RAServiceItem.sql" />
+    <Build Include="dbo\Tables\RAPayment.sql" />
+    <Build Include="dbo\Tables\RAMain.sql" />
+    <Build Include="dbo\Tables\RAHireGroupInsurance.sql" />
+    <Build Include="dbo\Tables\RAHireGroupDiscount.sql" />
+    <Build Include="dbo\Tables\RAHireGroup.sql" />
+    <Build Include="dbo\Tables\RADriver.sql" />
+    <Build Include="dbo\Tables\RACustomerDocument.sql" />
+    <Build Include="dbo\Tables\RAAdditionalCharge.sql" />
+    <Build Include="dbo\Tables\PricingStrategy.sql" />
+    <Build Include="dbo\Tables\PhoneType.sql" />
+    <Build Include="dbo\Tables\Phone.sql" />
+    <Build Include="dbo\Tables\PaymentTerm.sql" />
+    <Build Include="dbo\Tables\PaymentMode.sql" />
+    <Build Include="dbo\Tables\PageAction.sql" />
+    <Build Include="dbo\Tables\OrgGroup.sql" />
+    <Build Include="dbo\Tables\OperationsWorkplace.sql" />
+    <Build Include="dbo\Tables\Operation.sql" />
+    <Build Include="dbo\Tables\OccupationType.sql" />
+    <Build Include="dbo\Tables\NRTVehicleMovement.sql" />
+    <Build Include="dbo\Tables\NRTVehicle.sql" />
+    <Build Include="dbo\Tables\NRTType.sql" />
+    <Build Include="dbo\Tables\NRTMain.sql" />
+    <Build Include="dbo\Tables\NRTDriver.sql" />
+    <Build Include="dbo\Tables\NRTCharge.sql" />
+    <Build Include="dbo\Tables\MenuRight.sql" />
+    <Build Include="dbo\Tables\MenuFunction.sql" />
+    <Build Include="dbo\Tables\Menu.sql" />
+    <Build Include="dbo\Tables\MeasurementUnit.sql" />
+    <Build Include="dbo\Tables\MarketingChannel.sql" />
+    <Build Include="dbo\Tables\MaintenanceTypeGroup.sql" />
+    <Build Include="dbo\Tables\MaintenanceType.sql" />
+    <Build Include="dbo\Tables\LogCategory.sql" />
+    <Build Include="dbo\Tables\Log.sql" />
+    <Build Include="dbo\Tables\LicenseType.sql" />
+    <Build Include="dbo\Tables\JobType.sql" />
+    <Build Include="dbo\Tables\InsuranceType.sql" />
+    <Build Include="dbo\Tables\InsuranceRtMain.sql" />
+    <Build Include="dbo\Tables\InsuranceRt.sql" />
+    <Build Include="dbo\Tables\InspectionReportType.sql" />
+    <Build Include="dbo\Tables\InspectionReport.sql" />
+    <Build Include="dbo\Tables\HireGroupUpGrade.sql" />
+    <Build Include="dbo\Tables\HireGroupDetail.sql" />
+    <Build Include="dbo\Tables\HireGroup.sql" />
+    <Build Include="dbo\Tables\FuelType.sql" />
+    <Build Include="dbo\Tables\FleetPool.sql" />
+    <Build Include="dbo\Tables\EmpStatus.sql" />
+    <Build Include="dbo\Tables\Employee.sql" />
+    <Build Include="dbo\Tables\EmpJobProg.sql" />
+    <Build Include="dbo\Tables\EmpJobInfo.sql" />
+    <Build Include="dbo\Tables\EmpDocsInfo.sql" />
+    <Build Include="dbo\Tables\EmpAuthOperationsWorkplace.sql" />
+    <Build Include="dbo\Tables\DocumentGroup.sql" />
+    <Build Include="dbo\Tables\Document.sql" />
+    <Build Include="dbo\Tables\DiscountType.sql" />
+    <Build Include="dbo\Tables\DiscountSubType.sql" />
+    <Build Include="dbo\Tables\Designation.sql" />
+    <Build Include="dbo\Tables\DesigGrade.sql" />
+    <Build Include="dbo\Tables\Department.sql" />
+    <Build Include="dbo\Tables\CreditLimit.sql" />
+    <Build Include="dbo\Tables\Country.sql" />
+    <Build Include="dbo\Tables\Company.sql" />
+    <Build Include="dbo\Tables\City.sql" />
+    <Build Include="dbo\Tables\ChaufferReservation.sql" />
+    <Build Include="dbo\Tables\ChaufferChargeMain.sql" />
+    <Build Include="dbo\Tables\ChaufferCharge.sql" />
+    <Build Include="dbo\Tables\CategoryLog.sql" />
+    <Build Include="dbo\Tables\CaresUser.sql" />
+    <Build Include="dbo\Tables\BusinessSegment.sql" />
+    <Build Include="dbo\Tables\BusinessLegalStatus.sql" />
+    <Build Include="dbo\Tables\BPSubType.sql" />
+    <Build Include="dbo\Tables\BPRelationshipType.sql" />
+    <Build Include="dbo\Tables\BPRelationship.sql" />
+    <Build Include="dbo\Tables\BPRatingType.sql" />
+    <Build Include="dbo\Tables\BPMarketingChannel.sql" />
+    <Build Include="dbo\Tables\BPMainType.sql" />
+    <Build Include="dbo\Tables\BPMain.sql" />
+    <Build Include="dbo\Tables\BPInType.sql" />
+    <Build Include="dbo\Tables\BPIndividual.sql" />
+    <Build Include="dbo\Tables\BPDocument.sql" />
+    <Build Include="dbo\Tables\BPCompany.sql" />
+    <Build Include="dbo\Tables\BookingStatus.sql" />
+    <Build Include="dbo\Tables\BookingMain.sql" />
+    <Build Include="dbo\Tables\AspNetUsers.sql" />
+    <Build Include="dbo\Tables\AspNetUserRoles.sql" />
+    <Build Include="dbo\Tables\AspNetUserLogins.sql" />
+    <Build Include="dbo\Tables\AspNetUserClaims.sql" />
+    <Build Include="dbo\Tables\AspNetRoles.sql" />
+    <Build Include="dbo\Tables\Area.sql" />
+    <Build Include="dbo\Tables\AllocationStatus.sql" />
+    <Build Include="dbo\Tables\AddressType.sql" />
+    <Build Include="dbo\Tables\Address.sql" />
+    <Build Include="dbo\Tables\AdditionalDriverCharge.sql" />
+    <Build Include="dbo\Tables\AdditionalChargeType.sql" />
+    <Build Include="dbo\Tables\AdditionalCharge.sql" />
+    <Build Include="dbo\Views\WorkplaceView.sql" />
+    <Build Include="dbo\Views\WorkLocationView.sql" />
+    <Build Include="dbo\Views\VehicleView.sql" />
+    <Build Include="dbo\Views\VehicleSubStatusView.sql" />
+    <Build Include="dbo\Views\VehicleOtherDetailView.sql" />
+    <Build Include="dbo\Views\VehicleMovementView.sql" />
+    <Build Include="dbo\Views\VehicleMaintenanceTypeFrequencyView.sql" />
+    <Build Include="dbo\Views\VehicleCheckListItemView.sql" />
+    <Build Include="dbo\Views\UserFunctionView.sql" />
+    <Build Include="dbo\Views\TariffTypeView.sql" />
+    <Build Include="dbo\Views\SubRegionView.sql" />
+    <Build Include="dbo\Views\StandardRtView.sql" />
+    <Build Include="dbo\Views\StandardRtMainView.sql" />
+    <Build Include="dbo\Views\StandardDiscountView.sql" />
+    <Build Include="dbo\Views\ServiceRtView.sql" />
+    <Build Include="dbo\Views\ServiceRtMainView.sql" />
+    <Build Include="dbo\Views\ServiceItemView.sql" />
+    <Build Include="dbo\Views\SeasonalDiscountView.sql" />
+    <Build Include="dbo\Views\SeasonalDiscountMainView.sql" />
+    <Build Include="dbo\Views\rptStandardRtView.sql" />
+    <Build Include="dbo\Views\rptRAVehicleCheckListView.sql" />
+    <Build Include="dbo\Views\rptRAPaymentView.sql" />
+    <Build Include="dbo\Views\rptRAHireGroupView.sql" />
+    <Build Include="dbo\Views\rptRACustomerView.sql" />
+    <Build Include="dbo\Views\rptNRTVehicleView.sql" />
+    <Build Include="dbo\Views\rptNRTMainView.sql" />
+    <Build Include="dbo\Views\rptNRTMaintenanceView.sql" />
+    <Build Include="dbo\Views\rptNRTDriverView.sql" />
+    <Build Include="dbo\Views\rptMissingHireGroupDetailsView.sql" />
+    <Build Include="dbo\Views\rptInsuranceRtView.sql" />
+    <Build Include="dbo\Views\rptHireGroupDetailView.sql" />
+    <Build Include="dbo\Views\rptActionList.sql" />
+    <Build Include="dbo\Views\RegionView.sql" />
+    <Build Include="dbo\Views\RAServiceItemView.sql" />
+    <Build Include="dbo\Views\RAQueueView.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Views\RAPaymentView.sql" />
+    <Build Include="dbo\Views\RAHireGroupView.sql" />
+    <Build Include="dbo\Views\RAHireGroupInsuranceView.sql" />
+    <Build Include="dbo\Views\RADriverView.sql" />
+    <Build Include="dbo\Views\RAAdditionalChargeView.sql" />
+    <Build Include="dbo\Views\PhoneView.sql" />
+    <Build Include="dbo\Views\OperationWorkplaceView.sql" />
+    <Build Include="dbo\Views\OperationView.sql" />
+    <Build Include="dbo\Views\NRTVehicleView.sql" />
+    <Build Include="dbo\Views\NRTVehicleMovementView.sql" />
+    <Build Include="dbo\Views\NRTTypeView.sql" />
+    <Build Include="dbo\Views\NRTQueueView.sql" />
+    <Build Include="dbo\Views\NRTMainView.sql" />
+    <Build Include="dbo\Views\NRTDriverView.sql" />
+    <Build Include="dbo\Views\NRTChargeView.sql" />
+    <Build Include="dbo\Views\MaintenanceTypeView.sql" />
+    <Build Include="dbo\Views\LoadHireGroupStandardRtView.sql" />
+    <Build Include="dbo\Views\InsuranceRtView.sql" />
+    <Build Include="dbo\Views\InsuranceRtRAView.sql" />
+    <Build Include="dbo\Views\InsuranceRtMainView.sql" />
+    <Build Include="dbo\Views\HireGroupView.sql" />
+    <Build Include="dbo\Views\HireGroupUpGradeView.sql" />
+    <Build Include="dbo\Views\HireGroupDetailView.sql" />
+    <Build Include="dbo\Views\FleetPoolView.sql" />
+    <Build Include="dbo\Views\EmployeeView.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Views\EmpJobProgView.sql" />
+    <Build Include="dbo\Views\EmpCompanyInfoView.sql" />
+    <Build Include="dbo\Views\EmpAuthOperationsWorkplaceView.sql" />
+    <Build Include="dbo\Views\DocumentView.sql" />
+    <Build Include="dbo\Views\DiscountSubTypeView.sql" />
+    <Build Include="dbo\Views\DesigGradeView.sql" />
+    <Build Include="dbo\Views\DepartmentView.sql" />
+    <Build Include="dbo\Views\CreditLimitView.sql" />
+    <Build Include="dbo\Views\CompanyView.sql" />
+    <Build Include="dbo\Views\CityView.sql" />
+    <Build Include="dbo\Views\ChaufferChargeView.sql" />
+    <Build Include="dbo\Views\ChaufferChargeRAView.sql" />
+    <Build Include="dbo\Views\ChaufferChargeMainView.sql" />
+    <Build Include="dbo\Views\CaresUserView.sql" />
+    <Build Include="dbo\Views\BPSubTypeView.sql" />
+    <Build Include="dbo\Views\BPRelationshipView.sql" />
+    <Build Include="dbo\Views\BPMarketingChannelView.sql" />
+    <Build Include="dbo\Views\BPMainView.sql" />
+    <Build Include="dbo\Views\BPInTypeView.sql" />
+    <Build Include="dbo\Views\BPCustomerIndividualView.sql" />
+    <Build Include="dbo\Views\BPCustomerCompanyView.sql" />
+    <Build Include="dbo\Views\BPCustomerCompany.sql" />
+    <Build Include="dbo\Views\AreaView.sql" />
+    <Build Include="dbo\Views\AddressView.sql" />
+    <Build Include="dbo\Views\AdditionalDriverChargeView.sql" />
+    <Build Include="dbo\Views\AdditionalChargeView.sql" />
+  </ItemGroup>
+</Project>

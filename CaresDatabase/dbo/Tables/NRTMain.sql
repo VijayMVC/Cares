@@ -1,0 +1,26 @@
+﻿CREATE TABLE [dbo].[NRTMain] (
+    [NRTMainID]          BIGINT         IDENTITY (1, 1) NOT NULL,
+    [NRTTypeID]          BIGINT         NOT NULL,
+    [NRTMainDecsription] NVARCHAR (500) NULL,
+    [OpenLocationID]     BIGINT         NOT NULL,
+    [CloseLocationID]    BIGINT         NOT NULL,
+    [NRTStatusID]        SMALLINT       NOT NULL,
+    [StartDtTime]        DATETIME       NOT NULL,
+    [EndDtTime]          DATETIME       NOT NULL,
+    [RowVersion]         BIGINT         CONSTRAINT [DF__NRTMain__RowVers__48317F57] DEFAULT ((0)) NOT NULL,
+    [IsActive]           BIT            CONSTRAINT [DF__NRTMain__IsActiv__4925A390] DEFAULT ((1)) NOT NULL,
+    [IsPrivate]          BIT            CONSTRAINT [DF__NRTMain__IsPriva__4A19C7C9] DEFAULT ((0)) NOT NULL,
+    [IsDeleted]          BIT            CONSTRAINT [DF__NRTMain__IsDelet__4B0DEC02] DEFAULT ((0)) NOT NULL,
+    [IsReadOnly]         BIT            CONSTRAINT [DF__NRTMain__IsReadO__4C02103B] DEFAULT ((0)) NOT NULL,
+    [RecCreatedBy]       NVARCHAR (100) NOT NULL,
+    [RecCreatedDt]       DATETIME       NOT NULL,
+    [RecLastUpdatedBy]   NVARCHAR (100) NOT NULL,
+    [RecLastUpdatedDt]   DATETIME       NOT NULL,
+    [UserDomainKey]      BIGINT         NOT NULL,
+    CONSTRAINT [PK250] PRIMARY KEY NONCLUSTERED ([NRTMainID] ASC),
+    CONSTRAINT [RefNRTType569] FOREIGN KEY ([NRTTypeID]) REFERENCES [dbo].[NRTType] ([NRTTypeID]),
+    CONSTRAINT [RefOperationsWorkplace590] FOREIGN KEY ([OpenLocationID]) REFERENCES [dbo].[OperationsWorkplace] ([OperationsWorkplaceID]),
+    CONSTRAINT [RefOperationsWorkplace592] FOREIGN KEY ([CloseLocationID]) REFERENCES [dbo].[OperationsWorkplace] ([OperationsWorkplaceID]),
+    CONSTRAINT [RefRAStatus607] FOREIGN KEY ([NRTStatusID]) REFERENCES [dbo].[RAStatus] ([RAStatusID])
+);
+

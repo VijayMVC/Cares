@@ -1,0 +1,28 @@
+﻿CREATE TABLE [dbo].[NRTVehicleMovement] (
+    [NRTVehicleMovementID]        BIGINT          IDENTITY (1, 1) NOT NULL,
+    [OperationsWorkplaceID]       BIGINT          NOT NULL,
+    [DtTime]                      DATETIME        NOT NULL,
+    [Odometer]                    INT             NOT NULL,
+    [FuelLevel]                   FLOAT (53)      NOT NULL,
+    [VehicleMovementDescription]  NVARCHAR (500)  NULL,
+    [MovementStatus]              BIT             NOT NULL,
+    [RowVersion]                  BIGINT          CONSTRAINT [DF__NRTVehicl__RowVe__52793849] DEFAULT ((0)) NOT NULL,
+    [IsActive]                    BIT             CONSTRAINT [DF__NRTVehicl__IsAct__536D5C82] DEFAULT ((1)) NOT NULL,
+    [IsDeleted]                   BIT             CONSTRAINT [DF__NRTVehicl__IsDel__546180BB] DEFAULT ((0)) NOT NULL,
+    [IsPrivate]                   BIT             CONSTRAINT [DF__NRTVehicl__IsPri__5555A4F4] DEFAULT ((0)) NOT NULL,
+    [IsReadOnly]                  BIT             CONSTRAINT [DF__NRTVehicl__IsRea__5649C92D] DEFAULT ((0)) NOT NULL,
+    [RecCreatedDt]                DATETIME        NOT NULL,
+    [RecCreatedBy]                NVARCHAR (100)  NOT NULL,
+    [RecLastUpdatedDt]            DATETIME        NOT NULL,
+    [RecLastUpdatedBy]            NVARCHAR (100)  NOT NULL,
+    [VehicleStatusID]             SMALLINT        NOT NULL,
+    [NRTVehicleID]                BIGINT          NOT NULL,
+    [VehicleConditionDescription] NVARCHAR (1500) NULL,
+    [VehicleCondition]            NVARCHAR (255)  CONSTRAINT [DF__NRTVehicl__Vehic__573DED66] DEFAULT ('000000000000000000000000000') NOT NULL,
+    [UserDomainKey]               BIGINT          NOT NULL,
+    CONSTRAINT [PK89_1_2_2_1_1] PRIMARY KEY NONCLUSTERED ([NRTVehicleMovementID] ASC),
+    CONSTRAINT [RefNRTVehicle595] FOREIGN KEY ([NRTVehicleID]) REFERENCES [dbo].[NRTVehicle] ([NRTVehicleID]),
+    CONSTRAINT [RefOperationsWorkplace598] FOREIGN KEY ([OperationsWorkplaceID]) REFERENCES [dbo].[OperationsWorkplace] ([OperationsWorkplaceID]),
+    CONSTRAINT [RefVehicleStatus580] FOREIGN KEY ([VehicleStatusID]) REFERENCES [dbo].[VehicleStatus] ([VehicleStatusID])
+);
+

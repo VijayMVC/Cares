@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[CaresUser] (
+    [UserID]                     BIGINT         IDENTITY (1, 1) NOT NULL,
+    [LoginID]                    NVARCHAR (100) NOT NULL,
+    [UserName]                   NVARCHAR (256) NOT NULL,
+    [Description]                NVARCHAR (500) NULL,
+    [LoweredUserName]            NVARCHAR (256) NOT NULL,
+    [Password]                   NVARCHAR (128) NOT NULL,
+    [IsLockedOut]                BIT            NOT NULL,
+    [EmployeeID]                 BIGINT         NULL,
+    [RoleID]                     BIGINT         NULL,
+    [FailedPasswordAttemptCount] INT            NOT NULL,
+    [MaxPasswordAttemptAllowed]  INT            NOT NULL,
+    [RowVersion]                 BIGINT         CONSTRAINT [DF_CaresUser_RowVersion] DEFAULT ((0)) NOT NULL,
+    [IsActive]                   BIT            NULL,
+    [IsDeleted]                  BIT            NULL,
+    [IsReadOnly]                 BIT            NULL,
+    [IsPrivate]                  BIT            NULL,
+    [RecCreatedDt]               DATETIME       NULL,
+    [RecCreatedBy]               NVARCHAR (256) NULL,
+    [RecLastUpdatedDt]           DATETIME       NULL,
+    [RecLastUpdatedBy]           NVARCHAR (256) NULL,
+    [UserDomainKey]              BIGINT         NOT NULL,
+    CONSTRAINT [PK_tblUsers] PRIMARY KEY CLUSTERED ([UserID] ASC),
+    CONSTRAINT [RefEmployee381] FOREIGN KEY ([EmployeeID]) REFERENCES [dbo].[Employee] ([EmployeeID]),
+    CONSTRAINT [RefRole380] FOREIGN KEY ([RoleID]) REFERENCES [dbo].[Role] ([RoleID])
+);
+

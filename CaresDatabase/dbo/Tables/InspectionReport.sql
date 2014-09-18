@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[InspectionReport] (
+    [InspectionReportID]     BIGINT         IDENTITY (1, 1) NOT NULL,
+    [InspectionReportTypeID] SMALLINT       NOT NULL,
+    [IssueDate]              DATETIME       NOT NULL,
+    [IssuedPlace]            NVARCHAR (500) NULL,
+    [Address]                NVARCHAR (500) NULL,
+    [IssuedBy]               NVARCHAR (100) CONSTRAINT [DF__Inspectio__Issue__0FB750B3] DEFAULT ((1)) NULL,
+    [DamageCost]             FLOAT (53)     NOT NULL,
+    [InspectionResult]       NVARCHAR (500) NULL,
+    [RowVersion]             BIGINT         NOT NULL,
+    [IsActive]               BIT            NOT NULL,
+    [IsDeleted]              BIT            NOT NULL,
+    [IsPrivate]              BIT            NOT NULL,
+    [IsReadOnly]             BIT            NOT NULL,
+    [RecCreatedDt]           DATETIME       NOT NULL,
+    [RecLastUpdatedDt]       DATETIME       NOT NULL,
+    [RecCreatedBy]           NVARCHAR (100) NOT NULL,
+    [RecLastUpdatedBy]       NVARCHAR (100) NOT NULL,
+    [NRTVehicleID]           BIGINT         NOT NULL,
+    [UserDomainKey]          BIGINT         NOT NULL,
+    CONSTRAINT [PK82_1_1_1_1] PRIMARY KEY NONCLUSTERED ([InspectionReportID] ASC),
+    CONSTRAINT [RefInspectionReportType600] FOREIGN KEY ([InspectionReportTypeID]) REFERENCES [dbo].[InspectionReportType] ([InspectionReportTypeID]),
+    CONSTRAINT [RefNRTVehicle599] FOREIGN KEY ([NRTVehicleID]) REFERENCES [dbo].[NRTVehicle] ([NRTVehicleID])
+);
+

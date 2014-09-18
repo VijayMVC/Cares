@@ -1,0 +1,26 @@
+﻿CREATE TABLE [dbo].[ChaufferReservation] (
+    [ChaufferReservationID]          BIGINT         IDENTITY (1, 1) NOT NULL,
+    [ChaufferID]                     BIGINT         NOT NULL,
+    [StartDtTime]                    DATETIME       NOT NULL,
+    [EndDtTime]                      DATETIME       NOT NULL,
+    [BookingMainID]                  BIGINT         NULL,
+    [RAMainID]                       BIGINT         NULL,
+    [ChaufferReservationDescription] NVARCHAR (500) NULL,
+    [RowVersion]                     BIGINT         CONSTRAINT [DF__ChaufferR__RowVe__27C3E46E] DEFAULT ((0)) NOT NULL,
+    [IsActive]                       BIT            CONSTRAINT [DF__ChaufferR__IsAct__28B808A7] DEFAULT ((1)) NOT NULL,
+    [IsDeleted]                      BIT            CONSTRAINT [DF__ChaufferR__IsDel__29AC2CE0] DEFAULT ((0)) NOT NULL,
+    [IsPrivate]                      BIT            CONSTRAINT [DF__ChaufferR__IsPri__2AA05119] DEFAULT ((0)) NOT NULL,
+    [IsReadOnly]                     BIT            CONSTRAINT [DF__ChaufferR__IsRea__2B947552] DEFAULT ((0)) NOT NULL,
+    [RecCreatedDt]                   DATETIME       NOT NULL,
+    [RecCreatedBy]                   NVARCHAR (100) NOT NULL,
+    [RecLastUpdatedDt]               DATETIME       NOT NULL,
+    [RecLastUpdatedBy]               NVARCHAR (100) NOT NULL,
+    [NRTMainID]                      BIGINT         NULL,
+    [UserDomainKey]                  BIGINT         NOT NULL,
+    CONSTRAINT [PK89_1_2_2_2] PRIMARY KEY NONCLUSTERED ([ChaufferReservationID] ASC),
+    CONSTRAINT [RefBookingMain530] FOREIGN KEY ([BookingMainID]) REFERENCES [dbo].[BookingMain] ([BookingMainID]),
+    CONSTRAINT [RefEmployee531] FOREIGN KEY ([ChaufferID]) REFERENCES [dbo].[Employee] ([EmployeeID]),
+    CONSTRAINT [RefNRTMain583] FOREIGN KEY ([NRTMainID]) REFERENCES [dbo].[NRTMain] ([NRTMainID]),
+    CONSTRAINT [RefRAMain529] FOREIGN KEY ([RAMainID]) REFERENCES [dbo].[RAMain] ([RAMainID])
+);
+
