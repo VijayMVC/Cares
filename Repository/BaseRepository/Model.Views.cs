@@ -29,7 +29,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets08E59911DECB3FB849456A10981ADAFBB7429FE7BE5C32EAEE24EA222EFE0C8A))]
+[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7DF6E5E23FC2141589B6A88A74A6E3BA95637374F2E6314CF0D4AAE88C953DF9))]
 
 namespace Edm_EntityMappingGeneratedViews
 {
@@ -38,18 +38,18 @@ namespace Edm_EntityMappingGeneratedViews
     /// <Summary>
     /// The type contains views for EntitySets and AssociationSets that were generated at design time.
     /// </Summary>
-    public sealed class ViewsForBaseEntitySets08E59911DECB3FB849456A10981ADAFBB7429FE7BE5C32EAEE24EA222EFE0C8A : System.Data.Mapping.EntityViewContainer
+    public sealed class ViewsForBaseEntitySets7DF6E5E23FC2141589B6A88A74A6E3BA95637374F2E6314CF0D4AAE88C953DF9 : System.Data.Mapping.EntityViewContainer
     {
         
         /// <Summary>
         /// The constructor stores the views for the extents and also the hash values generated based on the metadata and mapping closure and views.
         /// </Summary>
-        public ViewsForBaseEntitySets08E59911DECB3FB849456A10981ADAFBB7429FE7BE5C32EAEE24EA222EFE0C8A()
+        public ViewsForBaseEntitySets7DF6E5E23FC2141589B6A88A74A6E3BA95637374F2E6314CF0D4AAE88C953DF9()
         {
             this.EdmEntityContainerName = "BaseDbContext";
             this.StoreEntityContainerName = "CaresModelStoreContainer";
-            this.HashOverMappingClosure = "ea294711a2179e920e66d597cd26af5d9252abbd86508d9018fac879e9fc827b";
-            this.HashOverAllExtentViews = "0e4021007afc1732b38e68ad4dca782ed2fa08cd4486394402002cc03e9ec245";
+            this.HashOverMappingClosure = "005ae1c4d490e64ef041a01fceb652da87226d3ed4e5e53af3ad8ed68e6d953e";
+            this.HashOverAllExtentViews = "1b8d7e95abfea1998cc68468f51cc6f8dfdf46d1ac8eb7f2eba5949dceb60cbc";
             this.ViewCount = 170;
         }
         
@@ -1198,7 +1198,7 @@ namespace Edm_EntityMappingGeneratedViews
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("CaresModelStoreContainer.Country", @"
     SELECT VALUE -- Constructing Country
-        [CaresModel.Store.Country](T1.Country_CountryID, T1.Country_CountryCode, T1.Country_CountryName, T1.Country_CountryDescription, T1.Country_IsActive, T1.Country_IsReadOnly, T1.Country_IsPrivate, T1.Country_IsDeleted, T1.Country_RecLastUpdatedDt, T1.Country_RecLastUpdatedBy, T1.Country_RecCreatedBy, T1.Country_RecCreatedDt)
+        [CaresModel.Store.Country](T1.Country_CountryID, T1.Country_CountryCode, T1.Country_CountryName, T1.Country_CountryDescription, T1.Country_IsActive, T1.Country_IsReadOnly, T1.Country_IsPrivate, T1.Country_IsDeleted, T1.Country_RecLastUpdatedDt, T1.Country_RecLastUpdatedBy, T1.Country_RecCreatedBy, T1.Country_RecCreatedDt, T1.Country_UserDomainKey)
     FROM (
         SELECT 
             T.CountryId AS Country_CountryID, 
@@ -1213,6 +1213,7 @@ namespace Edm_EntityMappingGeneratedViews
             T.RecLastUpdatedBy AS Country_RecLastUpdatedBy, 
             T.RecCreatedBy AS Country_RecCreatedBy, 
             T.RecCreatedDt AS Country_RecCreatedDt, 
+            T.UserDomainKey AS Country_UserDomainKey, 
             True AS _from0
         FROM BaseDbContext.Countries AS T
     ) AS T1");
@@ -1270,7 +1271,7 @@ namespace Edm_EntityMappingGeneratedViews
             T.RecLastUpdatedBy AS DesigGrade_RecLastUpdatedBy, 
             T.UserDomainKey AS DesigGrade_UserDomainKey, 
             True AS _from0
-        FROM BaseDbContext.DesigGrades AS T
+        FROM BaseDbContext.DesignGrades AS T
     ) AS T1");
         }
         
@@ -3508,7 +3509,7 @@ namespace Edm_EntityMappingGeneratedViews
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("BaseDbContext.Countries", @"
     SELECT VALUE -- Constructing Countries
-        [DomainModels.Country](T1.Country_CountryId, T1.Country_CountryCode, T1.Country_CountryName, T1.Country_CountryDescription, T1.Country_IsActive, T1.Country_IsReadOnly, T1.Country_IsPrivate, T1.Country_IsDeleted, T1.Country_RecLastUpdatedDt, T1.Country_RecLastUpdatedBy, T1.Country_RecCreatedBy, T1.Country_RecCreatedDt)
+        [DomainModels.Country](T1.Country_CountryId, T1.Country_CountryCode, T1.Country_CountryName, T1.Country_CountryDescription, T1.Country_IsActive, T1.Country_IsReadOnly, T1.Country_IsPrivate, T1.Country_IsDeleted, T1.Country_RecLastUpdatedDt, T1.Country_RecLastUpdatedBy, T1.Country_RecCreatedBy, T1.Country_RecCreatedDt, T1.Country_UserDomainKey)
     FROM (
         SELECT 
             T.CountryID AS Country_CountryId, 
@@ -3523,6 +3524,7 @@ namespace Edm_EntityMappingGeneratedViews
             T.RecLastUpdatedBy AS Country_RecLastUpdatedBy, 
             T.RecCreatedBy AS Country_RecCreatedBy, 
             T.RecCreatedDt AS Country_RecCreatedDt, 
+            T.UserDomainKey AS Country_UserDomainKey, 
             True AS _from0
         FROM CaresModelStoreContainer.Country AS T
     ) AS T1");
@@ -3556,29 +3558,29 @@ namespace Edm_EntityMappingGeneratedViews
         }
         
         /// <Summary>
-        /// return view for BaseDbContext.DesigGrades
+        /// return view for BaseDbContext.DesignGrades
         /// </Summary>
         private System.Collections.Generic.KeyValuePair<string, string> GetView93()
         {
-            return new System.Collections.Generic.KeyValuePair<string, string>("BaseDbContext.DesigGrades", @"
-    SELECT VALUE -- Constructing DesigGrades
-        [DomainModels.DesigGrade](T1.DesigGrade_DesigGradeId, T1.DesigGrade_DesigGradeCode, T1.DesigGrade_DesigGradeName, T1.DesigGrade_DesigGradeDescription, T1.DesigGrade_RowVersion, T1.DesigGrade_IsActive, T1.DesigGrade_IsPrivate, T1.DesigGrade_IsDeleted, T1.DesigGrade_IsReadOnly, T1.DesigGrade_RecCreatedDt, T1.DesigGrade_RecCreatedBy, T1.DesigGrade_RecLastUpdatedDt, T1.DesigGrade_RecLastUpdatedBy, T1.DesigGrade_UserDomainKey)
+            return new System.Collections.Generic.KeyValuePair<string, string>("BaseDbContext.DesignGrades", @"
+    SELECT VALUE -- Constructing DesignGrades
+        [DomainModels.DesignGrade](T1.DesignGrade_DesigGradeId, T1.DesignGrade_DesigGradeCode, T1.DesignGrade_DesigGradeName, T1.DesignGrade_DesigGradeDescription, T1.DesignGrade_RowVersion, T1.DesignGrade_IsActive, T1.DesignGrade_IsPrivate, T1.DesignGrade_IsDeleted, T1.DesignGrade_IsReadOnly, T1.DesignGrade_RecCreatedDt, T1.DesignGrade_RecCreatedBy, T1.DesignGrade_RecLastUpdatedDt, T1.DesignGrade_RecLastUpdatedBy, T1.DesignGrade_UserDomainKey)
     FROM (
         SELECT 
-            T.DesigGradeID AS DesigGrade_DesigGradeId, 
-            T.DesigGradeCode AS DesigGrade_DesigGradeCode, 
-            T.DesigGradeName AS DesigGrade_DesigGradeName, 
-            T.DesigGradeDescription AS DesigGrade_DesigGradeDescription, 
-            T.RowVersion AS DesigGrade_RowVersion, 
-            T.IsActive AS DesigGrade_IsActive, 
-            T.IsPrivate AS DesigGrade_IsPrivate, 
-            T.IsDeleted AS DesigGrade_IsDeleted, 
-            T.IsReadOnly AS DesigGrade_IsReadOnly, 
-            T.RecCreatedDt AS DesigGrade_RecCreatedDt, 
-            T.RecCreatedBy AS DesigGrade_RecCreatedBy, 
-            T.RecLastUpdatedDt AS DesigGrade_RecLastUpdatedDt, 
-            T.RecLastUpdatedBy AS DesigGrade_RecLastUpdatedBy, 
-            T.UserDomainKey AS DesigGrade_UserDomainKey, 
+            T.DesigGradeID AS DesignGrade_DesigGradeId, 
+            T.DesigGradeCode AS DesignGrade_DesigGradeCode, 
+            T.DesigGradeName AS DesignGrade_DesigGradeName, 
+            T.DesigGradeDescription AS DesignGrade_DesigGradeDescription, 
+            T.RowVersion AS DesignGrade_RowVersion, 
+            T.IsActive AS DesignGrade_IsActive, 
+            T.IsPrivate AS DesignGrade_IsPrivate, 
+            T.IsDeleted AS DesignGrade_IsDeleted, 
+            T.IsReadOnly AS DesignGrade_IsReadOnly, 
+            T.RecCreatedDt AS DesignGrade_RecCreatedDt, 
+            T.RecCreatedBy AS DesignGrade_RecCreatedBy, 
+            T.RecLastUpdatedDt AS DesignGrade_RecLastUpdatedDt, 
+            T.RecLastUpdatedBy AS DesignGrade_RecLastUpdatedBy, 
+            T.UserDomainKey AS DesignGrade_UserDomainKey, 
             True AS _from0
         FROM CaresModelStoreContainer.DesigGrade AS T
     ) AS T1");

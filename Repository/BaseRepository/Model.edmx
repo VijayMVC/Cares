@@ -390,6 +390,7 @@
           <Property Name="RecLastUpdatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="RecCreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="RecCreatedDt" Type="datetime" Nullable="false" />
+          <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -3853,7 +3854,7 @@
           <EntitySet Name="Cities" EntityType="DomainModels.City" />
           <EntitySet Name="Countries" EntityType="DomainModels.Country" />
           <EntitySet Name="Departments" EntityType="DomainModels.Department" />
-          <EntitySet Name="DesigGrades" EntityType="DomainModels.DesigGrade" />
+          <EntitySet Name="DesignGrades" EntityType="DomainModels.DesignGrade" />
           <EntitySet Name="Designations" EntityType="DomainModels.Designation" />
           <EntitySet Name="EmpAuthOperationsWorkplaces" EntityType="DomainModels.EmpAuthOperationsWorkplace" />
           <EntitySet Name="EmpDocsInfoes" EntityType="DomainModels.EmpDocsInfo" />
@@ -3992,7 +3993,7 @@
             <End Role="EmpJobInfo" EntitySet="EmpJobInfoes" />
           </AssociationSet>
           <AssociationSet Name="RefDesigGrade354" Association="DomainModels.RefDesigGrade354">
-            <End Role="DesigGrade" EntitySet="DesigGrades" />
+            <End Role="DesigGrade" EntitySet="DesignGrades" />
             <End Role="EmpJobInfo" EntitySet="EmpJobInfoes" />
           </AssociationSet>
           <AssociationSet Name="RefDesignation346" Association="DomainModels.RefDesignation346">
@@ -4808,6 +4809,7 @@
           <NavigationProperty Name="Regions" Relationship="DomainModels.RefCountry41" FromRole="Country" ToRole="Region" />
           <NavigationProperty Name="Employees" Relationship="DomainModels.RefNationality355" FromRole="Country" ToRole="Employee" />
           <NavigationProperty Name="Addresses" Relationship="DomainModels.RefCountry1971" FromRole="Country" ToRole="Address" />
+          <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -4833,7 +4835,7 @@
           <NavigationProperty Name="Operations" Relationship="DomainModels.RefDepartment1821" FromRole="Department" ToRole="Operation" />
           <NavigationProperty Name="EmpJobInfos" Relationship="DomainModels.RefDepartment340" FromRole="Department" ToRole="EmpJobInfo" />
         </EntityType>
-        <EntityType Name="DesigGrade">
+        <EntityType Name="DesignGrade">
           <Key>
             <PropertyRef Name="DesigGradeId" />
           </Key>
@@ -5985,7 +5987,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefDesigGrade354">
-          <End Type="DomainModels.DesigGrade" Role="DesigGrade" Multiplicity="1" />
+          <End Type="DomainModels.DesignGrade" Role="DesigGrade" Multiplicity="1" />
           <End Type="DomainModels.EmpJobInfo" Role="EmpJobInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DesigGrade">
@@ -8173,6 +8175,7 @@
           <EntitySetMapping Name="Countries">
             <EntityTypeMapping TypeName="DomainModels.Country">
               <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
                 <ScalarProperty Name="RecCreatedDt" ColumnName="RecCreatedDt" />
                 <ScalarProperty Name="RecCreatedBy" ColumnName="RecCreatedBy" />
                 <ScalarProperty Name="RecLastUpdatedBy" ColumnName="RecLastUpdatedBy" />
@@ -8210,8 +8213,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DesigGrades">
-            <EntityTypeMapping TypeName="DomainModels.DesigGrade">
+          <EntitySetMapping Name="DesignGrades">
+            <EntityTypeMapping TypeName="DomainModels.DesignGrade">
               <MappingFragment StoreEntitySet="DesigGrade">
                 <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
                 <ScalarProperty Name="RecLastUpdatedBy" ColumnName="RecLastUpdatedBy" />

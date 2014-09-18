@@ -308,8 +308,8 @@ namespace Cares.Web.ModelMappers
                 IsDefault = source.IsDefault,
                 IsOperationDefault = source.IsOperationDefault,
                 OperationsWorkplaceId = source.OperationsWorkplaceId,
-                OperationCodeName = source.OperationsWorkPlace.Operation != null ? source.OperationsWorkPlace.Operation.OperationCode + " - " + source.OperationsWorkPlace.Operation.OperationName : string.Empty,
-                OperationworkPalceCode = source.OperationsWorkPlace != null ? source.OperationsWorkPlace.LocationCode : string.Empty,
+                OperationCodeName = source.OperationsWorkplace.Operation != null ? source.OperationsWorkplace.Operation.OperationCode + " - " + source.OperationsWorkplace.Operation.OperationName : string.Empty,
+                OperationworkPalceCode = source.OperationsWorkplace != null ? source.OperationsWorkplace.LocationCode : string.Empty,
             };
         }
         #endregion

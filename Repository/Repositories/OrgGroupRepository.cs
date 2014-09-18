@@ -83,8 +83,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public override IEnumerable<OrgGroup> GetAll()
         {
-            return DbSet.ToList();
-            //return DbSet.Where(orgGroup => orgGroup.UserDomainKey == UserDomainKey).ToList();
+            return DbSet.Where(orgGroup => orgGroup.UserDomainKey == UserDomainKey).ToList();
         }
 
         /// <summary>

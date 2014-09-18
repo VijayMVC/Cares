@@ -13,7 +13,6 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Designation Grade ID
         /// </summary>
-        [Key]
         public long DesigGradeId { get; set; }
 
         /// <summary>

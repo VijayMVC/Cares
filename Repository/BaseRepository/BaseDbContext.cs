@@ -61,28 +61,28 @@ namespace Cares.Repository.BaseRepository
         }
 
         #region Logger
-        ///// <summary>
-        ///// Logs
-        ///// </summary>
-        //public DbSet<Log> Logs { get; set; }
-        ///// <summary>
-        ///// Log Categories
-        ///// </summary>
-        //public DbSet<LogCategory> LogCategories { get; set; }
-        ///// <summary>
-        ///// Category Logs
-        ///// </summary>
-        //public DbSet<CategoryLog> CategoryLogs { get; set; }
+        /// <summary>
+        /// Logs
+        /// </summary>
+        public DbSet<Log> Logs { get; set; }
+        /// <summary>
+        /// Log Categories
+        /// </summary>
+        public DbSet<LogCategory> LogCategories { get; set; }
+        /// <summary>
+        /// Category Logs
+        /// </summary>
+        public DbSet<CategoryLog> CategoryLogs { get; set; }
         #endregion
         #region Menu Rights and Security
-        ///// <summary>
-        ///// Menu Rights
-        ///// </summary>
-        //public DbSet<MenuRight> MenuRights { get; set; }
-        ///// <summary>
-        ///// Menu
-        ///// </summary>
-        //public DbSet<Menu> Menus { get; set; }
+        /// <summary>
+        /// Menu Rights
+        /// </summary>
+        public DbSet<MenuRight> MenuRights { get; set; }
+        /// <summary>
+        /// Menu
+        /// </summary>
+        public DbSet<Menu> Menus { get; set; }
         #endregion
         
 
@@ -403,33 +403,7 @@ namespace Cares.Repository.BaseRepository
         /// Employee Job Progrss  Db Set
         /// </summary>
         public DbSet<EmpJobProg> EmpJobProgs { get; set; }
-
-        /// <summary>
-        /// Menu  Db Set
-        /// </summary>
-        public DbSet<Menu> Menus { get; set; }
-
-        /// <summary>
-        /// Menu Rights  Db Set
-        /// </summary>
-        public DbSet<MenuRight> MenuRights { get; set; }
-
-        /// <summary>
-        /// Log  Db Set
-        /// </summary>
-        public DbSet<Log> Logs { get; set; }
-
-        /// <summary>
-        /// CategoryLog Db Set
-        /// </summary>
-        public DbSet<CategoryLog> CategoryLogs { get; set; }
-
-        /// <summary>
-        /// Log Category Db Set
-        /// </summary>
-        public DbSet<LogCategory> LogCategories { get; set; }
-       
-
+        
         #endregion
     }
 }
