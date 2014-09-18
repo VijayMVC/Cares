@@ -81,7 +81,7 @@ namespace Cares.Repository
             unityContainer.RegisterType<IVehicleMaintenanceTypeFrequencyRepository, VehicleMaintenanceTypeFrequencyRepository>();
             unityContainer.RegisterType<IEmpStatusRepository, EmpStatusRepository>();
             unityContainer.RegisterType<IDesignationRepository, DesignationRepository>();
-            unityContainer.RegisterType<IDesigGradeRepository, DesigGradeRepository>();
+            unityContainer.RegisterType<IDesignGradeRepository, DesignGradeRepository>();
             unityContainer.RegisterType<ILicenseTypeRepository, LicenseTypeRepository>();
             unityContainer.RegisterType<IJobTypeRepository, JobTypeRepository>();
             unityContainer.RegisterType<IEmpJobInfoRepository, EmpJobInfoRepository>();

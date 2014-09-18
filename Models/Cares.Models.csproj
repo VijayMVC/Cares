@@ -108,6 +108,9 @@
     <Compile Include="Common\CityByColumn.cs" />
     <Compile Include="Common\CompanyByColumn.cs" />
     <Compile Include="Common\DepartmentByColumn.cs" />
+    <Compile Include="Common\DesignationByColumn.cs" />
+    <Compile Include="Common\DesignGradeByColumn.cs" />
+    <Compile Include="Common\EmpStatusByColumn.cs" />
     <Compile Include="Common\InsuranceRateByColumn.cs" />
     <Compile Include="Common\RegionByColumn.cs" />
     <Compile Include="Common\ServiceRateByColumn.cs" />
@@ -138,7 +141,7 @@
     <Compile Include="DomainModels\BusinessPartnerRelaionshipType.cs" />
     <Compile Include="DomainModels\BusinessPartnerSubType.cs" />
     <Compile Include="DomainModels\Area.cs" />
-    <Compile Include="DomainModels\DesigGrade.cs" />
+    <Compile Include="DomainModels\DesignGrade.cs" />
     <Compile Include="DomainModels\Designation.cs" />
     <Compile Include="DomainModels\EmpAuthOperationsWorkplace.cs" />
     <Compile Include="DomainModels\EmpDocsInfo.cs" />
@@ -226,6 +229,12 @@
     <Compile Include="RequestModels\CitySearchRequestResponse.cs" />
     <Compile Include="RequestModels\CompanySearchRequest.cs" />
     <Compile Include="RequestModels\DepartmentSearchRequest.cs" />
+    <Compile Include="RequestModels\DesignationSearchRequest.cs" />
+    <Compile Include="RequestModels\DesignationSearchRequestResponse.cs" />
+    <Compile Include="RequestModels\DesignGradeSearchRequest.cs" />
+    <Compile Include="RequestModels\DesignGradeSearchRequestResponse.cs" />
+    <Compile Include="RequestModels\EmpSearchRequest.cs" />
+    <Compile Include="RequestModels\EmpSearchRequestResponse.cs" />
     <Compile Include="RequestModels\GetBusinessPartnerRequest.cs" />
     <Compile Include="RequestModels\EmployeeSearchRequest.cs" />
     <Compile Include="RequestModels\FleetPoolSearchRequest.cs" />

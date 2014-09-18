@@ -13,16 +13,16 @@ namespace Cares.Interfaces.Repository
         /// <summary>
         /// Get All Employees
         /// </summary>
-        /// <param name="searchRequest"></param>
-        /// <returns></returns>
         EmployeeSearchResponse GetAllEmployees(EmployeeSearchRequest searchRequest);
 
         /// <summary>
         /// Get Employee By Name
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="id"></param>
-        /// <returns></returns>
         Employee GetEmployeeByName(string name, int id);
+
+        /// <summary>
+        /// To check the association of employee with employee status
+        /// </summary>
+        bool IsEmployeeAssociatedWithEmployeeStatus(long empStatusId);
     }
 }

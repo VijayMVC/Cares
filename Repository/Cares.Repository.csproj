@@ -134,7 +134,7 @@
     <Compile Include="Repositories\BusinessPartnerCompanyRepository.cs" />
     <Compile Include="Repositories\AddressTypeRepository.cs" />
     <Compile Include="Repositories\AreaRepository.cs" />
-    <Compile Include="Repositories\DesigGradeRepository.cs" />
+    <Compile Include="Repositories\DesignGradeRepository.cs" />
     <Compile Include="Repositories\DesignationRepository.cs" />
     <Compile Include="Repositories\EmpAuthOperationsWorkplaceRepository.cs" />
     <Compile Include="Repositories\EmpDocsInfoRepository.cs" />

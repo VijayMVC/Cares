@@ -33,6 +33,8 @@
             "city": "/Areas/GeographicalHierarchy/Scripts",
             "area": "/Areas/GeographicalHierarchy/Scripts",
 
+            "designGrade": "/Areas/EmployeeManagement/Scripts"
+
         }
     });
 

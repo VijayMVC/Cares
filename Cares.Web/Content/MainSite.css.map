@@ -18,6 +18,7 @@
     "SubRegion.less",
     "City.less",
     "Area.less",
+    "DesignationGrade.less",
     "MainSite.less"
   ],
   "names": [],

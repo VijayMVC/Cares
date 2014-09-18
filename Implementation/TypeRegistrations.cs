@@ -60,6 +60,8 @@ namespace Cares.Implementation
             unityContainer.RegisterType<ICityService, CityService>();
             unityContainer.RegisterType<IAreaService, AreaService>();
             unityContainer.RegisterType<IAdditionalDriverService, AdditionalDriverService>();
+            unityContainer.RegisterType<IDesignGradeService, DesignGradeService>();
+            unityContainer.RegisterType<IEmpStatusService, EmpStatusService>();
 
 
         }

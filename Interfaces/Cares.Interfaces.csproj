@@ -59,6 +59,9 @@
     <Compile Include="IServices\IPhoneService.cs" />
     <Compile Include="IServices\ICityService.cs" />
     <Compile Include="IServices\IAreaService.cs" />
+    <Compile Include="IServices\IDesignGradeService.cs" />
+    <Compile Include="IServices\IEmpStatusService.cs" />
+    <Compile Include="IServices\IDesignationService.cs" />
     <Compile Include="IServices\ISubRegionService.cs" />
     <Compile Include="IServices\IRegionService.cs" />
     <Compile Include="IServices\IServiceRtService.cs" />
@@ -66,7 +69,7 @@
     <Compile Include="IServices\IWorkplaceService.cs" />
     <Compile Include="IServices\IWorkplaceTypeService.cs" />
     <Compile Include="Repository\IEmpAuthOperationsWorkplaceRepository.cs" />
-    <Compile Include="Repository\IDesigGradeRepository.cs" />
+    <Compile Include="Repository\IDesignGradeRepository.cs" />
     <Compile Include="Repository\IDesignationRepository.cs" />
     <Compile Include="Repository\IEmpDocsInfoRepository.cs" />
     <Compile Include="Repository\IEmpJobInfoRepository.cs" />

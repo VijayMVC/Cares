@@ -19,7 +19,7 @@ namespace Cares.Implementation.Services
         private readonly ICompanyRepository companyRepository;
         private readonly IJobTypeRepository jobTypeRepository;
         private readonly IDesignationRepository designationRepository;
-        private readonly IDesigGradeRepository desigGradeRepository;
+        private readonly IDesignGradeRepository desigGradeRepository;
         private readonly IDepartmentRepository departmentRepository;
         private readonly IWorkplaceRepository workplaceRepository;
         private readonly ICountryRepository countryRepository;
@@ -56,7 +56,7 @@ namespace Cares.Implementation.Services
         /// <param name="operationRepository"></param>
         /// <param name="operationsWorkPlaceRepository"></param>
         public EmployeeService(IEmployeeRepository empRepository, IEmpStatusRepository empStatusRepository, ICompanyRepository companyRepository,
-            IJobTypeRepository jobTypeRepository, IDesignationRepository designationRepository, IDesigGradeRepository desigGradeRepository,
+            IJobTypeRepository jobTypeRepository, IDesignationRepository designationRepository, IDesignGradeRepository desigGradeRepository,
             IDepartmentRepository departmentRepository, IWorkplaceRepository workplaceRepository, ICountryRepository countryRepository,
             IRegionRepository regionRepository, ISubRegionRepository subRegionRepository, ICityRepository cityRepository,
             IAreaRepository areaRepository, IPhoneTypeRepository phoneTypeRepository, ILicenseTypeRepository licenseTypeRepository,

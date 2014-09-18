@@ -138,7 +138,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Designation Grade
         /// </summary>
-        public virtual DesigGrade DesigGrade { get; set; }
+        public virtual DesignGrade DesigGrade { get; set; }
 
         /// <summary>
         /// Designation

@@ -44,6 +44,21 @@ namespace Cares.Repository.Repositories
             return DbSet.Where(empJobInfo => empJobInfo.UserDomainKey == UserDomainKey).ToList();
         }
 
+        /// <summary>
+        /// To check the asssociation of design grade and emp job info 
+        /// </summary>
+        public bool IsEmpJobInfoAssociatedWithDesignGrade(long designGradeId)
+        {
+            return DbSet.Count(empJobInfo => empJobInfo.DesigGradeId == designGradeId) > 0;
+        }
+
+        /// <summary>
+        /// To check the asssociation of designation and emp job info 
+        /// </summary>
+       public bool IsEmpJobInfoAssociatedWithDesignation(long designationId)
+        {
+            return DbSet.Count(empJobInfo => empJobInfo.DesignationId == designationId) > 0; 
+        }
         #endregion
     }
 }
