@@ -29,7 +29,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets7DF6E5E23FC2141589B6A88A74A6E3BA95637374F2E6314CF0D4AAE88C953DF9))]
+[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySetsD9FEE945151C8D5FF7CBCDC1AA33BAB8BC41FCEFD7A5C32F4F0C908161E29EA6))]
 
 namespace Edm_EntityMappingGeneratedViews
 {
@@ -38,19 +38,19 @@ namespace Edm_EntityMappingGeneratedViews
     /// <Summary>
     /// The type contains views for EntitySets and AssociationSets that were generated at design time.
     /// </Summary>
-    public sealed class ViewsForBaseEntitySets7DF6E5E23FC2141589B6A88A74A6E3BA95637374F2E6314CF0D4AAE88C953DF9 : System.Data.Mapping.EntityViewContainer
+    public sealed class ViewsForBaseEntitySetsD9FEE945151C8D5FF7CBCDC1AA33BAB8BC41FCEFD7A5C32F4F0C908161E29EA6 : System.Data.Mapping.EntityViewContainer
     {
         
         /// <Summary>
         /// The constructor stores the views for the extents and also the hash values generated based on the metadata and mapping closure and views.
         /// </Summary>
-        public ViewsForBaseEntitySets7DF6E5E23FC2141589B6A88A74A6E3BA95637374F2E6314CF0D4AAE88C953DF9()
+        public ViewsForBaseEntitySetsD9FEE945151C8D5FF7CBCDC1AA33BAB8BC41FCEFD7A5C32F4F0C908161E29EA6()
         {
             this.EdmEntityContainerName = "BaseDbContext";
             this.StoreEntityContainerName = "CaresModelStoreContainer";
-            this.HashOverMappingClosure = "005ae1c4d490e64ef041a01fceb652da87226d3ed4e5e53af3ad8ed68e6d953e";
-            this.HashOverAllExtentViews = "1b8d7e95abfea1998cc68468f51cc6f8dfdf46d1ac8eb7f2eba5949dceb60cbc";
-            this.ViewCount = 170;
+            this.HashOverMappingClosure = "27fcdba66dcbf01abd398e6f402c79ca61ce7f9ecd8f1d90177059cc62331a32";
+            this.HashOverAllExtentViews = "1380a6c2f067048658ea4f3afece9d83e831916cfb121e527ee4d0a8770a3198";
+            this.ViewCount = 172;
         }
         
         /// <Summary>
@@ -737,6 +737,14 @@ namespace Edm_EntityMappingGeneratedViews
             if ((index == 169))
             {
                 return GetView169();
+            }
+            if ((index == 170))
+            {
+                return GetView170();
+            }
+            if ((index == 171))
+            {
+                return GetView171();
             }
             throw new System.IndexOutOfRangeException();
         }
@@ -5778,6 +5786,78 @@ namespace Edm_EntityMappingGeneratedViews
             True AS _from0
         FROM CaresModelStoreContainer.MenuRight AS T
     ) AS T1");
+        }
+        
+        /// <Summary>
+        /// return view for CaresModelStoreContainer.AdditionalDriverCharge
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView170()
+        {
+            System.Text.StringBuilder viewString = new System.Text.StringBuilder(2090);
+            viewString.Append("\r\n    SELECT VALUE -- Constructing AdditionalDriverCharge\r\n        [CaresModel.S");
+            viewString.Append("tore.AdditionalDriverCharge](T1.AdditionalDriverCharge_AdditionalDriverChargeID,");
+            viewString.Append(" T1.AdditionalDriverCharge_ChildAdditionalDriverChargeID, T1.AdditionalDriverCha");
+            viewString.Append("rge_AdditionalDriverChargeRate, T1.AdditionalDriverCharge_TariffTypeCode, T1.Add");
+            viewString.Append("itionalDriverCharge_RevisionNumber, T1.AdditionalDriverCharge_StartDt, T1.Additi");
+            viewString.Append("onalDriverCharge_IsActive, T1.AdditionalDriverCharge_IsDeleted, T1.AdditionalDri");
+            viewString.Append("verCharge_IsPrivate, T1.AdditionalDriverCharge_IsReadOnly, T1.AdditionalDriverCh");
+            viewString.Append("arge_RowVersion, T1.AdditionalDriverCharge_RecCreatedDt, T1.AdditionalDriverChar");
+            viewString.Append("ge_RecLastUpdatedDt, T1.AdditionalDriverCharge_RecCreatedBy, T1.AdditionalDriver");
+            viewString.Append("Charge_RecLastUpdatedBy, T1.AdditionalDriverCharge_UserDomainKey)\r\n    FROM (\r\n ");
+            viewString.Append("       SELECT \r\n            T.AdditionalDriverChargeId AS AdditionalDriverCharge");
+            viewString.Append("_AdditionalDriverChargeID, \r\n            T.ChildAdditionalDriverChargeId AS Addi");
+            viewString.Append("tionalDriverCharge_ChildAdditionalDriverChargeID, \r\n            T.AdditionalDriv");
+            viewString.Append("erChargeRate AS AdditionalDriverCharge_AdditionalDriverChargeRate, \r\n           ");
+            viewString.Append(" T.TariffTypeCode AS AdditionalDriverCharge_TariffTypeCode, \r\n            T.Revi");
+            viewString.Append("sionNumber AS AdditionalDriverCharge_RevisionNumber, \r\n            T.StartDt AS ");
+            viewString.Append("AdditionalDriverCharge_StartDt, \r\n            T.IsActive AS AdditionalDriverChar");
+            viewString.Append("ge_IsActive, \r\n            T.IsDeleted AS AdditionalDriverCharge_IsDeleted, \r\n  ");
+            viewString.Append("          T.IsPrivate AS AdditionalDriverCharge_IsPrivate, \r\n            T.IsRea");
+            viewString.Append("dOnly AS AdditionalDriverCharge_IsReadOnly, \r\n            T.RowVersion AS Additi");
+            viewString.Append("onalDriverCharge_RowVersion, \r\n            T.RecCreatedDt AS AdditionalDriverCha");
+            viewString.Append("rge_RecCreatedDt, \r\n            T.RecLastUpdatedDt AS AdditionalDriverCharge_Rec");
+            viewString.Append("LastUpdatedDt, \r\n            T.RecCreatedBy AS AdditionalDriverCharge_RecCreated");
+            viewString.Append("By, \r\n            T.RecLastUpdatedBy AS AdditionalDriverCharge_RecLastUpdatedBy,");
+            viewString.Append(" \r\n            T.UserDomainKey AS AdditionalDriverCharge_UserDomainKey, \r\n      ");
+            viewString.Append("      True AS _from0\r\n        FROM BaseDbContext.AdditionalDriverCharges AS T\r\n ");
+            viewString.Append("   ) AS T1");
+            return new System.Collections.Generic.KeyValuePair<string, string>("CaresModelStoreContainer.AdditionalDriverCharge", viewString.ToString());
+        }
+        
+        /// <Summary>
+        /// return view for BaseDbContext.AdditionalDriverCharges
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView171()
+        {
+            System.Text.StringBuilder viewString = new System.Text.StringBuilder(2097);
+            viewString.Append("\r\n    SELECT VALUE -- Constructing AdditionalDriverCharges\r\n        [DomainModel");
+            viewString.Append("s.AdditionalDriverCharge](T1.AdditionalDriverCharge_AdditionalDriverChargeId, T1");
+            viewString.Append(".AdditionalDriverCharge_ChildAdditionalDriverChargeId, T1.AdditionalDriverCharge");
+            viewString.Append("_AdditionalDriverChargeRate, T1.AdditionalDriverCharge_TariffTypeCode, T1.Additi");
+            viewString.Append("onalDriverCharge_RevisionNumber, T1.AdditionalDriverCharge_StartDt, T1.Additiona");
+            viewString.Append("lDriverCharge_IsActive, T1.AdditionalDriverCharge_IsDeleted, T1.AdditionalDriver");
+            viewString.Append("Charge_IsPrivate, T1.AdditionalDriverCharge_IsReadOnly, T1.AdditionalDriverCharg");
+            viewString.Append("e_RowVersion, T1.AdditionalDriverCharge_RecCreatedDt, T1.AdditionalDriverCharge_");
+            viewString.Append("RecLastUpdatedDt, T1.AdditionalDriverCharge_RecCreatedBy, T1.AdditionalDriverCha");
+            viewString.Append("rge_RecLastUpdatedBy, T1.AdditionalDriverCharge_UserDomainKey)\r\n    FROM (\r\n    ");
+            viewString.Append("    SELECT \r\n            T.AdditionalDriverChargeID AS AdditionalDriverCharge_Ad");
+            viewString.Append("ditionalDriverChargeId, \r\n            T.ChildAdditionalDriverChargeID AS Additio");
+            viewString.Append("nalDriverCharge_ChildAdditionalDriverChargeId, \r\n            T.AdditionalDriverC");
+            viewString.Append("hargeRate AS AdditionalDriverCharge_AdditionalDriverChargeRate, \r\n            T.");
+            viewString.Append("TariffTypeCode AS AdditionalDriverCharge_TariffTypeCode, \r\n            T.Revisio");
+            viewString.Append("nNumber AS AdditionalDriverCharge_RevisionNumber, \r\n            T.StartDt AS Add");
+            viewString.Append("itionalDriverCharge_StartDt, \r\n            T.IsActive AS AdditionalDriverCharge_");
+            viewString.Append("IsActive, \r\n            T.IsDeleted AS AdditionalDriverCharge_IsDeleted, \r\n     ");
+            viewString.Append("       T.IsPrivate AS AdditionalDriverCharge_IsPrivate, \r\n            T.IsReadOn");
+            viewString.Append("ly AS AdditionalDriverCharge_IsReadOnly, \r\n            T.RowVersion AS Additiona");
+            viewString.Append("lDriverCharge_RowVersion, \r\n            T.RecCreatedDt AS AdditionalDriverCharge");
+            viewString.Append("_RecCreatedDt, \r\n            T.RecLastUpdatedDt AS AdditionalDriverCharge_RecLas");
+            viewString.Append("tUpdatedDt, \r\n            T.RecCreatedBy AS AdditionalDriverCharge_RecCreatedBy,");
+            viewString.Append(" \r\n            T.RecLastUpdatedBy AS AdditionalDriverCharge_RecLastUpdatedBy, \r\n");
+            viewString.Append("            T.UserDomainKey AS AdditionalDriverCharge_UserDomainKey, \r\n         ");
+            viewString.Append("   True AS _from0\r\n        FROM CaresModelStoreContainer.AdditionalDriverCharge ");
+            viewString.Append("AS T\r\n    ) AS T1");
+            return new System.Collections.Generic.KeyValuePair<string, string>("BaseDbContext.AdditionalDriverCharges", viewString.ToString());
         }
     }
 }

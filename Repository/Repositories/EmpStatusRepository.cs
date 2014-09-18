@@ -24,7 +24,8 @@ namespace Cares.Repository.Repositories
         private readonly Dictionary<EmpStatusByColumn, Func<EmpStatus, object>> empStatusOrderByClause = new Dictionary<EmpStatusByColumn, Func<EmpStatus, object>>
                     {
                         {EmpStatusByColumn.Code, d => d.EmpStatusCode},
-                        {EmpStatusByColumn.Name, c => c.EmpStatusName}
+                        {EmpStatusByColumn.Name, c => c.EmpStatusName},
+                         {EmpStatusByColumn.Inservice, c => c.IsActive}
                         
                     };
         #endregion

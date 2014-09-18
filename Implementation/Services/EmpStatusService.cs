@@ -28,6 +28,7 @@ namespace Cares.Implementation.Services
             dbVersion.EmpStatusCode = empStatus.EmpStatusCode;
             dbVersion.EmpStatusName = empStatus.EmpStatusName;
             dbVersion.EmpStatusDescription = empStatus.EmpStatusDescription;
+            dbVersion.EmpStatusFlag = empStatus.EmpStatusFlag;
             dbVersion.UserDomainKey = employeeStatusRepository.UserDomainKey;
         }
 
@@ -41,6 +42,7 @@ namespace Cares.Implementation.Services
             dbVersion.EmpStatusCode = empStatus.EmpStatusCode;
             dbVersion.EmpStatusName = empStatus.EmpStatusName;
             dbVersion.EmpStatusDescription = empStatus.EmpStatusDescription;
+            dbVersion.EmpStatusFlag = empStatus.EmpStatusFlag;
         }
 
         //Validation check for deletion

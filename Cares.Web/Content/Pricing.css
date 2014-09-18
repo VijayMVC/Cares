@@ -145,4 +145,34 @@
   margin-bottom: 20px;
   margin-top: 10px;
 }
+#additionalDriverChargeBinding table thead tr .code {
+  width: 18%;
+}
+#additionalDriverChargeBinding table thead tr .codeName {
+  width: 18%;
+}
+#additionalDriverChargeBinding table thead tr .rate {
+  width: 22%;
+}
+#additionalDriverChargeBinding table thead tr .operation {
+  width: 18%;
+}
+#additionalDriverChargeBinding table thead tr .company {
+  width: 18%;
+}
+#additionalDriverChargeBinding table thead tr .date {
+  width: 18%;
+}
+#additionalDriverChargeBinding #additionalDriverChargeEditor {
+  margin-top: 15px;
+}
+#additionalDriverChargeBinding #additionalDriverChargeEditor .detailsContainer {
+  width: 100%;
+}
+#additionalDriverChargeBinding #additionalDriverChargeEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
 /*# sourceMappingURL=Pricing.css.map */

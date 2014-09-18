@@ -17,6 +17,7 @@
             "tariffRate": "/Areas/Pricing/Scripts",
             "insuranceRate": "/Areas/Pricing/Scripts",
             "serviceRate": "/Areas/Pricing/Scripts",
+            "additionalDriverCharge": "/Areas/Pricing/Scripts",
             "rentalAgreement": "/Areas/RentalAgreement/Scripts",
             "Organization": "/Areas/Organization/Scripts",
             "company": "/Areas/Organization/Scripts",
@@ -31,9 +32,10 @@
             "subRegion": "/Areas/GeographicalHierarchy/Scripts",
             "city": "/Areas/GeographicalHierarchy/Scripts",
             "area": "/Areas/GeographicalHierarchy/Scripts",
-
-            "designGrade": "/Areas/EmployeeManagement/Scripts"
-
+            "empStatus": "/Areas/EmployeeManagement/Scripts",
+            "designGrade": "/Areas/EmployeeManagement/Scripts",
+            "designation": "/Areas/EmployeeManagement/Scripts"
+            
         }
     });
 

@@ -320,6 +320,7 @@
       <DependentUpon>Vehicle.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\AddressBaseDataService.cs" />
+    <Compile Include="Services\AdditionalDriverService.cs" />
     <Compile Include="Services\BusinessPartnerBaseDataService.cs" />
     <Compile Include="Services\BusinessPartnerCompanyService.cs" />
     <Compile Include="Services\BusinessPartnerIndividualService.cs" />

@@ -48,6 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IServices\IAddressBaseDataService.cs" />
+    <Compile Include="Repository\IAdditionalDriverChargeRepository.cs" />
+    <Compile Include="IServices\IAdditionalDriverService.cs" />
     <Compile Include="IServices\IBPRatingTypeService.cs" />
     <Compile Include="IServices\IBusinessLegalStatusService.cs" />
     <Compile Include="IServices\IBusinessPartnerBaseDataService.cs" />

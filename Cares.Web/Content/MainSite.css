@@ -224,6 +224,36 @@
   margin-bottom: 20px;
   margin-top: 10px;
 }
+#additionalDriverChargeBinding table thead tr .code {
+  width: 18%;
+}
+#additionalDriverChargeBinding table thead tr .codeName {
+  width: 18%;
+}
+#additionalDriverChargeBinding table thead tr .rate {
+  width: 22%;
+}
+#additionalDriverChargeBinding table thead tr .operation {
+  width: 18%;
+}
+#additionalDriverChargeBinding table thead tr .company {
+  width: 18%;
+}
+#additionalDriverChargeBinding table thead tr .date {
+  width: 18%;
+}
+#additionalDriverChargeBinding #additionalDriverChargeEditor {
+  margin-top: 15px;
+}
+#additionalDriverChargeBinding #additionalDriverChargeEditor .detailsContainer {
+  width: 100%;
+}
+#additionalDriverChargeBinding #additionalDriverChargeEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
 #rentalAgreementBinding {
   color: gray;
 }
@@ -877,6 +907,33 @@
   width: 100%;
 }
 #DesignGradeBinding #designationGradeEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#EmployeeStatusBinding table thead tr .ttypesearchButton {
+  margin-left: 5px;
+}
+#EmployeeStatusBinding table thead tr .Empcode {
+  width: 25%;
+}
+#EmployeeStatusBinding table thead tr .Empname {
+  width: 25%;
+}
+#EmployeeStatusBinding table thead tr .EmpDes {
+  width: 25%;
+}
+#EmployeeStatusBinding table thead tr .EmpStatus {
+  width: 25%;
+}
+#EmployeeStatusBinding #EmployeeStatusEditor {
+  margin-top: 15px;
+}
+#EmployeeStatusBinding #EmployeeStatusEditor .detailsContainer {
+  width: 100%;
+}
+#EmployeeStatusBinding #EmployeeStatusEditor .detailsContainer .detailsHeaderSection {
   float: left;
   width: 85%;
   margin-bottom: 20px;

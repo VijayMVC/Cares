@@ -88,6 +88,7 @@ namespace Cares.Repository
             unityContainer.RegisterType<IEmpJobProgRepository, EmpJobProgRepository>();
             unityContainer.RegisterType<IEmpDocsInfoRepository, EmpDocsInfoRepository>();
             unityContainer.RegisterType<IEmpAuthOperationsWorkplaceRepository, EmpAuthOperationsWorkplaceRepository>();
+            unityContainer.RegisterType<IAdditionalDriverChargeRepository, AdditionalDriverChargeRepository>();
 
         }
     }

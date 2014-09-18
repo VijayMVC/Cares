@@ -5,6 +5,27 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="CaresModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdditionalDriverCharge">
+          <Key>
+            <PropertyRef Name="AdditionalDriverChargeID" />
+          </Key>
+          <Property Name="AdditionalDriverChargeID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChildAdditionalDriverChargeID" Type="bigint" />
+          <Property Name="AdditionalDriverChargeRate" Type="float" Nullable="false" />
+          <Property Name="TariffTypeCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RevisionNumber" Type="bigint" Nullable="false" />
+          <Property Name="StartDt" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsPrivate" Type="bit" Nullable="false" />
+          <Property Name="IsReadOnly" Type="bit" Nullable="false" />
+          <Property Name="RowVersion" Type="bigint" Nullable="false" />
+          <Property Name="RecCreatedDt" Type="datetime" Nullable="false" />
+          <Property Name="RecLastUpdatedDt" Type="datetime" Nullable="false" />
+          <Property Name="RecCreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RecLastUpdatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
+        </EntityType>
         <EntityType Name="Address">
           <Key>
             <PropertyRef Name="AddressID" />
@@ -1777,6 +1798,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="RefAdditionalDriverCharge402">
+          <End Role="AdditionalDriverCharge" Type="Self.AdditionalDriverCharge" Multiplicity="0..1" />
+          <End Role="AdditionalDriverCharge1" Type="Self.AdditionalDriverCharge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdditionalDriverCharge">
+              <PropertyRef Name="AdditionalDriverChargeID" />
+            </Principal>
+            <Dependent Role="AdditionalDriverCharge1">
+              <PropertyRef Name="ChildAdditionalDriverChargeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="RefAddress">
           <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
           <End Role="WorkLocation" Type="Self.WorkLocation" Multiplicity="*" />
@@ -3218,6 +3251,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="CaresModelStoreContainer">
+          <EntitySet Name="AdditionalDriverCharge" EntityType="Self.AdditionalDriverCharge" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AddressType" EntityType="Self.AddressType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
@@ -3318,6 +3352,10 @@
           <AssociationSet Name="FK_Vehicle_VehicleStatus" Association="Self.FK_Vehicle_VehicleStatus">
             <End Role="VehicleStatus" EntitySet="VehicleStatus" />
             <End Role="Vehicle" EntitySet="Vehicle" />
+          </AssociationSet>
+          <AssociationSet Name="RefAdditionalDriverCharge402" Association="Self.RefAdditionalDriverCharge402">
+            <End Role="AdditionalDriverCharge" EntitySet="AdditionalDriverCharge" />
+            <End Role="AdditionalDriverCharge1" EntitySet="AdditionalDriverCharge" />
           </AssociationSet>
           <AssociationSet Name="RefAddress" Association="Self.RefAddress">
             <End Role="Address" EntitySet="Address" />
@@ -4405,6 +4443,11 @@
           <AssociationSet Name="FK_dbo_MenuRight_dbo_Menu_Menu_MenuId" Association="DomainModels.FK_dbo_MenuRight_dbo_Menu_Menu_MenuId">
             <End Role="Menu" EntitySet="Menus" />
             <End Role="MenuRight" EntitySet="MenuRights" />
+          </AssociationSet>
+          <EntitySet Name="AdditionalDriverCharges" EntityType="DomainModels.AdditionalDriverCharge" />
+          <AssociationSet Name="RefAdditionalDriverCharge402" Association="DomainModels.RefAdditionalDriverCharge402">
+            <End Role="AdditionalDriverCharge" EntitySet="AdditionalDriverCharges" />
+            <End Role="AdditionalDriverCharge1" EntitySet="AdditionalDriverCharges" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Company">
@@ -7839,6 +7882,40 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AdditionalDriverCharge">
+          <Key>
+            <PropertyRef Name="AdditionalDriverChargeId" />
+          </Key>
+          <Property Name="AdditionalDriverChargeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChildAdditionalDriverChargeId" Type="Int64" />
+          <Property Name="AdditionalDriverChargeRate" Type="Double" Nullable="false" />
+          <Property Name="TariffTypeCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RevisionNumber" Type="Int64" Nullable="false" />
+          <Property Name="StartDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsPrivate" Type="Boolean" Nullable="false" />
+          <Property Name="IsReadOnly" Type="Boolean" Nullable="false" />
+          <Property Name="RowVersion" Type="Int64" Nullable="false" />
+          <Property Name="RecCreatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecLastUpdatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecCreatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RecLastUpdatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="ChildAdditionalDriverCharge" Relationship="DomainModels.RefAdditionalDriverCharge402" FromRole="AdditionalDriverCharge" ToRole="AdditionalDriverCharge1" />
+        </EntityType>
+        <Association Name="RefAdditionalDriverCharge402">
+          <End Type="DomainModels.AdditionalDriverCharge" Role="AdditionalDriverCharge" Multiplicity="0..1" />
+          <End Type="DomainModels.AdditionalDriverCharge" Role="AdditionalDriverCharge1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdditionalDriverCharge">
+              <PropertyRef Name="AdditionalDriverChargeId" />
+            </Principal>
+            <Dependent Role="AdditionalDriverCharge1">
+              <PropertyRef Name="ChildAdditionalDriverChargeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -9649,6 +9726,28 @@
                 <ScalarProperty Name="RoleId" ColumnName="Role_Id" />
                 <ScalarProperty Name="MenuId" ColumnName="Menu_MenuId" />
                 <ScalarProperty Name="MenuRightId" ColumnName="MenuRightId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdditionalDriverCharges">
+            <EntityTypeMapping TypeName="DomainModels.AdditionalDriverCharge">
+              <MappingFragment StoreEntitySet="AdditionalDriverCharge">
+                <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
+                <ScalarProperty Name="RecLastUpdatedBy" ColumnName="RecLastUpdatedBy" />
+                <ScalarProperty Name="RecCreatedBy" ColumnName="RecCreatedBy" />
+                <ScalarProperty Name="RecLastUpdatedDt" ColumnName="RecLastUpdatedDt" />
+                <ScalarProperty Name="RecCreatedDt" ColumnName="RecCreatedDt" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="IsReadOnly" ColumnName="IsReadOnly" />
+                <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="StartDt" ColumnName="StartDt" />
+                <ScalarProperty Name="RevisionNumber" ColumnName="RevisionNumber" />
+                <ScalarProperty Name="TariffTypeCode" ColumnName="TariffTypeCode" />
+                <ScalarProperty Name="AdditionalDriverChargeRate" ColumnName="AdditionalDriverChargeRate" />
+                <ScalarProperty Name="ChildAdditionalDriverChargeId" ColumnName="ChildAdditionalDriverChargeID" />
+                <ScalarProperty Name="AdditionalDriverChargeId" ColumnName="AdditionalDriverChargeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

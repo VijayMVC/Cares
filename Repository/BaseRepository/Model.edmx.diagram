@@ -214,6 +214,8 @@
         <AssociationConnector Association="DomainModels.RefMenu01" />
         <EntityTypeShape EntityType="DomainModels.MenuRight" Width="1.5" PointX="3" PointY="28.5" />
         <AssociationConnector Association="DomainModels.FK_dbo_MenuRight_dbo_Menu_Menu_MenuId" />
+        <EntityTypeShape EntityType="DomainModels.AdditionalDriverCharge" Width="1.5" PointX="5.375" PointY="22.75" />
+        <AssociationConnector Association="DomainModels.RefAdditionalDriverCharge402" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

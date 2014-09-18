@@ -7,6 +7,7 @@ namespace Cares.Models.Common
     public enum EmpStatusByColumn
     {
         Code = 1,
-        Name = 2
+        Name = 2,
+        Inservice=3
     }
 }
