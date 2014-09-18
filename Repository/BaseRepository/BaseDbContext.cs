@@ -534,6 +534,11 @@ namespace Cares.Repository.BaseRepository
         /// </summary>
         public DbSet<EmpJobProg> EmpJobProgs { get; set; }
 
+        /// <summary>
+        /// Additional Driver Charge Db Set
+        /// </summary>
+        public DbSet<AdditionalDriverCharge> AdditionalDriverCharges { get; set; }
+
         #endregion
     }
 }

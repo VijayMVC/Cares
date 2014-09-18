@@ -17,6 +17,7 @@
             "tariffRate": "/Areas/Pricing/Scripts",
             "insuranceRate": "/Areas/Pricing/Scripts",
             "serviceRate": "/Areas/Pricing/Scripts",
+            "additionalDriverCharge": "/Areas/Pricing/Scripts",
             "rentalAgreement": "/Areas/RentalAgreement/Scripts",
             "Organization": "/Areas/Organization/Scripts",
             "company": "/Areas/Organization/Scripts",

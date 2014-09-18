@@ -14,6 +14,7 @@ namespace Cares.Web.Areas.Api.Controllers
         #region Private
         private readonly ITariffTypeService tariffTypeService;
         #endregion
+       
         #region Constructors
         /// <summary>
         /// Constructor
@@ -28,6 +29,7 @@ namespace Cares.Web.Areas.Api.Controllers
             this.tariffTypeService = tariffTypeService;
         }
         #endregion
+        
         #region Public
         /// <summary>
         /// Get Detail Tariff Type By Id

@@ -1,0 +1,83 @@
+﻿
+
+<div class="well col-md-12" id="additionalDriverChargeEditor" data-bind="visible: isAdditionalDriverChrgEditorVisible, with: selectedAdditionalDriverChrg" style="display: none;">
+    <div class="float-left detailsContainer">
+        <h3 class="page-header detailsHeaderSection">Additional Driver Charge Detail</h3>
+        <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onSaveAdditionalDriverChrg, enable: hasChanges, css: { 'btn-warning': hasChanges }">@Cares.Web.Resources.Shared.Common.Save</button>
+        <button class="btn btn-default" id="saveBtn" data-bind="click: $root.closeAdditionalDriverChrgEditor">@Cares.Web.Resources.Shared.Common.Cancel</button>
+    </div>
+    <form class="form-horizontal">
+        <div class="form-group">
+        </div>
+        <div class="form-group">
+            <label for="company" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.TariffType.Company *</label>
+            <div class="col-md-3">
+                <select id="company" class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption:  '@("<" + Cares.Web.Resources.Tariff.TariffType.Company + ">")' , value: companyId, validationTooltip: companyId, event:{change:$root.onSelectedCompany }"></select>
+            </div>
+            <label for="department" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.TariffType.Department *</label>
+            <div class="col-md-3">
+                <select id="department" class="form-control" data-bind="options: $root.filteredDepartments, optionsText: 'DepartmentCodeName', optionsValue: 'DepartmentId', optionsCaption:  '@("<" + Cares.Web.Resources.Tariff.TariffType.Department + ">")' , value: depId, validationTooltip: depId, event:{change:$root.onSelectedDepartemnt}"></select>
+            </div>
+            <label for="operation" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.TariffType.Operation *</label>
+            <div class="col-md-3">
+                <select id="operation" class="form-control" data-bind="options: $root.filteredOperations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '@("<" + Cares.Web.Resources.Tariff.TariffType.Operation + ">")'  , value: operationId, validationTooltip: operationId, event:{change:$root.onSelectedOperation}"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="tariffType" class="control-label h5 col-sm-1">Tariff Type *</label>
+            <div class="col-md-3">
+                <select id="tariffType" class="form-control" data-bind="options: $root.filteredTariffTypes, optionsText: 'TariffTypeCodeName', optionsValue: 'TariffTypeId', optionsCaption:  'Tariff Type' , value: tariffTypeId, validationTooltip: tariffTypeId"></select>
+            </div>
+            <label for="effectiveDate" class="control-label h5 col-sm-1">Effective Star tDate *</label>
+            <div class="col-md-3">
+                <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.TariffType.EffectiveStartDate + ">")' class="form-control" id="effectiveDate" data-bind="datepicker: effectiveStartDate, validationTooltip: effectiveStartDate" />
+            </div>
+            <label for="rate" class="control-label h5 col-sm-1">Rate *</label>
+            <div class="col-md-3">
+                <input type="text" placeholder='Rate' class="form-control" id="rate" data-bind="value: rate, validationTooltip: rate" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="revisionNum" class="control-label h5 col-sm-1">Revision Numer </label>
+            <div class="col-md-3">
+                <input type="text" placeholder='Rate' class="form-control" id="revisionNum" data-bind="value: revisionNumber, validationTooltip: revisionNumber" />
+            </div>
+        </div>
+
+    </form>
+    <div class="panel panel-info">
+        <div class="panel-heading">Add. Driver Rate Revisions</div>
+        <table id="tariffTypeRevisions" class="table">
+            <thead>
+                <tr>
+                    <th> <span id="3">@Cares.Web.Resources.Tariff.TariffType.Duration<br />@Cares.Web.Resources.Tariff.TariffType.From<span></span></span></th>
+                    <th> <span id="4">@Cares.Web.Resources.Tariff.TariffType.Duration<br />@Cares.Web.Resources.Tariff.TariffType.To<span></span></span></th>
+                    <th> <span id="5">@Cares.Web.Resources.Tariff.TariffType.Grace<br />@Cares.Web.Resources.Tariff.TariffType.Period<span></span></span></th>
+                    <th> <span id="6">@Cares.Web.Resources.Tariff.TariffType.Effective<br />@Cares.Web.Resources.Tariff.TariffType.Date<span></span></span></th>
+                    <th> <span id="7">@Cares.Web.Resources.Tariff.TariffType.Revision<span></span></span></th>
+                    <th> <span id="8">@Cares.Web.Resources.Tariff.TariffType.Created<br />@Cares.Web.Resources.Tariff.TariffType.By<span></span></span></th>
+                    <th> <span id="8">@Cares.Web.Resources.Tariff.TariffType.Created<br />@Cares.Web.Resources.Tariff.TariffType.Date<span></span></span></th>
+                    <th> <span id="9">@Cares.Web.Resources.Tariff.TariffType.Modified<br />@Cares.Web.Resources.Tariff.TariffType.By<span></span></span></th>
+                    <th> <span id="10">@Cares.Web.Resources.Tariff.TariffType.Modified<br />@Cares.Web.Resources.Tariff.TariffType.Date<span></span></span></th>
+                </tr>
+            </thead>
+            <tbody>
+                @*<!-- ko template: { name: $root.templateToUseForRevision , foreach: $root.revisions } -->
+                <!-- /ko -->*@
+            </tbody>
+        </table>
+        @*<script id="itemtariffTypeRevisionTemplate" type="text/html">
+            <tr>
+                <td data-bind="text: durationFrom"></td>
+                <td data-bind="text: durationTo"></td>
+                <td data-bind="text: gracePeriod"></td>
+                <td data-bind="text: formattedEffectiveDate"></td>
+                <td data-bind="text: revisionNumber"></td>
+                <td data-bind="text: recCreatedBy"></td>
+                <td data-bind="text: formattedCreatedDate"></td>
+                <td data-bind="text: recLastUpdatedBy"></td>
+                <td data-bind="text: formattedModifiedDate"></td>
+            </tr>
+        </script>
+    </div>*@
+</div>

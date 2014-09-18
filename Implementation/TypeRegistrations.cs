@@ -41,7 +41,7 @@ namespace Cares.Implementation
             unityContainer.RegisterType<ITariffRateService, TariffRateService>();
             unityContainer.RegisterType<IStandardRateService, StandardRateService>();
             unityContainer.RegisterType<IOccupationTypeService, OccupationTypeService>();
-            unityContainer.RegisterType<ICountryService, CountryService>();            
+            unityContainer.RegisterType<ICountryService, CountryService>();
             unityContainer.RegisterType<IHireGroupService, HireGroupService>();
             unityContainer.RegisterType<IRentalAgreementService, RentalAgreementService>();
             unityContainer.RegisterType<IOrganizationGroupService, OrganizationGroupService>();
@@ -56,12 +56,12 @@ namespace Cares.Implementation
             unityContainer.RegisterType<IWorkplaceTypeService, WorkPlaceTypeService>();
             unityContainer.RegisterType<IBusinessSegmentService, BusinessSegmentService>();
             unityContainer.RegisterType<IRegionService, RegionService>();
-
             unityContainer.RegisterType<ISubRegionService, SubRegionService>();
             unityContainer.RegisterType<ICityService, CityService>();
             unityContainer.RegisterType<IAreaService, AreaService>();
+            unityContainer.RegisterType<IAdditionalDriverService, AdditionalDriverService>();
 
-         
+
         }
     }
 }

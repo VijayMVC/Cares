@@ -31,5 +31,11 @@ namespace Cares.Web.Areas.Pricing.Controllers
         {
             return View();
         }
+
+        // GET: /Tariff/AdditionalDriver/
+        public ActionResult AdditionalDriver()
+        {
+            return View();
+        }
 	}
 }
