@@ -400,6 +400,31 @@ namespace Cares.Repository.BaseRepository
         /// Employee Job Progrss  Db Set
         /// </summary>
         public DbSet<EmpJobProg> EmpJobProgs { get; set; }
+
+        /// <summary>
+        /// Menu  Db Set
+        /// </summary>
+        public DbSet<Menu> Menus { get; set; }
+
+        /// <summary>
+        /// Menu Rights  Db Set
+        /// </summary>
+        public DbSet<MenuRight> MenuRights { get; set; }
+
+        /// <summary>
+        /// Log  Db Set
+        /// </summary>
+        public DbSet<Log> Logs { get; set; }
+
+        /// <summary>
+        /// CategoryLog Db Set
+        /// </summary>
+        public DbSet<CategoryLog> CategoryLogs { get; set; }
+
+        /// <summary>
+        /// Log Category Db Set
+        /// </summary>
+        public DbSet<LogCategory> LogCategories { get; set; }
        
 
         #endregion

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Cares.Models.MenuModels;
+using Cares.Models.DomainModels;
 
 namespace Cares.Web.ViewModels.Common
 {

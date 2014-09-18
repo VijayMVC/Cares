@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Linq;
 using Cares.Interfaces.Repository;
-using Cares.Models.MenuModels;
+using Cares.Models.DomainModels;
 using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
 
@@ -26,7 +26,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         protected override IDbSet<MenuRight> DbSet
         {
-            get { return null; }
+            get { return db.MenuRights; }
         }
         #endregion
 
@@ -36,11 +36,9 @@ namespace Cares.Repository.Repositories
         public IQueryable<MenuRight> GetMenuByRole(string roleId)
         {
             return
-                DbSet.Where(menu => menu.Role.Id == roleId)
+                DbSet.Where(menu => menu.RoleId == roleId)
                     .Include(menu => menu.Menu)
-                    .Include(menu => menu.Menu.ParentItem)
-                    
-                    .Include(menu => menu.Role);
+                    .Include(menu => menu.Menu.ParentItem);
         }
     }
 }

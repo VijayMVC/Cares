@@ -29,7 +29,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets1E018D7993BCD9B0C9F361910C51156945E3FC0149F426BA601D0F72C017064A))]
+[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets08E59911DECB3FB849456A10981ADAFBB7429FE7BE5C32EAEE24EA222EFE0C8A))]
 
 namespace Edm_EntityMappingGeneratedViews
 {
@@ -38,19 +38,19 @@ namespace Edm_EntityMappingGeneratedViews
     /// <Summary>
     /// The type contains views for EntitySets and AssociationSets that were generated at design time.
     /// </Summary>
-    public sealed class ViewsForBaseEntitySets1E018D7993BCD9B0C9F361910C51156945E3FC0149F426BA601D0F72C017064A : System.Data.Mapping.EntityViewContainer
+    public sealed class ViewsForBaseEntitySets08E59911DECB3FB849456A10981ADAFBB7429FE7BE5C32EAEE24EA222EFE0C8A : System.Data.Mapping.EntityViewContainer
     {
         
         /// <Summary>
         /// The constructor stores the views for the extents and also the hash values generated based on the metadata and mapping closure and views.
         /// </Summary>
-        public ViewsForBaseEntitySets1E018D7993BCD9B0C9F361910C51156945E3FC0149F426BA601D0F72C017064A()
+        public ViewsForBaseEntitySets08E59911DECB3FB849456A10981ADAFBB7429FE7BE5C32EAEE24EA222EFE0C8A()
         {
             this.EdmEntityContainerName = "BaseDbContext";
             this.StoreEntityContainerName = "CaresModelStoreContainer";
-            this.HashOverMappingClosure = "dfbb02fbd62f8b030708ac393dadc7a98870d8f3676c91a114d30eaea61a9e23";
-            this.HashOverAllExtentViews = "25bfe4e8cd58a87662c29946ecb479fc7b58a58ded55c8169dda01cba800ae2a";
-            this.ViewCount = 160;
+            this.HashOverMappingClosure = "ea294711a2179e920e66d597cd26af5d9252abbd86508d9018fac879e9fc827b";
+            this.HashOverAllExtentViews = "0e4021007afc1732b38e68ad4dca782ed2fa08cd4486394402002cc03e9ec245";
+            this.ViewCount = 170;
         }
         
         /// <Summary>
@@ -697,6 +697,46 @@ namespace Edm_EntityMappingGeneratedViews
             if ((index == 159))
             {
                 return GetView159();
+            }
+            if ((index == 160))
+            {
+                return GetView160();
+            }
+            if ((index == 161))
+            {
+                return GetView161();
+            }
+            if ((index == 162))
+            {
+                return GetView162();
+            }
+            if ((index == 163))
+            {
+                return GetView163();
+            }
+            if ((index == 164))
+            {
+                return GetView164();
+            }
+            if ((index == 165))
+            {
+                return GetView165();
+            }
+            if ((index == 166))
+            {
+                return GetView166();
+            }
+            if ((index == 167))
+            {
+                return GetView167();
+            }
+            if ((index == 168))
+            {
+                return GetView168();
+            }
+            if ((index == 169))
+            {
+                return GetView169();
             }
             throw new System.IndexOutOfRangeException();
         }
@@ -5520,6 +5560,222 @@ namespace Edm_EntityMappingGeneratedViews
                     "peID AS ServiceItem_ServiceTypeId, \r\n            T.UserDomainKey AS ServiceItem_" +
                     "UserDomainKey, \r\n            True AS _from0\r\n        FROM CaresModelStoreContain" +
                     "er.ServiceItem AS T\r\n    ) AS T1");
+        }
+        
+        /// <Summary>
+        /// return view for CaresModelStoreContainer.CategoryLog
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView160()
+        {
+            return new System.Collections.Generic.KeyValuePair<string, string>("CaresModelStoreContainer.CategoryLog", @"
+    SELECT VALUE -- Constructing CategoryLog
+        [CaresModel.Store.CategoryLog](T1.CategoryLog_CategoryLogID, T1.CategoryLog_LogCategoryID, T1.CategoryLog_LogID)
+    FROM (
+        SELECT 
+            T.CategoryLogId AS CategoryLog_CategoryLogID, 
+            T.LogCategoryId AS CategoryLog_LogCategoryID, 
+            T.LogId AS CategoryLog_LogID, 
+            True AS _from0
+        FROM BaseDbContext.CategoryLogs AS T
+    ) AS T1");
+        }
+        
+        /// <Summary>
+        /// return view for CaresModelStoreContainer.Log
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView161()
+        {
+            return new System.Collections.Generic.KeyValuePair<string, string>("CaresModelStoreContainer.Log", @"
+    SELECT VALUE -- Constructing Log
+        [CaresModel.Store.Log](T1.Log_LogID, T1.Log_EventID, T1.Log_Priority, T1.Log_Severity, T1.Log_Title, T1.Log_Timestamp, T1.Log_MachineName, T1.Log_AppDomainName, T1.Log_ProcessID, T1.Log_ProcessName, T1.Log_ThreadName, T1.Log_Win32ThreadId, T1.Log_Message, T1.Log_FormattedMessage, T1.Log_HandlingInstanceId)
+    FROM (
+        SELECT 
+            T.LogId AS Log_LogID, 
+            T.EventId AS Log_EventID, 
+            T.Priority AS Log_Priority, 
+            T.Severity AS Log_Severity, 
+            T.Title AS Log_Title, 
+            T.Timestamp AS Log_Timestamp, 
+            T.MachineName AS Log_MachineName, 
+            T.AppDomainName AS Log_AppDomainName, 
+            T.ProcessId AS Log_ProcessID, 
+            T.ProcessName AS Log_ProcessName, 
+            T.ThreadName AS Log_ThreadName, 
+            T.Win32ThreadId AS Log_Win32ThreadId, 
+            T.Message AS Log_Message, 
+            T.FormattedMessage AS Log_FormattedMessage, 
+            T.HandlingInstanceId AS Log_HandlingInstanceId, 
+            True AS _from0
+        FROM BaseDbContext.Logs AS T
+    ) AS T1");
+        }
+        
+        /// <Summary>
+        /// return view for CaresModelStoreContainer.LogCategory
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView162()
+        {
+            return new System.Collections.Generic.KeyValuePair<string, string>("CaresModelStoreContainer.LogCategory", @"
+    SELECT VALUE -- Constructing LogCategory
+        [CaresModel.Store.LogCategory](T1.LogCategory_LogCategoryID, T1.LogCategory_CategoryName)
+    FROM (
+        SELECT 
+            T.LogCategoryId AS LogCategory_LogCategoryID, 
+            T.CategoryName AS LogCategory_CategoryName, 
+            True AS _from0
+        FROM BaseDbContext.LogCategories AS T
+    ) AS T1");
+        }
+        
+        /// <Summary>
+        /// return view for BaseDbContext.CategoryLogs
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView163()
+        {
+            return new System.Collections.Generic.KeyValuePair<string, string>("BaseDbContext.CategoryLogs", @"
+    SELECT VALUE -- Constructing CategoryLogs
+        [DomainModels.CategoryLog](T1.CategoryLog_CategoryLogId, T1.CategoryLog_LogCategoryId, T1.CategoryLog_LogId)
+    FROM (
+        SELECT 
+            T.CategoryLogID AS CategoryLog_CategoryLogId, 
+            T.LogCategoryID AS CategoryLog_LogCategoryId, 
+            T.LogID AS CategoryLog_LogId, 
+            True AS _from0
+        FROM CaresModelStoreContainer.CategoryLog AS T
+    ) AS T1");
+        }
+        
+        /// <Summary>
+        /// return view for BaseDbContext.Logs
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView164()
+        {
+            return new System.Collections.Generic.KeyValuePair<string, string>("BaseDbContext.Logs", @"
+    SELECT VALUE -- Constructing Logs
+        [DomainModels.Log](T1.Log_LogId, T1.Log_EventId, T1.Log_Priority, T1.Log_Severity, T1.Log_Title, T1.Log_Timestamp, T1.Log_MachineName, T1.Log_AppDomainName, T1.Log_ProcessId, T1.Log_ProcessName, T1.Log_ThreadName, T1.Log_Win32ThreadId, T1.Log_Message, T1.Log_FormattedMessage, T1.Log_HandlingInstanceId)
+    FROM (
+        SELECT 
+            T.LogID AS Log_LogId, 
+            T.EventID AS Log_EventId, 
+            T.Priority AS Log_Priority, 
+            T.Severity AS Log_Severity, 
+            T.Title AS Log_Title, 
+            T.Timestamp AS Log_Timestamp, 
+            T.MachineName AS Log_MachineName, 
+            T.AppDomainName AS Log_AppDomainName, 
+            T.ProcessID AS Log_ProcessId, 
+            T.ProcessName AS Log_ProcessName, 
+            T.ThreadName AS Log_ThreadName, 
+            T.Win32ThreadId AS Log_Win32ThreadId, 
+            T.Message AS Log_Message, 
+            T.FormattedMessage AS Log_FormattedMessage, 
+            T.HandlingInstanceId AS Log_HandlingInstanceId, 
+            True AS _from0
+        FROM CaresModelStoreContainer.Log AS T
+    ) AS T1");
+        }
+        
+        /// <Summary>
+        /// return view for BaseDbContext.LogCategories
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView165()
+        {
+            return new System.Collections.Generic.KeyValuePair<string, string>("BaseDbContext.LogCategories", @"
+    SELECT VALUE -- Constructing LogCategories
+        [DomainModels.LogCategory](T1.LogCategory_LogCategoryId, T1.LogCategory_CategoryName)
+    FROM (
+        SELECT 
+            T.LogCategoryID AS LogCategory_LogCategoryId, 
+            T.CategoryName AS LogCategory_CategoryName, 
+            True AS _from0
+        FROM CaresModelStoreContainer.LogCategory AS T
+    ) AS T1");
+        }
+        
+        /// <Summary>
+        /// return view for CaresModelStoreContainer.Menu
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView166()
+        {
+            return new System.Collections.Generic.KeyValuePair<string, string>("CaresModelStoreContainer.Menu", @"
+    SELECT VALUE -- Constructing Menu
+        [CaresModel.Store.Menu](T1.Menu_MenuId, T1.Menu_MenuKey, T1.Menu_MenuTitle, T1.Menu_SortOrder, T1.Menu_MenuTargetController, T1.Menu_MenuImagePath, T1.Menu_MenuFunction, T1.Menu_PermissionKey, T1.Menu_IsRootItem, T1.[Menu.ParentItem_MenuId])
+    FROM (
+        SELECT 
+            T.MenuId AS Menu_MenuId, 
+            T.MenuKey AS Menu_MenuKey, 
+            T.MenuTitle AS Menu_MenuTitle, 
+            T.SortOrder AS Menu_SortOrder, 
+            T.MenuTargetController AS Menu_MenuTargetController, 
+            T.MenuImagePath AS Menu_MenuImagePath, 
+            T.MenuFunction AS Menu_MenuFunction, 
+            T.PermissionKey AS Menu_PermissionKey, 
+            T.IsRootItem AS Menu_IsRootItem, 
+            T.ParentMenuId AS [Menu.ParentItem_MenuId], 
+            True AS _from0
+        FROM BaseDbContext.Menus AS T
+    ) AS T1");
+        }
+        
+        /// <Summary>
+        /// return view for CaresModelStoreContainer.MenuRight
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView167()
+        {
+            return new System.Collections.Generic.KeyValuePair<string, string>("CaresModelStoreContainer.MenuRight", @"
+    SELECT VALUE -- Constructing MenuRight
+        [CaresModel.Store.MenuRight](T1.MenuRight_MenuRightId, T1.[MenuRight.Menu_MenuId], T1.[MenuRight.Role_Id])
+    FROM (
+        SELECT 
+            T.MenuRightId AS MenuRight_MenuRightId, 
+            T.MenuId AS [MenuRight.Menu_MenuId], 
+            T.RoleId AS [MenuRight.Role_Id], 
+            True AS _from0
+        FROM BaseDbContext.MenuRights AS T
+    ) AS T1");
+        }
+        
+        /// <Summary>
+        /// return view for BaseDbContext.Menus
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView168()
+        {
+            return new System.Collections.Generic.KeyValuePair<string, string>("BaseDbContext.Menus", @"
+    SELECT VALUE -- Constructing Menus
+        [DomainModels.Menu](T1.Menu_MenuId, T1.Menu_MenuKey, T1.Menu_MenuTitle, T1.Menu_SortOrder, T1.Menu_MenuTargetController, T1.Menu_MenuImagePath, T1.Menu_MenuFunction, T1.Menu_PermissionKey, T1.Menu_IsRootItem, T1.Menu_ParentMenuId)
+    FROM (
+        SELECT 
+            T.MenuId AS Menu_MenuId, 
+            T.MenuKey AS Menu_MenuKey, 
+            T.MenuTitle AS Menu_MenuTitle, 
+            T.SortOrder AS Menu_SortOrder, 
+            T.MenuTargetController AS Menu_MenuTargetController, 
+            T.MenuImagePath AS Menu_MenuImagePath, 
+            T.MenuFunction AS Menu_MenuFunction, 
+            T.PermissionKey AS Menu_PermissionKey, 
+            T.IsRootItem AS Menu_IsRootItem, 
+            T.ParentItem_MenuId AS Menu_ParentMenuId, 
+            True AS _from0
+        FROM CaresModelStoreContainer.Menu AS T
+    ) AS T1");
+        }
+        
+        /// <Summary>
+        /// return view for BaseDbContext.MenuRights
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView169()
+        {
+            return new System.Collections.Generic.KeyValuePair<string, string>("BaseDbContext.MenuRights", @"
+    SELECT VALUE -- Constructing MenuRights
+        [DomainModels.MenuRight](T1.MenuRight_MenuRightId, T1.MenuRight_MenuId, T1.MenuRight_RoleId)
+    FROM (
+        SELECT 
+            T.MenuRightId AS MenuRight_MenuRightId, 
+            T.Menu_MenuId AS MenuRight_MenuId, 
+            T.Role_Id AS MenuRight_RoleId, 
+            True AS _from0
+        FROM CaresModelStoreContainer.MenuRight AS T
+    ) AS T1");
         }
     }
 }

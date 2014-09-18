@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Cares.Models.MenuModels;
+using Cares.Models.DomainModels;
 
 namespace Cares.Interfaces.Repository
 {

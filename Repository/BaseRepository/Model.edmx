@@ -317,6 +317,14 @@
           <Property Name="RecLastUpdatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
         </EntityType>
+        <EntityType Name="CategoryLog">
+          <Key>
+            <PropertyRef Name="CategoryLogID" />
+          </Key>
+          <Property Name="CategoryLogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LogCategoryID" Type="int" Nullable="false" />
+          <Property Name="LogID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="CityID" />
@@ -784,6 +792,33 @@
           <Property Name="RecLastUpdatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
         </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="LogID" />
+          </Key>
+          <Property Name="LogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventID" Type="int" Nullable="false" />
+          <Property Name="Priority" Type="int" Nullable="false" />
+          <Property Name="Severity" Type="nvarchar(max)" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Timestamp" Type="datetime" Nullable="false" />
+          <Property Name="MachineName" Type="nvarchar(max)" />
+          <Property Name="AppDomainName" Type="nvarchar(max)" />
+          <Property Name="ProcessID" Type="nvarchar(max)" />
+          <Property Name="ProcessName" Type="nvarchar(max)" />
+          <Property Name="ThreadName" Type="nvarchar(max)" />
+          <Property Name="Win32ThreadId" Type="nvarchar(max)" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="FormattedMessage" Type="nvarchar(max)" />
+          <Property Name="HandlingInstanceId" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="LogCategory">
+          <Key>
+            <PropertyRef Name="LogCategoryID" />
+          </Key>
+          <Property Name="LogCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="MaintenanceType">
           <Key>
             <PropertyRef Name="MaintenanceTypeID" />
@@ -861,6 +896,29 @@
           <Property Name="IsPrivate" Type="bit" Nullable="false" />
           <Property Name="IsReadOnly" Type="bit" Nullable="false" />
           <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="MenuId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MenuKey" Type="int" Nullable="false" />
+          <Property Name="MenuTitle" Type="nvarchar(max)" />
+          <Property Name="SortOrder" Type="int" Nullable="false" />
+          <Property Name="MenuTargetController" Type="nvarchar(max)" />
+          <Property Name="MenuImagePath" Type="nvarchar(max)" />
+          <Property Name="MenuFunction" Type="nvarchar(max)" />
+          <Property Name="PermissionKey" Type="nvarchar(max)" />
+          <Property Name="IsRootItem" Type="bit" Nullable="false" />
+          <Property Name="ParentItem_MenuId" Type="int" />
+        </EntityType>
+        <EntityType Name="MenuRight">
+          <Key>
+            <PropertyRef Name="MenuRightId" />
+          </Key>
+          <Property Name="MenuRightId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Menu_MenuId" Type="int" />
+          <Property Name="Role_Id" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="OccupationType">
           <Key>
@@ -1670,6 +1728,42 @@
           <Property Name="RecLastUpdatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
         </EntityType>
+        <Association Name="FK_CategoryLog_Log">
+          <End Role="Log" Type="Self.Log" Multiplicity="1" />
+          <End Role="CategoryLog" Type="Self.CategoryLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Log">
+              <PropertyRef Name="LogID" />
+            </Principal>
+            <Dependent Role="CategoryLog">
+              <PropertyRef Name="LogID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryLog_LogCategory">
+          <End Role="LogCategory" Type="Self.LogCategory" Multiplicity="1" />
+          <End Role="CategoryLog" Type="Self.CategoryLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LogCategory">
+              <PropertyRef Name="LogCategoryID" />
+            </Principal>
+            <Dependent Role="CategoryLog">
+              <PropertyRef Name="LogCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_MenuRight_dbo_Menu_Menu_MenuId">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="0..1" />
+          <End Role="MenuRight" Type="Self.MenuRight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="MenuId" />
+            </Principal>
+            <Dependent Role="MenuRight">
+              <PropertyRef Name="Menu_MenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Vehicle_VehicleStatus">
           <End Role="VehicleStatus" Type="Self.VehicleStatus" Multiplicity="1" />
           <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="*" />
@@ -2510,6 +2604,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="RefMenu01">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="0..1" />
+          <End Role="Menu1" Type="Self.Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="MenuId" />
+            </Principal>
+            <Dependent Role="Menu1">
+              <PropertyRef Name="ParentItem_MenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="RefNationality355">
           <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
           <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
@@ -3126,6 +3232,7 @@
           <EntitySet Name="BPSubType" EntityType="Self.BPSubType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BusinessLegalStatus" EntityType="Self.BusinessLegalStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BusinessSegment" EntityType="Self.BusinessSegment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoryLog" EntityType="Self.CategoryLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
@@ -3148,10 +3255,14 @@
           <EntitySet Name="InsuranceType" EntityType="Self.InsuranceType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobType" EntityType="Self.JobType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LicenseType" EntityType="Self.LicenseType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LogCategory" EntityType="Self.LogCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MaintenanceType" EntityType="Self.MaintenanceType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MaintenanceTypeGroup" EntityType="Self.MaintenanceTypeGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MarketingChannel" EntityType="Self.MarketingChannel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MeasurementUnit" EntityType="Self.MeasurementUnit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MenuRight" EntityType="Self.MenuRight" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OccupationType" EntityType="Self.OccupationType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Operation" EntityType="Self.Operation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OperationsWorkplace" EntityType="Self.OperationsWorkplace" Schema="dbo" store:Type="Tables" />
@@ -3191,6 +3302,18 @@
           <EntitySet Name="WorkLocation" EntityType="Self.WorkLocation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Workplace" EntityType="Self.Workplace" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WorkplaceType" EntityType="Self.WorkplaceType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CategoryLog_Log" Association="Self.FK_CategoryLog_Log">
+            <End Role="Log" EntitySet="Log" />
+            <End Role="CategoryLog" EntitySet="CategoryLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryLog_LogCategory" Association="Self.FK_CategoryLog_LogCategory">
+            <End Role="LogCategory" EntitySet="LogCategory" />
+            <End Role="CategoryLog" EntitySet="CategoryLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_MenuRight_dbo_Menu_Menu_MenuId" Association="Self.FK_dbo_MenuRight_dbo_Menu_Menu_MenuId">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="MenuRight" EntitySet="MenuRight" />
+          </AssociationSet>
           <AssociationSet Name="FK_Vehicle_VehicleStatus" Association="Self.FK_Vehicle_VehicleStatus">
             <End Role="VehicleStatus" EntitySet="VehicleStatus" />
             <End Role="Vehicle" EntitySet="Vehicle" />
@@ -3470,6 +3593,10 @@
           <AssociationSet Name="RefMeasurementUnit358" Association="Self.RefMeasurementUnit358">
             <End Role="MeasurementUnit" EntitySet="MeasurementUnit" />
             <End Role="TariffType" EntitySet="TariffType" />
+          </AssociationSet>
+          <AssociationSet Name="RefMenu01" Association="Self.RefMenu01">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="Menu1" EntitySet="Menu" />
           </AssociationSet>
           <AssociationSet Name="RefNationality355" Association="Self.RefNationality355">
             <End Role="Country" EntitySet="Country" />
@@ -4257,6 +4384,27 @@
             <End Role="SubRegion" EntitySet="SubRegions" />
             <End Role="Address" EntitySet="Addresses" />
           </AssociationSet>
+          <EntitySet Name="CategoryLogs" EntityType="DomainModels.CategoryLog" />
+          <EntitySet Name="Logs" EntityType="DomainModels.Log" />
+          <EntitySet Name="LogCategories" EntityType="DomainModels.LogCategory" />
+          <EntitySet Name="Menus" EntityType="DomainModels.Menu" />
+          <AssociationSet Name="FK_CategoryLog_Log" Association="DomainModels.FK_CategoryLog_Log">
+            <End Role="Log" EntitySet="Logs" />
+            <End Role="CategoryLog" EntitySet="CategoryLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryLog_LogCategory" Association="DomainModels.FK_CategoryLog_LogCategory">
+            <End Role="LogCategory" EntitySet="LogCategories" />
+            <End Role="CategoryLog" EntitySet="CategoryLogs" />
+          </AssociationSet>
+          <AssociationSet Name="RefMenu01" Association="DomainModels.RefMenu01">
+            <End Role="Menu" EntitySet="Menus" />
+            <End Role="Menu1" EntitySet="Menus" />
+          </AssociationSet>
+          <EntitySet Name="MenuRights" EntityType="DomainModels.MenuRight" />
+          <AssociationSet Name="FK_dbo_MenuRight_dbo_Menu_Menu_MenuId" Association="DomainModels.FK_dbo_MenuRight_dbo_Menu_Menu_MenuId">
+            <End Role="Menu" EntitySet="Menus" />
+            <End Role="MenuRight" EntitySet="MenuRights" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Company">
           <Key>
@@ -4850,7 +4998,7 @@
           <Property Name="EmpMName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="EmpLName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="DOB" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Gender" Type="String" />
+          <Property Name="Gender" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
           <Property Name="NationalityId" Type="Int16" />
           <Property Name="Notes" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Notes1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
@@ -7576,6 +7724,119 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="CategoryLog">
+          <Key>
+            <PropertyRef Name="CategoryLogId" />
+          </Key>
+          <Property Name="CategoryLogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LogCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="LogId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Log" Relationship="DomainModels.FK_CategoryLog_Log" FromRole="CategoryLog" ToRole="Log" />
+          <NavigationProperty Name="LogCategory" Relationship="DomainModels.FK_CategoryLog_LogCategory" FromRole="CategoryLog" ToRole="LogCategory" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventId" Type="Int32" Nullable="false" />
+          <Property Name="Priority" Type="Int32" Nullable="false" />
+          <Property Name="Severity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Timestamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MachineName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AppDomainName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProcessId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProcessName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ThreadName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Win32ThreadId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FormattedMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HandlingInstanceId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CategoryLogs" Relationship="DomainModels.FK_CategoryLog_Log" FromRole="Log" ToRole="CategoryLog" />
+        </EntityType>
+        <EntityType Name="LogCategory">
+          <Key>
+            <PropertyRef Name="LogCategoryId" />
+          </Key>
+          <Property Name="LogCategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CategoryLogs" Relationship="DomainModels.FK_CategoryLog_LogCategory" FromRole="LogCategory" ToRole="CategoryLog" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="MenuId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MenuKey" Type="Int32" Nullable="false" />
+          <Property Name="MenuTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SortOrder" Type="Int32" Nullable="false" />
+          <Property Name="MenuTargetController" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MenuImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MenuFunction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PermissionKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsRootItem" Type="Boolean" Nullable="false" />
+          <Property Name="ParentMenuId" Type="Int32" />
+          <NavigationProperty Name="ParentItem" Relationship="DomainModels.RefMenu01" FromRole="Menu" ToRole="Menu1" />
+          <NavigationProperty Name="MenuRights" Relationship="DomainModels.FK_dbo_MenuRight_dbo_Menu_Menu_MenuId" FromRole="Menu" ToRole="MenuRight" />
+        </EntityType>
+        <Association Name="FK_CategoryLog_Log">
+          <End Type="DomainModels.Log" Role="Log" Multiplicity="1" />
+          <End Type="DomainModels.CategoryLog" Role="CategoryLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Log">
+              <PropertyRef Name="LogId" />
+            </Principal>
+            <Dependent Role="CategoryLog">
+              <PropertyRef Name="LogId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryLog_LogCategory">
+          <End Type="DomainModels.LogCategory" Role="LogCategory" Multiplicity="1" />
+          <End Type="DomainModels.CategoryLog" Role="CategoryLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LogCategory">
+              <PropertyRef Name="LogCategoryId" />
+            </Principal>
+            <Dependent Role="CategoryLog">
+              <PropertyRef Name="LogCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefMenu01">
+          <End Type="DomainModels.Menu" Role="Menu" Multiplicity="0..1" />
+          <End Type="DomainModels.Menu" Role="Menu1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="MenuId" />
+            </Principal>
+            <Dependent Role="Menu1">
+              <PropertyRef Name="ParentMenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MenuRight">
+          <Key>
+            <PropertyRef Name="MenuRightId" />
+          </Key>
+          <Property Name="MenuRightId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MenuId" Type="Int32" />
+          <Property Name="RoleId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Menu" Relationship="DomainModels.FK_dbo_MenuRight_dbo_Menu_Menu_MenuId" FromRole="MenuRight" ToRole="Menu" />
+        </EntityType>
+        <Association Name="FK_dbo_MenuRight_dbo_Menu_Menu_MenuId">
+          <End Type="DomainModels.Menu" Role="Menu" Multiplicity="0..1" />
+          <End Type="DomainModels.MenuRight" Role="MenuRight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="MenuId" />
+            </Principal>
+            <Dependent Role="MenuRight">
+              <PropertyRef Name="MenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -9322,6 +9583,69 @@
                 <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
                 <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
                 <ScalarProperty Name="AddressId" ColumnName="AddressID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategoryLogs">
+            <EntityTypeMapping TypeName="DomainModels.CategoryLog">
+              <MappingFragment StoreEntitySet="CategoryLog">
+                <ScalarProperty Name="LogId" ColumnName="LogID" />
+                <ScalarProperty Name="LogCategoryId" ColumnName="LogCategoryID" />
+                <ScalarProperty Name="CategoryLogId" ColumnName="CategoryLogID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logs">
+            <EntityTypeMapping TypeName="DomainModels.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="HandlingInstanceId" ColumnName="HandlingInstanceId" />
+                <ScalarProperty Name="FormattedMessage" ColumnName="FormattedMessage" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Win32ThreadId" ColumnName="Win32ThreadId" />
+                <ScalarProperty Name="ThreadName" ColumnName="ThreadName" />
+                <ScalarProperty Name="ProcessName" ColumnName="ProcessName" />
+                <ScalarProperty Name="ProcessId" ColumnName="ProcessID" />
+                <ScalarProperty Name="AppDomainName" ColumnName="AppDomainName" />
+                <ScalarProperty Name="MachineName" ColumnName="MachineName" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Severity" ColumnName="Severity" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="EventId" ColumnName="EventID" />
+                <ScalarProperty Name="LogId" ColumnName="LogID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogCategories">
+            <EntityTypeMapping TypeName="DomainModels.LogCategory">
+              <MappingFragment StoreEntitySet="LogCategory">
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="LogCategoryId" ColumnName="LogCategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menus">
+            <EntityTypeMapping TypeName="DomainModels.Menu">
+              <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="ParentMenuId" ColumnName="ParentItem_MenuId" />
+                <ScalarProperty Name="IsRootItem" ColumnName="IsRootItem" />
+                <ScalarProperty Name="PermissionKey" ColumnName="PermissionKey" />
+                <ScalarProperty Name="MenuFunction" ColumnName="MenuFunction" />
+                <ScalarProperty Name="MenuImagePath" ColumnName="MenuImagePath" />
+                <ScalarProperty Name="MenuTargetController" ColumnName="MenuTargetController" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="MenuTitle" ColumnName="MenuTitle" />
+                <ScalarProperty Name="MenuKey" ColumnName="MenuKey" />
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenuRights">
+            <EntityTypeMapping TypeName="DomainModels.MenuRight">
+              <MappingFragment StoreEntitySet="MenuRight">
+                <ScalarProperty Name="RoleId" ColumnName="Role_Id" />
+                <ScalarProperty Name="MenuId" ColumnName="Menu_MenuId" />
+                <ScalarProperty Name="MenuRightId" ColumnName="MenuRightId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

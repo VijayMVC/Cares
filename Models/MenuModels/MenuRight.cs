@@ -1,6 +1,5 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
-
-namespace Cares.Models.MenuModels
+﻿
+namespace Cares.Models.DomainModels
 {
     /// <summary>
     /// MenuRights class for menu assoication with role
@@ -11,13 +10,20 @@ namespace Cares.Models.MenuModels
         /// Menu Right Id
         /// </summary>
         public int MenuRightId { get; set; }
+
+        /// <summary>
+        /// Menu Id
+        /// </summary>
+        public int MenuId { get; set; }
+
+        /// <summary>
+        /// Role Id
+        /// </summary>
+        public string RoleId { get; set; }
+
         /// <summary>
         /// Menu
         /// </summary>
         public virtual Menu Menu { get; set; }
-        /// <summary>
-        /// Role
-        /// </summary>
-        public virtual IdentityRole Role { get; set; }
     }
 }

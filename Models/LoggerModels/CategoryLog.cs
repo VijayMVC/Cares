@@ -1,5 +1,5 @@
 ﻿
-namespace Cares.Models.LoggerModels
+namespace Cares.Models.DomainModels
 {
     /// <summary>
     /// Category Log class for database logging
@@ -9,22 +9,22 @@ namespace Cares.Models.LoggerModels
         /// <summary>
         /// Category Log Id
         /// </summary>
-        public int CategoryLogID { get; set; }
+        public int CategoryLogId { get; set; }
 
         /// <summary>
         /// LogCategory Id
         /// </summary>
-        public int LogCategoryID { get; set; }
+        public int LogCategoryId { get; set; }
 
         /// <summary>
         /// Log Id
         /// </summary>
-        public int LogID { get; set; }
+        public int LogId { get; set; }
 
         /// <summary>
         /// Log Category
         /// </summary>
-        public virtual LogCategory Category { get; set; }
+        public virtual LogCategory LogCategory { get; set; }
 
         /// <summary>
         /// Log 

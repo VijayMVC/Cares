@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
-using Cares.Models.MenuModels;
+using Cares.Models.DomainModels;
 
 namespace Cares.Implementation.Services
 {

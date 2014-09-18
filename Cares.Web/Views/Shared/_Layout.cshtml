@@ -33,7 +33,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
 
-                    @*@{ Html.RenderAction("LoadMenu", "Menu", new { area = "" }); }*@
+                    @{ Html.RenderAction("LoadMenu", "Menu", new { area = "" }); }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

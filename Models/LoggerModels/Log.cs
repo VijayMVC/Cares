@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 
-namespace Cares.Models.LoggerModels
+namespace Cares.Models.DomainModels
 {
     /// <summary>
     /// Log class for database logging
@@ -10,12 +11,12 @@ namespace Cares.Models.LoggerModels
         /// <summary>
         /// Log Id
         /// </summary>
-        public int LogID { get; set; }
+        public int LogId { get; set; }
 
         /// <summary>
         /// Event Id
         /// </summary>
-        public int EventID { get; set; }
+        public int EventId { get; set; }
 
         /// <summary>
         /// Priority
@@ -50,7 +51,7 @@ namespace Cares.Models.LoggerModels
         /// <summary>
         /// Process ID
         /// </summary>
-        public string ProcessID { get; set; }
+        public string ProcessId { get; set; }
 
         /// <summary>
         /// Process Name
@@ -81,5 +82,10 @@ namespace Cares.Models.LoggerModels
         /// Handling Instance Id
         /// </summary>
         public string HandlingInstanceId { get; set; }
+
+        /// <summary>
+        /// Category Logs
+        /// </summary>
+        public virtual ICollection<CategoryLog> CategoryLogs { get; set; } 
     }
 }

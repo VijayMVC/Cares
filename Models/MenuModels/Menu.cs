@@ -1,4 +1,6 @@
-﻿namespace Cares.Models.MenuModels
+﻿using System.Collections.Generic;
+
+namespace Cares.Models.DomainModels
 {
     /// <summary>
     /// MainMenu class for dynamic menu population from database
@@ -42,8 +44,17 @@
         /// </summary>
         public bool IsRootItem { get; set; }
         /// <summary>
+        /// Parent Menu Id
+        /// </summary>
+        public int ParentMenuId { get; set; }
+        /// <summary>
         /// Menu Parent Item
         /// </summary>
         public virtual Menu ParentItem { get; set; }
+
+        /// <summary>
+        /// Menu Rights
+        /// </summary>
+        public virtual ICollection<MenuRight> MenuRights { get; set; } 
     }
 }
