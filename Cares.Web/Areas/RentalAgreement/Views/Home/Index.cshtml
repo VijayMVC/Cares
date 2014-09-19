@@ -210,35 +210,11 @@
         <div class="panel-group" id="accordion3">
             <div class="panel panel-default">
                 <div id="addVehiclesHeading" class="panel-heading">
-                    <div style="display: none;" class="well well-small popOverBody">
-                        <div class="searchFilterResultSection">
-                            <table class="table table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th>Plate Number</th>
-                                        <th>Hire Group</th>
-                                        <th>Make</th>
-                                        <th>Model</th>
-                                        <th>Model Year</th>
-                                    </tr>
-                                </thead>
-                                <tbody data-bind="foreach: vehicles">
-                                    <tr data-bind="click: $root.selectVehicle">
-                                        <td data-bind="text: plateNumber"></td>
-                                        <td data-bind="text: code"></td>
-                                        <td data-bind="text: vehicleMake"></td>
-                                        <td data-bind="text: vehicleModel"></td>
-                                        <td data-bind="text: modelYear"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
                     <h4 class="panel-title">
                         <a class="headingLink" data-toggle="collapse" data-parent="#accordion3" href="#collapseSeven">
                             Vehicles
                         </a>
-                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Vehicles', elementNode: '#addVehiclesHeading .popOverBody' }, attr:{ title: 'Add Vehicles' }"></a>
+                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Vehicles', elementNode: '#vehicleTemplate', popoverId: '#vehicleTemplate_popoverContent' }, attr:{ title: 'Add Vehicles' }"></a>
                     </h4>
                 </div>
                 <div id="collapseSeven" class="panel-collapse collapse in">
@@ -403,6 +379,32 @@
             </div>
         </div>
     </div>
+
+    <script type="html/text" id="vehicleTemplate">
+        <div id="vehicleTemplate_popoverContent" class="searchFilterResultSection">
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th>Plate Number</th>
+                        <th>Hire Group</th>
+                        <th>Make</th>
+                        <th>Model</th>
+                        <th>Model Year</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: vehicles">
+                    <tr data-bind="click: $root.selectVehicle">
+                        <td data-bind="text: plateNumber"></td>
+                        <td data-bind="text: code"></td>
+                        <td data-bind="text: vehicleMake"></td>
+                        <td data-bind="text: vehicleModel"></td>
+                        <td data-bind="text: modelYear"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </script>
+
 </div>
 
 @section inlinescripts
