@@ -66,12 +66,12 @@ namespace Cares.Repository.Repositories
             int fromRow = (request.PageNo - 1) * request.PageSize;
             int toRow = request.PageSize;
             Expression<Func<WorkPlace, bool>> query =
-                operation =>
+                workplace =>
                     (string.IsNullOrEmpty(request.WorkplaceFilterText) ||
-                     (operation.WorkPlaceCode.Contains(request.WorkplaceFilterText)) ||
-                     (operation.WorkPlaceName.Contains(request.WorkplaceFilterText)))  &&
-                    (!request.CompanyId.HasValue || request.CompanyId == operation.WorkLocation.CompanyId) &&
-                    (!request.WorkplaceTypeId.HasValue || request.WorkplaceTypeId == operation.WorkPlaceTypeId);
+                     (workplace.WorkPlaceCode.Contains(request.WorkplaceFilterText)) ||
+                     (workplace.WorkPlaceName.Contains(request.WorkplaceFilterText)))  &&
+                    (!request.CompanyId.HasValue || request.CompanyId == workplace.WorkLocation.CompanyId) &&
+                    (!request.WorkplaceTypeId.HasValue || request.WorkplaceTypeId == workplace.WorkPlaceTypeId);
             rowCount = DbSet.Count(query);
             return request.IsAsc
                 ? DbSet.Where(query)

@@ -13,7 +13,7 @@ namespace Cares.Web.ModelMappers
     {
         #region Public
         /// <summary>
-        /// Create From DomainModel
+        /// Create From DomainModel to DropDown
         /// </summary>
         public static DepartmentDropDown CreateFrom(this DomainModels.Department source)
         {
@@ -21,7 +21,7 @@ namespace Cares.Web.ModelMappers
             {
                 DepartmentId = source.DepartmentId,
                 DepartmentCodeName = source.DepartmentCode+" - "+source.DepartmentName,
-                CompanyId=source.Company!=null?source.Company.CompanyId:0,
+                CompanyId=source.Company !=null ? source.Company.CompanyId:0,
             };
         }
 

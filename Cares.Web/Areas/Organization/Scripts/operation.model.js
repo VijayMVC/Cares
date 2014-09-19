@@ -2,7 +2,8 @@
     var
         // Operation entity
         // ReSharper disable InconsistentNaming
-        operation = function (specifiedId, specifiedCode, specifiedName, specifiedDescription, spcCompanyName, specifiedDepartment, specifiedDepartmentType, specifiedDepartmentId) {
+        operation = function (specifiedId, specifiedCode, specifiedName, specifiedDescription, spcCompanyName, specifiedDepartment,
+            specifiedDepartmentType, specifiedDepartmentId) {
             var
                 id = ko.observable(specifiedId),
                 code = ko.observable(specifiedCode).extend({ required: true }),
@@ -69,7 +70,7 @@
     };
     //function to attain cancel button functionality 
     operation.CreateFromClientModel = function (itemFromServer) {
-        return new operation(itemFromServer.DepartmentId, itemFromServer.code, itemFromServer.name,
+        return new operation(itemFromServer.id, itemFromServer.code, itemFromServer.name,
             itemFromServer.description, itemFromServer.companyName, itemFromServer.departmentName, itemFromServer.departmentType, itemFromServer.DepartmentId);
     };
     return {

@@ -20,6 +20,8 @@
     CONSTRAINT [RefBPMain242] FOREIGN KEY ([BPMainID]) REFERENCES [dbo].[BPMain] ([BPMainID]),
     CONSTRAINT [RefEmployee344] FOREIGN KEY ([EmployeeID]) REFERENCES [dbo].[Employee] ([EmployeeID]),
     CONSTRAINT [RefPhoneType1941] FOREIGN KEY ([PhoneTypeID]) REFERENCES [dbo].[PhoneType] ([PhoneTypeID]),
-    CONSTRAINT [RefworkLocation1942] FOREIGN KEY ([WorkLocationID]) REFERENCES [dbo].[WorkLocation] ([WorkLocationID])
+    CONSTRAINT [RefworkLocation1942] FOREIGN KEY ([WorkLocationID]) REFERENCES [dbo].[WorkLocation] ([WorkLocationID]) ON DELETE CASCADE
 );
+
+
 

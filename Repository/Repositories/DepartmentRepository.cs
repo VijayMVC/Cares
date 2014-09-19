@@ -67,7 +67,8 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public List<string> GetDepartmentsTypes()
         {
-            return DbSet.Select(department => department.DepartmentType).ToList();
+            IQueryable<Department> departments = DbSet.GroupBy(b => b.DepartmentType).Select(b => b.FirstOrDefault());
+            return departments.Select(dept => dept.DepartmentType).ToList();
         }
 
         /// <summary>

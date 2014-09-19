@@ -9,7 +9,6 @@ namespace Cares.Models.ResponseModels
     /// </summary>
   public  class OperationBaseDataResponse
     { 
-        public IEnumerable<Company> Companies { get; set; }
         public IEnumerable<Department> Departments { get; set; }
         public List<String> DepartmentTypes { get; set; }
     }

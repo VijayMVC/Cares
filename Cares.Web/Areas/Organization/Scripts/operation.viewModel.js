@@ -13,8 +13,6 @@ define("operation/operation.viewModel",
                     operations = ko.observableArray([]),
                     //departments list for base data
                     baseDepartmentsList = ko.observableArray([]),
-                    //Compnies list for base data
-                    baseCompniesList = ko.observableArray([]),
                     //Department list for base data
                     baseDepartmentTypesList = ko.observableArray([]),
                     //filters
@@ -166,11 +164,9 @@ define("operation/operation.viewModel",
                     getOperationBaseData = function () {
                         dataservice.getOperationBaseData(null, {
                             success: function (baseDataFromServer) {
+                                debugger;
                                 baseDepartmentTypesList.removeAll();
-                                baseCompniesList.removeAll();
                                 baseDepartmentsList.removeAll();
-                                ko.utils.arrayPushAll(baseCompniesList(), baseDataFromServer.Companies);
-                                baseCompniesList.valueHasMutated();
                                 ko.utils.arrayPushAll(baseDepartmentsList(), baseDataFromServer.Departmens);
                                 baseDepartmentsList.valueHasMutated();
                                 ko.utils.arrayPushAll(baseDepartmentTypesList(), baseDataFromServer.DepartmensType);
@@ -198,7 +194,6 @@ define("operation/operation.viewModel",
                     opperationFilter: opperationFilter,
                     departmentTypeFilter:departmentTypeFilter,
                     baseDepartmentTypesList:baseDepartmentTypesList,
-                    baseCompniesList:baseCompniesList,
                     baseDepartmentsList:baseDepartmentsList,
                     isOperationEditorVisible:isOperationEditorVisible,
                     initialize: initialize,
