@@ -44,14 +44,14 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Get Hire Groups by Hire Group Code, Vehicle Make / Category / Model / Model Year
         /// </summary>
-        public IEnumerable<HireGroupDetailContent> Post(GetHireGroupRequest request)
+        public IEnumerable<HireGroupDetailContent> Post(string searchText, long operationWorkPlaceId, DateTime startDtTime, DateTime endDtTime)
         {
-            if (string.IsNullOrEmpty(request.SearchText) || !ModelState.IsValid)
+            if (string.IsNullOrEmpty(searchText) || operationWorkPlaceId == 0)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
 
-            return hireGroupService.GetByCodeAndVehicleInfo(request.SearchText, request.OperationWorkPlaceId, request.StartDtTime, request.EndDtTime)
+            return hireGroupService.GetByCodeAndVehicleInfo(searchText, operationWorkPlaceId, startDtTime, endDtTime)
                 .Select(hg => hg.CreateFrom());
         }
 

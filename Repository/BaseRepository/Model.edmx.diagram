@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0c64bbf4dc9445619e056242daa0f9af" Name="Diagram1" ZoomLevel="64">
+      <Diagram DiagramId="0c64bbf4dc9445619e056242daa0f9af" Name="Diagram1" ZoomLevel="62">
         <EntityTypeShape EntityType="DomainModels.OrgGroup" Width="2.875" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DomainModels.Company" Width="1.5" PointX="4.75" PointY="0.75" />
         <AssociationConnector Association="DomainModels.RefCompany263" />
@@ -126,7 +126,6 @@
         <AssociationConnector Association="DomainModels.RefVehicleCheckList608" />
         <AssociationConnector Association="DomainModels.RefVehicleStatus321" />
         <AssociationConnector Association="DomainModels.RefWorkLocation3031" />
-        <AssociationConnector Association="DomainModels.RefWorkplace2301" />
         <AssociationConnector Association="DomainModels.RefWorkplaceType1751" />
         <EntityTypeShape EntityType="DomainModels.HireGroupUpGrade" Width="1.5" PointX="19.75" PointY="68.25" />
         <EntityTypeShape EntityType="DomainModels.InsuranceRt" Width="1.5" PointX="22" PointY="51.75" />
@@ -216,6 +215,7 @@
         <EntityTypeShape EntityType="DomainModels.AdditionalDriverCharge" PointX="5.375" PointY="22.75" Width="1.5" />
         <AssociationConnector Association="DomainModels.RefAdditionalDriverCharge402" />
         <AssociationConnector Association="DomainModels.RefTariffType364" />
+        <AssociationConnector Association="DomainModels.RefWorkplace2301" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

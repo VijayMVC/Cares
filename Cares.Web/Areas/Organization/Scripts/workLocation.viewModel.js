@@ -312,12 +312,13 @@ define("workLocation/workLocation.viewModel",
                         }
                     },
                     //city dropdown changed for area
-                    populateAreaDropDown = function(cityId) {
+                    populateAreaDropDown = function (cityId) {
                         filteredAreasList(_.filter(baseAreasList(), function (area) {
                             if (cityId !== undefined)
                                 return area.CityId === cityId;
-                            else
-                                return area;
+                            else {
+                                return '';
+                            }
                         }));
                     },
                     // city dropdown in filter section

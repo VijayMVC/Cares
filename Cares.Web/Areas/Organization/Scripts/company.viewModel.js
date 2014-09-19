@@ -73,8 +73,7 @@ define("company/company.viewModel",
                         getCompanies();
                     },
                     //edit event handler
-                    onEditCompany = function(item) {
-                        filteredCompanyList();
+                    onEditCompany = function (item) {
                         filteredCompanyList(_.filter(parentCompanyList(), function(company) {
                             return company.CompanyId !== item.companyId();
                         }));
@@ -112,27 +111,12 @@ define("company/company.viewModel",
                             saveCompany(selectedCompany());
                     },
                     //save compnay 
-                    saveCompany = function(item) {
+                    saveCompany = function (item) {
                         dataservice.saveCompany(model.CompanyClienttoServerMapper(item), {
-                            success: function(dataFromServer) {
-                                var newItem = model.CompanyServertoClinetMapper(dataFromServer);
-                                if (selectedCompany().companyId() !== undefined) {
-                                    var newObjtodelete = companies.find(function(temp) {
-                                        return temp.companyId() == newItem.companyId();
-                                    });
-                                    companies.remove(newObjtodelete);
-                                    companies.push(newItem);
-                                    // deleting existing company from basecompany
-                                    var newObj = parentCompanyList.find(function(temp) {
-                                        return temp.CompanyId === newItem.companyId();
-                                    });
-                                    parentCompanyList.remove(newObj);
-                                    // updating
-                                    updateBaseCompany(dataFromServer);
-                                } else {
-                                    updateBaseCompany(dataFromServer);
-                                    companies.push(newItem);
-                                }
+                            success: function (dataFromServer) {
+                                if (item.companyId() === undefined)
+                                    addCompanyToBaseDataCompanyList(dataFromServer);             // updating base company dropdown
+                                getCompanies();
                                 isCompanyEditorVisible(false);
                                 toastr.success(ist.resourceText.CompanySaveSuccessMessage);
                             },
@@ -152,7 +136,8 @@ define("company/company.viewModel",
                                 var obj = parentCompanyList.find(function(item) {
                                     return item.CompanyId === company.companyId();
                                 });
-                                parentCompanyList.remove(obj);
+                                debugger;
+                                removeCompanyFromBaseDataCompanyList(obj);
                                 toastr.success(ist.resourceText.CompanyDeleteSuccessMessage);
                             },
                             error: function (exceptionMessage, exceptionType) {
@@ -189,16 +174,20 @@ define("company/company.viewModel",
                             }
                         });
                     },
-                    // update company base data
-                    updateBaseCompany = function(dataFromServer) {
-                        var codeNamee = dataFromServer.CompanyCode + "-" + dataFromServer.CompanyName;
-                        var obej = {
-                            CompanyCodeName: codeNamee,
-                            CompanyId: dataFromServer.CompanyId,
-                            OrgGroupId: dataFromServer.OrgGroupId,
+                    // Adding company to base data
+                   addCompanyToBaseDataCompanyList = function(company) {
+                        var codeName = company.CompanyCode + "-" + company.CompanyName;
+                        var obj = {
+                            CompanyCodeName: codeName,
+                            CompanyId: company.CompanyId,
+                            OrgGroupId: company.OrgGroupId,
                         };
-                        parentCompanyList.push(obej);
-                    },
+                        parentCompanyList.push(obj);
+                   },
+                    // Removing company from base data
+                   removeCompanyFromBaseDataCompanyList = function (company) {
+                       parentCompanyList.remove(company);
+                   },
                     //get compnies base data
                     getCompaniesBaseData = function() {
                         dataservice.getCompaniesBasedata(null, {

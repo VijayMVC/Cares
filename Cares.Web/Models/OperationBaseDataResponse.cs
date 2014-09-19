@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
 namespace Cares.Web.Models
 {
     /// <summary>
-    /// Operation BaseData Response
+    /// Operation BaseData Response web model
     /// </summary>
     public class OperationBaseDataResponse
     {
         #region Public
-        /// <summary>
-        /// Companies
-        /// </summary>
-        public IEnumerable<CompanyDropDown> Companies { get; set; }
         /// <summary>
         /// Departmens
         /// </summary>

@@ -2,6 +2,7 @@
 using Cares.ExceptionHandling;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
+using Cares.Models.CommonTypes;
 using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
@@ -49,9 +50,8 @@ namespace Cares.Implementation.Services
         {
             return new OperationBaseDataResponse
             {
-                Departments = departmentRepository.GetAll(),
-                Companies =  companyRepository.GetAll(),
-                DepartmentTypes =  departmentRepository.GetDepartmentsTypes()
+                Departments= departmentRepository.GetAll(),
+                DepartmentTypes = departmentRepository.GetDepartmentsTypes()
             };
        }
 

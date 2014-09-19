@@ -3167,7 +3167,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefworkLocation1942">
-          <End Role="WorkLocation" Type="Self.WorkLocation" Multiplicity="0..1" />
+          <End Role="WorkLocation" Type="Self.WorkLocation" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Phone" Type="Self.Phone" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="WorkLocation">
@@ -3191,7 +3193,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefWorkplace1811">
-          <End Role="Workplace" Type="Self.Workplace" Multiplicity="1" />
+          <End Role="Workplace" Type="Self.Workplace" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="OperationsWorkplace" Type="Self.OperationsWorkplace" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Workplace">
@@ -4194,10 +4198,6 @@
             <End Role="WorkLocation" EntitySet="WorkLocations" />
             <End Role="Workplace" EntitySet="WorkPlaces1" />
           </AssociationSet>
-          <AssociationSet Name="RefWorkplace2301" Association="DomainModels.RefWorkplace2301">
-            <End Role="Workplace" EntitySet="WorkPlaces1" />
-            <End Role="Workplace1" EntitySet="WorkPlaces1" />
-          </AssociationSet>
           <AssociationSet Name="RefWorkplaceType1751" Association="DomainModels.RefWorkplaceType1751">
             <End Role="WorkplaceType" EntitySet="WorkPlaceTypes1" />
             <End Role="Workplace" EntitySet="WorkPlaces1" />
@@ -4448,6 +4448,10 @@
           <AssociationSet Name="RefTariffType364" Association="DomainModels.RefTariffType364">
             <End Role="TariffType" EntitySet="TariffTypes" />
             <End Role="TariffType1" EntitySet="TariffTypes" />
+          </AssociationSet>
+          <AssociationSet Name="RefWorkplace2301" Association="DomainModels.RefWorkplace2301">
+            <End Role="WorkPlace" EntitySet="WorkPlaces1" />
+            <End Role="WorkPlace1" EntitySet="WorkPlaces1" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Company">
@@ -5692,8 +5696,8 @@
           <NavigationProperty Name="EmpJobProgs" Relationship="DomainModels.RefWorkplace351" FromRole="Workplace" ToRole="EmpJobProg" />
           <NavigationProperty Name="OperationsWorkPlaces" Relationship="DomainModels.RefWorkplace1811" FromRole="Workplace" ToRole="OperationsWorkplace" />
           <NavigationProperty Name="WorkLocation" Relationship="DomainModels.RefWorkLocation3031" FromRole="Workplace" ToRole="WorkLocation" />
-          <NavigationProperty Name="ParentWorkPlace" Relationship="DomainModels.RefWorkplace2301" FromRole="Workplace" ToRole="Workplace1" />
           <NavigationProperty Name="WorkPlaceType" Relationship="DomainModels.RefWorkplaceType1751" FromRole="Workplace" ToRole="WorkplaceType" />
+          <NavigationProperty Name="ParentWorkPlace" Relationship="DomainModels.RefWorkplace2301" FromRole="WorkPlace1" ToRole="WorkPlace" />
         </EntityType>
         <EntityType Name="WorkPlaceType">
           <Key>
@@ -6518,18 +6522,6 @@
             </Principal>
             <Dependent Role="Workplace">
               <PropertyRef Name="WorkLocationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="RefWorkplace2301">
-          <End Type="DomainModels.WorkPlace" Role="Workplace" Multiplicity="0..1" />
-          <End Type="DomainModels.WorkPlace" Role="Workplace1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Workplace">
-              <PropertyRef Name="WorkPlaceId" />
-            </Principal>
-            <Dependent Role="Workplace1">
-              <PropertyRef Name="ParentWorkPlaceId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -7913,6 +7905,18 @@
             </Principal>
             <Dependent Role="TariffType1">
               <PropertyRef Name="ChildTariffTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+         <Association Name="RefWorkplace2301">
+          <End Type="DomainModels.WorkPlace" Role="WorkPlace" Multiplicity="0..1" />
+          <End Type="DomainModels.WorkPlace" Role="WorkPlace1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkPlace">
+              <PropertyRef Name="WorkPlaceId" />
+            </Principal>
+            <Dependent Role="WorkPlace1">
+              <PropertyRef Name="ParentWorkPlaceId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

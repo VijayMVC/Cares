@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
+﻿
 namespace Cares.Web.Models
 {
+    /// <summary>
+    /// Department Type Drop Down Model
+    /// </summary>
     public class DepartmentTypeDropDown
     {
         public string DepartmentType { get; set; }
-
     }
 }

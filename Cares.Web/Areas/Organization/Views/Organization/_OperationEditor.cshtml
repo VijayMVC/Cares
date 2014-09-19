@@ -8,23 +8,26 @@
     <form class="form-horizontal">
         <div class="form-group">
             <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Operation.OperationCode*</label>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <input type="text" class="form-control" placeholder=@Cares.Web.Resources.Organization.Operation.OperationCode id="tariffTypeCode" data-bind="value: code" />
             </div>
             <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Operation.OperationName*</label>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <input type="text" class="form-control" placeholder=@Cares.Web.Resources.Organization.Operation.OperationName id="tariffTypeName" data-bind="value:name" />
             </div>
-            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Operation.OperationDescription</label>
-            <div class="col-md-2">
-                <input type="text" class="form-control" placeholder=@Cares.Web.Resources.Organization.Operation.OperationDescription id="tariffTypeDescription" data-bind="value:description" />
-            </div>
+           
         </div>
         <div class="form-group">
             <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Operation.Department*</label>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <select class="form-control" data-bind="options: $root.baseDepartmentsList, optionsText: 'DepartmentCodeName', optionsValue: 'DepartmentId', optionsCaption: '@Cares.Web.Resources.Organization.Operation.Department', value:DepartmentId"></select>
             </div>
         </div>
-    </form>
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Operation.OperationDescription</label>
+            <div class="col-md-3">
+                <textarea  rows="4" class="form-control" placeholder=@Cares.Web.Resources.Organization.Operation.OperationDescription id="tariffTypeDescription" data-bind="value:description" > </textarea>
+            </div>
+        </div>
+</form>
 </div>
