@@ -28,10 +28,10 @@ define("rentalAgreement/rentalAgreement.viewModel",
                             getCustomerByPhoneNo(value, type);
                         },
                         OnRentalDurationChange: function() {
-                            getHireGroups();
+                            resetHireGroups();
                         },
                         OnOutLocationChange: function() {
-                            getHireGroups();
+                            resetHireGroups();
                         }
                     },
                     // Main RA
@@ -47,9 +47,11 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     vehicles = ko.observableArray([]),
                     // Pagination
                     vehiclePager = ko.observable(),
-                    // Hire Groups 
-                    hireGroups = ko.observableArray([]),
-                    // selected Hire Group - // TODO: Need to shift to RA model
+                    // Can search hire group
+                    canLookForHireGroups = ko.computed(function() {
+                        return rentalAgreement().start() && rentalAgreement().end() && rentalAgreement().openLocation();
+                    }),
+                    // selected Hire Group 
                     selectedHireGroup = ko.observable(),
                     // select Hire Group
                     selectHireGroup = function (hireGroup) {
@@ -125,70 +127,13 @@ define("rentalAgreement/rentalAgreement.viewModel",
                             }
                         });
                     },
-                    // Internal search representation to search for a project
-                    internalSearchForHireGroup = ko.observable(""),
-                    // Search timer id
-                    searchForHireGroupTextTimerId,
-                    // Search for project
-                    searchForHireGroupText = ko.computed({
-                        read: function () { return internalSearchForHireGroup(); },
-                        write: function (value) {
-                            if (internalSearchForHireGroup() !== value) {
-                                internalSearchForHireGroup(value);
-                                if (searchForHireGroupTextTimerId) {
-                                    clearTimeout(searchForHireGroupTextTimerId);
-                                }
-                                if (value.length >= 3) {
-                                    searchForHireGroupTextTimerId = setTimeout(function () { getHireGroups(); }, 750);
-                                }
-                            }
+                    // Reset Hire Groups
+                    resetHireGroups = function() {
+                        selectedHireGroup(undefined);
+                        vehicles.removeAll();
+                        if (!rentalAgreement().id()) {
+                            selectedVehicle(model.Vehicle.Create({}));
                         }
-                    }),
-                    // Get Hire Groups
-                    getHireGroups = function () {
-                        hireGroups.removeAll();
-
-                        if (!searchForHireGroupText()) {
-                            return;
-                        }
-
-                        if (!rentalAgreement().start()) {
-                            toastr.info("Please select Start Date Time!");
-                            return;
-                        }
-
-                        if (!rentalAgreement().end()) {
-                            toastr.info("Please select End Date Time!");
-                            return;
-                        }
-
-                        if (!rentalAgreement().openLocation()) {
-                            toastr.info("Please select Out Location!");
-                            return;
-                        }
-                        
-                        dataservice.getHireGroupsByCodeAndVehicleInfo({
-                            SearchText: searchForHireGroupText(),
-                            OperationWorkPlaceId: rentalAgreement().openLocation(),
-                            StartDtTime: moment(rentalAgreement().start()).format(ist.utcFormat) + 'Z',
-                            EndDtTime: moment(rentalAgreement().end()).format(ist.utcFormat) + 'Z'
-                        }, {
-                            success: function (data) {
-                                hireGroups.removeAll();
-                                var hireGroupList = [];
-                                
-                                _.each(data, function (hireGroup) {
-                                    var hireGroupDetail = model.HireGroupDetail.Create(hireGroup);
-                                    hireGroupList.push(hireGroupDetail);
-                                });
-                                
-                                ko.utils.arrayPushAll(hireGroups(), hireGroupList);
-                                hireGroups.valueHasMutated();
-                            },
-                            error: function () {
-                                toastr.error("Failed to get Hire groups");
-                            }
-                        });
                     },
                     // Get Vehicles
                     getVehicles = function (hireGroup) {
@@ -261,15 +206,14 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     paymentTerms: paymentTerms,
                     selectedVehicle: selectedVehicle,
                     selectHireGroup: selectHireGroup,
-                    searchForHireGroupText: searchForHireGroupText,
-                    hireGroups: hireGroups,
                     vehicleImage: vehicleImage,
                     rentalAgreement: rentalAgreement,
+                    model: model,
+                    canLookForHireGroups: canLookForHireGroups,
                     // Observables
                     // Utility Methods
                     initialize: initialize,
                     selectVehicle: selectVehicle,
-                    getHireGroups: getHireGroups,
                     stopEventBubbling: stopEventBubbling
                     // Utility Methods
                 };

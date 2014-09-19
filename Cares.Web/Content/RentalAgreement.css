@@ -91,6 +91,9 @@
 #rentalAgreementBinding .panel-heading {
   color: gray;
 }
+#rentalAgreementBinding .panel-group .panel {
+  overflow: visible;
+}
 #rentalAgreementBinding a.headingLink {
   text-decoration: underline;
 }
@@ -174,6 +177,9 @@
   #rentalAgreementBinding #raBilling #ra .input-small {
     width: 26.15%;
   }
+}
+#rentalAgreementBinding #raBilling #ra #rentalAgreementHireGroup {
+  width: 369px;
 }
 #rentalAgreementBinding #raBilling #billing {
   margin-top: .5%;

@@ -335,22 +335,7 @@
                             <div class="form-group" data-bind="with: $parent">
                                 <label for="rentalAgreementHireGroup" class="control-label col-sm-2">Hire Group</label>
                                 <div class="col-md-9 rentalHireGroupControl">
-                                    <input type="text" class="form-control" placeholder="<Hire Group>" id="rentalAgreementHireGroup" data-bind="value: searchForHireGroupText" />
-                                </div>
-                                <label class="control-label col-sm-2"></label>
-                                <div class="col-md-9 rentalHireGroupControl" data-bind="visible: hireGroups().length > 0" style="display: none">
-                                    <table class="table table-condensed">
-                                        <thead>
-                                            <tr>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody data-bind="foreach: hireGroups">
-                                            <tr data-bind="click: $root.selectHireGroup">
-                                                <td data-bind="text: hireGroup"></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <input type="text" class="form-control" placeholder="<Hire Group>" id="rentalAgreementHireGroup" data-bind="enable: canLookForHireGroups" />
                                 </div>
                             </div>
                         </form>
