@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using Cares.ExceptionHandling;
@@ -58,13 +59,36 @@ namespace Cares.Implementation.Services
             }
             else
             {
-                upDatedWorkLocation.RecCreatedBy = upDatedWorkLocation.RecLastUpdatedBy = upDatedWorkLocation.Address.RecCreatedBy= 
-                upDatedWorkLocation.Address.RecLastUpdatedBy= workLocationRepository.LoggedInUserIdentity;
+                dbvWorkLocation.Address = new Address
+                {
+                    ContactPerson = upDatedWorkLocation.Address.ContactPerson,
+                    StreetAddress = upDatedWorkLocation.Address.StreetAddress,
+                    EmailAddress = upDatedWorkLocation.Address.EmailAddress,
+                    WebPage = upDatedWorkLocation.Address.WebPage,
+                    ZipCode = upDatedWorkLocation.Address.ZipCode,
+                    POBox = upDatedWorkLocation.Address.POBox,
+                    AddressTypeId = 1,
+                    CountryId = upDatedWorkLocation.Address.CountryId,
+                    RegionId = upDatedWorkLocation.Address.RegionId,
+                    SubRegionId = upDatedWorkLocation.Address.SubRegionId,
+                    CityId = upDatedWorkLocation.Address.CityId,
+                    AreaId = upDatedWorkLocation.Address.AreaId,
+                    RecCreatedBy = workLocationRepository.LoggedInUserIdentity,
+                    RecCreatedDt = DateTime.Now,
+                    RecLastUpdatedDt = DateTime.Now,
+                    RecLastUpdatedBy = workLocationRepository.LoggedInUserIdentity
+                };
+                dbvWorkLocation.RecCreatedBy = dbvWorkLocation.RecLastUpdatedBy = workLocationRepository.LoggedInUserIdentity;
 
-                upDatedWorkLocation.RecCreatedDt=upDatedWorkLocation.Address.RecCreatedDt= DateTime.Now;
-                upDatedWorkLocation.RecLastUpdatedDt = upDatedWorkLocation.Address.RecLastUpdatedDt= DateTime.Now;
-                upDatedWorkLocation.UserDomainKey = upDatedWorkLocation.Address.UserDomainKey=1;
-                upDatedWorkLocation.Address.AddressTypeId = 1;
+                dbvWorkLocation.RecCreatedDt =  DateTime.Now;
+                dbvWorkLocation.RecLastUpdatedDt = DateTime.Now;
+                dbvWorkLocation.UserDomainKey = upDatedWorkLocation.Address.UserDomainKey = 1;
+                dbvWorkLocation.Address.AddressTypeId = 1;
+                dbvWorkLocation.CompanyId = upDatedWorkLocation.CompanyId;
+                dbvWorkLocation.WorkLocationCode = upDatedWorkLocation.WorkLocationCode;
+                dbvWorkLocation.WorkLocationName = upDatedWorkLocation.WorkLocationName;
+                dbvWorkLocation.WorkLocationDescription = upDatedWorkLocation.WorkLocationDescription;
+               
             }
         }
 
@@ -163,6 +187,7 @@ namespace Cares.Implementation.Services
 
             WorkLocation dbWorkLocation = workLocationRepository.Find(workLocationRequest.WorkLocationId);
             bool isFind = false;
+            bool phonesAdded = false;
 
             #region Edit
             if (dbWorkLocation != null)
@@ -190,9 +215,12 @@ namespace Cares.Implementation.Services
                     }
                 }
                 #endregion
-                #region Adding New Phones 
+                #region Adding New Phones First Time
                 else
                 {
+                    if (workLocationRequest.Phones==null)
+                    workLocationRequest.Phones=new Collection<Phone>();
+
                     foreach (var newPhone in workLocationRequest.Phones)
                     {
                         newPhone.RecCreatedBy = newPhone.RecLastUpdatedBy = phoneRepository.LoggedInUserIdentity;
@@ -202,11 +230,12 @@ namespace Cares.Implementation.Services
                         newPhone.IsDeleted = false;
                         newPhone.IsPrivate = false;
                         dbWorkLocation.Phones.Add(newPhone);
+                        phonesAdded = true;
                     }
                 }
                 #endregion
                 #region Adding Phones when there are more phones in request thatn in DB
-                if (workLocationRequest.Phones != null && workLocationRequest.Phones.Count > dBVersionPhones.Count())
+                if (workLocationRequest.Phones != null && workLocationRequest.Phones.Count > dBVersionPhones.Count() && phonesAdded==false)
                 foreach (var newPhonee in workLocationRequest.Phones)
                 {
                     if (newPhonee.PhoneId == 0)
@@ -227,9 +256,12 @@ namespace Cares.Implementation.Services
             #region ADD
             else
             {
-                SetUpdateedProperties(null, workLocationRequest, "insert");
+                dbWorkLocation = workLocationRepository.Create();
+                SetUpdateedProperties(dbWorkLocation, workLocationRequest, "insert");
+                
                 if (workLocationRequest.Phones != null)
                 {
+                    dbWorkLocation.Phones = new List<Phone>();
                     foreach (var phone in (workLocationRequest.Phones))
                     {
                         phone.RecCreatedBy = phone.RecLastUpdatedBy = phoneRepository.LoggedInUserIdentity;
@@ -238,16 +270,17 @@ namespace Cares.Implementation.Services
                         phone.IsActive = true;
                         phone.IsDeleted = false;
                         phone.IsPrivate = false;
+                        dbWorkLocation.Phones.Add(phone);
                     }
                 }
-                workLocationRepository.Add(workLocationRequest);
+                workLocationRepository.Add(dbWorkLocation);
             }
             #endregion
 
-            phoneRepository.SaveChanges();
+            //phoneRepository.SaveChanges();
             workLocationRepository.SaveChanges();
             // Get detailed object of worklocation
-            return workLocationRepository.GetWorkLocationWithDetails(workLocationRequest.WorkLocationId);
+            return workLocationRepository.GetWorkLocationWithDetails(dbWorkLocation.WorkLocationId);
         }
         #endregion
     }

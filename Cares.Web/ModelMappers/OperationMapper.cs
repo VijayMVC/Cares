@@ -46,8 +46,7 @@ namespace Cares.Web.ModelMappers
             return new ApiModel.OperationBaseDataResponse
             {
                 Departmens = source.Departments.Select(dept => dept.CreateFrom()),
-                Companies = source.Companies.Select(company => company.CreateFrom()),
-                DepartmensType = source.Departments.Select(deptType => deptType.DepartmentType)
+                DepartmensType = source.DepartmentTypes.Select(depttype=>depttype)
             };
         }
 
