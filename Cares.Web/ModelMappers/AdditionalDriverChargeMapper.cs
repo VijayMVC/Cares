@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using ResponseModel = Cares.Models.ResponseModels;
+using DomainModel = Cares.Models.DomainModels;
 using ApiModel = Cares.Web.Models;
 
 namespace Cares.Web.ModelMappers
@@ -34,6 +35,47 @@ namespace Cares.Web.ModelMappers
 
             };
         }
+
+        /// <summary>
+        ///Web Model To Domain MOdel
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static DomainModel.AdditionalDriverCharge CreateFrom(this ApiModel.AdditionalDriverCharge source)
+        {
+            return new DomainModel.AdditionalDriverCharge
+            {
+                AdditionalDriverChargeId = source.AdditionalDriverChargeId,
+                TariffTypeCode = source.TariffTypeCode,
+                StartDt = source.StartDt,
+                AdditionalDriverChargeRate = source.AdditionalDriverChargeRate,
+                RevisionNumber = source.RevisionNumber,
+
+            };
+        }
+
+          /// <summary>
+        /// Domain MOdel To Web Model
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static ApiModel.AdditionalDriverCharge CreateFrom(this DomainModel.AdditionalDriverCharge source)
+        {
+            return new ApiModel.AdditionalDriverCharge
+            {
+                AdditionalDriverChargeId = source.AdditionalDriverChargeId,
+                TariffTypeCode = source.TariffTypeCode,
+                StartDt = source.StartDt,
+                AdditionalDriverChargeRate = source.AdditionalDriverChargeRate,
+                RevisionNumber = source.RevisionNumber,
+                RecCreatedBy = source.RecCreatedBy,
+                RecLastUpdatedBy = source.RecLastUpdatedBy,
+                RecLastUpdatedDt = source.RecLastUpdatedDt,
+
+            };
+        }
+
+        
 
         /// <summary>
         /// Domain Response To Web Response

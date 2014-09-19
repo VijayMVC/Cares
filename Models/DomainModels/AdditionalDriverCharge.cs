@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Cares.Models.DomainModels
 {
@@ -8,6 +9,7 @@ namespace Cares.Models.DomainModels
     public class AdditionalDriverCharge
     {
         #region Persisted Properties
+        
         /// <summary>
         /// Additional Driver Charge ID
         /// </summary>
@@ -96,6 +98,7 @@ namespace Cares.Models.DomainModels
         /// Child Additional Driver Charge
         /// </summary>
         public virtual AdditionalDriverCharge ChildAdditionalDriverCharge { get; set; }
+
         #endregion
     }
 }

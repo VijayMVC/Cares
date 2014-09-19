@@ -1,6 +1,6 @@
 ﻿
 
-<div class="well col-md-12" id="additionalDriverChargeEditor" data-bind="visible: isAdditionalDriverChrgEditorVisible, with: selectedAdditionalDriverChrg" style="display: none;">
+<div class="well col-md-12" id="additionalDriverChargeEditor" data-bind="visible: isAdditionalDriverChrgEditorVisible, with: addEditAdditionalDriverChrg" style="display: none;">
     <div class="float-left detailsContainer">
         <h3 class="page-header detailsHeaderSection">Additional Driver Charge Detail</h3>
         <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onSaveAdditionalDriverChrg, enable: hasChanges, css: { 'btn-warning': hasChanges }">@Cares.Web.Resources.Shared.Common.Save</button>
@@ -45,40 +45,36 @@
         </div>
 
     </form>
+    <br/>
     <div class="panel panel-info">
         <div class="panel-heading">Add. Driver Rate Revisions</div>
         <table id="tariffTypeRevisions" class="table">
             <thead>
                 <tr>
-                    <th> <span id="3">@Cares.Web.Resources.Tariff.TariffType.Duration<br />@Cares.Web.Resources.Tariff.TariffType.From<span></span></span></th>
-                    <th> <span id="4">@Cares.Web.Resources.Tariff.TariffType.Duration<br />@Cares.Web.Resources.Tariff.TariffType.To<span></span></span></th>
-                    <th> <span id="5">@Cares.Web.Resources.Tariff.TariffType.Grace<br />@Cares.Web.Resources.Tariff.TariffType.Period<span></span></span></th>
-                    <th> <span id="6">@Cares.Web.Resources.Tariff.TariffType.Effective<br />@Cares.Web.Resources.Tariff.TariffType.Date<span></span></span></th>
-                    <th> <span id="7">@Cares.Web.Resources.Tariff.TariffType.Revision<span></span></span></th>
-                    <th> <span id="8">@Cares.Web.Resources.Tariff.TariffType.Created<br />@Cares.Web.Resources.Tariff.TariffType.By<span></span></span></th>
-                    <th> <span id="8">@Cares.Web.Resources.Tariff.TariffType.Created<br />@Cares.Web.Resources.Tariff.TariffType.Date<span></span></span></th>
-                    <th> <span id="9">@Cares.Web.Resources.Tariff.TariffType.Modified<br />@Cares.Web.Resources.Tariff.TariffType.By<span></span></span></th>
-                    <th> <span id="10">@Cares.Web.Resources.Tariff.TariffType.Modified<br />@Cares.Web.Resources.Tariff.TariffType.Date<span></span></span></th>
+                    <th> <span>Tariff Type Code<span></span></span></th>
+                    <th> <span id="4"><span>Rate</span></span></th>
+                    <th> <span id="5">Effective Date<span></span></span></th>
+                    <th> <span id="6">Revision Number<span></span></span></th>
+                    <th> <span id="7">Created By<span></span></span></th>
+                    <th> <span id="8">Modified By<span></span></span></th>
+                    <th> <span id="8">Modified Date<span></span></span></th>
                 </tr>
             </thead>
             <tbody>
-                @*<!-- ko template: { name: $root.templateToUseForRevision , foreach: $root.revisions } -->
-                    <!-- /ko -->*@
+                <!-- ko template: { name: 'itemRevisionTemplate' , foreach: $root.revisions } -->
+                <!-- /ko -->
             </tbody>
         </table>
-        @*<script id="itemtariffTypeRevisionTemplate" type="text/html">
-                    <tr>
-                        <td data-bind="text: durationFrom"></td>
-                        <td data-bind="text: durationTo"></td>
-                        <td data-bind="text: gracePeriod"></td>
-                        <td data-bind="text: formattedEffectiveDate"></td>
-                        <td data-bind="text: revisionNumber"></td>
-                        <td data-bind="text: recCreatedBy"></td>
-                        <td data-bind="text: formattedCreatedDate"></td>
-                        <td data-bind="text: recLastUpdatedBy"></td>
-                        <td data-bind="text: formattedModifiedDate"></td>
-                    </tr>
-                </script>
-            </div>*@
+        <script id="itemRevisionTemplate" type="text/html">
+            <tr>
+                <td data-bind="text: tariffTypeCode"></td>
+                <td data-bind="text: rate"></td>
+                <td data-bind="text: formattedEffectiveDate"></td>
+                <td data-bind="text: revisionNumber"></td>
+                <td data-bind="text: createdBy"></td>
+                <td data-bind="text: modifiedBy"></td>
+                <td data-bind="text: formattedModifiedDate"></td>
+            </tr>
+        </script>
     </div>
 </div>

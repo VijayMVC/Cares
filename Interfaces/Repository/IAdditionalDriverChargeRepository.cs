@@ -24,6 +24,6 @@ namespace Cares.Interfaces.Repository
         /// <summary>
         /// Get Additional Driver Charge Revisions By Id
         /// </summary>
-       IEnumerable<AdditionalDriverCharge> GetRevisions(long additionalDriverChargeId);
+        AdditionalDriverCharge GetRevision(long additionalDriverChargeId);
     }
 }

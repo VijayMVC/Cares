@@ -11,6 +11,8 @@ define("additionalDriverCharge/additionalDriverCharge.viewModel",
                     view,
                     // Active Additional Driver Charge 
                     selectedAdditionalDriverChrg = ko.observable(),
+                    //Add/Edit Additional Driver Charge 
+                   addEditAdditionalDriverChrg = ko.observable(),
                     // Show Filter Section
                     filterSectionVisilble = ko.observable(false),
                     // #region Arrays
@@ -30,6 +32,8 @@ define("additionalDriverCharge/additionalDriverCharge.viewModel",
                     filteredOperations = ko.observableArray([]),
                     //filtered Tariff Types
                     filteredTariffTypes = ko.observableArray([]),
+                    //Additional Driver Charge Revisions
+                    revisions = ko.observableArray([]),
                     // #endregion Arrays
                     // #region Busy Indicators
                     isLoadingAdditionalDriverChrg = ko.observable(false),
@@ -105,15 +109,15 @@ define("additionalDriverCharge/additionalDriverCharge.viewModel",
                             }
                         });
                     },
-                    //Get Additional Driver Charge Items
-                    getAdditionalDriverChrgItems = function (serviceRt) {
+                    //Get Additional Driver Charge By Id
+                    getAdditionalDriverChrgsById = function (addDriverChrg) {
                         isLoadingAdditionalDriverChrg(true);
-                        dataservice.getAdditionalDriverChrgDetail(serviceRt.convertToServerData(), {
+                        dataservice.getAdditionalDriverChrgDetail(model.AdditionalDriverChrgServerMapperForId(addDriverChrg), {
                             success: function (data) {
-                                serviceRtItems.removeAll();
-                                _.each(data.AdditionalDriverChrgDetails, function (item) {
-                                    var serviceRtItem = new model.ServiceItemRtClientMapper(item);
-                                    serviceRtItems.push(serviceRtItem);
+                                revisions.removeAll();
+                                _.each(data, function (item) {
+                                    var revision = new model.AdditionalDriverChargeRevisionClientMapper(item);
+                                    revisions.push(revision);
                                 });
                                 isLoadingAdditionalDriverChrg(false);
                             },
@@ -147,51 +151,55 @@ define("additionalDriverCharge/additionalDriverCharge.viewModel",
                     },
                     //Create Additional Driver Charge
                     createAddDriverChrg = function () {
+                        revisions.removeAll();
+                        filteredDepartments.removeAll();
+                        filteredOperations.removeAll();
+                        filteredTariffTypes.removeAll();
                         var addDrvierChrg = new model.AdditionalDriverCharge();
                         // Select the newly added Additional Driver Charge
                         selectedAdditionalDriverChrg(addDrvierChrg);
-                        //getAdditionalDriverChrgItems(serviceRtMain);
+                        addEditAdditionalDriverChrg(addDrvierChrg);
                         showAdditionalDriverChrgEditor();
                     },
                     // Save Additional Driver Charge
-                    onSaveAdditionalDriverChrg = function (serviceRt) {
+                    onSaveAdditionalDriverChrg = function (addDriverChrg) {
                         if (doBeforeSave()) {
-                            serviceRt.serviceItemRts.removeAll();
-                            _.each(serviceRtItems(), function (item) {
-                                if (item.isChecked() === true && doBeforeSaveForAdditionalDriverChrgItem(item)) {
-                                    serviceRt.serviceItemRts.push(item);
-                                }
-                            });
-                            if (serviceRtDetailIsValid()) {
-                                saveAdditionalDriverChrg(serviceRt);
-                            }
+                            saveAdditionalDriverChrg(addDriverChrg);
                         }
-                        serviceRtDetailIsValid(true);
-
                     },
                     // Do Before Logic
                     doBeforeSave = function () {
                         var flag = true;
-                        if (!selectedAdditionalDriverChrgMain().isValid()) {
-                            selectedAdditionalDriverChrgMain().errors.showAllMessages();
+                        if (!addEditAdditionalDriverChrg().isValid()) {
+                            selectedAdditionalDriverChrg().errors.showAllMessages();
                             flag = false;
                         }
                         return flag;
                     },
                     // Save Additional Driver Charge Main
-                    saveAdditionalDriverChrg = function (serviceRtMain) {
-                        dataservice.saveAdditionalDriverChrg(model.AdditionalDriverChrgMainServerMapper(serviceRtMain), {
+                    saveAdditionalDriverChrg = function (addDriverChrg) {
+                        dataservice.saveAdditionalDriverChrg(model.AdditionalDriverChrgServerMapper(addDriverChrg), {
                             success: function (data) {
-                                var serviceRtResult = new model.AdditionalDriverChrgMainClientMapper(data);
-                                if (selectedAdditionalDriverChrgMain().serviceRtMainId() > 0) {
-                                    selectedAdditionalDriverChrgMainCopy(undefined);
-                                    selectedAdditionalDriverChrgMain().startDt(serviceRtResult.startDt()),
-                                        closeAdditionalDriverChrgEditor();
+                                var additionalDriverCharge = model.AdditionalDriverChargeClientMapper(data);
+                                if (selectedAdditionalDriverChrg().id() > 0) {
+                                    selectedAdditionalDriverChrg().id(additionalDriverCharge.id()),
+                                    selectedAdditionalDriverChrg().companyId(additionalDriverCharge.companyId()),
+                                    selectedAdditionalDriverChrg().companyCodeName(additionalDriverCharge.companyCodeName()),
+                                    selectedAdditionalDriverChrg().depId(additionalDriverCharge.depId()),
+                                    selectedAdditionalDriverChrg().operationId(additionalDriverCharge.operationId()),
+                                    selectedAdditionalDriverChrg().operationCodeName(additionalDriverCharge.operationCodeName()),
+                                    selectedAdditionalDriverChrg().tariffTypeId(additionalDriverCharge.tariffTypeId()),
+                                    selectedAdditionalDriverChrg().tariffTypeCode(additionalDriverCharge.tariffTypeCode()),
+                                    selectedAdditionalDriverChrg().tariffTypeCodeName(additionalDriverCharge.tariffTypeCodeName()),
+                                    selectedAdditionalDriverChrg().effectiveStartDate(additionalDriverCharge.effectiveStartDate()),
+                                    selectedAdditionalDriverChrg().rate(additionalDriverCharge.rate()),
+                                    selectedAdditionalDriverChrg().revisionNumber(additionalDriverCharge.revisionNumber()),
+                                    closeAdditionalDriverChrgEditor();
                                 } else {
-                                    serviceRtMains.splice(0, 0, serviceRtResult);
+                                    addDriverChrgs.splice(0, 0, additionalDriverCharge);
                                     closeAdditionalDriverChrgEditor();
                                 }
-                                toastr.success(ist.resourceText.serviceRateAddSuccessMsg);
+                                toastr.success("success");
                             },
                             error: function (exceptionMessage, exceptionType) {
 
@@ -209,30 +217,54 @@ define("additionalDriverCharge/additionalDriverCharge.viewModel",
                         });
                     },
                     //Edit Additional Driver Charge
-                    onEditAddDriverChrg = function (serviceRt, e) {
-                        //selectedAdditionalDriverChrgMain(serviceRt);
-                        //selectedAdditionalDriverChrgMainCopy(model.InsuranceRtMainCopier(serviceRt));
-                        //getAdditionalDriverChrgItems(serviceRt);
+                    onEditAddDriverChrg = function (addDriverChrg, e) {
+                        filteredDepartments.removeAll();
+                        filteredOperations.removeAll();
+                        filteredTariffTypes.removeAll();
+                        revisions.removeAll();
+
+                        _.each(departments(), function (item) {
+                            if (item.CompanyId === addDriverChrg.companyId())
+                                filteredDepartments.push(item);
+                        });
+                        filteredDepartments.valueHasMutated();
+                        _.each(operations(), function (item) {
+                            if (item.DepartmentId === addDriverChrg.depId())
+                                filteredOperations.push(item);
+                        });
+                        filteredOperations.valueHasMutated();
+                        _.each(tariffTypes(), function (item) {
+                            if (item.OperationId === addDriverChrg.operationId())
+                                filteredTariffTypes.push(item);
+                        });
+                        filteredTariffTypes.valueHasMutated();
+
+                        selectedAdditionalDriverChrg(addDriverChrg);
+                        addEditAdditionalDriverChrg(addDriverChrg);
+                       
+                        addEditAdditionalDriverChrg().depId(addDriverChrg.depId());
+                        addEditAdditionalDriverChrg().tariffTypeId(addDriverChrg.tariffTypeId());
+                        getAdditionalDriverChrgsById(addDriverChrg);
                         showAdditionalDriverChrgEditor();
                         e.stopImmediatePropagation();
                     },
                     // Delete a Additional Driver Charge
-                    onDeleteAddDriverChrg = function (serviceRt) {
-                        //if (!serviceRt.serviceRtMainId()) {
-                        //    serviceRtMains.remove(serviceRt);
-                        //    return;
-                        //}
-                        //// Ask for confirmation
-                        //confirmation.afterProceed(function () {
-                        //    deleteAdditionalDriverChrg(serviceRt);
-                        //});
-                        //confirmation.show();
+                    onDeleteAddDriverChrg = function (addDriverChrg) {
+                        if (!addDriverChrg.id()) {
+                            addDriverChrgs.remove(addDriverChrg);
+                            return;
+                        }
+                        // Ask for confirmation
+                        confirmation.afterProceed(function () {
+                            deleteAdditionalDriverChrg(addDriverChrg);
+                        });
+                        confirmation.show();
                     },
                     // Delete Additional Driver Charge
-                    deleteAdditionalDriverChrg = function (serviceRt) {
-                        dataservice.deleteAdditionalDriverChrg(serviceRt.convertToServerData(), {
+                    deleteAdditionalDriverChrg = function (addDriverChrg) {
+                        dataservice.deleteAdditionalDriverChrg(model.AdditionalDriverChrgServerMapperForId(addDriverChrg), {
                             success: function () {
-                                serviceRtMains.remove(serviceRt);
+                                addDriverChrgs.remove(addDriverChrg);
                                 toastr.success(ist.resourceText.serviceRateDeleteSuccessMsg);
                             },
                             error: function () {
@@ -310,7 +342,7 @@ define("additionalDriverCharge/additionalDriverCharge.viewModel",
                 return {
                     // Observables
                     selectedAdditionalDriverChrg: selectedAdditionalDriverChrg,
-                    isLoadingAdditionalDriverChrg: isLoadingAdditionalDriverChrg,
+                    addEditAdditionalDriverChrg: addEditAdditionalDriverChrg,
                     isAdditionalDriverChrgEditorVisible: isAdditionalDriverChrgEditorVisible,
                     sortOn: sortOn,
                     sortIsAsc: sortIsAsc,
@@ -327,6 +359,7 @@ define("additionalDriverCharge/additionalDriverCharge.viewModel",
                     filteredDepartments: filteredDepartments,
                     filteredOperations: filteredOperations,
                     filteredTariffTypes: filteredTariffTypes,
+                    revisions: revisions,
                     //Filters
                     operationFilter: operationFilter,
                     tariffTypeFilter: tariffTypeFilter,

@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Http;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
+using Cares.Web.ModelMappers;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
@@ -40,14 +43,15 @@ namespace Cares.Web.Areas.Api.Controllers
         ///  Additional Driver Charge Detail
         /// </summary>
         /// <returns></returns>
-        public AdditionalDriverCharge Get([FromUri]AdditionalDriverCharge additionalDriverCharge)
+        public List<Models.AdditionalDriverCharge> Get([FromUri]AdditionalDriverCharge additionalDriverCharge)
         {
             if (!ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            //return additionalDriverService.GetAdditionalDriverChargeDetail(additionalDriverCharge.AdditionalDriverChargeId).CreateFromEmployeeDetail();
-            return null;
+            List<AdditionalDriverCharge> result =
+                additionalDriverService.GetAdditionalDriverChargeDetail(additionalDriverCharge.AdditionalDriverChargeId).ToList();
+            return result.Count>0?result.Select(x => x.CreateFrom()).ToList():null;
         }
 
         #endregion

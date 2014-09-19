@@ -29,11 +29,12 @@
             <table id="additionalDriverChargeTable" class="table table-condensed">
                 <thead>
                     <tr>
-                        <th class="code"> <span id="1">Code<span class="icon-up"></span></span></th>
-                        <th class="name"> <span id="2">Name<span></span></span></th>
-                        <th class="operation"> <span>Operation<span></span></span></th>
-                        <th class="tariffType"> <span>TariffType<span></span></span></th>
-                        <th class="startDate">Date<span></span></></th>
+                        <th class="code"> <span id="1">Tariff Type Code<span class="icon-up"></span></span></th>
+                        <th class="name"> <span id="2">Tariff Type Name<span></span></span></th>
+                        <th class="name"> <span id="2">Additional Driver Rate<span></span></span></th>
+                        <th class="operation"> <span>Company <span></span></span></th>
+                        <th class="tariffType"> <span>Operation<span></span></span></th>
+                        <th class="startDate">Effective Date<span></span></></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,7 +60,7 @@
             <td data-bind="text: rate"></td>
             <td data-bind="text: companyCodeName"></td>
             <td data-bind="text: operationCodeName"></td>
-            <td data-bind="datestring: effectiveStartDate"></td>
+            <td data-bind="text: formattedEffectiveDate"></td>
             <td>
                 <!-- ko template: { name: 'editActionAdditionalDriverChrgTemplate' } -->
                 <!-- /ko -->

@@ -22,7 +22,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Additional Driver Charge Rate
         /// </summary>
-        public float AdditionalDriverChargeRate { get; set; }
+         public double AdditionalDriverChargeRate { get; set; }
 
         /// <summary>
         /// Revision Number
@@ -33,5 +33,20 @@ namespace Cares.Web.Models
         /// Start Date
         /// </summary>
         public DateTime StartDt { get; set; }
+
+        /// <summary>
+        /// Record Created By
+        /// </summary>
+        public string RecCreatedBy { get; set; }
+
+        /// <summary>
+        /// Record Last Updated Date
+        /// </summary>
+        public DateTime RecLastUpdatedDt { get; set; }
+
+        /// <summary>
+        /// Record Last Updated By
+        /// </summary>
+        public string RecLastUpdatedBy { get; set; }
     }
 }

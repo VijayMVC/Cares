@@ -26,6 +26,26 @@ namespace Cares.Interfaces.IServices
         /// </summary>
         /// <param name="additionalDriverChargeId"></param>
         /// <returns></returns>
-       IEnumerable<AdditionalDriverCharge> GetAdditionalDriverChargeDetail(long additionalDriverChargeId);
+        IEnumerable<AdditionalDriverCharge> GetAdditionalDriverChargeDetail(long additionalDriverChargeId);
+
+        /// <summary>
+        /// Add Additional Driver Charge
+        /// </summary>
+        /// <param name="additionalDriverCharge"></param>
+        /// <returns></returns>
+        AdditionalDriverChargeSearchContent SaveAdditionalDriverCharge(AdditionalDriverCharge additionalDriverCharge);
+
+        /// <summary>
+        /// Additional Driver Charge Delete
+        /// </summary>
+        /// <param name="additionalDriverCharge"></param>
+        void AdditionalDriverChargeDelete(AdditionalDriverCharge additionalDriverCharge);
+
+        /// <summary>
+        /// Find By Id
+        /// </summary>
+        /// <param name="additionalDriverChargeId"></param>
+        /// <returns></returns>
+       AdditionalDriverCharge FindById(long additionalDriverChargeId);
     }
 }

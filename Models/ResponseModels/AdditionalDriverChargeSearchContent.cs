@@ -66,5 +66,10 @@ namespace Cares.Models.ResponseModels
         /// Tariff Type Id
         /// </summary>
         public long TariffTypeId { get; set; }
+
+        /// <summary>
+        /// Child Additional Driver Charge Id
+        /// </summary>
+        public long? ChildAdditionalDriverChargeId { get; set; }
     }
 }

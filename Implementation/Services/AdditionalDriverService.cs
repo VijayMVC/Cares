@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -27,7 +28,7 @@ namespace Cares.Implementation.Services
         /// <summary>
         ///  Constructor
         /// </summary>
-        public AdditionalDriverService(ICompanyRepository companyRepository,IAdditionalDriverChargeRepository additionalDriverChargeRepository,
+        public AdditionalDriverService(ICompanyRepository companyRepository, IAdditionalDriverChargeRepository additionalDriverChargeRepository,
             IDepartmentRepository departmentRepository, IOperationRepository operationRepository, ITariffTypeRepository tariffTypeRepository)
         {
             this.companyRepository = companyRepository;
@@ -63,7 +64,24 @@ namespace Cares.Implementation.Services
         /// <returns></returns>
         public IEnumerable<AdditionalDriverCharge> GetAdditionalDriverChargeDetail(long additionalDriverChargeId)
         {
-            return additionalDriverChargeRepository.GetRevisions(additionalDriverChargeId);
+            List<AdditionalDriverCharge> revisionList = new List<AdditionalDriverCharge>();
+            var addDriverChrg = additionalDriverChargeRepository.Find(additionalDriverChargeId);
+
+            if (addDriverChrg != null && addDriverChrg.RevisionNumber > 0)
+            {
+                var tempId = addDriverChrg.AdditionalDriverChargeId;
+                for (int i = 0; i < addDriverChrg.RevisionNumber; i++)
+                {
+                    if (tempId > 0)
+                    {
+                        var revision = additionalDriverChargeRepository.GetRevision(tempId);
+                        tempId = revision != null ? revision.AdditionalDriverChargeId : 0;
+                        revisionList.Add(revision);
+                    }
+                }
+            }
+            return revisionList;
+
         }
 
         /// <summary>
@@ -73,6 +91,86 @@ namespace Cares.Implementation.Services
         public AdditionalDriverChargeSearchResponse LoadAll(AdditionalDriverChargeSearchRequest request)
         {
             return additionalDriverChargeRepository.GetAdditionalDriverCharges(request);
+        }
+
+        /// <summary>
+        /// Add Additional Driver Charge
+        /// </summary>
+        /// <param name="additionalDriverCharge"></param>
+        /// <returns></returns>
+        public AdditionalDriverChargeSearchContent SaveAdditionalDriverCharge(AdditionalDriverCharge additionalDriverCharge)
+        {
+            TariffType tariffType = tariffTypeRepository.Find(long.Parse(additionalDriverCharge.TariffTypeCode));
+            additionalDriverCharge.TariffTypeCode = tariffType.TariffTypeCode;
+            long oldRecordId = additionalDriverCharge.AdditionalDriverChargeId;
+            if (additionalDriverCharge.AdditionalDriverChargeId == 0) //Add Case
+            {
+                //List<TariffType> tariffTypes = tariffTypeRepository.GetByTariffTypeCode(tariffType.TariffTypeCode).ToList();
+                //if (tariffTypes.Count() > 0)
+                //    throw new CaresException("Tariff Type with the same code already exists. Please choose a different code!");
+                additionalDriverCharge.IsActive = true;
+                additionalDriverCharge.IsDeleted = additionalDriverCharge.IsPrivate = additionalDriverCharge.IsReadOnly = false;
+                additionalDriverCharge.RecLastUpdatedBy = additionalDriverCharge.RecCreatedBy = additionalDriverChargeRepository.LoggedInUserIdentity;
+                additionalDriverCharge.RecCreatedDt = additionalDriverCharge.RecLastUpdatedDt = DateTime.Now;
+                additionalDriverCharge.RowVersion = 0;
+                additionalDriverCharge.UserDomainKey = additionalDriverChargeRepository.UserDomainKey;
+                additionalDriverChargeRepository.Add(additionalDriverCharge);
+                additionalDriverChargeRepository.SaveChanges();
+            }
+            else //Update Case
+            {
+                additionalDriverCharge.IsActive = true;
+                additionalDriverCharge.IsDeleted = additionalDriverCharge.IsPrivate = additionalDriverCharge.IsReadOnly = false;
+                additionalDriverCharge.RecLastUpdatedBy = additionalDriverCharge.RecCreatedBy = additionalDriverChargeRepository.LoggedInUserIdentity;
+                additionalDriverCharge.RecCreatedDt = additionalDriverCharge.RecLastUpdatedDt = DateTime.Now;
+                additionalDriverCharge.RevisionNumber = additionalDriverCharge.RevisionNumber + 1;
+                additionalDriverCharge.UserDomainKey = additionalDriverChargeRepository.UserDomainKey;
+                additionalDriverCharge.AdditionalDriverChargeId = 0;
+                additionalDriverChargeRepository.Add(additionalDriverCharge);
+                additionalDriverChargeRepository.SaveChanges();
+
+                AdditionalDriverCharge oldAdditionalDriverChargeRecord = additionalDriverChargeRepository.Find(oldRecordId);
+                oldAdditionalDriverChargeRecord.ChildAdditionalDriverChargeId = additionalDriverCharge.AdditionalDriverChargeId;
+                //additionalDriverChargeRepository.Update(oldAdditionalDriverChargeRecord);
+                additionalDriverChargeRepository.SaveChanges();
+            }
+            return new AdditionalDriverChargeSearchContent
+          {
+              AdditionalDriverChargeId = additionalDriverCharge.AdditionalDriverChargeId,
+              TariffTypeCode = tariffType.TariffTypeCode,
+              TariffTypeCodeName = tariffType.TariffTypeCode + " - " + tariffType.TariffTypeName,
+              AdditionalDriverChargeRate = additionalDriverCharge.AdditionalDriverChargeRate,
+              StartDt = additionalDriverCharge.StartDt,
+              CompanyCodeName = tariffType.Operation.Department.Company.CompanyCode + " - " + tariffType.Operation.Department.Company.CompanyName,
+              OperationCodeName = tariffType.Operation.OperationCode + " - " + tariffType.Operation.OperationName,
+              RevisionNumber = additionalDriverCharge.RevisionNumber,
+              CompanyId = tariffType.Operation.Department.Company.CompanyId,
+              DepartmentId = tariffType.Operation.Department.DepartmentId,
+              OperationId = tariffType.Operation.OperationId,
+              TariffTypeId = tariffType.TariffTypeId,
+          };
+
+        }
+
+        /// <summary>
+        /// Find By Id
+        /// </summary>
+        /// <param name="additionalDriverChargeId"></param>
+        /// <returns></returns>
+        public AdditionalDriverCharge FindById(long additionalDriverChargeId)
+        {
+            return additionalDriverChargeRepository.Find(additionalDriverChargeId);
+        }
+
+
+        /// <summary>
+        /// Additional Driver Charge Delete
+        /// </summary>
+        /// <param name="additionalDriverCharge"></param>
+        public void AdditionalDriverChargeDelete(AdditionalDriverCharge additionalDriverCharge)
+        {
+            additionalDriverChargeRepository.Delete(additionalDriverCharge);
+            additionalDriverChargeRepository.SaveChanges();
         }
         #endregion
     }

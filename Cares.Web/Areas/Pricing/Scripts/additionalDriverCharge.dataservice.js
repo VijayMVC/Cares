@@ -23,21 +23,21 @@ define("additionalDriverCharge/additionalDriverCharge.dataservice", function () 
                         dataType: 'json',
                         type: 'GET'
                     });
-                    // Define request to get Service Rate detail
-                    amplify.request.define('getServiceRateDetail', 'ajax', {
-                        url: '/Api/AdditionalDriverCharge',
+                    // Define request to get  Additional Driver Charge detail
+                    amplify.request.define('getAdditionalDriverChrgDetail', 'ajax', {
+                        url: '/Api/AdditionalDriverChargeDetail',
                         dataType: 'json',
                         type: 'GET'
                     });
-                    // Define request to save Service Rate
-                    amplify.request.define('saveServiceRate', 'ajax', {
+                    // Define request to save  Additional Driver Charges
+                    amplify.request.define('saveAdditionalDriverChrg', 'ajax', {
                         url: '/Api/AdditionalDriverCharge',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
                     });
-                    // Define request to delete Service Rate
-                    amplify.request.define('deleteServiceRate', 'ajax', {
+                    // Define request to delete Additional Driver Charges
+                    amplify.request.define('deleteAdditionalDriverChrg', 'ajax', {
                         url: '/Api/AdditionalDriverCharge',
                         dataType: 'json',
                         type: 'DELETE'
@@ -54,31 +54,31 @@ define("additionalDriverCharge/additionalDriverCharge.dataservice", function () 
                     error: callbacks.error,
                 });
             },
-              // Get Service Rate by id 
-            getServiceRateDetail = function (params, callbacks) {
+              // Get  Additional Driver Charges by id 
+            getAdditionalDriverChrgDetail = function (params, callbacks) {
                 initialize();
                 return amplify.request({
-                    resourceId: 'getServiceRateDetail',
+                    resourceId: 'getAdditionalDriverChrgDetail',
                     success: callbacks.success,
                     error: callbacks.error,
                     data: params
                 });
             },
-               // Save Service Rate
-            saveServiceRate = function (param, callbacks) {
+               // Save Additional Driver Charge
+            saveAdditionalDriverChrg = function (param, callbacks) {
                 initialize();
                 return amplify.request({
-                    resourceId: 'saveServiceRate',
+                    resourceId: 'saveAdditionalDriverChrg',
                     success: callbacks.success,
                     error: callbacks.error,
                     data: param
                 });
             },
               // Delete
-            deleteServiceRate = function (param, callbacks) {
+            deleteAdditionalDriverChrg = function (param, callbacks) {
                 initialize();
                 return amplify.request({
-                    resourceId: 'deleteServiceRate',
+                    resourceId: 'deleteAdditionalDriverChrg',
                     success: callbacks.success,
                     error: callbacks.error,
                     data: param
@@ -96,7 +96,10 @@ define("additionalDriverCharge/additionalDriverCharge.dataservice", function () 
             };
         return {
             getAdditionalDriverChrgBase: getAdditionalDriverChrgBase,
-            getAddDriverChrgs: getAddDriverChrgs
+            getAddDriverChrgs: getAddDriverChrgs,
+            saveAdditionalDriverChrg: saveAdditionalDriverChrg,
+            getAdditionalDriverChrgDetail: getAdditionalDriverChrgDetail,
+            deleteAdditionalDriverChrg: deleteAdditionalDriverChrg,
             
         };
     })();

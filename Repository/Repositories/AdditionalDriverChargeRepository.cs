@@ -70,7 +70,8 @@ namespace Cares.Repository.Repositories
             var getInsuranceRateQuery = from addDriverChrg in DbSet
                                         join tariffType in db.TariffTypes on addDriverChrg.TariffTypeCode equals tariffType.TariffTypeCode
                                         where
-                                            ((!request.OperationId.HasValue ||
+                                            (!addDriverChrg.ChildAdditionalDriverChargeId.HasValue &&
+                                            (!request.OperationId.HasValue ||
                                               tariffType.OperationId == request.OperationId.Value) &&
                                              (!request.TariffTypeId.HasValue ||
                                               tariffType.TariffTypeId == request.TariffTypeId))
@@ -88,16 +89,16 @@ namespace Cares.Repository.Repositories
                                             DepartmentId = tariffType.Operation.Department.DepartmentId,
                                             OperationId = tariffType.Operation.OperationId,
                                             TariffTypeId = tariffType.TariffTypeId,
+                                            ChildAdditionalDriverChargeId = addDriverChrg.ChildAdditionalDriverChargeId,
                                         };
 
             IEnumerable<AdditionalDriverChargeSearchContent> additionalDriverCharges = request.IsAsc
                 ? getInsuranceRateQuery.OrderBy(additionalDriverChargeClause[request.AdditionalDriverChargeByOrder])
                     .Skip(fromRow)
-                    .Take(toRow)
+                    .Take(toRow).ToList()
                 : getInsuranceRateQuery.OrderByDescending(additionalDriverChargeClause[request.AdditionalDriverChargeByOrder])
                     .Skip(fromRow)
-                    .Take(toRow);
-
+                    .Take(toRow).ToList();
             return new AdditionalDriverChargeSearchResponse { AdditionalDriverCharges = additionalDriverCharges, TotalCount = getInsuranceRateQuery.Count() };
         }
 
@@ -113,10 +114,9 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get Additional Driver Charge Revisions By Id
         /// </summary>
-        public IEnumerable<AdditionalDriverCharge> GetRevisions(long additionalDriverChargeId)
+        public AdditionalDriverCharge GetRevision(long additionalDriverChargeId)
         {
-            return DbSet.Where(addDriverChrg => addDriverChrg.UserDomainKey == UserDomainKey && addDriverChrg.AdditionalDriverChargeId == additionalDriverChargeId
-                && addDriverChrg.ChildAdditionalDriverChargeId == additionalDriverChargeId).ToList();
+            return DbSet.FirstOrDefault(addDriverChrg => addDriverChrg.ChildAdditionalDriverChargeId == additionalDriverChargeId);
         }
 
         #endregion

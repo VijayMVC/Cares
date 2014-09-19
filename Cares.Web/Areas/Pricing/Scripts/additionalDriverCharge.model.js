@@ -31,8 +31,13 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
           //Rate
           rate = ko.observable().extend({ required: true, number: true }),
           //Revision Number
-          revisionNumber = ko.observable(),
-
+          revisionNumber = ko.observable(0),
+           //String valued formatted date
+            formattedEffectiveDate = ko.computed({
+                read: function () {
+                    return moment(effectiveStartDate()).format(ist.datePattern);
+                }
+            }),
               // Errors
             errors = ko.validation.group({
                 companyId: companyId,
@@ -41,7 +46,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
                 tariffTypeId: tariffTypeId,
                 effectiveStartDate: effectiveStartDate,
                 rate: rate,
-               
+
             }),
             // Is Valid
             isValid = ko.computed(function () {
@@ -68,9 +73,9 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             };
 
         self = {
-            id:id,
+            id: id,
             companyId: companyId,
-            companyCodeName:companyCodeName,
+            companyCodeName: companyCodeName,
             depId: depId,
             operationId: operationId,
             operationCodeName: operationCodeName,
@@ -79,12 +84,57 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             tariffTypeCodeName: tariffTypeCodeName,
             effectiveStartDate: effectiveStartDate,
             rate: rate,
-            revisionNumber:revisionNumber,
+            revisionNumber: revisionNumber,
+            formattedEffectiveDate:formattedEffectiveDate,
             errors: errors,
             isValid: isValid,
             dirtyFlag: dirtyFlag,
             hasChanges: hasChanges,
             reset: reset,
+        };
+        return self;
+    };
+
+    // ReSharper disable once AssignToImplicitGlobalInFunctionScope
+    AdditionalDriverChargeRevision = function () {
+        var // Reference to this object
+            self,
+            //Tariff Type Code
+            tariffTypeCode = ko.observable(),
+            //Effective Start Date
+            effectiveStartDate = ko.observable(),
+            //Rate
+            rate = ko.observable(),
+            //Revision Number
+            revisionNumber = ko.observable(0),
+            //created By
+            createdBy = ko.observable(0),
+            //modified By
+            modifiedBy = ko.observable(0),
+            //modified Date
+            modifiedDt = ko.observable(0),
+            //String valued formatted date
+            formattedEffectiveDate = ko.computed({
+                read: function () {
+                    return moment(effectiveStartDate()).format(ist.datePattern);
+                }
+            }),
+            //string valued formatted last updated date
+            formattedModifiedDate = ko.computed({
+                read: function () {
+                    return moment(modifiedDt()).format(ist.datePattern);
+                }
+            });
+        self = {
+            tariffTypeCode: tariffTypeCode,
+            effectiveStartDate: effectiveStartDate,
+            rate: rate,
+            revisionNumber: revisionNumber,
+            createdBy: createdBy,
+            modifiedBy: modifiedBy,
+            modifiedDt: modifiedDt,
+            formattedEffectiveDate: formattedEffectiveDate,
+            formattedModifiedDate: formattedModifiedDate,
         };
         return self;
     };
@@ -104,11 +154,45 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         addDriverChage.effectiveStartDate(source.StartDt !== null ? moment(source.StartDt, ist.utcFormat).toDate() : undefined);
         addDriverChage.rate(source.AdditionalDriverChargeRate === null ? undefined : source.AdditionalDriverChargeRate);
         addDriverChage.revisionNumber(source.RevisionNumber === null ? undefined : source.RevisionNumber);
-       
+
         return addDriverChage;
+    };
+    //Server To Client Mapper
+    // ReSharper disable once InconsistentNaming
+    var AdditionalDriverChargeRevisionClientMapper = function (source) {
+        var addDriverChage = new AdditionalDriverChargeRevision();
+        addDriverChage.tariffTypeCode(source.TariffTypeCode === null ? undefined : source.TariffTypeCode);
+        addDriverChage.effectiveStartDate(source.StartDt !== null ? moment(source.StartDt, ist.utcFormat).toDate() : undefined);
+        addDriverChage.modifiedDt(source.RecLastUpdatedDt !== null ? moment(source.RecLastUpdatedDt, ist.utcFormat).toDate() : undefined);
+        addDriverChage.rate(source.AdditionalDriverChargeRate === null ? undefined : source.AdditionalDriverChargeRate);
+        addDriverChage.revisionNumber(source.RevisionNumber === null ? undefined : source.RevisionNumber);
+        addDriverChage.createdBy(source.RecCreatedBy === null ? undefined : source.RecCreatedBy);
+        addDriverChage.modifiedBy(source.RecLastUpdatedBy === null ? undefined : source.RecLastUpdatedBy);
+
+        return addDriverChage;
+    };
+    // Convert Client to Server
+    var AdditionalDriverChrgServerMapper = function (item) {
+        var result = {};
+        result.AdditionalDriverChargeId = item.id() === undefined ? 0 : item.id();
+        result.TariffTypeCode = item.tariffTypeId() === undefined ? null : item.tariffTypeId();
+        result.AdditionalDriverChargeRate = item.rate() === undefined ? null : item.rate();
+        result.RevisionNumber = item.revisionNumber() === undefined ? 0 : item.revisionNumber();
+        result.StartDt = item.effectiveStartDate() === undefined || item.effectiveStartDate() === null ? null : moment(item.effectiveStartDate()).format(ist.utcFormat);
+        return result;
+    };
+    // Convert Client to server
+    var AdditionalDriverChrgServerMapperForId = function (source) {
+        var result = {};
+        result.AdditionalDriverChargeId = source.id() === undefined ? 0 : source.id();
+        return result;
     };
     return {
         AdditionalDriverCharge: AdditionalDriverCharge,
-        AdditionalDriverChargeClientMapper:AdditionalDriverChargeClientMapper
+        AdditionalDriverChargeClientMapper: AdditionalDriverChargeClientMapper,
+        AdditionalDriverChrgServerMapper: AdditionalDriverChrgServerMapper,
+        AdditionalDriverChrgServerMapperForId: AdditionalDriverChrgServerMapperForId,
+        AdditionalDriverChargeRevision: AdditionalDriverChargeRevision,
+        AdditionalDriverChargeRevisionClientMapper: AdditionalDriverChargeRevisionClientMapper
     };
 });

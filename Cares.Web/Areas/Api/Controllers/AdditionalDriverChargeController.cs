@@ -16,7 +16,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// </summary>
     public class AdditionalDriverChargeController : ApiController
     {
-        
+
         #region Private
         private readonly IAdditionalDriverService additionalDriverService;
         #endregion
@@ -46,33 +46,37 @@ namespace Cares.Web.Areas.Api.Controllers
 
         }
 
-        ///// <summary>
-        ///// Add/Update a Employee
-        ///// </summary>
-        //[ApiException]
-        //public EmployeeListViewContent Post(Employee employee)
-        //{
-        //    if (employee == null || !ModelState.IsValid)
-        //    {
-        //        throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
-        //    }
-        //    EmployeeListViewContent employeeResult = employeeService.SaveEmployee(employee.CreateFrom()).CreateFromListViewContent();
-        //    return employeeResult;
-        //}
 
-        ///// <summary>
-        ///// Delete a Vehicle
-        ///// </summary>
-        //public void Delete(Employee employee)
-        //{
-        //    if (employee == null || !ModelState.IsValid)
-        //    {
-        //        throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
-        //    }
-        //    employeeService.DeleteEmployee(employeeService.FindById(employee.EmployeeId));
-        //}
-        
+        /// <summary>
+        /// Add/Update a Additional Driver Charge
+        /// </summary>
+        [ApiException]
+        public AdditionalDriverChargeSearchContent Post(AdditionalDriverCharge additionalDriverCharge)
+        {
+            if (additionalDriverCharge == null || !ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+            AdditionalDriverChargeSearchContent reponse =
+                additionalDriverService.SaveAdditionalDriverCharge(additionalDriverCharge.CreateFrom())
+                    .CreateFrom();
+            return reponse;
+
+        }
+
+        /// <summary>
+        /// Delete a Additional Driver Charge
+        /// </summary>
+        public void Delete(AdditionalDriverCharge additionalDriverCharge)
+        {
+            if (additionalDriverCharge == null || !ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+            additionalDriverService.AdditionalDriverChargeDelete(additionalDriverService.FindById(additionalDriverCharge.AdditionalDriverChargeId));
+        }
+
         #endregion
-        
+
     }
 }

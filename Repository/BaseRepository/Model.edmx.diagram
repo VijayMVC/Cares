@@ -116,7 +116,6 @@
         <AssociationConnector Association="DomainModels.RefPhoneType1941" />
         <AssociationConnector Association="DomainModels.RefworkLocation1942" />
         <AssociationConnector Association="DomainModels.RefsubRegion1973" />
-        <AssociationConnector Association="DomainModels.RefTariffType364" />
         <AssociationConnector Association="DomainModels.RefTransmissionType331" />
         <AssociationConnector Association="DomainModels.FK_Vehicle_VehicleStatus" />
         <AssociationConnector Association="DomainModels.RefVehicle509" />
@@ -214,8 +213,9 @@
         <AssociationConnector Association="DomainModels.RefMenu01" />
         <EntityTypeShape EntityType="DomainModels.MenuRight" Width="1.5" PointX="3" PointY="28.5" />
         <AssociationConnector Association="DomainModels.FK_dbo_MenuRight_dbo_Menu_Menu_MenuId" />
-        <EntityTypeShape EntityType="DomainModels.AdditionalDriverCharge" Width="1.5" PointX="5.375" PointY="22.75" />
+        <EntityTypeShape EntityType="DomainModels.AdditionalDriverCharge" PointX="5.375" PointY="22.75" Width="1.5" />
         <AssociationConnector Association="DomainModels.RefAdditionalDriverCharge402" />
+        <AssociationConnector Association="DomainModels.RefTariffType364" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
