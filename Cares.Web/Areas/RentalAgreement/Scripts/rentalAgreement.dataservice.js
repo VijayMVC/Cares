@@ -30,6 +30,8 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
                     amplify.request.define('getHireGroupsByCodeAndVehicleInfo', 'ajax', {
                         url: '/Api/RentalAgreementHireGroups',
                         dataType: 'json',
+                        dataMap: JSON.stringify,
+                        contentType: "application/json; charset=utf-8",
                         type: 'POST'
                     });
                     
