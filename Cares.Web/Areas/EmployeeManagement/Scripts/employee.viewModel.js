@@ -147,7 +147,6 @@ define("employee/employee.viewModel",
                                 if (item.CountryId === addEmployeeItem().address().countryId())
                                     addEmployeeItem().address().countryName(item.CountryCodeName);
                             });
-
                         }
                     },
                     //get regions by country          
@@ -657,7 +656,7 @@ define("employee/employee.viewModel",
                                 }
                             },
                             error: function () {
-                                toastr.error("loadBaseDataFailedMsg");
+                                toastr.error(ist.resourceText.loadBaseDataFailedMsg);
                             }
                         });
                     },

@@ -28,7 +28,7 @@
                 </div>
                 <label for="tariffType" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.ServiceRate.TariffType *</label>
                 <div class="col-xs-2">
-                    <select id="tariffType" class="form-control" data-bind="options: $root.tariffTypes, optionsText: 'TariffTypeCodeName', optionsValue: 'TariffTypeId', optionsCaption: '&lt;' + '@(Cares.Web.Resources.Tariff.TariffRate.TariffType )' + '&gt;', value: tariffTypeId, disable :(serviceRtMainId()!=undefined)"></select>
+                    <select id="tariffType" class="form-control" data-bind="options: $root.filteredTariffTypes, optionsText: 'TariffTypeCodeName', optionsValue: 'TariffTypeId', optionsCaption: '&lt;' + '@(Cares.Web.Resources.Tariff.TariffRate.TariffType )' + '&gt;', value: tariffTypeId, disable :(serviceRtMainId()!=undefined)"></select>
                 </div>
                 <label for="sDate" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.ServiceRate.EffectiveFrom *</label>
                 <div class="col-md-2">
@@ -38,6 +38,7 @@
 
         </form>
     </div>
+    <br/>
     <div class="panel panel-info searchFilterResultSection">
         <div class="panel-heading">@Cares.Web.Resources.Tariff.ServiceRate.ServiceItemRate</div>
         <table id="serviceItemRate" class="table table-condensed">
@@ -78,10 +79,10 @@
                     <span data-bind="text: serviceTypeCodeName"></span>
                 </td>
                 <td class="col-md-2">
-                    <input type="text" data-bind="value: serviceRate, validationTooltip: serviceRate" />
+                    <input type="text" class="serviceRate"  data-bind="value: serviceRate, validationTooltip: serviceRate" />
                 </td>
                 <td class="col-md-2">
-                    <input type="text" data-bind="datepicker: startDt, validationTooltip: startDt" />
+                    <input type="text" class="startDate" data-bind="datepicker: startDt, validationTooltip: startDt" />
                 </td>
                 <td class="col-md-2">
                     <span data-bind="text: revisionNumber"></span>

@@ -123,7 +123,7 @@ define("additionalDriverCharge/additionalDriverCharge.viewModel",
                             },
                             error: function () {
                                 isLoadingAdditionalDriverChrg(false);
-                                toastr.error(ist.resourceText.serviceItemRatesFailedMsg);
+                                toastr.error(ist.resourceText.loadAddDriverChargeDetailFailedMsg);
                             }
                         });
                     },
@@ -199,7 +199,7 @@ define("additionalDriverCharge/additionalDriverCharge.viewModel",
                                     addDriverChrgs.splice(0, 0, additionalDriverCharge);
                                     closeAdditionalDriverChrgEditor();
                                 }
-                                toastr.success("success");
+                                toastr.success(ist.resourceText.additionalDriverChargeAddSuccessMsg);
                             },
                             error: function (exceptionMessage, exceptionType) {
 
@@ -209,41 +209,48 @@ define("additionalDriverCharge/additionalDriverCharge.viewModel",
 
                                 } else {
 
-                                    toastr.error(ist.resourceText.serviceRateAddFailedMsg);
+                                    toastr.error(ist.resourceText.ist.resourceText.additionalDriverChargeAddFailedMsg);
 
                                 }
 
                             }
                         });
                     },
-                    //Edit Additional Driver Charge
-                    onEditAddDriverChrg = function (addDriverChrg, e) {
-                        filteredDepartments.removeAll();
-                        filteredOperations.removeAll();
-                        filteredTariffTypes.removeAll();
-                        revisions.removeAll();
 
+                companyId = ko.computed(function () {
+                    if (addEditAdditionalDriverChrg() !== undefined) {
+                        filteredDepartments.removeAll();
                         _.each(departments(), function (item) {
-                            if (item.CompanyId === addDriverChrg.companyId())
+                            if (item.CompanyId === addEditAdditionalDriverChrg().companyId())
                                 filteredDepartments.push(item);
                         });
-                        filteredDepartments.valueHasMutated();
-                        _.each(operations(), function (item) {
-                            if (item.DepartmentId === addDriverChrg.depId())
-                                filteredOperations.push(item);
-                        });
-                        filteredOperations.valueHasMutated();
-                        _.each(tariffTypes(), function (item) {
-                            if (item.OperationId === addDriverChrg.operationId())
-                                filteredTariffTypes.push(item);
-                        });
-                        filteredTariffTypes.valueHasMutated();
-
+                    }
+                }, this),
+                   depId = ko.computed(function () {
+                       if (addEditAdditionalDriverChrg() !== undefined) {
+                           filteredOperations.removeAll();
+                           _.each(operations(), function (item) {
+                               if (item.DepartmentId === addEditAdditionalDriverChrg().depId())
+                                   filteredOperations.push(item);
+                           });
+                       }
+                   }, this),
+                    operationId = ko.computed(function () {
+                        if (addEditAdditionalDriverChrg() !== undefined) {
+                            //tariffTypes.removeAll();
+                            _.each(tariffTypes(), function (item) {
+                                if (item.OperationId === addEditAdditionalDriverChrg().operationId())
+                                    filteredTariffTypes.push(item);
+                            });
+                        }
+                    }, this),
+                    //Edit Additional Driver Charge
+                    onEditAddDriverChrg = function (addDriverChrg, e) {
+                        revisions.removeAll();
                         selectedAdditionalDriverChrg(addDriverChrg);
                         addEditAdditionalDriverChrg(addDriverChrg);
-                       
-                        addEditAdditionalDriverChrg().depId(addDriverChrg.depId());
-                        addEditAdditionalDriverChrg().tariffTypeId(addDriverChrg.tariffTypeId());
+                        //addEditAdditionalDriverChrg().depId(addDriverChrg.depId());
+                        //addEditAdditionalDriverChrg().tariffTypeId(addDriverChrg.tariffTypeId());
                         getAdditionalDriverChrgsById(addDriverChrg);
                         showAdditionalDriverChrgEditor();
                         e.stopImmediatePropagation();
@@ -298,7 +305,7 @@ define("additionalDriverCharge/additionalDriverCharge.viewModel",
                             },
                             error: function () {
                                 isLoadingAdditionalDriverChrg(false);
-                                toastr.error(ist.resourceText.serviceRatesLoadFailedMsg);
+                                toastr.error(ist.resourceText.additionalDriverChargeLoadFailedMsg);
                             }
                         });
                     },

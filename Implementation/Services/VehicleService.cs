@@ -119,7 +119,7 @@ namespace Cares.Implementation.Services
         public Vehicle SaveVehicle(Vehicle vehicle)
         {
             Vehicle vehicleDbVersion = vehicleRepository.Find(vehicle.VehicleId);
-
+            vehicle.VehicleCondition = "Not implemented";
 
             #region Add
 
@@ -420,7 +420,7 @@ namespace Cares.Implementation.Services
             vehicleRepository.SaveChanges();
             #endregion
             Vehicle vehicleResponse=vehicleRepository.Find(vehicle.VehicleId);
-            //vehicleRepository.LoadDependencies(vehicleResponse);
+            vehicleRepository.LoadDependencies(vehicleResponse);
             return vehicleResponse;
         }
 

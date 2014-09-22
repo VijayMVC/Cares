@@ -339,4 +339,25 @@
   <data name="ZipCode" xml:space="preserve">
     <value>Zip Code</value>
   </data>
+  <data name="EmployeeDeleteErrorMsg" xml:space="preserve">
+    <value>Failed to delete Employee.</value>
+  </data>
+  <data name="EmployeeDeleteSuccessMsg" xml:space="preserve">
+    <value>Employee successfully delete.</value>
+  </data>
+  <data name="EmployeeDetailFailedMsg" xml:space="preserve">
+    <value>Failed to load Employee Detail.</value>
+  </data>
+  <data name="EmployeeLoadFailedMsg" xml:space="preserve">
+    <value>Failed to load Employees.</value>
+  </data>
+  <data name="EmployeeSaveErrorMsg" xml:space="preserve">
+    <value>Failed to save Employee.</value>
+  </data>
+  <data name="EmployeeSaveSuccessMsg" xml:space="preserve">
+    <value>Employee successfully save.</value>
+  </data>
+  <data name="LoadBaseDataFailedMsg" xml:space="preserve">
+    <value>Failed to load base data.</value>
+  </data>
 </root>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -32,6 +33,10 @@ namespace Cares.Implementation.Services
         private readonly IOperationRepository operationRepository;
         private readonly IOperationsWorkPlaceRepository operationsWorkPlaceRepository;
         private readonly IAddressTypeRepository addressTypeRepository;
+        private readonly IAddressRepository addressRepository;
+        private readonly IPhoneRepository phoneRepository;
+        private readonly IEmpJobProgRepository empJobProgRepository;
+        private readonly IEmpAuthOperationsWorkplaceRepository empAuthOperationsWorkplaceRepository;
         #endregion
 
         #region Constructor
@@ -60,10 +65,16 @@ namespace Cares.Implementation.Services
             IDepartmentRepository departmentRepository, IWorkplaceRepository workplaceRepository, ICountryRepository countryRepository,
             IRegionRepository regionRepository, ISubRegionRepository subRegionRepository, ICityRepository cityRepository,
             IAreaRepository areaRepository, IPhoneTypeRepository phoneTypeRepository, ILicenseTypeRepository licenseTypeRepository,
-            IOperationRepository operationRepository, IOperationsWorkPlaceRepository operationsWorkPlaceRepository, IAddressTypeRepository addressTypeRepository)
+            IOperationRepository operationRepository, IOperationsWorkPlaceRepository operationsWorkPlaceRepository, IAddressTypeRepository addressTypeRepository,
+            IAddressRepository addressRepository, IPhoneRepository phoneRepository, IEmpJobProgRepository empJobProgRepository,
+            IEmpAuthOperationsWorkplaceRepository empAuthOperationsWorkplaceRepository)
         {
             employeeRepository = empRepository;
             this.empStatusRepository = empStatusRepository;
+            this.addressRepository = addressRepository;
+            this.phoneRepository = phoneRepository;
+            this.empJobProgRepository = empJobProgRepository;
+            this.empAuthOperationsWorkplaceRepository = empAuthOperationsWorkplaceRepository;
             this.companyRepository = companyRepository;
             this.jobTypeRepository = jobTypeRepository;
             this.designationRepository = designationRepository;
@@ -187,6 +198,7 @@ namespace Cares.Implementation.Services
         {
             Employee empDbVersion = employeeRepository.Find(employee.EmployeeId);
 
+            #region Add
             if (empDbVersion == null)
             {
 
@@ -204,32 +216,32 @@ namespace Cares.Implementation.Services
                 employee.EmpJobInfo.RecLastUpdatedDt = employee.EmpJobInfo.RecCreatedDt = DateTime.Now;
                 employee.EmpJobInfo.RecLastUpdatedBy = employee.EmpJobInfo.RecCreatedBy = employeeRepository.LoggedInUserIdentity;
 
-                ////Address List
-                //if (employee.Addresses!=null)
-                //{
-                //    foreach (var item in employee.Addresses)
-                //    {
-                //        item.UserDomainKey = employeeRepository.UserDomainKey;
-                //        item.IsActive = true;
-                //        item.IsReadOnly = item.IsPrivate = item.IsDeleted = false;
-                //        item.RecLastUpdatedDt = item.RecCreatedDt = DateTime.Now;
-                //        item.RecLastUpdatedBy = item.RecCreatedBy = employeeRepository.LoggedInUserIdentity;
-                //        item.RowVersion = 0;
-                //    }
-                //}
-                ////Phone List
-                //if (employee.PhoneNumbers != null)
-                //{
-                //    foreach (var item in employee.PhoneNumbers)
-                //    {
-                //        item.UserDomainKey = employeeRepository.UserDomainKey;
-                //        item.IsActive = true;
-                //        item.IsReadOnly = item.IsPrivate = item.IsDeleted = false;
-                //        item.RecLastUpdatedDt = item.RecCreatedDt = DateTime.Now;
-                //        item.RecLastUpdatedBy = item.RecCreatedBy = employeeRepository.LoggedInUserIdentity;
-                //        item.RowVersion = 0;
-                //    }
-                //}
+                //Address List
+                if (employee.Addresses != null)
+                {
+                    foreach (var item in employee.Addresses)
+                    {
+                        item.UserDomainKey = employeeRepository.UserDomainKey;
+                        item.IsActive = true;
+                        item.IsReadOnly = item.IsPrivate = item.IsDeleted = false;
+                        item.RecLastUpdatedDt = item.RecCreatedDt = DateTime.Now;
+                        item.RecLastUpdatedBy = item.RecCreatedBy = employeeRepository.LoggedInUserIdentity;
+                        item.RowVersion = 0;
+                    }
+                }
+                //Phone List
+                if (employee.PhoneNumbers != null)
+                {
+                    foreach (var item in employee.PhoneNumbers)
+                    {
+                        item.UserDomainKey = employeeRepository.UserDomainKey;
+                        item.IsActive = true;
+                        item.IsReadOnly = item.IsPrivate = item.IsDeleted = false;
+                        item.RecLastUpdatedDt = item.RecCreatedDt = DateTime.Now;
+                        item.RecLastUpdatedBy = item.RecCreatedBy = employeeRepository.LoggedInUserIdentity;
+                        item.RowVersion = 0;
+                    }
+                }
 
                 //Docs Info
                 employee.EmpDocsInfo.UserDomainKey = employeeRepository.UserDomainKey;
@@ -268,9 +280,12 @@ namespace Cares.Implementation.Services
                 employeeRepository.Add(employee);
 
             }
+            #endregion
+
+            #region Edit
             else
             {
-                
+                #region Employee
                 empDbVersion.EmployeeId = employee.EmployeeId;
                 empDbVersion.CompanyId = employee.CompanyId;
                 empDbVersion.EmpStatusId = employee.EmpStatusId;
@@ -289,7 +304,9 @@ namespace Cares.Implementation.Services
                 empDbVersion.NationalityId = employee.NationalityId;
                 empDbVersion.RecLastUpdatedBy = employeeRepository.LoggedInUserIdentity;
                 empDbVersion.RecLastUpdatedDt = DateTime.Now;
-                //Emp Job Info
+                #endregion
+
+                #region Emp Job Info
                 empDbVersion.EmpJobInfo.DepartmentId = employee.EmpJobInfo.DepartmentId;
                 empDbVersion.EmpJobInfo.DesigGradeId = employee.EmpJobInfo.DesigGradeId;
                 empDbVersion.EmpJobInfo.DesignationId = employee.EmpJobInfo.DesignationId;
@@ -300,7 +317,9 @@ namespace Cares.Implementation.Services
                 empDbVersion.EmpJobInfo.Salary = employee.EmpJobInfo.Salary;
                 empDbVersion.EmpJobInfo.RecLastUpdatedBy = employeeRepository.LoggedInUserIdentity;
                 empDbVersion.EmpJobInfo.RecLastUpdatedDt = DateTime.Now;
-                //Emp Docs Info
+                #endregion
+
+                #region Emp Docs Info
                 empDbVersion.EmpDocsInfo.InsuranceCompany = employee.EmpDocsInfo.InsuranceCompany;
                 empDbVersion.EmpDocsInfo.InsuranceDt = employee.EmpDocsInfo.InsuranceDt;
                 empDbVersion.EmpDocsInfo.InsuranceNo = employee.EmpDocsInfo.InsuranceNo;
@@ -317,9 +336,207 @@ namespace Cares.Implementation.Services
                 empDbVersion.EmpDocsInfo.VisaExpDt = employee.EmpDocsInfo.VisaExpDt;
                 empDbVersion.EmpDocsInfo.RecLastUpdatedBy = employeeRepository.LoggedInUserIdentity;
                 empDbVersion.EmpDocsInfo.RecLastUpdatedDt = DateTime.Now;
+                #endregion
 
+                #region Address List
+                if (employee.Addresses != null)
+                {
+                    foreach (var item in employee.Addresses)
+                    {
+                        if (
+                            empDbVersion.Addresses.All(
+                                x =>
+                                    x.AddressId != item.AddressId ||
+                                    item.AddressId == 0))
+                        {
+                            item.UserDomainKey = employeeRepository.UserDomainKey;
+                            item.RecLastUpdatedDt = item.RecCreatedDt = DateTime.Now;
+                            item.RecLastUpdatedBy = item.RecCreatedBy = employeeRepository.LoggedInUserIdentity;
+                            item.RowVersion = 0;
+
+                            empDbVersion.Addresses.Add(item);
+                        }
+                    }
+                }
+                //find missing items
+                List<Address> missingAddressItems = new List<Address>();
+                foreach (Address dbversionAddressItem in empDbVersion.Addresses)
+                {
+                    if (employee.Addresses != null && employee.Addresses.All(x => x.AddressId != dbversionAddressItem.AddressId))
+                    {
+                        missingAddressItems.Add(dbversionAddressItem);
+                    }
+                    if (employee.Addresses == null)
+                    {
+                        missingAddressItems.Add(dbversionAddressItem);
+                    }
+                }
+                //remove missing items
+                foreach (Address missingAddressItem in missingAddressItems)
+                {
+                    Address dbVersionMissingItem = empDbVersion.Addresses.First(x => x.AddressId == missingAddressItem.AddressId);
+                    if (dbVersionMissingItem.AddressId > 0)
+                    {
+                        empDbVersion.Addresses.Remove(dbVersionMissingItem);
+                        addressRepository.Delete(dbVersionMissingItem);
+                        addressRepository.SaveChanges();
+                    }
+                }
+
+
+                #endregion
+
+                #region Phone List
+                if (employee.PhoneNumbers != null)
+                {
+                    foreach (var item in employee.PhoneNumbers)
+                    {
+                        if (
+                            empDbVersion.PhoneNumbers.All(
+                                x =>
+                                    x.PhoneId != item.PhoneId ||
+                                    item.PhoneId == 0))
+                        {
+                            item.UserDomainKey = employeeRepository.UserDomainKey;
+                            item.RecLastUpdatedDt = item.RecCreatedDt = DateTime.Now;
+                            item.RecLastUpdatedBy = item.RecCreatedBy = employeeRepository.LoggedInUserIdentity;
+                            item.RowVersion = 0;
+
+                            empDbVersion.PhoneNumbers.Add(item);
+                        }
+                    }
+                }
+                //find missing items
+                List<Phone> missingPhoneItems = new List<Phone>();
+                foreach (Phone dbversionPhoneItem in empDbVersion.PhoneNumbers)
+                {
+                    if (employee.PhoneNumbers != null && employee.PhoneNumbers.All(x => x.PhoneId != dbversionPhoneItem.PhoneId))
+                    {
+                        missingPhoneItems.Add(dbversionPhoneItem);
+                    }
+                    if (employee.PhoneNumbers == null)
+                    {
+                        missingPhoneItems.Add(dbversionPhoneItem);
+                    }
+                }
+                //remove missing items
+                foreach (Phone missingPhoneItem in missingPhoneItems)
+                {
+                    Phone dbVersionMissingItem = empDbVersion.PhoneNumbers.First(x => x.PhoneId == missingPhoneItem.PhoneId);
+                    if (dbVersionMissingItem.PhoneId > 0)
+                    {
+                        empDbVersion.PhoneNumbers.Remove(dbVersionMissingItem);
+                        phoneRepository.Delete(dbVersionMissingItem);
+                        phoneRepository.SaveChanges();
+                    }
+                }
+                #endregion
+
+                #region Docs Info
+                employee.EmpDocsInfo.UserDomainKey = employeeRepository.UserDomainKey;
+                employee.EmpDocsInfo.IsActive = true;
+                employee.EmpDocsInfo.IsReadOnly = employee.EmpDocsInfo.IsPrivate = employee.EmpDocsInfo.IsDeleted = false;
+                employee.EmpDocsInfo.RecLastUpdatedDt = employee.EmpDocsInfo.RecCreatedDt = DateTime.Now;
+                employee.EmpDocsInfo.RecLastUpdatedBy = employee.EmpDocsInfo.RecCreatedBy = employeeRepository.LoggedInUserIdentity;
+                #endregion
+
+                #region Job Progress List
+                if (employee.EmpJobProgs != null)
+                {
+                    foreach (var item in employee.EmpJobProgs)
+                    {
+                        if (
+                            empDbVersion.EmpJobProgs.All(
+                                x =>
+                                    x.EmpJobProgId != item.EmpJobProgId ||
+                                    item.EmpJobProgId == 0))
+                        {
+                            item.UserDomainKey = employeeRepository.UserDomainKey;
+                            item.RecLastUpdatedDt = item.RecCreatedDt = DateTime.Now;
+                            item.RecLastUpdatedBy = item.RecCreatedBy = employeeRepository.LoggedInUserIdentity;
+                            item.RowVersion = 0;
+
+                            empDbVersion.EmpJobProgs.Add(item);
+                        }
+                    }
+                }
+                //find missing items
+                List<EmpJobProg> missingEmpJobProgItems = new List<EmpJobProg>();
+                foreach (EmpJobProg dbversionEmpJobProgItem in empDbVersion.EmpJobProgs)
+                {
+                    if (employee.EmpJobProgs != null && employee.EmpJobProgs.All(x => x.EmpJobProgId != dbversionEmpJobProgItem.EmpJobProgId))
+                    {
+                        missingEmpJobProgItems.Add(dbversionEmpJobProgItem);
+                    }
+                    if (employee.EmpJobProgs == null)
+                    {
+                        missingEmpJobProgItems.Add(dbversionEmpJobProgItem);
+                    }
+                }
+                //remove missing items
+                foreach (EmpJobProg missingEmpJobProgItem in missingEmpJobProgItems)
+                {
+                    EmpJobProg dbVersionMissingItem = empDbVersion.EmpJobProgs.First(x => x.EmpJobProgId == missingEmpJobProgItem.EmpJobProgId);
+                    if (dbVersionMissingItem.EmpJobProgId > 0)
+                    {
+                        empDbVersion.EmpJobProgs.Remove(dbVersionMissingItem);
+                        empJobProgRepository.Delete(dbVersionMissingItem);
+                        empJobProgRepository.SaveChanges();
+                    }
+                }
+
+                #endregion
+
+                #region Authorized Locations List
+                if (employee.EmpAuthOperationsWorkplaces != null)
+                {
+                    foreach (var item in employee.EmpAuthOperationsWorkplaces)
+                    {
+                        if (
+                            empDbVersion.EmpAuthOperationsWorkplaces.All(
+                                x =>
+                                    x.EmpAuthOperationsWorkplaceId != item.EmpAuthOperationsWorkplaceId ||
+                                    item.EmpAuthOperationsWorkplaceId == 0))
+                        {
+                            item.UserDomainKey = employeeRepository.UserDomainKey;
+                            item.RecLastUpdatedDt = item.RecCreatedDt = DateTime.Now;
+                            item.RecLastUpdatedBy = item.RecCreatedBy = employeeRepository.LoggedInUserIdentity;
+                            item.RowVersion = 0;
+
+                            empDbVersion.EmpAuthOperationsWorkplaces.Add(item);
+                        }
+                    }
+                }
+                //find missing items
+                List<EmpAuthOperationsWorkplace> missingLocationItems = new List<EmpAuthOperationsWorkplace>();
+                foreach (EmpAuthOperationsWorkplace dbversionLocationItem in empDbVersion.EmpAuthOperationsWorkplaces)
+                {
+                    if (employee.EmpAuthOperationsWorkplaces != null && employee.EmpAuthOperationsWorkplaces.All(x => x.EmpAuthOperationsWorkplaceId != dbversionLocationItem.EmpAuthOperationsWorkplaceId))
+                    {
+                        missingLocationItems.Add(dbversionLocationItem);
+                    }
+                    if (employee.EmpAuthOperationsWorkplaces == null)
+                    {
+                        missingLocationItems.Add(dbversionLocationItem);
+                    }
+                }
+                //remove missing items
+                foreach (EmpAuthOperationsWorkplace missingLocationItem in missingLocationItems)
+                {
+                    EmpAuthOperationsWorkplace dbVersionMissingItem = empDbVersion.EmpAuthOperationsWorkplaces.First(x => x.EmpAuthOperationsWorkplaceId == missingLocationItem.EmpAuthOperationsWorkplaceId);
+                    if (dbVersionMissingItem.EmpAuthOperationsWorkplaceId > 0)
+                    {
+                        empDbVersion.EmpAuthOperationsWorkplaces.Remove(dbVersionMissingItem);
+                        empAuthOperationsWorkplaceRepository.Delete(dbVersionMissingItem);
+                        empAuthOperationsWorkplaceRepository.SaveChanges();
+                    }
+                }
+
+                #endregion
 
             }
+            #endregion
+
             employeeRepository.SaveChanges();
 
             return employeeRepository.Find(employee.EmployeeId);

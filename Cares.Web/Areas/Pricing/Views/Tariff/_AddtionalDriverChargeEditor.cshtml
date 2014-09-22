@@ -2,7 +2,7 @@
 
 <div class="well col-md-12" id="additionalDriverChargeEditor" data-bind="visible: isAdditionalDriverChrgEditorVisible, with: addEditAdditionalDriverChrg" style="display: none;">
     <div class="float-left detailsContainer">
-        <h3 class="page-header detailsHeaderSection">Additional Driver Charge Detail</h3>
+        <h3 class="page-header detailsHeaderSection">@Cares.Web.Resources.Tariff.AdditionalDriverChrg.AdditionalDriverChargeDetail</h3>
         <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onSaveAdditionalDriverChrg, enable: hasChanges, css: { 'btn-warning': hasChanges }">@Cares.Web.Resources.Shared.Common.Save</button>
         <button class="btn btn-default" id="saveBtn" data-bind="click: $root.closeAdditionalDriverChrgEditor">@Cares.Web.Resources.Shared.Common.Cancel</button>
     </div>
@@ -10,54 +10,54 @@
         <div class="form-group">
         </div>
         <div class="form-group">
-            <label for="company" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.TariffType.Company *</label>
+            <label for="company" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.AdditionalDriverChrg.Company *</label>
             <div class="col-md-3">
-                <select id="company" class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption:  '@("<" + Cares.Web.Resources.Tariff.TariffType.Company + ">")' , value: companyId, validationTooltip: companyId, event:{change:$root.onSelectedCompany }"></select>
+                <select id="company" class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption:  '@("<" + Cares.Web.Resources.Tariff.AdditionalDriverChrg.Company + ">")' , value: companyId, validationTooltip: companyId, event:{change:$root.onSelectedCompany }"></select>
             </div>
-            <label for="department" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.TariffType.Department *</label>
+            <label for="department" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.AdditionalDriverChrg.Department *</label>
             <div class="col-md-3">
-                <select id="department" class="form-control" data-bind="options: $root.filteredDepartments, optionsText: 'DepartmentCodeName', optionsValue: 'DepartmentId', optionsCaption:  '@("<" + Cares.Web.Resources.Tariff.TariffType.Department + ">")' , value: depId, validationTooltip: depId, event:{change:$root.onSelectedDepartemnt}"></select>
+                <select id="department" class="form-control" data-bind="options: $root.filteredDepartments, optionsText: 'DepartmentCodeName', optionsValue: 'DepartmentId', optionsCaption:  '@("<" + Cares.Web.Resources.Tariff.AdditionalDriverChrg.Department + ">")' , value: depId, validationTooltip: depId, event:{change:$root.onSelectedDepartemnt}"></select>
             </div>
-            <label for="operation" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.TariffType.Operation *</label>
+            <label for="operation" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.AdditionalDriverChrg.Operation *</label>
             <div class="col-md-3">
-                <select id="operation" class="form-control" data-bind="options: $root.filteredOperations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '@("<" + Cares.Web.Resources.Tariff.TariffType.Operation + ">")'  , value: operationId, validationTooltip: operationId, event:{change:$root.onSelectedOperation}"></select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="tariffType" class="control-label h5 col-sm-1">Tariff Type *</label>
-            <div class="col-md-3">
-                <select id="tariffType" class="form-control" data-bind="options: $root.filteredTariffTypes, optionsText: 'TariffTypeCodeName', optionsValue: 'TariffTypeId', optionsCaption:  'Tariff Type' , value: tariffTypeId, validationTooltip: tariffTypeId"></select>
-            </div>
-            <label for="effectiveDate" class="control-label h5 col-sm-1">Effective Star tDate *</label>
-            <div class="col-md-3">
-                <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.TariffType.EffectiveStartDate + ">")' class="form-control" id="effectiveDate" data-bind="datepicker: effectiveStartDate, validationTooltip: effectiveStartDate" />
-            </div>
-            <label for="rate" class="control-label h5 col-sm-1">Rate *</label>
-            <div class="col-md-3">
-                <input type="text" placeholder='Rate' class="form-control" id="rate" data-bind="value: rate, validationTooltip: rate" />
+                <select id="operation" class="form-control" data-bind="options: $root.filteredOperations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '@("<" + Cares.Web.Resources.Tariff.AdditionalDriverChrg.Operation + ">")'  , value: operationId, validationTooltip: operationId, event:{change:$root.onSelectedOperation}"></select>
             </div>
         </div>
         <div class="form-group">
-            <label for="revisionNum" class="control-label h5 col-sm-1">Revision Numer </label>
+            <label for="tariffType" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.AdditionalDriverChrg.TariffType *</label>
             <div class="col-md-3">
-                <input type="text" placeholder='Rate' class="form-control" id="revisionNum" data-bind="value: revisionNumber, validationTooltip: revisionNumber" />
+                <select id="tariffType" class="form-control" data-bind="options: $root.filteredTariffTypes, optionsText: 'TariffTypeCodeName', optionsValue: 'TariffTypeId', optionsCaption:  '@("<" + Cares.Web.Resources.Tariff.AdditionalDriverChrg.TariffType + ">")'  , value: tariffTypeId, validationTooltip: tariffTypeId"></select>
+            </div>
+            <label for="effectiveDate" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.AdditionalDriverChrg.EffectiveStartDate *</label>
+            <div class="col-md-3">
+                <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.AdditionalDriverChrg.EffectiveStartDate + ">")' class="form-control" id="effectiveDate" data-bind="datepicker: effectiveStartDate, validationTooltip: effectiveStartDate" />
+            </div>
+            <label for="rate" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.AdditionalDriverChrg.Rate *</label>
+            <div class="col-md-3">
+                <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.AdditionalDriverChrg.Rate + ">")' class="form-control" id="rate" data-bind="value: rate, validationTooltip: rate" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="revisionNum" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.AdditionalDriverChrg.RevisionNumber </label>
+            <div class="col-md-3">
+                <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.AdditionalDriverChrg.RevisionNumber + ">")' class="form-control" id="revisionNum" data-bind="value: revisionNumber, validationTooltip: revisionNumber" />
             </div>
         </div>
 
     </form>
     <br/>
     <div class="panel panel-info">
-        <div class="panel-heading">Add. Driver Rate Revisions</div>
+        <div class="panel-heading">@Cares.Web.Resources.Tariff.AdditionalDriverChrg.AddDriverRateRevisions</div>
         <table id="tariffTypeRevisions" class="table">
             <thead>
                 <tr>
-                    <th> <span>Tariff Type Code<span></span></span></th>
-                    <th> <span id="4"><span>Rate</span></span></th>
-                    <th> <span id="5">Effective Date<span></span></span></th>
-                    <th> <span id="6">Revision Number<span></span></span></th>
-                    <th> <span id="7">Created By<span></span></span></th>
-                    <th> <span id="8">Modified By<span></span></span></th>
-                    <th> <span id="8">Modified Date<span></span></span></th>
+                    <th> <span>@Cares.Web.Resources.Tariff.AdditionalDriverChrg.TariffTypeCode<span></span></span></th>
+                    <th> <span id="4"><span>@Cares.Web.Resources.Tariff.AdditionalDriverChrg.Rate</span></span></th>
+                    <th> <span id="5">@Cares.Web.Resources.Tariff.AdditionalDriverChrg.EffectiveDate<span></span></span></th>
+                    <th> <span id="6">@Cares.Web.Resources.Tariff.AdditionalDriverChrg.RevisionNumber<span></span></span></th>
+                    <th> <span id="7">@Cares.Web.Resources.Tariff.AdditionalDriverChrg.CreatedBy<span></span></span></th>
+                    <th> <span id="8">@Cares.Web.Resources.Tariff.AdditionalDriverChrg.ModifiedBy<span></span></span></th>
+                    <th> <span id="8" >@Cares.Web.Resources.Tariff.AdditionalDriverChrg.ModifiedDate<span></span></span></th>
                 </tr>
             </thead>
             <tbody>

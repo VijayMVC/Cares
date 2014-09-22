@@ -223,11 +223,38 @@ namespace Cares.Web.Resources.EmployeeManagement {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to delete Employee..
+        /// </summary>
+        public static string EmployeeDeleteErrorMsg {
+            get {
+                return ResourceManager.GetString("EmployeeDeleteErrorMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employee successfully delete..
+        /// </summary>
+        public static string EmployeeDeleteSuccessMsg {
+            get {
+                return ResourceManager.GetString("EmployeeDeleteSuccessMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Employee Detail.
         /// </summary>
         public static string EmployeeDetail {
             get {
                 return ResourceManager.GetString("EmployeeDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to load Employee Detail..
+        /// </summary>
+        public static string EmployeeDetailFailedMsg {
+            get {
+                return ResourceManager.GetString("EmployeeDetailFailedMsg", resourceCulture);
             }
         }
         
@@ -241,11 +268,38 @@ namespace Cares.Web.Resources.EmployeeManagement {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to load Employees..
+        /// </summary>
+        public static string EmployeeLoadFailedMsg {
+            get {
+                return ResourceManager.GetString("EmployeeLoadFailedMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Employees.
         /// </summary>
         public static string Employees {
             get {
                 return ResourceManager.GetString("Employees", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to save Employee..
+        /// </summary>
+        public static string EmployeeSaveErrorMsg {
+            get {
+                return ResourceManager.GetString("EmployeeSaveErrorMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employee successfully save..
+        /// </summary>
+        public static string EmployeeSaveSuccessMsg {
+            get {
+                return ResourceManager.GetString("EmployeeSaveSuccessMsg", resourceCulture);
             }
         }
         
@@ -426,6 +480,15 @@ namespace Cares.Web.Resources.EmployeeManagement {
         public static string LicenseType {
             get {
                 return ResourceManager.GetString("LicenseType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to load base data..
+        /// </summary>
+        public static string LoadBaseDataFailedMsg {
+            get {
+                return ResourceManager.GetString("LoadBaseDataFailedMsg", resourceCulture);
             }
         }
         

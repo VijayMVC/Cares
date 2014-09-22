@@ -339,4 +339,25 @@
   <data name="ZipCode" xml:space="preserve">
     <value>الرمز البريدي</value>
   </data>
+  <data name="EmployeeDeleteErrorMsg" xml:space="preserve">
+    <value>فشل في حذف الموظف.</value>
+  </data>
+  <data name="EmployeeDeleteSuccessMsg" xml:space="preserve">
+    <value>الموظف حذف بنجاح.</value>
+  </data>
+  <data name="EmployeeDetailFailedMsg" xml:space="preserve">
+    <value>فشل تحميل الموظف التفاصيل.</value>
+  </data>
+  <data name="EmployeeLoadFailedMsg" xml:space="preserve">
+    <value>فشل تحميل الموظفين.</value>
+  </data>
+  <data name="EmployeeSaveErrorMsg" xml:space="preserve">
+    <value>فشلت في انقاذ الموظف.</value>
+  </data>
+  <data name="EmployeeSaveSuccessMsg" xml:space="preserve">
+    <value>موظف حفظ بنجاح.</value>
+  </data>
+  <data name="LoadBaseDataFailedMsg" xml:space="preserve">
+    <value>فشل تحميل قاعدة البيانات.</value>
+  </data>
 </root>

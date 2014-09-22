@@ -48,16 +48,16 @@ namespace Cares.Web.ModelMappers
                 Notes5 = source.Notes5,
                 NationalityId = source.NationalityId,
                 EmpJobInfo = source.EmpJobInfo.CreateFrom(),
-               // Addresses = source.Addresses!=null?source.Addresses.Select(add => add.CreateFrom()).ToList():null,
-                //PhoneNumbers = source.PhoneNumbers!=null?source.PhoneNumbers.Select(phone => phone.CreateFrom()).ToList():null,
+                Addresses = source.Addresses != null ? source.Addresses.Select(add => add.CreateFrom()).ToList() : null,
+                PhoneNumbers = source.PhoneNumbers != null ? source.PhoneNumbers.Select(phone => phone.CreateFrom()).ToList() : null,
                 EmpDocsInfo = source.EmpDocsInfo.CreateFrom(),
-                EmpJobProgs = source.EmpJobProgs!=null?source.EmpJobProgs.Select(empJobProg => empJobProg.CreateFrom()).ToList():null,
-                EmpAuthOperationsWorkplaces = source.AuthorizedLocations!=null?source.AuthorizedLocations.Select(location => location.CreateFrom()).ToList():null,
+                EmpJobProgs = source.EmpJobProgs != null ? source.EmpJobProgs.Select(empJobProg => empJobProg.CreateFrom()).ToList() : null,
+                EmpAuthOperationsWorkplaces = source.AuthorizedLocations != null ? source.AuthorizedLocations.Select(location => location.CreateFrom()).ToList() : null,
             };
         }
 
         /// <summary>
-        ///  Create entity from  web model
+        ///  Create Web Model from entity
         /// </summary>
         public static Employee CreateFromEmployeeDetail(this DomainModels.Employee source)
         {
@@ -79,15 +79,15 @@ namespace Cares.Web.ModelMappers
                 Notes4 = source.Notes4,
                 Notes5 = source.Notes5,
                 NationalityId = source.NationalityId,
-                EmpJobInfo = source.EmpJobInfo!=null?source.EmpJobInfo.CreateFrom():null,
-                //Addresses = source.Addresses!=null?source.Addresses.Select(add => add.CreateFrom()).ToList():null,
-               // PhoneNumbers = source.PhoneNumbers!=null?source.PhoneNumbers.Select(phone => phone.CreateFrom()).ToList():null,
+                EmpJobInfo = source.EmpJobInfo != null ? source.EmpJobInfo.CreateFrom() : null,
+                Addresses = source.Addresses != null ? source.Addresses.Select(add => add.CreateFrom()).ToList() : null,
+                PhoneNumbers = source.PhoneNumbers != null ? source.PhoneNumbers.Select(phone => phone.CreateFrom()).ToList() : null,
                 EmpDocsInfo = source.EmpDocsInfo != null ? source.EmpDocsInfo.CreateFrom() : null,
-                EmpJobProgs = source.EmpJobProgs!=null?source.EmpJobProgs.Select(empJobProg => empJobProg.CreateFrom()).ToList():null,
-                AuthorizedLocations = source.EmpAuthOperationsWorkplaces!=null?source.EmpAuthOperationsWorkplaces.Select(location => location.CreateFrom()).ToList():null,
+                EmpJobProgs = source.EmpJobProgs != null ? source.EmpJobProgs.Select(empJobProg => empJobProg.CreateFrom()).ToList() : null,
+                AuthorizedLocations = source.EmpAuthOperationsWorkplaces != null ? source.EmpAuthOperationsWorkplaces.Select(location => location.CreateFrom()).ToList() : null,
             };
         }
-       
+
         /// <summary>
         ///  Create web model from entity
         /// </summary>
@@ -105,7 +105,7 @@ namespace Cares.Web.ModelMappers
 
             };
         }
-       
+
         /// <summary>
         ///  Create web model from entity
         /// </summary>
@@ -149,7 +149,7 @@ namespace Cares.Web.ModelMappers
             };
         }
         #endregion
-        
+
         #region Job Info Mappers
         /// <summary>
         ///  Create entity from web model

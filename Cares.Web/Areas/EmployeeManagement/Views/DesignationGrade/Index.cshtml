@@ -2,7 +2,6 @@
     ViewBag.Title = @Cares.Web.Resources.EmployeeManagement.Employee.EmployeeLabel;
 
 }
-
 <div class="row" id="employeeBinding">
     <div class="row " data-bind="visible: !isEmployeeEditorVisible()">
         <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.EmployeeManagement.Employee.Employees</h3>
@@ -26,7 +25,6 @@
                 <button type="submit" class="btn btn-success" data-bind="click: search ">@Cares.Web.Resources.Shared.Common.Search</button>
                 <button type="submit" class="btn btn-default" data-bind="click: reset">@Cares.Web.Resources.Shared.Common.Reset</button>
                 <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection" title='@Cares.Web.Resources.Shared.Common.HideSection'></a>
-
             </form>
         </div>
     </div>
@@ -78,7 +76,6 @@
         </tr>
     </script>
     @Html.Partial("_EmployeeEditor")
-
 </div>
 <!-- ko stopBinding: true -->
 @Html.Partial("~/Areas/Common/Views/Shared/_ConfirmationDialog.cshtml")
@@ -87,5 +84,17 @@
 {
     <script type="text/javascript">
         require(["employee/employee.view", "common/confirmation.view"]);
+        var ist = window.ist;
+        @{
+            <text>
+        ist.resourceText.employeeDetailFailedMsg = '@Cares.Web.Resources.EmployeeManagement.Employee.EmployeeDetailFailedMsg';
+        ist.resourceText.employeeDeleteSuccessMsg = '@Cares.Web.Resources.EmployeeManagement.Employee.EmployeeDeleteSuccessMsg';
+        ist.resourceText.employeeDeleteErrorMsg = '@Cares.Web.Resources.EmployeeManagement.Employee.EmployeeDeleteErrorMsg';
+        ist.resourceText.employeeSaveSuccessMsg = '@Cares.Web.Resources.EmployeeManagement.Employee.EmployeeSaveSuccessMsg';
+        ist.resourceText.employeeSaveErrorMsg = '@Cares.Web.Resources.EmployeeManagement.Employee.EmployeeSaveErrorMsg';
+        ist.resourceText.loadBaseDataFailedMsg = '@Cares.Web.Resources.EmployeeManagement.Employee.LoadBaseDataFailedMsg';
+        ist.resourceText.employeeLoadFailedMsg = '@Cares.Web.Resources.EmployeeManagement.Employee.EmployeeLoadFailedMsg';
+        </text>
+        }
     </script>
 }

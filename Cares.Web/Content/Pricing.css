@@ -109,6 +109,12 @@
 #serviceRateBinding #serviceRateEditor {
   margin-top: 15px;
 }
+#serviceRateBinding #serviceRateEditor .serviceRate {
+  width: 70px;
+}
+#serviceRateBinding #serviceRateEditor .startDate {
+  width: 90px;
+}
 #serviceRateBinding #serviceRateEditor .detailsContainer {
   width: 100%;
 }

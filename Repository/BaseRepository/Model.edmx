@@ -2291,7 +2291,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefEmployee343">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Address" Type="Self.Address" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -2303,7 +2305,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefEmployee344">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Phone" Type="Self.Phone" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -2315,7 +2319,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefEmployee345">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="EmpJobInfo" Type="Self.EmpJobInfo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -2327,7 +2333,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefEmployee348">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="EmpDocsInfo" Type="Self.EmpDocsInfo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -2339,7 +2347,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefEmployee349">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="EmpJobProg" Type="Self.EmpJobProg" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -2363,7 +2373,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefEmployee612">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="EmpAuthOperationsWorkplace" Type="Self.EmpAuthOperationsWorkplace" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -2531,7 +2543,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefInsuranceRtMain390">
-          <End Role="InsuranceRtMain" Type="Self.InsuranceRtMain" Multiplicity="1" />
+          <End Role="InsuranceRtMain" Type="Self.InsuranceRtMain" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="InsuranceRt" Type="Self.InsuranceRt" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="InsuranceRtMain">
@@ -2843,7 +2857,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefServiceRtMain385">
-          <End Role="ServiceRtMain" Type="Self.ServiceRtMain" Multiplicity="1" />
+          <End Role="ServiceRtMain" Type="Self.ServiceRtMain" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ServiceRt" Type="Self.ServiceRt" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ServiceRtMain">
@@ -2879,7 +2895,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefStandardRtMain148">
-          <End Role="StandardRtMain" Type="Self.StandardRtMain" Multiplicity="1" />
+          <End Role="StandardRtMain" Type="Self.StandardRtMain" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="StandardRt" Type="Self.StandardRt" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="StandardRtMain">
@@ -2951,7 +2969,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle210">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehicleLeasedInfo" Type="Self.VehicleLeasedInfo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -2963,7 +2983,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle211">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehicleInsuranceInfo" Type="Self.VehicleInsuranceInfo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -2975,7 +2997,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle212">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehiclePurchaseInfo" Type="Self.VehiclePurchaseInfo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -2987,7 +3011,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle213">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehicleDisposalInfo" Type="Self.VehicleDisposalInfo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -2999,7 +3025,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle220">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehicleMaintenanceTypeFrequency" Type="Self.VehicleMaintenanceTypeFrequency" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -3011,7 +3039,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle2251">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehicleDepreciation" Type="Self.VehicleDepreciation" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -3023,7 +3053,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle327">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehicleOtherDetail" Type="Self.VehicleOtherDetail" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -3047,7 +3079,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle609">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehicleCheckListItem" Type="Self.VehicleCheckListItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -3167,9 +3201,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefworkLocation1942">
-          <End Role="WorkLocation" Type="Self.WorkLocation" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="WorkLocation" Type="Self.WorkLocation" Multiplicity="0..1" />
           <End Role="Phone" Type="Self.Phone" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="WorkLocation">
@@ -3193,9 +3225,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefWorkplace1811">
-          <End Role="Workplace" Type="Self.Workplace" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Workplace" Type="Self.Workplace" Multiplicity="1" />
           <End Role="OperationsWorkplace" Type="Self.OperationsWorkplace" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Workplace">
@@ -4250,10 +4280,6 @@
             <End Role="HireGroupDetail" EntitySet="HireGroupDetails" />
             <End Role="InsuranceRt" EntitySet="InsuranceRts" />
           </AssociationSet>
-          <AssociationSet Name="RefInsuranceRt391" Association="DomainModels.RefInsuranceRt391">
-            <End Role="InsuranceRt" EntitySet="InsuranceRts" />
-            <End Role="InsuranceRt1" EntitySet="InsuranceRts" />
-          </AssociationSet>
           <AssociationSet Name="RefInsuranceRtMain390" Association="DomainModels.RefInsuranceRtMain390">
             <End Role="InsuranceRtMain" EntitySet="InsuranceRtMains" />
             <End Role="InsuranceRt" EntitySet="InsuranceRts" />
@@ -4274,17 +4300,9 @@
             <End Role="PricingStrategy" EntitySet="PricingStrategies" />
             <End Role="TariffType" EntitySet="TariffTypes" />
           </AssociationSet>
-          <AssociationSet Name="RefServiceRt386" Association="DomainModels.RefServiceRt386">
-            <End Role="ServiceRt" EntitySet="ServiceRts" />
-            <End Role="ServiceRt1" EntitySet="ServiceRts" />
-          </AssociationSet>
           <AssociationSet Name="RefServiceRtMain385" Association="DomainModels.RefServiceRtMain385">
             <End Role="ServiceRtMain" EntitySet="ServiceRtMains" />
             <End Role="ServiceRt" EntitySet="ServiceRts" />
-          </AssociationSet>
-          <AssociationSet Name="RefStandardRt371" Association="DomainModels.RefStandardRt371">
-            <End Role="StandardRt" EntitySet="StandardRates" />
-            <End Role="StandardRt1" EntitySet="StandardRates" />
           </AssociationSet>
           <EntitySet Name="StandardRateMains" EntityType="DomainModels.StandardRateMain" />
           <EntitySet Name="VehicleDisposalInfoes" EntityType="DomainModels.VehicleDisposalInfo" />
@@ -4452,6 +4470,18 @@
           <AssociationSet Name="RefWorkplace2301" Association="DomainModels.RefWorkplace2301">
             <End Role="WorkPlace" EntitySet="WorkPlaces1" />
             <End Role="WorkPlace1" EntitySet="WorkPlaces1" />
+          </AssociationSet>
+          <AssociationSet Name="RefInsuranceRt391" Association="DomainModels.RefInsuranceRt391">
+            <End Role="InsuranceRt" EntitySet="InsuranceRts" />
+            <End Role="InsuranceRt1" EntitySet="InsuranceRts" />
+          </AssociationSet>
+          <AssociationSet Name="RefServiceRt386" Association="DomainModels.RefServiceRt386">
+            <End Role="ServiceRt" EntitySet="ServiceRts" />
+            <End Role="ServiceRt1" EntitySet="ServiceRts" />
+          </AssociationSet>
+          <AssociationSet Name="RefStandardRt371" Association="DomainModels.RefStandardRt371">
+            <End Role="StandardRate" EntitySet="StandardRates" />
+            <End Role="StandardRate1" EntitySet="StandardRates" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Company">
@@ -6580,9 +6610,9 @@
           <Property Name="RecCreatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
           <NavigationProperty Name="HireGroupDetail" Relationship="DomainModels.RefHireGroupDetail404" FromRole="InsuranceRt" ToRole="HireGroupDetail" />
-          <NavigationProperty Name="ChildInsuranceRt" Relationship="DomainModels.RefInsuranceRt391" FromRole="InsuranceRt" ToRole="InsuranceRt1" />
           <NavigationProperty Name="InsuranceRtMain" Relationship="DomainModels.RefInsuranceRtMain390" FromRole="InsuranceRt" ToRole="InsuranceRtMain" />
           <NavigationProperty Name="InsuranceType" Relationship="DomainModels.RefInsuranceType392" FromRole="InsuranceRt" ToRole="InsuranceType" />
+          <NavigationProperty Name="ChildInsuranceRt" Relationship="DomainModels.RefInsuranceRt391" FromRole="InsuranceRt1" ToRole="InsuranceRt" />
         </EntityType>
         <EntityType Name="InsuranceRtMain">
           <Key>
@@ -6806,9 +6836,9 @@
           <Property Name="RecLastUpdatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="RecCreatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="ChildServiceRt" Relationship="DomainModels.RefServiceRt386" FromRole="ServiceRt" ToRole="ServiceRt1" />
           <NavigationProperty Name="ServiceRtMain" Relationship="DomainModels.RefServiceRtMain385" FromRole="ServiceRt" ToRole="ServiceRtMain" />
           <NavigationProperty Name="ServiceItem" Relationship="DomainModels.RefServiceItem383" FromRole="ServiceRt" ToRole="ServiceItem" />
+          <NavigationProperty Name="ChildServiceRt" Relationship="DomainModels.RefServiceRt386" FromRole="ServiceRt1" ToRole="ServiceRt" />
         </EntityType>
         <EntityType Name="ServiceRtMain">
           <Key>
@@ -6877,8 +6907,8 @@
           <Property Name="StandardRtStartDt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
           <NavigationProperty Name="HireGroupDetail" Relationship="DomainModels.RefHireGroupDetail377" FromRole="StandardRt" ToRole="HireGroupDetail" />
-          <NavigationProperty Name="ChildStandardRate" Relationship="DomainModels.RefStandardRt371" FromRole="StandardRt" ToRole="StandardRt1" />
           <NavigationProperty Name="StandardRtMain" Relationship="DomainModels.RefStandardRtMain148" FromRole="StandardRt" ToRole="StandardRtMain" />
+          <NavigationProperty Name="ChildStandardRate" Relationship="DomainModels.RefStandardRt371" FromRole="StandardRate1" ToRole="StandardRate" />
         </EntityType>
         <Association Name="RefOccupationType292">
           <End Type="DomainModels.OccupationType" Role="OccupationType" Multiplicity="0..1" />
@@ -6976,18 +7006,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="RefInsuranceRt391">
-          <End Type="DomainModels.InsuranceRt" Role="InsuranceRt" Multiplicity="0..1" />
-          <End Type="DomainModels.InsuranceRt" Role="InsuranceRt1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="InsuranceRt">
-              <PropertyRef Name="InsuranceRtId" />
-            </Principal>
-            <Dependent Role="InsuranceRt1">
-              <PropertyRef Name="ChildInsuranceRtId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="RefInsuranceRtMain390">
           <End Type="DomainModels.InsuranceRtMain" Role="InsuranceRtMain" Multiplicity="1" />
           <End Type="DomainModels.InsuranceRt" Role="InsuranceRt" Multiplicity="*" />
@@ -7048,18 +7066,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="RefServiceRt386">
-          <End Type="DomainModels.ServiceRt" Role="ServiceRt" Multiplicity="0..1" />
-          <End Type="DomainModels.ServiceRt" Role="ServiceRt1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ServiceRt">
-              <PropertyRef Name="ServiceRtId" />
-            </Principal>
-            <Dependent Role="ServiceRt1">
-              <PropertyRef Name="ChildServiceRtId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="RefServiceRtMain385">
           <End Type="DomainModels.ServiceRtMain" Role="ServiceRtMain" Multiplicity="1" />
           <End Type="DomainModels.ServiceRt" Role="ServiceRt" Multiplicity="*" />
@@ -7069,18 +7075,6 @@
             </Principal>
             <Dependent Role="ServiceRt">
               <PropertyRef Name="ServiceRtMainId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="RefStandardRt371">
-          <End Type="DomainModels.StandardRate" Role="StandardRt" Multiplicity="0..1" />
-          <End Type="DomainModels.StandardRate" Role="StandardRt1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="StandardRt">
-              <PropertyRef Name="StandardRtId" />
-            </Principal>
-            <Dependent Role="StandardRt1">
-              <PropertyRef Name="ChildStandardRtId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -7917,6 +7911,42 @@
             </Principal>
             <Dependent Role="WorkPlace1">
               <PropertyRef Name="ParentWorkPlaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefInsuranceRt391">
+          <End Type="DomainModels.InsuranceRt" Role="InsuranceRt" Multiplicity="0..1" />
+          <End Type="DomainModels.InsuranceRt" Role="InsuranceRt1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsuranceRt">
+              <PropertyRef Name="InsuranceRtId" />
+            </Principal>
+            <Dependent Role="InsuranceRt1">
+              <PropertyRef Name="ChildInsuranceRtId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefServiceRt386">
+          <End Type="DomainModels.ServiceRt" Role="ServiceRt" Multiplicity="0..1" />
+          <End Type="DomainModels.ServiceRt" Role="ServiceRt1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceRt">
+              <PropertyRef Name="ServiceRtId" />
+            </Principal>
+            <Dependent Role="ServiceRt1">
+              <PropertyRef Name="ChildServiceRtId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefStandardRt371">
+          <End Type="DomainModels.StandardRate" Role="StandardRate" Multiplicity="0..1" />
+          <End Type="DomainModels.StandardRate" Role="StandardRate1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StandardRate">
+              <PropertyRef Name="StandardRtId" />
+            </Principal>
+            <Dependent Role="StandardRate1">
+              <PropertyRef Name="ChildStandardRtId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

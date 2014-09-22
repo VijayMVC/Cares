@@ -694,7 +694,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
     // Convert Address Client to Server
     var AddressServerMapper = function (item) {
         var result = {};
-        result.AddressId = item.addressId() === undefined ? undefined : item.addressId();
+        result.AddressId = item.addressId() === undefined ? 0 : item.addressId();
         result.ContactPerson = item.contactPerson() === undefined ? undefined : item.contactPerson();
         result.StreetAddress = item.streetAddress() === undefined ? undefined : item.streetAddress();
         result.EmailAddress = item.emailAddress() === undefined ? undefined : item.emailAddress();
@@ -725,13 +725,19 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         address.cityName(source.CityName === null ? undefined : source.CityName);
         address.areaName(source.AreaName === null ? undefined : source.AreaName);
         address.addressTypeName(source.AddressTypeName === null ? undefined : source.AddressTypeName);
+        address.countryId(source.CountryId === null ? undefined : source.CountryId);
+        address.regionId(source.RegionId === null ? undefined : source.RegionId);
+        address.subRegionId(source.SubRegionId === null ? undefined : source.SubRegionId);
+        address.cityId(source.CityId === null ? undefined : source.CityId);
+        address.areaId(source.AreaId === null ? undefined : source.AreaId);
+        address.addressTypeId(source.AddressTypeId === null ? undefined : source.AddressTypeId);
         return address;
     };
     // Convert Phone Client to Server
     var PhoneServerMapper = function (item) {
         var result = {};
         // Fourth Tab : Business Partner Phone
-        result.PhoneId = item.phoneId() === undefined ? undefined : item.phoneId();
+        result.PhoneId = item.phoneId() === undefined ? 0 : item.phoneId();
         result.IsDefault = item.isDefault() === undefined ? undefined : item.isDefault();
         result.PhoneNumber = item.phoneNumber() === undefined ? undefined : item.phoneNumber();
         result.PhoneTypeId = item.phoneTypeId() === undefined ? undefined : item.phoneTypeId();
@@ -744,14 +750,14 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         phone.isDefault(source.IsDefault === null ? undefined : source.IsDefault);
         phone.phoneNumber(source.PhoneNumber === null ? undefined : source.PhoneNumber);
         phone.phoneTypeName(source.PhoneTypeName === null ? undefined : source.PhoneTypeName);
-        return result;
+        return phone;
     };
     // Convert Job Progress Client to Server
     var JobProgressServerMapper = function (item) {
         var result = {};
         result.EmpJobProgId = item.empJobProgId() === undefined ? 0 : item.empJobProgId();
-        result.DesignationId = item.designationId() === undefined ? null : item.designationId();
-        result.WorkplaceId = item.workplaceId() === undefined ? null : item.workplaceId();
+        result.DesignationId = item.designationId() === undefined ? 0 : item.designationId();
+        result.WorkplaceId = item.workplaceId() === undefined ? 0 : item.workplaceId();
         result.DesigStDt = item.desigStDt() === undefined || item.desigStDt() === null ? null : moment(item.desigStDt()).format(ist.utcFormat);
         result.DesigEndDt = item.desigEndDt() === undefined || item.desigEndDt() === null ? null : moment(item.desigEndDt()).format(ist.utcFormat);
         return result;
@@ -879,9 +885,9 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         empDetail.dOB(source.DOB !== null ? moment(source.DOB, ist.utcFormat).toDate() : undefined);
 
         //Job Info
-        //jobInfo(JobInfoClientMapper(source.JobInfo()));
+        empDetail.jobInfo(JobInfoClientMapper(source.EmpJobInfo));
         //Document Info
-        //documentInfo(DocumentInfoClientMapper(source.DocumentInfo()));
+        empDetail.documentInfo(DocumentInfoClientMapper(source.EmpDocsInfo));
 
         return empDetail;
     };
