@@ -1155,6 +1155,12 @@
     <Content Include="Content\OrgGroup.min.css">
       <DependentUpon>OrgGroup.css</DependentUpon>
     </Content>
+    <Content Include="Content\Designation.css">
+      <DependentUpon>Designation.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Designation.min.css">
+      <DependentUpon>Designation.css</DependentUpon>
+    </Content>
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="Content\Vehicle.css">
@@ -1691,6 +1697,10 @@
     </Content>
     <Content Include="Areas\EmployeeManagement\Views\DesignationGrade\Designation.cshtml" />
     <Content Include="Areas\EmployeeManagement\Views\DesignationGrade\_DesignationEditor.cshtml" />
+    <Content Include="Content\Designation.less" />
+    <Content Include="Content\Designation.css.map">
+      <DependentUpon>Designation.css</DependentUpon>
+    </Content>
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />

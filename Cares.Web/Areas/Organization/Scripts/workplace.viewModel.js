@@ -70,6 +70,7 @@ define("workplace/workplace.viewModel",
                         filteredParentWorkPlaceList(_.filter(parentWorkPlaceList(), function(workplace) {
                             return workplace;
                         }));
+                        operationsTabList.removeAll();
                         filteredBaseWorkLocationsList.removeAll();
                         fleelPoolDropDownId(undefined);
                         operationDropDownId(undefined);

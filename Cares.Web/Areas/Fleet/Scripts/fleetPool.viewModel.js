@@ -106,15 +106,17 @@ define("Fleet/fleetPool.viewModel",
                     //add new fleetpool
                     saveFleetPool = function() {
                         dataservice.saveFleetPool(model.fleePoolClienttoServerMapper(selectedFleetPool()), {
-                            success: function(dataFromServer) {
-                                if (isEditMode()) {
-                                    editorViewModel.acceptItem(dataFromServer);
-                                    isEditMode(false);
-                                    isFleetPoolEditorVisible(false);
-                                } else {
-                                    fleetPools.splice(0 , 0 , model.fleetPoolServertoClinetMapper(dataFromServer));
-                                    isFleetPoolEditorVisible(false);
-                                }
+                            success: function(dataFromServer) {                             
+                                var newItem = model.fleetPoolServertoClinetMapper(dataFromServer);
+                                if (selectedFleetPool().id() !== undefined) {
+                                    var newObjtodelete = fleetPools.find(function (temp) {
+                                        return temp.id() == newItem.id();
+                                    });
+                                    fleetPools.remove(newObjtodelete);
+                                    fleetPools.push(newItem);
+                                } else
+                                    fleetPools.push(newItem);
+                                isFleetPoolEditorVisible(false);
                                 toastr.success(ist.resourceText.FleetPoolSaveSuccessMessage);
                             },
                             error: function (exceptionMessage, exceptionType) {

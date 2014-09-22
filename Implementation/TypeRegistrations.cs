@@ -62,7 +62,7 @@ namespace Cares.Implementation
             unityContainer.RegisterType<IAdditionalDriverService, AdditionalDriverService>();
             unityContainer.RegisterType<IDesignGradeService, DesignGradeService>();
             unityContainer.RegisterType<IEmpStatusService, EmpStatusService>();
-
+            unityContainer.RegisterType<IDesignationService, DesignationService>();
 
         }
     }

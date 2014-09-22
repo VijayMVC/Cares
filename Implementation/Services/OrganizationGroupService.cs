@@ -18,6 +18,30 @@ namespace Cares.Implementation.Services
         private readonly IOrganizationGroupRepository organizationGroupRepository;
         private readonly ICompanyRepository companyRepository;
 
+       /// <summary>
+        /// Set OrgGroup Properties for insertion
+       /// </summary>
+        private void SetOrgGroupProperties(OrgGroup requestOrgGroup)
+        {
+            requestOrgGroup.RecCreatedBy =
+                requestOrgGroup.RecLastUpdatedBy = organizationGroupRepository.LoggedInUserIdentity;
+            requestOrgGroup.RecCreatedDt = requestOrgGroup.RecLastUpdatedDt = DateTime.Now;
+            requestOrgGroup.RowVersion = 0;
+            requestOrgGroup.UserDomainKey = 1;
+        }
+
+       /// <summary>
+        /// UpdateOrgGroupProperties for updation
+       /// </summary>
+        private void UpdateOrgGroupProperties(OrgGroup requestOrgGroup, OrgGroup dbVersion)
+        {
+            requestOrgGroup.RecLastUpdatedBy = organizationGroupRepository.LoggedInUserIdentity;
+            requestOrgGroup.RecLastUpdatedDt = DateTime.Now;
+            requestOrgGroup.RowVersion = dbVersion.RowVersion + 1;
+            requestOrgGroup.RecCreatedBy = dbVersion.RecCreatedBy;
+            requestOrgGroup.RecCreatedDt = dbVersion.RecCreatedDt;
+        }
+
         #endregion
        #region Constructors
        /// <summary>
@@ -75,30 +99,17 @@ namespace Cares.Implementation.Services
             if (!organizationGroupRepository.IsOrgGroupCodeExists(requestOrgGroup))
             {
                 if (dbVersion != null)
-                {
-                    requestOrgGroup.RecLastUpdatedBy = organizationGroupRepository.LoggedInUserIdentity;
-                    requestOrgGroup.RecLastUpdatedDt = DateTime.Now;
-                    requestOrgGroup.RowVersion = dbVersion.RowVersion + 1;
-                    requestOrgGroup.RecCreatedBy = dbVersion.RecCreatedBy;
-                    requestOrgGroup.RecCreatedDt = dbVersion.RecCreatedDt;
-                    //requestOrgGroup.UserDomainKey = dbVersion.UserDomainKey;
-
-                }
+                    UpdateOrgGroupProperties(requestOrgGroup, dbVersion);
                 else
-                {
-                    requestOrgGroup.RecCreatedBy =
-                    requestOrgGroup.RecLastUpdatedBy = organizationGroupRepository.LoggedInUserIdentity;
-                    requestOrgGroup.RecCreatedDt = requestOrgGroup.RecLastUpdatedDt = DateTime.Now;
-                    requestOrgGroup.RowVersion = 0;
-                  //  requestOrgGroup.UserDomainKey = 1;
-
-                }
+                    SetOrgGroupProperties(requestOrgGroup);
                 organizationGroupRepository.Update(requestOrgGroup);
                 organizationGroupRepository.SaveChanges();
                 return organizationGroupRepository.Find(requestOrgGroup.OrgGroupId);
             }
             throw new CaresException(Resources.Organization.OrganizationGroup.OrganizationGroupWithSameCodeAlreadyExists);
         }
+
+     
         #endregion
    }
 }
