@@ -59,6 +59,14 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Count(empJobInfo => empJobInfo.DesignationId == designationId) > 0; 
         }
+
+        /// <summary>
+        /// To check the asssociation of Job Type and emp job info 
+        /// </summary>
+        public bool IsEmpJobInfoAssociatedWithJobType(long jobTypeId)
+        {
+            return DbSet.Count(empJobInfo => empJobInfo.JobTypeId == jobTypeId) > 0; 
+        }
         #endregion
     }
 }

@@ -63,6 +63,8 @@ namespace Cares.Implementation
             unityContainer.RegisterType<IDesignGradeService, DesignGradeService>();
             unityContainer.RegisterType<IEmpStatusService, EmpStatusService>();
             unityContainer.RegisterType<IDesignationService, DesignationService>();
+            unityContainer.RegisterType<IJobTypeService, JobTypeService>();
+
 
         }
     }

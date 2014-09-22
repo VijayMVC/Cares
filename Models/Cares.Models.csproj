@@ -112,6 +112,7 @@
     <Compile Include="Common\DesignGradeByColumn.cs" />
     <Compile Include="Common\EmpStatusByColumn.cs" />
     <Compile Include="Common\InsuranceRateByColumn.cs" />
+    <Compile Include="Common\JobTypeByColumn.cs" />
     <Compile Include="Common\RegionByColumn.cs" />
     <Compile Include="Common\ServiceRateByColumn.cs" />
     <Compile Include="Common\OperationByColumn.cs" />
@@ -244,6 +245,8 @@
     <Compile Include="RequestModels\HireGroupAddRequest.cs" />
     <Compile Include="RequestModels\InsuranceRateSearchRequest.cs" />
     <Compile Include="RequestModels\CitySearchRequest.cs" />
+    <Compile Include="RequestModels\JobTypeSearchRequest.cs" />
+    <Compile Include="RequestModels\JobTypeSearchRequestResponse.cs" />
     <Compile Include="RequestModels\RegionSearchRequest.cs" />
     <Compile Include="RequestModels\RegionSearchRequestResponse.cs" />
     <Compile Include="RequestModels\ServiceRateSearchRequest.cs" />
