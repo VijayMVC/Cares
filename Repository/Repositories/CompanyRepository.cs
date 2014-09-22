@@ -52,6 +52,7 @@ namespace Cares.Repository.Repositories
 
         #endregion
         #region Public
+
         /// <summary>
         /// Search Company
         /// </summary>
@@ -79,6 +80,7 @@ namespace Cares.Repository.Repositories
                     .Take(toRow)
                     .ToList();
         }
+
         /// <summary>
         /// Get All Companies for User Domain Key
         /// </summary>
@@ -86,6 +88,7 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(company => company.UserDomainKey == UserDomainKey).ToList();
         }
+
         /// <summary>
         /// Get Company With Details
         /// </summary>

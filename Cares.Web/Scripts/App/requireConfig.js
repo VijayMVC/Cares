@@ -34,8 +34,8 @@
             "area": "/Areas/GeographicalHierarchy/Scripts",
             "empStatus": "/Areas/EmployeeManagement/Scripts",
             "designGrade": "/Areas/EmployeeManagement/Scripts",
-            "designation": "/Areas/EmployeeManagement/Scripts"
-            
+            "designation": "/Areas/EmployeeManagement/Scripts",
+            "jobType": "/Areas/EmployeeManagement/Scripts"
         }
     });
 

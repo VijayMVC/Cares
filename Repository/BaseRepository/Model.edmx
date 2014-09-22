@@ -1835,7 +1835,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefArea1973">
-          <End Role="Area" Type="Self.Area" Multiplicity="0..1" />
+          <End Role="Area" Type="Self.Area" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Address" Type="Self.Address" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Area">
@@ -2099,7 +2101,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefCity1973">
-          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="City" Type="Self.City" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Address" Type="Self.Address" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="City">
@@ -2183,7 +2187,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefCountry1971">
-          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="Country" Type="Self.Country" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Address" Type="Self.Address" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Country">
@@ -2821,7 +2827,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefRegion332">
-          <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
+          <End Role="Region" Type="Self.Region" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Address" Type="Self.Address" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Region">
@@ -2933,7 +2941,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefSubRegion333">
-          <End Role="SubRegion" Type="Self.SubRegion" Multiplicity="0..1" />
+          <End Role="SubRegion" Type="Self.SubRegion" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Address" Type="Self.Address" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SubRegion">

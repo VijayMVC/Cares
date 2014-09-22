@@ -1,32 +1,26 @@
 ﻿
-<div class="well col-md-12" id="RegionEditor" data-bind="visible: isRegionEditorVisible, with: selectedRegion " style="display: none; margin-top:15px">
+<div class="well col-md-12" id="DesignationEditor" data-bind="visible: isdesignationEditorVisible, with: selectedDesignation " style="display: none; margin-top:15px">
     <div class="float-left detailsContainer">
-        <h3 class="page-header detailsHeaderSection">@Cares.Web.Resources.GeographicalHierarchy.Region.RegionDetail</h3>
+        <h3 class="page-header detailsHeaderSection">@Cares.Web.Resources.EmployeeManagement.Designation.DesignationDetail</h3>
         <button class="btn  btn-info" id="saveFleetPoolbtn" data-bind="click: $root.onSavebtn">@Cares.Web.Resources.Shared.Common.Save</button>
         <button class="btn  btn-default" id="cancelOrgGroupbtn" data-bind="click: $root.onCancelbtn">@Cares.Web.Resources.Shared.Common.Cancel</button>
     </div>
     <form class="form-horizontal">
         <div class="form-group">
-            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.GeographicalHierarchy.Region.Code*</label>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.EmployeeManagement.Designation.Code*</label>
             <div class="col-md-3">
-                <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.GeographicalHierarchy.Region.Code + ">")" data-bind="value: code" />
+                <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.EmployeeManagement.Designation.Code + ">")" data-bind="value: code" />
             </div>
-            <label class="control-label h5 col-sm-1">@Cares.Web.Resources.GeographicalHierarchy.Region.Name*</label>
+            <label class="control-label h5 col-sm-1">@Cares.Web.Resources.EmployeeManagement.Designation.Name*</label>
             <div class="col-md-3">
-                <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.GeographicalHierarchy.Region.Name + ">")" data-bind="value:name" />
+                <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.EmployeeManagement.Designation.Name + ">")" data-bind="value:name" />
             </div>
 
         </div>
         <div class="form-group">
-            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.GeographicalHierarchy.Region.CountryName*</label>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.EmployeeManagement.Designation.Description</label>
             <div class="col-md-3">
-                <select class="form-control" data-bind="options: $root.baseCountriesList, optionsText: 'CountryCodeName', optionsValue: 'CountryId', optionsCaption: '&lt;' + '@Cares.Web.Resources.GeographicalHierarchy.Region.CountryName'+ '&gt;', value:countryId "></select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.GeographicalHierarchy.Region.Description</label>
-            <div class="col-md-3">
-                <textarea class="form-control" rows="4" placeholder="@("<" + Cares.Web.Resources.GeographicalHierarchy.Region.Description + ">")" data-bind="value: description"></textarea>
+                <textarea class="form-control" rows="4" placeholder="@("<" + Cares.Web.Resources.EmployeeManagement.Designation.Description + ">")" data-bind="value: description"></textarea>
             </div>
         </div>
 

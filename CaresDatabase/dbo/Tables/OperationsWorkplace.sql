@@ -18,6 +18,8 @@
     CONSTRAINT [PK90] PRIMARY KEY NONCLUSTERED ([OperationsWorkplaceID] ASC),
     CONSTRAINT [RefFleetPool1913] FOREIGN KEY ([FleetPoolID]) REFERENCES [dbo].[FleetPool] ([FleetPoolID]),
     CONSTRAINT [RefOperation2561] FOREIGN KEY ([OperationID]) REFERENCES [dbo].[Operation] ([OperationID]),
-    CONSTRAINT [RefWorkplace1811] FOREIGN KEY ([WorkplaceID]) REFERENCES [dbo].[Workplace] ([WorkplaceID])
+    CONSTRAINT [RefWorkplace1811] FOREIGN KEY ([WorkplaceID]) REFERENCES [dbo].[Workplace] ([WorkplaceID]) ON DELETE CASCADE
 );
+
+
 

@@ -71,6 +71,10 @@ define("workLocation/workLocation.viewModel",
                         editorViewModel.selectItem(workLocation);
                         selectedWorkLocation().phoneDetail(new model.createPhone(false));
                         phonesList.removeAll();
+                        filteredRegionsList.removeAll();
+                        filteredCitiesList.removeAll();
+                        filteredSubRegiosnList.removeAll();
+                        filteredAreasList.removeAll();
                         isWorklocationCreateMode(true);
                         isWorkLocationEditorVisible(true);
                     },

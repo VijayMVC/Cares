@@ -36,5 +36,14 @@ namespace Cares.Web.Areas.EmployeeManagement.Controllers
         {
             return View();
         }
+
+
+        /// <summary>
+        /// Job Type Area
+        /// </summary>
+        public ActionResult JobType()
+        {
+            return View();
+        }
     }
 }

@@ -20,6 +20,8 @@
     "Area.less",
     "DesignationGrade.less",
     "EmpStatus.less",
+    "Designation.less",
+    "JobType.less",
     "MainSite.less"
   ],
   "names": [],

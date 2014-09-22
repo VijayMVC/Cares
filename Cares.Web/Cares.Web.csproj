@@ -229,6 +229,7 @@
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeDetailController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessSegmentController.cs" />
+    <Compile Include="Areas\Api\Controllers\JobTypeController.cs" />
     <Compile Include="Areas\Api\Controllers\CompanyBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Api\Controllers\CityBaseController.cs" />
@@ -365,7 +366,9 @@
     <Compile Include="Models\FleetPoolDropDown.cs" />
     <Compile Include="Models\FuelTypeDropDown.cs" />
     <Compile Include="Models\InsuranceTypeDropDown.cs" />
+    <Compile Include="Models\JobType.cs" />
     <Compile Include="Models\JobTypeDropDown.cs" />
+    <Compile Include="Models\JobTypeSearchRequestResponse.cs" />
     <Compile Include="Models\LicenseTypeDropDown.cs" />
     <Compile Include="Models\MaintenanceTypeDropDown.cs" />
     <Compile Include="Models\OperationSearchResponse.cs" />
@@ -585,6 +588,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Employee.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\EmployeeManagement\JobType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JobType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\EmployeeManagement\JobType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JobType.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\FleetPool\FleetPool.ar.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -820,6 +833,10 @@
     <Content Include="Areas\Common\Scripts\confirmation.viewModel.js" />
     <Content Include="Areas\Common\Scripts\clientSidePagination.js" />
     <Content Include="Areas\Common\Scripts\pagination.js" />
+    <Content Include="Areas\EmployeeManagement\Scripts\jobType.dataservice.js" />
+    <Content Include="Areas\EmployeeManagement\Scripts\jobType.model.js" />
+    <Content Include="Areas\EmployeeManagement\Scripts\jobType.view.js" />
+    <Content Include="Areas\EmployeeManagement\Scripts\jobType.viewModel.js" />
     <Content Include="Areas\EmployeeManagement\Scripts\employee.dataservice.js" />
     <Content Include="Areas\EmployeeManagement\Scripts\employee.model.js" />
     <Content Include="Areas\EmployeeManagement\Scripts\employee.view.js" />
@@ -999,6 +1016,12 @@
     <Content Include="Content\Images\delete.png" />
     <Content Include="Content\Images\edit.png" />
     <Content Include="Content\Images\spinner.gif" />
+    <Content Include="Content\JobType.css">
+      <DependentUpon>JobType.less</DependentUpon>
+    </Content>
+    <Content Include="Content\JobType.min.css">
+      <DependentUpon>JobType.css</DependentUpon>
+    </Content>
     <Content Include="Content\jquery-ui-1.11.0.min.css" />
     <Content Include="Content\MainSite.css">
       <DependentUpon>MainSite.less</DependentUpon>
@@ -1164,6 +1187,12 @@
     </Content>
     <Content Include="Content\OrgGroup.min.css">
       <DependentUpon>OrgGroup.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Designation.css">
+      <DependentUpon>Designation.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Designation.min.css">
+      <DependentUpon>Designation.css</DependentUpon>
     </Content>
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
@@ -1701,6 +1730,16 @@
     </Content>
     <Content Include="Areas\EmployeeManagement\Views\DesignationGrade\Designation.cshtml" />
     <Content Include="Areas\EmployeeManagement\Views\DesignationGrade\_DesignationEditor.cshtml" />
+    <Content Include="Content\Designation.less" />
+    <Content Include="Content\Designation.css.map">
+      <DependentUpon>Designation.css</DependentUpon>
+    </Content>
+    <Content Include="Areas\EmployeeManagement\Views\DesignationGrade\JobType.cshtml" />
+    <Content Include="Areas\EmployeeManagement\Views\DesignationGrade\_JobTypeEditor.cshtml" />
+    <Content Include="Content\JobType.less" />
+    <Content Include="Content\JobType.css.map">
+      <DependentUpon>JobType.css</DependentUpon>
+    </Content>
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
@@ -1923,6 +1962,14 @@
     <EmbeddedResource Include="Resources\EmployeeManagement\Employee.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Employee.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\EmployeeManagement\JobType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>JobType.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\EmployeeManagement\JobType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>JobType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\FleetPool\FleetPool.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

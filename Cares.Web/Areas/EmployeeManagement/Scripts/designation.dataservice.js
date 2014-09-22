@@ -13,86 +13,63 @@ define("designation/designation.dataservice", function () {
                 if (!isInitialized) {
 
 
-                    // Define request to get Regions 
-                    amplify.request.define('getRegions', 'ajax', {
-                        url: '/Api/Region',
+                    // Define request to get Designations 
+                    amplify.request.define('getDesignations', 'ajax', {
+                        url: '/Api/Designation',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
-                    // Define request to delete Region
-                    amplify.request.define('deleteRegion', 'ajax', {
-                        url: '/Api/Region',
+                    // Define request to delete Designation
+                    amplify.request.define('deleteDesignation', 'ajax', {
+                        url: '/Api/Designation',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
-                    // Define request to add/update Regio
-                    amplify.request.define('saveRegion', 'ajax', {
-                        url: '/Api/Region',
+                    // Define request to add/update Designation
+                    amplify.request.define('saveDesignation', 'ajax', {
+                        url: '/Api/Designation',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
                     });
 
-                    //Region base Data
-                    amplify.request.define('getRegionBaseData', 'ajax', {
-                        url: '/Api/RegionBase',
-                        dataType: 'json',
-                        decoder: amplify.request.decoders.istStatusDecoder,
-                        type: 'GET'
-                    });
-
                     isInitialized = true;
                 }
             },
-            // Get Regions
-            getRegions = function(params, callbacks) {
+            // Get Designations
+            getDesignations = function (params, callbacks) {
                 initialize();
                 return amplify.request({
-                    resourceId: 'getRegions',
+                    resourceId: 'getDesignations',
                     success: callbacks.success,
                     error: callbacks.error,
                     data: params
                 });
             },
-            //add-update Region.
-            saveRegion = function(params, callbacks) {
+            //add-update Designation.
+            saveDesignation = function (params, callbacks) {
                 return amplify.request({
-                    resourceId: 'saveRegion',
+                    resourceId: 'saveDesignation',
                     success: callbacks.success,
                     error: callbacks.error,
                     data: params
                 });
             },
-            //delete Region.
-            deleteRegion = function (params, callbacks) {
-                debugger;
+            //delete Designation.
+            deleteDesignation = function (params, callbacks) {
                 return amplify.request({
-                    resourceId: 'deleteRegion',
-                    success: callbacks.success,
-                    error: callbacks.error,
-                    data: params
-                });
-            },
-
-
-            //  Region Base Data
-            getRegionBaseData = function (params, callbacks) {
-                initialize();
-                return amplify.request({
-                    resourceId: 'getRegionBaseData',
+                    resourceId: 'deleteDesignation',
                     success: callbacks.success,
                     error: callbacks.error,
                     data: params
                 });
             };
-      
         return {
-            getRegionBaseData: getRegionBaseData,
-            saveRegion: saveRegion,
-            getRegions: getRegions,
-            deleteRegion: deleteRegion,
+            saveDesignation: saveDesignation,
+            getDesignations: getDesignations,
+            deleteDesignation: deleteDesignation,
 
         };
     })();

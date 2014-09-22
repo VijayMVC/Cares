@@ -154,6 +154,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EmpStatus.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\EmployeeManagement\JobType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JobType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\EmployeeManagement\JobType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JobType.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\FleetPool\FleetPool.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -329,6 +339,7 @@
     <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Services\BPRatingTypeService.cs" />
     <Compile Include="Services\BusinessLegalStatusService.cs" />
+    <Compile Include="Services\JobTypeService.cs" />
     <Compile Include="Services\InsuranceRateService.cs" />
     <Compile Include="Services\OperationsWorkPlaceService.cs" />
     <Compile Include="Services\PhoneService.cs" />
@@ -412,6 +423,14 @@
     <EmbeddedResource Include="Resources\EmployeeManagement\EmpStatus.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>EmpStatus.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\EmployeeManagement\JobType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>JobType.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\EmployeeManagement\JobType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>JobType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\FleetPool\FleetPool.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
