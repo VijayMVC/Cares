@@ -44,15 +44,19 @@ namespace Cares.Web.Models
         /// Is Parent
         /// </summary>
         public bool IsParent { get; set; }
+             #endregion
+
+        #region Refrence Properties
         /// <summary>
         /// Hire Group Detail List
         /// </summary>
         public List<HireGroupDetailForHireGroup> HireGroupDetailList { get; set; }
+        
         /// <summary>
         /// Hire Group Upgrade List
         /// </summary>
         public List<HireGroupUpgradeForHireGroup> HireGroupUpgradeList { get; set; }
+  
         #endregion
-
     }
 }

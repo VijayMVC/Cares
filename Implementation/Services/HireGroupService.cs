@@ -23,7 +23,7 @@ namespace Cares.Implementation.Services
         private readonly IHireGroupDetailRepository hireGroupDetailRepository;
         private readonly IHireGroupUpGradeRepository hireGroupUpGradeRepository;
         #endregion
-       
+
         #region Constructors
         public HireGroupService(IHireGroupRepository hireGroupRepository, ICompanyRepository companyRepository, IVehicleCategoryRepository vehicleCategoryRepository,
             IVehicleMakeRepository vehicleMakeRepository, IVehicleModelRepository vehicleModelRepository, IHireGroupDetailRepository hireGroupDetailRepository,
@@ -42,7 +42,7 @@ namespace Cares.Implementation.Services
             this.hireGroupUpGradeRepository = hireGroupUpGradeRepository;
         }
         #endregion
-        
+
         #region Public
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace Cares.Implementation.Services
         {
             return hireGroupRepository.GetHireGroups(hireGroupSearchRequest);
         }
-       
+
         /// <summary>
         /// Find Hire Group by ID
         /// </summary>
@@ -97,7 +97,7 @@ namespace Cares.Implementation.Services
         {
             return hireGroupRepository.Find(id);
         }
-       
+
         /// <summary>
         /// Delete Hire Group
         /// </summary>
@@ -108,28 +108,28 @@ namespace Cares.Implementation.Services
             hireGroupRepository.SaveChanges();
 
         }
-        
+
         /// <summary>
         /// Add Hire Group
         /// </summary>
-        /// <param name="request"></param>
-        public HireGroup AddHireGroup(HireGroupAddRequest request)
+        /// <param name="hireGroup"></param>
+        public HireGroup AddHireGroup(HireGroup hireGroup)
         {
-            request.HireGroup.RecCreatedDt = System.DateTime.Now;
-            request.HireGroup.RecLastUpdatedDt = System.DateTime.Now;
-            request.HireGroup.UserDomainKey = hireGroupRepository.UserDomainKey;
-            request.HireGroup.RecCreatedBy = "Cares";
-            request.HireGroup.RowVersion = 0;
-            request.HireGroup.RecLastUpdatedBy = "Cares";
-            request.HireGroup.IsReadOnly = false;
-            request.HireGroup.IsDeleted = false;
-            request.HireGroup.IsPrivate = false;
-            request.HireGroup.IsActive = false;
-            hireGroupRepository.Add(request.HireGroup);
-            hireGroupRepository.SaveChanges();
-            if (request.HireGroupDetails != null)
+            hireGroup.RecCreatedDt = DateTime.Now;
+            hireGroup.RecLastUpdatedDt = DateTime.Now;
+            hireGroup.UserDomainKey = hireGroupRepository.UserDomainKey;
+            hireGroup.RecCreatedBy = "Cares";
+            hireGroup.RowVersion = 0;
+            hireGroup.RecLastUpdatedBy = "Cares";
+            hireGroup.IsReadOnly = false;
+            hireGroup.IsDeleted = false;
+            hireGroup.IsPrivate = false;
+            hireGroup.IsActive = false;
+            //hireGroupRepository.Add(request.HireGroup);
+            //hireGroupRepository.SaveChanges();
+            if (hireGroup.HireGroupDetails != null)
             {
-                foreach (var hireGroupDetail in request.HireGroupDetails)
+                foreach (var hireGroupDetail in hireGroup.HireGroupDetails)
                 {
                     hireGroupDetail.RecCreatedDt = DateTime.Now;
                     hireGroupDetail.RecLastUpdatedDt = DateTime.Now;
@@ -141,14 +141,14 @@ namespace Cares.Implementation.Services
                     hireGroupDetail.IsDeleted = false;
                     hireGroupDetail.IsPrivate = false;
                     hireGroupDetail.IsActive = false;
-                    hireGroupDetail.HireGroupId = request.HireGroup.HireGroupId;
-                    hireGroupDetailRepository.Add(hireGroupDetail);
-                    hireGroupDetailRepository.SaveChanges();
+                    hireGroupDetail.HireGroupId = hireGroup.HireGroupId;
+                    //hireGroupDetailRepository.Add(hireGroupDetail);
+                    //hireGroupDetailRepository.SaveChanges();
                 }
             }
-            if (request.HireGroupUpGrades != null)
+            if (hireGroup.HireGroupUpGrades != null)
             {
-                foreach (var hireGroupUpGrade in request.HireGroupUpGrades)
+                foreach (var hireGroupUpGrade in hireGroup.HireGroupUpGrades)
                 {
                     hireGroupUpGrade.RecCreatedDt = DateTime.Now;
                     hireGroupUpGrade.RecLastUpdatedDt = DateTime.Now;
@@ -160,126 +160,145 @@ namespace Cares.Implementation.Services
                     hireGroupUpGrade.IsDeleted = false;
                     hireGroupUpGrade.IsPrivate = false;
                     hireGroupUpGrade.IsActive = false;
-                    hireGroupUpGrade.HireGroupId = request.HireGroup.HireGroupId;
+                    hireGroupUpGrade.HireGroupId = hireGroup.HireGroupId;
                     hireGroupUpGrade.AllowedHireGroupId = hireGroupUpGrade.AllowedHireGroupId;
-                    hireGroupUpGradeRepository.Add(hireGroupUpGrade);
-                    hireGroupUpGradeRepository.SaveChanges();
+                    //hireGroupUpGradeRepository.Add(hireGroupUpGrade);
+                    //hireGroupUpGradeRepository.SaveChanges();
                 }
             }
-            var hirGroup = hireGroupRepository.Find(request.HireGroup.HireGroupId);
+            hireGroupRepository.Add(hireGroup);
+            hireGroupRepository.SaveChanges();
+            var hirGroup = hireGroupRepository.Find(hireGroup.HireGroupId);
             hireGroupRepository.LoadDependencies(hirGroup);
             return hirGroup;
         }
-       
+
         /// <summary>
         /// Update Hire Group
         /// </summary>
         /// <param name="hireGroup"></param>
-        public HireGroup UpdateHireGroup(HireGroupAddRequest hireGroup)
+        public HireGroup UpdateHireGroup(HireGroup hireGroup)
         {
-            HireGroup hireGroupDbVersion = hireGroupRepository.Find(hireGroup.HireGroup.HireGroupId);
-
-            //set child (Hire Group detail list)
-            #region Hire Group Detial List List
-            //add new Hire group Detail items
-            if (hireGroup.HireGroupDetails != null)
+            HireGroup hireGroupDbVersion = hireGroupRepository.Find(hireGroup.HireGroupId);
+            if (hireGroupDbVersion != null)
             {
-                foreach (HireGroupDetail hireGroupDetail in hireGroup.HireGroupDetails)
+                hireGroupDbVersion.HireGroupCode = hireGroup.HireGroupCode;
+                hireGroupDbVersion.HireGroupName = hireGroup.HireGroupName;
+                hireGroupDbVersion.ParentHireGroupId = hireGroup.ParentHireGroupId;
+                hireGroupDbVersion.HireGroupDescription = hireGroup.HireGroupDescription;
+                hireGroupDbVersion.CompanyId = hireGroup.CompanyId;
+                hireGroupDbVersion.IsParent = hireGroup.IsParent;
+
+                //set child (Hire Group detail list)
+                #region Hire Group Detial List List
+                //add new Hire group Detail items
+                if (hireGroup.HireGroupDetails != null)
                 {
-                    if (
-                        hireGroupDbVersion.HireGroupDetails.All(
-                            x => x.HireGroupDetailId != hireGroupDetail.HireGroupDetailId) ||
-                        hireGroupDetail.HireGroupDetailId == 0)
+                    foreach (HireGroupDetail hireGroupDetail in hireGroup.HireGroupDetails)
                     {
-                        // set properties
-                        hireGroupDetail.RecCreatedDt = DateTime.Now;
-                        hireGroupDetail.RecLastUpdatedDt = DateTime.Now;
-                        hireGroupDetail.UserDomainKey = hireGroupRepository.UserDomainKey;
-                        hireGroupDetail.RecCreatedBy = "Cares";
-                        hireGroupDetail.RowVersion = 0;
-                        hireGroupDetail.RecLastUpdatedBy = "Cares";
-                        hireGroupDetail.IsReadOnly = false;
-                        hireGroupDetail.IsDeleted = false;
-                        hireGroupDetail.IsPrivate = false;
-                        hireGroupDetail.IsActive = false;
-                        hireGroupDetail.HireGroupId = hireGroup.HireGroup.HireGroupId;
-                        hireGroupDbVersion.HireGroupDetails.Add(hireGroupDetail);
+                        if (
+                            hireGroupDbVersion.HireGroupDetails.All(
+                                x => x.HireGroupDetailId != hireGroupDetail.HireGroupDetailId) ||
+                            hireGroupDetail.HireGroupDetailId == 0)
+                        {
+                            // set properties
+                            hireGroupDetail.RecCreatedDt = DateTime.Now;
+                            hireGroupDetail.RecLastUpdatedDt = DateTime.Now;
+                            hireGroupDetail.UserDomainKey = hireGroupRepository.UserDomainKey;
+                            hireGroupDetail.RecCreatedBy = "Cares";
+                            hireGroupDetail.RowVersion = 0;
+                            hireGroupDetail.RecLastUpdatedBy = "Cares";
+                            hireGroupDetail.IsReadOnly = false;
+                            hireGroupDetail.IsDeleted = false;
+                            hireGroupDetail.IsPrivate = false;
+                            hireGroupDetail.IsActive = false;
+                            hireGroupDetail.HireGroupId = hireGroup.HireGroupId;
+                            hireGroupDbVersion.HireGroupDetails.Add(hireGroupDetail);
+                        }
                     }
                 }
-            }
-            //find missing Hire Group Detail items
-            List<HireGroupDetail> missingHireGroupDetailItems = new List<HireGroupDetail>();
-            foreach (HireGroupDetail dbversionHireGroupDetailItem in hireGroupDbVersion.HireGroupDetails)
-            {
-                if (hireGroup.HireGroupDetails.All(x => x.HireGroupDetailId != dbversionHireGroupDetailItem.HireGroupDetailId))
+                //find missing Hire Group Detail items
+                List<HireGroupDetail> missingHireGroupDetailItems = new List<HireGroupDetail>();
+                foreach (HireGroupDetail dbversionHireGroupDetailItem in hireGroupDbVersion.HireGroupDetails)
                 {
-                    missingHireGroupDetailItems.Add(dbversionHireGroupDetailItem);
-                }
-            }
-            //remove missing Hire Group Detail  items
-            foreach (HireGroupDetail missingHireGroupDetail in missingHireGroupDetailItems)
-            {
-                HireGroupDetail dbVersionHireGroupDetailItem = hireGroupDbVersion.HireGroupDetails.First(x => x.HireGroupDetailId == missingHireGroupDetail.HireGroupDetailId);
-                if (dbVersionHireGroupDetailItem.HireGroupDetailId > 0)
-                {
-                    hireGroupDbVersion.HireGroupDetails.Remove(dbVersionHireGroupDetailItem);
-                    hireGroupDetailRepository.Delete(dbVersionHireGroupDetailItem);
-                }
-            }
-            #endregion
-            //set child (Hire Group Up Grade list)
-            #region Hire Group Up Grade list
-            //add new address items
-            if (hireGroup.HireGroupUpGrades != null)
-            {
-                foreach (HireGroupUpGrade hireGroupUpGrade in hireGroup.HireGroupUpGrades)
-                {
-                    if (hireGroupDbVersion.HireGroupUpGradList.All(x => x.HireGroupUpGradeId != hireGroupUpGrade.HireGroupUpGradeId) || hireGroupUpGrade.HireGroupUpGradeId == 0)
+                    if (hireGroup.HireGroupDetails != null && hireGroup.HireGroupDetails.All(x => x.HireGroupDetailId != dbversionHireGroupDetailItem.HireGroupDetailId))
                     {
-                        // set properties
-                        hireGroupUpGrade.RecCreatedDt = DateTime.Now;
-                        hireGroupUpGrade.RecLastUpdatedDt = DateTime.Now;
-                        hireGroupUpGrade.UserDomainKey = hireGroupRepository.UserDomainKey;
-                        hireGroupUpGrade.RecCreatedBy = "Cares";
-                        hireGroupUpGrade.RowVersion = 0;
-                        hireGroupUpGrade.RecLastUpdatedBy = "Cares";
-                        hireGroupUpGrade.IsReadOnly = false;
-                        hireGroupUpGrade.IsDeleted = false;
-                        hireGroupUpGrade.IsPrivate = false;
-                        hireGroupUpGrade.IsActive = false;
-                        hireGroupUpGrade.HireGroupId = hireGroup.HireGroup.HireGroupId;
-                        hireGroupUpGrade.AllowedHireGroupId = hireGroupUpGrade.AllowedHireGroupId;
-                        hireGroupDbVersion.HireGroupUpGradList.Add(hireGroupUpGrade);
+                        missingHireGroupDetailItems.Add(dbversionHireGroupDetailItem);
+                    }
+                    if (hireGroup.HireGroupDetails == null)
+                    {
+                        missingHireGroupDetailItems.Add(dbversionHireGroupDetailItem);
                     }
                 }
-            }
-            //find missing Hire Group Up Garde items
-            List<HireGroupUpGrade> missingHireGroupUpGradeItems = new List<HireGroupUpGrade>();
-            foreach (HireGroupUpGrade dbversionHireGroupUpGradeItem in hireGroupDbVersion.HireGroupUpGradList)
-            {
-                if (hireGroup.HireGroupUpGrades.All(x => x.HireGroupUpGradeId != dbversionHireGroupUpGradeItem.HireGroupUpGradeId))
+                //remove missing Hire Group Detail  items
+                foreach (HireGroupDetail missingHireGroupDetail in missingHireGroupDetailItems)
                 {
-                    missingHireGroupUpGradeItems.Add(dbversionHireGroupUpGradeItem);
-                }
-            }
-            //remove missing Hire Group Up Grade items
-            foreach (HireGroupUpGrade missingHireGroupUpGrade in missingHireGroupUpGradeItems)
-            {
-                HireGroupUpGrade dbVersionHireGroupDetailItem = hireGroupDbVersion.HireGroupUpGradList.First(x => x.HireGroupUpGradeId == missingHireGroupUpGrade.HireGroupUpGradeId);
-                if (dbVersionHireGroupDetailItem.HireGroupUpGradeId > 0)
-                {
-                    hireGroupDbVersion.HireGroupUpGradList.Remove(dbVersionHireGroupDetailItem);
-                    hireGroupUpGradeRepository.Delete(dbVersionHireGroupDetailItem);
-                }
-            }
-            #endregion
+                    HireGroupDetail dbVersionHireGroupDetailItem = hireGroupDbVersion.HireGroupDetails.First(x => x.HireGroupDetailId == missingHireGroupDetail.HireGroupDetailId);
+                    if (dbVersionHireGroupDetailItem.HireGroupDetailId > 0)
+                    {
+                        hireGroupDbVersion.HireGroupDetails.Remove(dbVersionHireGroupDetailItem);
+                        hireGroupDetailRepository.Delete(dbVersionHireGroupDetailItem);
+                    }
 
+                }
+                #endregion
+                //set child (Hire Group Up Grade list)
+                #region Hire Group Up Grade list
+                //add new address items
+                if (hireGroup.HireGroupUpGrades != null)
+                {
+                    foreach (HireGroupUpGrade hireGroupUpGrade in hireGroup.HireGroupUpGrades)
+                    {
+                        if (hireGroupDbVersion.HireGroupUpGrades.All(x => x.HireGroupUpGradeId != hireGroupUpGrade.HireGroupUpGradeId) || hireGroupUpGrade.HireGroupUpGradeId == 0)
+                        {
+                            // set properties
+                            hireGroupUpGrade.RecCreatedDt = DateTime.Now;
+                            hireGroupUpGrade.RecLastUpdatedDt = DateTime.Now;
+                            hireGroupUpGrade.UserDomainKey = hireGroupRepository.UserDomainKey;
+                            hireGroupUpGrade.RecCreatedBy = "Cares";
+                            hireGroupUpGrade.RowVersion = 0;
+                            hireGroupUpGrade.RecLastUpdatedBy = "Cares";
+                            hireGroupUpGrade.IsReadOnly = false;
+                            hireGroupUpGrade.IsDeleted = false;
+                            hireGroupUpGrade.IsPrivate = false;
+                            hireGroupUpGrade.IsActive = false;
+                            hireGroupUpGrade.HireGroupId = hireGroup.HireGroupId;
+                            hireGroupUpGrade.AllowedHireGroupId = hireGroupUpGrade.AllowedHireGroupId;
+                            hireGroupDbVersion.HireGroupUpGrades.Add(hireGroupUpGrade);
+                        }
+                    }
+                }
+                //find missing Hire Group Up Garde items
+                List<HireGroupUpGrade> missingHireGroupUpGradeItems = new List<HireGroupUpGrade>();
+                foreach (HireGroupUpGrade dbversionHireGroupUpGradeItem in hireGroupDbVersion.HireGroupUpGrades)
+                {
+                    if (hireGroup.HireGroupUpGrades != null && hireGroup.HireGroupUpGrades.All(x => x.HireGroupUpGradeId != dbversionHireGroupUpGradeItem.HireGroupUpGradeId))
+                    {
+                        missingHireGroupUpGradeItems.Add(dbversionHireGroupUpGradeItem);
+                    }
+                    if (hireGroup.HireGroupUpGrades == null)
+                    {
+                        missingHireGroupUpGradeItems.Add(dbversionHireGroupUpGradeItem);
+                    }
+                }
+                //remove missing Hire Group Up Grade items
+                foreach (HireGroupUpGrade missingHireGroupUpGrade in missingHireGroupUpGradeItems)
+                {
+                    HireGroupUpGrade dbVersionHireGroupDetailItem = hireGroupDbVersion.HireGroupUpGrades.First(x => x.HireGroupUpGradeId == missingHireGroupUpGrade.HireGroupUpGradeId);
+                    if (dbVersionHireGroupDetailItem.HireGroupUpGradeId > 0)
+                    {
+                        hireGroupDbVersion.HireGroupUpGrades.Remove(dbVersionHireGroupDetailItem);
+                        hireGroupUpGradeRepository.Delete(dbVersionHireGroupDetailItem);
+                    }
+                }
+                #endregion
+            }
             hireGroupRepository.SaveChanges();
-            var hirGroup = hireGroupRepository.Find(hireGroup.HireGroup.HireGroupId);
+            var hirGroup = hireGroupRepository.Find(hireGroup.HireGroupId);
             hireGroupRepository.LoadDependencies(hirGroup);
             return hirGroup;
         }
-        
+
         /// <summary>
         /// Get Hire Group Data By Id
         /// </summary>

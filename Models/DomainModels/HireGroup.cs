@@ -116,7 +116,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Hire Group Up Grades List
         /// </summary>
-        public virtual ICollection<HireGroupUpGrade> HireGroupUpGradList { get; set; }
+        public virtual ICollection<HireGroupUpGrade> HireGroupUpGrades { get; set; }
 
         /// <summary>
         /// Vehicle Associated with this Hire Group

@@ -127,13 +127,19 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         /// Add hire Group Request
         /// </summary>
-        public static RequestModel.HireGroupAddRequest CreateFrom(this HireGroup source)
+        public static DomainModels.HireGroup CreateFrom(this HireGroup source)
         {
-            return new RequestModel.HireGroupAddRequest
+            return new DomainModels.HireGroup
             {
-                HireGroupDetails = source.HireGroupDetailList != null ? source.HireGroupDetailList.Select(hg => hg.CreateFromForHireGroupAdd()) : null,
-                HireGroupUpGrades = source.HireGroupUpgradeList != null ? source.HireGroupUpgradeList.Select(h => h.CreateFrom()) : null,
-                HireGroup = source.CreateFromAdd()
+                HireGroupDetails = source.HireGroupDetailList != null ? source.HireGroupDetailList.Select(hg => hg.CreateFromForHireGroupAdd()).ToList() : null,
+                HireGroupUpGrades = source.HireGroupUpgradeList != null ? source.HireGroupUpgradeList.Select(h => h.CreateFrom()).ToList() : null,
+                HireGroupId = source.HireGroupId,
+                HireGroupCode = source.HireGroupCode,
+                HireGroupName = source.HireGroupName,
+                ParentHireGroupId = source.ParentHireGroupId,
+                HireGroupDescription = source.Description,
+                CompanyId = source.CompanyId,
+                IsParent = source.IsParent,
             };
         }
         /// <summary>
@@ -178,7 +184,7 @@ namespace Cares.Web.ModelMappers
             {
                 HireGroupCodeName = source.AllowedHireGroup.HireGroupCode + " - " + source.AllowedHireGroup.HireGroupName,
                 HireGroupId = source.AllowedHireGroupId,
-                HireGroupUpGradeId=source.HireGroupUpGradeId
+                HireGroupUpGradeId = source.HireGroupUpGradeId
             };
         }
         /// <summary>
