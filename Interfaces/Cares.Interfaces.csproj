@@ -52,6 +52,8 @@
     <Compile Include="IServices\IJobTypeService.cs" />
     <Compile Include="Repository\IAdditionalChargeRepository.cs" />
     <Compile Include="Repository\IAdditionalChargeTypeRepository.cs" />
+    <Compile Include="IServices\IDiscountTypeService.cs" />
+    <Compile Include="IServices\IDiscountSubTypeService.cs" />
     <Compile Include="Repository\IAdditionalDriverChargeRepository.cs" />
     <Compile Include="IServices\IAdditionalDriverService.cs" />
     <Compile Include="IServices\IBPRatingTypeService.cs" />
@@ -75,6 +77,8 @@
     <Compile Include="IServices\IWorkLocationService.cs" />
     <Compile Include="IServices\IWorkplaceService.cs" />
     <Compile Include="IServices\IWorkplaceTypeService.cs" />
+    <Compile Include="Repository\IDiscountSubTypeRepository.cs" />
+    <Compile Include="Repository\IDiscountTypeRepository.cs" />
     <Compile Include="Repository\IEmpAuthOperationsWorkplaceRepository.cs" />
     <Compile Include="Repository\IDesignGradeRepository.cs" />
     <Compile Include="Repository\IDesignationRepository.cs" />

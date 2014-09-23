@@ -29,7 +29,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets0E7215695EABACDFB99A89CCDE5AEA78F9AC6C16AA0D4D9FA72FC0B393C40ED5))]
+[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets023D9597D57C50B3107B25C3768F2747995A23B8B1A0FBCEC3F32E6F7D6A368F))]
 
 namespace Edm_EntityMappingGeneratedViews
 {
@@ -38,19 +38,19 @@ namespace Edm_EntityMappingGeneratedViews
     /// <Summary>
     /// The type contains views for EntitySets and AssociationSets that were generated at design time.
     /// </Summary>
-    public sealed class ViewsForBaseEntitySets0E7215695EABACDFB99A89CCDE5AEA78F9AC6C16AA0D4D9FA72FC0B393C40ED5 : System.Data.Mapping.EntityViewContainer
+    public sealed class ViewsForBaseEntitySets023D9597D57C50B3107B25C3768F2747995A23B8B1A0FBCEC3F32E6F7D6A368F : System.Data.Mapping.EntityViewContainer
     {
         
         /// <Summary>
         /// The constructor stores the views for the extents and also the hash values generated based on the metadata and mapping closure and views.
         /// </Summary>
-        public ViewsForBaseEntitySets0E7215695EABACDFB99A89CCDE5AEA78F9AC6C16AA0D4D9FA72FC0B393C40ED5()
+        public ViewsForBaseEntitySets023D9597D57C50B3107B25C3768F2747995A23B8B1A0FBCEC3F32E6F7D6A368F()
         {
             this.EdmEntityContainerName = "BaseDbContext";
             this.StoreEntityContainerName = "CaresModelStoreContainer";
-            this.HashOverMappingClosure = "7f616e962ff78c92620227ec894a6f2f0197f10ed289ccacaea1f1fc3c880898";
-            this.HashOverAllExtentViews = "fd00efcd1ae5dab80e02550413e0a5ed92f02df2f2fb44d7c7018fa9dcae0048";
-            this.ViewCount = 176;
+            this.HashOverMappingClosure = "790886d38b99c66af37149e67f75cece82ad5de235233c222a787a443138a4a6";
+            this.HashOverAllExtentViews = "32b5a8326657d0180cf925fc424e9d705ca75659a91d334313da1a780eca86c3";
+            this.ViewCount = 180;
         }
         
         /// <Summary>
@@ -761,6 +761,22 @@ namespace Edm_EntityMappingGeneratedViews
             if ((index == 175))
             {
                 return GetView175();
+            }
+            if ((index == 176))
+            {
+                return GetView176();
+            }
+            if ((index == 177))
+            {
+                return GetView177();
+            }
+            if ((index == 178))
+            {
+                return GetView178();
+            }
+            if ((index == 179))
+            {
+                return GetView179();
             }
             throw new System.IndexOutOfRangeException();
         }
@@ -6008,6 +6024,119 @@ namespace Edm_EntityMappingGeneratedViews
             viewString.Append("   True AS _from0\r\n        FROM CaresModelStoreContainer.AdditionalDriverCharge ");
             viewString.Append("AS T\r\n    ) AS T1");
             return new System.Collections.Generic.KeyValuePair<string, string>("BaseDbContext.AdditionalDriverCharges", viewString.ToString());
+        }
+        
+        /// <Summary>
+        /// return view for CaresModelStoreContainer.DiscountSubType
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView176()
+        {
+            return new System.Collections.Generic.KeyValuePair<string, string>("CaresModelStoreContainer.DiscountSubType", "\r\n    SELECT VALUE -- Constructing DiscountSubType\r\n        [CaresModel.Store.Dis" +
+                    "countSubType](T1.DiscountSubType_DiscountSubTypeID, T1.DiscountSubType_DiscountS" +
+                    "ubTypeCode, T1.DiscountSubType_DiscountSubTypeName, T1.DiscountSubType_DiscountS" +
+                    "ubTypeDescription, T1.DiscountSubType_DiscountTypeID, T1.DiscountSubType_RowVers" +
+                    "ion, T1.DiscountSubType_IsActive, T1.DiscountSubType_IsDeleted, T1.DiscountSubTy" +
+                    "pe_IsPrivate, T1.DiscountSubType_IsReadOnly, T1.DiscountSubType_RecCreatedBy, T1" +
+                    ".DiscountSubType_RecLastUpdatedBy, T1.DiscountSubType_RecCreatedDt, T1.DiscountS" +
+                    "ubType_RecLastUpdatedDt, T1.DiscountSubType_UserDomainKey)\r\n    FROM (\r\n        " +
+                    "SELECT \r\n            T.DiscountSubTypeId AS DiscountSubType_DiscountSubTypeID, \r" +
+                    "\n            T.DiscountSubTypeCode AS DiscountSubType_DiscountSubTypeCode, \r\n   " +
+                    "         T.DiscountSubTypeName AS DiscountSubType_DiscountSubTypeName, \r\n       " +
+                    "     T.DiscountSubTypeDescription AS DiscountSubType_DiscountSubTypeDescription," +
+                    " \r\n            T.DiscountTypeId AS DiscountSubType_DiscountTypeID, \r\n           " +
+                    " T.RowVersion AS DiscountSubType_RowVersion, \r\n            T.IsActive AS Discoun" +
+                    "tSubType_IsActive, \r\n            T.IsDeleted AS DiscountSubType_IsDeleted, \r\n   " +
+                    "         T.IsPrivate AS DiscountSubType_IsPrivate, \r\n            T.IsReadOnly AS" +
+                    " DiscountSubType_IsReadOnly, \r\n            T.RecCreatedBy AS DiscountSubType_Rec" +
+                    "CreatedBy, \r\n            T.RecLastUpdatedBy AS DiscountSubType_RecLastUpdatedBy," +
+                    " \r\n            T.RecCreatedDt AS DiscountSubType_RecCreatedDt, \r\n            T.R" +
+                    "ecLastUpdatedDt AS DiscountSubType_RecLastUpdatedDt, \r\n            T.UserDomainK" +
+                    "ey AS DiscountSubType_UserDomainKey, \r\n            True AS _from0\r\n        FROM " +
+                    "BaseDbContext.DiscountSubTypes AS T\r\n    ) AS T1");
+        }
+        
+        /// <Summary>
+        /// return view for CaresModelStoreContainer.DiscountType
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView177()
+        {
+            return new System.Collections.Generic.KeyValuePair<string, string>("CaresModelStoreContainer.DiscountType", @"
+    SELECT VALUE -- Constructing DiscountType
+        [CaresModel.Store.DiscountType](T1.DiscountType_DiscountTypeID, T1.DiscountType_DiscountTypeCode, T1.DiscountType_DiscountTypeName, T1.DiscountType_DiscountTypeDescription, T1.DiscountType_RowVersion, T1.DiscountType_IsActive, T1.DiscountType_IsDeleted, T1.DiscountType_IsPrivate, T1.DiscountType_IsReadOnly, T1.DiscountType_RecCreatedDt, T1.DiscountType_RecLastUpdatedDt, T1.DiscountType_RecCreatedBy, T1.DiscountType_RecLastUpdatedBy, T1.DiscountType_UserDomainKey)
+    FROM (
+        SELECT 
+            T.DiscountTypeId AS DiscountType_DiscountTypeID, 
+            T.DiscountTypeCode AS DiscountType_DiscountTypeCode, 
+            T.DiscountTypeName AS DiscountType_DiscountTypeName, 
+            T.DiscountTypeDescription AS DiscountType_DiscountTypeDescription, 
+            T.RowVersion AS DiscountType_RowVersion, 
+            T.IsActive AS DiscountType_IsActive, 
+            T.IsDeleted AS DiscountType_IsDeleted, 
+            T.IsPrivate AS DiscountType_IsPrivate, 
+            T.IsReadOnly AS DiscountType_IsReadOnly, 
+            T.RecCreatedDt AS DiscountType_RecCreatedDt, 
+            T.RecLastUpdatedDt AS DiscountType_RecLastUpdatedDt, 
+            T.RecCreatedBy AS DiscountType_RecCreatedBy, 
+            T.RecLastUpdatedBy AS DiscountType_RecLastUpdatedBy, 
+            T.UserDomainKey AS DiscountType_UserDomainKey, 
+            True AS _from0
+        FROM BaseDbContext.DiscountTypes AS T
+    ) AS T1");
+        }
+        
+        /// <Summary>
+        /// return view for BaseDbContext.DiscountSubTypes
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView178()
+        {
+            return new System.Collections.Generic.KeyValuePair<string, string>("BaseDbContext.DiscountSubTypes", "\r\n    SELECT VALUE -- Constructing DiscountSubTypes\r\n        [DomainModels.Discou" +
+                    "ntSubType](T1.DiscountSubType_DiscountSubTypeId, T1.DiscountSubType_DiscountSubT" +
+                    "ypeCode, T1.DiscountSubType_DiscountSubTypeName, T1.DiscountSubType_DiscountSubT" +
+                    "ypeDescription, T1.DiscountSubType_DiscountTypeId, T1.DiscountSubType_RowVersion" +
+                    ", T1.DiscountSubType_IsActive, T1.DiscountSubType_IsDeleted, T1.DiscountSubType_" +
+                    "IsPrivate, T1.DiscountSubType_IsReadOnly, T1.DiscountSubType_RecCreatedBy, T1.Di" +
+                    "scountSubType_RecLastUpdatedBy, T1.DiscountSubType_RecCreatedDt, T1.DiscountSubT" +
+                    "ype_RecLastUpdatedDt, T1.DiscountSubType_UserDomainKey)\r\n    FROM (\r\n        SEL" +
+                    "ECT \r\n            T.DiscountSubTypeID AS DiscountSubType_DiscountSubTypeId, \r\n  " +
+                    "          T.DiscountSubTypeCode AS DiscountSubType_DiscountSubTypeCode, \r\n      " +
+                    "      T.DiscountSubTypeName AS DiscountSubType_DiscountSubTypeName, \r\n          " +
+                    "  T.DiscountSubTypeDescription AS DiscountSubType_DiscountSubTypeDescription, \r\n" +
+                    "            T.DiscountTypeID AS DiscountSubType_DiscountTypeId, \r\n            T." +
+                    "RowVersion AS DiscountSubType_RowVersion, \r\n            T.IsActive AS DiscountSu" +
+                    "bType_IsActive, \r\n            T.IsDeleted AS DiscountSubType_IsDeleted, \r\n      " +
+                    "      T.IsPrivate AS DiscountSubType_IsPrivate, \r\n            T.IsReadOnly AS Di" +
+                    "scountSubType_IsReadOnly, \r\n            T.RecCreatedBy AS DiscountSubType_RecCre" +
+                    "atedBy, \r\n            T.RecLastUpdatedBy AS DiscountSubType_RecLastUpdatedBy, \r\n" +
+                    "            T.RecCreatedDt AS DiscountSubType_RecCreatedDt, \r\n            T.RecL" +
+                    "astUpdatedDt AS DiscountSubType_RecLastUpdatedDt, \r\n            T.UserDomainKey " +
+                    "AS DiscountSubType_UserDomainKey, \r\n            True AS _from0\r\n        FROM Car" +
+                    "esModelStoreContainer.DiscountSubType AS T\r\n    ) AS T1");
+        }
+        
+        /// <Summary>
+        /// return view for BaseDbContext.DiscountTypes
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView179()
+        {
+            return new System.Collections.Generic.KeyValuePair<string, string>("BaseDbContext.DiscountTypes", "\r\n    SELECT VALUE -- Constructing DiscountTypes\r\n        [DomainModels.DiscountT" +
+                    "ype](T1.DiscountType_DiscountTypeId, T1.DiscountType_DiscountTypeCode, T1.Discou" +
+                    "ntType_DiscountTypeName, T1.DiscountType_DiscountTypeDescription, T1.DiscountTyp" +
+                    "e_RowVersion, T1.DiscountType_IsActive, T1.DiscountType_IsDeleted, T1.DiscountTy" +
+                    "pe_IsPrivate, T1.DiscountType_IsReadOnly, T1.DiscountType_RecCreatedDt, T1.Disco" +
+                    "untType_RecLastUpdatedDt, T1.DiscountType_RecCreatedBy, T1.DiscountType_RecLastU" +
+                    "pdatedBy, T1.DiscountType_UserDomainKey)\r\n    FROM (\r\n        SELECT \r\n         " +
+                    "   T.DiscountTypeID AS DiscountType_DiscountTypeId, \r\n            T.DiscountType" +
+                    "Code AS DiscountType_DiscountTypeCode, \r\n            T.DiscountTypeName AS Disco" +
+                    "untType_DiscountTypeName, \r\n            T.DiscountTypeDescription AS DiscountTyp" +
+                    "e_DiscountTypeDescription, \r\n            T.RowVersion AS DiscountType_RowVersion" +
+                    ", \r\n            T.IsActive AS DiscountType_IsActive, \r\n            T.IsDeleted A" +
+                    "S DiscountType_IsDeleted, \r\n            T.IsPrivate AS DiscountType_IsPrivate, \r" +
+                    "\n            T.IsReadOnly AS DiscountType_IsReadOnly, \r\n            T.RecCreated" +
+                    "Dt AS DiscountType_RecCreatedDt, \r\n            T.RecLastUpdatedDt AS DiscountTyp" +
+                    "e_RecLastUpdatedDt, \r\n            T.RecCreatedBy AS DiscountType_RecCreatedBy, \r" +
+                    "\n            T.RecLastUpdatedBy AS DiscountType_RecLastUpdatedBy, \r\n            " +
+                    "T.UserDomainKey AS DiscountType_UserDomainKey, \r\n            True AS _from0\r\n   " +
+                    "     FROM CaresModelStoreContainer.DiscountType AS T\r\n    ) AS T1");
         }
     }
 }

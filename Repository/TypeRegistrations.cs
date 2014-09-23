@@ -91,7 +91,8 @@ namespace Cares.Repository
             unityContainer.RegisterType<IAdditionalDriverChargeRepository, AdditionalDriverChargeRepository>();
             unityContainer.RegisterType<IAdditionalChargeRepository, AdditionalChargeRepository>();
             unityContainer.RegisterType<IAdditionalChargeTypeRepository, AdditionalChargeTypeRepository>();
-
+            unityContainer.RegisterType<IDiscountTypeRepository, DiscountTypeRepository>();
+            unityContainer.RegisterType<IDiscountSubTypeRepository, DiscountSubTypeRepository>();
         }
     }
 }

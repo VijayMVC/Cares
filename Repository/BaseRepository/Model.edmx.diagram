@@ -215,9 +215,12 @@
         <AssociationConnector Association="DomainModels.RefInsuranceRt391" />
         <AssociationConnector Association="DomainModels.RefServiceRt386" />
         <AssociationConnector Association="DomainModels.RefStandardRt371" />
+        <EntityTypeShape EntityType="DomainModels.DiscountSubType" Width="1.5" PointX="25.625" PointY="13" />
+        <EntityTypeShape EntityType="DomainModels.DiscountType" Width="1.5" PointX="23.375" PointY="13.125" />
         <AssociationConnector Association="DomainModels.FK_HireGroup_Company" />
         <AssociationConnector Association="DomainModels.RefHireGroup308" />
         <EntityTypeShape EntityType="DomainModels.AdditionalCharge" Width="1.5" PointX="27.875" PointY="52.25" />
+        <AssociationConnector Association="DomainModels.RefDiscountType374" />
         <EntityTypeShape EntityType="DomainModels.AdditionalChargeType" Width="1.5" PointX="22.375" PointY="64.875" />
         <AssociationConnector Association="DomainModels.RefAdditionalCharge400" />
         <AssociationConnector Association="DomainModels.RefAdditionalChargeType393" />

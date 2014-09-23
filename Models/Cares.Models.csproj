@@ -111,6 +111,8 @@
     <Compile Include="Common\DepartmentByColumn.cs" />
     <Compile Include="Common\DesignationByColumn.cs" />
     <Compile Include="Common\DesignGradeByColumn.cs" />
+    <Compile Include="Common\DiscountSubTypeByColumn.cs" />
+    <Compile Include="Common\DiscountTypeByColumn.cs" />
     <Compile Include="Common\EmpStatusByColumn.cs" />
     <Compile Include="Common\InsuranceRateByColumn.cs" />
     <Compile Include="Common\JobTypeByColumn.cs" />
@@ -147,6 +149,8 @@
     <Compile Include="DomainModels\Area.cs" />
     <Compile Include="DomainModels\DesignGrade.cs" />
     <Compile Include="DomainModels\Designation.cs" />
+    <Compile Include="DomainModels\DiscountSubType.cs" />
+    <Compile Include="DomainModels\DiscountType.cs" />
     <Compile Include="DomainModels\EmpAuthOperationsWorkplace.cs" />
     <Compile Include="DomainModels\EmpDocsInfo.cs" />
     <Compile Include="DomainModels\EmpJobInfo.cs" />
@@ -238,6 +242,10 @@
     <Compile Include="RequestModels\DesignationSearchRequestResponse.cs" />
     <Compile Include="RequestModels\DesignGradeSearchRequest.cs" />
     <Compile Include="RequestModels\DesignGradeSearchRequestResponse.cs" />
+    <Compile Include="RequestModels\DiscountSubTypeSearchRequest.cs" />
+    <Compile Include="RequestModels\DiscountSubTypeSearchRequestResponse.cs" />
+    <Compile Include="RequestModels\DiscountTypeSearchRequest.cs" />
+    <Compile Include="RequestModels\DiscountTypeSearchRequestResponse.cs" />
     <Compile Include="RequestModels\EmpSearchRequest.cs" />
     <Compile Include="RequestModels\EmpSearchRequestResponse.cs" />
     <Compile Include="RequestModels\GetBusinessPartnerRequest.cs" />
@@ -281,6 +289,7 @@
     <Compile Include="ResponseModels\CompanySearchResponse.cs" />
     <Compile Include="ResponseModels\DepartmentBaseDataResponse.cs" />
     <Compile Include="ResponseModels\DepartmentSearchRequestResponse.cs" />
+    <Compile Include="ResponseModels\DiscountSubTypeBaseDataResponse.cs" />
     <Compile Include="ResponseModels\EmployeeBaseResponse.cs" />
     <Compile Include="ResponseModels\EmployeeSearchResponse.cs" />
     <Compile Include="ResponseModels\FleetPoolBaseDataResponse.cs" />

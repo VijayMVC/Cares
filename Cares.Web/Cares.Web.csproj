@@ -241,6 +241,9 @@
     <Compile Include="Areas\Api\Controllers\DesignGradeController.cs" />
     <Compile Include="Areas\Api\Controllers\EmployeeStatusController.cs" />
     <Compile Include="Areas\Api\Controllers\DesignationController.cs" />
+    <Compile Include="Areas\Api\Controllers\DiscountTypeController.cs" />
+    <Compile Include="Areas\Api\Controllers\DiscountSubTypeBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\DiscountSubTypeController.cs" />
     <Compile Include="Areas\Api\Controllers\SubRegionController.cs" />
     <Compile Include="Areas\Api\Controllers\SubRegionBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\RegionBaseController.cs" />
@@ -323,6 +326,8 @@
     <Compile Include="ModelMappers\AdditionalDriverChargeMapper.cs" />
     <Compile Include="ModelMappers\DesigGradeMapper.cs" />
     <Compile Include="ModelMappers\DesignationMapper.cs" />
+    <Compile Include="ModelMappers\DiscountSubTypeMapper.cs" />
+    <Compile Include="ModelMappers\DiscountTypeMapper.cs" />
     <Compile Include="ModelMappers\EmpStatusMapper.cs" />
     <Compile Include="ModelMappers\InsuranceRateMapper.cs" />
     <Compile Include="ModelMappers\InsuranceTypeMapper.cs" />
@@ -359,6 +364,12 @@
     <Compile Include="Models\DesignGrade.cs" />
     <Compile Include="Models\DesignGradeSearchRequestResponse.cs" />
     <Compile Include="Models\DesignationDropDown.cs" />
+    <Compile Include="Models\DiscountSubType.cs" />
+    <Compile Include="Models\DiscountSubTypeBaseDataResponse.cs" />
+    <Compile Include="Models\DiscountSubTypeSearchRequestResponse.cs" />
+    <Compile Include="Models\DiscountType.cs" />
+    <Compile Include="Models\DiscountTypeDropDown.cs" />
+    <Compile Include="Models\DiscountTypeSearchRequestResponse.cs" />
     <Compile Include="Models\EmpAuthOperationsWorkplace.cs" />
     <Compile Include="Models\EmpDocsInfo.cs" />
     <Compile Include="Models\EmpJobInfo.cs" />
@@ -737,6 +748,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>WorkplaceType.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Pricing\DiscountSubType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DiscountSubType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Pricing\DiscountSubType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DiscountSubType.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Pricing\DiscountType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DiscountType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Pricing\DiscountType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DiscountType.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Shared\Common.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -925,6 +956,10 @@
     <Content Include="Areas\Pricing\Scripts\additionalCharge.model.js" />
     <Content Include="Areas\Pricing\Scripts\additionalCharge.viewModel.js" />
     <Content Include="Areas\Pricing\Scripts\additionalCharge.dataservice.js" />
+    <Content Include="Areas\Pricing\Scripts\discountType.dataservice.js" />
+    <Content Include="Areas\Pricing\Scripts\discountType.model.js" />
+    <Content Include="Areas\Pricing\Scripts\discountType.view.js" />
+    <Content Include="Areas\Pricing\Scripts\discountType.viewModel.js" />
     <Content Include="Areas\Pricing\Scripts\serviceRate.dataservice.js" />
     <Content Include="Areas\Pricing\Scripts\additionalDriverCharge.model.js" />
     <Content Include="Areas\Pricing\Scripts\serviceRate.model.js" />
@@ -1754,6 +1789,8 @@
     </Content>
     <Content Include="Areas\Pricing\Views\Tariff\AdditionalCharge.cshtml" />
     <Content Include="Areas\Pricing\Views\Tariff\_AddtionalChargeEditor.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\DiscountType.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\_DiscountTypeEditor.cshtml" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
@@ -2090,6 +2127,22 @@
     <EmbeddedResource Include="Resources\Organization\WorkplaceType.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>WorkplaceType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Pricing\DiscountSubType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DiscountSubType.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Pricing\DiscountSubType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DiscountSubType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Pricing\DiscountType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DiscountType.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Pricing\DiscountType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DiscountType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Shared\Common.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -516,6 +516,45 @@
           <Property Name="RecLastUpdatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
         </EntityType>
+        <EntityType Name="DiscountSubType">
+          <Key>
+            <PropertyRef Name="DiscountSubTypeID" />
+          </Key>
+          <Property Name="DiscountSubTypeID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DiscountSubTypeCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DiscountSubTypeName" Type="nvarchar" MaxLength="255" />
+          <Property Name="DiscountSubTypeDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="DiscountTypeID" Type="smallint" Nullable="false" />
+          <Property Name="RowVersion" Type="bigint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsPrivate" Type="bit" Nullable="false" />
+          <Property Name="IsReadOnly" Type="bit" Nullable="false" />
+          <Property Name="RecCreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RecLastUpdatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RecCreatedDt" Type="datetime" Nullable="false" />
+          <Property Name="RecLastUpdatedDt" Type="datetime" Nullable="false" />
+          <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DiscountType">
+          <Key>
+            <PropertyRef Name="DiscountTypeID" />
+          </Key>
+          <Property Name="DiscountTypeID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DiscountTypeCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DiscountTypeName" Type="nvarchar" MaxLength="255" />
+          <Property Name="DiscountTypeDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="RowVersion" Type="bigint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsPrivate" Type="bit" Nullable="false" />
+          <Property Name="IsReadOnly" Type="bit" Nullable="false" />
+          <Property Name="RecCreatedDt" Type="datetime" Nullable="false" />
+          <Property Name="RecLastUpdatedDt" Type="datetime" Nullable="false" />
+          <Property Name="RecCreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RecLastUpdatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
+        </EntityType>
         <EntityType Name="EmpAuthOperationsWorkplace">
           <Key>
             <PropertyRef Name="EmpAuthOperationsWorkplaceID" />
@@ -2357,10 +2396,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="RefDiscountType374">
+          <End Role="DiscountType" Type="Self.DiscountType" Multiplicity="1" />
+          <End Role="DiscountSubType" Type="Self.DiscountSubType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DiscountType">
+              <PropertyRef Name="DiscountTypeID" />
+            </Principal>
+            <Dependent Role="DiscountSubType">
+              <PropertyRef Name="DiscountTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="RefEmployee343">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="Address" Type="Self.Address" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -3361,6 +3410,8 @@
           <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DesigGrade" EntityType="Self.DesigGrade" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Designation" EntityType="Self.Designation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DiscountSubType" EntityType="Self.DiscountSubType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DiscountType" EntityType="Self.DiscountType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmpAuthOperationsWorkplace" EntityType="Self.EmpAuthOperationsWorkplace" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmpDocsInfo" EntityType="Self.EmpDocsInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmpJobInfo" EntityType="Self.EmpJobInfo" Schema="dbo" store:Type="Tables" />
@@ -3611,6 +3662,10 @@
           <AssociationSet Name="RefDesignation350" Association="Self.RefDesignation350">
             <End Role="Designation" EntitySet="Designation" />
             <End Role="EmpJobProg" EntitySet="EmpJobProg" />
+          </AssociationSet>
+          <AssociationSet Name="RefDiscountType374" Association="Self.RefDiscountType374">
+            <End Role="DiscountType" EntitySet="DiscountType" />
+            <End Role="DiscountSubType" EntitySet="DiscountSubType" />
           </AssociationSet>
           <AssociationSet Name="RefEmployee343" Association="Self.RefEmployee343">
             <End Role="Employee" EntitySet="Employee" />
@@ -4543,6 +4598,12 @@
           <AssociationSet Name="RefStandardRt371" Association="DomainModels.RefStandardRt371">
             <End Role="StandardRate" EntitySet="StandardRates" />
             <End Role="StandardRate1" EntitySet="StandardRates" />
+          </AssociationSet>
+          <EntitySet Name="DiscountSubTypes" EntityType="DomainModels.DiscountSubType" />
+          <EntitySet Name="DiscountTypes" EntityType="DomainModels.DiscountType" />
+          <AssociationSet Name="RefDiscountType374" Association="DomainModels.RefDiscountType374">
+            <End Role="DiscountType" EntitySet="DiscountTypes" />
+            <End Role="DiscountSubType" EntitySet="DiscountSubTypes" />
           </AssociationSet>
           <AssociationSet Name="FK_HireGroup_Company" Association="DomainModels.FK_HireGroup_Company">
             <End Role="Company" EntitySet="Companies" />
@@ -8131,6 +8192,60 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+         <EntityType Name="DiscountSubType">
+          <Key>
+            <PropertyRef Name="DiscountSubTypeId" />
+          </Key>
+          <Property Name="DiscountSubTypeId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiscountSubTypeCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DiscountSubTypeName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DiscountSubTypeDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DiscountTypeId" Type="Int16" Nullable="false" />
+          <Property Name="RowVersion" Type="Int64" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsPrivate" Type="Boolean" Nullable="false" />
+          <Property Name="IsReadOnly" Type="Boolean" Nullable="false" />
+          <Property Name="RecCreatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RecLastUpdatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RecCreatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecLastUpdatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="DiscountType" Relationship="DomainModels.RefDiscountType374" FromRole="DiscountSubType" ToRole="DiscountType" />
+        </EntityType>
+        <EntityType Name="DiscountType">
+          <Key>
+            <PropertyRef Name="DiscountTypeId" />
+          </Key>
+          <Property Name="DiscountTypeId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiscountTypeCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DiscountTypeName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DiscountTypeDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="RowVersion" Type="Int64" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsPrivate" Type="Boolean" Nullable="false" />
+          <Property Name="IsReadOnly" Type="Boolean" Nullable="false" />
+          <Property Name="RecCreatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecLastUpdatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecCreatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RecLastUpdatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="DiscountSubTypes" Relationship="DomainModels.RefDiscountType374" FromRole="DiscountType" ToRole="DiscountSubType" />
+        </EntityType>
+        <Association Name="RefDiscountType374">
+          <End Type="DomainModels.DiscountType" Role="DiscountType" Multiplicity="1" />
+          <End Type="DomainModels.DiscountSubType" Role="DiscountSubType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DiscountType">
+              <PropertyRef Name="DiscountTypeId" />
+            </Principal>
+            <Dependent Role="DiscountSubType">
+              <PropertyRef Name="DiscountTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -9966,6 +10081,48 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+           <EntitySetMapping Name="DiscountSubTypes">
+            <EntityTypeMapping TypeName="DomainModels.DiscountSubType">
+              <MappingFragment StoreEntitySet="DiscountSubType">
+                <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
+                <ScalarProperty Name="RecLastUpdatedDt" ColumnName="RecLastUpdatedDt" />
+                <ScalarProperty Name="RecCreatedDt" ColumnName="RecCreatedDt" />
+                <ScalarProperty Name="RecLastUpdatedBy" ColumnName="RecLastUpdatedBy" />
+                <ScalarProperty Name="RecCreatedBy" ColumnName="RecCreatedBy" />
+                <ScalarProperty Name="IsReadOnly" ColumnName="IsReadOnly" />
+                <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="DiscountTypeId" ColumnName="DiscountTypeID" />
+                <ScalarProperty Name="DiscountSubTypeDescription" ColumnName="DiscountSubTypeDescription" />
+                <ScalarProperty Name="DiscountSubTypeName" ColumnName="DiscountSubTypeName" />
+                <ScalarProperty Name="DiscountSubTypeCode" ColumnName="DiscountSubTypeCode" />
+                <ScalarProperty Name="DiscountSubTypeId" ColumnName="DiscountSubTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DiscountTypes">
+            <EntityTypeMapping TypeName="DomainModels.DiscountType">
+              <MappingFragment StoreEntitySet="DiscountType">
+                <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
+                <ScalarProperty Name="RecLastUpdatedBy" ColumnName="RecLastUpdatedBy" />
+                <ScalarProperty Name="RecCreatedBy" ColumnName="RecCreatedBy" />
+                <ScalarProperty Name="RecLastUpdatedDt" ColumnName="RecLastUpdatedDt" />
+                <ScalarProperty Name="RecCreatedDt" ColumnName="RecCreatedDt" />
+                <ScalarProperty Name="IsReadOnly" ColumnName="IsReadOnly" />
+                <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="DiscountTypeDescription" ColumnName="DiscountTypeDescription" />
+                <ScalarProperty Name="DiscountTypeName" ColumnName="DiscountTypeName" />
+                <ScalarProperty Name="DiscountTypeCode" ColumnName="DiscountTypeCode" />
+                <ScalarProperty Name="DiscountTypeId" ColumnName="DiscountTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+
           <EntitySetMapping Name="AdditionalCharges">
             <EntityTypeMapping TypeName="DomainModels.AdditionalCharge">
               <MappingFragment StoreEntitySet="AdditionalCharge">
@@ -10011,6 +10168,48 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="DiscountSubTypes">
+            <EntityTypeMapping TypeName="DomainModels.DiscountSubType">
+              <MappingFragment StoreEntitySet="DiscountSubType">
+                <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
+                <ScalarProperty Name="RecLastUpdatedDt" ColumnName="RecLastUpdatedDt" />
+                <ScalarProperty Name="RecCreatedDt" ColumnName="RecCreatedDt" />
+                <ScalarProperty Name="RecLastUpdatedBy" ColumnName="RecLastUpdatedBy" />
+                <ScalarProperty Name="RecCreatedBy" ColumnName="RecCreatedBy" />
+                <ScalarProperty Name="IsReadOnly" ColumnName="IsReadOnly" />
+                <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="DiscountTypeId" ColumnName="DiscountTypeID" />
+                <ScalarProperty Name="DiscountSubTypeDescription" ColumnName="DiscountSubTypeDescription" />
+                <ScalarProperty Name="DiscountSubTypeName" ColumnName="DiscountSubTypeName" />
+                <ScalarProperty Name="DiscountSubTypeCode" ColumnName="DiscountSubTypeCode" />
+                <ScalarProperty Name="DiscountSubTypeId" ColumnName="DiscountSubTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DiscountTypes">
+            <EntityTypeMapping TypeName="DomainModels.DiscountType">
+              <MappingFragment StoreEntitySet="DiscountType">
+                <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
+                <ScalarProperty Name="RecLastUpdatedBy" ColumnName="RecLastUpdatedBy" />
+                <ScalarProperty Name="RecCreatedBy" ColumnName="RecCreatedBy" />
+                <ScalarProperty Name="RecLastUpdatedDt" ColumnName="RecLastUpdatedDt" />
+                <ScalarProperty Name="RecCreatedDt" ColumnName="RecCreatedDt" />
+                <ScalarProperty Name="IsReadOnly" ColumnName="IsReadOnly" />
+                <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="DiscountTypeDescription" ColumnName="DiscountTypeDescription" />
+                <ScalarProperty Name="DiscountTypeName" ColumnName="DiscountTypeName" />
+                <ScalarProperty Name="DiscountTypeCode" ColumnName="DiscountTypeCode" />
+                <ScalarProperty Name="DiscountTypeId" ColumnName="DiscountTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
