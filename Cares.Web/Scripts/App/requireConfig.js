@@ -35,10 +35,11 @@
             "empStatus": "/Areas/EmployeeManagement/Scripts",
             "designGrade": "/Areas/EmployeeManagement/Scripts",
             "designation": "/Areas/EmployeeManagement/Scripts",
-            "jobType": "/Areas/EmployeeManagement/Scripts"
+            "jobType": "/Areas/EmployeeManagement/Scripts",
+            "discountType": "/Areas/Pricing/Scripts"
         }
     });
-
+    
     function defineThirdPartyModules() {
         // These are already loaded via bundles. 
         // We define them and put them in the root object.

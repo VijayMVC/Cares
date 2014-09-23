@@ -216,6 +216,9 @@
         <AssociationConnector Association="DomainModels.RefInsuranceRt391" />
         <AssociationConnector Association="DomainModels.RefServiceRt386" />
         <AssociationConnector Association="DomainModels.RefStandardRt371" />
+        <EntityTypeShape EntityType="DomainModels.DiscountSubType" Width="1.5" PointX="25.625" PointY="13" />
+        <EntityTypeShape EntityType="DomainModels.DiscountType" Width="1.5" PointX="23.375" PointY="13.125" />
+        <AssociationConnector Association="DomainModels.RefDiscountType374" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

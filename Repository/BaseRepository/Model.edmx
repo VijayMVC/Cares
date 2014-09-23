@@ -473,6 +473,45 @@
           <Property Name="RecLastUpdatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
         </EntityType>
+        <EntityType Name="DiscountSubType">
+          <Key>
+            <PropertyRef Name="DiscountSubTypeID" />
+          </Key>
+          <Property Name="DiscountSubTypeID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DiscountSubTypeCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DiscountSubTypeName" Type="nvarchar" MaxLength="255" />
+          <Property Name="DiscountSubTypeDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="DiscountTypeID" Type="smallint" Nullable="false" />
+          <Property Name="RowVersion" Type="bigint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsPrivate" Type="bit" Nullable="false" />
+          <Property Name="IsReadOnly" Type="bit" Nullable="false" />
+          <Property Name="RecCreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RecLastUpdatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RecCreatedDt" Type="datetime" Nullable="false" />
+          <Property Name="RecLastUpdatedDt" Type="datetime" Nullable="false" />
+          <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DiscountType">
+          <Key>
+            <PropertyRef Name="DiscountTypeID" />
+          </Key>
+          <Property Name="DiscountTypeID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DiscountTypeCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DiscountTypeName" Type="nvarchar" MaxLength="255" />
+          <Property Name="DiscountTypeDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="RowVersion" Type="bigint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsPrivate" Type="bit" Nullable="false" />
+          <Property Name="IsReadOnly" Type="bit" Nullable="false" />
+          <Property Name="RecCreatedDt" Type="datetime" Nullable="false" />
+          <Property Name="RecLastUpdatedDt" Type="datetime" Nullable="false" />
+          <Property Name="RecCreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RecLastUpdatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
+        </EntityType>
         <EntityType Name="EmpAuthOperationsWorkplace">
           <Key>
             <PropertyRef Name="EmpAuthOperationsWorkplaceID" />
@@ -1835,9 +1874,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefArea1973">
-          <End Role="Area" Type="Self.Area" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Area" Type="Self.Area" Multiplicity="0..1" />
           <End Role="Address" Type="Self.Address" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Area">
@@ -2101,9 +2138,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefCity1973">
-          <End Role="City" Type="Self.City" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
           <End Role="Address" Type="Self.Address" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="City">
@@ -2187,9 +2222,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefCountry1971">
-          <End Role="Country" Type="Self.Country" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
           <End Role="Address" Type="Self.Address" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Country">
@@ -2296,10 +2329,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="RefDiscountType374">
+          <End Role="DiscountType" Type="Self.DiscountType" Multiplicity="1" />
+          <End Role="DiscountSubType" Type="Self.DiscountSubType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DiscountType">
+              <PropertyRef Name="DiscountTypeID" />
+            </Principal>
+            <Dependent Role="DiscountSubType">
+              <PropertyRef Name="DiscountTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="RefEmployee343">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="Address" Type="Self.Address" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -2311,9 +2354,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefEmployee344">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="Phone" Type="Self.Phone" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -2325,9 +2366,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefEmployee345">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="EmpJobInfo" Type="Self.EmpJobInfo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -2339,9 +2378,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefEmployee348">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="EmpDocsInfo" Type="Self.EmpDocsInfo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -2353,9 +2390,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefEmployee349">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="EmpJobProg" Type="Self.EmpJobProg" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -2379,9 +2414,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefEmployee612">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="EmpAuthOperationsWorkplace" Type="Self.EmpAuthOperationsWorkplace" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -2549,9 +2582,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefInsuranceRtMain390">
-          <End Role="InsuranceRtMain" Type="Self.InsuranceRtMain" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="InsuranceRtMain" Type="Self.InsuranceRtMain" Multiplicity="1" />
           <End Role="InsuranceRt" Type="Self.InsuranceRt" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="InsuranceRtMain">
@@ -2827,9 +2858,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefRegion332">
-          <End Role="Region" Type="Self.Region" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
           <End Role="Address" Type="Self.Address" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Region">
@@ -2865,9 +2894,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefServiceRtMain385">
-          <End Role="ServiceRtMain" Type="Self.ServiceRtMain" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="ServiceRtMain" Type="Self.ServiceRtMain" Multiplicity="1" />
           <End Role="ServiceRt" Type="Self.ServiceRt" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ServiceRtMain">
@@ -2903,9 +2930,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefStandardRtMain148">
-          <End Role="StandardRtMain" Type="Self.StandardRtMain" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="StandardRtMain" Type="Self.StandardRtMain" Multiplicity="1" />
           <End Role="StandardRt" Type="Self.StandardRt" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="StandardRtMain">
@@ -2941,9 +2966,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefSubRegion333">
-          <End Role="SubRegion" Type="Self.SubRegion" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="SubRegion" Type="Self.SubRegion" Multiplicity="0..1" />
           <End Role="Address" Type="Self.Address" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SubRegion">
@@ -2979,9 +3002,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle210">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
           <End Role="VehicleLeasedInfo" Type="Self.VehicleLeasedInfo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -2993,9 +3014,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle211">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
           <End Role="VehicleInsuranceInfo" Type="Self.VehicleInsuranceInfo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -3007,9 +3026,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle212">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
           <End Role="VehiclePurchaseInfo" Type="Self.VehiclePurchaseInfo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -3021,9 +3038,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle213">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
           <End Role="VehicleDisposalInfo" Type="Self.VehicleDisposalInfo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -3035,9 +3050,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle220">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
           <End Role="VehicleMaintenanceTypeFrequency" Type="Self.VehicleMaintenanceTypeFrequency" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -3049,9 +3062,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle2251">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
           <End Role="VehicleDepreciation" Type="Self.VehicleDepreciation" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -3063,9 +3074,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle327">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
           <End Role="VehicleOtherDetail" Type="Self.VehicleOtherDetail" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -3089,9 +3098,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle609">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
           <End Role="VehicleCheckListItem" Type="Self.VehicleCheckListItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -3318,6 +3325,8 @@
           <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DesigGrade" EntityType="Self.DesigGrade" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Designation" EntityType="Self.Designation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DiscountSubType" EntityType="Self.DiscountSubType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DiscountType" EntityType="Self.DiscountType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmpAuthOperationsWorkplace" EntityType="Self.EmpAuthOperationsWorkplace" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmpDocsInfo" EntityType="Self.EmpDocsInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmpJobInfo" EntityType="Self.EmpJobInfo" Schema="dbo" store:Type="Tables" />
@@ -3560,6 +3569,10 @@
           <AssociationSet Name="RefDesignation350" Association="Self.RefDesignation350">
             <End Role="Designation" EntitySet="Designation" />
             <End Role="EmpJobProg" EntitySet="EmpJobProg" />
+          </AssociationSet>
+          <AssociationSet Name="RefDiscountType374" Association="Self.RefDiscountType374">
+            <End Role="DiscountType" EntitySet="DiscountType" />
+            <End Role="DiscountSubType" EntitySet="DiscountSubType" />
           </AssociationSet>
           <AssociationSet Name="RefEmployee343" Association="Self.RefEmployee343">
             <End Role="Employee" EntitySet="Employee" />
@@ -4492,6 +4505,12 @@
           <AssociationSet Name="RefStandardRt371" Association="DomainModels.RefStandardRt371">
             <End Role="StandardRate" EntitySet="StandardRates" />
             <End Role="StandardRate1" EntitySet="StandardRates" />
+          </AssociationSet>
+          <EntitySet Name="DiscountSubTypes" EntityType="DomainModels.DiscountSubType" />
+          <EntitySet Name="DiscountTypes" EntityType="DomainModels.DiscountType" />
+          <AssociationSet Name="RefDiscountType374" Association="DomainModels.RefDiscountType374">
+            <End Role="DiscountType" EntitySet="DiscountTypes" />
+            <End Role="DiscountSubType" EntitySet="DiscountSubTypes" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Company">
@@ -7960,6 +7979,59 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="DiscountSubType">
+          <Key>
+            <PropertyRef Name="DiscountSubTypeId" />
+          </Key>
+          <Property Name="DiscountSubTypeId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiscountSubTypeCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DiscountSubTypeName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DiscountSubTypeDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DiscountTypeId" Type="Int16" Nullable="false" />
+          <Property Name="RowVersion" Type="Int64" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsPrivate" Type="Boolean" Nullable="false" />
+          <Property Name="IsReadOnly" Type="Boolean" Nullable="false" />
+          <Property Name="RecCreatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RecLastUpdatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RecCreatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecLastUpdatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="DiscountType" Relationship="DomainModels.RefDiscountType374" FromRole="DiscountSubType" ToRole="DiscountType" />
+        </EntityType>
+        <EntityType Name="DiscountType">
+          <Key>
+            <PropertyRef Name="DiscountTypeId" />
+          </Key>
+          <Property Name="DiscountTypeId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiscountTypeCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DiscountTypeName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DiscountTypeDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="RowVersion" Type="Int64" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsPrivate" Type="Boolean" Nullable="false" />
+          <Property Name="IsReadOnly" Type="Boolean" Nullable="false" />
+          <Property Name="RecCreatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecLastUpdatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecCreatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RecLastUpdatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="DiscountSubTypes" Relationship="DomainModels.RefDiscountType374" FromRole="DiscountType" ToRole="DiscountSubType" />
+        </EntityType>
+        <Association Name="RefDiscountType374">
+          <End Type="DomainModels.DiscountType" Role="DiscountType" Multiplicity="1" />
+          <End Type="DomainModels.DiscountSubType" Role="DiscountSubType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DiscountType">
+              <PropertyRef Name="DiscountTypeId" />
+            </Principal>
+            <Dependent Role="DiscountSubType">
+              <PropertyRef Name="DiscountTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -9792,6 +9864,47 @@
                 <ScalarProperty Name="AdditionalDriverChargeRate" ColumnName="AdditionalDriverChargeRate" />
                 <ScalarProperty Name="ChildAdditionalDriverChargeId" ColumnName="ChildAdditionalDriverChargeID" />
                 <ScalarProperty Name="AdditionalDriverChargeId" ColumnName="AdditionalDriverChargeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DiscountSubTypes">
+            <EntityTypeMapping TypeName="DomainModels.DiscountSubType">
+              <MappingFragment StoreEntitySet="DiscountSubType">
+                <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
+                <ScalarProperty Name="RecLastUpdatedDt" ColumnName="RecLastUpdatedDt" />
+                <ScalarProperty Name="RecCreatedDt" ColumnName="RecCreatedDt" />
+                <ScalarProperty Name="RecLastUpdatedBy" ColumnName="RecLastUpdatedBy" />
+                <ScalarProperty Name="RecCreatedBy" ColumnName="RecCreatedBy" />
+                <ScalarProperty Name="IsReadOnly" ColumnName="IsReadOnly" />
+                <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="DiscountTypeId" ColumnName="DiscountTypeID" />
+                <ScalarProperty Name="DiscountSubTypeDescription" ColumnName="DiscountSubTypeDescription" />
+                <ScalarProperty Name="DiscountSubTypeName" ColumnName="DiscountSubTypeName" />
+                <ScalarProperty Name="DiscountSubTypeCode" ColumnName="DiscountSubTypeCode" />
+                <ScalarProperty Name="DiscountSubTypeId" ColumnName="DiscountSubTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DiscountTypes">
+            <EntityTypeMapping TypeName="DomainModels.DiscountType">
+              <MappingFragment StoreEntitySet="DiscountType">
+                <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
+                <ScalarProperty Name="RecLastUpdatedBy" ColumnName="RecLastUpdatedBy" />
+                <ScalarProperty Name="RecCreatedBy" ColumnName="RecCreatedBy" />
+                <ScalarProperty Name="RecLastUpdatedDt" ColumnName="RecLastUpdatedDt" />
+                <ScalarProperty Name="RecCreatedDt" ColumnName="RecCreatedDt" />
+                <ScalarProperty Name="IsReadOnly" ColumnName="IsReadOnly" />
+                <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="DiscountTypeDescription" ColumnName="DiscountTypeDescription" />
+                <ScalarProperty Name="DiscountTypeName" ColumnName="DiscountTypeName" />
+                <ScalarProperty Name="DiscountTypeCode" ColumnName="DiscountTypeCode" />
+                <ScalarProperty Name="DiscountTypeId" ColumnName="DiscountTypeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

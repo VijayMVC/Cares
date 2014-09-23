@@ -160,6 +160,8 @@
     <Compile Include="Repositories\CountryRepository.cs" />
     <Compile Include="Repositories\DepartmentRepository.cs" />
     <Compile Include="Repositories\DesignationRepository.cs" />
+    <Compile Include="Repositories\DiscountSubTypeRepository.cs" />
+    <Compile Include="Repositories\DiscountTypeRepository.cs" />
     <Compile Include="Repositories\EmpAuthOperationsWorkplaceRepository.cs" />
     <Compile Include="Repositories\EmpDocsInfoRepository.cs" />
     <Compile Include="Repositories\EmpJobInfoRepository.cs" />
