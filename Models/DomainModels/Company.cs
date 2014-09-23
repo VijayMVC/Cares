@@ -160,6 +160,11 @@ namespace Cares.Models.DomainModels
         /// </summary>
         public virtual ICollection<Employee> Employees { get; set; }
 
+        /// <summary>
+        /// Hire Groups
+        /// </summary>
+        public virtual ICollection<HireGroup> HireGroups { get; set; }
+
         #endregion
     }
 }

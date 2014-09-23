@@ -35,7 +35,7 @@
         <EntityTypeShape EntityType="DomainModels.EmpStatus" Width="1.5" PointX="8.125" PointY="18.25" />
         <EntityTypeShape EntityType="DomainModels.FleetPool" Width="1.5" PointX="14.875" PointY="41.875" />
         <EntityTypeShape EntityType="DomainModels.FuelType" Width="1.5" PointX="17.125" PointY="27.5" />
-        <EntityTypeShape EntityType="DomainModels.HireGroup" Width="1.5" PointX="17.125" PointY="44.5" />
+        <EntityTypeShape EntityType="DomainModels.HireGroup" Width="1.5" PointX="17.125" PointY="44.125" />
         <EntityTypeShape EntityType="DomainModels.HireGroupDetail" Width="1.5" PointX="19.375" PointY="51.875" />
         <EntityTypeShape EntityType="DomainModels.Operation" Width="1.5" PointX="9.625" PointY="42" />
         <EntityTypeShape EntityType="DomainModels.OperationsWorkPlace" Width="1.5" PointX="17.125" PointY="38.5" />
@@ -103,7 +103,6 @@
         <AssociationConnector Association="DomainModels.RefOperation207" />
         <AssociationConnector Association="DomainModels.RefRegion278" />
         <AssociationConnector Association="DomainModels.RefFuelType330" />
-        <AssociationConnector Association="DomainModels.RefHireGroup308" />
         <AssociationConnector Association="DomainModels.RefHireGroup360" />
         <AssociationConnector Association="DomainModels.RefHireGroup95" />
         <AssociationConnector Association="DomainModels.RefVehicleCategory361" />
@@ -218,6 +217,8 @@
         <AssociationConnector Association="DomainModels.RefStandardRt371" />
         <EntityTypeShape EntityType="DomainModels.DiscountSubType" Width="1.5" PointX="25.625" PointY="13" />
         <EntityTypeShape EntityType="DomainModels.DiscountType" Width="1.5" PointX="23.375" PointY="13.125" />
+        <AssociationConnector Association="DomainModels.FK_HireGroup_Company" />
+        <AssociationConnector Association="DomainModels.RefHireGroup308" />
         <AssociationConnector Association="DomainModels.RefDiscountType374" />
       </Diagram>
     </edmx:Diagrams>

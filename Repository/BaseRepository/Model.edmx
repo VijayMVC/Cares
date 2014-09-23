@@ -1825,6 +1825,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_HireGroup_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="HireGroup" Type="Self.HireGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="HireGroup">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Vehicle_VehicleStatus">
           <End Role="VehicleStatus" Type="Self.VehicleStatus" Multiplicity="1" />
           <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="*" />
@@ -2486,7 +2498,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefHireGroup360">
-          <End Role="HireGroup" Type="Self.HireGroup" Multiplicity="1" />
+          <End Role="HireGroup" Type="Self.HireGroup" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="HireGroupDetail" Type="Self.HireGroupDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HireGroup">
@@ -2498,7 +2512,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefHireGroup613">
-          <End Role="HireGroup" Type="Self.HireGroup" Multiplicity="1" />
+          <End Role="HireGroup" Type="Self.HireGroup" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="HireGroupUpGrade" Type="Self.HireGroupUpGrade" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HireGroup">
@@ -3402,6 +3418,10 @@
             <End Role="Menu" EntitySet="Menu" />
             <End Role="MenuRight" EntitySet="MenuRight" />
           </AssociationSet>
+          <AssociationSet Name="FK_HireGroup_Company" Association="Self.FK_HireGroup_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="HireGroup" EntitySet="HireGroup" />
+          </AssociationSet>
           <AssociationSet Name="FK_Vehicle_VehicleStatus" Association="Self.FK_Vehicle_VehicleStatus">
             <End Role="VehicleStatus" EntitySet="VehicleStatus" />
             <End Role="Vehicle" EntitySet="Vehicle" />
@@ -4159,10 +4179,6 @@
             <End Role="FuelType" EntitySet="FuelTypes" />
             <End Role="Vehicle" EntitySet="Vehicles" />
           </AssociationSet>
-          <AssociationSet Name="RefHireGroup308" Association="DomainModels.RefHireGroup308">
-            <End Role="HireGroup" EntitySet="HireGroups" />
-            <End Role="HireGroup1" EntitySet="HireGroups" />
-          </AssociationSet>
           <AssociationSet Name="RefHireGroup360" Association="DomainModels.RefHireGroup360">
             <End Role="HireGroup" EntitySet="HireGroups" />
             <End Role="HireGroupDetail" EntitySet="HireGroupDetails" />
@@ -4512,6 +4528,14 @@
             <End Role="DiscountType" EntitySet="DiscountTypes" />
             <End Role="DiscountSubType" EntitySet="DiscountSubTypes" />
           </AssociationSet>
+          <AssociationSet Name="FK_HireGroup_Company" Association="DomainModels.FK_HireGroup_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="HireGroup" EntitySet="HireGroups" />
+          </AssociationSet>
+          <AssociationSet Name="RefHireGroup308" Association="DomainModels.RefHireGroup308">
+            <End Role="HireGroup" EntitySet="HireGroups" />
+            <End Role="HireGroup1" EntitySet="HireGroups" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Company">
           <Key>
@@ -4546,6 +4570,7 @@
           <NavigationProperty Name="Departments" Relationship="DomainModels.RefCompany1931" FromRole="Company" ToRole="Department" />
           <NavigationProperty Name="WorkLocations" Relationship="DomainModels.RefCompany3011" FromRole="Company" ToRole="WorkLocation" />
           <NavigationProperty Name="Employees" Relationship="DomainModels.RefCompany354" FromRole="Company" ToRole="Employee" />
+          <NavigationProperty Name="HireGroups" Relationship="DomainModels.FK_HireGroup_Company" FromRole="Company" ToRole="HireGroup" />
         </EntityType>
         <Association Name="RefCompany263">
           <End Type="DomainModels.Company" Role="Company" Multiplicity="0..1" />
@@ -5213,11 +5238,12 @@
           <Property Name="CompanyId" Type="Int64" />
           <Property Name="RowVersion" Type="Int64" Nullable="false" />
           <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="ParentHireGroup" Relationship="DomainModels.RefHireGroup308" FromRole="HireGroup" ToRole="HireGroup1" />
           <NavigationProperty Name="HireGroupDetails" Relationship="DomainModels.RefHireGroup360" FromRole="HireGroup" ToRole="HireGroupDetail" />
           <NavigationProperty Name="Vehicles" Relationship="DomainModels.RefHireGroup95" FromRole="HireGroup" ToRole="Vehicle" />
-          <NavigationProperty Name="HireGroupUpGradList" Relationship="DomainModels.RefHireGroup613" FromRole="HireGroup" ToRole="HireGroupUpGrade" />
+          <NavigationProperty Name="HireGroupUpGrades" Relationship="DomainModels.RefHireGroup613" FromRole="HireGroup" ToRole="HireGroupUpGrade" />
           <NavigationProperty Name="AllowedHireGroupUpGrades" Relationship="DomainModels.RefHireGroup615" FromRole="HireGroup" ToRole="HireGroupUpGrade" />
+          <NavigationProperty Name="Company" Relationship="DomainModels.FK_HireGroup_Company" FromRole="HireGroup" ToRole="Company" />
+          <NavigationProperty Name="ParentHireGroup" Relationship="DomainModels.RefHireGroup308" FromRole="HireGroup1" ToRole="HireGroup" />
         </EntityType>
         <EntityType Name="HireGroupDetail">
           <Key>
@@ -6305,18 +6331,6 @@
             </Principal>
             <Dependent Role="Vehicle">
               <PropertyRef Name="FuelTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="RefHireGroup308">
-          <End Type="DomainModels.HireGroup" Role="HireGroup" Multiplicity="0..1" />
-          <End Type="DomainModels.HireGroup" Role="HireGroup1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HireGroup">
-              <PropertyRef Name="HireGroupId" />
-            </Principal>
-            <Dependent Role="HireGroup1">
-              <PropertyRef Name="ParentHireGroupId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -7976,6 +7990,30 @@
             </Principal>
             <Dependent Role="StandardRate1">
               <PropertyRef Name="ChildStandardRtId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HireGroup_Company">
+          <End Type="DomainModels.Company" Role="Company" Multiplicity="0..1" />
+          <End Type="DomainModels.HireGroup" Role="HireGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="HireGroup">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefHireGroup308">
+          <End Type="DomainModels.HireGroup" Role="HireGroup" Multiplicity="0..1" />
+          <End Type="DomainModels.HireGroup" Role="HireGroup1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HireGroup">
+              <PropertyRef Name="HireGroupId" />
+            </Principal>
+            <Dependent Role="HireGroup1">
+              <PropertyRef Name="ParentHireGroupId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
