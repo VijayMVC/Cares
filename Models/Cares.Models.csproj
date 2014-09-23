@@ -101,6 +101,7 @@
   <ItemGroup>
     <Compile Include="CommonTypes\PhoneType.cs" />
     <Compile Include="CommonTypes\DepartmentType.cs" />
+    <Compile Include="Common\AdditionalChargeByColumn.cs" />
     <Compile Include="Common\AdditionalDriverChargeByColumn.cs" />
     <Compile Include="Common\AreaByColumn.cs" />
     <Compile Include="Common\BusinessPartnerByColumn.cs" />
@@ -125,6 +126,8 @@
     <Compile Include="Common\WorkLocationByColumn.cs" />
     <Compile Include="Common\WorkplaceByColumn.cs" />
     <Compile Include="Common\WorkplaceTypeByColumn.cs" />
+    <Compile Include="DomainModels\AdditionalCharge.cs" />
+    <Compile Include="DomainModels\AdditionalChargeType.cs" />
     <Compile Include="DomainModels\AdditionalDriverCharge.cs" />
     <Compile Include="DomainModels\BusinessPartnerMarketingChannel.cs" />
     <Compile Include="DomainModels\BusinessPartnerInType.cs" />
@@ -223,6 +226,7 @@
     <Compile Include="MenuModels\Menu.cs" />
     <Compile Include="MenuModels\MenuRight.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestModels\AdditionalChargeSearchRequest.cs" />
     <Compile Include="RequestModels\AdditionalDriverChargeSearchRequest.cs" />
     <Compile Include="RequestModels\AreaSearchRequest.cs" />
     <Compile Include="RequestModels\AreaSearchRequestResponse.cs" />
@@ -263,6 +267,8 @@
     <Compile Include="RequestModels\WorkLocationSearchRequest.cs" />
     <Compile Include="RequestModels\WorkplaceSearchRequest.cs" />
     <Compile Include="RequestModels\WorkplaceTypeSearchRequest.cs" />
+    <Compile Include="ResponseModels\AdditionalChargeBaseResponse.cs" />
+    <Compile Include="ResponseModels\AdditionalChargeSearchResponse.cs" />
     <Compile Include="ResponseModels\AddressBaseDataResponse.cs" />
     <Compile Include="ResponseModels\AdditionalDriverBaseResponse.cs" />
     <Compile Include="ResponseModels\AdditionalDriverChargeSearchContent.cs" />

@@ -64,6 +64,7 @@ namespace Cares.Implementation
             unityContainer.RegisterType<IEmpStatusService, EmpStatusService>();
             unityContainer.RegisterType<IDesignationService, DesignationService>();
             unityContainer.RegisterType<IJobTypeService, JobTypeService>();
+            unityContainer.RegisterType<IAdditionalChargeService, AdditionalChargeService>();
 
 
         }

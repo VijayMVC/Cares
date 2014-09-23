@@ -225,6 +225,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
+    <Compile Include="Areas\Api\Controllers\AdditionalChargeBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\AdditionalChargeController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeDetailController.cs" />
@@ -317,6 +319,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\CultureHelper.cs" />
+    <Compile Include="ModelMappers\AdditionalChargeMapper.cs" />
     <Compile Include="ModelMappers\AdditionalDriverChargeMapper.cs" />
     <Compile Include="ModelMappers\DesigGradeMapper.cs" />
     <Compile Include="ModelMappers\DesignationMapper.cs" />
@@ -331,6 +334,10 @@
     <Compile Include="ModelMappers\WorkLocationMapper.cs" />
     <Compile Include="ModelMappers\WorkplaceMapper.cs" />
     <Compile Include="ModelMappers\WorkplaceTypeMapper.cs" />
+    <Compile Include="Models\AdditionalChargeBaseResponse.cs" />
+    <Compile Include="Models\AdditionalChargecs.cs" />
+    <Compile Include="Models\AdditionalChargeSearchResponse.cs" />
+    <Compile Include="Models\AdditionalChargeType.cs" />
     <Compile Include="Models\AdditionalDriverCharge.cs" />
     <Compile Include="Models\AdditionalDriverChargeBaseResponse.cs" />
     <Compile Include="Models\AdditionalDriverChargeSearchContent.cs" />
@@ -365,6 +372,7 @@
     <Compile Include="Models\EmpStatusDropDown.cs" />
     <Compile Include="Models\FleetPoolDropDown.cs" />
     <Compile Include="Models\FuelTypeDropDown.cs" />
+    <Compile Include="Models\HireGroupDetailForAddtionalCharge.cs" />
     <Compile Include="Models\InsuranceTypeDropDown.cs" />
     <Compile Include="Models\JobType.cs" />
     <Compile Include="Models\JobTypeDropDown.cs" />
@@ -914,10 +922,14 @@
     <Content Include="Areas\Organization\Scripts\workplaceType.view.js" />
     <Content Include="Areas\Organization\Scripts\workplaceType.viewModel.js" />
     <Content Include="Areas\Pricing\Scripts\additionalDriverCharge.dataservice.js" />
+    <Content Include="Areas\Pricing\Scripts\additionalCharge.model.js" />
+    <Content Include="Areas\Pricing\Scripts\additionalCharge.viewModel.js" />
+    <Content Include="Areas\Pricing\Scripts\additionalCharge.dataservice.js" />
     <Content Include="Areas\Pricing\Scripts\serviceRate.dataservice.js" />
     <Content Include="Areas\Pricing\Scripts\additionalDriverCharge.model.js" />
     <Content Include="Areas\Pricing\Scripts\serviceRate.model.js" />
     <Content Include="Areas\Pricing\Scripts\additionalDriverCharge.view.js" />
+    <Content Include="Areas\Pricing\Scripts\additionalCharge.view.js" />
     <Content Include="Areas\Pricing\Scripts\serviceRate.view.js" />
     <Content Include="Areas\Pricing\Scripts\additionalDriverCharge.viewModel.js" />
     <Content Include="Areas\Pricing\Scripts\serviceRate.viewModel.js" />
@@ -1740,6 +1752,8 @@
     <Content Include="Content\JobType.css.map">
       <DependentUpon>JobType.css</DependentUpon>
     </Content>
+    <Content Include="Areas\Pricing\Views\Tariff\AdditionalCharge.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\_AddtionalChargeEditor.cshtml" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />

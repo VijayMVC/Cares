@@ -7,14 +7,16 @@ using Cares.Web.ModelMappers;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
+
     /// <summary>
-    /// Additional Driver Base Api Controller
+    /// Additional Charge Base API Controller
     /// </summary>
-    public class AdditionalDriverChargeBaseController : ApiController
+   
+    public class AdditionalChargeBaseController : ApiController
     {
         #region Private
 
-        private readonly IAdditionalDriverService additionalDriverService;
+        private readonly IAdditionalChargeService additionalChargeService;
 
         #endregion
         
@@ -22,28 +24,28 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public AdditionalDriverChargeBaseController(IAdditionalDriverService additionalDriverService)
+        public AdditionalChargeBaseController(IAdditionalChargeService additionalChargeService)
         {
-            if (additionalDriverService == null)
+            if (additionalChargeService == null)
             {
-                throw new ArgumentNullException("additionalDriverService");
+                throw new ArgumentNullException("additionalChargeService");
             }
-            this.additionalDriverService = additionalDriverService;
+            this.additionalChargeService = additionalChargeService;
         }
 
         #endregion
         
         #region Public
         /// <summary>
-        /// Get AdditionalDriver Charge Base Data
+        /// Get Additional Charge Base Data
         /// </summary>
-        public Models.AdditionalDriverChargeBaseResponse Get()
+        public Models.AdditionalChargeBaseResponse Get()
         {
             if (!ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return additionalDriverService.GetBaseData().CreateFrom();
+            return additionalChargeService.GetBaseData().CreateFrom();
         }
         #endregion
     }

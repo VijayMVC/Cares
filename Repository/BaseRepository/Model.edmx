@@ -5,6 +5,49 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="CaresModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdditionalCharge">
+          <Key>
+            <PropertyRef Name="AdditionalChargeID" />
+          </Key>
+          <Property Name="AdditionalChargeID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChildAdditionalChargeID" Type="bigint" />
+          <Property Name="AdditionalChargeTypeID" Type="smallint" Nullable="false" />
+          <Property Name="HireGroupDetailID" Type="bigint" />
+          <Property Name="AdditionalChargeRate" Type="float" />
+          <Property Name="StartDt" Type="datetime" Nullable="false" />
+          <Property Name="RowVersion" Type="bigint" Nullable="false" />
+          <Property Name="RevisionNumber" Type="bigint" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsPrivate" Type="bit" Nullable="false" />
+          <Property Name="IsReadOnly" Type="bit" Nullable="false" />
+          <Property Name="RecCreatedDt" Type="datetime" Nullable="false" />
+          <Property Name="RecLastUpdatedDt" Type="datetime" Nullable="false" />
+          <Property Name="RecCreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RecLastUpdatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AdditionalChargeType">
+          <Key>
+            <PropertyRef Name="AdditionalChargeTypeID" />
+          </Key>
+          <Property Name="AdditionalChargeTypeID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdditionalChargeTypeCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="AdditionalChargeTypeName" Type="nvarchar" MaxLength="255" />
+          <Property Name="AdditionalChargeTypeDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="AdditionalChargeKey" Type="smallint" />
+          <Property Name="IsEditable" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsReadOnly" Type="bit" Nullable="false" />
+          <Property Name="IsPrivate" Type="bit" Nullable="false" />
+          <Property Name="RecCreatedDt" Type="datetime" Nullable="false" />
+          <Property Name="RecCreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RecLastUpdatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RecLastUpdatedDt" Type="datetime" Nullable="false" />
+          <Property Name="RowVersion" Type="bigint" Nullable="false" />
+          <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
+        </EntityType>
         <EntityType Name="AdditionalDriverCharge">
           <Key>
             <PropertyRef Name="AdditionalDriverChargeID" />
@@ -1786,18 +1829,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_HireGroup_Company">
-          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
-          <End Role="HireGroup" Type="Self.HireGroup" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Company">
-              <PropertyRef Name="CompanyID" />
-            </Principal>
-            <Dependent Role="HireGroup">
-              <PropertyRef Name="CompanyID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Vehicle_VehicleStatus">
           <End Role="VehicleStatus" Type="Self.VehicleStatus" Multiplicity="1" />
           <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="*" />
@@ -1807,6 +1838,30 @@
             </Principal>
             <Dependent Role="Vehicle">
               <PropertyRef Name="VehicleStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefAdditionalCharge400">
+          <End Role="AdditionalCharge" Type="Self.AdditionalCharge" Multiplicity="0..1" />
+          <End Role="AdditionalCharge1" Type="Self.AdditionalCharge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdditionalCharge">
+              <PropertyRef Name="AdditionalChargeID" />
+            </Principal>
+            <Dependent Role="AdditionalCharge1">
+              <PropertyRef Name="ChildAdditionalChargeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefAdditionalChargeType393">
+          <End Role="AdditionalChargeType" Type="Self.AdditionalChargeType" Multiplicity="1" />
+          <End Role="AdditionalCharge" Type="Self.AdditionalCharge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdditionalChargeType">
+              <PropertyRef Name="AdditionalChargeTypeID" />
+            </Principal>
+            <Dependent Role="AdditionalCharge">
+              <PropertyRef Name="AdditionalChargeTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2317,9 +2372,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefEmployee344">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="Phone" Type="Self.Phone" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -2331,9 +2384,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefEmployee345">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="EmpJobInfo" Type="Self.EmpJobInfo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -2345,9 +2396,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefEmployee348">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="EmpDocsInfo" Type="Self.EmpDocsInfo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -2359,9 +2408,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefEmployee349">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="EmpJobProg" Type="Self.EmpJobProg" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -2385,9 +2432,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefEmployee612">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="EmpAuthOperationsWorkplace" Type="Self.EmpAuthOperationsWorkplace" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -2459,9 +2504,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefHireGroup360">
-          <End Role="HireGroup" Type="Self.HireGroup" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="HireGroup" Type="Self.HireGroup" Multiplicity="1" />
           <End Role="HireGroupDetail" Type="Self.HireGroupDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HireGroup">
@@ -2473,9 +2516,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefHireGroup613">
-          <End Role="HireGroup" Type="Self.HireGroup" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="HireGroup" Type="Self.HireGroup" Multiplicity="1" />
           <End Role="HireGroupUpGrade" Type="Self.HireGroupUpGrade" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HireGroup">
@@ -2522,6 +2563,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="RefHireGroupDetail394">
+          <End Role="HireGroupDetail" Type="Self.HireGroupDetail" Multiplicity="0..1" />
+          <End Role="AdditionalCharge" Type="Self.AdditionalCharge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HireGroupDetail">
+              <PropertyRef Name="HireGroupDetailID" />
+            </Principal>
+            <Dependent Role="AdditionalCharge">
+              <PropertyRef Name="HireGroupDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="RefHireGroupDetail404">
           <End Role="HireGroupDetail" Type="Self.HireGroupDetail" Multiplicity="1" />
           <End Role="InsuranceRt" Type="Self.InsuranceRt" Multiplicity="*" />
@@ -2559,9 +2612,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefInsuranceRtMain390">
-          <End Role="InsuranceRtMain" Type="Self.InsuranceRtMain" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="InsuranceRtMain" Type="Self.InsuranceRtMain" Multiplicity="1" />
           <End Role="InsuranceRt" Type="Self.InsuranceRt" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="InsuranceRtMain">
@@ -2873,9 +2924,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefServiceRtMain385">
-          <End Role="ServiceRtMain" Type="Self.ServiceRtMain" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="ServiceRtMain" Type="Self.ServiceRtMain" Multiplicity="1" />
           <End Role="ServiceRt" Type="Self.ServiceRt" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ServiceRtMain">
@@ -2911,9 +2960,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefStandardRtMain148">
-          <End Role="StandardRtMain" Type="Self.StandardRtMain" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="StandardRtMain" Type="Self.StandardRtMain" Multiplicity="1" />
           <End Role="StandardRt" Type="Self.StandardRt" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="StandardRtMain">
@@ -2985,9 +3032,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle210">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
           <End Role="VehicleLeasedInfo" Type="Self.VehicleLeasedInfo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -2999,9 +3044,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle211">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
           <End Role="VehicleInsuranceInfo" Type="Self.VehicleInsuranceInfo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -3013,9 +3056,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle212">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
           <End Role="VehiclePurchaseInfo" Type="Self.VehiclePurchaseInfo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -3027,9 +3068,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle213">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
           <End Role="VehicleDisposalInfo" Type="Self.VehicleDisposalInfo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -3041,9 +3080,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle220">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
           <End Role="VehicleMaintenanceTypeFrequency" Type="Self.VehicleMaintenanceTypeFrequency" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -3055,9 +3092,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle2251">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
           <End Role="VehicleDepreciation" Type="Self.VehicleDepreciation" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -3069,9 +3104,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle327">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
           <End Role="VehicleOtherDetail" Type="Self.VehicleOtherDetail" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -3095,9 +3128,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle609">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
           <End Role="VehicleCheckListItem" Type="Self.VehicleCheckListItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -3217,7 +3248,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefworkLocation1942">
-          <End Role="WorkLocation" Type="Self.WorkLocation" Multiplicity="0..1" />
+          <End Role="WorkLocation" Type="Self.WorkLocation" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Phone" Type="Self.Phone" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="WorkLocation">
@@ -3241,7 +3274,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefWorkplace1811">
-          <End Role="Workplace" Type="Self.Workplace" Multiplicity="1" />
+          <End Role="Workplace" Type="Self.Workplace" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="OperationsWorkplace" Type="Self.OperationsWorkplace" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Workplace">
@@ -3301,6 +3336,8 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="CaresModelStoreContainer">
+          <EntitySet Name="AdditionalCharge" EntityType="Self.AdditionalCharge" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdditionalChargeType" EntityType="Self.AdditionalChargeType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdditionalDriverCharge" EntityType="Self.AdditionalDriverCharge" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AddressType" EntityType="Self.AddressType" Schema="dbo" store:Type="Tables" />
@@ -3399,13 +3436,17 @@
             <End Role="Menu" EntitySet="Menu" />
             <End Role="MenuRight" EntitySet="MenuRight" />
           </AssociationSet>
-          <AssociationSet Name="FK_HireGroup_Company" Association="Self.FK_HireGroup_Company">
-            <End Role="Company" EntitySet="Company" />
-            <End Role="HireGroup" EntitySet="HireGroup" />
-          </AssociationSet>
           <AssociationSet Name="FK_Vehicle_VehicleStatus" Association="Self.FK_Vehicle_VehicleStatus">
             <End Role="VehicleStatus" EntitySet="VehicleStatus" />
             <End Role="Vehicle" EntitySet="Vehicle" />
+          </AssociationSet>
+          <AssociationSet Name="RefAdditionalCharge400" Association="Self.RefAdditionalCharge400">
+            <End Role="AdditionalCharge" EntitySet="AdditionalCharge" />
+            <End Role="AdditionalCharge1" EntitySet="AdditionalCharge" />
+          </AssociationSet>
+          <AssociationSet Name="RefAdditionalChargeType393" Association="Self.RefAdditionalChargeType393">
+            <End Role="AdditionalChargeType" EntitySet="AdditionalChargeType" />
+            <End Role="AdditionalCharge" EntitySet="AdditionalCharge" />
           </AssociationSet>
           <AssociationSet Name="RefAdditionalDriverCharge402" Association="Self.RefAdditionalDriverCharge402">
             <End Role="AdditionalDriverCharge" EntitySet="AdditionalDriverCharge" />
@@ -3638,6 +3679,10 @@
           <AssociationSet Name="RefHireGroupDetail377" Association="Self.RefHireGroupDetail377">
             <End Role="HireGroupDetail" EntitySet="HireGroupDetail" />
             <End Role="StandardRt" EntitySet="StandardRt" />
+          </AssociationSet>
+          <AssociationSet Name="RefHireGroupDetail394" Association="Self.RefHireGroupDetail394">
+            <End Role="HireGroupDetail" EntitySet="HireGroupDetail" />
+            <End Role="AdditionalCharge" EntitySet="AdditionalCharge" />
           </AssociationSet>
           <AssociationSet Name="RefHireGroupDetail404" Association="Self.RefHireGroupDetail404">
             <End Role="HireGroupDetail" EntitySet="HireGroupDetail" />
@@ -4507,6 +4552,20 @@
             <End Role="HireGroup" EntitySet="HireGroups" />
             <End Role="HireGroup1" EntitySet="HireGroups" />
           </AssociationSet>
+          <EntitySet Name="AdditionalCharges" EntityType="DomainModels.AdditionalCharge" />
+          <EntitySet Name="AdditionalChargeTypes" EntityType="DomainModels.AdditionalChargeType" />
+          <AssociationSet Name="RefAdditionalCharge400" Association="DomainModels.RefAdditionalCharge400">
+            <End Role="AdditionalCharge" EntitySet="AdditionalCharges" />
+            <End Role="AdditionalCharge1" EntitySet="AdditionalCharges" />
+          </AssociationSet>
+          <AssociationSet Name="RefAdditionalChargeType393" Association="DomainModels.RefAdditionalChargeType393">
+            <End Role="AdditionalChargeType" EntitySet="AdditionalChargeTypes" />
+            <End Role="AdditionalCharge" EntitySet="AdditionalCharges" />
+          </AssociationSet>
+          <AssociationSet Name="RefHireGroupDetail394" Association="DomainModels.RefHireGroupDetail394">
+            <End Role="HireGroupDetail" EntitySet="HireGroupDetails" />
+            <End Role="AdditionalCharge" EntitySet="AdditionalCharges" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Company">
           <Key>
@@ -5243,6 +5302,7 @@
           <NavigationProperty Name="StandardRates" Relationship="DomainModels.RefHireGroupDetail377" FromRole="HireGroupDetail" ToRole="StandardRt" />
           <NavigationProperty Name="InsuranceRates" Relationship="DomainModels.RefHireGroupDetail404" FromRole="HireGroupDetail" ToRole="InsuranceRt" />
           <NavigationProperty Name="VehicleImageHireGroupDetails" Relationship="DomainModels.RefHireGroupDetail627" FromRole="HireGroupDetail" ToRole="VehicleImageHireGroupDetail" />
+          <NavigationProperty Name="AdditionalCharges" Relationship="DomainModels.RefHireGroupDetail394" FromRole="HireGroupDetail" ToRole="AdditionalCharge" />
         </EntityType>
         <EntityType Name="Operation">
           <Key>
@@ -7988,6 +8048,89 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AdditionalCharge">
+          <Key>
+            <PropertyRef Name="AdditionalChargeId" />
+          </Key>
+          <Property Name="AdditionalChargeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChildAdditionalChargeId" Type="Int64" />
+          <Property Name="AdditionalChargeTypeId" Type="Int16" Nullable="false" />
+          <Property Name="HireGroupDetailId" Type="Int64" />
+          <Property Name="AdditionalChargeRate" Type="Double" />
+          <Property Name="StartDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RowVersion" Type="Int64" Nullable="false" />
+          <Property Name="RevisionNumber" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsPrivate" Type="Boolean" Nullable="false" />
+          <Property Name="IsReadOnly" Type="Boolean" Nullable="false" />
+          <Property Name="RecCreatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecLastUpdatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecCreatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RecLastUpdatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="ChildAdditionalCharge" Relationship="DomainModels.RefAdditionalCharge400" FromRole="AdditionalCharge1" ToRole="AdditionalCharge" />
+          <NavigationProperty Name="AdditionalChargeType" Relationship="DomainModels.RefAdditionalChargeType393" FromRole="AdditionalCharge" ToRole="AdditionalChargeType" />
+          <NavigationProperty Name="HireGroupDetail" Relationship="DomainModels.RefHireGroupDetail394" FromRole="AdditionalCharge" ToRole="HireGroupDetail" />
+        </EntityType>
+        <EntityType Name="AdditionalChargeType">
+          <Key>
+            <PropertyRef Name="AdditionalChargeTypeId" />
+          </Key>
+          <Property Name="AdditionalChargeTypeId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdditionalChargeTypeCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AdditionalChargeTypeName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AdditionalChargeTypeDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AdditionalChargeKey" Type="Int16" />
+          <Property Name="IsEditable" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsReadOnly" Type="Boolean" Nullable="false" />
+          <Property Name="IsPrivate" Type="Boolean" Nullable="false" />
+          <Property Name="RecCreatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecCreatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RecLastUpdatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RecLastUpdatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RowVersion" Type="Int64" Nullable="false" />
+          <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="AdditionalCharges" Relationship="DomainModels.RefAdditionalChargeType393" FromRole="AdditionalChargeType" ToRole="AdditionalCharge" />
+        </EntityType>
+        <Association Name="RefAdditionalCharge400">
+          <End Type="DomainModels.AdditionalCharge" Role="AdditionalCharge" Multiplicity="0..1" />
+          <End Type="DomainModels.AdditionalCharge" Role="AdditionalCharge1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdditionalCharge">
+              <PropertyRef Name="AdditionalChargeId" />
+            </Principal>
+            <Dependent Role="AdditionalCharge1">
+              <PropertyRef Name="ChildAdditionalChargeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefAdditionalChargeType393">
+          <End Type="DomainModels.AdditionalChargeType" Role="AdditionalChargeType" Multiplicity="1" />
+          <End Type="DomainModels.AdditionalCharge" Role="AdditionalCharge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdditionalChargeType">
+              <PropertyRef Name="AdditionalChargeTypeId" />
+            </Principal>
+            <Dependent Role="AdditionalCharge">
+              <PropertyRef Name="AdditionalChargeTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefHireGroupDetail394">
+          <End Type="DomainModels.HireGroupDetail" Role="HireGroupDetail" Multiplicity="0..1" />
+          <End Type="DomainModels.AdditionalCharge" Role="AdditionalCharge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HireGroupDetail">
+              <PropertyRef Name="HireGroupDetailId" />
+            </Principal>
+            <Dependent Role="AdditionalCharge">
+              <PropertyRef Name="HireGroupDetailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -9820,6 +9963,51 @@
                 <ScalarProperty Name="AdditionalDriverChargeRate" ColumnName="AdditionalDriverChargeRate" />
                 <ScalarProperty Name="ChildAdditionalDriverChargeId" ColumnName="ChildAdditionalDriverChargeID" />
                 <ScalarProperty Name="AdditionalDriverChargeId" ColumnName="AdditionalDriverChargeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdditionalCharges">
+            <EntityTypeMapping TypeName="DomainModels.AdditionalCharge">
+              <MappingFragment StoreEntitySet="AdditionalCharge">
+                <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
+                <ScalarProperty Name="RecLastUpdatedBy" ColumnName="RecLastUpdatedBy" />
+                <ScalarProperty Name="RecCreatedBy" ColumnName="RecCreatedBy" />
+                <ScalarProperty Name="RecLastUpdatedDt" ColumnName="RecLastUpdatedDt" />
+                <ScalarProperty Name="RecCreatedDt" ColumnName="RecCreatedDt" />
+                <ScalarProperty Name="IsReadOnly" ColumnName="IsReadOnly" />
+                <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="RevisionNumber" ColumnName="RevisionNumber" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="StartDt" ColumnName="StartDt" />
+                <ScalarProperty Name="AdditionalChargeRate" ColumnName="AdditionalChargeRate" />
+                <ScalarProperty Name="HireGroupDetailId" ColumnName="HireGroupDetailID" />
+                <ScalarProperty Name="AdditionalChargeTypeId" ColumnName="AdditionalChargeTypeID" />
+                <ScalarProperty Name="ChildAdditionalChargeId" ColumnName="ChildAdditionalChargeID" />
+                <ScalarProperty Name="AdditionalChargeId" ColumnName="AdditionalChargeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdditionalChargeTypes">
+            <EntityTypeMapping TypeName="DomainModels.AdditionalChargeType">
+              <MappingFragment StoreEntitySet="AdditionalChargeType">
+                <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="RecLastUpdatedDt" ColumnName="RecLastUpdatedDt" />
+                <ScalarProperty Name="RecLastUpdatedBy" ColumnName="RecLastUpdatedBy" />
+                <ScalarProperty Name="RecCreatedBy" ColumnName="RecCreatedBy" />
+                <ScalarProperty Name="RecCreatedDt" ColumnName="RecCreatedDt" />
+                <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
+                <ScalarProperty Name="IsReadOnly" ColumnName="IsReadOnly" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsEditable" ColumnName="IsEditable" />
+                <ScalarProperty Name="AdditionalChargeKey" ColumnName="AdditionalChargeKey" />
+                <ScalarProperty Name="AdditionalChargeTypeDescription" ColumnName="AdditionalChargeTypeDescription" />
+                <ScalarProperty Name="AdditionalChargeTypeName" ColumnName="AdditionalChargeTypeName" />
+                <ScalarProperty Name="AdditionalChargeTypeCode" ColumnName="AdditionalChargeTypeCode" />
+                <ScalarProperty Name="AdditionalChargeTypeId" ColumnName="AdditionalChargeTypeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

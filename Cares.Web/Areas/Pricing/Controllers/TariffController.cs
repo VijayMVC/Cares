@@ -37,5 +37,12 @@ namespace Cares.Web.Areas.Pricing.Controllers
         {
             return View();
         }
+
+        // GET: /Tariff/AdditionalCharge/
+        public ActionResult AdditionalCharge()
+        {
+            return View();
+        }
+        
 	}
 }

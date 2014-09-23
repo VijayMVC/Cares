@@ -3,7 +3,7 @@
     /// <summary>
     /// Hire Group Detail Web Model
     /// </summary>
-    public class HireGroupDetaill
+    public class HireGroupDetail
     {
         
         #region Public Properties

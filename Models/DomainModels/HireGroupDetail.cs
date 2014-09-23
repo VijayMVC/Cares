@@ -112,6 +112,11 @@ namespace Cares.Models.DomainModels
         /// </summary>
         public virtual ICollection<InsuranceRt> InsuranceRates { get; set; }
 
+        /// <summary>
+        /// Additional Charges
+        /// </summary>
+        public virtual ICollection<AdditionalCharge> AdditionalCharges { get; set; }
+
         #endregion
     }
 }

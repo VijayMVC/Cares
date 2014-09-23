@@ -217,6 +217,11 @@
         <AssociationConnector Association="DomainModels.RefStandardRt371" />
         <AssociationConnector Association="DomainModels.FK_HireGroup_Company" />
         <AssociationConnector Association="DomainModels.RefHireGroup308" />
+        <EntityTypeShape EntityType="DomainModels.AdditionalCharge" Width="1.5" PointX="27.875" PointY="52.25" />
+        <EntityTypeShape EntityType="DomainModels.AdditionalChargeType" Width="1.5" PointX="22.375" PointY="64.875" />
+        <AssociationConnector Association="DomainModels.RefAdditionalCharge400" />
+        <AssociationConnector Association="DomainModels.RefAdditionalChargeType393" />
+        <AssociationConnector Association="DomainModels.RefHireGroupDetail394" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
