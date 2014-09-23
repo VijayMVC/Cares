@@ -216,6 +216,123 @@
         <AssociationConnector Association="DomainModels.RefAdditionalDriverCharge402" />
         <AssociationConnector Association="DomainModels.RefTariffType364" />
         <AssociationConnector Association="DomainModels.RefWorkplace2301" />
+        <EntityTypeShape EntityType="DomainModels.AdditionalCharge" Width="1.5" PointX="39.625" PointY="28.625" />
+        <EntityTypeShape EntityType="DomainModels.AdditionalChargeType" Width="1.5" PointX="32.375" PointY="14.375" />
+        <EntityTypeShape EntityType="DomainModels.BookingMain" Width="1.5" PointX="27.375" PointY="35.125" />
+        <EntityTypeShape EntityType="DomainModels.BookingStatus" Width="1.5" PointX="25.125" PointY="57" />
+        <EntityTypeShape EntityType="DomainModels.ChaufferCharge" Width="1.5" PointX="12.625" PointY="67.125" />
+        <EntityTypeShape EntityType="DomainModels.ChaufferChargeMain" Width="1.5" PointX="10.375" PointY="77.5" />
+        <EntityTypeShape EntityType="DomainModels.ChaufferReservation" Width="1.5" PointX="34.625" PointY="23.5" />
+        <EntityTypeShape EntityType="DomainModels.DiscountSubType" Width="1.5" PointX="25.625" PointY="1" />
+        <EntityTypeShape EntityType="DomainModels.DiscountType" Width="1.5" PointX="23.375" PointY="1.125" />
+        <EntityTypeShape EntityType="DomainModels.NrtCharge" Width="1.5" PointX="33.875" PointY="54.125" />
+        <EntityTypeShape EntityType="DomainModels.NrtDriver" Width="1.5" PointX="39.875" PointY="34.5" />
+        <EntityTypeShape EntityType="DomainModels.NrtMain" Width="1.5" PointX="27.375" PointY="42.125" />
+        <EntityTypeShape EntityType="DomainModels.NrtType" Width="1.5" PointX="25.125" PointY="62.625" />
+        <EntityTypeShape EntityType="DomainModels.NrtVehicle" Width="1.5" PointX="29.625" PointY="44.25" />
+        <EntityTypeShape EntityType="DomainModels.NrtVehicleMovement" Width="1.5" PointX="38.875" PointY="40.75" />
+        <EntityTypeShape EntityType="DomainModels.RaAdditionalCharge" Width="1.5" PointX="34.625" PointY="37.25" />
+        <EntityTypeShape EntityType="DomainModels.RaCustomerDocument" Width="1.5" PointX="31.625" PointY="25.75" />
+        <EntityTypeShape EntityType="DomainModels.RaDriver" Width="1.5" PointX="34.625" PointY="29.875" />
+        <EntityTypeShape EntityType="DomainModels.RaHireGroup" Width="1.5" PointX="31.625" PointY="34.625" />
+        <EntityTypeShape EntityType="DomainModels.RaHireGroupDiscount" Width="1.5" PointX="33.875" PointY="47.375" />
+        <EntityTypeShape EntityType="DomainModels.RaHireGroupInsurance" Width="1.5" PointX="38.875" PointY="48.125" />
+        <EntityTypeShape EntityType="DomainModels.RaMain" Width="1.5" PointX="29.375" PointY="19.625" />
+        <EntityTypeShape EntityType="DomainModels.RaPayment" Width="1.5" PointX="31.625" PointY="49.875" />
+        <EntityTypeShape EntityType="DomainModels.RaServiceItem" Width="1.5" PointX="36.625" PointY="46.875" />
+        <EntityTypeShape EntityType="DomainModels.RaStatus" Width="1.5" PointX="27.125" PointY="13.25" />
+        <EntityTypeShape EntityType="DomainModels.RaStatusLog" Width="1.5" PointX="31.625" PointY="20.375" />
+        <EntityTypeShape EntityType="DomainModels.RaVehicleCheckList" Width="1.5" PointX="36.875" PointY="35.5" />
+        <EntityTypeShape EntityType="DomainModels.SeasonalDiscount" Width="1.5" PointX="27.375" PointY="49" />
+        <EntityTypeShape EntityType="DomainModels.SeasonalDiscountMain" Width="1.5" PointX="25.125" PointY="68.5" />
+        <EntityTypeShape EntityType="DomainModels.StandardDiscount" Width="1.5" PointX="24.375" PointY="47.875" />
+        <EntityTypeShape EntityType="DomainModels.StandardDiscountMain" Width="1.5" PointX="22.125" PointY="64.5" />
+        <EntityTypeShape EntityType="DomainModels.VehicleMovement" Width="1.5" PointX="36.875" PointY="29" />
+        <AssociationConnector Association="DomainModels.RefAdditionalCharge400" />
+        <AssociationConnector Association="DomainModels.RefAdditionalChargeType393" />
+        <AssociationConnector Association="DomainModels.RefHireGroupDetail394" />
+        <AssociationConnector Association="DomainModels.RefAdditionalChargeType549" />
+        <AssociationConnector Association="DomainModels.RefAdditionalChargeType586" />
+        <AssociationConnector Association="DomainModels.RefBookingMain510" />
+        <AssociationConnector Association="DomainModels.RefBookingMain530" />
+        <AssociationConnector Association="DomainModels.RefBookingStatus438" />
+        <AssociationConnector Association="DomainModels.RefOperation500" />
+        <AssociationConnector Association="DomainModels.RefOperationsWorkplace436" />
+        <AssociationConnector Association="DomainModels.RefOperationsWorkplace437" />
+        <AssociationConnector Association="DomainModels.RefPaymentTerm494" />
+        <AssociationConnector Association="DomainModels.RefBPMain506" />
+        <AssociationConnector Association="DomainModels.RefBPRatingType413" />
+        <AssociationConnector Association="DomainModels.RefBPRatingType559" />
+        <AssociationConnector Association="DomainModels.RefChaufferCharge397" />
+        <AssociationConnector Association="DomainModels.RefChaufferChargeMain399" />
+        <AssociationConnector Association="DomainModels.RefDesigGrade528" />
+        <AssociationConnector Association="DomainModels.RefEmployee531" />
+        <AssociationConnector Association="DomainModels.RefNRTMain583" />
+        <AssociationConnector Association="DomainModels.RefRAMain529" />
+        <AssociationConnector Association="DomainModels.RefDesigGrade540" />
+        <AssociationConnector Association="DomainModels.RefDesigGrade604" />
+        <AssociationConnector Association="DomainModels.RefDiscountType374" />
+        <AssociationConnector Association="DomainModels.RefEmployee532" />
+        <AssociationConnector Association="DomainModels.RefEmployee603" />
+        <AssociationConnector Association="DomainModels.RefHireGroup575" />
+        <AssociationConnector Association="DomainModels.RefHireGroup576" />
+        <AssociationConnector Association="DomainModels.RefHireGroupDetail503" />
+        <AssociationConnector Association="DomainModels.RefHireGroupDetail551" />
+        <AssociationConnector Association="DomainModels.RefInsuranceType526" />
+        <AssociationConnector Association="DomainModels.RefNRTVehicle597" />
+        <AssociationConnector Association="DomainModels.RefNRTVehicle596" />
+        <AssociationConnector Association="DomainModels.RefNRTMain584" />
+        <AssociationConnector Association="DomainModels.RefNRTMain606" />
+        <AssociationConnector Association="DomainModels.RefNRTType569" />
+        <AssociationConnector Association="DomainModels.RefOperationsWorkplace590" />
+        <AssociationConnector Association="DomainModels.RefOperationsWorkplace592" />
+        <AssociationConnector Association="DomainModels.RefRAStatus607" />
+        <AssociationConnector Association="DomainModels.RefVehicleStatus610" />
+        <AssociationConnector Association="DomainModels.RefNRTVehicle595" />
+        <AssociationConnector Association="DomainModels.RefVehicle594" />
+        <AssociationConnector Association="DomainModels.RefOperationsWorkplace598" />
+        <AssociationConnector Association="DomainModels.RefVehicleStatus580" />
+        <AssociationConnector Association="DomainModels.RefOperation501" />
+        <AssociationConnector Association="DomainModels.RefOperationsWorkplace412" />
+        <AssociationConnector Association="DomainModels.RefOperationsWorkplace498" />
+        <AssociationConnector Association="DomainModels.RefOperationsWorkplace499" />
+        <AssociationConnector Association="DomainModels.RefOperationsWorkplace519" />
+        <AssociationConnector Association="DomainModels.RefOperationsWorkplace558" />
+        <AssociationConnector Association="DomainModels.RefPaymentTerm497" />
+        <AssociationConnector Association="DomainModels.RefRAMain548" />
+        <AssociationConnector Association="DomainModels.RefRAMain513" />
+        <AssociationConnector Association="DomainModels.RefRAMain533" />
+        <AssociationConnector Association="DomainModels.RefRAHireGroup524" />
+        <AssociationConnector Association="DomainModels.RefRAHireGroup525" />
+        <AssociationConnector Association="DomainModels.RefRAHireGroup527" />
+        <AssociationConnector Association="DomainModels.RefRAHireGroup602" />
+        <AssociationConnector Association="DomainModels.RefRAMain504" />
+        <AssociationConnector Association="DomainModels.RefVehicle523" />
+        <AssociationConnector Association="DomainModels.RefRAMain512" />
+        <AssociationConnector Association="DomainModels.RefRAMain515" />
+        <AssociationConnector Association="DomainModels.RefRAMain542" />
+        <AssociationConnector Association="DomainModels.RefRAMain620" />
+        <AssociationConnector Association="DomainModels.RefRAMain624" />
+        <AssociationConnector Association="DomainModels.RefRAStatus496" />
+        <AssociationConnector Association="DomainModels.RefServiceItem514" />
+        <AssociationConnector Association="DomainModels.RefRAStatus621" />
+        <AssociationConnector Association="DomainModels.RefRAStatus622" />
+        <AssociationConnector Association="DomainModels.RefVehicleCheckList520" />
+        <AssociationConnector Association="DomainModels.RefSeasonalDiscount409" />
+        <AssociationConnector Association="DomainModels.RefSeasonalDiscountMain568" />
+        <AssociationConnector Association="DomainModels.RefVehicleCategory563" />
+        <AssociationConnector Association="DomainModels.RefVehicleMake562" />
+        <AssociationConnector Association="DomainModels.RefVehicleModel564" />
+        <AssociationConnector Association="DomainModels.RefStandardDiscount557" />
+        <AssociationConnector Association="DomainModels.RefStandardDiscountMain556" />
+        <AssociationConnector Association="DomainModels.RefVehicleCategory566" />
+        <AssociationConnector Association="DomainModels.RefVehicleMake567" />
+        <AssociationConnector Association="DomainModels.RefVehicleModel565" />
+        <AssociationConnector Association="DomainModels.RefVehicleStatus616" />
+        <EntityTypeShape EntityType="DomainModels.AllocationStatus" Width="1.5" PointX="23.375" PointY="13" />
+        <EntityTypeShape EntityType="DomainModels.PaymentMode" Width="1.5" PointX="7.375" PointY="24" />
+        <AssociationConnector Association="DomainModels.RefAllocationStatus502" />
+        <AssociationConnector Association="DomainModels.RefPaymentMode541" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
