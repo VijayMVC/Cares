@@ -10761,13 +10761,13 @@
         </EntityType>
         <EntityType Name="DiscountSubType">
           <Key>
-            <PropertyRef Name="DiscountSubTypeID" />
+            <PropertyRef Name="DiscountSubTypeId" />
           </Key>
-          <Property Name="DiscountSubTypeID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiscountSubTypeId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DiscountSubTypeCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="DiscountSubTypeName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="DiscountSubTypeDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="DiscountTypeID" Type="Int16" Nullable="false" />
+          <Property Name="DiscountTypeId" Type="Int16" Nullable="false" />
           <Property Name="RowVersion" Type="Int64" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
@@ -10782,9 +10782,9 @@
         </EntityType>
         <EntityType Name="DiscountType">
           <Key>
-            <PropertyRef Name="DiscountTypeID" />
+            <PropertyRef Name="DiscountTypeId" />
           </Key>
-          <Property Name="DiscountTypeID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiscountTypeId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DiscountTypeCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="DiscountTypeName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="DiscountTypeDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
@@ -11763,10 +11763,10 @@
           <End Type="DomainModels.DiscountSubType" Role="DiscountSubType" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DiscountType">
-              <PropertyRef Name="DiscountTypeID" />
+              <PropertyRef Name="DiscountTypeId" />
             </Principal>
             <Dependent Role="DiscountSubType">
-              <PropertyRef Name="DiscountTypeID" />
+              <PropertyRef Name="DiscountTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -14540,11 +14540,11 @@
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
-                <ScalarProperty Name="DiscountTypeID" ColumnName="DiscountTypeID" />
+                <ScalarProperty Name="DiscountTypeId" ColumnName="DiscountTypeID" />
                 <ScalarProperty Name="DiscountSubTypeDescription" ColumnName="DiscountSubTypeDescription" />
                 <ScalarProperty Name="DiscountSubTypeName" ColumnName="DiscountSubTypeName" />
                 <ScalarProperty Name="DiscountSubTypeCode" ColumnName="DiscountSubTypeCode" />
-                <ScalarProperty Name="DiscountSubTypeID" ColumnName="DiscountSubTypeID" />
+                <ScalarProperty Name="DiscountSubTypeId" ColumnName="DiscountSubTypeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -14564,7 +14564,7 @@
                 <ScalarProperty Name="DiscountTypeDescription" ColumnName="DiscountTypeDescription" />
                 <ScalarProperty Name="DiscountTypeName" ColumnName="DiscountTypeName" />
                 <ScalarProperty Name="DiscountTypeCode" ColumnName="DiscountTypeCode" />
-                <ScalarProperty Name="DiscountTypeID" ColumnName="DiscountTypeID" />
+                <ScalarProperty Name="DiscountTypeId" ColumnName="DiscountTypeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
