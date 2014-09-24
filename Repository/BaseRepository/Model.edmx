@@ -2610,6 +2610,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_HireGroup_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="HireGroup" Type="Self.HireGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="HireGroup">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Vehicle_VehicleStatus">
           <End Role="VehicleStatus" Type="Self.VehicleStatus" Multiplicity="1" />
           <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="*" />
@@ -3319,7 +3331,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefEmployee343">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Address" Type="Self.Address" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -3331,7 +3345,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefEmployee344">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Phone" Type="Self.Phone" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -3343,7 +3359,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefEmployee345">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="EmpJobInfo" Type="Self.EmpJobInfo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -3355,7 +3373,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefEmployee348">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="EmpDocsInfo" Type="Self.EmpDocsInfo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -3367,7 +3387,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefEmployee349">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="EmpJobProg" Type="Self.EmpJobProg" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -3427,7 +3449,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefEmployee612">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="EmpAuthOperationsWorkplace" Type="Self.EmpAuthOperationsWorkplace" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -3499,7 +3523,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefHireGroup360">
-          <End Role="HireGroup" Type="Self.HireGroup" Multiplicity="1" />
+          <End Role="HireGroup" Type="Self.HireGroup" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="HireGroupDetail" Type="Self.HireGroupDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HireGroup">
@@ -3535,7 +3561,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefHireGroup613">
-          <End Role="HireGroup" Type="Self.HireGroup" Multiplicity="1" />
+          <End Role="HireGroup" Type="Self.HireGroup" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="HireGroupUpGrade" Type="Self.HireGroupUpGrade" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HireGroup">
@@ -3583,7 +3611,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefHireGroupDetail394">
-          <End Role="HireGroupDetail" Type="Self.HireGroupDetail" Multiplicity="0..1" />
+          <End Role="HireGroupDetail" Type="Self.HireGroupDetail" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="AdditionalCharge" Type="Self.AdditionalCharge" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HireGroupDetail">
@@ -3595,7 +3625,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefHireGroupDetail404">
-          <End Role="HireGroupDetail" Type="Self.HireGroupDetail" Multiplicity="1" />
+          <End Role="HireGroupDetail" Type="Self.HireGroupDetail" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="InsuranceRt" Type="Self.InsuranceRt" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HireGroupDetail">
@@ -3655,7 +3687,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefInsuranceRtMain390">
-          <End Role="InsuranceRtMain" Type="Self.InsuranceRtMain" Multiplicity="1" />
+          <End Role="InsuranceRtMain" Type="Self.InsuranceRtMain" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="InsuranceRt" Type="Self.InsuranceRt" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="InsuranceRtMain">
@@ -3907,7 +3941,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefOperation2561">
-          <End Role="Operation" Type="Self.Operation" Multiplicity="1" />
+          <End Role="Operation" Type="Self.Operation" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="OperationsWorkplace" Type="Self.OperationsWorkplace" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Operation">
@@ -4495,7 +4531,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefServiceRtMain385">
-          <End Role="ServiceRtMain" Type="Self.ServiceRtMain" Multiplicity="1" />
+          <End Role="ServiceRtMain" Type="Self.ServiceRtMain" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ServiceRt" Type="Self.ServiceRt" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ServiceRtMain">
@@ -4627,7 +4665,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle210">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehicleLeasedInfo" Type="Self.VehicleLeasedInfo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -4639,7 +4679,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle211">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehicleInsuranceInfo" Type="Self.VehicleInsuranceInfo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -4651,7 +4693,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle212">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehiclePurchaseInfo" Type="Self.VehiclePurchaseInfo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -4663,7 +4707,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle213">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehicleDisposalInfo" Type="Self.VehicleDisposalInfo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -4675,7 +4721,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle220">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehicleMaintenanceTypeFrequency" Type="Self.VehicleMaintenanceTypeFrequency" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -4687,7 +4735,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle2251">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehicleDepreciation" Type="Self.VehicleDepreciation" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -4699,7 +4749,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle327">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehicleOtherDetail" Type="Self.VehicleOtherDetail" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -4711,7 +4763,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle509">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehicleReservation" Type="Self.VehicleReservation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -4747,7 +4801,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle609">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehicleCheckListItem" Type="Self.VehicleCheckListItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -4987,7 +5043,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefworkLocation1942">
-          <End Role="WorkLocation" Type="Self.WorkLocation" Multiplicity="0..1" />
+          <End Role="WorkLocation" Type="Self.WorkLocation" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Phone" Type="Self.Phone" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="WorkLocation">
@@ -5011,7 +5069,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefWorkplace1811">
-          <End Role="Workplace" Type="Self.Workplace" Multiplicity="1" />
+          <End Role="Workplace" Type="Self.Workplace" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="OperationsWorkplace" Type="Self.OperationsWorkplace" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Workplace">
@@ -5202,6 +5262,10 @@
           <AssociationSet Name="FK_dbo_MenuRight_dbo_Menu_Menu_MenuId" Association="Self.FK_dbo_MenuRight_dbo_Menu_Menu_MenuId">
             <End Role="Menu" EntitySet="Menu" />
             <End Role="MenuRight" EntitySet="MenuRight" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HireGroup_Company" Association="Self.FK_HireGroup_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="HireGroup" EntitySet="HireGroup" />
           </AssociationSet>
           <AssociationSet Name="FK_Vehicle_VehicleStatus" Association="Self.FK_Vehicle_VehicleStatus">
             <End Role="VehicleStatus" EntitySet="VehicleStatus" />
@@ -7001,6 +7065,10 @@
             <End Role="PaymentMode" EntitySet="PaymentModes" />
             <End Role="RAPayment" EntitySet="RaPayments1" />
           </AssociationSet>
+          <AssociationSet Name="FK_HireGroup_Company" Association="DomainModels.FK_HireGroup_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="HireGroup" EntitySet="HireGroups" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Company">
           <Key>
@@ -7035,6 +7103,7 @@
           <NavigationProperty Name="Departments" Relationship="DomainModels.RefCompany1931" FromRole="Company" ToRole="Department" />
           <NavigationProperty Name="WorkLocations" Relationship="DomainModels.RefCompany3011" FromRole="Company" ToRole="WorkLocation" />
           <NavigationProperty Name="Employees" Relationship="DomainModels.RefCompany354" FromRole="Company" ToRole="Employee" />
+          <NavigationProperty Name="HireGroups" Relationship="DomainModels.FK_HireGroup_Company" FromRole="Company" ToRole="HireGroup" />
         </EntityType>
         <Association Name="RefCompany263">
           <End Type="DomainModels.Company" Role="Company" Multiplicity="0..1" />
@@ -7716,6 +7785,7 @@
           <NavigationProperty Name="AllowedHireGroupUpGrades" Relationship="DomainModels.RefHireGroup615" FromRole="HireGroup" ToRole="HireGroupUpGrade" />
           <NavigationProperty Name="SeasonalDiscounts" Relationship="DomainModels.RefHireGroup575" FromRole="HireGroup" ToRole="SeasonalDiscount" />
           <NavigationProperty Name="StandardDiscounts" Relationship="DomainModels.RefHireGroup576" FromRole="HireGroup" ToRole="StandardDiscount" />
+          <NavigationProperty Name="Company" Relationship="DomainModels.FK_HireGroup_Company" FromRole="HireGroup" ToRole="Company" />
         </EntityType>
         <EntityType Name="HireGroupDetail">
           <Key>
@@ -10589,8 +10659,8 @@
           <NavigationProperty Name="ChaufferReservations" Relationship="DomainModels.RefBookingMain530" FromRole="BookingMain" ToRole="ChaufferReservation" />
           <NavigationProperty Name="BookingStatus" Relationship="DomainModels.RefBookingStatus438" FromRole="BookingMain" ToRole="BookingStatu" />
           <NavigationProperty Name="Operation" Relationship="DomainModels.RefOperation500" FromRole="BookingMain" ToRole="Operation" />
-          <NavigationProperty Name="OperationsWorkplaceOpen" Relationship="DomainModels.RefOperationsWorkplace436" FromRole="BookingMain" ToRole="OperationsWorkPlace" />
-          <NavigationProperty Name="OperationsWorkplaceClose" Relationship="DomainModels.RefOperationsWorkplace437" FromRole="BookingMain" ToRole="OperationsWorkPlace" />
+          <NavigationProperty Name="OperationsWorkPlaceOpen" Relationship="DomainModels.RefOperationsWorkplace436" FromRole="BookingMain" ToRole="OperationsWorkPlace" />
+          <NavigationProperty Name="OperationsWorkPlaceClose" Relationship="DomainModels.RefOperationsWorkplace437" FromRole="BookingMain" ToRole="OperationsWorkPlace" />
           <NavigationProperty Name="PaymentTerm" Relationship="DomainModels.RefPaymentTerm494" FromRole="BookingMain" ToRole="PaymentTerm" />
         </EntityType>
         <EntityType Name="BookingStatus">
@@ -10620,7 +10690,7 @@
           </Key>
           <Property Name="ChaufferChargeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ChildChaufferChargeId" Type="Int64" />
-          <Property Name="ChaufferChargeMainID" Type="Int64" Nullable="false" />
+          <Property Name="ChaufferChargeMainId" Type="Int64" Nullable="false" />
           <Property Name="DesigGradeId" Type="Int64" Nullable="false" />
           <Property Name="ChaufferChargeRate" Type="Double" Nullable="false" />
           <Property Name="RevisionNumber" Type="Int64" Nullable="false" />
@@ -10786,7 +10856,7 @@
           </Key>
           <Property Name="NrtMainId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NrtTypeId" Type="Int64" Nullable="false" />
-          <Property Name="NrtMainDecsription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="NrtMainDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="OpenLocationId" Type="Int64" Nullable="false" />
           <Property Name="CloseLocationId" Type="Int64" Nullable="false" />
           <Property Name="NrtStatusId" Type="Int16" Nullable="false" />
@@ -10808,7 +10878,7 @@
           <NavigationProperty Name="NrtType" Relationship="DomainModels.RefNRTType569" FromRole="NRTMain" ToRole="NRTType" />
           <NavigationProperty Name="OpenLocation" Relationship="DomainModels.RefOperationsWorkplace590" FromRole="NRTMain" ToRole="OperationsWorkPlace" />
           <NavigationProperty Name="CloseLocation" Relationship="DomainModels.RefOperationsWorkplace592" FromRole="NRTMain" ToRole="OperationsWorkPlace" />
-          <NavigationProperty Name="RaStatus" Relationship="DomainModels.RefRAStatus607" FromRole="NRTMain" ToRole="RAStatu" />
+          <NavigationProperty Name="NrtStatus" Relationship="DomainModels.RefRAStatus607" FromRole="NRTMain" ToRole="RAStatu" />
         </EntityType>
         <EntityType Name="NrtType">
           <Key>
@@ -11115,8 +11185,8 @@
           <NavigationProperty Name="BusinessPartner" Relationship="DomainModels.RefBPMain506" FromRole="RAMain" ToRole="BusinessPartner" />
           <NavigationProperty Name="ChaufferReservations" Relationship="DomainModels.RefRAMain529" FromRole="RAMain" ToRole="ChaufferReservation" />
           <NavigationProperty Name="Operation" Relationship="DomainModels.RefOperation501" FromRole="RAMain" ToRole="Operation" />
-          <NavigationProperty Name="OperationsWorkplaceOpen" Relationship="DomainModels.RefOperationsWorkplace498" FromRole="RAMain" ToRole="OperationsWorkPlace" />
-          <NavigationProperty Name="OperationsWorkplaceClose" Relationship="DomainModels.RefOperationsWorkplace499" FromRole="RAMain" ToRole="OperationsWorkPlace" />
+          <NavigationProperty Name="OperationsWorkPlaceOpen" Relationship="DomainModels.RefOperationsWorkplace498" FromRole="RAMain" ToRole="OperationsWorkPlace" />
+          <NavigationProperty Name="OperationsWorkPlaceClose" Relationship="DomainModels.RefOperationsWorkplace499" FromRole="RAMain" ToRole="OperationsWorkPlace" />
           <NavigationProperty Name="PaymentTerm" Relationship="DomainModels.RefPaymentTerm497" FromRole="RAMain" ToRole="PaymentTerm" />
           <NavigationProperty Name="RaAdditionalCharges" Relationship="DomainModels.RefRAMain548" FromRole="RAMain" ToRole="RAAdditionalCharge" />
           <NavigationProperty Name="RaCustomerDocuments" Relationship="DomainModels.RefRAMain513" FromRole="RAMain" ToRole="RACustomerDocument" />
@@ -11221,8 +11291,8 @@
           <Property Name="RaStatusLogId" Type="Int64" Nullable="false" />
           <Property Name="RaMainId" Type="Int64" Nullable="false" />
           <Property Name="RaNewStatusId" Type="Int16" Nullable="false" />
-          <Property Name="RAOldStatusID" Type="Int16" Nullable="false" />
-          <Property Name="RAStatusDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="RaOldStatusId" Type="Int16" Nullable="false" />
+          <Property Name="RaStatusDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="RowVersion" Type="Int64" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
@@ -11261,17 +11331,17 @@
         </EntityType>
         <EntityType Name="SeasonalDiscount">
           <Key>
-            <PropertyRef Name="SeasonalDiscountID" />
+            <PropertyRef Name="SeasonalDiscountId" />
           </Key>
-          <Property Name="SeasonalDiscountID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ChildSeasonalDiscountID" Type="Int64" />
-          <Property Name="SeasonalDiscountMainID" Type="Int64" Nullable="false" />
-          <Property Name="OperationsWorkplaceID" Type="Int64" />
-          <Property Name="VehicleMakeID" Type="Int16" />
-          <Property Name="BPRatingTypeID" Type="Int16" />
-          <Property Name="VehicleCategoryID" Type="Int16" />
-          <Property Name="VehicleModelID" Type="Int16" />
-          <Property Name="HireGroupID" Type="Int64" />
+          <Property Name="SeasonalDiscountId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChildSeasonalDiscountId" Type="Int64" />
+          <Property Name="SeasonalDiscountMainId" Type="Int64" Nullable="false" />
+          <Property Name="OperationsWorkPlaceId" Type="Int64" />
+          <Property Name="VehicleMakeId" Type="Int16" />
+          <Property Name="BpRatingTypeId" Type="Int16" />
+          <Property Name="VehicleCategoryId" Type="Int16" />
+          <Property Name="VehicleModelId" Type="Int16" />
+          <Property Name="HireGroupId" Type="Int64" />
           <Property Name="CustomerType" Type="Int16" Nullable="false" />
           <Property Name="ModelYear" Type="Int16" />
           <Property Name="DiscountPerc" Type="Double" Nullable="false" />
@@ -11288,11 +11358,10 @@
           <Property Name="RecCreatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="RecLastUpdatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="BPRatingType" Relationship="DomainModels.RefBPRatingType413" FromRole="SeasonalDiscount" ToRole="BpRatingType" />
+          <NavigationProperty Name="BpRatingType" Relationship="DomainModels.RefBPRatingType413" FromRole="SeasonalDiscount" ToRole="BpRatingType" />
           <NavigationProperty Name="HireGroup" Relationship="DomainModels.RefHireGroup575" FromRole="SeasonalDiscount" ToRole="HireGroup" />
-          <NavigationProperty Name="OperationsWorkplace" Relationship="DomainModels.RefOperationsWorkplace412" FromRole="SeasonalDiscount" ToRole="OperationsWorkPlace" />
-          <NavigationProperty Name="SeasonalDiscount1" Relationship="DomainModels.RefSeasonalDiscount409" FromRole="SeasonalDiscount" ToRole="SeasonalDiscount1" />
-          <NavigationProperty Name="SeasonalDiscount2" Relationship="DomainModels.RefSeasonalDiscount409" FromRole="SeasonalDiscount1" ToRole="SeasonalDiscount" />
+          <NavigationProperty Name="OperationsWorkPlace" Relationship="DomainModels.RefOperationsWorkplace412" FromRole="SeasonalDiscount" ToRole="OperationsWorkPlace" />
+          <NavigationProperty Name="ChildSeasonalDiscount" Relationship="DomainModels.RefSeasonalDiscount409" FromRole="SeasonalDiscount1" ToRole="SeasonalDiscount" />
           <NavigationProperty Name="SeasonalDiscountMain" Relationship="DomainModels.RefSeasonalDiscountMain568" FromRole="SeasonalDiscount" ToRole="SeasonalDiscountMain" />
           <NavigationProperty Name="VehicleCategory" Relationship="DomainModels.RefVehicleCategory563" FromRole="SeasonalDiscount" ToRole="VehicleCategory" />
           <NavigationProperty Name="VehicleMake" Relationship="DomainModels.RefVehicleMake562" FromRole="SeasonalDiscount" ToRole="VehicleMake" />
@@ -11300,9 +11369,9 @@
         </EntityType>
         <EntityType Name="SeasonalDiscountMain">
           <Key>
-            <PropertyRef Name="SeasonalDiscountMainID" />
+            <PropertyRef Name="SeasonalDiscountMainId" />
           </Key>
-          <Property Name="SeasonalDiscountMainID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SeasonalDiscountMainId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TariffTypeCode" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="SeasonalDiscountMainCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="SeasonalDiscountMainName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -11323,18 +11392,18 @@
         </EntityType>
         <EntityType Name="StandardDiscount">
           <Key>
-            <PropertyRef Name="StandardDiscountID" />
+            <PropertyRef Name="StandardDiscountId" />
           </Key>
-          <Property Name="StandardDiscountID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StandardDiscountMainID" Type="Int64" Nullable="false" />
-          <Property Name="ChildStandardDiscountID" Type="Int64" />
-          <Property Name="RoleID" Type="Int64" />
-          <Property Name="OperationsWorkplaceID" Type="Int64" />
-          <Property Name="BPRatingTypeID" Type="Int16" />
-          <Property Name="VehicleModelID" Type="Int16" />
-          <Property Name="VehicleCategoryID" Type="Int16" />
-          <Property Name="VehicleMakeID" Type="Int16" />
-          <Property Name="HireGroupID" Type="Int64" />
+          <Property Name="StandardDiscountId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StandardDiscountMainId" Type="Int64" Nullable="false" />
+          <Property Name="ChildStandardDiscountId" Type="Int64" />
+          <Property Name="RoleId" Type="Int64" />
+          <Property Name="OperationsWorkPlaceId" Type="Int64" />
+          <Property Name="BpRatingTypeId" Type="Int16" />
+          <Property Name="VehicleModelId" Type="Int16" />
+          <Property Name="VehicleCategoryId" Type="Int16" />
+          <Property Name="VehicleMakeId" Type="Int16" />
+          <Property Name="HireGroupId" Type="Int64" />
           <Property Name="CustomerType" Type="Int16" Nullable="false" />
           <Property Name="ModelYear" Type="Int32" />
           <Property Name="DiscountPerc" Type="Double" Nullable="false" />
@@ -11351,11 +11420,10 @@
           <Property Name="RecCreatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="RecLastUpdatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="BPRatingType" Relationship="DomainModels.RefBPRatingType559" FromRole="StandardDiscount" ToRole="BpRatingType" />
+          <NavigationProperty Name="BpRatingType" Relationship="DomainModels.RefBPRatingType559" FromRole="StandardDiscount" ToRole="BpRatingType" />
           <NavigationProperty Name="HireGroup" Relationship="DomainModels.RefHireGroup576" FromRole="StandardDiscount" ToRole="HireGroup" />
-          <NavigationProperty Name="OperationsWorkplace" Relationship="DomainModels.RefOperationsWorkplace558" FromRole="StandardDiscount" ToRole="OperationsWorkPlace" />
-          <NavigationProperty Name="StandardDiscount1" Relationship="DomainModels.RefStandardDiscount557" FromRole="StandardDiscount" ToRole="StandardDiscount1" />
-          <NavigationProperty Name="StandardDiscount2" Relationship="DomainModels.RefStandardDiscount557" FromRole="StandardDiscount1" ToRole="StandardDiscount" />
+          <NavigationProperty Name="OperationsWorkPlace" Relationship="DomainModels.RefOperationsWorkplace558" FromRole="StandardDiscount" ToRole="OperationsWorkPlace" />
+          <NavigationProperty Name="ChildStandardDiscount" Relationship="DomainModels.RefStandardDiscount557" FromRole="StandardDiscount1" ToRole="StandardDiscount" />
           <NavigationProperty Name="StandardDiscountMain" Relationship="DomainModels.RefStandardDiscountMain556" FromRole="StandardDiscount" ToRole="StandardDiscountMain" />
           <NavigationProperty Name="VehicleCategory" Relationship="DomainModels.RefVehicleCategory566" FromRole="StandardDiscount" ToRole="VehicleCategory" />
           <NavigationProperty Name="VehicleMake" Relationship="DomainModels.RefVehicleMake567" FromRole="StandardDiscount" ToRole="VehicleMake" />
@@ -11363,9 +11431,9 @@
         </EntityType>
         <EntityType Name="StandardDiscountMain">
           <Key>
-            <PropertyRef Name="StandardDiscountMainID" />
+            <PropertyRef Name="StandardDiscountMainId" />
           </Key>
-          <Property Name="StandardDiscountMainID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StandardDiscountMainId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TariffTypeCode" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="StandardDiscountMainCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="StandardDiscountMainName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -11389,7 +11457,7 @@
             <PropertyRef Name="VehicleMovementId" />
           </Key>
           <Property Name="VehicleMovementId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="OperationsWorkplaceId" Type="Int64" Nullable="false" />
+          <Property Name="OperationsWorkPlaceId" Type="Int64" Nullable="false" />
           <Property Name="RaHireGroupId" Type="Int64" Nullable="false" />
           <Property Name="DtTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="VehicleStatusId" Type="Int16" />
@@ -11409,7 +11477,7 @@
           <Property Name="RecLastUpdatedDt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="RecLastUpdatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="OperationsWorkplace" Relationship="DomainModels.RefOperationsWorkplace519" FromRole="VehicleMovement" ToRole="OperationsWorkPlace" />
+          <NavigationProperty Name="OperationsWorkPlace" Relationship="DomainModels.RefOperationsWorkplace519" FromRole="VehicleMovement" ToRole="OperationsWorkPlace" />
           <NavigationProperty Name="RaHireGroup" Relationship="DomainModels.RefRAHireGroup524" FromRole="VehicleMovement" ToRole="RAHireGroup" />
           <NavigationProperty Name="VehicleStatus" Relationship="DomainModels.RefVehicleStatus616" FromRole="VehicleMovement" ToRole="VehicleStatus" />
         </EntityType>
@@ -11577,7 +11645,7 @@
               <PropertyRef Name="BpRatingTypeId" />
             </Principal>
             <Dependent Role="SeasonalDiscount">
-              <PropertyRef Name="BPRatingTypeID" />
+              <PropertyRef Name="BpRatingTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -11589,7 +11657,7 @@
               <PropertyRef Name="BpRatingTypeId" />
             </Principal>
             <Dependent Role="StandardDiscount">
-              <PropertyRef Name="BPRatingTypeID" />
+              <PropertyRef Name="BpRatingTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -11613,7 +11681,7 @@
               <PropertyRef Name="ChaufferChargeMainId" />
             </Principal>
             <Dependent Role="ChaufferCharge">
-              <PropertyRef Name="ChaufferChargeMainID" />
+              <PropertyRef Name="ChaufferChargeMainId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -11733,7 +11801,7 @@
               <PropertyRef Name="HireGroupId" />
             </Principal>
             <Dependent Role="SeasonalDiscount">
-              <PropertyRef Name="HireGroupID" />
+              <PropertyRef Name="HireGroupId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -11745,7 +11813,7 @@
               <PropertyRef Name="HireGroupId" />
             </Principal>
             <Dependent Role="StandardDiscount">
-              <PropertyRef Name="HireGroupID" />
+              <PropertyRef Name="HireGroupId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -11961,7 +12029,7 @@
               <PropertyRef Name="OperationsWorkPlaceId" />
             </Principal>
             <Dependent Role="SeasonalDiscount">
-              <PropertyRef Name="OperationsWorkplaceID" />
+              <PropertyRef Name="OperationsWorkPlaceId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -11997,7 +12065,7 @@
               <PropertyRef Name="OperationsWorkPlaceId" />
             </Principal>
             <Dependent Role="VehicleMovement">
-              <PropertyRef Name="OperationsWorkplaceId" />
+              <PropertyRef Name="OperationsWorkPlaceId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -12009,7 +12077,7 @@
               <PropertyRef Name="OperationsWorkPlaceId" />
             </Principal>
             <Dependent Role="StandardDiscount">
-              <PropertyRef Name="OperationsWorkplaceID" />
+              <PropertyRef Name="OperationsWorkPlaceId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -12225,7 +12293,7 @@
               <PropertyRef Name="RaStatusId" />
             </Principal>
             <Dependent Role="RAStatusLog">
-              <PropertyRef Name="RAOldStatusID" />
+              <PropertyRef Name="RaOldStatusId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -12258,10 +12326,10 @@
           <End Type="DomainModels.SeasonalDiscount" Role="SeasonalDiscount1" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SeasonalDiscount">
-              <PropertyRef Name="SeasonalDiscountID" />
+              <PropertyRef Name="SeasonalDiscountId" />
             </Principal>
             <Dependent Role="SeasonalDiscount1">
-              <PropertyRef Name="ChildSeasonalDiscountID" />
+              <PropertyRef Name="ChildSeasonalDiscountId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -12270,10 +12338,10 @@
           <End Type="DomainModels.SeasonalDiscount" Role="SeasonalDiscount" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SeasonalDiscountMain">
-              <PropertyRef Name="SeasonalDiscountMainID" />
+              <PropertyRef Name="SeasonalDiscountMainId" />
             </Principal>
             <Dependent Role="SeasonalDiscount">
-              <PropertyRef Name="SeasonalDiscountMainID" />
+              <PropertyRef Name="SeasonalDiscountMainId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -12285,7 +12353,7 @@
               <PropertyRef Name="VehicleCategoryId" />
             </Principal>
             <Dependent Role="SeasonalDiscount">
-              <PropertyRef Name="VehicleCategoryID" />
+              <PropertyRef Name="VehicleCategoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -12297,7 +12365,7 @@
               <PropertyRef Name="VehicleMakeId" />
             </Principal>
             <Dependent Role="SeasonalDiscount">
-              <PropertyRef Name="VehicleMakeID" />
+              <PropertyRef Name="VehicleMakeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -12309,7 +12377,7 @@
               <PropertyRef Name="VehicleModelId" />
             </Principal>
             <Dependent Role="SeasonalDiscount">
-              <PropertyRef Name="VehicleModelID" />
+              <PropertyRef Name="VehicleModelId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -12318,10 +12386,10 @@
           <End Type="DomainModels.StandardDiscount" Role="StandardDiscount1" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="StandardDiscount">
-              <PropertyRef Name="StandardDiscountID" />
+              <PropertyRef Name="StandardDiscountId" />
             </Principal>
             <Dependent Role="StandardDiscount1">
-              <PropertyRef Name="ChildStandardDiscountID" />
+              <PropertyRef Name="ChildStandardDiscountId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -12330,10 +12398,10 @@
           <End Type="DomainModels.StandardDiscount" Role="StandardDiscount" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="StandardDiscountMain">
-              <PropertyRef Name="StandardDiscountMainID" />
+              <PropertyRef Name="StandardDiscountMainId" />
             </Principal>
             <Dependent Role="StandardDiscount">
-              <PropertyRef Name="StandardDiscountMainID" />
+              <PropertyRef Name="StandardDiscountMainId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -12345,7 +12413,7 @@
               <PropertyRef Name="VehicleCategoryId" />
             </Principal>
             <Dependent Role="StandardDiscount">
-              <PropertyRef Name="VehicleCategoryID" />
+              <PropertyRef Name="VehicleCategoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -12357,7 +12425,7 @@
               <PropertyRef Name="VehicleMakeId" />
             </Principal>
             <Dependent Role="StandardDiscount">
-              <PropertyRef Name="VehicleMakeID" />
+              <PropertyRef Name="VehicleMakeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -12369,7 +12437,7 @@
               <PropertyRef Name="VehicleModelId" />
             </Principal>
             <Dependent Role="StandardDiscount">
-              <PropertyRef Name="VehicleModelID" />
+              <PropertyRef Name="VehicleModelId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -12448,6 +12516,18 @@
             </Principal>
             <Dependent Role="RAPayment">
               <PropertyRef Name="PaymentModeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HireGroup_Company">
+          <End Type="DomainModels.Company" Role="Company" Multiplicity="0..1" />
+          <End Type="DomainModels.HireGroup" Role="HireGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="HireGroup">
+              <PropertyRef Name="CompanyId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -14394,7 +14474,7 @@
                 <ScalarProperty Name="RevisionNumber" ColumnName="RevisionNumber" />
                 <ScalarProperty Name="ChaufferChargeRate" ColumnName="ChaufferChargeRate" />
                 <ScalarProperty Name="DesigGradeId" ColumnName="DesigGradeID" />
-                <ScalarProperty Name="ChaufferChargeMainID" ColumnName="ChaufferChargeMainID" />
+                <ScalarProperty Name="ChaufferChargeMainId" ColumnName="ChaufferChargeMainID" />
                 <ScalarProperty Name="ChildChaufferChargeId" ColumnName="ChildChaufferChargeID" />
                 <ScalarProperty Name="ChaufferChargeId" ColumnName="ChaufferChargeID" />
               </MappingFragment>
@@ -14553,7 +14633,7 @@
                 <ScalarProperty Name="NrtStatusId" ColumnName="NRTStatusID" />
                 <ScalarProperty Name="CloseLocationId" ColumnName="CloseLocationID" />
                 <ScalarProperty Name="OpenLocationId" ColumnName="OpenLocationID" />
-                <ScalarProperty Name="NrtMainDecsription" ColumnName="NRTMainDecsription" />
+                <ScalarProperty Name="NrtMainDescription" ColumnName="NRTMainDecsription" />
                 <ScalarProperty Name="NrtTypeId" ColumnName="NRTTypeID" />
                 <ScalarProperty Name="NrtMainId" ColumnName="NRTMainID" />
               </MappingFragment>
@@ -14937,8 +15017,8 @@
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
-                <ScalarProperty Name="RAStatusDescription" ColumnName="RAStatusDescription" />
-                <ScalarProperty Name="RAOldStatusID" ColumnName="RAOldStatusID" />
+                <ScalarProperty Name="RaStatusDescription" ColumnName="RAStatusDescription" />
+                <ScalarProperty Name="RaOldStatusId" ColumnName="RAOldStatusID" />
                 <ScalarProperty Name="RaNewStatusId" ColumnName="RANewStatusID" />
                 <ScalarProperty Name="RaMainId" ColumnName="RAMainID" />
                 <ScalarProperty Name="RaStatusLogId" ColumnName="RAStatusLogID" />
@@ -14985,15 +15065,15 @@
                 <ScalarProperty Name="DiscountPerc" ColumnName="DiscountPerc" />
                 <ScalarProperty Name="ModelYear" ColumnName="ModelYear" />
                 <ScalarProperty Name="CustomerType" ColumnName="CustomerType" />
-                <ScalarProperty Name="HireGroupID" ColumnName="HireGroupID" />
-                <ScalarProperty Name="VehicleModelID" ColumnName="VehicleModelID" />
-                <ScalarProperty Name="VehicleCategoryID" ColumnName="VehicleCategoryID" />
-                <ScalarProperty Name="BPRatingTypeID" ColumnName="BPRatingTypeID" />
-                <ScalarProperty Name="VehicleMakeID" ColumnName="VehicleMakeID" />
-                <ScalarProperty Name="OperationsWorkplaceID" ColumnName="OperationsWorkplaceID" />
-                <ScalarProperty Name="SeasonalDiscountMainID" ColumnName="SeasonalDiscountMainID" />
-                <ScalarProperty Name="ChildSeasonalDiscountID" ColumnName="ChildSeasonalDiscountID" />
-                <ScalarProperty Name="SeasonalDiscountID" ColumnName="SeasonalDiscountID" />
+                <ScalarProperty Name="HireGroupId" ColumnName="HireGroupID" />
+                <ScalarProperty Name="VehicleModelId" ColumnName="VehicleModelID" />
+                <ScalarProperty Name="VehicleCategoryId" ColumnName="VehicleCategoryID" />
+                <ScalarProperty Name="BpRatingTypeId" ColumnName="BPRatingTypeID" />
+                <ScalarProperty Name="VehicleMakeId" ColumnName="VehicleMakeID" />
+                <ScalarProperty Name="OperationsWorkPlaceId" ColumnName="OperationsWorkplaceID" />
+                <ScalarProperty Name="SeasonalDiscountMainId" ColumnName="SeasonalDiscountMainID" />
+                <ScalarProperty Name="ChildSeasonalDiscountId" ColumnName="ChildSeasonalDiscountID" />
+                <ScalarProperty Name="SeasonalDiscountId" ColumnName="SeasonalDiscountID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -15016,7 +15096,7 @@
                 <ScalarProperty Name="SeasonalDiscountMainName" ColumnName="SeasonalDiscountMainName" />
                 <ScalarProperty Name="SeasonalDiscountMainCode" ColumnName="SeasonalDiscountMainCode" />
                 <ScalarProperty Name="TariffTypeCode" ColumnName="TariffTypeCode" />
-                <ScalarProperty Name="SeasonalDiscountMainID" ColumnName="SeasonalDiscountMainID" />
+                <ScalarProperty Name="SeasonalDiscountMainId" ColumnName="SeasonalDiscountMainID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -15039,16 +15119,16 @@
                 <ScalarProperty Name="DiscountPerc" ColumnName="DiscountPerc" />
                 <ScalarProperty Name="ModelYear" ColumnName="ModelYear" />
                 <ScalarProperty Name="CustomerType" ColumnName="CustomerType" />
-                <ScalarProperty Name="HireGroupID" ColumnName="HireGroupID" />
-                <ScalarProperty Name="VehicleMakeID" ColumnName="VehicleMakeID" />
-                <ScalarProperty Name="VehicleCategoryID" ColumnName="VehicleCategoryID" />
-                <ScalarProperty Name="VehicleModelID" ColumnName="VehicleModelID" />
-                <ScalarProperty Name="BPRatingTypeID" ColumnName="BPRatingTypeID" />
-                <ScalarProperty Name="OperationsWorkplaceID" ColumnName="OperationsWorkplaceID" />
-                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
-                <ScalarProperty Name="ChildStandardDiscountID" ColumnName="ChildStandardDiscountID" />
-                <ScalarProperty Name="StandardDiscountMainID" ColumnName="StandardDiscountMainID" />
-                <ScalarProperty Name="StandardDiscountID" ColumnName="StandardDiscountID" />
+                <ScalarProperty Name="HireGroupId" ColumnName="HireGroupID" />
+                <ScalarProperty Name="VehicleMakeId" ColumnName="VehicleMakeID" />
+                <ScalarProperty Name="VehicleCategoryId" ColumnName="VehicleCategoryID" />
+                <ScalarProperty Name="VehicleModelId" ColumnName="VehicleModelID" />
+                <ScalarProperty Name="BpRatingTypeId" ColumnName="BPRatingTypeID" />
+                <ScalarProperty Name="OperationsWorkPlaceId" ColumnName="OperationsWorkplaceID" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleID" />
+                <ScalarProperty Name="ChildStandardDiscountId" ColumnName="ChildStandardDiscountID" />
+                <ScalarProperty Name="StandardDiscountMainId" ColumnName="StandardDiscountMainID" />
+                <ScalarProperty Name="StandardDiscountId" ColumnName="StandardDiscountID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -15071,7 +15151,7 @@
                 <ScalarProperty Name="StandardDiscountMainName" ColumnName="StandardDiscountMainName" />
                 <ScalarProperty Name="StandardDiscountMainCode" ColumnName="StandardDiscountMainCode" />
                 <ScalarProperty Name="TariffTypeCode" ColumnName="TariffTypeCode" />
-                <ScalarProperty Name="StandardDiscountMainID" ColumnName="StandardDiscountMainID" />
+                <ScalarProperty Name="StandardDiscountMainId" ColumnName="StandardDiscountMainID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -15097,7 +15177,7 @@
                 <ScalarProperty Name="VehicleStatusId" ColumnName="VehicleStatusID" />
                 <ScalarProperty Name="DtTime" ColumnName="DtTime" />
                 <ScalarProperty Name="RaHireGroupId" ColumnName="RAHireGroupID" />
-                <ScalarProperty Name="OperationsWorkplaceId" ColumnName="OperationsWorkplaceID" />
+                <ScalarProperty Name="OperationsWorkPlaceId" ColumnName="OperationsWorkplaceID" />
                 <ScalarProperty Name="VehicleMovementId" ColumnName="VehicleMovementID" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -29,7 +29,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySetsD44A7BE2023E4CE21F9311BE9755913F0590021DE315701BA116175912844485))]
+[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySetsC6FD459BBD30493B6FC60135B2E58DB8531CB2D2D1AD898A4B1512646926B57E))]
 
 namespace Edm_EntityMappingGeneratedViews
 {
@@ -38,18 +38,18 @@ namespace Edm_EntityMappingGeneratedViews
     /// <Summary>
     /// The type contains views for EntitySets and AssociationSets that were generated at design time.
     /// </Summary>
-    public sealed class ViewsForBaseEntitySetsD44A7BE2023E4CE21F9311BE9755913F0590021DE315701BA116175912844485 : System.Data.Mapping.EntityViewContainer
+    public sealed class ViewsForBaseEntitySetsC6FD459BBD30493B6FC60135B2E58DB8531CB2D2D1AD898A4B1512646926B57E : System.Data.Mapping.EntityViewContainer
     {
         
         /// <Summary>
         /// The constructor stores the views for the extents and also the hash values generated based on the metadata and mapping closure and views.
         /// </Summary>
-        public ViewsForBaseEntitySetsD44A7BE2023E4CE21F9311BE9755913F0590021DE315701BA116175912844485()
+        public ViewsForBaseEntitySetsC6FD459BBD30493B6FC60135B2E58DB8531CB2D2D1AD898A4B1512646926B57E()
         {
             this.EdmEntityContainerName = "BaseDbContext";
             this.StoreEntityContainerName = "CaresModelStoreContainer";
-            this.HashOverMappingClosure = "09b11aa0ec349eaffa8ced200c620222cf8c8d7ba9c4ce77b089c3f3c8fa9352";
-            this.HashOverAllExtentViews = "7b812152ebaf4ca20c87cc015c4ba74317c1b99ed00fb8948072d28bf5f87240";
+            this.HashOverMappingClosure = "17658c190f19b7d560fc869f4a5c41697f43b652aa06b242d5e96a3f007e7c87";
+            this.HashOverAllExtentViews = "c82e7cfdfbe32a89e39759f33edbf6af9b82ff82c42ea539e77877608e46df4a";
             this.ViewCount = 240;
         }
         
@@ -3551,7 +3551,7 @@ namespace Edm_EntityMappingGeneratedViews
                     "1.ChaufferCharge_RecLastUpdatedBy, T1.ChaufferCharge_StartDt, T1.ChaufferCharge_" +
                     "UserDomainKey)\r\n    FROM (\r\n        SELECT \r\n            T.ChaufferChargeId AS C" +
                     "haufferCharge_ChaufferChargeID, \r\n            T.ChildChaufferChargeId AS Chauffe" +
-                    "rCharge_ChildChaufferChargeID, \r\n            T.ChaufferChargeMainID AS ChaufferC" +
+                    "rCharge_ChildChaufferChargeID, \r\n            T.ChaufferChargeMainId AS ChaufferC" +
                     "harge_ChaufferChargeMainID, \r\n            T.DesigGradeId AS ChaufferCharge_Desig" +
                     "GradeID, \r\n            T.ChaufferChargeRate AS ChaufferCharge_ChaufferChargeRate" +
                     ", \r\n            T.RevisionNumber AS ChaufferCharge_RevisionNumber, \r\n           " +
@@ -3705,7 +3705,7 @@ namespace Edm_EntityMappingGeneratedViews
                     "RecCreatedBy, T1.NRTMain_RecCreatedDt, T1.NRTMain_RecLastUpdatedBy, T1.NRTMain_R" +
                     "ecLastUpdatedDt, T1.NRTMain_UserDomainKey)\r\n    FROM (\r\n        SELECT \r\n       " +
                     "     T.NrtMainId AS NRTMain_NRTMainID, \r\n            T.NrtTypeId AS NRTMain_NRTT" +
-                    "ypeID, \r\n            T.NrtMainDecsription AS NRTMain_NRTMainDecsription, \r\n     " +
+                    "ypeID, \r\n            T.NrtMainDescription AS NRTMain_NRTMainDecsription, \r\n     " +
                     "       T.OpenLocationId AS NRTMain_OpenLocationID, \r\n            T.CloseLocation" +
                     "Id AS NRTMain_CloseLocationID, \r\n            T.NrtStatusId AS NRTMain_NRTStatusI" +
                     "D, \r\n            T.StartDtTime AS NRTMain_StartDtTime, \r\n            T.EndDtTime" +
@@ -4215,7 +4215,7 @@ namespace Edm_EntityMappingGeneratedViews
                     "tUpdatedBy, T1.RAStatusLog_UserDomainKey)\r\n    FROM (\r\n        SELECT \r\n        " +
                     "    T.RaStatusLogId AS RAStatusLog_RAStatusLogID, \r\n            T.RaMainId AS RA" +
                     "StatusLog_RAMainID, \r\n            T.RaNewStatusId AS RAStatusLog_RANewStatusID, " +
-                    "\r\n            T.RAOldStatusID AS RAStatusLog_RAOldStatusID, \r\n            T.RASt" +
+                    "\r\n            T.RaOldStatusId AS RAStatusLog_RAOldStatusID, \r\n            T.RaSt" +
                     "atusDescription AS RAStatusLog_RAStatusDescription, \r\n            T.RowVersion A" +
                     "S RAStatusLog_RowVersion, \r\n            T.IsActive AS RAStatusLog_IsActive, \r\n  " +
                     "          T.IsDeleted AS RAStatusLog_IsDeleted, \r\n            T.IsPrivate AS RAS" +
@@ -4276,14 +4276,14 @@ namespace Edm_EntityMappingGeneratedViews
             viewString.Append("asonalDiscount_RowVersion, T1.SeasonalDiscount_RecCreatedDt, T1.SeasonalDiscount");
             viewString.Append("_RecLastUpdatedDt, T1.SeasonalDiscount_RecCreatedBy, T1.SeasonalDiscount_RecLast");
             viewString.Append("UpdatedBy, T1.SeasonalDiscount_UserDomainKey)\r\n    FROM (\r\n        SELECT \r\n    ");
-            viewString.Append("        T.SeasonalDiscountID AS SeasonalDiscount_SeasonalDiscountID, \r\n         ");
-            viewString.Append("   T.ChildSeasonalDiscountID AS SeasonalDiscount_ChildSeasonalDiscountID, \r\n    ");
-            viewString.Append("        T.SeasonalDiscountMainID AS SeasonalDiscount_SeasonalDiscountMainID, \r\n ");
-            viewString.Append("           T.OperationsWorkplaceID AS SeasonalDiscount_OperationsWorkplaceID, \r\n");
-            viewString.Append("            T.VehicleMakeID AS SeasonalDiscount_VehicleMakeID, \r\n            T.B");
-            viewString.Append("PRatingTypeID AS SeasonalDiscount_BPRatingTypeID, \r\n            T.VehicleCategor");
-            viewString.Append("yID AS SeasonalDiscount_VehicleCategoryID, \r\n            T.VehicleModelID AS Sea");
-            viewString.Append("sonalDiscount_VehicleModelID, \r\n            T.HireGroupID AS SeasonalDiscount_Hi");
+            viewString.Append("        T.SeasonalDiscountId AS SeasonalDiscount_SeasonalDiscountID, \r\n         ");
+            viewString.Append("   T.ChildSeasonalDiscountId AS SeasonalDiscount_ChildSeasonalDiscountID, \r\n    ");
+            viewString.Append("        T.SeasonalDiscountMainId AS SeasonalDiscount_SeasonalDiscountMainID, \r\n ");
+            viewString.Append("           T.OperationsWorkPlaceId AS SeasonalDiscount_OperationsWorkplaceID, \r\n");
+            viewString.Append("            T.VehicleMakeId AS SeasonalDiscount_VehicleMakeID, \r\n            T.B");
+            viewString.Append("pRatingTypeId AS SeasonalDiscount_BPRatingTypeID, \r\n            T.VehicleCategor");
+            viewString.Append("yId AS SeasonalDiscount_VehicleCategoryID, \r\n            T.VehicleModelId AS Sea");
+            viewString.Append("sonalDiscount_VehicleModelID, \r\n            T.HireGroupId AS SeasonalDiscount_Hi");
             viewString.Append("reGroupID, \r\n            T.CustomerType AS SeasonalDiscount_CustomerType, \r\n    ");
             viewString.Append("        T.ModelYear AS SeasonalDiscount_ModelYear, \r\n            T.DiscountPerc ");
             viewString.Append("AS SeasonalDiscount_DiscountPerc, \r\n            T.SeasonalDiscountStartDt AS Sea");
@@ -4318,7 +4318,7 @@ namespace Edm_EntityMappingGeneratedViews
             viewString.Append("sonalDiscountMain_IsReadOnly, T1.SeasonalDiscountMain_RecCreatedBy, T1.SeasonalD");
             viewString.Append("iscountMain_RecLastUpdatedBy, T1.SeasonalDiscountMain_RecCreatedDt, T1.SeasonalD");
             viewString.Append("iscountMain_RecLastUpdatedDt, T1.SeasonalDiscountMain_UserDomainKey)\r\n    FROM (");
-            viewString.Append("\r\n        SELECT \r\n            T.SeasonalDiscountMainID AS SeasonalDiscountMain_");
+            viewString.Append("\r\n        SELECT \r\n            T.SeasonalDiscountMainId AS SeasonalDiscountMain_");
             viewString.Append("SeasonalDiscountMainID, \r\n            T.TariffTypeCode AS SeasonalDiscountMain_T");
             viewString.Append("ariffTypeCode, \r\n            T.SeasonalDiscountMainCode AS SeasonalDiscountMain_");
             viewString.Append("SeasonalDiscountMainCode, \r\n            T.SeasonalDiscountMainName AS SeasonalDi");
@@ -4357,15 +4357,15 @@ namespace Edm_EntityMappingGeneratedViews
             viewString.Append("rdDiscount_IsReadOnly, T1.StandardDiscount_RowVersion, T1.StandardDiscount_RecCr");
             viewString.Append("eatedDt, T1.StandardDiscount_RecLastUpdatedDt, T1.StandardDiscount_RecCreatedBy,");
             viewString.Append(" T1.StandardDiscount_RecLastUpdatedBy, T1.StandardDiscount_UserDomainKey)\r\n    F");
-            viewString.Append("ROM (\r\n        SELECT \r\n            T.StandardDiscountID AS StandardDiscount_Sta");
-            viewString.Append("ndardDiscountID, \r\n            T.StandardDiscountMainID AS StandardDiscount_Stan");
-            viewString.Append("dardDiscountMainID, \r\n            T.ChildStandardDiscountID AS StandardDiscount_");
-            viewString.Append("ChildStandardDiscountID, \r\n            T.RoleID AS StandardDiscount_RoleID, \r\n  ");
-            viewString.Append("          T.OperationsWorkplaceID AS StandardDiscount_OperationsWorkplaceID, \r\n ");
-            viewString.Append("           T.BPRatingTypeID AS StandardDiscount_BPRatingTypeID, \r\n            T.");
-            viewString.Append("VehicleModelID AS StandardDiscount_VehicleModelID, \r\n            T.VehicleCatego");
-            viewString.Append("ryID AS StandardDiscount_VehicleCategoryID, \r\n            T.VehicleMakeID AS Sta");
-            viewString.Append("ndardDiscount_VehicleMakeID, \r\n            T.HireGroupID AS StandardDiscount_Hir");
+            viewString.Append("ROM (\r\n        SELECT \r\n            T.StandardDiscountId AS StandardDiscount_Sta");
+            viewString.Append("ndardDiscountID, \r\n            T.StandardDiscountMainId AS StandardDiscount_Stan");
+            viewString.Append("dardDiscountMainID, \r\n            T.ChildStandardDiscountId AS StandardDiscount_");
+            viewString.Append("ChildStandardDiscountID, \r\n            T.RoleId AS StandardDiscount_RoleID, \r\n  ");
+            viewString.Append("          T.OperationsWorkPlaceId AS StandardDiscount_OperationsWorkplaceID, \r\n ");
+            viewString.Append("           T.BpRatingTypeId AS StandardDiscount_BPRatingTypeID, \r\n            T.");
+            viewString.Append("VehicleModelId AS StandardDiscount_VehicleModelID, \r\n            T.VehicleCatego");
+            viewString.Append("ryId AS StandardDiscount_VehicleCategoryID, \r\n            T.VehicleMakeId AS Sta");
+            viewString.Append("ndardDiscount_VehicleMakeID, \r\n            T.HireGroupId AS StandardDiscount_Hir");
             viewString.Append("eGroupID, \r\n            T.CustomerType AS StandardDiscount_CustomerType, \r\n     ");
             viewString.Append("       T.ModelYear AS StandardDiscount_ModelYear, \r\n            T.DiscountPerc A");
             viewString.Append("S StandardDiscount_DiscountPerc, \r\n            T.StandardDiscountStartDt AS Stan");
@@ -4400,7 +4400,7 @@ namespace Edm_EntityMappingGeneratedViews
             viewString.Append("ndardDiscountMain_IsReadOnly, T1.StandardDiscountMain_RecCreatedBy, T1.StandardD");
             viewString.Append("iscountMain_RecLastUpdatedBy, T1.StandardDiscountMain_RecCreatedDt, T1.StandardD");
             viewString.Append("iscountMain_RecLastUpdatedDt, T1.StandardDiscountMain_UserDomainKey)\r\n    FROM (");
-            viewString.Append("\r\n        SELECT \r\n            T.StandardDiscountMainID AS StandardDiscountMain_");
+            viewString.Append("\r\n        SELECT \r\n            T.StandardDiscountMainId AS StandardDiscountMain_");
             viewString.Append("StandardDiscountMainID, \r\n            T.TariffTypeCode AS StandardDiscountMain_T");
             viewString.Append("ariffTypeCode, \r\n            T.StandardDiscountMainCode AS StandardDiscountMain_");
             viewString.Append("StandardDiscountMainCode, \r\n            T.StandardDiscountMainName AS StandardDi");
@@ -4437,7 +4437,7 @@ namespace Edm_EntityMappingGeneratedViews
             viewString.Append(" T1.VehicleMovement_RecCreatedDt, T1.VehicleMovement_RecCreatedBy, T1.VehicleMov");
             viewString.Append("ement_RecLastUpdatedDt, T1.VehicleMovement_RecLastUpdatedBy, T1.VehicleMovement_");
             viewString.Append("UserDomainKey)\r\n    FROM (\r\n        SELECT \r\n            T.VehicleMovementId AS ");
-            viewString.Append("VehicleMovement_VehicleMovementID, \r\n            T.OperationsWorkplaceId AS Vehi");
+            viewString.Append("VehicleMovement_VehicleMovementID, \r\n            T.OperationsWorkPlaceId AS Vehi");
             viewString.Append("cleMovement_OperationsWorkplaceID, \r\n            T.RaHireGroupId AS VehicleMovem");
             viewString.Append("ent_RAHireGroupID, \r\n            T.DtTime AS VehicleMovement_DtTime, \r\n         ");
             viewString.Append("   T.VehicleStatusId AS VehicleMovement_VehicleStatusID, \r\n            T.Odomete");
@@ -7082,7 +7082,7 @@ namespace Edm_EntityMappingGeneratedViews
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("BaseDbContext.ChaufferCharges", "\r\n    SELECT VALUE -- Constructing ChaufferCharges\r\n        [DomainModels.Chauffe" +
                     "rCharge](T1.ChaufferCharge_ChaufferChargeId, T1.ChaufferCharge_ChildChaufferChar" +
-                    "geId, T1.ChaufferCharge_ChaufferChargeMainID, T1.ChaufferCharge_DesigGradeId, T1" +
+                    "geId, T1.ChaufferCharge_ChaufferChargeMainId, T1.ChaufferCharge_DesigGradeId, T1" +
                     ".ChaufferCharge_ChaufferChargeRate, T1.ChaufferCharge_RevisionNumber, T1.Chauffe" +
                     "rCharge_IsActive, T1.ChaufferCharge_IsDeleted, T1.ChaufferCharge_IsPrivate, T1.C" +
                     "haufferCharge_IsReadOnly, T1.ChaufferCharge_RowVersion, T1.ChaufferCharge_RecCre" +
@@ -7091,7 +7091,7 @@ namespace Edm_EntityMappingGeneratedViews
                     "rDomainKey)\r\n    FROM (\r\n        SELECT \r\n            T.ChaufferChargeID AS Chau" +
                     "fferCharge_ChaufferChargeId, \r\n            T.ChildChaufferChargeID AS ChaufferCh" +
                     "arge_ChildChaufferChargeId, \r\n            T.ChaufferChargeMainID AS ChaufferChar" +
-                    "ge_ChaufferChargeMainID, \r\n            T.DesigGradeID AS ChaufferCharge_DesigGra" +
+                    "ge_ChaufferChargeMainId, \r\n            T.DesigGradeID AS ChaufferCharge_DesigGra" +
                     "deId, \r\n            T.ChaufferChargeRate AS ChaufferCharge_ChaufferChargeRate, \r" +
                     "\n            T.RevisionNumber AS ChaufferCharge_RevisionNumber, \r\n            T." +
                     "IsActive AS ChaufferCharge_IsActive, \r\n            T.IsDeleted AS ChaufferCharge" +
@@ -7237,14 +7237,14 @@ namespace Edm_EntityMappingGeneratedViews
         private System.Collections.Generic.KeyValuePair<string, string> GetView201()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("BaseDbContext.NrtMains1", "\r\n    SELECT VALUE -- Constructing NrtMains1\r\n        [DomainModels.NrtMain](T1.N" +
-                    "rtMain_NrtMainId, T1.NrtMain_NrtTypeId, T1.NrtMain_NrtMainDecsription, T1.NrtMai" +
+                    "rtMain_NrtMainId, T1.NrtMain_NrtTypeId, T1.NrtMain_NrtMainDescription, T1.NrtMai" +
                     "n_OpenLocationId, T1.NrtMain_CloseLocationId, T1.NrtMain_NrtStatusId, T1.NrtMain" +
                     "_StartDtTime, T1.NrtMain_EndDtTime, T1.NrtMain_RowVersion, T1.NrtMain_IsActive, " +
                     "T1.NrtMain_IsPrivate, T1.NrtMain_IsDeleted, T1.NrtMain_IsReadOnly, T1.NrtMain_Re" +
                     "cCreatedBy, T1.NrtMain_RecCreatedDt, T1.NrtMain_RecLastUpdatedBy, T1.NrtMain_Rec" +
                     "LastUpdatedDt, T1.NrtMain_UserDomainKey)\r\n    FROM (\r\n        SELECT \r\n         " +
                     "   T.NRTMainID AS NrtMain_NrtMainId, \r\n            T.NRTTypeID AS NrtMain_NrtTyp" +
-                    "eId, \r\n            T.NRTMainDecsription AS NrtMain_NrtMainDecsription, \r\n       " +
+                    "eId, \r\n            T.NRTMainDecsription AS NrtMain_NrtMainDescription, \r\n       " +
                     "     T.OpenLocationID AS NrtMain_OpenLocationId, \r\n            T.CloseLocationID" +
                     " AS NrtMain_CloseLocationId, \r\n            T.NRTStatusID AS NrtMain_NrtStatusId," +
                     " \r\n            T.StartDtTime AS NrtMain_StartDtTime, \r\n            T.EndDtTime A" +
@@ -7751,15 +7751,15 @@ namespace Edm_EntityMappingGeneratedViews
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("BaseDbContext.RaStatusLogs1", "\r\n    SELECT VALUE -- Constructing RaStatusLogs1\r\n        [DomainModels.RaStatusL" +
                     "og](T1.RaStatusLog_RaStatusLogId, T1.RaStatusLog_RaMainId, T1.RaStatusLog_RaNewS" +
-                    "tatusId, T1.RaStatusLog_RAOldStatusID, T1.RaStatusLog_RAStatusDescription, T1.Ra" +
+                    "tatusId, T1.RaStatusLog_RaOldStatusId, T1.RaStatusLog_RaStatusDescription, T1.Ra" +
                     "StatusLog_RowVersion, T1.RaStatusLog_IsActive, T1.RaStatusLog_IsDeleted, T1.RaSt" +
                     "atusLog_IsPrivate, T1.RaStatusLog_IsReadOnly, T1.RaStatusLog_RecCreatedDt, T1.Ra" +
                     "StatusLog_RecCreatedBy, T1.RaStatusLog_RecLastUpdatedDt, T1.RaStatusLog_RecLastU" +
                     "pdatedBy, T1.RaStatusLog_UserDomainKey)\r\n    FROM (\r\n        SELECT \r\n          " +
                     "  T.RAStatusLogID AS RaStatusLog_RaStatusLogId, \r\n            T.RAMainID AS RaSt" +
                     "atusLog_RaMainId, \r\n            T.RANewStatusID AS RaStatusLog_RaNewStatusId, \r\n" +
-                    "            T.RAOldStatusID AS RaStatusLog_RAOldStatusID, \r\n            T.RAStat" +
-                    "usDescription AS RaStatusLog_RAStatusDescription, \r\n            T.RowVersion AS " +
+                    "            T.RAOldStatusID AS RaStatusLog_RaOldStatusId, \r\n            T.RAStat" +
+                    "usDescription AS RaStatusLog_RaStatusDescription, \r\n            T.RowVersion AS " +
                     "RaStatusLog_RowVersion, \r\n            T.IsActive AS RaStatusLog_IsActive, \r\n    " +
                     "        T.IsDeleted AS RaStatusLog_IsDeleted, \r\n            T.IsPrivate AS RaSta" +
                     "tusLog_IsPrivate, \r\n            T.IsReadOnly AS RaStatusLog_IsReadOnly, \r\n      " +
@@ -7807,11 +7807,11 @@ namespace Edm_EntityMappingGeneratedViews
         {
             System.Text.StringBuilder viewString = new System.Text.StringBuilder(2826);
             viewString.Append("\r\n    SELECT VALUE -- Constructing SeasonalDiscounts\r\n        [DomainModels.Seas");
-            viewString.Append("onalDiscount](T1.SeasonalDiscount_SeasonalDiscountID, T1.SeasonalDiscount_ChildS");
-            viewString.Append("easonalDiscountID, T1.SeasonalDiscount_SeasonalDiscountMainID, T1.SeasonalDiscou");
-            viewString.Append("nt_OperationsWorkplaceID, T1.SeasonalDiscount_VehicleMakeID, T1.SeasonalDiscount");
-            viewString.Append("_BPRatingTypeID, T1.SeasonalDiscount_VehicleCategoryID, T1.SeasonalDiscount_Vehi");
-            viewString.Append("cleModelID, T1.SeasonalDiscount_HireGroupID, T1.SeasonalDiscount_CustomerType, T");
+            viewString.Append("onalDiscount](T1.SeasonalDiscount_SeasonalDiscountId, T1.SeasonalDiscount_ChildS");
+            viewString.Append("easonalDiscountId, T1.SeasonalDiscount_SeasonalDiscountMainId, T1.SeasonalDiscou");
+            viewString.Append("nt_OperationsWorkPlaceId, T1.SeasonalDiscount_VehicleMakeId, T1.SeasonalDiscount");
+            viewString.Append("_BpRatingTypeId, T1.SeasonalDiscount_VehicleCategoryId, T1.SeasonalDiscount_Vehi");
+            viewString.Append("cleModelId, T1.SeasonalDiscount_HireGroupId, T1.SeasonalDiscount_CustomerType, T");
             viewString.Append("1.SeasonalDiscount_ModelYear, T1.SeasonalDiscount_DiscountPerc, T1.SeasonalDisco");
             viewString.Append("unt_SeasonalDiscountStartDt, T1.SeasonalDiscount_SeasonalDiscountEndDt, T1.Seaso");
             viewString.Append("nalDiscount_RevisionNumber, T1.SeasonalDiscount_IsActive, T1.SeasonalDiscount_Is");
@@ -7819,15 +7819,15 @@ namespace Edm_EntityMappingGeneratedViews
             viewString.Append("nalDiscount_RowVersion, T1.SeasonalDiscount_RecCreatedDt, T1.SeasonalDiscount_Re");
             viewString.Append("cLastUpdatedDt, T1.SeasonalDiscount_RecCreatedBy, T1.SeasonalDiscount_RecLastUpd");
             viewString.Append("atedBy, T1.SeasonalDiscount_UserDomainKey)\r\n    FROM (\r\n        SELECT \r\n       ");
-            viewString.Append("     T.SeasonalDiscountID AS SeasonalDiscount_SeasonalDiscountID, \r\n            ");
-            viewString.Append("T.ChildSeasonalDiscountID AS SeasonalDiscount_ChildSeasonalDiscountID, \r\n       ");
-            viewString.Append("     T.SeasonalDiscountMainID AS SeasonalDiscount_SeasonalDiscountMainID, \r\n    ");
-            viewString.Append("        T.OperationsWorkplaceID AS SeasonalDiscount_OperationsWorkplaceID, \r\n   ");
-            viewString.Append("         T.VehicleMakeID AS SeasonalDiscount_VehicleMakeID, \r\n            T.BPRa");
-            viewString.Append("tingTypeID AS SeasonalDiscount_BPRatingTypeID, \r\n            T.VehicleCategoryID");
-            viewString.Append(" AS SeasonalDiscount_VehicleCategoryID, \r\n            T.VehicleModelID AS Season");
-            viewString.Append("alDiscount_VehicleModelID, \r\n            T.HireGroupID AS SeasonalDiscount_HireG");
-            viewString.Append("roupID, \r\n            T.CustomerType AS SeasonalDiscount_CustomerType, \r\n       ");
+            viewString.Append("     T.SeasonalDiscountID AS SeasonalDiscount_SeasonalDiscountId, \r\n            ");
+            viewString.Append("T.ChildSeasonalDiscountID AS SeasonalDiscount_ChildSeasonalDiscountId, \r\n       ");
+            viewString.Append("     T.SeasonalDiscountMainID AS SeasonalDiscount_SeasonalDiscountMainId, \r\n    ");
+            viewString.Append("        T.OperationsWorkplaceID AS SeasonalDiscount_OperationsWorkPlaceId, \r\n   ");
+            viewString.Append("         T.VehicleMakeID AS SeasonalDiscount_VehicleMakeId, \r\n            T.BPRa");
+            viewString.Append("tingTypeID AS SeasonalDiscount_BpRatingTypeId, \r\n            T.VehicleCategoryID");
+            viewString.Append(" AS SeasonalDiscount_VehicleCategoryId, \r\n            T.VehicleModelID AS Season");
+            viewString.Append("alDiscount_VehicleModelId, \r\n            T.HireGroupID AS SeasonalDiscount_HireG");
+            viewString.Append("roupId, \r\n            T.CustomerType AS SeasonalDiscount_CustomerType, \r\n       ");
             viewString.Append("     T.ModelYear AS SeasonalDiscount_ModelYear, \r\n            T.DiscountPerc AS ");
             viewString.Append("SeasonalDiscount_DiscountPerc, \r\n            T.SeasonalDiscountStartDt AS Season");
             viewString.Append("alDiscount_SeasonalDiscountStartDt, \r\n            T.SeasonalDiscountEndDt AS Sea");
@@ -7852,7 +7852,7 @@ namespace Edm_EntityMappingGeneratedViews
         {
             System.Text.StringBuilder viewString = new System.Text.StringBuilder(2135);
             viewString.Append("\r\n    SELECT VALUE -- Constructing SeasonalDiscountMains\r\n        [DomainModels.");
-            viewString.Append("SeasonalDiscountMain](T1.SeasonalDiscountMain_SeasonalDiscountMainID, T1.Seasona");
+            viewString.Append("SeasonalDiscountMain](T1.SeasonalDiscountMain_SeasonalDiscountMainId, T1.Seasona");
             viewString.Append("lDiscountMain_TariffTypeCode, T1.SeasonalDiscountMain_SeasonalDiscountMainCode, ");
             viewString.Append("T1.SeasonalDiscountMain_SeasonalDiscountMainName, T1.SeasonalDiscountMain_Season");
             viewString.Append("alDiscountMainDescription, T1.SeasonalDiscountMain_RowVersion, T1.SeasonalDiscou");
@@ -7862,7 +7862,7 @@ namespace Edm_EntityMappingGeneratedViews
             viewString.Append("ountMain_RecLastUpdatedBy, T1.SeasonalDiscountMain_RecCreatedDt, T1.SeasonalDisc");
             viewString.Append("ountMain_RecLastUpdatedDt, T1.SeasonalDiscountMain_UserDomainKey)\r\n    FROM (\r\n ");
             viewString.Append("       SELECT \r\n            T.SeasonalDiscountMainID AS SeasonalDiscountMain_Sea");
-            viewString.Append("sonalDiscountMainID, \r\n            T.TariffTypeCode AS SeasonalDiscountMain_Tari");
+            viewString.Append("sonalDiscountMainId, \r\n            T.TariffTypeCode AS SeasonalDiscountMain_Tari");
             viewString.Append("ffTypeCode, \r\n            T.SeasonalDiscountMainCode AS SeasonalDiscountMain_Sea");
             viewString.Append("sonalDiscountMainCode, \r\n            T.SeasonalDiscountMainName AS SeasonalDisco");
             viewString.Append("untMain_SeasonalDiscountMainName, \r\n            T.SeasonalDiscountMainDescriptio");
@@ -7888,11 +7888,11 @@ namespace Edm_EntityMappingGeneratedViews
         {
             System.Text.StringBuilder viewString = new System.Text.StringBuilder(2905);
             viewString.Append("\r\n    SELECT VALUE -- Constructing StandardDiscounts\r\n        [DomainModels.Stan");
-            viewString.Append("dardDiscount](T1.StandardDiscount_StandardDiscountID, T1.StandardDiscount_Standa");
-            viewString.Append("rdDiscountMainID, T1.StandardDiscount_ChildStandardDiscountID, T1.StandardDiscou");
-            viewString.Append("nt_RoleID, T1.StandardDiscount_OperationsWorkplaceID, T1.StandardDiscount_BPRati");
-            viewString.Append("ngTypeID, T1.StandardDiscount_VehicleModelID, T1.StandardDiscount_VehicleCategor");
-            viewString.Append("yID, T1.StandardDiscount_VehicleMakeID, T1.StandardDiscount_HireGroupID, T1.Stan");
+            viewString.Append("dardDiscount](T1.StandardDiscount_StandardDiscountId, T1.StandardDiscount_Standa");
+            viewString.Append("rdDiscountMainId, T1.StandardDiscount_ChildStandardDiscountId, T1.StandardDiscou");
+            viewString.Append("nt_RoleId, T1.StandardDiscount_OperationsWorkPlaceId, T1.StandardDiscount_BpRati");
+            viewString.Append("ngTypeId, T1.StandardDiscount_VehicleModelId, T1.StandardDiscount_VehicleCategor");
+            viewString.Append("yId, T1.StandardDiscount_VehicleMakeId, T1.StandardDiscount_HireGroupId, T1.Stan");
             viewString.Append("dardDiscount_CustomerType, T1.StandardDiscount_ModelYear, T1.StandardDiscount_Di");
             viewString.Append("scountPerc, T1.StandardDiscount_StandardDiscountStartDt, T1.StandardDiscount_Sta");
             viewString.Append("ndardDiscountEndDt, T1.StandardDiscount_RevisionNumber, T1.StandardDiscount_IsAc");
@@ -7901,15 +7901,15 @@ namespace Edm_EntityMappingGeneratedViews
             viewString.Append("edDt, T1.StandardDiscount_RecLastUpdatedDt, T1.StandardDiscount_RecCreatedBy, T1");
             viewString.Append(".StandardDiscount_RecLastUpdatedBy, T1.StandardDiscount_UserDomainKey)\r\n    FROM");
             viewString.Append(" (\r\n        SELECT \r\n            T.StandardDiscountID AS StandardDiscount_Standa");
-            viewString.Append("rdDiscountID, \r\n            T.StandardDiscountMainID AS StandardDiscount_Standar");
-            viewString.Append("dDiscountMainID, \r\n            T.ChildStandardDiscountID AS StandardDiscount_Chi");
-            viewString.Append("ldStandardDiscountID, \r\n            T.RoleID AS StandardDiscount_RoleID, \r\n     ");
-            viewString.Append("       T.OperationsWorkplaceID AS StandardDiscount_OperationsWorkplaceID, \r\n    ");
-            viewString.Append("        T.BPRatingTypeID AS StandardDiscount_BPRatingTypeID, \r\n            T.Veh");
-            viewString.Append("icleModelID AS StandardDiscount_VehicleModelID, \r\n            T.VehicleCategoryI");
-            viewString.Append("D AS StandardDiscount_VehicleCategoryID, \r\n            T.VehicleMakeID AS Standa");
-            viewString.Append("rdDiscount_VehicleMakeID, \r\n            T.HireGroupID AS StandardDiscount_HireGr");
-            viewString.Append("oupID, \r\n            T.CustomerType AS StandardDiscount_CustomerType, \r\n        ");
+            viewString.Append("rdDiscountId, \r\n            T.StandardDiscountMainID AS StandardDiscount_Standar");
+            viewString.Append("dDiscountMainId, \r\n            T.ChildStandardDiscountID AS StandardDiscount_Chi");
+            viewString.Append("ldStandardDiscountId, \r\n            T.RoleID AS StandardDiscount_RoleId, \r\n     ");
+            viewString.Append("       T.OperationsWorkplaceID AS StandardDiscount_OperationsWorkPlaceId, \r\n    ");
+            viewString.Append("        T.BPRatingTypeID AS StandardDiscount_BpRatingTypeId, \r\n            T.Veh");
+            viewString.Append("icleModelID AS StandardDiscount_VehicleModelId, \r\n            T.VehicleCategoryI");
+            viewString.Append("D AS StandardDiscount_VehicleCategoryId, \r\n            T.VehicleMakeID AS Standa");
+            viewString.Append("rdDiscount_VehicleMakeId, \r\n            T.HireGroupID AS StandardDiscount_HireGr");
+            viewString.Append("oupId, \r\n            T.CustomerType AS StandardDiscount_CustomerType, \r\n        ");
             viewString.Append("    T.ModelYear AS StandardDiscount_ModelYear, \r\n            T.DiscountPerc AS S");
             viewString.Append("tandardDiscount_DiscountPerc, \r\n            T.StandardDiscountStartDt AS Standar");
             viewString.Append("dDiscount_StandardDiscountStartDt, \r\n            T.StandardDiscountEndDt AS Stan");
@@ -7934,7 +7934,7 @@ namespace Edm_EntityMappingGeneratedViews
         {
             System.Text.StringBuilder viewString = new System.Text.StringBuilder(2135);
             viewString.Append("\r\n    SELECT VALUE -- Constructing StandardDiscountMains\r\n        [DomainModels.");
-            viewString.Append("StandardDiscountMain](T1.StandardDiscountMain_StandardDiscountMainID, T1.Standar");
+            viewString.Append("StandardDiscountMain](T1.StandardDiscountMain_StandardDiscountMainId, T1.Standar");
             viewString.Append("dDiscountMain_TariffTypeCode, T1.StandardDiscountMain_StandardDiscountMainCode, ");
             viewString.Append("T1.StandardDiscountMain_StandardDiscountMainName, T1.StandardDiscountMain_Standa");
             viewString.Append("rdDiscountMainDescription, T1.StandardDiscountMain_RowVersion, T1.StandardDiscou");
@@ -7944,7 +7944,7 @@ namespace Edm_EntityMappingGeneratedViews
             viewString.Append("ountMain_RecLastUpdatedBy, T1.StandardDiscountMain_RecCreatedDt, T1.StandardDisc");
             viewString.Append("ountMain_RecLastUpdatedDt, T1.StandardDiscountMain_UserDomainKey)\r\n    FROM (\r\n ");
             viewString.Append("       SELECT \r\n            T.StandardDiscountMainID AS StandardDiscountMain_Sta");
-            viewString.Append("ndardDiscountMainID, \r\n            T.TariffTypeCode AS StandardDiscountMain_Tari");
+            viewString.Append("ndardDiscountMainId, \r\n            T.TariffTypeCode AS StandardDiscountMain_Tari");
             viewString.Append("ffTypeCode, \r\n            T.StandardDiscountMainCode AS StandardDiscountMain_Sta");
             viewString.Append("ndardDiscountMainCode, \r\n            T.StandardDiscountMainName AS StandardDisco");
             viewString.Append("untMain_StandardDiscountMainName, \r\n            T.StandardDiscountMainDescriptio");
@@ -7971,7 +7971,7 @@ namespace Edm_EntityMappingGeneratedViews
             System.Text.StringBuilder viewString = new System.Text.StringBuilder(2297);
             viewString.Append("\r\n    SELECT VALUE -- Constructing VehicleMovements\r\n        [DomainModels.Vehic");
             viewString.Append("leMovement](T1.VehicleMovement_VehicleMovementId, T1.VehicleMovement_OperationsW");
-            viewString.Append("orkplaceId, T1.VehicleMovement_RaHireGroupId, T1.VehicleMovement_DtTime, T1.Vehi");
+            viewString.Append("orkPlaceId, T1.VehicleMovement_RaHireGroupId, T1.VehicleMovement_DtTime, T1.Vehi");
             viewString.Append("cleMovement_VehicleStatusId, T1.VehicleMovement_Odometer, T1.VehicleMovement_Fue");
             viewString.Append("lLevel, T1.VehicleMovement_VehicleMovementDescription, T1.VehicleMovement_Status");
             viewString.Append(", T1.VehicleMovement_VehicleConditionDescription, T1.VehicleMovement_VehicleCond");
@@ -7981,7 +7981,7 @@ namespace Edm_EntityMappingGeneratedViews
             viewString.Append("nt_RecLastUpdatedDt, T1.VehicleMovement_RecLastUpdatedBy, T1.VehicleMovement_Use");
             viewString.Append("rDomainKey)\r\n    FROM (\r\n        SELECT \r\n            T.VehicleMovementID AS Veh");
             viewString.Append("icleMovement_VehicleMovementId, \r\n            T.OperationsWorkplaceID AS Vehicle");
-            viewString.Append("Movement_OperationsWorkplaceId, \r\n            T.RAHireGroupID AS VehicleMovement");
+            viewString.Append("Movement_OperationsWorkPlaceId, \r\n            T.RAHireGroupID AS VehicleMovement");
             viewString.Append("_RaHireGroupId, \r\n            T.DtTime AS VehicleMovement_DtTime, \r\n            ");
             viewString.Append("T.VehicleStatusID AS VehicleMovement_VehicleStatusId, \r\n            T.Odometer A");
             viewString.Append("S VehicleMovement_Odometer, \r\n            T.FuelLevel AS VehicleMovement_FuelLev");

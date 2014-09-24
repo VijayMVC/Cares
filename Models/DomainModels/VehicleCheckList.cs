@@ -97,7 +97,12 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Vehicle Checklist Items
         /// </summary>
-        public virtual ICollection<VehicleCheckListItem> VehicleCheckListItems { get; set; } 
+        public virtual ICollection<VehicleCheckListItem> VehicleCheckListItems { get; set; }
+
+        /// <summary>
+        /// RaVehicle Checklists
+        /// </summary>
+        public virtual ICollection<RaVehicleCheckList> RaVehicleCheckLists { get; set; } 
 
         #endregion
     }

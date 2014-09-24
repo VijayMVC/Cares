@@ -195,6 +195,21 @@ namespace Cares.Models.DomainModels
         /// </summary>
         public virtual ICollection<EmpAuthOperationsWorkplace> EmpAuthOperationsWorkplaces { get; set; }
 
+        /// <summary>
+        /// Chauffer Reservations
+        /// </summary>
+        public virtual ICollection<ChaufferReservation> ChaufferReservations { get; set; }
+
+        /// <summary>
+        /// NRT Drivers
+        /// </summary>
+        public virtual ICollection<NrtDriver> NrtDrivers { get; set; }
+
+        /// <summary>
+        /// Ra Drivers
+        /// </summary>
+        public virtual ICollection<RaDriver> RaDrivers { get; set; }
+
         
         #endregion
     }

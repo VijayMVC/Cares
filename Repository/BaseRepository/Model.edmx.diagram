@@ -333,6 +333,7 @@
         <EntityTypeShape EntityType="DomainModels.PaymentMode" Width="1.5" PointX="7.375" PointY="24" />
         <AssociationConnector Association="DomainModels.RefAllocationStatus502" />
         <AssociationConnector Association="DomainModels.RefPaymentMode541" />
+        <AssociationConnector Association="DomainModels.FK_HireGroup_Company" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -78,7 +78,17 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Business Partners having this Payment Term
         /// </summary>
-        public virtual ICollection<BusinessPartner> BusinessPartners { get; set; } 
+        public virtual ICollection<BusinessPartner> BusinessPartners { get; set; }
+
+        /// <summary>
+        /// Ra Mains
+        /// </summary>
+        public virtual ICollection<RaMain> RaMains { get; set; }
+
+        /// <summary>
+        /// Booking Mains
+        /// </summary>
+        public virtual ICollection<BookingMain> BookingMains { get; set; }
         
         #endregion
     }

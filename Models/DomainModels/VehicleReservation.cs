@@ -93,12 +93,12 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// NrtMain Id
         /// </summary>
-        public long? NRTMainId { get; set; }
+        public long? NrtMainId { get; set; }
 
         /// <summary>
         /// RaMian Id
         /// </summary>
-        public long? RAMainId { get; set; }
+        public long? RaMainId { get; set; }
         
         #endregion
 
@@ -108,6 +108,21 @@ namespace Cares.Models.DomainModels
         /// Vehicle
         /// </summary>
         public virtual Vehicle Vehicle { get; set; }
+
+        /// <summary>
+        /// Booking Main
+        /// </summary>
+        public virtual BookingMain BookingMain { get; set; }
+
+        /// <summary>
+        /// Ra Main
+        /// </summary>
+        public virtual RaMain RaMain { get; set; }
+
+        /// <summary>
+        /// Nrt Main
+        /// </summary>
+        public virtual NrtMain NrtMain { get; set; }
 
         #endregion
     }
