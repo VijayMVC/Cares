@@ -54,7 +54,7 @@ namespace Cares.Web.ModelMappers
             return new HireGroupDetailForAddtionalCharge
             {
                 HireGroupDetailId = source.HireGroupDetailId,
-                HireGroupDetailCodeName = hireGroup + " | " + vehicleMake + " |" + vehicleModel + " |" + vehicleCategory + " |" + modelYear
+                HireGroupDetailCodeName = hireGroup + " | " + vehicleMake + " | " + vehicleModel + " | " + vehicleCategory + " | " + modelYear
             };
         }
         #endregion

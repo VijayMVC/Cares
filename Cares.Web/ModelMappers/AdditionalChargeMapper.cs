@@ -38,7 +38,55 @@ namespace Cares.Web.ModelMappers
                 Name = source.AdditionalChargeTypeName,
                 Description = source.AdditionalChargeTypeDescription,
                 IsEditable = source.IsEditable,
-                AdditionalChargeKey = source.AdditionalChargeKey,
+            };
+        }
+        /// <summary>
+        /// Domain Response To Web Response
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static ApiModel.AdditionalCharge CreateFrom(this DomainModel.AdditionalCharge source)
+        {
+            return new ApiModel.AdditionalCharge
+            {
+                AdditionalChargeId = source.AdditionalChargeId,
+                HireGroupDetailId = source.HireGroupDetailId,
+                StartDt = source.StartDt,
+                AdditionalChargeRate = source.AdditionalChargeRate,
+                HireGroupDetailCodeName = source.HireGroupDetail != null ? source.HireGroupDetail.CreateFromForAddtionalCharge().HireGroupDetailCodeName : string.Empty,
+            };
+        }
+        /// <summary>
+        /// Web Model To Domain Model
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static DomainModel.AdditionalCharge CreateFrom(this ApiModel.AdditionalCharge source)
+        {
+            return new DomainModel.AdditionalCharge
+            {
+                AdditionalChargeId = source.AdditionalChargeId,
+                HireGroupDetailId = source.HireGroupDetailId,
+                StartDt = source.StartDt,
+                AdditionalChargeRate = source.AdditionalChargeRate,
+            };
+        }
+
+        /// <summary>
+        ///  Web Model To Domain Model
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static DomainModel.AdditionalChargeType CreateFrom(this ApiModel.AdditionalChargeType source)
+        {
+            return new DomainModel.AdditionalChargeType
+            {
+                AdditionalChargeTypeId = source.AdditionalChargeTypeId,
+                AdditionalChargeTypeCode = source.Code,
+                AdditionalChargeTypeName = source.Name,
+                AdditionalChargeTypeDescription = source.Description,
+                IsEditable = source.IsEditable,
+                AdditionalCharges = source.AdditionalCharges.Select(addChrg => addChrg.CreateFrom()).ToList()
             };
         }
         #endregion

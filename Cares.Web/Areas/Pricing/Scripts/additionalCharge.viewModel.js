@@ -21,7 +21,7 @@ define("additionalCharge/additionalCharge.viewModel",
                     //Additional Type Charges
                     additionalTypeCharges = ko.observableArray([]),
                     //Hire Group Detail List
-                    hiregroupDetails = ko.observableArray([]),
+                    hireGroupDetails = ko.observableArray([]),
                     // #endregion Arrays
                     // #region Busy Indicators
                     isLoadingAdditionalCharge = ko.observable(false),
@@ -52,8 +52,7 @@ define("additionalCharge/additionalCharge.viewModel",
                         getAdditionalCharges();
 
                     },
-
-                    // Collapase filter section
+                     // Collapase filter section
                     collapseFilterSection = function () {
                         filterSectionVisilble(false);
                     },
@@ -66,10 +65,9 @@ define("additionalCharge/additionalCharge.viewModel",
                         dataservice.getAdditionalChargeBase({
                             success: function (data) {
                                 //Hire group Details
-                                hiregroupDetails.removeAll();
-                                ko.utils.arrayPushAll(hiregroupDetails(), data.HireGroupDetails);
-                                hiregroupDetails.valueHasMutated();
-
+                                hireGroupDetails.removeAll();
+                                ko.utils.arrayPushAll(hireGroupDetails(), data.HireGroupDetails);
+                                hireGroupDetails.valueHasMutated();
                                 if (callBack && typeof callBack === 'function') {
                                     callBack();
                                 }
@@ -126,9 +124,12 @@ define("additionalCharge/additionalCharge.viewModel",
                         showAdditionalChargeEditor();
                     },
                     // Save Additional Charge
-                    onSaveAdditionalCharge = function (addDriverChrg) {
+                    onSaveAdditionalCharge = function (addCharge) {
                         if (doBeforeSave()) {
-                            saveAdditionalCharge(addDriverChrg);
+
+                            addCharge.additionalChargesList.removeAll();
+                            ko.utils.arrayPushAll(addCharge.additionalChargesList(), additionalCharges());
+                            saveAdditionalCharge(addCharge);
                         }
                     },
                     // Do Before Logic
@@ -141,42 +142,33 @@ define("additionalCharge/additionalCharge.viewModel",
                         return flag;
                     },
                     //Add Additional Charge
-                    onAddAdditionalCharge=function(addCharge) {
+                    onAddAdditionalCharge = function (addCharge) {
                         if (doBeforeAddAddionalCharge()) {
                             additionalCharges.push(addCharge);
+                            addEditAdditionalCharge().additionalCharge(new model.AdditionalCharge());
                         }
                     },
                        // Do Before Logic
                     doBeforeAddAddionalCharge = function () {
                         var flag = true;
                         if (!addEditAdditionalCharge().additionalCharge().isValid()) {
-                            selectedAdditionalCharge().additionalCharge().errors.showAllMessages();
+                            addEditAdditionalCharge().additionalCharge().errors.showAllMessages();
                             flag = false;
                         }
                         return flag;
                     },
 
                     // Save Additional Charge Main
-                    saveAdditionalCharge = function (addDriverChrg) {
-                        dataservice.saveAdditionalCharge(model.AdditionalChargeServerMapper(addDriverChrg), {
+                    saveAdditionalCharge = function (addCharge) {
+                        dataservice.saveAdditionalCharge(model.AdditionalChargeTypeServerMapper(addCharge), {
                             success: function (data) {
-                                var additionalDriverCharge = model.AdditionalDriverChargeClientMapper(data);
+                               var additionalCharge = model.AdditionalChargeTypeClientMapper(data);
                                 if (selectedAdditionalCharge().id() > 0) {
                                     selectedAdditionalCharge().id(additionalDriverCharge.id()),
-                                        selectedAdditionalCharge().companyId(additionalDriverCharge.companyId()),
-                                        selectedAdditionalCharge().companyCodeName(additionalDriverCharge.companyCodeName()),
-                                        selectedAdditionalCharge().depId(additionalDriverCharge.depId()),
-                                        selectedAdditionalCharge().operationId(additionalDriverCharge.operationId()),
-                                        selectedAdditionalCharge().operationCodeName(additionalDriverCharge.operationCodeName()),
-                                        selectedAdditionalCharge().tariffTypeId(additionalDriverCharge.tariffTypeId()),
-                                        selectedAdditionalCharge().tariffTypeCode(additionalDriverCharge.tariffTypeCode()),
-                                        selectedAdditionalCharge().tariffTypeCodeName(additionalDriverCharge.tariffTypeCodeName()),
-                                        selectedAdditionalCharge().effectiveStartDate(additionalDriverCharge.effectiveStartDate()),
-                                        selectedAdditionalCharge().rate(additionalDriverCharge.rate()),
-                                        selectedAdditionalCharge().revisionNumber(additionalDriverCharge.revisionNumber()),
-                                        closeAdditionalChargeEditor();
+                                    //selectedAdditionalCharge().companyId(additionalDriverCharge.companyId()),
+                                                  closeAdditionalChargeEditor();
                                 } else {
-                                    addDriverChrgs.splice(0, 0, additionalDriverCharge);
+                                    additionalTypeCharges.splice(0, 0, additionalCharge);
                                     closeAdditionalChargeEditor();
                                 }
                                 toastr.success(ist.resourceText.additionalDriverChargeAddSuccessMsg);
@@ -204,23 +196,26 @@ define("additionalCharge/additionalCharge.viewModel",
                         showAdditionalChargeEditor();
                         e.stopImmediatePropagation();
                     },
+                    onDeleteAdditionalCharge = function (addCharge) {
+                        additionalCharges.remove(addCharge);
+                    },
                     // Delete a Additional Charge
-                    onDeleteAddDriverChrg = function (addDriverChrg) {
-                        if (!addDriverChrg.id()) {
-                            addDriverChrgs.remove(addDriverChrg);
+                    onDeleteAdditionalChargeType = function (addChrg) {
+                        if (!addChrg.id()) {
+                            additionalTypeCharges.remove(addChrg);
                             return;
                         }
                         // Ask for confirmation
                         confirmation.afterProceed(function () {
-                            deleteAdditionalCharge(addDriverChrg);
+                            deleteAdditionalCharge(addChrg);
                         });
                         confirmation.show();
                     },
                     // Delete Additional Charge
-                    deleteAdditionalCharge = function (addDriverChrg) {
-                        dataservice.deleteAdditionalCharge(model.AdditionalChargeServerMapperForId(addDriverChrg), {
+                    deleteAdditionalCharge = function (addChrg) {
+                        dataservice.deleteAdditionalCharge(model.AdditionalChrgServerMapperForId(addChrg), {
                             success: function () {
-                                addDriverChrgs.remove(addDriverChrg);
+                                additionalTypeCharges.remove(addChrg);
                                 toastr.success(ist.resourceText.serviceRateDeleteSuccessMsg);
                             },
                             error: function () {
@@ -228,6 +223,13 @@ define("additionalCharge/additionalCharge.viewModel",
                             }
                         });
                     },
+                        onSelectedHireGroupDetail = function (hireGroupDetail) {
+                            if (hireGroupDetail.hireGroupDetailId() != undefined) {
+                                addEditAdditionalCharge().additionalCharge().hireGroupDetailCodeName(hireGroupDetail.hireGroupDetailId().HireGroupDetailCodeName);
+                                addEditAdditionalCharge().additionalCharge().hireGroupDetailId(hireGroupDetail.hireGroupDetailId().HireGroupDetailId);
+                            }
+
+                        },
                     // Show Additional Charge Editor
                     showAdditionalChargeEditor = function () {
                         isAdditionalChargeEditorVisible(true);
@@ -273,7 +275,7 @@ define("additionalCharge/additionalCharge.viewModel",
                     //Arrays
                     additionalCharges: additionalCharges,
                     additionalTypeCharges: additionalTypeCharges,
-                    hiregroupDetails: hiregroupDetails,
+                    hireGroupDetails: hireGroupDetails,
                     //Filters
                     searchFilter: searchFilter,
                     // Utility Methods
@@ -287,9 +289,11 @@ define("additionalCharge/additionalCharge.viewModel",
                     onSaveAdditionalCharge: onSaveAdditionalCharge,
                     reset: reset,
                     onEditAddDriverChrg: onEditAddDriverChrg,
-                    onDeleteAddDriverChrg: onDeleteAddDriverChrg,
+                    onDeleteAdditionalChargeType: onDeleteAdditionalChargeType,
                     createAdditionalCharge: createAdditionalCharge,
                     onAddAdditionalCharge: onAddAdditionalCharge,
+                    onSelectedHireGroupDetail: onSelectedHireGroupDetail,
+                    onDeleteAdditionalCharge: onDeleteAdditionalCharge
                     // Utility Methods
 
                 };

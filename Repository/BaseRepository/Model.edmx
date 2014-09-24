@@ -4616,8 +4616,8 @@
           <EntitySet Name="AdditionalCharges" EntityType="DomainModels.AdditionalCharge" />
           <EntitySet Name="AdditionalChargeTypes" EntityType="DomainModels.AdditionalChargeType" />
           <AssociationSet Name="RefAdditionalCharge400" Association="DomainModels.RefAdditionalCharge400">
-            <End Role="AdditionalCharge" EntitySet="AdditionalCharges" />
-            <End Role="AdditionalCharge1" EntitySet="AdditionalCharges" />
+            <End EntitySet="AdditionalCharges" Role="AdditionalCharge" />
+            <End EntitySet="AdditionalCharges" Role="AdditionalCharge1" />
           </AssociationSet>
           <AssociationSet Name="RefAdditionalChargeType393" Association="DomainModels.RefAdditionalChargeType393">
             <End Role="AdditionalChargeType" EntitySet="AdditionalChargeTypes" />
@@ -8157,8 +8157,8 @@
           <NavigationProperty Name="AdditionalCharges" Relationship="DomainModels.RefAdditionalChargeType393" FromRole="AdditionalChargeType" ToRole="AdditionalCharge" />
         </EntityType>
         <Association Name="RefAdditionalCharge400">
-          <End Type="DomainModels.AdditionalCharge" Role="AdditionalCharge" Multiplicity="0..1" />
-          <End Type="DomainModels.AdditionalCharge" Role="AdditionalCharge1" Multiplicity="*" />
+          <End Type="DomainModels.AdditionalCharge" Multiplicity="0..1" Role="AdditionalCharge" />
+          <End Type="DomainModels.AdditionalCharge" Multiplicity="*" Role="AdditionalCharge1" />
           <ReferentialConstraint>
             <Principal Role="AdditionalCharge">
               <PropertyRef Name="AdditionalChargeId" />

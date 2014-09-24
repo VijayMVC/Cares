@@ -3,8 +3,8 @@
 <div class="well col-md-12" id="additionalChargeEditor" data-bind="visible: isAdditionalChargeEditorVisible, with: addEditAdditionalCharge" style="display: none;">
     <div class="float-left detailsContainer">
         <h3 class="page-header detailsHeaderSection">Additional Charge Detail</h3>
-        <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onSaveAdditionalDriverChrg, enable: hasChanges, css: { 'btn-warning': hasChanges }">@Cares.Web.Resources.Shared.Common.Save</button>
-        <button class="btn btn-default" id="saveBtn" data-bind="click: $root.closeAdditionalDriverChrgEditor">@Cares.Web.Resources.Shared.Common.Cancel</button>
+        <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onSaveAdditionalCharge, enable: hasChanges, css: { 'btn-warning': hasChanges }">@Cares.Web.Resources.Shared.Common.Save</button>
+        <button class="btn btn-default" id="saveBtn" data-bind="click: $root.closeAdditionalChargeEditor">@Cares.Web.Resources.Shared.Common.Cancel</button>
     </div>
     <form class="form-horizontal">
         <div class="form-group">
@@ -12,11 +12,11 @@
         <div class="form-group">
             <label for="code" class="control-label h5 col-sm-1">Code *</label>
             <div class="col-md-3">
-                <input type="text" placeholder='Code' class="form-control" id="code" data-bind="value: code, validationTooltip: code" />
+                <input type="text" placeholder='Code' class="form-control" id="code" data-bind="value: code, validationTooltip: code, disable :(id()!=undefined)" />
             </div>
             <label for="name" class="control-label h5 col-sm-1">Name</label>
             <div class="col-md-3">
-                <input type="text" placeholder='Name' class="form-control" id="name" data-bind="value: name, validationTooltip: name" />
+                <input type="text" placeholder='Name' class="form-control" id="name" data-bind="value: name, validationTooltip: name, disable :(id()!=undefined)" />
             </div>
             <label for="isEditable" class="control-label h5 col-sm-1">Is Editable</label>
             <div class="col-md-3">
@@ -26,7 +26,7 @@
         <div class="form-group">
             <label for="description" class="control-label h5 col-sm-1">Description</label>
             <div class="col-md-3">
-                <textarea class="form-control" rows="4" placeholder='Description' id="description" data-bind="value: description, valueUpdate: 'keyup'"></textarea>
+                <textarea class="form-control" rows="4" placeholder='Description' id="description" data-bind="value: description, valueUpdate: 'keyup' , disable :(id()!=undefined)"></textarea>
             </div>
         </div>
     </form>
@@ -41,7 +41,7 @@
             <div class="form-group">
                 <label for="hireGroup" class="control-label h5  col-sm-1">Hire Group Detail*</label>
                 <div class="col-md-3">
-                    <select id="hireGroup" class="form-control" data-bind="options: $root.hireGroupDetails, optionsText: 'HireGroupDetailCodeName',optionsValue:'HireGroupDetailId', optionsCaption: '&lt;' + 'Hire Group Detail' + '&gt;', value: hireGroupDetailId, validationTooltip: hireGroupDetailId"></select>
+                    <select id="hireGroup" class="form-control" data-bind="options: $root.hireGroupDetails, optionsText: 'HireGroupDetailCodeName', optionsCaption: 'All', value: hireGroupDetailId, validationTooltip: hireGroupDetailId, event:{change:$root.onSelectedHireGroupDetail }"></select>
                 </div>
                 <label for="date" class="control-label h5  col-sm-1">From Date *</label>
                 <div class="col-md-3">
@@ -66,23 +66,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @*<!-- ko template: { name: 'itemAddChargeTemplate' , foreach: $root.revisions } -->
-                    <!-- /ko -->*@
+                        <!-- ko template: { name: 'itemAddChargeTemplate' , foreach: $root.additionalCharges } -->
+                        <!-- /ko -->
                     </tbody>
                 </table>
             </div>
             <script id="itemAddChargeTemplate" type="text/html">
                 <tr>
-                    @*<td data-bind="text: tariffTypeCode"></td>
-                        <td data-bind="text: rate"></td>
-                        <td data-bind="text: formattedEffectiveDate"></td>
-                        <td data-bind="text: revisionNumber"></td>
-                        <td data-bind="text: createdBy"></td>
-                        <td data-bind="text: modifiedBy"></td>
-                        <td data-bind="text: formattedModifiedDate"></td>*@
+                    <td data-bind="text: hireGroupDetailCodeName"></td>
+                    <td data-bind="text: formattedStartDate"></td>
+                    <td data-bind="text: rate"></td>
+                    <td>
+                        <!-- ko template: { name: 'deleteActionAdditionalChargeTemplate' } -->
+                        <!-- /ko -->
+                    </td>
                 </tr>
             </script>
-        </div>
+            <script id="deleteActionAdditionalChargeTemplate" type="text/html">
+                <a href="#" data-bind="click: $root.onDeleteAdditionalCharge" title=@Cares.Web.Resources.Shared.Common.Delete><span class="glyphicon glyphicon-edit"></span></a>
+            </script></div>
     </div>
 
 </div>

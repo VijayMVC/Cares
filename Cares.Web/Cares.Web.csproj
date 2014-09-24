@@ -340,7 +340,7 @@
     <Compile Include="ModelMappers\WorkplaceMapper.cs" />
     <Compile Include="ModelMappers\WorkplaceTypeMapper.cs" />
     <Compile Include="Models\AdditionalChargeBaseResponse.cs" />
-    <Compile Include="Models\AdditionalChargecs.cs" />
+    <Compile Include="Models\AdditionalCharge.cs" />
     <Compile Include="Models\AdditionalChargeSearchResponse.cs" />
     <Compile Include="Models\AdditionalChargeType.cs" />
     <Compile Include="Models\AdditionalDriverCharge.cs" />

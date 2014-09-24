@@ -105,9 +105,6 @@ namespace Cares.Implementation.Services
             long oldRecordId = additionalDriverCharge.AdditionalDriverChargeId;
             if (additionalDriverCharge.AdditionalDriverChargeId == 0) //Add Case
             {
-                //List<TariffType> tariffTypes = tariffTypeRepository.GetByTariffTypeCode(tariffType.TariffTypeCode).ToList();
-                //if (tariffTypes.Count() > 0)
-                //    throw new CaresException("Tariff Type with the same code already exists. Please choose a different code!");
                 additionalDriverCharge.IsActive = true;
                 additionalDriverCharge.IsDeleted = additionalDriverCharge.IsPrivate = additionalDriverCharge.IsReadOnly = false;
                 additionalDriverCharge.RecLastUpdatedBy = additionalDriverCharge.RecCreatedBy = additionalDriverChargeRepository.LoggedInUserIdentity;
@@ -131,7 +128,6 @@ namespace Cares.Implementation.Services
 
                 AdditionalDriverCharge oldAdditionalDriverChargeRecord = additionalDriverChargeRepository.Find(oldRecordId);
                 oldAdditionalDriverChargeRecord.ChildAdditionalDriverChargeId = additionalDriverCharge.AdditionalDriverChargeId;
-                //additionalDriverChargeRepository.Update(oldAdditionalDriverChargeRecord);
                 additionalDriverChargeRepository.SaveChanges();
             }
             return new AdditionalDriverChargeSearchContent

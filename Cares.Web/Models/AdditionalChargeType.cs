@@ -1,4 +1,6 @@
-﻿namespace Cares.Web.Models
+﻿using System.Collections.Generic;
+
+namespace Cares.Web.Models
 {
     /// <summary>
     /// Additional Charge Type Web Model
@@ -26,13 +28,13 @@
         public string Description { get; set; }
 
         /// <summary>
-        /// Additional Charge Key
-        /// </summary>
-        public short AdditionalChargeKey { get; set; }
-
-        /// <summary>
         /// Is Editable
         /// </summary>
         public bool IsEditable { get; set; }
+
+        /// <summary>
+        /// Additional Charges
+        /// </summary>
+        public List<AdditionalCharge> AdditionalCharges { get; set; }
     }
 }
