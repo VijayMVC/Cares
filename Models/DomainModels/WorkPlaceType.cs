@@ -39,7 +39,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Work Place Type Cat
         /// </summary>
-        public short WorkPlaceTypeCat { get; set; }
+        public short? WorkPlaceTypeCat { get; set; }
 
         /// <summary>
         /// Row Version

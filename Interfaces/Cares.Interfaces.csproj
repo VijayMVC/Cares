@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="IServices\IAdditionalChargeService.cs" />
     <Compile Include="IServices\IAddressBaseDataService.cs" />
+    <Compile Include="IServices\IServiceTypeService.cs" />
     <Compile Include="IServices\IJobTypeService.cs" />
     <Compile Include="Repository\IAdditionalChargeRepository.cs" />
     <Compile Include="Repository\IAdditionalChargeTypeRepository.cs" />

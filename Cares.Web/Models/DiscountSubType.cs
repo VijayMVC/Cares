@@ -13,6 +13,11 @@ namespace Cares.Web.Models
         public short DiscountTypeId { get; set; }
 
         /// <summary>
+        /// Discount Typ eName
+        /// </summary>
+        public string DiscountTypeName { get; set; }
+
+        /// <summary>
         /// Discount Sub Type ID
         /// </summary>
         public short DiscountSubTypeId { get; set; }
