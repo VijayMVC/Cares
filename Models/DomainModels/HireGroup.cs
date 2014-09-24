@@ -127,6 +127,16 @@ namespace Cares.Models.DomainModels
         /// Allowed Hire Group Up Grades
         /// </summary>
         public virtual ICollection<HireGroupUpGrade> AllowedHireGroupUpGrades { get; set; }
+
+        /// <summary>
+        /// Seasonal Discounts
+        /// </summary>
+        public virtual ICollection<SeasonalDiscount> SeasonalDiscounts { get; set; }
+
+        /// <summary>
+        /// Standard Discounts
+        /// </summary>
+        public virtual ICollection<StandardDiscount> StandardDiscounts { get; set; }
         
         #endregion
     }

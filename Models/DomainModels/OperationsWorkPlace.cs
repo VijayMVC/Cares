@@ -117,7 +117,57 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// EmpAutOperationsWorkplaces
         /// </summary>
-        public virtual ICollection<EmpAuthOperationsWorkplace> EmpAuthOperationsWorkplaces { get; set; } 
+        public virtual ICollection<EmpAuthOperationsWorkplace> EmpAuthOperationsWorkplaces { get; set; }
+
+        /// <summary>
+        /// NRT Vehicle Movements
+        /// </summary>
+        public virtual ICollection<NrtVehicleMovement> NrtVehicleMovements { get; set; }
+
+        /// <summary>
+        /// Ra Mains Open
+        /// </summary>
+        public virtual ICollection<RaMain> RaMainsOpen { get; set; }
+
+        /// <summary>
+        /// Ra Mains Close
+        /// </summary>
+        public virtual ICollection<RaMain> RaMainsClose { get; set; }
+
+        /// <summary>
+        /// Vehicle Movements
+        /// </summary>
+        public virtual ICollection<VehicleMovement> VehicleMovements { get; set; }
+
+        /// <summary>
+        /// Nrt Mains Open
+        /// </summary>
+        public virtual ICollection<NrtMain> NrtMainsOpen { get; set; }
+
+        /// <summary>
+        /// Nrt Mains Close
+        /// </summary>
+        public virtual ICollection<NrtMain> NrtMainsClose { get; set; }
+
+        /// <summary>
+        /// Booking Mains Open
+        /// </summary>
+        public virtual ICollection<BookingMain> BookingMainsOpen { get; set; }
+
+        /// <summary>
+        /// Booking Mains Close
+        /// </summary>
+        public virtual ICollection<BookingMain> BookingMainsClose { get; set; }
+
+        /// <summary>
+        /// Seasonal Discounts
+        /// </summary>
+        public virtual ICollection<SeasonalDiscount> SeasonalDiscounts { get; set; }
+
+        /// <summary>
+        /// Standard Discounts
+        /// </summary>
+        public virtual ICollection<StandardDiscount> StandardDiscounts { get; set; }
 
         #endregion
     }

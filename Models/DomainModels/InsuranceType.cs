@@ -93,7 +93,12 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Vehicle Insurance Infos
         /// </summary>
-        public virtual ICollection<VehicleInsuranceInfo> VehicleInsuranceInfos { get; set; } 
+        public virtual ICollection<VehicleInsuranceInfo> VehicleInsuranceInfos { get; set; }
+
+        /// <summary>
+        /// Ra Hire Group Insurances
+        /// </summary>
+        public virtual ICollection<RaHireGroupInsurance> RaHireGroupInsurances { get; set; }
 
         #endregion
     }

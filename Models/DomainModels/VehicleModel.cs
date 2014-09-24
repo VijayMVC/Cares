@@ -80,6 +80,16 @@ namespace Cares.Models.DomainModels
         /// </summary>
         public virtual ICollection<Vehicle> Vehicles { get; set; }
 
+        /// <summary>
+        /// Seasonal Discounts
+        /// </summary>
+        public virtual ICollection<SeasonalDiscount> SeasonalDiscounts { get; set; }
+
+        /// <summary>
+        /// Standard Discounts
+        /// </summary>
+        public virtual ICollection<StandardDiscount> StandardDiscounts { get; set; }
+
         #endregion
     }
 }

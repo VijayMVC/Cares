@@ -123,6 +123,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\FixedPricingStrategy.cs" />
+    <Compile Include="Helpers\PricingStrategy.cs" />
+    <Compile Include="Helpers\PricingStrategyFactory.cs" />
+    <Compile Include="Helpers\RentalCharge.cs" />
+    <Compile Include="Helpers\TariffTypeHelper.cs" />
     <Compile Include="Identity\IdentityOperation.cs" />
     <Compile Include="Resources\EmployeeManagement\Designation.ar.Designer.cs">
       <AutoGen>True</AutoGen>

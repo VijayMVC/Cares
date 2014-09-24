@@ -89,6 +89,21 @@ namespace Cares.Models.DomainModels
         /// </summary>
         public virtual ICollection<EmpJobInfo> EmployeeJobInfos { get; set; }
 
+        /// <summary>
+        /// Nrt Drivers
+        /// </summary>
+        public virtual ICollection<NrtDriver> NrtDrivers { get; set; }
+
+        /// <summary>
+        /// Ra Drivers
+        /// </summary>
+        public virtual ICollection<RaDriver> RaDrivers { get; set; }
+
+        /// <summary>
+        /// Chauffer Charges
+        /// </summary>
+        public virtual ICollection<ChaufferCharge> ChaufferCharges { get; set; }
+
         #endregion
 
     }

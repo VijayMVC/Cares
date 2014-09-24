@@ -98,7 +98,17 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Tarrif Types
         /// </summary>
-        public virtual ICollection<TariffType> TariffTypes { get; set; } 
+        public virtual ICollection<TariffType> TariffTypes { get; set; }
+
+        /// <summary>
+        /// Ra Mains
+        /// </summary>
+        public virtual ICollection<RaMain> RaMains { get; set; }
+
+        /// <summary>
+        /// Booking Mains
+        /// </summary>
+        public virtual ICollection<BookingMain> BookingMains { get; set; }
 
         #endregion
     }

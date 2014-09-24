@@ -46,6 +46,7 @@ namespace Cares.Models.DomainModels
         /// Is Readonly
         /// </summary>
         public bool IsReadOnly { get; set; }
+       
         /// <summary>
         /// Record Created Date
         /// </summary>
