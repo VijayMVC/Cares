@@ -110,7 +110,7 @@ namespace Cares.Implementation.Services
         /// </summary>
         public DiscountSubType SaveDiscountSubType(DiscountSubType discountSubType)
         {
-            DiscountSubType dbVersion = discountSubTypeRepository.Find((int) discountSubType.DiscountSubTypeId);
+            DiscountSubType dbVersion = discountSubTypeRepository.Find( discountSubType.DiscountSubTypeId);
             //Code Duplication Check
             if (discountSubTypeRepository.DoesDiscountSubTypeCodeExist(discountSubType))
                 throw new CaresException(Resources.Pricing.DiscountSubType.DiscountSubTypeCodeDuplicationError); 
@@ -128,7 +128,7 @@ namespace Cares.Implementation.Services
             }
             discountSubTypeRepository.SaveChanges();
             // To Load the proprties
-            return discountSubTypeRepository.Find((int) dbVersion.DiscountSubTypeId);
+            return discountSubTypeRepository.GetDiscountSubTypeWithDetails(dbVersion.DiscountSubTypeId);
         }
 
       

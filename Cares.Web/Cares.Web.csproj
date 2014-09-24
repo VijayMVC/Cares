@@ -956,6 +956,10 @@
     <Content Include="Areas\Pricing\Scripts\additionalCharge.model.js" />
     <Content Include="Areas\Pricing\Scripts\additionalCharge.viewModel.js" />
     <Content Include="Areas\Pricing\Scripts\additionalCharge.dataservice.js" />
+    <Content Include="Areas\Pricing\Scripts\discountSubType.dataservice.js" />
+    <Content Include="Areas\Pricing\Scripts\discountSubType.model.js" />
+    <Content Include="Areas\Pricing\Scripts\discountSubType.view.js" />
+    <Content Include="Areas\Pricing\Scripts\discountSubType.viewModel.js" />
     <Content Include="Areas\Pricing\Scripts\discountType.dataservice.js" />
     <Content Include="Areas\Pricing\Scripts\discountType.model.js" />
     <Content Include="Areas\Pricing\Scripts\discountType.view.js" />
@@ -1035,6 +1039,12 @@
     </Content>
     <Content Include="Content\DesignationGrade.min.css">
       <DependentUpon>DesignationGrade.css</DependentUpon>
+    </Content>
+    <Content Include="Content\DiscountSubType.css">
+      <DependentUpon>DiscountSubType.less</DependentUpon>
+    </Content>
+    <Content Include="Content\DiscountSubType.min.css">
+      <DependentUpon>DiscountSubType.css</DependentUpon>
     </Content>
     <Content Include="Content\DiscountType.css">
       <DependentUpon>DiscountType.less</DependentUpon>
@@ -1669,7 +1679,6 @@
     <Content Include="Content\RentalAgreement.less" />
     <Content Include="Areas\Fleet\Views\Home\HireGroup.cshtml" />
     <Content Include="Areas\Fleet\Views\Home\_HireGroupEditor.cshtml" />
-    <Content Include="Areas\Pricing\Views\Tariff\test.cshtml" />
     <Content Include="Areas\Organization\Views\web.config" />
     <Content Include="Areas\Organization\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Organization\Views\Shared\_Layout.cshtml" />
@@ -1800,6 +1809,12 @@
     <Content Include="Content\DiscountType.less" />
     <Content Include="Content\DiscountType.css.map">
       <DependentUpon>DiscountType.css</DependentUpon>
+    </Content>
+    <Content Include="Areas\Pricing\Views\Tariff\DiscountSubType.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\_DiscountSubTypeEditor.cshtml" />
+    <Content Include="Content\DiscountSubType.less" />
+    <Content Include="Content\DiscountSubType.css.map">
+      <DependentUpon>DiscountSubType.css</DependentUpon>
     </Content>
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />

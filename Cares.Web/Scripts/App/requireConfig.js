@@ -37,7 +37,9 @@
             "designGrade": "/Areas/EmployeeManagement/Scripts",
             "designation": "/Areas/EmployeeManagement/Scripts",
             "jobType": "/Areas/EmployeeManagement/Scripts",
-            "discountType": "/Areas/Pricing/Scripts"
+            "discountType": "/Areas/Pricing/Scripts",
+            "discountSubType": "/Areas/Pricing/Scripts"
+
         }
     });
     

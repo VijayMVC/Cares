@@ -103,6 +103,15 @@ namespace Cares.Repository.Repositories
         {
            return DbSet.Count(dBDiscountSubType => dBDiscountSubType.DiscountTypeId == discountTypeId) > 0;
         }
+
+        /// <summary>
+        /// Get Discount Sub Type Details
+        /// </summary>
+        public DiscountSubType GetDiscountSubTypeWithDetails(long discountTypeId)
+        {
+            return DbSet.Include(company => company.DiscountType)
+                .FirstOrDefault(fleetPool => fleetPool.DiscountSubTypeId == discountTypeId);
+        }
         #endregion
 
     }

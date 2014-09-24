@@ -32,7 +32,6 @@ namespace Cares.Repository.Repositories
                         { WorkplaceByColumn.ParentWorkPlace, c => c.ParentWorkPlaceId },
                     };
         #endregion
-        
         #region Constructor
         /// <summary>
         /// Constructor
@@ -54,7 +53,6 @@ namespace Cares.Repository.Repositories
         }
 
         #endregion
-        
         #region public
 
         /// <summary>
