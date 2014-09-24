@@ -29,7 +29,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySetsC6FD459BBD30493B6FC60135B2E58DB8531CB2D2D1AD898A4B1512646926B57E))]
+[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets1563A9BE25A0D3830796186CD88CA736F2B5B0F2DA8B21AEBCFBAC5CC5890301))]
 
 namespace Edm_EntityMappingGeneratedViews
 {
@@ -38,17 +38,17 @@ namespace Edm_EntityMappingGeneratedViews
     /// <Summary>
     /// The type contains views for EntitySets and AssociationSets that were generated at design time.
     /// </Summary>
-    public sealed class ViewsForBaseEntitySetsC6FD459BBD30493B6FC60135B2E58DB8531CB2D2D1AD898A4B1512646926B57E : System.Data.Mapping.EntityViewContainer
+    public sealed class ViewsForBaseEntitySets1563A9BE25A0D3830796186CD88CA736F2B5B0F2DA8B21AEBCFBAC5CC5890301 : System.Data.Mapping.EntityViewContainer
     {
         
         /// <Summary>
         /// The constructor stores the views for the extents and also the hash values generated based on the metadata and mapping closure and views.
         /// </Summary>
-        public ViewsForBaseEntitySetsC6FD459BBD30493B6FC60135B2E58DB8531CB2D2D1AD898A4B1512646926B57E()
+        public ViewsForBaseEntitySets1563A9BE25A0D3830796186CD88CA736F2B5B0F2DA8B21AEBCFBAC5CC5890301()
         {
             this.EdmEntityContainerName = "BaseDbContext";
             this.StoreEntityContainerName = "CaresModelStoreContainer";
-            this.HashOverMappingClosure = "17658c190f19b7d560fc869f4a5c41697f43b652aa06b242d5e96a3f007e7c87";
+            this.HashOverMappingClosure = "7b1f0213086146356f8eaa9a26f23d9136a2c2465b26ce9010eda05d7e279a65";
             this.HashOverAllExtentViews = "c82e7cfdfbe32a89e39759f33edbf6af9b82ff82c42ea539e77877608e46df4a";
             this.ViewCount = 240;
         }
@@ -4516,75 +4516,9 @@ namespace Edm_EntityMappingGeneratedViews
         }
         
         /// <Summary>
-        /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView112()
-        {
-            return new System.Collections.Generic.KeyValuePair<string, string>("CaresModelStoreContainer.AdditionalCharge", "\r\n    SELECT VALUE -- Constructing AdditionalCharge\r\n        [CaresModel.Store.Ad" +
-                    "ditionalCharge](T1.AdditionalCharge_AdditionalChargeID, T1.AdditionalCharge_Chil" +
-                    "dAdditionalChargeID, T1.AdditionalCharge_AdditionalChargeTypeID, T1.AdditionalCh" +
-                    "arge_HireGroupDetailID, T1.AdditionalCharge_AdditionalChargeRate, T1.AdditionalC" +
-                    "harge_StartDt, T1.AdditionalCharge_RowVersion, T1.AdditionalCharge_RevisionNumbe" +
-                    "r, T1.AdditionalCharge_IsActive, T1.AdditionalCharge_IsDeleted, T1.AdditionalCha" +
-                    "rge_IsPrivate, T1.AdditionalCharge_IsReadOnly, T1.AdditionalCharge_RecCreatedDt," +
-                    " T1.AdditionalCharge_RecLastUpdatedDt, T1.AdditionalCharge_RecCreatedBy, T1.Addi" +
-                    "tionalCharge_RecLastUpdatedBy, T1.AdditionalCharge_UserDomainKey)\r\n    FROM (\r\n " +
-                    "       SELECT \r\n            T.AdditionalChargeId AS AdditionalCharge_AdditionalC" +
-                    "hargeID, \r\n            T.ChildAdditionalChargeId AS AdditionalCharge_ChildAdditi" +
-                    "onalChargeID, \r\n            T.AdditionalChargeTypeId AS AdditionalCharge_Additio" +
-                    "nalChargeTypeID, \r\n            T.HireGroupDetailId AS AdditionalCharge_HireGroup" +
-                    "DetailID, \r\n            T.AdditionalChargeRate AS AdditionalCharge_AdditionalCha" +
-                    "rgeRate, \r\n            T.StartDt AS AdditionalCharge_StartDt, \r\n            T.Ro" +
-                    "wVersion AS AdditionalCharge_RowVersion, \r\n            T.RevisionNumber AS Addit" +
-                    "ionalCharge_RevisionNumber, \r\n            T.IsActive AS AdditionalCharge_IsActiv" +
-                    "e, \r\n            T.IsDeleted AS AdditionalCharge_IsDeleted, \r\n            T.IsPr" +
-                    "ivate AS AdditionalCharge_IsPrivate, \r\n            T.IsReadOnly AS AdditionalCha" +
-                    "rge_IsReadOnly, \r\n            T.RecCreatedDt AS AdditionalCharge_RecCreatedDt, \r" +
-                    "\n            T.RecLastUpdatedDt AS AdditionalCharge_RecLastUpdatedDt, \r\n        " +
-                    "    T.RecCreatedBy AS AdditionalCharge_RecCreatedBy, \r\n            T.RecLastUpda" +
-                    "tedBy AS AdditionalCharge_RecLastUpdatedBy, \r\n            T.UserDomainKey AS Add" +
-                    "itionalCharge_UserDomainKey, \r\n            True AS _from0\r\n        FROM BaseDbCo" +
-                    "ntext.AdditionalCharges AS T\r\n    ) AS T1");
-        }
-        
-        /// <Summary>
-        /// return view for CaresModelStoreContainer.AdditionalChargeType
-        /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView77()
-        {
-            System.Text.StringBuilder viewString = new System.Text.StringBuilder(2068);
-            viewString.Append("\r\n    SELECT VALUE -- Constructing AdditionalChargeType\r\n        [CaresModel.Sto");
-            viewString.Append("re.AdditionalChargeType](T1.AdditionalChargeType_AdditionalChargeTypeID, T1.Addi");
-            viewString.Append("tionalChargeType_AdditionalChargeTypeCode, T1.AdditionalChargeType_AdditionalCha");
-            viewString.Append("rgeTypeName, T1.AdditionalChargeType_AdditionalChargeTypeDescription, T1.Additio");
-            viewString.Append("nalChargeType_AdditionalChargeKey, T1.AdditionalChargeType_IsEditable, T1.Additi");
-            viewString.Append("onalChargeType_IsActive, T1.AdditionalChargeType_IsDeleted, T1.AdditionalChargeT");
-            viewString.Append("ype_IsReadOnly, T1.AdditionalChargeType_IsPrivate, T1.AdditionalChargeType_RecCr");
-            viewString.Append("eatedDt, T1.AdditionalChargeType_RecCreatedBy, T1.AdditionalChargeType_RecLastUp");
-            viewString.Append("datedBy, T1.AdditionalChargeType_RecLastUpdatedDt, T1.AdditionalChargeType_RowVe");
-            viewString.Append("rsion, T1.AdditionalChargeType_UserDomainKey)\r\n    FROM (\r\n        SELECT \r\n    ");
-            viewString.Append("        T.AdditionalChargeTypeId AS AdditionalChargeType_AdditionalChargeTypeID,");
-            viewString.Append(" \r\n            T.AdditionalChargeTypeCode AS AdditionalChargeType_AdditionalChar");
-            viewString.Append("geTypeCode, \r\n            T.AdditionalChargeTypeName AS AdditionalChargeType_Add");
-            viewString.Append("itionalChargeTypeName, \r\n            T.AdditionalChargeTypeDescription AS Additi");
-            viewString.Append("onalChargeType_AdditionalChargeTypeDescription, \r\n            T.AdditionalCharge");
-            viewString.Append("Key AS AdditionalChargeType_AdditionalChargeKey, \r\n            T.IsEditable AS A");
-            viewString.Append("dditionalChargeType_IsEditable, \r\n            T.IsActive AS AdditionalChargeType");
-            viewString.Append("_IsActive, \r\n            T.IsDeleted AS AdditionalChargeType_IsDeleted, \r\n      ");
-            viewString.Append("      T.IsReadOnly AS AdditionalChargeType_IsReadOnly, \r\n            T.IsPrivate");
-            viewString.Append(" AS AdditionalChargeType_IsPrivate, \r\n            T.RecCreatedDt AS AdditionalCh");
-            viewString.Append("argeType_RecCreatedDt, \r\n            T.RecCreatedBy AS AdditionalChargeType_RecC");
-            viewString.Append("reatedBy, \r\n            T.RecLastUpdatedBy AS AdditionalChargeType_RecLastUpdate");
-            viewString.Append("dBy, \r\n            T.RecLastUpdatedDt AS AdditionalChargeType_RecLastUpdatedDt, ");
-            viewString.Append("\r\n            T.RowVersion AS AdditionalChargeType_RowVersion, \r\n            T.U");
-            viewString.Append("serDomainKey AS AdditionalChargeType_UserDomainKey, \r\n            True AS _from0");
-            viewString.Append("\r\n        FROM BaseDbContext.AdditionalChargeTypes AS T\r\n    ) AS T1");
-            return new System.Collections.Generic.KeyValuePair<string, string>("CaresModelStoreContainer.AdditionalChargeType", viewString.ToString());
-        }
-        
-        /// <Summary>
         /// return view for BaseDbContext.OrgGroups
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView78()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView112()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("BaseDbContext.OrgGroups", @"
     SELECT VALUE -- Constructing OrgGroups
@@ -7017,72 +6951,6 @@ namespace Edm_EntityMappingGeneratedViews
         
         /// <Summary>
         /// return view for BaseDbContext.AdditionalCharges
-        /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView154()
-        {
-            return new System.Collections.Generic.KeyValuePair<string, string>("BaseDbContext.AdditionalCharges", "\r\n    SELECT VALUE -- Constructing AdditionalCharges\r\n        [DomainModels.Addit" +
-                    "ionalCharge](T1.AdditionalCharge_AdditionalChargeId, T1.AdditionalCharge_ChildAd" +
-                    "ditionalChargeId, T1.AdditionalCharge_AdditionalChargeTypeId, T1.AdditionalCharg" +
-                    "e_HireGroupDetailId, T1.AdditionalCharge_AdditionalChargeRate, T1.AdditionalChar" +
-                    "ge_StartDt, T1.AdditionalCharge_RowVersion, T1.AdditionalCharge_RevisionNumber, " +
-                    "T1.AdditionalCharge_IsActive, T1.AdditionalCharge_IsDeleted, T1.AdditionalCharge" +
-                    "_IsPrivate, T1.AdditionalCharge_IsReadOnly, T1.AdditionalCharge_RecCreatedDt, T1" +
-                    ".AdditionalCharge_RecLastUpdatedDt, T1.AdditionalCharge_RecCreatedBy, T1.Additio" +
-                    "nalCharge_RecLastUpdatedBy, T1.AdditionalCharge_UserDomainKey)\r\n    FROM (\r\n    " +
-                    "    SELECT \r\n            T.AdditionalChargeID AS AdditionalCharge_AdditionalChar" +
-                    "geId, \r\n            T.ChildAdditionalChargeID AS AdditionalCharge_ChildAdditiona" +
-                    "lChargeId, \r\n            T.AdditionalChargeTypeID AS AdditionalCharge_Additional" +
-                    "ChargeTypeId, \r\n            T.HireGroupDetailID AS AdditionalCharge_HireGroupDet" +
-                    "ailId, \r\n            T.AdditionalChargeRate AS AdditionalCharge_AdditionalCharge" +
-                    "Rate, \r\n            T.StartDt AS AdditionalCharge_StartDt, \r\n            T.RowVe" +
-                    "rsion AS AdditionalCharge_RowVersion, \r\n            T.RevisionNumber AS Addition" +
-                    "alCharge_RevisionNumber, \r\n            T.IsActive AS AdditionalCharge_IsActive, " +
-                    "\r\n            T.IsDeleted AS AdditionalCharge_IsDeleted, \r\n            T.IsPriva" +
-                    "te AS AdditionalCharge_IsPrivate, \r\n            T.IsReadOnly AS AdditionalCharge" +
-                    "_IsReadOnly, \r\n            T.RecCreatedDt AS AdditionalCharge_RecCreatedDt, \r\n  " +
-                    "          T.RecLastUpdatedDt AS AdditionalCharge_RecLastUpdatedDt, \r\n           " +
-                    " T.RecCreatedBy AS AdditionalCharge_RecCreatedBy, \r\n            T.RecLastUpdated" +
-                    "By AS AdditionalCharge_RecLastUpdatedBy, \r\n            T.UserDomainKey AS Additi" +
-                    "onalCharge_UserDomainKey, \r\n            True AS _from0\r\n        FROM CaresModelS" +
-                    "toreContainer.AdditionalCharge AS T\r\n    ) AS T1");
-        }
-        
-        /// <Summary>
-        /// return view for BaseDbContext.AdditionalChargeTypes
-        /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView155()
-        {
-            System.Text.StringBuilder viewString = new System.Text.StringBuilder(2075);
-            viewString.Append("\r\n    SELECT VALUE -- Constructing AdditionalChargeTypes\r\n        [DomainModels.");
-            viewString.Append("AdditionalChargeType](T1.AdditionalChargeType_AdditionalChargeTypeId, T1.Additio");
-            viewString.Append("nalChargeType_AdditionalChargeTypeCode, T1.AdditionalChargeType_AdditionalCharge");
-            viewString.Append("TypeName, T1.AdditionalChargeType_AdditionalChargeTypeDescription, T1.Additional");
-            viewString.Append("ChargeType_AdditionalChargeKey, T1.AdditionalChargeType_IsEditable, T1.Additiona");
-            viewString.Append("lChargeType_IsActive, T1.AdditionalChargeType_IsDeleted, T1.AdditionalChargeType");
-            viewString.Append("_IsReadOnly, T1.AdditionalChargeType_IsPrivate, T1.AdditionalChargeType_RecCreat");
-            viewString.Append("edDt, T1.AdditionalChargeType_RecCreatedBy, T1.AdditionalChargeType_RecLastUpdat");
-            viewString.Append("edBy, T1.AdditionalChargeType_RecLastUpdatedDt, T1.AdditionalChargeType_RowVersi");
-            viewString.Append("on, T1.AdditionalChargeType_UserDomainKey)\r\n    FROM (\r\n        SELECT \r\n       ");
-            viewString.Append("     T.AdditionalChargeTypeID AS AdditionalChargeType_AdditionalChargeTypeId, \r\n");
-            viewString.Append("            T.AdditionalChargeTypeCode AS AdditionalChargeType_AdditionalChargeT");
-            viewString.Append("ypeCode, \r\n            T.AdditionalChargeTypeName AS AdditionalChargeType_Additi");
-            viewString.Append("onalChargeTypeName, \r\n            T.AdditionalChargeTypeDescription AS Additiona");
-            viewString.Append("lChargeType_AdditionalChargeTypeDescription, \r\n            T.AdditionalChargeKey");
-            viewString.Append(" AS AdditionalChargeType_AdditionalChargeKey, \r\n            T.IsEditable AS Addi");
-            viewString.Append("tionalChargeType_IsEditable, \r\n            T.IsActive AS AdditionalChargeType_Is");
-            viewString.Append("Active, \r\n            T.IsDeleted AS AdditionalChargeType_IsDeleted, \r\n         ");
-            viewString.Append("   T.IsReadOnly AS AdditionalChargeType_IsReadOnly, \r\n            T.IsPrivate AS");
-            viewString.Append(" AdditionalChargeType_IsPrivate, \r\n            T.RecCreatedDt AS AdditionalCharg");
-            viewString.Append("eType_RecCreatedDt, \r\n            T.RecCreatedBy AS AdditionalChargeType_RecCrea");
-            viewString.Append("tedBy, \r\n            T.RecLastUpdatedBy AS AdditionalChargeType_RecLastUpdatedBy");
-            viewString.Append(", \r\n            T.RecLastUpdatedDt AS AdditionalChargeType_RecLastUpdatedDt, \r\n ");
-            viewString.Append("           T.RowVersion AS AdditionalChargeType_RowVersion, \r\n            T.User");
-            viewString.Append("DomainKey AS AdditionalChargeType_UserDomainKey, \r\n            True AS _from0\r\n ");
-            viewString.Append("       FROM CaresModelStoreContainer.AdditionalChargeType AS T\r\n    ) AS T1");
-            return new System.Collections.Generic.KeyValuePair<string, string>("BaseDbContext.AdditionalChargeTypes", viewString.ToString());
-        }
-        
-        /// <Summary>
         /// </Summary>
         private System.Collections.Generic.KeyValuePair<string, string> GetView192()
         {

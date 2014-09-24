@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CaresModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="CaresModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AdditionalCharge">
           <Key>
             <PropertyRef Name="AdditionalChargeID" />
@@ -6088,7 +6088,8 @@
             <End Role="Workplace" EntitySet="Workplace" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DomainModels" Alias="Self" annotation:UseStrongSpatialTypes="true" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -6352,6 +6353,10 @@
             <End Role="FuelType" EntitySet="FuelTypes" />
             <End Role="Vehicle" EntitySet="Vehicles" />
           </AssociationSet>
+          <AssociationSet Name="RefHireGroup308" Association="DomainModels.RefHireGroup308">
+            <End Role="HireGroup" EntitySet="HireGroups" />
+            <End Role="HireGroup1" EntitySet="HireGroups" />
+          </AssociationSet>
           <AssociationSet Name="RefHireGroup360" Association="DomainModels.RefHireGroup360">
             <End Role="HireGroup" EntitySet="HireGroups" />
             <End Role="HireGroupDetail" EntitySet="HireGroupDetails" />
@@ -6492,6 +6497,10 @@
             <End Role="HireGroupDetail" EntitySet="HireGroupDetails" />
             <End Role="InsuranceRt" EntitySet="InsuranceRts" />
           </AssociationSet>
+          <AssociationSet Name="RefInsuranceRt391" Association="DomainModels.RefInsuranceRt391">
+            <End Role="InsuranceRt" EntitySet="InsuranceRts" />
+            <End Role="InsuranceRt1" EntitySet="InsuranceRts" />
+          </AssociationSet>
           <AssociationSet Name="RefInsuranceRtMain390" Association="DomainModels.RefInsuranceRtMain390">
             <End Role="InsuranceRtMain" EntitySet="InsuranceRtMains" />
             <End Role="InsuranceRt" EntitySet="InsuranceRts" />
@@ -6512,9 +6521,17 @@
             <End Role="PricingStrategy" EntitySet="PricingStrategies" />
             <End Role="TariffType" EntitySet="TariffTypes" />
           </AssociationSet>
+          <AssociationSet Name="RefServiceRt386" Association="DomainModels.RefServiceRt386">
+            <End Role="ServiceRt" EntitySet="ServiceRts" />
+            <End Role="ServiceRt1" EntitySet="ServiceRts" />
+          </AssociationSet>
           <AssociationSet Name="RefServiceRtMain385" Association="DomainModels.RefServiceRtMain385">
             <End Role="ServiceRtMain" EntitySet="ServiceRtMains" />
             <End Role="ServiceRt" EntitySet="ServiceRts" />
+          </AssociationSet>
+          <AssociationSet Name="RefStandardRt371" Association="DomainModels.RefStandardRt371">
+            <End Role="StandardRt" EntitySet="StandardRates" />
+            <End Role="StandardRt1" EntitySet="StandardRates" />
           </AssociationSet>
           <EntitySet Name="StandardRateMains" EntityType="DomainModels.StandardRateMain" />
           <EntitySet Name="VehicleDisposalInfoes" EntityType="DomainModels.VehicleDisposalInfo" />
@@ -7053,7 +7070,7 @@
             <End Role="Company" EntitySet="Companies" />
             <End Role="HireGroup" EntitySet="HireGroups" />
           </AssociationSet>
-          </EntityContainer>
+        </EntityContainer>
         <EntityType Name="Company">
           <Key>
             <PropertyRef Name="CompanyId" />
@@ -7762,6 +7779,7 @@
           <Property Name="CompanyId" Type="Int64" />
           <Property Name="RowVersion" Type="Int64" Nullable="false" />
           <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="ParentHireGroup" Relationship="DomainModels.RefHireGroup308" FromRole="HireGroup" ToRole="HireGroup1" />
           <NavigationProperty Name="HireGroupDetails" Relationship="DomainModels.RefHireGroup360" FromRole="HireGroup" ToRole="HireGroupDetail" />
           <NavigationProperty Name="Vehicles" Relationship="DomainModels.RefHireGroup95" FromRole="HireGroup" ToRole="Vehicle" />
           <NavigationProperty Name="HireGroupUpGrades" Relationship="DomainModels.RefHireGroup613" FromRole="HireGroup" ToRole="HireGroupUpGrade" />
@@ -7769,7 +7787,6 @@
           <NavigationProperty Name="SeasonalDiscounts" Relationship="DomainModels.RefHireGroup575" FromRole="HireGroup" ToRole="SeasonalDiscount" />
           <NavigationProperty Name="StandardDiscounts" Relationship="DomainModels.RefHireGroup576" FromRole="HireGroup" ToRole="StandardDiscount" />
           <NavigationProperty Name="Company" Relationship="DomainModels.FK_HireGroup_Company" FromRole="HireGroup" ToRole="Company" />
-          <NavigationProperty Name="ParentHireGroup" Relationship="DomainModels.RefHireGroup308" FromRole="HireGroup1" ToRole="HireGroup" />
         </EntityType>
         <EntityType Name="HireGroupDetail">
           <Key>
@@ -8892,6 +8909,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="RefHireGroup308">
+          <End Type="DomainModels.HireGroup" Role="HireGroup" Multiplicity="0..1" />
+          <End Type="DomainModels.HireGroup" Role="HireGroup1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HireGroup">
+              <PropertyRef Name="HireGroupId" />
+            </Principal>
+            <Dependent Role="HireGroup1">
+              <PropertyRef Name="ParentHireGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="RefHireGroup360">
           <End Type="DomainModels.HireGroup" Role="HireGroup" Multiplicity="1" />
           <End Type="DomainModels.HireGroupDetail" Role="HireGroupDetail" Multiplicity="*" />
@@ -9211,9 +9240,9 @@
           <Property Name="RecCreatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
           <NavigationProperty Name="HireGroupDetail" Relationship="DomainModels.RefHireGroupDetail404" FromRole="InsuranceRt" ToRole="HireGroupDetail" />
+          <NavigationProperty Name="ChildInsuranceRt" Relationship="DomainModels.RefInsuranceRt391" FromRole="InsuranceRt" ToRole="InsuranceRt1" />
           <NavigationProperty Name="InsuranceRtMain" Relationship="DomainModels.RefInsuranceRtMain390" FromRole="InsuranceRt" ToRole="InsuranceRtMain" />
           <NavigationProperty Name="InsuranceType" Relationship="DomainModels.RefInsuranceType392" FromRole="InsuranceRt" ToRole="InsuranceType" />
-          <NavigationProperty Name="ChildInsuranceRt" Relationship="DomainModels.RefInsuranceRt391" FromRole="InsuranceRt1" ToRole="InsuranceRt" />
         </EntityType>
         <EntityType Name="InsuranceRtMain">
           <Key>
@@ -9438,9 +9467,9 @@
           <Property Name="RecLastUpdatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="RecCreatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="ChildServiceRt" Relationship="DomainModels.RefServiceRt386" FromRole="ServiceRt" ToRole="ServiceRt1" />
           <NavigationProperty Name="ServiceRtMain" Relationship="DomainModels.RefServiceRtMain385" FromRole="ServiceRt" ToRole="ServiceRtMain" />
           <NavigationProperty Name="ServiceItem" Relationship="DomainModels.RefServiceItem383" FromRole="ServiceRt" ToRole="ServiceItem" />
-          <NavigationProperty Name="ChildServiceRt" Relationship="DomainModels.RefServiceRt386" FromRole="ServiceRt1" ToRole="ServiceRt" />
         </EntityType>
         <EntityType Name="ServiceRtMain">
           <Key>
@@ -9509,8 +9538,8 @@
           <Property Name="StandardRtStartDt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
           <NavigationProperty Name="HireGroupDetail" Relationship="DomainModels.RefHireGroupDetail377" FromRole="StandardRt" ToRole="HireGroupDetail" />
+          <NavigationProperty Name="ChildStandardRate" Relationship="DomainModels.RefStandardRt371" FromRole="StandardRt" ToRole="StandardRt1" />
           <NavigationProperty Name="StandardRtMain" Relationship="DomainModels.RefStandardRtMain148" FromRole="StandardRt" ToRole="StandardRtMain" />
-          <NavigationProperty Name="ChildStandardRate" Relationship="DomainModels.RefStandardRt371" FromRole="StandardRate1" ToRole="StandardRate" />
         </EntityType>
         <Association Name="RefOccupationType292">
           <End Type="DomainModels.OccupationType" Role="OccupationType" Multiplicity="0..1" />
@@ -9608,6 +9637,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="RefInsuranceRt391">
+          <End Type="DomainModels.InsuranceRt" Role="InsuranceRt" Multiplicity="0..1" />
+          <End Type="DomainModels.InsuranceRt" Role="InsuranceRt1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsuranceRt">
+              <PropertyRef Name="InsuranceRtId" />
+            </Principal>
+            <Dependent Role="InsuranceRt1">
+              <PropertyRef Name="ChildInsuranceRtId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="RefInsuranceRtMain390">
           <End Type="DomainModels.InsuranceRtMain" Role="InsuranceRtMain" Multiplicity="1" />
           <End Type="DomainModels.InsuranceRt" Role="InsuranceRt" Multiplicity="*" />
@@ -9668,6 +9709,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="RefServiceRt386">
+          <End Type="DomainModels.ServiceRt" Role="ServiceRt" Multiplicity="0..1" />
+          <End Type="DomainModels.ServiceRt" Role="ServiceRt1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceRt">
+              <PropertyRef Name="ServiceRtId" />
+            </Principal>
+            <Dependent Role="ServiceRt1">
+              <PropertyRef Name="ChildServiceRtId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="RefServiceRtMain385">
           <End Type="DomainModels.ServiceRtMain" Role="ServiceRtMain" Multiplicity="1" />
           <End Type="DomainModels.ServiceRt" Role="ServiceRt" Multiplicity="*" />
@@ -9677,6 +9730,18 @@
             </Principal>
             <Dependent Role="ServiceRt">
               <PropertyRef Name="ServiceRtMainId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefStandardRt371">
+          <End Type="DomainModels.StandardRate" Role="StandardRt" Multiplicity="0..1" />
+          <End Type="DomainModels.StandardRate" Role="StandardRt1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StandardRt">
+              <PropertyRef Name="StandardRtId" />
+            </Principal>
+            <Dependent Role="StandardRt1">
+              <PropertyRef Name="ChildStandardRtId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -10507,7 +10572,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-         <Association Name="RefWorkplace2301">
+        <Association Name="RefWorkplace2301">
           <End Type="DomainModels.WorkPlace" Role="WorkPlace" Multiplicity="0..1" />
           <End Type="DomainModels.WorkPlace" Role="WorkPlace1" Multiplicity="*" />
           <ReferentialConstraint>
@@ -12467,7 +12532,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        </Schema>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -15160,135 +15225,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-           <EntitySetMapping Name="DiscountSubTypes">
-            <EntityTypeMapping TypeName="DomainModels.DiscountSubType">
-              <MappingFragment StoreEntitySet="DiscountSubType">
-                <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
-                <ScalarProperty Name="RecLastUpdatedDt" ColumnName="RecLastUpdatedDt" />
-                <ScalarProperty Name="RecCreatedDt" ColumnName="RecCreatedDt" />
-                <ScalarProperty Name="RecLastUpdatedBy" ColumnName="RecLastUpdatedBy" />
-                <ScalarProperty Name="RecCreatedBy" ColumnName="RecCreatedBy" />
-                <ScalarProperty Name="IsReadOnly" ColumnName="IsReadOnly" />
-                <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
-                <ScalarProperty Name="DiscountTypeId" ColumnName="DiscountTypeID" />
-                <ScalarProperty Name="DiscountSubTypeDescription" ColumnName="DiscountSubTypeDescription" />
-                <ScalarProperty Name="DiscountSubTypeName" ColumnName="DiscountSubTypeName" />
-                <ScalarProperty Name="DiscountSubTypeCode" ColumnName="DiscountSubTypeCode" />
-                <ScalarProperty Name="DiscountSubTypeId" ColumnName="DiscountSubTypeID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DiscountTypes">
-            <EntityTypeMapping TypeName="DomainModels.DiscountType">
-              <MappingFragment StoreEntitySet="DiscountType">
-                <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
-                <ScalarProperty Name="RecLastUpdatedBy" ColumnName="RecLastUpdatedBy" />
-                <ScalarProperty Name="RecCreatedBy" ColumnName="RecCreatedBy" />
-                <ScalarProperty Name="RecLastUpdatedDt" ColumnName="RecLastUpdatedDt" />
-                <ScalarProperty Name="RecCreatedDt" ColumnName="RecCreatedDt" />
-                <ScalarProperty Name="IsReadOnly" ColumnName="IsReadOnly" />
-                <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
-                <ScalarProperty Name="DiscountTypeDescription" ColumnName="DiscountTypeDescription" />
-                <ScalarProperty Name="DiscountTypeName" ColumnName="DiscountTypeName" />
-                <ScalarProperty Name="DiscountTypeCode" ColumnName="DiscountTypeCode" />
-                <ScalarProperty Name="DiscountTypeId" ColumnName="DiscountTypeID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-
-          <EntitySetMapping Name="AdditionalCharges">
-            <EntityTypeMapping TypeName="DomainModels.AdditionalCharge">
-              <MappingFragment StoreEntitySet="AdditionalCharge">
-                <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
-                <ScalarProperty Name="RecLastUpdatedBy" ColumnName="RecLastUpdatedBy" />
-                <ScalarProperty Name="RecCreatedBy" ColumnName="RecCreatedBy" />
-                <ScalarProperty Name="RecLastUpdatedDt" ColumnName="RecLastUpdatedDt" />
-                <ScalarProperty Name="RecCreatedDt" ColumnName="RecCreatedDt" />
-                <ScalarProperty Name="IsReadOnly" ColumnName="IsReadOnly" />
-                <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="RevisionNumber" ColumnName="RevisionNumber" />
-                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
-                <ScalarProperty Name="StartDt" ColumnName="StartDt" />
-                <ScalarProperty Name="AdditionalChargeRate" ColumnName="AdditionalChargeRate" />
-                <ScalarProperty Name="HireGroupDetailId" ColumnName="HireGroupDetailID" />
-                <ScalarProperty Name="AdditionalChargeTypeId" ColumnName="AdditionalChargeTypeID" />
-                <ScalarProperty Name="ChildAdditionalChargeId" ColumnName="ChildAdditionalChargeID" />
-                <ScalarProperty Name="AdditionalChargeId" ColumnName="AdditionalChargeID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AdditionalChargeTypes">
-            <EntityTypeMapping TypeName="DomainModels.AdditionalChargeType">
-              <MappingFragment StoreEntitySet="AdditionalChargeType">
-                <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
-                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
-                <ScalarProperty Name="RecLastUpdatedDt" ColumnName="RecLastUpdatedDt" />
-                <ScalarProperty Name="RecLastUpdatedBy" ColumnName="RecLastUpdatedBy" />
-                <ScalarProperty Name="RecCreatedBy" ColumnName="RecCreatedBy" />
-                <ScalarProperty Name="RecCreatedDt" ColumnName="RecCreatedDt" />
-                <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
-                <ScalarProperty Name="IsReadOnly" ColumnName="IsReadOnly" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsEditable" ColumnName="IsEditable" />
-                <ScalarProperty Name="AdditionalChargeKey" ColumnName="AdditionalChargeKey" />
-                <ScalarProperty Name="AdditionalChargeTypeDescription" ColumnName="AdditionalChargeTypeDescription" />
-                <ScalarProperty Name="AdditionalChargeTypeName" ColumnName="AdditionalChargeTypeName" />
-                <ScalarProperty Name="AdditionalChargeTypeCode" ColumnName="AdditionalChargeTypeCode" />
-                <ScalarProperty Name="AdditionalChargeTypeId" ColumnName="AdditionalChargeTypeID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DiscountSubTypes">
-            <EntityTypeMapping TypeName="DomainModels.DiscountSubType">
-              <MappingFragment StoreEntitySet="DiscountSubType">
-                <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
-                <ScalarProperty Name="RecLastUpdatedDt" ColumnName="RecLastUpdatedDt" />
-                <ScalarProperty Name="RecCreatedDt" ColumnName="RecCreatedDt" />
-                <ScalarProperty Name="RecLastUpdatedBy" ColumnName="RecLastUpdatedBy" />
-                <ScalarProperty Name="RecCreatedBy" ColumnName="RecCreatedBy" />
-                <ScalarProperty Name="IsReadOnly" ColumnName="IsReadOnly" />
-                <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
-                <ScalarProperty Name="DiscountTypeId" ColumnName="DiscountTypeID" />
-                <ScalarProperty Name="DiscountSubTypeDescription" ColumnName="DiscountSubTypeDescription" />
-                <ScalarProperty Name="DiscountSubTypeName" ColumnName="DiscountSubTypeName" />
-                <ScalarProperty Name="DiscountSubTypeCode" ColumnName="DiscountSubTypeCode" />
-                <ScalarProperty Name="DiscountSubTypeId" ColumnName="DiscountSubTypeID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DiscountTypes">
-            <EntityTypeMapping TypeName="DomainModels.DiscountType">
-              <MappingFragment StoreEntitySet="DiscountType">
-                <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
-                <ScalarProperty Name="RecLastUpdatedBy" ColumnName="RecLastUpdatedBy" />
-                <ScalarProperty Name="RecCreatedBy" ColumnName="RecCreatedBy" />
-                <ScalarProperty Name="RecLastUpdatedDt" ColumnName="RecLastUpdatedDt" />
-                <ScalarProperty Name="RecCreatedDt" ColumnName="RecCreatedDt" />
-                <ScalarProperty Name="IsReadOnly" ColumnName="IsReadOnly" />
-                <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
-                <ScalarProperty Name="DiscountTypeDescription" ColumnName="DiscountTypeDescription" />
-                <ScalarProperty Name="DiscountTypeName" ColumnName="DiscountTypeName" />
-                <ScalarProperty Name="DiscountTypeCode" ColumnName="DiscountTypeCode" />
-                <ScalarProperty Name="DiscountTypeId" ColumnName="DiscountTypeID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

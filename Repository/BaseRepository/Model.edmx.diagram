@@ -35,10 +35,10 @@
         <EntityTypeShape EntityType="DomainModels.EmpStatus" Width="1.5" PointX="8.125" PointY="18.25" />
         <EntityTypeShape EntityType="DomainModels.FleetPool" Width="1.5" PointX="14.875" PointY="41.875" />
         <EntityTypeShape EntityType="DomainModels.FuelType" Width="1.5" PointX="17.125" PointY="27.5" />
-        <EntityTypeShape EntityType="DomainModels.HireGroup" Width="1.5" PointX="17.125" PointY="44.125" />
+        <EntityTypeShape EntityType="DomainModels.HireGroup" Width="1.5" PointX="16.875" PointY="43.375" />
         <EntityTypeShape EntityType="DomainModels.HireGroupDetail" Width="1.5" PointX="19.375" PointY="51.875" />
         <EntityTypeShape EntityType="DomainModels.Operation" Width="1.5" PointX="9.625" PointY="42" />
-        <EntityTypeShape EntityType="DomainModels.OperationsWorkPlace" Width="1.5" PointX="17.125" PointY="38.5" />
+        <EntityTypeShape EntityType="DomainModels.OperationsWorkPlace" Width="1.5" PointX="16.625" PointY="35.625" />
         <EntityTypeShape EntityType="DomainModels.PaymentTerm" Width="1.5" PointX="5.125" PointY="13.125" />
         <EntityTypeShape EntityType="DomainModels.Phone" Width="1.5" PointX="12.625" PointY="26.75" />
         <EntityTypeShape EntityType="DomainModels.PhoneType" Width="1.5" PointX="10.375" PointY="27.25" />

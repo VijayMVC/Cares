@@ -161,8 +161,6 @@
     <Compile Include="DomainModels\ChaufferChargeMain.cs" />
     <Compile Include="DomainModels\BookingStatus.cs" />
     <Compile Include="DomainModels\BookingMain.cs" />
-    <Compile Include="DomainModels\AdditionalChargeType.cs" />
-    <Compile Include="DomainModels\AdditionalCharge.cs" />
     <Compile Include="DomainModels\AdditionalDriverCharge.cs" />
     <Compile Include="DomainModels\BusinessPartnerMarketingChannel.cs" />
     <Compile Include="DomainModels\BusinessPartnerInType.cs" />
@@ -183,7 +181,6 @@
     <Compile Include="DomainModels\DesignGrade.cs" />
     <Compile Include="DomainModels\Designation.cs" />
     <Compile Include="DomainModels\DiscountSubType.cs" />
-    <Compile Include="DomainModels\DiscountType.cs" />
     <Compile Include="DomainModels\EmpAuthOperationsWorkplace.cs" />
     <Compile Include="DomainModels\EmpDocsInfo.cs" />
     <Compile Include="DomainModels\EmpJobInfo.cs" />
@@ -234,7 +231,6 @@
     <Compile Include="DomainModels\ChaufferReservation.cs" />
     <Compile Include="DomainModels\VehicleReservation.cs" />
     <Compile Include="DomainModels\DiscountType.cs" />
-    <Compile Include="DomainModels\DiscountSubType.cs" />
     <Compile Include="DomainModels\WorkPlace.cs" />
     <Compile Include="DomainModels\WorkPlaceType.cs" />
     <Compile Include="DomainModels\WorkLocation.cs" />
