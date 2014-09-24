@@ -26,10 +26,10 @@
             <table id="additionalChargeTable" class="table table-condensed">
                 <thead>
                     <tr>
-                        <th class=""> <span id="1">Code<span class="icon-up"></span></span></th>
-                        <th class=""> <span id="2">Name<span></span></span></th>
-                        <th class=""> <span id="3">Is Editable<span></span></span></th>
-                        <th class=""> <span>Description<span></span></span></th>
+                        <th class="Code"> <span id="1">Code<span class="icon-up"></span></span></th>
+                        <th class="Name"> <span id="2">Name<span></span></span></th>
+                        <th class="IsEditable"> <span id="3">Is Editable<span></span></span></th>
+                        <th class="Description"> <span>Description<span></span></span></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,10 +42,10 @@
             <!-- /ko -->
         </div>
     </div>
-    <script id="editActionAdditionalChargeTemplate" type="text/html">
-        <a href="#" data-bind="click: $root.onEditAddDriverChrg" title=@Cares.Web.Resources.Shared.Common.Edit><span class="glyphicon glyphicon-edit"></span></a>
+    <script id="editActionAdditionalChargeTypeTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onEditAdditionalChargeType" title=@Cares.Web.Resources.Shared.Common.Edit><span class="glyphicon glyphicon-edit"></span></a>
     </script>
-    <script id="deleteActionAdditionalChargeTemplate" type="text/html">
+    <script id="deleteActionAdditionalChargeTypeTemplate" type="text/html">
         <a href="#" data-bind="click: $root.onDeleteAdditionalChargeType" title=@Cares.Web.Resources.Shared.Common.Delete><span class="glyphicon glyphicon-remove"></span></a>
     </script>
     <script id="itemAdditionalChareTemplate" type="text/html">
@@ -55,11 +55,11 @@
             <td data-bind="text: isEditable"></td>
             <td data-bind="text: description"></td>
             <td>
-                <!-- ko template: { name: 'editActionAdditionalChargeTemplate' } -->
+                <!-- ko template: { name: 'editActionAdditionalChargeTypeTemplate' } -->
                 <!-- /ko -->
             </td>
             <td>
-                <!-- ko template: { name: 'deleteActionAdditionalChargeTemplate' } -->
+                <!-- ko template: { name: 'deleteActionAdditionalChargeTypeTemplate' } -->
                 <!-- /ko -->
             </td>
         </tr>

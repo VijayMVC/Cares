@@ -54,6 +54,7 @@ namespace Cares.Web.ModelMappers
                 StartDt = source.StartDt,
                 AdditionalChargeRate = source.AdditionalChargeRate,
                 HireGroupDetailCodeName = source.HireGroupDetail != null ? source.HireGroupDetail.CreateFromForAddtionalCharge().HireGroupDetailCodeName : string.Empty,
+                RevisionNumber =source.RevisionNumber
             };
         }
         /// <summary>
@@ -86,7 +87,7 @@ namespace Cares.Web.ModelMappers
                 AdditionalChargeTypeName = source.Name,
                 AdditionalChargeTypeDescription = source.Description,
                 IsEditable = source.IsEditable,
-                AdditionalCharges = source.AdditionalCharges.Select(addChrg => addChrg.CreateFrom()).ToList()
+                AdditionalCharges = source.AdditionalCharges!=null?source.AdditionalCharges.Select(addChrg => addChrg.CreateFrom()).ToList():null
             };
         }
         #endregion

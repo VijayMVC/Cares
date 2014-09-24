@@ -28,11 +28,18 @@ namespace Cares.Web.Models
         public DateTime StartDt { get; set; }
 
         /// <summary>
+        /// Revision Number
+        /// </summary>
+        public long? RevisionNumber { get; set; }
+
+        /// <summary>
         /// Additional Charge Rate
         /// </summary>
         public double? AdditionalChargeRate { get; set; }
 
-        //Hire group Detail Code Name
+        /// <summary>
+        /// Hire group Detail Code Name
+        /// </summary>
         public string HireGroupDetailCodeName { get; set; }
     }
 }

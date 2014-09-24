@@ -41,7 +41,7 @@
             <div class="form-group">
                 <label for="hireGroup" class="control-label h5  col-sm-1">Hire Group Detail*</label>
                 <div class="col-md-3">
-                    <select id="hireGroup" class="form-control" data-bind="options: $root.hireGroupDetails, optionsText: 'HireGroupDetailCodeName', optionsCaption: 'All', value: hireGroupDetailId, validationTooltip: hireGroupDetailId, event:{change:$root.onSelectedHireGroupDetail }"></select>
+                    <select id="hireGroup" class="form-control" data-bind="options: $root.hireGroupDetails, optionsText: 'HireGroupDetailCodeName',optionsValue:'HireGroupDetailId', optionsCaption: 'All', value: hireGroupDetailId, validationTooltip: hireGroupDetailId, event:{change:$root.onSelectedHireGroupDetail }"></select>
                 </div>
                 <label for="date" class="control-label h5  col-sm-1">From Date *</label>
                 <div class="col-md-3">
@@ -76,14 +76,15 @@
                     <td data-bind="text: hireGroupDetailCodeName"></td>
                     <td data-bind="text: formattedStartDate"></td>
                     <td data-bind="text: rate"></td>
+                    <td data-bind="text: revisionNumber"></td>
                     <td>
-                        <!-- ko template: { name: 'deleteActionAdditionalChargeTemplate' } -->
+                        <!-- ko template: { name: 'editActionAdditionalChargeTemplate' } -->
                         <!-- /ko -->
                     </td>
                 </tr>
             </script>
-            <script id="deleteActionAdditionalChargeTemplate" type="text/html">
-                <a href="#" data-bind="click: $root.onDeleteAdditionalCharge" title=@Cares.Web.Resources.Shared.Common.Delete><span class="glyphicon glyphicon-edit"></span></a>
+            <script id="editActionAdditionalChargeTemplate" type="text/html">
+                <a href="#" data-bind="click: $root.onEditAdditionalCharge" title=@Cares.Web.Resources.Shared.Common.Edit><span class="glyphicon glyphicon-edit"></span></a>
             </script></div>
     </div>
 

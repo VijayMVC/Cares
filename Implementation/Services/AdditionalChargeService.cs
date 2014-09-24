@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -96,9 +98,60 @@ namespace Cares.Implementation.Services
             {
                 additionalChargeTypeDbVersion.RecLastUpdatedBy = additionalChargeTypeRepository.LoggedInUserIdentity;
                 additionalChargeTypeDbVersion.RecLastUpdatedDt = DateTime.Now;
+                additionalChargeTypeDbVersion.IsEditable = additionalChargeType.IsEditable;
 
-                additionalChargeTypeRepository.SaveChanges();
+                foreach (var item in additionalChargeType.AdditionalCharges)
+                {
+                    if (
+                            additionalChargeTypeDbVersion.AdditionalCharges.All(
+                                x =>
+                                    x.AdditionalChargeId != item.AdditionalChargeId ||
+                                    item.AdditionalChargeId == 0))
+                    {
+                        item.IsActive = true;
+                        item.IsDeleted = item.IsPrivate = item.IsReadOnly = false;
+                        item.RecLastUpdatedBy = item.RecCreatedBy = additionalChargeTypeRepository.LoggedInUserIdentity;
+                        item.RecCreatedDt = item.RecLastUpdatedDt = DateTime.Now;
+                        item.RowVersion = 0;
+                        item.RevisionNumber = 0;
+                        item.UserDomainKey = additionalChargeTypeRepository.UserDomainKey;
+                        additionalChargeTypeDbVersion.AdditionalCharges.Add(item);
+                    }
+                    else
+                    {
+                        if (additionalChargeTypeDbVersion.AdditionalCharges.Any(
+                               x =>
+                                   x.AdditionalChargeId == item.AdditionalChargeId))
+                        {
+                            AdditionalCharge additionalChargeDbVesion =
+                                additionalChargeTypeDbVersion.AdditionalCharges.First(
+                                    x => x.AdditionalChargeId == item.AdditionalChargeId);
+                            if (additionalChargeDbVesion.HireGroupDetailId != item.HireGroupDetailId || additionalChargeDbVesion.StartDt != item.StartDt
+                                || additionalChargeDbVesion.AdditionalChargeRate != item.AdditionalChargeRate)
+                            {
+                                item.IsActive = true;
+                                item.IsDeleted = item.IsPrivate = item.IsReadOnly = false;
+                                item.RecLastUpdatedBy =
+                                    item.RecCreatedBy = additionalChargeTypeRepository.LoggedInUserIdentity;
+                                item.RecCreatedDt = item.RecLastUpdatedDt = DateTime.Now;
+                                item.RowVersion = 0;
+                                item.AdditionalChargeTypeId = additionalChargeType.AdditionalChargeTypeId;
+                                item.RevisionNumber = additionalChargeDbVesion.RevisionNumber + 1;
+                                item.AdditionalChargeId = 0;
+                                item.UserDomainKey = additionalChargeTypeRepository.UserDomainKey;
+                                additionalChargeRepository.Add(item);
+                                additionalChargeRepository.SaveChanges();
+                                additionalChargeDbVesion.ChildAdditionalChargeId = item.AdditionalChargeId;
+                            }
+                        }
+                    }
+                }
             }
+
+
+
+            additionalChargeTypeRepository.SaveChanges();
+
             return new AdditionalChargeType
             {
                 AdditionalChargeTypeId = additionalChargeType.AdditionalChargeTypeId,
@@ -125,11 +178,20 @@ namespace Cares.Implementation.Services
         /// </summary>
         /// <param name="additionalChargeTypeId"></param>
         /// <returns></returns>
-        public AdditionalChargeType FindById(long  additionalChargeTypeId)
+        public AdditionalChargeType FindById(long additionalChargeTypeId)
         {
             return additionalChargeTypeRepository.Find(additionalChargeTypeId);
         }
 
+        /// <summary>
+        /// Get Additional Charges By Addition Charge Type Id
+        /// </summary>
+        /// <param name="additionChargeTypeId"></param>
+        /// <returns></returns>
+        public IEnumerable<AdditionalCharge> GetAdditionalChargesByAdditionChargeTypeId(long additionChargeTypeId)
+        {
+            return additionalChargeRepository.GetAdditionalChargesByAdditionChargeTypeId(additionChargeTypeId);
+        }
         #endregion
     }
 }

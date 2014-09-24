@@ -72,13 +72,15 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
           // Unique key
           id = ko.observable(),
           //Hire Group Id
-          hireGroupDetailId = ko.observable().extend({ required: true }),
+          hireGroupDetailId = ko.observable(),
           //Hire Group Code Name
           hireGroupDetailCodeName = ko.observable(),
           //Start Date
           startDate = ko.observable().extend({ required: true }),
           //Rate
           rate = ko.observable().extend({ required: true, number: true }),
+          //Revision Number
+          revisionNumber = ko.observable().extend({ required: true, number: true }),
            //String valued formatted date
             formattedStartDate = ko.computed({
                 read: function () {
@@ -87,7 +89,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             }),
               // Errors
             errors = ko.validation.group({
-                hireGroupDetailId: hireGroupDetailId,
+                //hireGroupDetailId: hireGroupDetailId,
                 startDate: startDate,
                 rate: rate,
             }),
@@ -115,6 +117,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             hireGroupDetailCodeName: hireGroupDetailCodeName,
             startDate: startDate,
             formattedStartDate: formattedStartDate,
+            revisionNumber: revisionNumber,
             rate: rate,
             errors: errors,
             isValid: isValid,
@@ -134,6 +137,18 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         addChargeType.description(source.Description === null ? undefined : source.Description);
         addChargeType.isEditable(source.IsEditable === null ? undefined : source.IsEditable);
         return addChargeType;
+    };
+
+    //Convert Server To Client
+    var AdditionalChargeClientMapper = function (source) {
+        var addCharge = new AdditionalCharge();
+        addCharge.id(source.AdditionalChargeId === null ? undefined : source.AdditionalChargeId);
+        addCharge.hireGroupDetailCodeName(source.HireGroupDetailCodeName === null ? undefined : source.HireGroupDetailCodeName);
+        addCharge.hireGroupDetailId(source.HireGroupDetailId === null ? undefined : source.HireGroupDetailId);
+        addCharge.revisionNumber(source.RevisionNumber === null ? undefined : source.RevisionNumber);
+        addCharge.rate(source.AdditionalChargeRate === null ? undefined : source.AdditionalChargeRate);
+        addCharge.startDate(source.StartDt !== null ? moment(source.StartDt, ist.utcFormat).toDate() : undefined);
+        return addCharge;
     };
     //Convert Client To Server
     var AdditionalChargeTypeServerMapper = function (source) {
@@ -156,6 +171,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.AdditionalChargeId = item.id() === undefined ? 0 : item.id();
         result.HireGroupDetailId = item.hireGroupDetailId() === undefined ? null : item.hireGroupDetailId();
         result.AdditionalChargeRate = item.rate() === undefined ? null : item.rate();
+        result.revisionNumber = item.rate() === undefined ? null : item.rate();
         result.StartDt = item.startDate() === undefined || item.startDate() === null ? null : moment(item.startDate()).format(ist.utcFormat);
         return result;
     };
@@ -172,5 +188,6 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         AdditionalChargeTypeServerMapper: AdditionalChargeTypeServerMapper,
         AdditionalChargeServerMapper: AdditionalChargeServerMapper,
         AdditionalChrgServerMapperForId: AdditionalChrgServerMapperForId,
+        AdditionalChargeClientMapper: AdditionalChargeClientMapper,
     };
 });
