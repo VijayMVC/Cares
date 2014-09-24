@@ -13,7 +13,7 @@ namespace Cares.Repository.Repositories
     /// </summary>
     public class ServiceItemRepository : BaseRepository<ServiceItem>, IServiceItemRepository
     {
-         #region Constructor
+        #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>
@@ -33,7 +33,6 @@ namespace Cares.Repository.Repositories
             }
         }
         #endregion
-
         #region Public
         /// <summary>
         /// Get All Service item for User Domain Key
@@ -43,7 +42,13 @@ namespace Cares.Repository.Repositories
             return DbSet.Where(seviceItem => seviceItem.UserDomainKey == UserDomainKey).ToList();
         }
 
-
+        /// <summary>
+        /// Association check with service type before deletion of service type
+        /// </summary>
+        public bool IsServiceItemAssociatedWithServiceType(long serviceTypeId)
+        {
+           return DbSet.Count(serviceItem => serviceItem.ServiceTypeId == serviceTypeId) > 0;
+        }
 
         #endregion
     }

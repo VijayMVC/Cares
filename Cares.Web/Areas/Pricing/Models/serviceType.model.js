@@ -1,7 +1,7 @@
 ﻿define(["ko", "underscore", "underscore-ko"], function(ko) {
     
-       //Discount Type Detail
-    var discountTypeDetail = function (specifiedId, specifiedCode, specifiedName, specifieddescription) {
+     //Service Type Detail
+    var serviceTypeDetail = function (specifiedId, specifiedCode, specifiedName, specifieddescription) {
         var            
             id = ko.observable(specifiedId),
             code = ko.observable(specifiedCode).extend({ required: true }),
@@ -30,10 +30,10 @@
             // Convert to server
             convertToServerData = function () {
                 return {
-                    DiscountTypeId: id(),
-                    DiscountTypeName: name(),
-                    DiscountTypeCode: code(),
-                    DiscountTypeDescrition: description()
+                    ServiceTypeId: id(),
+                    ServiceTypeName: name(),
+                    ServiceTypeCode: code(),
+                    ServiceTypeDescription: description()
                 };
             };
         return {
@@ -51,22 +51,22 @@
         };
     };
     // server to client mapper
-    var discountTypeServertoClinetMapper = function (source) {
-        return discountTypeDetail.Create(source);
+    var serviceTypeServertoClinetMapper = function (source) {
+        return serviceTypeDetail.Create(source);
     };
     
-    //Discount Type Factory
-    discountTypeDetail.Create = function (source) {
-        return new discountTypeDetail(source.DiscountTypeId, source.DiscountTypeCode, source.DiscountTypeName, source.DiscountTypeDescrition);
+    // Service Type Factory
+    serviceTypeDetail.Create = function (source) {
+        return new serviceTypeDetail(source.ServiceTypeId, source.ServiceTypeCode, source.ServiceTypeName, source.ServiceTypeDescription);
     };
 
     //function to attain cancel button functionality 
-    discountTypeDetail.CreateFromClientModel = function (itemFromServer) {
-        return new discountTypeDetail(itemFromServer.id, itemFromServer.code, itemFromServer.name,
+    serviceTypeDetail.CreateFromClientModel = function (itemFromServer) {
+        return new serviceTypeDetail(itemFromServer.id, itemFromServer.code, itemFromServer.name,
             itemFromServer.description);
     };
     return {
-        DiscountTypeDetail: discountTypeDetail,
-        discountTypeServertoClinetMapper: discountTypeServertoClinetMapper,
+        ServiceTypeDetail: serviceTypeDetail,
+        serviceTypeServertoClinetMapper: serviceTypeServertoClinetMapper,
     };
 });

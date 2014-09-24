@@ -59,5 +59,13 @@ namespace Cares.Web.Areas.Pricing.Controllers
         {
             return View();
         }
+
+        /// <summary>
+        /// Servce Type
+        /// </summary>
+        public ActionResult ServiceType()
+        {
+            return View();
+        }
 	}
 }
