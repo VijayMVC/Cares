@@ -276,6 +276,25 @@ define("tariffType/tariffType.viewModel",
                         createTariffType();
                         showTariffTypeEditor();
                     },
+                     companyId = ko.computed(function () {
+                         if (addTariffType() !== undefined) {
+                             filteredDepartments.removeAll();
+                             _.each(departments(), function (item) {
+                                 if (item.CompanyId === addTariffType().companyId())
+                                     filteredDepartments.push(item);
+                             });
+                         }
+                     }, this),
+                         depId = ko.computed(function () {
+                             if (addTariffType() !== undefined) {
+                                 filteredOperations.removeAll();
+                                 _.each(operations(), function (item) {
+                                     if (item.DepartmentId === addTariffType().departmentId())
+                                         filteredOperations.push(item);
+                                 });
+                             }
+                         }, this),
+
                      //Edit Tariff Type
                     onEditTariffType = function (tariffType, e) {
                         selectedTariffTypeId(tariffType.tariffTypeId());

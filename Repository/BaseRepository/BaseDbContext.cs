@@ -19,7 +19,7 @@ namespace Cares.Repository.BaseRepository
         #endregion
 
         #region Protected
-   
+
 
         #endregion
 
@@ -84,7 +84,7 @@ namespace Cares.Repository.BaseRepository
         /// </summary>
         public DbSet<Menu> Menus { get; set; }
         #endregion
-        
+
 
         public DbSet<Employee> Employees { get; set; }
         /// <summary>
@@ -149,6 +149,10 @@ namespace Cares.Repository.BaseRepository
         /// Hire Group Up Grade Db Set
         /// </summary>
         public DbSet<HireGroupUpGrade> HireGroupUpGrades { get; set; }
+        /// <summary>
+        /// DiscountType DB Set
+        /// </summary>
+        public DbSet<DiscountType> DiscountTypes { get; set; }
 
         /// <summary>
         /// Vehicle Models Db Set
@@ -158,6 +162,12 @@ namespace Cares.Repository.BaseRepository
         /// Vehicle Category Db Set
         /// </summary>
         public DbSet<VehicleCategory> VehicleCategories { get; set; }
+
+        /// <summary>
+        /// Discount Sub Types Db Set
+        /// </summary>
+        public DbSet<DiscountSubType> DiscountSubTypes { get; set; }
+
         /// <summary>
         /// Vehicle Make Db Set
         /// </summary>
@@ -403,11 +413,21 @@ namespace Cares.Repository.BaseRepository
         /// Employee Job Progrss  Db Set
         /// </summary>
         public DbSet<EmpJobProg> EmpJobProgs { get; set; }
-        
+
         /// <summary>
         /// Additional Driver Charge Db Set
         /// </summary>
         public DbSet<AdditionalDriverCharge> AdditionalDriverCharges { get; set; }
+
+        /// <summary>
+        /// Additional Charges Db Set
+        /// </summary>
+        public DbSet<AdditionalCharge> AdditionalCharges { get; set; }
+
+        /// <summary>
+        /// Additional Charge Types
+        /// </summary>
+        public DbSet<AdditionalChargeType> AdditionalChargeTypes { get; set; }
 
         #endregion
     }

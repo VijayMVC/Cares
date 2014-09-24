@@ -159,6 +159,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EmpStatus.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\EmployeeManagement\JobType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JobType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\EmployeeManagement\JobType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JobType.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\FleetPool\FleetPool.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -244,6 +254,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>WorkPlaceType.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Pricing\DiscountSubType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DiscountSubType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Pricing\DiscountSubType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DiscountSubType.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Pricing\DiscountType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DiscountType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Pricing\DiscountType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DiscountType.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Tariff\InsuranceRate.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -324,6 +354,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Vehicle.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\AdditionalChargeService.cs" />
     <Compile Include="Services\AddressBaseDataService.cs" />
     <Compile Include="Services\AdditionalDriverService.cs" />
     <Compile Include="Services\BusinessPartnerBaseDataService.cs" />
@@ -334,6 +365,7 @@
     <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Services\BPRatingTypeService.cs" />
     <Compile Include="Services\BusinessLegalStatusService.cs" />
+    <Compile Include="Services\JobTypeService.cs" />
     <Compile Include="Services\InsuranceRateService.cs" />
     <Compile Include="Services\OperationsWorkPlaceService.cs" />
     <Compile Include="Services\PhoneService.cs" />
@@ -342,6 +374,8 @@
     <Compile Include="Services\DesignGradeService.cs" />
     <Compile Include="Services\EmpStatusService.cs" />
     <Compile Include="Services\DesignationService.cs" />
+    <Compile Include="Services\DiscountTypeService.cs" />
+    <Compile Include="Services\DiscountSubTypeService.cs" />
     <Compile Include="Services\SubRegionService.cs" />
     <Compile Include="Services\RegionService.cs" />
     <Compile Include="Services\ServiceRtService.cs" />
@@ -417,6 +451,14 @@
     <EmbeddedResource Include="Resources\EmployeeManagement\EmpStatus.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>EmpStatus.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\EmployeeManagement\JobType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>JobType.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\EmployeeManagement\JobType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>JobType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\FleetPool\FleetPool.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -494,6 +536,22 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>WorkPlaceType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Pricing\DiscountSubType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DiscountSubType.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Pricing\DiscountSubType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DiscountSubType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Pricing\DiscountType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DiscountType.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Pricing\DiscountType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DiscountType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tariff\InsuranceRate.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>InsuranceRate.ar.Designer.cs</LastGenOutput>
@@ -555,6 +613,7 @@
       <LastGenOutput>Vehicle.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\SSDT\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="'$(VisualStudioVersion)' == ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="'$(VisualStudioVersion)' != ''" />

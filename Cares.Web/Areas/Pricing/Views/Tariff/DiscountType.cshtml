@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = Cares.Web.Resources.Pricing.DiscountType.DiscountTypeLabel;
+}
+<div class="row" id="DiscountTypeBinding">
+
+    <div class="row " data-bind="visible: !isDiscountTypeEditorVisible()">
+        <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.Pricing.DiscountType.DiscountTypeLabel</h3>
+        <div class="header-toolsSection">
+            <a href="#" class="label label-default create-new-icon" data-bind="click: onCreateForm" title="@Cares.Web.Resources.Shared.Common.CreateNew">@Cares.Web.Resources.Shared.Common.New</a>
+            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title="@Cares.Web.Resources.Shared.Common.ShowFilter" style="display: none"></a>
+        </div>
+    </div>
+    <div class="row searchFilterSection" data-bind="visible: !isDiscountTypeEditorVisible() && filterSectionVisilble()" style="display: none">
+        <div class="well">
+            <form class="form-horizontal">
+                <div class="col-xs-3">
+                    <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Pricing.DiscountType.Search+">")" data-bind="value: searchFilter" />
+                </div>
+                <button type="submit" class="btn btn-success" data-bind="click: search">@Cares.Web.Resources.Shared.Common.Search</button>
+                <button type="submit" class="btn btn-default" data-bind="click:resetResuults">@Cares.Web.Resources.Shared.Common.Reset</button>
+                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click:hideFilterSection" title="@Cares.Web.Resources.Shared.Common.HideSection"></a>
+            </form>
+        </div>
+    </div>
+    <div class="row searchFilterResultSection" data-bind="visible: !isDiscountTypeEditorVisible()">
+        <div class="well">
+            <table id="OrgGroupTable" class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th class="DTcode"> <span id="1">@Cares.Web.Resources.Pricing.DiscountType.Code<span class="icon-up"></span></span></th>
+                        <th class="DTname"> <span id="2">@Cares.Web.Resources.Pricing.DiscountType.Name<span></span></span></th>
+                        <th class="DTDes"> <span>@Cares.Web.Resources.Pricing.DiscountType.Description<span></span></span></th>
+                        <th> <span></span></th>
+                        <th> <span></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- ko template: { name: 'WorkplaceTypeFilterResultTemplate' , foreach: discountTypes } -->
+                    <!-- /ko -->
+                </tbody>
+            </table>
+            <!-- ko with: pager -->
+            @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
+            <!-- /ko -->
+        </div>
+    </div>
+    <script id="deleteActionOrgGroupTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onDeleteItem" title="@Cares.Web.Resources.Shared.Common.Delete"><span class="glyphicon glyphicon-remove"></span></a>
+    </script>
+
+    <script id="editActionOrgRoupTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onEditItem" title="@Cares.Web.Resources.Shared.Common.Edit"><span class="glyphicon glyphicon-edit"></span></a>
+    </script>
+    <script id="WorkplaceTypeFilterResultTemplate" type="text/html">
+        <tr>
+            <td data-bind="text: code"></td>
+            <td data-bind="text: name"></td>
+            <td data-bind="text: description"></td>
+            <td>
+                <!-- ko template: { name: 'editActionOrgRoupTemplate' } -->
+                <!-- /ko -->
+            </td>
+            <td>
+                <!-- ko template: { name: 'deleteActionOrgGroupTemplate' } -->
+                <!-- /ko -->
+            </td>
+        </tr>
+    </script>
+    @Html.Partial("_DiscountTypeEditor")
+</div>
+<!-- ko stopBinding: true -->
+@Html.Partial("~/Areas/Common/Views/Shared/_ConfirmationDialog.cshtml")
+<!-- /ko -->
+@section inlinescripts
+{
+    <script type="text/javascript">
+        require(["discountType/discountType.view", "common/confirmation.view"]);
+    var ist = window.ist;
+    @{
+        <text>
+        ist.resourceText.DiscountTypeSuccessfullySavedMessage = '@Cares.Web.Resources.Pricing.DiscountType.DiscountTypeSuccessfullySavedMessage';
+        ist.resourceText.FailedToSaveDiscountTypeError = '@Cares.Web.Resources.Pricing.DiscountType.FailedToSaveDiscountTypeError';
+        ist.resourceText.FailedToLoadDiscountTypesError = '@Cares.Web.Resources.Pricing.DiscountType.FailedToLoadDiscountTypesError';
+        ist.resourceText.DiscountTypeSuccessfullyDeletedMessage = '@Cares.Web.Resources.Pricing.DiscountType.DiscountTypeSuccessfullyDeletedMessage';
+        ist.resourceText.FailedToDeleteDiscountTypeError = '@Cares.Web.Resources.Pricing.DiscountType.FailedToDeleteDiscountTypeError';
+        </text>
+       }
+    </script>
+
+}

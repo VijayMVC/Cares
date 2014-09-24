@@ -3,12 +3,12 @@
 namespace Cares.Models.DomainModels
 {
     /// <summary>
-    /// Additional Charge Model
+    /// Additional Charge Domain Model
     /// </summary>
     public class AdditionalCharge
     {
         #region Persisted Properties
-        
+
         /// <summary>
         /// Additional Charge ID
         /// </summary>
@@ -30,6 +30,11 @@ namespace Cares.Models.DomainModels
         public long? HireGroupDetailId { get; set; }
 
         /// <summary>
+        /// Start Date
+        /// </summary>
+        public DateTime StartDt { get; set; }
+
+        /// <summary>
         /// Additional Charge Rate
         /// </summary>
         public double? AdditionalChargeRate { get; set; }
@@ -39,11 +44,7 @@ namespace Cares.Models.DomainModels
         /// </summary>
         public long? RevisionNumber { get; set; }
 
-        /// <summary>
-        /// Start Date
-        /// </summary>
-        public DateTime StartDt { get; set; }
-
+        
         /// <summary>
         /// Row Version
         /// </summary>
@@ -104,7 +105,7 @@ namespace Cares.Models.DomainModels
         public virtual AdditionalCharge ChildAdditionalCharge { get; set; }
 
         /// <summary>
-        /// Hire Group Detaill
+        /// Hire Group Detail
         /// </summary>
         public virtual HireGroupDetail HireGroupDetail { get; set; }
 

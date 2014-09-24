@@ -188,6 +188,12 @@
 #serviceRateBinding #serviceRateEditor {
   margin-top: 15px;
 }
+#serviceRateBinding #serviceRateEditor .serviceRate {
+  width: 70px;
+}
+#serviceRateBinding #serviceRateEditor .startDate {
+  width: 90px;
+}
 #serviceRateBinding #serviceRateEditor .detailsContainer {
   width: 100%;
 }
@@ -249,6 +255,39 @@
   width: 100%;
 }
 #additionalDriverChargeBinding #additionalDriverChargeEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#additionalChargeBinding table thead tr .Code {
+  width: 18%;
+}
+#additionalChargeBinding table thead tr .Name {
+  width: 18%;
+}
+#additionalChargeBinding table thead tr .IsEditable {
+  width: 22%;
+}
+#additionalChargeBinding table thead tr .Description {
+  width: 18%;
+}
+#additionalChargeBinding #additionalChargeEditor {
+  margin-top: 15px;
+}
+#additionalChargeBinding #additionalChargeEditor .addToBtn {
+  float: right;
+  margin-right: 30px;
+}
+#additionalChargeBinding #additionalChargeEditor .additionalChargeWell {
+  margin-top: 30px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#additionalChargeBinding #additionalChargeEditor .detailsContainer {
+  width: 100%;
+}
+#additionalChargeBinding #additionalChargeEditor .detailsContainer .detailsHeaderSection {
   float: left;
   width: 85%;
   margin-bottom: 20px;
@@ -945,6 +984,75 @@
   margin-bottom: 20px;
   margin-top: 10px;
 }
+#DesignationBinding table thead tr .ttypesearchButton {
+  margin-left: 5px;
+}
+#DesignationBinding table thead tr .DesigCode {
+  width: 33%;
+}
+#DesignationBinding table thead tr .DesigName {
+  width: 33%;
+}
+#DesignationBinding table thead tr .DesigDes {
+  width: 33%;
+}
+#DesignationBinding #DesignationEditor {
+  margin-top: 15px;
+}
+#DesignationBinding #DesignationEditor .detailsContainer {
+  width: 100%;
+}
+#DesignationBinding #DesignationEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#JobTypeBinding table thead tr .ttypesearchButton {
+  margin-left: 5px;
+}
+#JobTypeBinding table thead tr .JTcode {
+  width: 33%;
+}
+#JobTypeBinding table thead tr .JTname {
+  width: 33%;
+}
+#JobTypeBinding table thead tr .JTdes {
+  width: 33%;
+}
+#JobTypeBinding #JobTypeEditor {
+  margin-top: 15px;
+}
+#JobTypeBinding #JobTypeEditor .detailsContainer {
+  width: 100%;
+}
+#JobTypeBinding #JobTypeEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#DiscountTypeBinding table thead tr .DTcode {
+  width: 33%;
+}
+#DiscountTypeBinding table thead tr .DTname {
+  width: 33%;
+}
+#DiscountTypeBinding table thead tr .DTDes {
+  width: 33%;
+}
+#DiscountTypeBinding #DiscountTypeEditor {
+  margin-top: 15px;
+}
+#DiscountTypeBinding #DiscountTypeEditor .detailsContainer {
+  width: 100%;
+}
+#DiscountTypeBinding #DiscountTypeEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
 .float-left {
   float: left;
 }
@@ -1039,3 +1147,4 @@
   margin: 0;
 }
 /* Twitter Typeahead */
+/*# sourceMappingURL=MainSite.css.map */

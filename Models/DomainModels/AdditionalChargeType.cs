@@ -4,12 +4,12 @@ using System.Collections.Generic;
 namespace Cares.Models.DomainModels
 {
     /// <summary>
-    /// Additional Charge Type Model
+    /// Additional Charge Type Domain Model
     /// </summary>
     public class AdditionalChargeType
     {
         #region Persisted Properties
-        
+
         /// <summary>
         /// Additional Charge Type ID
         /// </summary>
@@ -33,7 +33,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Additional Charge Key
         /// </summary>
-        public short? AdditionalChargeKey { get; set; }
+        public short AdditionalChargeKey { get; set; }
 
         /// <summary>
         /// Is Editable
@@ -95,24 +95,9 @@ namespace Cares.Models.DomainModels
         #region Reference Properties
 
         /// <summary>
-        /// Additional Charges
+        /// Child Additional Driver Charge
         /// </summary>
         public virtual ICollection<AdditionalCharge> AdditionalCharges { get; set; }
-
-        /// <summary>
-        /// Hire Group Detaill
-        /// </summary>
-        public virtual HireGroupDetail HireGroupDetail { get; set; }
-
-        /// <summary>
-        /// Nrt Charges
-        /// </summary>
-        public virtual ICollection<NrtCharge> NrtCharges { get; set; }
-
-        /// <summary>
-        /// Ra Additional Charges
-        /// </summary>
-        public virtual ICollection<RaAdditionalCharge> RaAdditionalCharges { get; set; }
 
         #endregion
     }

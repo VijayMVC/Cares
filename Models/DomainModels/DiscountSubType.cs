@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 
 namespace Cares.Models.DomainModels
 {
@@ -8,29 +9,29 @@ namespace Cares.Models.DomainModels
     public class DiscountSubType
     {
         #region Persisted Properties
-        
+
+        /// <summary>
+        /// Discount Type ID
+        /// </summary>
+        public short DiscountTypeId { get; set; }
+
         /// <summary>
         /// Discount Sub Type ID
         /// </summary>
         public short DiscountSubTypeId { get; set; }
 
         /// <summary>
-        /// Discount Type Id
-        /// </summary>
-        public short DiscountTypeId { get; set; }
-
-        /// <summary>
-        /// DiscountSubType Code
+        /// Discount Sub Type Code
         /// </summary>
         public string DiscountSubTypeCode { get; set; }
 
         /// <summary>
-        /// DiscountSubType Name
+        /// Discount Sub Type Name
         /// </summary>
         public string DiscountSubTypeName { get; set; }
 
         /// <summary>
-        /// DiscountSubType Description
+        /// Discount Sub Type Description
         /// </summary>
         public string DiscountSubTypeDescription { get; set; }
 
@@ -83,7 +84,8 @@ namespace Cares.Models.DomainModels
         /// User Domain Key
         /// </summary>
         public long UserDomainKey { get; set; }
-        
+
+
         #endregion
 
         #region Reference Properties
@@ -93,6 +95,7 @@ namespace Cares.Models.DomainModels
         /// </summary>
         public virtual DiscountType DiscountType { get; set; }
 
+       
         #endregion
     }
 }

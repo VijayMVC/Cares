@@ -1,9 +1,9 @@
 ﻿@{
-    ViewBag.Title = "";
+    ViewBag.Title = @Cares.Web.Resources.Tariff.AdditionalDriverChrg.AdditionalDriverCharge;
 }
 <div class="row" id="additionalDriverChargeBinding">
     <div class="row " data-bind="visible: !isAdditionalDriverChrgEditorVisible()">
-        <h3 class="page-header float-left pageHeaderSection">Additional Driver Charges</h3>
+        <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.Tariff.AdditionalDriverChrg.AdditionalDriverCharges</h3>
         <div class="header-toolsSection">
             <a href="#" class="label label-default create-new-icon" data-bind="click: createAddDriverChrg" title=''>@Cares.Web.Resources.Shared.Common.New</a>
             <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title='@Cares.Web.Resources.Shared.Common.ShowFilter' style="display: none"></a>
@@ -13,10 +13,10 @@
         <div class=" well">
             <form class="form-horizontal" data-bind="submit: search">
                 <div class="col-xs-3">
-                    <select class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '&lt;' + '@Cares.Web.Resources.Tariff.ServiceRate.Operation' + '&gt;', value: operationFilter"></select>
+                    <select class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '&lt;' + '@Cares.Web.Resources.Tariff.AdditionalDriverChrg.Operation' + '&gt;', value: operationFilter"></select>
                 </div>
                 <div class="col-xs-3">
-                    <select class="form-control" data-bind="options: $root.tariffTypes, optionsText: 'TariffTypeCodeName', optionsValue: 'TariffTypeId', optionsCaption: '&lt;' + '@Cares.Web.Resources.Tariff.ServiceRate.TariffType' + '&gt;', value: tariffTypeFilter"></select>
+                    <select class="form-control" data-bind="options: $root.tariffTypes, optionsText: 'TariffTypeCodeName', optionsValue: 'TariffTypeId', optionsCaption: '&lt;' + '@Cares.Web.Resources.Tariff.AdditionalDriverChrg.TariffType' + '&gt;', value: tariffTypeFilter"></select>
                 </div>
                 <button type="submit" class="btn btn-success" data-bind="click: search">@Cares.Web.Resources.Shared.Common.Search</button>
                 <button type="submit" class="btn btn-default" data-bind="click: reset">@Cares.Web.Resources.Shared.Common.Reset</button>
@@ -29,12 +29,12 @@
             <table id="additionalDriverChargeTable" class="table table-condensed">
                 <thead>
                     <tr>
-                        <th class="code"> <span id="1">Tariff Type Code<span class="icon-up"></span></span></th>
-                        <th class="name"> <span id="2">Tariff Type Name<span></span></span></th>
-                        <th class="name"> <span id="2">Additional Driver Rate<span></span></span></th>
-                        <th class="operation"> <span>Company <span></span></span></th>
-                        <th class="tariffType"> <span>Operation<span></span></span></th>
-                        <th class="startDate">Effective Date<span></span></></th>
+                        <th class="code"> <span id="1">@Cares.Web.Resources.Tariff.AdditionalDriverChrg.TariffTypeCode<span class="icon-up"></span></span></th>
+                        <th class="name"> <span id="2">@Cares.Web.Resources.Tariff.AdditionalDriverChrg.TariffTypeName<span></span></span></th>
+                        <th class="name"> <span id="2">@Cares.Web.Resources.Tariff.AdditionalDriverChrg.AdditionalDriverRate<span></span></span></th>
+                        <th class="operation"> <span>@Cares.Web.Resources.Tariff.AdditionalDriverChrg.Company<span></span></span></th>
+                        <th class="tariffType"> <span>@Cares.Web.Resources.Tariff.AdditionalDriverChrg.Operation<span></span></span></th>
+                        <th class="startDate">@Cares.Web.Resources.Tariff.AdditionalDriverChrg.EffectiveDate<span></span></></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -80,5 +80,15 @@
 {
     <script type="text/javascript">
         require(["additionalDriverCharge/additionalDriverCharge.view", "common/confirmation.view"]);
+        var ist = window.ist;
+        @{
+            <text>
+        ist.resourceText.additionalDriverChargeLoadFailedMsg = '@Cares.Web.Resources.Tariff.AdditionalDriverChrg.AdditionalDriverChargeLoadFailedMsg';
+        ist.resourceText.loadBaseDataFailedMsg = '@Cares.Web.Resources.Tariff.AdditionalDriverChrg.loadBaseDataFailedMsg';
+        ist.resourceText.loadAddDriverChargeDetailFailedMsg = '@Cares.Web.Resources.Tariff.AdditionalDriverChrg.LoadAddDriverChargeDetailFailedMsg';
+        ist.resourceText.additionalDriverChargeAddSuccessMsg = '@Cares.Web.Resources.Tariff.AdditionalDriverChrg.AdditionalDriverChargeAddSuccessMsg';
+        ist.resourceText.additionalDriverChargeAddFailedMsg = '@Cares.Web.Resources.Tariff.AdditionalDriverChrg.AdditionalDriverChargeAddFailedMsg';
+        </text>
+        }
     </script>
 }

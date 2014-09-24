@@ -28,6 +28,7 @@ namespace Cares.Implementation.Services
         private readonly IAreaRepository areaRepository;
         private readonly IPhoneTypeRepository phoneTypeRepository;
         private readonly IPhoneRepository phoneRepository;
+        private readonly IAddressRepository addressRepository;
 
         /// <summary>
         /// Updates the db instance with user data for add/update operation
@@ -76,13 +77,14 @@ namespace Cares.Implementation.Services
                     RecCreatedBy = workLocationRepository.LoggedInUserIdentity,
                     RecCreatedDt = DateTime.Now,
                     RecLastUpdatedDt = DateTime.Now,
-                    RecLastUpdatedBy = workLocationRepository.LoggedInUserIdentity
+                    RecLastUpdatedBy = workLocationRepository.LoggedInUserIdentity,
+                    UserDomainKey = 1
                 };
                 dbvWorkLocation.RecCreatedBy = dbvWorkLocation.RecLastUpdatedBy = workLocationRepository.LoggedInUserIdentity;
 
                 dbvWorkLocation.RecCreatedDt =  DateTime.Now;
                 dbvWorkLocation.RecLastUpdatedDt = DateTime.Now;
-                dbvWorkLocation.UserDomainKey = upDatedWorkLocation.Address.UserDomainKey = 1;
+                dbvWorkLocation.UserDomainKey = 1;
                 dbvWorkLocation.Address.AddressTypeId = 1;
                 dbvWorkLocation.CompanyId = upDatedWorkLocation.CompanyId;
                 dbvWorkLocation.WorkLocationCode = upDatedWorkLocation.WorkLocationCode;
@@ -113,7 +115,7 @@ namespace Cares.Implementation.Services
         public WorkLocationService(IWorkLocationRepository workLocationRepository, ICompanyRepository companyRepository,
             ICountryRepository countryRepository,
             IRegionRepository regionRepository, ISubRegionRepository subRegionRepository, ICityRepository cityRepository,
-            IAreaRepository areaRepository, IPhoneTypeRepository phoneTypeRepository, IPhoneRepository phoneRepository)
+            IAreaRepository areaRepository, IPhoneTypeRepository phoneTypeRepository, IPhoneRepository phoneRepository, IAddressRepository addressRepository)
         {
             this.workLocationRepository = workLocationRepository;
             this.companyRepository = companyRepository;
@@ -124,6 +126,7 @@ namespace Cares.Implementation.Services
             this.areaRepository = areaRepository;
             this.phoneTypeRepository = phoneTypeRepository;
             this.phoneRepository = phoneRepository;
+            this.addressRepository = addressRepository;
         }
 
         #endregion
@@ -168,6 +171,7 @@ namespace Cares.Implementation.Services
             WorkLocation dBworkLocation = workLocationRepository.Find(workLocationId);
             if (dBworkLocation != null)
             {
+                addressRepository.Delete(dBworkLocation.Address);
                 workLocationRepository.Delete(dBworkLocation);
                 workLocationRepository.SaveChanges();
             }

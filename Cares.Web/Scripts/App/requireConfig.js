@@ -18,6 +18,7 @@
             "insuranceRate": "/Areas/Pricing/Scripts",
             "serviceRate": "/Areas/Pricing/Scripts",
             "additionalDriverCharge": "/Areas/Pricing/Scripts",
+            "additionalCharge": "/Areas/Pricing/Scripts",
             "rentalAgreement": "/Areas/RentalAgreement/Scripts",
             "Organization": "/Areas/Organization/Scripts",
             "company": "/Areas/Organization/Scripts",
@@ -34,11 +35,12 @@
             "area": "/Areas/GeographicalHierarchy/Scripts",
             "empStatus": "/Areas/EmployeeManagement/Scripts",
             "designGrade": "/Areas/EmployeeManagement/Scripts",
-            "designation": "/Areas/EmployeeManagement/Scripts"
-            
+            "designation": "/Areas/EmployeeManagement/Scripts",
+            "jobType": "/Areas/EmployeeManagement/Scripts",
+            "discountType": "/Areas/Pricing/Scripts"
         }
     });
-
+    
     function defineThirdPartyModules() {
         // These are already loaded via bundles. 
         // We define them and put them in the root object.

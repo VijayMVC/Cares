@@ -133,6 +133,8 @@
     <Compile Include="BaseRepository\PropertyReference.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AdditionalChargeRepository.cs" />
+    <Compile Include="Repositories\AdditionalChargeTypeRepository.cs" />
     <Compile Include="Repositories\AdditionalDriverChargeRepository.cs" />
     <Compile Include="Repositories\AddressRepository.cs" />
     <Compile Include="Repositories\AddressTypeRepository.cs" />
@@ -160,6 +162,8 @@
     <Compile Include="Repositories\CountryRepository.cs" />
     <Compile Include="Repositories\DepartmentRepository.cs" />
     <Compile Include="Repositories\DesignationRepository.cs" />
+    <Compile Include="Repositories\DiscountSubTypeRepository.cs" />
+    <Compile Include="Repositories\DiscountTypeRepository.cs" />
     <Compile Include="Repositories\EmpAuthOperationsWorkplaceRepository.cs" />
     <Compile Include="Repositories\EmpDocsInfoRepository.cs" />
     <Compile Include="Repositories\EmpJobInfoRepository.cs" />

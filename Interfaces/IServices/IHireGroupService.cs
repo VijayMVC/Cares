@@ -46,14 +46,14 @@ namespace Cares.Interfaces.IServices
         /// <summary>
         /// Add Hire Group
         /// </summary>
-        /// <param name="request"></param>
-        HireGroup AddHireGroup(HireGroupAddRequest request);
+        /// <param name="hireGroup"></param>
+        HireGroup AddHireGroup(HireGroup hireGroup);
        
         /// <summary>
         /// Update Hire Group
         /// </summary>
-        /// <param name="request"></param>
-        HireGroup UpdateHireGroup(HireGroupAddRequest request);
+        /// <param name="hireGroup"></param>
+        HireGroup UpdateHireGroup(HireGroup hireGroup);
         
         /// <summary>
         /// Get Hire Group Deatil Data By id

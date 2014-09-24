@@ -22,6 +22,8 @@ define("serviceRate/serviceRate.viewModel",
                     operations = ko.observableArray([]),
                     //Tariff Types
                     tariffTypes = ko.observableArray([]),
+                    //Filtered Tariff Types
+                    filteredTariffTypes = ko.observableArray([]),
                     //Service Rate Main Array
                     serviceRtMains = ko.observableArray([]),
                      //Service Rates
@@ -160,6 +162,7 @@ define("serviceRate/serviceRate.viewModel",
                     },
                       //Create Service Rate
                     createServiceRate = function () {
+                        filteredTariffTypes.removeAll();
                         var serviceRtMain = new model.ServiceRtMain();
                         // Select the newly added Service Rate
                         selectedServiceRtMain(serviceRtMain);
@@ -231,8 +234,18 @@ define("serviceRate/serviceRate.viewModel",
                             }
                         });
                     },
+                     tariffType = ko.computed(function () {
+                         if (selectedServiceRtMain() !== undefined) {
+                             //tariffTypes.removeAll();
+                             _.each(tariffTypes(), function (item) {
+                                 if (item.OperationId === selectedServiceRtMain().operationId())
+                                     filteredTariffTypes.push(item);
+                             });
+                         }
+                     }, this),
                       //Edit Service Rate
                     onEditServiceRate = function (serviceRt, e) {
+                        filteredTariffTypes.removeAll();
                         selectedServiceRtMain(serviceRt);
                         //selectedServiceRtMainCopy(model.InsuranceRtMainCopier(serviceRt));
                         getServiceRateItems(serviceRt);
@@ -317,6 +330,7 @@ define("serviceRate/serviceRate.viewModel",
                     serviceRtItems: serviceRtItems,
                     operations: operations,
                     tariffTypes: tariffTypes,
+                    filteredTariffTypes: filteredTariffTypes,
                     //Filters
                     operationFilter: operationFilter,
                     tariffTypeFilter: tariffTypeFilter,

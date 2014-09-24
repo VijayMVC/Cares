@@ -13,9 +13,13 @@ namespace Cares.Interfaces.Repository
         bool IsEmpJobInfoAssociatedWithDesignGrade(long designGradeId);
 
         /// <summary>
-        /// To check the asssociation of designation and emp job info 
+        /// To check the asssociation of Designation and emp job info 
         /// </summary>
         bool IsEmpJobInfoAssociatedWithDesignation(long designationId);
 
+        /// <summary>
+        /// To check the asssociation of Job Type and emp job info 
+        /// </summary>
+        bool IsEmpJobInfoAssociatedWithJobType(long jobTypeId);
     }
 }

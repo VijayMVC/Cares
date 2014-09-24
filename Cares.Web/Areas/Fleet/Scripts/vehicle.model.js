@@ -494,7 +494,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             errors = ko.validation.group({
                 coverageLimit: coverageLimit,
                 premium: premium,
-                insuredValue: insuredValue
+                insuredValue: insuredValue,
+                insuranceTypeId: insuranceTypeId
             }),
             // Is Valid
             isValid = ko.computed(function () {
@@ -1008,7 +1009,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.InsuredValue = source.insuredValue() === undefined ? null : source.insuredValue();
         result.InsuredFrom = source.insuredFrom() === undefined ? null : source.insuredFrom();
         result.BPMainId = source.bPMainId() === undefined ? null : source.bPMainId();
-        result.BPMainInsuranceTypeIdId = source.insuranceTypeId() === undefined ? null : source.insuranceTypeId();
+        result.InsuranceTypeId = source.insuranceTypeId() === undefined ? null : source.insuranceTypeId();
 
         return result;
     };
@@ -1025,7 +1026,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         vehicleInsuranceInfo.insuredValue(source.InsuredValue === null ? undefined : source.InsuredValue);
         vehicleInsuranceInfo.insuredFrom(source.InsuredFrom === null ? undefined : source.InsuredFrom);
         vehicleInsuranceInfo.bPMainId(source.BPMainId === null ? undefined : source.BPMainId);
-        vehicleInsuranceInfo.insuranceTypeId(source.BPMainInsuranceTypeIdId === null ? undefined : source.BPMainInsuranceTypeIdId);
+        vehicleInsuranceInfo.insuranceTypeId(source.InsuranceTypeId === null ? undefined : source.InsuranceTypeId);
 
         return vehicleInsuranceInfo;
     };

@@ -225,10 +225,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
+    <Compile Include="Areas\Api\Controllers\AdditionalChargeBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\AdditionalChargeController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeDetailController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessSegmentController.cs" />
+    <Compile Include="Areas\Api\Controllers\JobTypeController.cs" />
     <Compile Include="Areas\Api\Controllers\CompanyBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Api\Controllers\CityBaseController.cs" />
@@ -238,6 +241,9 @@
     <Compile Include="Areas\Api\Controllers\DesignGradeController.cs" />
     <Compile Include="Areas\Api\Controllers\EmployeeStatusController.cs" />
     <Compile Include="Areas\Api\Controllers\DesignationController.cs" />
+    <Compile Include="Areas\Api\Controllers\DiscountTypeController.cs" />
+    <Compile Include="Areas\Api\Controllers\DiscountSubTypeBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\DiscountSubTypeController.cs" />
     <Compile Include="Areas\Api\Controllers\SubRegionController.cs" />
     <Compile Include="Areas\Api\Controllers\SubRegionBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\RegionBaseController.cs" />
@@ -316,9 +322,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\CultureHelper.cs" />
+    <Compile Include="ModelMappers\AdditionalChargeMapper.cs" />
     <Compile Include="ModelMappers\AdditionalDriverChargeMapper.cs" />
     <Compile Include="ModelMappers\DesigGradeMapper.cs" />
     <Compile Include="ModelMappers\DesignationMapper.cs" />
+    <Compile Include="ModelMappers\DiscountSubTypeMapper.cs" />
+    <Compile Include="ModelMappers\DiscountTypeMapper.cs" />
     <Compile Include="ModelMappers\EmpStatusMapper.cs" />
     <Compile Include="ModelMappers\InsuranceRateMapper.cs" />
     <Compile Include="ModelMappers\InsuranceTypeMapper.cs" />
@@ -330,6 +339,10 @@
     <Compile Include="ModelMappers\WorkLocationMapper.cs" />
     <Compile Include="ModelMappers\WorkplaceMapper.cs" />
     <Compile Include="ModelMappers\WorkplaceTypeMapper.cs" />
+    <Compile Include="Models\AdditionalChargeBaseResponse.cs" />
+    <Compile Include="Models\AdditionalChargecs.cs" />
+    <Compile Include="Models\AdditionalChargeSearchResponse.cs" />
+    <Compile Include="Models\AdditionalChargeType.cs" />
     <Compile Include="Models\AdditionalDriverCharge.cs" />
     <Compile Include="Models\AdditionalDriverChargeBaseResponse.cs" />
     <Compile Include="Models\AdditionalDriverChargeSearchContent.cs" />
@@ -351,6 +364,12 @@
     <Compile Include="Models\DesignGrade.cs" />
     <Compile Include="Models\DesignGradeSearchRequestResponse.cs" />
     <Compile Include="Models\DesignationDropDown.cs" />
+    <Compile Include="Models\DiscountSubType.cs" />
+    <Compile Include="Models\DiscountSubTypeBaseDataResponse.cs" />
+    <Compile Include="Models\DiscountSubTypeSearchRequestResponse.cs" />
+    <Compile Include="Models\DiscountType.cs" />
+    <Compile Include="Models\DiscountTypeDropDown.cs" />
+    <Compile Include="Models\DiscountTypeSearchRequestResponse.cs" />
     <Compile Include="Models\EmpAuthOperationsWorkplace.cs" />
     <Compile Include="Models\EmpDocsInfo.cs" />
     <Compile Include="Models\EmpJobInfo.cs" />
@@ -364,8 +383,11 @@
     <Compile Include="Models\EmpStatusDropDown.cs" />
     <Compile Include="Models\FleetPoolDropDown.cs" />
     <Compile Include="Models\FuelTypeDropDown.cs" />
+    <Compile Include="Models\HireGroupDetailForAddtionalCharge.cs" />
     <Compile Include="Models\InsuranceTypeDropDown.cs" />
+    <Compile Include="Models\JobType.cs" />
     <Compile Include="Models\JobTypeDropDown.cs" />
+    <Compile Include="Models\JobTypeSearchRequestResponse.cs" />
     <Compile Include="Models\LicenseTypeDropDown.cs" />
     <Compile Include="Models\MaintenanceTypeDropDown.cs" />
     <Compile Include="Models\OperationSearchResponse.cs" />
@@ -586,6 +608,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Employee.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\EmployeeManagement\JobType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JobType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\EmployeeManagement\JobType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JobType.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\FleetPool\FleetPool.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -716,6 +748,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>WorkplaceType.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Pricing\DiscountSubType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DiscountSubType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Pricing\DiscountSubType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DiscountSubType.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Pricing\DiscountType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DiscountType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Pricing\DiscountType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DiscountType.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Shared\Common.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -735,6 +787,16 @@
       <DependentUpon>Product.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Tariff\AdditionalDriverChrg.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdditionalDriverChrg.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tariff\AdditionalDriverChrg.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdditionalDriverChrg.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Tariff\HireGroup.ar.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -810,6 +872,10 @@
     <Content Include="Areas\Common\Scripts\confirmation.viewModel.js" />
     <Content Include="Areas\Common\Scripts\clientSidePagination.js" />
     <Content Include="Areas\Common\Scripts\pagination.js" />
+    <Content Include="Areas\EmployeeManagement\Scripts\jobType.dataservice.js" />
+    <Content Include="Areas\EmployeeManagement\Scripts\jobType.model.js" />
+    <Content Include="Areas\EmployeeManagement\Scripts\jobType.view.js" />
+    <Content Include="Areas\EmployeeManagement\Scripts\jobType.viewModel.js" />
     <Content Include="Areas\EmployeeManagement\Scripts\employee.dataservice.js" />
     <Content Include="Areas\EmployeeManagement\Scripts\employee.model.js" />
     <Content Include="Areas\EmployeeManagement\Scripts\employee.view.js" />
@@ -887,10 +953,18 @@
     <Content Include="Areas\Organization\Scripts\workplaceType.view.js" />
     <Content Include="Areas\Organization\Scripts\workplaceType.viewModel.js" />
     <Content Include="Areas\Pricing\Scripts\additionalDriverCharge.dataservice.js" />
+    <Content Include="Areas\Pricing\Scripts\additionalCharge.model.js" />
+    <Content Include="Areas\Pricing\Scripts\additionalCharge.viewModel.js" />
+    <Content Include="Areas\Pricing\Scripts\additionalCharge.dataservice.js" />
+    <Content Include="Areas\Pricing\Scripts\discountType.dataservice.js" />
+    <Content Include="Areas\Pricing\Scripts\discountType.model.js" />
+    <Content Include="Areas\Pricing\Scripts\discountType.view.js" />
+    <Content Include="Areas\Pricing\Scripts\discountType.viewModel.js" />
     <Content Include="Areas\Pricing\Scripts\serviceRate.dataservice.js" />
     <Content Include="Areas\Pricing\Scripts\additionalDriverCharge.model.js" />
     <Content Include="Areas\Pricing\Scripts\serviceRate.model.js" />
     <Content Include="Areas\Pricing\Scripts\additionalDriverCharge.view.js" />
+    <Content Include="Areas\Pricing\Scripts\additionalCharge.view.js" />
     <Content Include="Areas\Pricing\Scripts\serviceRate.view.js" />
     <Content Include="Areas\Pricing\Scripts\additionalDriverCharge.viewModel.js" />
     <Content Include="Areas\Pricing\Scripts\serviceRate.viewModel.js" />
@@ -962,6 +1036,12 @@
     <Content Include="Content\DesignationGrade.min.css">
       <DependentUpon>DesignationGrade.css</DependentUpon>
     </Content>
+    <Content Include="Content\DiscountType.css">
+      <DependentUpon>DiscountType.less</DependentUpon>
+    </Content>
+    <Content Include="Content\DiscountType.min.css">
+      <DependentUpon>DiscountType.css</DependentUpon>
+    </Content>
     <Content Include="Content\EmployeeManagement.css">
       <DependentUpon>EmployeeManagement.less</DependentUpon>
     </Content>
@@ -989,6 +1069,12 @@
     <Content Include="Content\Images\delete.png" />
     <Content Include="Content\Images\edit.png" />
     <Content Include="Content\Images\spinner.gif" />
+    <Content Include="Content\JobType.css">
+      <DependentUpon>JobType.less</DependentUpon>
+    </Content>
+    <Content Include="Content\JobType.min.css">
+      <DependentUpon>JobType.css</DependentUpon>
+    </Content>
     <Content Include="Content\jquery-ui-1.11.0.min.css" />
     <Content Include="Content\MainSite.css">
       <DependentUpon>MainSite.less</DependentUpon>
@@ -1154,6 +1240,12 @@
     </Content>
     <Content Include="Content\OrgGroup.min.css">
       <DependentUpon>OrgGroup.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Designation.css">
+      <DependentUpon>Designation.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Designation.min.css">
+      <DependentUpon>Designation.css</DependentUpon>
     </Content>
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
@@ -1691,6 +1783,24 @@
     </Content>
     <Content Include="Areas\EmployeeManagement\Views\DesignationGrade\Designation.cshtml" />
     <Content Include="Areas\EmployeeManagement\Views\DesignationGrade\_DesignationEditor.cshtml" />
+    <Content Include="Content\Designation.less" />
+    <Content Include="Content\Designation.css.map">
+      <DependentUpon>Designation.css</DependentUpon>
+    </Content>
+    <Content Include="Areas\EmployeeManagement\Views\DesignationGrade\JobType.cshtml" />
+    <Content Include="Areas\EmployeeManagement\Views\DesignationGrade\_JobTypeEditor.cshtml" />
+    <Content Include="Content\JobType.less" />
+    <Content Include="Content\JobType.css.map">
+      <DependentUpon>JobType.css</DependentUpon>
+    </Content>
+    <Content Include="Areas\Pricing\Views\Tariff\AdditionalCharge.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\_AddtionalChargeEditor.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\DiscountType.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\_DiscountTypeEditor.cshtml" />
+    <Content Include="Content\DiscountType.less" />
+    <Content Include="Content\DiscountType.css.map">
+      <DependentUpon>DiscountType.css</DependentUpon>
+    </Content>
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
@@ -1914,6 +2024,14 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Employee.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\EmployeeManagement\JobType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>JobType.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\EmployeeManagement\JobType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>JobType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\FleetPool\FleetPool.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>FleetPool.ar.Designer.cs</LastGenOutput>
@@ -2020,6 +2138,22 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>WorkplaceType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Pricing\DiscountSubType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DiscountSubType.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Pricing\DiscountSubType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DiscountSubType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Pricing\DiscountType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DiscountType.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Pricing\DiscountType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DiscountType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Shared\Common.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Common.ar.Designer.cs</LastGenOutput>
@@ -2035,6 +2169,14 @@
     <EmbeddedResource Include="Resources\Products\Product.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Product.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tariff\AdditionalDriverChrg.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AdditionalDriverChrg.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tariff\AdditionalDriverChrg.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AdditionalDriverChrg.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tariff\HireGroup.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
