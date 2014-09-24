@@ -1,16 +1,16 @@
 ﻿@{
     ViewBag.Title = Cares.Web.Resources.Pricing.DiscountType.DiscountTypeLabel;
 }
-<div class="row" id="SubRegionBinding">
+<div class="row" id="DiscountTypeBinding">
 
-    <div class="row " data-bind="visible: !isSubRegionEditorVisible()">
-        <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.GeographicalHierarchy.SubRegion.SubRegionLabel</h3>
+    <div class="row " data-bind="visible: !isDiscountTypeEditorVisible()">
+        <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.Pricing.DiscountType.DiscountTypeLabel</h3>
         <div class="header-toolsSection">
             <a href="#" class="label label-default create-new-icon" data-bind="click: onCreateForm" title="@Cares.Web.Resources.Shared.Common.CreateNew">@Cares.Web.Resources.Shared.Common.New</a>
             <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title="@Cares.Web.Resources.Shared.Common.ShowFilter" style="display: none"></a>
         </div>
     </div>
-    <div class="row searchFilterSection" data-bind="visible: !isSubRegionEditorVisible() && filterSectionVisilble()" style="display: none">
+    <div class="row searchFilterSection" data-bind="visible: !isDiscountTypeEditorVisible() && filterSectionVisilble()" style="display: none">
         <div class="well">
             <form class="form-horizontal">
                 <div class="col-xs-3">
@@ -22,20 +22,20 @@
             </form>
         </div>
     </div>
-    <div class="row searchFilterResultSection" data-bind="visible: !isSubRegionEditorVisible()">
+    <div class="row searchFilterResultSection" data-bind="visible: !isDiscountTypeEditorVisible()">
         <div class="well">
             <table id="OrgGroupTable" class="table table-condensed">
                 <thead>
                     <tr>
-                        <th class="SRcode"> <span id="1">@Cares.Web.Resources.Pricing.DiscountType.Code<span class="icon-up"></span></span></th>
-                        <th class="SRname"> <span id="2">@Cares.Web.Resources.Pricing.DiscountType.Name<span></span></span></th>
-                        <th class="SRDes"> <span id="3">@Cares.Web.Resources.Pricing.DiscountType.Description<span></span></span></th>
+                        <th class="DTcode"> <span id="1">@Cares.Web.Resources.Pricing.DiscountType.Code<span class="icon-up"></span></span></th>
+                        <th class="DTname"> <span id="2">@Cares.Web.Resources.Pricing.DiscountType.Name<span></span></span></th>
+                        <th class="DTDes"> <span>@Cares.Web.Resources.Pricing.DiscountType.Description<span></span></span></th>
                         <th> <span></span></th>
                         <th> <span></span></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- ko template: { name: 'WorkplaceTypeFilterResultTemplate' , foreach: subRegions } -->
+                    <!-- ko template: { name: 'WorkplaceTypeFilterResultTemplate' , foreach: discountTypes } -->
                     <!-- /ko -->
                 </tbody>
             </table>
@@ -78,12 +78,11 @@
     var ist = window.ist;
     @{
         <text>
-        ist.resourceText.SubRegionSaveSuccessMessage = '@Cares.Web.Resources.GeographicalHierarchy.SubRegion.SubRegionSaveSuccessMessage';
-        ist.resourceText.SubRegionSaveFailError = '@Cares.Web.Resources.GeographicalHierarchy.SubRegion.SubRegionSaveFailError';
-        ist.resourceText.SubRegionLoadFailError = '@Cares.Web.Resources.GeographicalHierarchy.SubRegion.SubRegionLoadFailError';
-        ist.resourceText.SubRegionDeleteSuccessMessage = '@Cares.Web.Resources.GeographicalHierarchy.SubRegion.SubRegionDeleteSuccessMessage';
-        ist.resourceText.SubRegionDeleteFailError = '@Cares.Web.Resources.GeographicalHierarchy.SubRegion.SubRegionDeleteFailError';
-        ist.resourceText.SubRegionBaseDataLoadFailError = '@Cares.Web.Resources.GeographicalHierarchy.SubRegion.SubRegionBaseDataLoadFailError';
+        ist.resourceText.DiscountTypeSuccessfullySavedMessage = '@Cares.Web.Resources.Pricing.DiscountType.DiscountTypeSuccessfullySavedMessage';
+        ist.resourceText.FailedToSaveDiscountTypeError = '@Cares.Web.Resources.Pricing.DiscountType.FailedToSaveDiscountTypeError';
+        ist.resourceText.FailedToLoadDiscountTypesError = '@Cares.Web.Resources.Pricing.DiscountType.FailedToLoadDiscountTypesError';
+        ist.resourceText.DiscountTypeSuccessfullyDeletedMessage = '@Cares.Web.Resources.Pricing.DiscountType.DiscountTypeSuccessfullyDeletedMessage';
+        ist.resourceText.FailedToDeleteDiscountTypeError = '@Cares.Web.Resources.Pricing.DiscountType.FailedToDeleteDiscountTypeError';
         </text>
        }
     </script>

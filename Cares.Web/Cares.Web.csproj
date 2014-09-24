@@ -1036,6 +1036,12 @@
     <Content Include="Content\DesignationGrade.min.css">
       <DependentUpon>DesignationGrade.css</DependentUpon>
     </Content>
+    <Content Include="Content\DiscountType.css">
+      <DependentUpon>DiscountType.less</DependentUpon>
+    </Content>
+    <Content Include="Content\DiscountType.min.css">
+      <DependentUpon>DiscountType.css</DependentUpon>
+    </Content>
     <Content Include="Content\EmployeeManagement.css">
       <DependentUpon>EmployeeManagement.less</DependentUpon>
     </Content>
@@ -1791,6 +1797,10 @@
     <Content Include="Areas\Pricing\Views\Tariff\_AddtionalChargeEditor.cshtml" />
     <Content Include="Areas\Pricing\Views\Tariff\DiscountType.cshtml" />
     <Content Include="Areas\Pricing\Views\Tariff\_DiscountTypeEditor.cshtml" />
+    <Content Include="Content\DiscountType.less" />
+    <Content Include="Content\DiscountType.css.map">
+      <DependentUpon>DiscountType.css</DependentUpon>
+    </Content>
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />

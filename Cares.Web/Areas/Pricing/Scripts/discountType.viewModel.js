@@ -1,16 +1,16 @@
 ﻿/*
-    Module with the view model for the Sub Region
+    Module with the view model for the Discount Type
 */
 define("discountType/discountType.viewModel",
     ["jquery", "amplify", "ko", "discountType/discountType.dataservice", "discountType/discountType.model",
     "common/confirmation.viewModel", "common/pagination"],
     function($, amplify, ko, dataservice, model, confirmation, pagination) {
         var ist = window.ist || {};
-        ist.SubRegion = {
+        ist.DiscountType = {
             viewModel: (function() { 
                 var view,
-                    //array to save Sub Regions
-                    subRegions = ko.observableArray([]),
+                    //array to save Discount Types
+                    discountTypes = ko.observableArray([]),
                     //pager%
                     pager = ko.observable(),
                     //org code filter in filter sec
@@ -20,49 +20,46 @@ define("discountType/discountType.viewModel",
                     //Assending  / Desending
                     sortIsAsc = ko.observable(true),
                     //to control the visibility of editor sec
-                    isSubRegionEditorVisible = ko.observable(false),
+                    isDiscountTypeEditorVisible = ko.observable(false),
                     //to control the visibility of filter ec
                     filterSectionVisilble = ko.observable(false),
-
-
                      // Editor View Model
-                    editorViewModel = new ist.ViewModel(model.subRegionDetail),
-                    // Selected Business Segment
-                    selectedSubRegion = editorViewModel.itemForEditing,
-
+                    editorViewModel = new ist.ViewModel(model.DiscountTypeDetail),
+                    // Selected Discount Type
+                    selectedDiscountType = editorViewModel.itemForEditing,
                     //save button handler
                     onSavebtn = function() {
-                    if (dobeforeSubRegion())
-                        saveSubRegion(selectedSubRegion());
+                    if (dobeforeDiscountType())
+                        saveDiscountType(selectedDiscountType());
                 },
-                //Save sub  Region
-                    saveSubRegion = function(item) {
-                        dataservice.saveSubRegion(item.convertToServerData(), {
+                //Save Discount Type
+                    saveDiscountType = function (item) {
+                        dataservice.saveDiscountType(item.convertToServerData(), {
                         success: function(dataFromServer) {
-                            var newItem = model.subRegionServertoClinetMapper(dataFromServer);
+                            var newItem = model.discountTypeServertoClinetMapper(dataFromServer);
                             if (item.id() !== undefined) {
-                                var newObjtodelete = subRegions.find(function(temp) {
+                                var newObjtodelete = discountTypes.find(function(temp) {
                                     return temp.id() == newItem.id();
                                 });
-                                subRegions.remove(newObjtodelete);
-                                subRegions.push(newItem);
+                                discountTypes.remove(newObjtodelete);
+                                discountTypes.push(newItem);
                             } else
-                                subRegions.push(newItem);
-                            isSubRegionEditorVisible(false);
-                            toastr.success(ist.resourceText.SubRegionSaveSuccessMessage);
+                                discountTypes.push(newItem);
+                            isDiscountTypeEditorVisible(false);
+                            toastr.success(ist.resourceText.DiscountTypeSuccessfullySavedMessage);
                         },
                         error: function(exceptionMessage, exceptionType) {
                             if (exceptionType === ist.exceptionType.CaresGeneralException)
                                 toastr.error(exceptionMessage);
                             else
-                                toastr.error(ist.resourceText.SubRegionSaveFailError);
+                                toastr.error(ist.resourceText.FailedToSaveDiscountTypeError);
                         }
                     });
                 },
                 //validation check 
-                    dobeforeSubRegion = function() {
-                    if (!selectedSubRegion().isValid()) {
-                        selectedSubRegion().errors.showAllMessages();
+                    dobeforeDiscountType = function () {
+                    if (!selectedDiscountType().isValid()) {
+                        selectedDiscountType().errors.showAllMessages();
                         return false;
                     }
                     return true;
@@ -70,55 +67,55 @@ define("discountType/discountType.viewModel",
                 //cancel button handler
                     onCancelbtn = function() {
                     editorViewModel.revertItem();
-                    isSubRegionEditorVisible(false);
+                    isDiscountTypeEditorVisible(false);
                 },
-                // create new Sub Region
+                // create new Discount Type
                     onCreateForm = function () {
-                        var region = new model.subRegionDetail();
-                    editorViewModel.selectItem(region);
-                    isSubRegionEditorVisible(true);
+                        var discountType = new model.DiscountTypeDetail();
+                    editorViewModel.selectItem(discountType);
+                    isDiscountTypeEditorVisible(true);
                 },
                 //reset butto handle 
                     resetResuults = function() {
                         searchFilter(undefined);
-                    getSubRegions();
+                        getDiscountType();
                 },
                 //delete button handler
                     onDeleteItem = function(item) {
                     if (!item.id()) {
-                        subRegions.remove(item);
+                        discountTypes.remove(item);
                         return;
                     }
                     // Ask for confirmation
                     confirmation.afterProceed(function() {
-                        deleteSubRegion(item);
+                        deleteDiscountType(item);
                     });
                     confirmation.show();
                 },
                 //edit button handler
                     onEditItem = function(item) {
                     editorViewModel.selectItem(item);
-                    isSubRegionEditorVisible(true);
+                    isDiscountTypeEditorVisible(true);
                 },
-                //delete Sub Region
-                    deleteSubRegion = function(region) {
-                        dataservice.deleteSubRegion(region.convertToServerData(), {
+                //delete Discount Type
+                    deleteDiscountType = function (region) {
+                        dataservice.deleteDiscountType(region.convertToServerData(), {
                         success: function() {
-                            subRegions.remove(region);
-                            toastr.success(ist.resourceText.SubRegionDeleteSuccessMessage);
+                            discountTypes.remove(region);
+                            toastr.success(ist.resourceText.DiscountTypeSuccessfullyDeletedMessage);
                         },
                         error: function(exceptionMessage, exceptionType) {
                             if (exceptionType === ist.exceptionType.CaresGeneralException)
                                 toastr.error(exceptionMessage);
                             else
-                                toastr.error(ist.resourceText.SubRegionDeleteFailError);
+                                toastr.error(ist.resourceText.FailedToDeleteDiscountTypeError);
                         }
                     });
                 },
                 //search button handler in filter section
                     search = function() {
                     pager().reset();
-                    getSubRegions();
+                    getDiscountType();
                 },
                 //hide filte section
                     hideFilterSection = function() {
@@ -128,8 +125,8 @@ define("discountType/discountType.viewModel",
                     showFilterSection = function() {
                         filterSectionVisilble(true);
                     },
-                    //get Sub Regions list from Dataservice
-                    getSubRegions = function() {
+                    //get Discount Types list from Dataservice
+                    getDiscountType = function () {
                         dataservice.getDiscountType(
                         {
                             DiscountTypeFilterText: searchFilter(),
@@ -140,15 +137,15 @@ define("discountType/discountType.viewModel",
                     },
                     {
                         success: function (data) {
-                            subRegions.removeAll();
+                            discountTypes.removeAll();
                             pager().totalCount(data.TotalCount);
                             _.each(data.DiscountTypes, function (item) {
-                                subRegions.push(model.subRegionServertoClinetMapper(item));
+                                discountTypes.push(model.discountTypeServertoClinetMapper(item));
                             });
                         },
                         error: function() {
                             isLoadingFleetPools(false);
-                            toastr.error(ist.resourceText.SubRegionLoadFailError);
+                            toastr.error(ist.resourceText.FailedToLoadDiscountTypesError);
                         }
                     });
                     },
@@ -157,11 +154,11 @@ define("discountType/discountType.viewModel",
                     initialize = function(specifiedView) {
                         view = specifiedView;
                         ko.applyBindings(view.viewModel, view.bindingRoot);
-                        pager(pagination.Pagination({ PageSize: 10 }, subRegions, getSubRegions));
-                        getSubRegions();
+                        pager(pagination.Pagination({ PageSize: 10 }, discountTypes, getDiscountType));
+                        getDiscountType();
                     };
                 return {
-                    subRegions: subRegions,
+                    discountTypes: discountTypes,
                     initialize: initialize,
                     search: search,
                     searchFilter: searchFilter,
@@ -169,7 +166,7 @@ define("discountType/discountType.viewModel",
                     sortIsAsc: sortIsAsc,
                     onCreateForm: onCreateForm,
                     filterSectionVisilble: filterSectionVisilble,
-                    isSubRegionEditorVisible: isSubRegionEditorVisible,
+                    isDiscountTypeEditorVisible: isDiscountTypeEditorVisible,
                     hideFilterSection: hideFilterSection,
                     showFilterSection: showFilterSection,
                     pager: pager,
@@ -177,11 +174,11 @@ define("discountType/discountType.viewModel",
                     onDeleteItem: onDeleteItem,
                     onEditItem: onEditItem,
                     onCancelbtn: onCancelbtn,
-                    selectedSubRegion: selectedSubRegion,
+                    selectedDiscountType: selectedDiscountType,
                     onSavebtn: onSavebtn,
-                    getSubRegions: getSubRegions
+                    getDiscountType: getDiscountType
                 };
             })()
         };
-        return ist.SubRegion.viewModel;
+        return ist.DiscountType.viewModel;
     });

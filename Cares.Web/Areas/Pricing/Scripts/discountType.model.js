@@ -1,7 +1,7 @@
 ﻿define(["ko", "underscore", "underscore-ko"], function(ko) {
     
-    //Sub Region Detail
-    var subRegionDetail = function (specifiedId, specifiedCode, specifiedName, specifieddescription, specifiedregionId, specifiedregionName) {
+    //Discount Type Detail
+    var discountTypeDetail = function (specifiedId, specifiedCode, specifiedName, specifieddescription, specifiedregionId, specifiedregionName) {
         var            
             id = ko.observable(specifiedId),
             code = ko.observable(specifiedCode).extend({ required: true }),
@@ -51,22 +51,22 @@
         };
     };
     // server to client mapper
-    var subRegionServertoClinetMapper = function (source) {
-        return subRegionDetail.Create(source);
+    var discountTypeServertoClinetMapper = function (source) {
+        return discountTypeDetail.Create(source);
     };
     
     // Sub Region Factory
-    subRegionDetail.Create = function (source) {
-        return new subRegionDetail(source.DiscountTypeId, source.DiscountTypeName, source.DiscountTypeCode, source.DiscountTypeDescrition);
+    discountTypeDetail.Create = function (source) {
+        return new discountTypeDetail(source.DiscountTypeId, source.DiscountTypeName, source.DiscountTypeCode, source.DiscountTypeDescrition);
     };
 
     //function to attain cancel button functionality 
-    subRegionDetail.CreateFromClientModel = function (itemFromServer) {
-        return new subRegionDetail(itemFromServer.id, itemFromServer.code, itemFromServer.name,
+    discountTypeDetail.CreateFromClientModel = function (itemFromServer) {
+        return new discountTypeDetail(itemFromServer.id, itemFromServer.code, itemFromServer.name,
             itemFromServer.description);
     };
     return {
-        subRegionDetail: subRegionDetail,
-        subRegionServertoClinetMapper: subRegionServertoClinetMapper,
+        DiscountTypeDetail: discountTypeDetail,
+        discountTypeServertoClinetMapper: discountTypeServertoClinetMapper,
     };
 });
