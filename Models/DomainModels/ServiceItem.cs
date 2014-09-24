@@ -99,6 +99,11 @@ namespace Cares.Models.DomainModels
         /// </summary>
         public virtual ICollection<ServiceRt> ServiceRts { get; set; }
 
+        /// <summary>
+        /// Ra Service Items
+        /// </summary>
+        public virtual ICollection<RaServiceItem> RaServiceItems { get; set; }
+
         #endregion
     }
 }

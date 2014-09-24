@@ -117,6 +117,16 @@ namespace Cares.Models.DomainModels
         /// </summary>
         public virtual ICollection<AdditionalCharge> AdditionalCharges { get; set; }
 
+        /// <summary>
+        /// Ra HireGroups
+        /// </summary>
+        public virtual ICollection<RaHireGroup> RaHireGroups { get; set; }
+
+        /// <summary>
+        /// RaAdditional Charges
+        /// </summary>
+        public virtual ICollection<RaAdditionalCharge> RaAdditionalCharges { get; set; }
+
         #endregion
     }
 }

@@ -99,6 +99,16 @@ namespace Cares.Models.DomainModels
         /// </summary>
         public virtual ICollection<AdditionalCharge> AdditionalCharges { get; set; }
 
+        /// <summary>
+        /// Ra Additional Driver Charge
+        /// </summary>
+        public virtual ICollection<RaAdditionalCharge> RaAdditionalCharges { get; set; }
+
+        /// <summary>
+        /// Nrt Charges
+        /// </summary>
+        public virtual ICollection<NrtCharge> NrtCharges { get; set; }
+
         #endregion
     }
 }

@@ -274,6 +274,16 @@ namespace Cares.Models.DomainModels
         /// </summary>
         public virtual ICollection<VehicleReservation> VehicleReservations { get; set; }
 
+        /// <summary>
+        /// Nrt Vehicles
+        /// </summary>
+        public virtual ICollection<NrtVehicle> NrtVehicles { get; set; }
+
+        /// <summary>
+        /// Ra HireGroups
+        /// </summary>
+        public virtual ICollection<RaHireGroup> RaHireGroups { get; set; }
+
         #endregion
     }
 }

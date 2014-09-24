@@ -104,6 +104,21 @@ namespace Cares.Models.DomainModels
         /// </summary>
         public virtual ICollection<Vehicle> Vehicles { get; set; }
 
+        /// <summary>
+        /// NRT Vehicle Movements
+        /// </summary>
+        public virtual ICollection<NrtVehicleMovement> NrtVehicleMovements { get; set; }
+
+        /// <summary>
+        /// NRT Types
+        /// </summary>
+        public virtual ICollection<NrtType> NrtTypes { get; set; }
+
+        /// <summary>
+        /// Vehicle Movements
+        /// </summary>
+        public virtual ICollection<VehicleMovement> VehicleMovements { get; set; }
+
         #endregion
     }
 }
