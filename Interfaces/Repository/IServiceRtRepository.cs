@@ -11,8 +11,11 @@ namespace Cares.Interfaces.Repository
         /// <summary>
         /// Get Service Rate By Service Rate Main Id
         /// </summary>
-        /// <param name="serviceRtMainId"></param>
-        /// <returns></returns>
         IEnumerable<ServiceRt> GetServiceRtByServiceRtMainId(long serviceRtMainId);
+
+        /// <summary>
+        /// Association check with service item 
+        /// </summary>
+        bool IsServiceRtAssociatedWithServiceItemValidation(long serviceItemId);
     }
 }

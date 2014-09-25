@@ -69,6 +69,7 @@ namespace Cares.Implementation
             unityContainer.RegisterType<IDiscountSubTypeService, DiscountSubTypeService>();
             unityContainer.RegisterType<IServiceTypeService, ServiceTypeService>();
             unityContainer.RegisterType<IChaufferChargeService, ChaufferChargeService>();
+            unityContainer.RegisterType<IServiceItemService, ServiceItemService>();
 
         }
     }

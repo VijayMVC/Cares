@@ -1,0 +1,34 @@
+﻿
+<div class="well col-md-12" id="ServiceItemEditor" data-bind="visible: isServiceItemEditorVisible, with: selectedServiceItem  " style="display: none; margin-top:15px">
+    <div class="float-left detailsContainer">
+        <h3 class="page-header detailsHeaderSection">@Cares.Web.Resources.Pricing.ServiceItem.ServiceItemDetail</h3>
+        <button class="btn  btn-info" id="saveFleetPoolbtn" data-bind="click: $root.onSavebtn">@Cares.Web.Resources.Shared.Common.Save</button>
+        <button class="btn  btn-default" id="cancelOrgGroupbtn" data-bind="click: $root.onCancelbtn">@Cares.Web.Resources.Shared.Common.Cancel</button>
+    </div>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Pricing.ServiceItem.Code*</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.Pricing.ServiceItem.Code + ">")" data-bind="value: code" />
+            </div>
+            <label class="control-label h5 col-sm-1">@Cares.Web.Resources.Pricing.ServiceItem.Name*</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.Pricing.ServiceItem.Name + ">")" data-bind="value:name" />
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Pricing.ServiceItem.ServiceType*</label>
+            <div class="col-md-3">
+                <select class="form-control" data-bind="options: $root.baseServiceTypesList, optionsText: 'ServiceTypeCodeName', optionsValue: 'ServiceTypeId', optionsCaption: '&lt;' + '@Cares.Web.Resources.Pricing.ServiceItem.ServiceType'+ '&gt;' , value:serviceTypeId"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Pricing.ServiceItem.Description</label>
+            <div class="col-md-3">
+                <textarea class="form-control" rows="4" placeholder="@("<" + Cares.Web.Resources.Pricing.ServiceItem.Description + ">")" data-bind="value: description"></textarea>
+            </div>
+        </div>
+
+    </form>
+</div>
