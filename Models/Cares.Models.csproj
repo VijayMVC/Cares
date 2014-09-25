@@ -119,6 +119,7 @@
     <Compile Include="Common\InsuranceRateByColumn.cs" />
     <Compile Include="Common\JobTypeByColumn.cs" />
     <Compile Include="Common\RegionByColumn.cs" />
+    <Compile Include="Common\ServiceItemByColumn.cs" />
     <Compile Include="Common\ServiceRateByColumn.cs" />
     <Compile Include="Common\OperationByColumn.cs" />
     <Compile Include="Common\ServiceTypeByColumn.cs" />
@@ -296,6 +297,7 @@
     <Compile Include="RequestModels\JobTypeSearchRequestResponse.cs" />
     <Compile Include="RequestModels\RegionSearchRequest.cs" />
     <Compile Include="RequestModels\RegionSearchRequestResponse.cs" />
+    <Compile Include="RequestModels\ServiceItemSearchRequest.cs" />
     <Compile Include="RequestModels\ServiceRateSearchRequest.cs" />
     <Compile Include="RequestModels\OperationSearchRequest.cs" />
     <Compile Include="RequestModels\ServiceTypeSearchRequest.cs" />
@@ -349,6 +351,8 @@
     <Compile Include="ResponseModels\ProductResponse.cs" />
     <Compile Include="ResponseModels\RegionBaseDataResponse.cs" />
     <Compile Include="ResponseModels\RegionResponse.cs" />
+    <Compile Include="ResponseModels\ServiceItemBaseDataResponse.cs" />
+    <Compile Include="ResponseModels\ServiceItemSearchRequestResponse.cs" />
     <Compile Include="ResponseModels\ServiceRateBaseResponse.cs" />
     <Compile Include="ResponseModels\ServiceRateSearchResponse.cs" />
     <Compile Include="ResponseModels\ServiceRtDetailContent.cs" />

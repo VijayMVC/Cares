@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="IServices\IAdditionalChargeService.cs" />
     <Compile Include="IServices\IAddressBaseDataService.cs" />
+    <Compile Include="IServices\IServiceItemService.cs" />
     <Compile Include="IServices\IServiceTypeService.cs" />
     <Compile Include="IServices\IJobTypeService.cs" />
     <Compile Include="Repository\IAdditionalChargeRepository.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Repository\IJobTypeRepository.cs" />
     <Compile Include="Repository\ILicenseTypeRepository.cs" />
     <Compile Include="Repository\IMaintenanceTypeRepository.cs" />
+    <Compile Include="Repository\IRAServiceItemRepository.cs" />
     <Compile Include="Repository\IServiceItemRepository.cs" />
     <Compile Include="Repository\IServiceRtMainRepository.cs" />
     <Compile Include="Repository\IServiceRtRepository.cs" />

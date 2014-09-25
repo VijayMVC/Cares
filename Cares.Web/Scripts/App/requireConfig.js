@@ -39,7 +39,9 @@
             "jobType": "/Areas/EmployeeManagement/Scripts",
             "discountType": "/Areas/Pricing/Scripts",
             "discountSubType": "/Areas/Pricing/Scripts",
-            "serviceType": "/Areas/Pricing/Models",
+            "serviceType": "/Areas/Pricing/Scripts",
+            "serviceItem": "/Areas/Pricing/Scripts"
+
 
         }
     });

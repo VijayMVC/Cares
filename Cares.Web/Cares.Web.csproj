@@ -231,6 +231,8 @@
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeDetailController.cs" />
+    <Compile Include="Areas\Api\Controllers\ServiceItemController.cs" />
+    <Compile Include="Areas\Api\Controllers\ServiceItemBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessSegmentController.cs" />
     <Compile Include="Areas\Api\Controllers\ServiceTypeController.cs" />
     <Compile Include="Areas\Api\Controllers\JobTypeController.cs" />
@@ -336,6 +338,7 @@
     <Compile Include="ModelMappers\JobTypeMapper.cs" />
     <Compile Include="ModelMappers\LicenseTypeMapper.cs" />
     <Compile Include="ModelMappers\MaintenanceTypeMapper.cs" />
+    <Compile Include="ModelMappers\ServiceItemMapper.cs" />
     <Compile Include="ModelMappers\ServiceRtMapper.cs" />
     <Compile Include="ModelMappers\ServiceTypeMapper.cs" />
     <Compile Include="ModelMappers\VehicleCheckListMapper.cs" />
@@ -462,12 +465,16 @@
     <Compile Include="Models\RegionBaseDataResponse.cs" />
     <Compile Include="Models\CitySearchRequestResponse.cs" />
     <Compile Include="Models\RegionSearchRequestResponse.cs" />
+    <Compile Include="Models\ServiceItem.cs" />
+    <Compile Include="Models\ServiceItemBaseDataResponse.cs" />
+    <Compile Include="Models\ServiceItemSearchRequestResponse.cs" />
     <Compile Include="Models\ServiceRateBaseResponse.cs" />
     <Compile Include="Models\ServiceRateSearchResponse.cs" />
     <Compile Include="Models\ServiceRtDetailContent.cs" />
     <Compile Include="Models\ServiceRtDetailResponse.cs" />
     <Compile Include="Models\ServiceRtMainContent.cs" />
     <Compile Include="Models\ServiceType.cs" />
+    <Compile Include="Models\ServiceTypeDropDown.cs" />
     <Compile Include="Models\ServiceTypeSearchRequestResponse.cs" />
     <Compile Include="Models\SubRegion.cs" />
     <Compile Include="Models\SubRegionBaseDataResponse.cs" />
@@ -773,6 +780,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DiscountType.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Pricing\ServiceItem.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceItem.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Pricing\ServiceItem.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceItem.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Pricing\ServiceType.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -977,10 +994,14 @@
     <Content Include="Areas\Organization\Scripts\workplaceType.model.js" />
     <Content Include="Areas\Organization\Scripts\workplaceType.view.js" />
     <Content Include="Areas\Organization\Scripts\workplaceType.viewModel.js" />
-    <Content Include="Areas\Pricing\Models\serviceType.dataservice.js" />
-    <Content Include="Areas\Pricing\Models\serviceType.model.js" />
-    <Content Include="Areas\Pricing\Models\serviceType.view.js" />
-    <Content Include="Areas\Pricing\Models\serviceType.viewModel.js" />
+    <Content Include="Areas\Pricing\Scripts\serviceItem.dataservice.js" />
+    <Content Include="Areas\Pricing\Scripts\serviceItem.model.js" />
+    <Content Include="Areas\Pricing\Scripts\serviceItem.view.js" />
+    <Content Include="Areas\Pricing\Scripts\serviceItem.viewModel.js" />
+    <Content Include="Areas\Pricing\Scripts\serviceType.dataservice.js" />
+    <Content Include="Areas\Pricing\Scripts\serviceType.model.js" />
+    <Content Include="Areas\Pricing\Scripts\serviceType.view.js" />
+    <Content Include="Areas\Pricing\Scripts\serviceType.viewModel.js" />
     <Content Include="Areas\Pricing\Scripts\additionalDriverCharge.dataservice.js" />
     <Content Include="Areas\Pricing\Scripts\additionalCharge.model.js" />
     <Content Include="Areas\Pricing\Scripts\additionalCharge.viewModel.js" />
@@ -1148,6 +1169,12 @@
     </Content>
     <Content Include="Content\RentalAgreement.min.css">
       <DependentUpon>RentalAgreement.css</DependentUpon>
+    </Content>
+    <Content Include="Content\ServiceItem.css">
+      <DependentUpon>ServiceItem.less</DependentUpon>
+    </Content>
+    <Content Include="Content\ServiceItem.min.css">
+      <DependentUpon>ServiceItem.css</DependentUpon>
     </Content>
     <Content Include="Content\ServiceType.css">
       <DependentUpon>ServiceType.less</DependentUpon>
@@ -1857,6 +1884,12 @@
     <Content Include="Content\ServiceType.css.map">
       <DependentUpon>ServiceType.css</DependentUpon>
     </Content>
+    <Content Include="Areas\Pricing\Views\Tariff\ServiceItem.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\_ServiceItemEditor.cshtml" />
+    <Content Include="Content\ServiceItem.less" />
+    <Content Include="Content\ServiceItem.css.map">
+      <DependentUpon>ServiceItem.css</DependentUpon>
+    </Content>
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
@@ -2015,6 +2048,7 @@
     <Folder Include="Areas\Fleet\Models\" />
     <Folder Include="Areas\GeographicalHierarchy\Models\" />
     <Folder Include="Areas\Organization\Models\" />
+    <Folder Include="Areas\Pricing\Models\" />
     <Folder Include="Areas\Product\Models\" />
     <Folder Include="Areas\RentalAgreement\Models\" />
     <Folder Include="Migrations\" />
@@ -2208,6 +2242,14 @@
     <EmbeddedResource Include="Resources\Pricing\DiscountType.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>DiscountType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Pricing\ServiceItem.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceItem.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Pricing\ServiceItem.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceItem.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Pricing\ServiceType.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

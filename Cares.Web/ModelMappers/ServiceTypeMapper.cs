@@ -49,5 +49,18 @@ namespace Cares.Web.ModelMappers
                 ServiceTypeDescription = source.ServiceTypeDescription
             };
         }
+
+        /// <summary>
+        ///  Create web model from Domain model [dropdrown]
+        /// </summary>
+        public static Models.ServiceTypeDropDown CreateFromm(this ServiceType source)
+        {
+            return new Models.ServiceTypeDropDown
+            {
+                ServiceTypeId = source.ServiceTypeId,
+                ServiceTypeCodeName = source.ServiceTypeCode + " - "+source.ServiceTypeName
+            };
+        }
+
     }
 }

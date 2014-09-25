@@ -429,6 +429,12 @@ namespace Cares.Repository.BaseRepository
         /// </summary>
         public DbSet<AdditionalChargeType> AdditionalChargeTypes { get; set; }
 
+        /// <summary>
+        /// Ra Service Items Db Set
+        /// </summary>
+
+        public DbSet<RaServiceItem> RaServiceItems { get; set; }
+
         #endregion
     }
 }

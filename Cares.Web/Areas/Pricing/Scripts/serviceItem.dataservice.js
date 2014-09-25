@@ -1,7 +1,7 @@
 ﻿/*
     Data service module with ajax calls to the server
 */
-define("region/region.dataservice", function () {
+define("serviceItem/serviceItem.dataservice", function () {
 
     // Data service for forecast 
     var dataService = (function () {
@@ -13,31 +13,30 @@ define("region/region.dataservice", function () {
                 if (!isInitialized) {
 
 
-                    // Define request to get Regions 
-                    amplify.request.define('getRegions', 'ajax', {
-                        url: '/Api/Region',
+                    // Define request to get Service Items
+                    amplify.request.define('getServiceItem', 'ajax', {
+                        url: '/Api/ServiceItem',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
-                    // Define request to delete Region
-                    amplify.request.define('deleteRegion', 'ajax', {
-                        url: '/Api/Region',
+                    // Define request to delete Service Type
+                    amplify.request.define('deleteServiceItem', 'ajax', {
+                        url: '/Api/ServiceItem',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
-                    // Define request to add/update Regio
-                    amplify.request.define('saveRegion', 'ajax', {
-                        url: '/Api/Region',
+                    // Define request to add/update  Service Type
+                    amplify.request.define('saveServiceItem', 'ajax', {
+                        url: '/Api/ServiceItem',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
                     });
-
-                    //Region base Data
-                    amplify.request.define('getRegionBaseData', 'ajax', {
-                        url: '/Api/RegionBase',
+                    //Service Item base Data
+                    amplify.request.define('getServiceItemBaseData', 'ajax', {
+                        url: '/Api/ServiceItemBase',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
@@ -46,53 +45,54 @@ define("region/region.dataservice", function () {
                     isInitialized = true;
                 }
             },
-            // Get Regions
-            getRegions = function(params, callbacks) {
+            // Get Sub Service Item
+            getServiceItem = function (params, callbacks) {
                 return amplify.request({
-                    resourceId: 'getRegions',
+                    resourceId: 'getServiceItem',
                     success: callbacks.success,
                     error: callbacks.error,
                     data: params
                 });
             },
-            //add-update Region.
-            saveRegion = function(params, callbacks) {
+             
+            //add-update Service Type
+            saveServiceItem = function (params, callbacks) {
                 return amplify.request({
-                    resourceId: 'saveRegion',
+                    resourceId: 'saveServiceItem',
                     success: callbacks.success,
                     error: callbacks.error,
                     data: params
                 });
             },
-            //delete Region.
-            deleteRegion = function (params, callbacks) {
+            //delete Service Item
+            deleteServiceItem = function (params, callbacks) {
                 return amplify.request({
-                    resourceId: 'deleteRegion',
+                    resourceId: 'deleteServiceItem',
                     success: callbacks.success,
                     error: callbacks.error,
                     data: params
                 });
             },
 
-
-            //  Region Base Data
-            getRegionBaseData = function (params, callbacks) {
+            //  Service Item Base Data
+            getServiceItemBaseData = function (params, callbacks) {
                 initialize();
                 return amplify.request({
-                    resourceId: 'getRegionBaseData',
+                    resourceId: 'getServiceItemBaseData',
                     success: callbacks.success,
                     error: callbacks.error,
                     data: params
                 });
             };
+
       
         return {
-            getRegionBaseData: getRegionBaseData,
-            saveRegion: saveRegion,
-            getRegions: getRegions,
-            deleteRegion: deleteRegion,
+            saveServiceItem: saveServiceItem,
+            getServiceItem: getServiceItem,
+            deleteServiceItem: deleteServiceItem,
+            getServiceItemBaseData: getServiceItemBaseData
 
         };
     })();
     return dataService;
-});
+}); 

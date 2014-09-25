@@ -274,6 +274,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DiscountType.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Pricing\ServiceItem.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceItem.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Pricing\ServiceItem.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceItem.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Pricing\ServiceType.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -377,6 +387,7 @@
     <Compile Include="Services\AdditionalChargeService.cs" />
     <Compile Include="Services\AddressBaseDataService.cs" />
     <Compile Include="Services\AdditionalDriverService.cs" />
+    <Compile Include="Services\ServiceItemService.cs" />
     <Compile Include="Services\BusinessPartnerBaseDataService.cs" />
     <Compile Include="Services\BusinessPartnerCompanyService.cs" />
     <Compile Include="Services\BusinessPartnerIndividualService.cs" />
@@ -572,6 +583,14 @@
     <EmbeddedResource Include="Resources\Pricing\DiscountType.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>DiscountType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Pricing\ServiceItem.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceItem.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Pricing\ServiceItem.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceItem.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Pricing\ServiceType.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
