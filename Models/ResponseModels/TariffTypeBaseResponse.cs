@@ -21,6 +21,7 @@ namespace Cares.Models.ResponseModels
             PricingStrategies = new List<PricingStrategy>();
         }
         #endregion
+       
         #region Public
         /// <summary>
         /// Companies

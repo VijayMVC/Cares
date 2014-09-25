@@ -67,5 +67,13 @@ namespace Cares.Web.Areas.Pricing.Controllers
         {
             return View();
         }
+
+        /// <summary>
+        /// Chauffer Charge
+        /// </summary>
+        public ActionResult ChaufferCharge()
+        {
+            return View();
+        }
 	}
 }

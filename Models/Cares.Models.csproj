@@ -101,6 +101,7 @@
   <ItemGroup>
     <Compile Include="CommonTypes\PhoneType.cs" />
     <Compile Include="CommonTypes\DepartmentType.cs" />
+    <Compile Include="Common\ChaufferChargeByColumn.cs" />
     <Compile Include="Common\PricingStrategyEnum.cs" />
     <Compile Include="Common\AdditionalChargeByColumn.cs" />
     <Compile Include="Common\MeasurementUnitEnum.cs" />
@@ -270,6 +271,7 @@
     <Compile Include="RequestModels\AreaSearchRequest.cs" />
     <Compile Include="RequestModels\AreaSearchRequestResponse.cs" />
     <Compile Include="RequestModels\BusinessSegmentSearchRequest.cs" />
+    <Compile Include="RequestModels\ChaufferChargeSearchRequest.cs" />
     <Compile Include="RequestModels\CitySearchRequestResponse.cs" />
     <Compile Include="RequestModels\CompanySearchRequest.cs" />
     <Compile Include="RequestModels\DepartmentSearchRequest.cs" />
@@ -321,6 +323,9 @@
     <Compile Include="ResponseModels\AreaBaseDataResponse.cs" />
     <Compile Include="ResponseModels\BusinessPartnerBaseDataResponse.cs" />
     <Compile Include="ResponseModels\BusinessSegmentSearchRequestResponse.cs" />
+    <Compile Include="ResponseModels\ChaufferChargeBaseResponse.cs" />
+    <Compile Include="ResponseModels\ChaufferChargeMainContent.cs" />
+    <Compile Include="ResponseModels\ChaufferChargeSearchResponse.cs" />
     <Compile Include="ResponseModels\CityBaseDataResponse.cs" />
     <Compile Include="ResponseModels\CompanyBaseDataResponse.cs" />
     <Compile Include="ResponseModels\CompanySearchResponse.cs" />

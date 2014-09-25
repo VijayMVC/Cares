@@ -19,6 +19,7 @@
             "serviceRate": "/Areas/Pricing/Scripts",
             "additionalDriverCharge": "/Areas/Pricing/Scripts",
             "additionalCharge": "/Areas/Pricing/Scripts",
+            "chaufferCharge": "/Areas/Pricing/Scripts",
             "rentalAgreement": "/Areas/RentalAgreement/Scripts",
             "Organization": "/Areas/Organization/Scripts",
             "company": "/Areas/Organization/Scripts",

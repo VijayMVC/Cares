@@ -218,4 +218,41 @@
   margin-bottom: 20px;
   margin-top: 10px;
 }
+#chaufferChargeBinding table thead tr .Code {
+  width: 25%;
+}
+#chaufferChargeBinding table thead tr .Name {
+  width: 25%;
+}
+#chaufferChargeBinding table thead tr .IsEditable {
+  width: 22%;
+}
+#chaufferChargeBinding table thead tr .Description {
+  width: 40%;
+}
+#chaufferChargeBinding #chaufferChargeEditor {
+  margin-top: 15px;
+}
+#chaufferChargeBinding #chaufferChargeEditor .addToBtn {
+  float: right;
+  margin-right: 30px;
+}
+#chaufferChargeBinding #chaufferChargeEditor .btnAdditionalChargeUpdate {
+  float: right;
+  margin-right: 4px;
+}
+#chaufferChargeBinding #chaufferChargeEditor .additionalChargeWell {
+  margin-top: 30px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#chaufferChargeBinding #chaufferChargeEditor .detailsContainer {
+  width: 100%;
+}
+#chaufferChargeBinding #chaufferChargeEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
 /*# sourceMappingURL=Pricing.css.map */

@@ -385,6 +385,7 @@
     <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Services\BPRatingTypeService.cs" />
     <Compile Include="Services\BusinessLegalStatusService.cs" />
+    <Compile Include="Services\ChaufferChargeService.cs" />
     <Compile Include="Services\ServiceTypeService.cs" />
     <Compile Include="Services\JobTypeService.cs" />
     <Compile Include="Services\InsuranceRateService.cs" />

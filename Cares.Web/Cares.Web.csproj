@@ -232,6 +232,9 @@
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeDetailController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessSegmentController.cs" />
+    <Compile Include="Areas\Api\Controllers\ChaufferChargeBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\ChaufferChargeController.cs" />
+    <Compile Include="Areas\Api\Controllers\ChaufferChargeDetailController.cs" />
     <Compile Include="Areas\Api\Controllers\ServiceTypeController.cs" />
     <Compile Include="Areas\Api\Controllers\JobTypeController.cs" />
     <Compile Include="Areas\Api\Controllers\CompanyBaseController.cs" />
@@ -326,6 +329,7 @@
     <Compile Include="Helper\CultureHelper.cs" />
     <Compile Include="ModelMappers\AdditionalChargeMapper.cs" />
     <Compile Include="ModelMappers\AdditionalDriverChargeMapper.cs" />
+    <Compile Include="ModelMappers\ChaufferChargeMapper.cs" />
     <Compile Include="ModelMappers\DesigGradeMapper.cs" />
     <Compile Include="ModelMappers\DesignationMapper.cs" />
     <Compile Include="ModelMappers\DiscountSubTypeMapper.cs" />
@@ -355,6 +359,11 @@
     <Compile Include="Models\AreaSearchRequestResponse.cs" />
     <Compile Include="Models\BusinessSegment.cs" />
     <Compile Include="Models\BusinessSegmentSearchRequestResponse.cs" />
+    <Compile Include="Models\ChaufferCharge.cs" />
+    <Compile Include="Models\ChaufferChargeBaseResponse.cs" />
+    <Compile Include="Models\ChaufferChargeMain.cs" />
+    <Compile Include="Models\ChaufferChargeMainContent.cs" />
+    <Compile Include="Models\ChaufferChargeSearchResponse.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\CityBaseDataResponse.cs" />
     <Compile Include="Models\Country.cs" />
@@ -981,6 +990,10 @@
     <Content Include="Areas\Pricing\Models\serviceType.model.js" />
     <Content Include="Areas\Pricing\Models\serviceType.view.js" />
     <Content Include="Areas\Pricing\Models\serviceType.viewModel.js" />
+    <Content Include="Areas\Pricing\Scripts\chaufferCharge.dataservice.js" />
+    <Content Include="Areas\Pricing\Scripts\chaufferCharge.model.js" />
+    <Content Include="Areas\Pricing\Scripts\chaufferCharge.view.js" />
+    <Content Include="Areas\Pricing\Scripts\chaufferCharge.viewModel.js" />
     <Content Include="Areas\Pricing\Scripts\additionalDriverCharge.dataservice.js" />
     <Content Include="Areas\Pricing\Scripts\additionalCharge.model.js" />
     <Content Include="Areas\Pricing\Scripts\additionalCharge.viewModel.js" />
@@ -1857,6 +1870,8 @@
     <Content Include="Content\ServiceType.css.map">
       <DependentUpon>ServiceType.css</DependentUpon>
     </Content>
+    <Content Include="Areas\Pricing\Views\Tariff\ChaufferCharge.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\_ChaufferChargeEditor.cshtml" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
