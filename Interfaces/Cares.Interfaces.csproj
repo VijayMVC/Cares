@@ -50,6 +50,7 @@
     <Compile Include="IServices\IAdditionalChargeService.cs" />
     <Compile Include="IServices\IAddressBaseDataService.cs" />
     <Compile Include="IServices\IChaufferChargeService.cs" />
+    <Compile Include="IServices\INrtTypeService.cs" />
     <Compile Include="IServices\IServiceItemService.cs" />
     <Compile Include="IServices\IServiceTypeService.cs" />
     <Compile Include="IServices\IJobTypeService.cs" />
