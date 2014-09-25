@@ -123,6 +123,14 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Count(cmp => cmp.OrgGroupId == orgGroupId) > 0;
         }
+
+        /// <summary>
+        /// Company association check with business segment
+        /// </summary>
+        public bool IsCompanyAssiciatedWithBusinessSegment(long businessSegId)
+        {
+            return DbSet.Count(company => company.BusinessSegmentId == businessSegId) > 0;
+        }
         #endregion
     }
 }

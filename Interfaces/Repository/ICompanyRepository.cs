@@ -34,5 +34,10 @@ namespace Cares.Interfaces.Repository
         /// To identify if OrgGroup contains any company
         /// </summary>
         bool IsOrgGroupContainCompany(long orgGroupId);
+        
+        /// <summary>
+        /// Company association check with business segment
+        /// </summary>
+        bool IsCompanyAssiciatedWithBusinessSegment(long businessSegId);
     }
 }

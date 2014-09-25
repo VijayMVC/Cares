@@ -120,4 +120,7 @@
   <data name="BusinessSegmentCodeExistsError" xml:space="preserve">
     <value>Business Segment code already exists. Try Different code!</value>
   </data>
+  <data name="BusinessSegmentIsAssociatedWithCompanyError" xml:space="preserve">
+    <value>Business Segment is associated with company!</value>
+  </data>
 </root>
