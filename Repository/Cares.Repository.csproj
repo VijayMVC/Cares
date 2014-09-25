@@ -154,6 +154,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="Repositories\ChaufferChargeMainRepository.cs" />
+    <Compile Include="Repositories\ChaufferChargeRepository.cs" />
     <Compile Include="Repositories\CityRepository.cs" />
     <Compile Include="Repositories\DesignGradeRepository.cs" />
     <Compile Include="Repositories\CompanyRepository.cs">

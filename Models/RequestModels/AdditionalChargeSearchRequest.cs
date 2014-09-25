@@ -10,7 +10,7 @@ namespace Cares.Models.RequestModels
         /// <summary>
         /// Additional Driver Charge By Order
         /// </summary>
-        public AdditionalChargeByColumn AdditionalChargeByColumnByOrder
+        public AdditionalChargeByColumn AdditionalChargeOrderBy
         {
             get
             {

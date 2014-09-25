@@ -74,9 +74,9 @@ namespace Cares.Repository.Repositories
                       s.AdditionalChargeTypeName.Contains(request.SearchString)));
 
             IEnumerable<AdditionalChargeType> additionalChargeTypes = request.IsAsc ? DbSet.Where(query)
-                                            .OrderBy(additionalChargeClause[request.AdditionalChargeByColumnByOrder]).Skip(fromRow).Take(toRow).ToList()
+                                            .OrderBy(additionalChargeClause[request.AdditionalChargeOrderBy]).Skip(fromRow).Take(toRow).ToList()
                                             : DbSet.Where(query)
-                                                .OrderByDescending(additionalChargeClause[request.AdditionalChargeByColumnByOrder]).Skip(fromRow).Take(toRow).ToList();
+                                                .OrderByDescending(additionalChargeClause[request.AdditionalChargeOrderBy]).Skip(fromRow).Take(toRow).ToList();
 
 
             return new AdditionalChargeSearchResponse { AdditionalChargeTypes = additionalChargeTypes, TotalCount = DbSet.Count(query) };
