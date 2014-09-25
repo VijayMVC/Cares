@@ -1,11 +1,11 @@
 ﻿@{
-    ViewBag.Title = "Additional Charge";
+    ViewBag.Title = @Cares.Web.Resources.Tariff.AdditionalCharge.AdditionalChargeLabel;
 }
 <div class="row" id="additionalChargeBinding">
     <div class="row " data-bind="visible: !isAdditionalChargeEditorVisible()">
-        <h3 class="page-header float-left pageHeaderSection">Additional Charges</h3>
+        <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.Tariff.AdditionalCharge.AdditionalChargeLabel</h3>
         <div class="header-toolsSection">
-            <a href="#" class="label label-default create-new-icon" data-bind="click: createAdditionalCharge" title=''>@Cares.Web.Resources.Shared.Common.New</a>
+            <a href="#" class="label label-default create-new-icon" data-bind="click: createAdditionalCharge" title='@Cares.Web.Resources.Shared.Common.New'>@Cares.Web.Resources.Shared.Common.New</a>
             <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title='@Cares.Web.Resources.Shared.Common.ShowFilter' style="display: none"></a>
         </div>
     </div>
@@ -26,10 +26,10 @@
             <table id="additionalChargeTable" class="table table-condensed">
                 <thead>
                     <tr>
-                        <th class="Code"> <span id="1">Code<span class="icon-up"></span></span></th>
-                        <th class="Name"> <span id="2">Name<span></span></span></th>
-                        <th class="IsEditable"> <span id="3">Is Editable<span></span></span></th>
-                        <th class="Description"> <span>Description<span></span></span></th>
+                        <th class="Code"> <span id="1">@Cares.Web.Resources.Tariff.AdditionalCharge.Code<span class="icon-up"></span></span></th>
+                        <th class="Name"> <span id="2">@Cares.Web.Resources.Tariff.AdditionalCharge.Name<span></span></span></th>
+                        <th class="IsEditable"> <span id="3">@Cares.Web.Resources.Tariff.AdditionalCharge.IsEditable<span></span></span></th>
+                        <th class="Description"> <span>@Cares.Web.Resources.Tariff.AdditionalCharge.Description<span></span></span></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -73,5 +73,18 @@
 {
     <script type="text/javascript">
         require(["additionalCharge/additionalCharge.view", "common/confirmation.view"]);
+        var ist = window.ist;
+        @{
+            <text>
+        ist.resourceText.loadBaseDataFailedMsg = '@Cares.Web.Resources.Tariff.AdditionalCharge.LoadBaseDataFailedMsg';
+        ist.resourceText.loadAddChargeDetailFailedMsg = '@Cares.Web.Resources.Tariff.AdditionalCharge.LoadAddChargeDetailFailedMsg';
+        ist.resourceText.additionalChargeAlreadyExist = '@Cares.Web.Resources.Tariff.AdditionalCharge.AdditionalChargeAlreadyExist';
+        ist.resourceText.additionalChargeAddSuccessMsg = '@Cares.Web.Resources.Tariff.AdditionalCharge.AdditionalChargeAddSuccessMsg';
+        ist.resourceText.additionalChargeAddFailedMsg = '@Cares.Web.Resources.Tariff.AdditionalCharge.AdditionalChargeAddFailedMsg';
+        ist.resourceText.additionalChargeDeleteSuccessMsg = '@Cares.Web.Resources.Tariff.AdditionalCharge.AdditionalChargeDeleteSuccessMsg';
+        ist.resourceText.additionalChargeDeleteFailedMsg = '@Cares.Web.Resources.Tariff.AdditionalCharge.AdditionalChargeDeleteFailedMsg';
+        ist.resourceText.additionalChargeLoadFailedMsg = '@Cares.Web.Resources.Tariff.AdditionalCharge.AdditionalChargeLoadFailedMsg';
+        </text>
+        }
     </script>
 }

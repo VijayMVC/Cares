@@ -216,6 +216,9 @@
   <data name="TotalRecords" xml:space="preserve">
     <value>إجمالي عدد السجلات:</value>
   </data>
+  <data name="Update" xml:space="preserve">
+    <value>تحديث</value>
+  </data>
   <data name="Yes" xml:space="preserve">
     <value>نعم</value>
   </data>

@@ -803,6 +803,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Resources\Tariff\AdditionalCharge.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdditionalCharge.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tariff\AdditionalCharge.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdditionalCharge.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Tariff\AdditionalDriverChrg.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2222,6 +2232,14 @@
     <EmbeddedResource Include="Resources\Products\Product.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Product.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tariff\AdditionalCharge.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AdditionalCharge.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tariff\AdditionalCharge.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AdditionalCharge.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tariff\AdditionalDriverChrg.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

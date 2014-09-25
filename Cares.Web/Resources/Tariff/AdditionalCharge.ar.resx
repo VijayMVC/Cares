@@ -117,82 +117,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AdditionalChargeAddFailedMsg" xml:space="preserve">
+    <value>فشلت في انقاذ رسوم إضافية.</value>
+  </data>
+  <data name="AdditionalChargeAddSuccessMsg" xml:space="preserve">
+    <value>رسوم إضافية حفظ بنجاح.</value>
+  </data>
+  <data name="AdditionalChargeAlreadyExist" xml:space="preserve">
+    <value>تعرف بالفعل رسوم إضافية مع المعلمات نظرا تأجير المجموعة التفاصيل.</value>
+  </data>
+  <data name="AdditionalChargeDeleteFailedMsg" xml:space="preserve">
+    <value>فشل في إزالة رسوم إضافية.</value>
+  </data>
+  <data name="AdditionalChargeDeleteSuccessMsg" xml:space="preserve">
+    <value>رسوم إضافية إزالة بنجاح.</value>
+  </data>
+  <data name="AdditionalChargeDetail" xml:space="preserve">
+    <value>رسوم إضافية التفاصيل</value>
+  </data>
+  <data name="AdditionalChargeLabel" xml:space="preserve">
+    <value>رسوم إضافية</value>
+  </data>
+  <data name="AdditionalChargeLoadFailedMsg" xml:space="preserve">
+    <value>فشل تحميل رسوم إضافية.</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>جميع</value>
+  </data>
   <data name="Code" xml:space="preserve">
-    <value>Code</value>
-  </data>
-  <data name="CreateNewServiceRate" xml:space="preserve">
-    <value>Create New Service Rate</value>
-  </data>
-  <data name="Date" xml:space="preserve">
-    <value>Date</value>
+    <value>كود</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Description</value>
+    <value>وصف</value>
   </data>
-  <data name="EffectiveFrom" xml:space="preserve">
-    <value>Effective From</value>
+  <data name="FromDate" xml:space="preserve">
+    <value>من تاريخ</value>
+  </data>
+  <data name="HireGroupDetail" xml:space="preserve">
+    <value>توظيف مجموعة التفاصيل</value>
+  </data>
+  <data name="IsEditable" xml:space="preserve">
+    <value>غير قابل للتحرير</value>
+  </data>
+  <data name="LoadAddChargeDetailFailedMsg" xml:space="preserve">
+    <value>فشل تحميل التفاصيل رسوم إضافية.</value>
   </data>
   <data name="LoadBaseDataFailedMsg" xml:space="preserve">
-    <value>Failed to load base data.</value>
+    <value>فشل تحميل قاعدة البيانات.</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Name</value>
+    <value>اسم</value>
   </data>
-  <data name="Number" xml:space="preserve">
-    <value>Number</value>
+  <data name="RevisionNumber" xml:space="preserve">
+    <value>رقم المراجعة</value>
   </data>
-  <data name="Operation" xml:space="preserve">
-    <value>Operation</value>
-  </data>
-  <data name="Revision" xml:space="preserve">
-    <value>Revision</value>
-  </data>
-  <data name="ServiceItem" xml:space="preserve">
-    <value>Service Item</value>
-  </data>
-  <data name="ServiceItemRate" xml:space="preserve">
-    <value>Service Item Rate</value>
-  </data>
-  <data name="ServiceItemRatesFailedMsg" xml:space="preserve">
-    <value>Failed to load Service Item Rates.</value>
-  </data>
-  <data name="ServiceRateAddFailedMsg" xml:space="preserve">
-    <value>Failed to save Service Rate.</value>
-  </data>
-  <data name="ServiceRateAddSuccessMsg" xml:space="preserve">
-    <value>Service Rate saved successfully.</value>
-  </data>
-  <data name="ServiceRateCode" xml:space="preserve">
-    <value>Service Rate Code</value>
-  </data>
-  <data name="ServiceRateDeleteFailedMsg" xml:space="preserve">
-    <value>Failed to remove Service Rate</value>
-  </data>
-  <data name="ServiceRateDeleteSuccessMsg" xml:space="preserve">
-    <value>Service Rate removed successfully.</value>
-  </data>
-  <data name="ServiceRateDetail" xml:space="preserve">
-    <value>Service Rate Detail</value>
-  </data>
-  <data name="ServiceRateName" xml:space="preserve">
-    <value>Service Rate Name</value>
-  </data>
-  <data name="ServiceRatesLoadFailedMsg" xml:space="preserve">
-    <value>Failed to load Service Rates.</value>
-  </data>
-  <data name="ServiceRateText" xml:space="preserve">
-    <value>Service Rate</value>
-  </data>
-  <data name="ServiceType" xml:space="preserve">
-    <value>Service Type</value>
-  </data>
-  <data name="Start" xml:space="preserve">
-    <value>Start</value>
-  </data>
-  <data name="StartEffective" xml:space="preserve">
-    <value>Start Effective</value>
-  </data>
-  <data name="TariffType" xml:space="preserve">
-    <value>Tariff Type</value>
+  <data name="StartDate" xml:space="preserve">
+    <value>بدء التسجيل</value>
   </data>
 </root>
