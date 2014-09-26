@@ -19,6 +19,7 @@ namespace Cares.Models.ResponseModels
             Departments = new List<Department>();
             Operations = new List<Operation>();
             TariffTypes = new List<TariffType>();
+            DesigGrades = new List<DesignGrade>();
         }
         #endregion
 
@@ -43,6 +44,11 @@ namespace Cares.Models.ResponseModels
         /// Tariff Types
         /// </summary>
         public IEnumerable<TariffType> TariffTypes { get; set; }
+
+        /// <summary>
+        /// Design Grade
+        /// </summary>
+        public IEnumerable<DesignGrade> DesigGrades { get; set; }
 
         #endregion
     }

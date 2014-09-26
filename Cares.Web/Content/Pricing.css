@@ -219,16 +219,13 @@
   margin-top: 10px;
 }
 #chaufferChargeBinding table thead tr .Code {
-  width: 25%;
+  width: 10%;
 }
 #chaufferChargeBinding table thead tr .Name {
-  width: 25%;
-}
-#chaufferChargeBinding table thead tr .IsEditable {
-  width: 22%;
+  width: 11%;
 }
 #chaufferChargeBinding table thead tr .Description {
-  width: 40%;
+  width: 12%;
 }
 #chaufferChargeBinding #chaufferChargeEditor {
   margin-top: 15px;
