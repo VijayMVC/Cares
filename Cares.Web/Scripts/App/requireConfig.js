@@ -41,7 +41,9 @@
             "discountType": "/Areas/Pricing/Scripts",
             "discountSubType": "/Areas/Pricing/Scripts",
             "serviceType": "/Areas/Pricing/Scripts",
-            "serviceItem": "/Areas/Pricing/Scripts"
+            "serviceItem": "/Areas/Pricing/Scripts",
+            "nRTType": "/Areas/NonRevenueTicket/Scripts"
+
 
 
         }

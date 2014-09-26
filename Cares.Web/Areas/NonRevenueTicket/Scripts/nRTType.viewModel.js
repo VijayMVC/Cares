@@ -1,68 +1,68 @@
 ﻿/*
-    Module with the view model for the Sub Region
+    Module with the view model for the Nrt Type
 */
-define("subRegion/subRegion.viewModel",
-    ["jquery", "amplify", "ko", "subRegion/subRegion.dataservice", "subRegion/subRegion.model",
+define("nRTType/nRTType.viewModel",
+    ["jquery", "amplify", "ko", "nRTType/nRTType.dataservice", "nRTType/nRTType.model",
     "common/confirmation.viewModel", "common/pagination"],
     function($, amplify, ko, dataservice, model, confirmation, pagination) {
         var ist = window.ist || {};
-        ist.SubRegion = {
+        ist.NrtType = {
             viewModel: (function() { 
                 var view,
-                    //array to save Sub Regions
-                    subRegions = ko.observableArray([]),
-                    //array to save basa data country list
-                    baseRegionList = ko.observableArray([]),
+                    //array to save nrt Types
+                    nrtTypes = ko.observableArray([]),
+                    //array to save basa data Vehicle Status list
+                    baseVehicleStatusList = ko.observableArray([]),
                     //pager%
                     pager = ko.observable(),
                     //org code filter in filter sec
                     searchFilter = ko.observable(),
-                    baseRegionFilter = ko.observable(),
+                    baseVehicleStatusFilter = ko.observable(),
                     //sorting
                     sortOn = ko.observable(1),
                     //Assending  / Desending
                     sortIsAsc = ko.observable(true),
                     //to control the visibility of editor sec
-                    isSubRegionEditorVisible = ko.observable(false),
+                    isNrtTypeEditorVisible = ko.observable(false),
                     //to control the visibility of filter ec
                     filterSectionVisilble = ko.observable(false),
                      // Editor View Model
-                    editorViewModel = new ist.ViewModel(model.subRegionDetail),
-                    // Selected Sub region
-                    selectedSubRegion = editorViewModel.itemForEditing,
+                    editorViewModel = new ist.ViewModel(model.NrtTypeDetail),
+                    // Selected Nrt Type
+                    selectedNrtType = editorViewModel.itemForEditing,
                     //save button handler
                     onSavebtn = function() {
-                    if (dobeforeSubRegion())
-                        saveSubRegion(selectedSubRegion());
+                    if (dobeforeNrtType())
+                        saveNrtType(selectedNrtType());
                 },
-                //Save sub  Region
-                    saveSubRegion = function(item) {
-                        dataservice.saveSubRegion(item.convertToServerData(), {
+                //Save Nrt Type
+                    saveNrtType = function (item) {
+                        dataservice.saveNrtType(item.convertToServerData(), {
                         success: function(dataFromServer) {
-                            var newItem = model.subRegionServertoClinetMapper(dataFromServer);
+                            var newItem = model.nRtTypeServertoClinetMapper(dataFromServer);
                             if (item.id() !== undefined) {
-                                var newObjtodelete = subRegions.find(function(temp) {
+                                var newObjtodelete = nrtTypes.find(function(temp) {
                                     return temp.id() == newItem.id();
                                 });
-                                subRegions.remove(newObjtodelete);
-                                subRegions.push(newItem);
+                                nrtTypes.remove(newObjtodelete);
+                                nrtTypes.push(newItem);
                             } else
-                                subRegions.push(newItem);
-                            isSubRegionEditorVisible(false);
-                            toastr.success(ist.resourceText.SubRegionSaveSuccessMessage);
+                                nrtTypes.push(newItem);
+                            isNrtTypeEditorVisible(false);
+                            toastr.success(ist.resourceText.NrtTypeSuccessFullySavedMessage);
                         },
                         error: function(exceptionMessage, exceptionType) {
                             if (exceptionType === ist.exceptionType.CaresGeneralException)
                                 toastr.error(exceptionMessage);
                             else
-                                toastr.error(ist.resourceText.SubRegionSaveFailError);
+                                toastr.error(ist.resourceText.FailedToSaveNrtTypeError);
                         }
                     });
                 },
                 //validation check 
-                    dobeforeSubRegion = function() {
-                    if (!selectedSubRegion().isValid()) {
-                        selectedSubRegion().errors.showAllMessages();
+                    dobeforeNrtType = function () {
+                    if (!selectedNrtType().isValid()) {
+                        selectedNrtType().errors.showAllMessages();
                         return false;
                     }
                     return true;
@@ -70,56 +70,56 @@ define("subRegion/subRegion.viewModel",
                 //cancel button handler
                     onCancelbtn = function() {
                     editorViewModel.revertItem();
-                    isSubRegionEditorVisible(false);
+                    isNrtTypeEditorVisible(false);
                 },
-                // create new Sub Region
+                // create new nrt Type
                     onCreateForm = function () {
-                        var region = new model.subRegionDetail();
-                    editorViewModel.selectItem(region);
-                    isSubRegionEditorVisible(true);
+                    var nrtType = new model.NrtTypeDetail();
+                    editorViewModel.selectItem(nrtType);
+                    isNrtTypeEditorVisible(true);
                 },
                 //reset butto handle 
                     resetResuults = function() {
                         searchFilter(undefined);
-                        baseRegionFilter(undefined);
-                    getSubRegions();
+                        baseVehicleStatusFilter(undefined);
+                    getNrtTypes();
                 },
                 //delete button handler
                     onDeleteItem = function(item) {
                     if (!item.id()) {
-                        subRegions.remove(item);
+                        nrtTypes.remove(item);
                         return;
                     }
                     // Ask for confirmation
                     confirmation.afterProceed(function() {
-                        deleteSubRegion(item);
+                        deleteNrtType(item);
                     });
                     confirmation.show();
                 },
                 //edit button handler
                     onEditItem = function(item) {
                     editorViewModel.selectItem(item);
-                    isSubRegionEditorVisible(true);
+                    isNrtTypeEditorVisible(true);
                 },
-                //delete Sub Region
-                    deleteSubRegion = function(region) {
-                        dataservice.deleteSubRegion(region.convertToServerData(), {
+                //delete nrt Type
+                    deleteNrtType = function (region) {
+                        dataservice.deleteNrtType(region.convertToServerData(), {
                         success: function() {
-                            subRegions.remove(region);
-                            toastr.success(ist.resourceText.SubRegionDeleteSuccessMessage);
+                            nrtTypes.remove(region);
+                            toastr.success(ist.resourceText.NrtTypeSuccessfullyDeletedMessage);
                         },
                         error: function(exceptionMessage, exceptionType) {
                             if (exceptionType === ist.exceptionType.CaresGeneralException)
                                 toastr.error(exceptionMessage);
                             else
-                                toastr.error(ist.resourceText.SubRegionDeleteFailError);
+                                toastr.error(ist.resourceText.FailedToDeleteNrtTypeError);
                         }
                     });
                 },
                 //search button handler in filter section
                     search = function() {
                     pager().reset();
-                    getSubRegions();
+                    getNrtTypes();
                 },
                 //hide filte section
                     hideFilterSection = function() {
@@ -129,12 +129,12 @@ define("subRegion/subRegion.viewModel",
                     showFilterSection = function() {
                         filterSectionVisilble(true);
                     },
-                    //get Sub Regions list from Dataservice
-                    getSubRegions = function() {
-                        dataservice.getSubRegions(
+                    //get Nrt Types list from Dataservice
+                    getNrtTypes = function() {
+                        dataservice.getNrtTypes(
                         {
-                            SubRegionFilterText: searchFilter(),
-                            RegionId: baseRegionFilter(),
+                            NrtTypeFilterText: searchFilter(),
+                            VehhicleStatusId: baseVehicleStatusFilter(),
                             PageSize: pager().pageSize(),
                             PageNo: pager().currentPage(),
                             SortBy: sortOn(),
@@ -142,33 +142,31 @@ define("subRegion/subRegion.viewModel",
                     },
                     {
                         success: function (data) {
-                            debugger;
-                            subRegions.removeAll();
+                            nrtTypes.removeAll();
                             pager().totalCount(data.TotalCount);
-                            _.each(data.SubRegions, function (item) {
-                                subRegions.push(model.subRegionServertoClinetMapper(item));
+                            _.each(data.NrtTypes, function (item) {
+                                nrtTypes.push(model.nRtTypeServertoClinetMapper(item));
                             });
                         },
                         error: function() {
                             isLoadingFleetPools(false);
-                            toastr.error(ist.resourceText.SubRegionLoadFailError);
+                            toastr.error(ist.resourceText.FailedToLoadNrtTypesError);
                         }
                     });
                     },
-                     //get Sub Region base data
+                     //get Nrt Types base data
                     getBaseData = function () {
-                        dataservice.getSubRegionBaseData(null, {
+                        dataservice.getNrtTypeBaseData(null, {
                             success: function (data) {
-
-                                baseRegionList.removeAll();
-                                ko.utils.arrayPushAll(baseRegionList(), data.RegionsDropDowns);
-                                baseRegionList.valueHasMutated();
+                                baseVehicleStatusList.removeAll();
+                                ko.utils.arrayPushAll(baseVehicleStatusList(), data.VehicleStatuses);
+                                baseVehicleStatusList.valueHasMutated();
                             },
                             error: function (exceptionMessage, exceptionType) {
                                 if (exceptionType === ist.exceptionType.CaresGeneralException) {
                                     toastr.error(exceptionMessage);
                                 } else {
-                                    toastr.error(ist.resourceText.SubRegionBaseDataLoadFailError);
+                                    toastr.error(ist.resourceText.FailedToloadBaseDataError);
                                 }
                             }
                         });
@@ -177,12 +175,12 @@ define("subRegion/subRegion.viewModel",
                     initialize = function(specifiedView) {
                         view = specifiedView;
                         ko.applyBindings(view.viewModel, view.bindingRoot);
-                        pager(pagination.Pagination({ PageSize: 10 }, subRegions, getSubRegions));
+                        pager(pagination.Pagination({ PageSize: 10 }, nrtTypes, getNrtTypes));
                         getBaseData();
-                        getSubRegions();
+                        getNrtTypes();
                     };
                 return {
-                    subRegions: subRegions,
+                    nrtTypes: nrtTypes,
                     initialize: initialize,
                     search: search,
                     searchFilter: searchFilter,
@@ -190,7 +188,7 @@ define("subRegion/subRegion.viewModel",
                     sortIsAsc: sortIsAsc,
                     onCreateForm: onCreateForm,
                     filterSectionVisilble: filterSectionVisilble,
-                    isSubRegionEditorVisible: isSubRegionEditorVisible,
+                    isNrtTypeEditorVisible: isNrtTypeEditorVisible,
                     hideFilterSection: hideFilterSection,
                     showFilterSection: showFilterSection,
                     pager: pager,
@@ -198,16 +196,15 @@ define("subRegion/subRegion.viewModel",
                     onDeleteItem: onDeleteItem,
                     onEditItem: onEditItem,
                     onCancelbtn: onCancelbtn,
-                    selectedSubRegion: selectedSubRegion,
+                    selectedNrtType: selectedNrtType,
                     onSavebtn: onSavebtn,
-                    getSubRegions: getSubRegions,
-
+                    getNrtTypes: getNrtTypes,
                     getBaseData: getBaseData,
-                    baseRegionList: baseRegionList,
-                    baseRegionFilter: baseRegionFilter
+                    baseVehicleStatusList: baseVehicleStatusList,
+                    baseVehicleStatusFilter: baseVehicleStatusFilter
 
                 };
             })()
         };
-        return ist.SubRegion.viewModel;
+        return ist.NrtType.viewModel;
     });

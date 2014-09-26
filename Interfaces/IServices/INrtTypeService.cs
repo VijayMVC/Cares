@@ -5,33 +5,33 @@ using System.Collections.Generic;
 namespace Cares.Interfaces.IServices
 {
     /// <summary>
-    /// Company Service Interface
+    /// Nrt Type Service Interface
     /// </summary>
     public interface INrtTypeService
     {
-        ///// <summary>
-        ///// Load all companies
-        ///// </summary>
-        //IEnumerable<Company> LoadAll();
+        /// <summary>
+        /// Load all Nrt Types
+        /// </summary>
+        IEnumerable<NrtType> LoadAll();
 
-        ///// <summary>
-        ///// Delete Compny
-        ///// </summary>
-        //void DeleteCompany(long companyId);
+        /// <summary>
+        /// Delete Ntr Type
+        /// </summary>
+        void DeleteNtrType(long ntrTypeId);
 
-        ///// <summary>
-        ///// Load Base data of compnies
-        ///// </summary>
-        //CompanyBaseDataResponse LoadCompanyBaseData();
+        /// <summary>
+        /// Load Base data of NrtType
+        /// </summary>
+        NrtTypeBaseDataResponse LoadNrtTypeBaseData();
 
-        ///// <summary>
-        ///// Search Compny
-        ///// </summary>
-        //CompanySearchRequestResponse SearchCompany(CompanySearchRequest request);
+        /// <summary>
+        /// Search Nrt Type
+        /// </summary>
+        NrtTypeSearchRequestResponse SearchNrtType(NrtTypeSearchRequest request);
 
-        ///// <summary>
-        ///// Add / Update Company
-        ///// </summary>
-        //Company AddUpdateCompany(Company companyRequest);
+        /// <summary>
+        /// Add / Update Ntr Type
+        /// </summary>
+        NrtType AddUpdateNtrType(NrtType nrtTypeRequest);
     }
 }

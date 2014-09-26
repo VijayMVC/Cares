@@ -1,48 +1,48 @@
-﻿using System;
+﻿using Cares.Interfaces.IServices;
+using Cares.Web.ModelMappers;
+using Cares.Web.Models;
+using System;
 using System.Net;
 using System.Web;
 using System.Web.Http;
-using Cares.Interfaces.IServices;
-using Cares.Web.ModelMappers;
-using CompanyBaseDataResponse = Cares.Web.Models.CompanyBaseDataResponse;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
     /// <summary>
-    /// Company base Controller
+    /// Nrt Type base Controller
     /// </summary>
     public class NrtTypeBaseController : ApiController
     {
         #region Private
 
-        private readonly ICompanyService companyService;
+        private readonly INrtTypeService nrtTypeService;
 
         #endregion
         #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>
-        public NrtTypeBaseController(ICompanyService companyService)
+        public NrtTypeBaseController(INrtTypeService nrtTypeService)
         {
-            if (companyService == null)
+            if (nrtTypeService == null)
             {
-                throw new ArgumentNullException("companyService");
+                throw new ArgumentNullException("nrtTypeService");
             }
-            this.companyService = companyService;
+            this.nrtTypeService = nrtTypeService;
         }
 
         #endregion
         #region Public
         /// <summary>
-        /// Get  Company base data
+        /// Get NrtType base data
         /// </summary>
-        public CompanyBaseDataResponse Get()
+        public NrtTypeBaseDataResponse Get()
         {
             if (!ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return companyService.LoadCompanyBaseData().CreateFrom();
+            return nrtTypeService.LoadNrtTypeBaseData().CreateFrom();
         }
         #endregion
 

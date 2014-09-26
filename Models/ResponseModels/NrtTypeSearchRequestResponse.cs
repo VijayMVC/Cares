@@ -4,19 +4,19 @@ using System.Collections.Generic;
 namespace Cares.Models.ResponseModels
 {
     /// <summary>
-    /// Company Search Request Response Domain model
+    /// Nrt Type Search Request Response Domain model
     /// </summary>
-    public class CompanySearchRequestResponse
+    public class NrtTypeSearchRequestResponse
     {
         #region Public
         /// <summary>
-        /// Companies List
+        /// Nrt Types List
         /// </summary>
-        public IEnumerable<Company> Companies { get; set; }
+        public IEnumerable<NrtType> NrtTypes { get; set; }
 
-      /// <summary>
-        /// Total Count of Companies
-      /// </summary>
+        /// <summary>
+        /// Total Count of Nrt Types
+        /// </summary>
         public int TotalCount { get; set; }
         #endregion
     }

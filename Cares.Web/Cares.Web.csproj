@@ -231,6 +231,7 @@
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeDetailController.cs" />
+    <Compile Include="Areas\Api\Controllers\NrtTypeController.cs" />
     <Compile Include="Areas\Api\Controllers\NrtTypeBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\ServiceItemController.cs" />
     <Compile Include="Areas\Api\Controllers\ServiceItemBaseController.cs" />
@@ -310,6 +311,8 @@
     <Compile Include="Areas\Fleet\FleetPoolAreaRegistration.cs" />
     <Compile Include="Areas\GeographicalHierarchy\Controllers\GeographicalHierarchyController.cs" />
     <Compile Include="Areas\GeographicalHierarchy\GeographicalHierarchyAreaRegistration.cs" />
+    <Compile Include="Areas\NonRevenueTicket\Controllers\NonRevenueTicketController.cs" />
+    <Compile Include="Areas\NonRevenueTicket\NonRevenueTicketAreaRegistration.cs" />
     <Compile Include="Areas\Organization\Controllers\OrganizationController.cs" />
     <Compile Include="Areas\Organization\OrganizationGroupAreaRegistration.cs" />
     <Compile Include="Areas\RentalAgreement\Controllers\HomeController.cs" />
@@ -343,6 +346,7 @@
     <Compile Include="ModelMappers\JobTypeMapper.cs" />
     <Compile Include="ModelMappers\LicenseTypeMapper.cs" />
     <Compile Include="ModelMappers\MaintenanceTypeMapper.cs" />
+    <Compile Include="ModelMappers\NrtTypeMapper.cs" />
     <Compile Include="ModelMappers\ServiceItemMapper.cs" />
     <Compile Include="ModelMappers\ServiceRtMapper.cs" />
     <Compile Include="ModelMappers\ServiceTypeMapper.cs" />
@@ -406,6 +410,9 @@
     <Compile Include="Models\JobTypeSearchRequestResponse.cs" />
     <Compile Include="Models\LicenseTypeDropDown.cs" />
     <Compile Include="Models\MaintenanceTypeDropDown.cs" />
+    <Compile Include="Models\NrtType.cs" />
+    <Compile Include="Models\NrtTypeBaseDataResponse.cs" />
+    <Compile Include="Models\NrtTypeSearchRequestResponse.cs" />
     <Compile Include="Models\OperationSearchResponse.cs" />
     <Compile Include="ModelMappers\VehicleMapper.cs" />
     <Compile Include="ModelMappers\MarketingChannelMapper.cs" />
@@ -690,6 +697,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Region.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\NonRevenueTicket\NrtType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NrtType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\NonRevenueTicket\NrtType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NrtType.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Organization\BusinessSegment.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -972,6 +989,10 @@
     <Content Include="Areas\GeographicalHierarchy\Scripts\region.model.js" />
     <Content Include="Areas\GeographicalHierarchy\Scripts\region.view.js" />
     <Content Include="Areas\GeographicalHierarchy\Scripts\region.viewModel.js" />
+    <Content Include="Areas\NonRevenueTicket\Scripts\nRTType.dataservice.js" />
+    <Content Include="Areas\NonRevenueTicket\Scripts\nRTType.model.js" />
+    <Content Include="Areas\NonRevenueTicket\Scripts\nRTType.view.js" />
+    <Content Include="Areas\NonRevenueTicket\Scripts\nRTType.viewModel.js" />
     <Content Include="Areas\Organization\Scripts\company.dataservice.js" />
     <Content Include="Areas\Organization\Scripts\company.model.js" />
     <Content Include="Areas\Organization\Scripts\company.view.js" />
@@ -1155,6 +1176,12 @@
     </Content>
     <Content Include="Content\MainSite.min.css">
       <DependentUpon>MainSite.css</DependentUpon>
+    </Content>
+    <Content Include="Content\NrtType.css">
+      <DependentUpon>NrtType.less</DependentUpon>
+    </Content>
+    <Content Include="Content\NrtType.min.css">
+      <DependentUpon>NrtType.css</DependentUpon>
     </Content>
     <Content Include="Content\Operation.css">
       <DependentUpon>Operation.less</DependentUpon>
@@ -1906,6 +1933,15 @@
     <Content Include="Content\ServiceItem.css.map">
       <DependentUpon>ServiceItem.css</DependentUpon>
     </Content>
+    <Content Include="Areas\NonRevenueTicket\Views\web.config" />
+    <Content Include="Areas\NonRevenueTicket\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\NonRevenueTicket\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\NonRevenueTicket\Views\NonRevenueTicket\NrtType.cshtml" />
+    <Content Include="Areas\NonRevenueTicket\Views\NonRevenueTicket\_NrtTypeEditor.cshtml" />
+    <Content Include="Content\NrtType.less" />
+    <Content Include="Content\NrtType.css.map">
+      <DependentUpon>NrtType.css</DependentUpon>
+    </Content>
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
@@ -2063,6 +2099,7 @@
     <Folder Include="Areas\EmployeeManagement\Models\" />
     <Folder Include="Areas\Fleet\Models\" />
     <Folder Include="Areas\GeographicalHierarchy\Models\" />
+    <Folder Include="Areas\NonRevenueTicket\Models\" />
     <Folder Include="Areas\Organization\Models\" />
     <Folder Include="Areas\Pricing\Models\" />
     <Folder Include="Areas\Product\Models\" />
@@ -2176,6 +2213,14 @@
     <EmbeddedResource Include="Resources\GeographicalHierarchy\Region.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Region.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\NonRevenueTicket\NrtType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NrtType.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\NonRevenueTicket\NrtType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NrtType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Organization\BusinessSegment.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
