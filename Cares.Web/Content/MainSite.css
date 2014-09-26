@@ -1184,6 +1184,30 @@
   margin-bottom: 20px;
   margin-top: 10px;
 }
+#VehicleCheckListBinding table thead tr .VehicleCheckListcode {
+  width: 25%;
+}
+#VehicleCheckListBinding table thead tr .VehicleCheckListname {
+  width: 25%;
+}
+#VehicleCheckListBinding table thead tr .VehicleCheckListDes {
+  width: 25%;
+}
+#VehicleCheckListBinding table thead tr .VehicleCheckListIsInterior {
+  width: 25%;
+}
+#VehicleCheckListBinding #VehicleCheckListEditor {
+  margin-top: 15px;
+}
+#VehicleCheckListBinding #VehicleCheckListEditor .detailsContainer {
+  width: 100%;
+}
+#VehicleCheckListBinding #VehicleCheckListEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
 .float-left {
   float: left;
 }

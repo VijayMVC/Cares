@@ -71,6 +71,7 @@ namespace Cares.Implementation
             unityContainer.RegisterType<IChaufferChargeService, ChaufferChargeService>();
             unityContainer.RegisterType<IServiceItemService, ServiceItemService>();
             unityContainer.RegisterType<INrtTypeService, NrtTypeService>();
+            unityContainer.RegisterType<IVehicleCheckListService, VehicleCheckListService>();
 
 
         }

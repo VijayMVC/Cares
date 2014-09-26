@@ -1,4 +1,6 @@
-﻿using Cares.Models.DomainModels;
+﻿using System.Collections.Generic;
+using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
 
 namespace Cares.Interfaces.Repository
 {
@@ -7,5 +9,14 @@ namespace Cares.Interfaces.Repository
     /// </summary>
     public interface IVehicleCheckListRepository : IBaseRepository<VehicleCheckList, long>
     {
+        /// <summary>
+        /// Search Vehicle CheckList
+        /// </summary>
+        IEnumerable<VehicleCheckList> SearchVehicleCheckList(VehicleCheckListSearchRequest request, out int rowCount);
+
+        /// <summary>
+        /// sel-Code duplication check
+        /// </summary>
+        bool DoesVehicleCheckListCodeExist(VehicleCheckList vehicleCheckList);
     }
 }

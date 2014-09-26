@@ -23,5 +23,10 @@ namespace Cares.Web.Areas.Fleet.Controllers
         {
             return View();
         }
+
+        public ActionResult VehicleCheckList()
+        {
+            return View();
+        }
 	}
 }

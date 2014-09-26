@@ -43,6 +43,13 @@ namespace Cares.Repository.Repositories
             return DbSet.Where(vCheckListItem => vCheckListItem.UserDomainKey == UserDomainKey).ToList();
         }
 
+        /// <summary>
+        /// Association check Vehicle CheckList Item with  Vehicle CheckList
+        /// </summary>
+        public bool IsVehicleCheckListItemAssociatedWithVehicleCheckList(long vehicleCheckListId)
+        {
+            return DbSet.Count(raVehicleCheckListItem => raVehicleCheckListItem.VehicleCheckListId == vehicleCheckListId) > 0;
+        }
         #endregion
     }
 }

@@ -88,6 +88,8 @@ namespace Cares.Repository.BaseRepository
         public DbSet<NrtType> NrtTypes { get; set; }
         public DbSet<NrtMain> NrtMain { get; set; }
 
+        public DbSet<RaVehicleCheckList>  RaVehicleCheckLists { get; set; }
+
         public DbSet<Employee> Employees { get; set; }
         /// <summary>
         /// Companies DB Set
