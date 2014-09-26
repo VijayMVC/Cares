@@ -19,6 +19,7 @@
             "serviceRate": "/Areas/Pricing/Scripts",
             "additionalDriverCharge": "/Areas/Pricing/Scripts",
             "additionalCharge": "/Areas/Pricing/Scripts",
+            "chaufferCharge": "/Areas/Pricing/Scripts",
             "rentalAgreement": "/Areas/RentalAgreement/Scripts",
             "Organization": "/Areas/Organization/Scripts",
             "company": "/Areas/Organization/Scripts",
@@ -37,7 +38,14 @@
             "designGrade": "/Areas/EmployeeManagement/Scripts",
             "designation": "/Areas/EmployeeManagement/Scripts",
             "jobType": "/Areas/EmployeeManagement/Scripts",
-            "discountType": "/Areas/Pricing/Scripts"
+            "discountType": "/Areas/Pricing/Scripts",
+            "discountSubType": "/Areas/Pricing/Scripts",
+            "serviceType": "/Areas/Pricing/Scripts",
+            "serviceItem": "/Areas/Pricing/Scripts",
+            "nRTType": "/Areas/NonRevenueTicket/Scripts"
+
+
+
         }
     });
     

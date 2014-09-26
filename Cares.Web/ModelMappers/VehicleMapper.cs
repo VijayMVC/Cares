@@ -214,7 +214,7 @@ namespace Cares.Web.ModelMappers
                        Regions = source.Regions.Select(r => r.CreateFrom()),
                        FuelTypes = source.FuelTypes.Select(ft => ft.CreateFromDropDown()),
                        VehicleModels = source.VehicleModels.Select(vm => vm.CreateFrom()),
-                       VehicleStatuses = source.VehicleStatuses.Select(vs => vs.CreateFromDropDown()),
+                       VehicleStatuses = source.VehicleStatuses.Select(vs => vs.CreateFromm()),
                        Departments = source.Departments.Select(d => d.CreateFrom()),
                        VehicleCategories = source.VehicleCategories.Select(vc => vc.CreateFrom()),
                        TransmissionTypes = source.TransmissionTypes.Select(tt => tt.CreateFromDropDown()),

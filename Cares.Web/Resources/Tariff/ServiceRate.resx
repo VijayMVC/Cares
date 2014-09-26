@@ -169,7 +169,7 @@
     <value>Failed to remove Service Rate</value>
   </data>
   <data name="ServiceRateDeleteSuccessMsg" xml:space="preserve">
-    <value>Service Rate remove successfully.</value>
+    <value>Service Rate removed successfully.</value>
   </data>
   <data name="ServiceRateDetail" xml:space="preserve">
     <value>Service Rate Detail</value>

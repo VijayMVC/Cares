@@ -66,6 +66,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -92,6 +93,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -103,6 +105,8 @@
     <Compile Include="CommonTypes\DepartmentType.cs" />
     <Compile Include="Common\BillingSummary.cs" />
     <Compile Include="Common\AllocationStatusEnum.cs" />
+    <Compile Include="Common\ChaufferChargeByColumn.cs" />
+    <Compile Include="Common\NrtTypeByColumn.cs" />
     <Compile Include="Common\DiscountTypeEnum.cs" />
     <Compile Include="Common\VehicleMovementEnum.cs" />
     <Compile Include="Common\PricingStrategyEnum.cs" />
@@ -123,8 +127,10 @@
     <Compile Include="Common\InsuranceRateByColumn.cs" />
     <Compile Include="Common\JobTypeByColumn.cs" />
     <Compile Include="Common\RegionByColumn.cs" />
+    <Compile Include="Common\ServiceItemByColumn.cs" />
     <Compile Include="Common\ServiceRateByColumn.cs" />
     <Compile Include="Common\OperationByColumn.cs" />
+    <Compile Include="Common\ServiceTypeByColumn.cs" />
     <Compile Include="Common\SubRegionByColumn.cs" />
     <Compile Include="Common\VehicleOrderByColumn.cs" />
     <Compile Include="Common\HireGroupByColumn.cs" />
@@ -273,6 +279,7 @@
     <Compile Include="RequestModels\AreaSearchRequest.cs" />
     <Compile Include="RequestModels\AreaSearchRequestResponse.cs" />
     <Compile Include="RequestModels\BusinessSegmentSearchRequest.cs" />
+    <Compile Include="RequestModels\ChaufferChargeSearchRequest.cs" />
     <Compile Include="RequestModels\CitySearchRequestResponse.cs" />
     <Compile Include="RequestModels\CompanySearchRequest.cs" />
     <Compile Include="RequestModels\DepartmentSearchRequest.cs" />
@@ -293,14 +300,18 @@
     <Compile Include="RequestModels\BusinessPartnerSearchRequest.cs" />
     <Compile Include="RequestModels\GetHireGroupRequest.cs" />
     <Compile Include="RequestModels\HireGroupAddRequest.cs" />
+    <Compile Include="RequestModels\INrtTypeSearchRequest.cs" />
     <Compile Include="RequestModels\InsuranceRateSearchRequest.cs" />
     <Compile Include="RequestModels\CitySearchRequest.cs" />
     <Compile Include="RequestModels\JobTypeSearchRequest.cs" />
     <Compile Include="RequestModels\JobTypeSearchRequestResponse.cs" />
     <Compile Include="RequestModels\RegionSearchRequest.cs" />
     <Compile Include="RequestModels\RegionSearchRequestResponse.cs" />
+    <Compile Include="RequestModels\ServiceItemSearchRequest.cs" />
     <Compile Include="RequestModels\ServiceRateSearchRequest.cs" />
     <Compile Include="RequestModels\OperationSearchRequest.cs" />
+    <Compile Include="RequestModels\ServiceTypeSearchRequest.cs" />
+    <Compile Include="RequestModels\ServiceTypeSearchRequestResponse.cs" />
     <Compile Include="RequestModels\SubRegionSearchRequest.cs" />
     <Compile Include="RequestModels\SubRegionSearchRequestResponse.cs" />
     <Compile Include="RequestModels\VehicleSearchRequest.cs" />
@@ -322,6 +333,9 @@
     <Compile Include="ResponseModels\AreaBaseDataResponse.cs" />
     <Compile Include="ResponseModels\BusinessPartnerBaseDataResponse.cs" />
     <Compile Include="ResponseModels\BusinessSegmentSearchRequestResponse.cs" />
+    <Compile Include="ResponseModels\ChaufferChargeBaseResponse.cs" />
+    <Compile Include="ResponseModels\ChaufferChargeMainContent.cs" />
+    <Compile Include="ResponseModels\ChaufferChargeSearchResponse.cs" />
     <Compile Include="ResponseModels\CityBaseDataResponse.cs" />
     <Compile Include="ResponseModels\CompanyBaseDataResponse.cs" />
     <Compile Include="ResponseModels\CompanySearchResponse.cs" />
@@ -342,6 +356,8 @@
     <Compile Include="ResponseModels\InsuranceRtDetailContent.cs" />
     <Compile Include="ResponseModels\InsuranceRtDetailResponse.cs" />
     <Compile Include="ResponseModels\InsuranceRtMainContent.cs" />
+    <Compile Include="ResponseModels\NrtTypeBaseDataResponse.cs" />
+    <Compile Include="ResponseModels\NrtTypeSearchRequestResponse.cs" />
     <Compile Include="ResponseModels\OperationBaseDataResponse.cs" />
     <Compile Include="ResponseModels\OperationSearchResponse.cs" />
     <Compile Include="ResponseModels\OperationWorkplaceSearchByIdResponse.cs" />
@@ -350,6 +366,8 @@
     <Compile Include="ResponseModels\ProductResponse.cs" />
     <Compile Include="ResponseModels\RegionBaseDataResponse.cs" />
     <Compile Include="ResponseModels\RegionResponse.cs" />
+    <Compile Include="ResponseModels\ServiceItemBaseDataResponse.cs" />
+    <Compile Include="ResponseModels\ServiceItemSearchRequestResponse.cs" />
     <Compile Include="ResponseModels\ServiceRateBaseResponse.cs" />
     <Compile Include="ResponseModels\ServiceRateSearchResponse.cs" />
     <Compile Include="ResponseModels\ServiceRtDetailContent.cs" />
@@ -379,7 +397,6 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

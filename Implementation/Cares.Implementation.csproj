@@ -217,6 +217,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Region.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\NonRevenueTicket\NrtType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NrtType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\NonRevenueTicket\NrtType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NrtType.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Organization\BusinessSegment.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -276,6 +286,36 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DiscountType.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Pricing\ServiceItem.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceItem.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Pricing\ServiceItem.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceItem.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Pricing\ServiceType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Pricing\ServiceType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceType.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tariff\AdditionalCharge.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdditionalCharge.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tariff\AdditionalCharge.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdditionalCharge.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Tariff\InsuranceRate.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -360,6 +400,8 @@
     <Compile Include="Services\AdditionalChargeService.cs" />
     <Compile Include="Services\AddressBaseDataService.cs" />
     <Compile Include="Services\AdditionalDriverService.cs" />
+    <Compile Include="Services\NrtTypeService.cs" />
+    <Compile Include="Services\ServiceItemService.cs" />
     <Compile Include="Services\BusinessPartnerBaseDataService.cs" />
     <Compile Include="Services\BusinessPartnerCompanyService.cs" />
     <Compile Include="Services\BusinessPartnerIndividualService.cs" />
@@ -368,6 +410,8 @@
     <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Services\BPRatingTypeService.cs" />
     <Compile Include="Services\BusinessLegalStatusService.cs" />
+    <Compile Include="Services\ChaufferChargeService.cs" />
+    <Compile Include="Services\ServiceTypeService.cs" />
     <Compile Include="Services\JobTypeService.cs" />
     <Compile Include="Services\InsuranceRateService.cs" />
     <Compile Include="Services\OperationsWorkPlaceService.cs" />
@@ -503,6 +547,14 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Region.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\NonRevenueTicket\NrtType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NrtType.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\NonRevenueTicket\NrtType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NrtType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Organization\BusinessSegment.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BusinessSegment.ar.Designer.cs</LastGenOutput>
@@ -554,6 +606,30 @@
     <EmbeddedResource Include="Resources\Pricing\DiscountType.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>DiscountType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Pricing\ServiceItem.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceItem.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Pricing\ServiceItem.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceItem.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Pricing\ServiceType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceType.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Pricing\ServiceType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tariff\AdditionalCharge.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AdditionalCharge.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tariff\AdditionalCharge.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AdditionalCharge.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tariff\InsuranceRate.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

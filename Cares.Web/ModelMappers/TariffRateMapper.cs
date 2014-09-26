@@ -74,7 +74,7 @@ namespace Cares.Web.ModelMappers
                 VehicleMakes = source.VehicleMakes.Select(vehicleMake => vehicleMake.CreateFrom()),
                 VehicleCategories = source.VehicleCategories.Select(o => o.CreateFrom()),
                 VehicleModels = source.VehicleModels.Select(vehicleModel => vehicleModel.CreateFrom()),
-                TariffTypes = source.TariffTypes.Select(tariffType => tariffType.CreateFromForTariffRate()),
+                TariffTypes = source.TariffTypes.Select(tariffType => tariffType.CreateFromDropDown()).ToList(),
             };
         }
         #endregion

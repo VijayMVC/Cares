@@ -261,16 +261,16 @@
   margin-top: 10px;
 }
 #additionalChargeBinding table thead tr .Code {
-  width: 18%;
+  width: 25%;
 }
 #additionalChargeBinding table thead tr .Name {
-  width: 18%;
+  width: 25%;
 }
 #additionalChargeBinding table thead tr .IsEditable {
   width: 22%;
 }
 #additionalChargeBinding table thead tr .Description {
-  width: 18%;
+  width: 40%;
 }
 #additionalChargeBinding #additionalChargeEditor {
   margin-top: 15px;
@@ -278,6 +278,10 @@
 #additionalChargeBinding #additionalChargeEditor .addToBtn {
   float: right;
   margin-right: 30px;
+}
+#additionalChargeBinding #additionalChargeEditor .btnAdditionalChargeUpdate {
+  float: right;
+  margin-right: 4px;
 }
 #additionalChargeBinding #additionalChargeEditor .additionalChargeWell {
   margin-top: 30px;
@@ -288,6 +292,40 @@
   width: 100%;
 }
 #additionalChargeBinding #additionalChargeEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#chaufferChargeBinding table thead tr .Code {
+  width: 10%;
+}
+#chaufferChargeBinding table thead tr .Name {
+  width: 11%;
+}
+#chaufferChargeBinding table thead tr .Description {
+  width: 12%;
+}
+#chaufferChargeBinding #chaufferChargeEditor {
+  margin-top: 15px;
+}
+#chaufferChargeBinding #chaufferChargeEditor .addToBtn {
+  float: right;
+  margin-right: 30px;
+}
+#chaufferChargeBinding #chaufferChargeEditor .btnAdditionalChargeUpdate {
+  float: right;
+  margin-right: 4px;
+}
+#chaufferChargeBinding #chaufferChargeEditor .additionalChargeWell {
+  margin-top: 30px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#chaufferChargeBinding #chaufferChargeEditor .detailsContainer {
+  width: 100%;
+}
+#chaufferChargeBinding #chaufferChargeEditor .detailsContainer .detailsHeaderSection {
   float: left;
   width: 85%;
   margin-bottom: 20px;
@@ -1048,6 +1086,99 @@
   width: 100%;
 }
 #DiscountTypeBinding #DiscountTypeEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#DiscountSubTypeBinding table thead tr .DiscountSubTypeCode {
+  width: 25%;
+}
+#DiscountSubTypeBinding table thead tr .DiscountSubTypeName {
+  width: 25%;
+}
+#DiscountSubTypeBinding table thead tr .DiscountSubTypeDes {
+  width: 25%;
+}
+#DiscountSubTypeBinding table thead tr .DiscountSubTypeDiscountType {
+  width: 25%;
+}
+#DiscountSubTypeBinding #DiscountSubTypeEditor {
+  margin-top: 15px;
+}
+#DiscountSubTypeBinding #DiscountSubTypeEditor .detailsContainer {
+  width: 100%;
+}
+#DiscountSubTypeBinding #DiscountSubTypeEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#ServiceTypeBinding table thead tr .ServiceTypeCode {
+  width: 33%;
+}
+#ServiceTypeBinding table thead tr .ServiceTypeName {
+  width: 33%;
+}
+#ServiceTypeBinding table thead tr .ServiceTypeDiscription {
+  width: 33%;
+}
+#ServiceTypeBinding #ServiceTypeEditor {
+  margin-top: 15px;
+}
+#ServiceTypeBinding #ServiceTypeEditor .detailsContainer {
+  width: 100%;
+}
+#ServiceTypeBinding #ServiceTypeEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#ServiceItemBinding table thead tr .ServiceItemCode {
+  width: 25%;
+}
+#ServiceItemBinding table thead tr .ServiceItemName {
+  width: 25%;
+}
+#ServiceItemBinding table thead tr .ServiceItemDes {
+  width: 25%;
+}
+#ServiceItemBinding table thead tr .ServiceItemServiceType {
+  width: 25%;
+}
+#ServiceItemBinding #ServiceItemEditor {
+  margin-top: 15px;
+}
+#ServiceItemBinding #ServiceItemEditor .detailsContainer {
+  width: 100%;
+}
+#ServiceItemBinding #ServiceItemEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#NrtTypeBinding table thead tr .NrtTypeCode {
+  width: 25%;
+}
+#NrtTypeBinding table thead tr .NrtTypeName {
+  width: 25%;
+}
+#NrtTypeBinding table thead tr .NrtTypeDes {
+  width: 25%;
+}
+#NrtTypeBinding table thead tr .NrtTypeVehicleStatus {
+  width: 25%;
+}
+#NrtTypeBinding #NrtTypeEditor {
+  margin-top: 15px;
+}
+#NrtTypeBinding #NrtTypeEditor .detailsContainer {
+  width: 100%;
+}
+#NrtTypeBinding #NrtTypeEditor .detailsContainer .detailsHeaderSection {
   float: left;
   width: 85%;
   margin-bottom: 20px;

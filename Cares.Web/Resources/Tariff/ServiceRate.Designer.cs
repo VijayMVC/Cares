@@ -214,7 +214,7 @@ namespace Cares.Web.Resources.Tariff {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Service Rate remove successfully..
+        ///   Looks up a localized string similar to Service Rate removed successfully..
         /// </summary>
         public static string ServiceRateDeleteSuccessMsg {
             get {
@@ -282,15 +282,6 @@ namespace Cares.Web.Resources.Tariff {
         public static string StartEffective {
             get {
                 return ResourceManager.GetString("StartEffective", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string String1 {
-            get {
-                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
         

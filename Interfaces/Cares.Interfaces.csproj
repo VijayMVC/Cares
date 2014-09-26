@@ -52,6 +52,10 @@
     <Compile Include="Helpers\IBill.cs" />
     <Compile Include="IServices\IAdditionalChargeService.cs" />
     <Compile Include="IServices\IAddressBaseDataService.cs" />
+    <Compile Include="IServices\IChaufferChargeService.cs" />
+    <Compile Include="IServices\INrtTypeService.cs" />
+    <Compile Include="IServices\IServiceItemService.cs" />
+    <Compile Include="IServices\IServiceTypeService.cs" />
     <Compile Include="IServices\IJobTypeService.cs" />
     <Compile Include="Repository\IChaufferChargeRepository.cs" />
     <Compile Include="Repository\IAdditionalChargeRepository.cs" />
@@ -81,6 +85,10 @@
     <Compile Include="IServices\IWorkLocationService.cs" />
     <Compile Include="IServices\IWorkplaceService.cs" />
     <Compile Include="IServices\IWorkplaceTypeService.cs" />
+    <Compile Include="Repository\IChaufferChargeMainRepository.cs" />
+    <Compile Include="Repository\IChaufferChargeRepository.cs" />
+    <Compile Include="Repository\INrtMainRepository.cs" />
+    <Compile Include="Repository\INrtTypeRepository.cs" />
     <Compile Include="Repository\IDiscountSubTypeRepository.cs" />
     <Compile Include="Repository\IDiscountTypeRepository.cs" />
     <Compile Include="Repository\IEmpAuthOperationsWorkplaceRepository.cs" />
@@ -94,6 +102,7 @@
     <Compile Include="Repository\IJobTypeRepository.cs" />
     <Compile Include="Repository\ILicenseTypeRepository.cs" />
     <Compile Include="Repository\IMaintenanceTypeRepository.cs" />
+    <Compile Include="Repository\IRAServiceItemRepository.cs" />
     <Compile Include="Repository\IServiceItemRepository.cs" />
     <Compile Include="Repository\IServiceRtMainRepository.cs" />
     <Compile Include="Repository\IServiceRtRepository.cs" />

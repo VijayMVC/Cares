@@ -1,7 +1,7 @@
 ﻿define(["ko", "underscore", "underscore-ko"], function(ko) {
     
-    //Discount Type Detail
-    var discountTypeDetail = function (specifiedId, specifiedCode, specifiedName, specifieddescription, specifiedregionId, specifiedregionName) {
+       //Discount Type Detail
+    var discountTypeDetail = function (specifiedId, specifiedCode, specifiedName, specifieddescription) {
         var            
             id = ko.observable(specifiedId),
             code = ko.observable(specifiedCode).extend({ required: true }),
@@ -31,8 +31,8 @@
             convertToServerData = function () {
                 return {
                     DiscountTypeId: id(),
-                    DiscountTypeName: code(),
-                    DiscountTypeCode: name(),
+                    DiscountTypeName: name(),
+                    DiscountTypeCode: code(),
                     DiscountTypeDescrition: description()
                 };
             };
@@ -55,9 +55,9 @@
         return discountTypeDetail.Create(source);
     };
     
-    // Sub Region Factory
+    //Discount Type Factory
     discountTypeDetail.Create = function (source) {
-        return new discountTypeDetail(source.DiscountTypeId, source.DiscountTypeName, source.DiscountTypeCode, source.DiscountTypeDescrition);
+        return new discountTypeDetail(source.DiscountTypeId, source.DiscountTypeCode, source.DiscountTypeName, source.DiscountTypeDescrition);
     };
 
     //function to attain cancel button functionality 

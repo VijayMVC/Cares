@@ -16,7 +16,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// </summary>
     public class AdditionalChargeController : ApiController
     {
-       
+
         #region Private
         private readonly IAdditionalChargeService additionalChargeService;
         #endregion
@@ -47,33 +47,32 @@ namespace Cares.Web.Areas.Api.Controllers
         }
 
 
-        ///// <summary>
-        ///// Add/Update a Additional Driver Charge
-        ///// </summary>
-        //[ApiException]
-        //public AdditionalDriverChargeSearchContent Post(AdditionalDriverCharge additionalDriverCharge)
-        //{
-        //    if (additionalDriverCharge == null || !ModelState.IsValid)
-        //    {
-        //        throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
-        //    }
-        //    AdditionalDriverChargeSearchContent reponse =
-        //        additionalDriverService.SaveAdditionalDriverCharge(additionalDriverCharge.CreateFrom())
-        //            .CreateFrom();
-        //    return reponse;
-
-        //}
+        /// <summary>
+        /// Add/Update a Additional Driver Charge
+        /// </summary>
+        [ApiException]
+        public Models.AdditionalChargeType Post(Models.AdditionalChargeType additionalChargeType)
+        {
+            if (additionalChargeType == null || !ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+            Models.AdditionalChargeType reponse =
+                additionalChargeService.SaveAdditionalCharge(additionalChargeType.CreateFrom())
+                    .CreateFrom();
+            return reponse;
+        }
 
         /// <summary>
         /// Delete a AdditionalCharge
         /// </summary>
-        public void Delete(AdditionalChargeType AdditionalChargeType)
+        public void Delete(AdditionalChargeType additionalChargeType)
         {
-            if (AdditionalChargeType == null || !ModelState.IsValid)
+            if (additionalChargeType == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            //additionalDriverService.AdditionalDriverChargeDelete(additionalDriverService.FindById(additionalDriverCharge.AdditionalDriverChargeId));
+            additionalChargeService.DeleteAdditionalCharge(additionalChargeService.FindById(additionalChargeType.AdditionalChargeTypeId));
 
         }
 

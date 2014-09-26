@@ -9,19 +9,23 @@ define("additionalCharge/additionalCharge.viewModel",
             viewModel: (function () {
                 var // the view 
                     view,
-                    // Active Additional Charge 
+                    // Active Additional Charge Type
+                    selectedAdditionalChargeType = ko.observable(),
+                    // Active Additional Charge
                     selectedAdditionalCharge = ko.observable(),
                     //Add/Edit Additional Charge 
                     addEditAdditionalCharge = ko.observable(),
                     // Show Filter Section
                     filterSectionVisilble = ko.observable(false),
+                    //Show Update and Cancel button For Update Additional Charge
+                    showUpdateCancelBtn = ko.observable(false),
                     // #region Arrays
                     //additional Charges
                     additionalCharges = ko.observableArray([]),
                     //Additional Type Charges
                     additionalTypeCharges = ko.observableArray([]),
                     //Hire Group Detail List
-                    hiregroupDetails = ko.observableArray([]),
+                    hireGroupDetails = ko.observableArray([]),
                     // #endregion Arrays
                     // #region Busy Indicators
                     isLoadingAdditionalCharge = ko.observable(false),
@@ -52,8 +56,7 @@ define("additionalCharge/additionalCharge.viewModel",
                         getAdditionalCharges();
 
                     },
-
-                    // Collapase filter section
+                     // Collapase filter section
                     collapseFilterSection = function () {
                         filterSectionVisilble(false);
                     },
@@ -66,10 +69,9 @@ define("additionalCharge/additionalCharge.viewModel",
                         dataservice.getAdditionalChargeBase({
                             success: function (data) {
                                 //Hire group Details
-                                hiregroupDetails.removeAll();
-                                ko.utils.arrayPushAll(hiregroupDetails(), data.HireGroupDetails);
-                                hiregroupDetails.valueHasMutated();
-
+                                hireGroupDetails.removeAll();
+                                ko.utils.arrayPushAll(hireGroupDetails(), data.HireGroupDetails);
+                                hireGroupDetails.valueHasMutated();
                                 if (callBack && typeof callBack === 'function') {
                                     callBack();
                                 }
@@ -80,22 +82,22 @@ define("additionalCharge/additionalCharge.viewModel",
                         });
                     },
                     //Get Additional Charge By Id
-                    getAdditionalChargesById = function (addDriverChrg) {
-                        //isLoadingAdditionalCharge(true);
-                        //dataservice.getAdditionalChargeDetail(model.AdditionalChargeServerMapperForId(addDriverChrg), {
-                        //    success: function (data) {
-                        //        revisions.removeAll();
-                        //        _.each(data, function (item) {
-                        //            var revision = new model.AdditionalDriverChargeRevisionClientMapper(item);
-                        //            revisions.push(revision);
-                        //        });
-                        //        isLoadingAdditionalCharge(false);
-                        //    },
-                        //    error: function () {
-                        //        isLoadingAdditionalCharge(false);
-                        //        toastr.error(ist.resourceText.loadAddDriverChargeDetailFailedMsg);
-                        //    }
-                        //});
+                    getAdditionalChargeById = function (addChrg) {
+                        isLoadingAdditionalCharge(true);
+                        dataservice.getAdditionalChargeDetail(model.AdditionalChrgServerMapperForId(addChrg), {
+                            success: function (data) {
+                                additionalCharges.removeAll();
+                                _.each(data, function (item) {
+                                    var sddCharge = new model.AdditionalChargeClientMapper(item);
+                                    additionalCharges.push(sddCharge);
+                                });
+                                isLoadingAdditionalCharge(false);
+                            },
+                            error: function () {
+                                isLoadingAdditionalCharge(false);
+                                toastr.error(ist.resourceText.loadAddChargeDetailFailedMsg);
+                            }
+                        });
                     },
                     // Search 
                     search = function () {
@@ -120,66 +122,103 @@ define("additionalCharge/additionalCharge.viewModel",
                     //Create Additional Charge
                     createAdditionalCharge = function () {
                         var additionalChrg = new model.AdditionalChargeType();
+                        additionalCharges.removeAll();
                         // Select the newly added Additional Charge
-                        selectedAdditionalCharge(additionalChrg);
+                        selectedAdditionalChargeType(additionalChrg);
                         addEditAdditionalCharge(additionalChrg);
                         showAdditionalChargeEditor();
                     },
                     // Save Additional Charge
-                    onSaveAdditionalCharge = function (addDriverChrg) {
+                    onSaveAdditionalCharge = function (addCharge) {
                         if (doBeforeSave()) {
-                            saveAdditionalCharge(addDriverChrg);
+
+                            addCharge.additionalChargesList.removeAll();
+                            ko.utils.arrayPushAll(addCharge.additionalChargesList(), additionalCharges());
+                            saveAdditionalCharge(addCharge);
                         }
                     },
                     // Do Before Logic
                     doBeforeSave = function () {
                         var flag = true;
                         if (!addEditAdditionalCharge().isValid()) {
-                            selectedAdditionalCharge().errors.showAllMessages();
+                            selectedAdditionalChargeType().errors.showAllMessages();
                             flag = false;
                         }
                         return flag;
                     },
                     //Add Additional Charge
-                    onAddAdditionalCharge=function(addCharge) {
+                    onAddAdditionalCharge = function (addCharge) {
                         if (doBeforeAddAddionalCharge()) {
-                            additionalCharges.push(addCharge);
+                            var flag = true;
+
+                            //In case of New
+                            _.each(additionalCharges(), function (item) {
+                                if (item.hireGroupDetailId() === addCharge.hireGroupDetailId()) {
+                                    toastr.error(ist.resourceText.additionalChargeAlreadyExist);
+                                    flag = false;
+                                }
+                            });
+                            if (flag) {
+
+                                //New Add
+                                if (addCharge.hireGroupDetailCodeName() === undefined) {
+                                    addCharge.hireGroupDetailCodeName("All");
+                                }
+                                additionalCharges.push(addCharge);
+                                addEditAdditionalCharge().additionalCharge(new model.AdditionalCharge());
+                            }
+                           
+                        }
+                    },
+                    onUpdateAdditionalCharge = function (addCharge) {
+                        if (doBeforeAddAddionalCharge()) {
+                            var flag = true;
+                            if (selectedAdditionalCharge() !== undefined) {
+                                //In case Of edit
+                                _.each(additionalCharges(), function (item) {
+                                    if (item.hireGroupDetailId() === addCharge.hireGroupDetailId() && addCharge.hireGroupDetailId() !== selectedAdditionalCharge().hireGroupDetailId()) {
+                                        toastr.error(ist.resourceText.additionalChargeAlreadyExist);
+                                        flag = false;
+                                    }
+                                });
+                            }
+                            if (flag && selectedAdditionalCharge() !== undefined) {
+                                selectedAdditionalCharge().hireGroupDetailId(addCharge.hireGroupDetailId());
+                                selectedAdditionalCharge().startDate(addCharge.startDate());
+                                selectedAdditionalCharge().rate(addCharge.rate());
+                                if (addCharge.hireGroupDetailCodeName() === undefined) {
+                                    addCharge.hireGroupDetailCodeName("All");
+                                }
+                                selectedAdditionalCharge().hireGroupDetailCodeName(addCharge.hireGroupDetailCodeName());
+                                selectedAdditionalCharge(undefined);
+                                addEditAdditionalCharge().additionalCharge(new model.AdditionalCharge());
+                                showUpdateCancelBtn(false);
+                            }
                         }
                     },
                        // Do Before Logic
                     doBeforeAddAddionalCharge = function () {
                         var flag = true;
                         if (!addEditAdditionalCharge().additionalCharge().isValid()) {
-                            selectedAdditionalCharge().additionalCharge().errors.showAllMessages();
+                            addEditAdditionalCharge().additionalCharge().errors.showAllMessages();
                             flag = false;
                         }
                         return flag;
                     },
 
                     // Save Additional Charge Main
-                    saveAdditionalCharge = function (addDriverChrg) {
-                        dataservice.saveAdditionalCharge(model.AdditionalChargeServerMapper(addDriverChrg), {
+                    saveAdditionalCharge = function (addCharge) {
+                        dataservice.saveAdditionalCharge(model.AdditionalChargeTypeServerMapper(addCharge), {
                             success: function (data) {
-                                var additionalDriverCharge = model.AdditionalDriverChargeClientMapper(data);
-                                if (selectedAdditionalCharge().id() > 0) {
-                                    selectedAdditionalCharge().id(additionalDriverCharge.id()),
-                                        selectedAdditionalCharge().companyId(additionalDriverCharge.companyId()),
-                                        selectedAdditionalCharge().companyCodeName(additionalDriverCharge.companyCodeName()),
-                                        selectedAdditionalCharge().depId(additionalDriverCharge.depId()),
-                                        selectedAdditionalCharge().operationId(additionalDriverCharge.operationId()),
-                                        selectedAdditionalCharge().operationCodeName(additionalDriverCharge.operationCodeName()),
-                                        selectedAdditionalCharge().tariffTypeId(additionalDriverCharge.tariffTypeId()),
-                                        selectedAdditionalCharge().tariffTypeCode(additionalDriverCharge.tariffTypeCode()),
-                                        selectedAdditionalCharge().tariffTypeCodeName(additionalDriverCharge.tariffTypeCodeName()),
-                                        selectedAdditionalCharge().effectiveStartDate(additionalDriverCharge.effectiveStartDate()),
-                                        selectedAdditionalCharge().rate(additionalDriverCharge.rate()),
-                                        selectedAdditionalCharge().revisionNumber(additionalDriverCharge.revisionNumber()),
-                                        closeAdditionalChargeEditor();
+                                var additionalCharge = model.AdditionalChargeTypeClientMapper(data);
+                                if (selectedAdditionalChargeType().id() > 0) {
+                                    selectedAdditionalChargeType().isEditable(additionalCharge.isEditable()),
+                                    closeAdditionalChargeEditor();
                                 } else {
-                                    addDriverChrgs.splice(0, 0, additionalDriverCharge);
+                                    additionalTypeCharges.splice(0, 0, additionalCharge);
                                     closeAdditionalChargeEditor();
                                 }
-                                toastr.success(ist.resourceText.additionalDriverChargeAddSuccessMsg);
+                                toastr.success(ist.resourceText.additionalChargeAddSuccessMsg);
                             },
                             error: function (exceptionMessage, exceptionType) {
 
@@ -189,7 +228,7 @@ define("additionalCharge/additionalCharge.viewModel",
 
                                 } else {
 
-                                    toastr.error(ist.resourceText.ist.resourceText.additionalDriverChargeAddFailedMsg);
+                                    toastr.error(ist.resourceText.ist.resourceText.additionalChargeAddFailedMsg);
 
                                 }
 
@@ -197,37 +236,66 @@ define("additionalCharge/additionalCharge.viewModel",
                         });
                     },
                      //Edit Additional Charge
-                    onEditAddDriverChrg = function (addDriverChrg, e) {
-                        //selectedAdditionalCharge(addDriverChrg);
-                        //addEditAdditionalCharge(addDriverChrg);
-                        //getAdditionalChargesById(addDriverChrg);
+                    onEditAdditionalChargeType = function (addChrg, e) {
+                        additionalCharges.removeAll();
+                        selectedAdditionalChargeType(addChrg);
+                        addEditAdditionalCharge(addChrg);
+                        getAdditionalChargeById(addChrg);
                         showAdditionalChargeEditor();
                         e.stopImmediatePropagation();
                     },
+                    onEditAdditionalCharge = function (addCharge) {
+                        selectedAdditionalCharge(addCharge);
+                        var additionalCharge = new model.AdditionalCharge();
+                        additionalCharge.id(addCharge.id());
+                        additionalCharge.hireGroupDetailId(addCharge.hireGroupDetailId());
+                        additionalCharge.startDate(addCharge.startDate());
+                        additionalCharge.rate(addCharge.rate());
+                        addEditAdditionalCharge().additionalCharge(additionalCharge);
+                        showUpdateCancelBtn(true);
+                    },
+                hideUpdateCancelBtn = function () {
+                    showUpdateCancelBtn(false);
+                    selectedAdditionalCharge(undefined);
+                    addEditAdditionalCharge().additionalCharge(new model.AdditionalCharge());
+                },
+                    onDeleteAdditionalCharge = function (addCharge) {
+                        additionalCharges.remove(addCharge);
+                    },
                     // Delete a Additional Charge
-                    onDeleteAddDriverChrg = function (addDriverChrg) {
-                        if (!addDriverChrg.id()) {
-                            addDriverChrgs.remove(addDriverChrg);
+                    onDeleteAdditionalChargeType = function (addChrg) {
+                        if (!addChrg.id()) {
+                            additionalTypeCharges.remove(addChrg);
                             return;
                         }
                         // Ask for confirmation
                         confirmation.afterProceed(function () {
-                            deleteAdditionalCharge(addDriverChrg);
+                            deleteAdditionalCharge(addChrg);
                         });
                         confirmation.show();
                     },
                     // Delete Additional Charge
-                    deleteAdditionalCharge = function (addDriverChrg) {
-                        dataservice.deleteAdditionalCharge(model.AdditionalChargeServerMapperForId(addDriverChrg), {
+                    deleteAdditionalCharge = function (addChrg) {
+                        dataservice.deleteAdditionalCharge(model.AdditionalChrgServerMapperForId(addChrg), {
                             success: function () {
-                                addDriverChrgs.remove(addDriverChrg);
-                                toastr.success(ist.resourceText.serviceRateDeleteSuccessMsg);
+                                additionalTypeCharges.remove(addChrg);
+                                toastr.success(ist.resourceText.additionalChargeDeleteSuccessMsg);
                             },
                             error: function () {
-                                toastr.error(ist.resourceText.serviceRateDeleteFailedMsg);
+                                toastr.error(ist.resourceText.additionalChargeDeleteFailedMsg);
                             }
                         });
                     },
+                        onSelectedHireGroupDetail = function (hireGroupDetail) {
+                            if (hireGroupDetail.hireGroupDetailId() != undefined) {
+                                _.each(hireGroupDetails(), function (item) {
+                                    if (item.HireGroupDetailId === hireGroupDetail.hireGroupDetailId()) {
+                                        addEditAdditionalCharge().additionalCharge().hireGroupDetailCodeName(item.HireGroupDetailCodeName);
+                                        addEditAdditionalCharge().additionalCharge().hireGroupDetailId(hireGroupDetail.hireGroupDetailId());
+                                    }
+                                });
+                            }
+                        },
                     // Show Additional Charge Editor
                     showAdditionalChargeEditor = function () {
                         isAdditionalChargeEditorVisible(true);
@@ -254,7 +322,7 @@ define("additionalCharge/additionalCharge.viewModel",
                             },
                             error: function () {
                                 isLoadingAdditionalCharge(false);
-                                toastr.error(ist.resourceText.additionalDriverChargeLoadFailedMsg);
+                                toastr.error(ist.resourceText.additionalChargeLoadFailedMsg);
                             }
                         });
                     };
@@ -262,6 +330,7 @@ define("additionalCharge/additionalCharge.viewModel",
 
                 return {
                     // Observables
+                    selectedAdditionalChargeType: selectedAdditionalChargeType,
                     selectedAdditionalCharge: selectedAdditionalCharge,
                     addEditAdditionalCharge: addEditAdditionalCharge,
                     isAdditionalChargeEditorVisible: isAdditionalChargeEditorVisible,
@@ -270,10 +339,11 @@ define("additionalCharge/additionalCharge.viewModel",
                     sortOnHg: sortOnHg,
                     sortIsAscHg: sortIsAscHg,
                     filterSectionVisilble: filterSectionVisilble,
+                    showUpdateCancelBtn: showUpdateCancelBtn,
                     //Arrays
                     additionalCharges: additionalCharges,
                     additionalTypeCharges: additionalTypeCharges,
-                    hiregroupDetails: hiregroupDetails,
+                    hireGroupDetails: hireGroupDetails,
                     //Filters
                     searchFilter: searchFilter,
                     // Utility Methods
@@ -286,10 +356,15 @@ define("additionalCharge/additionalCharge.viewModel",
                     showAdditionalChargeEditor: showAdditionalChargeEditor,
                     onSaveAdditionalCharge: onSaveAdditionalCharge,
                     reset: reset,
-                    onEditAddDriverChrg: onEditAddDriverChrg,
-                    onDeleteAddDriverChrg: onDeleteAddDriverChrg,
+                    onEditAdditionalChargeType: onEditAdditionalChargeType,
+                    onDeleteAdditionalChargeType: onDeleteAdditionalChargeType,
                     createAdditionalCharge: createAdditionalCharge,
                     onAddAdditionalCharge: onAddAdditionalCharge,
+                    onSelectedHireGroupDetail: onSelectedHireGroupDetail,
+                    onDeleteAdditionalCharge: onDeleteAdditionalCharge,
+                    onEditAdditionalCharge: onEditAdditionalCharge,
+                    hideUpdateCancelBtn: hideUpdateCancelBtn,
+                    onUpdateAdditionalCharge: onUpdateAdditionalCharge,
                     // Utility Methods
 
                 };

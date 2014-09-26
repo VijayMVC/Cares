@@ -30,6 +30,8 @@ define("tariffRate/tariffRate.viewModel",
                     operations = ko.observableArray([]),
                     //Tariff Types
                     tariffTypes = ko.observableArray([]),
+                    //Filter Tariff Type
+                    filteredTariffTypes = ko.observableArray([]),
                     //Hire Groups
                     hireGroups = ko.observableArray([]),
                      //Hire Group Deatil
@@ -197,6 +199,17 @@ define("tariffRate/tariffRate.viewModel",
                             }
                         });
                     },
+                    //Filtered Tariff Types
+                     tariffTypeId = ko.computed(function () {
+                         if (selectedTariffRate() != undefined) {
+                             filteredTariffTypes.removeAll();
+                             _.each(tariffTypes(), function (item) {
+                                 if (item.OperationId === selectedTariffRate().operationId())
+                                     filteredTariffTypes.push(item);
+                             });
+                             filteredTariffTypes.valueHasMutated();
+                         }
+                     }, this),
                     // Template Chooser
                     templateToUse = function (hireGroup) {
                         return (hireGroup === selectedHireGroup() ? 'editHireGroupTemplate' : 'itemHireGroupTemplate');
@@ -406,6 +419,7 @@ define("tariffRate/tariffRate.viewModel",
                     modelYears: modelYears,
                     tariffRates: tariffRates,
                     selectedHireGroupList: selectedHireGroupList,
+                    filteredTariffTypes: filteredTariffTypes,
                     //Filters
                     tariffRateCodeFilter: tariffRateCodeFilter,
                     companyFilter: companyFilter,

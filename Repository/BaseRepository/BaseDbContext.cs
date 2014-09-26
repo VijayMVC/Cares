@@ -85,6 +85,8 @@ namespace Cares.Repository.BaseRepository
         public DbSet<Menu> Menus { get; set; }
         #endregion
 
+        public DbSet<NrtType> NrtTypes { get; set; }
+        public DbSet<NrtMain> NrtMain { get; set; }
 
         public DbSet<Employee> Employees { get; set; }
         /// <summary>
@@ -429,10 +431,21 @@ namespace Cares.Repository.BaseRepository
         /// </summary>
         public DbSet<AdditionalChargeType> AdditionalChargeTypes { get; set; }
 
-        /// <summary>
-        /// Chauffer Charge Db Set
+       /// <summary>
+        /// Chauffer Charges Db Set
         /// </summary>
         public DbSet<ChaufferCharge> ChaufferCharges { get; set; }
+
+        /// <summary>
+        /// Chauffer Charge Main Db Set
+        /// </summary>
+        public DbSet<ChaufferChargeMain> ChaufferChargeMains { get; set; }
+        
+      /// <summary>
+        /// Ra Service Items Db Set
+        /// </summary>
+
+        public DbSet<RaServiceItem> RaServiceItems { get; set; }
 
         #endregion
     }

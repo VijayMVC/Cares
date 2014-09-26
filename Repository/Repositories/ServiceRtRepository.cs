@@ -34,7 +34,6 @@ namespace Cares.Repository.Repositories
             }
         }
         #endregion
-
         #region Public
         /// <summary>
         /// Get All Service Rate for User Domain Key
@@ -52,6 +51,14 @@ namespace Cares.Repository.Repositories
         public IEnumerable<ServiceRt> GetServiceRtByServiceRtMainId(long serviceRtMainId)
         {
             return DbSet.Where(serviceRt => serviceRt.UserDomainKey == UserDomainKey && serviceRt.ServiceRtMainId == serviceRtMainId).ToList();
+        }
+
+        /// <summary>
+        /// Association check with service item 
+        /// </summary>
+        public bool IsServiceRtAssociatedWithServiceItemValidation(long serviceItemId)
+        {
+            return DbSet.Count(serviceRt => serviceRt.ServiceItemId == serviceItemId) > 0;
         }
 
         /// <summary>

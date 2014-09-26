@@ -12,13 +12,16 @@ namespace Cares.Interfaces.Repository
         /// <summary>
         /// Get Service Rate By Service Rate Main Id
         /// </summary>
-        /// <param name="serviceRtMainId"></param>
-        /// <returns></returns>
         IEnumerable<ServiceRt> GetServiceRtByServiceRtMainId(long serviceRtMainId);
 
         /// <summary>
         /// Get Service Rate For RA Billing 
         /// </summary>
         IEnumerable<ServiceRt> GetForRaBilling(string tariffTypeCode, long serviceItemId, DateTime raRecCreatedDate);
+        
+        /// <summary>
+        /// Association check with service item 
+        /// </summary>
+        bool IsServiceRtAssociatedWithServiceItemValidation(long serviceItemId);
     }
 }

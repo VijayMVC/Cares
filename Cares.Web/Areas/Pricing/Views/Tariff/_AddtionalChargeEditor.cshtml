@@ -2,31 +2,31 @@
 
 <div class="well col-md-12" id="additionalChargeEditor" data-bind="visible: isAdditionalChargeEditorVisible, with: addEditAdditionalCharge" style="display: none;">
     <div class="float-left detailsContainer">
-        <h3 class="page-header detailsHeaderSection">Additional Charge Detail</h3>
-        <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onSaveAdditionalDriverChrg, enable: hasChanges, css: { 'btn-warning': hasChanges }">@Cares.Web.Resources.Shared.Common.Save</button>
-        <button class="btn btn-default" id="saveBtn" data-bind="click: $root.closeAdditionalDriverChrgEditor">@Cares.Web.Resources.Shared.Common.Cancel</button>
+        <h3 class="page-header detailsHeaderSection">@Cares.Web.Resources.Tariff.AdditionalCharge.AdditionalChargeDetail</h3>
+        <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onSaveAdditionalCharge, enable: hasChanges, css: { 'btn-warning': hasChanges }">@Cares.Web.Resources.Shared.Common.Save</button>
+        <button class="btn btn-default" id="saveBtn" data-bind="click: $root.closeAdditionalChargeEditor">@Cares.Web.Resources.Shared.Common.Cancel</button>
     </div>
     <form class="form-horizontal">
         <div class="form-group">
         </div>
         <div class="form-group">
-            <label for="code" class="control-label h5 col-sm-1">Code *</label>
+            <label for="code" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.AdditionalCharge.Code *</label>
             <div class="col-md-3">
-                <input type="text" placeholder='Code' class="form-control" id="code" data-bind="value: code, validationTooltip: code" />
+                <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.AdditionalCharge.Code + ">")' class="form-control" id="code" data-bind="value: code, validationTooltip: code, disable :(id()!=undefined)" />
             </div>
-            <label for="name" class="control-label h5 col-sm-1">Name</label>
+            <label for="name" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.AdditionalCharge.Name</label>
             <div class="col-md-3">
-                <input type="text" placeholder='Name' class="form-control" id="name" data-bind="value: name, validationTooltip: name" />
+                <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.AdditionalCharge.Name + ">")' class="form-control" id="name" data-bind="value: name, validationTooltip: name, disable :(id()!=undefined)" />
             </div>
-            <label for="isEditable" class="control-label h5 col-sm-1">Is Editable</label>
+            <label for="isEditable" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.AdditionalCharge.IsEditable</label>
             <div class="col-md-3">
                 <input id="isEditable" type="checkbox" class="form-control" data-bind="checked: isEditable " />
             </div>
         </div>
         <div class="form-group">
-            <label for="description" class="control-label h5 col-sm-1">Description</label>
+            <label for="description" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.AdditionalCharge.Description</label>
             <div class="col-md-3">
-                <textarea class="form-control" rows="4" placeholder='Description' id="description" data-bind="value: description, valueUpdate: 'keyup'"></textarea>
+                <textarea class="form-control" rows="4" placeholder='@("<" + Cares.Web.Resources.Tariff.AdditionalCharge.Description + ">")' id="description" data-bind="value: description, valueUpdate: 'keyup' , disable :(id()!=undefined)"></textarea>
             </div>
         </div>
     </form>
@@ -36,20 +36,24 @@
         <br />
         <div data-bind="with:additionalCharge">
             <div class="form-group">
-                <div class="addToBtnDiv row"><button class="btn btn-info addToBtn" id="saveBtn" data-bind="click: $root.onAddAdditionalCharge">@Cares.Web.Resources.Shared.Common.AddToList</button></div>
+                @*<a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title='@Cares.Web.Resources.Shared.Common.ShowFilter' style="display: none"></a>*@
+                <div class="addToBtnDiv row"><button class="btn btn-info addToBtn" id="saveBtn" data-bind="visible: !($root.showUpdateCancelBtn()),click: $root.onAddAdditionalCharge">@Cares.Web.Resources.Shared.Common.AddToList</button></div>
+                <div class="addToBtnDiv row"><button class="btn btn-default addToBtn" style="display: none" id="saveBtn" data-bind="visible: $root.showUpdateCancelBtn(),click: $root.hideUpdateCancelBtn">@Cares.Web.Resources.Shared.Common.Cancel</button>
+                    <button class="btn btn-info btnAdditionalChargeUpdate" style="display: none" id="saveBtn" data-bind="visible: $root.showUpdateCancelBtn(),click:$root.onUpdateAdditionalCharge">@Cares.Web.Resources.Shared.Common.Update</button></div>
+
             </div>
             <div class="form-group">
-                <label for="hireGroup" class="control-label h5  col-sm-1">Hire Group Detail*</label>
+                <label for="hireGroup" class="control-label h5  col-sm-1">@Cares.Web.Resources.Tariff.AdditionalCharge.HireGroupDetail*</label>
                 <div class="col-md-3">
-                    <select id="hireGroup" class="form-control" data-bind="options: $root.hireGroupDetails, optionsText: 'HireGroupDetailCodeName',optionsValue:'HireGroupDetailId', optionsCaption: '&lt;' + 'Hire Group Detail' + '&gt;', value: hireGroupDetailId, validationTooltip: hireGroupDetailId"></select>
+                    <select id="hireGroup" class="form-control" data-bind="options: $root.hireGroupDetails, optionsText: 'HireGroupDetailCodeName',optionsValue:'HireGroupDetailId', optionsCaption: '@Cares.Web.Resources.Tariff.AdditionalCharge.All', value: hireGroupDetailId, validationTooltip: hireGroupDetailId, event:{change:$root.onSelectedHireGroupDetail }"></select>
                 </div>
-                <label for="date" class="control-label h5  col-sm-1">From Date *</label>
+                <label for="date" class="control-label h5  col-sm-1">@Cares.Web.Resources.Tariff.AdditionalCharge.FromDate *</label>
                 <div class="col-md-3">
-                    <input type="text" placeholder='from Date' class="form-control" id="date" data-bind="datepicker: startDate, validationTooltip: startDate" />
+                    <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.AdditionalCharge.FromDate + ">")' class="form-control" id="date" data-bind="datepicker: startDate, validationTooltip: startDate" />
                 </div>
-                <label for="rate" class="control-label  h5 col-sm-1">Additional Charge *</label>
+                <label for="rate" class="control-label  h5 col-sm-1">@Cares.Web.Resources.Tariff.AdditionalCharge.AdditionalChargeLabel *</label>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" id="rate" data-bind="value: rate">
+                    <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.AdditionalCharge.AdditionalChargeLabel + ">")'  class="form-control" id="rate" data-bind="value: rate, validationTooltip: rate">
                 </div>
             </div>
             <div class="form-group">
@@ -59,28 +63,32 @@
                 <table id="additionalChargeTab" class="table">
                     <thead>
                         <tr>
-                            <th> <span>Hire Group Detail<span></span></span></th>
-                            <th> <span><span>Start Date</span></span></th>
-                            <th> <span>Additional Charge<span></span></span></th>
-                            <th> <span>@Cares.Web.Resources.Tariff.AdditionalDriverChrg.RevisionNumber<span></span></span></th>
+                            <th> <span>@Cares.Web.Resources.Tariff.AdditionalCharge.HireGroupDetail<span></span></span></th>
+                            <th> <span><span>@Cares.Web.Resources.Tariff.AdditionalCharge.StartDate</span></span></th>
+                            <th> <span>@Cares.Web.Resources.Tariff.AdditionalCharge.AdditionalChargeLabel<span></span></span></th>
+                            <th> <span>@Cares.Web.Resources.Tariff.AdditionalCharge.RevisionNumber<span></span></span></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @*<!-- ko template: { name: 'itemAddChargeTemplate' , foreach: $root.revisions } -->
-                    <!-- /ko -->*@
+                        <!-- ko template: { name: 'itemAddChargeTemplate' , foreach: $root.additionalCharges } -->
+                        <!-- /ko -->
                     </tbody>
                 </table>
             </div>
             <script id="itemAddChargeTemplate" type="text/html">
                 <tr>
-                    @*<td data-bind="text: tariffTypeCode"></td>
-                        <td data-bind="text: rate"></td>
-                        <td data-bind="text: formattedEffectiveDate"></td>
-                        <td data-bind="text: revisionNumber"></td>
-                        <td data-bind="text: createdBy"></td>
-                        <td data-bind="text: modifiedBy"></td>
-                        <td data-bind="text: formattedModifiedDate"></td>*@
+                    <td data-bind="text: hireGroupDetailCodeName"></td>
+                    <td data-bind="text: formattedStartDate"></td>
+                    <td data-bind="text: rate"></td>
+                    <td data-bind="text: revisionNumber"></td>
+                    <td>
+                        <!-- ko template: { name: 'editActionAdditionalChargeTemplate' } -->
+                        <!-- /ko -->
+                    </td>
                 </tr>
+            </script>
+            <script id="editActionAdditionalChargeTemplate" type="text/html">
+                <a href="#" data-bind="click: $root.onEditAdditionalCharge" title=@Cares.Web.Resources.Shared.Common.Edit><span class="glyphicon glyphicon-edit"></span></a>
             </script>
         </div>
     </div>

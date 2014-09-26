@@ -45,6 +45,15 @@ namespace Cares.Repository.Repositories
         }
         #endregion
         #region Public
+
+        /// <summary>
+        /// Get All Discount Types
+        /// </summary>
+        public override IEnumerable<DiscountType> GetAll()
+        {
+            return DbSet.Where(workPlace => workPlace.UserDomainKey == UserDomainKey).ToList();
+        }
+
         /// <summary>
         /// Find Discount Type
         /// </summary>

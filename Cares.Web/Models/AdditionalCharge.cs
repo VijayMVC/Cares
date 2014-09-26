@@ -5,7 +5,7 @@ namespace Cares.Web.Models
     /// <summary>
     /// Additional Charge Web Model
     /// </summary>
-    public class AdditionalChargecs
+    public class AdditionalCharge
     {
         /// <summary>
         /// Additional Charge ID
@@ -18,11 +18,6 @@ namespace Cares.Web.Models
         public long? ChildAdditionalChargeId { get; set; }
 
         /// <summary>
-        /// Additional Charge Type ID
-        /// </summary>
-        public short AdditionalChargeTypeId { get; set; }
-
-        /// <summary>
         /// Hire Group Detail ID
         /// </summary>
         public long? HireGroupDetailId { get; set; }
@@ -33,8 +28,18 @@ namespace Cares.Web.Models
         public DateTime StartDt { get; set; }
 
         /// <summary>
+        /// Revision Number
+        /// </summary>
+        public long? RevisionNumber { get; set; }
+
+        /// <summary>
         /// Additional Charge Rate
         /// </summary>
         public double? AdditionalChargeRate { get; set; }
+
+        /// <summary>
+        /// Hire group Detail Code Name
+        /// </summary>
+        public string HireGroupDetailCodeName { get; set; }
     }
 }

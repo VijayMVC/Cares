@@ -16,6 +16,8 @@ namespace Cares.Implementation.Services
     {
         #region Private
         private readonly IBusinessSegmentRepository businessSegmentRepository;
+        private readonly ICompanyRepository companyRepository;
+
 
         /// <summary>
         /// Method to update Business Segment  properties
@@ -41,11 +43,23 @@ namespace Cares.Implementation.Services
             businessSegment.RowVersion = 0;
             businessSegment.UserDomainKey = 1;
         }
+
+        /// <summary>
+        /// check association with company before deletion
+        /// </summary>
+        private void ValidateAssociation(long businessSegmentId)
+        {
+            if (companyRepository.IsCompanyAssiciatedWithBusinessSegment(businessSegmentId))
+                throw new CaresException(Resources.Organization.BusinessSegment.BusinessSegmentIsAssociatedWithCompanyError);
+        }
+
+
         #endregion
         #region Constructor
-        public BusinessSegmentService(IBusinessSegmentRepository businessSegmentRepository)
+        public BusinessSegmentService(IBusinessSegmentRepository businessSegmentRepository, ICompanyRepository companyRepository)
         {
             this.businessSegmentRepository = businessSegmentRepository;
+            this.companyRepository = companyRepository;
         }
 
         #endregion
@@ -70,15 +84,13 @@ namespace Cares.Implementation.Services
         public void DeleteBusinessSegment(long businessSegmentId)
         {
             BusinessSegment dbversion = businessSegmentRepository.Find(businessSegmentId);
+            ValidateAssociation(businessSegmentId);
             if (dbversion == null)
-            {
                 throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
                     "Business Segment with Id {0} not found!", businessSegmentId));
-            }
             businessSegmentRepository.Delete(dbversion);
             businessSegmentRepository.SaveChanges();  
         }
-
 
         /// <summary>
         /// Add or Update Business Segment object

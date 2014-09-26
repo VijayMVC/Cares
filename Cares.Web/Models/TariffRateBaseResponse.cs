@@ -39,7 +39,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Tariff types
         /// </summary>
-        public IEnumerable<TariffType> TariffTypes { get; set; }
+        public IEnumerable<TariffTypeDropDown> TariffTypes { get; set; }
 
         #endregion
     }

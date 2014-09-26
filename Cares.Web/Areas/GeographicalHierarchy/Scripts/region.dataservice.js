@@ -48,7 +48,6 @@ define("region/region.dataservice", function () {
             },
             // Get Regions
             getRegions = function(params, callbacks) {
-                initialize();
                 return amplify.request({
                     resourceId: 'getRegions',
                     success: callbacks.success,
@@ -67,7 +66,6 @@ define("region/region.dataservice", function () {
             },
             //delete Region.
             deleteRegion = function (params, callbacks) {
-                debugger;
                 return amplify.request({
                     resourceId: 'deleteRegion',
                     success: callbacks.success,

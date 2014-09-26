@@ -11,16 +11,13 @@ define("subRegion/subRegion.viewModel",
                 var view,
                     //array to save Sub Regions
                     subRegions = ko.observableArray([]),
-
                     //array to save basa data country list
                     baseRegionList = ko.observableArray([]),
-
                     //pager%
                     pager = ko.observable(),
                     //org code filter in filter sec
                     searchFilter = ko.observable(),
                     baseRegionFilter = ko.observable(),
-
                     //sorting
                     sortOn = ko.observable(1),
                     //Assending  / Desending
@@ -29,13 +26,10 @@ define("subRegion/subRegion.viewModel",
                     isSubRegionEditorVisible = ko.observable(false),
                     //to control the visibility of filter ec
                     filterSectionVisilble = ko.observable(false),
-
-
                      // Editor View Model
                     editorViewModel = new ist.ViewModel(model.subRegionDetail),
-                    // Selected Business Segment
+                    // Selected Sub region
                     selectedSubRegion = editorViewModel.itemForEditing,
-
                     //save button handler
                     onSavebtn = function() {
                     if (dobeforeSubRegion())

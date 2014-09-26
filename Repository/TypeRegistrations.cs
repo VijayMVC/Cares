@@ -93,7 +93,12 @@ namespace Cares.Repository
             unityContainer.RegisterType<IAdditionalChargeTypeRepository, AdditionalChargeTypeRepository>();
             unityContainer.RegisterType<IDiscountTypeRepository, DiscountTypeRepository>();
             unityContainer.RegisterType<IDiscountSubTypeRepository, DiscountSubTypeRepository>();
+            unityContainer.RegisterType<IRaServiceItemRepository, RaServiceItemRepository>();
             unityContainer.RegisterType<IChaufferChargeRepository, ChaufferChargeRepository>();
+            unityContainer.RegisterType<INrtTypeRepository, NrtTypeRepository>();
+            unityContainer.RegisterType<INrtMainRepository, NrtMainRepository>();
+
+
         }
     }
 }

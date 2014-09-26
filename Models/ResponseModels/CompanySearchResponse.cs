@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Cares.Models.ResponseModels
 {
     /// <summary>
-    /// Company Search Request Response
+    /// Company Search Request Response Domain model
     /// </summary>
     public class CompanySearchRequestResponse
     {

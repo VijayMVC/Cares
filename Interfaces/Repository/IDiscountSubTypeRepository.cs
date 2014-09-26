@@ -24,5 +24,10 @@ namespace Cares.Interfaces.Repository
         /// Associatoin with discount Type validatoin before the deletion of discount type
         /// </summary>
         bool IsDiscountSubTypeAssociatedWithDiscountType(long discountTypeId);
+
+        /// <summary>
+        /// Get Discount Sub Type Details
+        /// </summary>
+        DiscountSubType GetDiscountSubTypeWithDetails(long discountTypeId);
     }
 }

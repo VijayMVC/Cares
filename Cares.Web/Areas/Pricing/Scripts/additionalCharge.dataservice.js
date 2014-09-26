@@ -30,14 +30,14 @@ define("additionalCharge/additionalCharge.dataservice", function () {
                         type: 'GET'
                     });
                     // Define request to save  Additional  Charges
-                    amplify.request.define('saveAdditionalDriverCharge', 'ajax', {
+                    amplify.request.define('saveAdditionalCharge', 'ajax', {
                         url: '/Api/AdditionalCharge',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
                     });
                     // Define request to delete Additional Charges
-                    amplify.request.define('deleteAdditionalDriverCharge', 'ajax', {
+                    amplify.request.define('deleteAdditionalCharge', 'ajax', {
                         url: '/Api/AdditionalCharge',
                         dataType: 'json',
                         type: 'DELETE'
@@ -65,20 +65,20 @@ define("additionalCharge/additionalCharge.dataservice", function () {
                 });
             },
                // Save Additional Charge
-            saveAdditionalDriverCharge = function (param, callbacks) {
+            saveAdditionalCharge = function (param, callbacks) {
                 initialize();
                 return amplify.request({
-                    resourceId: 'saveAdditionalDriverCharge',
+                    resourceId: 'saveAdditionalCharge',
                     success: callbacks.success,
                     error: callbacks.error,
                     data: param
                 });
             },
               // Delete
-            deleteAdditionalDriverCharge = function (param, callbacks) {
+            deleteAdditionalCharge = function (param, callbacks) {
                 initialize();
                 return amplify.request({
-                    resourceId: 'deleteAdditionalDriverCharge',
+                    resourceId: 'deleteAdditionalCharge',
                     success: callbacks.success,
                     error: callbacks.error,
                     data: param
@@ -97,8 +97,8 @@ define("additionalCharge/additionalCharge.dataservice", function () {
         return {
             getAdditionalChargeBase: getAdditionalChargeBase,
             getAdditionalCharges: getAdditionalCharges,
-            saveAdditionalDriverCharge: saveAdditionalDriverCharge,
-            deleteAdditionalDriverCharge: deleteAdditionalDriverCharge,
+            saveAdditionalCharge: saveAdditionalCharge,
+            deleteAdditionalCharge: deleteAdditionalCharge,
             getAdditionalChargeDetail: getAdditionalChargeDetail,
 
         };

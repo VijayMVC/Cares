@@ -57,6 +57,7 @@ namespace Cares.Web.ModelMappers
             return new DiscountSubType
             {
                 DiscountTypeId = source.DiscountTypeId,
+                DiscountTypeName = source.DiscountType.DiscountTypeName,
                 DiscountSubTypeName = source.DiscountSubTypeName,
                 DiscountSubTypeCode = source.DiscountSubTypeCode,
                 DiscountSubTypeId = source.DiscountSubTypeId,

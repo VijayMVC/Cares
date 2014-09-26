@@ -60,6 +60,21 @@ namespace Cares.Repository.Repositories
                         cChrg.UserDomainKey == UserDomainKey && cChrg.DesigGradeId == desigGradeId && cChrg.ChaufferChargeMain.TariffTypeCode == tariffTypeCode &&
                         !cChrg.IsDeleted && cChrg.StartDt <= raRecCreatedDt).OrderByDescending(adc => adc.StartDt).ToList();
         }
+        
+        /// <summary>
+        /// Get Chauffer Charges By Chauffer Charge Main Id
+        /// </summary>
+        /// <param name="chaufferChargeMainId"></param>
+        /// <returns></returns>
+        public IEnumerable<ChaufferCharge> GetChaufferChargesByChaufferChargeMainId(long chaufferChargeMainId)
+        {
+            return
+                DbSet.Where(
+                    addChrg =>
+                        addChrg.ChildChaufferChargeId == null &&
+                        addChrg.ChaufferChargeMainId == chaufferChargeMainId).ToList();
+        }
+
 
         #endregion
     }
