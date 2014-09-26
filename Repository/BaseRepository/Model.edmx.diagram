@@ -205,7 +205,6 @@
         <EntityTypeShape EntityType="DomainModels.Menu" Width="1.5" PointX="0.75" PointY="11.75" />
         <AssociationConnector Association="DomainModels.FK_CategoryLog_Log" />
         <AssociationConnector Association="DomainModels.FK_CategoryLog_LogCategory" />
-        <AssociationConnector Association="DomainModels.RefMenu01" />
         <EntityTypeShape EntityType="DomainModels.MenuRight" Width="1.5" PointX="3" PointY="28.5" />
         <AssociationConnector Association="DomainModels.FK_dbo_MenuRight_dbo_Menu_Menu_MenuId" />
         <EntityTypeShape EntityType="DomainModels.AdditionalDriverCharge" PointX="5.375" PointY="22.75" Width="1.5" />
@@ -330,6 +329,7 @@
         <AssociationConnector Association="DomainModels.RefAllocationStatus502" />
         <AssociationConnector Association="DomainModels.RefPaymentMode541" />
         <AssociationConnector Association="DomainModels.FK_HireGroup_Company" />
+        <AssociationConnector Association="DomainModels.RefMenu01" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

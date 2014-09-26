@@ -58,7 +58,7 @@ namespace Cares.Implementation.Helpers
 
         private static void MapBilling(RaMain raMain, BillingSummary billingSummary)
         {
-            raMain.TotalDriverCharge = billingSummary.TotalDriverCharge;
+            raMain.TotalVehicleCharge = billingSummary.TotalVehicleCharge;
             raMain.TotalAdditionalCharge = billingSummary.TotalAdditionalCharge;
             raMain.TotalExcessMileageCharge = billingSummary.TotalExcessMileageCharge;
             raMain.TotalDropOffCharge = billingSummary.TotalDropOffCharge;

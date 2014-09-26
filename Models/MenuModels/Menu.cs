@@ -46,7 +46,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Parent Menu Id
         /// </summary>
-        public int ParentMenuId { get; set; }
+        public int? ParentMenuId { get; set; }
         /// <summary>
         /// Menu Parent Item
         /// </summary>

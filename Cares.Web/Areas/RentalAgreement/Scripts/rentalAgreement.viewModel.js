@@ -172,13 +172,13 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                 AllocationStatusKey: allocationStatus.desired, RaMainId: rentalAgreement().id(),
                                 VehicleMovements: [
                                     {
-                                        OperationsWorkPlaceId: rentalAgreement().openLocation(), Odometer: selectedVehicle().currentOdemeter,
+                                        OperationsWorkPlaceId: rentalAgreement().openLocation(), Odometer: selectedVehicle().currentOdometer,
                                         VehicleStatusId: selectedVehicle().vehicleStatusId, DtTime: moment(rentalAgreement().start()).format(ist.utcFormat) + 'Z',
                                         FuelLevel: selectedVehicle().fuelLevel, Status: true
                                     },
                                     {
                                         OperationsWorkPlaceId: rentalAgreement().openLocation(),
-                                        DtTime: moment(rentalAgreement().start()).format(ist.utcFormat) + 'Z',
+                                        DtTime: moment(rentalAgreement().end()).format(ist.utcFormat) + 'Z',
                                         FuelLevel: selectedVehicle().fuelLevel
                                     }
                                 ]

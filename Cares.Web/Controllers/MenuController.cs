@@ -56,25 +56,25 @@ namespace Cares.Web.Controllers
         public ActionResult LoadMenu()
         {
             MenuViewModel menuVM = new MenuViewModel();
-            string userName = HttpContext.User.Identity.Name;
-            if (!String.IsNullOrEmpty(userName))
-            {
-                ApplicationUser userResult = UserManager.FindByEmail(userName);
-                IList<IdentityUserRole> roles = userResult.Roles.ToList();
-                if (roles.Count > 0)
-                {
-                    IQueryable<MenuRight> menuItems = menuRightService.FindMenuItemsByRoleId(roles[0].RoleId);
+            //string userName = HttpContext.User.Identity.Name;
+            //if (!String.IsNullOrEmpty(userName))
+            //{
+                //ApplicationUser userResult = UserManager.FindByEmail(userName);
+                //IList<IdentityUserRole> roles = userResult.Roles.ToList();
+                //if (roles.Count > 0)
+                //{
+            IQueryable<MenuRight> menuItems = menuRightService.FindMenuItemsByRoleId("73953B69-8C5A-458F-A75B-399EF9E16371");
 
                     //save menu items in session
                     //Session["UserPermissionSet"] = menuItems;
 
-                    menuVM = new MenuViewModel
-                             {
-                                 MenuRights = menuItems,
-                                 MenuHeaders = menuItems.Where(x => x.Menu.IsRootItem)
-                             };
-                }
-            }
+            menuVM = new MenuViewModel
+                        {
+                            MenuRights = menuItems,
+                            MenuHeaders = menuItems.Where(x => x.Menu.IsRootItem)
+                        };
+                //}
+            //}
             return View(menuVM);
         }
 	}

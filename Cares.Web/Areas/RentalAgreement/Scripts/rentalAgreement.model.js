@@ -714,9 +714,10 @@
     // Vehicle Factory
     Vehicle.Create = function (source) {
         return new Vehicle(source.VehicleId, source.VehicleName, source.VehicleCode, source.PlateNumber, source.CurrentOdometer, source.VehicleCategoryId,
-        source.VehicleCategory.VehicleCategoryCodeName, source.VehicleMakeId, source.VehicleMake.VehicleMakeCodeName, source.VehicleModelId,
-        source.VehicleModel.VehicleModelCodeName, source.VehicleStatusId, source.VehicleStatusCodeName, source.ModelYear, source.ImageSource,
-            source.FuelLevel, source.TankSize);
+        source.VehicleCategory ? source.VehicleCategory.VehicleCategoryCodeName : undefined, source.VehicleMakeId, 
+        source.VehicleMake ? source.VehicleMake.VehicleMakeCodeName : undefined, source.VehicleModelId,
+        source.VehicleModel ? source.VehicleModel.VehicleModelCodeName : undefined, source.VehicleStatusId, source.VehicleStatusCodeName, source.ModelYear,
+        source.ImageSource, source.FuelLevel, source.TankSize);
     };
 
     // Payment Term Factory
