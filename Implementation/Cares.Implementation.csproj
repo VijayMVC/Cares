@@ -387,6 +387,7 @@
     <Compile Include="Services\AdditionalChargeService.cs" />
     <Compile Include="Services\AddressBaseDataService.cs" />
     <Compile Include="Services\AdditionalDriverService.cs" />
+    <Compile Include="Services\NrtTypeService.cs" />
     <Compile Include="Services\ServiceItemService.cs" />
     <Compile Include="Services\BusinessPartnerBaseDataService.cs" />
     <Compile Include="Services\BusinessPartnerCompanyService.cs" />

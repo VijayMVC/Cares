@@ -68,5 +68,14 @@ namespace Cares.Implementation.Resources.Organization {
                 return ResourceManager.GetString("BusinessSegmentCodeExistsError", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Business Segment is associated with company!.
+        /// </summary>
+        public static string BusinessSegmentIsAssociatedWithCompanyError {
+            get {
+                return ResourceManager.GetString("BusinessSegmentIsAssociatedWithCompanyError", resourceCulture);
+            }
+        }
     }
 }

@@ -231,6 +231,7 @@
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeDetailController.cs" />
+    <Compile Include="Areas\Api\Controllers\NrtTypeBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\ServiceItemController.cs" />
     <Compile Include="Areas\Api\Controllers\ServiceItemBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessSegmentController.cs" />

@@ -120,4 +120,7 @@
   <data name="BusinessSegmentCodeExistsError" xml:space="preserve">
     <value>قانون العمل القطاع موجود بالفعل. محاولة رمز مختلف</value>
   </data>
+  <data name="BusinessSegmentIsAssociatedWithCompanyError" xml:space="preserve">
+    <value>ويرتبط الجزء تجارية مع الشركة !</value>
+  </data>
 </root>

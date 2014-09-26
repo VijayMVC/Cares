@@ -47,6 +47,7 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Delete Business Segment
         /// </summary>
+         [ApiException]
         public bool Delete(BusinessSegment businessSegment)
         {
             if (businessSegment == null || !ModelState.IsValid)
