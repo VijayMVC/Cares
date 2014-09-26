@@ -10,7 +10,7 @@ using System.Collections.Generic;
 namespace Cares.Implementation.Services
 {
     /// <summary>
-    /// Company Service
+    /// Nrt Type Service
     /// </summary>
     public class NrtTypeService : INrtTypeService
     {   
@@ -18,162 +18,147 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Private members
         /// </summary>
-        private readonly IOrganizationGroupRepository organizationGroupRepository;
-        private readonly IBusinessSegmentRepository businessSegmentRepository;
-        private readonly ICompanyRepository companyRepository;
-        private readonly IDepartmentRepository departmentRepository;
+        private readonly INrtTypeRepository nrtTypeRepository;
+        private readonly IVehicleStatusRepository vehicleStatusRepository;
+        private readonly INrtMainRepository nrtMainRepository;
+
 
         /// <summary>
-        /// Set Company Properties while adding new instance
+        /// Set NrtType Properties while adding new instance
         /// </summary>
-        private void SetCompanyProperties(Company companyRequest, Company dbVersion)
+        private void SetNrtTypeProperties(NrtType nrtType, NrtType dbVersion)
         {
             dbVersion.RecCreatedBy =
-                dbVersion.RecLastUpdatedBy = organizationGroupRepository.LoggedInUserIdentity;
+                dbVersion.RecLastUpdatedBy = nrtTypeRepository.LoggedInUserIdentity;
             dbVersion.RecCreatedDt = dbVersion.RecLastUpdatedDt = DateTime.Now;
             dbVersion.RowVersion = 0;
             dbVersion.UserDomainKey = 1;
-            dbVersion.CompanyCode = companyRequest.CompanyCode;
-            dbVersion.CompanyName = companyRequest.CompanyName;
-            dbVersion.CompanyDescription = companyRequest.CompanyDescription;
-            dbVersion.OrgGroupId = companyRequest.OrgGroupId;
-            dbVersion.BusinessSegmentId = companyRequest.BusinessSegmentId;
-            dbVersion.ParentCompanyId = companyRequest.ParentCompanyId;
-            dbVersion.Ntn = companyRequest.Ntn;
-            dbVersion.Uan = companyRequest.Uan;
-            dbVersion.CompanyLegalName = companyRequest.CompanyLegalName;
-            dbVersion.PaidUpCapital = companyRequest.PaidUpCapital;
-            dbVersion.CrNumber = companyRequest.CrNumber;
+            dbVersion.NrtTypeCode = nrtType.NrtTypeCode;
+            dbVersion.NrtTypeName = nrtType.NrtTypeName;
+            dbVersion.Description = nrtType.Description;
+            dbVersion.NrtTypeKey = nrtType.NrtTypeKey;
+            dbVersion.StandardLifeTime = nrtType.StandardLifeTime;
+            dbVersion.VehicleStatusId = nrtType.VehicleStatusId;
         }
 
         /// <summary>
-        /// Update Company Properties while updating the instance
+        /// Update Nrt Type Properties while updating the instance
         /// </summary>
-        private void UpdateCompanyProperties(Company companyRequest, Company dbVersion)
+        private void UpdateNrtTypeProperties(NrtType nrtType, NrtType dbVersion)
         {
-            dbVersion.RecLastUpdatedBy = organizationGroupRepository.LoggedInUserIdentity;
+            dbVersion.RecLastUpdatedBy = nrtTypeRepository.LoggedInUserIdentity;
             dbVersion.RecLastUpdatedDt = DateTime.Now;
             dbVersion.RowVersion = dbVersion.RowVersion + 1;
-            dbVersion.CompanyCode = companyRequest.CompanyCode;
-            dbVersion.CompanyName = companyRequest.CompanyName;
-            dbVersion.CompanyDescription = companyRequest.CompanyDescription;
-            dbVersion.OrgGroupId = companyRequest.OrgGroupId;
-            dbVersion.BusinessSegmentId = companyRequest.BusinessSegmentId;
-            dbVersion.ParentCompanyId = companyRequest.ParentCompanyId;
-            dbVersion.Ntn = companyRequest.Ntn;
-            dbVersion.Uan = companyRequest.Uan;
-            dbVersion.CompanyLegalName = companyRequest.CompanyLegalName;
-            dbVersion.PaidUpCapital = companyRequest.PaidUpCapital;
-            dbVersion.CrNumber = companyRequest.CrNumber;
+            dbVersion.NrtTypeCode = nrtType.NrtTypeCode;
+            dbVersion.NrtTypeName = nrtType.NrtTypeName;
+            dbVersion.Description = nrtType.Description;
+            dbVersion.NrtTypeKey = nrtType.NrtTypeKey;
+            dbVersion.StandardLifeTime = nrtType.StandardLifeTime;
+            dbVersion.VehicleStatusId = nrtType.VehicleStatusId;
         }
 
         /// <summary>
-        /// Check company association with other entites before deletion
+        /// Check Nrt Type association with other entites before deletion
         /// </summary>
-        private void CheckCompanyAssociations(long companyId)
+        private void CheckNrtTypeAssociations(long nrtTypeId)
         {
-            // company-department association checking
-            if (departmentRepository.IsCompanyContainDepartment(companyId))
-                throw new CaresException(Resources.Organization.Company.CompanyIsAssociatedWithDepartmentError);
-            //if company is parent of other companies
-            if (companyRepository.IsComapnyParent(companyId))
-                throw new CaresException(Resources.Organization.Company.CompanyIsParentOfOtherCompanyError);
+            // NrtType-NrtMain association checking
+            if (nrtMainRepository.IsNrtMainAssociatedWithNrtType(nrtTypeId))
+                throw new CaresException(Resources.NonRevenueTicket.NrtType.NrtTypeIsAssociatedWithNrtMainError);
+            
         }
 
 
         #endregion
         #region Constructor
         /// <summary>
-        ///  Company Constructor
+        ///  Nrt Type Service  Constructor
         /// </summary>
-        public NrtTypeService(ICompanyRepository companyRepository,
-            IBusinessSegmentRepository businessSegmentRepository, IOrganizationGroupRepository organizationGroupRepository, IDepartmentRepository departmentRepository)
+        public NrtTypeService(INrtTypeRepository nrtTypeRepository, IVehicleStatusRepository vehicleStatusRepository, INrtMainRepository nrtMainRepository)
         {
-            this.companyRepository = companyRepository;
-            this.businessSegmentRepository = businessSegmentRepository;
-            this.organizationGroupRepository = organizationGroupRepository;
-            this.departmentRepository = departmentRepository;
+            this.nrtTypeRepository = nrtTypeRepository;
+            this.vehicleStatusRepository = vehicleStatusRepository;
+            this.nrtMainRepository = nrtMainRepository;
         }
 
         #endregion
         #region Public
 
         /// <summary>
-        /// Load company Base data
+        /// Load Base data of NrtType
         /// </summary>
-        public CompanyBaseDataResponse LoadCompanyBaseData()
+        public NrtTypeBaseDataResponse LoadNrtTypeBaseData()
         {
-            return new CompanyBaseDataResponse
+            return new NrtTypeBaseDataResponse
             {
-                ParrentCompanies = companyRepository.GetAll(),
-                OrgGroups = organizationGroupRepository.GetAll(),
-                BusinessSegments = businessSegmentRepository.GetAll()
+                VehicleStatuses = vehicleStatusRepository.GetAll()
             };
         }
+
+
         /// <summary>
-        /// Delete Company 
+        /// Delete Ntr Type
         /// </summary>
-        public void DeleteCompany(long companyId)
+        public void DeleteNtrType(long ntrTypeId)
         {
-            Company dbversion = companyRepository.Find(companyId);
-            CheckCompanyAssociations(companyId);
+            NrtType dbversion = nrtTypeRepository.Find(ntrTypeId);
+            CheckNrtTypeAssociations(ntrTypeId);
             if (dbversion == null)
                 {
                     throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                        "Company with Id {0} not found!", companyId));
+                        "Nrt Type with Id {0} not found!", ntrTypeId));
                 }
-                companyRepository.Delete(dbversion);
-                companyRepository.SaveChanges();                
+            nrtTypeRepository.Delete(dbversion);
+            nrtTypeRepository.SaveChanges();                
         }
 
         /// <summary>
-        /// Search Company
+        /// Search Nrt Type
         /// </summary>
-        public CompanySearchRequestResponse SearchCompany(CompanySearchRequest request)
+        public NrtTypeSearchRequestResponse SearchNrtType(NrtTypeSearchRequest request)
         {
             int rowCount;
-            return new CompanySearchRequestResponse
+            return new NrtTypeSearchRequestResponse
             {
-                Companies = companyRepository.SearchCompany(request, out rowCount),
+                NrtTypes = nrtTypeRepository.SearchNrtType(request, out rowCount),
                 TotalCount = rowCount
             };
         }
 
 
         /// <summary>
-        /// Add/Update Company
+        /// Add / Update Ntr Type
         /// </summary>
-        public Company AddUpdateCompany(Company companyRequest)
+        public NrtType AddUpdateNtrType(NrtType nrtTypeRequest)
         {
-            Company dbVersion = companyRepository.Find(companyRequest.CompanyId);
-            if (!companyRepository.IsCompanyCodeExists(companyRequest))
-            {
+            NrtType dbVersion = nrtTypeRepository.Find(nrtTypeRequest.NrtTypeId);
+            if (nrtTypeRepository.IsNrtTypeCodeExists(nrtTypeRequest))
+                 throw new CaresException(Resources.NonRevenueTicket.NrtType.NrtTypeCodeDuplicationError);
+
                 if (dbVersion != null)
                 {
-                    UpdateCompanyProperties(companyRequest, dbVersion);
-                    companyRepository.Update(dbVersion);
+                    UpdateNrtTypeProperties(nrtTypeRequest, dbVersion);
+                    nrtTypeRepository.Update(dbVersion);
                 }
                 else
                 {
-                    dbVersion= new Company();
-                    SetCompanyProperties(companyRequest, dbVersion);
-                    companyRepository.Add(dbVersion);
+                    dbVersion = new NrtType();
+                    SetNrtTypeProperties(nrtTypeRequest, dbVersion);
+                    nrtTypeRepository.Add(dbVersion);
                 }
-  
-                companyRepository.SaveChanges();
+
+                nrtTypeRepository.SaveChanges();
                 // To Load the proprties
-                return companyRepository.GetCompanyWithDetails(dbVersion.CompanyId);
-            }
-            throw new CaresException(Resources.Organization.Company.CompanyWithSameCodeAlreadyExistsError);
+                return nrtTypeRepository.GetNrtTypeWithDetails(dbVersion.NrtTypeId);
         }
 
        
         /// <summary>
-        /// Load All Companies
+        /// Load All Nrt Types
         /// </summary>
-        public IEnumerable<Company> LoadAll()
+        public IEnumerable<NrtType> LoadAll()
         {
-            return companyRepository.GetAll();
+            return nrtTypeRepository.GetAll();
         }
         #endregion
     }

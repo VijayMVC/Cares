@@ -26,6 +26,7 @@
     "DiscountSubType.less",
     "ServiceType.less",
     "ServiceItem.less",
+    "NrtType.less",
     "MainSite.less"
   ],
   "names": [],

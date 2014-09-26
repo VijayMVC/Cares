@@ -214,6 +214,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Region.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\NonRevenueTicket\NrtType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NrtType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\NonRevenueTicket\NrtType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NrtType.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Organization\BusinessSegment.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -543,6 +553,14 @@
     <EmbeddedResource Include="Resources\GeographicalHierarchy\Region.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Region.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\NonRevenueTicket\NrtType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NrtType.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\NonRevenueTicket\NrtType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NrtType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Organization\BusinessSegment.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

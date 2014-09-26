@@ -83,6 +83,8 @@
     <Compile Include="IServices\IWorkplaceTypeService.cs" />
     <Compile Include="Repository\IChaufferChargeMainRepository.cs" />
     <Compile Include="Repository\IChaufferChargeRepository.cs" />
+    <Compile Include="Repository\INrtMainRepository.cs" />
+    <Compile Include="Repository\INrtTypeRepository.cs" />
     <Compile Include="Repository\IDiscountSubTypeRepository.cs" />
     <Compile Include="Repository\IDiscountTypeRepository.cs" />
     <Compile Include="Repository\IEmpAuthOperationsWorkplaceRepository.cs" />

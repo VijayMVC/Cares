@@ -85,6 +85,8 @@ namespace Cares.Repository.BaseRepository
         public DbSet<Menu> Menus { get; set; }
         #endregion
 
+        public DbSet<NrtType> NrtTypes { get; set; }
+        public DbSet<NrtMain> NrtMain { get; set; }
 
         public DbSet<Employee> Employees { get; set; }
         /// <summary>
