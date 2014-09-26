@@ -56,7 +56,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Chauffer Charge List
         /// </summary>
-        public IEnumerable<ChaufferCharge> chaufferCharges { get; set; }
+        public IEnumerable<ChaufferCharge> ChaufferCharges { get; set; }
 
     }
 }

@@ -23,6 +23,7 @@ namespace Cares.Implementation.Services
         private readonly IDepartmentRepository departmentRepository;
         private readonly IOperationRepository operationRepository;
         private readonly ITariffTypeRepository tariffTypeRepository;
+        private readonly IDesignGradeRepository designGradeRepository;
 
 
         #endregion
@@ -34,7 +35,8 @@ namespace Cares.Implementation.Services
         /// </summary>
         public ChaufferChargeService(IChaufferChargeRepository chaufferChargeRepository,
             IChaufferChargeMainRepository chaufferChargeMainRepository, ICompanyRepository companyRepository,
-            IDepartmentRepository departmentRepository, IOperationRepository operationRepository, ITariffTypeRepository tariffTypeRepository)
+            IDepartmentRepository departmentRepository, IOperationRepository operationRepository, ITariffTypeRepository tariffTypeRepository,
+            IDesignGradeRepository designGradeRepository)
         {
             this.chaufferChargeRepository = chaufferChargeRepository;
             this.chaufferChargeMainRepository = chaufferChargeMainRepository;
@@ -43,6 +45,7 @@ namespace Cares.Implementation.Services
             this.operationRepository = operationRepository;
             this.operationRepository = operationRepository;
             this.tariffTypeRepository = tariffTypeRepository;
+            this.designGradeRepository = designGradeRepository;
         }
 
         #endregion
@@ -60,6 +63,7 @@ namespace Cares.Implementation.Services
                 Departments = departmentRepository.GetAll(),
                 Operations = operationRepository.GetAll(),
                 TariffTypes = tariffTypeRepository.GetAll(),
+                DesigGrades = designGradeRepository.GetAll(),
             };
         }
 

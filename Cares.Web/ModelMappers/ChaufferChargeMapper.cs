@@ -50,7 +50,7 @@ namespace Cares.Web.ModelMappers
                 TariffTypeCode = source.TariffTypeId.ToString(),
                 ChaufferChargeMainDescription = source.Description,
                 StartDt = source.StartDate,
-                ChaufferCharges = source.chaufferCharges.Select(c => c.CreateFrom()).ToList()
+                ChaufferCharges = source.ChaufferCharges.Select(c => c.CreateFrom()).ToList()
             };
         }
         /// <summary>
@@ -99,6 +99,7 @@ namespace Cares.Web.ModelMappers
                 Departments = source.Departments.Select(c => c.CreateFrom()).ToList(),
                 Operations = source.Operations.Select(c => c.CreateFrom()).ToList(),
                 TariffTypes = source.TariffTypes.Select(c => c.CreateFromDropDown()).ToList(),
+                DesigGrades = source.DesigGrades.Select(c => c.CreateFrom()).ToList(),
 
             };
         }

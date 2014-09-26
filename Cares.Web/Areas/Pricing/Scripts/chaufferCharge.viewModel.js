@@ -12,7 +12,7 @@ define("chaufferCharge/chaufferCharge.viewModel",
                     // Active Additional Charge Type
                     selectedChaufferChargeMain = ko.observable(),
                     // Active Additional Charge
-                    selectedAdditionalCharge = ko.observable(),
+                    selectedChaufferCharge = ko.observable(),
                     //Add/Edit Additional Charge 
                     addEditChaufferChargeMain = ko.observable(),
                     // Show Filter Section
@@ -102,6 +102,11 @@ define("chaufferCharge/chaufferCharge.viewModel",
                                 tariffTypes.removeAll();
                                 ko.utils.arrayPushAll(tariffTypes(), data.TariffTypes);
                                 tariffTypes.valueHasMutated();
+                                //Tariff types
+                                desigGrades.removeAll();
+                                ko.utils.arrayPushAll(desigGrades(), data.DesigGrades);
+                                desigGrades.valueHasMutated();
+
                                 if (callBack && typeof callBack === 'function') {
                                     callBack();
                                 }
@@ -111,16 +116,16 @@ define("chaufferCharge/chaufferCharge.viewModel",
                             }
                         });
                     },
-                    //Get Additional Charge By Id
-                    getAdditionalChargeById = function (addChrg) {
+                    //Get Chauffer Charge By Id
+                    getChaufferChargeById = function (chaufferChrg) {
                         isLoadingChaufferCharge(true);
-                        dataservice.getAdditionalChargeDetail(model.AdditionalChrgServerMapperForId(addChrg), {
+                        dataservice.getChaufferChargeDetail(model.ChaufferChargeServerMapperForId(chaufferChrg), {
                             success: function (data) {
-                                chaufferCharges.removeAll();
-                                _.each(data, function (item) {
-                                    var sddCharge = new model.AdditionalChargeClientMapper(item);
-                                    chaufferCharges.push(sddCharge);
-                                });
+                                //chaufferCharges.removeAll();
+                                //_.each(data, function (item) {
+                                //    var sddCharge = new model.AdditionalChargeClientMapper(item);
+                                //    chaufferCharges.push(sddCharge);
+                                //});
                                 isLoadingChaufferCharge(false);
                             },
                             error: function () {
@@ -129,6 +134,7 @@ define("chaufferCharge/chaufferCharge.viewModel",
                             }
                         });
                     },
+
                     // Search 
                     search = function () {
                         pager().reset();
@@ -160,13 +166,14 @@ define("chaufferCharge/chaufferCharge.viewModel",
                         addEditChaufferChargeMain(chaufferChargeMain);
                         showAdditionalChargeEditor();
                     },
-                    // Save Additional Charge
-                    onSaveAdditionalCharge = function (addCharge) {
+                    // Save Chauffer Charge Main
+                    onSaveChaufferChargeMainCharge = function (chaufferCharge) {
                         if (doBeforeSave()) {
-
-                            addCharge.chaufferChargesList.removeAll();
-                            ko.utils.arrayPushAll(addCharge.chaufferChargesList(), chaufferCharges());
-                            saveAdditionalCharge(addCharge);
+                            if (chaufferCharge.chaufferChargeList().length != 0) {
+                                chaufferCharge.chaufferChargeList().removeAll();
+                            }
+                            ko.utils.arrayPushAll(chaufferCharge.chaufferChargeList(), chaufferCharges());
+                            saveChaufferChargeMain(chaufferCharge);
                         }
                     },
                     // Do Before Logic
@@ -178,226 +185,216 @@ define("chaufferCharge/chaufferCharge.viewModel",
                         }
                         return flag;
                     },
-                    //Add Additional Charge
-                    onAddAdditionalCharge = function (addCharge) {
-                        if (doBeforeAddAddionalCharge()) {
+                    //Add Chauffer Charge
+                    onAddChaufferCharge = function (chaufferCharge) {
+                        if (doBeforeChaufferCharge()) {
                             var flag = true;
-
                             //In case of New
                             _.each(chaufferCharges(), function (item) {
-                                if (item.hireGroupDetailId() === addCharge.hireGroupDetailId()) {
-                                    toastr.error(ist.resourceText.additionalChargeAlreadyExist);
+                                if (item.desigGradeId() === chaufferCharge.desigGradeId()) {
+                                    toastr.error("Chauffer Charge with the given parameters [DesigGrade] are already defined.");
                                     flag = false;
                                 }
                             });
                             if (flag) {
-
-                                //New Add
-                                if (addCharge.hireGroupDetailCodeName() === undefined) {
-                                    addCharge.hireGroupDetailCodeName("All");
-                                }
-                                chaufferCharges.push(addCharge);
-                                addEditChaufferChargeMain().additionalCharge(new model.AdditionalCharge());
+                                chaufferCharges.push(chaufferCharge);
+                                addEditChaufferChargeMain().chaufferCharge(new model.ChaufferCharge());
                             }
-
                         }
                     },
-                    onUpdateAdditionalCharge = function (addCharge) {
-                        if (doBeforeAddAddionalCharge()) {
+                    //Update Chauffer Charge
+                    onUpdateChaufferCharge = function (chaufferChrg) {
+                        if (doBeforeChaufferCharge()) {
                             var flag = true;
                             if (selectedAdditionalCharge() !== undefined) {
                                 //In case Of edit
-                                _.each(chaufferCharges(), function (item) {
-                                    if (item.hireGroupDetailId() === addCharge.hireGroupDetailId() && addCharge.hireGroupDetailId() !== selectedAdditionalCharge().hireGroupDetailId()) {
-                                        toastr.error(ist.resourceText.additionalChargeAlreadyExist);
+                                _.each(additionalCharges(), function (item) {
+                                    if (item.desigGradeId() === chaufferChrg.desigGradeId() && chaufferChrg.desigGradeId() !== selectedChaufferCharge().desigGradeId()) {
+                                        toastr.error("Chauffer Charge with the given parameters [DesigGrade] are already defined.");
                                         flag = false;
                                     }
                                 });
                             }
-                            if (flag && selectedAdditionalCharge() !== undefined) {
-                                selectedAdditionalCharge().hireGroupDetailId(addCharge.hireGroupDetailId());
-                                selectedAdditionalCharge().startDate(addCharge.startDate());
-                                selectedAdditionalCharge().rate(addCharge.rate());
-                                if (addCharge.hireGroupDetailCodeName() === undefined) {
-                                    addCharge.hireGroupDetailCodeName("All");
-                                }
-                                selectedAdditionalCharge().hireGroupDetailCodeName(addCharge.hireGroupDetailCodeName());
-                                selectedAdditionalCharge(undefined);
-                                addEditChaufferChargeMain().additionalCharge(new model.AdditionalCharge());
+                            if (flag && selectedChaufferCharge() !== undefined) {
+                                selectedChaufferCharge().desigGradeId(chaufferChrg.desigGradeId());
+                                selectedChaufferCharge().startDate(chaufferChrg.startDate());
+                                selectedChaufferCharge().rate(chaufferChrg.rate());
+                                selectedChaufferCharge().desigGradeCodeName(chaufferChrg.desigGradeCodeName());
+                                selectedChaufferCharge(undefined);
+                                addEditChaufferChargeMain().chaufferCharge(new model.ChaufferCharge());
                                 showUpdateCancelBtn(false);
                             }
                         }
                     },
-                       // Do Before Logic
-                    doBeforeAddAddionalCharge = function () {
-                        var flag = true;
-                        if (!addEditChaufferChargeMain().additionalCharge().isValid()) {
-                            addEditChaufferChargeMain().additionalCharge().errors.showAllMessages();
-                            flag = false;
-                        }
-                        return flag;
-                    },
-
+                    // Do Before Logic
+                   doBeforeChaufferCharge = function () {
+                       var flag = true;
+                       if (!addEditChaufferChargeMain().chaufferCharge().isValid()) {
+                           addEditChaufferChargeMain().chaufferCharge().errors.showAllMessages();
+                           flag = false;
+                       }
+                       return flag;
+                   },
                     // Save Additional Charge Main
-                    saveAdditionalCharge = function (addCharge) {
-                        dataservice.saveAdditionalCharge(model.AdditionalChargeTypeServerMapper(addCharge), {
-                            success: function (data) {
-                                var additionalCharge = model.AdditionalChargeTypeClientMapper(data);
-                                if (selectedChaufferChargeMain().id() > 0) {
-                                    selectedChaufferChargeMain().isEditable(additionalCharge.isEditable()),
-                                    closeAdditionalChargeEditor();
-                                } else {
-                                    chaufferChargeMains.splice(0, 0, additionalCharge);
-                                    closeAdditionalChargeEditor();
-                                }
-                                toastr.success(ist.resourceText.additionalChargeAddSuccessMsg);
-                            },
-                            error: function (exceptionMessage, exceptionType) {
+                   saveChaufferChargeMain = function (chaufferCharge) {
+                       dataservice.saveChaufferCharge(model.CahufferChargeMainServerMapper(chaufferCharge), {
+                           success: function (data) {
+                               var chaufferChargeMain = model.ChaufferChargeMainClientMapper(data);
+                               if (selectedChaufferChargeMain().id() > 0) {
+                                   // selectedChaufferChargeMain().isEditable(additionalCharge.isEditable()),
+                                   closeAdditionalChargeEditor();
+                               } else {
+                                   chaufferChargeMains.splice(0, 0, chaufferChargeMain);
+                                   closeAdditionalChargeEditor();
+                               }
+                               toastr.success(ist.resourceText.additionalChargeAddSuccessMsg);
+                           },
+                           error: function (exceptionMessage, exceptionType) {
 
-                                if (exceptionType === ist.exceptionType.CaresGeneralException) {
+                               if (exceptionType === ist.exceptionType.CaresGeneralException) {
 
-                                    toastr.error(exceptionMessage);
+                                   toastr.error(exceptionMessage);
 
-                                } else {
+                               } else {
 
-                                    toastr.error(ist.resourceText.ist.resourceText.additionalChargeAddFailedMsg);
+                                   toastr.error(ist.resourceText.ist.resourceText.additionalChargeAddFailedMsg);
 
-                                }
+                               }
 
-                            }
-                        });
-                    },
-                     //Edit Additional Charge
-                    onEditChaufferChargeMain = function (chaufferChrg, e) {
-                        //chaufferCharges.removeAll();
-                        selectedChaufferChargeMain(chaufferChrg);
-                        addEditChaufferChargeMain(chaufferChrg);
-                        //getAdditionalChargeById(addChrg);
-                        showAdditionalChargeEditor();
-                        e.stopImmediatePropagation();
-                    },
-                    onEditAdditionalCharge = function (addCharge) {
-                        selectedAdditionalCharge(addCharge);
-                        var additionalCharge = new model.AdditionalCharge();
-                        additionalCharge.id(addCharge.id());
-                        additionalCharge.hireGroupDetailId(addCharge.hireGroupDetailId());
-                        additionalCharge.startDate(addCharge.startDate());
-                        additionalCharge.rate(addCharge.rate());
-                        addEditChaufferChargeMain().additionalCharge(additionalCharge);
-                        showUpdateCancelBtn(true);
-                    },
-               departmentId = ko.computed(function () {
-                   if (addEditChaufferChargeMain() != undefined) {
-                       filteredDepartments.removeAll();
-                       _.each(departments(), function (item) {
-                           if (item.CompanyId === addEditChaufferChargeMain().companyId())
-                               filteredDepartments.push(item);
+                           }
                        });
-                       filteredDepartments.valueHasMutated();
-                   }
-               }, this),
+                   },
+                        //Edit Additional Charge
+                   onEditChaufferChargeMain = function (chaufferChrg, e) {
+                       //chaufferCharges.removeAll();
+                       selectedChaufferChargeMain(chaufferChrg);
+                       addEditChaufferChargeMain(chaufferChrg);
+                       getChaufferChargeById(chaufferChrg);
+                       showAdditionalChargeEditor();
+                       e.stopImmediatePropagation();
+                   },
+                   onEditChaufferCharge = function (chaufferChrg) {
+                       selectedChaufferCharge(chaufferChrg);
+                       var chaufferCharge = new model.ChaufferCharge();
+                       chaufferCharge.id(chaufferChrg.id());
+                       chaufferCharge.desigGradeId(chaufferChrg.desigGradeId());
+                       chaufferCharge.startDate(chaufferChrg.startDate());
+                       chaufferCharge.rate(chaufferChrg.rate());
+                       addEditChaufferChargeMain().chaufferCharge(chaufferCharge);
+                       showUpdateCancelBtn(true);
+                   },
+              departmentId = ko.computed(function () {
+                  if (addEditChaufferChargeMain() != undefined) {
+                      filteredDepartments.removeAll();
+                      _.each(departments(), function (item) {
+                          if (item.CompanyId === addEditChaufferChargeMain().companyId())
+                              filteredDepartments.push(item);
+                      });
+                      filteredDepartments.valueHasMutated();
+                  }
+              }, this),
 
-               operationId = ko.computed(function () {
+              operationId = ko.computed(function () {
+                  if (addEditChaufferChargeMain() != undefined) {
+                      filteredOperations.removeAll();
+                      _.each(operations(), function (item) {
+                          if (item.DepartmentId === addEditChaufferChargeMain().departmentId())
+                              filteredOperations.push(item);
+                      });
+                      filteredOperations.valueHasMutated();
+                  }
+              }, this),
+                tariffTypeId = ko.computed(function () {
                     if (addEditChaufferChargeMain() != undefined) {
-                        filteredOperations.removeAll();
-                        _.each(operations(), function (item) {
-                            if (item.DepartmentId === addEditChaufferChargeMain().departmentId())
-                                filteredOperations.push(item);
+                        filteredTariffTypes.removeAll();
+                        _.each(tariffTypes(), function (item) {
+                            if (item.OperationId === addEditChaufferChargeMain().operationId())
+                                filteredTariffTypes.push(item);
                         });
-                        filteredOperations.valueHasMutated();
+                        filteredTariffTypes.valueHasMutated();
                     }
-               }, this),
-                 tariffTypeId = ko.computed(function () {
-                     if (addEditChaufferChargeMain() != undefined) {
-                         filteredTariffTypes.removeAll();
-                         _.each(tariffTypes(), function (item) {
-                             if (item.OperationId === addEditChaufferChargeMain().operationId())
-                                 filteredTariffTypes.push(item);
-                         });
-                         filteredTariffTypes.valueHasMutated();
-                     }
-                 }, this),
-                 //Hide Update and cancel Button
-                hideUpdateCancelBtn = function () {
-                    showUpdateCancelBtn(false);
-                    selectedAdditionalCharge(undefined);
-                    addEditChaufferChargeMain().additionalCharge(new model.AdditionalCharge());
-                },
-                    onDeleteAdditionalCharge = function (addCharge) {
-                        chaufferCharges.remove(addCharge);
-                    },
-                    // Delete a Additional Charge
-                    onDeleteAdditionalChargeType = function (addChrg) {
-                        if (!addChrg.id()) {
-                            chaufferChargeMains.remove(addChrg);
-                            return;
-                        }
-                        // Ask for confirmation
-                        confirmation.afterProceed(function () {
-                            deleteAdditionalCharge(addChrg);
-                        });
-                        confirmation.show();
-                    },
-                    // Delete Additional Charge
-                    deleteAdditionalCharge = function (addChrg) {
-                        dataservice.deleteAdditionalCharge(model.AdditionalChrgServerMapperForId(addChrg), {
-                            success: function () {
-                                chaufferChargeMains.remove(addChrg);
-                                toastr.success(ist.resourceText.additionalChargeDeleteSuccessMsg);
-                            },
-                            error: function () {
-                                toastr.error(ist.resourceText.additionalChargeDeleteFailedMsg);
-                            }
-                        });
-                    },
-                        onSelectedHireGroupDetail = function (hireGroupDetail) {
-                            if (hireGroupDetail.hireGroupDetailId() != undefined) {
-                                _.each(hireGroupDetails(), function (item) {
-                                    if (item.HireGroupDetailId === hireGroupDetail.hireGroupDetailId()) {
-                                        addEditChaufferChargeMain().additionalCharge().hireGroupDetailCodeName(item.HireGroupDetailCodeName);
-                                        addEditChaufferChargeMain().additionalCharge().hireGroupDetailId(hireGroupDetail.hireGroupDetailId());
-                                    }
-                                });
-                            }
-                        },
-                    // Show Additional Charge Editor
-                    showAdditionalChargeEditor = function () {
-                        isChaufferChargeEditorVisible(true);
-                    },
-                    //close Additional Charge Editor
-                    closeAdditionalChargeEditor = function () {
-                        isChaufferChargeEditorVisible(false);
-                    },
-                    // Get Additional Charges
-                    getChaufferCharges = function () {
-                        isLoadingChaufferCharge(true);
-                        dataservice.getChaufferCharges({
-                            SearchString: searchFilter(),
-                            OperationId: operationFilter(),
-                            TariffTypeId: tariffTypeFilter(),
-                            PageSize: pager().pageSize(),
-                            PageNo: pager().currentPage(),
-                            SortBy: sortOn(),
-                            IsAsc: sortIsAsc()
-                        }, {
-                            success: function (data) {
-                                pager().totalCount(data.TotalCount);
-                                chaufferChargeMains.removeAll();
-                                mapChaufferChargeMain(data);
-                                isLoadingChaufferCharge(false);
-                            },
-                            error: function () {
-                                isLoadingChaufferCharge(false);
-                                toastr.error(ist.resourceText.additionalChargeLoadFailedMsg);
-                            }
-                        });
-                    };
+                }, this),
+                        //Hide Update and cancel Button
+               hideUpdateCancelBtn = function () {
+                   showUpdateCancelBtn(false);
+                   selectedChaufferCharge(undefined);
+                   addEditChaufferChargeMain().chaufferCharge(new model.ChaufferCharge());
+               },
+                   onDeleteAdditionalCharge = function (addCharge) {
+                       chaufferCharges.remove(addCharge);
+                   },
+                        // Delete a Additional Charge
+                   onDeleteAdditionalChargeType = function (addChrg) {
+                       if (!addChrg.id()) {
+                           chaufferChargeMains.remove(addChrg);
+                           return;
+                       }
+                       // Ask for confirmation
+                       confirmation.afterProceed(function () {
+                           deleteAdditionalCharge(addChrg);
+                       });
+                       confirmation.show();
+                   },
+                        // Delete Additional Charge
+                   deleteAdditionalCharge = function (addChrg) {
+                       dataservice.deleteAdditionalCharge(model.AdditionalChrgServerMapperForId(addChrg), {
+                           success: function () {
+                               chaufferChargeMains.remove(addChrg);
+                               toastr.success(ist.resourceText.additionalChargeDeleteSuccessMsg);
+                           },
+                           error: function () {
+                               toastr.error(ist.resourceText.additionalChargeDeleteFailedMsg);
+                           }
+                       });
+                   },
+                       onSelectedDesigGrade = function (desigGrade) {
+                           if (desigGrade.desigGradeId() != undefined) {
+                               _.each(desigGrades(), function (item) {
+                                   if (item.DesigGradeId === desigGrade.desigGradeId()) {
+                                       addEditChaufferChargeMain().chaufferCharge().desigGradeCodeName(item.DesigGradeCodeName);
+                                       addEditChaufferChargeMain().chaufferCharge().desigGradeId(desigGrade.desigGradeId());
+                                   }
+                               });
+                           }
+                       },
+                        // Show Additional Charge Editor
+                   showAdditionalChargeEditor = function () {
+                       isChaufferChargeEditorVisible(true);
+                   },
+                        //close Additional Charge Editor
+                   closeAdditionalChargeEditor = function () {
+                       isChaufferChargeEditorVisible(false);
+                   },
+                        // Get Additional Charges
+                   getChaufferCharges = function () {
+                       isLoadingChaufferCharge(true);
+                       dataservice.getChaufferCharges({
+                           SearchString: searchFilter(),
+                           OperationId: operationFilter(),
+                           TariffTypeId: tariffTypeFilter(),
+                           PageSize: pager().pageSize(),
+                           PageNo: pager().currentPage(),
+                           SortBy: sortOn(),
+                           IsAsc: sortIsAsc()
+                       }, {
+                           success: function (data) {
+                               pager().totalCount(data.TotalCount);
+                               chaufferChargeMains.removeAll();
+                               mapChaufferChargeMain(data);
+                               isLoadingChaufferCharge(false);
+                           },
+                           error: function () {
+                               isLoadingChaufferCharge(false);
+                               toastr.error(ist.resourceText.additionalChargeLoadFailedMsg);
+                           }
+                       });
+                   };
                 // #endregion Service Calls
 
                 return {
                     // Observables
                     selectedChaufferChargeMain: selectedChaufferChargeMain,
-                    selectedAdditionalCharge: selectedAdditionalCharge,
+                    selectedChaufferCharge: selectedChaufferCharge,
                     addEditChaufferChargeMain: addEditChaufferChargeMain,
                     isChaufferChargeEditorVisible: isChaufferChargeEditorVisible,
                     sortOn: sortOn,
@@ -429,17 +426,17 @@ define("chaufferCharge/chaufferCharge.viewModel",
                     showFilterSection: showFilterSection,
                     closeAdditionalChargeEditor: closeAdditionalChargeEditor,
                     showAdditionalChargeEditor: showAdditionalChargeEditor,
-                    onSaveAdditionalCharge: onSaveAdditionalCharge,
+                    onSaveChaufferChargeMainCharge: onSaveChaufferChargeMainCharge,
                     reset: reset,
                     onEditChaufferChargeMain: onEditChaufferChargeMain,
                     onDeleteAdditionalChargeType: onDeleteAdditionalChargeType,
                     createChaufferCharge: createChaufferCharge,
-                    onAddAdditionalCharge: onAddAdditionalCharge,
-                    onSelectedHireGroupDetail: onSelectedHireGroupDetail,
+                    onAddChaufferCharge: onAddChaufferCharge,
+                    onSelectedDesigGrade: onSelectedDesigGrade,
                     onDeleteAdditionalCharge: onDeleteAdditionalCharge,
-                    onEditAdditionalCharge: onEditAdditionalCharge,
+                    onEditChaufferCharge: onEditChaufferCharge,
                     hideUpdateCancelBtn: hideUpdateCancelBtn,
-                    onUpdateAdditionalCharge: onUpdateAdditionalCharge,
+                    onUpdateChaufferCharge: onUpdateChaufferCharge,
                     getChaufferCharges: getChaufferCharges,
                     // Utility Methods
 

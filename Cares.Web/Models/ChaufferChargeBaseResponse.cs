@@ -18,6 +18,7 @@ namespace Cares.Web.Models
             Departments = new List<DepartmentDropDown>();
             Operations = new List<OperationDropDown>();
             TariffTypes = new List<TariffTypeDropDown>();
+            DesigGrades = new List<DesigGradeDropDown>();
         }
         #endregion
 
@@ -42,6 +43,11 @@ namespace Cares.Web.Models
         /// Tariff Types
         /// </summary>
         public IEnumerable<TariffTypeDropDown> TariffTypes { get; set; }
+
+        /// <summary>
+        /// Desig Grades
+        /// </summary>
+        public IEnumerable<DesigGradeDropDown> DesigGrades { get; set; }
 
         #endregion
     }

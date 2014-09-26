@@ -34,12 +34,14 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             startDate = ko.observable().extend({ required: true }),
             //String valued formatted date
             formattedStartDate = ko.computed({
-                read: function() {
+                read: function () {
                     return moment(startDate()).format(ist.datePattern);
                 }
             }),
             //Chauffer Charge
             chaufferCharge = ko.observable(new ChaufferCharge()),
+            //Chauffer Charge List
+            chaufferChargeList = ko.observable([]),
              // Errors
             errors = ko.validation.group({
                 code: code,
@@ -77,7 +79,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             };
 
         self = {
-            id:id,
+            id: id,
             code: code,
             companyId: companyId,
             departmentId: departmentId,
@@ -91,6 +93,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             description: description,
             formattedStartDate: formattedStartDate,
             chaufferCharge: chaufferCharge,
+            chaufferChargeList: chaufferChargeList,
             errors: errors,
             isValid: isValid,
             dirtyFlag: dirtyFlag,
@@ -180,7 +183,6 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         chaufferChargeMain.startDate(source.StartDate !== null ? moment(source.StartDate, ist.utcFormat).toDate() : undefined);
         return chaufferChargeMain;
     };
-
     //Convert Server To Client
     var AdditionalChargeClientMapper = function (source) {
         var addCharge = new AdditionalCharge();
@@ -193,27 +195,26 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         return addCharge;
     };
     //Convert Client To Server
-    var AdditionalChargeTypeServerMapper = function (source) {
+    var CahufferChargeMainServerMapper = function (source) {
         var result = {};
         result.AdditionalChargeTypeId = source.id() === undefined ? 0 : source.id();
         result.Code = source.code() === undefined ? null : source.code();
         result.Name = source.name() === undefined ? null : source.name();
         result.Description = source.description() === undefined ? 0 : source.description();
-        result.IsEditable = source.isEditable() === undefined ? 0 : source.isEditable();
-        result.AdditionalCharges = [];
-        _.each(source.additionalChargesList(), function (item) {
-            result.AdditionalCharges.push(AdditionalChargeServerMapper(item));
+        result.TariffTypeId = source.tariffTypeId() === undefined ? 0 : source.tariffTypeId();
+        result.StartDate = source.startDate() === undefined || source.startDate() === null ? null : moment(source.startDate()).format(ist.utcFormat);
+        result.ChaufferCharges = [];
+        _.each(source.chaufferChargeList(), function (item) {
+            result.ChaufferCharges.push(ChaufferChargeServerMapper(item));
         });
-
         return result;
     };
     //Convert Client To Server
-    var AdditionalChargeServerMapper = function (item) {
+    var ChaufferChargeServerMapper = function (item) {
         var result = {};
-        result.AdditionalChargeId = item.id() === undefined ? 0 : item.id();
-        result.HireGroupDetailId = item.hireGroupDetailId() === undefined ? null : item.hireGroupDetailId();
-        result.AdditionalChargeRate = item.rate() === undefined ? null : item.rate();
-        result.revisionNumber = item.rate() === undefined ? null : item.rate();
+        result.ChaufferChargeId = item.id() === undefined ? 0 : item.id();
+        result.DesigGradeId = item.desigGradeId() === undefined ? null : item.desigGradeId();
+        result.ChaufferChargeRate = item.rate() === undefined ? null : item.rate();
         result.StartDt = item.startDate() === undefined || item.startDate() === null ? null : moment(item.startDate()).format(ist.utcFormat);
         return result;
     };
@@ -223,10 +224,13 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.AdditionalChargeTypeId = source.id() === undefined ? 0 : source.id();
         return result;
     };
+
+
     return {
         ChaufferChargeMain: ChaufferChargeMain,
         ChaufferCharge: ChaufferCharge,
         ChaufferChargeMainClientMapper: ChaufferChargeMainClientMapper,
+        CahufferChargeMainServerMapper: CahufferChargeMainServerMapper,
         ChaufferChargeServerMapperForId: ChaufferChargeServerMapperForId,
     };
 });

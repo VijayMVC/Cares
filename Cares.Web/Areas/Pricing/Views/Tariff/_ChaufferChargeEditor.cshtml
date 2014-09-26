@@ -4,7 +4,7 @@
 <div class="well col-md-12" id="chaufferChargeEditor" data-bind="visible: isChaufferChargeEditorVisible, with: addEditChaufferChargeMain" style="display: none;">
     <div class="float-left detailsContainer">
         <h3 class="page-header detailsHeaderSection">Chauffer Charge Detail</h3>
-        <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onSaveAdditionalCharge, enable: hasChanges, css: { 'btn-warning': hasChanges }">@Cares.Web.Resources.Shared.Common.Save</button>
+        <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onSaveChaufferChargeMainCharge, enable: hasChanges, css: { 'btn-warning': hasChanges }">@Cares.Web.Resources.Shared.Common.Save</button>
         <button class="btn btn-default" id="saveBtn" data-bind="click: $root.closeAdditionalChargeEditor">@Cares.Web.Resources.Shared.Common.Cancel</button>
     </div>
     <form class="form-horizontal">
@@ -56,17 +56,17 @@
         <div data-bind="with:chaufferCharge">
             <div class="form-group">
                 @*<a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title='@Cares.Web.Resources.Shared.Common.ShowFilter' style="display: none"></a>*@
-                <div class="addToBtnDiv row"><button class="btn btn-info addToBtn" id="saveBtn" data-bind="visible: !($root.showUpdateCancelBtn()),click: $root.onAddAdditionalCharge">@Cares.Web.Resources.Shared.Common.AddToList</button></div>
+                <div class="addToBtnDiv row"><button class="btn btn-info addToBtn" id="saveBtn" data-bind="visible: !($root.showUpdateCancelBtn()),click: $root.onAddChaufferCharge">@Cares.Web.Resources.Shared.Common.AddToList</button></div>
                 <div class="addToBtnDiv row">
                     <button class="btn btn-default addToBtn" style="display: none" id="saveBtn" data-bind="visible: $root.showUpdateCancelBtn(),click: $root.hideUpdateCancelBtn">@Cares.Web.Resources.Shared.Common.Cancel</button>
-                    <button class="btn btn-info btnAdditionalChargeUpdate" style="display: none" id="saveBtn" data-bind="visible: $root.showUpdateCancelBtn(),click:$root.onUpdateAdditionalCharge">@Cares.Web.Resources.Shared.Common.Update</button>
+                    <button class="btn btn-info btnAdditionalChargeUpdate" style="display: none" id="saveBtn" data-bind="visible: $root.showUpdateCancelBtn(),click:$root.onUpdateChaufferCharge">@Cares.Web.Resources.Shared.Common.Update</button>
                 </div>
 
             </div>
             <div class="form-group">
                 <label for="desigGrade" class="control-label h5  col-sm-1">Desig Grade *</label>
                 <div class="col-md-3">
-                    <select id="desigGrade" class="form-control" data-bind="options: $root.desigGrades, optionsText: 'DesigGradeCodeName',optionsValue:'DesigGradeId', optionsCaption: 'Desig. Grade', value: desigGradeId, validationTooltip: desigGradeId, event:{change:$root.onSelectedHireGroupDetail }"></select>
+                    <select id="desigGrade" class="form-control" data-bind="options: $root.desigGrades, optionsText: 'DesigGradeCodeName',optionsValue:'DesigGradeId', optionsCaption: 'Desig. Grade', value: desigGradeId, validationTooltip: desigGradeId, event:{change:$root.onSelectedDesigGrade }"></select>
                 </div>
                 <label for="date" class="control-label h5  col-sm-1">@Cares.Web.Resources.Tariff.AdditionalCharge.FromDate *</label>
                 <div class="col-md-3">
@@ -80,37 +80,37 @@
             <div class="form-group">
             </div>
             <br />
-            @*<div class="well additionalChargeWell">
+            <div class="well additionalChargeWell">
                 <table id="additionalChargeTab" class="table">
                     <thead>
                         <tr>
-                            <th> <span>@Cares.Web.Resources.Tariff.AdditionalCharge.HireGroupDetail<span></span></span></th>
+                            <th> <span>Desig Grade<span></span></span></th>
                             <th> <span><span>@Cares.Web.Resources.Tariff.AdditionalCharge.StartDate</span></span></th>
-                            <th> <span>@Cares.Web.Resources.Tariff.AdditionalCharge.AdditionalChargeLabel<span></span></span></th>
+                            <th> <span>Cahuffer Charge<span></span></span></th>
                             <th> <span>@Cares.Web.Resources.Tariff.AdditionalCharge.RevisionNumber<span></span></span></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- ko template: { name: 'itemAddChargeTemplate' , foreach: $root.additionalCharges } -->
+                        <!-- ko template: { name: 'itemChaufferChargeTemplate' , foreach: $root.chaufferCharges } -->
                         <!-- /ko -->
                     </tbody>
                 </table>
             </div>
-            <script id="itemAddChargeTemplate" type="text/html">
+            <script id="itemChaufferChargeTemplate" type="text/html">
                 <tr>
-                    <td data-bind="text: hireGroupDetailCodeName"></td>
+                    <td data-bind="text: desigGradeCodeName"></td>
                     <td data-bind="text: formattedStartDate"></td>
                     <td data-bind="text: rate"></td>
                     <td data-bind="text: revisionNumber"></td>
                     <td>
-                        <!-- ko template: { name: 'editActionAdditionalChargeTemplate' } -->
+                        <!-- ko template: { name: 'editActionChaufferChargeTemplate' } -->
                         <!-- /ko -->
                     </td>
                 </tr>
             </script>
-            <script id="editActionAdditionalChargeTemplate" type="text/html">
-                <a href="#" data-bind="click: $root.onEditAdditionalCharge" title=@Cares.Web.Resources.Shared.Common.Edit><span class="glyphicon glyphicon-edit"></span></a>
-            </script>*@
+            <script id="editActionChaufferChargeTemplate" type="text/html">
+                <a href="#" data-bind="click: $root.onEditChaufferCharge" title=@Cares.Web.Resources.Shared.Common.Edit><span class="glyphicon glyphicon-edit"></span></a>
+            </script>
         </div>
     </div>
 
