@@ -13,5 +13,13 @@ namespace Cares.Interfaces.Repository
         /// Get All Chauffer Charge Main based on search crateria
         /// </summary>
         ChaufferChargeSearchResponse GetChaufferCharges(ChaufferChargeSearchRequest request);
+
+        /// <summary>
+        /// Validate Chauffer Charge Main Already exist Against Tariff type Code 
+        /// </summary>
+        /// <param name="tariffTypeCode"></param>
+        /// <returns></returns>
+        bool LoadChaufferChargeMainExist(string tariffTypeCode);
+
     }
 }

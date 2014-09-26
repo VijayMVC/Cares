@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Http;
@@ -34,14 +36,13 @@ namespace Cares.Web.Areas.Api.Controllers
         #region Public
         // GET api/<controller>
         [ValidateFilter]
-        public ChaufferChargeSearchResponse Get([FromUri] ChaufferChargeMain chaufferChargeMain)
+        public IEnumerable<ChaufferCharge> Get([FromUri] ChaufferChargeMain chaufferChargeMain)
         {
             if (!ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            //return chaufferChargeService.LoadAll(request).CreateFrom();
-            return null;
+            return chaufferChargeService.GetChaufferChargesByChaufferChargeMainId(chaufferChargeMain.ChaufferChargeMainId).Select(chaufferChrg => chaufferChrg.CreateFrom()).ToList();
         }
         #endregion
     }

@@ -184,20 +184,20 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         return chaufferChargeMain;
     };
     //Convert Server To Client
-    var AdditionalChargeClientMapper = function (source) {
-        var addCharge = new AdditionalCharge();
-        addCharge.id(source.AdditionalChargeId === null ? undefined : source.AdditionalChargeId);
-        addCharge.hireGroupDetailCodeName(source.HireGroupDetailCodeName === null ? undefined : source.HireGroupDetailCodeName);
-        addCharge.hireGroupDetailId(source.HireGroupDetailId === null ? undefined : source.HireGroupDetailId);
-        addCharge.revisionNumber(source.RevisionNumber === null ? undefined : source.RevisionNumber);
-        addCharge.rate(source.AdditionalChargeRate === null ? undefined : source.AdditionalChargeRate);
-        addCharge.startDate(source.StartDt !== null ? moment(source.StartDt, ist.utcFormat).toDate() : undefined);
-        return addCharge;
+    var ChaufferChargeClientMapper = function (source) {
+        var chaufferCharge = new ChaufferCharge();
+        chaufferCharge.id(source.ChaufferChargeId === null ? undefined : source.ChaufferChargeId);
+        chaufferCharge.desigGradeCodeName(source.DesigGradeCodeName === null ? undefined : source.DesigGradeCodeName);
+        chaufferCharge.desigGradeId(source.DesigGradeId === null ? undefined : source.DesigGradeId);
+        chaufferCharge.revisionNumber(source.RevisionNumber === null ? undefined : source.RevisionNumber);
+        chaufferCharge.rate(source.ChaufferChargeRate === null ? undefined : source.ChaufferChargeRate);
+        chaufferCharge.startDate(source.StartDt !== null ? moment(source.StartDt, ist.utcFormat).toDate() : undefined);
+        return chaufferCharge;
     };
     //Convert Client To Server
     var CahufferChargeMainServerMapper = function (source) {
         var result = {};
-        result.AdditionalChargeTypeId = source.id() === undefined ? 0 : source.id();
+        result.ChaufferChargeMainId = source.id() === undefined ? 0 : source.id();
         result.Code = source.code() === undefined ? null : source.code();
         result.Name = source.name() === undefined ? null : source.name();
         result.Description = source.description() === undefined ? 0 : source.description();
@@ -221,7 +221,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
     // Convert Client to server
     var ChaufferChargeServerMapperForId = function (source) {
         var result = {};
-        result.AdditionalChargeTypeId = source.id() === undefined ? 0 : source.id();
+        result.ChaufferChargeMainId = source.id() === undefined ? 0 : source.id();
         return result;
     };
 
@@ -230,6 +230,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         ChaufferChargeMain: ChaufferChargeMain,
         ChaufferCharge: ChaufferCharge,
         ChaufferChargeMainClientMapper: ChaufferChargeMainClientMapper,
+        ChaufferChargeClientMapper: ChaufferChargeClientMapper,
         CahufferChargeMainServerMapper: CahufferChargeMainServerMapper,
         ChaufferChargeServerMapperForId: ChaufferChargeServerMapperForId,
     };

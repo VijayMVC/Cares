@@ -117,127 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="By" xml:space="preserve">
-    <value>By</value>
+  <data name="ChaufferChargeAddFailedMsg" xml:space="preserve">
+    <value>Failed To save Chauffer Charge.</value>
   </data>
-  <data name="Code" xml:space="preserve">
-    <value>Code</value>
+  <data name="ChaufferChargeAddSuccessMsg" xml:space="preserve">
+    <value>Chauffer Charge successfully save.</value>
   </data>
-  <data name="Company" xml:space="preserve">
-    <value>Company</value>
+  <data name="ChaufferChargeDeleteFailedMsg" xml:space="preserve">
+    <value>Failed to remove Chauffer Charge.</value>
   </data>
-  <data name="Created" xml:space="preserve">
-    <value>Created</value>
+  <data name="ChaufferChargeDeleteSuccessMsg" xml:space="preserve">
+    <value>Chauffer Charge successfully removed.</value>
   </data>
-  <data name="CreatedDate" xml:space="preserve">
-    <value>Created</value>
-  </data>
-  <data name="CreateNewTariffType" xml:space="preserve">
-    <value>Create New Tariff Type</value>
-  </data>
-  <data name="Date" xml:space="preserve">
-    <value>Date</value>
-  </data>
-  <data name="Department" xml:space="preserve">
-    <value>Department</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="Duration" xml:space="preserve">
-    <value>Duration</value>
-  </data>
-  <data name="Effective" xml:space="preserve">
-    <value>Effective</value>
-  </data>
-  <data name="EffectiveStartDate" xml:space="preserve">
-    <value>Effective start Date</value>
-  </data>
-  <data name="EndTo" xml:space="preserve">
-    <value>End To</value>
-  </data>
-  <data name="From" xml:space="preserve">
-    <value>From</value>
-  </data>
-  <data name="Grace" xml:space="preserve">
-    <value>Grace</value>
-  </data>
-  <data name="GracePeriod" xml:space="preserve">
-    <value>Grace Period</value>
-  </data>
-  <data name="Measurement" xml:space="preserve">
-    <value>Measurement</value>
-  </data>
-  <data name="MeasurementUnit" xml:space="preserve">
-    <value>Measurement Unit</value>
-  </data>
-  <data name="Modified" xml:space="preserve">
-    <value>Modified</value>
-  </data>
-  <data name="ModifiedBy" xml:space="preserve">
-    <value>By</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="Operation" xml:space="preserve">
-    <value>Operation</value>
-  </data>
-  <data name="Period" xml:space="preserve">
-    <value>Period</value>
-  </data>
-  <data name="Pricing" xml:space="preserve">
-    <value>Pricing</value>
-  </data>
-  <data name="PricingStrategy" xml:space="preserve">
-    <value>Pricing Strategy</value>
-  </data>
-  <data name="Revision" xml:space="preserve">
-    <value>Revision</value>
-  </data>
-  <data name="Scheme" xml:space="preserve">
-    <value>Scheme</value>
-  </data>
-  <data name="StartFrom" xml:space="preserve">
-    <value>Start From</value>
-  </data>
-  <data name="TariffRevisions" xml:space="preserve">
-    <value>Tariff Revisions</value>
-  </data>
-  <data name="TariffTypeCode" xml:space="preserve">
-    <value>Tariff Type Code</value>
-  </data>
-  <data name="TariffTypeDetail" xml:space="preserve">
-    <value>Tariff Type Detail</value>
-  </data>
-  <data name="TariffTypeName" xml:space="preserve">
-    <value>Tariff Type Name</value>
-  </data>
-  <data name="TariffTypes" xml:space="preserve">
-    <value>Tariff Types</value>
-  </data>
-  <data name="TariffTypeText" xml:space="preserve">
-    <value>Tariff Type</value>
-  </data>
-  <data name="To" xml:space="preserve">
-    <value>To</value>
-  </data>
-  <data name="Unit" xml:space="preserve">
-    <value>Unit</value>
-  </data>
-  <data name="TariffTypeAddSucessMsg" xml:space="preserve">
-    <value>Tariff Type Successfuly Added.</value>
+  <data name="ChaufferChargeDuplicated" xml:space="preserve">
+    <value>Chauffeur Charge with the given parameters Designation Grade are already defined.</value>
   </data>
   <data name="LoadBaseDataFailedMsg" xml:space="preserve">
-    <value>Failed to load base data.</value>
+    <value>Load to failed base data.</value>
   </data>
-  <data name="LoadTariffTypesFailedMsg" xml:space="preserve">
-    <value>Failed to load tariff types.</value>
-  </data>
-  <data name="TariffTypeDetailFailedMsg" xml:space="preserve">
-    <value>Failed load tariff type detail.</value>
-  </data>
-  <data name="TariffTypeSaveFailedMsg" xml:space="preserve">
-    <value>Failed to save tariff type.</value>
+  <data name="LoadChaufferChargeDetailFailedMsg" xml:space="preserve">
+    <value>Load to failed chauffer charge detail.</value>
   </data>
 </root>
