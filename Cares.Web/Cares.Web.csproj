@@ -231,6 +231,7 @@
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeDetailController.cs" />
+    <Compile Include="Areas\Api\Controllers\VehicleCheckListController.cs" />
     <Compile Include="Areas\Api\Controllers\NrtTypeController.cs" />
     <Compile Include="Areas\Api\Controllers\NrtTypeBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\ServiceItemController.cs" />
@@ -525,8 +526,10 @@
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Models\VehicleBaseDataResponse.cs" />
     <Compile Include="Models\VehicleCategory.cs" />
+    <Compile Include="Models\VehicleCheckList.cs" />
     <Compile Include="Models\VehicleCheckListDropDown.cs" />
     <Compile Include="Models\VehicleCheckListItem.cs" />
+    <Compile Include="Models\VehicleCheckListSearchRequestResponse.cs" />
     <Compile Include="Models\VehicleDepreciation.cs" />
     <Compile Include="Models\VehicleDetail.cs" />
     <Compile Include="Models\VehicleDisposalInfo.cs" />
@@ -681,6 +684,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FleetPool.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\FleetPool\VehicleCheckList.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VehicleCheckList.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\FleetPool\VehicleCheckList.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VehicleCheckList.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\GeographicalHierarchy\Area.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -810,6 +823,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>WorkplaceType.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tariff\ChaufferCharge.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChaufferCharge.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tariff\ChaufferCharge.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChaufferCharge.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Pricing\DiscountSubType.ar.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -985,6 +1008,10 @@
     <Content Include="Areas\EmployeeManagement\Scripts\designation.model.js" />
     <Content Include="Areas\EmployeeManagement\Scripts\designation.view.js" />
     <Content Include="Areas\EmployeeManagement\Scripts\designation.viewModel.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicleCheckList.dataservice.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicleCheckList.model.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicleCheckList.view.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicleCheckList.viewModel.js" />
     <Content Include="Areas\Fleet\Scripts\fleetPool.viewModel.js" />
     <Content Include="Areas\Fleet\Scripts\fleetPool.model.js" />
     <Content Include="Areas\Fleet\Scripts\fleetPool.view.js" />
@@ -1388,6 +1415,12 @@
     <Content Include="Content\toastr.min.css" />
     <Content Include="Content\Vehicle.css">
       <DependentUpon>Vehicle.less</DependentUpon>
+    </Content>
+    <Content Include="Content\VehicleCheckList.css">
+      <DependentUpon>VehicleCheckList.less</DependentUpon>
+    </Content>
+    <Content Include="Content\VehicleCheckList.min.css">
+      <DependentUpon>VehicleCheckList.css</DependentUpon>
     </Content>
     <Content Include="Content\WorkLocation.css">
       <DependentUpon>WorkLocation.less</DependentUpon>
@@ -1966,6 +1999,12 @@
     <Content Include="Content\NrtType.css.map">
       <DependentUpon>NrtType.css</DependentUpon>
     </Content>
+    <Content Include="Content\VehicleCheckList.less" />
+    <Content Include="Content\VehicleCheckList.css.map">
+      <DependentUpon>VehicleCheckList.css</DependentUpon>
+    </Content>
+    <Content Include="Areas\Fleet\Views\Home\VehicleCheckList.cshtml" />
+    <Content Include="Areas\Fleet\Views\Home\_VehicleCheckListEditor.cshtml" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
@@ -2206,6 +2245,14 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>FleetPool.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FleetPool\VehicleCheckList.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>VehicleCheckList.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FleetPool\VehicleCheckList.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>VehicleCheckList.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\GeographicalHierarchy\Area.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Area.ar.Designer.cs</LastGenOutput>
@@ -2311,6 +2358,14 @@
     <EmbeddedResource Include="Resources\Organization\WorkplaceType.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>WorkplaceType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tariff\ChaufferCharge.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ChaufferCharge.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tariff\ChaufferCharge.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ChaufferCharge.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Pricing\DiscountSubType.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

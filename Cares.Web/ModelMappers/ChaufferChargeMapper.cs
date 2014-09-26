@@ -35,6 +35,7 @@ namespace Cares.Web.ModelMappers
                 StartDate = source.StartDate,
             };
         }
+
         /// <summary>
         /// Web Model To Domain Model
         /// </summary>
@@ -50,9 +51,10 @@ namespace Cares.Web.ModelMappers
                 TariffTypeCode = source.TariffTypeId.ToString(),
                 ChaufferChargeMainDescription = source.Description,
                 StartDt = source.StartDate,
-                ChaufferCharges = source.ChaufferCharges.Select(c => c.CreateFrom()).ToList()
+                ChaufferCharges = source.ChaufferCharges!=null?source.ChaufferCharges.Select(c => c.CreateFrom()).ToList():null
             };
         }
+
         /// <summary>
         /// Web Model To Domain Model
         /// </summary>
@@ -66,6 +68,24 @@ namespace Cares.Web.ModelMappers
                 DesigGradeId = source.DesigGradeId,
                 ChaufferChargeRate = source.ChaufferChargeRate,
                 StartDt = source.StartDt,
+            };
+        }
+
+        /// <summary>
+        /// Domain Model To Web Model
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static ApiModel.ChaufferCharge CreateFrom(this DomainModel.ChaufferCharge source)
+        {
+            return new ApiModel.ChaufferCharge
+            {
+                ChaufferChargeId = source.ChaufferChargeId,
+                DesigGradeId = source.DesigGradeId,
+                DesigGradeCodeName = source.DesigGrade != null ? source.DesigGrade.DesigGradeCode + " - " + source.DesigGrade.DesigGradeName : string.Empty,
+                ChaufferChargeRate = source.ChaufferChargeRate,
+                StartDt = source.StartDt,
+                RevisionNumber = source.RevisionNumber,
             };
         }
 

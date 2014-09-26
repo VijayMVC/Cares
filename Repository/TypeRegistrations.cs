@@ -97,6 +97,8 @@ namespace Cares.Repository
             unityContainer.RegisterType<IChaufferChargeRepository, ChaufferChargeRepository>();
             unityContainer.RegisterType<INrtTypeRepository, NrtTypeRepository>();
             unityContainer.RegisterType<INrtMainRepository, NrtMainRepository>();
+            unityContainer.RegisterType<IRaVehicleCheckListRepository, RaVehicleCheckListRepository>();
+
 
 
         }

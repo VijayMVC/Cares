@@ -177,6 +177,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FleetPool.ar.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\FleetPool\VehicleCheckList.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VehicleCheckList.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\FleetPool\VehicleCheckList.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VehicleCheckList.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\GeographicalHierarchy\Area.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -317,6 +327,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AdditionalCharge.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Tariff\ChaufferCharge.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChaufferCharge.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tariff\ChaufferCharge.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChaufferCharge.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Tariff\InsuranceRate.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -400,6 +420,7 @@
     <Compile Include="Services\AdditionalChargeService.cs" />
     <Compile Include="Services\AddressBaseDataService.cs" />
     <Compile Include="Services\AdditionalDriverService.cs" />
+    <Compile Include="Services\VehicleCheckListService.cs" />
     <Compile Include="Services\NrtTypeService.cs" />
     <Compile Include="Services\ServiceItemService.cs" />
     <Compile Include="Services\BusinessPartnerBaseDataService.cs" />
@@ -514,6 +535,14 @@
     <EmbeddedResource Include="Resources\FleetPool\FleetPool.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>FleetPool.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FleetPool\VehicleCheckList.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>VehicleCheckList.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FleetPool\VehicleCheckList.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>VehicleCheckList.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\GeographicalHierarchy\Area.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -630,6 +659,14 @@
     <EmbeddedResource Include="Resources\Tariff\AdditionalCharge.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AdditionalCharge.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tariff\ChaufferCharge.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ChaufferCharge.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tariff\ChaufferCharge.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ChaufferCharge.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tariff\InsuranceRate.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

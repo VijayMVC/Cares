@@ -42,12 +42,13 @@
             "discountSubType": "/Areas/Pricing/Scripts",
             "serviceType": "/Areas/Pricing/Scripts",
             "serviceItem": "/Areas/Pricing/Scripts",
-            "nRTType": "/Areas/NonRevenueTicket/Scripts"
+            "nRTType": "/Areas/NonRevenueTicket/Scripts",
+            "vehicleCheckList": "/Areas/Fleet/Scripts"
 
 
 
         }
-    });
+    }); 
     
     function defineThirdPartyModules() {
         // These are already loaded via bundles. 

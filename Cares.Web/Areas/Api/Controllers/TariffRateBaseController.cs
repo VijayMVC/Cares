@@ -17,6 +17,7 @@ namespace Cares.Web.Areas.Api.Controllers
         #region Private
         private readonly ITariffRateService tariffRateService;
         #endregion
+        
         #region Constructors
         /// <summary>
         /// Constructor
@@ -28,6 +29,7 @@ namespace Cares.Web.Areas.Api.Controllers
         }
 
         #endregion
+        
         #region Public
         // GET api/<controller>
         [ValidateFilter]

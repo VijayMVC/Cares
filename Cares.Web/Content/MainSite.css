@@ -306,6 +306,18 @@
 #chaufferChargeBinding table thead tr .Description {
   width: 12%;
 }
+#chaufferChargeBinding table thead tr .Company {
+  width: 13%;
+}
+#chaufferChargeBinding table thead tr .Operation {
+  width: 17%;
+}
+#chaufferChargeBinding table thead tr .TariffType {
+  width: 17%;
+}
+#chaufferChargeBinding table thead tr .StartDate {
+  width: 15%;
+}
 #chaufferChargeBinding #chaufferChargeEditor {
   margin-top: 15px;
 }
@@ -1179,6 +1191,30 @@
   width: 100%;
 }
 #NrtTypeBinding #NrtTypeEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#VehicleCheckListBinding table thead tr .VehicleCheckListcode {
+  width: 25%;
+}
+#VehicleCheckListBinding table thead tr .VehicleCheckListname {
+  width: 25%;
+}
+#VehicleCheckListBinding table thead tr .VehicleCheckListDes {
+  width: 25%;
+}
+#VehicleCheckListBinding table thead tr .VehicleCheckListIsInterior {
+  width: 25%;
+}
+#VehicleCheckListBinding #VehicleCheckListEditor {
+  margin-top: 15px;
+}
+#VehicleCheckListBinding #VehicleCheckListEditor .detailsContainer {
+  width: 100%;
+}
+#VehicleCheckListBinding #VehicleCheckListEditor .detailsContainer .detailsHeaderSection {
   float: left;
   width: 85%;
   margin-bottom: 20px;

@@ -6791,10 +6791,6 @@
             <End Role="BpRatingType" EntitySet="BpRatingTypes1" />
             <End Role="StandardDiscount" EntitySet="StandardDiscounts" />
           </AssociationSet>
-          <AssociationSet Name="RefChaufferCharge397" Association="DomainModels.RefChaufferCharge397">
-            <End Role="ChaufferCharge" EntitySet="ChaufferCharges" />
-            <End Role="ChaufferCharge1" EntitySet="ChaufferCharges" />
-          </AssociationSet>
           <AssociationSet Name="RefChaufferChargeMain399" Association="DomainModels.RefChaufferChargeMain399">
             <End Role="ChaufferChargeMain" EntitySet="ChaufferChargeMains" />
             <End Role="ChaufferCharge" EntitySet="ChaufferCharges" />
@@ -7072,6 +7068,10 @@
           <AssociationSet Name="RefMenu01" Association="DomainModels.RefMenu01">
             <End Role="Menu" EntitySet="Menus" />
             <End Role="Menu1" EntitySet="Menus" />
+          </AssociationSet>
+          <AssociationSet Name="RefChaufferCharge397" Association="DomainModels.RefChaufferCharge397">
+            <End Role="ChaufferCharge" EntitySet="ChaufferCharges" />
+            <End Role="ChaufferCharge1" EntitySet="ChaufferCharges" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Company">
@@ -10697,9 +10697,9 @@
           <Property Name="RecLastUpdatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="StartDt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="ChildChaufferCharge" Relationship="DomainModels.RefChaufferCharge397" FromRole="ChaufferCharge1" ToRole="ChaufferCharge" />
           <NavigationProperty Name="ChaufferChargeMain" Relationship="DomainModels.RefChaufferChargeMain399" FromRole="ChaufferCharge" ToRole="ChaufferChargeMain" />
           <NavigationProperty Name="DesigGrade" Relationship="DomainModels.RefDesigGrade528" FromRole="ChaufferCharge" ToRole="DesignGrade" />
+          <NavigationProperty Name="ChildChaufferCharge" Relationship="DomainModels.RefChaufferCharge397" FromRole="ChaufferCharge1" ToRole="ChaufferCharge" />
         </EntityType>
         <EntityType Name="ChaufferChargeMain">
           <Key>
@@ -11653,18 +11653,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="RefChaufferCharge397">
-          <End Type="DomainModels.ChaufferCharge" Role="ChaufferCharge" Multiplicity="0..1" />
-          <End Type="DomainModels.ChaufferCharge" Role="ChaufferCharge1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ChaufferCharge">
-              <PropertyRef Name="ChaufferChargeId" />
-            </Principal>
-            <Dependent Role="ChaufferCharge1">
-              <PropertyRef Name="ChildChaufferChargeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="RefChaufferChargeMain399">
           <End Type="DomainModels.ChaufferChargeMain" Role="ChaufferChargeMain" Multiplicity="1" />
           <End Type="DomainModels.ChaufferCharge" Role="ChaufferCharge" Multiplicity="*" />
@@ -12532,6 +12520,18 @@
             </Principal>
             <Dependent Role="Menu1">
               <PropertyRef Name="ParentMenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefChaufferCharge397">
+          <End Type="DomainModels.ChaufferCharge" Role="ChaufferCharge" Multiplicity="0..1" />
+          <End Type="DomainModels.ChaufferCharge" Role="ChaufferCharge1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChaufferCharge">
+              <PropertyRef Name="ChaufferChargeId" />
+            </Principal>
+            <Dependent Role="ChaufferCharge1">
+              <PropertyRef Name="ChildChaufferChargeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

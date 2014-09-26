@@ -75,7 +75,7 @@ namespace Cares.Repository.Repositories
                                             (!insuranceRateSearchRequest.OperationId.HasValue ||
                                               tariffType.OperationId == insuranceRateSearchRequest.OperationId.Value) &&
                                              (!insuranceRateSearchRequest.TariffTypeId.HasValue ||
-                                              tariffType.TariffTypeId == insuranceRateSearchRequest.TariffTypeId))
+                                              tariffType.TariffTypeId == insuranceRateSearchRequest.TariffTypeId)) && !(tariffType.ChildTariffTypeId.HasValue)
                                         select new InsuranceRtMainContent
                                         {
                                             InsuranceRtMainId = insuranceRtMain.InsuranceRtMainId,

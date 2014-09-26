@@ -3,7 +3,7 @@
 
 <div class="well col-md-12" id="chaufferChargeEditor" data-bind="visible: isChaufferChargeEditorVisible, with: addEditChaufferChargeMain" style="display: none;">
     <div class="float-left detailsContainer">
-        <h3 class="page-header detailsHeaderSection">Chauffer Charge Detail</h3>
+        <h3 class="page-header detailsHeaderSection">@Cares.Web.Resources.Tariff.ChaufferCharge.ChaufferChargeDetail</h3>
         <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onSaveChaufferChargeMainCharge, enable: hasChanges, css: { 'btn-warning': hasChanges }">@Cares.Web.Resources.Shared.Common.Save</button>
         <button class="btn btn-default" id="saveBtn" data-bind="click: $root.closeAdditionalChargeEditor">@Cares.Web.Resources.Shared.Common.Cancel</button>
     </div>
@@ -11,51 +11,50 @@
         <div class="form-group">
         </div>
         <div class="form-group">
-            <label for="code" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.AdditionalCharge.Code *</label>
+            <label for="code" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.ChaufferCharge.Code *</label>
             <div class="col-md-3">
-                <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.AdditionalCharge.Code + ">")' class="form-control" id="code" data-bind="value: code, validationTooltip: code, disable :(id()!=undefined)" />
+                <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.ChaufferCharge.Code + ">")' class="form-control" id="code" data-bind="value: code, validationTooltip: code, disable :(id()!=undefined)" />
             </div>
-            <label for="name" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.AdditionalCharge.Name</label>
+            <label for="name" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.ChaufferCharge.Name</label>
             <div class="col-md-3">
-                <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.AdditionalCharge.Name + ">")' class="form-control" id="name" data-bind="value: name, validationTooltip: name, disable :(id()!=undefined)" />
+                <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.ChaufferCharge.Name + ">")' class="form-control" id="name" data-bind="value: name, validationTooltip: name, disable :(id()!=undefined)" />
             </div>
-            <label for="tariffTypeCompany" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.TariffType.Company *</label>
+            <label for="tariffTypeCompany" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.ChaufferCharge.Company *</label>
             <div class="col-md-3">
-                <select id="tariffTypeCompany" class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption:  '@("<" + Cares.Web.Resources.Tariff.TariffType.Company + ">")' , value: companyId, validationTooltip: companyId, disable :(id()!=undefined)"></select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="tariffTypeDepartment" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.TariffType.Department *</label>
-            <div class="col-md-3">
-                <select id="tariffTypeDepartment" class="form-control" data-bind="options: $root.filteredDepartments, optionsText: 'DepartmentCodeName', optionsValue: 'DepartmentId', optionsCaption:  '@("<" + Cares.Web.Resources.Tariff.TariffType.Department + ">")' , value: departmentId, validationTooltip: departmentId, disable :(id()!=undefined)"></select>
-            </div>
-            <label for="tariffTypeOperation" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.TariffType.Operation *</label>
-            <div class="col-md-3">
-                <select id="tariffTypeOperation" class="form-control" data-bind="options: $root.filteredOperations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '@("<" + Cares.Web.Resources.Tariff.TariffType.Operation + ">")'  , value: operationId, validationTooltip: operationId, disable :(id()!=undefined)"></select>
-            </div>
-            <label for="tariffType" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.AdditionalDriverChrg.TariffType *</label>
-            <div class="col-md-3">
-                <select id="tariffType" class="form-control" data-bind="options: $root.filteredTariffTypes, optionsText: 'TariffTypeCodeName', optionsValue: 'TariffTypeId', optionsCaption:  '@("<" + Cares.Web.Resources.Tariff.AdditionalDriverChrg.TariffType + ">")'  , value: tariffTypeId, validationTooltip: tariffTypeId, disable :(id()!=undefined)"></select>
+                <select id="tariffTypeCompany" class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption:  '@("<" + Cares.Web.Resources.Tariff.ChaufferCharge.Company + ">")' , value: companyId, validationTooltip: companyId, disable :(id()!=undefined)"></select>
             </div>
         </div>
         <div class="form-group">
-            <label for="description" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.AdditionalCharge.Description</label>
+            <label for="tariffTypeDepartment" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.ChaufferCharge.Department *</label>
             <div class="col-md-3">
-                <textarea class="form-control" rows="4" placeholder='@("<" + Cares.Web.Resources.Tariff.AdditionalCharge.Description + ">")' id="description" data-bind="value: description, valueUpdate: 'keyup' , disable :(id()!=undefined)"></textarea>
+                <select id="tariffTypeDepartment" class="form-control" data-bind="options: $root.filteredDepartments, optionsText: 'DepartmentCodeName', optionsValue: 'DepartmentId', optionsCaption:  '@("<" + Cares.Web.Resources.Tariff.ChaufferCharge.Department + ">")' , value: departmentId, validationTooltip: departmentId, disable :(id()!=undefined)"></select>
             </div>
-            <label for="effectiveDate" class="control-label h5 col-sm-1">Effective From *</label>
+            <label for="tariffTypeOperation" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.ChaufferCharge.Operation *</label>
             <div class="col-md-3">
-                <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.AdditionalDriverChrg.EffectiveStartDate + ">")' class="form-control" id="effectiveDate" data-bind="datepicker: startDate, validationTooltip: startDate, disable :(id()!=undefined)" />
+                <select id="tariffTypeOperation" class="form-control" data-bind="options: $root.filteredOperations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '@("<" + Cares.Web.Resources.Tariff.ChaufferCharge.Operation + ">")'  , value: operationId, validationTooltip: operationId, disable :(id()!=undefined)"></select>
+            </div>
+            <label for="tariffType" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.ChaufferCharge.TariffType *</label>
+            <div class="col-md-3">
+                <select id="tariffType" class="form-control" data-bind="options: $root.filteredTariffTypes, optionsText: 'TariffTypeCodeName', optionsValue: 'TariffTypeId', optionsCaption:  '@("<" + Cares.Web.Resources.Tariff.ChaufferCharge.TariffType + ">")'  , value: tariffTypeId, validationTooltip: tariffTypeId, disable :(id()!=undefined)"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="description" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.ChaufferCharge.Description</label>
+            <div class="col-md-3">
+                <textarea class="form-control" rows="4" placeholder='@("<" + Cares.Web.Resources.Tariff.ChaufferCharge.Description + ">")' id="description" data-bind="value: description, valueUpdate: 'keyup' , disable :(id()!=undefined)"></textarea>
+            </div>
+            <label for="effectiveDate" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.ChaufferCharge.StartEffectiveDate *</label>
+            <div class="col-md-3">
+                <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.ChaufferCharge.StartEffectiveDate + ">")' class="form-control" id="effectiveDate" data-bind="datepicker: startDate, validationTooltip: startDate" />
             </div>
         </div>
     </form>
     <br />
     <div class="panel panel-info">
-        <div class="panel-heading">Additional Charge</div>
+        <div class="panel-heading">@Cares.Web.Resources.Tariff.ChaufferCharge.ChaufferChargeLabel</div>
         <br />
         <div data-bind="with:chaufferCharge">
             <div class="form-group">
-                @*<a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title='@Cares.Web.Resources.Shared.Common.ShowFilter' style="display: none"></a>*@
                 <div class="addToBtnDiv row"><button class="btn btn-info addToBtn" id="saveBtn" data-bind="visible: !($root.showUpdateCancelBtn()),click: $root.onAddChaufferCharge">@Cares.Web.Resources.Shared.Common.AddToList</button></div>
                 <div class="addToBtnDiv row">
                     <button class="btn btn-default addToBtn" style="display: none" id="saveBtn" data-bind="visible: $root.showUpdateCancelBtn(),click: $root.hideUpdateCancelBtn">@Cares.Web.Resources.Shared.Common.Cancel</button>
@@ -64,17 +63,17 @@
 
             </div>
             <div class="form-group">
-                <label for="desigGrade" class="control-label h5  col-sm-1">Desig Grade *</label>
+                <label for="desigGrade" class="control-label h5  col-sm-1">@Cares.Web.Resources.Tariff.ChaufferCharge.DesigGrade *</label>
                 <div class="col-md-3">
-                    <select id="desigGrade" class="form-control" data-bind="options: $root.desigGrades, optionsText: 'DesigGradeCodeName',optionsValue:'DesigGradeId', optionsCaption: 'Desig. Grade', value: desigGradeId, validationTooltip: desigGradeId, event:{change:$root.onSelectedDesigGrade }"></select>
+                    <select id="desigGrade" class="form-control" data-bind="options: $root.desigGrades, optionsText: 'DesigGradeCodeName',optionsValue:'DesigGradeId', optionsCaption: '@("<" + Cares.Web.Resources.Tariff.ChaufferCharge.DesigGrade + ">")', value: desigGradeId, validationTooltip: desigGradeId, event:{change:$root.onSelectedDesigGrade }"></select>
                 </div>
-                <label for="date" class="control-label h5  col-sm-1">@Cares.Web.Resources.Tariff.AdditionalCharge.FromDate *</label>
+                <label for="date" class="control-label h5  col-sm-1">@Cares.Web.Resources.Tariff.ChaufferCharge.FromDate *</label>
                 <div class="col-md-3">
-                    <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.AdditionalCharge.FromDate + ">")' class="form-control" id="date" data-bind="datepicker: startDate, validationTooltip: startDate" />
+                    <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.ChaufferCharge.FromDate + ">")' class="form-control" id="date" data-bind="datepicker: startDate, validationTooltip: startDate" />
                 </div>
-                <label for="rate" class="control-label  h5 col-sm-1">Chauffer Charge *</label>
+                <label for="rate" class="control-label  h5 col-sm-1">@Cares.Web.Resources.Tariff.ChaufferCharge.ChaufferChargeLabel *</label>
                 <div class="col-md-3">
-                    <input type="text" placeholder='Chauffer Charge' class="form-control" id="rate" data-bind="value: rate, validationTooltip: rate">
+                    <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.ChaufferCharge.FromDate + ">")' class="form-control" id="rate" data-bind="value: rate, validationTooltip: rate">
                 </div>
             </div>
             <div class="form-group">
@@ -84,10 +83,10 @@
                 <table id="additionalChargeTab" class="table">
                     <thead>
                         <tr>
-                            <th> <span>Desig Grade<span></span></span></th>
-                            <th> <span><span>@Cares.Web.Resources.Tariff.AdditionalCharge.StartDate</span></span></th>
-                            <th> <span>Cahuffer Charge<span></span></span></th>
-                            <th> <span>@Cares.Web.Resources.Tariff.AdditionalCharge.RevisionNumber<span></span></span></th>
+                            <th> <span>@Cares.Web.Resources.Tariff.ChaufferCharge.DesigGrade<span></span></span></th>
+                            <th> <span><span>@Cares.Web.Resources.Tariff.ChaufferCharge.StartDate</span></span></th>
+                            <th> <span>@Cares.Web.Resources.Tariff.ChaufferCharge.ChaufferChargeLabel<span></span></span></th>
+                            <th> <span>@Cares.Web.Resources.Tariff.ChaufferCharge.RevisionNumber<span></span></span></th>
                         </tr>
                     </thead>
                     <tbody>

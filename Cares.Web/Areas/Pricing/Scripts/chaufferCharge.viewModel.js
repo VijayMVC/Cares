@@ -121,16 +121,16 @@ define("chaufferCharge/chaufferCharge.viewModel",
                         isLoadingChaufferCharge(true);
                         dataservice.getChaufferChargeDetail(model.ChaufferChargeServerMapperForId(chaufferChrg), {
                             success: function (data) {
-                                //chaufferCharges.removeAll();
-                                //_.each(data, function (item) {
-                                //    var sddCharge = new model.AdditionalChargeClientMapper(item);
-                                //    chaufferCharges.push(sddCharge);
-                                //});
+                                chaufferCharges.removeAll();
+                                _.each(data, function (item) {
+                                    var chaferCharge = new model.ChaufferChargeClientMapper(item);
+                                    chaufferCharges.push(chaferCharge);
+                                });
                                 isLoadingChaufferCharge(false);
                             },
                             error: function () {
                                 isLoadingChaufferCharge(false);
-                                toastr.error(ist.resourceText.loadAddChargeDetailFailedMsg);
+                                toastr.error(ist.resourceText.loadChaufferChargeDetailFailedMsg);
                             }
                         });
                     },
@@ -169,9 +169,9 @@ define("chaufferCharge/chaufferCharge.viewModel",
                     // Save Chauffer Charge Main
                     onSaveChaufferChargeMainCharge = function (chaufferCharge) {
                         if (doBeforeSave()) {
-                            if (chaufferCharge.chaufferChargeList().length != 0) {
+                            if (chaufferCharge.chaufferChargeList().length!=0) {
                                 chaufferCharge.chaufferChargeList().removeAll();
-                            }
+}
                             ko.utils.arrayPushAll(chaufferCharge.chaufferChargeList(), chaufferCharges());
                             saveChaufferChargeMain(chaufferCharge);
                         }
@@ -192,7 +192,7 @@ define("chaufferCharge/chaufferCharge.viewModel",
                             //In case of New
                             _.each(chaufferCharges(), function (item) {
                                 if (item.desigGradeId() === chaufferCharge.desigGradeId()) {
-                                    toastr.error("Chauffer Charge with the given parameters [DesigGrade] are already defined.");
+                                    toastr.error(ist.resourceText.chaufferChargeDuplicated);
                                     flag = false;
                                 }
                             });
@@ -206,11 +206,11 @@ define("chaufferCharge/chaufferCharge.viewModel",
                     onUpdateChaufferCharge = function (chaufferChrg) {
                         if (doBeforeChaufferCharge()) {
                             var flag = true;
-                            if (selectedAdditionalCharge() !== undefined) {
+                            if (selectedChaufferCharge() !== undefined) {
                                 //In case Of edit
-                                _.each(additionalCharges(), function (item) {
+                                _.each(chaufferCharges(), function (item) {
                                     if (item.desigGradeId() === chaufferChrg.desigGradeId() && chaufferChrg.desigGradeId() !== selectedChaufferCharge().desigGradeId()) {
-                                        toastr.error("Chauffer Charge with the given parameters [DesigGrade] are already defined.");
+                                        toastr.error(ist.resourceText.chaufferChargeDuplicated);
                                         flag = false;
                                     }
                                 });
@@ -247,7 +247,7 @@ define("chaufferCharge/chaufferCharge.viewModel",
                                    chaufferChargeMains.splice(0, 0, chaufferChargeMain);
                                    closeAdditionalChargeEditor();
                                }
-                               toastr.success(ist.resourceText.additionalChargeAddSuccessMsg);
+                               toastr.success(ist.resourceText.chaufferChargeAddSuccessMsg);
                            },
                            error: function (exceptionMessage, exceptionType) {
 
@@ -257,7 +257,7 @@ define("chaufferCharge/chaufferCharge.viewModel",
 
                                } else {
 
-                                   toastr.error(ist.resourceText.ist.resourceText.additionalChargeAddFailedMsg);
+                                   toastr.error(ist.resourceText.ist.resourceText.chaufferChargeAddFailedMsg);
 
                                }
 
@@ -320,30 +320,27 @@ define("chaufferCharge/chaufferCharge.viewModel",
                    selectedChaufferCharge(undefined);
                    addEditChaufferChargeMain().chaufferCharge(new model.ChaufferCharge());
                },
-                   onDeleteAdditionalCharge = function (addCharge) {
-                       chaufferCharges.remove(addCharge);
-                   },
-                        // Delete a Additional Charge
-                   onDeleteAdditionalChargeType = function (addChrg) {
-                       if (!addChrg.id()) {
-                           chaufferChargeMains.remove(addChrg);
+                     // Delete a Chauffer Charge
+                   onDeleteChaufferChargeMain = function (chaufferChrg) {
+                       if (!chaufferChrg.id()) {
+                           chaufferChargeMains.remove(chaufferChrg);
                            return;
                        }
                        // Ask for confirmation
                        confirmation.afterProceed(function () {
-                           deleteAdditionalCharge(addChrg);
+                           deleteChaufferCharge(chaufferChrg);
                        });
                        confirmation.show();
                    },
                         // Delete Additional Charge
-                   deleteAdditionalCharge = function (addChrg) {
-                       dataservice.deleteAdditionalCharge(model.AdditionalChrgServerMapperForId(addChrg), {
+                   deleteChaufferCharge = function (chaufferChrg) {
+                       dataservice.deleteChaufferCharge(model.ChaufferChargeServerMapperForId(chaufferChrg), {
                            success: function () {
-                               chaufferChargeMains.remove(addChrg);
-                               toastr.success(ist.resourceText.additionalChargeDeleteSuccessMsg);
+                               chaufferChargeMains.remove(chaufferChrg);
+                               toastr.success(ist.resourceText.chaufferChargeDeleteSuccessMsg);
                            },
                            error: function () {
-                               toastr.error(ist.resourceText.additionalChargeDeleteFailedMsg);
+                               toastr.error(ist.resourceText.chaufferChargeDeleteFailedMsg);
                            }
                        });
                    },
@@ -429,11 +426,10 @@ define("chaufferCharge/chaufferCharge.viewModel",
                     onSaveChaufferChargeMainCharge: onSaveChaufferChargeMainCharge,
                     reset: reset,
                     onEditChaufferChargeMain: onEditChaufferChargeMain,
-                    onDeleteAdditionalChargeType: onDeleteAdditionalChargeType,
+                    onDeleteChaufferChargeMain: onDeleteChaufferChargeMain,
                     createChaufferCharge: createChaufferCharge,
                     onAddChaufferCharge: onAddChaufferCharge,
                     onSelectedDesigGrade: onSelectedDesigGrade,
-                    onDeleteAdditionalCharge: onDeleteAdditionalCharge,
                     onEditChaufferCharge: onEditChaufferCharge,
                     hideUpdateCancelBtn: hideUpdateCancelBtn,
                     onUpdateChaufferCharge: onUpdateChaufferCharge,

@@ -166,6 +166,7 @@ namespace Cares.Implementation.Services
                 standardRateMainRepository.SaveChanges();
             }
             #endregion
+
             #region Edit
             else
             {
@@ -252,7 +253,7 @@ namespace Cares.Implementation.Services
         {
             return standardRateMainRepository.FindByTariffTypeCode(tariffTypeCode);
         }
-        
+
         /// <summary>
         /// Find Tariff Type By Tariff Type ID
         /// </summary>
