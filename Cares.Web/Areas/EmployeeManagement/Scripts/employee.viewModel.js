@@ -105,8 +105,6 @@ define("employee/employee.viewModel",
                     employeeStatusFilter = ko.observable(),
                        //Company Filter
                     companyFilter = ko.observable(),
-                    // #endregion
-                    //#region  filter Arrays
                     //on selected company
                     onSelectedCompany = function (company) {
                         filteredDepartments.removeAll();

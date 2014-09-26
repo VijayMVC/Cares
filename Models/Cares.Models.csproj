@@ -66,6 +66,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -128,6 +129,7 @@
     <Compile Include="Common\OperationByColumn.cs" />
     <Compile Include="Common\ServiceTypeByColumn.cs" />
     <Compile Include="Common\SubRegionByColumn.cs" />
+    <Compile Include="Common\VehicleCheckListByColumn.cs" />
     <Compile Include="Common\VehicleOrderByColumn.cs" />
     <Compile Include="Common\HireGroupByColumn.cs" />
     <Compile Include="Common\HireGroupDetailByColumn.cs" />
@@ -310,6 +312,7 @@
     <Compile Include="RequestModels\ServiceTypeSearchRequestResponse.cs" />
     <Compile Include="RequestModels\SubRegionSearchRequest.cs" />
     <Compile Include="RequestModels\SubRegionSearchRequestResponse.cs" />
+    <Compile Include="RequestModels\VehicleCheckListSearchRequest.cs" />
     <Compile Include="RequestModels\VehicleSearchRequest.cs" />
     <Compile Include="RequestModels\HireGroupSearchRequest.cs" />
     <Compile Include="RequestModels\OrgGroupSearchRequest.cs" />
@@ -379,6 +382,7 @@
     <Compile Include="ResponseModels\TariffTypeBaseResponse.cs" />
     <Compile Include="ResponseModels\TariffTypeResponse.cs" />
     <Compile Include="ResponseModels\VehicleBaseDataResponse.cs" />
+    <Compile Include="ResponseModels\VehicleCheckListSearchRequestResponse.cs" />
     <Compile Include="ResponseModels\WorkLocationBaseDataResponse.cs" />
     <Compile Include="ResponseModels\WorkLocationSerachRequestResponse.cs" />
     <Compile Include="ResponseModels\WorkplaceBaseDataResponse.cs" />
@@ -392,6 +396,9 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,5 +1,5 @@
 ﻿/*
-    View for the Regions Used to keep the viewmodel clear of UI related logic
+    View for the Areas Used to keep the viewmodel clear of UI related logic
 */
 define("area/area.view",
     ["jquery", "area/area.viewModel"], function ($, areaViewModel) {

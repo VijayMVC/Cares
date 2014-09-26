@@ -7,5 +7,9 @@ namespace Cares.Interfaces.Repository
     /// </summary>
     public interface IVehicleCheckListItemRepository : IBaseRepository<VehicleCheckListItem, long>
     {
+        /// <summary>
+        /// Association check Vehicle CheckList Item with  Vehicle CheckList
+        /// </summary>
+        bool IsVehicleCheckListItemAssociatedWithVehicleCheckList(long vehicleCheckListId);
     }
 }
