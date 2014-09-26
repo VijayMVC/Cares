@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Cares.Models.DomainModels;
 
 namespace Cares.Interfaces.Repository
@@ -14,5 +15,10 @@ namespace Cares.Interfaces.Repository
         /// <param name="serviceRtMainId"></param>
         /// <returns></returns>
         IEnumerable<ServiceRt> GetServiceRtByServiceRtMainId(long serviceRtMainId);
+
+        /// <summary>
+        /// Get Service Rate For RA Billing 
+        /// </summary>
+        IEnumerable<ServiceRt> GetForRaBilling(string tariffTypeCode, long serviceItemId, DateTime raRecCreatedDate);
     }
 }

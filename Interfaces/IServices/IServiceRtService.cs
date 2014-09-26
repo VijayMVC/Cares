@@ -1,4 +1,6 @@
-﻿using Cares.Models.DomainModels;
+﻿using System;
+using System.Collections.Generic;
+using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
 
@@ -47,5 +49,12 @@ namespace Cares.Interfaces.IServices
         /// <param name="serviceRtMain"></param>
         /// <returns></returns>
         ServiceRtMainContent SaveInsuranceRate(ServiceRtMain serviceRtMain);
+        
+        /// <summary>
+        /// Calculate Charge for Ra Service Item
+        /// </summary>
+        RaServiceItem CalculateCharge(DateTime raCreatedDate, DateTime startDtTime, DateTime endDtTime,
+            long serviceItemId, int quantity, Int64 operationId,
+            List<TariffType> oTariffTypeList);
     }
 }

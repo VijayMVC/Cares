@@ -39,9 +39,9 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Get Vehicles
         /// </summary>
-        public GetVehicleResponse Get([FromUri] VehicleSearchRequest request)
+        public HireGroupVehiclesResponse Get([FromUri] VehicleSearchRequest request)
         {
-            return vehicleService.GetByHireGroup(request).CreateFrom();
+            return vehicleService.GetByHireGroup(request).CreateFromFoRa();
         }
         #endregion
     }

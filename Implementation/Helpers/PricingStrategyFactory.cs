@@ -1,36 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Cares.Models.Common;
 using Cares.Models.DomainModels;
 
 namespace Cares.Implementation.Helpers
 {
+    /// <summary>
+    /// Pricing Strategy Factory
+    /// </summary>
     public class PricingStrategyFactory
     {
-        public PricingStrategyFactory()
+        /// <summary>
+        /// Returns Pricing Strategy based on duration, opration and Tariff Type
+        /// </summary>
+        public static PricingStrategy GetPricingStrategy(DateTime rACreatedDate, DateTime startDate, DateTime endDate, Int64 operationId, List<TariffType> oTariffTypeList)
         {
-        }
-
-        public static PricingStrategy GetPricingStrategy(DateTime RACreatedDate, DateTime StartDate, DateTime EndDate, Int64 OperationID, List<TariffType> oTariffTypeList)
-        {
-            TariffType CandidateTariffType = new TariffType();
-            CandidateTariffType = TariffTypeHelper.GetTariffType(RACreatedDate, StartDate, EndDate, OperationID, oTariffTypeList);
+            TariffType candidateTariffType = TariffTypeHelper.GetTariffType(rACreatedDate, startDate, endDate, operationId, oTariffTypeList);
 
 
-            PricingStrategy objPS = null;
-            if (CandidateTariffType == null)
-                return objPS;
-            if (CandidateTariffType.PricingStrategyId == (int)PricingStrategyEnum.Fixed)
-                objPS = new FixedPricingStrategy(CandidateTariffType);
-            else if (CandidateTariffType.PricingStrategyId == (int)PricingStrategyEnum.ProRate)
-                objPS = new FixedPricingStrategy(CandidateTariffType);
+            PricingStrategy objPs;
+            if (candidateTariffType == null)
+                return null;
+            if (candidateTariffType.PricingStrategyId == (int)PricingStrategyEnum.Fixed)
+                objPs = new FixedPricingStrategy(candidateTariffType);
+            else if (candidateTariffType.PricingStrategyId == (int)PricingStrategyEnum.ProRate)
+                objPs = new ProRatePricingStrategy(candidateTariffType);
             else
-                objPS = null;
+                objPs = null;
 
-            return objPS;
+            return objPs;
         }
 
     }

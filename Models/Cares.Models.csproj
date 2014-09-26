@@ -101,6 +101,10 @@
   <ItemGroup>
     <Compile Include="CommonTypes\PhoneType.cs" />
     <Compile Include="CommonTypes\DepartmentType.cs" />
+    <Compile Include="Common\BillingSummary.cs" />
+    <Compile Include="Common\AllocationStatusEnum.cs" />
+    <Compile Include="Common\DiscountTypeEnum.cs" />
+    <Compile Include="Common\VehicleMovementEnum.cs" />
     <Compile Include="Common\PricingStrategyEnum.cs" />
     <Compile Include="Common\AdditionalChargeByColumn.cs" />
     <Compile Include="Common\MeasurementUnitEnum.cs" />

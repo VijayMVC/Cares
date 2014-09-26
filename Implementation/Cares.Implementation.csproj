@@ -123,9 +123,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\Bill.cs" />
     <Compile Include="Helpers\FixedPricingStrategy.cs" />
     <Compile Include="Helpers\PricingStrategy.cs" />
     <Compile Include="Helpers\PricingStrategyFactory.cs" />
+    <Compile Include="Helpers\ProRatePricingStrategy.cs" />
+    <Compile Include="Helpers\RADriverHelper.cs" />
     <Compile Include="Helpers\RentalCharge.cs" />
     <Compile Include="Helpers\TariffTypeHelper.cs" />
     <Compile Include="Identity\IdentityOperation.cs" />

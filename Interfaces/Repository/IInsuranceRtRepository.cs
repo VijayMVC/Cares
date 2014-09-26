@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Cares.Models.DomainModels;
 
 namespace Cares.Interfaces.Repository
@@ -14,5 +15,10 @@ namespace Cares.Interfaces.Repository
         /// <param name="insuranceRtMainId"></param>
         /// <returns></returns>
         IEnumerable<InsuranceRt> GetInsuranceRtByInsuranceRtMainId(long insuranceRtMainId);
+
+        /// <summary>
+        /// Get Insurance Rate For RA Billing 
+        /// </summary>
+        IEnumerable<InsuranceRt> GetForRaBilling(string tariffTypeCode, long hireGroupDetailId, long insuranceTypeId, DateTime raRecCreatedDate);
     }
 }

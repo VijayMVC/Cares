@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Cares.Models.DomainModels;
 
 namespace Cares.Interfaces.Repository
@@ -17,5 +18,10 @@ namespace Cares.Interfaces.Repository
         /// Find By Hire Group Id and standard Rate Main Id
         /// </summary>
         IEnumerable<StandardRate> FindByHireGroupId(long standardRtMainId, long hireGroupDetailId);
+
+        /// <summary>
+        /// Get Insurance Rate For RA Billing 
+        /// </summary>
+        IEnumerable<StandardRate> GetForRaBilling(string tariffTypeCode, long hireGroupDetailId, DateTime raRecCreatedDate);
     }
 }

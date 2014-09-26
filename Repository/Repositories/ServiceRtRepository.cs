@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using Cares.Interfaces.Repository;
@@ -51,6 +52,17 @@ namespace Cares.Repository.Repositories
         public IEnumerable<ServiceRt> GetServiceRtByServiceRtMainId(long serviceRtMainId)
         {
             return DbSet.Where(serviceRt => serviceRt.UserDomainKey == UserDomainKey && serviceRt.ServiceRtMainId == serviceRtMainId).ToList();
+        }
+
+        /// <summary>
+        /// Get For RaBilling
+        /// </summary>
+        public IEnumerable<ServiceRt> GetForRaBilling(string tariffTypeCode, long serviceItemId, DateTime raRecCreatedDate)
+        {
+            return
+                DbSet.Include(se => se.ServiceRtMain).Where(serviceRt => serviceRt.UserDomainKey == UserDomainKey && serviceRt.ServiceItemId == serviceItemId &&
+                                 serviceRt.StartDt <= raRecCreatedDate && !serviceRt.IsDeleted && serviceRt.ServiceRtMain.TariffTypeCode == tariffTypeCode)
+                                 .OrderByDescending(serviceRt => serviceRt.StartDt).ToList();
         }
 
         #endregion

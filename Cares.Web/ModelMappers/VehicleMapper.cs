@@ -52,8 +52,7 @@ namespace Cares.Web.ModelMappers
             vehicle.FuelType = source.FuelType.CreateFrom();
             vehicle.TransmissionTypeId = source.TransmissionTypeId;
             vehicle.TransmissionType = source.TransmissionType.CreateFrom();
-            if (source.OperationsWorkPlace.OperationId != null)
-                vehicle.OperationId = (int)source.OperationsWorkPlace.OperationId;
+            vehicle.OperationId = (int)source.OperationsWorkPlace.OperationId;
             vehicle.Operation = source.OperationsWorkPlace.Operation.CreateFrom();
             vehicle.OperationsWorkPlaceId = source.OperationsWorkPlaceId;
             vehicle.OperationsWorkPlace = source.OperationsWorkPlace.CreateFrom();
@@ -98,6 +97,18 @@ namespace Cares.Web.ModelMappers
             return new GetVehicleResponse
             {
                 Vehicles = source.Vehicles.Select(hg => hg.CreateFromListViewContent()),
+                TotalCount = source.TotalCount
+            };
+        }
+
+        /// <summary>
+        /// Create Vehicle Search Response from domain Vehicle Search Response
+        /// </summary>
+        public static HireGroupVehiclesResponse CreateFromFoRa(this ResponseModel.GetVehicleResponse source)
+        {
+            return new HireGroupVehiclesResponse
+            {
+                Vehicles = source.Vehicles.Select(hg => hg.CreateFrom(false)),
                 TotalCount = source.TotalCount
             };
         }

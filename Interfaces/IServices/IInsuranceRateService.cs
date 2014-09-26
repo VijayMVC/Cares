@@ -1,4 +1,6 @@
-﻿using Cares.Models.DomainModels;
+﻿using System;
+using System.Collections.Generic;
+using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
 
@@ -46,5 +48,13 @@ namespace Cares.Interfaces.IServices
         /// <param name="insuranceRtMainId"></param>
         /// <returns></returns>
         InsuranceRtMain FindById(long insuranceRtMainId);
+
+        /// <summary>
+        /// Calculate Insurance Charge for Ra Billing
+        /// </summary>
+        RaHireGroupInsurance CalculateCharge(DateTime raRecCreatedDate, DateTime stDate, DateTime eDate,
+            long operationId,
+            long hireGroupDetailId, short insuranceTypeId, List<TariffType> oTariffTypeList);
+
     }
 }

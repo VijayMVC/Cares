@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Cares.ExceptionHandling;
+using Cares.Implementation.Helpers;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -254,6 +255,7 @@ namespace Cares.Implementation.Services
             };
         }
 
+
         /// <summary>
         /// Validate Servire Rate Main
         /// </summary>
@@ -286,6 +288,31 @@ namespace Cares.Implementation.Services
             }
 
         }
+
+        /// <summary>
+        /// Calculate Charge For Service Item for RA Billing
+        /// </summary>
+        public RaServiceItem CalculateCharge(DateTime raCreatedDate, DateTime startDtTime, DateTime endDtTime, long serviceItemId, int quantity, Int64 operationId,
+            List<TariffType> oTariffTypeList)
+        {
+            Helpers.PricingStrategy objPs = PricingStrategyFactory.GetPricingStrategy(raCreatedDate, startDtTime, endDtTime, operationId, oTariffTypeList);
+            if (objPs == null)
+            {
+                throw new CaresException("TarrifType not defined", null);
+            }
+
+            List<ServiceRt> serviceRts = serviceRtRepository.GetForRaBilling(objPs.TariffType.TariffTypeCode, serviceItemId, raCreatedDate).ToList();
+
+            if (serviceRts.Count == 0)
+            {
+                throw new CaresException("No ServiceItem rate defined");
+            }
+
+            ServiceRt oServiceRate = serviceRts[0];
+
+            return objPs.CalculateRAServiceItemCharge(startDtTime, endDtTime, quantity, oServiceRate);
+        }
+
         #endregion
     }
 }

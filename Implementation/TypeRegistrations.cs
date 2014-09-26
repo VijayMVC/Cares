@@ -1,5 +1,7 @@
-﻿using Cares.Implementation.Identity;
+﻿using Cares.Implementation.Helpers;
+using Cares.Implementation.Identity;
 using Cares.Implementation.Services;
+using Cares.Interfaces.Helpers;
 using Cares.Interfaces.IServices;
 using Cares.Models.IdentityModels;
 using Microsoft.AspNet.Identity;
@@ -43,11 +45,14 @@ namespace Cares.Implementation
             unityContainer.RegisterType<IOccupationTypeService, OccupationTypeService>();
             unityContainer.RegisterType<ICountryService, CountryService>();
             unityContainer.RegisterType<IHireGroupService, HireGroupService>();
-            unityContainer.RegisterType<IRentalAgreementService, RentalAgreementService>();
             unityContainer.RegisterType<IOrganizationGroupService, OrganizationGroupService>();
             unityContainer.RegisterType<IVehicleService, VehicleService>();
             unityContainer.RegisterType<IInsuranceRateService, InsuranceRateService>();
             unityContainer.RegisterType<IServiceRtService, ServiceRtService>();
+            unityContainer.RegisterType<IRentalCharge, RentalCharge>();
+            unityContainer.RegisterType<IRaDriverHelper, RaDriverHelper>();
+            unityContainer.RegisterType<IBill, Bill>();
+            unityContainer.RegisterType<IRentalAgreementService, RentalAgreementService>();
             unityContainer.RegisterType<IVehicleService, VehicleService>();
             unityContainer.RegisterType<IWorkplaceService, WorkplaceService>();
             unityContainer.RegisterType<IOperationsWorkPlaceService, OperationsWorkPlaceService>();

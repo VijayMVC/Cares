@@ -192,8 +192,11 @@ namespace Cares.Web.Models
         {
             get
             {
-                //MemoryStream ms = new MemoryStream();
-                //ms.Write(Image, 0, Image.Length);
+                if (Image == null)
+                {
+                    return string.Empty;
+                }
+
                 string base64 = Convert.ToBase64String(Image);
                 return string.Format("data:{0};base64,{1}", "image/jpg", base64);
             }

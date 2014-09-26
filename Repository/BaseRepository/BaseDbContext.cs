@@ -429,6 +429,11 @@ namespace Cares.Repository.BaseRepository
         /// </summary>
         public DbSet<AdditionalChargeType> AdditionalChargeTypes { get; set; }
 
+        /// <summary>
+        /// Chauffer Charge Db Set
+        /// </summary>
+        public DbSet<ChaufferCharge> ChaufferCharges { get; set; }
+
         #endregion
     }
 }

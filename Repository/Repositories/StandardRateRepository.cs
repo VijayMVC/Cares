@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using Cares.Interfaces.Repository;
@@ -68,6 +69,20 @@ namespace Cares.Repository.Repositories
             return DbSet.Where(s => s.UserDomainKey == UserDomainKey && s.StandardRtMainId == standardRtMainId && s.ChildStandardRtId == null && s.HireGroupDetailId == hireGroupDetailId);
 
         }
+
+        /// <summary>
+        /// Get For Ra Billing
+        /// </summary>
+        public IEnumerable<StandardRate> GetForRaBilling(string tariffTypeCode, long hireGroupDetailId, DateTime raRecCreatedDate)
+        {
+            return
+                DbSet.Include(s => s.StandardRtMain).Where(
+                    s =>
+                        s.UserDomainKey == UserDomainKey && s.HireGroupDetailId == hireGroupDetailId &&
+                        s.StandardRtStartDt <= raRecCreatedDate && s.StandardRtMain.TariffTypeCode == tariffTypeCode &&
+                        !s.IsDeleted).OrderByDescending(s => s.StandardRtStartDt).ToList();
+        }
+
         #endregion
     }
 }

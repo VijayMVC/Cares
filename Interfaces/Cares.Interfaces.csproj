@@ -47,9 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\IRaDriverHelper.cs" />
+    <Compile Include="Helpers\IRentalCharge.cs" />
+    <Compile Include="Helpers\IBill.cs" />
     <Compile Include="IServices\IAdditionalChargeService.cs" />
     <Compile Include="IServices\IAddressBaseDataService.cs" />
     <Compile Include="IServices\IJobTypeService.cs" />
+    <Compile Include="Repository\IChaufferChargeRepository.cs" />
     <Compile Include="Repository\IAdditionalChargeRepository.cs" />
     <Compile Include="Repository\IAdditionalChargeTypeRepository.cs" />
     <Compile Include="IServices\IDiscountTypeService.cs" />

@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Cares.Interfaces.Helpers;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
+using Cares.Models.DomainModels;
 using Cares.Models.ResponseModels;
 
 namespace Cares.Implementation.Services
@@ -15,6 +19,8 @@ namespace Cares.Implementation.Services
         private readonly IPaymentTermRepository paymentTermRepository;
         private readonly IOperationRepository operationRepository;
         private readonly IOperationsWorkPlaceRepository operationsWorkPlaceRepository;
+        private readonly ITariffTypeRepository tariffTypeRepository;
+        private readonly IBill bill;
 
         #endregion
 
@@ -24,7 +30,7 @@ namespace Cares.Implementation.Services
         /// Constructor
         /// </summary>
         public RentalAgreementService(IPaymentTermRepository paymentTermRepository, IOperationRepository operationRepository, 
-            IOperationsWorkPlaceRepository operationsWorkPlaceRepository)
+            IOperationsWorkPlaceRepository operationsWorkPlaceRepository, ITariffTypeRepository tariffTypeRepository, IBill bill)
         {
             if (paymentTermRepository == null)
             {
@@ -39,10 +45,14 @@ namespace Cares.Implementation.Services
             {
                 throw new ArgumentNullException("operationsWorkPlaceRepository");
             }
+            if (tariffTypeRepository == null) throw new ArgumentNullException("tariffTypeRepository");
+            if (bill == null) throw new ArgumentNullException("bill");
 
             this.paymentTermRepository = paymentTermRepository;
             this.operationRepository = operationRepository;
             this.operationsWorkPlaceRepository = operationsWorkPlaceRepository;
+            this.tariffTypeRepository = tariffTypeRepository;
+            this.bill = bill;
         }
 
         #endregion
@@ -60,6 +70,19 @@ namespace Cares.Implementation.Services
                 Operations = operationRepository.GetSalesOperation(),
                 OperationsWorkPlaces = operationsWorkPlaceRepository.GetSalesOperationsWorkPlace()
             };
+        }
+
+        /// <summary>
+        /// Generates Bill For RA
+        /// </summary>
+        public RaMain GenerateBill(RaMain request)
+        {
+            List<TariffType> tariffTypes = tariffTypeRepository.GetAll().ToList();
+            RaMain raMain = request;
+
+            bill.CalculateBill(ref raMain, tariffTypes);
+            
+            return raMain;
         }
 
         #endregion

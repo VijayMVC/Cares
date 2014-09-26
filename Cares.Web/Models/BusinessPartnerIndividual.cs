@@ -12,7 +12,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Business Partner Id
         /// </summary>
-        public long? BusinessPartnerId { get; set; }
+        public long BusinessPartnerId { get; set; }
         /// <summary>
         /// Individual First Name
         /// </summary>

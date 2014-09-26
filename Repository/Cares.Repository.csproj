@@ -135,6 +135,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AdditionalChargeRepository.cs" />
     <Compile Include="Repositories\AdditionalChargeTypeRepository.cs" />
+    <Compile Include="Repositories\ChaufferChargeRepository.cs" />
     <Compile Include="Repositories\AdditionalDriverChargeRepository.cs" />
     <Compile Include="Repositories\AddressRepository.cs" />
     <Compile Include="Repositories\AddressTypeRepository.cs" />

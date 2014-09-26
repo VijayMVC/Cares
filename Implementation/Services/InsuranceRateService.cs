@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Cares.ExceptionHandling;
+using Cares.Implementation.Helpers;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -267,6 +268,31 @@ namespace Cares.Implementation.Services
         public InsuranceRtMain FindById(long insuranceRtMainId)
         {
             return insuranceRtMainRepository.Find(insuranceRtMainId);
+        }
+
+        /// <summary>
+        /// Calculate Insurance Charge for Ra Billing
+        /// </summary>
+        public RaHireGroupInsurance CalculateCharge(DateTime raRecCreatedDate, DateTime stDate, DateTime eDate, long operationId,
+            long hireGroupDetailId, short insuranceTypeId, List<TariffType> oTariffTypeList)
+        {
+            Helpers.PricingStrategy objPs = PricingStrategyFactory.GetPricingStrategy(raRecCreatedDate, stDate, eDate, operationId, oTariffTypeList);
+            if (objPs == null)
+            {
+                throw new CaresException("Insurance Tariff Type not defined", null);
+            }
+
+            List<InsuranceRt> insuranceRts = insuranceRtRepository.
+                GetForRaBilling(objPs.TariffType.TariffTypeCode, hireGroupDetailId, insuranceTypeId, raRecCreatedDate).ToList();
+
+            if (insuranceRts.Count == 0)
+            {
+                throw new CaresException("No insurance Rate defined");
+            }
+
+            InsuranceRt oInsRate = insuranceRts[0];
+
+            return objPs.CalculateInsuranceCharge(stDate, eDate, oInsRate);
         }
 
         /// <summary>

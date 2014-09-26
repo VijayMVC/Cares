@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
@@ -25,5 +26,10 @@ namespace Cares.Interfaces.Repository
         /// Get Additional Driver Charge Revisions By Id
         /// </summary>
         AdditionalDriverCharge GetRevision(long additionalDriverChargeId);
+
+        /// <summary>
+        /// Get Charge For Ra Billing
+        /// </summary>
+        IEnumerable<AdditionalDriverCharge> GetForRaBilling(string tariffTypeCode, DateTime raRecCreatedDt);
     }
 }

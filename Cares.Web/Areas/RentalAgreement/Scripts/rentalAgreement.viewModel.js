@@ -34,6 +34,12 @@ define("rentalAgreement/rentalAgreement.viewModel",
                             resetHireGroups();
                         }
                     },
+                    // Allocation Status Enums
+                    allocationStatus = {
+                        desired: 1,
+                        upgraded: 2,
+                        replaced: 3
+                    },
                     // Main RA
                     rentalAgreement = ko.observable(model.RentalAgreement.Create({}, rentalAgreementModelCallbacks)),
                     // #region Arrays
@@ -68,6 +74,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     selectVehicle = function(vehicle) {
                         if (selectedVehicle() !== vehicle) {
                             selectedVehicle(vehicle);
+                            calculateBill();
                         }    
                     },
                     // Vehicle Image
@@ -157,6 +164,35 @@ define("rentalAgreement/rentalAgreement.viewModel",
                             }
                         });
                     },
+                    // Calculate Bill
+                    calculateBill = function () {
+                        var rentalBillRequest = rentalAgreement().convertToServerData();
+                        if (!rentalAgreement().id()) {
+                            rentalBillRequest.RaHireGroups.push({ VehicleId: selectedVehicle().id, HireGroupDetailId: selectedHireGroup().id, 
+                                AllocationStatusKey: allocationStatus.desired, RaMainId: rentalAgreement().id(),
+                                VehicleMovements: [
+                                    {
+                                        OperationsWorkPlaceId: rentalAgreement().openLocation(), Odometer: selectedVehicle().currentOdemeter,
+                                        VehicleStatusId: selectedVehicle().vehicleStatusId, DtTime: moment(rentalAgreement().start()).format(ist.utcFormat) + 'Z',
+                                        FuelLevel: selectedVehicle().fuelLevel, Status: true
+                                    },
+                                    {
+                                        OperationsWorkPlaceId: rentalAgreement().openLocation(),
+                                        DtTime: moment(rentalAgreement().start()).format(ist.utcFormat) + 'Z',
+                                        FuelLevel: selectedVehicle().fuelLevel
+                                    }
+                                ]
+                            });
+                        }
+                        dataservice.calculateBill(rentalBillRequest, {
+                            success: function (data) {
+                                rentalAgreement().billing(model.Billing.Create(data));
+                            },
+                            error: function (response) {
+                                toastr.error("Failed to calculate bill. Error: " + response);
+                            }
+                        });
+                    },
                     // Get Customer Call back Handler
                     getCustomerCallbackHandler = {
                         success: function (data) {
@@ -214,7 +250,8 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     // Utility Methods
                     initialize: initialize,
                     selectVehicle: selectVehicle,
-                    stopEventBubbling: stopEventBubbling
+                    stopEventBubbling: stopEventBubbling,
+                    calculateBill: calculateBill
                     // Utility Methods
                 };
             })()

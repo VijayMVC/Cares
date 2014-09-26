@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Cares.Models.DomainModels;
 using Cares.Models.Common;
 
@@ -23,7 +19,7 @@ namespace Cares.Implementation.Helpers
             _TariffType = tType;
         }
 
-        public abstract RentalCharge CalculateRentalCharge(DateTime StartDate, DateTime EndDate, StandardRate tSTrate);
+        public abstract RaHireGroup CalculateRentalCharge(DateTime StartDate, DateTime EndDate, StandardRate tSTrate);
         public abstract RaHireGroupInsurance CalculateInsuranceCharge(DateTime StartDate, DateTime EndDate, InsuranceRt InsRate);
         public abstract RaServiceItem CalculateRAServiceItemCharge(DateTime StartDate, DateTime EndDate, Int32 ItemQuantity, ServiceRt ServiceItemRate);
         public abstract RaDriver CalculateAddDriverCharge(DateTime StartDate, DateTime EndDate, AdditionalDriverCharge AddDrvRate);

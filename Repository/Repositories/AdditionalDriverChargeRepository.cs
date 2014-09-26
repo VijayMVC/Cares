@@ -119,6 +119,18 @@ namespace Cares.Repository.Repositories
             return DbSet.FirstOrDefault(addDriverChrg => addDriverChrg.ChildAdditionalDriverChargeId == additionalDriverChargeId);
         }
 
+        /// <summary>
+        /// Get For Ra Billing
+        /// </summary>
+        public IEnumerable<AdditionalDriverCharge> GetForRaBilling(string tariffTypeCode, DateTime raRecCreatedDt)
+        {
+            return
+                DbSet.Where(
+                    addDriverChrg =>
+                        addDriverChrg.UserDomainKey == UserDomainKey && addDriverChrg.TariffTypeCode == tariffTypeCode &&
+                        !addDriverChrg.IsDeleted && addDriverChrg.StartDt <= raRecCreatedDt).OrderByDescending(adc => adc.StartDt).ToList();
+        }
+
         #endregion
     }
 }

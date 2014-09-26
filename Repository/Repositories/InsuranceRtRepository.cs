@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using Cares.Interfaces.Repository;
@@ -52,6 +53,18 @@ namespace Cares.Repository.Repositories
         public IEnumerable<InsuranceRt> GetInsuranceRtByInsuranceRtMainId(long insuranceRtMainId)
         {
             return DbSet.Where(insuranceRt => insuranceRt.UserDomainKey == UserDomainKey && insuranceRt.InsuranceRtMainId == insuranceRtMainId).ToList();
+        }
+
+        /// <summary>
+        /// Get Insurance Rate for Ra Billing
+        /// </summary>
+        public IEnumerable<InsuranceRt> GetForRaBilling(string tariffTypeCode, long hireGroupDetailId, long insuranceTypeId,
+            DateTime raRecCreatedDate)
+        {
+            return
+                DbSet.Include(ir => ir.InsuranceRtMain).Where(ir => ir.UserDomainKey == UserDomainKey && !ir.IsDeleted && ir.HireGroupDetailId == hireGroupDetailId &&
+                        ir.StartDt <= raRecCreatedDate && ir.InsuranceTypeId == insuranceTypeId && ir.InsuranceRtMain.TariffTypeCode == tariffTypeCode)
+                        .OrderByDescending(ir => ir.StartDt).ToList();
         }
 
         #endregion

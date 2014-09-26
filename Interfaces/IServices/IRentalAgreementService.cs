@@ -1,4 +1,5 @@
-﻿using Cares.Models.ResponseModels;
+﻿using Cares.Models.DomainModels;
+using Cares.Models.ResponseModels;
 
 namespace Cares.Interfaces.IServices
 {
@@ -11,5 +12,10 @@ namespace Cares.Interfaces.IServices
         /// Get All Base Data
         /// </summary>
         RentalAgreementBaseDataResponse GetBaseData();
+
+        /// <summary>
+        /// Generate Bill for RA
+        /// </summary>
+        RaMain GenerateBill(RaMain request);
     }
 }

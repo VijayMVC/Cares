@@ -3,21 +3,33 @@ using Cares.Models.DomainModels;
 
 namespace Cares.Implementation.Helpers
 {
-    class FixedPricingStrategy : PricingStrategy
+    /// <summary>
+    /// Fixed Pricing Strategy
+    /// </summary>
+    public class FixedPricingStrategy : PricingStrategy
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public FixedPricingStrategy()
-            : base()
         {
 
         }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public FixedPricingStrategy(TariffType tType)
             : base(tType)
         {
         }
 
-        public override RentalCharge CalculateRentalCharge(DateTime StartDate, DateTime EndDate, StandardRate tSTrate)
+        /// <summary>
+        /// Generates Rental Charge
+        /// </summary>
+        public override RaHireGroup CalculateRentalCharge(DateTime StartDate, DateTime EndDate, StandardRate tSTrate)
         {
-            RentalCharge oRentalCharge = null;
+            RaHireGroup oRentalCharge = null;
             //calculate total rental duration as a time span object
             TimeSpan dtSpan = EndDate - StartDate;
             TimeSpan ChargeSpan;
@@ -31,14 +43,14 @@ namespace Cares.Implementation.Helpers
             //convert tariff type GracePeriod to Minute for standardization
             float TariffGracePeriod = GetDurationInMinutes((float)TariffType.GracePeriod, Convert.ToInt32(TariffType.MeasurementUnitId));
             //set rental charge object common parameters
-            oRentalCharge = new RentalCharge();
+            oRentalCharge = new RaHireGroup();
             oRentalCharge.RentalChargeStartDate = StartDate;
             oRentalCharge.RentalChargeEndDate = EndDate;
             oRentalCharge.TariffTypeCode = this.TariffType.TariffTypeCode;
             //condition 1: if rental duration lies between From and To
             if (RentalDurationInMinutes >= TariffDurationFrom && RentalDurationInMinutes <= TariffDurationTo)
             {
-                oRentalCharge.StRate = (float)tSTrate.StandardRt;
+                oRentalCharge.StandardRate = (float)tSTrate.StandardRt;
                 oRentalCharge.TotalStandardCharge = (float)tSTrate.StandardRt;
                 //excess milage charge for edit case
                 oRentalCharge.ExcessMileageRt = (float)tSTrate.ExcessMileageChrg;
@@ -71,11 +83,11 @@ namespace Cares.Implementation.Helpers
                 ChargeSpan = new TimeSpan(dtSpan.Days - GraceSpan.Days, dtSpan.Hours - GraceSpan.Hours, dtSpan.Minutes - GraceSpan.Minutes, 0);
                 float ChargeDuration = GetDurationInMinutes(ChargeSpan, Convert.ToInt32(this.TariffType.MeasurementUnitId));
                 oRentalCharge.TotalStandardCharge = (float)Math.Round(((float)Math.Ceiling(Convert.ToDouble((ChargeDuration / TariffDurationTo)))) * tSTrate.StandardRt, base.DecimalRounding, MidpointRounding.AwayFromZero);
-                oRentalCharge.StRate = (float)tSTrate.StandardRt;
+                oRentalCharge.StandardRate = tSTrate.StandardRt;
                 //excess milage charge for edit case
                 //drop off charge 
                 oRentalCharge.DropOffCharge = 0;
-                oRentalCharge.ExcessMileageRt = (float)tSTrate.ExcessMileageChrg;
+                oRentalCharge.ExcessMileageRt = tSTrate.ExcessMileageChrg;
                 oRentalCharge.TotalExcMileageCharge = 0;
                 oRentalCharge.GraceDay = GraceSpan.Days;
                 oRentalCharge.GraceHour = GraceSpan.Hours;
@@ -89,6 +101,9 @@ namespace Cares.Implementation.Helpers
             return oRentalCharge;
         }
 
+        /// <summary>
+        /// Calculate Insurance Charge
+        /// </summary>
         public override RaHireGroupInsurance CalculateInsuranceCharge(DateTime StartDate, DateTime EndDate, InsuranceRt InsRate)
         {
             RaHireGroupInsurance oInsuranceCharge = null;
@@ -128,6 +143,9 @@ namespace Cares.Implementation.Helpers
             return oInsuranceCharge;
         }
 
+        /// <summary>
+        /// Calculate Service Item Charge
+        /// </summary>
         public override RaServiceItem CalculateRAServiceItemCharge(DateTime StartDate, DateTime EndDate, Int32 ItemQuantity, ServiceRt ServiceItemRate)
         {
             RaServiceItem oRASICharge = null;
@@ -167,6 +185,9 @@ namespace Cares.Implementation.Helpers
             return oRASICharge;
         }
 
+        /// <summary>
+        /// Calculate AdditionalDriver Charge
+        /// </summary>
         public override RaDriver CalculateAddDriverCharge(DateTime StartDate, DateTime EndDate, AdditionalDriverCharge AddDrvRate)
         {
             RaDriver oRADriver = null;
@@ -205,6 +226,10 @@ namespace Cares.Implementation.Helpers
             }
             return oRADriver;
         }
+        
+        /// <summary>
+        /// Calculate Chauffer Charge
+        /// </summary>
         public override RaDriver CalculateChaufferCharge(DateTime StartDate, DateTime EndDate, ChaufferCharge ChfRate)
         {
             RaDriver oRADriver = null;
@@ -245,6 +270,9 @@ namespace Cares.Implementation.Helpers
 
         }
 
+        /// <summary>
+        /// Get Grace Time
+        /// </summary>
         private TimeSpan GetGrace(float RentalDuration, float To, Int16 Quotient)
         {
             //here everthing is in minutes

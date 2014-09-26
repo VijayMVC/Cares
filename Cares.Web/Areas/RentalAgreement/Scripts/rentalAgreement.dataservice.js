@@ -69,38 +69,16 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
                         dataType: 'json',
                         type: 'GET'
                     });
+
+                    // Define request to Calcualte Bill
+                    amplify.request.define('calculateBill', 'ajax', {
+                        url: '/Api/RentalAgreementBilling',
+                        dataType: 'json',
+                        dataMap: JSON.stringify,
+                        contentType: "application/json; charset=utf-8",
+                        type: 'POST'
+                    });
                     
-                    // #region MockCalls
-                    /* Mock Calls */
-
-                    // Get base data
-                    //amplify.request.define('getBase', function (settings) {
-
-                    //    // data returned
-                    //    var data = {
-                    //        Operations: [{ Name: "Operation1", Id: 1 }],
-                    //        Locations: [{ Name: "L01", Id: 1 }],
-                    //        PaymentTerms: [{ Name: "Credit", Id: 1 }, { Name: "Spot", Id: 2 }]
-                    //    };
-                    //    settings.success(data);
-                    //});
-
-                    //// Get Vehicles
-                    //amplify.request.define('getVehicles', function (settings) {
-
-                    //    // data returned
-                    //    var data = {
-                    //        Vehicles: [
-                    //            { Id: 1, PlateNumber: "1234A", HireGroup: "AA2-Grade2", VehicleMake: "Toyota", VehicleModel: "Yaris", ModelYear: 2010 },
-                    //            { Id: 2, PlateNumber: "1234ABC", HireGroup: "AA2-Grade2", VehicleMake: "Toyota", VehicleModel: "Corolla", ModelYear: 2012 }
-                    //        ]
-                    //    };
-                    //    settings.success(data);
-                    //});
-
-                    /* Mock Calls */
-                    // #endregion
-
                     isInitialized = true;
                 }
             },
@@ -190,6 +168,17 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
                     error: callbacks.error,
                     data: params
                 });
+            },
+            
+            // Calculate Bill
+            calculateBill = function (params, callbacks) {
+                initialize();
+                return amplify.request({
+                    resourceId: 'calculateBill',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: params
+                });
             };
 
 
@@ -201,7 +190,8 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
             getCustomerByNicNo: getCustomerByNicNo,
             getCustomerByPassportNo: getCustomerByPassportNo,
             getCustomerByLicenseNo: getCustomerByLicenseNo,
-            getCustomerByPhoneNo: getCustomerByPhoneNo
+            getCustomerByPhoneNo: getCustomerByPhoneNo,
+            calculateBill: calculateBill
         };
     })();
 
