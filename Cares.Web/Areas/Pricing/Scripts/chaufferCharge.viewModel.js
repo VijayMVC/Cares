@@ -166,13 +166,14 @@ define("chaufferCharge/chaufferCharge.viewModel",
                         addEditChaufferChargeMain(chaufferChargeMain);
                         showAdditionalChargeEditor();
                     },
-                    // Save Chauffer Charge
-                    onSaveChaufferChargeMainCharge = function (addCharge) {
+                    // Save Chauffer Charge Main
+                    onSaveChaufferChargeMainCharge = function (chaufferCharge) {
                         if (doBeforeSave()) {
-
-                            addCharge.chaufferChargesList.removeAll();
-                            ko.utils.arrayPushAll(addCharge.chaufferChargesList(), chaufferCharges());
-                            saveAdditionalCharge(addCharge);
+                            if (chaufferCharge.chaufferChargeList().length != 0) {
+                                chaufferCharge.chaufferChargeList().removeAll();
+                            }
+                            ko.utils.arrayPushAll(chaufferCharge.chaufferChargeList(), chaufferCharges());
+                            saveChaufferChargeMain(chaufferCharge);
                         }
                     },
                     // Do Before Logic
@@ -201,21 +202,31 @@ define("chaufferCharge/chaufferCharge.viewModel",
                             }
                         }
                     },
-                      onUpdateChaufferCharge = function (chaufferChrg) {
-                          if (doBeforeChaufferCharge()) {
-
-                              if (selectedChaufferCharge() !== undefined) {
-                                  selectedChaufferCharge().desigGradeId(chaufferChrg.desigGradeId());
-                                  selectedChaufferCharge().startDate(chaufferChrg.startDate());
-                                  selectedChaufferCharge().rate(chaufferChrg.rate());
-                                  selectedChaufferCharge().desigGradeCodeName(chaufferChrg.desigGradeCodeName());
-                                  selectedChaufferCharge(undefined);
-                                  addEditChaufferChargeMain().chaufferCharge(new model.ChaufferCharge());
-                                  showUpdateCancelBtn(false);
-                              }
-                          }
-                      },
-                        // Do Before Logic
+                    //Update Chauffer Charge
+                    onUpdateChaufferCharge = function (chaufferChrg) {
+                        if (doBeforeChaufferCharge()) {
+                            var flag = true;
+                            if (selectedAdditionalCharge() !== undefined) {
+                                //In case Of edit
+                                _.each(additionalCharges(), function (item) {
+                                    if (item.desigGradeId() === chaufferChrg.desigGradeId() && chaufferChrg.desigGradeId() !== selectedChaufferCharge().desigGradeId()) {
+                                        toastr.error("Chauffer Charge with the given parameters [DesigGrade] are already defined.");
+                                        flag = false;
+                                    }
+                                });
+                            }
+                            if (flag && selectedChaufferCharge() !== undefined) {
+                                selectedChaufferCharge().desigGradeId(chaufferChrg.desigGradeId());
+                                selectedChaufferCharge().startDate(chaufferChrg.startDate());
+                                selectedChaufferCharge().rate(chaufferChrg.rate());
+                                selectedChaufferCharge().desigGradeCodeName(chaufferChrg.desigGradeCodeName());
+                                selectedChaufferCharge(undefined);
+                                addEditChaufferChargeMain().chaufferCharge(new model.ChaufferCharge());
+                                showUpdateCancelBtn(false);
+                            }
+                        }
+                    },
+                    // Do Before Logic
                    doBeforeChaufferCharge = function () {
                        var flag = true;
                        if (!addEditChaufferChargeMain().chaufferCharge().isValid()) {
@@ -224,17 +235,16 @@ define("chaufferCharge/chaufferCharge.viewModel",
                        }
                        return flag;
                    },
-
-                        // Save Additional Charge Main
-                   saveAdditionalCharge = function (addCharge) {
-                       dataservice.saveAdditionalCharge(model.AdditionalChargeTypeServerMapper(addCharge), {
+                    // Save Additional Charge Main
+                   saveChaufferChargeMain = function (chaufferCharge) {
+                       dataservice.saveChaufferCharge(model.CahufferChargeMainServerMapper(chaufferCharge), {
                            success: function (data) {
-                               var additionalCharge = model.AdditionalChargeTypeClientMapper(data);
+                               var chaufferChargeMain = model.ChaufferChargeMainClientMapper(data);
                                if (selectedChaufferChargeMain().id() > 0) {
-                                   selectedChaufferChargeMain().isEditable(additionalCharge.isEditable()),
+                                   // selectedChaufferChargeMain().isEditable(additionalCharge.isEditable()),
                                    closeAdditionalChargeEditor();
                                } else {
-                                   chaufferChargeMains.splice(0, 0, additionalCharge);
+                                   chaufferChargeMains.splice(0, 0, chaufferChargeMain);
                                    closeAdditionalChargeEditor();
                                }
                                toastr.success(ist.resourceText.additionalChargeAddSuccessMsg);
