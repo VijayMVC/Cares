@@ -35,10 +35,10 @@
                         <th class="Code"> <span id="1">Code<span class="icon-up"></span></span></th>
                         <th class="Name"> <span id="2">Name<span></span></span></th>
                         <th class="Description"> <span>Description<span></span></span></th>
-                        <th class="Description"> <span>Company<span></span></span></th>
-                        <th class="Description"> <span>Operation<span></span></span></th>
-                        <th class="Description"> <span>Tariff Type<span></span></span></th>
-                        <th class="Description"> <span>Start Effective Date<span></span></span></th>
+                        <th class="Company"> <span>Company<span></span></span></th>
+                        <th class="Operation"> <span>Operation<span></span></span></th>
+                        <th class="TariffType"> <span>Tariff Type<span></span></span></th>
+                        <th class="StartDate"> <span>Start Effective Date<span></span></span></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,7 +55,7 @@
         <a href="#" data-bind="click: $root.onEditChaufferChargeMain" title=@Cares.Web.Resources.Shared.Common.Edit><span class="glyphicon glyphicon-edit"></span></a>
     </script>
     <script id="deleteActionChaufferChargeMainTemplate" type="text/html">
-        <a href="#" data-bind="click: $root.onDeleteAdditionalChargeType" title=@Cares.Web.Resources.Shared.Common.Delete><span class="glyphicon glyphicon-remove"></span></a>
+        <a href="#" data-bind="click: $root.onDeleteChaufferChargeMain" title=@Cares.Web.Resources.Shared.Common.Delete><span class="glyphicon glyphicon-remove"></span></a>
     </script>
     <script id="itemChaufferChargeMainTemplate" type="text/html">
         <tr>
@@ -85,5 +85,18 @@
 {
     <script type="text/javascript">
         require(["chaufferCharge/chaufferCharge.view", "common/confirmation.view"]);
+        var ist = window.ist;
+        @{
+            <text>
+        ist.resourceText.chaufferChargeAddSuccessMsg = '@Cares.Web.Resources.Tariff.ChaufferCharge.ChaufferChargeAddSuccessMsg';
+            ist.resourceText.loadBaseDataFailedMsg = '@Cares.Web.Resources.Tariff.ChaufferCharge.LoadBaseDataFailedMsg';
+            ist.resourceText.loadTariffTypesFailedMsg = '@Cares.Web.Resources.Tariff.TariffType.LoadTariffTypesFailedMsg';
+        ist.resourceText.chaufferChargeAddFailedMsg = '@Cares.Web.Resources.Tariff.ChaufferCharge.ChaufferChargeAddFailedMsg';
+        ist.resourceText.loadChaufferChargeDetailFailedMsg = '@Cares.Web.Resources.Tariff.ChaufferCharge.LoadChaufferChargeDetailFailedMsg';
+        ist.resourceText.chaufferChargeDuplicated = '@Cares.Web.Resources.Tariff.ChaufferCharge.ChaufferChargeDuplicated';
+        ist.resourceText.chaufferChargeDeleteSuccessMsg = '@Cares.Web.Resources.Tariff.ChaufferCharge.ChaufferChargeDeleteSuccessMsg';
+        ist.resourceText.chaufferChargeDeleteFailedMsg = '@Cares.Web.Resources.Tariff.ChaufferCharge.ChaufferChargeDeleteFailedMsg';
+            </text>
+        }
     </script>
 }

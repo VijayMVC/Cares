@@ -306,6 +306,18 @@
 #chaufferChargeBinding table thead tr .Description {
   width: 12%;
 }
+#chaufferChargeBinding table thead tr .Company {
+  width: 13%;
+}
+#chaufferChargeBinding table thead tr .Operation {
+  width: 17%;
+}
+#chaufferChargeBinding table thead tr .TariffType {
+  width: 17%;
+}
+#chaufferChargeBinding table thead tr .StartDate {
+  width: 15%;
+}
 #chaufferChargeBinding #chaufferChargeEditor {
   margin-top: 15px;
 }

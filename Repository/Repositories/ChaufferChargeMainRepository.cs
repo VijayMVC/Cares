@@ -68,28 +68,28 @@ namespace Cares.Repository.Repositories
             int toRow = request.PageSize;
 
             var getChaufferChargeMainQuery = from chaufferChargeMain in DbSet
-                                     join tariffType in db.TariffTypes on chaufferChargeMain.TariffTypeCode equals tariffType.TariffTypeCode
-                                     where
-                                         ((string.IsNullOrEmpty(request.SearchString) || chaufferChargeMain.ChaufferChargeMainCode.Contains(request.SearchString) || chaufferChargeMain.ChaufferChargeMainName.Contains(request.SearchString)) &&
-                                         (!request.OperationId.HasValue ||
-                                           tariffType.OperationId == request.OperationId.Value) &&
-                                          (!request.TariffTypeId.HasValue ||
-                                           tariffType.TariffTypeId == request.TariffTypeId))
-                                     select new ChaufferChargeMainContent
-                                     {
-                                         ChaufferChargeMainId = chaufferChargeMain.ChaufferChargeMainId,
-                                         Code = chaufferChargeMain.ChaufferChargeMainCode,
-                                         Name = chaufferChargeMain.ChaufferChargeMainName,
-                                         Description = chaufferChargeMain.ChaufferChargeMainDescription,
-                                         StartDate = chaufferChargeMain.StartDt,
-                                         TariffTypeId = tariffType.TariffTypeId,
-                                         CompanyId = tariffType.Operation.Department.Company.CompanyId,
-                                         CompanyCodeName = tariffType.Operation.Department.Company.CompanyCode+" - "+tariffType.Operation.Department.Company.CompanyName,
-                                         DepartmentId = tariffType.Operation.Department.DepartmentId,
-                                         TariffTypeCodeName = tariffType.TariffTypeCode + " - " + tariffType.TariffTypeName,
-                                         OperationId = tariffType.OperationId,
-                                         OperationCodeName = tariffType.Operation.OperationCode + " - " + tariffType.Operation.OperationName,
-                                     };
+                                             join tariffType in db.TariffTypes on chaufferChargeMain.TariffTypeCode equals tariffType.TariffTypeCode
+                                             where
+                                                 ((string.IsNullOrEmpty(request.SearchString) || chaufferChargeMain.ChaufferChargeMainCode.Contains(request.SearchString) || chaufferChargeMain.ChaufferChargeMainName.Contains(request.SearchString)) &&
+                                                 (!request.OperationId.HasValue ||
+                                                   tariffType.OperationId == request.OperationId.Value) &&
+                                                  (!request.TariffTypeId.HasValue ||
+                                                   tariffType.TariffTypeId == request.TariffTypeId)) && !(tariffType.ChildTariffTypeId.HasValue)
+                                             select new ChaufferChargeMainContent
+                                             {
+                                                 ChaufferChargeMainId = chaufferChargeMain.ChaufferChargeMainId,
+                                                 Code = chaufferChargeMain.ChaufferChargeMainCode,
+                                                 Name = chaufferChargeMain.ChaufferChargeMainName,
+                                                 Description = chaufferChargeMain.ChaufferChargeMainDescription,
+                                                 StartDate = chaufferChargeMain.StartDt,
+                                                 TariffTypeId = tariffType.TariffTypeId,
+                                                 CompanyId = tariffType.Operation.Department.Company.CompanyId,
+                                                 CompanyCodeName = tariffType.Operation.Department.Company.CompanyCode + " - " + tariffType.Operation.Department.Company.CompanyName,
+                                                 DepartmentId = tariffType.Operation.Department.DepartmentId,
+                                                 TariffTypeCodeName = tariffType.TariffTypeCode + " - " + tariffType.TariffTypeName,
+                                                 OperationId = tariffType.OperationId,
+                                                 OperationCodeName = tariffType.Operation.OperationCode + " - " + tariffType.Operation.OperationName,
+                                             };
 
             IEnumerable<ChaufferChargeMainContent> chaufferChargeMains = request.IsAsc
                 ? getChaufferChargeMainQuery.OrderBy(chaufferChargeClause[request.ChaufferChargeOrderBy])
@@ -102,6 +102,15 @@ namespace Cares.Repository.Repositories
             return new ChaufferChargeSearchResponse { ChaufferChargeMains = chaufferChargeMains, TotalCount = getChaufferChargeMainQuery.Count() };
         }
 
+        /// <summary>
+        /// Validate Chauffer Charge Main Already exist Against Tariff type Code 
+        /// </summary>
+        /// <param name="tariffTypeCode"></param>
+        /// <returns></returns>
+        public bool LoadChaufferChargeMainExist(string tariffTypeCode)
+        {
+            return DbSet.Where(chaufferChrg => chaufferChrg.TariffTypeCode == tariffTypeCode).ToList().Count > 0;
+        }
         #endregion
     }
 }

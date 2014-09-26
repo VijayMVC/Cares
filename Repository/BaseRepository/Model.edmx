@@ -2610,6 +2610,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_HireGroup_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="HireGroup" Type="Self.HireGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="HireGroup">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Vehicle_VehicleStatus">
           <End Role="VehicleStatus" Type="Self.VehicleStatus" Multiplicity="1" />
           <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="*" />
@@ -2635,7 +2647,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefAdditionalChargeType393">
-          <End Role="AdditionalChargeType" Type="Self.AdditionalChargeType" Multiplicity="1" />
+          <End Role="AdditionalChargeType" Type="Self.AdditionalChargeType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="AdditionalCharge" Type="Self.AdditionalCharge" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AdditionalChargeType">
@@ -3067,7 +3081,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefChaufferChargeMain399">
-          <End Role="ChaufferChargeMain" Type="Self.ChaufferChargeMain" Multiplicity="1" />
+          <End Role="ChaufferChargeMain" Type="Self.ChaufferChargeMain" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ChaufferCharge" Type="Self.ChaufferCharge" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ChaufferChargeMain">
@@ -3333,7 +3349,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefEmployee344">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Phone" Type="Self.Phone" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -3345,7 +3363,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefEmployee345">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="EmpJobInfo" Type="Self.EmpJobInfo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -3357,7 +3377,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefEmployee348">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="EmpDocsInfo" Type="Self.EmpDocsInfo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -3369,7 +3391,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefEmployee349">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="EmpJobProg" Type="Self.EmpJobProg" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -3429,7 +3453,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefEmployee612">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="EmpAuthOperationsWorkplace" Type="Self.EmpAuthOperationsWorkplace" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -3501,7 +3527,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefHireGroup360">
-          <End Role="HireGroup" Type="Self.HireGroup" Multiplicity="1" />
+          <End Role="HireGroup" Type="Self.HireGroup" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="HireGroupDetail" Type="Self.HireGroupDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HireGroup">
@@ -3537,7 +3565,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefHireGroup613">
-          <End Role="HireGroup" Type="Self.HireGroup" Multiplicity="1" />
+          <End Role="HireGroup" Type="Self.HireGroup" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="HireGroupUpGrade" Type="Self.HireGroupUpGrade" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HireGroup">
@@ -3585,7 +3615,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefHireGroupDetail394">
-          <End Role="HireGroupDetail" Type="Self.HireGroupDetail" Multiplicity="0..1" />
+          <End Role="HireGroupDetail" Type="Self.HireGroupDetail" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="AdditionalCharge" Type="Self.AdditionalCharge" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HireGroupDetail">
@@ -3597,7 +3629,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefHireGroupDetail404">
-          <End Role="HireGroupDetail" Type="Self.HireGroupDetail" Multiplicity="1" />
+          <End Role="HireGroupDetail" Type="Self.HireGroupDetail" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="InsuranceRt" Type="Self.InsuranceRt" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HireGroupDetail">
@@ -3657,7 +3691,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefInsuranceRtMain390">
-          <End Role="InsuranceRtMain" Type="Self.InsuranceRtMain" Multiplicity="1" />
+          <End Role="InsuranceRtMain" Type="Self.InsuranceRtMain" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="InsuranceRt" Type="Self.InsuranceRt" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="InsuranceRtMain">
@@ -3884,18 +3920,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="RefNRTVehicle605">
-          <End Role="NRTVehicle" Type="Self.NRTVehicle" Multiplicity="1" />
-          <End Role="NRTDriver" Type="Self.NRTDriver" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NRTVehicle">
-              <PropertyRef Name="NRTVehicleID" />
-            </Principal>
-            <Dependent Role="NRTDriver">
-              <PropertyRef Name="NRTVehicleID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="RefOccupationType292">
           <End Role="OccupationType" Type="Self.OccupationType" Multiplicity="0..1" />
           <End Role="BPIndividual" Type="Self.BPIndividual" Multiplicity="*" />
@@ -3921,7 +3945,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefOperation2561">
-          <End Role="Operation" Type="Self.Operation" Multiplicity="1" />
+          <End Role="Operation" Type="Self.Operation" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="OperationsWorkplace" Type="Self.OperationsWorkplace" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Operation">
@@ -4509,7 +4535,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefServiceRtMain385">
-          <End Role="ServiceRtMain" Type="Self.ServiceRtMain" Multiplicity="1" />
+          <End Role="ServiceRtMain" Type="Self.ServiceRtMain" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ServiceRt" Type="Self.ServiceRt" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ServiceRtMain">
@@ -4641,7 +4669,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle210">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehicleLeasedInfo" Type="Self.VehicleLeasedInfo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -4653,7 +4683,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle211">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehicleInsuranceInfo" Type="Self.VehicleInsuranceInfo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -4665,7 +4697,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle212">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehiclePurchaseInfo" Type="Self.VehiclePurchaseInfo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -4677,7 +4711,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle213">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehicleDisposalInfo" Type="Self.VehicleDisposalInfo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -4689,7 +4725,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle220">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehicleMaintenanceTypeFrequency" Type="Self.VehicleMaintenanceTypeFrequency" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -4701,7 +4739,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle2251">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehicleDepreciation" Type="Self.VehicleDepreciation" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -4713,7 +4753,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle327">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehicleOtherDetail" Type="Self.VehicleOtherDetail" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -4725,7 +4767,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle509">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehicleReservation" Type="Self.VehicleReservation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -4761,7 +4805,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefVehicle609">
-          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="VehicleCheckListItem" Type="Self.VehicleCheckListItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vehicle">
@@ -5221,6 +5267,10 @@
             <End Role="Menu" EntitySet="Menu" />
             <End Role="MenuRight" EntitySet="MenuRight" />
           </AssociationSet>
+          <AssociationSet Name="FK_HireGroup_Company" Association="Self.FK_HireGroup_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="HireGroup" EntitySet="HireGroup" />
+          </AssociationSet>
           <AssociationSet Name="FK_Vehicle_VehicleStatus" Association="Self.FK_Vehicle_VehicleStatus">
             <End Role="VehicleStatus" EntitySet="VehicleStatus" />
             <End Role="Vehicle" EntitySet="Vehicle" />
@@ -5644,10 +5694,6 @@
           <AssociationSet Name="RefNRTVehicle597" Association="Self.RefNRTVehicle597">
             <End Role="NRTVehicle" EntitySet="NRTVehicle" />
             <End Role="NRTCharge" EntitySet="NRTCharge" />
-          </AssociationSet>
-          <AssociationSet Name="RefNRTVehicle605" Association="Self.RefNRTVehicle605">
-            <End Role="NRTVehicle" EntitySet="NRTVehicle" />
-            <End Role="NRTDriver" EntitySet="NRTDriver" />
           </AssociationSet>
           <AssociationSet Name="RefOccupationType292" Association="Self.RefOccupationType292">
             <End Role="OccupationType" EntitySet="OccupationType" />
@@ -6749,10 +6795,6 @@
             <End Role="BpRatingType" EntitySet="BpRatingTypes1" />
             <End Role="StandardDiscount" EntitySet="StandardDiscounts" />
           </AssociationSet>
-          <AssociationSet Name="RefChaufferCharge397" Association="DomainModels.RefChaufferCharge397">
-            <End Role="ChaufferCharge" EntitySet="ChaufferCharges" />
-            <End Role="ChaufferCharge1" EntitySet="ChaufferCharges" />
-          </AssociationSet>
           <AssociationSet Name="RefChaufferChargeMain399" Association="DomainModels.RefChaufferChargeMain399">
             <End Role="ChaufferChargeMain" EntitySet="ChaufferChargeMains" />
             <End Role="ChaufferCharge" EntitySet="ChaufferCharges" />
@@ -7026,6 +7068,10 @@
           <AssociationSet Name="FK_HireGroup_Company" Association="DomainModels.FK_HireGroup_Company">
             <End Role="Company" EntitySet="Companies" />
             <End Role="HireGroup" EntitySet="HireGroups" />
+          </AssociationSet>
+          <AssociationSet Name="RefChaufferCharge397" Association="DomainModels.RefChaufferCharge397">
+            <End Role="ChaufferCharge" EntitySet="ChaufferCharges" />
+            <End Role="ChaufferCharge1" EntitySet="ChaufferCharges" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Company">
@@ -10663,9 +10709,9 @@
           <Property Name="RecLastUpdatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="StartDt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="ChildChaufferCharge" Relationship="DomainModels.RefChaufferCharge397" FromRole="ChaufferCharge1" ToRole="ChaufferCharge" />
           <NavigationProperty Name="ChaufferChargeMain" Relationship="DomainModels.RefChaufferChargeMain399" FromRole="ChaufferCharge" ToRole="ChaufferChargeMain" />
           <NavigationProperty Name="DesigGrade" Relationship="DomainModels.RefDesigGrade528" FromRole="ChaufferCharge" ToRole="DesignGrade" />
+          <NavigationProperty Name="ChildChaufferCharge" Relationship="DomainModels.RefChaufferCharge397" FromRole="ChaufferCharge1" ToRole="ChaufferCharge" />
         </EntityType>
         <EntityType Name="ChaufferChargeMain">
           <Key>
@@ -11619,18 +11665,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="RefChaufferCharge397">
-          <End Type="DomainModels.ChaufferCharge" Role="ChaufferCharge" Multiplicity="0..1" />
-          <End Type="DomainModels.ChaufferCharge" Role="ChaufferCharge1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ChaufferCharge">
-              <PropertyRef Name="ChaufferChargeId" />
-            </Principal>
-            <Dependent Role="ChaufferCharge1">
-              <PropertyRef Name="ChildChaufferChargeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="RefChaufferChargeMain399">
           <End Type="DomainModels.ChaufferChargeMain" Role="ChaufferChargeMain" Multiplicity="1" />
           <End Type="DomainModels.ChaufferCharge" Role="ChaufferCharge" Multiplicity="*" />
@@ -12486,6 +12520,18 @@
             </Principal>
             <Dependent Role="HireGroup">
               <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefChaufferCharge397">
+          <End Type="DomainModels.ChaufferCharge" Role="ChaufferCharge" Multiplicity="0..1" />
+          <End Type="DomainModels.ChaufferCharge" Role="ChaufferCharge1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChaufferCharge">
+              <PropertyRef Name="ChaufferChargeId" />
+            </Principal>
+            <Dependent Role="ChaufferCharge1">
+              <PropertyRef Name="ChildChaufferChargeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

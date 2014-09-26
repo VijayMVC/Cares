@@ -76,7 +76,7 @@ namespace Cares.Repository.Repositories
                     (!tariffRateRequest.OperationId.HasValue ||
                       tariffType.OperationId == tariffRateRequest.OperationId.Value) &&
                      (!tariffRateRequest.TariffTypeId.HasValue ||
-                      tariffType.TariffTypeId == tariffRateRequest.TariffTypeId))
+                      tariffType.TariffTypeId == tariffRateRequest.TariffTypeId)) && !(tariffType.ChildTariffTypeId.HasValue)
                 select new TariffRateContent
                 {                    
                     StandardRtMainId = tariffRate.StandardRtMainId,

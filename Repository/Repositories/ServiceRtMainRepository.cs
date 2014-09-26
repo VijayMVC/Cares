@@ -75,7 +75,7 @@ namespace Cares.Repository.Repositories
                                             (!serviceRateSearchRequest.OperationId.HasValue ||
                                               tariffType.OperationId == serviceRateSearchRequest.OperationId.Value) &&
                                              (!serviceRateSearchRequest.TariffTypeId.HasValue ||
-                                              tariffType.TariffTypeId == serviceRateSearchRequest.TariffTypeId))
+                                              tariffType.TariffTypeId == serviceRateSearchRequest.TariffTypeId)) && !(tariffType.ChildTariffTypeId.HasValue)
                                         select new ServiceRtMainContent
                                         {
                                             ServiceRtMainId = serviceRtMain.ServiceRtMainId,

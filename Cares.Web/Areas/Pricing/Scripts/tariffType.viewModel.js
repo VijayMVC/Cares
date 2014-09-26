@@ -245,7 +245,7 @@ define("tariffType/tariffType.viewModel",
                                     closeTariffTypeEditor();
                                 }
 
-                                toastr.success(ist.resourceText.tariffTypeSuccess);
+                                toastr.success(ist.resourceText.tariffTypeAddSuccess);
                             },
                             error: function (exceptionMessage, exceptionType) {
 

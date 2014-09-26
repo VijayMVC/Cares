@@ -259,7 +259,6 @@
         <AssociationConnector Association="DomainModels.RefBPMain506" />
         <AssociationConnector Association="DomainModels.RefBPRatingType413" />
         <AssociationConnector Association="DomainModels.RefBPRatingType559" />
-        <AssociationConnector Association="DomainModels.RefChaufferCharge397" />
         <AssociationConnector Association="DomainModels.RefChaufferChargeMain399" />
         <AssociationConnector Association="DomainModels.RefDesigGrade528" />
         <AssociationConnector Association="DomainModels.RefEmployee531" />
@@ -330,6 +329,7 @@
         <AssociationConnector Association="DomainModels.RefAllocationStatus502" />
         <AssociationConnector Association="DomainModels.RefPaymentMode541" />
         <AssociationConnector Association="DomainModels.FK_HireGroup_Company" />
+        <AssociationConnector Association="DomainModels.RefChaufferCharge397" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
