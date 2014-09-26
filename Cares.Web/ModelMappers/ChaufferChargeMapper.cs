@@ -51,7 +51,7 @@ namespace Cares.Web.ModelMappers
                 TariffTypeCode = source.TariffTypeId.ToString(),
                 ChaufferChargeMainDescription = source.Description,
                 StartDt = source.StartDate,
-                ChaufferCharges = source.ChaufferCharges.Select(c => c.CreateFrom()).ToList()
+                ChaufferCharges = source.ChaufferCharges!=null?source.ChaufferCharges.Select(c => c.CreateFrom()).ToList():null
             };
         }
 

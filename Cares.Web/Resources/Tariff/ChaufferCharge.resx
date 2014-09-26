@@ -129,13 +129,58 @@
   <data name="ChaufferChargeDeleteSuccessMsg" xml:space="preserve">
     <value>Chauffer Charge successfully removed.</value>
   </data>
+  <data name="ChaufferChargeDetail" xml:space="preserve">
+    <value>Chauffer Charge Detail</value>
+  </data>
   <data name="ChaufferChargeDuplicated" xml:space="preserve">
     <value>Chauffeur Charge with the given parameters Designation Grade are already defined.</value>
+  </data>
+  <data name="ChaufferChargeLabel" xml:space="preserve">
+    <value>Chauffer Charge</value>
+  </data>
+  <data name="ChaufferCharges" xml:space="preserve">
+    <value>Chauffer Charges</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="Department" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="DesigGrade" xml:space="preserve">
+    <value>Desig Grade</value>
+  </data>
+  <data name="FromDate" xml:space="preserve">
+    <value>From Date</value>
   </data>
   <data name="LoadBaseDataFailedMsg" xml:space="preserve">
     <value>Load to failed base data.</value>
   </data>
   <data name="LoadChaufferChargeDetailFailedMsg" xml:space="preserve">
     <value>Load to failed chauffer charge detail.</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Operation" xml:space="preserve">
+    <value>Operation</value>
+  </data>
+  <data name="RevisionNumber" xml:space="preserve">
+    <value>Revision Number</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="StartEffectiveDate" xml:space="preserve">
+    <value>Start Effective Date</value>
+  </data>
+  <data name="TariffType" xml:space="preserve">
+    <value>Tariff Type</value>
   </data>
 </root>

@@ -1,9 +1,9 @@
 ﻿@{
-    ViewBag.Title = "Chauffer Charge";
+    ViewBag.Title = @Cares.Web.Resources.Tariff.ChaufferCharge.ChaufferChargeLabel;
 }
 <div class="row" id="chaufferChargeBinding">
     <div class="row " data-bind="visible: !isChaufferChargeEditorVisible()">
-        <h3 class="page-header float-left pageHeaderSection">Chauffer Charges</h3>
+        <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.Tariff.ChaufferCharge.ChaufferCharges</h3>
         <div class="header-toolsSection">
             <a href="#" class="label label-default create-new-icon" data-bind="click: createChaufferCharge" title='@Cares.Web.Resources.Shared.Common.New'>@Cares.Web.Resources.Shared.Common.New</a>
             <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title='@Cares.Web.Resources.Shared.Common.ShowFilter' style="display: none"></a>
@@ -16,10 +16,10 @@
                     <input type="text" class="form-control" placeholder='@("<"+Cares.Web.Resources.Shared.Common.Search+">")' data-bind="value:searchFilter" />
                 </div>
                 <div class="col-xs-3">
-                    <select class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '&lt;' +'@Cares.Web.Resources.Tariff.TariffType.Operation'+ '&gt;', value: operationFilter"></select>
+                    <select class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '&lt;' +'@Cares.Web.Resources.Tariff.ChaufferCharge.Operation'+ '&gt;', value: operationFilter"></select>
                 </div>
                 <div class="col-xs-3">
-                    <select class="form-control" data-bind="options: $root.tariffTypes, optionsText: 'TariffTypeCodeName', optionsValue: 'TariffTypeId', optionsCaption: '&lt;' +'TariffType'+ '&gt;', value: tariffTypeFilter"></select>
+                    <select class="form-control" data-bind="options: $root.tariffTypes, optionsText: 'TariffTypeCodeName', optionsValue: 'TariffTypeId', optionsCaption: '&lt;' +'@Cares.Web.Resources.Tariff.ChaufferCharge.TariffType'+ '&gt;', value: tariffTypeFilter"></select>
                 </div>
                 <button type="submit" class="btn btn-success" data-bind="click: search">@Cares.Web.Resources.Shared.Common.Search</button>
                 <button type="submit" class="btn btn-default" data-bind="click: reset">@Cares.Web.Resources.Shared.Common.Reset</button>
@@ -32,13 +32,13 @@
             <table id="chaufferChargeTable" class="table table-condensed">
                 <thead>
                     <tr>
-                        <th class="Code"> <span id="1">Code<span class="icon-up"></span></span></th>
-                        <th class="Name"> <span id="2">Name<span></span></span></th>
-                        <th class="Description"> <span>Description<span></span></span></th>
-                        <th class="Company"> <span>Company<span></span></span></th>
-                        <th class="Operation"> <span>Operation<span></span></span></th>
-                        <th class="TariffType"> <span>Tariff Type<span></span></span></th>
-                        <th class="StartDate"> <span>Start Effective Date<span></span></span></th>
+                        <th class="Code"> <span id="1">@Cares.Web.Resources.Tariff.ChaufferCharge.Code<span class="icon-up"></span></span></th>
+                        <th class="Name"> <span id="2">@Cares.Web.Resources.Tariff.ChaufferCharge.Name<span></span></span></th>
+                        <th class="Description"> <span>@Cares.Web.Resources.Tariff.ChaufferCharge.Description<span></span></span></th>
+                        <th class="Company"> <span>@Cares.Web.Resources.Tariff.ChaufferCharge.Company<span></span></span></th>
+                        <th class="Operation"> <span>@Cares.Web.Resources.Tariff.ChaufferCharge.Operation<span></span></span></th>
+                        <th class="TariffType"> <span>@Cares.Web.Resources.Tariff.ChaufferCharge.TariffType<span></span></span></th>
+                        <th class="StartDate"> <span>@Cares.Web.Resources.Tariff.ChaufferCharge.StartEffectiveDate<span></span></span></th>
                     </tr>
                 </thead>
                 <tbody>

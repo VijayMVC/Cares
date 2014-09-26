@@ -129,13 +129,58 @@
   <data name="ChaufferChargeDeleteSuccessMsg" xml:space="preserve">
     <value>إزالة سائق المسؤول بنجاح.</value>
   </data>
+  <data name="ChaufferChargeDetail" xml:space="preserve">
+    <value>سائق رسوم التفاصيل</value>
+  </data>
   <data name="ChaufferChargeDuplicated" xml:space="preserve">
     <value>سائق المسؤول مع المعلمات نظرا تعرف تسمية الصف بالفعل.</value>
+  </data>
+  <data name="ChaufferChargeLabel" xml:space="preserve">
+    <value>سائق المسؤول</value>
+  </data>
+  <data name="ChaufferCharges" xml:space="preserve">
+    <value>رسوم سائق</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>كود</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>شركة</value>
+  </data>
+  <data name="Department" xml:space="preserve">
+    <value>قسم</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>وصف</value>
+  </data>
+  <data name="DesigGrade" xml:space="preserve">
+    <value>تعيين العلمية</value>
+  </data>
+  <data name="FromDate" xml:space="preserve">
+    <value>من تاريخ</value>
   </data>
   <data name="LoadBaseDataFailedMsg" xml:space="preserve">
     <value>لتحميل قاعدة البيانات</value>
   </data>
   <data name="LoadChaufferChargeDetailFailedMsg" xml:space="preserve">
     <value>تحميل لفشل سائق تهمة التفاصيل.</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>اسم</value>
+  </data>
+  <data name="Operation" xml:space="preserve">
+    <value>عملية</value>
+  </data>
+  <data name="RevisionNumber" xml:space="preserve">
+    <value>رقم المراجعة</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>بدء التسجيل</value>
+  </data>
+  <data name="StartEffectiveDate" xml:space="preserve">
+    <value>بدء التسجيل الفعال</value>
+  </data>
+  <data name="TariffType" xml:space="preserve">
+    <value>نوع التعرفة</value>
   </data>
 </root>

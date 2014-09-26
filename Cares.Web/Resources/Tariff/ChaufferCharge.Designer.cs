@@ -97,11 +97,92 @@ namespace Cares.Web.Resources.Tariff {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Chauffer Charge Detail.
+        /// </summary>
+        public static string ChaufferChargeDetail {
+            get {
+                return ResourceManager.GetString("ChaufferChargeDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chauffeur Charge with the given parameters Designation Grade are already defined..
         /// </summary>
         public static string ChaufferChargeDuplicated {
             get {
                 return ResourceManager.GetString("ChaufferChargeDuplicated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chauffer Charge.
+        /// </summary>
+        public static string ChaufferChargeLabel {
+            get {
+                return ResourceManager.GetString("ChaufferChargeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chauffer Charges.
+        /// </summary>
+        public static string ChaufferCharges {
+            get {
+                return ResourceManager.GetString("ChaufferCharges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Code.
+        /// </summary>
+        public static string Code {
+            get {
+                return ResourceManager.GetString("Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Company.
+        /// </summary>
+        public static string Company {
+            get {
+                return ResourceManager.GetString("Company", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department.
+        /// </summary>
+        public static string Department {
+            get {
+                return ResourceManager.GetString("Department", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Desig Grade.
+        /// </summary>
+        public static string DesigGrade {
+            get {
+                return ResourceManager.GetString("DesigGrade", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From Date.
+        /// </summary>
+        public static string FromDate {
+            get {
+                return ResourceManager.GetString("FromDate", resourceCulture);
             }
         }
         
@@ -120,6 +201,60 @@ namespace Cares.Web.Resources.Tariff {
         public static string LoadChaufferChargeDetailFailedMsg {
             get {
                 return ResourceManager.GetString("LoadChaufferChargeDetailFailedMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operation.
+        /// </summary>
+        public static string Operation {
+            get {
+                return ResourceManager.GetString("Operation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Revision Number.
+        /// </summary>
+        public static string RevisionNumber {
+            get {
+                return ResourceManager.GetString("RevisionNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Date.
+        /// </summary>
+        public static string StartDate {
+            get {
+                return ResourceManager.GetString("StartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Effective Date.
+        /// </summary>
+        public static string StartEffectiveDate {
+            get {
+                return ResourceManager.GetString("StartEffectiveDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tariff Type.
+        /// </summary>
+        public static string TariffType {
+            get {
+                return ResourceManager.GetString("TariffType", resourceCulture);
             }
         }
     }
