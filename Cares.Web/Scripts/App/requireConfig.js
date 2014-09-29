@@ -21,6 +21,7 @@
             "additionalDriverCharge": ist.siteUrl + "/Areas/Pricing/Scripts",
             "additionalCharge": ist.siteUrl + "/Areas/Pricing/Scripts",
             "chaufferCharge": ist.siteUrl + "/Areas/Pricing/Scripts",
+            "seasonalDiscount": ist.siteUrl + "/Areas/Pricing/Scripts",
             "rentalAgreement": ist.siteUrl + "/Areas/RentalAgreement/Scripts",
             "Organization": ist.siteUrl + "/Areas/Organization/Scripts",
             "company": ist.siteUrl + "/Areas/Organization/Scripts",
@@ -44,10 +45,9 @@
             "serviceType": ist.siteUrl + "/Areas/Pricing/Scripts",
             "serviceItem": ist.siteUrl + "/Areas/Pricing/Scripts",
             "nRTType": ist.siteUrl + "/Areas/NonRevenueTicket/Scripts",
-            "vehicleCheckList": ist.siteUrl + "/Areas/Fleet/Scripts"
-
-
-
+            "vehicleCheckList": ist.siteUrl + "/Areas/Fleet/Scripts",
+            "documentGroup": ist.siteUrl + "/Areas/BusinessPartner/Scripts",
+            "bpMainType": ist.siteUrl + "/Areas/BusinessPartner/Scripts"
         }
     }); 
     

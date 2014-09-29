@@ -53,6 +53,9 @@
     <Compile Include="IServices\IAdditionalChargeService.cs" />
     <Compile Include="IServices\IAddressBaseDataService.cs" />
     <Compile Include="IServices\IChaufferChargeService.cs" />
+    <Compile Include="IServices\ISeasonalDiscountService.cs" />
+    <Compile Include="IServices\IBpMainTypeService.cs" />
+    <Compile Include="IServices\IDocumentGroupService.cs" />
     <Compile Include="IServices\IVehicleCheckListService.cs" />
     <Compile Include="IServices\INrtTypeService.cs" />
     <Compile Include="IServices\IServiceItemService.cs" />
@@ -85,8 +88,12 @@
     <Compile Include="IServices\IWorkLocationService.cs" />
     <Compile Include="IServices\IWorkplaceService.cs" />
     <Compile Include="IServices\IWorkplaceTypeService.cs" />
+    <Compile Include="Repository\IBpSubTypeRepository.cs" />
     <Compile Include="Repository\IChaufferChargeMainRepository.cs" />
     <Compile Include="Repository\IChaufferChargeRepository.cs" />
+    <Compile Include="Repository\IBpMainTypeRepository.cs" />
+    <Compile Include="Repository\IDocumentGroupRepository.cs" />
+    <Compile Include="Repository\IDocumentRepository.cs" />
     <Compile Include="Repository\INrtMainRepository.cs" />
     <Compile Include="Repository\INrtTypeRepository.cs" />
     <Compile Include="Repository\IDiscountSubTypeRepository.cs" />
@@ -103,6 +110,8 @@
     <Compile Include="Repository\ILicenseTypeRepository.cs" />
     <Compile Include="Repository\IMaintenanceTypeRepository.cs" />
     <Compile Include="Repository\IRAServiceItemRepository.cs" />
+    <Compile Include="Repository\ISeasonalDiscountMainRepository.cs" />
+    <Compile Include="Repository\ISeasonalDiscountRepository.cs" />
     <Compile Include="Repository\IServiceItemRepository.cs" />
     <Compile Include="Repository\IServiceRtMainRepository.cs" />
     <Compile Include="Repository\IServiceRtRepository.cs" />

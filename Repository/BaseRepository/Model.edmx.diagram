@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0c64bbf4dc9445619e056242daa0f9af" Name="Diagram1" ZoomLevel="71">
+      <Diagram DiagramId="0c64bbf4dc9445619e056242daa0f9af" Name="Diagram1" ZoomLevel="82">
         <EntityTypeShape EntityType="DomainModels.OrgGroup" Width="2.875" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DomainModels.Company" Width="1.5" PointX="4.75" PointY="0.75" />
         <AssociationConnector Association="DomainModels.RefCompany263" />
@@ -179,7 +179,7 @@
         <AssociationConnector Association="DomainModels.RefVehicle220" />
         <AssociationConnector Association="DomainModels.RefVehicle327" />
         <AssociationConnector Association="DomainModels.RefVehicleImage626" />
-        <EntityTypeShape EntityType="DomainModels.BpRatingType" Width="1.5" PointX="3.375" PointY="23" />
+        <EntityTypeShape EntityType="DomainModels.BpRatingType" Width="1.75" PointX="3.375" PointY="23" />
         <EntityTypeShape EntityType="DomainModels.BusinessPartnerRelationshipType" Width="1.5" PointX="7.375" PointY="50.625" />
         <AssociationConnector Association="DomainModels.RefBPRatingType552" />
         <AssociationConnector Association="DomainModels.RefBPRatingType6191" />
@@ -227,12 +227,12 @@
         <EntityTypeShape EntityType="DomainModels.NrtVehicle" Width="1.5" PointX="29.625" PointY="44.25" />
         <EntityTypeShape EntityType="DomainModels.NrtVehicleMovement" Width="1.5" PointX="38.875" PointY="40.75" />
         <EntityTypeShape EntityType="DomainModels.RaAdditionalCharge" Width="1.5" PointX="34.625" PointY="37.25" />
-        <EntityTypeShape EntityType="DomainModels.RaCustomerDocument" Width="1.5" PointX="31.625" PointY="25.75" />
+        <EntityTypeShape EntityType="DomainModels.RaCustomerDocument" Width="2" PointX="31.625" PointY="25.75" />
         <EntityTypeShape EntityType="DomainModels.RaDriver" Width="1.5" PointX="34.625" PointY="29.875" />
         <EntityTypeShape EntityType="DomainModels.RaHireGroup" Width="1.5" PointX="31.625" PointY="34.625" />
         <EntityTypeShape EntityType="DomainModels.RaHireGroupDiscount" Width="1.5" PointX="33.875" PointY="47.375" />
         <EntityTypeShape EntityType="DomainModels.RaHireGroupInsurance" Width="1.5" PointX="38.875" PointY="48.125" />
-        <EntityTypeShape EntityType="DomainModels.RaMain" Width="1.5" PointX="29.375" PointY="19.625" />
+        <EntityTypeShape EntityType="DomainModels.RaMain" Width="1.5" PointX="21.375" PointY="17" />
         <EntityTypeShape EntityType="DomainModels.RaPayment" Width="1.5" PointX="31.625" PointY="49.875" />
         <EntityTypeShape EntityType="DomainModels.RaServiceItem" Width="1.5" PointX="36.625" PointY="46.875" />
         <EntityTypeShape EntityType="DomainModels.RaStatus" Width="1.5" PointX="27.125" PointY="13.25" />
@@ -330,7 +330,44 @@
         <AssociationConnector Association="DomainModels.FK_HireGroup_Company" />
         <AssociationConnector Association="DomainModels.RefMenu01" />
         <AssociationConnector Association="DomainModels.RefChaufferCharge397" />
-      </Diagram>
+        <EntityTypeShape EntityType="DomainModels.DocumentGroup" Width="2.375" PointX="23.375" PointY="19" />
+        <EntityTypeShape EntityType="DomainModels.Document" Width="2.625" PointX="26.5" PointY="7.75" />
+        <AssociationConnector Association="DomainModels.RefDocument507" />
+        <AssociationConnector Association="DomainModels.RefDocumentGroup444" />
+        <EntityTypeShape EntityType="DomainModels.AspNetRole" Width="1.5" PointX="1.125" PointY="28.625" />
+        <EntityTypeShape EntityType="DomainModels.AspNetUserClaim" Width="1.5" PointX="5.625" PointY="58.75" />
+        <EntityTypeShape EntityType="DomainModels.AspNetUserLogin" Width="1.5" PointX="5.625" PointY="56.25" />
+        <EntityTypeShape EntityType="DomainModels.AspNetUser" Width="1.5" PointX="3.375" PointY="56.5" />
+        <EntityTypeShape EntityType="DomainModels.BPDocument" Width="1.5" PointX="33.25" PointY="7.25" />
+        <EntityTypeShape EntityType="DomainModels.CaresUser" Width="1.5" PointX="31" PointY="7.5" />
+        <EntityTypeShape EntityType="DomainModels.CreditLimit" Width="1.5" PointX="30" PointY="14.125" />
+        <EntityTypeShape EntityType="DomainModels.InspectionReport" Width="1.5" PointX="42.25" PointY="44" />
+        <EntityTypeShape EntityType="DomainModels.InspectionReportType" Width="1.5" PointX="40" PointY="54.5" />
+        <EntityTypeShape EntityType="DomainModels.MenuFunction" Width="1.5" PointX="1.5" PointY="43.625" />
+        <EntityTypeShape EntityType="DomainModels.PageAction" Width="1.5" PointX="0.75" PointY="32.125" />
+        <EntityTypeShape EntityType="DomainModels.Role" Width="1.5" PointX="0.75" PointY="37.625" />
+        <EntityTypeShape EntityType="DomainModels.UserFunction" Width="1.5" PointX="3" PointY="37.875" />
+        <EntityTypeShape EntityType="DomainModels.UserPageAction" Width="1.5" PointX="3" PointY="33" />
+        <AssociationConnector Association="DomainModels.FK_dbo_MenuRight_dbo_AspNetRoles_Role_Id" />
+        <AssociationConnector Association="DomainModels.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="DomainModels.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="DomainModels.RefBPMain293" />
+        <AssociationConnector Association="DomainModels.RefDocument445" />
+        <AssociationConnector Association="DomainModels.RefBPRatingType553" />
+        <AssociationConnector Association="DomainModels.RefBPSubType554" />
+        <AssociationConnector Association="DomainModels.RefEmployee381" />
+        <AssociationConnector Association="DomainModels.RefRole380" />
+        <AssociationConnector Association="DomainModels.RefInspectionReportType600" />
+        <AssociationConnector Association="DomainModels.RefNRTVehicle599" />
+        <AssociationConnector Association="DomainModels.RefMenuFunction270" />
+        <AssociationConnector Association="DomainModels.RefMenuFunction305" />
+        <AssociationConnector Association="DomainModels.RefMenuFunction306" />
+        <AssociationConnector Association="DomainModels.RefPageAction307" />
+        <AssociationConnector Association="DomainModels.RefRole378" />
+        <AssociationConnector Association="DomainModels.RefRole379" />
+        <AssociationConnector Association="DomainModels.RefRole561" />
+        <AssociationConnector Association="DomainModels.AspNetUserRoles" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

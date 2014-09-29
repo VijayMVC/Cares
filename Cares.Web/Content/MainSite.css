@@ -343,6 +343,52 @@
   margin-bottom: 20px;
   margin-top: 10px;
 }
+#seasonalDiscountBinding table thead tr .Code {
+  width: 8%;
+}
+#seasonalDiscountBinding table thead tr .Name {
+  width: 12%;
+}
+#seasonalDiscountBinding table thead tr .Company {
+  width: 14%;
+}
+#seasonalDiscountBinding table thead tr .Operation {
+  width: 18%;
+}
+#seasonalDiscountBinding table thead tr .TariffType {
+  width: 18%;
+}
+#seasonalDiscountBinding table thead tr .StartDate {
+  width: 14%;
+}
+#seasonalDiscountBinding table thead tr .EndDate {
+  width: 13%;
+}
+#seasonalDiscountBinding #seasonalDiscountEditor {
+  margin-top: 15px;
+}
+#seasonalDiscountBinding #seasonalDiscountEditor .addToBtn {
+  float: right;
+  margin-right: 30px;
+}
+#seasonalDiscountBinding #seasonalDiscountEditor .btnAdditionalChargeUpdate {
+  float: right;
+  margin-right: 4px;
+}
+#seasonalDiscountBinding #seasonalDiscountEditor .seasinalDiscountWell {
+  margin-top: 30px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#seasonalDiscountBinding #seasonalDiscountEditor .detailsContainer {
+  width: 100%;
+}
+#seasonalDiscountBinding #seasonalDiscountEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
 #rentalAgreementBinding {
   color: gray;
 }
@@ -1215,6 +1261,48 @@
   width: 100%;
 }
 #VehicleCheckListBinding #VehicleCheckListEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#documentGroupBinding table thead tr .documentGroupCode {
+  width: 33%;
+}
+#documentGroupBinding table thead tr .documentGroupName {
+  width: 33%;
+}
+#documentGroupBinding table thead tr .documentGroupDes {
+  width: 33%;
+}
+#documentGroupBinding #documentGroupEditor {
+  margin-top: 15px;
+}
+#documentGroupBinding #documentGroupEditor .detailsContainer {
+  width: 100%;
+}
+#documentGroupBinding #documentGroupEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#bPMainTypeBinding table thead tr .bPMainTypeCode {
+  width: 33%;
+}
+#bPMainTypeBinding table thead tr .bPMainTypeName {
+  width: 33%;
+}
+#bPMainTypeBinding table thead tr .bPMainTypeDes {
+  width: 33%;
+}
+#bPMainTypeBinding #bPMainTypeEditor {
+  margin-top: 15px;
+}
+#bPMainTypeBinding #bPMainTypeEditor .detailsContainer {
+  width: 100%;
+}
+#bPMainTypeBinding #bPMainTypeEditor .detailsContainer .detailsHeaderSection {
   float: left;
   width: 85%;
   margin-bottom: 20px;

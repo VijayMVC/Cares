@@ -9,10 +9,10 @@
         /// Code
         /// </summary>
         Code = 1,
-        
+
         /// <summary>
         /// Name
         /// </summary>
         Name = 2,
-          }
+    }
 }

@@ -685,6 +685,45 @@
           <Property Name="RecLastUpdatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
         </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="DocumentID" />
+          </Key>
+          <Property Name="DocumentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DocumentName" Type="nvarchar" MaxLength="255" />
+          <Property Name="DocumentDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="RowVersion" Type="bigint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsPrivate" Type="bit" Nullable="false" />
+          <Property Name="IsReadOnly" Type="bit" Nullable="false" />
+          <Property Name="RecCreatedDt" Type="datetime" Nullable="false" />
+          <Property Name="RecCreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RecLastUpdatedDt" Type="datetime" Nullable="false" />
+          <Property Name="RecLastUpdatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DocumentGroupID" Type="int" Nullable="false" />
+          <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DocumentGroup">
+          <Key>
+            <PropertyRef Name="DocumentGroupID" />
+          </Key>
+          <Property Name="DocumentGroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentGroupCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DocumentGroupName" Type="nvarchar" MaxLength="255" />
+          <Property Name="DocumentGroupDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="RowVersion" Type="bigint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsPrivate" Type="bit" Nullable="false" />
+          <Property Name="IsReadOnly" Type="bit" Nullable="false" />
+          <Property Name="RecCreatedDt" Type="datetime" Nullable="false" />
+          <Property Name="RecCreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RecLastUpdatedDt" Type="datetime" Nullable="false" />
+          <Property Name="RecLastUpdatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
+        </EntityType>
         <EntityType Name="EmpAuthOperationsWorkplace">
           <Key>
             <PropertyRef Name="EmpAuthOperationsWorkplaceID" />
@@ -3334,6 +3373,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="RefDocument507">
+          <End Role="Document" Type="Self.Document" Multiplicity="1" />
+          <End Role="RACustomerDocument" Type="Self.RACustomerDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="DocumentID" />
+            </Principal>
+            <Dependent Role="RACustomerDocument">
+              <PropertyRef Name="DocumentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefDocumentGroup444">
+          <End Role="DocumentGroup" Type="Self.DocumentGroup" Multiplicity="1" />
+          <End Role="Document" Type="Self.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentGroup">
+              <PropertyRef Name="DocumentGroupID" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="DocumentGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="RefEmployee343">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -5168,6 +5231,8 @@
           <EntitySet Name="Designation" EntityType="Self.Designation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DiscountSubType" EntityType="Self.DiscountSubType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DiscountType" EntityType="Self.DiscountType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentGroup" EntityType="Self.DocumentGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmpAuthOperationsWorkplace" EntityType="Self.EmpAuthOperationsWorkplace" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmpDocsInfo" EntityType="Self.EmpDocsInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmpJobInfo" EntityType="Self.EmpJobInfo" Schema="dbo" store:Type="Tables" />
@@ -5506,6 +5571,14 @@
           <AssociationSet Name="RefDiscountType374" Association="Self.RefDiscountType374">
             <End Role="DiscountType" EntitySet="DiscountType" />
             <End Role="DiscountSubType" EntitySet="DiscountSubType" />
+          </AssociationSet>
+          <AssociationSet Name="RefDocument507" Association="Self.RefDocument507">
+            <End Role="Document" EntitySet="Document" />
+            <End Role="RACustomerDocument" EntitySet="RACustomerDocument" />
+          </AssociationSet>
+          <AssociationSet Name="RefDocumentGroup444" Association="Self.RefDocumentGroup444">
+            <End Role="DocumentGroup" EntitySet="DocumentGroup" />
+            <End Role="Document" EntitySet="Document" />
           </AssociationSet>
           <AssociationSet Name="RefEmployee343" Association="Self.RefEmployee343">
             <End Role="Employee" EntitySet="Employee" />
@@ -7072,6 +7145,16 @@
           <AssociationSet Name="RefChaufferCharge397" Association="DomainModels.RefChaufferCharge397">
             <End Role="ChaufferCharge" EntitySet="ChaufferCharges" />
             <End Role="ChaufferCharge1" EntitySet="ChaufferCharges" />
+          </AssociationSet>
+          <EntitySet Name="Documents" EntityType="DomainModels.Document" />
+          <EntitySet Name="DocumentGroups" EntityType="DomainModels.DocumentGroup" />
+          <AssociationSet Name="RefDocument507" Association="DomainModels.RefDocument507">
+            <End Role="Document" EntitySet="Documents" />
+            <End Role="RaCustomerDocument" EntitySet="RaCustomerDocuments1" />
+          </AssociationSet>
+          <AssociationSet Name="RefDocumentGroup444" Association="DomainModels.RefDocumentGroup444">
+            <End Role="DocumentGroup" EntitySet="DocumentGroups" />
+            <End Role="Document" EntitySet="Documents" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Company">
@@ -10992,6 +11075,7 @@
           <Property Name="RaMainId" Type="Int64" Nullable="false" />
           <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
           <NavigationProperty Name="RaMain" Relationship="DomainModels.RefRAMain513" FromRole="RACustomerDocument" ToRole="RAMain" />
+          <NavigationProperty Name="Document" Relationship="DomainModels.RefDocument507" FromRole="RaCustomerDocument" ToRole="Document" />
         </EntityType>
         <EntityType Name="RaDriver">
           <Key>
@@ -12532,6 +12616,72 @@
             </Principal>
             <Dependent Role="ChaufferCharge1">
               <PropertyRef Name="ChildChaufferChargeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="DocumentId" />
+          </Key>
+          <Property Name="DocumentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DocumentName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DocumentDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="RowVersion" Type="Int64" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsPrivate" Type="Boolean" Nullable="false" />
+          <Property Name="IsReadOnly" Type="Boolean" Nullable="false" />
+          <Property Name="RecCreatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecCreatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RecLastUpdatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecLastUpdatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DocumentGroupId" Type="Int32" Nullable="false" />
+          <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="RaCustomerDocuments" Relationship="DomainModels.RefDocument507" FromRole="Document" ToRole="RaCustomerDocument" />
+          <NavigationProperty Name="DocumentGroup" Relationship="DomainModels.RefDocumentGroup444" FromRole="Document" ToRole="DocumentGroup" />
+        </EntityType>
+        <EntityType Name="DocumentGroup">
+          <Key>
+            <PropertyRef Name="DocumentGroupId" />
+          </Key>
+          <Property Name="DocumentGroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentGroupCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DocumentGroupName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DocumentGroupDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="RowVersion" Type="Int64" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsPrivate" Type="Boolean" Nullable="false" />
+          <Property Name="IsReadOnly" Type="Boolean" Nullable="false" />
+          <Property Name="RecCreatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecCreatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RecLastUpdatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecLastUpdatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Documents" Relationship="DomainModels.RefDocumentGroup444" FromRole="DocumentGroup" ToRole="Document" />
+        </EntityType>
+        <Association Name="RefDocument507">
+          <End Type="DomainModels.Document" Role="Document" Multiplicity="1" />
+          <End Type="DomainModels.RaCustomerDocument" Role="RaCustomerDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="DocumentId" />
+            </Principal>
+            <Dependent Role="RaCustomerDocument">
+              <PropertyRef Name="DocumentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefDocumentGroup444">
+          <End Type="DomainModels.DocumentGroup" Role="DocumentGroup" Multiplicity="1" />
+          <End Type="DomainModels.Document" Role="Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentGroup">
+              <PropertyRef Name="DocumentGroupId" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="DocumentGroupId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -15225,6 +15375,47 @@
                 <ScalarProperty Name="PaymentModeName" ColumnName="PaymentModeName" />
                 <ScalarProperty Name="PaymentModeCode" ColumnName="PaymentModeCode" />
                 <ScalarProperty Name="PaymentModeId" ColumnName="PaymentModeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Documents">
+            <EntityTypeMapping TypeName="DomainModels.Document">
+              <MappingFragment StoreEntitySet="Document">
+                <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
+                <ScalarProperty Name="DocumentGroupId" ColumnName="DocumentGroupID" />
+                <ScalarProperty Name="RecLastUpdatedBy" ColumnName="RecLastUpdatedBy" />
+                <ScalarProperty Name="RecLastUpdatedDt" ColumnName="RecLastUpdatedDt" />
+                <ScalarProperty Name="RecCreatedBy" ColumnName="RecCreatedBy" />
+                <ScalarProperty Name="RecCreatedDt" ColumnName="RecCreatedDt" />
+                <ScalarProperty Name="IsReadOnly" ColumnName="IsReadOnly" />
+                <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="DocumentDescription" ColumnName="DocumentDescription" />
+                <ScalarProperty Name="DocumentName" ColumnName="DocumentName" />
+                <ScalarProperty Name="DocumentCode" ColumnName="DocumentCode" />
+                <ScalarProperty Name="DocumentId" ColumnName="DocumentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentGroups">
+            <EntityTypeMapping TypeName="DomainModels.DocumentGroup">
+              <MappingFragment StoreEntitySet="DocumentGroup">
+                <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
+                <ScalarProperty Name="RecLastUpdatedBy" ColumnName="RecLastUpdatedBy" />
+                <ScalarProperty Name="RecLastUpdatedDt" ColumnName="RecLastUpdatedDt" />
+                <ScalarProperty Name="RecCreatedBy" ColumnName="RecCreatedBy" />
+                <ScalarProperty Name="RecCreatedDt" ColumnName="RecCreatedDt" />
+                <ScalarProperty Name="IsReadOnly" ColumnName="IsReadOnly" />
+                <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="DocumentGroupDescription" ColumnName="DocumentGroupDescription" />
+                <ScalarProperty Name="DocumentGroupName" ColumnName="DocumentGroupName" />
+                <ScalarProperty Name="DocumentGroupCode" ColumnName="DocumentGroupCode" />
+                <ScalarProperty Name="DocumentGroupId" ColumnName="DocumentGroupID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

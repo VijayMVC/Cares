@@ -98,8 +98,13 @@ namespace Cares.Repository
             unityContainer.RegisterType<INrtTypeRepository, NrtTypeRepository>();
             unityContainer.RegisterType<INrtMainRepository, NrtMainRepository>();
             unityContainer.RegisterType<IRaVehicleCheckListRepository, RaVehicleCheckListRepository>();
-
-
+            unityContainer.RegisterType<ISeasonalDiscountMainRepository, SeasonalDiscountMainRepository>();
+            unityContainer.RegisterType<ISeasonalDiscountRepository, SeasonalDiscountRepository>();
+            unityContainer.RegisterType<IDocumentGroupRepository, DocumentGroupRepository>();
+            unityContainer.RegisterType<IBpMainTypeRepository, BpMainTypeRepository>();
+            unityContainer.RegisterType<IDocumentGroupRepository, DocumentGroupRepository>();
+            unityContainer.RegisterType<IBpSubTypeRepository, BpSubTypeRepository>();
+            unityContainer.RegisterType<IDocumentRepository, DocumentRepository>();
 
         }
     }
