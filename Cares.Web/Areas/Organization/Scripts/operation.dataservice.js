@@ -12,28 +12,28 @@ define("operation/operation.dataservice", function () {
                 if (!isInitialized) {
                     //get Operation Base Data
                     amplify.request.define('getOperationBaseData', 'ajax', {
-                        url: '/Api/OperationBase',
+                        url: ist.siteUrl + '/Api/OperationBase',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
                     //save Operations
                     amplify.request.define('saveOperations', 'ajax', { 
-                        url: '/Api/Operation',
+                        url: ist.siteUrl + '/Api/Operation',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
                     });
                     //get Operations
                     amplify.request.define('getOperations', 'ajax', {
-                        url: '/Api/Operation',
+                        url: ist.siteUrl + '/Api/Operation',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
                     //delete Operation
                     amplify.request.define('deleteOperation', 'ajax', {
-                        url: '/Api/Operation',
+                        url: ist.siteUrl + '/Api/Operation',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'

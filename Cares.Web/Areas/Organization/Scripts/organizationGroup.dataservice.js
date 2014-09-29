@@ -13,21 +13,21 @@ define("Organization/organizationGroup.dataservice", function () {
                 if (!isInitialized) {
                     // Define request to get OrganizationGroup Base data
                     amplify.request.define('getOrganizationGroups', 'ajax', {
-                        url: '/Api/OrganizationGroup',
+                        url: ist.siteUrl + '/Api/OrganizationGroup',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
                     // Define request to delete OrganizationGroup
                     amplify.request.define('deleteOrganizationGroup', 'ajax', {
-                        url: '/Api/OrganizationGroup',
+                        url: ist.siteUrl + '/Api/OrganizationGroup',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
                     // Define request to add/update OrganizationGroup
                     amplify.request.define('addOrganizationGroup', 'ajax', {
-                        url: '/Api/OrganizationGroup',
+                        url: ist.siteUrl + '/Api/OrganizationGroup',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'

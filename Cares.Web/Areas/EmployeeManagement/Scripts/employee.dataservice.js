@@ -13,19 +13,19 @@ define("employee/employee.dataservice", function () {
 
                     // Define request to get Employee base data 
                     amplify.request.define('getEmployeeBaseData', 'ajax', {
-                        url: '/Api/EmployeeBase',
+                        url: ist.siteUrl + '/Api/EmployeeBase',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to get Employees  
                     amplify.request.define('getEmployees', 'ajax', {
-                        url: '/Api/Employee',
+                        url: ist.siteUrl + '/Api/Employee',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to save Employee
                     amplify.request.define('saveEmployee', 'ajax', {
-                        url: '/Api/Employee',
+                        url: ist.siteUrl + '/Api/Employee',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
@@ -33,14 +33,14 @@ define("employee/employee.dataservice", function () {
 
                     // Define request to get Employee
                     amplify.request.define('getEmployeeDetailById', 'ajax', {
-                        url: '/Api/EmployeeDetail',
+                        url: ist.siteUrl + '/Api/EmployeeDetail',
                         dataType: 'json',
                         type: 'GET'
                     });
 
                     // Define request to delete Employee
                     amplify.request.define('deleteEmployee', 'ajax', {
-                        url: '/Api/Employee',
+                        url: ist.siteUrl + '/Api/Employee',
                         dataType: 'json',
                         type: 'DELETE'
                     });

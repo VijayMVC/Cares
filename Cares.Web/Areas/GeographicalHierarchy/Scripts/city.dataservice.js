@@ -15,21 +15,21 @@ define("city/city.dataservice", function () {
 
                     // Define request to get Cities 
                     amplify.request.define('getCities', 'ajax', {
-                        url: '/Api/City',
+                        url: ist.siteUrl + '/Api/City',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
                     // Define request to delete City
                     amplify.request.define('deleteCity', 'ajax', {
-                        url: '/Api/City',
+                        url: ist.siteUrl + '/Api/City',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
                     // Define request to add/update City
                     amplify.request.define('saveCity', 'ajax', {
-                            url: '/Api/City',
+                        url: ist.siteUrl + '/Api/City',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
@@ -37,7 +37,7 @@ define("city/city.dataservice", function () {
 
                     //City base Data
                     amplify.request.define('getCityBaseData', 'ajax', {
-                        url: '/Api/CityBase',
+                        url: ist.siteUrl + '/Api/CityBase',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'

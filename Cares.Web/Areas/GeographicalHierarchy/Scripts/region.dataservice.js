@@ -15,21 +15,21 @@ define("region/region.dataservice", function () {
 
                     // Define request to get Regions 
                     amplify.request.define('getRegions', 'ajax', {
-                        url: '/Api/Region',
+                        url: ist.siteUrl + '/Api/Region',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
                     // Define request to delete Region
                     amplify.request.define('deleteRegion', 'ajax', {
-                        url: '/Api/Region',
+                        url: ist.siteUrl + '/Api/Region',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
                     // Define request to add/update Regio
                     amplify.request.define('saveRegion', 'ajax', {
-                        url: '/Api/Region',
+                        url: ist.siteUrl + '/Api/Region',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
@@ -37,7 +37,7 @@ define("region/region.dataservice", function () {
 
                     //Region base Data
                     amplify.request.define('getRegionBaseData', 'ajax', {
-                        url: '/Api/RegionBase',
+                        url: ist.siteUrl + '/Api/RegionBase',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'

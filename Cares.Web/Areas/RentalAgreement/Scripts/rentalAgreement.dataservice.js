@@ -14,21 +14,21 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
                     
                     // Define request to get Base
                     amplify.request.define('getBase', 'ajax', {
-                        url: '/Api/RentalAgreementBase',
+                        url: ist.siteUrl + '/Api/RentalAgreementBase',
                         dataType: 'json',
                         type: 'GET'
                     });
                     
                     // Define request to get Vehicles
                     amplify.request.define('getVehiclesByHireGroup', 'ajax', {
-                        url: '/Api/HireGroupVehicles',
+                        url: ist.siteUrl + '/Api/HireGroupVehicles',
                         dataType: 'json',
                         type: 'GET'
                     });
                     
                     // Define request to get Hire Group by code , vehicle category / make / mode / model year
                     amplify.request.define('getHireGroupsByCodeAndVehicleInfo', 'ajax', {
-                        url: '/Api/RentalAgreementHireGroups',
+                        url: ist.siteUrl + '/Api/RentalAgreementHireGroups',
                         dataType: 'json',
                         dataMap: JSON.stringify,
                         contentType: "application/json; charset=utf-8",
@@ -37,42 +37,42 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
                     
                     // Define request to get Customer by Customer No
                     amplify.request.define('getCustomerByNo', 'ajax', {
-                        url: '/Api/RentalAgreementBusinessPartner',
+                        url: ist.siteUrl + '/Api/RentalAgreementBusinessPartner',
                         dataType: 'json',
                         type: 'GET'
                     });
                     
                     // Define request to get Customer by Nic No
                     amplify.request.define('getCustomerByNicNo', 'ajax', {
-                        url: '/Api/RentalAgreementBusinessPartner',
+                        url: ist.siteUrl + '/Api/RentalAgreementBusinessPartner',
                         dataType: 'json',
                         type: 'GET'
                     });
                     
                     // Define request to get Customer by Passport No
                     amplify.request.define('getCustomerByPassportNo', 'ajax', {
-                        url: '/Api/RentalAgreementBusinessPartner',
+                        url: ist.siteUrl + '/Api/RentalAgreementBusinessPartner',
                         dataType: 'json',
                         type: 'GET'
                     });
                     
                     // Define request to get Customer by License No
                     amplify.request.define('getCustomerByLicenseNo', 'ajax', {
-                        url: '/Api/RentalAgreementBusinessPartner',
+                        url: ist.siteUrl + '/Api/RentalAgreementBusinessPartner',
                         dataType: 'json',
                         type: 'GET'
                     });
                     
                     // Define request to get Customer by Phone No
                     amplify.request.define('getCustomerByPhoneNo', 'ajax', {
-                        url: '/Api/RentalAgreementBusinessPartner',
+                        url: ist.siteUrl + '/Api/RentalAgreementBusinessPartner',
                         dataType: 'json',
                         type: 'GET'
                     });
 
                     // Define request to Calcualte Bill
                     amplify.request.define('calculateBill', 'ajax', {
-                        url: '/Api/RentalAgreementBilling',
+                        url: ist.siteUrl + '/Api/RentalAgreementBilling',
                         dataType: 'json',
                         dataMap: JSON.stringify,
                         contentType: "application/json; charset=utf-8",

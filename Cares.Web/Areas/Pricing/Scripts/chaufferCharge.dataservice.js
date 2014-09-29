@@ -13,32 +13,32 @@ define("chaufferCharge/chaufferCharge.dataservice", function () {
 
                     // Define request to get Chauffer Charge base 
                     amplify.request.define('getChaufferChargeBase', 'ajax', {
-                        url: '/Api/ChaufferChargeBase',
+                        url: ist.siteUrl + '/Api/ChaufferChargeBase',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to get Chauffer Charges
                     amplify.request.define('getChaufferCharges', 'ajax', {
-                        url: '/Api/ChaufferCharge',
+                        url: ist.siteUrl + '/Api/ChaufferCharge',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to get  Chauffer Charge detail
                     amplify.request.define('getChaufferChargeDetail', 'ajax', {
-                        url: '/Api/ChaufferChargeDetail',
+                        url: ist.siteUrl + '/Api/ChaufferChargeDetail',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to save  Chauffer  Charges
                     amplify.request.define('saveChaufferCharge', 'ajax', {
-                        url: '/Api/ChaufferCharge',
+                        url: ist.siteUrl + '/Api/ChaufferCharge',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
                     });
                     // Define request to delete Chauffer Charges
                     amplify.request.define('deleteChaufferCharge', 'ajax', {
-                        url: '/Api/ChaufferCharge',
+                        url: ist.siteUrl + '/Api/ChaufferCharge',
                         dataType: 'json',
                         type: 'DELETE'
                     });

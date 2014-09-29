@@ -134,7 +134,7 @@ div#spinner
     margin-bottom: 8px;
 }
 .icon-up {
-    background-image: url('/Content/images/arrow-up-small.png');
+    background-image: url('../images/arrow-up-small.png');
     background-repeat: no-repeat;
     background-position: center;
     width: 12px;
@@ -144,7 +144,7 @@ div#spinner
 }
 
 .icon-down {
-    background-image: url('/Content/images/arrow-down-small.png');
+    background-image: url('../images/arrow-down-small.png');
     background-repeat: no-repeat;
     background-position: center;
     width: 12px;

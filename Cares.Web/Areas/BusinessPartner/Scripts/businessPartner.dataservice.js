@@ -13,39 +13,39 @@ define("businessPartner/businessPartner.dataservice", function () {
                 if (!isInitialized) {
                     // Define request to get Business Partner base 
                     amplify.request.define('getBusinessPartnerBase', 'ajax', {
-                        url: '/Api/BusinessPartnerBase',
+                        url: ist.siteUrl + '/Api/BusinessPartnerBase',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to get Business Partners
                     amplify.request.define('getBusinessPartners', 'ajax', {
-                        url: '/Api/BusinessPartner',
+                        url: ist.siteUrl + '/Api/BusinessPartner',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to save Business Partner
                     amplify.request.define('createBusinessPartner', 'ajax', {
-                        url: '/Api/BusinessPartner',
+                        url: ist.siteUrl + '/Api/BusinessPartner',
                         dataType: 'json',
                         type: 'PUT',
                         contentType: "application/json; charset=utf-8"
                     });
                     // Define request to update Business Partner
                     amplify.request.define('updateBusinessPartner', 'ajax', {
-                        url: '/Api/BusinessPartner',
+                        url: ist.siteUrl + '/Api/BusinessPartner',
                         dataType: 'json',
                         type: 'POST',
                         contentType: "application/json; charset=utf-8"
                     });
                     // Define request to delete Business Partner
                     amplify.request.define('deleteBusinessPartner', 'ajax', {
-                        url: '/Api/BusinessPartner',
+                        url: ist.siteUrl + '/Api/BusinessPartner',
                         dataType: 'json',
                         type: 'DELETE'
                     });
                     // Define request to get Business Partner by Id
                     amplify.request.define('getBusinessPartnerById', 'ajax', {
-                        url: '/Api/GetBusinessPartnerDetails',
+                        url: ist.siteUrl + '/Api/GetBusinessPartnerDetails',
                         dataType: 'json',
                         type: 'GET'
                     });

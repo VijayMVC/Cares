@@ -13,21 +13,21 @@ define("discountSubType/discountSubType.dataservice", function () {
                 if (!isInitialized) {
                     // Define request to get Discount Sub Type 
                     amplify.request.define('getDiscountSubType', 'ajax', {
-                        url: '/Api/DiscountSubType',
+                        url: ist.siteUrl + '/Api/DiscountSubType',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
                     // Define request to delete Discount Sub Type
                     amplify.request.define('deleteDiscountSubType', 'ajax', {
-                        url: '/Api/DiscountSubType',
+                        url: ist.siteUrl + '/Api/DiscountSubType',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
                     // Define request to add/update Discount  Sub Type
                     amplify.request.define('saveDiscountSubType', 'ajax', {
-                        url: '/Api/DiscountSubType',
+                        url: ist.siteUrl + '/Api/DiscountSubType',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
@@ -35,7 +35,7 @@ define("discountSubType/discountSubType.dataservice", function () {
 
                     //Discount Sub Type base Data
                     amplify.request.define('getDiscountSubTypeBaseData', 'ajax', {
-                        url: '/Api/DiscountSubTypeBase',
+                        url: ist.siteUrl + '/Api/DiscountSubTypeBase',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'

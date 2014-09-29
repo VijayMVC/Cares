@@ -15,21 +15,21 @@ define("designGrade/designGrade.dataservice", function () {
 
                     // Define request to get Design.Grades
                     amplify.request.define('getDesignGrades', 'ajax', {
-                        url: '/Api/DesignGrade',
+                        url: ist.siteUrl + '/Api/DesignGrade',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
                     // Define request to delete  Design.Grade
                     amplify.request.define('deleteDesignGrade', 'ajax', {
-                        url: '/Api/DesignGrade',
+                        url: ist.siteUrl + '/Api/DesignGrade',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
                     // Define request to add/update  Design.Grade
                     amplify.request.define('saveDesignGrade', 'ajax', {
-                        url: '/Api/DesignGrade',
+                        url: ist.siteUrl + '/Api/DesignGrade',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'

@@ -13,32 +13,32 @@ define("serviceRate/serviceRate.dataservice", function () {
 
                     // Define request to get Service Rate base 
                     amplify.request.define('getServiceRateBase', 'ajax', {
-                        url: '/Api/ServiceRtBase',
+                        url: ist.siteUrl + '/Api/ServiceRtBase',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to get Service Rates 
                     amplify.request.define('getServiceRates', 'ajax', {
-                        url: '/Api/ServiceRt',
+                        url: ist.siteUrl + '/Api/ServiceRt',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to get Service Rate detail
                     amplify.request.define('getServiceRateDetail', 'ajax', {
-                        url: '/Api/ServiceRtDetail',
+                        url: ist.siteUrl + '/Api/ServiceRtDetail',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to save Service Rate
                     amplify.request.define('saveServiceRate', 'ajax', {
-                        url: '/Api/ServiceRt',
+                        url: ist.siteUrl + '/Api/ServiceRt',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
                     });
                     // Define request to delete Service Rate
                     amplify.request.define('deleteServiceRate', 'ajax', {
-                        url: '/Api/ServiceRt',
+                        url: ist.siteUrl + '/Api/ServiceRt',
                         dataType: 'json',
                         type: 'DELETE'
                     });

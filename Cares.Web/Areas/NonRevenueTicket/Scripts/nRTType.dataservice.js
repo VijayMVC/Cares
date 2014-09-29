@@ -15,21 +15,21 @@ define("nRTType/nRTType.dataservice", function () {
 
                     // Define request to get Nrt Types
                     amplify.request.define('getNrtTypes', 'ajax', {
-                        url: '/Api/NrtType',
+                        url: ist.siteUrl + '/Api/NrtType',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
                     // Define request to delete Nrt Type
                     amplify.request.define('deleteNrtType', 'ajax', {
-                        url: '/Api/NrtType',
+                        url: ist.siteUrl + '/Api/NrtType',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
                     // Define request to add/update Nrt Type
                     amplify.request.define('saveNrtType', 'ajax', {
-                        url: '/Api/NrtType',
+                        url: ist.siteUrl + '/Api/NrtType',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
@@ -37,7 +37,7 @@ define("nRTType/nRTType.dataservice", function () {
 
                     //Nrt Type base Data
                     amplify.request.define('getNrtTypeBaseData', 'ajax', {
-                        url: '/Api/NrtTypeBase',
+                        url: ist.siteUrl + '/Api/NrtTypeBase',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'

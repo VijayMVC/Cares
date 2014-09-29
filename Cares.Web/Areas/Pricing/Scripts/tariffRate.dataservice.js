@@ -14,19 +14,19 @@ define("tariffRate/tariffRate.dataservice", function () {
 
                     // Define request to get Tariff Rate base 
                     amplify.request.define('getTariffRateBase', 'ajax', {
-                        url: '/Api/TariffRateBase',
+                        url: ist.siteUrl + '/Api/TariffRateBase',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to get tariff type  
                     amplify.request.define('getTariffRate', 'ajax', {
-                        url: '/Api/TariffRate',
+                        url: ist.siteUrl + '/Api/TariffRate',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to save Tariff Rate
                     amplify.request.define('createTariffRate', 'ajax', {
-                        url: '/Api/TariffRate',
+                        url: ist.siteUrl + '/Api/TariffRate',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
@@ -34,20 +34,20 @@ define("tariffRate/tariffRate.dataservice", function () {
 
                     // Define request to update Tariff rate
                     amplify.request.define('updateTariffRate', 'ajax', {
-                        url: '/Api/TariffRate',
+                        url: ist.siteUrl + '/Api/TariffRate',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
                     });
                     // Define request to get Hire Group detail
                     amplify.request.define('getHireGroupDetails', 'ajax', {
-                        url: '/Api/GetHireGroupDetailTariffRate',
+                        url: ist.siteUrl + '/Api/GetHireGroupDetailTariffRate',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to delete Tariff Rate
                     amplify.request.define('deleteTariffRate', 'ajax', {
-                        url: '/Api/TariffRate',
+                        url: ist.siteUrl + '/Api/TariffRate',
                         dataType: 'json',
                         type: 'DELETE'
                     });

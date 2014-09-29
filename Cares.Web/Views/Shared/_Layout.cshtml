@@ -12,8 +12,20 @@
     @Scripts.Render("~/Bundle/BaseLibs")
 
     @Scripts.Render("~/bundles/bootstrap" + (Cares.Web.Helper.CultureHelper.IsRighToLeft() ? "-rtl" : ""))
-    <script src="~/Scripts/App/requireConfig.js"></script>
     <script src="~/Scripts/App/architecture.js"></script>
+    <script type="text/javascript">
+    var ist = window.ist;
+    @{
+        <text>
+        ist.siteUrl = '@(System.Configuration.ConfigurationManager.AppSettings["SiteURL"].ToString())';
+        ist.resourceText.defaultConfirmationText = '@Cares.Web.Resources.Shared.Common.DefaultConfirmationText';
+        ist.resourceText.defaultHeaderText = '@Cares.Web.Resources.Shared.Common.Confirmation';
+        ist.resourceText.showing = '@Cares.Web.Resources.Shared.Common.Showing';
+        ist.resourceText.of = '@Cares.Web.Resources.Shared.Common.Of';
+        </text>
+    }
+    </script>
+    <script src="~/Scripts/App/requireConfig.js"></script>
     <script src="~/Scripts/typeahead.bundle.js"></script>
     <link rel="stylesheet" type="text/css" href="~/Content/MainSite.css" />
     <link rel="shortcut icon" href="~/Resources/Images/favicon.ico" type="image/x-icon">
@@ -52,16 +64,3 @@
 
 </body>
 </html>
-
-    <script type="text/javascript">
-        var ist = window.ist;
-        @{
-            <text>
-        ist.resourceText.defaultConfirmationText = '@Cares.Web.Resources.Shared.Common.DefaultConfirmationText';
-        ist.resourceText.defaultHeaderText = '@Cares.Web.Resources.Shared.Common.Confirmation';
-        ist.resourceText.showing = '@Cares.Web.Resources.Shared.Common.Showing';
-        ist.resourceText.of = '@Cares.Web.Resources.Shared.Common.Of';
-        </text>
-        }
-    </script>
-

@@ -13,21 +13,21 @@ define("businessSeg/businessSeg.dataservice", function () {
                 if (!isInitialized) {
                     // Define request to get OrganizationGroup 
                     amplify.request.define('getBusinessSeg', 'ajax', {
-                        url: '/Api/BusinessSegment',
+                        url: ist.siteUrl + '/Api/BusinessSegment',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
                     // Define request to delete Business Segment
                     amplify.request.define('deleteBusinessSeg', 'ajax', {
-                        url: '/Api/BusinessSegment',
+                        url: ist.siteUrl + '/Api/BusinessSegment',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
                     // Define request to add/update saveBusinessSegment
                     amplify.request.define('saveBusinessSeg', 'ajax', {
-                        url: '/Api/BusinessSegment',
+                        url: ist.siteUrl + '/Api/BusinessSegment',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
