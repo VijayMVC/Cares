@@ -13,21 +13,21 @@ define("area/area.dataservice", function () {
                 if (!isInitialized) {
                     // Define request to get Areas 
                     amplify.request.define('getAreas', 'ajax', {
-                        url: '/Api/Area',
+                        url: ist.siteUrl + '/Api/Area',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
                     // Define request to delete Area
                     amplify.request.define('deleteArea', 'ajax', {
-                        url: '/Api/Area',
+                        url: ist.siteUrl + '/Api/Area',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
                     // Define request to add/update Area
                     amplify.request.define('saveArea', 'ajax', {
-                        url: '/Api/Area',
+                        url: ist.siteUrl + '/Api/Area',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
@@ -35,7 +35,7 @@ define("area/area.dataservice", function () {
 
                     //Area base Data
                     amplify.request.define('getAreaBaseData', 'ajax', {
-                        url: '/Api/AreaBase',
+                        url: ist.siteUrl + '/Api/AreaBase',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'

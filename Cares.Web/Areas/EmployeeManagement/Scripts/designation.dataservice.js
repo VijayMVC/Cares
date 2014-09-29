@@ -15,21 +15,21 @@ define("designation/designation.dataservice", function () {
 
                     // Define request to get Designations 
                     amplify.request.define('getDesignations', 'ajax', {
-                        url: '/Api/Designation',
+                        url: ist.siteUrl + '/Api/Designation',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
                     // Define request to delete Designation
                     amplify.request.define('deleteDesignation', 'ajax', {
-                        url: '/Api/Designation',
+                        url: ist.siteUrl + '/Api/Designation',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
                     // Define request to add/update Designation
                     amplify.request.define('saveDesignation', 'ajax', {
-                        url: '/Api/Designation',
+                        url: ist.siteUrl + '/Api/Designation',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'

@@ -15,21 +15,21 @@ define("subRegion/subRegion.dataservice", function () {
 
                     // Define request to get Sub Regions 
                     amplify.request.define('getSubRegions', 'ajax', {
-                        url: '/Api/SubRegion',
+                        url: ist.siteUrl + '/Api/SubRegion',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
                     // Define request to delete Sub Region
                     amplify.request.define('deleteSubRegion', 'ajax', {
-                        url: '/Api/SubRegion',
+                        url: ist.siteUrl + '/Api/SubRegion',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
                     // Define request to add/update Sub Region
                     amplify.request.define('saveSubRegion', 'ajax', {
-                        url: '/Api/SubRegion',
+                        url: ist.siteUrl + '/Api/SubRegion',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
@@ -37,7 +37,7 @@ define("subRegion/subRegion.dataservice", function () {
 
                     //Sub Region base Data
                     amplify.request.define('getSubRegionBaseData', 'ajax', {
-                        url: '/Api/SubRegionBase',
+                        url: ist.siteUrl + '/Api/SubRegionBase',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'

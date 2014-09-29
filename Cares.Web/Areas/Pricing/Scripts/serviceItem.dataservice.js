@@ -15,28 +15,28 @@ define("serviceItem/serviceItem.dataservice", function () {
 
                     // Define request to get Service Items
                     amplify.request.define('getServiceItem', 'ajax', {
-                        url: '/Api/ServiceItem',
+                        url: ist.siteUrl + '/Api/ServiceItem',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
                     // Define request to delete Service Type
                     amplify.request.define('deleteServiceItem', 'ajax', {
-                        url: '/Api/ServiceItem',
+                        url: ist.siteUrl + '/Api/ServiceItem',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
                     // Define request to add/update  Service Type
                     amplify.request.define('saveServiceItem', 'ajax', {
-                        url: '/Api/ServiceItem',
+                        url: ist.siteUrl + '/Api/ServiceItem',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
                     });
                     //Service Item base Data
                     amplify.request.define('getServiceItemBaseData', 'ajax', {
-                        url: '/Api/ServiceItemBase',
+                        url: ist.siteUrl + '/Api/ServiceItemBase',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'

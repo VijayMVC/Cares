@@ -14,25 +14,25 @@ define("tariffType/tariffType.dataservice", function () {
                     
                     // Define request to get tariff type base 
                     amplify.request.define('getTariffTypeBase', 'ajax', {
-                        url: '/Api/TariffTypeBase',
+                        url: ist.siteUrl + '/Api/TariffTypeBase',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to get tariff type by id 
                     amplify.request.define('getTariffTypeById', 'ajax', {
-                        url: '/Api/GetTariffTypeDetails',
+                        url: ist.siteUrl + '/Api/GetTariffTypeDetails',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to get tariff type  
                     amplify.request.define('getTariffType', 'ajax', {
-                        url: '/Api/TariffType',
+                        url: ist.siteUrl + '/Api/TariffType',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to save Add tariffType
                     amplify.request.define('createTariffType', 'ajax', {
-                        url: '/Api/TariffType',
+                        url: ist.siteUrl + '/Api/TariffType',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
@@ -40,7 +40,7 @@ define("tariffType/tariffType.dataservice", function () {
 
                     // Define request to update updatetariffType
                     amplify.request.define('updateTariffType', 'ajax', {
-                        url: '/Api/TariffType',
+                        url: ist.siteUrl + '/Api/TariffType',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'

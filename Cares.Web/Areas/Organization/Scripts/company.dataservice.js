@@ -13,28 +13,28 @@ define("company/company.dataservice", function () {
             if (!isInitialized) {
                 //Get Companies
                 amplify.request.define('getCompanies', 'ajax', {
-                    url: '/Api/Company',
+                    url: ist.siteUrl + '/Api/Company',
                     dataType: 'json',
                     decoder: amplify.request.decoders.istStatusDecoder,
                     type: 'GET'
                 });
                 //Get Companies Basedata
                 amplify.request.define('getCompaniesBasedata', 'ajax', {
-                    url: '/Api/CompanyBase',
+                    url: ist.siteUrl + '/Api/CompanyBase',
                     dataType: 'json',
                     decoder: amplify.request.decoders.istStatusDecoder,
                     type: 'GET'
                 });
                 //Delete Company
                 amplify.request.define('deleteCompany', 'ajax', {
-                    url: '/Api/Company',
+                    url: ist.siteUrl + '/Api/Company',
                     dataType: 'json',
                     decoder: amplify.request.decoders.istStatusDecoder,
                     type: 'DELETE'
                 });
                 //save Company
                 amplify.request.define('saveCompany', 'ajax', {
-                    url: '/Api/Company',
+                    url: ist.siteUrl + '/Api/Company',
                     dataType: 'json',
                     decoder: amplify.request.decoders.istStatusDecoder,
                     type: 'POST'

@@ -13,27 +13,27 @@ define("Fleet/fleetPool.dataservice", function () {
                 if (!isInitialized) {
                     // Define request to get FleetPool Base data
                     amplify.request.define('getFleetPoolBasedata', 'ajax', {
-                        url: '/Api/FleetPoolBase',
+                        url: ist.siteUrl + '/Api/FleetPoolBase',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
                     //save new added fleetpool
                     amplify.request.define('saveFleetPool', 'ajax', {
-                        url: '/Api/FleetPool',
+                        url: ist.siteUrl + '/Api/FleetPool',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
                     });
                     // Define request to get FleetPools
                     amplify.request.define('getFleetPools', 'ajax', {
-                        url: '/Api/FleetPool',
+                        url: ist.siteUrl + '/Api/FleetPool',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to delete FleetPool
                     amplify.request.define('deleteFleetPool', 'ajax', {
-                        url: '/Api/FleetPool',
+                        url: ist.siteUrl + '/Api/FleetPool',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'Delete'

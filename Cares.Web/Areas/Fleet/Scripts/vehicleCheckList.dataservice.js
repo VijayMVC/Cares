@@ -13,21 +13,21 @@ define("vehicleCheckList/vehicleCheckList.dataservice", function () {
                 if (!isInitialized) {
                     // Define request to get Vehicle Check Lists 
                     amplify.request.define('getVehicleCheckList', 'ajax', {
-                        url: '/Api/VehicleCheckList',
+                        url: ist.siteUrl + '/Api/VehicleCheckList',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
                     // Define request to delete Vehicle CheckList
                     amplify.request.define('deleteVehicleCheckList', 'ajax', {
-                        url: '/Api/VehicleCheckList',
+                        url: ist.siteUrl + '/Api/VehicleCheckList',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
                     // Define request to add/update Vehicle CheckList
                     amplify.request.define('saveVehicleCheckList', 'ajax', {
-                        url: '/Api/VehicleCheckList',
+                        url: ist.siteUrl + '/Api/VehicleCheckList',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'

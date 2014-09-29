@@ -15,21 +15,21 @@ define("discountType/discountType.dataservice", function () {
 
                     // Define request to get Discount Type
                     amplify.request.define('getDiscountType', 'ajax', {
-                        url: '/Api/DiscountType',
+                        url: ist.siteUrl + '/Api/DiscountType',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
                     // Define request to delete Discount Type
                     amplify.request.define('deleteDiscountType', 'ajax', {
-                        url: '/Api/DiscountType',
+                        url: ist.siteUrl + '/Api/DiscountType',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
                     // Define request to add/update  Discount Type
                     amplify.request.define('saveDiscountType', 'ajax', {
-                        url: '/Api/DiscountType',
+                        url: ist.siteUrl + '/Api/DiscountType',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'

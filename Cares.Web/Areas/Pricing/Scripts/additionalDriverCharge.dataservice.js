@@ -13,32 +13,32 @@ define("additionalDriverCharge/additionalDriverCharge.dataservice", function () 
 
                     // Define request to get Additional Driver Charge base 
                     amplify.request.define('getAdditionalDriverChrgBase', 'ajax', {
-                        url: '/Api/AdditionalDriverChargeBase',
+                        url: ist.siteUrl + '/Api/AdditionalDriverChargeBase',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to get Additional Driver Charges
                     amplify.request.define('getAddDriverChrgs', 'ajax', {
-                        url: '/Api/AdditionalDriverCharge',
+                        url: ist.siteUrl + '/Api/AdditionalDriverCharge',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to get  Additional Driver Charge detail
                     amplify.request.define('getAdditionalDriverChrgDetail', 'ajax', {
-                        url: '/Api/AdditionalDriverChargeDetail',
+                        url: ist.siteUrl + '/Api/AdditionalDriverChargeDetail',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to save  Additional Driver Charges
                     amplify.request.define('saveAdditionalDriverChrg', 'ajax', {
-                        url: '/Api/AdditionalDriverCharge',
+                        url: ist.siteUrl + '/Api/AdditionalDriverCharge',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
                     });
                     // Define request to delete Additional Driver Charges
                     amplify.request.define('deleteAdditionalDriverChrg', 'ajax', {
-                        url: '/Api/AdditionalDriverCharge',
+                        url: ist.siteUrl + '/Api/AdditionalDriverCharge',
                         dataType: 'json',
                         type: 'DELETE'
                     });

@@ -15,21 +15,21 @@ define("empStatus/empStatus.dataservice", function () {
 
                     // Define request to get Regions 
                     amplify.request.define('getEmpStatus', 'ajax', {
-                        url: '/Api/EmployeeStatus',
+                        url: ist.siteUrl + '/Api/EmployeeStatus',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
                     // Define request to delete Region
                     amplify.request.define('deleteEmpStatus', 'ajax', {
-                        url: '/Api/EmployeeStatus',
+                        url: ist.siteUrl + '/Api/EmployeeStatus',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
                     // Define request to add/update Regio
                     amplify.request.define('saveEmpStatus', 'ajax', {
-                        url: '/Api/EmployeeStatus',
+                        url: ist.siteUrl + '/Api/EmployeeStatus',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'

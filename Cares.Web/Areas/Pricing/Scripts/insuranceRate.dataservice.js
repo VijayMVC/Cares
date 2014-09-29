@@ -13,32 +13,32 @@ define("insuranceRate/insuranceRate.dataservice", function () {
 
                     // Define request to get Insurance Rate base 
                     amplify.request.define('getInsuranceRateBase', 'ajax', {
-                        url: '/Api/InsuranceRateBase',
+                        url: ist.siteUrl + '/Api/InsuranceRateBase',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to get Insurance Rate 
                     amplify.request.define('getInsuranceRate', 'ajax', {
-                        url: '/Api/InsuranceRate',
+                        url: ist.siteUrl + '/Api/InsuranceRate',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to get Insurance Rate detail
                     amplify.request.define('getInsuranceRateDetail', 'ajax', {
-                        url: '/Api/InsuranceRtDetail',
+                        url: ist.siteUrl + '/Api/InsuranceRtDetail',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to save Insurance Rate
                     amplify.request.define('saveInsuranceRate', 'ajax', {
-                        url: '/Api/InsuranceRate',
+                        url: ist.siteUrl + '/Api/InsuranceRate',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
                     });
                     // Define request to delete Insurance Rate
                     amplify.request.define('deleteInsuranceRate', 'ajax', {
-                        url: '/Api/InsuranceRate',
+                        url: ist.siteUrl + '/Api/InsuranceRate',
                         dataType: 'json',
                         type: 'DELETE'
                     });

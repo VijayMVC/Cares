@@ -13,28 +13,28 @@ define("department/department.dataservice", function () {
             if (!isInitialized) {
                 //Department base Data
                 amplify.request.define('getDepartmentBaseData', 'ajax', {
-                    url: '/Api/DepartmentBase',
+                    url: ist.siteUrl + '/Api/DepartmentBase',
                     dataType: 'json',
                     decoder: amplify.request.decoders.istStatusDecoder,
                     type: 'GET'
                 });
                 //save Department
                 amplify.request.define('saveDepartment', 'ajax', {
-                    url: '/Api/Department',
+                    url: ist.siteUrl + '/Api/Department',
                     dataType: 'json',
                     decoder: amplify.request.decoders.istStatusDecoder,
                     type: 'POST'
                 });
                 //get Departments
                 amplify.request.define('getDepartments', 'ajax', {
-                    url: '/Api/Department',
+                    url: ist.siteUrl + '/Api/Department',
                     dataType: 'json',
                     decoder: amplify.request.decoders.istStatusDecoder,
                     type: 'GET'
                 });
                 //delete Department
                 amplify.request.define('deleteDepartment', 'ajax', {
-                    url: '/Api/Department',
+                    url: ist.siteUrl + '/Api/Department',
                     dataType: 'json',
                     decoder: amplify.request.decoders.istStatusDecoder,
                     type: 'DELETE'
