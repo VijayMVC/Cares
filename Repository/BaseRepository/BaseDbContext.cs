@@ -104,6 +104,10 @@ namespace Cares.Repository.BaseRepository
         /// </summary>
         public DbSet<OrgGroup> OrgGroups { get; set; }
         /// <summary>
+        /// Documents DB Set
+        /// </summary>
+        public DbSet<Document> Documents { get; set; }
+        /// <summary>
         /// FleetPool DbSet
         /// </summary>
         public DbSet<FleetPool> FleetPools { get; set; }
@@ -224,11 +228,15 @@ namespace Cares.Repository.BaseRepository
         /// Area DB Set
         /// </summary>
         public DbSet<Area> Areas { get; set; }
+        /// <summary>
+        /// Document Group DB Set
+        /// </summary>
+        public DbSet<DocumentGroup> DocumentGroups { get; set; }
 
         /// <summary>
-        /// WorkPlaces DB Set
+        /// Business Partner Main Type DB Set
         /// </summary>
-        public DbSet<WorkPlace> WorkPlaces { get; set; }
+        public DbSet<BusinessPartnerMainType> BusinessPartnerMainTypes { get; set; }
 
         /// <summary>
         /// WorkPlaceType DB Set
@@ -448,6 +456,10 @@ namespace Cares.Repository.BaseRepository
         /// </summary>
 
         public DbSet<RaServiceItem> RaServiceItems { get; set; }
+        /// <summary>
+        /// WorkPlace Item Db Set
+        /// </summary>
+        public DbSet<WorkPlace> WorkPlaces { get; set; }
 
         /// <summary>
         /// Seasonal Discount Db set

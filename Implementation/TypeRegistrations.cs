@@ -78,6 +78,8 @@ namespace Cares.Implementation
             unityContainer.RegisterType<INrtTypeService, NrtTypeService>();
             unityContainer.RegisterType<IVehicleCheckListService, VehicleCheckListService>();
             unityContainer.RegisterType<ISeasonalDiscountService, SeasonalDiscountService>();
+            unityContainer.RegisterType<IDocumentGroupService, DocumentGroupService>();
+            unityContainer.RegisterType<IBpMainTypeService, BpMainTypeService>();
 
 
         }
