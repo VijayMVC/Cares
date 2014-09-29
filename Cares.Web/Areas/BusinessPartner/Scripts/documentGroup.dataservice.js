@@ -11,8 +11,6 @@ define("documentGroup/documentGroup.dataservice", function () {
             // Initialize
             initialize = function() {
                 if (!isInitialized) {
-
-
                     // Define request to get Document Groups
                     amplify.request.define('getDocumentGroups', 'ajax', {
                         url: '/Api/DocumentGroup',
