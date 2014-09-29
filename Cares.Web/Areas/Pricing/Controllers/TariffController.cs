@@ -76,6 +76,14 @@ namespace Cares.Web.Areas.Pricing.Controllers
             return View();
         }
 
+
+        /// <summary>
+        /// Seasonal Discount
+        /// </summary>
+        public ActionResult SeasonalDiscount()
+        {
+            return View();
+        }
         /// <summary>
         /// Service Item
         /// </summary>

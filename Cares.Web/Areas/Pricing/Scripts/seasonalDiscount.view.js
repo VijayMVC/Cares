@@ -1,36 +1,36 @@
 ﻿/*
-    View for the Chauffer Charge. Used to keep the viewmodel clear of UI related logic
+    View for the Seasonal Discount. Used to keep the viewmodel clear of UI related logic
 */
-define("chaufferCharge/chaufferCharge.view",
-    ["jquery", "chaufferCharge/chaufferCharge.viewModel"], function ($, chaufferChargeViewModel) {
+define("seasonalDiscount/seasonalDiscount.view",
+    ["jquery", "seasonalDiscount/seasonalDiscount.viewModel"], function ($, seasonalDiscountViewModel) {
 
         var ist = window.ist || {};
 
         // View 
-        ist.chaufferCharge.view = (function (specifiedViewModel) {
+        ist.seasonalDiscount.view = (function (specifiedViewModel) {
             var
                 // View model 
                 viewModel = specifiedViewModel,
                 // Binding root used with knockout
-                bindingRoot = $("#chaufferChargeBinding")[0],
+                bindingRoot = $("#seasonalDiscountBinding")[0],
                 // Initialize
                 initialize = function () {
                     if (!bindingRoot) {
                         return;
                     }
                     // Handle Sorting
-                    handleSorting("chaufferChargeTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getChaufferCharges);
+                    handleSorting("seasonalDiscountTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getSeasonalDiscounts);
                 };
             initialize();
             return {
                 bindingRoot: bindingRoot,
                 viewModel: viewModel
             };
-        })(chaufferChargeViewModel);
+        })(seasonalDiscountViewModel);
 
         // Initialize the view model
-        if (ist.chaufferCharge.view.bindingRoot) {
-            chaufferChargeViewModel.initialize(ist.chaufferCharge.view);
+        if (ist.seasonalDiscount.view.bindingRoot) {
+            seasonalDiscountViewModel.initialize(ist.seasonalDiscount.view);
         }
-        return ist.chaufferCharge.view;
+        return ist.seasonalDiscount.view;
     });

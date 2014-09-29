@@ -1814,6 +1814,8 @@
     </Content>
     <Content Include="Areas\Fleet\Views\Home\VehicleCheckList.cshtml" />
     <Content Include="Areas\Fleet\Views\Home\_VehicleCheckListEditor.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\SeasonalDiscount.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\_SeasonalDiscountEditor.cshtml" />
     <None Include="Properties\PublishProfiles\Khurram.pubxml" />
     <Content Include="RichTextEditor\plugins\Thumbs.db" />
     <None Include="Scripts\amplify-vsdoc.js" />

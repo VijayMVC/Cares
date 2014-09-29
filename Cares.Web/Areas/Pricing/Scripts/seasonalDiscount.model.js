@@ -1,11 +1,11 @@
 ﻿/*
-    Module with the model for the Chauffer Charge
+    Module with the model for the Seasonal Discount
 */
 define(["ko", "underscore", "underscore-ko"], function (ko) {
     var
-   //Chauffer Charge Main Entity
+   //Seasonal Discount Main Entity
     // ReSharper disable once InconsistentNaming
-    ChaufferChargeMain = function () {
+    SeasonalDiscountMain = function () {
         var // Reference to this object
             self,
             // Unique key
@@ -32,16 +32,24 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             tariffTypeCodeName = ko.observable(),
             //Start Date
             startDate = ko.observable().extend({ required: true }),
+            //End Date
+            endDate = ko.observable().extend({ required: true }),
             //String valued formatted date
             formattedStartDate = ko.computed({
                 read: function () {
                     return moment(startDate()).format(ist.datePattern);
                 }
             }),
-            //Chauffer Charge
-            chaufferCharge = ko.observable(new ChaufferCharge()),
-            //Chauffer Charge List
-            chaufferChargeList = ko.observable([]),
+             //String valued formatted date
+            formattedEndDate = ko.computed({
+                read: function () {
+                    return moment(endDate()).format(ist.datePattern);
+                }
+            }),
+            //Seasonal Discount
+            seasonalDiscount = ko.observable(new SeasonalDiscount()),
+            //Seasonal Discount List
+            seasonalDiscountsList = ko.observable([]),
              // Errors
             errors = ko.validation.group({
                 code: code,
@@ -50,6 +58,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
                 operationId: operationId,
                 tariffTypeId: tariffTypeId,
                 startDate: startDate,
+                endDate: endDate,
             }),
             // Is Valid
             isValid = ko.computed(function () {
@@ -65,6 +74,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
                 operationId: operationId,
                 tariffTypeId: tariffTypeId,
                 startDate: startDate,
+                endDate: endDate,
                 name: name,
                 description: description,
 
@@ -86,14 +96,16 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             operationId: operationId,
             tariffTypeId: tariffTypeId,
             startDate: startDate,
+            endDate: endDate,
             companyCodeName: companyCodeName,
             operationCodeName: operationCodeName,
             tariffTypeCodeName: tariffTypeCodeName,
             name: name,
             description: description,
             formattedStartDate: formattedStartDate,
-            chaufferCharge: chaufferCharge,
-            chaufferChargeList: chaufferChargeList,
+            formattedEndDate: formattedEndDate,
+            seasonalDiscount: seasonalDiscount,
+            seasonalDiscountsList: seasonalDiscountsList,
             errors: errors,
             isValid: isValid,
             dirtyFlag: dirtyFlag,
@@ -102,34 +114,68 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         };
         return self;
     };
-    //Chauffer Charge Entity
+    //Seasonal Discounte Entity
     // ReSharper disable once AssignToImplicitGlobalInFunctionScope
-    ChaufferCharge = function () {
+    SeasonalDiscount = function () {
         var // Reference to this object
           self,
           // Unique key
           id = ko.observable(),
-          //Designation Grade Id
-         desigGradeId = ko.observable().extend({ required: true }),
-          //Designation Grade Code Name
-          desigGradeCodeName = ko.observable(),
-          //Start Date
-          startDate = ko.observable().extend({ required: true }),
+          //Opearation Workplace Id
+         opWorkplaceId = ko.observable(),
+          //Opearation Workplace Code Name
+          opWorkplaceCodeName = ko.observable(),
+            //Hire Group Id
+         hireGroupId = ko.observable(),
+          //Hire Group Code Name
+          hireGroupCodeName = ko.observable(),
+          //Vehicle Category ID
+          vCategoryId = ko.observable(),
+          //Vehicle Category Code Name
+          vCategoryCodeName = ko.observable(),
+          //Customer Type ID
+          customerTypeId = ko.observable(),
+          //Customer Type Code Name
+          customerTypeCodeName = ko.observable(),
+           //Vehicle Make ID
+          vMakeId = ko.observable(),
+          //Vehicle Make Code Name
+          vMakeCodeName = ko.observable(),
+            //Vehicle Model ID
+          vModelId = ko.observable(),
+          //Vehicle Model Code Name
+          vModelCodeName = ko.observable(),
+          //MOdel Year
+          modelYear = ko.observable(),
+           //Rating Type ID
+          ratingId = ko.observable(),
+          //Rating Type Code Name
+          ratingCodeName = ko.observable(),
+          //From Date
+          fromDate = ko.observable().extend({ required: true }),
+          //To Date
+          toDate = ko.observable().extend({ required: true }),
           //Rate
-          rate = ko.observable().extend({ required: true, number: true }),
+          discount = ko.observable().extend({ required: true, number: true }),
           //Revision Number
           revisionNumber = ko.observable(),
            //String valued formatted date
             formattedStartDate = ko.computed({
                 read: function () {
-                    return moment(startDate()).format(ist.datePattern);
+                    return moment(fromDate()).format(ist.datePattern);
+                }
+            }),
+             //String valued formatted date
+            formattedEndDate = ko.computed({
+                read: function () {
+                    return moment(toDate()).format(ist.datePattern);
                 }
             }),
               // Errors
             errors = ko.validation.group({
-                desigGradeId: desigGradeId,
-                startDate: startDate,
-                rate: rate,
+                fromDate: fromDate,
+                toDate: toDate,
+                discount: discount,
             }),
             // Is Valid
             isValid = ko.computed(function () {
@@ -151,12 +197,27 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
 
         self = {
             id: id,
-            desigGradeId: desigGradeId,
-            desigGradeCodeName: desigGradeCodeName,
-            startDate: startDate,
+            opWorkplaceId: opWorkplaceId,
+            opWorkplaceCodeName: opWorkplaceCodeName,
+            hireGroupId: hireGroupId,
+            hireGroupCodeName: hireGroupCodeName,
+            vCategoryId: vCategoryId,
+            vCategoryCodeName: vCategoryCodeName,
+            customerTypeId: customerTypeId,
+            customerTypeCodeName: customerTypeCodeName,
+            vMakeId: vMakeId,
+            vMakeCodeName: vMakeCodeName,
+            vModelId: vModelId,
+            vModelCodeName: vModelCodeName,
+            modelYear: modelYear,
             formattedStartDate: formattedStartDate,
+            formattedEndDate: formattedEndDate,
             revisionNumber: revisionNumber,
-            rate: rate,
+            ratingId: ratingId,
+            ratingCodeName: ratingCodeName,
+            fromDate: fromDate,
+            toDate: toDate,
+            discount: discount,
             errors: errors,
             isValid: isValid,
             dirtyFlag: dirtyFlag,
@@ -165,23 +226,23 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         };
         return self;
     };
-
     //Convert Server To Client
-    var ChaufferChargeMainClientMapper = function (source) {
-        var chaufferChargeMain = new ChaufferChargeMain();
-        chaufferChargeMain.id(source.ChaufferChargeMainId === null ? undefined : source.ChaufferChargeMainId);
-        chaufferChargeMain.code(source.Code === null ? undefined : source.Code);
-        chaufferChargeMain.name(source.Name === null ? undefined : source.Name);
-        chaufferChargeMain.description(source.Description === null ? undefined : source.Description);
-        chaufferChargeMain.companyId(source.CompanyId === null ? undefined : source.CompanyId);
-        chaufferChargeMain.companyCodeName(source.CompanyCodeName === null ? undefined : source.CompanyCodeName);
-        chaufferChargeMain.departmentId(source.DepartmentId === null ? undefined : source.DepartmentId);
-        chaufferChargeMain.operationId(source.OperationId === null ? undefined : source.OperationId);
-        chaufferChargeMain.operationCodeName(source.OperationCodeName === null ? undefined : source.OperationCodeName);
-        chaufferChargeMain.tariffTypeId(source.TariffTypeId === null ? undefined : source.TariffTypeId);
-        chaufferChargeMain.tariffTypeCodeName(source.TariffTypeCodeName === null ? undefined : source.TariffTypeCodeName);
-        chaufferChargeMain.startDate(source.StartDate !== null ? moment(source.StartDate, ist.utcFormat).toDate() : undefined);
-        return chaufferChargeMain;
+    var SeasonalDiscountMainClientMapper = function (source) {
+        var seasonalDiscountMain = new SeasonalDiscountMain();
+        seasonalDiscountMain.id(source.SeasonalDiscountMainId === null ? undefined : source.SeasonalDiscountMainId);
+        seasonalDiscountMain.code(source.Code === null ? undefined : source.Code);
+        seasonalDiscountMain.name(source.Name === null ? undefined : source.Name);
+        seasonalDiscountMain.description(source.Description === null ? undefined : source.Description);
+        seasonalDiscountMain.companyId(source.CompanyId === null ? undefined : source.CompanyId);
+        seasonalDiscountMain.companyCodeName(source.CompanyCodeName === null ? undefined : source.CompanyCodeName);
+        seasonalDiscountMain.departmentId(source.DepartmentId === null ? undefined : source.DepartmentId);
+        seasonalDiscountMain.operationId(source.OperationId === null ? undefined : source.OperationId);
+        seasonalDiscountMain.operationCodeName(source.OperationCodeName === null ? undefined : source.OperationCodeName);
+        seasonalDiscountMain.tariffTypeId(source.TariffTypeId === null ? undefined : source.TariffTypeId);
+        seasonalDiscountMain.tariffTypeCodeName(source.TariffTypeCodeName === null ? undefined : source.TariffTypeCodeName);
+        seasonalDiscountMain.startDate(source.StartDt !== null ? moment(source.StartDt, ist.utcFormat).toDate() : undefined);
+        seasonalDiscountMain.endDate(source.EndDt !== null ? moment(source.EndDt, ist.utcFormat).toDate() : undefined);
+        return seasonalDiscountMain;
     };
     //Convert Server To Client
     var ChaufferChargeClientMapper = function (source) {
@@ -195,43 +256,53 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         return chaufferCharge;
     };
     //Convert Client To Server
-    var CahufferChargeMainServerMapper = function (source) {
+    var SeasonalDiscountMainServerMapper = function (source) {
         var result = {};
-        result.ChaufferChargeMainId = source.id() === undefined ? 0 : source.id();
+        result.SeasonalDiscountMainId = source.id() === undefined ? 0 : source.id();
         result.Code = source.code() === undefined ? null : source.code();
         result.Name = source.name() === undefined ? null : source.name();
         result.Description = source.description() === undefined ? 0 : source.description();
         result.TariffTypeId = source.tariffTypeId() === undefined ? 0 : source.tariffTypeId();
-        result.StartDate = source.startDate() === undefined || source.startDate() === null ? null : moment(source.startDate()).format(ist.utcFormat);
-        result.ChaufferCharges = [];
-        _.each(source.chaufferChargeList(), function (item) {
-            result.ChaufferCharges.push(ChaufferChargeServerMapper(item));
+        result.StartDt = source.startDate() === undefined || source.startDate() === null ? null : moment(source.startDate()).format(ist.utcFormat);
+        result.EndDt = source.endDate() === undefined || source.endDate() === null ? null : moment(source.endDate()).format(ist.utcFormat);
+        result.SeasonalDiscounts = [];
+        _.each(source.seasonalDiscountsList(), function (item) {
+            result.SeasonalDiscounts.push(SeasonalDiscountServerMapper(item));
         });
         return result;
     };
     //Convert Client To Server
-    var ChaufferChargeServerMapper = function (item) {
+    var SeasonalDiscountServerMapper = function (item) {
         var result = {};
-        result.ChaufferChargeId = item.id() === undefined ? 0 : item.id();
-        result.DesigGradeId = item.desigGradeId() === undefined ? null : item.desigGradeId();
-        result.ChaufferChargeRate = item.rate() === undefined ? null : item.rate();
-        result.StartDt = item.startDate() === undefined || item.startDate() === null ? null : moment(item.startDate()).format(ist.utcFormat);
+        result.SeasonalDiscountId = item.id() === undefined ? 0 : item.id();
+        result.OperationsWorkPlaceId = item.opWorkplaceId() === undefined ? null : item.opWorkplaceId();
+        result.HireGroupId = item.hireGroupId() === undefined ? null : item.hireGroupId();
+        result.VehicleMakeId = item.vMakeId() === undefined ? null : item.vMakeId();
+        result.VehicleCategoryId = item.vCategoryId() === undefined ? null : item.vCategoryId();
+        result.VehicleModelId = item.vModelId() === undefined ? null : item.vModelId();
+        result.CustomerType = item.customerTypeId() === undefined ? null : item.customerTypeId();
+        result.ModelYear = item.modelYear() === undefined ? null : item.modelYear();
+        result.RatingTypeId = item.ratingId() === undefined ? null : item.ratingId();
+        result.DiscountPerc = item.discount() === undefined ? null : item.discount();
+        result.StartDt = item.fromDate() === undefined || item.fromDate() === null ? null : moment(item.fromDate()).format(ist.utcFormat);
+        result.EndDt = item.toDate() === undefined || item.toDate() === null ? null : moment(item.toDate()).format(ist.utcFormat);
         return result;
     };
     // Convert Client to server
-    var ChaufferChargeServerMapperForId = function (source) {
+    var SeasonalDiscountServerMapperForId = function (source) {
         var result = {};
-        result.ChaufferChargeMainId = source.id() === undefined ? 0 : source.id();
+        result.SeasonalDiscountMainId = source.id() === undefined ? 0 : source.id();
         return result;
     };
 
 
     return {
-        ChaufferChargeMain: ChaufferChargeMain,
-        ChaufferCharge: ChaufferCharge,
-        ChaufferChargeMainClientMapper: ChaufferChargeMainClientMapper,
+        SeasonalDiscountMain: SeasonalDiscountMain,
+        SeasonalDiscount: SeasonalDiscount,
+        SeasonalDiscountMainClientMapper: SeasonalDiscountMainClientMapper,
         ChaufferChargeClientMapper: ChaufferChargeClientMapper,
-        CahufferChargeMainServerMapper: CahufferChargeMainServerMapper,
-        ChaufferChargeServerMapperForId: ChaufferChargeServerMapperForId,
+        SeasonalDiscountMainServerMapper: SeasonalDiscountMainServerMapper,
+        SeasonalDiscountServerMapper: SeasonalDiscountServerMapper,
+        SeasonalDiscountServerMapperForId: SeasonalDiscountServerMapperForId,
     };
 });
