@@ -118,6 +118,23 @@ namespace Cares.Web.ModelMappers
 
             };
         }
+
+        /// <summary>
+        ///  Create Web Model from entity
+        /// </summary>
+        public static Chauffer CreateChaufferFrom(this DomainModels.Employee source)
+        {
+            return new Chauffer
+            {
+                ChaufferId = source.EmployeeId,
+                ChaufferCode = source.EmpCode,
+                ChaufferName = source.EmpFName + "-" + source.EmpLName,
+                LicenseExpDt = source.EmpDocsInfo.LicenseExpDt,
+                LicenseNo = source.EmpDocsInfo.LicenseNo,
+                DesigGradeCodeName = source.EmpJobInfo.DesigGrade.DesigGradeCode + "-" + source.EmpJobInfo.DesigGrade.DesigGradeName,
+                DesigGradeId = source.EmpJobInfo.DesigGradeId
+            };
+        }
         #endregion
 
         #region Base Data Response

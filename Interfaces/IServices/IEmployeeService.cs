@@ -56,5 +56,10 @@ namespace Cares.Interfaces.IServices
         /// <param name="employee"></param>
         /// <returns></returns>
         void DeleteEmployee(Employee employee);
+
+        /// <summary>
+        /// Get All Chauffers - Used In RA
+        /// </summary>
+        IEnumerable<Employee> GetAllChauffers(GetRaChaufferRequest request);
     }
 }

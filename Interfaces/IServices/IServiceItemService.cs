@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
@@ -29,6 +30,11 @@ namespace Cares.Interfaces.IServices
         // Add /Update Service Item
         // </summary>
         ServiceItem SaveServiceItem(ServiceItem serviceItem);
+
+        /// <summary>
+        /// Get All Service Items
+        /// </summary>
+        IEnumerable<ServiceItem> GetAll();
 
     }
 }

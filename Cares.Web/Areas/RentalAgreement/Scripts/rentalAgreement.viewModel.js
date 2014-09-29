@@ -53,6 +53,12 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     vehicles = ko.observableArray([]),
                     // Pagination
                     vehiclePager = ko.observable(),
+                    // Service Items
+                    serviceItems = ko.observableArray([]),
+                    // Discounts
+                    raDiscounts = ko.observableArray([]),
+                    // Drivers
+                    raDrivers = ko.observableArray([]),
                     // Can search hire group
                     canLookForHireGroups = ko.computed(function() {
                         return rentalAgreement().start() && rentalAgreement().end() && rentalAgreement().openLocation();
@@ -141,6 +147,46 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         if (!rentalAgreement().id()) {
                             selectedVehicle(model.Vehicle.Create({}));
                         }
+                    },
+                    // Get Chauffers
+                    getChauffers = function () {
+                        dataservice.getChauffers({
+                            OperationsWorkPlaceId: rentalAgreement().openLocation(),
+                            StartDtTime: moment(rentalAgreement().start()).format(ist.utcFormat) + 'Z',
+                            EndDtTime: moment(rentalAgreement().end()).format(ist.utcFormat) + 'Z',
+                        }, {
+                            success: function (data) {
+                                var chauffersItems = [];
+
+                                _.each(data, function (chauffer) {
+                                    chauffersItems.push(model.Chauffer.Create(chauffer));
+                                });
+
+                                ko.utils.arrayPushAll(raDrivers(), chauffersItems);
+                                raDrivers.valueHasMutated();
+                            },
+                            error: function (response) {
+                                toastr.error("Failed to load Chauffers. Error: " + response);
+                            }
+                        });
+                    },
+                    // Get ServiceItems
+                    getServiceItems = function () {
+                        dataservice.getServiceItems({
+                            success: function (data) {
+                                var services = [];
+
+                                _.each(data, function (serviceItem) {
+                                    services.push(model.ServiceItem.Create(serviceItem));
+                                });
+
+                                ko.utils.arrayPushAll(serviceItems(), services);
+                                serviceItems.valueHasMutated();
+                            },
+                            error: function (response) {
+                                toastr.error("Failed to load Service Items. Error: " + response);
+                            }
+                        });
                     },
                     // Get Vehicles
                     getVehicles = function (hireGroup) {
@@ -246,12 +292,17 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     rentalAgreement: rentalAgreement,
                     model: model,
                     canLookForHireGroups: canLookForHireGroups,
+                    serviceItems: serviceItems,
+                    raDrivers: raDrivers,
+                    raDiscounts: raDiscounts,
                     // Observables
                     // Utility Methods
                     initialize: initialize,
                     selectVehicle: selectVehicle,
                     stopEventBubbling: stopEventBubbling,
-                    calculateBill: calculateBill
+                    calculateBill: calculateBill,
+                    getChauffers: getChauffers,
+                    getServiceItems: getServiceItems
                     // Utility Methods
                 };
             })()

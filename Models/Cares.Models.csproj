@@ -107,6 +107,7 @@
     <Compile Include="Common\BillingSummary.cs" />
     <Compile Include="Common\AllocationStatusEnum.cs" />
     <Compile Include="Common\ChaufferChargeByColumn.cs" />
+    <Compile Include="Common\DesignationEnum.cs" />
     <Compile Include="Common\NrtTypeByColumn.cs" />
     <Compile Include="Common\DiscountTypeEnum.cs" />
     <Compile Include="Common\VehicleMovementEnum.cs" />
@@ -293,6 +294,7 @@
     <Compile Include="RequestModels\DiscountSubTypeSearchRequestResponse.cs" />
     <Compile Include="RequestModels\DiscountTypeSearchRequest.cs" />
     <Compile Include="RequestModels\DiscountTypeSearchRequestResponse.cs" />
+    <Compile Include="RequestModels\GetRaChaufferRequest.cs" />
     <Compile Include="RequestModels\EmpSearchRequest.cs" />
     <Compile Include="RequestModels\EmpSearchRequestResponse.cs" />
     <Compile Include="RequestModels\GetBusinessPartnerRequest.cs" />

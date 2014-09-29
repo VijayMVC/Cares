@@ -8,14 +8,11 @@
         <div class="panel-group" id="accordion">
             <div class="panel panel-default">
                 <div id="extrasHeading" class="panel-heading">
-                    <div style="display: none;" class="well well-small popOverBody">
-                        <span data-bind="text: 'Add Extras'"></span>
-                    </div>
                     <h4 class="panel-title">
                         <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
                             Extras
                         </a>
-                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Extras', elementNode: '#extrasHeading .popOverBody' }, attr:{ title: 'Add Extras' }"></a>
+                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Extras', elementNode: '#addExtrasTemplate', popoverId: '#addExtrasTemplate_popoverContent' }, attr:{ title: 'Add Extras' }"></a>
                     </h4>
                 </div>
                 <div id="collapseOne" class="panel-collapse collapse">
@@ -25,14 +22,11 @@
             </div>
             <div class="panel panel-default">
                 <div id="driversHeading" class="panel-heading">
-                    <div style="display: none;" class="well well-small popOverBody">
-                        <span data-bind="text: 'Add Drivers'"></span>
-                    </div>
                     <h4 class="panel-title">
                         <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
                             Drivers
                         </a>
-                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Drivers', elementNode: '#driversHeading .popOverBody' }, attr:{ title: 'Add Drivers' }"></a>
+                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Drivers', elementNode: '#addDriversTemplate', popoverId: '#addDriversTemplate_popoverContent' }, attr:{ title: 'Add Drivers' }"></a>
                     </h4>
                 </div>
                 <div id="collapseTwo" class="panel-collapse collapse">
@@ -43,14 +37,11 @@
             </div>
             <div class="panel panel-default">
                 <div id="chauffersHeading" class="panel-heading">
-                    <div style="display: none;" class="well well-small popOverBody">
-                        <span data-bind="text: 'Add Chauffers'"></span>
-                    </div>
                     <h4 class="panel-title">
                         <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
                             Chauffers
                         </a>
-                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Chauffers', elementNode: '#chauffersHeading .popOverBody' }, attr:{ title: 'Add Chauffers' }"></a>
+                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Chauffers', elementNode: '#addChaufferTemplate', popoverId: '#addChaufferTemplate_popoverContent' }, attr:{ title: 'Add Chauffers' }"></a>
                     </h4>
                 </div>
                 <div id="collapseThree" class="panel-collapse collapse">
@@ -61,14 +52,11 @@
             </div>
             <div class="panel panel-default">
                 <div id="discountsHeading" class="panel-heading">
-                    <div style="display: none;" class="well well-small popOverBody">
-                        <span data-bind="text: 'Add Discounts'"></span>
-                    </div>
                     <h4 class="panel-title">
                         <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
                             Discounts
                         </a>
-                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Discounts', elementNode: '#discountsHeading .popOverBody' }, attr:{ title: 'Add Discounts' }"></a>
+                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Discounts', elementNode: '#addDiscountTemplate', popoverId: '#addDiscountTemplate_popoverContent' }, attr:{ title: 'Add Discounts' }"></a>
                     </h4>
                 </div>
                 <div id="collapseFour" class="panel-collapse collapse">
@@ -79,14 +67,11 @@
             </div>
             <div class="panel panel-default">
                 <div id="damagesHeading" class="panel-heading">
-                    <div style="display: none;" class="well well-small popOverBody">
-                        <span data-bind="text: 'Add Damages'"></span>
-                    </div>
                     <h4 class="panel-title">
                         <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
                             Damages
                         </a>
-                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Damages', elementNode: '#damagesHeading .popOverBody' }, attr:{ title: 'Add Damages' }"></a>
+                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Damages', elementNode: '#addDamageTemplate', popoverId: '#addDamageTemplate_popoverContent' }, attr:{ title: 'Add Damages' }"></a>
                     </h4>
                 </div>
                 <div id="collapseFive" class="panel-collapse collapse">
@@ -404,6 +389,101 @@
             </table>
         </div>
     </script>
+    
+    <script type="html/text" id="addExtrasTemplate">
+        <div id="addExtrasTemplate_popoverContent" class="searchFilterResultSection">
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th>Service Item Code</th>
+                        <th>Service Item</th>
+                        <th>Service Type</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: serviceItems">
+                    <tr data-bind="click: $root.selectServiceItem">
+                        <td data-bind="text: code"></td>
+                        <td data-bind="text: name"></td>
+                        <td data-bind="text: type"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </script>
+
+    <script type="html/text" id="addDriversTemplate">
+        <div id="addDriversTemplate_popoverContent" class="searchFilterResultSection">
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th>Is Chauffer</th>
+                        <th>Driver Name</th>
+                        <th>License No</th>
+                        <th>License Expiry</th>
+                        <th>License No</th>
+                        <th>Start Date</th>
+                        <th>Start Hour</th>
+                        <th>Start Minute</th>
+                        <th>End Date</th>
+                        <th>End Hour</th>
+                        <th>End Minute</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: raDrivers">
+                </tbody>
+            </table>
+        </div>
+    </script>
+    
+    <script type="html/text" id="addChaufferTemplate">
+        <div id="addChaufferTemplate_popoverContent" class="searchFilterResultSection">
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th>Is Chauffer</th>
+                        <th>Driver Name</th>
+                        <th>License No</th>
+                        <th>License Expiry</th>
+                        <th>License No</th>
+                        <th>Start Date</th>
+                        <th>Start Hour</th>
+                        <th>Start Minute</th>
+                        <th>End Date</th>
+                        <th>End Hour</th>
+                        <th>End Minute</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: raDrivers"></tbody>
+            </table>
+        </div>
+    </script>
+    
+    <script type="html/text" id="addDiscountTemplate">
+        <div id="addDiscountTemplate_popoverContent" class="searchFilterResultSection">
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th>Plate Number</th>
+                        <th>Hire Group</th>
+                        <th>Vehicle Make</th>
+                        <th>Vehicle Model</th>
+                        <th>Vehicle Category</th>
+                        <th>Model Year</th>
+                        <th>Discount Code</th>
+                        <th>Tariff Type</th>
+                        <th>Disount Percentage</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: raDiscounts"></tbody>
+            </table>
+        </div>
+    </script>
+    
+    <script type="html/text" id="addDamageTemplate">
+        <div id="addDamageTemplate_popoverContent" class="searchFilterResultSection">
+        </div>
+    </script>
+
 
 </div>
 

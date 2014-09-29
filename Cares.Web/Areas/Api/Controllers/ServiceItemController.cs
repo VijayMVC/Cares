@@ -70,7 +70,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return serviceItemService.SaveServiceItem(serviceItem.CreateFrom()).CreateFromm();
+            return serviceItemService.SaveServiceItem(serviceItem.CreateFrom()).CreateFrom();
         }
 
         #endregion

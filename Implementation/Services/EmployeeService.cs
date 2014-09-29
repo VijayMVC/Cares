@@ -129,6 +129,14 @@ namespace Cares.Implementation.Services
         }
 
         /// <summary>
+        /// Get All Chauffers
+        /// </summary>
+        public IEnumerable<Employee> GetAllChauffers(GetRaChaufferRequest request)
+        {
+            return employeeRepository.GetAllChauffers(request);
+        }
+
+        /// <summary>
         /// Delete Employee
         /// </summary>
         /// <param name="product"></param>
