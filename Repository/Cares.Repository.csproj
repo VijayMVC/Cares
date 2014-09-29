@@ -200,6 +200,8 @@
     <Compile Include="Repositories\RaServiceItemRepository.cs" />
     <Compile Include="Repositories\RaVehicleCheckListRepository.cs" />
     <Compile Include="Repositories\RegionRepository.cs" />
+    <Compile Include="Repositories\SeasonalDiscountMainRepository.cs" />
+    <Compile Include="Repositories\SeasonalDiscountRepository.cs" />
     <Compile Include="Repositories\ServiceItemRepository.cs" />
     <Compile Include="Repositories\ServiceRtMainRepository.cs" />
     <Compile Include="Repositories\ServiceRtRepository.cs" />

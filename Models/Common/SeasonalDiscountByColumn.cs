@@ -1,10 +1,11 @@
 ﻿namespace Cares.Models.Common
 {
     /// <summary>
-    /// Additional Charge By Column
+    /// Seasonal Discount By Column
     /// </summary>
-    public enum AdditionalChargeByColumn
+    public enum SeasonalDiscountByColumn
     {
+
         /// <summary>
         /// Code
         /// </summary>

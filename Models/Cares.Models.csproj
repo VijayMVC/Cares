@@ -109,6 +109,7 @@
     <Compile Include="Common\ChaufferChargeByColumn.cs" />
     <Compile Include="Common\NrtTypeByColumn.cs" />
     <Compile Include="Common\DiscountTypeEnum.cs" />
+    <Compile Include="Common\SeasonalDiscountByColumn.cs" />
     <Compile Include="Common\VehicleMovementEnum.cs" />
     <Compile Include="Common\PricingStrategyEnum.cs" />
     <Compile Include="Common\AdditionalChargeByColumn.cs" />
@@ -309,6 +310,7 @@
     <Compile Include="RequestModels\JobTypeSearchRequestResponse.cs" />
     <Compile Include="RequestModels\RegionSearchRequest.cs" />
     <Compile Include="RequestModels\RegionSearchRequestResponse.cs" />
+    <Compile Include="RequestModels\SeasonalDiscountSearchRequest.cs" />
     <Compile Include="RequestModels\ServiceItemSearchRequest.cs" />
     <Compile Include="RequestModels\ServiceRateSearchRequest.cs" />
     <Compile Include="RequestModels\OperationSearchRequest.cs" />
@@ -369,6 +371,9 @@
     <Compile Include="ResponseModels\ProductResponse.cs" />
     <Compile Include="ResponseModels\RegionBaseDataResponse.cs" />
     <Compile Include="ResponseModels\RegionResponse.cs" />
+    <Compile Include="ResponseModels\SeasonalDiscountBaseResponse.cs" />
+    <Compile Include="ResponseModels\SeasonalDiscountMainContent.cs" />
+    <Compile Include="ResponseModels\SeasonalDiscountSearchResponse.cs" />
     <Compile Include="ResponseModels\ServiceItemBaseDataResponse.cs" />
     <Compile Include="ResponseModels\ServiceItemSearchRequestResponse.cs" />
     <Compile Include="ResponseModels\ServiceRateBaseResponse.cs" />

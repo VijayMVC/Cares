@@ -449,6 +449,16 @@ namespace Cares.Repository.BaseRepository
 
         public DbSet<RaServiceItem> RaServiceItems { get; set; }
 
+        /// <summary>
+        /// Seasonal Discount Db set
+        /// </summary>
+        public DbSet<SeasonalDiscountMain> SeasonalDiscountMains { get; set; }
+
+        /// <summary>
+        /// Seasonal Discount Main Db set
+        /// </summary>
+        public DbSet<SeasonalDiscount> SeasonalDiscounts { get; set; }
+
         #endregion
     }
 }

@@ -420,6 +420,7 @@
     <Compile Include="Services\AdditionalChargeService.cs" />
     <Compile Include="Services\AddressBaseDataService.cs" />
     <Compile Include="Services\AdditionalDriverService.cs" />
+    <Compile Include="Services\SeasonalDiscountService.cs" />
     <Compile Include="Services\VehicleCheckListService.cs" />
     <Compile Include="Services\NrtTypeService.cs" />
     <Compile Include="Services\ServiceItemService.cs" />
