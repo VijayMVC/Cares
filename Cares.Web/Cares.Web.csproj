@@ -231,8 +231,11 @@
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeDetailController.cs" />
+    <Compile Include="Areas\Api\Controllers\SeasonalDiscountBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\SeasonalDiscountController.cs" />
     <Compile Include="Areas\Api\Controllers\BpMainTypeController.cs" />
     <Compile Include="Areas\Api\Controllers\DocumentGroupController.cs" />
+    <Compile Include="Areas\Api\Controllers\SeasonalDiscountDetailController.cs" />
     <Compile Include="Areas\Api\Controllers\VehicleCheckListController.cs" />
     <Compile Include="Areas\Api\Controllers\NrtTypeController.cs" />
     <Compile Include="Areas\Api\Controllers\NrtTypeBaseController.cs" />
@@ -355,6 +358,7 @@
     <Compile Include="ModelMappers\RaCustomerDocumentMapper.cs" />
     <Compile Include="ModelMappers\RaDriverMapper.cs" />
     <Compile Include="ModelMappers\NrtTypeMapper.cs" />
+    <Compile Include="ModelMappers\SeasonalDiscountMapper.cs" />
     <Compile Include="ModelMappers\ServiceItemMapper.cs" />
     <Compile Include="ModelMappers\RaAdditionalChargeMapper.cs" />
     <Compile Include="ModelMappers\RaMainMapper.cs" />
@@ -513,6 +517,11 @@
     <Compile Include="Models\RegionBaseDataResponse.cs" />
     <Compile Include="Models\CitySearchRequestResponse.cs" />
     <Compile Include="Models\RegionSearchRequestResponse.cs" />
+    <Compile Include="Models\SeasonalDiscount.cs" />
+    <Compile Include="Models\SeasonalDiscountBaseResponse.cs" />
+    <Compile Include="Models\SeasonalDiscountMain.cs" />
+    <Compile Include="Models\SeasonalDiscountMainContent.cs" />
+    <Compile Include="Models\SeasonalDiscountSearchResponse.cs" />
     <Compile Include="Models\ServiceItem.cs" />
     <Compile Include="Models\ServiceItemBaseDataResponse.cs" />
     <Compile Include="Models\ServiceItemSearchRequestResponse.cs" />
@@ -1112,6 +1121,10 @@
     <Content Include="Areas\Organization\Scripts\workplaceType.model.js" />
     <Content Include="Areas\Organization\Scripts\workplaceType.view.js" />
     <Content Include="Areas\Organization\Scripts\workplaceType.viewModel.js" />
+    <Content Include="Areas\Pricing\Scripts\seasonalDiscount.dataservice.js" />
+    <Content Include="Areas\Pricing\Scripts\seasonalDiscount.model.js" />
+    <Content Include="Areas\Pricing\Scripts\seasonalDiscount.view.js" />
+    <Content Include="Areas\Pricing\Scripts\seasonalDiscount.viewModel.js" />
     <Content Include="Areas\Pricing\Scripts\serviceItem.dataservice.js" />
     <Content Include="Areas\Pricing\Scripts\serviceItem.model.js" />
     <Content Include="Areas\Pricing\Scripts\serviceItem.view.js" />
@@ -1849,6 +1862,8 @@
     </Content>
     <Content Include="Areas\Fleet\Views\Home\VehicleCheckList.cshtml" />
     <Content Include="Areas\Fleet\Views\Home\_VehicleCheckListEditor.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\SeasonalDiscount.cshtml" />
+    <Content Include="Areas\Pricing\Views\Tariff\_SeasonalDiscountEditor.cshtml" />
     <Content Include="Areas\BusinessPartner\Views\Home\_DocumentGroupEditor.cshtml" />
     <Content Include="Areas\BusinessPartner\Views\Home\DocumentGroup.cshtml" />
     <Content Include="Content\DocumentGroup.less" />

@@ -53,6 +53,7 @@
     <Compile Include="IServices\IAdditionalChargeService.cs" />
     <Compile Include="IServices\IAddressBaseDataService.cs" />
     <Compile Include="IServices\IChaufferChargeService.cs" />
+    <Compile Include="IServices\ISeasonalDiscountService.cs" />
     <Compile Include="IServices\IBpMainTypeService.cs" />
     <Compile Include="IServices\IDocumentGroupService.cs" />
     <Compile Include="IServices\IVehicleCheckListService.cs" />
@@ -109,6 +110,8 @@
     <Compile Include="Repository\ILicenseTypeRepository.cs" />
     <Compile Include="Repository\IMaintenanceTypeRepository.cs" />
     <Compile Include="Repository\IRAServiceItemRepository.cs" />
+    <Compile Include="Repository\ISeasonalDiscountMainRepository.cs" />
+    <Compile Include="Repository\ISeasonalDiscountRepository.cs" />
     <Compile Include="Repository\IServiceItemRepository.cs" />
     <Compile Include="Repository\IServiceRtMainRepository.cs" />
     <Compile Include="Repository\IServiceRtRepository.cs" />

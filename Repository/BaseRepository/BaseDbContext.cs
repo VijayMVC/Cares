@@ -461,6 +461,16 @@ namespace Cares.Repository.BaseRepository
         /// </summary>
         public DbSet<WorkPlace> WorkPlaces { get; set; }
 
+        /// <summary>
+        /// Seasonal Discount Db set
+        /// </summary>
+        public DbSet<SeasonalDiscountMain> SeasonalDiscountMains { get; set; }
+
+        /// <summary>
+        /// Seasonal Discount Main Db set
+        /// </summary>
+        public DbSet<SeasonalDiscount> SeasonalDiscounts { get; set; }
+
         #endregion
     }
 }

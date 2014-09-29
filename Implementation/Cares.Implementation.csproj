@@ -440,6 +440,7 @@
     <Compile Include="Services\AdditionalChargeService.cs" />
     <Compile Include="Services\AddressBaseDataService.cs" />
     <Compile Include="Services\AdditionalDriverService.cs" />
+    <Compile Include="Services\SeasonalDiscountService.cs" />
     <Compile Include="Services\BpMainTypeService.cs" />
     <Compile Include="Services\DocumentGroupService.cs" />
     <Compile Include="Services\VehicleCheckListService.cs" />

@@ -21,6 +21,7 @@
             "additionalDriverCharge": ist.siteUrl + "/Areas/Pricing/Scripts",
             "additionalCharge": ist.siteUrl + "/Areas/Pricing/Scripts",
             "chaufferCharge": ist.siteUrl + "/Areas/Pricing/Scripts",
+            "seasonalDiscount": ist.siteUrl + "/Areas/Pricing/Scripts",
             "rentalAgreement": ist.siteUrl + "/Areas/RentalAgreement/Scripts",
             "Organization": ist.siteUrl + "/Areas/Organization/Scripts",
             "company": ist.siteUrl + "/Areas/Organization/Scripts",
