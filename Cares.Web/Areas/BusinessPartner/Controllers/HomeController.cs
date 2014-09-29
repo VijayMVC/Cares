@@ -12,5 +12,9 @@ namespace Cares.Web.Areas.BusinessPartner.Controllers
         {
             return View();
         }
+        public ActionResult DocumentGroup()
+        {
+            return View();
+        }
 	}
 }

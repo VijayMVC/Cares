@@ -231,6 +231,8 @@
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeDetailController.cs" />
+    <Compile Include="Areas\Api\Controllers\BpMainTypeController.cs" />
+    <Compile Include="Areas\Api\Controllers\DocumentGroupController.cs" />
     <Compile Include="Areas\Api\Controllers\VehicleCheckListController.cs" />
     <Compile Include="Areas\Api\Controllers\NrtTypeController.cs" />
     <Compile Include="Areas\Api\Controllers\NrtTypeBaseController.cs" />
@@ -337,12 +339,14 @@
     <Compile Include="Helper\CultureHelper.cs" />
     <Compile Include="ModelMappers\AdditionalChargeMapper.cs" />
     <Compile Include="ModelMappers\AdditionalDriverChargeMapper.cs" />
+    <Compile Include="ModelMappers\BpMainTypeMapper.cs" />
     <Compile Include="ModelMappers\ChaufferChargeMapper.cs" />
     <Compile Include="ModelMappers\DesigGradeMapper.cs" />
     <Compile Include="ModelMappers\DesignationMapper.cs" />
     <Compile Include="ModelMappers\DiscountSubTypeMapper.cs" />
     <Compile Include="ModelMappers\DiscountTypeMapper.cs" />
     <Compile Include="ModelMappers\EmpStatusMapper.cs" />
+    <Compile Include="ModelMappers\DocumentGroupRepositoryMapper.cs" />
     <Compile Include="ModelMappers\InsuranceRateMapper.cs" />
     <Compile Include="ModelMappers\InsuranceTypeMapper.cs" />
     <Compile Include="ModelMappers\JobTypeMapper.cs" />
@@ -378,6 +382,8 @@
     <Compile Include="Models\Area.cs" />
     <Compile Include="Models\AreaBaseDataResponse.cs" />
     <Compile Include="Models\AreaSearchRequestResponse.cs" />
+    <Compile Include="Models\BpMainTypeSearchRequestResponse.cs" />
+    <Compile Include="Models\BusinessPartnerMainType.cs" />
     <Compile Include="Models\BusinessSegment.cs" />
     <Compile Include="Models\BusinessSegmentSearchRequestResponse.cs" />
     <Compile Include="Models\ChaufferCharge.cs" />
@@ -403,6 +409,8 @@
     <Compile Include="Models\DiscountType.cs" />
     <Compile Include="Models\DiscountTypeDropDown.cs" />
     <Compile Include="Models\DiscountTypeSearchRequestResponse.cs" />
+    <Compile Include="Models\DocumentGroup.cs" />
+    <Compile Include="Models\DocumentGroupSearchRequestResponse.cs" />
     <Compile Include="Models\EmpAuthOperationsWorkplace.cs" />
     <Compile Include="Models\EmpDocsInfo.cs" />
     <Compile Include="Models\EmpJobInfo.cs" />
@@ -980,6 +988,10 @@
     <Compile Include="ViewModels\Common\MessageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\BusinessPartner\Models\documentGroup.dataservice.js" />
+    <Content Include="Areas\BusinessPartner\Models\documentGroup.model.js" />
+    <Content Include="Areas\BusinessPartner\Models\documentGroup.view.js" />
+    <Content Include="Areas\BusinessPartner\Models\documentGroup.viewModel.js" />
     <Content Include="Areas\BusinessPartner\Scripts\businessPartner.view.js" />
     <Content Include="Areas\BusinessPartner\Scripts\businessPartner.viewModel.js" />
     <Content Include="Areas\BusinessPartner\Scripts\businessPartner.dataservice.js" />
@@ -2005,6 +2017,8 @@
     </Content>
     <Content Include="Areas\Fleet\Views\Home\VehicleCheckList.cshtml" />
     <Content Include="Areas\Fleet\Views\Home\_VehicleCheckListEditor.cshtml" />
+    <Content Include="Areas\BusinessPartner\Views\Home\_DocumentGroupEditor.cshtml" />
+    <Content Include="Areas\BusinessPartner\Views\Home\DocumentGroup.cshtml" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
@@ -2156,7 +2170,6 @@
     <Folder Include="Areas\Api\Views\WorkPlaceTypeBase\" />
     <Folder Include="Areas\Api\Views\workplaceType\" />
     <Folder Include="Areas\Api\Views\Workplace\" />
-    <Folder Include="Areas\BusinessPartner\Models\" />
     <Folder Include="Areas\Common\Controllers\" />
     <Folder Include="Areas\Common\Models\" />
     <Folder Include="Areas\EmployeeManagement\Models\" />

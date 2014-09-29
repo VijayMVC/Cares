@@ -43,9 +43,10 @@
             "serviceType": "/Areas/Pricing/Scripts",
             "serviceItem": "/Areas/Pricing/Scripts",
             "nRTType": "/Areas/NonRevenueTicket/Scripts",
-            "vehicleCheckList": "/Areas/Fleet/Scripts"
+            "vehicleCheckList": "/Areas/Fleet/Scripts",
+            "documentGroup": "/Areas/BusinessPartner/Models",
 
-
+            
 
         }
     }); 

@@ -132,6 +132,26 @@
     <Compile Include="Helpers\RentalCharge.cs" />
     <Compile Include="Helpers\TariffTypeHelper.cs" />
     <Compile Include="Identity\IdentityOperation.cs" />
+    <Compile Include="Resources\BusinessPartner\BpMainType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BpMainType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\BusinessPartner\BpMainType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BpMainType.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\BusinessPartner\DocumentGroup.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DocumentGroup.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\BusinessPartner\DocumentGroup.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DocumentGroup.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\EmployeeManagement\Designation.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -420,6 +440,8 @@
     <Compile Include="Services\AdditionalChargeService.cs" />
     <Compile Include="Services\AddressBaseDataService.cs" />
     <Compile Include="Services\AdditionalDriverService.cs" />
+    <Compile Include="Services\BpMainTypeService.cs" />
+    <Compile Include="Services\DocumentGroupService.cs" />
     <Compile Include="Services\VehicleCheckListService.cs" />
     <Compile Include="Services\NrtTypeService.cs" />
     <Compile Include="Services\ServiceItemService.cs" />
@@ -496,6 +518,22 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\BusinessPartner\BpMainType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BpMainType.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\BpMainType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BpMainType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\DocumentGroup.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DocumentGroup.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\DocumentGroup.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DocumentGroup.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\EmployeeManagement\Designation.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Designation.ar.Designer.cs</LastGenOutput>

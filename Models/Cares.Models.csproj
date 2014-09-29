@@ -106,7 +106,9 @@
     <Compile Include="CommonTypes\DepartmentType.cs" />
     <Compile Include="Common\BillingSummary.cs" />
     <Compile Include="Common\AllocationStatusEnum.cs" />
+    <Compile Include="Common\BpMainTypeByColumn.cs" />
     <Compile Include="Common\ChaufferChargeByColumn.cs" />
+    <Compile Include="Common\DocumentGroupByColumn.cs" />
     <Compile Include="Common\NrtTypeByColumn.cs" />
     <Compile Include="Common\DiscountTypeEnum.cs" />
     <Compile Include="Common\VehicleMovementEnum.cs" />
@@ -280,6 +282,8 @@
     <Compile Include="RequestModels\AdditionalDriverChargeSearchRequest.cs" />
     <Compile Include="RequestModels\AreaSearchRequest.cs" />
     <Compile Include="RequestModels\AreaSearchRequestResponse.cs" />
+    <Compile Include="RequestModels\BpMainTypeSearchRequest.cs" />
+    <Compile Include="RequestModels\BpMainTypeSearchRequestResponse.cs" />
     <Compile Include="RequestModels\BusinessSegmentSearchRequest.cs" />
     <Compile Include="RequestModels\ChaufferChargeSearchRequest.cs" />
     <Compile Include="RequestModels\CitySearchRequestResponse.cs" />
@@ -293,6 +297,8 @@
     <Compile Include="RequestModels\DiscountSubTypeSearchRequestResponse.cs" />
     <Compile Include="RequestModels\DiscountTypeSearchRequest.cs" />
     <Compile Include="RequestModels\DiscountTypeSearchRequestResponse.cs" />
+    <Compile Include="RequestModels\DocumentGroupSearchRequest.cs" />
+    <Compile Include="RequestModels\DocumentGroupSearchRequestResponse.cs" />
     <Compile Include="RequestModels\EmpSearchRequest.cs" />
     <Compile Include="RequestModels\EmpSearchRequestResponse.cs" />
     <Compile Include="RequestModels\GetBusinessPartnerRequest.cs" />
