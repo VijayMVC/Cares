@@ -1,74 +1,65 @@
 ﻿/*
-    Module with the view model for the Region
+    Module with the view model for the Document Group
 */
 define("documentGroup/documentGroup.viewModel",
     ["jquery", "amplify", "ko", "documentGroup/documentGroup.dataservice", "documentGroup/documentGroup.model",
     "common/confirmation.viewModel", "common/pagination"],
     function($, amplify, ko, dataservice, model, confirmation, pagination) {
         var ist = window.ist || {};
-        ist.Region = {
+        ist.DocumentGroup = {
             viewModel: (function() { 
                 var view,
-                    //array to save Regions
-                    regions = ko.observableArray([]),
-
-                    //array to save basa data country list
-                    baseCountriesList = ko.observableArray([]),
-
+                    //array to save Document Groups
+                    documentGroups = ko.observableArray([]),
                     //pager%
                     pager = ko.observable(),
                     //org code filter in filter sec
                     searchFilter = ko.observable(),
-                    baseCountryFilter = ko.observable(),
-
                     //sorting
                     sortOn = ko.observable(1),
                     //Assending  / Desending
                     sortIsAsc = ko.observable(true),
                     //to control the visibility of editor sec
-                    isRegionEditorVisible = ko.observable(false),
+                    isDocumentGroupEditorVisible = ko.observable(false),
                     //to control the visibility of filter ec
                     filterSectionVisilble = ko.observable(false),
-
-
                      // Editor View Model
-                    editorViewModel = new ist.ViewModel(model.regionDetail),
-                    // Selected Business Segment
-                    selectedRegion = editorViewModel.itemForEditing,
-
+                    editorViewModel = new ist.ViewModel(model.DocumentGroupDetail),
+                    // Selected Document Group
+                    selectedDocumentGroup = editorViewModel.itemForEditing,
                     //save button handler
                     onSavebtn = function() {
-                    if (dobeforeRegion())
-                        saveRegion(selectedRegion());
+                        if (dobeforeDocumentGroup())
+                            saveDocumentGroup(selectedDocumentGroup());
                 },
-                //Save Regions
-                    saveRegion = function(item) {
-                        dataservice.saveRegion(item.convertToServerData(), {
+                //Save Document Group
+                    saveDocumentGroup = function (item) {
+                        dataservice.saveDocumentGroup(item.convertToServerData(), {
                         success: function(dataFromServer) {
-                            var newItem = model.regionServertoClinetMapper(dataFromServer);
+                            var newItem = model.documentGroupServertoClinetMapper(dataFromServer);
                             if (item.id() !== undefined) {
-                                var newObjtodelete = regions.find(function(temp) {
+                                var newObjtodelete = documentGroups.find(function(temp) {
                                     return temp.id() == newItem.id();
                                 });
-                                regions.remove(newObjtodelete);
-                                regions.push(newItem);
+                                documentGroups.remove(newObjtodelete);
+                                documentGroups.push(newItem);
                             } else
-                                regions.push(newItem);
-                            isRegionEditorVisible(false);
-                            toastr.success(ist.resourceText.RegionSaveSuccessMessage);
+                                documentGroups.push(newItem);
+                            isDocumentGroupEditorVisible(false);
+                            toastr.success(ist.resourceText.DocumentGroupSuccessfullySavedMessage);
                         },
                         error: function(exceptionMessage, exceptionType) {
                             if (exceptionType === ist.exceptionType.CaresGeneralException)
                                 toastr.error(exceptionMessage);
                             else
-                                toastr.error(ist.resourceText.RegionSaveFailError);
+                                toastr.error(ist.resourceText.FailedToSaveDocumentGroupError);
                         }
                     });
                 },
                 //validation check 
-                    dobeforeRegion = function() {
-                    if (!selectedRegion().isValid()) {
-                        selectedRegion().errors.showAllMessages();
+                    dobeforeDocumentGroup = function () {
+                    if (!selectedDocumentGroup().isValid()) {
+                        selectedDocumentGroup().errors.showAllMessages();
                         return false;
                     }
                     return true;
@@ -76,56 +67,55 @@ define("documentGroup/documentGroup.viewModel",
                 //cancel button handler
                     onCancelbtn = function() {
                     editorViewModel.revertItem();
-                    isRegionEditorVisible(false);
+                    isDocumentGroupEditorVisible(false);
                 },
-                // create new Region
+                // create new Document Group
                     onCreateForm = function () {
-                    var region = new model.regionDetail();
-                    editorViewModel.selectItem(region);
-                    isRegionEditorVisible(true);
+                    var documentGroup = new model.DocumentGroupDetail();
+                    editorViewModel.selectItem(documentGroup);
+                    isDocumentGroupEditorVisible(true);
                 },
                 //reset butto handle 
                     resetResuults = function() {
                     searchFilter(undefined);
-                    baseCountryFilter(undefined);
-                    getRegions();
+                    getDocumentGroups();
                 },
                 //delete button handler
                     onDeleteItem = function(item) {
                     if (!item.id()) {
-                        regions.remove(item);
+                        documentGroups.remove(item);
                         return;
                     }
                     // Ask for confirmation
                     confirmation.afterProceed(function() {
-                        deleteRegion(item);
+                        deleteDocumentGroup(item);
                     });
                     confirmation.show();
                 },
                 //edit button handler
                     onEditItem = function(item) {
                     editorViewModel.selectItem(item);
-                    isRegionEditorVisible(true);
+                    isDocumentGroupEditorVisible(true);
                 },
-                //delete Region
-                    deleteRegion = function(region) {
-                       dataservice.deleteRegion(region.convertToServerData(), {
+                //delete Document Group
+                    deleteDocumentGroup = function (region) {
+                        dataservice.deleteDocumentGroup(region.convertToServerData(), {
                         success: function() {
-                            regions.remove(region);
-                            toastr.success(ist.resourceText.RegionDeleteSuccessMessage);
+                            documentGroups.remove(region);
+                            toastr.success(ist.resourceText.DocumentGroupSuccessfullyDeletedMessage);
                         },
                         error: function(exceptionMessage, exceptionType) {
                             if (exceptionType === ist.exceptionType.CaresGeneralException)
                                 toastr.error(exceptionMessage);
                             else
-                                toastr.error(ist.resourceText.RegionDeleteFailError);
+                                toastr.error(ist.resourceText.FailedToDeleteDocumentGroupError);
                         }
                     });
                 },
                 //search button handler in filter section
                     search = function() {
                     pager().reset();
-                    getRegions();
+                    getDocumentGroups();
                 },
                 //hide filte section
                     hideFilterSection = function() {
@@ -135,12 +125,11 @@ define("documentGroup/documentGroup.viewModel",
                     showFilterSection = function() {
                         filterSectionVisilble(true);
                     },
-                    //get Regions list from Dataservice
-                    getRegions = function() {
-                        dataservice.getRegions(
+                    //get Document Group list from Dataservice
+                    getDocumentGroups = function () {
+                        dataservice.getDocumentGroups(
                         {
-                            RegionFilterText: searchFilter(),
-                            CountryId: baseCountryFilter(),
+                            DocumentGroupFilterText: searchFilter(),
                             PageSize: pager().pageSize(),
                             PageNo: pager().currentPage(),
                             SortBy: sortOn(),
@@ -148,47 +137,28 @@ define("documentGroup/documentGroup.viewModel",
                     },
                     {
                         success: function (data) {
-                            debugger;
-                            regions.removeAll();
+                            documentGroups.removeAll();
                             pager().totalCount(data.TotalCount);
-                            _.each(data.Regions, function (item) {
-                                regions.push(model.regionServertoClinetMapper(item));
+                            _.each(data.DocumentGroups, function (item) {
+                                documentGroups.push(model.documentGroupServertoClinetMapper(item));
                             });
                         },
                         error: function() {
                             isLoadingFleetPools(false);
-                            toastr.error(ist.resourceText.RegionLoadFailError);
+                            toastr.error(ist.resourceText.FailedToLoadDocumentGroupsError);
                         }
                     });
                     },
-                     //get Region base data
-                    getBaseData = function () {
-                        dataservice.getRegionBaseData(null, {
-                            success: function (data) {
-
-                                baseCountriesList.removeAll();
-                                ko.utils.arrayPushAll(baseCountriesList(), data.Countries);
-                                baseCountriesList.valueHasMutated();
-                            },
-                            error: function (exceptionMessage, exceptionType) {
-                                if (exceptionType === ist.exceptionType.CaresGeneralException) {
-                                    toastr.error(exceptionMessage);
-                                } else {
-                                    toastr.error(ist.resourceText.RegionBaseDataLoadFailError);
-                                }
-                            }
-                        });
-                    },
+                    
                 // Initialize the view model
                     initialize = function(specifiedView) {
                         view = specifiedView;
                         ko.applyBindings(view.viewModel, view.bindingRoot);
-                        pager(pagination.Pagination({ PageSize: 10 }, regions, getRegions));
-                        getBaseData();
-                        getRegions();
+                        pager(pagination.Pagination({ PageSize: 10 }, documentGroups, getDocumentGroups));
+                        getDocumentGroups();
                     };
                 return {
-                    regions: regions,
+                    documentGroups: documentGroups,
                     initialize: initialize,
                     search: search,
                     searchFilter: searchFilter,
@@ -196,7 +166,7 @@ define("documentGroup/documentGroup.viewModel",
                     sortIsAsc: sortIsAsc,
                     onCreateForm: onCreateForm,
                     filterSectionVisilble: filterSectionVisilble,
-                    isRegionEditorVisible: isRegionEditorVisible,
+                    isDocumentGroupEditorVisible: isDocumentGroupEditorVisible,
                     hideFilterSection: hideFilterSection,
                     showFilterSection: showFilterSection,
                     pager: pager,
@@ -204,14 +174,11 @@ define("documentGroup/documentGroup.viewModel",
                     onDeleteItem: onDeleteItem,
                     onEditItem: onEditItem,
                     onCancelbtn: onCancelbtn,
-                    selectedRegion: selectedRegion,
+                    selectedDocumentGroup: selectedDocumentGroup,
                     onSavebtn: onSavebtn,
-                    getRegions: getRegions,
-                    getBaseData: getBaseData,
-                    baseCountriesList: baseCountriesList,
-                    baseCountryFilter: baseCountryFilter
+                    getDocumentGroups: getDocumentGroups,
                 };
             })()
         };
-        return ist.Region.viewModel;
+        return ist.DocumentGroup.viewModel;
     });

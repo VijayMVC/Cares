@@ -13,84 +13,62 @@ define("documentGroup/documentGroup.dataservice", function () {
                 if (!isInitialized) {
 
 
-                    // Define request to get Regions 
-                    amplify.request.define('getRegions', 'ajax', {
-                        url: '/Api/Region',
+                    // Define request to get Document Groups
+                    amplify.request.define('getDocumentGroups', 'ajax', {
+                        url: '/Api/DocumentGroup',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
-                    // Define request to delete Region
-                    amplify.request.define('deleteRegion', 'ajax', {
-                        url: '/Api/Region',
+                    // Define request to delete Document Group
+                    amplify.request.define('deleteDocumentGroup', 'ajax', {
+                        url: '/Api/DocumentGroup',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
-                    // Define request to add/update Regio
-                    amplify.request.define('saveRegion', 'ajax', {
-                        url: '/Api/Region',
+                    // Define request to add/update Document Group
+                    amplify.request.define('saveDocumentGroup', 'ajax', {
+                        url: '/Api/DocumentGroup',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
                     });
-
-                    //Region base Data
-                    amplify.request.define('getRegionBaseData', 'ajax', {
-                        url: '/Api/RegionBase',
-                        dataType: 'json',
-                        decoder: amplify.request.decoders.istStatusDecoder,
-                        type: 'GET'
-                    });
-
                     isInitialized = true;
                 }
             },
-            // Get Regions
-            getRegions = function(params, callbacks) {
-                return amplify.request({
-                    resourceId: 'getRegions',
-                    success: callbacks.success,
-                    error: callbacks.error,
-                    data: params
-                });
-            },
-            //add-update Region.
-            saveRegion = function(params, callbacks) {
-                return amplify.request({
-                    resourceId: 'saveRegion',
-                    success: callbacks.success,
-                    error: callbacks.error,
-                    data: params
-                });
-            },
-            //delete Region.
-            deleteRegion = function (params, callbacks) {
-                return amplify.request({
-                    resourceId: 'deleteRegion',
-                    success: callbacks.success,
-                    error: callbacks.error,
-                    data: params
-                });
-            },
-
-
-            //  Region Base Data
-            getRegionBaseData = function (params, callbacks) {
+            // Get Document Groups
+            getDocumentGroups = function (params, callbacks) {
                 initialize();
                 return amplify.request({
-                    resourceId: 'getRegionBaseData',
+                    resourceId: 'getDocumentGroups',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: params
+                });
+            },
+            //add-update Document Group.
+            saveDocumentGroup = function (params, callbacks) {
+                return amplify.request({
+                    resourceId: 'saveDocumentGroup',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: params
+                });
+            },
+            //delete Document Group.
+            deleteDocumentGroup = function(params, callbacks) {
+                return amplify.request({
+                    resourceId: 'deleteDocumentGroup',
                     success: callbacks.success,
                     error: callbacks.error,
                     data: params
                 });
             };
-      
         return {
-            getRegionBaseData: getRegionBaseData,
-            saveRegion: saveRegion,
-            getRegions: getRegions,
-            deleteRegion: deleteRegion,
+            saveDocumentGroup: saveDocumentGroup,
+            getDocumentGroups: getDocumentGroups,
+            deleteDocumentGroup: deleteDocumentGroup,
 
         };
     })();

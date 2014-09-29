@@ -1,24 +1,20 @@
 ﻿@{
-    ViewBag.Title = Cares.Web.Resources.GeographicalHierarchy.Region.RegionLabel;
+    ViewBag.Title = Cares.Web.Resources.BusinessPartner.DocumentGroup.DocumentGroupLabel;
 }
-<div class="row" id="RegionBinding">
+<div class="row" id="documentGroupBinding">
 
-    <div class="row " data-bind="visible: !isRegionEditorVisible()">
-        <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.GeographicalHierarchy.Region.RegionLabel</h3>
+    <div class="row " data-bind="visible: !isDocumentGroupEditorVisible()">
+        <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.BusinessPartner.DocumentGroup.DocumentGroupLabel</h3>
         <div class="header-toolsSection">
             <a href="#" class="label label-default create-new-icon" data-bind="click: onCreateForm" title="@Cares.Web.Resources.Shared.Common.CreateNew">@Cares.Web.Resources.Shared.Common.New</a>
             <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title="@Cares.Web.Resources.Shared.Common.ShowFilter" style="display: none"></a>
         </div>
     </div>
-    <div class="row searchFilterSection" data-bind="visible: !isRegionEditorVisible() && filterSectionVisilble()" style="display: none">
+    <div class="row searchFilterSection" data-bind="visible: !isDocumentGroupEditorVisible() && filterSectionVisilble()" style="display: none">
         <div class="well">
             <form class="form-horizontal">
                 <div class="col-xs-3">
-                    <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.GeographicalHierarchy.Region.Search+">")" data-bind="value: searchFilter" />
-                </div>
-
-                <div class="col-md-3">
-                    <select class="form-control" data-bind="options: $root.baseCountriesList, optionsText: 'CountryCodeName', optionsValue: 'CountryId', optionsCaption: '&lt;' + '@Cares.Web.Resources.GeographicalHierarchy.Region.CountryName'+ '&gt;' , value:baseCountryFilter "></select>
+                    <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.BusinessPartner.DocumentGroup.Search + ">")" data-bind="value: searchFilter" />
                 </div>
 
                 <button type="submit" class="btn btn-success" data-bind="click: search">@Cares.Web.Resources.Shared.Common.Search</button>
@@ -27,21 +23,20 @@
             </form>
         </div>
     </div>
-    <div class="row searchFilterResultSection" data-bind="visible: !isRegionEditorVisible()">
+    <div class="row searchFilterResultSection" data-bind="visible: !isDocumentGroupEditorVisible()">
         <div class="well">
             <table id="OrgGroupTable" class="table table-condensed">
                 <thead>
                     <tr>
-                        <th class="Rcode"> <span id="1">@Cares.Web.Resources.GeographicalHierarchy.Region.Code<span class="icon-up"></span></span></th>
-                        <th class="Rname"> <span id="2">@Cares.Web.Resources.GeographicalHierarchy.Region.Name<span></span></span></th>
-                        <th class="RDes"> <span id="3">@Cares.Web.Resources.GeographicalHierarchy.Region.Description<span></span></span></th>
-                        <th class="RCountry"> <span id="4">@Cares.Web.Resources.GeographicalHierarchy.Region.CountryName<span></span></span></th>
+                        <th class="documentGroupCode"> <span id="1">@Cares.Web.Resources.BusinessPartner.DocumentGroup.Code<span class="icon-up"></span></span></th>
+                        <th class="documentGroupName"> <span id="2">@Cares.Web.Resources.BusinessPartner.DocumentGroup.Name<span></span></span></th>
+                        <th class="documentGroupDes"> <span>@Cares.Web.Resources.BusinessPartner.DocumentGroup.Description<span></span></span></th>
                         <th> <span></span></th>
                         <th> <span></span></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- ko template: { name: 'WorkplaceTypeFilterResultTemplate' , foreach: regions } -->
+                    <!-- ko template: { name: 'WorkplaceTypeFilterResultTemplate' , foreach: documentGroups } -->
                     <!-- /ko -->
                 </tbody>
             </table>
@@ -62,7 +57,6 @@
             <td data-bind="text: code"></td>
             <td data-bind="text: name"></td>
             <td data-bind="text: description"></td>
-            <td data-bind="text: countryName"></td>
             <td>
                 <!-- ko template: { name: 'editActionOrgRoupTemplate' } -->
                 <!-- /ko -->
@@ -85,13 +79,11 @@
     var ist = window.ist;
     @{
         <text>
-        ist.resourceText.RegionSaveSuccessMessage = '@Cares.Web.Resources.GeographicalHierarchy.Region.RegionSaveSuccessMessage';
-        ist.resourceText.RegionSaveFailError = '@Cares.Web.Resources.GeographicalHierarchy.Region.RegionSaveFailError';
-        ist.resourceText.RegionLoadFailError = '@Cares.Web.Resources.GeographicalHierarchy.Region.RegionLoadFailError';
-        ist.resourceText.RegionDeleteSuccessMessage = '@Cares.Web.Resources.GeographicalHierarchy.Region.RegionDeleteSuccessMessage';
-        ist.resourceText.RegionDeleteFailError = '@Cares.Web.Resources.GeographicalHierarchy.Region.RegionDeleteFailError';
-
-        ist.resourceText.RegionBaseDataLoadFailError = '@Cares.Web.Resources.GeographicalHierarchy.Region.RegionBaseDataLoadFailError';
+        ist.resourceText.DocumentGroupSuccessfullySavedMessage = '@Cares.Web.Resources.BusinessPartner.DocumentGroup.DocumentGroupSuccessfullySavedMessage';
+        ist.resourceText.FailedToSaveDocumentGroupError = '@Cares.Web.Resources.BusinessPartner.DocumentGroup.FailedToSaveDocumentGroupError';
+        ist.resourceText.FailedToLoadDocumentGroupsError = '@Cares.Web.Resources.BusinessPartner.DocumentGroup.FailedToLoadDocumentGroupsError';
+        ist.resourceText.DocumentGroupSuccessfullyDeletedMessage = '@Cares.Web.Resources.BusinessPartner.DocumentGroup.DocumentGroupSuccessfullyDeletedMessage';
+        ist.resourceText.FailedToDeleteDocumentGroupError = '@Cares.Web.Resources.BusinessPartner.DocumentGroup.FailedToDeleteDocumentGroupError';
         </text>
        }
     </script>
