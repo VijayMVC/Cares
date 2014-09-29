@@ -13,38 +13,38 @@ define("hireGroup/hireGroup.dataservice", function () {
 
                     // Define request to get Hire Group base data 
                     amplify.request.define('getHireGroupBase', 'ajax', {
-                        url: '/Api/HireGroupBase',
+                        url: ist.siteUrl + '/Api/HireGroupBase',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to get Hire Group 
                     amplify.request.define('getHireGroup', 'ajax', {
-                        url: '/Api/HireGroup',
+                        url: ist.siteUrl + '/Api/HireGroup',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to save Hire Group
                     amplify.request.define('createHireGroup', 'ajax', {
-                        url: '/Api/HireGroup',
+                        url: ist.siteUrl + '/Api/HireGroup',
                         dataType: 'json',
                         type: 'PUT'
                     });
 
                     // Define request to update Hire Group
                     amplify.request.define('updateHireGroup', 'ajax', {
-                        url: '/Api/HireGroup',
+                        url: ist.siteUrl + '/Api/HireGroup',
                         dataType: 'json',
                         type: 'POST'
                     });
                     // Define request to get Hire Group
                     amplify.request.define('getHireGroupDetailById', 'ajax', {
-                        url: '/Api/GetHireGroupDetailData',
+                        url: ist.siteUrl + '/Api/GetHireGroupDetailData',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to delete Hire Group
                     amplify.request.define('deleteHireGroup', 'ajax', {
-                        url: '/Api/HireGroup',
+                        url: ist.siteUrl + '/Api/HireGroup',
                         dataType: 'json',
                         type: 'DELETE'
                     });

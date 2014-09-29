@@ -13,32 +13,32 @@ define("additionalCharge/additionalCharge.dataservice", function () {
 
                     // Define request to get Additional Charge base 
                     amplify.request.define('getAdditionalChargeBase', 'ajax', {
-                        url: '/Api/AdditionalChargeBase',
+                        url: ist.siteUrl + '/Api/AdditionalChargeBase',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to get Additional Charges
                     amplify.request.define('getAdditionalCharges', 'ajax', {
-                        url: '/Api/AdditionalCharge',
+                        url: ist.siteUrl + '/Api/AdditionalCharge',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to get  Additional Charge detail
                     amplify.request.define('getAdditionalChargeDetail', 'ajax', {
-                        url: '/Api/AdditionalChargeDetail',
+                        url: ist.siteUrl + '/Api/AdditionalChargeDetail',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to save  Additional  Charges
                     amplify.request.define('saveAdditionalCharge', 'ajax', {
-                        url: '/Api/AdditionalCharge',
+                        url: ist.siteUrl + '/Api/AdditionalCharge',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
                     });
                     // Define request to delete Additional Charges
                     amplify.request.define('deleteAdditionalCharge', 'ajax', {
-                        url: '/Api/AdditionalCharge',
+                        url: ist.siteUrl + '/Api/AdditionalCharge',
                         dataType: 'json',
                         type: 'DELETE'
                     });

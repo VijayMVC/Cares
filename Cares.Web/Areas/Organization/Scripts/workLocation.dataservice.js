@@ -12,7 +12,7 @@ define("workLocation/workLocation.dataservice", function () {
                 if (!isInitialized) {
                     //get Work Location BaseData
                     amplify.request.define('getWorkLocationBaseData', 'ajax', {
-                        url: '/Api/WorkLocationBase',
+                        url: ist.siteUrl + '/Api/WorkLocationBase',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
@@ -20,28 +20,28 @@ define("workLocation/workLocation.dataservice", function () {
 
                     //save Work Location
                     amplify.request.define('saveWorkLocation', 'ajax', {
-                        url: '/Api/WorkLocation',
+                        url: ist.siteUrl + '/Api/WorkLocation',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
                     });
                     //get Work Locations
                     amplify.request.define('getWorkLocations', 'ajax', {
-                        url: '/Api/WorkLocation',
+                        url: ist.siteUrl + '/Api/WorkLocation',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
                     //delete Workplace
                     amplify.request.define('deleteWorkLocation', 'ajax', {
-                        url: '/Api/WorkLocation',
+                        url: ist.siteUrl + '/Api/WorkLocation',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
                     //delete Workplace
                     amplify.request.define('getWorkLocationPhones', 'ajax', {
-                        url: '/Api/Phone',
+                        url: ist.siteUrl + '/Api/Phone',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'

@@ -13,21 +13,21 @@ define("workplaceType/workplaceType.dataservice", function () {
                 if (!isInitialized) {
                     // Define request to get OrganizationGroup 
                     amplify.request.define('getWorkPlaceTypes', 'ajax', {
-                        url: '/Api/WorkPlaceType',
+                        url: ist.siteUrl + '/Api/WorkPlaceType',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
                     // Define request to delete OrganizationGroup
                     amplify.request.define('deleteWorkPlaceType', 'ajax', {
-                        url: '/Api/WorkPlaceType',
+                        url: ist.siteUrl + '/Api/WorkPlaceType',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
                     // Define request to add/update OrganizationGroup
                     amplify.request.define('saveWorkPlaceType', 'ajax', {
-                        url: '/Api/WorkPlaceType',
+                        url: ist.siteUrl + '/Api/WorkPlaceType',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'

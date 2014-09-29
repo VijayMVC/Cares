@@ -12,42 +12,42 @@ define("workplace/workplace.dataservice", function () {
                 if (!isInitialized) {
                     //get Workplace Base Data
                     amplify.request.define('getWorkplaceBaseData', 'ajax', {
-                        url: '/Api/WorkplaceBase',
+                        url: ist.siteUrl + '/Api/WorkplaceBase',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
                     //save Workplace
                     amplify.request.define('saveWorkplace', 'ajax', {
-                        url: '/Api/Workplace',
+                        url: ist.siteUrl + '/Api/Workplace',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
                     });
                     //get Workplaces
                     amplify.request.define('getWorkplaces', 'ajax', {
-                        url: '/Api/Workplace',
+                        url: ist.siteUrl + '/Api/Workplace',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
                     //delete Workplace
                     amplify.request.define('deleteWorkplace', 'ajax', {
-                        url: '/Api/Workplace',
+                        url: ist.siteUrl + '/Api/Workplace',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
                     //delete Workplace
                     amplify.request.define('getWorkplaceOperations', 'ajax', {
-                        url: '/Api/OperationsWorkPlace',
+                        url: ist.siteUrl + '/Api/OperationsWorkPlace',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
                     //update parent Workplace
                     amplify.request.define('updateParentWorkplace', 'ajax', {
-                        url: '/Api/WorkPlace',
+                        url: ist.siteUrl + '/Api/WorkPlace',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'

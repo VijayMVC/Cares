@@ -15,21 +15,21 @@ define("jobType/jobType.dataservice", function () {
 
                     // Define request to get Cities 
                     amplify.request.define('getJobTypes', 'ajax', {
-                        url: '/Api/JobType',
+                        url: ist.siteUrl + '/Api/JobType',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
                     // Define request to delete City
                     amplify.request.define('deleteJobType', 'ajax', {
-                        url: '/Api/JobType',
+                        url: ist.siteUrl + '/Api/JobType',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
                     // Define request to add/update City
                     amplify.request.define('saveJobType', 'ajax', {
-                        url: '/Api/JobType',
+                        url: ist.siteUrl + '/Api/JobType',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'

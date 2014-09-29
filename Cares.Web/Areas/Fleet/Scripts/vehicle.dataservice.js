@@ -13,19 +13,19 @@ define("vehicle/vehicle.dataservice", function () {
 
                     // Define request to get Vehicle base data 
                     amplify.request.define('getVehicleBase', 'ajax', {
-                        url: '/Api/VehicleBase',
+                        url: ist.siteUrl + '/Api/VehicleBase',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to get Vehicles  
                     amplify.request.define('getVehicles', 'ajax', {
-                        url: '/Api/Vehicle',
+                        url: ist.siteUrl + '/Api/Vehicle',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to save Vehicle
                     amplify.request.define('saveVehicle', 'ajax', {
-                        url: '/Api/Vehicle',
+                        url: ist.siteUrl + '/Api/Vehicle',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
@@ -33,13 +33,13 @@ define("vehicle/vehicle.dataservice", function () {
 
                     // Define request to get Vehicle
                     amplify.request.define('getVehicleDetailById', 'ajax', {
-                        url: '/Api/VehicleDetail',
+                        url: ist.siteUrl + '/Api/VehicleDetail',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to delete Vehicle
                     amplify.request.define('deleteVehicle', 'ajax', {
-                        url: '/Api/Vehicle',
+                        url: ist.siteUrl + '/Api/Vehicle',
                         dataType: 'json',
                         type: 'DELETE'
                     });
