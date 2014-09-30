@@ -3,6 +3,7 @@ using Cares.Implementation.Identity;
 using Cares.Implementation.Services;
 using Cares.Interfaces.Helpers;
 using Cares.Interfaces.IServices;
+using Cares.Interfaces.Repository;
 using Cares.Models.IdentityModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -80,8 +81,7 @@ namespace Cares.Implementation
             unityContainer.RegisterType<ISeasonalDiscountService, SeasonalDiscountService>();
             unityContainer.RegisterType<IDocumentGroupService, DocumentGroupService>();
             unityContainer.RegisterType<IBpMainTypeService, BpMainTypeService>();
-
-
+            unityContainer.RegisterType<IDocumentService, DocumentService>();
         }
     }
 }

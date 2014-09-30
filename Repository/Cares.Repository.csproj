@@ -136,6 +136,7 @@
     <Compile Include="Repositories\AdditionalChargeRepository.cs" />
     <Compile Include="Repositories\AdditionalChargeTypeRepository.cs" />
     <Compile Include="Repositories\BpSubTypeRepository.cs" />
+    <Compile Include="Repositories\BusinessPartnerDocumentRepository.cs" />
     <Compile Include="Repositories\ChaufferChargeRepository.cs" />
     <Compile Include="Repositories\AdditionalDriverChargeRepository.cs" />
     <Compile Include="Repositories\AddressRepository.cs" />
@@ -201,6 +202,7 @@
     <Compile Include="Repositories\PhoneTypeRepository.cs" />
     <Compile Include="Repositories\PricingStrategyRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
+    <Compile Include="Repositories\RACustomerDocumentRepository.cs" />
     <Compile Include="Repositories\RaServiceItemRepository.cs" />
     <Compile Include="Repositories\RaVehicleCheckListRepository.cs" />
     <Compile Include="Repositories\RegionRepository.cs" />

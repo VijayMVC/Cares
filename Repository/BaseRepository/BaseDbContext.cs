@@ -140,6 +140,10 @@ namespace Cares.Repository.BaseRepository
         /// Regions DB Set
         /// </summary>
         public DbSet<Region> Regions { get; set; }
+        public DbSet<BusinessPartnerDocument> BusinessPartnerDocuments { get; set; }
+        public DbSet<RaCustomerDocument> RaCustomerDocuments { get; set; }
+
+
         /// <summary>
         /// Regions DB Set
         /// </summary>

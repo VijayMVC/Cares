@@ -3,19 +3,19 @@
 namespace Cares.Web.Models
 {
     /// <summary>
-    /// Company Search Response web models
+    /// Document Search Request Response web model
     /// </summary>
-    public class CompanySearchRequestResponse
+    public class DocumentSearchRequestResponse
     {
 
         #region Public
         /// <summary>
-        /// Cities List
+        /// Documents List
         /// </summary>
-        public IEnumerable<Company> Companies { get; set; }
+        public IEnumerable<Document> Documents { get; set; }
 
         /// <summary>
-        /// Total Count of Cities
+        /// Total Count of Documents
         /// </summary>
         public int TotalCount { get; set; }
         #endregion

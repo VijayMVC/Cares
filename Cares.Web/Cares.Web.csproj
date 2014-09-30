@@ -231,6 +231,8 @@
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeDetailController.cs" />
+    <Compile Include="Areas\Api\Controllers\DocumentBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\DocumentController.cs" />
     <Compile Include="Areas\Api\Controllers\RentalAgreementChauffersController.cs" />
     <Compile Include="Areas\Api\Controllers\RentalAgreementServiceItemsController.cs" />
     <Compile Include="Areas\Api\Controllers\SeasonalDiscountBaseController.cs" />
@@ -350,6 +352,7 @@
     <Compile Include="ModelMappers\DesignationMapper.cs" />
     <Compile Include="ModelMappers\DiscountSubTypeMapper.cs" />
     <Compile Include="ModelMappers\DiscountTypeMapper.cs" />
+    <Compile Include="ModelMappers\DocumentMapper.cs" />
     <Compile Include="ModelMappers\EmpStatusMapper.cs" />
     <Compile Include="ModelMappers\DocumentGroupRepositoryMapper.cs" />
     <Compile Include="ModelMappers\InsuranceRateMapper.cs" />
@@ -415,8 +418,12 @@
     <Compile Include="Models\DiscountType.cs" />
     <Compile Include="Models\DiscountTypeDropDown.cs" />
     <Compile Include="Models\DiscountTypeSearchRequestResponse.cs" />
+    <Compile Include="Models\Document.cs" />
+    <Compile Include="Models\DocumentBaseDataResponse.cs" />
     <Compile Include="Models\DocumentGroup.cs" />
+    <Compile Include="Models\DocumentGroupDropDown.cs" />
     <Compile Include="Models\DocumentGroupSearchRequestResponse.cs" />
+    <Compile Include="Models\DocumentSearchRequestResponse.cs" />
     <Compile Include="Models\EmpAuthOperationsWorkplace.cs" />
     <Compile Include="Models\EmpDocsInfo.cs" />
     <Compile Include="Models\EmpJobInfo.cs" />

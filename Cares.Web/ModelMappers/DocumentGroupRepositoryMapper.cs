@@ -8,10 +8,22 @@ using Cares.Models.RequestModels;
 namespace Cares.Web.ModelMappers
 {
     /// <summary>
-    ///  Document Group Repository Mapper 
+    ///  Document Group Mapper 
     /// </summary>
     public static class DocumentGroupRepositoryMapper
     {
+        /// <summary>
+        ///  Create web model from entity [dropdown]
+        /// </summary>
+        public static Models.DocumentGroupDropDown CreateFromm(this DocumentGroup source)
+        {
+            return new Models.DocumentGroupDropDown
+            {
+                DocumentGroupId = source.DocumentGroupId,
+                DocumentGroupCodeName = source.DocumentGroupCode+" - "+source.DocumentGroupName
+            };
+        }
+
         /// <summary>
         ///  Create web model from entity
         /// </summary>
