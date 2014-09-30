@@ -5,7 +5,7 @@ namespace Cares.Web.Models
     /// <summary>
     /// Seasonal Discount Web Model
     /// </summary>
-    public sealed class SeasonalDiscount
+    public class SeasonalDiscount
     {
         /// <summary>
         /// Seasonal Discount ID
@@ -46,7 +46,7 @@ namespace Cares.Web.Models
         /// Vehicle Category ID
         /// </summary>
         public short? VehicleCategoryId { get; set; }
-        
+
         /// <summary>
         /// Vehicle Category Code Name
         /// </summary>
@@ -56,7 +56,7 @@ namespace Cares.Web.Models
         /// Vehicle Model ID
         /// </summary>
         public short? VehicleModelId { get; set; }
-        
+
         /// <summary>
         /// Vehicle Model Code Name
         /// </summary>
@@ -66,16 +66,44 @@ namespace Cares.Web.Models
         /// Hire Group ID
         /// </summary>
         public long? HireGroupId { get; set; }
-        
+
         /// <summary>
         /// Hire Group Code Name
         /// </summary>
-        public long? HireGroupCodeName { get; set; }
+        public string HireGroupCodeName { get; set; }
 
         /// <summary>
         /// Customer Type
         /// </summary>
         public short CustomerType { get; set; }
+
+        /// <summary>
+        /// Customer Type Code Name
+        /// </summary>
+        private string customerTypeCodeName;
+
+        /// <summary>
+        /// Customer Type Code Name
+        /// </summary>
+        public string CustomerTypeCodeName
+        {
+            get
+            {
+                if (CustomerType == 1)
+                {
+                    customerTypeCodeName = "Individual";
+                }
+                else if (CustomerType == 2)
+                {
+                    customerTypeCodeName = "Corporate";
+                }
+                else
+                {
+                    customerTypeCodeName = "Both";
+                }
+                return customerTypeCodeName;
+            }
+        }
 
         /// <summary>
         /// Model Year
@@ -100,6 +128,6 @@ namespace Cares.Web.Models
         /// <summary>
         /// Revision Number
         /// </summary>
-        public long RevisionNumber { get; set; }
+        public long? RevisionNumber { get; set; }
     }
 }

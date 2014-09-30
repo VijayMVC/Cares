@@ -7,7 +7,7 @@ namespace Cares.Web.Models
     /// <summary>
     /// Seasonal Discount Main Web Model
     /// </summary>
-    public sealed class SeasonalDiscountMain
+    public class SeasonalDiscountMain
     {
         #region Public Properties
 
@@ -53,7 +53,8 @@ namespace Cares.Web.Models
         /// <summary>
         /// Seasonal Discount
         /// </summary>
-        public IEnumerable<SeasonalDiscount> SeasonalDiscounts { get; set; }
+        //public IEnumerable<SeasonalDiscount> SeasonalDiscounts { get; set; }
+        public IEnumerable<SeasonalDiscount> SeasonalDiscountList { get; set; }
         #endregion
     }
 }

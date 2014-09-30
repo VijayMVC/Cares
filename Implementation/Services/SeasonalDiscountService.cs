@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using Cares.ExceptionHandling;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -113,7 +115,24 @@ namespace Cares.Implementation.Services
             {
                 UpdateSeasonalDiscount(seasonalDiscountMain, seasonalDiscountMainDbVersion);
             }
-            return null;
+            seasonalDiscountMainRepository.SaveChanges();
+            return new SeasonalDiscountMainContent
+                                              {
+                                                  SeasonalDiscountMainId = seasonalDiscountMain.SeasonalDiscountMainId,
+                                                  Code = seasonalDiscountMain.SeasonalDiscountMainCode,
+                                                  Name = seasonalDiscountMain.SeasonalDiscountMainName,
+                                                  Description = seasonalDiscountMain.SeasonalDiscountMainDescription,
+                                                  StartDt = seasonalDiscountMain.StartDt,
+                                                  EndDt = seasonalDiscountMain.EndDt,
+                                                  TariffTypeId = tariffType.TariffTypeId,
+                                                  CompanyId = tariffType.Operation.Department.Company.CompanyId,
+                                                  CompanyCodeName = tariffType.Operation.Department.Company.CompanyCode + " - " + tariffType.Operation.Department.Company.CompanyName,
+                                                  DepartmentId = tariffType.Operation.Department.DepartmentId,
+                                                  TariffTypeCodeName = tariffType.TariffTypeCode + " - " + tariffType.TariffTypeName,
+                                                  OperationId = tariffType.OperationId,
+                                                  OperationCodeName = tariffType.Operation.OperationCode + " - " + tariffType.Operation.OperationName,
+                                              };
+
         }
 
         /// <summary>
@@ -124,14 +143,13 @@ namespace Cares.Implementation.Services
         private void UpdateSeasonalDiscount(SeasonalDiscountMain seasonalDiscountMain,
             SeasonalDiscountMain seasonalDiscountMainDbVersion)
         {
+            //Validate Seasonal Discount
+            SeasonalDiscountValidation(seasonalDiscountMain, false);
             seasonalDiscountMainDbVersion.RecLastUpdatedBy = seasonalDiscountMainRepository.LoggedInUserIdentity;
             seasonalDiscountMainDbVersion.RecLastUpdatedDt = DateTime.Now;
             seasonalDiscountMainDbVersion.StartDt = seasonalDiscountMain.StartDt;
             if (seasonalDiscountMain.SeasonalDiscounts != null)
             {
-                //Validate Chauffer Charge Main
-                //ChaufferChargeValidation(chaufferChargeMain, false);
-
                 foreach (var item in seasonalDiscountMain.SeasonalDiscounts)
                 {
                     if (
@@ -194,8 +212,8 @@ namespace Cares.Implementation.Services
         /// <param name="seasonalDiscountMain"></param>
         private void AddSeasonalDiscount(SeasonalDiscountMain seasonalDiscountMain)
         {
-            //Validate Chauffer Charge Main
-            //SeasonalDiscountValidation(chaufferChargeMain, true);
+            //Validate Seasonal Discount
+            SeasonalDiscountValidation(seasonalDiscountMain, true);
             seasonalDiscountMain.IsActive = true;
             seasonalDiscountMain.IsDeleted =
                 seasonalDiscountMain.IsPrivate = seasonalDiscountMain.IsReadOnly = false;
@@ -251,6 +269,67 @@ namespace Cares.Implementation.Services
             return seasonalDiscountRepository.GetSeasonalDiscountsBySeasonalDiscountMainId(seasonalDiscountMainId);
         }
 
+        /// <summary>
+        /// Validate Seasonal Discount Main
+        /// </summary>
+        /// <param name="seasonalDiscountMain"></param>
+        /// <param name="addFlag"></param>
+        private void SeasonalDiscountValidation(SeasonalDiscountMain seasonalDiscountMain, bool addFlag)
+        {
+            DateTime sDisMainStDt, sDisMainEndDt, sDisMainDbStDt, sDisMainDbEndDt;
+            sDisMainStDt = Convert.ToDateTime(seasonalDiscountMain.StartDt);
+            sDisMainEndDt = Convert.ToDateTime(seasonalDiscountMain.EndDt);
+            if (addFlag)
+            {
+
+                if (sDisMainStDt.Date < DateTime.Now.Date)
+                    throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.SeasonalDiscount.InvalidStartDate));
+                if (sDisMainEndDt < sDisMainStDt)
+                    throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.SeasonalDiscount.InvalidEndDate));
+                IEnumerable<SeasonalDiscountMain> seasonalDiscountMains = seasonalDiscountMainRepository.LoadSeasonalDiscountMainByTariffTypeCode(seasonalDiscountMain.TariffTypeCode);
+                foreach (var item in seasonalDiscountMains)
+                {
+                    sDisMainDbStDt = item.StartDt;
+                    sDisMainDbEndDt = item.EndDt;
+                    if ((sDisMainStDt <= sDisMainDbStDt) && ((sDisMainDbEndDt) <= (sDisMainEndDt)))
+                        throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.SeasonalDiscount.ExistingSeasonalDiscountOverlaps));
+                    if ((sDisMainDbStDt <= sDisMainStDt) && ((sDisMainEndDt) <= (sDisMainDbEndDt)))
+                        throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.SeasonalDiscount.CurrentSeasonalDiscountOverlaps));
+                    if ((sDisMainDbStDt <= sDisMainStDt) && (sDisMainStDt <= (sDisMainDbEndDt)) && ((sDisMainDbEndDt) <= (sDisMainEndDt)))
+                        throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.SeasonalDiscount.StartSeasonalDiscountDurationOverlaps));
+                    if ((sDisMainStDt <= sDisMainDbStDt) && (sDisMainDbStDt <= (sDisMainEndDt)) && ((sDisMainEndDt) <= (sDisMainDbEndDt)))
+                        throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.SeasonalDiscount.EndSeasonalDiscountDurationOverlaps));
+                }
+            }
+            if (seasonalDiscountMain.SeasonalDiscounts != null)
+            {
+                foreach (var item in seasonalDiscountMain.SeasonalDiscounts)
+                {
+                    //if (CheckSeasonalDiscountDuplicate(oSeasonalDiscountParam, i))
+                    //{
+                    //    throw new CaresBusinessException("Pricing-SeasonalDiscountDuplicated", null);
+                    //}
+                    DateTime sDisStDt = item.SeasonalDiscountStartDt;
+                    DateTime sDisEndDt = item.SeasonalDiscountStartDt;
+                    if (item.SeasonalDiscountId == 0)
+                    {
+                        if (sDisStDt < DateTime.Now || sDisEndDt < DateTime.Now)
+                            throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.SeasonalDiscount.SeasonalDiscountInvalidEffectiveDates));
+                        if (sDisEndDt < sDisStDt)
+                            throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.SeasonalDiscount.SeasonalDiscountInvalidEndDate));
+                        if (sDisStDt < sDisMainStDt || sDisEndDt > sDisMainEndDt)
+                            throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.SeasonalDiscount.SeasonalDiscountInvalidRangeEffectiveDate));
+                    }
+                    else
+                    {
+                        if (sDisEndDt < sDisStDt)
+                            throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.SeasonalDiscount.SeasonalDiscountInvalidEndDate));
+                        if (sDisStDt < sDisMainStDt || sDisEndDt > sDisMainEndDt)
+                            throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.SeasonalDiscount.SeasonalDiscountInvalidRangeEffectiveDate));
+                    }
+                }
+            }
+        }
         #endregion
     }
 }

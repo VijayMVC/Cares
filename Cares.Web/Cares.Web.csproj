@@ -400,6 +400,7 @@
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\CityBaseDataResponse.cs" />
     <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\CustomerTypecs.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\DepartmentBaseDataResponse.cs" />
     <Compile Include="Models\DepartmentSearchRequestResponse.cs" />

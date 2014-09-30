@@ -248,15 +248,31 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         return seasonalDiscountMain;
     };
     //Convert Server To Client
-    var ChaufferChargeClientMapper = function (source) {
-        var chaufferCharge = new ChaufferCharge();
-        chaufferCharge.id(source.ChaufferChargeId === null ? undefined : source.ChaufferChargeId);
-        chaufferCharge.desigGradeCodeName(source.DesigGradeCodeName === null ? undefined : source.DesigGradeCodeName);
-        chaufferCharge.desigGradeId(source.DesigGradeId === null ? undefined : source.DesigGradeId);
-        chaufferCharge.revisionNumber(source.RevisionNumber === null ? undefined : source.RevisionNumber);
-        chaufferCharge.rate(source.ChaufferChargeRate === null ? undefined : source.ChaufferChargeRate);
-        chaufferCharge.startDate(source.StartDt !== null ? moment(source.StartDt, ist.utcFormat).toDate() : undefined);
-        return chaufferCharge;
+    var SeasonalDiscountClientMapper = function (source) {
+        var seasonalDiscount = new SeasonalDiscount();
+        seasonalDiscount.id(source.SeasonalDiscountId === null ? undefined : source.SeasonalDiscountId);
+        seasonalDiscount.opWorkplaceId(source.OperationsWorkPlaceId === null ? undefined : source.OperationsWorkPlaceId);
+        seasonalDiscount.opWorkplaceCodeName(source.OperationsWorkPlaceCode === null ? "All" : source.OperationsWorkPlaceCode);
+        seasonalDiscount.hireGroupId(source.HireGroupId === null ? undefined : source.HireGroupId);
+        seasonalDiscount.hireGroupCodeName(source.HireGroupCodeName === null ? "All" : source.HireGroupCodeName);
+        seasonalDiscount.vMakeId(source.VehicleMakeId === null ? undefined : source.VehicleMakeId);
+        seasonalDiscount.vMakeCodeName(source.VehicleMakeCodeName === null ? "All" : source.VehicleMakeCodeName);
+        seasonalDiscount.vCategoryId(source.VehicleCategoryId === null ? undefined : source.VehicleCategoryId);
+        seasonalDiscount.vCategoryCodeName(source.VehicleCategoryCodeName === null ? "All" : source.VehicleCategoryCodeName);
+        seasonalDiscount.vModelId(source.VehicleModelId === null ? undefined : source.VehicleModelId);
+        seasonalDiscount.vModelCodeName(source.VehicleModelCodeName === null ? "All" : source.VehicleModelCodeName);
+        seasonalDiscount.customerTypeId(source.CustomerType === null ? undefined : source.CustomerType);
+        seasonalDiscount.customerTypeCodeName(source.CustomerTypeCodeName === null ? "Both" : source.CustomerTypeCodeName);
+        seasonalDiscount.modelYear(source.ModelYear === null ? undefined : source.ModelYear);
+        seasonalDiscount.modelYearCode(source.ModelYear === null ? "All" : source.ModelYear);
+        seasonalDiscount.ratingId(source.RatingTypeId === null ? undefined : source.RatingTypeId);
+        seasonalDiscount.ratingCodeName(source.RatingTypeId === null ? undefined : source.RatingTypeId);
+        seasonalDiscount.ratingCodeName(source.RatingTypeCodeName === null ? "All" : source.RatingTypeCodeName);
+        seasonalDiscount.discount(source.DiscountPerc === null ? undefined : source.DiscountPerc);
+        seasonalDiscount.revisionNumber(source.RevisionNumber === null ? undefined : source.RevisionNumber);
+        seasonalDiscount.fromDate(source.StartDt !== null ? moment(source.StartDt, ist.utcFormat).toDate() : undefined);
+        seasonalDiscount.toDate(source.EndDt !== null ? moment(source.EndDt, ist.utcFormat).toDate() : undefined);
+        return seasonalDiscount;
     };
     //Convert Client To Server
     var SeasonalDiscountMainServerMapper = function (source) {
@@ -264,13 +280,13 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.SeasonalDiscountMainId = source.id() === undefined ? 0 : source.id();
         result.Code = source.code() === undefined ? null : source.code();
         result.Name = source.name() === undefined ? null : source.name();
-        result.Description = source.description() === undefined ? 0 : source.description();
-        result.TariffTypeId = source.tariffTypeId() === undefined ? 0 : source.tariffTypeId();
+        result.Description = source.description() === undefined ? null : source.description();
+        result.TariffTypeCode = source.tariffTypeId() === undefined ? 0 : source.tariffTypeId();
         result.StartDt = source.startDate() === undefined || source.startDate() === null ? null : moment(source.startDate()).format(ist.utcFormat);
         result.EndDt = source.endDate() === undefined || source.endDate() === null ? null : moment(source.endDate()).format(ist.utcFormat);
-        result.SeasonalDiscounts = [];
+        result.SeasonalDiscountList = [];
         _.each(source.seasonalDiscountsList(), function (item) {
-            result.SeasonalDiscounts.push(SeasonalDiscountServerMapper(item));
+            result.SeasonalDiscountList.push(SeasonalDiscountServerMapper(item));
         });
         return result;
     };
@@ -284,7 +300,6 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.VehicleCategoryId = item.vCategoryId() === undefined ? null : item.vCategoryId();
         result.VehicleModelId = item.vModelId() === undefined ? null : item.vModelId();
         result.CustomerType = item.customerTypeId() === undefined ? null : item.customerTypeId();
-        result.TariffTypeCode = item.tariffTypeId() === undefined ? null : item.tariffTypeId();
         result.ModelYear = item.modelYear() === undefined ? null : item.modelYear();
         result.RatingTypeId = item.ratingId() === undefined ? null : item.ratingId();
         result.DiscountPerc = item.discount() === undefined ? null : item.discount();
@@ -304,7 +319,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         SeasonalDiscountMain: SeasonalDiscountMain,
         SeasonalDiscount: SeasonalDiscount,
         SeasonalDiscountMainClientMapper: SeasonalDiscountMainClientMapper,
-        ChaufferChargeClientMapper: ChaufferChargeClientMapper,
+        SeasonalDiscountClientMapper: SeasonalDiscountClientMapper,
         SeasonalDiscountMainServerMapper: SeasonalDiscountMainServerMapper,
         SeasonalDiscountServerMapper: SeasonalDiscountServerMapper,
         SeasonalDiscountServerMapperForId: SeasonalDiscountServerMapperForId,

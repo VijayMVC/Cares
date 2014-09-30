@@ -68,12 +68,12 @@ namespace Cares.Repository.Repositories
 
             var getSeasonalDiscountMainQuery = from seasonalDiscountMain in DbSet
                                                join tariffType in db.TariffTypes on seasonalDiscountMain.TariffTypeCode equals tariffType.TariffTypeCode
-                                             where
-                                                 ((string.IsNullOrEmpty(request.SearchString) || seasonalDiscountMain.SeasonalDiscountMainCode.Contains(request.SearchString) || seasonalDiscountMain.SeasonalDiscountMainName.Contains(request.SearchString)) &&
-                                                 (!request.OperationId.HasValue ||
-                                                   tariffType.OperationId == request.OperationId.Value) &&
-                                                  (!request.TariffTypeId.HasValue ||
-                                                   tariffType.TariffTypeId == request.TariffTypeId)) && !(tariffType.ChildTariffTypeId.HasValue)
+                                               where
+                                                   ((string.IsNullOrEmpty(request.SearchString) || seasonalDiscountMain.SeasonalDiscountMainCode.Contains(request.SearchString) || seasonalDiscountMain.SeasonalDiscountMainName.Contains(request.SearchString)) &&
+                                                   (!request.OperationId.HasValue ||
+                                                     tariffType.OperationId == request.OperationId.Value) &&
+                                                    (!request.TariffTypeId.HasValue ||
+                                                     tariffType.TariffTypeId == request.TariffTypeId)) && !(tariffType.ChildTariffTypeId.HasValue)
                                                select new SeasonalDiscountMainContent
                                              {
                                                  SeasonalDiscountMainId = seasonalDiscountMain.SeasonalDiscountMainId,
@@ -103,13 +103,13 @@ namespace Cares.Repository.Repositories
         }
 
         /// <summary>
-        /// Validate Seasonal Discount Main Already exist Against Tariff type Code 
+        ///Load Seasonal Discount Main By Tariff Type Code 
         /// </summary>
         /// <param name="tariffTypeCode"></param>
         /// <returns></returns>
-        public bool LoadChaufferChargeMainExist(string tariffTypeCode)
+        public IEnumerable<SeasonalDiscountMain> LoadSeasonalDiscountMainByTariffTypeCode(string tariffTypeCode)
         {
-            return DbSet.Where(chaufferChrg => chaufferChrg.TariffTypeCode == tariffTypeCode).ToList().Count > 0;
+            return DbSet.Where(sDisMain => sDisMain.TariffTypeCode == tariffTypeCode).ToList();
         }
         #endregion
     }

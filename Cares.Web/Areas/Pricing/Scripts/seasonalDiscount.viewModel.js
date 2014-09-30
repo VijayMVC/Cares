@@ -55,7 +55,7 @@ define("seasonalDiscount/seasonalDiscount.viewModel",
                     //Customer Types
                     customerTypes = [{ Id: 0, Text: 'Both' },
                                     { Id: 1, Text: 'Individual' },
-                                    { Id: 2, Text: 'Corporat' }],
+                                    { Id: 2, Text: 'Corporate' }],
                 // #endregion Arrays
                 // #region Busy Indicators
                 isLoadingSeasonalDiscount = ko.observable(false),
@@ -156,15 +156,15 @@ define("seasonalDiscount/seasonalDiscount.viewModel",
                         }
                     });
                 },
-                //Get Chauffer Charge By Id
-                getChaufferChargeById = function (chaufferChrg) {
+                //Get Seasonal Discount By Id
+                getSeasonalDiscountById = function (seasonalDiscount) {
                     isLoadingSeasonalDiscount(true);
-                    dataservice.getChaufferChargeDetail(model.ChaufferChargeServerMapperForId(chaufferChrg), {
+                    dataservice.getSeasonalDiscountDetail(model.SeasonalDiscountServerMapperForId(seasonalDiscount), {
                         success: function (data) {
                             seasonalDiscounts.removeAll();
                             _.each(data, function (item) {
-                                var chaferCharge = new model.ChaufferChargeClientMapper(item);
-                                seasonalDiscounts.push(chaferCharge);
+                                var sDiscount = new model.SeasonalDiscountClientMapper(item);
+                                seasonalDiscounts.push(sDiscount);
                             });
                             isLoadingSeasonalDiscount(false);
                         },
@@ -209,9 +209,9 @@ define("seasonalDiscount/seasonalDiscount.viewModel",
                 // Save Seasonal Discount Main
                 onSaveSeasonalDiscountMainCharge = function (seasonalDiscnt) {
                     if (doBeforeSave()) {
-                        if (seasonalDiscnt.seasonalDiscountsList().length != 0) {
-                            seasonalDiscnt.seasonalDiscountsList().removeAll();
-                        }
+                        //if (seasonalDiscnt.seasonalDiscountsList().length != 0) {
+                        //    seasonalDiscnt.seasonalDiscountsList.removeAll();
+                        //}
                         ko.utils.arrayPushAll(seasonalDiscnt.seasonalDiscountsList(), seasonalDiscounts());
                         saveSeasonalDiscountMain(seasonalDiscnt);
                     }
@@ -220,7 +220,7 @@ define("seasonalDiscount/seasonalDiscount.viewModel",
                 doBeforeSave = function () {
                     var flag = true;
                     if (!addEditSeasonalDiscountMain().isValid()) {
-                        selectedSeasonalDiscountMain().errors.showAllMessages();
+                        addEditSeasonalDiscountMain().errors.showAllMessages();
                         flag = false;
                     }
                     return flag;
@@ -300,12 +300,12 @@ define("seasonalDiscount/seasonalDiscount.viewModel",
                saveSeasonalDiscountMain = function (seasonalDiscnt) {
                    dataservice.saveSeasonalDiscount(model.SeasonalDiscountMainServerMapper(seasonalDiscnt), {
                        success: function (data) {
-                           var chaufferChargeMain = model.ChaufferChargeMainClientMapper(data);
+                           var seasonalMain = model.SeasonalDiscountMainClientMapper(data);
                            if (selectedSeasonalDiscountMain().id() > 0) {
                                // selectedSeasonalDiscountMain().isEditable(additionalCharge.isEditable()),
                                closeAdditionalChargeEditor();
                            } else {
-                               seasonalDiscountMains.splice(0, 0, chaufferChargeMain);
+                               seasonalDiscountMains.splice(0, 0, seasonalMain);
                                closeAdditionalChargeEditor();
                            }
                            toastr.success(ist.resourceText.chaufferChargeAddSuccessMsg);
@@ -326,11 +326,22 @@ define("seasonalDiscount/seasonalDiscount.viewModel",
                    });
                },
                 //Edit Additional Charge
-               onEditChaufferChargeMain = function (chaufferChrg, e) {
-                   //seasonalDiscounts.removeAll();
-                   selectedSeasonalDiscountMain(chaufferChrg);
-                   addEditSeasonalDiscountMain(chaufferChrg);
-                   getChaufferChargeById(chaufferChrg);
+               onEditSeasonalDiscountMain = function (seasoanlDiscountMain, e) {
+                   seasonalDiscounts.removeAll();
+                   selectedSeasonalDiscountMain(seasoanlDiscountMain);
+                   var slDiscountMain = new model.SeasonalDiscountMain();
+                   slDiscountMain.id(seasoanlDiscountMain.id());
+                   slDiscountMain.code(seasoanlDiscountMain.code());
+                   slDiscountMain.name(seasoanlDiscountMain.name());
+                   slDiscountMain.companyId(seasoanlDiscountMain.companyId());
+                   slDiscountMain.departmentId(seasoanlDiscountMain.departmentId());
+                   slDiscountMain.operationId(seasoanlDiscountMain.operationId());
+                   slDiscountMain.tariffTypeId(seasoanlDiscountMain.tariffTypeId());
+                   slDiscountMain.description(seasoanlDiscountMain.description());
+                   slDiscountMain.startDate(seasoanlDiscountMain.startDate());
+                   slDiscountMain.endDate(seasoanlDiscountMain.endDate());
+                   addEditSeasonalDiscountMain(slDiscountMain);
+                   getSeasonalDiscountById(seasoanlDiscountMain);
                    showAdditionalChargeEditor();
                    e.stopImmediatePropagation();
                },
@@ -381,23 +392,23 @@ define("seasonalDiscount/seasonalDiscount.viewModel",
                selectedSeasonalDiscount(undefined);
                addEditSeasonalDiscountMain().chaufferCharge(new model.ChaufferCharge());
            },
-                // Delete a Chauffer Charge
-               onDeleteChaufferChargeMain = function (chaufferChrg) {
-                   if (!chaufferChrg.id()) {
-                       seasonalDiscountMains.remove(chaufferChrg);
+                // Delete Seasonal Discount
+               onDeleteSeasonalDiscountMain = function (seasonalDiscount) {
+                   if (!seasonalDiscount.id()) {
+                       seasonalDiscountMains.remove(seasonalDiscount);
                        return;
                    }
                    // Ask for confirmation
                    confirmation.afterProceed(function () {
-                       deleteChaufferCharge(chaufferChrg);
+                       deleteSeasonalDiscount(seasonalDiscount);
                    });
                    confirmation.show();
                },
-                // Delete Additional Charge
-               deleteChaufferCharge = function (chaufferChrg) {
-                   dataservice.deleteChaufferCharge(model.ChaufferChargeServerMapperForId(chaufferChrg), {
+                // Delete Seasonal Discount
+               deleteSeasonalDiscount = function (seasonalDiscount) {
+                   dataservice.deleteSeasonalDiscount(model.SeasonalDiscountServerMapperForId(seasonalDiscount), {
                        success: function () {
-                           seasonalDiscountMains.remove(chaufferChrg);
+                           seasonalDiscountMains.remove(seasonalDiscount);
                            toastr.success(ist.resourceText.chaufferChargeDeleteSuccessMsg);
                        },
                        error: function () {
@@ -483,8 +494,8 @@ define("seasonalDiscount/seasonalDiscount.viewModel",
                     showAdditionalChargeEditor: showAdditionalChargeEditor,
                     onSaveSeasonalDiscountMainCharge: onSaveSeasonalDiscountMainCharge,
                     reset: reset,
-                    onEditChaufferChargeMain: onEditChaufferChargeMain,
-                    onDeleteChaufferChargeMain: onDeleteChaufferChargeMain,
+                    onEditSeasonalDiscountMain: onEditSeasonalDiscountMain,
+                    onDeleteSeasonalDiscountMain: onDeleteSeasonalDiscountMain,
                     createSeasonalDiscount: createSeasonalDiscount,
                     onAddSeasonalDiscount: onAddSeasonalDiscount,
                     onEditChaufferCharge: onEditChaufferCharge,
