@@ -11,7 +11,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create from entity model
         /// </summary>
-        public static ServiceItem CreateFromm(this Cares.Models.DomainModels.ServiceItem source)
+        public static ServiceItem CreateFrom(this Cares.Models.DomainModels.ServiceItem source)
         {
             return new ServiceItem
             {
@@ -20,6 +20,7 @@ namespace Cares.Web.ModelMappers
                 ServiceItemName = source.ServiceItemName,
                 ServiceItemDescription = source.ServiceItemDescription,
                 ServiceTypeId = source.ServiceTypeId,
+                ServiceTypeCodeName = source.ServiceType.ServiceTypeCode + "-" + source.ServiceType.ServiceTypeName,
                 ServiceTypeName = source.ServiceType.ServiceTypeName
             };
         }
@@ -58,7 +59,7 @@ namespace Cares.Web.ModelMappers
             return new ServiceItemSearchRequestResponse
             {
                 TotalCount = source.TotalCount,
-                ServiceItems = source.ServiceItems.Select(serviceItem => serviceItem.CreateFromm())
+                ServiceItems = source.ServiceItems.Select(serviceItem => serviceItem.CreateFrom())
             };
         }
 

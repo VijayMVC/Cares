@@ -709,6 +709,37 @@
             amountPaid: amountPaid,
             balance: balance
         };
+    },
+    
+    // Chauffer Entity
+    // ReSharper disable InconsistentNaming
+    Chauffer = function (specifiedId, specifiedCode, specifiedName, specifiedDesigGradeName, specifiedDesigGradeId, specifiedLicenseNo, specifiedLicenseExpDt) {
+        // ReSharper restore InconsistentNaming
+        
+        return {
+            id: specifiedId,
+            code: specifiedCode,
+            name: specifiedName,
+            desigGrade: specifiedDesigGradeName,
+            desigGradeId: specifiedDesigGradeId,
+            licenseNo: specifiedLicenseNo,
+            licenseDt: moment(specifiedLicenseExpDt).toDate()
+        };
+    },
+
+    // Service Item Entity
+    // ReSharper disable InconsistentNaming
+    ServiceItem = function (specifiedId, specifiedCode, specifiedName, specifiedServiceTypeName, specifiedServiceTypeCode, specifiedServiceTypeCodeName) {
+        // ReSharper restore InconsistentNaming
+
+        return {
+            id: specifiedId,
+            code: specifiedCode,
+            name: specifiedName,
+            serviceTypeName: specifiedServiceTypeName,
+            serviceTypeCodeName: specifiedServiceTypeCodeName,
+            serviceTypeCode: specifiedServiceTypeCode
+        };
     };
 
     // Vehicle Factory
@@ -820,6 +851,18 @@
             source.AmountPaid, source.NetBillAfterDiscount, source.Balance, source.TotalOtherCharge);
     };
 
+    // Service Item Factory
+    ServiceItem.Create = function (source) {
+        return new ServiceItem(source.ServiceItemId, source.ServiceItemCode, source.ServiceItemName, source.ServiceTypeName, source.ServiceTypeCode,
+            source.ServiceTypeCodeName);
+    };
+
+    // Chauffer Factory
+    Chauffer.Create = function (source) {
+        return new Chauffer(source.ChaufferId, source.ChaufferCode, source.DesigGradeCodeName, source.DesigGradeId, source.LicenseNo,
+            source.LicenseExpDt);
+    };
+
     return {
         // Vehicle Constructor
         Vehicle: Vehicle,
@@ -838,6 +881,10 @@
         // Business Partner Constructor
         BusinessPartner: BusinessPartner,
         // Billing Constructor
-        Billing: Billing
+        Billing: Billing,
+        // Service Item Constructor
+        ServiceItem: ServiceItem,
+        // Chauffer Constructor
+        Chauffer: Chauffer
     };
 });

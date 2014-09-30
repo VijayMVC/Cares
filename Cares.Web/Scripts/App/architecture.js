@@ -313,6 +313,11 @@ require(["ko", "knockout-validation"], function (ko) {
                 ko.cleanNode(popOver);
                 ko.applyBindingsToDescendants(childBindingContext, popOver);
             });
+            $(window).click(function(event) {
+                if (event.target != $(element)[0]) {
+                    $(element).popover('hide');
+                }
+            });
         }
     }
 

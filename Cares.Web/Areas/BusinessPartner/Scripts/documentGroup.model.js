@@ -1,19 +1,15 @@
 ﻿define(["ko", "underscore", "underscore-ko"], function(ko) {
     
-    //Employee Status Detail
-   // ReSharper disable once InconsistentNaming
-    var EmployeeStatusDetail = function (specifiedId, specifiedCode, specifiedName, specifieddescription, specifiedcountryId, specifiedcountryName) {
+    //Document Group Detail
+    var documentGroupDetail = function (specifiedId, specifiedCode, specifiedName, specifieddescription) {
         var            
             id = ko.observable(specifiedId),
             code = ko.observable(specifiedCode).extend({ required: true }),
             name = ko.observable(specifiedName).extend({ required: true }),
-            description = ko.observable(specifieddescription),
-            countryId = ko.observable(specifiedcountryId).extend({ required: true }),
-            countryName = ko.observable(specifiedcountryName),
+            description = ko.observable(specifieddescription),          
             errors = ko.validation.group({
                 name: name,
                 code: code,
-                countryId: countryId
             }),
             // Is Valid
             isValid = ko.computed(function() {
@@ -33,13 +29,11 @@
             },
             // Convert to server
             convertToServerData = function () {
-                debugger;
                 return {
-                    RegionId: id(),
-                    RegionCode: code(),
-                    RegionName: name(),
-                    RegionDescription: description(),
-                    CountryId:countryId()
+                    DocumentGroupId: id(),
+                    DocumentGroupCode: code(),
+                    DocumentGroupName: name(),
+                    DocumentGroupDescription: description()
                 };
             };
         return {
@@ -47,8 +41,6 @@
             code: code,
             name: name,
             description: description,
-            countryId: countryId,
-            countryName:countryName,
             errors: errors,
             isValid: isValid,
             dirtyFlag: dirtyFlag,
@@ -59,22 +51,22 @@
         };
     };
     // server to client mapper
-    var regionServertoClinetMapper = function (source) {
-        return EmployeeStatusDetail.Create(source);
+    var documentGroupServertoClinetMapper = function (source) {
+        return documentGroupDetail.Create(source);
     };
     
-    // Region Factory
-    EmployeeStatusDetail.Create = function (source) {
-        return new EmployeeStatusDetail(source.RegionId, source.RegionCode, source.RegionName, source.RegionDescription, source.CountryId, source.CountryName);
+    //Document Group Factory
+    documentGroupDetail.Create = function (source) {
+        return new documentGroupDetail(source.DocumentGroupId, source.DocumentGroupCode, source.DocumentGroupName, source.DocumentGroupDescription);
     };
 
     //function to attain cancel button functionality 
-    EmployeeStatusDetail.CreateFromClientModel = function (itemFromServer) {
-        return new EmployeeStatusDetail(itemFromServer.id, itemFromServer.code, itemFromServer.name,
-            itemFromServer.description, itemFromServer.countryId, itemFromServer.countryName);
+    documentGroupDetail.CreateFromClientModel = function (itemFromServer) {
+        return new documentGroupDetail(itemFromServer.id, itemFromServer.code, itemFromServer.name,
+            itemFromServer.description);
     };
     return {
-        regionDetail: EmployeeStatusDetail,
-        regionServertoClinetMapper: regionServertoClinetMapper,
+        DocumentGroupDetail: documentGroupDetail,
+        documentGroupServertoClinetMapper: documentGroupServertoClinetMapper,
     };
 });

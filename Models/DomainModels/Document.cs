@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Cares.Models.DomainModels
 {
@@ -88,6 +89,7 @@ namespace Cares.Models.DomainModels
 
         #region Reference Properties
 
+        public virtual ICollection<RaCustomerDocument> RaCustomerDocuments { get; set; }
         /// <summary>
         /// Document Group
         /// </summary>

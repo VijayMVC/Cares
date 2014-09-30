@@ -32,7 +32,8 @@ namespace Cares.Web.ModelMappers
                 BusinessPartnerMainTypeId = source.BusinessPartnerMainTypeId,
                 BusinessPartnerMainTypeCode = source.BusinessPartnerMainTypeCode,
                 BusinessPartnerMainTypeName = source.BusinessPartnerMainTypeName,
-                BusinessPartnerMainTypeDescription = source.BusinessPartnerMainTypeDescription
+                BusinessPartnerMainTypeDescription = source.BusinessPartnerMainTypeDescription,
+                BusinessPartnerMainTypeKey = source.BusinessPartnerMainTypeKey
 
             };
         }
@@ -47,8 +48,8 @@ namespace Cares.Web.ModelMappers
                 BusinessPartnerMainTypeId = source.BusinessPartnerMainTypeId,
                 BusinessPartnerMainTypeCode = source.BusinessPartnerMainTypeCode,
                 BusinessPartnerMainTypeName = source.BusinessPartnerMainTypeName,
-                BusinessPartnerMainTypeDescription = source.BusinessPartnerMainTypeDescription
-
+                BusinessPartnerMainTypeDescription = source.BusinessPartnerMainTypeDescription,
+                BusinessPartnerMainTypeKey = source.BusinessPartnerMainTypeKey
             };
         }
     }

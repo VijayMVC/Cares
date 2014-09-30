@@ -83,7 +83,7 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Load all Service Items
         /// </summary>
-        public IEnumerable<ServiceItem> LoadAll()
+        public IEnumerable<ServiceItem> GetAll()
         {
             return serviceItemRepository.GetAll();
         }

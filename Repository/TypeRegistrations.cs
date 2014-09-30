@@ -104,6 +104,7 @@ namespace Cares.Repository
             unityContainer.RegisterType<IBpMainTypeRepository, BpMainTypeRepository>();
             unityContainer.RegisterType<IDocumentGroupRepository, DocumentGroupRepository>();
             unityContainer.RegisterType<IBpSubTypeRepository, BpSubTypeRepository>();
+            unityContainer.RegisterType<IDocumentRepository, DocumentRepository>();
 
         }
     }

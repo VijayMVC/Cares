@@ -110,6 +110,27 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Count(emp => emp.EmpStatusId == empStatusId) > 0;
         }
+
+        /// <summary>
+        /// Get All Chauffers
+        /// </summary>
+        public IEnumerable<Employee> GetAllChauffers(GetRaChaufferRequest request)
+        {
+            return DbSet
+                .Include("EmpJobInfo")
+                .Include("EmpJobInfo.WorkPlace.OperationsWorkPlaces")
+                .Include("EmpJobInfo.Designation")
+                .Include("EmpJobInfo.DesigGrade")
+                .Where(
+                    employee =>
+                        employee.EmpJobInfo.WorkPlace.OperationsWorkPlaces.Any(ow => ow.OperationsWorkPlaceId == request.OperationsWorkPlaceId) &&
+                        employee.EmpJobInfo.Designation.DesignationKey == request.DesignationKey &&
+                        (employee.ChaufferReservations.Count == 0 ||
+                         !employee.ChaufferReservations.Any(
+                             chaufferRes => chaufferRes.StartDtTime >= request.EndDtTime &&
+                                            chaufferRes.EndDtTime <= request.StartDtTime))).ToList();
+        }
+
         #endregion
     }
 }

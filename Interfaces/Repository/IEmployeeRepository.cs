@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
@@ -24,5 +26,10 @@ namespace Cares.Interfaces.Repository
         /// To check the association of employee with employee status
         /// </summary>
         bool IsEmployeeAssociatedWithEmployeeStatus(long empStatusId);
+
+        /// <summary>
+        /// Get All Chauffers - Used in Ra
+        /// </summary>
+        IEnumerable<Employee> GetAllChauffers(GetRaChaufferRequest request);
     }
 }

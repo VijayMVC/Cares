@@ -27,6 +27,7 @@ namespace Cares.Implementation.Services
             dbVersion.BusinessPartnerMainTypeCode = businessPartnerMainType.BusinessPartnerMainTypeCode;
             dbVersion.BusinessPartnerMainTypeName = businessPartnerMainType.BusinessPartnerMainTypeName;
             dbVersion.BusinessPartnerMainTypeDescription = businessPartnerMainType.BusinessPartnerMainTypeDescription;
+            dbVersion.BusinessPartnerMainTypeKey = businessPartnerMainType.BusinessPartnerMainTypeKey;
             dbVersion.UserDomainKey = bpMainTypeRepository.UserDomainKey;
         }
 
@@ -41,6 +42,8 @@ namespace Cares.Implementation.Services
             dbVersion.BusinessPartnerMainTypeCode = businessPartnerMainType.BusinessPartnerMainTypeCode;
             dbVersion.BusinessPartnerMainTypeName = businessPartnerMainType.BusinessPartnerMainTypeName;
             dbVersion.BusinessPartnerMainTypeDescription = businessPartnerMainType.BusinessPartnerMainTypeDescription;
+            dbVersion.BusinessPartnerMainTypeKey = businessPartnerMainType.BusinessPartnerMainTypeKey;
+
         }
 
         //Validation check for deletion

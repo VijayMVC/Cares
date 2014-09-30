@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Cares.Models.DomainModels;
 
 namespace Cares.Web.Models
 {

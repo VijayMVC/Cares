@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Cares.Interfaces.Repository;
+﻿using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
 using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
+using System.Data.Entity;
+using System.Linq;
 
 namespace Cares.Repository.Repositories
 {
+    /// <summary>
+    /// Document Repository
+    /// </summary>
     public class DocumentRepository : BaseRepository<Document>, IDocumentRepository
     {
         #region Constructor
@@ -41,7 +40,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsDocumentGroupAssocitedWithDocument(long documentGroupId)
         {
-            return DbSet.Count(documentm => documentm.DocumentGroupId == documentGroupId) > 0;
+            return DbSet.Count(dbdocument => dbdocument.DocumentGroupId == documentGroupId) > 0;
         }
         #endregion
     }

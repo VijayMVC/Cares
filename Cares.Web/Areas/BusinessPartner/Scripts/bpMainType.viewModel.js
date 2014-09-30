@@ -1,74 +1,65 @@
 ﻿/*
-    Module with the view model for the Region
+    Module with the view model for the Business Partner Main Type
 */
-define("documentGroup/documentGroup.viewModel",
-    ["jquery", "amplify", "ko", "documentGroup/documentGroup.dataservice", "documentGroup/documentGroup.model",
+define("bpMainType/bpMainType.viewModel",
+    ["jquery", "amplify", "ko", "bpMainType/bpMainType.dataservice", "bpMainType/bpMainType.model",
     "common/confirmation.viewModel", "common/pagination"],
     function($, amplify, ko, dataservice, model, confirmation, pagination) {
         var ist = window.ist || {};
-        ist.Region = {
+        ist.BusinessPartnerMainType = {
             viewModel: (function() { 
                 var view,
-                    //array to save Regions
-                    regions = ko.observableArray([]),
-
-                    //array to save basa data country list
-                    baseCountriesList = ko.observableArray([]),
-
+                    //array to save Business Partner Main Type
+                    businessPartnerMainType = ko.observableArray([]),
                     //pager%
                     pager = ko.observable(),
                     //org code filter in filter sec
                     searchFilter = ko.observable(),
-                    baseCountryFilter = ko.observable(),
-
                     //sorting
                     sortOn = ko.observable(1),
                     //Assending  / Desending
                     sortIsAsc = ko.observable(true),
                     //to control the visibility of editor sec
-                    isRegionEditorVisible = ko.observable(false),
+                    isBusinessPartnerMainTypeEditorVisible = ko.observable(false),
                     //to control the visibility of filter ec
                     filterSectionVisilble = ko.observable(false),
-
-
                      // Editor View Model
-                    editorViewModel = new ist.ViewModel(model.regionDetail),
-                    // Selected Business Segment
-                    selectedRegion = editorViewModel.itemForEditing,
-
+                    editorViewModel = new ist.ViewModel(model.BpMainTypeDetail),
+                    // Selected Business Partner Main Type
+                    selectedBusinessPartnerMainType = editorViewModel.itemForEditing,
                     //save button handler
                     onSavebtn = function() {
-                    if (dobeforeRegion())
-                        saveRegion(selectedRegion());
+                        if (dobeforeBusinessPartnerMainType())
+                            saveBusinessPartnerMainType(selectedBusinessPartnerMainType());
                 },
-                //Save Regions
-                    saveRegion = function(item) {
-                        dataservice.saveRegion(item.convertToServerData(), {
+                //Save Business Partner Main Type
+                    saveBusinessPartnerMainType = function (item) {
+                        dataservice.saveBpMainType(item.convertToServerData(), {
                         success: function(dataFromServer) {
-                            var newItem = model.regionServertoClinetMapper(dataFromServer);
+                            var newItem = model.bpMainTypeServertoClinetMapper(dataFromServer);
                             if (item.id() !== undefined) {
-                                var newObjtodelete = regions.find(function(temp) {
+                                var newObjtodelete = businessPartnerMainType.find(function(temp) {
                                     return temp.id() == newItem.id();
                                 });
-                                regions.remove(newObjtodelete);
-                                regions.push(newItem);
+                                businessPartnerMainType.remove(newObjtodelete);
+                                businessPartnerMainType.push(newItem);
                             } else
-                                regions.push(newItem);
-                            isRegionEditorVisible(false);
-                            toastr.success(ist.resourceText.RegionSaveSuccessMessage);
+                                businessPartnerMainType.push(newItem);
+                            isBusinessPartnerMainTypeEditorVisible(false);
+                            toastr.success(ist.resourceText.BusinessPartnerMainTypeSuccessfullySavedMessage);
                         },
                         error: function(exceptionMessage, exceptionType) {
                             if (exceptionType === ist.exceptionType.CaresGeneralException)
                                 toastr.error(exceptionMessage);
                             else
-                                toastr.error(ist.resourceText.RegionSaveFailError);
+                                toastr.error(ist.resourceText.FailedToSaveBusinessPartnerMainTypeError);
                         }
                     });
                 },
                 //validation check 
-                    dobeforeRegion = function() {
-                    if (!selectedRegion().isValid()) {
-                        selectedRegion().errors.showAllMessages();
+                    dobeforeBusinessPartnerMainType = function () {
+                    if (!selectedBusinessPartnerMainType().isValid()) {
+                        selectedBusinessPartnerMainType().errors.showAllMessages();
                         return false;
                     }
                     return true;
@@ -76,58 +67,57 @@ define("documentGroup/documentGroup.viewModel",
                 //cancel button handler
                     onCancelbtn = function() {
                     editorViewModel.revertItem();
-                    isRegionEditorVisible(false);
+                    isBusinessPartnerMainTypeEditorVisible(false);
                 },
-                // create new Region
+                // create new Business Partner Main Type
                     onCreateForm = function () {
-                    var region = new model.regionDetail();
-                    editorViewModel.selectItem(region);
-                    isRegionEditorVisible(true);
+                   var varBusinessPartnerMainType = new model.BpMainTypeDetail();
+                    editorViewModel.selectItem(varBusinessPartnerMainType);
+                    isBusinessPartnerMainTypeEditorVisible(true);
                 },
                 //reset butto handle 
                     resetResuults = function() {
                     searchFilter(undefined);
-                    baseCountryFilter(undefined);
-                    getRegions();
+                    getBusinessPartnerMainTypes();
                 },
                 //delete button handler
                     onDeleteItem = function(item) {
                     if (!item.id()) {
-                        regions.remove(item);
+                        businessPartnerMainType.remove(item);
                         return;
                     }
                     // Ask for confirmation
                     confirmation.afterProceed(function() {
-                        deleteRegion(item);
+                        deleteBusinessPartnerMainType(item);
                     });
                     confirmation.show();
                 },
                 //edit button handler
                     onEditItem = function(item) {
                     editorViewModel.selectItem(item);
-                    isRegionEditorVisible(true);
+                    isBusinessPartnerMainTypeEditorVisible(true);
                 },
-                //delete Region
-                    deleteRegion = function(region) {
-                       dataservice.deleteRegion(region.convertToServerData(), {
+                //delete Business Partner Main Type
+                    deleteBusinessPartnerMainType = function (region) {
+                        dataservice.deleteBpMainType(region.convertToServerData(), {
                         success: function() {
-                            regions.remove(region);
-                            toastr.success(ist.resourceText.RegionDeleteSuccessMessage);
+                            businessPartnerMainType.remove(region);
+                            toastr.success(ist.resourceText.BusinessPartnerMainTypeSuccessFullyDeletedMessage);
                         },
                         error: function(exceptionMessage, exceptionType) {
                             if (exceptionType === ist.exceptionType.CaresGeneralException)
                                 toastr.error(exceptionMessage);
                             else
-                                toastr.error(ist.resourceText.RegionDeleteFailError);
+                                toastr.error(ist.resourceText.FailedToDeleteBusinessPartnerMainTypeError);
                         }
                     });
                 },
                 //search button handler in filter section
                     search = function() {
                     pager().reset();
-                    getRegions();
+                    getBusinessPartnerMainTypes();
                 },
-                //hide filte section
+                //hide filte sectiong
                     hideFilterSection = function() {
                     filterSectionVisilble(false);
                 },
@@ -135,12 +125,11 @@ define("documentGroup/documentGroup.viewModel",
                     showFilterSection = function() {
                         filterSectionVisilble(true);
                     },
-                    //get Regions list from Dataservice
-                    getRegions = function() {
-                        dataservice.getRegions(
+                    //get Business Partner Main Types list from Dataservice
+                    getBusinessPartnerMainTypes = function () {
+                        dataservice.getBpMainTypes(
                         {
-                            RegionFilterText: searchFilter(),
-                            CountryId: baseCountryFilter(),
+                            BpMainTypeFilterText: searchFilter(),
                             PageSize: pager().pageSize(),
                             PageNo: pager().currentPage(),
                             SortBy: sortOn(),
@@ -148,47 +137,28 @@ define("documentGroup/documentGroup.viewModel",
                     },
                     {
                         success: function (data) {
-                            debugger;
-                            regions.removeAll();
+                            businessPartnerMainType.removeAll();
                             pager().totalCount(data.TotalCount);
-                            _.each(data.Regions, function (item) {
-                                regions.push(model.regionServertoClinetMapper(item));
+                            _.each(data.BpMainTypes, function (item) {
+                                businessPartnerMainType.push(model.bpMainTypeServertoClinetMapper(item));
                             });
                         },
                         error: function() {
                             isLoadingFleetPools(false);
-                            toastr.error(ist.resourceText.RegionLoadFailError);
+                            toastr.error(ist.resourceText.FailedToLoadBusinessPartnerMainTypeError);
                         }
                     });
                     },
-                     //get Region base data
-                    getBaseData = function () {
-                        dataservice.getRegionBaseData(null, {
-                            success: function (data) {
-
-                                baseCountriesList.removeAll();
-                                ko.utils.arrayPushAll(baseCountriesList(), data.Countries);
-                                baseCountriesList.valueHasMutated();
-                            },
-                            error: function (exceptionMessage, exceptionType) {
-                                if (exceptionType === ist.exceptionType.CaresGeneralException) {
-                                    toastr.error(exceptionMessage);
-                                } else {
-                                    toastr.error(ist.resourceText.RegionBaseDataLoadFailError);
-                                }
-                            }
-                        });
-                    },
+                    
                 // Initialize the view model
                     initialize = function(specifiedView) {
                         view = specifiedView;
                         ko.applyBindings(view.viewModel, view.bindingRoot);
-                        pager(pagination.Pagination({ PageSize: 10 }, regions, getRegions));
-                        getBaseData();
-                        getRegions();
+                        pager(pagination.Pagination({ PageSize: 10 }, businessPartnerMainType, getBusinessPartnerMainTypes));
+                        getBusinessPartnerMainTypes();
                     };
                 return {
-                    regions: regions,
+                    businessPartnerMainType: businessPartnerMainType,
                     initialize: initialize,
                     search: search,
                     searchFilter: searchFilter,
@@ -196,7 +166,7 @@ define("documentGroup/documentGroup.viewModel",
                     sortIsAsc: sortIsAsc,
                     onCreateForm: onCreateForm,
                     filterSectionVisilble: filterSectionVisilble,
-                    isRegionEditorVisible: isRegionEditorVisible,
+                    isBusinessPartnerMainTypeEditorVisible: isBusinessPartnerMainTypeEditorVisible,
                     hideFilterSection: hideFilterSection,
                     showFilterSection: showFilterSection,
                     pager: pager,
@@ -204,14 +174,11 @@ define("documentGroup/documentGroup.viewModel",
                     onDeleteItem: onDeleteItem,
                     onEditItem: onEditItem,
                     onCancelbtn: onCancelbtn,
-                    selectedRegion: selectedRegion,
+                    selectedBusinessPartnerMainType: selectedBusinessPartnerMainType,
                     onSavebtn: onSavebtn,
-                    getRegions: getRegions,
-                    getBaseData: getBaseData,
-                    baseCountriesList: baseCountriesList,
-                    baseCountryFilter: baseCountryFilter
+                    getBusinessPartnerMainTypes: getBusinessPartnerMainTypes,
                 };
             })()
         };
-        return ist.Region.viewModel;
+        return ist.BusinessPartnerMainType.viewModel;
     });

@@ -78,6 +78,22 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
                         contentType: "application/json; charset=utf-8",
                         type: 'POST'
                     });
+
+                    // Define request to get Service Items
+                    amplify.request.define('getServiceItems', 'ajax', {
+                        url: ist.siteUrl + '/Api/RentalAgreementServiceItems',
+                        dataType: 'json',
+                        type: 'GET'
+                    });
+
+                    // Define request to get Chauffers
+                    amplify.request.define('getChauffers', 'ajax', {
+                        url: ist.siteUrl + '/Api/RentalAgreementChauffers',
+                        dataType: 'json',
+                        dataMap: JSON.stringify,
+                        contentType: "application/json; charset=utf-8",
+                        type: 'POST'
+                    });
                     
                     isInitialized = true;
                 }
@@ -179,6 +195,28 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
                     error: callbacks.error,
                     data: params
                 });
+            },
+            
+            // Get Service Items
+            getServiceItems = function (params, callbacks) {
+                initialize();
+                return amplify.request({
+                    resourceId: 'getServiceItems',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: params
+                });
+            },
+            
+            // Get Chauffers
+            getChauffers = function (params, callbacks) {
+                initialize();
+                return amplify.request({
+                    resourceId: 'getChauffers',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: params
+                });
             };
 
 
@@ -191,7 +229,9 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
             getCustomerByPassportNo: getCustomerByPassportNo,
             getCustomerByLicenseNo: getCustomerByLicenseNo,
             getCustomerByPhoneNo: getCustomerByPhoneNo,
-            calculateBill: calculateBill
+            calculateBill: calculateBill,
+            getServiceItems: getServiceItems,
+            getChauffers: getChauffers
         };
     })();
 

@@ -46,10 +46,8 @@
             "serviceItem": ist.siteUrl + "/Areas/Pricing/Scripts",
             "nRTType": ist.siteUrl + "/Areas/NonRevenueTicket/Scripts",
             "vehicleCheckList": ist.siteUrl + "/Areas/Fleet/Scripts",
-            "documentGroup": "/Areas/BusinessPartner/Models",
-
-            
-
+            "documentGroup": ist.siteUrl + "/Areas/BusinessPartner/Scripts",
+            "bpMainType": ist.siteUrl + "/Areas/BusinessPartner/Scripts"
         }
     }); 
     
