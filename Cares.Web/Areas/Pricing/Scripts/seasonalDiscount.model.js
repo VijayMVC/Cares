@@ -124,33 +124,35 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
           //Opearation Workplace Id
          opWorkplaceId = ko.observable(),
           //Opearation Workplace Code Name
-          opWorkplaceCodeName = ko.observable(),
+          opWorkplaceCodeName = ko.observable("All"),
             //Hire Group Id
          hireGroupId = ko.observable(),
           //Hire Group Code Name
-          hireGroupCodeName = ko.observable(),
+          hireGroupCodeName = ko.observable("All"),
           //Vehicle Category ID
           vCategoryId = ko.observable(),
           //Vehicle Category Code Name
-          vCategoryCodeName = ko.observable(),
+          vCategoryCodeName = ko.observable("All"),
           //Customer Type ID
           customerTypeId = ko.observable(),
           //Customer Type Code Name
-          customerTypeCodeName = ko.observable(),
+          customerTypeCodeName = ko.observable("Both"),
            //Vehicle Make ID
           vMakeId = ko.observable(),
           //Vehicle Make Code Name
-          vMakeCodeName = ko.observable(),
+          vMakeCodeName = ko.observable("All"),
             //Vehicle Model ID
           vModelId = ko.observable(),
           //Vehicle Model Code Name
-          vModelCodeName = ko.observable(),
+          vModelCodeName = ko.observable("All"),
           //MOdel Year
           modelYear = ko.observable(),
+          //model Year Code
+          modelYearCode = ko.observable("All"),
            //Rating Type ID
           ratingId = ko.observable(),
           //Rating Type Code Name
-          ratingCodeName = ko.observable(),
+          ratingCodeName = ko.observable("All"),
           //From Date
           fromDate = ko.observable().extend({ required: true }),
           //To Date
@@ -210,6 +212,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             vModelId: vModelId,
             vModelCodeName: vModelCodeName,
             modelYear: modelYear,
+            modelYearCode: modelYearCode,
             formattedStartDate: formattedStartDate,
             formattedEndDate: formattedEndDate,
             revisionNumber: revisionNumber,
@@ -281,6 +284,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.VehicleCategoryId = item.vCategoryId() === undefined ? null : item.vCategoryId();
         result.VehicleModelId = item.vModelId() === undefined ? null : item.vModelId();
         result.CustomerType = item.customerTypeId() === undefined ? null : item.customerTypeId();
+        result.TariffTypeCode = item.tariffTypeId() === undefined ? null : item.tariffTypeId();
         result.ModelYear = item.modelYear() === undefined ? null : item.modelYear();
         result.RatingTypeId = item.ratingId() === undefined ? null : item.ratingId();
         result.DiscountPerc = item.discount() === undefined ? null : item.discount();
