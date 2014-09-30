@@ -142,6 +142,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BpMainType.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\BusinessPartner\Document.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Document.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\BusinessPartner\Document.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Document.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\BusinessPartner\DocumentGroup.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -151,6 +161,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DocumentGroup.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\BusinessPartner\RatingType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RatingType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\BusinessPartner\RatingType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RatingType.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\EmployeeManagement\Designation.ar.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -367,6 +387,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FleetPool.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Tariff\SeasonalDiscount.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SeasonalDiscount.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tariff\SeasonalDiscount.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SeasonalDiscount.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Tariff\ServiceRate.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -440,6 +470,8 @@
     <Compile Include="Services\AdditionalChargeService.cs" />
     <Compile Include="Services\AddressBaseDataService.cs" />
     <Compile Include="Services\AdditionalDriverService.cs" />
+    <Compile Include="Services\RatingTypeService.cs" />
+    <Compile Include="Services\DocumentService.cs" />
     <Compile Include="Services\SeasonalDiscountService.cs" />
     <Compile Include="Services\BpMainTypeService.cs" />
     <Compile Include="Services\DocumentGroupService.cs" />
@@ -527,6 +559,14 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BpMainType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\Document.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Document.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\Document.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Document.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\BusinessPartner\DocumentGroup.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>DocumentGroup.ar.Designer.cs</LastGenOutput>
@@ -534,6 +574,14 @@
     <EmbeddedResource Include="Resources\BusinessPartner\DocumentGroup.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>DocumentGroup.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\RatingType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RatingType.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\RatingType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RatingType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\EmployeeManagement\Designation.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -714,6 +762,14 @@
     <EmbeddedResource Include="Resources\Tariff\InsuranceRate.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>InsuranceRate.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tariff\SeasonalDiscount.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SeasonalDiscount.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tariff\SeasonalDiscount.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SeasonalDiscount.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tariff\ServiceRate.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

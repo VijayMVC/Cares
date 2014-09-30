@@ -52,7 +52,7 @@ namespace Cares.Web.ModelMappers
                 SeasonalDiscountMainDescription = source.Description,
                 StartDt = source.StartDt,
                 EndDt = source.EndDt,
-                SeasonalDiscounts = source.SeasonalDiscounts != null ? source.SeasonalDiscounts.Select(c => c.CreateFrom()).ToList() : null
+                SeasonalDiscounts = source.SeasonalDiscountList != null ? source.SeasonalDiscountList.Select(c => c.CreateFrom()).ToList() : null
             };
         }
 
@@ -87,20 +87,28 @@ namespace Cares.Web.ModelMappers
         /// <returns></returns>
         public static ApiModel.SeasonalDiscount CreateFrom(this DomainModel.SeasonalDiscount source)
         {
+
             return new ApiModel.SeasonalDiscount
             {
                 SeasonalDiscountId = source.SeasonalDiscountId,
                 OperationsWorkPlaceId = source.OperationsWorkPlaceId,
+                OperationsWorkPlaceCode = source.OperationsWorkPlace != null ? source.OperationsWorkPlace.LocationCode : null,
                 VehicleCategoryId = source.VehicleCategoryId,
+                VehicleCategoryCodeName = source.VehicleCategory != null ? source.VehicleCategory.VehicleCategoryCode + " - " + source.VehicleCategory.VehicleCategoryName : null,
                 RatingTypeId = source.BpRatingTypeId,
+                RatingTypeCodeName = source.BpRatingType != null ? source.BpRatingType.BpRatingTypeCode + " - " + source.BpRatingType.BpRatingTypeName : null,
                 VehicleMakeId = source.VehicleMakeId,
+                VehicleMakeCodeName = source.VehicleMake != null ? source.VehicleMake.VehicleMakeCode + " - " + source.VehicleMake.VehicleMakeName : null,
                 VehicleModelId = source.VehicleModelId,
+                VehicleModelCodeName = source.VehicleModel != null ? source.VehicleModel.VehicleModelCode + " - " + source.VehicleModel.VehicleModelName : null,
                 HireGroupId = source.HireGroupId,
+                HireGroupCodeName = source.HireGroup != null ? source.HireGroup.HireGroupCode + " - " + source.HireGroup.HireGroupName : null,
                 CustomerType = source.CustomerType,
                 ModelYear = source.ModelYear,
                 DiscountPerc = source.DiscountPerc,
                 StartDt = source.SeasonalDiscountStartDt,
                 EndDt = source.SeasonalDiscountEndDt,
+                RevisionNumber = source.RevisionNumber,
             };
         }
 

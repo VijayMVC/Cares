@@ -95,6 +95,8 @@ namespace Cares.Models.DomainModels
         /// </summary>
         public virtual DocumentGroup DocumentGroup { get; set; }
 
+        public virtual ICollection<BusinessPartnerDocument> BpDocuments { get; set; }
+
         #endregion
     }
 }

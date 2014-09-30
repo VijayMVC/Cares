@@ -158,6 +158,7 @@ namespace Cares.Implementation.Services
                                         x => x.ChaufferChargeId == item.ChaufferChargeId);
                                 if (chaufferChargeDbVesion.DesigGradeId != item.DesigGradeId ||
                                     chaufferChargeDbVesion.StartDt != item.StartDt
+                                    // ReSharper disable once CompareOfFloatsByEqualityOperator
                                     || chaufferChargeDbVesion.ChaufferChargeRate != item.ChaufferChargeRate)
                                 {
                                     item.IsActive = true;

@@ -133,6 +133,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Business Partner Rating Type Id
         /// </summary>
+// ReSharper disable once InconsistentNaming
         public short? BPRatingTypeId { get; set; }
 
         #endregion
@@ -235,6 +236,9 @@ namespace Cares.Models.DomainModels
         /// Ra Mains
         /// </summary>
         public virtual ICollection<RaMain> RaMains { get; set; }
+
+        public virtual ICollection<BusinessPartnerDocument> BpDocuments { get; set; }
+
 
         #endregion
     }

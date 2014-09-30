@@ -95,6 +95,7 @@ namespace Cares.Repository
             unityContainer.RegisterType<IDiscountSubTypeRepository, DiscountSubTypeRepository>();
             unityContainer.RegisterType<IRaServiceItemRepository, RaServiceItemRepository>();
             unityContainer.RegisterType<IChaufferChargeRepository, ChaufferChargeRepository>();
+            unityContainer.RegisterType<IChaufferChargeMainRepository, ChaufferChargeMainRepository>();
             unityContainer.RegisterType<INrtTypeRepository, NrtTypeRepository>();
             unityContainer.RegisterType<INrtMainRepository, NrtMainRepository>();
             unityContainer.RegisterType<IRaVehicleCheckListRepository, RaVehicleCheckListRepository>();
@@ -105,6 +106,10 @@ namespace Cares.Repository
             unityContainer.RegisterType<IDocumentGroupRepository, DocumentGroupRepository>();
             unityContainer.RegisterType<IBpSubTypeRepository, BpSubTypeRepository>();
             unityContainer.RegisterType<IDocumentRepository, DocumentRepository>();
+            unityContainer.RegisterType<IBusinessPartnerDocumentRepository, BusinessPartnerDocumentRepository>();
+            unityContainer.RegisterType<IRACustomerDocumentRepository, RACustomerDocumentRepository>();
+            unityContainer.RegisterType<ICreditLimitRepository, CreditLimitRepository>();
+
 
         }
     }

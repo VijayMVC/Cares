@@ -219,6 +219,30 @@
           <Property Name="RecLastUpdatedDt" Type="datetime" Nullable="false" />
           <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
         </EntityType>
+        <EntityType Name="BPDocument">
+          <Key>
+            <PropertyRef Name="BPDocumentID" />
+          </Key>
+          <Property Name="BPDocumentID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BPDocumentCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="BPDocumentName" Type="nvarchar" MaxLength="255" />
+          <Property Name="BPDocumentDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="Document" Type="image" Nullable="false" />
+          <Property Name="BPMainID" Type="bigint" Nullable="false" />
+          <Property Name="UploadedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UploadedDate" Type="datetime" Nullable="false" />
+          <Property Name="RowVersion" Type="bigint" Nullable="false" />
+          <Property Name="DocumentID" Type="int" Nullable="false" />
+          <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsReadOnly" Type="bit" Nullable="false" />
+          <Property Name="IsPrivate" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="RecLastUpdatedDt" Type="datetime" Nullable="false" />
+          <Property Name="RecLastUpdatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RecCreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RecCreatedDt" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="BPIndividual">
           <Key>
             <PropertyRef Name="BPMainID" />
@@ -584,6 +608,27 @@
           <Property Name="RecLastUpdatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="RecCreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="RecCreatedDt" Type="datetime" Nullable="false" />
+          <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CreditLimit">
+          <Key>
+            <PropertyRef Name="CreditLimitID" />
+          </Key>
+          <Property Name="CreditLimitID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IsIndividual" Type="bit" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="StandardCreditLimit" Type="float" Nullable="false" />
+          <Property Name="BPRatingTypeID" Type="smallint" Nullable="false" />
+          <Property Name="BPSubTypeID" Type="smallint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsReadOnly" Type="bit" Nullable="false" />
+          <Property Name="IsPrivate" Type="bit" Nullable="false" />
+          <Property Name="RowVersion" Type="bigint" Nullable="false" />
+          <Property Name="RecCreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RecCreatedDt" Type="datetime" Nullable="false" />
+          <Property Name="RecLastUpdatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RecLastUpdatedDt" Type="datetime" Nullable="false" />
           <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="Department">
@@ -2939,6 +2984,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="RefBPMain293">
+          <End Role="BPMain" Type="Self.BPMain" Multiplicity="1" />
+          <End Role="BPDocument" Type="Self.BPDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BPMain">
+              <PropertyRef Name="BPMainID" />
+            </Principal>
+            <Dependent Role="BPDocument">
+              <PropertyRef Name="BPMainID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="RefBPMain295">
           <End Role="BPMain" Type="Self.BPMain" Multiplicity="1" />
           <End Role="BPRelationship" Type="Self.BPRelationship" Multiplicity="*" />
@@ -3023,6 +3080,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="RefBPRatingType553">
+          <End Role="BPRatingType" Type="Self.BPRatingType" Multiplicity="1" />
+          <End Role="CreditLimit" Type="Self.CreditLimit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BPRatingType">
+              <PropertyRef Name="BPRatingTypeID" />
+            </Principal>
+            <Dependent Role="CreditLimit">
+              <PropertyRef Name="BPRatingTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="RefBPRatingType559">
           <End Role="BPRatingType" Type="Self.BPRatingType" Multiplicity="0..1" />
           <End Role="StandardDiscount" Type="Self.StandardDiscount" Multiplicity="*" />
@@ -3067,6 +3136,18 @@
               <PropertyRef Name="BPSubTypeID" />
             </Principal>
             <Dependent Role="BPInType">
+              <PropertyRef Name="BPSubTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefBPSubType554">
+          <End Role="BPSubType" Type="Self.BPSubType" Multiplicity="1" />
+          <End Role="CreditLimit" Type="Self.CreditLimit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BPSubType">
+              <PropertyRef Name="BPSubTypeID" />
+            </Principal>
+            <Dependent Role="CreditLimit">
               <PropertyRef Name="BPSubTypeID" />
             </Dependent>
           </ReferentialConstraint>
@@ -3370,6 +3451,18 @@
             </Principal>
             <Dependent Role="DiscountSubType">
               <PropertyRef Name="DiscountTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefDocument445">
+          <End Role="Document" Type="Self.Document" Multiplicity="1" />
+          <End Role="BPDocument" Type="Self.BPDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="DocumentID" />
+            </Principal>
+            <Dependent Role="BPDocument">
+              <PropertyRef Name="DocumentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5208,6 +5301,7 @@
           <EntitySet Name="BookingMain" EntityType="Self.BookingMain" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BookingStatus" EntityType="Self.BookingStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BPCompany" EntityType="Self.BPCompany" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BPDocument" EntityType="Self.BPDocument" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BPIndividual" EntityType="Self.BPIndividual" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BPInType" EntityType="Self.BPInType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BPMain" EntityType="Self.BPMain" Schema="dbo" store:Type="Tables" />
@@ -5226,6 +5320,7 @@
           <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CreditLimit" EntityType="Self.CreditLimit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DesigGrade" EntityType="Self.DesigGrade" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Designation" EntityType="Self.Designation" Schema="dbo" store:Type="Tables" />
@@ -5428,6 +5523,10 @@
             <End Role="BPMain" EntitySet="BPMain" />
             <End Role="VehicleDisposalInfo" EntitySet="VehicleDisposalInfo" />
           </AssociationSet>
+          <AssociationSet Name="RefBPMain293" Association="Self.RefBPMain293">
+            <End Role="BPMain" EntitySet="BPMain" />
+            <End Role="BPDocument" EntitySet="BPDocument" />
+          </AssociationSet>
           <AssociationSet Name="RefBPMain295" Association="Self.RefBPMain295">
             <End Role="BPMain" EntitySet="BPMain" />
             <End Role="BPRelationship" EntitySet="BPRelationship" />
@@ -5456,6 +5555,10 @@
             <End Role="BPRatingType" EntitySet="BPRatingType" />
             <End Role="BPInType" EntitySet="BPInType" />
           </AssociationSet>
+          <AssociationSet Name="RefBPRatingType553" Association="Self.RefBPRatingType553">
+            <End Role="BPRatingType" EntitySet="BPRatingType" />
+            <End Role="CreditLimit" EntitySet="CreditLimit" />
+          </AssociationSet>
           <AssociationSet Name="RefBPRatingType559" Association="Self.RefBPRatingType559">
             <End Role="BPRatingType" EntitySet="BPRatingType" />
             <End Role="StandardDiscount" EntitySet="StandardDiscount" />
@@ -5471,6 +5574,10 @@
           <AssociationSet Name="RefBPSubType120" Association="Self.RefBPSubType120">
             <End Role="BPSubType" EntitySet="BPSubType" />
             <End Role="BPInType" EntitySet="BPInType" />
+          </AssociationSet>
+          <AssociationSet Name="RefBPSubType554" Association="Self.RefBPSubType554">
+            <End Role="BPSubType" EntitySet="BPSubType" />
+            <End Role="CreditLimit" EntitySet="CreditLimit" />
           </AssociationSet>
           <AssociationSet Name="RefBusinessLegalStatus291" Association="Self.RefBusinessLegalStatus291">
             <End Role="BusinessLegalStatus" EntitySet="BusinessLegalStatus" />
@@ -5571,6 +5678,10 @@
           <AssociationSet Name="RefDiscountType374" Association="Self.RefDiscountType374">
             <End Role="DiscountType" EntitySet="DiscountType" />
             <End Role="DiscountSubType" EntitySet="DiscountSubType" />
+          </AssociationSet>
+          <AssociationSet Name="RefDocument445" Association="Self.RefDocument445">
+            <End Role="Document" EntitySet="Document" />
+            <End Role="BPDocument" EntitySet="BPDocument" />
           </AssociationSet>
           <AssociationSet Name="RefDocument507" Association="Self.RefDocument507">
             <End Role="Document" EntitySet="Document" />
@@ -7156,6 +7267,24 @@
             <End Role="DocumentGroup" EntitySet="DocumentGroups" />
             <End Role="Document" EntitySet="Documents" />
           </AssociationSet>
+          <EntitySet Name="BusinessPartnerDocuments" EntityType="DomainModels.BusinessPartnerDocument" />
+          <AssociationSet Name="RefBPMain293" Association="DomainModels.RefBPMain293">
+            <End Role="BusinessPartner" EntitySet="BusinessPartners" />
+            <End Role="BPDocument" EntitySet="BusinessPartnerDocuments" />
+          </AssociationSet>
+          <AssociationSet Name="RefDocument445" Association="DomainModels.RefDocument445">
+            <End Role="Document" EntitySet="Documents" />
+            <End Role="BPDocument" EntitySet="BusinessPartnerDocuments" />
+          </AssociationSet>
+          <EntitySet Name="CreditLimits" EntityType="DomainModels.CreditLimit" />
+          <AssociationSet Name="RefBPRatingType553" Association="DomainModels.RefBPRatingType553">
+            <End Role="BpRatingType" EntitySet="BpRatingTypes1" />
+            <End Role="CreditLimit" EntitySet="CreditLimits" />
+          </AssociationSet>
+          <AssociationSet Name="RefBPSubType554" Association="DomainModels.RefBPSubType554">
+            <End Role="BusinessPartnerSubType" EntitySet="BusinessPartnerSubTypes" />
+            <End Role="CreditLimit" EntitySet="CreditLimits" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Company">
           <Key>
@@ -7414,6 +7543,7 @@
           <NavigationProperty Name="BPRatingType" Relationship="DomainModels.RefBPRatingType6191" FromRole="BusinessPartner" ToRole="BPRatingType" />
           <NavigationProperty Name="BusinessPartnerAddressList" Relationship="DomainModels.RefBPMain241" FromRole="BusinessPartner" ToRole="Address" />
           <NavigationProperty Name="RaMains" Relationship="DomainModels.RefBPMain506" FromRole="BusinessPartner" ToRole="RAMain" />
+          <NavigationProperty Name="BpDocuments" Relationship="DomainModels.RefBPMain293" FromRole="BusinessPartner" ToRole="BPDocument" />
         </EntityType>
         <EntityType Name="BusinessPartnerMainType">
           <Key>
@@ -7492,6 +7622,7 @@
           <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
           <NavigationProperty Name="BusinessPartnerInTypes" Relationship="DomainModels.RefBPSubType120" FromRole="BPSubType" ToRole="BPInType" />
           <NavigationProperty Name="BusinessPartnerMainType" Relationship="DomainModels.RefBPMainType288" FromRole="BPSubType" ToRole="BPMainType" />
+          <NavigationProperty Name="CreditLimits" Relationship="DomainModels.RefBPSubType554" FromRole="BusinessPartnerSubType" ToRole="CreditLimit" />
         </EntityType>
         <EntityType Name="BusinessLegalStatus">
           <Key>
@@ -10217,6 +10348,7 @@
           <NavigationProperty Name="BusinessPartners" Relationship="DomainModels.RefBPRatingType6191" FromRole="BPRatingType" ToRole="BusinessPartner" />
           <NavigationProperty Name="SeasonalDiscounts" Relationship="DomainModels.RefBPRatingType413" FromRole="BpRatingType" ToRole="SeasonalDiscount" />
           <NavigationProperty Name="StandardDiscounts" Relationship="DomainModels.RefBPRatingType559" FromRole="BpRatingType" ToRole="StandardDiscount" />
+          <NavigationProperty Name="CreditLimits" Relationship="DomainModels.RefBPRatingType553" FromRole="BpRatingType" ToRole="CreditLimit" />
         </EntityType>
         <EntityType Name="BusinessPartnerRelationshipType">
           <Key>
@@ -12640,6 +12772,7 @@
           <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
           <NavigationProperty Name="RaCustomerDocuments" Relationship="DomainModels.RefDocument507" FromRole="Document" ToRole="RaCustomerDocument" />
           <NavigationProperty Name="DocumentGroup" Relationship="DomainModels.RefDocumentGroup444" FromRole="Document" ToRole="DocumentGroup" />
+          <NavigationProperty Name="BpDocuments" Relationship="DomainModels.RefDocument445" FromRole="Document" ToRole="BPDocument" />
         </EntityType>
         <EntityType Name="DocumentGroup">
           <Key>
@@ -12682,6 +12815,103 @@
             </Principal>
             <Dependent Role="Document">
               <PropertyRef Name="DocumentGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BusinessPartnerDocument">
+          <Key>
+            <PropertyRef Name="BusinessPartnerDocumentId" />
+          </Key>
+          <Property Name="BusinessPartnerDocumentId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BusinessPartnerDocumentCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BusinessPartnerDocumentName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="BusinessPartnerDocumentDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Document" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="BusinessPartnerId" Type="Int64" Nullable="false" />
+          <Property Name="UploadedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UploadedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RowVersion" Type="Int64" Nullable="false" />
+          <Property Name="DocumentId" Type="Int32" Nullable="false" />
+          <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="BusinessPartner" Relationship="DomainModels.RefBPMain293" FromRole="BPDocument" ToRole="BusinessPartner" />
+          <NavigationProperty Name="BpDocument" Relationship="DomainModels.RefDocument445" FromRole="BPDocument" ToRole="Document" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsReadOnly" Type="Boolean" Nullable="false" />
+          <Property Name="IsPrivate" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="RecLastUpdatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecLastUpdatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RecCreatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RecCreatedDt" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <Association Name="RefBPMain293">
+          <End Type="DomainModels.BusinessPartner" Role="BusinessPartner" Multiplicity="1" />
+          <End Type="DomainModels.BusinessPartnerDocument" Role="BPDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusinessPartner">
+              <PropertyRef Name="BusinessPartnerId" />
+            </Principal>
+            <Dependent Role="BPDocument">
+              <PropertyRef Name="BusinessPartnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefDocument445">
+          <End Type="DomainModels.Document" Role="Document" Multiplicity="1" />
+          <End Type="DomainModels.BusinessPartnerDocument" Role="BPDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="DocumentId" />
+            </Principal>
+            <Dependent Role="BPDocument">
+              <PropertyRef Name="DocumentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CreditLimit">
+          <Key>
+            <PropertyRef Name="CreditLimitId" />
+          </Key>
+          <Property Name="CreditLimitId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsIndividual" Type="Boolean" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="StandardCreditLimit" Type="Double" Nullable="false" />
+          <Property Name="BpRatingTypeId" Type="Int16" Nullable="false" />
+          <Property Name="BpSubTypeId" Type="Int16" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsReadOnly" Type="Boolean" Nullable="false" />
+          <Property Name="IsPrivate" Type="Boolean" Nullable="false" />
+          <Property Name="RowVersion" Type="Int64" Nullable="false" />
+          <Property Name="RecCreatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RecCreatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecLastUpdatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RecLastUpdatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="BpRatingType" Relationship="DomainModels.RefBPRatingType553" FromRole="CreditLimit" ToRole="BpRatingType" />
+          <NavigationProperty Name="BpSubType" Relationship="DomainModels.RefBPSubType554" FromRole="CreditLimit" ToRole="BusinessPartnerSubType" />
+        </EntityType>
+        <Association Name="RefBPRatingType553">
+          <End Type="DomainModels.BpRatingType" Role="BpRatingType" Multiplicity="1" />
+          <End Type="DomainModels.CreditLimit" Role="CreditLimit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BpRatingType">
+              <PropertyRef Name="BpRatingTypeId" />
+            </Principal>
+            <Dependent Role="CreditLimit">
+              <PropertyRef Name="BpRatingTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefBPSubType554">
+          <End Type="DomainModels.BusinessPartnerSubType" Role="BusinessPartnerSubType" Multiplicity="1" />
+          <End Type="DomainModels.CreditLimit" Role="CreditLimit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusinessPartnerSubType">
+              <PropertyRef Name="BusinessPartnerSubTypeId" />
+            </Principal>
+            <Dependent Role="CreditLimit">
+              <PropertyRef Name="BpSubTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -15416,6 +15646,53 @@
                 <ScalarProperty Name="DocumentGroupName" ColumnName="DocumentGroupName" />
                 <ScalarProperty Name="DocumentGroupCode" ColumnName="DocumentGroupCode" />
                 <ScalarProperty Name="DocumentGroupId" ColumnName="DocumentGroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BusinessPartnerDocuments">
+            <EntityTypeMapping TypeName="DomainModels.BusinessPartnerDocument">
+              <MappingFragment StoreEntitySet="BPDocument">
+                <ScalarProperty Name="RecCreatedDt" ColumnName="RecCreatedDt" />
+                <ScalarProperty Name="RecCreatedBy" ColumnName="RecCreatedBy" />
+                <ScalarProperty Name="RecLastUpdatedBy" ColumnName="RecLastUpdatedBy" />
+                <ScalarProperty Name="RecLastUpdatedDt" ColumnName="RecLastUpdatedDt" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
+                <ScalarProperty Name="IsReadOnly" ColumnName="IsReadOnly" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
+                <ScalarProperty Name="DocumentId" ColumnName="DocumentID" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="UploadedDate" ColumnName="UploadedDate" />
+                <ScalarProperty Name="UploadedBy" ColumnName="UploadedBy" />
+                <ScalarProperty Name="BusinessPartnerId" ColumnName="BPMainID" />
+                <ScalarProperty Name="Document" ColumnName="Document" />
+                <ScalarProperty Name="BusinessPartnerDocumentDescription" ColumnName="BPDocumentDescription" />
+                <ScalarProperty Name="BusinessPartnerDocumentName" ColumnName="BPDocumentName" />
+                <ScalarProperty Name="BusinessPartnerDocumentCode" ColumnName="BPDocumentCode" />
+                <ScalarProperty Name="BusinessPartnerDocumentId" ColumnName="BPDocumentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CreditLimits">
+            <EntityTypeMapping TypeName="DomainModels.CreditLimit">
+              <MappingFragment StoreEntitySet="CreditLimit">
+                <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
+                <ScalarProperty Name="RecLastUpdatedDt" ColumnName="RecLastUpdatedDt" />
+                <ScalarProperty Name="RecLastUpdatedBy" ColumnName="RecLastUpdatedBy" />
+                <ScalarProperty Name="RecCreatedDt" ColumnName="RecCreatedDt" />
+                <ScalarProperty Name="RecCreatedBy" ColumnName="RecCreatedBy" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
+                <ScalarProperty Name="IsReadOnly" ColumnName="IsReadOnly" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="BpSubTypeId" ColumnName="BPSubTypeID" />
+                <ScalarProperty Name="BpRatingTypeId" ColumnName="BPRatingTypeID" />
+                <ScalarProperty Name="StandardCreditLimit" ColumnName="StandardCreditLimit" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsIndividual" ColumnName="IsIndividual" />
+                <ScalarProperty Name="CreditLimitId" ColumnName="CreditLimitID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

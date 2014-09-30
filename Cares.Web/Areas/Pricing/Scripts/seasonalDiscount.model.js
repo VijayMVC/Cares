@@ -124,33 +124,35 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
           //Opearation Workplace Id
          opWorkplaceId = ko.observable(),
           //Opearation Workplace Code Name
-          opWorkplaceCodeName = ko.observable(),
+          opWorkplaceCodeName = ko.observable("All"),
             //Hire Group Id
          hireGroupId = ko.observable(),
           //Hire Group Code Name
-          hireGroupCodeName = ko.observable(),
+          hireGroupCodeName = ko.observable("All"),
           //Vehicle Category ID
           vCategoryId = ko.observable(),
           //Vehicle Category Code Name
-          vCategoryCodeName = ko.observable(),
+          vCategoryCodeName = ko.observable("All"),
           //Customer Type ID
           customerTypeId = ko.observable(),
           //Customer Type Code Name
-          customerTypeCodeName = ko.observable(),
+          customerTypeCodeName = ko.observable("Both"),
            //Vehicle Make ID
           vMakeId = ko.observable(),
           //Vehicle Make Code Name
-          vMakeCodeName = ko.observable(),
+          vMakeCodeName = ko.observable("All"),
             //Vehicle Model ID
           vModelId = ko.observable(),
           //Vehicle Model Code Name
-          vModelCodeName = ko.observable(),
+          vModelCodeName = ko.observable("All"),
           //MOdel Year
           modelYear = ko.observable(),
+          //model Year Code
+          modelYearCode = ko.observable("All"),
            //Rating Type ID
           ratingId = ko.observable(),
           //Rating Type Code Name
-          ratingCodeName = ko.observable(),
+          ratingCodeName = ko.observable("All"),
           //From Date
           fromDate = ko.observable().extend({ required: true }),
           //To Date
@@ -210,6 +212,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             vModelId: vModelId,
             vModelCodeName: vModelCodeName,
             modelYear: modelYear,
+            modelYearCode: modelYearCode,
             formattedStartDate: formattedStartDate,
             formattedEndDate: formattedEndDate,
             revisionNumber: revisionNumber,
@@ -245,15 +248,31 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         return seasonalDiscountMain;
     };
     //Convert Server To Client
-    var ChaufferChargeClientMapper = function (source) {
-        var chaufferCharge = new ChaufferCharge();
-        chaufferCharge.id(source.ChaufferChargeId === null ? undefined : source.ChaufferChargeId);
-        chaufferCharge.desigGradeCodeName(source.DesigGradeCodeName === null ? undefined : source.DesigGradeCodeName);
-        chaufferCharge.desigGradeId(source.DesigGradeId === null ? undefined : source.DesigGradeId);
-        chaufferCharge.revisionNumber(source.RevisionNumber === null ? undefined : source.RevisionNumber);
-        chaufferCharge.rate(source.ChaufferChargeRate === null ? undefined : source.ChaufferChargeRate);
-        chaufferCharge.startDate(source.StartDt !== null ? moment(source.StartDt, ist.utcFormat).toDate() : undefined);
-        return chaufferCharge;
+    var SeasonalDiscountClientMapper = function (source) {
+        var seasonalDiscount = new SeasonalDiscount();
+        seasonalDiscount.id(source.SeasonalDiscountId === null ? undefined : source.SeasonalDiscountId);
+        seasonalDiscount.opWorkplaceId(source.OperationsWorkPlaceId === null ? undefined : source.OperationsWorkPlaceId);
+        seasonalDiscount.opWorkplaceCodeName(source.OperationsWorkPlaceCode === null ? "All" : source.OperationsWorkPlaceCode);
+        seasonalDiscount.hireGroupId(source.HireGroupId === null ? undefined : source.HireGroupId);
+        seasonalDiscount.hireGroupCodeName(source.HireGroupCodeName === null ? "All" : source.HireGroupCodeName);
+        seasonalDiscount.vMakeId(source.VehicleMakeId === null ? undefined : source.VehicleMakeId);
+        seasonalDiscount.vMakeCodeName(source.VehicleMakeCodeName === null ? "All" : source.VehicleMakeCodeName);
+        seasonalDiscount.vCategoryId(source.VehicleCategoryId === null ? undefined : source.VehicleCategoryId);
+        seasonalDiscount.vCategoryCodeName(source.VehicleCategoryCodeName === null ? "All" : source.VehicleCategoryCodeName);
+        seasonalDiscount.vModelId(source.VehicleModelId === null ? undefined : source.VehicleModelId);
+        seasonalDiscount.vModelCodeName(source.VehicleModelCodeName === null ? "All" : source.VehicleModelCodeName);
+        seasonalDiscount.customerTypeId(source.CustomerType === null ? undefined : source.CustomerType);
+        seasonalDiscount.customerTypeCodeName(source.CustomerTypeCodeName === null ? "Both" : source.CustomerTypeCodeName);
+        seasonalDiscount.modelYear(source.ModelYear === null ? undefined : source.ModelYear);
+        seasonalDiscount.modelYearCode(source.ModelYear === null ? "All" : source.ModelYear);
+        seasonalDiscount.ratingId(source.RatingTypeId === null ? undefined : source.RatingTypeId);
+        seasonalDiscount.ratingCodeName(source.RatingTypeId === null ? undefined : source.RatingTypeId);
+        seasonalDiscount.ratingCodeName(source.RatingTypeCodeName === null ? "All" : source.RatingTypeCodeName);
+        seasonalDiscount.discount(source.DiscountPerc === null ? undefined : source.DiscountPerc);
+        seasonalDiscount.revisionNumber(source.RevisionNumber === null ? undefined : source.RevisionNumber);
+        seasonalDiscount.fromDate(source.StartDt !== null ? moment(source.StartDt, ist.utcFormat).toDate() : undefined);
+        seasonalDiscount.toDate(source.EndDt !== null ? moment(source.EndDt, ist.utcFormat).toDate() : undefined);
+        return seasonalDiscount;
     };
     //Convert Client To Server
     var SeasonalDiscountMainServerMapper = function (source) {
@@ -261,13 +280,13 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.SeasonalDiscountMainId = source.id() === undefined ? 0 : source.id();
         result.Code = source.code() === undefined ? null : source.code();
         result.Name = source.name() === undefined ? null : source.name();
-        result.Description = source.description() === undefined ? 0 : source.description();
-        result.TariffTypeId = source.tariffTypeId() === undefined ? 0 : source.tariffTypeId();
+        result.Description = source.description() === undefined ? null : source.description();
+        result.TariffTypeCode = source.tariffTypeId() === undefined ? 0 : source.tariffTypeId();
         result.StartDt = source.startDate() === undefined || source.startDate() === null ? null : moment(source.startDate()).format(ist.utcFormat);
         result.EndDt = source.endDate() === undefined || source.endDate() === null ? null : moment(source.endDate()).format(ist.utcFormat);
-        result.SeasonalDiscounts = [];
+        result.SeasonalDiscountList = [];
         _.each(source.seasonalDiscountsList(), function (item) {
-            result.SeasonalDiscounts.push(SeasonalDiscountServerMapper(item));
+            result.SeasonalDiscountList.push(SeasonalDiscountServerMapper(item));
         });
         return result;
     };
@@ -300,7 +319,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         SeasonalDiscountMain: SeasonalDiscountMain,
         SeasonalDiscount: SeasonalDiscount,
         SeasonalDiscountMainClientMapper: SeasonalDiscountMainClientMapper,
-        ChaufferChargeClientMapper: ChaufferChargeClientMapper,
+        SeasonalDiscountClientMapper: SeasonalDiscountClientMapper,
         SeasonalDiscountMainServerMapper: SeasonalDiscountMainServerMapper,
         SeasonalDiscountServerMapper: SeasonalDiscountServerMapper,
         SeasonalDiscountServerMapperForId: SeasonalDiscountServerMapperForId,
