@@ -109,9 +109,11 @@
     <Compile Include="Common\BpMainTypeByColumn.cs" />
     <Compile Include="Common\ChaufferChargeByColumn.cs" />
     <Compile Include="Common\DesignationEnum.cs" />
+    <Compile Include="Common\DocumentByColumn.cs" />
     <Compile Include="Common\DocumentGroupByColumn.cs" />
     <Compile Include="Common\NrtTypeByColumn.cs" />
     <Compile Include="Common\DiscountTypeEnum.cs" />
+    <Compile Include="Common\RatingTypeByColumn.cs" />
     <Compile Include="Common\SeasonalDiscountByColumn.cs" />
     <Compile Include="Common\VehicleMovementEnum.cs" />
     <Compile Include="Common\PricingStrategyEnum.cs" />
@@ -146,6 +148,8 @@
     <Compile Include="Common\WorkLocationByColumn.cs" />
     <Compile Include="Common\WorkplaceByColumn.cs" />
     <Compile Include="Common\WorkplaceTypeByColumn.cs" />
+    <Compile Include="DomainModels\BusinessPartnerDocument.cs" />
+    <Compile Include="DomainModels\CreditLimit.cs" />
     <Compile Include="DomainModels\StandartDiscount.cs" />
     <Compile Include="DomainModels\SeasonalDiscount.cs" />
     <Compile Include="DomainModels\AdditionalCharge.cs" />
@@ -299,6 +303,7 @@
     <Compile Include="RequestModels\DiscountSubTypeSearchRequestResponse.cs" />
     <Compile Include="RequestModels\DiscountTypeSearchRequest.cs" />
     <Compile Include="RequestModels\DiscountTypeSearchRequestResponse.cs" />
+    <Compile Include="RequestModels\DocumentSearchRequest.cs" />
     <Compile Include="RequestModels\GetRaChaufferRequest.cs" />
     <Compile Include="RequestModels\DocumentGroupSearchRequest.cs" />
     <Compile Include="RequestModels\DocumentGroupSearchRequestResponse.cs" />
@@ -316,6 +321,8 @@
     <Compile Include="RequestModels\CitySearchRequest.cs" />
     <Compile Include="RequestModels\JobTypeSearchRequest.cs" />
     <Compile Include="RequestModels\JobTypeSearchRequestResponse.cs" />
+    <Compile Include="RequestModels\RatingTypeSearchRequest.cs" />
+    <Compile Include="RequestModels\RatingTypeSearchRequestResponse.cs" />
     <Compile Include="RequestModels\RegionSearchRequest.cs" />
     <Compile Include="RequestModels\RegionSearchRequestResponse.cs" />
     <Compile Include="RequestModels\SeasonalDiscountSearchRequest.cs" />
@@ -355,6 +362,8 @@
     <Compile Include="ResponseModels\DepartmentBaseDataResponse.cs" />
     <Compile Include="ResponseModels\DepartmentSearchRequestResponse.cs" />
     <Compile Include="ResponseModels\DiscountSubTypeBaseDataResponse.cs" />
+    <Compile Include="ResponseModels\DocumentBaseDataResponse.cs" />
+    <Compile Include="ResponseModels\DocumentSearchRequestResponse.cs" />
     <Compile Include="ResponseModels\EmployeeBaseResponse.cs" />
     <Compile Include="ResponseModels\EmployeeSearchResponse.cs" />
     <Compile Include="ResponseModels\FleetPoolBaseDataResponse.cs" />

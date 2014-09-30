@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0c64bbf4dc9445619e056242daa0f9af" Name="Diagram1" ZoomLevel="82">
+      <Diagram DiagramId="0c64bbf4dc9445619e056242daa0f9af" Name="Diagram1" ZoomLevel="100">
         <EntityTypeShape EntityType="DomainModels.OrgGroup" Width="2.875" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DomainModels.Company" Width="1.5" PointX="4.75" PointY="0.75" />
         <AssociationConnector Association="DomainModels.RefCompany263" />
@@ -16,8 +16,8 @@
         <EntityTypeShape EntityType="DomainModels.BusinessPartnerCompany" Width="1.5" PointX="12.625" PointY="12.375" />
         <EntityTypeShape EntityType="DomainModels.BusinessPartnerIndividual" Width="1.5" PointX="15.625" PointY="4.5" />
         <EntityTypeShape EntityType="DomainModels.BusinessPartnerInType" Width="1.5" PointX="12.875" PointY="0.625" />
-        <EntityTypeShape EntityType="DomainModels.BusinessPartner" Width="1.5" PointX="7.375" PointY="4.25" />
-        <EntityTypeShape EntityType="DomainModels.BusinessPartnerMainType" Width="1.5" PointX="8.125" PointY="13.375" />
+        <EntityTypeShape EntityType="DomainModels.BusinessPartner" Width="2.125" PointX="7.375" PointY="4.25" />
+        <EntityTypeShape EntityType="DomainModels.BusinessPartnerMainType" Width="1.5" PointX="7.875" PointY="13.875" />
         <EntityTypeShape EntityType="DomainModels.BusinessPartnerMarketingChannel" Width="1.5" PointX="9.625" PointY="48.125" />
         <EntityTypeShape EntityType="DomainModels.BusinessPartnerRelationship" Width="1.5" PointX="9.625" PointY="51.875" />
         <EntityTypeShape EntityType="DomainModels.BusinessPartnerSubType" Width="1.5" PointX="10.375" PointY="13.125" />
@@ -212,7 +212,7 @@
         <AssociationConnector Association="DomainModels.RefTariffType364" />
         <AssociationConnector Association="DomainModels.RefWorkplace2301" />
         <EntityTypeShape EntityType="DomainModels.AdditionalCharge" Width="1.5" PointX="39.625" PointY="28.625" />
-        <EntityTypeShape EntityType="DomainModels.AdditionalChargeType" Width="1.5" PointX="32.375" PointY="14.375" />
+        <EntityTypeShape EntityType="DomainModels.AdditionalChargeType" Width="3.25" PointX="32.375" PointY="14.375" />
         <EntityTypeShape EntityType="DomainModels.BookingMain" Width="1.5" PointX="27.375" PointY="35.125" />
         <EntityTypeShape EntityType="DomainModels.BookingStatus" Width="1.5" PointX="25.125" PointY="57" />
         <EntityTypeShape EntityType="DomainModels.ChaufferCharge" Width="1.5" PointX="12.625" PointY="67.125" />
@@ -338,9 +338,9 @@
         <EntityTypeShape EntityType="DomainModels.AspNetUserClaim" Width="1.5" PointX="5.625" PointY="58.75" />
         <EntityTypeShape EntityType="DomainModels.AspNetUserLogin" Width="1.5" PointX="5.625" PointY="56.25" />
         <EntityTypeShape EntityType="DomainModels.AspNetUser" Width="1.5" PointX="3.375" PointY="56.5" />
-        <EntityTypeShape EntityType="DomainModels.BPDocument" Width="1.5" PointX="33.25" PointY="7.25" />
+        <EntityTypeShape EntityType="DomainModels.BusinessPartnerDocument" Width="3.375" PointX="33.25" PointY="7.25" />
         <EntityTypeShape EntityType="DomainModels.CaresUser" Width="1.5" PointX="31" PointY="7.5" />
-        <EntityTypeShape EntityType="DomainModels.CreditLimit" Width="1.5" PointX="30" PointY="14.125" />
+        <EntityTypeShape EntityType="DomainModels.CreditLimit" Width="2.25" PointX="36.5" PointY="14.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DomainModels.InspectionReport" Width="1.5" PointX="42.25" PointY="44" />
         <EntityTypeShape EntityType="DomainModels.InspectionReportType" Width="1.5" PointX="40" PointY="54.5" />
         <EntityTypeShape EntityType="DomainModels.MenuFunction" Width="1.5" PointX="1.5" PointY="43.625" />

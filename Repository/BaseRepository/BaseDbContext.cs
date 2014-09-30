@@ -95,6 +95,8 @@ namespace Cares.Repository.BaseRepository
         /// Companies DB Set
         /// </summary>
         public DbSet<Company> Companies { get; set; }
+        public DbSet<CreditLimit> CreditLimits { get; set; }
+
         /// <summary>
         /// Business Segments DB Set
         /// </summary>
@@ -140,6 +142,10 @@ namespace Cares.Repository.BaseRepository
         /// Regions DB Set
         /// </summary>
         public DbSet<Region> Regions { get; set; }
+        public DbSet<BusinessPartnerDocument> BusinessPartnerDocuments { get; set; }
+        public DbSet<RaCustomerDocument> RaCustomerDocuments { get; set; }
+
+
         /// <summary>
         /// Regions DB Set
         /// </summary>

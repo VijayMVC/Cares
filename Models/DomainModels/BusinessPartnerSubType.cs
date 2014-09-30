@@ -105,6 +105,9 @@ namespace Cares.Models.DomainModels
         /// </summary>
         public virtual ICollection<BusinessPartnerInType> BusinessPartnerInTypes { get; set; }
 
+        public virtual ICollection<CreditLimit> CreditLimits { get; set; }
+
+
         #endregion
     }
 }

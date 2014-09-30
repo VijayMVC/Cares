@@ -41,5 +41,10 @@ namespace Cares.Interfaces.Repository
         /// Get business partnere by Phone No
         /// </summary>
         BusinessPartner GetByPhoneNo(string phoneNo, Models.CommonTypes.PhoneType phoneType);
+
+        /// <summary>
+        /// Association check between BP and Rating Type
+        /// </summary>
+        bool IsBusinessPartnerAssociatedWithRatingType(long ratingTypeId);
     }
 }

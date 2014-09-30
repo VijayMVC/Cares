@@ -104,6 +104,9 @@ namespace Cares.Models.DomainModels
         /// </summary>
         public virtual ICollection<StandardDiscount> StandardDiscounts { get; set; }
 
+        public virtual ICollection<CreditLimit> CreditLimits { get; set; }
+
+
         #endregion
     }
 }
