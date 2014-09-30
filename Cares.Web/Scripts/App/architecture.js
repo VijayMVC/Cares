@@ -300,12 +300,12 @@ require(["ko", "knockout-validation"], function (ko) {
             // ReSharper disable DuplicatingLocalDeclaration
             var options = valueAccessor();
             // ReSharper restore DuplicatingLocalDeclaration
-            var node = $(options.elementNode);
+            var node = $("#" + options.elementNode);
             var defaultOptions = { trigger: 'click', content: node.html() };
             options = $.extend(true, {}, defaultOptions, options);
             $(element).popover(options);
             $(element).click(function () {
-                var popOver = $(options.popoverId);
+                var popOver = $("#" + options.popoverId);
                 if (popOver) {
                     popOver = popOver[0];
                 }
@@ -313,13 +313,21 @@ require(["ko", "knockout-validation"], function (ko) {
                 ko.cleanNode(popOver);
                 ko.applyBindingsToDescendants(childBindingContext, popOver);
             });
-            $(window).click(function(event) {
-                if (event.target != $(element)[0]) {
+            $(window).click(function (event) {
+                if (event.target != $(element)[0] && event.target.className.search(options.popoverId) < 0) {
                     $(element).popover('hide');
                 }
             });
         }
     }
+
+    // Fix for bootstrap popovers, sometimes they are left in the DOM when they shouldn't be.
+    $('body').on('hidden.bs.popover', function () {
+        var popovers = $('.popover').not('.in');
+        if (popovers) {
+            popovers.remove();
+        }
+    });
 
     // Can be used to have a parent with one binding and children with another. Child areas should be surrounded with <!-- ko stopBinding: true --> <!-- /ko -->
     ko.bindingHandlers.stopBinding = {

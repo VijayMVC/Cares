@@ -12,11 +12,49 @@
                         <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
                             Extras
                         </a>
-                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Extras', elementNode: '#addExtrasTemplate', popoverId: '#addExtrasTemplate_popoverContent' }, attr:{ title: 'Add Extras' }"></a>
+                        <a id="addExtrasPopoverLink" class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Extras', elementNode: 'addExtrasTemplate', popoverId: 'addExtrasTemplate_popoverContent' }, attr:{ title: 'Add Extras' }"></a>
                     </h4>
                 </div>
                 <div id="collapseOne" class="panel-collapse collapse">
-                    <div class="panel-body">
+                    <div class="panel-body" data-bind="with: rentalAgreement">
+                        <table id="raServiceItemsTable" class="table table-condensed searchFilterResultSection">
+                            <thead>
+                                <tr>
+                                    <th id="ServiceType">Service Type</th>
+                                    <th id="ServiceItemCode">Service Item Code</th>
+                                    <th id="ServiceItemName">Service Item Name</th>
+                                    <th id="Quantity">Quantity</th>
+                                    <th id="StartDate">Start Date</th>
+                                    <th id="StartTime">Start Time</th>
+                                    <th id="EndDate">End Date</th>
+                                    <th id="EndTime">End Time</th>
+                                    <th id="DeleteServiceItem"></th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: rentalAgreementServiceItems">
+                                <tr>
+                                    <td data-bind="text: serviceTypeCodeName"></td>
+                                    <td data-bind="text: serviceItemCode"></td>
+                                    <td data-bind="text: serviceItemName"></td>
+                                    <td>
+                                        <input type="text" class="form-control" data-bind="value: quantity"/>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" data-bind="datepicker: startDate" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" data-bind="value: startTime" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" data-bind="datepicker: endDate" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" data-bind="value: endTime" />
+                                    </td>
+                                    <td><a data-bind="click: $parent.removeRaServiceItem"><span class="glyphicon glyphicon-remove"></span></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -26,12 +64,57 @@
                         <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
                             Drivers
                         </a>
-                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Drivers', elementNode: '#addDriversTemplate', popoverId: '#addDriversTemplate_popoverContent' }, attr:{ title: 'Add Drivers' }"></a>
+                        @*<a class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Drivers', elementNode: 'addDriversTemplate', popoverId: 'addDriversTemplate_popoverContent' }, attr:{ title: 'Add Drivers' }"></a>*@
                     </h4>
                 </div>
                 <div id="collapseTwo" class="panel-collapse collapse">
-                    <div class="panel-body">
-
+                    <div class="panel-body" data-bind="with: rentalAgreement">
+                        <button class="btn btn-primary" data-bind="click: $root.addDriverToRentalAgreement">Add</button>
+                        <table id="raDriversTable" class="table table-condensed searchFilterResultSection">
+                            <thead>
+                                <tr>
+                                    <th>Is Chauffer</th>
+                                    <th>Driver Name</th>
+                                    <th>License No</th>
+                                    <th>License Expiry Date</th>
+                                    <th>License Expiry Time</th>
+                                    <th>Start Date</th>
+                                    <th>Start Time</th>
+                                    <th>End Date</th>
+                                    <th>End Time</th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: raDrivers">
+                                <tr>
+                                    <td data-bind="text: isChauffer"></td>
+                                    <td>
+                                        <input type="text" class="form-control" data-bind="value: driverName"/>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" data-bind="value: licenseNo" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" data-bind="datepicker: licenseExpDate" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" data-bind="value: licenseExpTime" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" data-bind="datepicker: startDate" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" data-bind="value: startTime" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" data-bind="datepicker: endDate" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" data-bind="value: endTime" />
+                                    </td>
+                                    <td><a data-bind="click: $parent.removeRaDriver"><span class="glyphicon glyphicon-remove"></span></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -41,12 +124,42 @@
                         <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
                             Chauffers
                         </a>
-                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Chauffers', elementNode: '#addChaufferTemplate', popoverId: '#addChaufferTemplate_popoverContent' }, attr:{ title: 'Add Chauffers' }"></a>
+                        <a id="addChauffersPopoverLink" class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Chauffers', elementNode: 'addChaufferTemplate', popoverId: 'addChaufferTemplate_popoverContent' }, attr:{ title: 'Add Chauffers' }"></a>
                     </h4>
                 </div>
                 <div id="collapseThree" class="panel-collapse collapse">
-                    <div class="panel-body">
-
+                    <div class="panel-body" data-bind="with: rentalAgreement">
+                        <table id="raChauffersTable" class="table table-condensed searchFilterResultSection">
+                            <thead>
+                                <tr>
+                                    <th>Is Chauffer</th>
+                                    <th>Driver Name</th>
+                                    <th>License No</th>
+                                    <th>License Expiry Date</th>
+                                    <th>License Expiry Time</th>
+                                    <th>License No</th>
+                                    <th>Start Date</th>
+                                    <th>Start Time</th>
+                                    <th>End Date</th>
+                                    <th>End Time</th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: raChauffers">
+                                <tr>
+                                    <td data-bind="text: isChauffer"></td>
+                                    <td data-bind="text: driverName"></td>
+                                    <td data-bind="text: licenseNo"></td>
+                                    <td data-bind="text: licenseExpDate"></td>
+                                    <td data-bind="text: licenseExpTime"></td>
+                                    <td data-bind="text: licenseNo"></td>
+                                    <td data-bind="text: startDate"></td>
+                                    <td data-bind="text: startTime"></td>
+                                    <td data-bind="text: endDate"></td>
+                                    <td data-bind="text: endTime"></td>
+                                    <td><a data-bind="click: $parent.removeRaDriver"><span class="glyphicon glyphicon-remove"></span></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -56,7 +169,7 @@
                         <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
                             Discounts
                         </a>
-                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Discounts', elementNode: '#addDiscountTemplate', popoverId: '#addDiscountTemplate_popoverContent' }, attr:{ title: 'Add Discounts' }"></a>
+                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Discounts', elementNode: 'addDiscountTemplate', popoverId: 'addDiscountTemplate_popoverContent' }, attr:{ title: 'Add Discounts' }"></a>
                     </h4>
                 </div>
                 <div id="collapseFour" class="panel-collapse collapse">
@@ -71,7 +184,7 @@
                         <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
                             Damages
                         </a>
-                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Damages', elementNode: '#addDamageTemplate', popoverId: '#addDamageTemplate_popoverContent' }, attr:{ title: 'Add Damages' }"></a>
+                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Damages', elementNode: 'addDamageTemplate', popoverId: 'addDamageTemplate_popoverContent' }, attr:{ title: 'Add Damages' }"></a>
                     </h4>
                 </div>
                 <div id="collapseFive" class="panel-collapse collapse">
@@ -199,7 +312,7 @@
                         <a class="headingLink" data-toggle="collapse" data-parent="#accordion3" href="#collapseSeven">
                             Vehicles
                         </a>
-                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Vehicles', elementNode: '#vehicleTemplate', popoverId: '#vehicleTemplate_popoverContent' }, attr:{ title: 'Add Vehicles' }"></a>
+                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Vehicles', elementNode: 'vehicleTemplate', popoverId: 'vehicleTemplate_popoverContent' }, attr:{ title: 'Add Vehicles' }"></a>
                     </h4>
                 </div>
                 <div id="collapseSeven" class="panel-collapse collapse in">
@@ -239,7 +352,7 @@
                     </h4>
                 </div>
                 <div id="collapseEight" class="panel-collapse collapse in">
-                    <div class="panel-body">
+                    <div class="panel-body customPanel">
                         <form id="ra" class="form-horizontal" data-bind="with: rentalAgreement">
                             <div class="form-group">
                                 <label for="rentalAgreementNumber" class="control-label col-sm-2">RA #</label>
@@ -296,7 +409,7 @@
                             <div class="form-group" data-bind="with: $parent">
                                 <label for="rentalAgreementHireGroup" class="control-label col-sm-2">Hire Group</label>
                                 <div class="col-md-9 rentalHireGroupControl">
-                                    <input type="text" class="form-control" placeholder="<Hire Group>" id="rentalAgreementHireGroup" data-bind="enable: canLookForHireGroups" />
+                                    <input type="text" class="form-control" placeholder="<Hire Group>" id="rentalAgreementHireGroup" data-bind="enable: canLookForHireGroups, value: hireGroupText" />
                                 </div>
                             </div>
                         </form>
@@ -367,6 +480,18 @@
 
     <script type="html/text" id="vehicleTemplate">
         <div id="vehicleTemplate_popoverContent" class="searchFilterResultSection">
+            <div>
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <button class="btn btn-success vehicleTemplate_popoverContent_searchVehicleButton"
+                                    data-bind="click: searchVehicles, enable: $root.canSearchVehicles">
+                                Search
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
             <table class="table table-condensed">
                 <thead>
                     <tr>
@@ -395,19 +520,27 @@
             <table class="table table-condensed">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>Service Item Code</th>
                         <th>Service Item</th>
                         <th>Service Type</th>
                     </tr>
                 </thead>
                 <tbody data-bind="foreach: serviceItems">
-                    <tr data-bind="click: $root.selectServiceItem">
+                    <tr>
+                        <td>
+                            <input type="checkbox" class="addExtrasTemplate_popoverContent_isSelected" data-bind="checked: isSelected" />
+                        </td>
                         <td data-bind="text: code"></td>
                         <td data-bind="text: name"></td>
-                        <td data-bind="text: type"></td>
+                        <td data-bind="text: serviceTypeCodeName"></td>
                     </tr>
                 </tbody>
             </table>
+            <div>
+                <button class="btn btn-primary addExtrasTemplate_popoverContent_addExtrasButton" 
+                        data-bind="click: addExtrasToRentalAgreement.bind($data, $data, 'addExtrasPopoverLink')">Add</button>
+            </div>
         </div>
     </script>
 
@@ -437,24 +570,54 @@
     
     <script type="html/text" id="addChaufferTemplate">
         <div id="addChaufferTemplate_popoverContent" class="searchFilterResultSection">
+            <div>
+                <form class="form-horizontal">
+                    <div class="form-group" data-bind="with: chaufferFilter">
+                        <label class="control-label col-sm-2">Chauffer Out Dt</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control addChaufferTemplate_popoverContent_chaufferStDt" data-bind="datepicker: startDate" />
+                            <input type="text" class="form-control addChaufferTemplate_popoverContent_chaufferStTime" data-bind="value: startTime" />
+                        </div>
+                        <label class="control-label col-sm-2">Chauffer In Dt</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control addChaufferTemplate_popoverContent_chaufferEndDt" data-bind="datepicker: endDate" />
+                            <input type="text" class="form-control addChaufferTemplate_popoverContent_chaufferEndTime" data-bind="value: endTime" />
+                        </div>
+                        <div class="col-md-4">
+                            <button class="btn btn-success addChaufferTemplate_popoverContent_searchChaufferButton" 
+                                    data-bind="click: $root.searchChauffers, enable: $root.canSearchChauffers">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
             <table class="table table-condensed">
                 <thead>
                     <tr>
-                        <th>Is Chauffer</th>
-                        <th>Driver Name</th>
-                        <th>License No</th>
+                        <th></th>
+                        <th>Chauffer Code</th>
+                        <th>Chauffer Name</th>
+                        <th>Category</th>
+                        <th>License Number</th>
                         <th>License Expiry</th>
-                        <th>License No</th>
-                        <th>Start Date</th>
-                        <th>Start Hour</th>
-                        <th>Start Minute</th>
-                        <th>End Date</th>
-                        <th>End Hour</th>
-                        <th>End Minute</th>
                     </tr>
                 </thead>
-                <tbody data-bind="foreach: raDrivers"></tbody>
+                <tbody data-bind="foreach: chauffers">
+                    <tr>
+                        <td>
+                            <input type="checkbox" class="addChaufferTemplate_popoverContent_isSelected" data-bind="checked: isSelected" />
+                        </td>
+                        <td data-bind="text: code"></td>
+                        <td data-bind="text: name"></td>
+                        <td data-bind="text: desigGrade"></td>
+                        <td data-bind="text: licenseNo"></td>
+                        <td data-bind="text: licenseDt"></td>
+                    </tr>
+                </tbody>
             </table>
+            <div>
+                <button class="btn btn-primary addChaufferTemplate_popoverContent_chaufferAddButton" 
+                        data-bind="click: addChauffersToRentalAgreement.bind($data, $data, 'addChauffersPopoverLink')">Add</button>
+            </div>
         </div>
     </script>
     
