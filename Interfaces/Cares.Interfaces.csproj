@@ -54,6 +54,7 @@
     <Compile Include="IServices\IAddressBaseDataService.cs" />
     <Compile Include="IServices\IChaufferChargeService.cs" />
     <Compile Include="IServices\IDocumentService.cs" />
+    <Compile Include="IServices\IRatingTypeService.cs" />
     <Compile Include="IServices\ISeasonalDiscountService.cs" />
     <Compile Include="IServices\IBpMainTypeService.cs" />
     <Compile Include="IServices\IDocumentGroupService.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="IServices\IWorkLocationService.cs" />
     <Compile Include="IServices\IWorkplaceService.cs" />
     <Compile Include="IServices\IWorkplaceTypeService.cs" />
+    <Compile Include="Repository\ICreditLimitRepository.cs" />
     <Compile Include="Repository\IBpSubTypeRepository.cs" />
     <Compile Include="Repository\IRACustomerDocumentRepository.cs" />
     <Compile Include="Repository\IChaufferChargeMainRepository.cs" />

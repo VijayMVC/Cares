@@ -231,6 +231,7 @@
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeDetailController.cs" />
+    <Compile Include="Areas\Api\Controllers\RatingTypeController.cs" />
     <Compile Include="Areas\Api\Controllers\DocumentBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\DocumentController.cs" />
     <Compile Include="Areas\Api\Controllers\RentalAgreementChauffersController.cs" />
@@ -363,6 +364,7 @@
     <Compile Include="ModelMappers\RaCustomerDocumentMapper.cs" />
     <Compile Include="ModelMappers\RaDriverMapper.cs" />
     <Compile Include="ModelMappers\NrtTypeMapper.cs" />
+    <Compile Include="ModelMappers\RatingTypeMapper.cs" />
     <Compile Include="ModelMappers\SeasonalDiscountMapper.cs" />
     <Compile Include="ModelMappers\ServiceItemMapper.cs" />
     <Compile Include="ModelMappers\RaAdditionalChargeMapper.cs" />
@@ -392,6 +394,7 @@
     <Compile Include="Models\AreaBaseDataResponse.cs" />
     <Compile Include="Models\AreaSearchRequestResponse.cs" />
     <Compile Include="Models\BpMainTypeSearchRequestResponse.cs" />
+    <Compile Include="Models\BpRatingType.cs" />
     <Compile Include="Models\BusinessPartnerMainType.cs" />
     <Compile Include="Models\BusinessSegment.cs" />
     <Compile Include="Models\BusinessSegmentSearchRequestResponse.cs" />
@@ -522,6 +525,7 @@
     <Compile Include="Models\RaMain.cs" />
     <Compile Include="Models\RaPayment.cs" />
     <Compile Include="Models\RaServiceItem.cs" />
+    <Compile Include="Models\RatingTypeSearchRequestResponse.cs" />
     <Compile Include="Models\RaVehicleCheckList.cs" />
     <Compile Include="Models\Region.cs" />
     <Compile Include="Models\RegionBaseDataResponse.cs" />
@@ -661,6 +665,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BusinessPartnerMainType.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\BusinessPartner\Document.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Document.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\BusinessPartner\Document.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Document.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\BusinessPartner\DocumentGroup.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -670,6 +684,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DocumentGroup.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\BusinessPartner\RatingType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RatingType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\BusinessPartner\RatingType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RatingType.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\EmployeeManagement\Designation.ar.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1253,6 +1277,12 @@
     <Content Include="Content\DiscountType.min.css">
       <DependentUpon>DiscountType.css</DependentUpon>
     </Content>
+    <Content Include="Content\Document.css">
+      <DependentUpon>Document.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Document.min.css">
+      <DependentUpon>Document.css</DependentUpon>
+    </Content>
     <Content Include="Content\DocumentGroup.css">
       <DependentUpon>DocumentGroup.less</DependentUpon>
     </Content>
@@ -1314,6 +1344,12 @@
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\PagedList.min.css">
       <DependentUpon>PagedList.css</DependentUpon>
+    </Content>
+    <Content Include="Content\RatingType.css">
+      <DependentUpon>RatingType.less</DependentUpon>
+    </Content>
+    <Content Include="Content\RatingType.min.css">
+      <DependentUpon>RatingType.css</DependentUpon>
     </Content>
     <Content Include="Content\Region.css">
       <DependentUpon>Region.less</DependentUpon>
@@ -1886,6 +1922,14 @@
     <Content Include="Content\BusinessPartnerMainType.css.map">
       <DependentUpon>BusinessPartnerMainType.css</DependentUpon>
     </Content>
+    <Content Include="Content\Document.less" />
+    <Content Include="Content\Document.css.map">
+      <DependentUpon>Document.css</DependentUpon>
+    </Content>
+    <Content Include="Content\RatingType.less" />
+    <Content Include="Content\RatingType.css.map">
+      <DependentUpon>RatingType.css</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\Khurram.pubxml" />
     <Content Include="RichTextEditor\plugins\Thumbs.db" />
     <None Include="Scripts\amplify-vsdoc.js" />
@@ -2106,6 +2150,14 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BusinessPartnerMainType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\Document.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Document.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\Document.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Document.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\BusinessPartner\DocumentGroup.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>DocumentGroup.ar.Designer.cs</LastGenOutput>
@@ -2113,6 +2165,14 @@
     <EmbeddedResource Include="Resources\BusinessPartner\DocumentGroup.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>DocumentGroup.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\RatingType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RatingType.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\RatingType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RatingType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\EmployeeManagement\Designation.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -33,7 +33,6 @@ namespace Cares.Repository.Repositories
                         {BusinessPartnerByColumn.BPRatingTypeName, c => c.BPRatingType.BpRatingTypeName}
                     };
         #endregion
-
         #region Constructor
         /// <summary>
         /// Constructor
@@ -54,7 +53,6 @@ namespace Cares.Repository.Repositories
             }
         }
         #endregion
-
         #region Public
         /// <summary>
         /// Get All Business Partners for User Domain Key
@@ -181,6 +179,14 @@ namespace Cares.Repository.Repositories
                 .Include(x => x.BPRatingType)
                 .Include(x => x.PaymentTerm)
                 .FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Association check between BP and Rating Type
+        /// </summary>
+        public bool IsBusinessPartnerAssociatedWithRatingType(long ratingTypeId)
+        {
+            return DbSet.Count(businessPartner => businessPartner.BPRatingTypeId == ratingTypeId) > 0;
         }
 
         #endregion

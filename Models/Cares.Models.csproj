@@ -113,6 +113,7 @@
     <Compile Include="Common\DocumentGroupByColumn.cs" />
     <Compile Include="Common\NrtTypeByColumn.cs" />
     <Compile Include="Common\DiscountTypeEnum.cs" />
+    <Compile Include="Common\RatingTypeByColumn.cs" />
     <Compile Include="Common\SeasonalDiscountByColumn.cs" />
     <Compile Include="Common\VehicleMovementEnum.cs" />
     <Compile Include="Common\PricingStrategyEnum.cs" />
@@ -148,6 +149,7 @@
     <Compile Include="Common\WorkplaceByColumn.cs" />
     <Compile Include="Common\WorkplaceTypeByColumn.cs" />
     <Compile Include="DomainModels\BusinessPartnerDocument.cs" />
+    <Compile Include="DomainModels\CreditLimit.cs" />
     <Compile Include="DomainModels\StandartDiscount.cs" />
     <Compile Include="DomainModels\SeasonalDiscount.cs" />
     <Compile Include="DomainModels\AdditionalCharge.cs" />
@@ -319,6 +321,8 @@
     <Compile Include="RequestModels\CitySearchRequest.cs" />
     <Compile Include="RequestModels\JobTypeSearchRequest.cs" />
     <Compile Include="RequestModels\JobTypeSearchRequestResponse.cs" />
+    <Compile Include="RequestModels\RatingTypeSearchRequest.cs" />
+    <Compile Include="RequestModels\RatingTypeSearchRequestResponse.cs" />
     <Compile Include="RequestModels\RegionSearchRequest.cs" />
     <Compile Include="RequestModels\RegionSearchRequestResponse.cs" />
     <Compile Include="RequestModels\SeasonalDiscountSearchRequest.cs" />
