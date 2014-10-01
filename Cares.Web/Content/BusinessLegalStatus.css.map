@@ -1,0 +1,9 @@
+{
+  "version": 3,
+  "file": "BusinessLegalStatus.css",
+  "sources": [
+    "BusinessLegalStatus.less"
+  ],
+  "names": [],
+  "mappings": "AAAA,2BAEI,MACI,MACI,GAEI;EACI,UAAA;;AAPpB,2BAEI,MACI,MACI,GAKI;EACI,UAAA;;AAVpB,2BAEI,MACI,MACI,GAQI;EACI,UAAA;;AAbpB,2BAkBK;EACG,gBAAA;;AAnBR,2BAkBK,kCAEG;EACI,WAAA;;AArBZ,2BAkBK,kCAEG,kBAEI;EACI,WAAA;EACA,UAAA;EACA,mBAAA;EACA,gBAAA"
+}
