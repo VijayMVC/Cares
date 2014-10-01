@@ -1,4 +1,4 @@
-#tariffTypeBinding table thead tr .ttypesearchButton {
+﻿#tariffTypeBinding table thead tr .ttypesearchButton {
   margin-left: 5px;
 }
 #fleetRootBinding table thead tr .fleetCode {
@@ -379,6 +379,7 @@
   margin-top: 30px;
   margin-left: 5px;
   margin-right: 5px;
+  margin-bottom: 10px;
 }
 #seasonalDiscountBinding #seasonalDiscountEditor .detailsContainer {
   width: 100%;

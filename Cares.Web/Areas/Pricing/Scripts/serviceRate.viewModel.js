@@ -236,7 +236,7 @@ define("serviceRate/serviceRate.viewModel",
                     },
                      tariffType = ko.computed(function () {
                          if (selectedServiceRtMain() !== undefined) {
-                             //tariffTypes.removeAll();
+                             filteredTariffTypes.removeAll();
                              _.each(tariffTypes(), function (item) {
                                  if (item.OperationId === selectedServiceRtMain().operationId())
                                      filteredTariffTypes.push(item);
