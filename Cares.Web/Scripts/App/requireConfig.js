@@ -48,7 +48,9 @@
             "vehicleCheckList": ist.siteUrl + "/Areas/Fleet/Scripts",
             "documentGroup": ist.siteUrl + "/Areas/BusinessPartner/Scripts",
             "bpMainType": ist.siteUrl + "/Areas/BusinessPartner/Scripts",
-            "document": ist.siteUrl + "/Areas/BusinessPartner/Models"
+            "document": ist.siteUrl + "/Areas/BusinessPartner/Scripts",
+            "ratingType": ist.siteUrl + "/Areas/BusinessPartner/Scripts"
+
 
         }
     }); 
