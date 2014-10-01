@@ -274,6 +274,33 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         seasonalDiscount.toDate(source.EndDt !== null ? moment(source.EndDt, ist.utcFormat).toDate() : undefined);
         return seasonalDiscount;
     };
+    //Seasoanl Discount Copier
+    var SeasonalDiscountCopier = function (source) {
+        var seasonalDiscount = new SeasonalDiscount();
+        seasonalDiscount.id(source.id());
+        seasonalDiscount.opWorkplaceId(source.opWorkplaceId());
+        seasonalDiscount.opWorkplaceCodeName(source.opWorkplaceCodeName());
+        seasonalDiscount.hireGroupId(source.hireGroupId());
+        seasonalDiscount.hireGroupCodeName(source.hireGroupCodeName());
+        seasonalDiscount.vMakeId(source.vMakeId());
+        seasonalDiscount.vMakeCodeName(source.vMakeCodeName());
+        seasonalDiscount.vCategoryId(source.vCategoryId());
+        seasonalDiscount.vCategoryCodeName(source.vCategoryCodeName());
+        seasonalDiscount.vModelId(source.vModelId());
+        seasonalDiscount.vModelCodeName(source.vModelCodeName());
+        seasonalDiscount.customerTypeId(source.customerTypeId());
+        seasonalDiscount.customerTypeCodeName(source.customerTypeCodeName());
+        seasonalDiscount.modelYear(source.modelYear());
+        seasonalDiscount.modelYearCode(source.modelYearCode());
+        seasonalDiscount.ratingId(source.ratingId());
+        seasonalDiscount.ratingCodeName(source.ratingCodeName());
+        seasonalDiscount.ratingCodeName(source.ratingCodeName());
+        seasonalDiscount.discount(source.discount());
+        seasonalDiscount.revisionNumber(source.revisionNumber());
+        seasonalDiscount.fromDate(source.fromDate());
+        seasonalDiscount.toDate(source.toDate());
+        return seasonalDiscount;
+    };
     //Convert Client To Server
     var SeasonalDiscountMainServerMapper = function (source) {
         var result = {};
@@ -323,5 +350,6 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         SeasonalDiscountMainServerMapper: SeasonalDiscountMainServerMapper,
         SeasonalDiscountServerMapper: SeasonalDiscountServerMapper,
         SeasonalDiscountServerMapperForId: SeasonalDiscountServerMapperForId,
+        SeasonalDiscountCopier: SeasonalDiscountCopier,
     };
 });

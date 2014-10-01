@@ -4643,7 +4643,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefSeasonalDiscountMain568">
-          <End Role="SeasonalDiscountMain" Type="Self.SeasonalDiscountMain" Multiplicity="1" />
+          <End Role="SeasonalDiscountMain" Type="Self.SeasonalDiscountMain" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="SeasonalDiscount" Type="Self.SeasonalDiscount" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SeasonalDiscountMain">
@@ -7191,10 +7193,6 @@
             <End Role="VehicleCheckList" EntitySet="VehicleCheckLists" />
             <End Role="RAVehicleCheckList" EntitySet="RaVehicleCheckLists1" />
           </AssociationSet>
-          <AssociationSet Name="RefSeasonalDiscount409" Association="DomainModels.RefSeasonalDiscount409">
-            <End Role="SeasonalDiscount" EntitySet="SeasonalDiscounts" />
-            <End Role="SeasonalDiscount1" EntitySet="SeasonalDiscounts" />
-          </AssociationSet>
           <AssociationSet Name="RefSeasonalDiscountMain568" Association="DomainModels.RefSeasonalDiscountMain568">
             <End Role="SeasonalDiscountMain" EntitySet="SeasonalDiscountMains" />
             <End Role="SeasonalDiscount" EntitySet="SeasonalDiscounts" />
@@ -7284,6 +7282,10 @@
           <AssociationSet Name="RefBPSubType554" Association="DomainModels.RefBPSubType554">
             <End Role="BusinessPartnerSubType" EntitySet="BusinessPartnerSubTypes" />
             <End Role="CreditLimit" EntitySet="CreditLimits" />
+          </AssociationSet>
+          <AssociationSet Name="RefSeasonalDiscount409" Association="DomainModels.RefSeasonalDiscount409">
+            <End Role="SeasonalDiscount" EntitySet="SeasonalDiscounts" />
+            <End Role="SeasonalDiscount1" EntitySet="SeasonalDiscounts" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Company">
@@ -11569,11 +11571,11 @@
           <NavigationProperty Name="BpRatingType" Relationship="DomainModels.RefBPRatingType413" FromRole="SeasonalDiscount" ToRole="BpRatingType" />
           <NavigationProperty Name="HireGroup" Relationship="DomainModels.RefHireGroup575" FromRole="SeasonalDiscount" ToRole="HireGroup" />
           <NavigationProperty Name="OperationsWorkPlace" Relationship="DomainModels.RefOperationsWorkplace412" FromRole="SeasonalDiscount" ToRole="OperationsWorkPlace" />
-          <NavigationProperty Name="ChildSeasonalDiscount" Relationship="DomainModels.RefSeasonalDiscount409" FromRole="SeasonalDiscount1" ToRole="SeasonalDiscount" />
           <NavigationProperty Name="SeasonalDiscountMain" Relationship="DomainModels.RefSeasonalDiscountMain568" FromRole="SeasonalDiscount" ToRole="SeasonalDiscountMain" />
           <NavigationProperty Name="VehicleCategory" Relationship="DomainModels.RefVehicleCategory563" FromRole="SeasonalDiscount" ToRole="VehicleCategory" />
           <NavigationProperty Name="VehicleMake" Relationship="DomainModels.RefVehicleMake562" FromRole="SeasonalDiscount" ToRole="VehicleMake" />
           <NavigationProperty Name="VehicleModel" Relationship="DomainModels.RefVehicleModel564" FromRole="SeasonalDiscount" ToRole="VehicleModel" />
+          <NavigationProperty Name="ChildSeasonalDiscount" Relationship="DomainModels.RefSeasonalDiscount409" FromRole="SeasonalDiscount1" ToRole="SeasonalDiscount" />
         </EntityType>
         <EntityType Name="SeasonalDiscountMain">
           <Key>
@@ -12517,18 +12519,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="RefSeasonalDiscount409">
-          <End Type="DomainModels.SeasonalDiscount" Role="SeasonalDiscount" Multiplicity="0..1" />
-          <End Type="DomainModels.SeasonalDiscount" Role="SeasonalDiscount1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SeasonalDiscount">
-              <PropertyRef Name="SeasonalDiscountId" />
-            </Principal>
-            <Dependent Role="SeasonalDiscount1">
-              <PropertyRef Name="ChildSeasonalDiscountId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="RefSeasonalDiscountMain568">
           <End Type="DomainModels.SeasonalDiscountMain" Role="SeasonalDiscountMain" Multiplicity="1" />
           <End Type="DomainModels.SeasonalDiscount" Role="SeasonalDiscount" Multiplicity="*" />
@@ -12912,6 +12902,18 @@
             </Principal>
             <Dependent Role="CreditLimit">
               <PropertyRef Name="BpSubTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefSeasonalDiscount409">
+          <End Type="DomainModels.SeasonalDiscount" Role="SeasonalDiscount" Multiplicity="0..1" />
+          <End Type="DomainModels.SeasonalDiscount" Role="SeasonalDiscount1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SeasonalDiscount">
+              <PropertyRef Name="SeasonalDiscountId" />
+            </Principal>
+            <Dependent Role="SeasonalDiscount1">
+              <PropertyRef Name="ChildSeasonalDiscountId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
