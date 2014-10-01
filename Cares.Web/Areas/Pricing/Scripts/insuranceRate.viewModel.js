@@ -24,6 +24,8 @@ define("insuranceRate/insuranceRate.viewModel",
                     operations = ko.observableArray([]),
                     //Tariff Types
                     tariffTypes = ko.observableArray([]),
+                     //Filtered Tariff Types
+                    filteredTariffTypes = ko.observableArray([]),
                     //Insurance Rate Main Array
                     insuranceRtMains = ko.observableArray([]),
                      //Insurance Rates
@@ -81,6 +83,17 @@ define("insuranceRate/insuranceRate.viewModel",
                         getInsuranceRates();
 
                     },
+                     //Filtered Tariff Types
+                     tariffTypeId = ko.computed(function () {
+                         if (selectedInsuranceRtMain() != undefined) {
+                             filteredTariffTypes.removeAll();
+                             _.each(tariffTypes(), function (item) {
+                                 if (item.OperationId === selectedInsuranceRtMain().operationId())
+                                     filteredTariffTypes.push(item);
+                             });
+                             filteredTariffTypes.valueHasMutated();
+                         }
+                     }, this),
                       // Template Chooser
                     templateToUse = function (hireGroup) {
                         return (hireGroup === selectedInsuranceRt() ? 'editInsuranceTypeRtTemplate' : 'itemInsuranceTypeRtTemplate');
@@ -325,6 +338,7 @@ define("insuranceRate/insuranceRate.viewModel",
                     operations: operations,
                     tariffTypes: tariffTypes,
                     insuranceTypeRts: insuranceTypeRts,
+                    filteredTariffTypes: filteredTariffTypes,
                     //Filters
                     operationFilter: operationFilter,
                     tariffTypeFilter: tariffTypeFilter,
