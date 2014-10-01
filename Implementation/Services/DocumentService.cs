@@ -81,6 +81,7 @@ namespace Cares.Implementation.Services
             this.documentRepository = documentRepository;
             this.documentGroupRepository = documentGroupRepository;
             this.businessPartnerDocumentRepository = businessPartnerDocumentRepository;
+            this.raCustomerDocumentRepository = raCustomerDocumentRepository;
         }
 
         #endregion
@@ -134,7 +135,7 @@ namespace Cares.Implementation.Services
         {
             Document dbVersion = documentRepository.Find(documentRequest.DocumentId);
 
-            if (!documentRepository.IsDocumentCodeExist(documentRequest))            
+            if (documentRepository.IsDocumentCodeExist(documentRequest))            
             throw new CaresException(Resources.BusinessPartner.Document.DocumentCodeDuplicationError);
 
                 if (dbVersion != null)

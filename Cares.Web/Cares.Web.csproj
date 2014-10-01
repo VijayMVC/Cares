@@ -1052,6 +1052,10 @@
     <Compile Include="ViewModels\Common\MessageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\BusinessPartner\Models\document.dataservice.js" />
+    <Content Include="Areas\BusinessPartner\Models\document.model.js" />
+    <Content Include="Areas\BusinessPartner\Models\document.view.js" />
+    <Content Include="Areas\BusinessPartner\Models\document.viewModel.js" />
     <Content Include="Areas\BusinessPartner\Scripts\bpMainType.dataservice.js" />
     <Content Include="Areas\BusinessPartner\Scripts\bpMainType.model.js" />
     <Content Include="Areas\BusinessPartner\Scripts\bpMainType.view.js" />
@@ -1931,6 +1935,8 @@
     <Content Include="Content\RatingType.css.map">
       <DependentUpon>RatingType.css</DependentUpon>
     </Content>
+    <Content Include="Areas\BusinessPartner\Views\Home\Document.cshtml" />
+    <Content Include="Areas\BusinessPartner\Views\Home\_DocumentEditor.cshtml" />
     <None Include="Properties\PublishProfiles\Khurram.pubxml" />
     <Content Include="RichTextEditor\plugins\Thumbs.db" />
     <None Include="Scripts\amplify-vsdoc.js" />
@@ -2073,7 +2079,6 @@
     <Folder Include="Areas\Api\Views\WorkPlaceTypeBase\" />
     <Folder Include="Areas\Api\Views\workplaceType\" />
     <Folder Include="Areas\Api\Views\Workplace\" />
-    <Folder Include="Areas\BusinessPartner\Models\" />
     <Folder Include="Areas\Common\Controllers\" />
     <Folder Include="Areas\Common\Models\" />
     <Folder Include="Areas\EmployeeManagement\Models\" />
