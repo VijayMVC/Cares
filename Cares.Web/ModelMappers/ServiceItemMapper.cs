@@ -20,8 +20,8 @@ namespace Cares.Web.ModelMappers
                 ServiceItemName = source.ServiceItemName,
                 ServiceItemDescription = source.ServiceItemDescription,
                 ServiceTypeId = source.ServiceTypeId,
-                ServiceTypeCodeName = source.ServiceType.ServiceTypeCode + "-" + source.ServiceType.ServiceTypeName,
-                ServiceTypeName = source.ServiceType.ServiceTypeName
+                ServiceTypeName = source.ServiceType.ServiceTypeName,
+                ServiceTypeCode = source.ServiceType.ServiceTypeCode
             };
         }
 

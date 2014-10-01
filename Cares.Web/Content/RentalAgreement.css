@@ -88,11 +88,50 @@
   width: 25.9%;
   float: left;
 }
+#rentalAgreementBinding #raPanels #raServiceItemsTable thead tr #ServiceType {
+  width: 10%;
+  max-width: 10%;
+}
+#rentalAgreementBinding #raPanels #raServiceItemsTable thead tr #ServiceItemName {
+  width: 10%;
+  max-width: 10%;
+}
+#rentalAgreementBinding #raPanels #raServiceItemsTable thead tr #ServiceItemCode {
+  width: 10%;
+  max-width: 10%;
+}
+#rentalAgreementBinding #raPanels #raServiceItemsTable thead tr #Quantity {
+  width: 10%;
+  max-width: 10%;
+}
+#rentalAgreementBinding #raPanels #raServiceItemsTable thead tr #StartDate {
+  width: 10%;
+  max-width: 10%;
+}
+#rentalAgreementBinding #raPanels #raServiceItemsTable thead tr #StartTime {
+  width: 10%;
+  max-width: 10%;
+}
+#rentalAgreementBinding #raPanels #raServiceItemsTable thead tr #EndDate {
+  width: 10%;
+  max-width: 10%;
+}
+#rentalAgreementBinding #raPanels #raServiceItemsTable thead tr #EndTime {
+  width: 10%;
+  max-width: 10%;
+}
+#rentalAgreementBinding #raPanels #raServiceItemsTable thead tr #DeleteServiceItem {
+  width: 10%;
+  max-width: 10%;
+}
 #rentalAgreementBinding .panel-heading {
   color: gray;
 }
 #rentalAgreementBinding .panel-group .panel {
   overflow: visible;
+}
+#rentalAgreementBinding .panel-default .panel-collapse .panel-body:not(.customPanel) {
+  overflow-x: auto;
 }
 #rentalAgreementBinding a.headingLink {
   text-decoration: underline;

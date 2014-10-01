@@ -198,13 +198,12 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
             },
             
             // Get Service Items
-            getServiceItems = function (params, callbacks) {
+            getServiceItems = function (callbacks) {
                 initialize();
                 return amplify.request({
                     resourceId: 'getServiceItems',
                     success: callbacks.success,
-                    error: callbacks.error,
-                    data: params
+                    error: callbacks.error
                 });
             },
             

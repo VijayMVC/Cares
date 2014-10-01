@@ -13,6 +13,13 @@ define("rentalAgreement/rentalAgreement.view",
                 viewModel = specifiedViewModel,
                 // Binding root used with knockout
                 bindingRoot = $("#rentalAgreementBinding")[0],
+                // Close Popover
+                closePopover = function(popoverId) {
+                    var element = $("#" + popoverId);
+                    if (element) {
+                        element.popover('hide');
+                    }
+                },
                 // Initialize
                 initialize = function () {
                     if (!bindingRoot) {
@@ -56,7 +63,17 @@ define("rentalAgreement/rentalAgreement.view",
                             viewModel.selectHireGroup(selected);
                         }
                     });
-                    
+
+                    // Extras Popover shows - Clear Selection
+                    $('#addExtrasPopoverLink').on('show.bs.popover', function () {
+                        viewModel.resetServiceItemsSelection();
+                    });
+
+                    // Chauffer Popover shows - Clear Selection
+                    $('#addChauffersPopoverLink').on('show.bs.popover', function () {
+                        viewModel.setChaufferPopover();
+                    });
+
                 };
 
             initialize();
@@ -64,6 +81,7 @@ define("rentalAgreement/rentalAgreement.view",
            
             return {
                 bindingRoot: bindingRoot,
+                closePopover: closePopover,
                 viewModel: viewModel
             };
         })(rentalAgreementViewModel);

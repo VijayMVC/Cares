@@ -18,9 +18,9 @@ namespace Cares.Web.Models
         public string ServiceTypeName { get; set; }
 
         /// <summary>
-        /// Service Type Name
+        /// Service Type Code
         /// </summary>
-        public string ServiceTypeCodeName { get; set; }
+        public string ServiceTypeCode { get; set; }
 
         /// <summary>
         ///Service Item Id

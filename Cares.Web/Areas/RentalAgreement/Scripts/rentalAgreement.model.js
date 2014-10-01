@@ -85,6 +85,10 @@
             id = ko.observable(specifiedId || 0),
             // RA Hire Groups
             rentalAgreementHireGroups = ko.observableArray([]),
+            // RA Service Items
+            rentalAgreementServiceItems = ko.observableArray([]),
+            // RA Drivers
+            rentalAgreementDrivers = ko.observableArray([]),
             // Business Partner
             businessPartner = ko.observable(BusinessPartner.Create(specifiedBusinessPartner || {}, callbacks)),
             // Billing
@@ -217,7 +221,8 @@
                     }
                     else {
                         internalDays(value);
-                        end(new Date(start().getFullYear(), start().getMonth(), start().getDate() + parseInt(value), start().getHours(), start().getMinutes()));
+                        end(new Date(start().getFullYear(), start().getMonth(), start().getDate() + parseInt(value), start().getHours() + parseInt(hours() ? hours() : 0),
+                            start().getMinutes() + parseInt(minutes() ? minutes() : 0)));
                     }
                 }
             }),
@@ -235,7 +240,8 @@
                     }
                     else {
                         internalHours(value);
-                        end(new Date(start().getFullYear(), start().getMonth(), start().getDate(), start().getHours() + parseInt(value), start().getMinutes()));
+                        end(new Date(start().getFullYear(), start().getMonth(), start().getDate() + parseInt(days() ? days() : 0), start().getHours() + parseInt(value),
+                            start().getMinutes() + parseInt(minutes() ? minutes() : 0)));
                     }
                 }
             }),
@@ -253,7 +259,8 @@
                     }
                     else {
                         internalMinutes(value);
-                        end(new Date(start().getFullYear(), start().getMonth(), start().getDate(), start().getHours(), start().getMinutes() + parseInt(value)));
+                        end(new Date(start().getFullYear(), start().getMonth(), start().getDate() + parseInt(days() ? days() : 0),
+                            start().getHours() + parseInt(hours() ? hours() : 0), start().getMinutes() + parseInt(value)));
                     }
                 }
             }),
@@ -294,6 +301,26 @@
                     return location.operationId === operationId();
                 });
             }),
+            // Remove Ra Service Item
+            removeRaServiceItem = function (raServiceItem) {
+                rentalAgreementServiceItems.remove(raServiceItem);
+            },
+            // Ra Chauffers
+            raChauffers = ko.computed(function () {
+                return rentalAgreementDrivers.filter(function (raDriver) {
+                    return raDriver.isChauffer();
+                });
+            }),
+            // Ra Drivers
+            raDrivers = ko.computed(function () {
+                return rentalAgreementDrivers.filter(function (raDriver) {
+                    return !raDriver.isChauffer();
+                });
+            }),
+            // Remove Ra Driver
+            removeRaDriver = function (raDriver) {
+                rentalAgreementDrivers.remove(raDriver);
+            },
             // Convert To Server Data
             convertToServerData = function () {
                 return {
@@ -309,7 +336,13 @@
                     RaHireGroups: rentalAgreementHireGroups.map(function (raHireGroup) {
                         return raHireGroup.convertToServerData();
                     }),
-                    BusinessPartner: businessPartner().convertToServerData()
+                    BusinessPartner: businessPartner().convertToServerData(),
+                    RaServiceItems: rentalAgreementServiceItems.map(function (raServiceItem) {
+                        return raServiceItem.convertToServerData();
+                    }),
+                    RaDrivers: rentalAgreementDrivers.map(function (raDriver) {
+                        return raDriver.convertToServerData();
+                    })
                 };
             };
 
@@ -333,6 +366,12 @@
             availableLocations: availableLocations,
             businessPartner: businessPartner,
             billing: billing,
+            rentalAgreementServiceItems: rentalAgreementServiceItems,
+            removeRaServiceItem: removeRaServiceItem,
+            rentalAgreementDrivers: rentalAgreementDrivers,
+            raChauffers: raChauffers,
+            raDrivers: raDrivers,
+            removeRaDriver: removeRaDriver,
             convertToServerData: convertToServerData
         };
     },
@@ -351,7 +390,7 @@
             // Rental Agreement Id
             rentalAgreementId = ko.observable(specifiedRentalAgreementId),
             // Convert To Server Data
-            convertToServerData = function() {
+            convertToServerData = function () {
                 return {
                     RaHireGroupId: id(),
                     HireGroupDetailId: hireGroupDetailId(),
@@ -521,7 +560,7 @@
                 }
             }),
             // Convert To Server Data
-            convertToServerData = function() {
+            convertToServerData = function () {
                 return {
                     BusinessPartnerId: id(),
                     FirstName: firstName(),
@@ -710,12 +749,122 @@
             balance: balance
         };
     },
-    
+
     // Chauffer Entity
     // ReSharper disable InconsistentNaming
     Chauffer = function (specifiedId, specifiedCode, specifiedName, specifiedDesigGradeName, specifiedDesigGradeId, specifiedLicenseNo, specifiedLicenseExpDt) {
         // ReSharper restore InconsistentNaming
-        
+        var
+            // Is Selected
+            isSelected = ko.observable(),
+            // Start Date Time
+            internalStartDateTime = ko.observable(),
+            // End Date Time
+            internalEndDateTime = ko.observable(),
+            // Start Date
+            start = ko.computed({
+                read: function () {
+                    return internalStartDateTime();
+                },
+                write: function (value) {
+                    if (value === internalStartDateTime()) {
+                        return;
+                    }
+                    if (!value) {
+                        internalStartDateTime(undefined);
+                    } else {
+                        internalStartDateTime(value);
+                    }
+                }
+            }),
+            // Time part of From
+            startTime = ko.computed({
+                read: function () {
+                    if (!start()) {
+                        return "";
+                    }
+                    return moment(start()).format(ist.timePattern);
+                },
+                write: function (value) {
+                    if (!value) {
+                        return;
+                    }
+                    var time = moment(value, ist.timePattern);
+                    start(new Date(start().getFullYear(), start().getMonth(), start().getDate(), time.hours(), time.minutes()));
+                    endDate(new Date(end().getFullYear(), end().getMonth(), end().getDate(), 0, 0));
+                }
+            }),
+            // End Date
+            end = ko.computed({
+                read: function () {
+                    return internalEndDateTime();
+                },
+                write: function (value) {
+                    if (value === internalEndDateTime()) {
+                        return;
+                    }
+                    if (!value) {
+                        internalEndDateTime(undefined);
+                    } else {
+                        internalEndDateTime(value);
+                    }
+                }
+            }),
+            // Date part of from
+            startDate = ko.computed({
+                read: function () {
+                    return start();
+                },
+                write: function (value) {
+                    if (!value) {
+                        return;
+                    }
+                    start(new Date(value.getFullYear(), value.getMonth(), value.getDate(), start().getHours(), start().getMinutes()));
+                    endDate(new Date(value.getFullYear(), value.getMonth(), value.getDate(), start().getHours(), start().getMinutes()));
+                }
+            }),
+            // Time part of From
+            endTime = ko.computed({
+                read: function () {
+                    if (!end()) {
+                        return "";
+                    }
+                    return moment(end()).format(ist.timePattern);
+                },
+                write: function (value) {
+                    if (!value) {
+                        return;
+                    }
+
+                    var time = moment(value, ist.timePattern);
+                    end(new Date(end().getFullYear(), end().getMonth(), end().getDate(), time.hours(), time.minutes()));
+                    endDate(new Date(end().getFullYear(), end().getMonth(), end().getDate(), 0, 0));
+                }
+            }),
+            // Date part of from
+            endDate = ko.computed({
+                read: function () {
+                    return end();
+                },
+                write: function (value) {
+                    if (!value) {
+                        return;
+                    }
+
+                    end(new Date(value.getFullYear(), value.getMonth(), value.getDate(), end().getHours(), end().getMinutes()));
+                }
+            }),
+            // Convert To Server Data
+            convertToServerData = function () {
+                return {
+                    ChaufferId: specifiedId,
+                    DriverName: specifiedName,
+                    DesigGradeId: specifiedDesigGradeId,
+                    LicenseNo: specifiedLicenseNo,
+                    LicenseExpDt: moment(specifiedLicenseExpDt).toDate()
+                }
+            };
+
         return {
             id: specifiedId,
             code: specifiedCode,
@@ -723,29 +872,427 @@
             desigGrade: specifiedDesigGradeName,
             desigGradeId: specifiedDesigGradeId,
             licenseNo: specifiedLicenseNo,
-            licenseDt: moment(specifiedLicenseExpDt).toDate()
+            licenseDt: moment(specifiedLicenseExpDt).toDate(),
+            isSelected: isSelected,
+            start: start,
+            startDate: startDate,
+            startTime: startTime,
+            end: end,
+            endDate: endDate,
+            endTime: endTime,
+            convertToServerData: convertToServerData
         };
     },
 
     // Service Item Entity
     // ReSharper disable InconsistentNaming
-    ServiceItem = function (specifiedId, specifiedCode, specifiedName, specifiedServiceTypeName, specifiedServiceTypeCode, specifiedServiceTypeCodeName) {
+    ServiceItem = function (specifiedId, specifiedCode, specifiedName, specifiedServiceTypeName, specifiedServiceTypeCode) {
         // ReSharper restore InconsistentNaming
+        // Is Selected
+        var isSelected = ko.observable(false),
+            // Convert To Server Data
+            convertToServerData = function () {
+                return {
+                    ServiceItemId: specifiedId,
+                    ServiceItemCode: specifiedCode,
+                    ServiceItemName: specifiedName,
+                    ServiceTypeCode: specifiedServiceTypeCode,
+                    ServiceTypeName: specifiedServiceTypeName
+                }
+            };
 
         return {
             id: specifiedId,
             code: specifiedCode,
             name: specifiedName,
             serviceTypeName: specifiedServiceTypeName,
-            serviceTypeCodeName: specifiedServiceTypeCodeName,
-            serviceTypeCode: specifiedServiceTypeCode
+            serviceTypeCodeName: specifiedServiceTypeCode + '-' + specifiedServiceTypeName,
+            serviceTypeCode: specifiedServiceTypeCode,
+            isSelected: isSelected,
+            convertToServerData: convertToServerData
+        };
+    },
+
+    // Rental Agreement Service Item entity
+    // ReSharper disable InconsistentNaming
+    RentalAgreementServiceItem = function (specifiedId, specifiedServiceItemId, specifiedServiceItemCode, specifiedServiceItemName, specifiedServiceTypeCode,
+        specifiedServiceTypeName, specifiedRentalAgreementId, specifiedQuantity, specifiedStartDtTime, specifiedEndDtTime, specifiedServiceRate,
+        specifiedServiceCharge) {
+        // ReSharper restore InconsistentNaming
+        var
+            // unique key
+            id = ko.observable(specifiedId || 0),
+            // Service Item Id
+            serviceItemId = ko.observable(specifiedServiceItemId),
+            // Service Item Code
+            serviceItemCode = ko.observable(specifiedServiceItemCode),
+            // Service Item Name
+            serviceItemName = ko.observable(specifiedServiceItemName),
+            // Service Type Code
+            serviceTypeCode = ko.observable(specifiedServiceTypeCode),
+            // Service Type Name
+            serviceTypeName = ko.observable(specifiedServiceTypeName),
+            // Rental Agreement Id
+            rentalAgreementId = ko.observable(specifiedRentalAgreementId),
+            // Quantity
+            quantity = ko.observable(specifiedQuantity || 1),
+            // Service Rate
+            serviceRate = ko.observable(specifiedServiceRate || 0),
+            // Service Charge
+            serviceCharge = ko.observable(specifiedServiceCharge || 0),
+            // Start Date Time
+            internalStartDateTime = ko.observable(specifiedStartDtTime || moment().toDate()),
+            // End Date Time
+            internalEndDateTime = ko.observable(specifiedEndDtTime || moment().add('days', 1).toDate()),
+            // Start Date
+            start = ko.computed({
+                read: function () {
+                    return internalStartDateTime();
+                },
+                write: function (value) {
+                    if (value === internalStartDateTime()) {
+                        return;
+                    }
+                    if (!value) {
+                        internalStartDateTime(undefined);
+                    } else {
+                        internalStartDateTime(value);
+                    }
+                }
+            }),
+            // Time part of From
+            startTime = ko.computed({
+                read: function () {
+                    if (!start()) {
+                        return "";
+                    }
+                    return moment(start()).format(ist.timePattern);
+                },
+                write: function (value) {
+                    if (!value) {
+                        return;
+                    }
+                    var time = moment(value, ist.timePattern);
+                    start(new Date(start().getFullYear(), start().getMonth(), start().getDate(), time.hours(), time.minutes()));
+                    endDate(new Date(end().getFullYear(), end().getMonth(), end().getDate(), 0, 0));
+                }
+            }),
+            // End Date
+            end = ko.computed({
+                read: function () {
+                    return internalEndDateTime();
+                },
+                write: function (value) {
+                    if (value === internalEndDateTime()) {
+                        return;
+                    }
+                    if (!value) {
+                        internalEndDateTime(undefined);
+                    } else {
+                        internalEndDateTime(value);
+                    }
+                }
+            }),
+            // Date part of from
+            startDate = ko.computed({
+                read: function () {
+                    return start();
+                },
+                write: function (value) {
+                    if (!value) {
+                        return;
+                    }
+                    start(new Date(value.getFullYear(), value.getMonth(), value.getDate(), start().getHours(), start().getMinutes()));
+                    endDate(new Date(value.getFullYear(), value.getMonth(), value.getDate(), start().getHours(), start().getMinutes()));
+                }
+            }),
+            // Time part of From
+            endTime = ko.computed({
+                read: function () {
+                    if (!end()) {
+                        return "";
+                    }
+                    return moment(end()).format(ist.timePattern);
+                },
+                write: function (value) {
+                    if (!value) {
+                        return;
+                    }
+
+                    var time = moment(value, ist.timePattern);
+                    end(new Date(end().getFullYear(), end().getMonth(), end().getDate(), time.hours(), time.minutes()));
+                    endDate(new Date(end().getFullYear(), end().getMonth(), end().getDate(), 0, 0));
+                }
+            }),
+            // Date part of from
+            endDate = ko.computed({
+                read: function () {
+                    return end();
+                },
+                write: function (value) {
+                    if (!value) {
+                        return;
+                    }
+
+                    end(new Date(value.getFullYear(), value.getMonth(), value.getDate(), end().getHours(), end().getMinutes()));
+                }
+            }),
+            // Convert To Server Data
+            convertToServerData = function () {
+                return {
+                    RaServiceItemId: id(),
+                    ServiceItemId: serviceItemId(),
+                    ServiceItemCode: serviceItemCode(),
+                    ServiceItemName: serviceItemName(),
+                    ServiceTypeCode: serviceTypeCode(),
+                    ServiceTypeName: serviceTypeName(),
+                    RaMainId: rentalAgreementId(),
+                    StartDtTime: moment(start()).format(ist.utcFormat) + 'Z',
+                    EndDtTime: moment(end()).format(ist.utcFormat) + 'Z',
+                    Quantity: quantity(),
+                    ServiceRate: serviceRate(),
+                    ServiceCharge: serviceCharge()
+                };
+            };
+
+        return {
+            id: id,
+            serviceItemId: serviceItemId,
+            serviceItemName: serviceItemName,
+            serviceItemCode: serviceItemCode,
+            serviceTypeCode: serviceTypeCode,
+            serviceTypeName: serviceTypeName,
+            serviceTypeCodeName: specifiedServiceTypeCode + '-' + specifiedServiceTypeName,
+            rentalAgreementId: rentalAgreementId,
+            quantity: quantity,
+            start: start,
+            end: end,
+            startDate: startDate,
+            endDate: endDate,
+            startTime: startTime,
+            endTime: endTime,
+            serviceRate: serviceRate,
+            serviceCharge: serviceCharge,
+            convertToServerData: convertToServerData
+        };
+    },
+
+    // Rental Agreement Driver Item entity
+    // ReSharper disable InconsistentNaming
+    RentalAgreementDriver = function (specifiedId, specifiedChaufferId, specifiedDesigGradeId, specifiedStartDtTime, specifiedEndDtTime, specifiedLicenseExpDt,
+        specifiedLicenseNo, specifiedDriverName, specifiedIsChauffer, specifiedTariffType, specifiedRate, specifiedTotalCharge, specifiedRentalAgreementId) {
+        // ReSharper restore InconsistentNaming
+        var
+            // unique key
+            id = ko.observable(specifiedId || 0),
+            // Chauffer Id
+            chaufferId = ko.observable(specifiedChaufferId),
+            // Desig Grade
+            desigGradeId = ko.observable(specifiedDesigGradeId),
+            // Rental Agreement Id
+            rentalAgreementId = ko.observable(specifiedRentalAgreementId),
+            // Start Date Time
+            internalStartDateTime = ko.observable(specifiedStartDtTime || moment().toDate()),
+            // End Date Time
+            internalEndDateTime = ko.observable(specifiedEndDtTime || moment().add('days', 1).toDate()),
+            // Start Date
+            start = ko.computed({
+                read: function () {
+                    return internalStartDateTime();
+                },
+                write: function (value) {
+                    if (value === internalStartDateTime()) {
+                        return;
+                    }
+                    if (!value) {
+                        internalStartDateTime(undefined);
+                    } else {
+                        internalStartDateTime(value);
+                    }
+                }
+            }),
+            // Time part of From
+            startTime = ko.computed({
+                read: function () {
+                    if (!start()) {
+                        return "";
+                    }
+                    return moment(start()).format(ist.timePattern);
+                },
+                write: function (value) {
+                    if (!value) {
+                        return;
+                    }
+                    var time = moment(value, ist.timePattern);
+                    start(new Date(start().getFullYear(), start().getMonth(), start().getDate(), time.hours(), time.minutes()));
+                    endDate(new Date(end().getFullYear(), end().getMonth(), end().getDate(), 0, 0));
+                }
+            }),
+            // End Date
+            end = ko.computed({
+                read: function () {
+                    return internalEndDateTime();
+                },
+                write: function (value) {
+                    if (value === internalEndDateTime()) {
+                        return;
+                    }
+                    if (!value) {
+                        internalEndDateTime(undefined);
+                    } else {
+                        internalEndDateTime(value);
+                    }
+                }
+            }),
+            // Date part of from
+            startDate = ko.computed({
+                read: function () {
+                    return start();
+                },
+                write: function (value) {
+                    if (!value) {
+                        return;
+                    }
+                    start(new Date(value.getFullYear(), value.getMonth(), value.getDate(), start().getHours(), start().getMinutes()));
+                    endDate(new Date(value.getFullYear(), value.getMonth(), value.getDate(), start().getHours(), start().getMinutes()));
+                }
+            }),
+            // Time part of From
+            endTime = ko.computed({
+                read: function () {
+                    if (!end()) {
+                        return "";
+                    }
+                    return moment(end()).format(ist.timePattern);
+                },
+                write: function (value) {
+                    if (!value) {
+                        return;
+                    }
+
+                    var time = moment(value, ist.timePattern);
+                    end(new Date(end().getFullYear(), end().getMonth(), end().getDate(), time.hours(), time.minutes()));
+                    endDate(new Date(end().getFullYear(), end().getMonth(), end().getDate(), 0, 0));
+                }
+            }),
+            // Date part of from
+            endDate = ko.computed({
+                read: function () {
+                    return end();
+                },
+                write: function (value) {
+                    if (!value) {
+                        return;
+                    }
+
+                    end(new Date(value.getFullYear(), value.getMonth(), value.getDate(), end().getHours(), end().getMinutes()));
+                }
+            }),
+            // License Exp Dt
+            internalLicenseExpDateTime = ko.observable(specifiedLicenseExpDt || moment().toDate()),
+            // License Exp Dt
+            licenseExpDt = ko.computed({
+                read: function () {
+                    return internalLicenseExpDateTime();
+                },
+                write: function (value) {
+                    if (value === internalLicenseExpDateTime()) {
+                        return;
+                    }
+                    if (!value) {
+                        internalLicenseExpDateTime(undefined);
+                    } else {
+                        internalLicenseExpDateTime(value);
+                    }
+                }
+            }),
+            // Time part of License Exp Dt
+            licenseExpTime = ko.computed({
+                read: function () {
+                    if (!licenseExpDt()) {
+                        return "";
+                    }
+                    return moment(licenseExpDt()).format(ist.timePattern);
+                },
+                write: function (value) {
+                    if (!value) {
+                        return;
+                    }
+                    var time = moment(value, ist.timePattern);
+                    licenseExpDt(new Date(licenseExpDt().getFullYear(), licenseExpDt().getMonth(), licenseExpDt().getDate(), time.hours(), time.minutes()));
+                }
+            }),
+            // Date part of License Exp Dt
+            licenseExpDate = ko.computed({
+                read: function () {
+                    return licenseExpDt();
+                },
+                write: function (value) {
+                    if (!value) {
+                        return;
+                    }
+                    licenseExpDt(new Date(value.getFullYear(), value.getMonth(), value.getDate(), licenseExpDt().getHours(), licenseExpDt().getMinutes()));
+                }
+            }),
+            // License No
+            licenseNo = ko.observable(specifiedLicenseNo),
+            // Driver Name
+            driverName = ko.observable(specifiedDriverName),
+            // Is Chauffer
+            isChauffer = ko.observable(specifiedIsChauffer),
+            // Tariff Type
+            tariffType = ko.observable(specifiedTariffType),
+            // Rate
+            rate = ko.observable(specifiedRate),
+            // Total Charge
+            totalCharge = ko.observable(specifiedTotalCharge),
+            // Convert To Server Data
+            convertToServerData = function () {
+                return {
+                    RaDriverId: id(),
+                    ChaufferId: chaufferId(),
+                    DesigGradeId: desigGradeId(),
+                    LicenseNo: licenseNo(),
+                    LicenseExpDt: moment(licenseExpDt()).format(ist.utcFormat) + 'Z',
+                    Rate: rate(),
+                    TotalCharge: totalCharge(),
+                    DriverName: driverName(),
+                    IsChauffer: isChauffer(),
+                    TariffType: tariffType(),
+                    RaMainId: rentalAgreementId(),
+                    StartDtTime: moment(start()).format(ist.utcFormat) + 'Z',
+                    EndDtTime: moment(end()).format(ist.utcFormat) + 'Z'
+                };
+            };
+
+        return {
+            id: id,
+            chaufferId: chaufferId,
+            desigGradeId: desigGradeId,
+            rentalAgreementId: rentalAgreementId,
+            start: start,
+            end: end,
+            startDate: startDate,
+            endDate: endDate,
+            startTime: startTime,
+            endTime: endTime,
+            licenseNo: licenseNo,
+            licenseExpDt: licenseExpDt,
+            licenseExpDate: licenseExpDate,
+            licenseExpTime: licenseExpTime,
+            rate: rate,
+            totalCharge: totalCharge,
+            driverName: driverName,
+            isChauffer: isChauffer,
+            tariffType: tariffType,
+            convertToServerData: convertToServerData
         };
     };
 
     // Vehicle Factory
     Vehicle.Create = function (source) {
         return new Vehicle(source.VehicleId, source.VehicleName, source.VehicleCode, source.PlateNumber, source.CurrentOdometer, source.VehicleCategoryId,
-        source.VehicleCategory ? source.VehicleCategory.VehicleCategoryCodeName : undefined, source.VehicleMakeId, 
+        source.VehicleCategory ? source.VehicleCategory.VehicleCategoryCodeName : undefined, source.VehicleMakeId,
         source.VehicleMake ? source.VehicleMake.VehicleMakeCodeName : undefined, source.VehicleModelId,
         source.VehicleModel ? source.VehicleModel.VehicleModelCodeName : undefined, source.VehicleStatusId, source.VehicleStatusCodeName, source.ModelYear,
         source.ImageSource, source.FuelLevel, source.TankSize);
@@ -863,6 +1410,18 @@
             source.LicenseExpDt);
     };
 
+    // Rental Agreement Service Item Factory
+    RentalAgreementServiceItem.Create = function (source) {
+        return new RentalAgreementServiceItem(source.RaServiceItemId, source.ServiceItemId, source.ServiceItemCode, source.ServiceItemName, source.ServiceTypeCode,
+            source.ServiceTypeName, source.RaMainId, source.Quantity, source.StartDtTime, source.EndDtTime, source.ServiceRate, source.ServiceCharge);
+    };
+
+    // Rental Agreement Driver Item Factory
+    RentalAgreementDriver.Create = function (source) {
+        return new RentalAgreementDriver(source.RaDriverId, source.ChaufferId, source.DesigGradeId, source.StartDtTime, source.EndDtTime, source.LicenseExpDt,
+            source.LicenseNo, source.DriverName, source.IsChauffer, source.TariffType, source.Rate, source.TotalCharge, source.RaMainId);
+    };
+
     return {
         // Vehicle Constructor
         Vehicle: Vehicle,
@@ -885,6 +1444,10 @@
         // Service Item Constructor
         ServiceItem: ServiceItem,
         // Chauffer Constructor
-        Chauffer: Chauffer
+        Chauffer: Chauffer,
+        // Ra Service Item Constructor
+        RentalAgreementServiceItem: RentalAgreementServiceItem,
+        // Ra Driver Constructor
+        RentalAgreementDriver: RentalAgreementDriver
     };
 });

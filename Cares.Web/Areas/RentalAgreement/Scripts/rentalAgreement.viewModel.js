@@ -57,14 +57,20 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     serviceItems = ko.observableArray([]),
                     // Discounts
                     raDiscounts = ko.observableArray([]),
-                    // Drivers
-                    raDrivers = ko.observableArray([]),
+                    // Chauffers
+                    chauffers = ko.observableArray([]),
+                    // Chauffer Filter
+                    chaufferFilter = ko.observable(model.Chauffer.Create({})),
                     // Can search hire group
                     canLookForHireGroups = ko.computed(function() {
                         return rentalAgreement().start() && rentalAgreement().end() && rentalAgreement().openLocation();
                     }),
                     // selected Hire Group 
                     selectedHireGroup = ko.observable(),
+                    // hireGroup Text
+                    hireGroupText = ko.computed(function() {
+                        return selectedHireGroup() ? selectedHireGroup().hireGroup : undefined;
+                    }),
                     // select Hire Group
                     selectHireGroup = function (hireGroup) {
                         if (selectedHireGroup() !== hireGroup) {
@@ -92,6 +98,65 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     stopEventBubbling = function(data, e) {
                         e.stopImmediatePropagation();
                     },
+                    // Add Selected Extras to Rental Agreement
+                    addExtrasToRentalAgreement = function(data, popoverId) {
+                        serviceItems.each(function(serviceItem) {
+                            if (serviceItem.isSelected()) {
+                                rentalAgreement().rentalAgreementServiceItems.push(model.RentalAgreementServiceItem.Create(serviceItem.convertToServerData()));
+                            }
+                        });
+                        // Close Popover
+                        view.closePopover(popoverId);
+                    },
+                    // Reset Service Items Selection
+                    resetServiceItemsSelection = function() {
+                        serviceItems.each(function(serviceItem) {
+                            serviceItem.isSelected(false);
+                        });
+                    },
+                    // Set Chauffer Popover
+                    setChaufferPopover = function() {
+                        chaufferFilter().start(moment(rentalAgreement().start()).toDate());
+                        chaufferFilter().end(moment(rentalAgreement().end()).toDate());
+                        // Reset Chauffers Selection
+                        resetChauffersSelection();
+                    },
+                    // Can Search Chauffers
+                    canSearchChauffers = ko.computed(function() {
+                        return rentalAgreement().openLocation() && chaufferFilter().start() && chaufferFilter().end();
+                    }),
+                    // Search Chauffers
+                    searchChauffers = function() {
+                        getChauffers();
+                    },
+                    // Add Selected Chauffers to Rental Agreement
+                    addChauffersToRentalAgreement = function (data, popoverId) {
+                        chauffers.each(function (chauffer) {
+                            if (chauffer.isSelected()) {
+                                var driver = chauffer.convertToServerData();
+                                driver.IsChauffer = true;
+                                driver.StartDtTime = moment(rentalAgreement().start()).toDate();
+                                driver.EndDtTime = moment(rentalAgreement().end()).toDate();
+                                rentalAgreement().rentalAgreementDrivers.push(model.RentalAgreementDriver.Create(driver));
+                            }
+                        });
+                        // Close Popover
+                        view.closePopover(popoverId);
+                    },
+                    // Reset Chauffers Selection
+                    resetChauffersSelection = function () {
+                        chauffers.each(function (chauffer) {
+                            chauffer.isSelected(false);
+                        });
+                    },
+                    // Add Driver To Rental Agreement
+                    addDriverToRentalAgreement = function () {
+                        var driver = model.RentalAgreementDriver.Create({
+                            IsChauffer: false, StartDtTime: moment(rentalAgreement().start()).toDate() ,
+                            EndDtTime: moment(rentalAgreement().end()).toDate()
+                        });
+                        rentalAgreement().rentalAgreementDrivers.push(driver);
+                    },
                     // #endregion Utility Functions
                     // #region Observables
                     // Initialize the view model
@@ -104,6 +169,9 @@ define("rentalAgreement/rentalAgreement.viewModel",
 
                         // Set Pager
                         vehiclePager(pagination.Pagination({}, vehicles, getVehicles));
+
+                        // Get Service Items
+                        getServiceItems();
 
                     },
                     // Get Base
@@ -152,8 +220,8 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     getChauffers = function () {
                         dataservice.getChauffers({
                             OperationsWorkPlaceId: rentalAgreement().openLocation(),
-                            StartDtTime: moment(rentalAgreement().start()).format(ist.utcFormat) + 'Z',
-                            EndDtTime: moment(rentalAgreement().end()).format(ist.utcFormat) + 'Z',
+                            StartDtTime: moment(chaufferFilter().start()).format(ist.utcFormat) + 'Z',
+                            EndDtTime: moment(chaufferFilter().end()).format(ist.utcFormat) + 'Z',
                         }, {
                             success: function (data) {
                                 var chauffersItems = [];
@@ -162,8 +230,8 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                     chauffersItems.push(model.Chauffer.Create(chauffer));
                                 });
 
-                                ko.utils.arrayPushAll(raDrivers(), chauffersItems);
-                                raDrivers.valueHasMutated();
+                                ko.utils.arrayPushAll(chauffers(), chauffersItems);
+                                chauffers.valueHasMutated();
                             },
                             error: function (response) {
                                 toastr.error("Failed to load Chauffers. Error: " + response);
@@ -187,6 +255,14 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                 toastr.error("Failed to load Service Items. Error: " + response);
                             }
                         });
+                    },
+                    // Can Search Vehicles
+                    canSearchVehicles = ko.computed(function () {
+                        return selectedHireGroup();
+                    }),
+                    // Search Vehicles
+                    searchVehicles = function () {
+                        getVehicles();
                     },
                     // Get Vehicles
                     getVehicles = function (hireGroup) {
@@ -293,8 +369,12 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     model: model,
                     canLookForHireGroups: canLookForHireGroups,
                     serviceItems: serviceItems,
-                    raDrivers: raDrivers,
+                    chauffers: chauffers,
                     raDiscounts: raDiscounts,
+                    chaufferFilter: chaufferFilter,
+                    canSearchChauffers: canSearchChauffers,
+                    canSearchVehicles: canSearchVehicles,
+                    hireGroupText: hireGroupText,
                     // Observables
                     // Utility Methods
                     initialize: initialize,
@@ -302,7 +382,15 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     stopEventBubbling: stopEventBubbling,
                     calculateBill: calculateBill,
                     getChauffers: getChauffers,
-                    getServiceItems: getServiceItems
+                    getServiceItems: getServiceItems,
+                    addExtrasToRentalAgreement: addExtrasToRentalAgreement,
+                    resetServiceItemsSelection: resetServiceItemsSelection,
+                    addChauffersToRentalAgreement: addChauffersToRentalAgreement,
+                    resetChauffersSelection: resetChauffersSelection,
+                    addDriverToRentalAgreement: addDriverToRentalAgreement,
+                    setChaufferPopover: setChaufferPopover,
+                    searchChauffers: searchChauffers,
+                    searchVehicles: searchVehicles
                     // Utility Methods
                 };
             })()
