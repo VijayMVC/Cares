@@ -232,6 +232,7 @@
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeDetailController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessLegalStatusController.cs" />
+    <Compile Include="Areas\Api\Controllers\OccupationTypeController.cs" />
     <Compile Include="Areas\Api\Controllers\RatingTypeController.cs" />
     <Compile Include="Areas\Api\Controllers\DocumentBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\DocumentController.cs" />
@@ -455,6 +456,8 @@
     <Compile Include="Models\NrtType.cs" />
     <Compile Include="Models\NrtTypeBaseDataResponse.cs" />
     <Compile Include="Models\NrtTypeSearchRequestResponse.cs" />
+    <Compile Include="Models\OccupationType.cs" />
+    <Compile Include="Models\OccupationTypeSearchRequestResponse.cs" />
     <Compile Include="Models\OperationSearchResponse.cs" />
     <Compile Include="ModelMappers\VehicleMapper.cs" />
     <Compile Include="ModelMappers\MarketingChannelMapper.cs" />

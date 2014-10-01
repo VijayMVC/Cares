@@ -172,6 +172,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DocumentGroup.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\BusinessPartner\OccupationType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OccupationType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\BusinessPartner\OccupationType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OccupationType.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\BusinessPartner\RatingType.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -592,6 +602,14 @@
     <EmbeddedResource Include="Resources\BusinessPartner\DocumentGroup.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>DocumentGroup.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\OccupationType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>OccupationType.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\OccupationType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>OccupationType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\BusinessPartner\RatingType.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -114,6 +114,7 @@
     <Compile Include="Common\DocumentGroupByColumn.cs" />
     <Compile Include="Common\NrtTypeByColumn.cs" />
     <Compile Include="Common\DiscountTypeEnum.cs" />
+    <Compile Include="Common\OccupationTypeByColumn.cs" />
     <Compile Include="Common\RatingTypeByColumn.cs" />
     <Compile Include="Common\SeasonalDiscountByColumn.cs" />
     <Compile Include="Common\VehicleMovementEnum.cs" />
@@ -323,6 +324,7 @@
     <Compile Include="RequestModels\CitySearchRequest.cs" />
     <Compile Include="RequestModels\JobTypeSearchRequest.cs" />
     <Compile Include="RequestModels\JobTypeSearchRequestResponse.cs" />
+    <Compile Include="RequestModels\OccupationTypeSearchRequest.cs" />
     <Compile Include="RequestModels\RatingTypeSearchRequest.cs" />
     <Compile Include="RequestModels\RatingTypeSearchRequestResponse.cs" />
     <Compile Include="RequestModels\RegionSearchRequest.cs" />
@@ -383,6 +385,7 @@
     <Compile Include="ResponseModels\InsuranceRtMainContent.cs" />
     <Compile Include="ResponseModels\NrtTypeBaseDataResponse.cs" />
     <Compile Include="ResponseModels\NrtTypeSearchRequestResponse.cs" />
+    <Compile Include="ResponseModels\OccupationTypeSearchRequestResponse.cs" />
     <Compile Include="ResponseModels\OperationBaseDataResponse.cs" />
     <Compile Include="ResponseModels\OperationSearchResponse.cs" />
     <Compile Include="ResponseModels\OperationWorkplaceSearchByIdResponse.cs" />
