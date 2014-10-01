@@ -231,6 +231,7 @@
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeDetailController.cs" />
+    <Compile Include="Areas\Api\Controllers\BusinessLegalStatusController.cs" />
     <Compile Include="Areas\Api\Controllers\RatingTypeController.cs" />
     <Compile Include="Areas\Api\Controllers\DocumentBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\DocumentController.cs" />
@@ -395,6 +396,8 @@
     <Compile Include="Models\AreaSearchRequestResponse.cs" />
     <Compile Include="Models\BpMainTypeSearchRequestResponse.cs" />
     <Compile Include="Models\BpRatingType.cs" />
+    <Compile Include="Models\BusinessLegalStatus.cs" />
+    <Compile Include="Models\BusinessLegalStatusSearchRequestRespose.cs" />
     <Compile Include="Models\BusinessPartnerMainType.cs" />
     <Compile Include="Models\BusinessSegment.cs" />
     <Compile Include="Models\BusinessSegmentSearchRequestResponse.cs" />

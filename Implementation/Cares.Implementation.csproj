@@ -142,6 +142,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BpMainType.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\BusinessPartner\BusinessLegalStatus.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessLegalStatus.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\BusinessPartner\BusinessLegalStatus.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessLegalStatus.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\BusinessPartner\Document.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -558,6 +568,14 @@
     <EmbeddedResource Include="Resources\BusinessPartner\BpMainType.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BpMainType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\BusinessLegalStatus.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BusinessLegalStatus.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\BusinessLegalStatus.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BusinessLegalStatus.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\BusinessPartner\Document.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -107,6 +107,7 @@
     <Compile Include="Common\BillingSummary.cs" />
     <Compile Include="Common\AllocationStatusEnum.cs" />
     <Compile Include="Common\BpMainTypeByColumn.cs" />
+    <Compile Include="Common\BusinessLegalStatusByColumn.cs" />
     <Compile Include="Common\ChaufferChargeByColumn.cs" />
     <Compile Include="Common\DesignationEnum.cs" />
     <Compile Include="Common\DocumentByColumn.cs" />
@@ -290,6 +291,7 @@
     <Compile Include="RequestModels\AreaSearchRequestResponse.cs" />
     <Compile Include="RequestModels\BpMainTypeSearchRequest.cs" />
     <Compile Include="RequestModels\BpMainTypeSearchRequestResponse.cs" />
+    <Compile Include="RequestModels\BusinessLegalStatusSearchRequest.cs" />
     <Compile Include="RequestModels\BusinessSegmentSearchRequest.cs" />
     <Compile Include="RequestModels\ChaufferChargeSearchRequest.cs" />
     <Compile Include="RequestModels\CitySearchRequestResponse.cs" />
@@ -351,6 +353,7 @@
     <Compile Include="ResponseModels\AdditionalDriverChargeSearchContent.cs" />
     <Compile Include="ResponseModels\AdditionalDriverChargeSearchResponse.cs" />
     <Compile Include="ResponseModels\AreaBaseDataResponse.cs" />
+    <Compile Include="ResponseModels\BusinessLegalStatusSearchRequestRespose.cs" />
     <Compile Include="ResponseModels\BusinessPartnerBaseDataResponse.cs" />
     <Compile Include="ResponseModels\BusinessSegmentSearchRequestResponse.cs" />
     <Compile Include="ResponseModels\ChaufferChargeBaseResponse.cs" />

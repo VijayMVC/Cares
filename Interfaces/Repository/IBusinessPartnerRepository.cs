@@ -46,5 +46,10 @@ namespace Cares.Interfaces.Repository
         /// Association check between BP and Rating Type
         /// </summary>
         bool IsBusinessPartnerAssociatedWithRatingType(long ratingTypeId);
+
+        /// <summary>
+        /// Association check between BP and Business Legal Status
+        /// </summary>
+        bool IsBusinessPartnerAssociatedWithBusinessLegalStatus(long businessLegalStatusId);
     }
 }
