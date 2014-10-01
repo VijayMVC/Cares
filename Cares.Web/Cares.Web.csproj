@@ -1062,10 +1062,18 @@
     <Compile Include="ViewModels\Common\MessageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\BusinessPartner\Scripts\ratingType.dataservice.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\ratingType.model.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\ratingType.view.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\ratingType.viewModel.js" />
     <Content Include="Areas\BusinessPartner\Scripts\bpMainType.dataservice.js" />
     <Content Include="Areas\BusinessPartner\Scripts\bpMainType.model.js" />
     <Content Include="Areas\BusinessPartner\Scripts\bpMainType.view.js" />
     <Content Include="Areas\BusinessPartner\Scripts\bpMainType.viewModel.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\document.dataservice.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\document.model.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\document.view.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\document.viewModel.js" />
     <Content Include="Areas\BusinessPartner\Scripts\documentGroup.dataservice.js" />
     <Content Include="Areas\BusinessPartner\Scripts\documentGroup.model.js" />
     <Content Include="Areas\BusinessPartner\Scripts\documentGroup.view.js" />
@@ -1941,6 +1949,10 @@
     <Content Include="Content\RatingType.css.map">
       <DependentUpon>RatingType.css</DependentUpon>
     </Content>
+    <Content Include="Areas\BusinessPartner\Views\Home\Document.cshtml" />
+    <Content Include="Areas\BusinessPartner\Views\Home\_DocumentEditor.cshtml" />
+    <Content Include="Areas\BusinessPartner\Views\Home\RatingType.cshtml" />
+    <Content Include="Areas\BusinessPartner\Views\Home\_RatingType.cshtml" />
     <None Include="Properties\PublishProfiles\Khurram.pubxml" />
     <Content Include="RichTextEditor\plugins\Thumbs.db" />
     <None Include="Scripts\amplify-vsdoc.js" />

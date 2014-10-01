@@ -1,68 +1,65 @@
 ﻿/*
-    Module with the view model for the Region
+    Module with the view model for the  Rating Type
 */
-define("region/region.viewModel",
-    ["jquery", "amplify", "ko", "region/region.dataservice", "region/region.model",
+define("ratingType/ratingType.viewModel",
+    ["jquery", "amplify", "ko", "ratingType/ratingType.dataservice", "ratingType/ratingType.model",
     "common/confirmation.viewModel", "common/pagination"],
     function($, amplify, ko, dataservice, model, confirmation, pagination) {
         var ist = window.ist || {};
-        ist.Region = {
+        ist.RatingType = {
             viewModel: (function() { 
                 var view,
-                    //array to save Regions
-                    regions = ko.observableArray([]),
-                    //array to save basa data country list
-                    baseCountriesList = ko.observableArray([]),
+                    //array to save Rating Types
+                    ratingTypes = ko.observableArray([]),                   
                     //pager%
                     pager = ko.observable(),
                     //org code filter in filter sec
                     searchFilter = ko.observable(),
-                    baseCountryFilter = ko.observable(),
                     //sorting
                     sortOn = ko.observable(1),
                     //Assending  / Desending
                     sortIsAsc = ko.observable(true),
                     //to control the visibility of editor sec
-                    isRegionEditorVisible = ko.observable(false),
+                    isRatingTypeEditorVisible = ko.observable(false),
                     //to control the visibility of filter ec
                     filterSectionVisilble = ko.observable(false),
                      // Editor View Model
-                    editorViewModel = new ist.ViewModel(model.regionDetail),
-                    // Selected Region
-                    selectedRegion = editorViewModel.itemForEditing,
+                    editorViewModel = new ist.ViewModel(model.RatingTypeDetail),
+                    // Selected  Rating Type
+                    selectedRatingType = editorViewModel.itemForEditing,
                     //save button handler
                     onSavebtn = function() {
-                    if (dobeforeRegion())
-                        saveRegion(selectedRegion());
+                    if (dobeforeratingDoc())
+                        saveRatingType(selectedRatingType());
                 },
-                //Save Regions
-                    saveRegion = function(item) {
-                        dataservice.saveRegion(item.convertToServerData(), {
+                //Save  Rating Types
+                    saveRatingType = function(item) {
+                        dataservice.saveRatingType(item.convertToServerData(), {
                         success: function(dataFromServer) {
-                            var newItem = model.regionServertoClinetMapper(dataFromServer);
+                            var newItem = model.ratingTypeServertoClinetMapper(dataFromServer);
                             if (item.id() !== undefined) {
-                                var newObjtodelete = regions.find(function(temp) {
+                                var newObjtodelete = ratingTypes.find(function(temp) {
                                     return temp.id() == newItem.id();
                                 });
-                                regions.remove(newObjtodelete);
-                                regions.push(newItem);
+                                ratingTypes.remove(newObjtodelete);
+                                ratingTypes.push(newItem);
                             } else
-                                regions.push(newItem);
-                            isRegionEditorVisible(false);
-                            toastr.success(ist.resourceText.RegionSaveSuccessMessage);
+                                ratingTypes.push(newItem);
+                            isRatingTypeEditorVisible(false);
+                            toastr.success(ist.resourceText.RatingTypeSuccessfullySavedMessage);
                         },
                         error: function(exceptionMessage, exceptionType) {
                             if (exceptionType === ist.exceptionType.CaresGeneralException)
                                 toastr.error(exceptionMessage);
                             else
-                                toastr.error(ist.resourceText.RegionSaveFailError);
+                                toastr.error(ist.resourceText.FailedToSaveRatingTypeError);
                         }
                     });
                 },
                 //validation check 
-                    dobeforeRegion = function() {
-                    if (!selectedRegion().isValid()) {
-                        selectedRegion().errors.showAllMessages();
+                    dobeforeratingDoc = function() {
+                    if (!selectedRatingType().isValid()) {
+                        selectedRatingType().errors.showAllMessages();
                         return false;
                     }
                     return true;
@@ -70,56 +67,55 @@ define("region/region.viewModel",
                 //cancel button handler
                     onCancelbtn = function() {
                     editorViewModel.revertItem();
-                    isRegionEditorVisible(false);
+                    isRatingTypeEditorVisible(false);
                 },
-                // create new Region
+                // create new  Rating Type
                     onCreateForm = function () {
-                    var region = new model.regionDetail();
-                    editorViewModel.selectItem(region);
-                    isRegionEditorVisible(true);
+                  var ratingType = new model.RatingTypeDetail();
+                  editorViewModel.selectItem(ratingType);
+                    isRatingTypeEditorVisible(true);
                 },
                 //reset butto handle 
                     resetResuults = function() {
                     searchFilter(undefined);
-                    baseCountryFilter(undefined);
-                    getRegions();
+                    getRatingTypes();
                 },
                 //delete button handler
                     onDeleteItem = function(item) {
                     if (!item.id()) {
-                        regions.remove(item);
+                        ratingTypes.remove(item);
                         return;
                     }
                     // Ask for confirmation
                     confirmation.afterProceed(function() {
-                        deleteRegion(item);
+                        deleteRatingType(item);
                     });
                     confirmation.show();
                 },
                 //edit button handler
                     onEditItem = function(item) {
                     editorViewModel.selectItem(item);
-                    isRegionEditorVisible(true);
+                    isRatingTypeEditorVisible(true);
                 },
-                //delete Region
-                    deleteRegion = function(region) {
-                       dataservice.deleteRegion(region.convertToServerData(), {
+                //Delete  Rating Type
+                    deleteRatingType = function (ratingType) {
+                       dataservice.deleteRatingType(ratingType.convertToServerData(), {
                         success: function() {
-                            regions.remove(region);
-                            toastr.success(ist.resourceText.RegionDeleteSuccessMessage);
+                            ratingTypes.remove(ratingType);
+                            toastr.success(ist.resourceText.RatingTypeSuccessfullyDeletedMessage);
                         },
                         error: function(exceptionMessage, exceptionType) {
                             if (exceptionType === ist.exceptionType.CaresGeneralException)
                                 toastr.error(exceptionMessage);
                             else
-                                toastr.error(ist.resourceText.RegionDeleteFailError);
+                                toastr.error(ist.resourceText.FailedToDeleteRatingTypeError);
                         }
                     });
                 },
                 //search button handler in filter section
                     search = function() {
                     pager().reset();
-                    getRegions();
+                    getRatingTypes();
                 },
                 //hide filte section
                     hideFilterSection = function() {
@@ -129,12 +125,11 @@ define("region/region.viewModel",
                     showFilterSection = function() {
                         filterSectionVisilble(true);
                     },
-                    //get Regions list from Dataservice
-                    getRegions = function() {
-                        dataservice.getRegions(
+                    //Get Rating Type list from Dataservice
+                    getRatingTypes = function () {
+                        dataservice.getRatingTypes(
                         {
-                            RegionFilterText: searchFilter(),
-                            CountryId: baseCountryFilter(),
+                            RatingTypeFilterText: searchFilter(),
                             PageSize: pager().pageSize(),
                             PageNo: pager().currentPage(),
                             SortBy: sortOn(),
@@ -142,46 +137,28 @@ define("region/region.viewModel",
                     },
                     {
                         success: function (data) {
-                            regions.removeAll();
+                            ratingTypes.removeAll();
                             pager().totalCount(data.TotalCount);
-                            _.each(data.Regions, function (item) {
-                                regions.push(model.regionServertoClinetMapper(item));
+                            _.each(data.RatingTypes, function (item) {
+                                ratingTypes.push(model.ratingTypeServertoClinetMapper(item));
                             });
                         },
                         error: function() {
                             isLoadingFleetPools(false);
-                            toastr.error(ist.resourceText.RegionLoadFailError);
+                            toastr.error(ist.resourceText.FailedToLoadRatingTypesError);
                         }
                     });
                     },
-                     //get Region base data
-                    getBaseData = function () {
-                        dataservice.getRegionBaseData(null, {
-                            success: function (data) {
-
-                                baseCountriesList.removeAll();
-                                ko.utils.arrayPushAll(baseCountriesList(), data.Countries);
-                                baseCountriesList.valueHasMutated();
-                            },
-                            error: function (exceptionMessage, exceptionType) {
-                                if (exceptionType === ist.exceptionType.CaresGeneralException) {
-                                    toastr.error(exceptionMessage);
-                                } else {
-                                    toastr.error(ist.resourceText.RegionBaseDataLoadFailError);
-                                }
-                            }
-                        });
-                    },
+                    
                 // Initialize the view model
                     initialize = function(specifiedView) {
                         view = specifiedView;
                         ko.applyBindings(view.viewModel, view.bindingRoot);
-                        pager(pagination.Pagination({ PageSize: 10 }, regions, getRegions));
-                        getBaseData();
-                        getRegions();
+                        pager(pagination.Pagination({ PageSize: 10 }, ratingTypes, getRatingTypes));
+                        getRatingTypes();
                     };
                 return {
-                    regions: regions,
+                    ratingTypes: ratingTypes,
                     initialize: initialize,
                     search: search,
                     searchFilter: searchFilter,
@@ -189,7 +166,7 @@ define("region/region.viewModel",
                     sortIsAsc: sortIsAsc,
                     onCreateForm: onCreateForm,
                     filterSectionVisilble: filterSectionVisilble,
-                    isRegionEditorVisible: isRegionEditorVisible,
+                    isRatingTypeEditorVisible: isRatingTypeEditorVisible,
                     hideFilterSection: hideFilterSection,
                     showFilterSection: showFilterSection,
                     pager: pager,
@@ -197,14 +174,11 @@ define("region/region.viewModel",
                     onDeleteItem: onDeleteItem,
                     onEditItem: onEditItem,
                     onCancelbtn: onCancelbtn,
-                    selectedRegion: selectedRegion,
+                    selectedRatingType: selectedRatingType,
                     onSavebtn: onSavebtn,
-                    getRegions: getRegions,
-                    getBaseData: getBaseData,
-                    baseCountriesList: baseCountriesList,
-                    baseCountryFilter: baseCountryFilter
+                    getRatingTypes: getRatingTypes,
                 };
             })()
         };
-        return ist.Region.viewModel;
+        return ist.RatingType.viewModel;
     });

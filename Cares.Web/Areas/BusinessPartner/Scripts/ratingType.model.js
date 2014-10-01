@@ -1,18 +1,15 @@
 ﻿define(["ko", "underscore", "underscore-ko"], function(ko) {
     
-    //Region Detail
-    var regionDetail = function (specifiedId, specifiedCode, specifiedName, specifieddescription, specifiedcountryId, specifiedcountryName) {
+    //Rating type Detail
+    var ratingTypeDetail = function (specifiedId, specifiedCode, specifiedName, specifieddescription) {
         var            
             id = ko.observable(specifiedId),
             code = ko.observable(specifiedCode).extend({ required: true }),
             name = ko.observable(specifiedName).extend({ required: true }),
             description = ko.observable(specifieddescription),
-            countryId = ko.observable(specifiedcountryId).extend({ required: true }),
-            countryName = ko.observable(specifiedcountryName),
             errors = ko.validation.group({
                 name: name,
                 code: code,
-                countryId: countryId
             }),
             // Is Valid
             isValid = ko.computed(function() {
@@ -32,13 +29,11 @@
             },
             // Convert to server
             convertToServerData = function () {
-         
                 return {
-                    RegionId: id(),
-                    RegionCode: code(),
-                    RegionName: name(),
-                    RegionDescription: description(),
-                    CountryId:countryId()
+                    BpRatingTypeId: id(),
+                    BpRatingTypeCode: code(),
+                    BpRatingTypeName: name(),
+                    BpRatingTypeDescription: description(),
                 };
             };
         return {
@@ -46,8 +41,6 @@
             code: code,
             name: name,
             description: description,
-            countryId: countryId,
-            countryName:countryName,
             errors: errors,
             isValid: isValid,
             dirtyFlag: dirtyFlag,
@@ -58,22 +51,22 @@
         };
     };
     // server to client mapper
-    var regionServertoClinetMapper = function (source) {
-        return regionDetail.Create(source);
+    var ratingTypeServertoClinetMapper = function (source) {
+        return ratingTypeDetail.Create(source);
     };
     
-    // Region Factory
-    regionDetail.Create = function (source) {
-        return new regionDetail(source.RegionId, source.RegionCode, source.RegionName, source.RegionDescription, source.CountryId, source.CountryName);
+    // Rating type Factory
+    ratingTypeDetail.Create = function (source) {
+        return new ratingTypeDetail(source.BpRatingTypeId, source.BpRatingTypeCode, source.BpRatingTypeName, source.BpRatingTypeDescription);
     };
 
     //function to attain cancel button functionality 
-    regionDetail.CreateFromClientModel = function (itemFromServer) {
-        return new regionDetail(itemFromServer.id, itemFromServer.code, itemFromServer.name,
-            itemFromServer.description, itemFromServer.countryId, itemFromServer.countryName);
+    ratingTypeDetail.CreateFromClientModel = function (itemFromServer) {
+        return new ratingTypeDetail(itemFromServer.id, itemFromServer.code, itemFromServer.name,
+            itemFromServer.description);
     };
     return {
-        regionDetail: regionDetail,
-        regionServertoClinetMapper: regionServertoClinetMapper,
+        RatingTypeDetail: ratingTypeDetail,
+        ratingTypeServertoClinetMapper: ratingTypeServertoClinetMapper,
     };
 });

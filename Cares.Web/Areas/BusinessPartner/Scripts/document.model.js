@@ -1,18 +1,18 @@
 ﻿define(["ko", "underscore", "underscore-ko"], function(ko) {
     
-    //Region Detail
-    var regionDetail = function (specifiedId, specifiedCode, specifiedName, specifieddescription, specifiedcountryId, specifiedcountryName) {
+    //Document Detail
+    var documentDetail = function (specifiedId, specifiedCode, specifiedName, specifieddescription, specifieddocumentGroupId, specifieddocumentGroupName) {
         var            
             id = ko.observable(specifiedId),
             code = ko.observable(specifiedCode).extend({ required: true }),
             name = ko.observable(specifiedName).extend({ required: true }),
             description = ko.observable(specifieddescription),
-            countryId = ko.observable(specifiedcountryId).extend({ required: true }),
-            countryName = ko.observable(specifiedcountryName),
+            documentGroupId = ko.observable(specifieddocumentGroupId).extend({ required: true }),
+            documentGroupName = ko.observable(specifieddocumentGroupName),
             errors = ko.validation.group({
                 name: name,
                 code: code,
-                countryId: countryId
+                documentGroupId: documentGroupId
             }),
             // Is Valid
             isValid = ko.computed(function() {
@@ -32,13 +32,12 @@
             },
             // Convert to server
             convertToServerData = function () {
-         
                 return {
-                    RegionId: id(),
-                    RegionCode: code(),
-                    RegionName: name(),
-                    RegionDescription: description(),
-                    CountryId:countryId()
+                    DocumentId: id(),
+                    DocumentCode: code(),
+                    DocumentName: name(),
+                    DocumentDescription: description(),
+                    DocumentGroupId: documentGroupId()
                 };
             };
         return {
@@ -46,8 +45,8 @@
             code: code,
             name: name,
             description: description,
-            countryId: countryId,
-            countryName:countryName,
+            documentGroupId: documentGroupId,
+            documentGroupName: documentGroupName,
             errors: errors,
             isValid: isValid,
             dirtyFlag: dirtyFlag,
@@ -58,22 +57,22 @@
         };
     };
     // server to client mapper
-    var regionServertoClinetMapper = function (source) {
-        return regionDetail.Create(source);
+    var documentServertoClinetMapper = function (source) {
+        return documentDetail.Create(source);
     };
     
-    // Region Factory
-    regionDetail.Create = function (source) {
-        return new regionDetail(source.RegionId, source.RegionCode, source.RegionName, source.RegionDescription, source.CountryId, source.CountryName);
+    // Document Factory
+    documentDetail.Create = function (source) {
+        return new documentDetail(source.DocumentId, source.DocumentCode, source.DocumentName, source.DocumentDescription, source.DocumentGroupId, source.DocumentGroupName);
     };
 
     //function to attain cancel button functionality 
-    regionDetail.CreateFromClientModel = function (itemFromServer) {
-        return new regionDetail(itemFromServer.id, itemFromServer.code, itemFromServer.name,
-            itemFromServer.description, itemFromServer.countryId, itemFromServer.countryName);
+    documentDetail.CreateFromClientModel = function (itemFromServer) {
+        return new documentDetail(itemFromServer.id, itemFromServer.code, itemFromServer.name,
+            itemFromServer.description, itemFromServer.documentGroupId, itemFromServer.documentGroupName);
     };
     return {
-        regionDetail: regionDetail,
-        regionServertoClinetMapper: regionServertoClinetMapper,
+        DocumentDetail: documentDetail,
+        DocumentServertoClinetMapper: documentServertoClinetMapper,
     };
 });
