@@ -15,7 +15,6 @@ define("workplaceType/workplaceType.viewModel",
                     pager = ko.observable(),
                     //org code filter in filter sec
                     searchFilter = ko.observable(),
-        
                    // pre-defined Department Types List
                     baseWorkplaceNatureList = ko.observableArray(["Sales", "Support"]),
                     //sorting
@@ -26,8 +25,6 @@ define("workplaceType/workplaceType.viewModel",
                     isWorkPlaceTypeEditorVisible = ko.observable(false),
                     //to control the visibility of filter ec
                     filterSectionVisilble = ko.observable(false),
-
-
                      // Editor View Model
                     editorViewModel = new ist.ViewModel(model.workPlaceTypeDetail),
                     // Selected company

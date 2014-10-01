@@ -17,7 +17,7 @@ define("department/department.view",
                         return;
                     }
                     // Handle Sorting
-                    handleSorting("OperationsTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getDepartments);
+                    handleSorting("departmentTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getDepartments);
                 };
             initialize();
             return {

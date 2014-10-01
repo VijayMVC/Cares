@@ -17,7 +17,7 @@ define("jobType/jobType.view",
                         return;
                     }
                     // Handle Sorting
-                    handleSorting("OrgGroupTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getJobTypes);
+                    handleSorting("JobTypeTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getJobTypes);
                 };
             initialize();
             return {

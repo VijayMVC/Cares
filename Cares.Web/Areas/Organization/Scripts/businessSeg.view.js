@@ -17,7 +17,7 @@ define("businessSeg/businessSeg.view",
                         return;
                     }
                     // Handle Sorting
-                    handleSorting("OrgGroupTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getBusinessSegment);
+                    handleSorting("BusinessSegmentTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getBusinessSegment);
                 };
             initialize();
             return {

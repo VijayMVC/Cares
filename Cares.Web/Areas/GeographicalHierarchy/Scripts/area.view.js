@@ -17,7 +17,7 @@ define("area/area.view",
                         return;
                     }
                     // Handle Sorting
-                    handleSorting("OrgGroupTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getArea);
+                    handleSorting("AreaTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getArea);
                 };
             initialize();
             return {

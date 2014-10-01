@@ -27,19 +27,19 @@
     </div>
     <div class="row searchFilterResultSection" data-bind="visible: !isEmployeeStatusesEditorVisible()">
         <div class="well">
-            <table id="OrgGroupTable" class="table table-condensed">
+            <table id="EmployeeStatusTable" class="table table-condensed">
                 <thead>
                     <tr>
                         <th class="Empcode"> <span id="1">@Cares.Web.Resources.EmployeeManagement.EmpStatus.Code<span class="icon-up"></span></span></th>
                         <th class="Empname"> <span id="2">@Cares.Web.Resources.EmployeeManagement.EmpStatus.Name<span></span></span></th>
-                        <th class="EmpDes"> <span >@Cares.Web.Resources.EmployeeManagement.EmpStatus.Description<span></span></span></th>
+                        <th class="EmpDes"> <span>@Cares.Web.Resources.EmployeeManagement.EmpStatus.Description<span></span></span></th>
                         <th class="EmpStatus"> <span id="2">@Cares.Web.Resources.EmployeeManagement.EmpStatus.InService<span></span></span></th>
                         <th> <span></span></th>
                         <th> <span></span></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- ko template: { name: 'WorkplaceTypeFilterResultTemplate' , foreach: employeeStatuses } -->
+                    <!-- ko template: { name: 'EmployeeStatusFilterResultTemplate' , foreach: employeeStatuses } -->
                     <!-- /ko -->
                 </tbody>
             </table>
@@ -48,25 +48,25 @@
             <!-- /ko -->
         </div>
     </div>
-    <script id="deleteActionOrgGroupTemplate" type="text/html">
+    <script id="deleteActionEmployeeStatusTemplate" type="text/html">
         <a href="#" data-bind="click: $root.onDeleteItem" title="@Cares.Web.Resources.Shared.Common.Delete"><span class="glyphicon glyphicon-remove"></span></a>
     </script>
 
-    <script id="editActionOrgRoupTemplate" type="text/html">
+    <script id="editActionEmployeeStatusTemplate" type="text/html">
         <a href="#" data-bind="click: $root.onEditItem" title="@Cares.Web.Resources.Shared.Common.Edit"><span class="glyphicon glyphicon-edit"></span></a>
     </script>
-    <script id="WorkplaceTypeFilterResultTemplate" type="text/html">
+    <script id="EmployeeStatusFilterResultTemplate" type="text/html">
         <tr>
             <td data-bind="text: code"></td>
             <td data-bind="text: name"></td>
             <td data-bind="text: description"></td>
             <td data-bind="text:empStatusFlagString"></td>
             <td>
-                <!-- ko template: { name: 'editActionOrgRoupTemplate' } -->
+                <!-- ko template: { name: 'editActionEmployeeStatusTemplate' } -->
                 <!-- /ko -->
             </td>
             <td>
-                <!-- ko template: { name: 'deleteActionOrgGroupTemplate' } -->
+                <!-- ko template: { name: 'deleteActionEmployeeStatusTemplate' } -->
                 <!-- /ko -->
             </td>
         </tr>

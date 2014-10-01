@@ -34,7 +34,7 @@
 
     <div class="row searchFilterResultSection" data-bind="visible: !isDepartmentEditorVisible()">
         <div class="well">
-            <table id="OperationsTable" class="table table-condensed">
+            <table id="departmentTable" class="table table-condensed">
                 <thead>
                     <tr>
                         <th class="code"> <span id="1">@Cares.Web.Resources.Organization.Department.Code<span class="icon-up"></span></span></th>
@@ -47,7 +47,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- ko template: { name: 'OperationsFilterResultTemplate' , foreach: departments } -->
+                    <!-- ko template: { name: 'departmentFilterResultTemplate' , foreach: departments } -->
                     <!-- /ko -->
                 </tbody>
             </table>
@@ -56,14 +56,14 @@
             <!-- /ko -->
         </div>
     </div>
-    <script id="deleteActionOperationTemplate" type="text/html">
+    <script id="deleteActiondepartmentTemplate" type="text/html">
         <a href="#" data-bind="click: $root.onDeleteDepartment" title="@Cares.Web.Resources.Shared.Common.Delete"><span class="glyphicon glyphicon-remove"></span></a>
     </script>
 
-    <script id="editActionOperationTemplate" type="text/html">
+    <script id="editActiondepartmentTemplate" type="text/html">
         <a href="#" data-bind="click: $root.onEditDepartment" title="@Cares.Web.Resources.Shared.Common.Edit"><span class="glyphicon glyphicon-edit"></span></a>
     </script>
-    <script id="OperationsFilterResultTemplate" type="text/html">
+    <script id="departmentFilterResultTemplate" type="text/html">
         <tr>
             <td data-bind="text: code"></td>
             <td data-bind="text: name"></td>
@@ -71,11 +71,11 @@
             <td data-bind="text: companyName"></td>
             <td data-bind="text: departmentType"></td>
             <td>
-                <!-- ko template: { name: 'editActionOperationTemplate' } -->
+                <!-- ko template: { name: 'editActiondepartmentTemplate' } -->
                 <!-- /ko -->
             </td>
             <td>
-                <!-- ko template: { name: 'deleteActionOperationTemplate' } -->
+                <!-- ko template: { name: 'deleteActiondepartmentTemplate' } -->
                 <!-- /ko -->
             </td>
         </tr>

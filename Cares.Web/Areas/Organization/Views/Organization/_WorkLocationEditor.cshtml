@@ -9,15 +9,15 @@
         <div class="form-group">
             <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.WorkLocationCode*</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.Organization.WorkLocation.WorkLocationCode + ">")" id="tariffTypeCode" data-bind="value:code" />
+                <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.Organization.WorkLocation.WorkLocationCode + ">")"  data-bind="value:code" />
             </div>
             <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.WorkLocationName*</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.Organization.WorkLocation.WorkLocationName + ">")" id="tariffTypeName" data-bind="value:name" />
+                <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.Organization.WorkLocation.WorkLocationName + ">")"  data-bind="value:name" />
             </div>
             <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.Description</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.Organization.WorkLocation.Description + ">")" id="tariffTypeDescription" data-bind="value:description" />
+                <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.Organization.WorkLocation.Description + ">")"  data-bind="value:description" />
             </div>
         </div>
         <div class="form-group">
@@ -108,7 +108,7 @@
                     </div>
                 </form>
                 <!--here -->
-                <table id="hireGroupDetail" class="table table-condensed">
+                <table  class="table table-condensed">
                     <thead>
                         <tr>
                             <th> <span>@Cares.Web.Resources.Organization.WorkLocation.PhoneType<span></span></span></th>
@@ -118,14 +118,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- ko template: { name: 'itemHireGroupDetailTemplate' , foreach: $root.phonesList } -->
+                        <!-- ko template: { name: 'phoneDetailTemplate' , foreach: $root.phonesList } -->
                         <!-- /ko -->
                     </tbody>
                 </table>
                 <script id="deleteActionOpeartionTemplate" type="text/html">
                     <a href="#" data-bind="click: $root.deletePhoneDetail" title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
                 </script>
-                <script id="itemHireGroupDetailTemplate" type="text/html">
+                <script id="phoneDetailTemplate" type="text/html">
                     <tr>
                         <td data-bind="text: phoneTypeName"></td>
                         <td data-bind="text: phoneNumber"></td>

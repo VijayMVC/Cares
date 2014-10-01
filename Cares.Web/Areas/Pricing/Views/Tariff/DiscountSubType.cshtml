@@ -29,19 +29,19 @@
     </div>
     <div class="row searchFilterResultSection" data-bind="visible: !isDiscountSubTypesEditorVisible()">
         <div class="well">
-            <table id="OrgGroupTable" class="table table-condensed">
+            <table id="DiscountSubTypeTable" class="table table-condensed">
                 <thead>
                     <tr>
                         <th class="DiscountSubTypeCode"> <span id="1">@Cares.Web.Resources.Pricing.DiscountSubType.Code<span class="icon-up"></span></span></th>
                         <th class="DiscountSubTypeName"> <span id="2">@Cares.Web.Resources.Pricing.DiscountSubType.Name<span></span></span></th>
-                        <th class="DiscountSubTypeDes"> <span >@Cares.Web.Resources.Pricing.DiscountSubType.Description<span></span></span></th>
+                        <th class="DiscountSubTypeDes"> <span>@Cares.Web.Resources.Pricing.DiscountSubType.Description<span></span></span></th>
                         <th class="DiscountSubTypeDiscountType"> <span id="3">@Cares.Web.Resources.Pricing.DiscountSubType.DiscountType<span></span></span></th>
                         <th> <span></span></th>
                         <th> <span></span></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- ko template: { name: 'WorkplaceTypeFilterResultTemplate' , foreach: discountSubTypes } -->
+                    <!-- ko template: { name: 'DiscountSubTypeFilterResultTemplate' , foreach: discountSubTypes } -->
                     <!-- /ko -->
                 </tbody>
             </table>
@@ -50,25 +50,25 @@
             <!-- /ko -->
         </div>
     </div>
-    <script id="deleteActionOrgGroupTemplate" type="text/html">
+    <script id="deleteActionDiscountSubTypeTemplate" type="text/html">
         <a href="#" data-bind="click: $root.onDeleteItem" title="@Cares.Web.Resources.Shared.Common.Delete"><span class="glyphicon glyphicon-remove"></span></a>
     </script>
 
-    <script id="editActionOrgRoupTemplate" type="text/html">
+    <script id="editActionDiscountSubTypeTemplate" type="text/html">
         <a href="#" data-bind="click: $root.onEditItem" title="@Cares.Web.Resources.Shared.Common.Edit"><span class="glyphicon glyphicon-edit"></span></a>
     </script>
-    <script id="WorkplaceTypeFilterResultTemplate" type="text/html">
+    <script id="DiscountSubTypeFilterResultTemplate" type="text/html">
         <tr>
             <td data-bind="text: code"></td>
             <td data-bind="text: name"></td>
             <td data-bind="text: description"></td>
             <td data-bind="text: discountTypeName"></td>
             <td>
-                <!-- ko template: { name: 'editActionOrgRoupTemplate' } -->
+                <!-- ko template: { name: 'editActionDiscountSubTypeTemplate' } -->
                 <!-- /ko -->
             </td>
             <td>
-                <!-- ko template: { name: 'deleteActionOrgGroupTemplate' } -->
+                <!-- ko template: { name: 'deleteActionDiscountSubTypeTemplate' } -->
                 <!-- /ko -->
             </td>
         </tr>

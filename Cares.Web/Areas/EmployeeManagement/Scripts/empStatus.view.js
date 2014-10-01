@@ -17,7 +17,7 @@ define("empStatus/empStatus.view",
                         return;
                     }
                     // Handle Sorting
-                    handleSorting("OrgGroupTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getEmployeeStatuses);
+                    handleSorting("EmployeeStatusTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getEmployeeStatuses);
                 };
             initialize();
             return {

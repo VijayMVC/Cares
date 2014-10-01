@@ -25,7 +25,7 @@
     </div>
     <div class="row searchFilterResultSection" data-bind="visible: !isBusinessSegmentEditorVisible()">
         <div class="well">
-            <table id="OrgGroupTable" class="table table-condensed">
+            <table id="BusinessSegmentTable" class="table table-condensed">
                 <thead>
                     <tr>
                         <th class="BScode"> <span id="1">@Cares.Web.Resources.Organization.BusinessSegment.Code<span class="icon-up"></span></span></th>
@@ -37,7 +37,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- ko template: { name: 'WorkplaceTypeFilterResultTemplate' , foreach: businessSegments } -->
+                    <!-- ko template: { name: 'BusinessSegmentFilterResultTemplate' , foreach: businessSegments } -->
                     <!-- /ko -->
                 </tbody>
             </table>
@@ -46,24 +46,24 @@
             <!-- /ko -->
         </div>
     </div>
-    <script id="deleteActionOrgGroupTemplate" type="text/html">
+    <script id="deleteActionBusinessSegmentTemplate" type="text/html">
         <a href="#" data-bind="click: $root.onDeletItem" title="@Cares.Web.Resources.Shared.Common.Delete"><span class="glyphicon glyphicon-remove"></span></a>
     </script>
 
-    <script id="editActionOrgRoupTemplate" type="text/html">
+    <script id="editActionBusinessSegmentTemplate" type="text/html">
         <a href="#" data-bind="click: $root.onEditItem" title="@Cares.Web.Resources.Shared.Common.Edit"><span class="glyphicon glyphicon-edit"></span></a>
     </script>
-    <script id="WorkplaceTypeFilterResultTemplate" type="text/html">
+    <script id="BusinessSegmentFilterResultTemplate" type="text/html">
         <tr>
             <td data-bind="text: code"></td>
             <td data-bind="text: name"></td>
             <td data-bind="text: description"></td>
             <td>
-                <!-- ko template: { name: 'editActionOrgRoupTemplate' } -->
+                <!-- ko template: { name: 'editActionBusinessSegmentTemplate' } -->
                 <!-- /ko -->
             </td>
             <td>
-                <!-- ko template: { name: 'deleteActionOrgGroupTemplate' } -->
+                <!-- ko template: { name: 'deleteActionBusinessSegmentTemplate' } -->
                 <!-- /ko -->
             </td>
         </tr>

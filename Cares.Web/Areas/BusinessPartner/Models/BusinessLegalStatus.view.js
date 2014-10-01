@@ -17,7 +17,7 @@ define("businessLegalStatus/businessLegalStatus.view",
                         return;
                     }
                     // Handle Sorting
-                    handleSorting("OrgGroupTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getbusinessLegalStatuses);
+                    handleSorting("BusinessLegalStatusTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getbusinessLegalStatuses);
                 };
             initialize();
             return {

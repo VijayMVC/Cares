@@ -17,7 +17,7 @@ define("serviceType/serviceType.view",
                         return;
                     }
                     // Handle Sorting
-                    handleSorting("OrgGroupTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getServiceType);
+                    handleSorting("ServiceTypeTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getServiceType);
                 };
             initialize();
             return {

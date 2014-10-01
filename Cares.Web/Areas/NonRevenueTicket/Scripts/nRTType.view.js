@@ -17,7 +17,7 @@ define("nRTType/nRTType.view",
                         return;
                     }
                     // Handle Sorting
-                    handleSorting("OrgGroupTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getNrtTypes);
+                    handleSorting("NrtTypeTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getNrtTypes);
                 };
             initialize();
             return {

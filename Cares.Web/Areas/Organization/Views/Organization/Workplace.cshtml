@@ -33,7 +33,7 @@
 
     <div class="row searchFilterResultSection" data-bind="visible: !isWorkPlaceEditorVisible()">
         <div class="well">
-            <table id="OperationsTable" class="table table-condensed">
+            <table id="WorkPlaceTable" class="table table-condensed">
                 <thead>
                     <tr>
                         <th class="WPcode"> <span id="1">@Cares.Web.Resources.Organization.Workplace.WorkplaceCode<span class="icon-up"></span></span></th>
@@ -48,7 +48,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- ko template: { name: 'OperationsFilterResultTemplate' , foreach: workplaces } -->
+                    <!-- ko template: { name: 'WorkPlaceFilterResultTemplate' , foreach: workplaces } -->
                     <!-- /ko -->
                 </tbody>
             </table>
@@ -57,14 +57,14 @@
             <!-- /ko -->
         </div>
     </div>
-    <script id="deleteActionOperationTemplate" type="text/html">
+    <script id="deleteActionWorkPlaceTemplate" type="text/html">
         <a href="#" data-bind="click: $root.onDeleteWorkplace" title="@Cares.Web.Resources.Shared.Common.Delete"><span class="glyphicon glyphicon-remove"></span></a>
     </script>
 
-    <script id="editActionOperationTemplate" type="text/html">
+    <script id="editActionWorkPlaceTemplate" type="text/html">
         <a href="#" data-bind="click: $root.onEditworkplace" title="@Cares.Web.Resources.Shared.Common.Edit"><span class="glyphicon glyphicon-edit"></span></a>
     </script>
-    <script id="OperationsFilterResultTemplate" type="text/html">
+    <script id="WorkPlaceFilterResultTemplate" type="text/html">
         <tr>
             <td data-bind="text: code"></td>
             <td data-bind="text: name"></td>
@@ -74,11 +74,11 @@
             <td data-bind="text: workLocationName"></td>
             <td data-bind="text: parentWorkPlaceName"></td>
             <td>
-                <!-- ko template: { name: 'editActionOperationTemplate' } -->
+                <!-- ko template: { name: 'editActionWorkPlaceTemplate' } -->
                 <!-- /ko -->
             </td>
             <td>
-                <!-- ko template: { name: 'deleteActionOperationTemplate' } -->
+                <!-- ko template: { name: 'deleteActionWorkPlaceTemplate' } -->
                 <!-- /ko -->
             </td>
         </tr>

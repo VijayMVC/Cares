@@ -17,7 +17,7 @@ define("bpMainType/bpMainType.view",
                         return;
                     }
                     // Handle Sorting
-                    handleSorting("OrgGroupTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getBusinessPartnerMainTypes);
+                    handleSorting("bPMainTypeTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getBusinessPartnerMainTypes);
                 };
             initialize();
             return {

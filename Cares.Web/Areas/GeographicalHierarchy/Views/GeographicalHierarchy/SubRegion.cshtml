@@ -27,7 +27,7 @@
     </div>
     <div class="row searchFilterResultSection" data-bind="visible: !isSubRegionEditorVisible()">
         <div class="well">
-            <table id="OrgGroupTable" class="table table-condensed">
+            <table id="SubRegionTable" class="table table-condensed">
                 <thead>
                     <tr>
                         <th class="SRcode"> <span id="1">@Cares.Web.Resources.GeographicalHierarchy.SubRegion.Code<span class="icon-up"></span></span></th>
@@ -39,7 +39,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- ko template: { name: 'WorkplaceTypeFilterResultTemplate' , foreach: subRegions } -->
+                    <!-- ko template: { name: 'SubRegionFilterResultTemplate' , foreach: subRegions } -->
                     <!-- /ko -->
                 </tbody>
             </table>
@@ -48,25 +48,25 @@
             <!-- /ko -->
         </div>
     </div>
-    <script id="deleteActionOrgGroupTemplate" type="text/html">
+    <script id="deleteActionSubRegionTemplate" type="text/html">
         <a href="#" data-bind="click: $root.onDeleteItem" title="@Cares.Web.Resources.Shared.Common.Delete"><span class="glyphicon glyphicon-remove"></span></a>
     </script>
 
-    <script id="editActionOrgRoupTemplate" type="text/html">
+    <script id="editActionSubRegionTemplate" type="text/html">
         <a href="#" data-bind="click: $root.onEditItem" title="@Cares.Web.Resources.Shared.Common.Edit"><span class="glyphicon glyphicon-edit"></span></a>
     </script>
-    <script id="WorkplaceTypeFilterResultTemplate" type="text/html">
+    <script id="SubRegionFilterResultTemplate" type="text/html">
         <tr>
             <td data-bind="text: code"></td>
             <td data-bind="text: name"></td>
             <td data-bind="text: description"></td>
             <td data-bind="text: regionName"></td>
             <td>
-                <!-- ko template: { name: 'editActionOrgRoupTemplate' } -->
+                <!-- ko template: { name: 'editActionSubRegionTemplate' } -->
                 <!-- /ko -->
             </td>
             <td>
-                <!-- ko template: { name: 'deleteActionOrgGroupTemplate' } -->
+                <!-- ko template: { name: 'deleteActionSubRegionTemplate' } -->
                 <!-- /ko -->
             </td>
         </tr>

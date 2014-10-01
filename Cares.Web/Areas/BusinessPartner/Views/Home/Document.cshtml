@@ -29,7 +29,7 @@
     </div>
     <div class="row searchFilterResultSection" data-bind="visible: !isDocumentEditorVisible()">
         <div class="well">
-            <table id="OrgGroupTable" class="table table-condensed">
+            <table id="DocumentTable" class="table table-condensed">
                 <thead>
                     <tr>
                         <th class="documentCode"> <span id="1">@Cares.Web.Resources.BusinessPartner.Document.Code<span class="icon-up"></span></span></th>
@@ -41,7 +41,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- ko template: { name: 'WorkplaceTypeFilterResultTemplate' , foreach: documents } -->
+                    <!-- ko template: { name: 'DocumentFilterResultTemplate' , foreach: documents } -->
                     <!-- /ko -->
                 </tbody>
             </table>
@@ -50,25 +50,25 @@
             <!-- /ko -->
         </div>
     </div>
-    <script id="deleteActionOrgGroupTemplate" type="text/html">
+    <script id="deleteActionDocumentTemplate" type="text/html">
         <a href="#" data-bind="click: $root.onDeleteItem" title="@Cares.Web.Resources.Shared.Common.Delete"><span class="glyphicon glyphicon-remove"></span></a>
     </script>
 
-    <script id="editActionOrgRoupTemplate" type="text/html">
+    <script id="editActionDocumentTemplate" type="text/html">
         <a href="#" data-bind="click: $root.onEditItem" title="@Cares.Web.Resources.Shared.Common.Edit"><span class="glyphicon glyphicon-edit"></span></a>
     </script>
-    <script id="WorkplaceTypeFilterResultTemplate" type="text/html">
+    <script id="DocumentFilterResultTemplate" type="text/html">
         <tr>
             <td data-bind="text: code"></td>
             <td data-bind="text: name"></td>
             <td data-bind="text: description"></td>
             <td data-bind="text: documentGroupName"></td>
             <td>
-                <!-- ko template: { name: 'editActionOrgRoupTemplate' } -->
+                <!-- ko template: { name: 'editActionDocumentTemplate' } -->
                 <!-- /ko -->
             </td>
             <td>
-                <!-- ko template: { name: 'deleteActionOrgGroupTemplate' } -->
+                <!-- ko template: { name: 'deleteActionDocumentTemplate' } -->
                 <!-- /ko -->
             </td>
         </tr>

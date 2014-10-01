@@ -2,25 +2,25 @@
 <div class="well col-md-12" id="_OrgGroupEditor"  data-bind="visible: isOrgGroupEditorVisible, with: selectedOrgGroup " style="display: none; margin-top:15px">
     <div class="float-left detailsContainer">
         <h3 class="page-header detailsHeaderSection">@Cares.Web.Resources.Organization.OrganizationGroup.OrganizationGroupDetail</h3>
-        <button class="btn  btn-info" id="saveFleetPoolbtn" data-bind="click: $root.onSaveOrgGroupbtn">@Cares.Web.Resources.Shared.Common.Save</button>
-        <button class="btn  btn-default" id="cancelOrgGroupbtn" data-bind="click: $root.onCancelOrgGroupbtn">@Cares.Web.Resources.Shared.Common.Cancel</button>
+        <button class="btn  btn-info"  data-bind="click: $root.onSaveOrgGroupbtn">@Cares.Web.Resources.Shared.Common.Save</button>
+        <button class="btn  btn-default"  data-bind="click: $root.onCancelOrgGroupbtn">@Cares.Web.Resources.Shared.Common.Cancel</button>
     </div>
         <form class="form-horizontal">
             <div class="form-group">
                 <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.OrganizationGroup.OrganizationGroupCode*</label>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.OrganizationGroup.OrganizationGroupCode+">")" id="tariffTypeCode" data-bind="value: code" />
+                    <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.OrganizationGroup.OrganizationGroupCode+">")"  data-bind="value: code" />
                 </div>
                 <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.OrganizationGroup.OrganizationGroupName*</label>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.OrganizationGroup.OrganizationGroupName+">")" id="tariffTypeName" data-bind="value:name" />
+                    <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.OrganizationGroup.OrganizationGroupName+">")"  data-bind="value:name" />
                 </div>
                 
             </div>
             <div class="form-group">
                 <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.OrganizationGroup.Description</label>
                 <div class="col-md-3">
-                    <textarea rows="4" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.OrganizationGroup.Description+">")" id="tariffTypeDescription" data-bind="value: description"> </textarea>
+                    <textarea rows="4" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.OrganizationGroup.Description+">")"  data-bind="value: description"> </textarea>
                 </div>
             </div>
 </form>
