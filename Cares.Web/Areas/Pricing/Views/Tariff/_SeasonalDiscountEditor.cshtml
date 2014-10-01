@@ -1,117 +1,117 @@
 ﻿<div class="well col-md-12" id="seasonalDiscountEditor" data-bind="visible: isSeasonalDiscountEditorVisible, with: addEditSeasonalDiscountMain" style="display: none;">
     <div class="float-left detailsContainer">
-        <h3 class="page-header detailsHeaderSection">Seasonal Discount Detail</h3>
+        <h3 class="page-header detailsHeaderSection">@Cares.Web.Resources.Tariff.SeasonalDiscount.SeasonalDiscountDetail</h3>
         <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onSaveSeasonalDiscountMainCharge, enable: hasChanges, css: { 'btn-warning': hasChanges }">@Cares.Web.Resources.Shared.Common.Save</button>
-        <button class="btn btn-default" id="saveBtn" data-bind="click: $root.closeAdditionalChargeEditor">@Cares.Web.Resources.Shared.Common.Cancel</button>
+        <button class="btn btn-default" id="saveBtn" data-bind="click: $root.closeSeasonalDiscountEditor">@Cares.Web.Resources.Shared.Common.Cancel</button>
     </div>
     <form class="form-horizontal">
         <div class="form-group">
         </div>
         <div class="form-group">
-            <label for="code" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.ChaufferCharge.Code *</label>
+            <label for="code" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.SeasonalDiscount.Code *</label>
             <div class="col-md-3">
-                <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.ChaufferCharge.Code + ">")' class="form-control" id="code" data-bind="value: code, validationTooltip: code, disable :(id()!=undefined)" />
+                <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.SeasonalDiscount.Code + ">")' class="form-control" id="code" data-bind="value: code, validationTooltip: code, disable :(id()!=undefined)" />
             </div>
-            <label for="name" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.ChaufferCharge.Name</label>
+            <label for="name" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.SeasonalDiscount.Name</label>
             <div class="col-md-3">
-                <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.ChaufferCharge.Name + ">")' class="form-control" id="name" data-bind="value: name, validationTooltip: name, disable :(id()!=undefined)" />
+                <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.SeasonalDiscount.Name + ">")' class="form-control" id="name" data-bind="value: name, validationTooltip: name, disable :(id()!=undefined)" />
             </div>
-            <label for="tariffTypeCompany" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.ChaufferCharge.Company *</label>
+            <label for="tariffTypeCompany" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.SeasonalDiscount.Company *</label>
             <div class="col-md-3">
-                <select id="tariffTypeCompany" class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption:  '@("<" + Cares.Web.Resources.Tariff.ChaufferCharge.Company + ">")' , value: companyId, validationTooltip: companyId, disable :(id()!=undefined)"></select>
+                <select id="tariffTypeCompany" class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption:  '@("<" + Cares.Web.Resources.Tariff.SeasonalDiscount.Company + ">")' , value: companyId, validationTooltip: companyId, disable :(id()!=undefined)"></select>
             </div>
         </div>
         <div class="form-group">
-            <label for="tariffTypeDepartment" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.ChaufferCharge.Department *</label>
+            <label for="tariffTypeDepartment" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.SeasonalDiscount.Department *</label>
             <div class="col-md-3">
-                <select id="tariffTypeDepartment" class="form-control" data-bind="options: $root.filteredDepartments, optionsText: 'DepartmentCodeName', optionsValue: 'DepartmentId', optionsCaption:  '@("<" + Cares.Web.Resources.Tariff.ChaufferCharge.Department + ">")' , value: departmentId, validationTooltip: departmentId, disable :(id()!=undefined)"></select>
+                <select id="tariffTypeDepartment" class="form-control" data-bind="options: $root.filteredDepartments, optionsText: 'DepartmentCodeName', optionsValue: 'DepartmentId', optionsCaption:  '@("<" + Cares.Web.Resources.Tariff.SeasonalDiscount.Department + ">")' , value: departmentId, validationTooltip: departmentId, disable :(id()!=undefined)"></select>
             </div>
             <label for="tariffTypeOperation" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.ChaufferCharge.Operation *</label>
             <div class="col-md-3">
-                <select id="tariffTypeOperation" class="form-control" data-bind="options: $root.filteredOperations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '@("<" + Cares.Web.Resources.Tariff.ChaufferCharge.Operation + ">")'  , value: operationId, validationTooltip: operationId, disable :(id()!=undefined)"></select>
+                <select id="tariffTypeOperation" class="form-control" data-bind="options: $root.filteredOperations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '@("<" + Cares.Web.Resources.Tariff.SeasonalDiscount.Operation + ">")'  , value: operationId, validationTooltip: operationId, disable :(id()!=undefined)"></select>
             </div>
-            <label for="tariffType" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.ChaufferCharge.TariffType *</label>
+            <label for="tariffType" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.SeasonalDiscount.TariffType *</label>
             <div class="col-md-3">
-                <select id="tariffType" class="form-control" data-bind="options: $root.filteredTariffTypes, optionsText: 'TariffTypeCodeName', optionsValue: 'TariffTypeId', optionsCaption:  '@("<" + Cares.Web.Resources.Tariff.ChaufferCharge.TariffType + ">")'  , value: tariffTypeId, validationTooltip: tariffTypeId, disable :(id()!=undefined)"></select>
+                <select id="tariffType" class="form-control" data-bind="options: $root.filteredTariffTypes, optionsText: 'TariffTypeCodeName', optionsValue: 'TariffTypeId', optionsCaption:  '@("<" + Cares.Web.Resources.Tariff.SeasonalDiscount.TariffType + ">")'  , value: tariffTypeId, validationTooltip: tariffTypeId, disable :(id()!=undefined)"></select>
             </div>
         </div>
         <div class="form-group">
-            <label for="description" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.ChaufferCharge.Description</label>
+            <label for="description" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.SeasonalDiscount.Description</label>
             <div class="col-md-3">
-                <textarea class="form-control" rows="4" placeholder='@("<" + Cares.Web.Resources.Tariff.ChaufferCharge.Description + ">")' id="description" data-bind="value: description, valueUpdate: 'keyup' , disable :(id()!=undefined)"></textarea>
+                <textarea class="form-control" rows="4" placeholder='@("<" + Cares.Web.Resources.Tariff.SeasonalDiscount.Description + ">")' id="description" data-bind="value: description, valueUpdate: 'keyup' , disable :(id()!=undefined)"></textarea>
             </div>
             <label for="effectiveDate" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.ChaufferCharge.StartEffectiveDate *</label>
             <div class="col-md-3">
-                <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.ChaufferCharge.StartEffectiveDate + ">")' class="form-control" id="effectiveDate" data-bind="datepicker: startDate, validationTooltip: startDate, disable :(id()!=undefined)" />
+                <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.SeasonalDiscount.StartEffectiveDate + ">")' class="form-control" id="effectiveDate" data-bind="datepicker: startDate, validationTooltip: startDate, disable :(id()!=undefined)" />
             </div>
-            <label for="endDate" class="control-label h5 col-sm-1">End Effective Date *</label>
+            <label for="endDate" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.SeasonalDiscount.EndEffectiveDate *</label>
             <div class="col-md-3">
-                <input type="text" placeholder='End Effective Date' class="form-control" id="endDate" data-bind="datepicker: endDate, validationTooltip: endDate, disable :(id()!=undefined)" />
+                <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.SeasonalDiscount.EndEffectiveDate + ">")' class="form-control" id="endDate" data-bind="datepicker: endDate, validationTooltip: endDate, disable :(id()!=undefined)" />
             </div>
         </div>
         <br />
         <div class="panel panel-info">
-            <div class="panel-heading">Discount Scheme</div>
+            <div class="panel-heading">@Cares.Web.Resources.Tariff.SeasonalDiscount.DiscountScheme</div>
             <br />
             <div data-bind="with:seasonalDiscount">
                 <div class="form-group">
                     <div class="addToBtnDiv row"><button class="btn btn-info addToBtn" id="saveBtn" data-bind="visible: !($root.showUpdateCancelBtn()),click: $root.onAddSeasonalDiscount">@Cares.Web.Resources.Shared.Common.AddToList</button></div>
                     <div class="addToBtnDiv row">
                         <button class="btn btn-default addToBtn" style="display: none" id="saveBtn" data-bind="visible: $root.showUpdateCancelBtn(),click: $root.hideUpdateCancelBtn">@Cares.Web.Resources.Shared.Common.Cancel</button>
-                        <button class="btn btn-info btnAdditionalChargeUpdate" style="display: none" id="saveBtn" data-bind="visible: $root.showUpdateCancelBtn(),click:$root.onUpdateSeasonalDiscount">@Cares.Web.Resources.Shared.Common.Update</button>
+                        <button class="btn btn-info btnAdditionalChargeUpdate" style="display: none" id="saveBtn" data-bind="visible: $root.showUpdateCancelBtn(),click:$root.onAddSeasonalDiscount">@Cares.Web.Resources.Shared.Common.Update</button>
                     </div>
 
                 </div>
                 <div class="form-group">
-                    <label for="opWorkPlace" class="control-label h5  col-sm-1">Operations Work Place </label>
+                    <label for="opWorkPlace" class="control-label h5  col-sm-1">@Cares.Web.Resources.Tariff.SeasonalDiscount.OperationsWorkPlace </label>
                     <div class="col-md-3">
-                        <select id="opWorkPlace" class="form-control" data-bind="options: $root.operationsWorkPlaces, optionsText: 'OperationsWorkPlaceCodeName',optionsValue:'OperationsWorkPlaceId', optionsCaption: 'All', value:opWorkplaceId , validationTooltip: opWorkplaceId"></select>
+                        <select id="opWorkPlace" class="form-control" data-bind="options: $root.operationsWorkPlaces, optionsText: 'OperationsWorkPlaceCodeName',optionsValue:'OperationsWorkPlaceId', optionsCaption: '@("<" + Cares.Web.Resources.Tariff.SeasonalDiscount.All + ">")', value:opWorkplaceId , validationTooltip: opWorkplaceId"></select>
                     </div>
-                    <label for="cusType" class="control-label h5  col-sm-1"> Customer Type  </label>
+                    <label for="cusType" class="control-label h5  col-sm-1"> @Cares.Web.Resources.Tariff.SeasonalDiscount.CustomerType  </label>
                     <div class="col-md-3">
                         <select id="cusType" class="form-control" data-bind="options: $root.customerTypes, optionsText: 'Text',optionsValue:'Id', value:customerTypeId , validationTooltip: customerTypeId"></select>
                     </div>
-                    <label for="rating" class="control-label h5  col-sm-1">Rating</label>
+                    <label for="rating" class="control-label h5  col-sm-1">@Cares.Web.Resources.Tariff.SeasonalDiscount.Rating</label>
                     <div class="col-md-3">
-                        <select id="rating" class="form-control" data-bind="options: $root.ratingTypes, optionsText: 'BpRatingTypeCodeName',optionsValue:'BpRatingTypeId', optionsCaption: 'All', value:ratingId , validationTooltip: ratingId"></select>
+                        <select id="rating" class="form-control" data-bind="options: $root.ratingTypes, optionsText: 'BpRatingTypeCodeName',optionsValue:'BpRatingTypeId', optionsCaption: '@("<" + Cares.Web.Resources.Tariff.SeasonalDiscount.All + ">")', value:ratingId , validationTooltip: ratingId"></select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="hireGroup" class="control-label h5  col-sm-1">Hire Group  </label>
+                    <label for="hireGroup" class="control-label h5  col-sm-1">@Cares.Web.Resources.Tariff.SeasonalDiscount.HireGroup  </label>
                     <div class="col-md-3">
-                        <select id="hireGroup" class="form-control" data-bind="options: $root.hireGroups, optionsText: 'HireGroupCodeName',optionsValue:'HireGroupId', optionsCaption: 'All', value:hireGroupId , validationTooltip: hireGroupId"></select>
+                        <select id="hireGroup" class="form-control" data-bind="options: $root.hireGroups, optionsText: 'HireGroupCodeName',optionsValue:'HireGroupId', optionsCaption: '@("<" + Cares.Web.Resources.Tariff.SeasonalDiscount.All + ">")', value:hireGroupId , validationTooltip: hireGroupId"></select>
                     </div>
-                    <label for="vMake" class="control-label h5  col-sm-1">Vehicle Make </label>
+                    <label for="vMake" class="control-label h5  col-sm-1">@Cares.Web.Resources.Tariff.SeasonalDiscount.VehicleMake </label>
                     <div class="col-md-3">
-                        <select id="vMake" class="form-control" data-bind="options: $root.vehicleMakes, optionsText: 'VehicleMakeCodeName',optionsValue:'VehicleMakeId', optionsCaption: 'All', value:vMakeId , validationTooltip: vMakeId"></select>
+                        <select id="vMake" class="form-control" data-bind="options: $root.vehicleMakes, optionsText: 'VehicleMakeCodeName',optionsValue:'VehicleMakeId', optionsCaption: '@("<" + Cares.Web.Resources.Tariff.SeasonalDiscount.All + ">")', value:vMakeId , validationTooltip: vMakeId"></select>
                     </div>
-                    <label for="vModel" class="control-label h5  col-sm-1">Vehicle Model </label>
+                    <label for="vModel" class="control-label h5  col-sm-1">@Cares.Web.Resources.Tariff.SeasonalDiscount.VehicleModel </label>
                     <div class="col-md-3">
-                        <select id="vModel" class="form-control" data-bind="options: $root.vehicleModels, optionsText: 'VehicleModelCodeName',optionsValue:'VehicleModeld', optionsCaption: 'All', value:vModelId , validationTooltip: vModelId"></select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="vCategory" class="control-label h5  col-sm-1">Vehicle Category  </label>
-                    <div class="col-md-3">
-                        <select id="vCategory" class="form-control" data-bind="options: $root.vehicleCategories, optionsText: 'VehicleCategoryCodeName',optionsValue:'VehicleCategoryId', optionsCaption: 'All', value:vCategoryId , validationTooltip: vCategoryId"></select>
-                    </div>
-                    <label for="modelYear" class="control-label h5  col-sm-1"> Model Year  </label>
-                    <div class="col-md-3">
-                        <select id="modelYear" class="form-control" data-bind="options: $root.modelYears, optionsText: 'Text',optionsValue:'Id', optionsCaption: 'All', value:modelYear , validationTooltip: modelYear"></select>
+                        <select id="vModel" class="form-control" data-bind="options: $root.vehicleModels, optionsText: 'VehicleModelCodeName',optionsValue:'VehicleModeld', optionsCaption: '@("<" + Cares.Web.Resources.Tariff.SeasonalDiscount.All + ">")', value:vModelId , validationTooltip: vModelId"></select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="fromDt" class="control-label h5  col-sm-1">From Date *</label>
+                    <label for="vCategory" class="control-label h5  col-sm-1">@Cares.Web.Resources.Tariff.SeasonalDiscount.VehicleCategory  </label>
                     <div class="col-md-3">
-                        <input type="text" placeholder='From Date' class="form-control" id="fromDt" data-bind="datepicker: fromDate, validationTooltip: fromDate" />
+                        <select id="vCategory" class="form-control" data-bind="options: $root.vehicleCategories, optionsText: 'VehicleCategoryCodeName',optionsValue:'VehicleCategoryId', optionsCaption: '@("<" + Cares.Web.Resources.Tariff.SeasonalDiscount.All + ">")', value:vCategoryId , validationTooltip: vCategoryId"></select>
                     </div>
-                    <label for="toDt" class="control-label h5  col-sm-1">To Date *</label>
+                    <label for="modelYear" class="control-label h5  col-sm-1"> @Cares.Web.Resources.Tariff.SeasonalDiscount.ModelYear  </label>
                     <div class="col-md-3">
-                        <input type="text" placeholder='To Date' class="form-control" id="toDt" data-bind="datepicker: toDate, validationTooltip: toDate" />
+                        <select id="modelYear" class="form-control" data-bind="options: $root.modelYears, optionsText: 'Text',optionsValue:'Id', optionsCaption: '@("<" + Cares.Web.Resources.Tariff.SeasonalDiscount.All + ">")', value:modelYear , validationTooltip: modelYear"></select>
                     </div>
-                    <label for="discount" class="control-label  h5 col-sm-1">Discount (%) *</label>
+                </div>
+                <div class="form-group">
+                    <label for="fromDt" class="control-label h5  col-sm-1">@Cares.Web.Resources.Tariff.SeasonalDiscount.FromDate *</label>
                     <div class="col-md-3">
-                        <input type="text" placeholder='Discount' class="form-control" id="discount" data-bind="value: discount, validationTooltip: discount">
+                        <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.SeasonalDiscount.FromDate + ">")' class="form-control" id="fromDt" data-bind="datepicker: fromDate, validationTooltip: fromDate" />
+                    </div>
+                    <label for="toDt" class="control-label h5  col-sm-1">@Cares.Web.Resources.Tariff.SeasonalDiscount.ToDate *</label>
+                    <div class="col-md-3">
+                        <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.SeasonalDiscount.ToDate + ">")' class="form-control" id="toDt" data-bind="datepicker: toDate, validationTooltip: toDate" />
+                    </div>
+                    <label for="discount" class="control-label  h5 col-sm-1">@Cares.Web.Resources.Tariff.SeasonalDiscount.Discount (%) *</label>
+                    <div class="col-md-3">
+                        <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.SeasonalDiscount.Discount + ">")' class="form-control" id="discount" data-bind="value: discount, validationTooltip: discount">
                     </div>
                 </div>
                 <div class="form-group">
@@ -121,18 +121,18 @@
                     <table id="seasonalDiscountTabl" class="table">
                         <thead>
                             <tr>
-                                <th> <span>Location<span></span></span></th>
-                                <th> <span><span>Customer Type</span></span></th>
-                                <th> <span><span>Rating Type</span></span></th>
-                                <th> <span><span>Hire Group</span></span></th>
-                                <th> <span><span>Vehicle Make</span></span></th>
-                                <th> <span><span>Vehicle Model</span></span></th>
-                                <th> <span><span>Vehicle Category</span></span></th>
-                                <th> <span><span>Model Year</span></span></th>
-                                <th> <span><span>Start Date</span></span></th>
-                                <th> <span><span>End Date</span></span></th>
-                                <th> <span><span>Discount %</span></span></th>
-                                <th> <span><span>Revision Number</span></span></th>
+                                <th> <span>@Cares.Web.Resources.Tariff.SeasonalDiscount.Location<span></span></span></th>
+                                <th> <span><span>@Cares.Web.Resources.Tariff.SeasonalDiscount.CustomerType</span></span></th>
+                                <th> <span><span>@Cares.Web.Resources.Tariff.SeasonalDiscount.RatingType</span></span></th>
+                                <th> <span><span>@Cares.Web.Resources.Tariff.SeasonalDiscount.HireGroup</span></span></th>
+                                <th> <span><span>@Cares.Web.Resources.Tariff.SeasonalDiscount.VehicleMake</span></span></th>
+                                <th> <span><span>@Cares.Web.Resources.Tariff.SeasonalDiscount.VehicleModel</span></span></th>
+                                <th> <span><span>@Cares.Web.Resources.Tariff.SeasonalDiscount.VehicleCategory</span></span></th>
+                                <th> <span><span>@Cares.Web.Resources.Tariff.SeasonalDiscount.ModelYear</span></span></th>
+                                <th> <span><span>@Cares.Web.Resources.Tariff.SeasonalDiscount.StartDate</span></span></th>
+                                <th> <span><span>@Cares.Web.Resources.Tariff.SeasonalDiscount.EndDate</span></span></th>
+                                <th> <span><span>@Cares.Web.Resources.Tariff.SeasonalDiscount.Discount %</span></span></th>
+                                <th> <span><span>@Cares.Web.Resources.Tariff.SeasonalDiscount.RevisionNumber</span></span></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -167,10 +167,10 @@
                     </tr>
                 </script>
                 <script id="editActionSeasonalDiscountTemplate" type="text/html">
-                    <a href="#" data-bind="click: $root.onEditChaufferCharge" title=@Cares.Web.Resources.Shared.Common.Edit><span class="glyphicon glyphicon-edit"></span></a>
+                    <a href="#" data-bind="click: $root.onEditSeasonalDiscount" title=@Cares.Web.Resources.Shared.Common.Edit><span class="glyphicon glyphicon-edit"></span></a>
                 </script>
                 <script id="deleteActionSeasonalDiscountTemplate" type="text/html">
-                    <a href="#" data-bind="click: $root.onEditChaufferCharge" title=@Cares.Web.Resources.Shared.Common.Delete><span class="glyphicon glyphicon-remove"></span></a>
+                    <a href="#" data-bind="click: $root.deleteSeasonalDiscount" title=@Cares.Web.Resources.Shared.Common.Delete><span class="glyphicon glyphicon-remove"></span></a>
                 </script>
             </div>
         </div>

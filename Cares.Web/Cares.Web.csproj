@@ -1006,6 +1006,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>InsuranceRate.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Tariff\SeasonalDiscount.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SeasonalDiscount.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Tariff\SeasonalDiscount.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SeasonalDiscount.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Tariff\ServiceRate.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2436,6 +2446,14 @@
     <EmbeddedResource Include="Resources\Tariff\InsuranceRate.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>InsuranceRate.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tariff\SeasonalDiscount.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SeasonalDiscount.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Tariff\SeasonalDiscount.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SeasonalDiscount.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tariff\ServiceRate.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
