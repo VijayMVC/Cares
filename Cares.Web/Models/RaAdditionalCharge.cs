@@ -25,13 +25,8 @@
         /// <summary>
         /// Additional Charge Type Code
         /// </summary>
-        public string AdditionalChargeTypeCode { get; set; }
-
-        /// <summary>
-        /// Additional Charge Type Name
-        /// </summary>
-        public string AdditionalChargeTypeName { get; set; }
-
+        public string AdditionalChargeTypeCodeName { get; set; }
+        
         /// <summary>
         /// Hire Group Detail ID
         /// </summary>

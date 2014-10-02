@@ -296,6 +296,14 @@ namespace Cares.Implementation.Services
         }
 
         /// <summary>
+        /// Get All For RA
+        /// </summary>
+        public IEnumerable<InsuranceRt> GetAllForRa()
+        {
+            return insuranceRtRepository.GetAllForRa();
+        }
+
+        /// <summary>
         /// Validate Insurance Rate Main
         /// </summary>
         /// <param name="insuranceRtMain"></param>

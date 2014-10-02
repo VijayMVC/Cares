@@ -17,7 +17,7 @@ define("document/document.view",
                         return;
                     }
                     // Handle Sorting
-                    handleSorting("OrgGroupTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getDocuments);
+                    handleSorting("DocumentTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getDocuments);
                 };
             initialize();
             return {

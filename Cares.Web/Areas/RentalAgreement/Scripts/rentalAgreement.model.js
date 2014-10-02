@@ -8,6 +8,7 @@
         specifiedVehicleCategoryCodeName, specifiedVehicleMakeId, specifiedVehicleMakeCodeName, specifiedVehicleModelId, specifiedVehicleModelCodeName,
         specifiedVehicleStatusId, specifiedVehicleStatusCodeName, specifiedModelYear, specifiedImage, specifiedFuelLevel, specifiedTankSize) {
         // ReSharper restore InconsistentNaming
+
         return {
             id: specifiedId,
             name: specifiedName,
@@ -26,6 +27,86 @@
             image: specifiedImage,
             fuelLevel: specifiedFuelLevel,
             tankSize: specifiedTankSize
+        };
+    },
+
+    // Vehicle Movement entity
+    // ReSharper disable InconsistentNaming
+    VehicleMovement = function (specifiedId, specifiedRaHireGroupId, specifiedOperationsWorkPlaceId, specifiedVehicleStatusId,
+        specifiedStatus, specifiedDtTime, specifiedOdometer, specifiedFuelLevel, specifiedVehicleCondition, specifiedVehicleConditionDescription, specifiedVehiclePlateNo,
+        specifiedVehicleTankSize) {
+        // ReSharper restore InconsistentNaming
+        var
+            // unique key
+            id = ko.observable(specifiedId || 0),
+            // Ra HireGroup Id
+            raHireGroupId = ko.observable(specifiedRaHireGroupId || 0),
+            // Vehicle Status Id
+            vehicleStatusId = ko.observable(specifiedVehicleStatusId),
+            // Status
+            status = ko.observable(specifiedStatus),
+            // Odometer
+            odometer = ko.observable(specifiedOdometer),
+            // Fuel Level
+            fuelLevel = ko.observable(specifiedFuelLevel),
+            // Operations Workplace Id
+            operationsWorkPlaceId = ko.observable(specifiedOperationsWorkPlaceId),
+            // Vehicle Condition
+            vehicleCondition = ko.observable(specifiedVehicleCondition),
+            // Vehicle Condition Description
+            vehicleConditionDescription = ko.observable(specifiedVehicleConditionDescription),
+            // plate no
+            plateNumber = ko.observable(specifiedVehiclePlateNo),
+            // Vehicle Tank Size
+            tankSize = ko.observable(specifiedVehicleTankSize),
+            // Start Date Time
+            internalStartDateTime = ko.observable(specifiedDtTime || moment().toDate()),
+            // Start Date
+            start = ko.computed({
+                read: function () {
+                    return internalStartDateTime();
+                },
+                write: function (value) {
+                    if (value === internalStartDateTime()) {
+                        return;
+                    }
+                    if (!value) {
+                        internalStartDateTime(undefined);
+                    } else {
+                        internalStartDateTime(value);
+                    }
+                }
+            }),
+            // Convert To Server Data
+            convertToServerData = function () {
+                return {
+                    VehicleMovementId: id(),
+                    RaHireGroupId: raHireGroupId(),
+                    Status: status(),
+                    Odometer: odometer(),
+                    FuelLevel: fuelLevel(),
+                    OperationsWorkPlaceId: operationsWorkPlaceId(),
+                    VehicleCondition: vehicleCondition(),
+                    DtTime: moment(start()).format(ist.utcFormat) + 'Z',
+                    VehicleConditionDescription: vehicleConditionDescription(),
+                    VehicleStatusId: vehicleStatusId()
+                };
+            };
+
+        return {
+            id: id,
+            raHireGroupId: raHireGroupId,
+            vehicleStatusId: vehicleStatusId,
+            status: status,
+            odometer: odometer,
+            fuelLevel: fuelLevel,
+            operationsWorkPlaceId: operationsWorkPlaceId,
+            vehicleCondition: vehicleCondition,
+            vehicleConditionDescription: vehicleConditionDescription,
+            plateNumber: plateNumber,
+            tankSize: tankSize,
+            start: start,
+            convertToServerData: convertToServerData
         };
     },
 
@@ -89,6 +170,8 @@
             rentalAgreementServiceItems = ko.observableArray([]),
             // RA Drivers
             rentalAgreementDrivers = ko.observableArray([]),
+            // RA Additional Charge
+            rentalAgreementAdditionalCharges = ko.observableArray([]),
             // Business Partner
             businessPartner = ko.observable(BusinessPartner.Create(specifiedBusinessPartner || {}, callbacks)),
             // Billing
@@ -116,27 +199,16 @@
                         internalStartDateTime(undefined);
                     } else {
                         internalStartDateTime(value);
+
+                        var delta = moment.duration(end() - internalStartDateTime());
+
+                        internalDays(!isNaN(delta.asDays()) ? Number(delta.asDays()).toFixed(0) : undefined);
+                        internalHours(!isNaN(delta.asHours()) ? Number(delta.hours()).toFixed(0) : undefined);
+                        internalMinutes(!isNaN(delta.asMinutes()) ? Number(delta.minutes()).toFixed(0) : undefined);
                         if (callbacks && callbacks.OnRentalDurationChange) {
                             callbacks.OnRentalDurationChange();
                         }
                     }
-                }
-            }),
-            // Time part of From
-            startTime = ko.computed({
-                read: function () {
-                    if (!start()) {
-                        return "";
-                    }
-                    return moment(start()).format(ist.timePattern);
-                },
-                write: function (value) {
-                    if (!value) {
-                        return;
-                    }
-                    var time = moment(value, ist.timePattern);
-                    start(new Date(start().getFullYear(), start().getMonth(), start().getDate(), time.hours(), time.minutes()));
-                    endDate(new Date(end().getFullYear(), end().getMonth(), end().getDate(), 0, 0));
                 }
             }),
             // End Date
@@ -152,59 +224,15 @@
                         internalEndDateTime(undefined);
                     } else {
                         internalEndDateTime(value);
+                        var delta = moment.duration(internalEndDateTime() - start());
+
+                        internalDays(!isNaN(delta.asDays()) ? Number(delta.asDays()).toFixed(0) : undefined);
+                        internalHours(!isNaN(delta.asHours()) ? Number(delta.hours()).toFixed(0) : undefined);
+                        internalMinutes(!isNaN(delta.asMinutes()) ? Number(delta.minutes()).toFixed(0) : undefined);
                         if (callbacks && callbacks.OnRentalDurationChange) {
                             callbacks.OnRentalDurationChange();
                         }
                     }
-                }
-            }),
-            // Date part of from
-            startDate = ko.computed({
-                read: function () {
-                    return start();
-                },
-                write: function (value) {
-                    if (!value) {
-                        return;
-                    }
-                    start(new Date(value.getFullYear(), value.getMonth(), value.getDate(), start().getHours(), start().getMinutes()));
-                    endDate(new Date(value.getFullYear(), value.getMonth(), value.getDate(), start().getHours(), start().getMinutes()));
-                }
-            }),
-            // Time part of From
-            endTime = ko.computed({
-                read: function () {
-                    if (!end()) {
-                        return "";
-                    }
-                    return moment(end()).format(ist.timePattern);
-                },
-                write: function (value) {
-                    if (!value) {
-                        return;
-                    }
-
-                    var time = moment(value, ist.timePattern);
-                    end(new Date(end().getFullYear(), end().getMonth(), end().getDate(), time.hours(), time.minutes()));
-                    endDate(new Date(end().getFullYear(), end().getMonth(), end().getDate(), 0, 0));
-                }
-            }),
-            // Date part of from
-            endDate = ko.computed({
-                read: function () {
-                    return end();
-                },
-                write: function (value) {
-                    if (!value) {
-                        return;
-                    }
-
-                    end(new Date(value.getFullYear(), value.getMonth(), value.getDate(), end().getHours(), end().getMinutes()));
-                    var delta = moment.duration(end() - start());
-
-                    internalDays(!isNaN(delta.asDays()) ? Number(delta.asDays()).toFixed(0) : undefined);
-                    internalHours(!isNaN(delta.asHours()) ? Number(delta.hours()).toFixed(0) : undefined);
-                    internalMinutes(!isNaN(delta.asMinutes()) ? Number(delta.minutes()).toFixed(0) : undefined);
                 }
             }),
             // Days
@@ -321,6 +349,10 @@
             removeRaDriver = function (raDriver) {
                 rentalAgreementDrivers.remove(raDriver);
             },
+            // Remove Ra Additional Charge
+            removeRaAdditionalCharge = function (raAdditionalCharge) {
+                rentalAgreementAdditionalCharges.remove(raAdditionalCharge);
+            },
             // Convert To Server Data
             convertToServerData = function () {
                 return {
@@ -342,6 +374,9 @@
                     }),
                     RaDrivers: rentalAgreementDrivers.map(function (raDriver) {
                         return raDriver.convertToServerData();
+                    }),
+                    RaAdditionalCharges: rentalAgreementAdditionalCharges.map(function (raAdditionalCharge) {
+                        return raAdditionalCharge.convertToServerData();
                     })
                 };
             };
@@ -352,10 +387,6 @@
             operationId: operationId,
             openLocation: openLocation,
             closeLocation: closeLocation,
-            startDate: startDate,
-            endDate: endDate,
-            startTime: startTime,
-            endTime: endTime,
             start: start,
             end: end,
             days: days,
@@ -369,16 +400,25 @@
             rentalAgreementServiceItems: rentalAgreementServiceItems,
             removeRaServiceItem: removeRaServiceItem,
             rentalAgreementDrivers: rentalAgreementDrivers,
+            rentalAgreementAdditionalCharges: rentalAgreementAdditionalCharges,
             raChauffers: raChauffers,
             raDrivers: raDrivers,
             removeRaDriver: removeRaDriver,
+            removeRaAdditionalCharge: removeRaAdditionalCharge,
             convertToServerData: convertToServerData
         };
     },
 
+    // Vehicle Movement Enum
+    vehicleMovementEnum = {
+        outMovement: true,
+        inMovement: false
+    },
+
     // Rental Agreement Hire Group entity
     // ReSharper disable InconsistentNaming
-    RentalAgreementHireGroup = function (specifiedId, specifiedHireGroupDetailId, specifiedVehicleId, specifiedRentalAgreementId) {
+    RentalAgreementHireGroup = function (specifiedId, specifiedHireGroupDetailId, specifiedVehicleId, specifiedRentalAgreementId, specifiedVehicle,
+        specifiedVehicleMovements, specifiedRaHireGroupInsurances, specifiedAllocationStatusKey, specifiedAllocationStatusId) {
         // ReSharper restore InconsistentNaming
         var
             // unique key
@@ -389,13 +429,52 @@
             vehicleId = ko.observable(specifiedVehicleId),
             // Rental Agreement Id
             rentalAgreementId = ko.observable(specifiedRentalAgreementId),
+            // Vehicle
+            vehicle = ko.observable(specifiedVehicle || {}),
+            // Ra HireGroup Insurances
+            raHireGroupInsurances = ko.observableArray(specifiedRaHireGroupInsurances ? _.map(specifiedRaHireGroupInsurances, function(raHireGroupInsurance) {
+                return RentalAgreementHireGroupInsurance.Create(raHireGroupInsurance);
+            }) : []),
+            // Vehicle Movements
+            vehicleMovements = ko.observableArray(specifiedVehicleMovements ? _.map(specifiedVehicleMovements, function (vehicleMovement) {
+                return VehicleMovement.Create(vehicleMovement);
+            }) : []),
+            // Vehicle Movement Out
+            vehicleMovementOut = ko.computed(function() {
+                var outMovement = vehicleMovements.find(function(vehicleMovement) {
+                    return vehicleMovement.status() === vehicleMovementEnum.outMovement;
+                });
+                return outMovement || VehicleMovement.Create({});
+            }),
+            // Vehicle Movement In
+            vehicleMovementIn = ko.computed(function () {
+                var inMovement = vehicleMovements.find(function (vehicleMovement) {
+                    return vehicleMovement.status() === vehicleMovementEnum.inMovement;
+                });
+                return inMovement || VehicleMovement.Create({});
+            }),
+            // Allocation Status Key
+            allocationStatusKey = ko.observable(specifiedAllocationStatusKey),
+            // Allocation Status Id
+            allocationStatusId = ko.observable(specifiedAllocationStatusId),
             // Convert To Server Data
             convertToServerData = function () {
                 return {
                     RaHireGroupId: id(),
                     HireGroupDetailId: hireGroupDetailId(),
                     VehicleId: vehicleId(),
-                    RaMainId: rentalAgreementId()
+                    RaMainId: rentalAgreementId(),
+                    AllocationStatusKey: allocationStatusKey(),
+                    AllocationStatusId: allocationStatusId(),
+                    RaHireGroupInsurances: raHireGroupInsurances.map(function (raHireGroupInsurance) {
+                        if (raHireGroupInsurance.isSelected()) {
+                            return raHireGroupInsurance.convertToServerData();
+                        }
+                        return null;
+                    }),
+                    VehicleMovements: vehicleMovements.map(function (vehicleMovement) {
+                        return vehicleMovement.convertToServerData();
+                    })
                 };
             };
 
@@ -404,6 +483,13 @@
             hireGroupDetailId: hireGroupDetailId,
             vehicleId: vehicleId,
             rentalAgreementId: rentalAgreementId,
+            vehicle: vehicle,
+            vehicleMovements: vehicleMovements,
+            vehicleMovementOut: vehicleMovementOut,
+            vehicleMovementIn: vehicleMovementIn,
+            raHireGroupInsurances: raHireGroupInsurances,
+            allocationStatusKey: allocationStatusKey,
+            allocationStatusId: allocationStatusId,
             convertToServerData: convertToServerData
         };
     },
@@ -777,23 +863,6 @@
                     }
                 }
             }),
-            // Time part of From
-            startTime = ko.computed({
-                read: function () {
-                    if (!start()) {
-                        return "";
-                    }
-                    return moment(start()).format(ist.timePattern);
-                },
-                write: function (value) {
-                    if (!value) {
-                        return;
-                    }
-                    var time = moment(value, ist.timePattern);
-                    start(new Date(start().getFullYear(), start().getMonth(), start().getDate(), time.hours(), time.minutes()));
-                    endDate(new Date(end().getFullYear(), end().getMonth(), end().getDate(), 0, 0));
-                }
-            }),
             // End Date
             end = ko.computed({
                 read: function () {
@@ -808,50 +877,6 @@
                     } else {
                         internalEndDateTime(value);
                     }
-                }
-            }),
-            // Date part of from
-            startDate = ko.computed({
-                read: function () {
-                    return start();
-                },
-                write: function (value) {
-                    if (!value) {
-                        return;
-                    }
-                    start(new Date(value.getFullYear(), value.getMonth(), value.getDate(), start().getHours(), start().getMinutes()));
-                    endDate(new Date(value.getFullYear(), value.getMonth(), value.getDate(), start().getHours(), start().getMinutes()));
-                }
-            }),
-            // Time part of From
-            endTime = ko.computed({
-                read: function () {
-                    if (!end()) {
-                        return "";
-                    }
-                    return moment(end()).format(ist.timePattern);
-                },
-                write: function (value) {
-                    if (!value) {
-                        return;
-                    }
-
-                    var time = moment(value, ist.timePattern);
-                    end(new Date(end().getFullYear(), end().getMonth(), end().getDate(), time.hours(), time.minutes()));
-                    endDate(new Date(end().getFullYear(), end().getMonth(), end().getDate(), 0, 0));
-                }
-            }),
-            // Date part of from
-            endDate = ko.computed({
-                read: function () {
-                    return end();
-                },
-                write: function (value) {
-                    if (!value) {
-                        return;
-                    }
-
-                    end(new Date(value.getFullYear(), value.getMonth(), value.getDate(), end().getHours(), end().getMinutes()));
                 }
             }),
             // Convert To Server Data
@@ -875,11 +900,7 @@
             licenseDt: moment(specifiedLicenseExpDt).toDate(),
             isSelected: isSelected,
             start: start,
-            startDate: startDate,
-            startTime: startTime,
             end: end,
-            endDate: endDate,
-            endTime: endTime,
             convertToServerData: convertToServerData
         };
     },
@@ -960,23 +981,6 @@
                     }
                 }
             }),
-            // Time part of From
-            startTime = ko.computed({
-                read: function () {
-                    if (!start()) {
-                        return "";
-                    }
-                    return moment(start()).format(ist.timePattern);
-                },
-                write: function (value) {
-                    if (!value) {
-                        return;
-                    }
-                    var time = moment(value, ist.timePattern);
-                    start(new Date(start().getFullYear(), start().getMonth(), start().getDate(), time.hours(), time.minutes()));
-                    endDate(new Date(end().getFullYear(), end().getMonth(), end().getDate(), 0, 0));
-                }
-            }),
             // End Date
             end = ko.computed({
                 read: function () {
@@ -991,50 +995,6 @@
                     } else {
                         internalEndDateTime(value);
                     }
-                }
-            }),
-            // Date part of from
-            startDate = ko.computed({
-                read: function () {
-                    return start();
-                },
-                write: function (value) {
-                    if (!value) {
-                        return;
-                    }
-                    start(new Date(value.getFullYear(), value.getMonth(), value.getDate(), start().getHours(), start().getMinutes()));
-                    endDate(new Date(value.getFullYear(), value.getMonth(), value.getDate(), start().getHours(), start().getMinutes()));
-                }
-            }),
-            // Time part of From
-            endTime = ko.computed({
-                read: function () {
-                    if (!end()) {
-                        return "";
-                    }
-                    return moment(end()).format(ist.timePattern);
-                },
-                write: function (value) {
-                    if (!value) {
-                        return;
-                    }
-
-                    var time = moment(value, ist.timePattern);
-                    end(new Date(end().getFullYear(), end().getMonth(), end().getDate(), time.hours(), time.minutes()));
-                    endDate(new Date(end().getFullYear(), end().getMonth(), end().getDate(), 0, 0));
-                }
-            }),
-            // Date part of from
-            endDate = ko.computed({
-                read: function () {
-                    return end();
-                },
-                write: function (value) {
-                    if (!value) {
-                        return;
-                    }
-
-                    end(new Date(value.getFullYear(), value.getMonth(), value.getDate(), end().getHours(), end().getMinutes()));
                 }
             }),
             // Convert To Server Data
@@ -1063,14 +1023,11 @@
             serviceTypeCode: serviceTypeCode,
             serviceTypeName: serviceTypeName,
             serviceTypeCodeName: specifiedServiceTypeCode + '-' + specifiedServiceTypeName,
+            serviceItemCodeName: specifiedServiceItemCode + '-' + specifiedServiceItemName,
             rentalAgreementId: rentalAgreementId,
             quantity: quantity,
             start: start,
             end: end,
-            startDate: startDate,
-            endDate: endDate,
-            startTime: startTime,
-            endTime: endTime,
             serviceRate: serviceRate,
             serviceCharge: serviceCharge,
             convertToServerData: convertToServerData
@@ -1111,23 +1068,6 @@
                     }
                 }
             }),
-            // Time part of From
-            startTime = ko.computed({
-                read: function () {
-                    if (!start()) {
-                        return "";
-                    }
-                    return moment(start()).format(ist.timePattern);
-                },
-                write: function (value) {
-                    if (!value) {
-                        return;
-                    }
-                    var time = moment(value, ist.timePattern);
-                    start(new Date(start().getFullYear(), start().getMonth(), start().getDate(), time.hours(), time.minutes()));
-                    endDate(new Date(end().getFullYear(), end().getMonth(), end().getDate(), 0, 0));
-                }
-            }),
             // End Date
             end = ko.computed({
                 read: function () {
@@ -1142,50 +1082,6 @@
                     } else {
                         internalEndDateTime(value);
                     }
-                }
-            }),
-            // Date part of from
-            startDate = ko.computed({
-                read: function () {
-                    return start();
-                },
-                write: function (value) {
-                    if (!value) {
-                        return;
-                    }
-                    start(new Date(value.getFullYear(), value.getMonth(), value.getDate(), start().getHours(), start().getMinutes()));
-                    endDate(new Date(value.getFullYear(), value.getMonth(), value.getDate(), start().getHours(), start().getMinutes()));
-                }
-            }),
-            // Time part of From
-            endTime = ko.computed({
-                read: function () {
-                    if (!end()) {
-                        return "";
-                    }
-                    return moment(end()).format(ist.timePattern);
-                },
-                write: function (value) {
-                    if (!value) {
-                        return;
-                    }
-
-                    var time = moment(value, ist.timePattern);
-                    end(new Date(end().getFullYear(), end().getMonth(), end().getDate(), time.hours(), time.minutes()));
-                    endDate(new Date(end().getFullYear(), end().getMonth(), end().getDate(), 0, 0));
-                }
-            }),
-            // Date part of from
-            endDate = ko.computed({
-                read: function () {
-                    return end();
-                },
-                write: function (value) {
-                    if (!value) {
-                        return;
-                    }
-
-                    end(new Date(value.getFullYear(), value.getMonth(), value.getDate(), end().getHours(), end().getMinutes()));
                 }
             }),
             // License Exp Dt
@@ -1204,34 +1100,6 @@
                     } else {
                         internalLicenseExpDateTime(value);
                     }
-                }
-            }),
-            // Time part of License Exp Dt
-            licenseExpTime = ko.computed({
-                read: function () {
-                    if (!licenseExpDt()) {
-                        return "";
-                    }
-                    return moment(licenseExpDt()).format(ist.timePattern);
-                },
-                write: function (value) {
-                    if (!value) {
-                        return;
-                    }
-                    var time = moment(value, ist.timePattern);
-                    licenseExpDt(new Date(licenseExpDt().getFullYear(), licenseExpDt().getMonth(), licenseExpDt().getDate(), time.hours(), time.minutes()));
-                }
-            }),
-            // Date part of License Exp Dt
-            licenseExpDate = ko.computed({
-                read: function () {
-                    return licenseExpDt();
-                },
-                write: function (value) {
-                    if (!value) {
-                        return;
-                    }
-                    licenseExpDt(new Date(value.getFullYear(), value.getMonth(), value.getDate(), licenseExpDt().getHours(), licenseExpDt().getMinutes()));
                 }
             }),
             // License No
@@ -1272,19 +1140,188 @@
             rentalAgreementId: rentalAgreementId,
             start: start,
             end: end,
-            startDate: startDate,
-            endDate: endDate,
-            startTime: startTime,
-            endTime: endTime,
             licenseNo: licenseNo,
             licenseExpDt: licenseExpDt,
-            licenseExpDate: licenseExpDate,
-            licenseExpTime: licenseExpTime,
             rate: rate,
             totalCharge: totalCharge,
             driverName: driverName,
             isChauffer: isChauffer,
             tariffType: tariffType,
+            convertToServerData: convertToServerData
+        };
+    },
+
+    // Insurance Rate Entity
+    // ReSharper disable InconsistentNaming
+    InsuranceType = function (specifiedId, specifiedTypeCodeName) {
+
+        return {
+            id: specifiedId,
+            codeName: specifiedTypeCodeName
+        };
+    },
+
+    // Rental Agreement Hire Group Insurance entity
+    // ReSharper disable InconsistentNaming
+    RentalAgreementHireGroupInsurance = function (specifiedId, specifiedRaHireGroupId, specifiedInsuranceTypeId, specifiedInsuranceTypeCodeName,
+        specifiedStartDtTime, specifiedEndDtTime, specifiedInsuranceRate, specifiedInsuranceCharge, specifiedTariffType) {
+        // ReSharper restore InconsistentNaming
+        var
+            // Is Selected
+            isSelected = ko.observable(false),
+            // unique key
+            id = ko.observable(specifiedId || 0),
+            // Ra Hire Group Id
+            raHireGroupId = ko.observable(specifiedRaHireGroupId),
+            // InsuranceType Id
+            insuranceTypeId = ko.observable(specifiedInsuranceTypeId),
+            // Insurance Type Code Name
+            insuranceTypeCodeName = ko.observable(specifiedInsuranceTypeCodeName),
+            // insurance Rate
+            insuranceRate = ko.observable(specifiedInsuranceRate || 0),
+            // Insurance Charge
+            insuranceCharge = ko.observable(specifiedInsuranceCharge || 0),
+            // Tariff Type
+            tariffType = ko.observable(specifiedTariffType),
+            // Start Date Time
+            internalStartDateTime = ko.observable(specifiedStartDtTime || moment().toDate()),
+            // End Date Time
+            internalEndDateTime = ko.observable(specifiedEndDtTime || moment().add('days', 1).toDate()),
+            // Start Date
+            start = ko.computed({
+                read: function () {
+                    return internalStartDateTime();
+                },
+                write: function (value) {
+                    if (value === internalStartDateTime()) {
+                        return;
+                    }
+                    if (!value) {
+                        internalStartDateTime(undefined);
+                    } else {
+                        internalStartDateTime(value);
+                    }
+                }
+            }),
+            // End Date
+            end = ko.computed({
+                read: function () {
+                    return internalEndDateTime();
+                },
+                write: function (value) {
+                    if (value === internalEndDateTime()) {
+                        return;
+                    }
+                    if (!value) {
+                        internalEndDateTime(undefined);
+                    } else {
+                        internalEndDateTime(value);
+                    }
+                }
+            }),
+            // Convert To Server Data
+            convertToServerData = function () {
+                return {
+                    RaHireGroupInsuranceId: id(),
+                    RaHireGroupId: raHireGroupId(),
+                    InsuranceTypeId: insuranceTypeId(),
+                    StartDtTime: moment(start()).format(ist.utcFormat) + 'Z',
+                    EndDtTime: moment(end()).format(ist.utcFormat) + 'Z',
+                    TariffType: tariffType(),
+                    InsuranceRate: insuranceRate(),
+                    InsuranceCharge: insuranceCharge()
+                };
+            };
+
+        return {
+            id: id,
+            raHireGroupId: raHireGroupId,
+            insuranceTypeId: insuranceTypeId,
+            insuranceTypeCodeName: insuranceTypeCodeName,
+            tariffType: tariffType,
+            start: start,
+            end: end,
+            insuranceRate: insuranceRate,
+            insuranceCharge: insuranceCharge,
+            isSelected: isSelected,
+            convertToServerData: convertToServerData
+        };
+    },
+
+    // Additional Charge Entity
+    // ReSharper disable InconsistentNaming
+    AdditionalCharge = function (specifiedId, specifiedAdditionalChargeTypeId, specifiedAdditionalChargeTypeCodeName, specifiedRate,
+        specifiedHireGroupDetailCodeName, specifiedHireGroupDetailId) {
+
+        var // Is Selected
+            isSelected = ko.observable(false),
+            // Convert To Server Data
+            convertToServerData = function () {
+                return {
+                    AdditionalChargeId: specifiedId,
+                    AdditionalChargeTypeId: specifiedAdditionalChargeTypeId,
+                    AdditionalChargeTypeCodeName: specifiedAdditionalChargeTypeCodeName,
+                    AdditionalChargeRate: specifiedRate,
+                    HireGroupDetailId: specifiedHireGroupDetailId,
+                    HireGroupDetailCodeName: specifiedHireGroupDetailCodeName
+                }
+            };
+
+        return {
+            id: specifiedId,
+            additionalChargeTypeId: specifiedAdditionalChargeTypeId,
+            additionalChargeTypeCodeName: specifiedAdditionalChargeTypeCodeName,
+            rate: specifiedRate,
+            hireGroupDetailCodeName: specifiedHireGroupDetailCodeName,
+            hireGroupDetailId: specifiedHireGroupDetailId,
+            isSelected: isSelected,
+            convertToServerData: convertToServerData
+        };
+    },
+
+    // Rental Agreement Additional Charge entity
+    // ReSharper disable InconsistentNaming
+    RentalAgreementAdditionalCharge = function (specifiedId, specifiedRaMainId, specifiedAdditionalChargeTypeId, specifiedAdditionalChargeTypeCodeName,
+        specifiedAdditionalChargeRate, specifiedPlateNumber, specifiedQuantity, specifiedHireGroupDetailId, specifiedHireGroupDetailCodeName) {
+        // ReSharper restore InconsistentNaming
+        var
+            // unique key
+            id = ko.observable(specifiedId || 0),
+            // Ra Main Id
+            raMainId = ko.observable(specifiedRaMainId),
+            // Additional Charge Type Id
+            additionalChargeTypeId = ko.observable(specifiedAdditionalChargeTypeId),
+            // Additional Charge Rate
+            additionalChargeRate = ko.observable(specifiedAdditionalChargeRate || 0),
+            // Plate Number
+            plateNumber = ko.observable(specifiedPlateNumber),
+            // Quantity
+            quantity = ko.observable(specifiedQuantity || 1),
+            // Hire Group Detail Id
+            hireGroupDetailId = ko.observable(specifiedHireGroupDetailId),
+            // Convert To Server Data
+            convertToServerData = function () {
+                return {
+                    RaAdditionalChargeId: id(),
+                    RaMainId: raMainId(),
+                    AdditionalChargeTypeId: additionalChargeTypeId(),
+                    AdditionalChargeRate: additionalChargeRate(),
+                    Quantity: quantity(),
+                    HireGroupDetailId: hireGroupDetailId(),
+                    PlateNumber: plateNumber()
+                };
+            };
+
+        return {
+            id: id,
+            raMainId: raMainId,
+            additionalChargeTypeId: additionalChargeTypeId,
+            additionalChargeRate: additionalChargeRate,
+            additionalChargeTypeCodeName: specifiedAdditionalChargeTypeCodeName,
+            quantity: quantity,
+            plateNumber: plateNumber,
+            hireGroupDetailId: hireGroupDetailId,
+            hireGroupDetail: specifiedHireGroupDetailCodeName,
             convertToServerData: convertToServerData
         };
     };
@@ -1321,7 +1358,7 @@
     // Rental Agreement Hire Group Factory
     RentalAgreementHireGroup.Create = function (source) {
         return new RentalAgreementHireGroup(source.RentalAgreementHireGroupId, source.HireGroupDetailId, source.VehicleId,
-            source.RentalAgreementId);
+            source.RaMainId, source.Vehicle, source.VehicleMovements, source.RaHireGroupInsurances, source.AllocationStatusKey, source.AllocationStatusId);
     };
 
     // Phone Type Enums
@@ -1416,10 +1453,33 @@
             source.ServiceTypeName, source.RaMainId, source.Quantity, source.StartDtTime, source.EndDtTime, source.ServiceRate, source.ServiceCharge);
     };
 
-    // Rental Agreement Driver Item Factory
+    // Rental Agreement Driver Factory
     RentalAgreementDriver.Create = function (source) {
         return new RentalAgreementDriver(source.RaDriverId, source.ChaufferId, source.DesigGradeId, source.StartDtTime, source.EndDtTime, source.LicenseExpDt,
             source.LicenseNo, source.DriverName, source.IsChauffer, source.TariffType, source.Rate, source.TotalCharge, source.RaMainId);
+    };
+
+    // Rental Agreement HireGroup Insurance Factory
+    RentalAgreementHireGroupInsurance.Create = function (source) {
+        return new RentalAgreementHireGroupInsurance(source.RaHireGroupInsuranceId, source.RaHireGroupId, source.InsuranceTypeId, source.InsuranceTypeCodeName,
+            source.StartDtTime, source.EndDtTime, source.InsuranceRate, source.InsuranceCharg, source.TariffType);
+    };
+
+    // Insurance Type Factory
+    InsuranceType.Create = function (source) {
+        return new InsuranceType(source.InsuranceTypeId, source.InsuranceTypeCodeName);
+    };
+
+    // Additional Charge Factory
+    AdditionalCharge.Create = function (source) {
+        return new AdditionalCharge(source.AdditionalChargeId, source.AdditionalChargeTypeId, source.AdditionalChargeTypeCodeName, source.AdditionalChargeRate,
+            source.HireGroupDetailCodeName);
+    };
+
+    // Ra Additional Charge Factory
+    RentalAgreementAdditionalCharge.Create = function (source) {
+        return new RentalAgreementAdditionalCharge(source.RaAdditionalChargeId, source.RaMainId, source.AdditionalChargeTypeId, source.AdditionalChargeTypeCodeName,
+            source.AdditionalChargeRate, source.PlateNumber, source.Quantity, source.HireGroupDetailId, source.HireGroupDetailCodeName);
     };
 
     return {
@@ -1448,6 +1508,18 @@
         // Ra Service Item Constructor
         RentalAgreementServiceItem: RentalAgreementServiceItem,
         // Ra Driver Constructor
-        RentalAgreementDriver: RentalAgreementDriver
+        RentalAgreementDriver: RentalAgreementDriver,
+        // Ra HireGroup Insurance Constructor
+        RentalAgreementHireGroupInsurance: RentalAgreementHireGroupInsurance,
+        // Insurance Type Constructor
+        InsuranceType: InsuranceType,
+        // Additional Charge Constructor
+        AdditionalCharge: AdditionalCharge,
+        // Ra Additional Charge Constructor
+        RentalAgreementAdditionalCharge: RentalAgreementAdditionalCharge,
+        // Vehicle Movement Constructor
+        VehicleMovement: VehicleMovement,
+        // Vehicle Movement Enum
+        vehicleMovementEnum: vehicleMovementEnum
     };
 });

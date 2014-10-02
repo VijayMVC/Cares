@@ -17,7 +17,7 @@ define("workplaceType/workplaceType.view",
                         return;
                     }
                     // Handle Sorting
-                    handleSorting("OrgGroupTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getWorkPlaceType);
+                    handleSorting("WorkPlaceTypeTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getWorkPlaceType);
                 };
             initialize();
             return {

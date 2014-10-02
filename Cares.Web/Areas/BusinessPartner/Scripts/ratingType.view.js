@@ -17,7 +17,7 @@ define("ratingType/ratingType.view",
                         return;
                     }
                     // Handle Sorting
-                    handleSorting("OrgGroupTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getRatingTypes);
+                    handleSorting("RatingTypeTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getRatingTypes);
                 };
             initialize();
             return {

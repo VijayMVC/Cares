@@ -9,15 +9,15 @@
         <div class="form-group">
             <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.WorkplaceCode*</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Workplace.WorkplaceCode+">")" id="tariffTypeCode" data-bind="value: code" />
+                <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Workplace.WorkplaceCode+">")"  data-bind="value: code" />
             </div>
             <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.WorkplaceName*</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Workplace.WorkplaceName+">")" id="tariffTypeName" data-bind="value:name" />
+                <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Workplace.WorkplaceName+">")"  data-bind="value:name" />
             </div>
             <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.Description</label>
             <div class="col-md-2">
-                <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Workplace.Description+">")" id="tariffTypeDescription" data-bind="value:description" />
+                <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Workplace.Description+">")"  data-bind="value:description" />
             </div>
         </div>
         <div class="form-group">
@@ -104,14 +104,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- ko template: { name: 'itemHireGroupDetailTemplate' , foreach: $root.operationsTabList } -->
+                        <!-- ko template: { name: 'itemWorkplaceDetailTemplate' , foreach: $root.operationsTabList } -->
                         <!-- /ko -->
                     </tbody>
                 </table>
                 <script id="deleteActionOpeartionTemplate" type="text/html">
                     <a href="#" data-bind="click: $root.deleteOperationDetail" title="Delete"><span class="glyphicon glyphicon-remove"></span></a>
                 </script>
-                <script id="itemHireGroupDetailTemplate" type="text/html">
+                <script id="itemWorkplaceDetailTemplate" type="text/html">
                     <tr>
                         <td data-bind="text: locationCode"></td>
                         <td data-bind="text: locationName"></td>

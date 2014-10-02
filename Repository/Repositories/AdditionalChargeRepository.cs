@@ -58,6 +58,15 @@ namespace Cares.Repository.Repositories
                         addChrg.AdditionalChargeTypeId == additionChargeTypeId).ToList();
         }
 
+        /// <summary>
+        /// Get All For Ra
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<AdditionalCharge> GetAllForRa()
+        {
+            return DbSet.Where(addChrg => addChrg.UserDomainKey == UserDomainKey && addChrg.ChildAdditionalChargeId == null).ToList();
+        }
+
         #endregion
     }
 }

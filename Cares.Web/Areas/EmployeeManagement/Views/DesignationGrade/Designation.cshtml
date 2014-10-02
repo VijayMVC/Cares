@@ -25,7 +25,7 @@
     </div>
     <div class="row searchFilterResultSection" data-bind="visible: !isdesignationEditorVisible()">
         <div class="well">
-            <table id="OrgGroupTable" class="table table-condensed">
+            <table id="DesignationTable" class="table table-condensed">
                 <thead>
                     <tr>
                         <th class="DesigCode"> <span id="1">@Cares.Web.Resources.EmployeeManagement.Designation.Code<span class="icon-up"></span></span></th>
@@ -36,7 +36,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- ko template: { name: 'WorkplaceTypeFilterResultTemplate' , foreach: designations } -->
+                    <!-- ko template: { name: 'DesignationFilterResultTemplate' , foreach: designations } -->
                     <!-- /ko -->
                 </tbody>
             </table>
@@ -45,24 +45,24 @@
             <!-- /ko -->
         </div>
     </div>
-    <script id="deleteActionOrgGroupTemplate" type="text/html">
+    <script id="deleteActionDesignationTemplate" type="text/html">
         <a href="#" data-bind="click: $root.onDeleteItem" title="@Cares.Web.Resources.Shared.Common.Delete"><span class="glyphicon glyphicon-remove"></span></a>
     </script>
 
-    <script id="editActionOrgRoupTemplate" type="text/html">
+    <script id="editActionDesignationTemplate" type="text/html">
         <a href="#" data-bind="click: $root.onEditItem" title="@Cares.Web.Resources.Shared.Common.Edit"><span class="glyphicon glyphicon-edit"></span></a>
     </script>
-    <script id="WorkplaceTypeFilterResultTemplate" type="text/html">
+    <script id="DesignationFilterResultTemplate" type="text/html">
         <tr>
             <td data-bind="text: code"></td>
             <td data-bind="text: name"></td>
             <td data-bind="text: description"></td>
             <td>
-                <!-- ko template: { name: 'editActionOrgRoupTemplate' } -->
+                <!-- ko template: { name: 'editActionDesignationTemplate' } -->
                 <!-- /ko -->
             </td>
             <td>
-                <!-- ko template: { name: 'deleteActionOrgGroupTemplate' } -->
+                <!-- ko template: { name: 'deleteActionDesignationTemplate' } -->
                 <!-- /ko -->
             </td>
         </tr>

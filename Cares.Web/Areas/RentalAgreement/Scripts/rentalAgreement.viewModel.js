@@ -59,6 +59,10 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     raDiscounts = ko.observableArray([]),
                     // Chauffers
                     chauffers = ko.observableArray([]),
+                    // additional Charges
+                    additionalCharges = ko.observableArray([]),
+                    // Insurance Rates
+                    insuranceRates = ko.observableArray([]),
                     // Chauffer Filter
                     chaufferFilter = ko.observable(model.Chauffer.Create({})),
                     // Can search hire group
@@ -85,7 +89,24 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     // #region Utility Functions
                     selectVehicle = function(vehicle) {
                         if (selectedVehicle() !== vehicle) {
-                            selectedVehicle(vehicle);
+                            rentalAgreement().rentalAgreementHireGroups.push(model.RentalAgreementHireGroup.Create({
+                                VehicleId: vehicle.id, HireGroupDetailId: selectedHireGroup().id,
+                                AllocationStatusKey: allocationStatus.desired, RaMainId: rentalAgreement().id(),
+                                Vehicle: vehicle,
+                                VehicleMovements: [
+                                    {
+                                        OperationsWorkPlaceId: rentalAgreement().openLocation(), Odometer: vehicle.currentOdometer,
+                                        VehicleStatusId: vehicle.vehicleStatusId, DtTime: moment(rentalAgreement().start()).toDate(),
+                                        FuelLevel: vehicle.fuelLevel, Status: model.vehicleMovementEnum.outMovement
+                                    },
+                                    {
+                                        OperationsWorkPlaceId: rentalAgreement().openLocation(),
+                                        DtTime: moment(rentalAgreement().end()).toDate(),
+                                        FuelLevel: vehicle.fuelLevel, Status: model.vehicleMovementEnum.inMovement
+                                    }
+                                ]
+                            }));
+                            //selectedVehicle(vehicle);
                             calculateBill();
                         }    
                     },
@@ -157,6 +178,22 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         });
                         rentalAgreement().rentalAgreementDrivers.push(driver);
                     },
+                    // Add Additional Charges to Rental Agreement
+                    addAdditionalChargesToRentalAgreement = function (data, popoverId) {
+                        additionalCharges.each(function (additionalCharge) {
+                            if (additionalCharge.isSelected()) {
+                                rentalAgreement().raAdditionalCharges.push(model.RentalAgreementAdditionalCharge.Create(additionalCharge.convertToServerData()));
+                            }
+                        });
+                        // Close Popover
+                        view.closePopover(popoverId);
+                    },
+                    // Reset Additional Charges Selection
+                    resetAdditionalChargesSelection = function () {
+                        additionalCharges.each(function (additionalCharge) {
+                            additionalCharge.isSelected(false);
+                        });
+                    },
                     // #endregion Utility Functions
                     // #region Observables
                     // Initialize the view model
@@ -173,6 +210,8 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         // Get Service Items
                         getServiceItems();
 
+                        // Get Additional Charges
+                        getAdditionalCharges();
                     },
                     // Get Base
                     getBase = function() {
@@ -256,6 +295,42 @@ define("rentalAgreement/rentalAgreement.viewModel",
                             }
                         });
                     },
+                    // Get Additional Charges
+                    getAdditionalCharges = function () {
+                        dataservice.getAdditionalCharges({
+                            success: function (data) {
+                                var additionalChargeItems = [];
+
+                                _.each(data, function (additionalCharge) {
+                                    additionalChargeItems.push(model.AdditionalCharge.Create(additionalCharge));
+                                });
+
+                                ko.utils.arrayPushAll(additionalCharges(), additionalChargeItems);
+                                additionalCharges.valueHasMutated();
+                            },
+                            error: function (response) {
+                                toastr.error("Failed to load Additional Charges. Error: " + response);
+                            }
+                        });
+                    },
+                    // Get Insurance Rates
+                    getInsuranceRates = function () {
+                        dataservice.getInsuranceRts({
+                            success: function (data) {
+                                var services = [];
+
+                                _.each(data, function (serviceItem) {
+                                    services.push(model.ServiceItem.Create(serviceItem));
+                                });
+
+                                ko.utils.arrayPushAll(serviceItems(), services);
+                                serviceItems.valueHasMutated();
+                            },
+                            error: function (response) {
+                                toastr.error("Failed to load Service Items. Error: " + response);
+                            }
+                        });
+                    },
                     // Can Search Vehicles
                     canSearchVehicles = ko.computed(function () {
                         return selectedHireGroup();
@@ -289,23 +364,6 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     // Calculate Bill
                     calculateBill = function () {
                         var rentalBillRequest = rentalAgreement().convertToServerData();
-                        if (!rentalAgreement().id()) {
-                            rentalBillRequest.RaHireGroups.push({ VehicleId: selectedVehicle().id, HireGroupDetailId: selectedHireGroup().id, 
-                                AllocationStatusKey: allocationStatus.desired, RaMainId: rentalAgreement().id(),
-                                VehicleMovements: [
-                                    {
-                                        OperationsWorkPlaceId: rentalAgreement().openLocation(), Odometer: selectedVehicle().currentOdometer,
-                                        VehicleStatusId: selectedVehicle().vehicleStatusId, DtTime: moment(rentalAgreement().start()).format(ist.utcFormat) + 'Z',
-                                        FuelLevel: selectedVehicle().fuelLevel, Status: true
-                                    },
-                                    {
-                                        OperationsWorkPlaceId: rentalAgreement().openLocation(),
-                                        DtTime: moment(rentalAgreement().end()).format(ist.utcFormat) + 'Z',
-                                        FuelLevel: selectedVehicle().fuelLevel
-                                    }
-                                ]
-                            });
-                        }
                         dataservice.calculateBill(rentalBillRequest, {
                             success: function (data) {
                                 rentalAgreement().billing(model.Billing.Create(data));
@@ -318,6 +376,9 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     // Get Customer Call back Handler
                     getCustomerCallbackHandler = {
                         success: function (data) {
+                            if (!data) {
+                                return;
+                            }
                             rentalAgreement().businessPartner(model.BusinessPartner.Create(data, rentalAgreementModelCallbacks));
                         },
                         error: function (response) {
@@ -375,6 +436,8 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     canSearchChauffers: canSearchChauffers,
                     canSearchVehicles: canSearchVehicles,
                     hireGroupText: hireGroupText,
+                    additionalCharges: additionalCharges,
+                    insuranceRates: insuranceRates,
                     // Observables
                     // Utility Methods
                     initialize: initialize,
@@ -390,7 +453,10 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     addDriverToRentalAgreement: addDriverToRentalAgreement,
                     setChaufferPopover: setChaufferPopover,
                     searchChauffers: searchChauffers,
-                    searchVehicles: searchVehicles
+                    searchVehicles: searchVehicles,
+                    addAdditionalChargesToRentalAgreement: addAdditionalChargesToRentalAgreement,
+                    resetAdditionalChargesSelection: resetAdditionalChargesSelection,
+                    getInsuranceRates: getInsuranceRates
                     // Utility Methods
                 };
             })()

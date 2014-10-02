@@ -142,6 +142,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BpMainType.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\BusinessPartner\BusinessLegalStatus.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessLegalStatus.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\BusinessPartner\BusinessLegalStatus.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessLegalStatus.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\BusinessPartner\Document.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -161,6 +171,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DocumentGroup.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\BusinessPartner\OccupationType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OccupationType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\BusinessPartner\OccupationType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OccupationType.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\BusinessPartner\RatingType.ar.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -471,6 +491,7 @@
     <Compile Include="Services\AddressBaseDataService.cs" />
     <Compile Include="Services\AdditionalDriverService.cs" />
     <Compile Include="Services\NRTService.cs" />
+    <Compile Include="Services\InsuranceTypeService.cs" />
     <Compile Include="Services\RatingTypeService.cs" />
     <Compile Include="Services\DocumentService.cs" />
     <Compile Include="Services\SeasonalDiscountService.cs" />
@@ -560,6 +581,14 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BpMainType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\BusinessLegalStatus.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BusinessLegalStatus.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\BusinessLegalStatus.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BusinessLegalStatus.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\BusinessPartner\Document.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Document.ar.Designer.cs</LastGenOutput>
@@ -575,6 +604,14 @@
     <EmbeddedResource Include="Resources\BusinessPartner\DocumentGroup.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>DocumentGroup.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\OccupationType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>OccupationType.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\OccupationType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>OccupationType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\BusinessPartner\RatingType.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

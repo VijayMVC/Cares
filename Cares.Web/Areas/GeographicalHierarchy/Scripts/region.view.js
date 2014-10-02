@@ -17,7 +17,7 @@ define("region/region.view",
                         return;
                     }
                     // Handle Sorting
-                    handleSorting("OrgGroupTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getRegions);
+                    handleSorting("RegionTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getRegions);
                 };
             initialize();
             return {

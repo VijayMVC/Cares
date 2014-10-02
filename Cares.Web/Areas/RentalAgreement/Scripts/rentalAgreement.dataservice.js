@@ -94,6 +94,20 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
                         contentType: "application/json; charset=utf-8",
                         type: 'POST'
                     });
+
+                    // Define request to get Additional Charges
+                    amplify.request.define('getAdditionalCharges', 'ajax', {
+                        url: ist.siteUrl + '/Api/RaAdditionalCharge',
+                        dataType: 'json',
+                        type: 'GET'
+                    });
+
+                    // Define request to get Insurance Rates
+                    amplify.request.define('getInsuranceRates', 'ajax', {
+                        url: ist.siteUrl + '/Api/RaInsuranceRts',
+                        dataType: 'json',
+                        type: 'GET'
+                    });
                     
                     isInitialized = true;
                 }
@@ -206,6 +220,26 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
                     error: callbacks.error
                 });
             },
+
+            // Get Additional Charges
+            getAdditionalCharges = function (callbacks) {
+                initialize();
+                return amplify.request({
+                    resourceId: 'getAdditionalCharges',
+                    success: callbacks.success,
+                    error: callbacks.error
+                });
+            },
+
+            // Get Insurance Rts
+            getInsuranceRts = function (callbacks) {
+                initialize();
+                return amplify.request({
+                    resourceId: 'getInsuranceRts',
+                    success: callbacks.success,
+                    error: callbacks.error
+                });
+            },
             
             // Get Chauffers
             getChauffers = function (params, callbacks) {
@@ -230,7 +264,9 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
             getCustomerByPhoneNo: getCustomerByPhoneNo,
             calculateBill: calculateBill,
             getServiceItems: getServiceItems,
-            getChauffers: getChauffers
+            getChauffers: getChauffers,
+            getInsuranceRts: getInsuranceRts,
+            getAdditionalCharges: getAdditionalCharges
         };
     })();
 

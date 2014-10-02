@@ -114,7 +114,6 @@ namespace Cares.Implementation.Services
             documentRepository.SaveChanges();                
         }
 
-
         /// <summary>
         /// Search Document
         /// </summary>

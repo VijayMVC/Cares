@@ -50,7 +50,8 @@
             "documentGroup": ist.siteUrl + "/Areas/BusinessPartner/Scripts",
             "bpMainType": ist.siteUrl + "/Areas/BusinessPartner/Scripts",
             "document": ist.siteUrl + "/Areas/BusinessPartner/Scripts",
-            "ratingType": ist.siteUrl + "/Areas/BusinessPartner/Scripts"
+            "ratingType": ist.siteUrl + "/Areas/BusinessPartner/Scripts",
+            "businessLegalStatus": ist.siteUrl + "/Areas/BusinessPartner/Models"
 
 
         }

@@ -29,5 +29,10 @@ namespace Cares.Web.Areas.BusinessPartner.Controllers
         {
             return View();
         }
+
+        public ActionResult BusinessLegalStatus()
+        {
+            return View();
+        }
 	}
 }

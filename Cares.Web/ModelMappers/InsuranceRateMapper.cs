@@ -113,6 +113,21 @@ namespace Cares.Web.ModelMappers
                 RevisionNumber = source.RevisionNumber,
             };
         }
+        /// <summary>
+        ///  Insurance Rate Detail Content Domain to web Model
+        /// </summary>
+        public static ApiModel.InsuranceRtDetailContent CreateFrom(this DomainModels.InsuranceRt source)
+        {
+            return new ApiModel.InsuranceRtDetailContent
+            {
+                InsuranceRtId = source.InsuranceRtId,
+                InsuranceRtMainId = source.InsuranceRtMainId,
+                InsuranceTypeId = source.InsuranceTypeId,
+                InsuranceTypeCodeName = source.InsuranceType.InsuranceTypeCode,
+                HireGroupDetailId = source.HireGroupDetailId,
+                InsuranceRate = source.InsuranceRate
+            };
+        }
         #endregion
         #region insurance Rate Detail Response Mapper
 

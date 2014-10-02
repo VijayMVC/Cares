@@ -56,5 +56,10 @@ namespace Cares.Interfaces.IServices
             long operationId,
             long hireGroupDetailId, short insuranceTypeId, List<TariffType> oTariffTypeList);
 
+        /// <summary>
+        /// Get All For RA
+        /// </summary>
+        IEnumerable<InsuranceRt> GetAllForRa();
+
     }
 }
