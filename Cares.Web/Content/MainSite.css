@@ -1273,6 +1273,14 @@
   margin-bottom: 20px;
   margin-top: 10px;
 }
+#nRTBinding .addToBtnDiv {
+  width: 100%;
+  margin-bottom: 15px;
+}
+#nRTBinding .addToBtn {
+  float: right;
+  margin-right: 10px;
+}
 #VehicleCheckListBinding table thead tr .VehicleCheckListcode {
   width: 25%;
 }
@@ -1499,3 +1507,4 @@
   margin: 0;
 }
 /* Twitter Typeahead */
+/*# sourceMappingURL=MainSite.css.map */

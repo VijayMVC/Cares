@@ -1,6 +1,10 @@
-﻿using Cares.Interfaces.IServices;
+﻿using System;
+using System.Collections.Generic;
+using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
+using Cares.Models.DomainModels;
 using Cares.Models.ResponseModels;
+using Cares.Repository.Repositories;
 
 namespace Cares.Implementation.Services
 {
@@ -19,6 +23,7 @@ namespace Cares.Implementation.Services
         private readonly IOperationsWorkPlaceRepository operationsWorkPlaceRepository;
         private readonly INrtTypeRepository nrtTypeRepository;
         private readonly IVehicleStatusRepository vehicleStatusRepository;
+        private readonly HireGroupDetailRepository hireGroupDetailRepository;
 
 
         #endregion
@@ -29,12 +34,13 @@ namespace Cares.Implementation.Services
         ///  Constructor
         /// </summary>
         public NRTService(IOperationRepository operationRepository, IOperationsWorkPlaceRepository operationsWorkPlaceRepository,
-            INrtTypeRepository nrtTypeRepository, IVehicleStatusRepository vehicleStatusRepository)
+            INrtTypeRepository nrtTypeRepository, IVehicleStatusRepository vehicleStatusRepository, HireGroupDetailRepository hireGroupDetailRepository)
         {
             this.operationRepository = operationRepository;
             this.operationsWorkPlaceRepository = operationsWorkPlaceRepository;
             this.nrtTypeRepository = nrtTypeRepository;
             this.vehicleStatusRepository = vehicleStatusRepository;
+            this.hireGroupDetailRepository = hireGroupDetailRepository;
         }
 
         #endregion
@@ -54,6 +60,7 @@ namespace Cares.Implementation.Services
                 VehicleStatuses = vehicleStatusRepository.GetAll(),
             };
         }
+
         #endregion
     }
 }

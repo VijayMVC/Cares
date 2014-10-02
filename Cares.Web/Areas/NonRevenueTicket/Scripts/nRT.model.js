@@ -68,7 +68,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         };
         return self;
     };
-    //Non Revenue Ticket Main Entity
+    //Vehicle Detail In Revenue TicketEntity
     // ReSharper disable once InconsistentNaming
     var VehicleDetail = function () {
         var // Reference to this object
@@ -165,9 +165,70 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         };
         return self;
     };
+    //Maintenance Activity In Non Revenue Ticket Entity
+    // ReSharper disable once InconsistentNaming
+    var MaintenanceActivity = function () {
+        var // Reference to this object
+            self,
+            // Unique key
+            id = ko.observable(),
+            //Additional Charge Type Code
+            code = ko.observable(),
+            //Additional Charge Type Name
+            name = ko.observable(),
+            //Quantity
+            qty = ko.observable().extend({ required: true }),
+            //Total Rate
+            totalRate = ko.observable(),
+            //Contact Person
+            contactPerson = ko.observable(),
+            //Description
+            description = ko.observable(),
+             //Rate
+            rate = ko.observable(),
+            // Errors
+            errors = ko.validation.group({
+                qty: qty
+            }),
+            // Is Valid
+            isValid = ko.computed(function () {
+                return errors().length === 0;
+            }),
+
+            // True if the booking has been changed
+            // ReSharper disable InconsistentNaming
+            dirtyFlag = new ko.dirtyFlag({
+            }),
+            // Has Changes
+            hasChanges = ko.computed(function () {
+                return dirtyFlag.isDirty();
+            }),
+            // Reset
+            reset = function () {
+                dirtyFlag.reset();
+            };
+
+        self = {
+            id: id,
+            code: code,
+            name: name,
+            qty: qty,
+            totalRate: totalRate,
+            contactPerson: contactPerson,
+            description: description,
+            rate: rate,
+            errors: errors,
+            isValid: isValid,
+            dirtyFlag: dirtyFlag,
+            hasChanges: hasChanges,
+            reset: reset,
+        };
+        return self;
+    };
 
     return {
         NRTMain: NRTMain,
         VehicleDetail: VehicleDetail,
+        MaintenanceActivity: MaintenanceActivity,
     };
 });

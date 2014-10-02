@@ -226,6 +226,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalChargeBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\GetVehiclesForNRTController.cs" />
     <Compile Include="Areas\Api\Controllers\RaInsuranceRtsController.cs" />
     <Compile Include="Areas\Api\Controllers\RaAdditionalChargesController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalChargeController.cs" />
@@ -1997,6 +1998,7 @@
     <Content Include="Content\BusinessLegalStatus.css.map">
       <DependentUpon>BusinessLegalStatus.css</DependentUpon>
     </Content>
+    <Content Include="Areas\NonRevenueTicket\Views\NonRevenueTicket\_VehicleDetailDialogForNRT.cshtml" />
     <None Include="Properties\PublishProfiles\Khurram.pubxml" />
     <Content Include="RichTextEditor\plugins\Thumbs.db" />
     <None Include="Scripts\amplify-vsdoc.js" />

@@ -13,6 +13,14 @@ define("nRT/nRT.view",
                 viewModel = specifiedViewModel,
                 // Binding root used with knockout
                 bindingRoot = $("#nRTBinding")[0],
+                 // Show the dialog
+                show = function () {
+                    $("#dialog-vehicleDetailDialog").modal("show");
+                },
+                // Hide the dialog
+                hide = function () {
+                    $("#dialog-vehicleDetailDialog").modal("hide");
+                },
                 // Initialize
                 initialize = function () {
                     if (!bindingRoot) {
@@ -25,7 +33,9 @@ define("nRT/nRT.view",
             initialize();
             return {
                 bindingRoot: bindingRoot,
-                viewModel: viewModel
+                viewModel: viewModel,
+                show: show,
+                hide: hide
             };
         })(nRTViewModel);
 

@@ -44,7 +44,12 @@ define("nRT/nRT.viewModel",
                     isChaufferChargeEditorVisible = ko.observable(false),
                     // Pagination
                     pager = ko.observable(),
-                         // #region Utility Functions
+                       // On Proceed
+                    afterProceed = ko.observable(),
+                    // On Cancel
+                    afterCancel = ko.observable(),
+
+                     // #region Utility Functions
                     // Initialize the view model
                     initialize = function (specifiedView) {
                         view = specifiedView;
@@ -162,6 +167,10 @@ define("nRT/nRT.viewModel",
                             toastr.error("Please select Ticket End Date");
                             return flag = false;
                         }
+                        else if (selectedNrtMain().startDate() > selectedNrtMain().endDate()) {
+                            toastr.error("Start Date is greater than the End Date");
+                            return flag = false;
+                        }
                         else if (selectedNrtMain().outLocationId() === undefined) {
                             toastr.error("Please select Ticket open location.");
                             return flag = false;
@@ -172,7 +181,42 @@ define("nRT/nRT.viewModel",
                     },
                     onAddVehicleDetail = function (nRtMain) {
                         if (doBeforeAddVehicleDetail()) {
-                            
+                            toastr.error("test");
+                            //// Ask for confirmation
+                            //confirmation.afterProceed(function () {
+                            //    //deleteChaufferCharge(chaufferChrg);
+                            //});
+                            //confirmation.show();
+                            //Show The Dialog
+                            view.show();
+                        }
+
+                    },
+                    // Cancel 
+                    cancel = function () {
+                        if (typeof afterCancel() === "function") {
+                            afterCancel()();
+                        }
+                        hide();
+                    },
+                     // Proceed with the request
+                    proceed = function () {
+                        if (typeof afterProceed() === "function") {
+                            afterProceed()();
+                        }
+                        hide();
+                    },
+                    // Hide the dialog
+                    hide = function () {
+                        // Reset Call Backs
+                        afterCancel(undefined);
+                        afterProceed(undefined);
+
+                        view.hide();
+                    },
+                    onAddActivity = function (nRtMain) {
+                        if (doBeforeAddVehicleDetail()) {
+                            toastr.error("test");
                         }
                     },
                     //Add Chauffer Charge
@@ -296,11 +340,11 @@ define("nRT/nRT.viewModel",
                            chaufferChargeMains.remove(chaufferChrg);
                            return;
                        }
-                       // Ask for confirmation
-                       confirmation.afterProceed(function () {
-                           deleteChaufferCharge(chaufferChrg);
-                       });
-                       confirmation.show();
+                       //// Ask for confirmation
+                       //confirmation.afterProceed(function () {
+                       //    deleteChaufferCharge(chaufferChrg);
+                       //});
+                       view.show();
                    },
                         // Delete Additional Charge
                    deleteChaufferCharge = function (chaufferChrg) {
@@ -392,6 +436,9 @@ define("nRT/nRT.viewModel",
                     onUpdateChaufferCharge: onUpdateChaufferCharge,
                     getChaufferCharges: getChaufferCharges,
                     onAddVehicleDetail: onAddVehicleDetail,
+                    onAddActivity: onAddActivity,
+                    cancel: cancel,
+                    proceed: proceed,
                     // Utility Methods
 
                 };
