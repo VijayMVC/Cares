@@ -1,7 +1,6 @@
 ﻿using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Cares.Interfaces.Repository
 {

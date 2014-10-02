@@ -64,12 +64,16 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.FirstOrDefault(businessPartnerInType => businessPartnerInType.UserDomainKey == UserDomainKey && businessPartnerInType.BusinessPartnerId == id);
         }
+
+        /// <summary>
+        /// Association check of Business Partner Sub Type and Business Partner Sub Type
+        /// </summary>
+        public bool IsBusinessPartnerSubTypeAssociatedWithBusinessPartnerInType(long businessPartnerSubTypeId)
+        {
+            return DbSet.Count(businessPartnerInType => businessPartnerInType.BusinessPartnerSubTypeId == businessPartnerSubTypeId) > 0;            
+            
+        }
         #endregion
 
-
-
-
-
-       
     }
 }

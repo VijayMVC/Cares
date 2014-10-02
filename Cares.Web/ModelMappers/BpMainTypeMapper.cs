@@ -52,5 +52,18 @@ namespace Cares.Web.ModelMappers
                 BusinessPartnerMainTypeKey = source.BusinessPartnerMainTypeKey
             };
         }
+
+
+        /// <summary>
+        ///  Create web model from entity [dropdown]
+        /// </summary>
+        public static Models.BusinessPartnerMainTypeDropDown CreateFromm(this BusinessPartnerMainType source)
+        {
+            return new Models.BusinessPartnerMainTypeDropDown
+            {
+                BusinessPartnerMainTypeId = source.BusinessPartnerMainTypeId,
+                BusinessPartnerMainTypeCodeName = source.BusinessPartnerMainTypeCode+" - "+source.BusinessPartnerMainTypeName,
+            };
+        }
     }
 }

@@ -109,6 +109,7 @@ namespace Cares.Repository
             unityContainer.RegisterType<IBusinessPartnerDocumentRepository, BusinessPartnerDocumentRepository>();
             unityContainer.RegisterType<IRACustomerDocumentRepository, RACustomerDocumentRepository>();
             unityContainer.RegisterType<ICreditLimitRepository, CreditLimitRepository>();
+            unityContainer.RegisterType<IBusinessPartnerMainTypeRepository, BusinessPartnerMainTypeRepository>();
 
 
         }

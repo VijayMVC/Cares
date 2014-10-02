@@ -34,5 +34,10 @@ namespace Cares.Web.Areas.BusinessPartner.Controllers
         {
             return View();
         }
+
+        public ActionResult OccupationType()
+        {
+            return View();
+        }
 	}
 }

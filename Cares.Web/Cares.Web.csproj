@@ -232,6 +232,9 @@
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeDetailController.cs" />
     <Compile Include="Areas\Api\Controllers\BusinessLegalStatusController.cs" />
+    <Compile Include="Areas\Api\Controllers\BusinessPartnerRelationshipTypeController.cs" />
+    <Compile Include="Areas\Api\Controllers\BusinessPartnerSubTypeBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\BusinessPartnerSubTypeController.cs" />
     <Compile Include="Areas\Api\Controllers\OccupationTypeController.cs" />
     <Compile Include="Areas\Api\Controllers\RatingTypeController.cs" />
     <Compile Include="Areas\Api\Controllers\DocumentBaseController.cs" />
@@ -350,6 +353,8 @@
     <Compile Include="ModelMappers\AdditionalChargeMapper.cs" />
     <Compile Include="ModelMappers\AdditionalDriverChargeMapper.cs" />
     <Compile Include="ModelMappers\BpMainTypeMapper.cs" />
+    <Compile Include="ModelMappers\BusinessPartnerRelationshipTypeMapper.cs" />
+    <Compile Include="ModelMappers\BusinessPartnerSubTypeMapper.cs" />
     <Compile Include="ModelMappers\ChaufferChargeMapper.cs" />
     <Compile Include="ModelMappers\DesigGradeMapper.cs" />
     <Compile Include="ModelMappers\DesignationMapper.cs" />
@@ -400,6 +405,12 @@
     <Compile Include="Models\BusinessLegalStatus.cs" />
     <Compile Include="Models\BusinessLegalStatusSearchRequestRespose.cs" />
     <Compile Include="Models\BusinessPartnerMainType.cs" />
+    <Compile Include="Models\BusinessPartnerMainTypeDropDown.cs" />
+    <Compile Include="Models\BusinessPartnerRelationshipType.cs" />
+    <Compile Include="Models\BusinessPartnerRelationTypeSearchRequestResponse.cs" />
+    <Compile Include="Models\BusinessPartnerSubType.cs" />
+    <Compile Include="Models\BusinessPartnerSubTypeBaseDataResponse.cs" />
+    <Compile Include="Models\BusinessPartnerSubTypeSearchRequestResponse.cs" />
     <Compile Include="Models\BusinessSegment.cs" />
     <Compile Include="Models\BusinessSegmentSearchRequestResponse.cs" />
     <Compile Include="Models\ChaufferCharge.cs" />
@@ -701,6 +712,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DocumentGroup.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\BusinessPartner\OccupationType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OccupationType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\BusinessPartner\OccupationType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OccupationType.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\BusinessPartner\RatingType.ar.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1078,10 +1099,14 @@
     <Compile Include="ViewModels\Common\MessageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\BusinessPartner\Models\businessLegalStatus.dataservice.js" />
-    <Content Include="Areas\BusinessPartner\Models\businessLegalStatus.model.js" />
-    <Content Include="Areas\BusinessPartner\Models\businessLegalStatus.view.js" />
-    <Content Include="Areas\BusinessPartner\Models\businessLegalStatus.viewModel.js" />
+    <Content Include="Areas\BusinessPartner\Models\occupationType.dataservice.js" />
+    <Content Include="Areas\BusinessPartner\Models\occupationType.model.js" />
+    <Content Include="Areas\BusinessPartner\Models\occupationType.view.js" />
+    <Content Include="Areas\BusinessPartner\Models\occupationType.viewModel.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\BusinessLegalStatus.dataservice.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\businessLegalStatus.model.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\businessLegalStatus.view.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\BusinessLegalStatus.viewModel.js" />
     <Content Include="Areas\BusinessPartner\Scripts\ratingType.dataservice.js" />
     <Content Include="Areas\BusinessPartner\Scripts\ratingType.model.js" />
     <Content Include="Areas\BusinessPartner\Scripts\ratingType.view.js" />
@@ -1379,6 +1404,12 @@
     </Content>
     <Content Include="Content\NrtType.min.css">
       <DependentUpon>NrtType.css</DependentUpon>
+    </Content>
+    <Content Include="Content\OccupationType.css">
+      <DependentUpon>OccupationType.less</DependentUpon>
+    </Content>
+    <Content Include="Content\OccupationType.min.css">
+      <DependentUpon>OccupationType.css</DependentUpon>
     </Content>
     <Content Include="Content\Operation.css">
       <DependentUpon>Operation.less</DependentUpon>
@@ -1985,6 +2016,12 @@
     <Content Include="Content\BusinessLegalStatus.css.map">
       <DependentUpon>BusinessLegalStatus.css</DependentUpon>
     </Content>
+    <Content Include="Areas\BusinessPartner\Views\Home\OccupationType.cshtml" />
+    <Content Include="Areas\BusinessPartner\Views\Home\_OccupationTypeEditor.cshtml" />
+    <Content Include="Content\OccupationType.less" />
+    <Content Include="Content\OccupationType.css.map">
+      <DependentUpon>OccupationType.css</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\Khurram.pubxml" />
     <Content Include="RichTextEditor\plugins\Thumbs.db" />
     <None Include="Scripts\amplify-vsdoc.js" />
@@ -2227,6 +2264,14 @@
     <EmbeddedResource Include="Resources\BusinessPartner\DocumentGroup.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>DocumentGroup.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\OccupationType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>OccupationType.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\OccupationType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>OccupationType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\BusinessPartner\RatingType.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
