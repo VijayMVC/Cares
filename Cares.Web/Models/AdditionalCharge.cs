@@ -41,5 +41,25 @@ namespace Cares.Web.Models
         /// Hire group Detail Code Name
         /// </summary>
         public string HireGroupDetailCodeName { get; set; }
+
+        /// <summary>
+        /// Additional Charge Type ID
+        /// </summary>
+        public short AdditionalChargeTypeId { get; set; }
+
+        /// <summary>
+        /// Additional Charge Type Code
+        /// </summary>
+        public string AdditionalChargeTypeCode { get; set; }
+
+        /// <summary>
+        /// Additional Charge Type Name
+        /// </summary>
+        public string AdditionalChargeTypeName { get; set; }
+
+        /// <summary>
+        /// Additional Charge Type Code Name
+        /// </summary>
+        public string AdditionalChargeTypeCodeName { get; set; }
     }
 }

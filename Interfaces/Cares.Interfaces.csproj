@@ -54,6 +54,7 @@
     <Compile Include="IServices\IAddressBaseDataService.cs" />
     <Compile Include="IServices\IChaufferChargeService.cs" />
     <Compile Include="IServices\IDocumentService.cs" />
+    <Compile Include="IServices\IInsuranceTypeService.cs" />
     <Compile Include="IServices\IRatingTypeService.cs" />
     <Compile Include="IServices\ISeasonalDiscountService.cs" />
     <Compile Include="IServices\IBpMainTypeService.cs" />

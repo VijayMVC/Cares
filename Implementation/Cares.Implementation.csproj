@@ -470,6 +470,7 @@
     <Compile Include="Services\AdditionalChargeService.cs" />
     <Compile Include="Services\AddressBaseDataService.cs" />
     <Compile Include="Services\AdditionalDriverService.cs" />
+    <Compile Include="Services\InsuranceTypeService.cs" />
     <Compile Include="Services\RatingTypeService.cs" />
     <Compile Include="Services\DocumentService.cs" />
     <Compile Include="Services\SeasonalDiscountService.cs" />

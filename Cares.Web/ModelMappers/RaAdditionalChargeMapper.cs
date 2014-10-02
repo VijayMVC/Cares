@@ -22,9 +22,8 @@ namespace Cares.Web.ModelMappers
                 Quantity = source.Quantity,
                 HireGroupDetailId = source.HireGroupDetailId,
                 AdditionalChargeRate = source.AdditionalChargeRate,
-                AdditionalChargeTypeCode = source.AdditionalChargeType.AdditionalChargeTypeCode,
+                AdditionalChargeTypeCodeName = source.AdditionalChargeType.AdditionalChargeTypeCode + "-" + source.AdditionalChargeType.AdditionalChargeTypeName,
                 AdditionalChargeTypeId = source.AdditionalChargeTypeId,
-                AdditionalChargeTypeName = source.AdditionalChargeType.AdditionalChargeTypeName,
                 HireGroupCodeName = source.HireGroupDetail.HireGroup.HireGroupCode + '-' + source.HireGroupDetail.HireGroup.HireGroupName,
                 PlateNumber = source.PlateNumber
             };

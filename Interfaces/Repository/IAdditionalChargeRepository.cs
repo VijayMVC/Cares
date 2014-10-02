@@ -14,5 +14,10 @@ namespace Cares.Interfaces.Repository
         /// <param name="additionChargeTypeId"></param>
         /// <returns></returns>
         IEnumerable<AdditionalCharge> GetAdditionalChargesByAdditionChargeTypeId(long additionChargeTypeId);
+
+        /// <summary>
+        /// Get All For RA
+        /// </summary>
+        IEnumerable<AdditionalCharge> GetAllForRa();
     }
 }

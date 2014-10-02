@@ -53,6 +53,10 @@ namespace Cares.Web.ModelMappers
                 HireGroupDetailId = source.HireGroupDetailId,
                 StartDt = source.StartDt,
                 AdditionalChargeRate = source.AdditionalChargeRate,
+                AdditionalChargeTypeCode = source.AdditionalChargeType.AdditionalChargeTypeCode,
+                AdditionalChargeTypeId = source.AdditionalChargeTypeId,
+                AdditionalChargeTypeName = source.AdditionalChargeType.AdditionalChargeTypeName,
+                AdditionalChargeTypeCodeName = source.AdditionalChargeType.AdditionalChargeTypeCode + '-' + source.AdditionalChargeType.AdditionalChargeTypeName,
                 HireGroupDetailCodeName = source.HireGroupDetail != null ? source.HireGroupDetail.CreateFromForAddtionalCharge().HireGroupDetailCodeName : string.Empty,
                 RevisionNumber =source.RevisionNumber
             };

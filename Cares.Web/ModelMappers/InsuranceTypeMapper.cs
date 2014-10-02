@@ -21,6 +21,18 @@ namespace Cares.Web.ModelMappers
             };
         }
 
+        /// <summary>
+        ///  Create web model from entity
+        /// </summary>
+        public static InsuranceRtDetailContent CreateFrom(this Cares.Models.DomainModels.InsuranceType source)
+        {
+            return new InsuranceRtDetailContent
+            {
+                InsuranceTypeId = source.InsuranceTypeId,
+                InsuranceTypeCodeName = source.InsuranceTypeCode + " - " + source.InsuranceTypeName
+            };
+        }
+
         #endregion
     }
 }

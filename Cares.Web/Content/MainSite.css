@@ -1,4 +1,4 @@
-#tariffTypeBinding table thead tr .ttypesearchButton {
+﻿#tariffTypeBinding table thead tr .ttypesearchButton {
   margin-left: 5px;
 }
 #fleetRootBinding table thead tr .fleetCode {
@@ -578,16 +578,7 @@
 }
 @media (min-width: 992px) {
   #rentalAgreementBinding #raBilling #ra .dateTimeControl {
-    width: 39.3%;
-  }
-  #rentalAgreementBinding #raBilling #ra .dateTimeControl .dateControl {
-    width: 57%;
-    float: left;
-  }
-  #rentalAgreementBinding #raBilling #ra .dateTimeControl .timeControl {
-    width: 39%;
-    margin-left: 5px;
-    float: left;
+    width: 39.2%;
   }
   #rentalAgreementBinding #raBilling #ra #bookingNumberControl {
     width: 43%;
@@ -1486,4 +1477,3 @@
   margin: 0;
 }
 /* Twitter Typeahead */
-/*# sourceMappingURL=MainSite.css.map */

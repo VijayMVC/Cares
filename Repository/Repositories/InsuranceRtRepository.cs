@@ -67,6 +67,14 @@ namespace Cares.Repository.Repositories
                         .OrderByDescending(ir => ir.StartDt).ToList();
         }
 
+        /// <summary>
+        /// Get Insurance Rate for Ra
+        /// </summary>
+        public IEnumerable<InsuranceRt> GetAllForRa()
+        {
+            return DbSet.Where(ir => ir.UserDomainKey == UserDomainKey && !ir.IsDeleted && ir.ChildInsuranceRtId == null).ToList();
+        }
+
         #endregion
     }
 }
