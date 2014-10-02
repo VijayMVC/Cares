@@ -379,6 +379,7 @@
   margin-top: 30px;
   margin-left: 5px;
   margin-right: 5px;
+  margin-bottom: 10px;
 }
 #seasonalDiscountBinding #seasonalDiscountEditor .detailsContainer {
   width: 100%;
@@ -1378,6 +1379,27 @@
   width: 100%;
 }
 #RatingTypeBinding #ratingTypeEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#BusinessLegalStatusBinding table thead tr .businessLegalStatusCode {
+  width: 33%;
+}
+#BusinessLegalStatusBinding table thead tr .businessLegalStatusName {
+  width: 33%;
+}
+#BusinessLegalStatusBinding table thead tr .businessLegalStatusDiscription {
+  width: 33%;
+}
+#BusinessLegalStatusBinding #BusinessLegalStatusBindingEditor {
+  margin-top: 15px;
+}
+#BusinessLegalStatusBinding #BusinessLegalStatusBindingEditor .detailsContainer {
+  width: 100%;
+}
+#BusinessLegalStatusBinding #BusinessLegalStatusBindingEditor .detailsContainer .detailsHeaderSection {
   float: left;
   width: 85%;
   margin-bottom: 20px;

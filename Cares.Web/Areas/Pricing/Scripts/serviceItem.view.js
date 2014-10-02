@@ -17,7 +17,7 @@ define("serviceItem/serviceItem.view",
                         return;
                     }
                     // Handle Sorting
-                    handleSorting("OrgGroupTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getServiceItems);
+                    handleSorting("ServiceItemTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getServiceItems);
                 };
             initialize();
             return {

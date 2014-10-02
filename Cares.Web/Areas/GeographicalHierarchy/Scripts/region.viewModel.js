@@ -11,16 +11,13 @@ define("region/region.viewModel",
                 var view,
                     //array to save Regions
                     regions = ko.observableArray([]),
-
                     //array to save basa data country list
                     baseCountriesList = ko.observableArray([]),
-
                     //pager%
                     pager = ko.observable(),
                     //org code filter in filter sec
                     searchFilter = ko.observable(),
                     baseCountryFilter = ko.observable(),
-
                     //sorting
                     sortOn = ko.observable(1),
                     //Assending  / Desending
@@ -29,13 +26,10 @@ define("region/region.viewModel",
                     isRegionEditorVisible = ko.observable(false),
                     //to control the visibility of filter ec
                     filterSectionVisilble = ko.observable(false),
-
-
                      // Editor View Model
                     editorViewModel = new ist.ViewModel(model.regionDetail),
-                    // Selected Business Segment
+                    // Selected Region
                     selectedRegion = editorViewModel.itemForEditing,
-
                     //save button handler
                     onSavebtn = function() {
                     if (dobeforeRegion())
@@ -148,7 +142,6 @@ define("region/region.viewModel",
                     },
                     {
                         success: function (data) {
-                            debugger;
                             regions.removeAll();
                             pager().totalCount(data.TotalCount);
                             _.each(data.Regions, function (item) {

@@ -17,7 +17,7 @@ define("designGrade/designGrade.view",
                         return;
                     }
                     // Handle Sorting
-                    handleSorting("OrgGroupTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getDesignGrades);
+                    handleSorting("DesignGradeTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getDesignGrades);
                 };
             initialize();
             return {

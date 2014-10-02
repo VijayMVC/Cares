@@ -17,7 +17,7 @@ define("designation/designation.view",
                         return;
                     }
                     // Handle Sorting
-                    handleSorting("OrgGroupTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getDesignations);
+                    handleSorting("DesignationTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getDesignations);
                 };
             initialize();
             return {

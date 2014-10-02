@@ -136,7 +136,7 @@ define("jobType/jobType.viewModel",
                         IsAsc: sortIsAsc()
                     },
                     {
-                        success: function(data) {
+                        success: function (data) {
                             jobTypes.removeAll();
                             pager().totalCount(data.TotalCount);
                             _.each(data.JobTypes, function(item) {

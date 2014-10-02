@@ -1,8 +1,7 @@
 ﻿define(["ko", "underscore", "underscore-ko"], function(ko) {
     
-    //Employee Status Detail
-   // ReSharper disable once InconsistentNaming
-    var EmployeeStatusDetail = function (specifiedId, specifiedCode, specifiedName, specifieddescription, specifiedcountryId, specifiedcountryName) {
+    //Region Detail
+    var regionDetail = function (specifiedId, specifiedCode, specifiedName, specifieddescription, specifiedcountryId, specifiedcountryName) {
         var            
             id = ko.observable(specifiedId),
             code = ko.observable(specifiedCode).extend({ required: true }),
@@ -33,7 +32,7 @@
             },
             // Convert to server
             convertToServerData = function () {
-                debugger;
+         
                 return {
                     RegionId: id(),
                     RegionCode: code(),
@@ -60,21 +59,21 @@
     };
     // server to client mapper
     var regionServertoClinetMapper = function (source) {
-        return EmployeeStatusDetail.Create(source);
+        return regionDetail.Create(source);
     };
     
     // Region Factory
-    EmployeeStatusDetail.Create = function (source) {
-        return new EmployeeStatusDetail(source.RegionId, source.RegionCode, source.RegionName, source.RegionDescription, source.CountryId, source.CountryName);
+    regionDetail.Create = function (source) {
+        return new regionDetail(source.RegionId, source.RegionCode, source.RegionName, source.RegionDescription, source.CountryId, source.CountryName);
     };
 
     //function to attain cancel button functionality 
-    EmployeeStatusDetail.CreateFromClientModel = function (itemFromServer) {
-        return new EmployeeStatusDetail(itemFromServer.id, itemFromServer.code, itemFromServer.name,
+    regionDetail.CreateFromClientModel = function (itemFromServer) {
+        return new regionDetail(itemFromServer.id, itemFromServer.code, itemFromServer.name,
             itemFromServer.description, itemFromServer.countryId, itemFromServer.countryName);
     };
     return {
-        regionDetail: EmployeeStatusDetail,
+        regionDetail: regionDetail,
         regionServertoClinetMapper: regionServertoClinetMapper,
     };
 });

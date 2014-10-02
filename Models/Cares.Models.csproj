@@ -107,12 +107,14 @@
     <Compile Include="Common\BillingSummary.cs" />
     <Compile Include="Common\AllocationStatusEnum.cs" />
     <Compile Include="Common\BpMainTypeByColumn.cs" />
+    <Compile Include="Common\BusinessLegalStatusByColumn.cs" />
     <Compile Include="Common\ChaufferChargeByColumn.cs" />
     <Compile Include="Common\DesignationEnum.cs" />
     <Compile Include="Common\DocumentByColumn.cs" />
     <Compile Include="Common\DocumentGroupByColumn.cs" />
     <Compile Include="Common\NrtTypeByColumn.cs" />
     <Compile Include="Common\DiscountTypeEnum.cs" />
+    <Compile Include="Common\OccupationTypeByColumn.cs" />
     <Compile Include="Common\RatingTypeByColumn.cs" />
     <Compile Include="Common\SeasonalDiscountByColumn.cs" />
     <Compile Include="Common\VehicleMovementEnum.cs" />
@@ -290,6 +292,7 @@
     <Compile Include="RequestModels\AreaSearchRequestResponse.cs" />
     <Compile Include="RequestModels\BpMainTypeSearchRequest.cs" />
     <Compile Include="RequestModels\BpMainTypeSearchRequestResponse.cs" />
+    <Compile Include="RequestModels\BusinessLegalStatusSearchRequest.cs" />
     <Compile Include="RequestModels\BusinessSegmentSearchRequest.cs" />
     <Compile Include="RequestModels\ChaufferChargeSearchRequest.cs" />
     <Compile Include="RequestModels\CitySearchRequestResponse.cs" />
@@ -321,6 +324,7 @@
     <Compile Include="RequestModels\CitySearchRequest.cs" />
     <Compile Include="RequestModels\JobTypeSearchRequest.cs" />
     <Compile Include="RequestModels\JobTypeSearchRequestResponse.cs" />
+    <Compile Include="RequestModels\OccupationTypeSearchRequest.cs" />
     <Compile Include="RequestModels\RatingTypeSearchRequest.cs" />
     <Compile Include="RequestModels\RatingTypeSearchRequestResponse.cs" />
     <Compile Include="RequestModels\RegionSearchRequest.cs" />
@@ -351,6 +355,7 @@
     <Compile Include="ResponseModels\AdditionalDriverChargeSearchContent.cs" />
     <Compile Include="ResponseModels\AdditionalDriverChargeSearchResponse.cs" />
     <Compile Include="ResponseModels\AreaBaseDataResponse.cs" />
+    <Compile Include="ResponseModels\BusinessLegalStatusSearchRequestRespose.cs" />
     <Compile Include="ResponseModels\BusinessPartnerBaseDataResponse.cs" />
     <Compile Include="ResponseModels\BusinessSegmentSearchRequestResponse.cs" />
     <Compile Include="ResponseModels\ChaufferChargeBaseResponse.cs" />
@@ -380,6 +385,7 @@
     <Compile Include="ResponseModels\InsuranceRtMainContent.cs" />
     <Compile Include="ResponseModels\NrtTypeBaseDataResponse.cs" />
     <Compile Include="ResponseModels\NrtTypeSearchRequestResponse.cs" />
+    <Compile Include="ResponseModels\OccupationTypeSearchRequestResponse.cs" />
     <Compile Include="ResponseModels\OperationBaseDataResponse.cs" />
     <Compile Include="ResponseModels\OperationSearchResponse.cs" />
     <Compile Include="ResponseModels\OperationWorkplaceSearchByIdResponse.cs" />

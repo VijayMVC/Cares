@@ -17,7 +17,7 @@ define("discountSubType/discountSubType.view",
                         return;
                     }
                     // Handle Sorting
-                    handleSorting("OrgGroupTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getDiscountSubTypes);
+                    handleSorting("DiscountSubTypeTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getDiscountSubTypes);
                 };
             initialize();
             return {

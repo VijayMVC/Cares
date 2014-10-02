@@ -1,0 +1,33 @@
+﻿
+<div class="well col-md-12" id="DocumentEditor" data-bind="visible: isDocumentEditorVisible, with: selectedDocument " style="display: none; margin-top:15px">
+    <div class="float-left detailsContainer">
+        <h3 class="page-header detailsHeaderSection">@Cares.Web.Resources.BusinessPartner.Document.DocumentDetail</h3>
+        <button class="btn  btn-info"  data-bind="click: $root.onSavebtn">@Cares.Web.Resources.Shared.Common.Save</button>
+        <button class="btn  btn-default"  data-bind="click: $root.onCancelbtn">@Cares.Web.Resources.Shared.Common.Cancel</button>
+    </div>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.BusinessPartner.Document.Code*</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.BusinessPartner.Document.Code + ">")" data-bind="value: code" />
+            </div>
+            <label class="control-label h5 col-sm-1">@Cares.Web.Resources.BusinessPartner.Document.Name*</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.BusinessPartner.Document.Name + ">")" data-bind="value:name" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.BusinessPartner.Document.DocumentGroup*</label>
+            <div class="col-md-3">
+                <select class="form-control" data-bind="options: $root.baseDocumentGroupsList, optionsText: 'DocumentGroupCodeName', optionsValue: 'DocumentGroupId', optionsCaption: '&lt;' + '@Cares.Web.Resources.BusinessPartner.Document.DocumentGroup'+ '&gt;' , value:documentGroupId "></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.BusinessPartner.Document.Description</label>
+            <div class="col-md-3">
+                <textarea class="form-control" rows="4" placeholder="@("<" + Cares.Web.Resources.BusinessPartner.Document.Description + ">")" dat data-bind="value: description"></textarea>
+            </div>
+        </div>
+
+    </form>
+</div>

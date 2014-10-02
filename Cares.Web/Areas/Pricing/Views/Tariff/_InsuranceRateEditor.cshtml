@@ -27,7 +27,7 @@
                 </div>
                 <label for="tariffType" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.InsuranceRate.TariffType *</label>
                 <div class="col-xs-2">
-                    <select id="tariffType" class="form-control" data-bind="options: $root.tariffTypes, optionsText: 'TariffTypeCodeName', optionsValue: 'TariffTypeId', optionsCaption: '@("<" + Cares.Web.Resources.Tariff.InsuranceRate.TariffType + ">")', value: tariffTypeId, disable :(insuranceRtMainId()!=undefined)"></select>
+                    <select id="tariffType" class="form-control" data-bind="options: $root.filteredTariffTypes, optionsText: 'TariffTypeCodeName', optionsValue: 'TariffTypeId', optionsCaption: '@("<" + Cares.Web.Resources.Tariff.InsuranceRate.TariffType + ">")', value: tariffTypeId, disable :(insuranceRtMainId()!=undefined)"></select>
                 </div>
                 <label for="sDate" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.InsuranceRate.EffectiveFrom *</label>
                 <div class="col-md-2">

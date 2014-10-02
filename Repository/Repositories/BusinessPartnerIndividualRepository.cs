@@ -73,9 +73,6 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get business partner by firstname and id
         /// </summary>
-        /// <param name="firstname"></param>
-        /// <param name="id"></param>
-        /// <returns></returns>
         public BusinessPartnerIndividual GetBusinessPartnerIndividualByName(string firstname, int id)
         {
             return DbSet.FirstOrDefault(businessPartnerIndividual => businessPartnerIndividual.FirstName == firstname && businessPartnerIndividual.BusinessPartnerId == id);
@@ -87,6 +84,7 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(businessPartnerIndividual => businessPartnerIndividual.UserDomainKey == UserDomainKey).ToList();
         }
+
         /// <summary>
         /// Get Business Partner Individual by Id
         /// </summary>
@@ -94,12 +92,16 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.FirstOrDefault(businessPartnerIndividual => businessPartnerIndividual.UserDomainKey == UserDomainKey && businessPartnerIndividual.BusinessPartnerId == id);
         }
+
+        /// <summary>
+        /// Association check of Occupation Type and Business Partner Individual
+        /// </summary>
+        public bool IsOccupationTypeAssociatedWithBusinessPartnerIndividual(long occupationTypeId)
+        {
+            return
+                DbSet.Count(businessPartnerIndividual => businessPartnerIndividual.OccupationTypeId == occupationTypeId) >
+                0;
+        }
         #endregion
-
-
-
-
-
-       
     }
 }

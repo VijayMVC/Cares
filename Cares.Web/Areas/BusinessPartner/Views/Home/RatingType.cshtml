@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = Cares.Web.Resources.BusinessPartner.RatingType.RatingTypeLabel;
+}
+<div class="row" id="RatingTypeBinding">
+
+    <div class="row " data-bind="visible: !isRatingTypeEditorVisible()">
+        <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.BusinessPartner.RatingType.RatingTypeLabel</h3>
+        <div class="header-toolsSection">
+            <a href="#" class="label label-default create-new-icon" data-bind="click: onCreateForm" title="@Cares.Web.Resources.Shared.Common.CreateNew">@Cares.Web.Resources.Shared.Common.New</a>
+            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title="@Cares.Web.Resources.Shared.Common.ShowFilter" style="display: none"></a>
+        </div>
+    </div>
+    <div class="row searchFilterSection" data-bind="visible: !isRatingTypeEditorVisible() && filterSectionVisilble()" style="display: none">
+        <div class="well">
+            <form class="form-horizontal">
+                <div class="col-xs-3">
+                    <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.BusinessPartner.RatingType.Search + ">")" data-bind="value: searchFilter" />
+                </div>
+
+                <button type="submit" class="btn btn-success" data-bind="click: search">@Cares.Web.Resources.Shared.Common.Search</button>
+                <button type="submit" class="btn btn-default" data-bind="click:resetResuults">@Cares.Web.Resources.Shared.Common.Reset</button>
+                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click:hideFilterSection" title="@Cares.Web.Resources.Shared.Common.HideSection"></a>
+            </form>
+        </div>
+    </div>
+    <div class="row searchFilterResultSection" data-bind="visible: !isRatingTypeEditorVisible()">
+        <div class="well">
+            <table id="RatingTypeTable" class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th class="ratingTypeCode"> <span id="1">@Cares.Web.Resources.BusinessPartner.RatingType.Code<span class="icon-up"></span></span></th>
+                        <th class="ratingTypeName"> <span id="2">@Cares.Web.Resources.BusinessPartner.RatingType.Name<span></span></span></th>
+                        <th class="ratingTypeDiscription"> <span>@Cares.Web.Resources.BusinessPartner.RatingType.Description<span></span></span></th>
+                        <th> <span></span></th>
+                        <th> <span></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- ko template: { name: 'RatingTypeFilterResultTemplate' , foreach: ratingTypes } -->
+                    <!-- /ko -->
+                </tbody>
+            </table>
+            <!-- ko with: pager -->
+            @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
+            <!-- /ko -->
+        </div>
+    </div>
+    <script id="deleteActionRatingTypeTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onDeleteItem" title="@Cares.Web.Resources.Shared.Common.Delete"><span class="glyphicon glyphicon-remove"></span></a>
+    </script>
+
+    <script id="editActionRatingTypeTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onEditItem" title="@Cares.Web.Resources.Shared.Common.Edit"><span class="glyphicon glyphicon-edit"></span></a>
+    </script>
+    <script id="RatingTypeFilterResultTemplate" type="text/html">
+        <tr>
+            <td data-bind="text: code"></td>
+            <td data-bind="text: name"></td>
+            <td data-bind="text: description"></td>
+            <td>
+                <!-- ko template: { name: 'editActionRatingTypeTemplate' } -->
+                <!-- /ko -->
+            </td>
+            <td>
+                <!-- ko template: { name: 'deleteActionRatingTypeTemplate' } -->
+                <!-- /ko -->
+            </td>
+        </tr>
+    </script>
+    @Html.Partial("_RatingType")
+</div>
+<!-- ko stopBinding: true -->
+@Html.Partial("~/Areas/Common/Views/Shared/_ConfirmationDialog.cshtml")
+<!-- /ko -->
+@section inlinescripts
+{
+    <script type="text/javascript">
+        require(["ratingType/ratingType.view", "common/confirmation.view"]);
+    var ist = window.ist;
+    @{
+        <text>
+        ist.resourceText.RatingTypeSuccessfullySavedMessage = '@Cares.Web.Resources.BusinessPartner.RatingType.RatingTypeSuccessfullySavedMessage';
+        ist.resourceText.FailedToSaveRatingTypeError = '@Cares.Web.Resources.BusinessPartner.RatingType.FailedToSaveRatingTypeError';
+        ist.resourceText.FailedToLoadRatingTypesError = '@Cares.Web.Resources.BusinessPartner.RatingType.FailedToLoadRatingTypesError';
+        ist.resourceText.RatingTypeSuccessfullyDeletedMessage = '@Cares.Web.Resources.BusinessPartner.RatingType.RatingTypeSuccessfullyDeletedMessage';
+        ist.resourceText.FailedToDeleteRatingTypeError = '@Cares.Web.Resources.BusinessPartner.RatingType.FailedToDeleteRatingTypeError';
+        </text>
+       }
+    </script>
+
+}

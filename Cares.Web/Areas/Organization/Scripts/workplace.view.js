@@ -17,7 +17,7 @@ define("workplace/workplace.view",
                         return;
                     }
                     // Handle Sorting
-                    handleSorting("OperationsTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getWorkPlaces);
+                    handleSorting("WorkPlaceTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getWorkPlaces);
                 };
             initialize();
             return {

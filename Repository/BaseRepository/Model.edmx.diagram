@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0c64bbf4dc9445619e056242daa0f9af" Name="Diagram1" ZoomLevel="100">
+      <Diagram DiagramId="0c64bbf4dc9445619e056242daa0f9af" Name="Diagram1" ZoomLevel="74">
         <EntityTypeShape EntityType="DomainModels.OrgGroup" Width="2.875" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DomainModels.Company" Width="1.5" PointX="4.75" PointY="0.75" />
         <AssociationConnector Association="DomainModels.RefCompany263" />
@@ -312,7 +312,6 @@
         <AssociationConnector Association="DomainModels.RefRAStatus621" />
         <AssociationConnector Association="DomainModels.RefRAStatus622" />
         <AssociationConnector Association="DomainModels.RefVehicleCheckList520" />
-        <AssociationConnector Association="DomainModels.RefSeasonalDiscount409" />
         <AssociationConnector Association="DomainModels.RefSeasonalDiscountMain568" />
         <AssociationConnector Association="DomainModels.RefVehicleCategory563" />
         <AssociationConnector Association="DomainModels.RefVehicleMake562" />
@@ -367,6 +366,7 @@
         <AssociationConnector Association="DomainModels.RefRole379" />
         <AssociationConnector Association="DomainModels.RefRole561" />
         <AssociationConnector Association="DomainModels.AspNetUserRoles" />
+        <AssociationConnector Association="DomainModels.RefSeasonalDiscount409" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

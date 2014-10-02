@@ -17,7 +17,7 @@ define("city/city.view",
                         return;
                     }
                     // Handle Sorting
-                    handleSorting("OrgGroupTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getCities);
+                    handleSorting("CityTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getCities);
                 };
             initialize();
             return {

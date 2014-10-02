@@ -189,6 +189,14 @@ namespace Cares.Repository.Repositories
             return DbSet.Count(businessPartner => businessPartner.BPRatingTypeId == ratingTypeId) > 0;
         }
 
+        /// <summary>
+        /// Association check between BP and Business Legal Status
+        /// </summary>
+        public bool IsBusinessPartnerAssociatedWithBusinessLegalStatus(long businessLegalStatusId)
+        {
+            return DbSet.Count(businessPartner => businessPartner.BusinessLegalStatusId == businessLegalStatusId) > 0;
+        }
+
         #endregion
     }
 }
