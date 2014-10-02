@@ -2,7 +2,8 @@
 using System.Linq;
 using NrtTypeBaseDataResponse = Cares.Web.Models.NrtTypeBaseDataResponse;
 using NrtTypeSearchRequestResponse = Cares.Models.ResponseModels.NrtTypeSearchRequestResponse;
-
+using ApiModel = Cares.Web.Models;
+using DomainModels = Cares.Models.DomainModels;
 namespace Cares.Web.ModelMappers
 {
     /// <summary>
@@ -27,6 +28,19 @@ namespace Cares.Web.ModelMappers
                 VehicleStatusId = source.VehicleStatusId
             };
         }
+
+        /// <summary>
+        /// Crete From Domain Model
+        /// </summary>
+        public static NrtTypeDropDown CreateFrom(this DomainModels.NrtType source)
+        {
+            return new NrtTypeDropDown
+            {
+                NrtTypeId = source.NrtTypeId,
+                NrtTypeCodeName = source.NrtTypeCode + " - " + source.NrtTypeName,
+            };
+        }
+
         /// <summary>
         /// Crete From company Response domain model
         /// </summary>
@@ -45,14 +59,14 @@ namespace Cares.Web.ModelMappers
         {
             return new NrtType
             {
-               NrtTypeId = source.NrtTypeId,
-               NrtTypeCode = source.NrtTypeCode,
-               NrtTypeName = source.NrtTypeName,
-               Description = source.Description,
-               NrtTypeKey = source.NrtTypeKey,
-               StandardLifeTime = source.StandardLifeTime,
-               VehicleStatusId = source.VehicleStatusId,
-               VehicleStatusName=source.VehicleStatus.VehicleStatusName
+                NrtTypeId = source.NrtTypeId,
+                NrtTypeCode = source.NrtTypeCode,
+                NrtTypeName = source.NrtTypeName,
+                Description = source.Description,
+                NrtTypeKey = source.NrtTypeKey,
+                StandardLifeTime = source.StandardLifeTime,
+                VehicleStatusId = source.VehicleStatusId,
+                VehicleStatusName = source.VehicleStatus.VehicleStatusName
             };
         }
 
@@ -63,11 +77,11 @@ namespace Cares.Web.ModelMappers
         {
             return new NrtTypeBaseDataResponse
             {
-               VehicleStatuses = source.VehicleStatuses.Select(vehicle => vehicle.CreateFromm())
+                VehicleStatuses = source.VehicleStatuses.Select(vehicle => vehicle.CreateFromm())
             };
         }
 
-       
+
         #endregion
     }
 }

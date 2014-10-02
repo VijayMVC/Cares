@@ -378,6 +378,7 @@
     <Compile Include="ResponseModels\InsuranceRtDetailContent.cs" />
     <Compile Include="ResponseModels\InsuranceRtDetailResponse.cs" />
     <Compile Include="ResponseModels\InsuranceRtMainContent.cs" />
+    <Compile Include="ResponseModels\NRTBaseResponse.cs" />
     <Compile Include="ResponseModels\NrtTypeBaseDataResponse.cs" />
     <Compile Include="ResponseModels\NrtTypeSearchRequestResponse.cs" />
     <Compile Include="ResponseModels\OperationBaseDataResponse.cs" />
