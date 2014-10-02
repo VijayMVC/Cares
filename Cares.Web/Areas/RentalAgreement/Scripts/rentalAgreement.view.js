@@ -74,9 +74,19 @@ define("rentalAgreement/rentalAgreement.view",
                         viewModel.setChaufferPopover();
                     });
 
-                    // Chauffer Popover shows - Clear Selection
+                    // Damages Popover shows - Clear Selection
                     $('#addDamagesPopoverLink').on('show.bs.popover', function () {
                         viewModel.resetAdditionalChargesSelection();
+                    });
+
+                    // Add Vehicle Popover shows - Clear Selection
+                    $('#addVehiclesPopoverLink').on('show.bs.popover', function () {
+                        viewModel.setVehicleFilters();
+                    });
+
+                    // Insurance Popover shows - Clear Selection
+                    $('.insurancePopoverLink').on('show.bs.popover', function () {
+                        setRaHireGroupInsurances();
                     });
 
                 };

@@ -477,6 +477,11 @@ namespace Cares.Repository.BaseRepository
         /// </summary>
         public DbSet<SeasonalDiscount> SeasonalDiscounts { get; set; }
 
+        /// <summary>
+        /// Allocation Status Db set
+        /// </summary>
+        public DbSet<AllocationStatus> AllocationStatuses { get; set; }
+
         #endregion
     }
 }

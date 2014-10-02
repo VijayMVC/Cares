@@ -21,6 +21,8 @@ namespace Cares.Implementation.Services
         private readonly IOperationsWorkPlaceRepository operationsWorkPlaceRepository;
         private readonly ITariffTypeRepository tariffTypeRepository;
         private readonly IBill bill;
+        private readonly IVehicleStatusRepository vehicleStatusRepository;
+        private readonly IAlloactionStatusRepository alloactionStatusRepository;
 
         #endregion
 
@@ -30,7 +32,8 @@ namespace Cares.Implementation.Services
         /// Constructor
         /// </summary>
         public RentalAgreementService(IPaymentTermRepository paymentTermRepository, IOperationRepository operationRepository, 
-            IOperationsWorkPlaceRepository operationsWorkPlaceRepository, ITariffTypeRepository tariffTypeRepository, IBill bill)
+            IOperationsWorkPlaceRepository operationsWorkPlaceRepository, ITariffTypeRepository tariffTypeRepository, IBill bill,
+            IVehicleStatusRepository vehicleStatusRepository, IAlloactionStatusRepository alloactionStatusRepository)
         {
             if (paymentTermRepository == null)
             {
@@ -47,12 +50,16 @@ namespace Cares.Implementation.Services
             }
             if (tariffTypeRepository == null) throw new ArgumentNullException("tariffTypeRepository");
             if (bill == null) throw new ArgumentNullException("bill");
+            if (vehicleStatusRepository == null) throw new ArgumentNullException("vehicleStatusRepository");
+            if (alloactionStatusRepository == null) throw new ArgumentNullException("alloactionStatusRepository");
 
             this.paymentTermRepository = paymentTermRepository;
             this.operationRepository = operationRepository;
             this.operationsWorkPlaceRepository = operationsWorkPlaceRepository;
             this.tariffTypeRepository = tariffTypeRepository;
             this.bill = bill;
+            this.vehicleStatusRepository = vehicleStatusRepository;
+            this.alloactionStatusRepository = alloactionStatusRepository;
         }
 
         #endregion
@@ -68,7 +75,9 @@ namespace Cares.Implementation.Services
             {
                 PaymentTerms = paymentTermRepository.GetAll(),
                 Operations = operationRepository.GetSalesOperation(),
-                OperationsWorkPlaces = operationsWorkPlaceRepository.GetSalesOperationsWorkPlace()
+                OperationsWorkPlaces = operationsWorkPlaceRepository.GetSalesOperationsWorkPlace(),
+                AllocationStatuses = alloactionStatusRepository.GetAll(),
+                VehicleStatuses = vehicleStatusRepository.GetAll()
             };
         }
 

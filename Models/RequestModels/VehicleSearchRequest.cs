@@ -1,4 +1,5 @@
-﻿using Cares.Models.Common;
+﻿using System;
+using Cares.Models.Common;
 
 namespace Cares.Models.RequestModels
 {
@@ -8,9 +9,9 @@ namespace Cares.Models.RequestModels
     public sealed class VehicleSearchRequest : GetPagedListRequest
     {
         /// <summary>
-        /// Hire Group Id
+        /// Hire Group Detail Id
         /// </summary>
-        public long HireGroupId { get; set; }
+        public long HireGroupDetailId { get; set; }
 
         /// <summary>
         /// FleetPool ID
@@ -26,6 +27,21 @@ namespace Cares.Models.RequestModels
         /// Operation ID
         /// </summary>
         public long? OperationId { get; set; }
+
+        /// <summary>
+        /// OperationsWorkPlace ID
+        /// </summary>
+        public long OperationsWorkPlaceId { get; set; }
+
+        /// <summary>
+        /// Start Dt
+        /// </summary>
+        public DateTime StarDtTime { get; set; }
+
+        /// <summary>
+        /// End Dt
+        /// </summary>
+        public DateTime EndDtTime { get; set; }
 
         /// <summary>
         /// Vehicle Order By

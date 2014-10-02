@@ -20,7 +20,9 @@ namespace Cares.Web.ModelMappers
             {
                 PaymentTerms = source.PaymentTerms.Select(pt => pt.CreateFrom()),
                 Operations = source.Operations.Select(op => op.CreateFrom()),
-                OperationsWorkPlaces = source.OperationsWorkPlaces.Select(op => op.CreateFrom())
+                OperationsWorkPlaces = source.OperationsWorkPlaces.Select(op => op.CreateFrom()),
+                AllocationStatuses = source.AllocationStatuses.Select(op => op.CreateFrom()),
+                VehicleStatuses = source.VehicleStatuses.Select(op => op.CreateFrom()),
             };
         }
 

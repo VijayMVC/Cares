@@ -231,6 +231,7 @@
     <Compile Include="Repositories\VehicleOtherDetailRepository.cs" />
     <Compile Include="Repositories\VehiclePurchaseInfoRepository.cs" />
     <Compile Include="Repositories\VehicleRepository.cs" />
+    <Compile Include="Repositories\AllocationStatusRepository.cs" />
     <Compile Include="Repositories\VehicleStatusRepository.cs" />
     <Compile Include="Repositories\WorkLocationRepository.cs" />
     <Compile Include="Repositories\WorkplaceRepository.cs" />

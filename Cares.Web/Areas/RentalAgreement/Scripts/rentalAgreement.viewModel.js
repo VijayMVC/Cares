@@ -12,7 +12,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     view,
                     // Callbacks
                     rentalAgreementModelCallbacks = {
-                        OnCustomerNoChanged: function(value) {
+                        OnCustomerNoChanged: function (value) {
                             getCustomerByNo(value);
                         },
                         OnNicChanged: function (value) {
@@ -27,10 +27,10 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         OnPhoneChanged: function (value, type) {
                             getCustomerByPhoneNo(value, type);
                         },
-                        OnRentalDurationChange: function() {
+                        OnRentalDurationChange: function () {
                             resetHireGroups();
                         },
-                        OnOutLocationChange: function() {
+                        OnOutLocationChange: function () {
                             resetHireGroups();
                         }
                     },
@@ -40,6 +40,16 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         upgraded: 2,
                         replaced: 3
                     },
+                    // Vehicle Status Enums
+                    vehicleStatusEnum = {
+                        retired: 1,
+                        available: 2,
+                        reserved: 3,
+                        onRent: 4,
+                        theftStolen: 5,
+                        totalLoss: 6,
+                        damaged: 7
+                    },
                     // Main RA
                     rentalAgreement = ko.observable(model.RentalAgreement.Create({}, rentalAgreementModelCallbacks)),
                     // #region Arrays
@@ -47,6 +57,16 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     operations = ko.observableArray([]),
                     // Locations
                     locations = ko.observableArray([]),
+                    // available locations
+                    availableLocations = ko.computed(function () {
+                        if (!rentalAgreement().operationId()) {
+                            return [];
+                        }
+
+                        return locations.filter(function (location) {
+                            return location.operationId === rentalAgreement().operationId();
+                        });
+                    }),
                     // payment terms
                     paymentTerms = ko.observableArray([]),
                     // Vehicles
@@ -65,63 +85,79 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     insuranceRates = ko.observableArray([]),
                     // Chauffer Filter
                     chaufferFilter = ko.observable(model.Chauffer.Create({})),
+                    // allocation statuses
+                    allocationStatuses = ko.observableArray([]),
+                    // vehicle statuses
+                    vehicleStatuses = ko.observableArray([]),
                     // Can search hire group
-                    canLookForHireGroups = ko.computed(function() {
+                    canLookForHireGroups = ko.computed(function () {
                         return rentalAgreement().start() && rentalAgreement().end() && rentalAgreement().openLocation();
                     }),
                     // selected Hire Group 
                     selectedHireGroup = ko.observable(),
                     // hireGroup Text
-                    hireGroupText = ko.computed(function() {
+                    hireGroupText = ko.computed(function () {
                         return selectedHireGroup() ? selectedHireGroup().hireGroup : undefined;
                     }),
+                    // Vehicle Start Dt Filter
+                    vehicleStartDtFilter = ko.observable(moment(rentalAgreement().start()).toDate()),
+                    // Vehicle End Dt Filter
+                    vehicleEndDtFilter = ko.observable(moment(rentalAgreement().end()).toDate()),
+                    // Vehicle OperationsWorkplace Filter
+                    vehicleOperationsWorkPlaceFilter = ko.observable(),
+                    // Vehicle Allocation Status Filter
+                    vehicleAllocationStatusFilter = ko.observable(),
                     // select Hire Group
                     selectHireGroup = function (hireGroup) {
                         if (selectedHireGroup() !== hireGroup) {
                             selectedHireGroup(hireGroup);
-                            vehiclePager().reset();
-                            getVehicles(hireGroup.id);
                         }
                     },
                     // Selected Vehicle
                     selectedVehicle = ko.observable(model.Vehicle.Create({})),
                     // #endregion Arrays
                     // #region Utility Functions
-                    selectVehicle = function(vehicle) {
+                    selectVehicle = function (vehicle) {
                         if (selectedVehicle() !== vehicle) {
-                            rentalAgreement().rentalAgreementHireGroups.push(model.RentalAgreementHireGroup.Create({
-                                VehicleId: vehicle.id, HireGroupDetailId: selectedHireGroup().id,
-                                AllocationStatusKey: allocationStatus.desired, RaMainId: rentalAgreement().id(),
+                            var raHireGroup = model.RentalAgreementHireGroup.Create({
+                                VehicleId: vehicle.id,
+                                HireGroupDetailId: selectedHireGroup().id,
+                                AllocationStatusKey: allocationStatus.desired,
+                                RaMainId: rentalAgreement().id(),
                                 Vehicle: vehicle,
                                 VehicleMovements: [
                                     {
-                                        OperationsWorkPlaceId: rentalAgreement().openLocation(), Odometer: vehicle.currentOdometer,
-                                        VehicleStatusId: vehicle.vehicleStatusId, DtTime: moment(rentalAgreement().start()).toDate(),
-                                        FuelLevel: vehicle.fuelLevel, Status: model.vehicleMovementEnum.outMovement
+                                        OperationsWorkPlaceId: rentalAgreement().openLocation(),
+                                        Odometer: vehicle.currentOdometer,
+                                        VehicleStatusId: vehicle.vehicleStatusId,
+                                        DtTime: moment(rentalAgreement().start()).toDate(),
+                                        FuelLevel: vehicle.fuelLevel,
+                                        Status: model.vehicleMovementEnum.outMovement
                                     },
                                     {
                                         OperationsWorkPlaceId: rentalAgreement().openLocation(),
                                         DtTime: moment(rentalAgreement().end()).toDate(),
-                                        FuelLevel: vehicle.fuelLevel, Status: model.vehicleMovementEnum.inMovement
+                                        FuelLevel: vehicle.fuelLevel,
+                                        Status: model.vehicleMovementEnum.inMovement
                                     }
                                 ]
-                            }));
-                            //selectedVehicle(vehicle);
+                            });
+                            rentalAgreement().rentalAgreementHireGroups.push(raHireGroup);
                             calculateBill();
-                        }    
+                        }
                     },
                     // Vehicle Image
-                    vehicleImage = ko.computed(function() {
+                    vehicleImage = ko.computed(function () {
                         var id = selectedVehicle().id;
                         return id ? "/VehicleImage/Index?id=" + id : "";
                     }),
                     // Stop Event Bubbling
-                    stopEventBubbling = function(data, e) {
+                    stopEventBubbling = function (data, e) {
                         e.stopImmediatePropagation();
                     },
                     // Add Selected Extras to Rental Agreement
-                    addExtrasToRentalAgreement = function(data, popoverId) {
-                        serviceItems.each(function(serviceItem) {
+                    addExtrasToRentalAgreement = function (data, popoverId) {
+                        serviceItems.each(function (serviceItem) {
                             if (serviceItem.isSelected()) {
                                 rentalAgreement().rentalAgreementServiceItems.push(model.RentalAgreementServiceItem.Create(serviceItem.convertToServerData()));
                             }
@@ -130,24 +166,24 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         view.closePopover(popoverId);
                     },
                     // Reset Service Items Selection
-                    resetServiceItemsSelection = function() {
-                        serviceItems.each(function(serviceItem) {
+                    resetServiceItemsSelection = function () {
+                        serviceItems.each(function (serviceItem) {
                             serviceItem.isSelected(false);
                         });
                     },
                     // Set Chauffer Popover
-                    setChaufferPopover = function() {
+                    setChaufferPopover = function () {
                         chaufferFilter().start(moment(rentalAgreement().start()).toDate());
                         chaufferFilter().end(moment(rentalAgreement().end()).toDate());
                         // Reset Chauffers Selection
                         resetChauffersSelection();
                     },
                     // Can Search Chauffers
-                    canSearchChauffers = ko.computed(function() {
+                    canSearchChauffers = ko.computed(function () {
                         return rentalAgreement().openLocation() && chaufferFilter().start() && chaufferFilter().end();
                     }),
                     // Search Chauffers
-                    searchChauffers = function() {
+                    searchChauffers = function () {
                         getChauffers();
                     },
                     // Add Selected Chauffers to Rental Agreement
@@ -173,7 +209,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     // Add Driver To Rental Agreement
                     addDriverToRentalAgreement = function () {
                         var driver = model.RentalAgreementDriver.Create({
-                            IsChauffer: false, StartDtTime: moment(rentalAgreement().start()).toDate() ,
+                            IsChauffer: false, StartDtTime: moment(rentalAgreement().start()).toDate(),
                             EndDtTime: moment(rentalAgreement().end()).toDate()
                         });
                         rentalAgreement().rentalAgreementDrivers.push(driver);
@@ -182,7 +218,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     addAdditionalChargesToRentalAgreement = function (data, popoverId) {
                         additionalCharges.each(function (additionalCharge) {
                             if (additionalCharge.isSelected()) {
-                                rentalAgreement().raAdditionalCharges.push(model.RentalAgreementAdditionalCharge.Create(additionalCharge.convertToServerData()));
+                                rentalAgreement().rentalAgreementAdditionalCharges.push(model.RentalAgreementAdditionalCharge.Create(additionalCharge.convertToServerData()));
                             }
                         });
                         // Close Popover
@@ -194,10 +230,41 @@ define("rentalAgreement/rentalAgreement.viewModel",
                             additionalCharge.isSelected(false);
                         });
                     },
+                    // Selected Ra Hire Group
+                    selectedRaHireGroup = ko.observable(model.RentalAgreementHireGroup.Create({ Vehicle: model.Vehicle.Create({}) })),
+                    // Select Ra HireGroup
+                    selectRaHireGroup = function (raHireGroup) {
+                        if (selectedRaHireGroup() !== raHireGroup) {
+                            selectedRaHireGroup(raHireGroup);
+                        }
+                    },
+                    // Set Vehicle Popover Filters
+                    setVehicleFilters = function () {
+                        var allocationStatusItem = getAllocationStatusByKey(allocationStatus.desired);
+                        vehicleAllocationStatusFilter(allocationStatusItem ? allocationStatusItem.id : undefined);
+                        vehicleOperationsWorkPlaceFilter(rentalAgreement().openLocation());
+                    },
+                    // Set Ra HireGroup Insurances
+                    setRaHireGroupInsurances = function () {
+                        insuranceRates.each(function (insuranceRt) {
+                            var raHireGroupIns = selectedRaHireGroup().rentalAgreementHireGroupInsurances.find(function (raHireGroupInsurance) {
+                                return raHireGroupInsurance.insuranceTypeId() === insuranceRt.id;
+                            });
+                            if (!raHireGroupIns) {
+                                selectRaHireGroup().rentalAgreementHireGroupInsurances
+                                    .push(model.RentalAgreementHireGroupInsurance.Create({
+                                        InsuranceTypeId: insuranceRates.id,
+                                        InsuranceTypeCodeName: insuranceRt.codeName,
+                                        StartDtTime: moment(rentalAgreement().start()).toDate(),
+                                        EndDtTime: moment(rentalAgreement().end()).toDate()
+                                    }));
+                            }
+                        });
+                    },
                     // #endregion Utility Functions
                     // #region Observables
                     // Initialize the view model
-                    initialize = function(specifiedView) {
+                    initialize = function (specifiedView) {
                         view = specifiedView;
 
                         ko.applyBindings(view.viewModel, view.bindingRoot);
@@ -212,43 +279,59 @@ define("rentalAgreement/rentalAgreement.viewModel",
 
                         // Get Additional Charges
                         getAdditionalCharges();
+
+                        // Get Insurance Rates
+                        getInsuranceRates();
                     },
                     // Get Base
-                    getBase = function() {
+                    getBase = function () {
                         dataservice.getBase({
                             success: function (data) {
-                                var operationItems = [], locationItems = [], paymentTermItems = [];
+                                var operationItems = [], locationItems = [], paymentTermItems = [], allocationStatusItems = [],
+                                    vehicleStatusItems = [];
                                 // Operations
                                 _.each(data.Operations, function (operation) {
                                     operationItems.push(model.Operation.Create(operation));
                                 });
                                 ko.utils.arrayPushAll(operations(), operationItems);
                                 operations.valueHasMutated();
-                                
+
                                 // Locations
                                 _.each(data.OperationsWorkPlaces, function (operationWorkPlace) {
                                     locationItems.push(model.OperationsWorkPlace.Create(operationWorkPlace));
                                 });
                                 ko.utils.arrayPushAll(locations(), locationItems);
                                 locations.valueHasMutated();
-                                
+
                                 // Payment Terms
                                 _.each(data.PaymentTerms, function (paymentTerm) {
                                     paymentTermItems.push(model.PaymentTerm.Create(paymentTerm));
                                 });
                                 ko.utils.arrayPushAll(paymentTerms(), paymentTermItems);
                                 paymentTerms.valueHasMutated();
-                                
-                                // Assign Locations to Rental Agreement
-                                rentalAgreement().locations(locationItems);
+
+                                // Allocation Status
+                                _.each(data.AllocationStatuses, function (allocationStatusItem) {
+                                    allocationStatusItems.push(model.AllocationStatus.Create(allocationStatusItem));
+                                });
+                                ko.utils.arrayPushAll(allocationStatuses(), allocationStatusItems);
+                                allocationStatuses.valueHasMutated();
+
+                                // Vehicle Statuses
+                                _.each(data.VehicleStatuses, function (vehicleStatus) {
+                                    vehicleStatusItems.push(model.VehicleStatus.Create(vehicleStatus));
+                                });
+                                ko.utils.arrayPushAll(vehicleStatuses(), vehicleStatusItems);
+                                vehicleStatuses.valueHasMutated();
+
                             },
-                            error: function(response) {
+                            error: function (response) {
                                 toastr.error("Failed to load base data. Error: " + response);
                             }
                         });
                     },
                     // Reset Hire Groups
-                    resetHireGroups = function() {
+                    resetHireGroups = function () {
                         selectedHireGroup(undefined);
                         vehicles.removeAll();
                         if (!rentalAgreement().id()) {
@@ -315,43 +398,58 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     },
                     // Get Insurance Rates
                     getInsuranceRates = function () {
-                        dataservice.getInsuranceRts({
+                        dataservice.getInsuranceRates({
                             success: function (data) {
-                                var services = [];
+                                var insuranceItems = [];
 
-                                _.each(data, function (serviceItem) {
-                                    services.push(model.ServiceItem.Create(serviceItem));
+                                _.each(data, function (insurance) {
+                                    insuranceItems.push(model.InsuranceType.Create(insurance));
                                 });
 
-                                ko.utils.arrayPushAll(serviceItems(), services);
-                                serviceItems.valueHasMutated();
+                                ko.utils.arrayPushAll(insuranceRates(), insuranceItems);
+                                insuranceRates.valueHasMutated();
                             },
                             error: function (response) {
-                                toastr.error("Failed to load Service Items. Error: " + response);
+                                toastr.error("Failed to load Insurances. Error: " + response);
                             }
                         });
                     },
                     // Can Search Vehicles
                     canSearchVehicles = ko.computed(function () {
-                        return selectedHireGroup();
+                        return selectedHireGroup() && vehicleStartDtFilter() && vehicleEndDtFilter() && vehicleOperationsWorkPlaceFilter() &&
+                            vehicleAllocationStatusFilter();
                     }),
                     // Search Vehicles
                     searchVehicles = function () {
                         getVehicles();
                     },
+                    // Get Vehicle Status By Key
+                    getVehicleStatusByKey = function (key) {
+                        return vehicleStatuses.find(function (vehicleStatus) {
+                            return vehicleStatus.key === key;
+                        });
+                    },
+                    // Get Allocation Status By Key
+                    getAllocationStatusByKey = function (key) {
+                        return allocationStatuses.find(function (allocationStatusItem) {
+                            return allocationStatusItem.key === key;
+                        });
+                    },
                     // Get Vehicles
-                    getVehicles = function (hireGroup) {
+                    getVehicles = function () {
                         dataservice.getVehiclesByHireGroup({
-                            HireGroupId: hireGroup, PageSize: vehiclePager().pageSize(),
-                            PageNo: vehiclePager().currentPage()
+                            HireGroupDetailId: selectedHireGroup().id,
+                            StartDtTime: moment(vehicleStartDtFilter()).format(ist.utcFormat) + 'Z',
+                            EndDtTime: moment(vehicleEndDtFilter()).format(ist.utcFormat) + 'Z',
+                            OperationsWorkPlaceId: vehicleOperationsWorkPlaceFilter()
                         }, {
                             success: function (data) {
                                 var vehicleItems = [];
 
-                                _.each(data.Vehicles, function(vehicle) {
+                                _.each(data.Vehicles, function (vehicle) {
                                     vehicleItems.push(model.Vehicle.Create(vehicle));
                                 });
-                                
+
                                 vehiclePager().totalCount(data.TotalCount);
                                 ko.utils.arrayPushAll(vehicles(), vehicleItems);
                                 vehicles.valueHasMutated();
@@ -416,8 +514,8 @@ define("rentalAgreement/rentalAgreement.viewModel",
                             PhoneType: type
                         }, getCustomerCallbackHandler);
                     };
-                    // #endregion Service Calls
-
+                // #endregion Service Calls
+                
                 return {
                     // Observables
                     operations: operations,
@@ -438,6 +536,16 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     hireGroupText: hireGroupText,
                     additionalCharges: additionalCharges,
                     insuranceRates: insuranceRates,
+                    allocationStatuses: allocationStatuses,
+                    vehicleStatuses: vehicleStatuses,
+                    vehicleStartDtFilter: vehicleStartDtFilter,
+                    vehicleEndDtFilter: vehicleEndDtFilter,
+                    vehicleOperationsWorkPlaceFilter: vehicleOperationsWorkPlaceFilter,
+                    vehicleAllocationStatusFilter: vehicleAllocationStatusFilter,
+                    vehicleStatusEnum: vehicleStatusEnum,
+                    availableLocations: availableLocations,
+                    selectedRaHireGroup: selectedRaHireGroup,
+                    selectRaHireGroup: selectRaHireGroup,
                     // Observables
                     // Utility Methods
                     initialize: initialize,
@@ -456,7 +564,11 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     searchVehicles: searchVehicles,
                     addAdditionalChargesToRentalAgreement: addAdditionalChargesToRentalAgreement,
                     resetAdditionalChargesSelection: resetAdditionalChargesSelection,
-                    getInsuranceRates: getInsuranceRates
+                    getInsuranceRates: getInsuranceRates,
+                    getVehicleStatusByKey: getVehicleStatusByKey,
+                    getAllocationStatusByKey: getAllocationStatusByKey,
+                    setVehicleFilters: setVehicleFilters,
+                    setRaHireGroupInsurances: setRaHireGroupInsurances
                     // Utility Methods
                 };
             })()

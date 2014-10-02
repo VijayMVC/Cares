@@ -232,10 +232,10 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
             },
 
             // Get Insurance Rts
-            getInsuranceRts = function (callbacks) {
+            getInsuranceRates = function (callbacks) {
                 initialize();
                 return amplify.request({
-                    resourceId: 'getInsuranceRts',
+                    resourceId: 'getInsuranceRates',
                     success: callbacks.success,
                     error: callbacks.error
                 });
@@ -265,7 +265,7 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
             calculateBill: calculateBill,
             getServiceItems: getServiceItems,
             getChauffers: getChauffers,
-            getInsuranceRts: getInsuranceRts,
+            getInsuranceRates: getInsuranceRates,
             getAdditionalCharges: getAdditionalCharges
         };
     })();

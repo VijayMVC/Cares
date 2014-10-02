@@ -25,6 +25,16 @@ namespace Cares.Web.Models
         /// </summary>
         public IEnumerable<OperationDropDown> Operations { get; set; }
 
+        /// <summary>
+        /// Vehicle Statuses 
+        /// </summary>
+        public IEnumerable<VehicleStatus> VehicleStatuses { get; set; }
+
+        /// <summary>
+        /// Allocation Statuses 
+        /// </summary>
+        public IEnumerable<AllocationStatus> AllocationStatuses { get; set; }
+
         #endregion
 
     }

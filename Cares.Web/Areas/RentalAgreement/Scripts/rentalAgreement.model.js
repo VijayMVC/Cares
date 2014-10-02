@@ -9,11 +9,17 @@
         specifiedVehicleStatusId, specifiedVehicleStatusCodeName, specifiedModelYear, specifiedImage, specifiedFuelLevel, specifiedTankSize) {
         // ReSharper restore InconsistentNaming
 
+        var
+            // Plate Number
+            plateNumber = ko.observable(specifiedPlateNumber),
+            // Tank Size
+            tankSize = ko.observable(specifiedTankSize);
+
         return {
             id: specifiedId,
             name: specifiedName,
             code: specifiedCode,
-            plateNumber: specifiedPlateNumber,
+            plateNumber: plateNumber,
             currentOdometer: specifiedCurrentOdometer,
             vehicleCategoryId: specifiedVehicleCategoryId,
             vehicleCategory: specifiedVehicleCategoryCodeName,
@@ -26,15 +32,14 @@
             modelYear: specifiedModelYear,
             image: specifiedImage,
             fuelLevel: specifiedFuelLevel,
-            tankSize: specifiedTankSize
+            tankSize: tankSize
         };
     },
 
     // Vehicle Movement entity
     // ReSharper disable InconsistentNaming
     VehicleMovement = function (specifiedId, specifiedRaHireGroupId, specifiedOperationsWorkPlaceId, specifiedVehicleStatusId,
-        specifiedStatus, specifiedDtTime, specifiedOdometer, specifiedFuelLevel, specifiedVehicleCondition, specifiedVehicleConditionDescription, specifiedVehiclePlateNo,
-        specifiedVehicleTankSize) {
+        specifiedStatus, specifiedDtTime, specifiedOdometer, specifiedFuelLevel, specifiedVehicleCondition, specifiedVehicleConditionDescription) {
         // ReSharper restore InconsistentNaming
         var
             // unique key
@@ -55,10 +60,6 @@
             vehicleCondition = ko.observable(specifiedVehicleCondition),
             // Vehicle Condition Description
             vehicleConditionDescription = ko.observable(specifiedVehicleConditionDescription),
-            // plate no
-            plateNumber = ko.observable(specifiedVehiclePlateNo),
-            // Vehicle Tank Size
-            tankSize = ko.observable(specifiedVehicleTankSize),
             // Start Date Time
             internalStartDateTime = ko.observable(specifiedDtTime || moment().toDate()),
             // Start Date
@@ -103,8 +104,6 @@
             operationsWorkPlaceId: operationsWorkPlaceId,
             vehicleCondition: vehicleCondition,
             vehicleConditionDescription: vehicleConditionDescription,
-            plateNumber: plateNumber,
-            tankSize: tankSize,
             start: start,
             convertToServerData: convertToServerData
         };
@@ -143,7 +142,7 @@
 
     // Hire Group Detail entity
     // ReSharper disable InconsistentNaming
-    HireGroupDetail = function (specifiedId, specifiedCode, specifiedCategory, specifiedMake, specifiedModel, specifiedModelYear) {
+    HireGroupDetail = function (specifiedId, specifiedCode, specifiedCategory, specifiedMake, specifiedModel, specifiedModelYear, specifiedHireGroupId) {
         // ReSharper restore InconsistentNaming
         return {
             id: specifiedId,
@@ -152,6 +151,7 @@
             vehicleMake: specifiedMake,
             vehicleModel: specifiedModel,
             vehicleModelYear: specifiedModelYear,
+            hireGroupId: specifiedHireGroupId,
             hireGroup: specifiedCode + ' | ' + specifiedCategory + ' | ' + specifiedMake + ' | ' + specifiedModel + ' | ' + specifiedModelYear
         };
     },
@@ -317,18 +317,6 @@
             }),
             // Close Location
             closeLocation = ko.observable(specifiedCloseLocation || undefined),
-            // Locations
-            locations = ko.observableArray([]),
-            // available locations
-            availableLocations = ko.computed(function () {
-                if (!operationId()) {
-                    return [];
-                }
-
-                return locations.filter(function (location) {
-                    return location.operationId === operationId();
-                });
-            }),
             // Remove Ra Service Item
             removeRaServiceItem = function (raServiceItem) {
                 rentalAgreementServiceItems.remove(raServiceItem);
@@ -393,8 +381,6 @@
             hours: hours,
             minutes: minutes,
             rentalAgreementHireGroups: rentalAgreementHireGroups,
-            locations: locations,
-            availableLocations: availableLocations,
             businessPartner: businessPartner,
             billing: billing,
             rentalAgreementServiceItems: rentalAgreementServiceItems,
@@ -1154,6 +1140,29 @@
     // Insurance Rate Entity
     // ReSharper disable InconsistentNaming
     InsuranceType = function (specifiedId, specifiedTypeCodeName) {
+        // ReSharper restore InconsistentNaming
+        return {
+            id: specifiedId,
+            codeName: specifiedTypeCodeName
+        };
+    },
+
+    // Allocation Status Entity
+    // ReSharper disable InconsistentNaming
+    AllocationStatus = function (specifiedId, specifiedTypeCodeName, specifiedKey) {
+        // ReSharper restore InconsistentNaming
+
+        return {
+            id: specifiedId,
+            codeName: specifiedTypeCodeName,
+            key: specifiedKey
+        };
+    },
+
+    // Vehicle Status Entity
+    // ReSharper disable InconsistentNaming
+    VehicleStatus = function (specifiedId, specifiedTypeCodeName) {
+        // ReSharper restore InconsistentNaming
 
         return {
             id: specifiedId,
@@ -1352,7 +1361,8 @@
 
     // HireGroup Detail Factory
     HireGroupDetail.Create = function (source) {
-        return new HireGroupDetail(source.HireGroupId, source.HireGroup, source.VehicleCategory, source.VehicleMake, source.VehicleModel, source.ModelYear);
+        return new HireGroupDetail(source.HireGroupDetailId, source.HireGroup, source.VehicleCategory, source.VehicleMake, source.VehicleModel, source.ModelYear,
+            source.HireGroupId);
     };
 
     // Rental Agreement Hire Group Factory
@@ -1482,6 +1492,22 @@
             source.AdditionalChargeRate, source.PlateNumber, source.Quantity, source.HireGroupDetailId, source.HireGroupDetailCodeName);
     };
 
+    // Vehicle Movement Factory
+    VehicleMovement.Create = function (source) {
+        return new VehicleMovement(source.VehicleMovementId, source.RaHireGroupId, source.OperationsWorkPlaceId, source.VehicleStatusId, 
+            source.Status, source.DtTime, source.Odometer, source.FuelLevel, source.VehicleCondition, source.VehicleConditionDescription);
+    };
+
+    // Allocation Status Factory
+    AllocationStatus.Create = function (source) {
+        return new AllocationStatus(source.AllocationStatusId, source.AllocationStatusCodeName, source.AllocationStatusKey);
+    };
+
+    // Vehicle Status Factory
+    VehicleStatus.Create = function (source) {
+        return new VehicleStatus(source.VehicleStatusId, source.VehicleStatusCodeName);
+    };
+
     return {
         // Vehicle Constructor
         Vehicle: Vehicle,
@@ -1520,6 +1546,10 @@
         // Vehicle Movement Constructor
         VehicleMovement: VehicleMovement,
         // Vehicle Movement Enum
-        vehicleMovementEnum: vehicleMovementEnum
+        vehicleMovementEnum: vehicleMovementEnum,
+        // Allocation Status Constructor
+        AllocationStatus: AllocationStatus,
+        // Vehicle Status Constructor
+        VehicleStatus: VehicleStatus
     };
 });

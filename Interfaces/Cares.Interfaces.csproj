@@ -204,6 +204,7 @@
     <Compile Include="Repository\IVehicleCategoryRepository.cs" />
     <Compile Include="Repository\IVehicleMakeRepository.cs" />
     <Compile Include="Repository\IVehicleModelRepository.cs" />
+    <Compile Include="Repository\IAllocationStatusRepository.cs" />
     <Compile Include="Repository\IVehicleStatusRepository.cs" />
     <Compile Include="Repository\IWorkLocationRepository.cs" />
     <Compile Include="Repository\IWorkplaceRepository.cs" />

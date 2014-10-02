@@ -554,6 +554,9 @@
   margin-top: .5%;
   min-height: 268px;
 }
+#rentalAgreementBinding #raMain #vehicle #vehicleMovementTemplate_popoverContent {
+  width: 500px;
+}
 #rentalAgreementBinding #raMain #vehicleImage {
   max-width: 32px;
   max-height: 32px;
