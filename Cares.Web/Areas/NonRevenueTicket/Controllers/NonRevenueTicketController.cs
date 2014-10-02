@@ -12,5 +12,11 @@ namespace Cares.Web.Areas.NonRevenueTicket.Controllers
         {
             return View();
         }
+
+        // GET: NonRevenueTicket/NonRevenueTicket
+        public ActionResult Index()
+        {
+            return View();
+        }
     }
 }

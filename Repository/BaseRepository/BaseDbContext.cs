@@ -122,6 +122,7 @@ namespace Cares.Repository.BaseRepository
         /// </summary>
         public DbSet<Department> Departments { get; set; }
         public DbSet<TariffType> TariffTypes { get; set; }
+
         /// <summary>
         /// Operation DB Set
         /// </summary>

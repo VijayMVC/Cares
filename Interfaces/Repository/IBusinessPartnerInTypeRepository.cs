@@ -10,8 +10,11 @@ namespace Cares.Interfaces.Repository
         /// <summary>
         /// Get business partner intype by Id
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         BusinessPartnerInType GetById(long id);
+
+        /// <summary>
+        /// Association check of Business Partner Sub Type and Business Partner Sub Type
+        /// </summary>
+        bool IsBusinessPartnerSubTypeAssociatedWithBusinessPartnerInType(long businessPartnerSubTypeId);
     }
 }

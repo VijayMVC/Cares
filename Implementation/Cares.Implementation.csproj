@@ -152,6 +152,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BusinessLegalStatus.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\BusinessPartner\BusinessPartnerRelationshipType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessPartnerRelationshipType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\BusinessPartner\BusinessPartnerRelationshipType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessPartnerRelationshipType.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\BusinessPartner\BusinessPartnerSubType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessPartnerSubType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\BusinessPartner\BusinessPartnerSubType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessPartnerSubType.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\BusinessPartner\Document.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -490,7 +510,10 @@
     <Compile Include="Services\AdditionalChargeService.cs" />
     <Compile Include="Services\AddressBaseDataService.cs" />
     <Compile Include="Services\AdditionalDriverService.cs" />
+    <Compile Include="Services\NRTService.cs" />
+    <Compile Include="Services\BusinessPartnerRelationTypeService.cs" />
     <Compile Include="Services\InsuranceTypeService.cs" />
+    <Compile Include="Services\BusinessPartnerSubTypeService.cs" />
     <Compile Include="Services\RatingTypeService.cs" />
     <Compile Include="Services\DocumentService.cs" />
     <Compile Include="Services\SeasonalDiscountService.cs" />
@@ -587,6 +610,23 @@
     <EmbeddedResource Include="Resources\BusinessPartner\BusinessLegalStatus.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BusinessLegalStatus.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\BusinessPartnerRelationshipType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BusinessPartnerRelationshipType.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\BusinessPartnerRelationshipType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BusinessPartnerRelationshipType.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\BusinessPartnerSubType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BusinessPartnerSubType.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\BusinessPartnerSubType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BusinessPartnerSubType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\BusinessPartner\Document.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

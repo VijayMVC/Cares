@@ -42,6 +42,14 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Count(creidtlimit => creidtlimit.BpRatingTypeId == ratingTypeId) > 0;
         }
+
+        /// <summary>
+        /// Association check of Business Partner Sub Type and credit limit
+        /// </summary>
+        public bool IsBusinessPartnerSubTypeAssociatedWithCreditLimit(long businessPartnerSubTypeId)
+        {
+            return DbSet.Count(creidtlimit => creidtlimit.BpSubTypeId == businessPartnerSubTypeId) > 0;            
+        }
         #endregion
     }
 }

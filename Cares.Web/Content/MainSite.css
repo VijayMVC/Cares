@@ -1276,6 +1276,14 @@
   margin-bottom: 20px;
   margin-top: 10px;
 }
+#nRTBinding .addToBtnDiv {
+  width: 100%;
+  margin-bottom: 15px;
+}
+#nRTBinding .addToBtn {
+  float: right;
+  margin-right: 10px;
+}
 #VehicleCheckListBinding table thead tr .VehicleCheckListcode {
   width: 25%;
 }
@@ -1408,6 +1416,72 @@
   margin-bottom: 20px;
   margin-top: 10px;
 }
+#OccupationTypeBinding table thead tr .occupationTypeCode {
+  width: 33%;
+}
+#OccupationTypeBinding table thead tr .occupationTypeName {
+  width: 33%;
+}
+#OccupationTypeBinding table thead tr .occupationTypeDiscription {
+  width: 33%;
+}
+#OccupationTypeBinding #OccupationTypeEditor {
+  margin-top: 15px;
+}
+#OccupationTypeBinding #OccupationTypeEditor .detailsContainer {
+  width: 100%;
+}
+#OccupationTypeBinding #OccupationTypeEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#BusinessPartnerRelationshipTypeBinding table thead tr .bpRelationshipTypeCode {
+  width: 33%;
+}
+#BusinessPartnerRelationshipTypeBinding table thead tr .bpRelationshipTypeName {
+  width: 33%;
+}
+#BusinessPartnerRelationshipTypeBinding table thead tr .bpRelationshipTypeDiscription {
+  width: 33%;
+}
+#BusinessPartnerRelationshipTypeBinding #BusinessPartnerRelationshipTypeEditor {
+  margin-top: 15px;
+}
+#BusinessPartnerRelationshipTypeBinding #BusinessPartnerRelationshipTypeEditor .detailsContainer {
+  width: 100%;
+}
+#BusinessPartnerRelationshipTypeBinding #BusinessPartnerRelationshipTypeEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#BusinessPartnerSubTypeBinding table thead tr .businessPartnerSubTypeCode {
+  width: 25%;
+}
+#BusinessPartnerSubTypeBinding table thead tr .businessPartnerSubTypeName {
+  width: 25%;
+}
+#BusinessPartnerSubTypeBinding table thead tr .businessPartnerSubTypeDescription {
+  width: 25%;
+}
+#BusinessPartnerSubTypeBinding table thead tr .businessPartnerSubTypebpMain {
+  width: 25%;
+}
+#BusinessPartnerSubTypeBinding #BusinessPartnerSubTypeEditor {
+  margin-top: 15px;
+}
+#BusinessPartnerSubTypeBinding #BusinessPartnerSubTypeEditor .detailsContainer {
+  width: 100%;
+}
+#BusinessPartnerSubTypeBinding #BusinessPartnerSubTypeEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
 .float-left {
   float: left;
 }
@@ -1502,3 +1576,4 @@
   margin: 0;
 }
 /* Twitter Typeahead */
+/*# sourceMappingURL=MainSite.css.map */

@@ -1,0 +1,207 @@
+﻿@{
+    ViewBag.Title = "Non Revenue Ticket";
+}
+<div class="row" id="nRTBinding">
+    <div class="row ">
+
+        <div class="header-toolsSection">
+        </div>
+    </div>
+    <div data-bind="with:selectedNrtMain">
+        <div class="panel panel-info">
+            <div class="panel-heading">Non Revenue Ticket </div>
+            <div class="well">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="operation" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.TariffType.Operation *</label>
+                        <div class="col-md-3">
+                            <select id="operation" class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '@("<" + Cares.Web.Resources.Tariff.TariffType.Operation + ">")'  , value: operationId, validationTooltip: operationId"></select>
+                        </div>
+                        <label for="outLocation" class="control-label h5 col-sm-1">Out Location *</label>
+                        <div class="col-md-3">
+                            <select id="outLocation" class="form-control" data-bind="options: $root.filteredLocations, optionsText: 'OperationsWorkPlaceCodeName', optionsValue: 'OperationsWorkPlaceId', optionsCaption: '< Out Location>'  , value: outLocationId, validationTooltip: outLocationId"></select>
+                        </div>
+                        <label for="retLocation" class="control-label h5 col-sm-1">Return Location *</label>
+                        <div class="col-md-3">
+                            <select id="retLocation" class="form-control" data-bind="options: $root.filteredLocations, optionsText: 'OperationsWorkPlaceCodeName', optionsValue: 'OperationsWorkPlaceId', optionsCaption: 'Return Location'  , value: retLocationId, validationTooltip: retLocationId"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="sDate" class="control-label h5 col-sm-1">Start Date/Time  *</label>
+                        <div class="col-md-3">
+                            <input type="text" placeholder='<Start Date/Time >' class="form-control" id="sDate" data-bind="datetimepicker:startDate, validationTooltip:startDate" />
+                        </div>
+                        <label for="eDate" class="control-label h5 col-sm-1">End Date/Time  *</label>
+                        <div class="col-md-3">
+                            <input type="text" placeholder='<End Date/Time >' class="form-control" id="eDate" data-bind="datetimepicker:endDate, validationTooltip:endDate" />
+                        </div>
+                        <label for="nrtTypes" class="control-label h5 col-sm-1">NRT Type  *</label>
+                        <div class="col-md-3">
+                            <select id="nrtTypes" class="form-control" data-bind="options: $root.nRTTypes, optionsText: 'NrtTypeCodeName', optionsValue: 'NrtTypeId', optionsCaption: 'Return Location'  , value: nRtTypeId, validationTooltip: nRtTypeId"></select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">Vehicle</div>
+            <div class="well">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="code" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.ServiceRate.ServiceRateCode *</label>
+                        <div class="col-md-3">
+                            <input type="text" id="code" class="form-control" placeholder='@("<" + Cares.Web.Resources.Tariff.ServiceRate.ServiceRateCode + ">")' />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">Add/Edit </div>
+            <div class="well">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="active"><a href="#vehicleDetail" role="tab" data-toggle="tab">Vehicle Details</a></li>
+                    <li><a href="#maintenanceActivities" role="tab" data-toggle="tab">Maintenance Activities</a></li>
+                    <li><a href="#chauffeur" role="tab" data-toggle="tab">Chauffeur</a></li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <br />
+                    <!-- first tab - Vehicle Detail-->
+                    <div class="tab-pane active" id="vehicleDetail" data-bind="with:vehicleDetail">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <div class="addToBtnDiv row">
+                                    <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onAddVehicleDetail">Add Vehicle Detail</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="vPlateNumber" class="control-label h5 col-sm-1">Vehicle Plate Number</label>
+                                <div class="col-md-3">
+                                    <input type="text" id="vPlateNumber" class="form-control" placeholder='' />
+                                </div>
+                                <label for="isReturnVehicle" class="control-label h5 col-sm-1">Return Vehicle? </label>
+                                <div class="col-md-3">
+                                    <input type="checkbox" id="isReturnVehicle" class="form-control" placeholder='' />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="outDateTime" class="control-label h5 col-sm-1">Out Date/Time *</label>
+                                <div class="col-md-3">
+                                    <input type="text" id="outDateTime" class="form-control" placeholder='' />
+                                </div>
+                                <label for="inDateTime" class="control-label h5 col-sm-1">In Date/Time *</label>
+                                <div class="col-md-3">
+                                    <input type="text" id="inDateTime" class="form-control" placeholder='' />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="outLocation" class="control-label h5 col-sm-1">Out Location *</label>
+                                <div class="col-md-3">
+                                    <select id="outLocation" class="form-control" data-bind="options: $root.locations, optionsText: 'OperationsWorkPlaceCodeName', optionsValue: 'OperationsWorkPlaceId', optionsCaption: '< Out Location>' "></select>
+                                </div>
+                                <label for="retLocation" class="control-label h5 col-sm-1">Return Location *</label>
+                                <div class="col-md-3">
+                                    <select id="retLocation" class="form-control" data-bind="options: $root.locations, optionsText: 'OperationsWorkPlaceCodeName', optionsValue: 'OperationsWorkPlaceId', optionsCaption: 'Return Location' "></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="outOdometer" class="control-label h5 col-sm-1">Odometer Out *</label>
+                                <div class="col-md-3">
+                                    <input type="text" id="outOdometer" class="form-control" placeholder='' />
+                                </div>
+                                <label for="inOdometer" class="control-label h5 col-sm-1">Odometer In *</label>
+                                <div class="col-md-3">
+                                    <input type="text" id="inOdometer" class="form-control" placeholder='' />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label h5 col-sm-1">Fuel Out * </label>
+                                <div class="col-md-3">
+                                    <div style="margin: 10px" data-bind="slider: fuelOut, sliderOptions: {min: undefined, max: 100, range: 'min', step: 1}"></div>
+                                </div>
+                                <label class="control-label h5 col-sm-1">Fuel In * </label>
+                                <div class="col-md-3">
+                                    <div style="margin: 10px" data-bind="slider: fuelIn, sliderOptions: {min: undefined, max: 100, range: 'min', step: 1}"></div>
+                                </div>
+                                <label for="fuelDifference" class="control-label h5 col-sm-1">Fuel Difference (ltrs) </label>
+                                <div class="col-md-3">
+                                    <input type="text" id="fuelDifference" class="form-control" placeholder='' />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="conditionOut" class="control-label h5 col-sm-1">Condition Out *</label>
+                                <div class="col-md-3">
+                                    <input type="text" id="conditionOut" class="form-control" placeholder='' />
+                                </div>
+                                <label for="conditionIn" class="control-label h5 col-sm-1">Condition In *</label>
+                                <div class="col-md-3">
+                                    <input type="text" id="conditionIn" class="form-control" placeholder='' />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="vOutStatus" class="control-label h5 col-sm-1">Vehicle Out Status *</label>
+                                <div class="col-md-3">
+                                    <select id="vOutStatus" class="form-control" data-bind="options: $root.vehicleStatuses, optionsText: 'VehicleStatusCodeName ', optionsValue: 'VehicleStatusId ', optionsCaption: '<Vehicle Out Status>' "></select>
+                                </div>
+                                <label for="vInStatus" class="control-label h5 col-sm-1">Vehicle In Status *</label>
+                                <div class="col-md-3">
+                                    <select id="vInStatus" class="form-control" data-bind="options: $root.vehicleStatuses, optionsText: 'VehicleStatusCodeName ', optionsValue: 'VehicleStatusId ', optionsCaption: '<Vehicle In Status>' "></select>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                    <!-- 2nd tab - Maintenance Activities-->
+                    <div class="tab-pane" id="maintenanceActivities">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <div class="addToBtnDiv row">
+                                    <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onAddActivity">Add Activity</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="well">
+                            <table id="activityTable" class="table table-condensed ">
+                                <thead>
+                                    <tr>
+                                        <th> <span>Additional Charge Type Code<span></span></span></th>
+                                        <th> <span>Additional Charge Type Name<span></span></span></th>
+                                        <th> <span>Quantity *<span></span></span></th>
+                                        <th> <span>Total Rate<span></span></span></th>
+                                        <th> <span>Contact Person<span></span></span></th>
+                                        <th> <span>Description<span></span></span></th>
+                                        <th> <span>Rate<span></span></span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @*<!-- ko template: { name: 'itemtariffTypeTemplate' , foreach: tariffTypes } -->
+                                        <!-- /ko -->*@
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- 3nd tab - Chauffeur-->
+                    <div class="tab-pane " id="chauffeur">
+                        .....
+                    </div>
+                </div>
+                @*@Html.Partial("_ChaufferChargeEditor")*@
+            </div>
+        </div>
+    </div>
+    @Html.Partial("~/Areas/NonRevenueTicket/Views/NonRevenueTicket/_VehicleDetailDialogForNRT.cshtml")
+</div>
+<!-- ko stopBinding: true -->
+@*@Html.Partial("~/Areas/Common/Views/Shared/_ConfirmationDialog.cshtml")*@
+@Html.Partial("~/Areas/NonRevenueTicket/Views/NonRevenueTicket/_VehicleDetailDialogForNRT.cshtml")
+<!-- /ko -->
+@section inlinescripts
+{
+    <script type="text/javascript">
+        require(["nRT/nRT.view", "common/confirmation.view"]);
+
+    </script>
+}

@@ -45,13 +45,16 @@
             "serviceType": ist.siteUrl + "/Areas/Pricing/Scripts",
             "serviceItem": ist.siteUrl + "/Areas/Pricing/Scripts",
             "nRTType": ist.siteUrl + "/Areas/NonRevenueTicket/Scripts",
+            "nRT": ist.siteUrl + "/Areas/NonRevenueTicket/Scripts",
             "vehicleCheckList": ist.siteUrl + "/Areas/Fleet/Scripts",
             "documentGroup": ist.siteUrl + "/Areas/BusinessPartner/Scripts",
             "bpMainType": ist.siteUrl + "/Areas/BusinessPartner/Scripts",
             "document": ist.siteUrl + "/Areas/BusinessPartner/Scripts",
             "ratingType": ist.siteUrl + "/Areas/BusinessPartner/Scripts",
-            "businessLegalStatus": ist.siteUrl + "/Areas/BusinessPartner/Models"
-
+            "businessLegalStatus": ist.siteUrl + "/Areas/BusinessPartner/Scripts",
+            "occupationType": ist.siteUrl + "/Areas/BusinessPartner/Scripts",
+            "relationType": ist.siteUrl + "/Areas/BusinessPartner/Scripts",
+            "bpSubType": ist.siteUrl + "/Areas/BusinessPartner/Scripts"
 
         }
     }); 

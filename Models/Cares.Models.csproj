@@ -109,6 +109,8 @@
     <Compile Include="Common\AllocationStatusEnum.cs" />
     <Compile Include="Common\BpMainTypeByColumn.cs" />
     <Compile Include="Common\BusinessLegalStatusByColumn.cs" />
+    <Compile Include="Common\BusinessPartnerRelationTypeByColumn.cs" />
+    <Compile Include="Common\BusinessPartnerSubTypeByColumn.cs" />
     <Compile Include="Common\ChaufferChargeByColumn.cs" />
     <Compile Include="Common\DesignationEnum.cs" />
     <Compile Include="Common\DocumentByColumn.cs" />
@@ -294,6 +296,9 @@
     <Compile Include="RequestModels\BpMainTypeSearchRequest.cs" />
     <Compile Include="RequestModels\BpMainTypeSearchRequestResponse.cs" />
     <Compile Include="RequestModels\BusinessLegalStatusSearchRequest.cs" />
+    <Compile Include="RequestModels\BusinessPartnerRelationTypeSearchRequest.cs" />
+    <Compile Include="RequestModels\BusinessPartnerRelationTypeSearchRequestResponse.cs" />
+    <Compile Include="RequestModels\BusinessPartnerSubTypeSearchRequest.cs" />
     <Compile Include="RequestModels\BusinessSegmentSearchRequest.cs" />
     <Compile Include="RequestModels\ChaufferChargeSearchRequest.cs" />
     <Compile Include="RequestModels\CitySearchRequestResponse.cs" />
@@ -358,6 +363,8 @@
     <Compile Include="ResponseModels\AreaBaseDataResponse.cs" />
     <Compile Include="ResponseModels\BusinessLegalStatusSearchRequestRespose.cs" />
     <Compile Include="ResponseModels\BusinessPartnerBaseDataResponse.cs" />
+    <Compile Include="ResponseModels\BusinessPartnerSubTypeBaseDataResponse.cs" />
+    <Compile Include="ResponseModels\BusinessPartnerSubTypeSearchRequestResponse.cs" />
     <Compile Include="ResponseModels\BusinessSegmentSearchRequestResponse.cs" />
     <Compile Include="ResponseModels\ChaufferChargeBaseResponse.cs" />
     <Compile Include="ResponseModels\ChaufferChargeMainContent.cs" />
@@ -384,6 +391,7 @@
     <Compile Include="ResponseModels\InsuranceRtDetailContent.cs" />
     <Compile Include="ResponseModels\InsuranceRtDetailResponse.cs" />
     <Compile Include="ResponseModels\InsuranceRtMainContent.cs" />
+    <Compile Include="ResponseModels\NRTBaseResponse.cs" />
     <Compile Include="ResponseModels\NrtTypeBaseDataResponse.cs" />
     <Compile Include="ResponseModels\NrtTypeSearchRequestResponse.cs" />
     <Compile Include="ResponseModels\OccupationTypeSearchRequestResponse.cs" />
