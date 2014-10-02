@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = Cares.Web.Resources.BusinessPartner.BusinessPartnerSubType.BusinessPartnerSubTypeLabel;
+}
+<div class="row" id="BusinessPartnerSubTypeBinding">
+
+    <div class="row " data-bind="visible: !isBusinessPartnerSubTypeVisible()">
+        <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.BusinessPartner.BusinessPartnerSubType.BusinessPartnerSubTypeLabel</h3>
+        <div class="header-toolsSection">
+            <a href="#" class="label label-default create-new-icon" data-bind="click: onCreateForm" title="@Cares.Web.Resources.Shared.Common.CreateNew">@Cares.Web.Resources.Shared.Common.New</a>
+            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title="@Cares.Web.Resources.Shared.Common.ShowFilter" style="display: none"></a>
+        </div>
+    </div>
+    <div class="row searchFilterSection" data-bind="visible: !isBusinessPartnerSubTypeVisible() && filterSectionVisilble()" style="display: none">
+        <div class="well">
+            <form class="form-horizontal">
+                <div class="col-xs-3">
+                    <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.BusinessPartner.BusinessPartnerSubType.Search + ">")" data-bind="value: searchFilter" />
+                </div>
+
+                <div class="col-md-3">
+                    <select class="form-control" data-bind="options: $root.baseBusinessPartnerMainTypeList, optionsText: 'BusinessPartnerMainTypeCodeName', optionsValue: 'BusinessPartnerMainTypeId', optionsCaption: '&lt;' + '@Cares.Web.Resources.BusinessPartner.Document.DocumentGroup'+ '&gt;' , value:businessPartnerMainTypeFilter "></select>
+                </div>
+
+                <button type="submit" class="btn btn-success" data-bind="click: search">@Cares.Web.Resources.Shared.Common.Search</button>
+                <button type="submit" class="btn btn-default" data-bind="click:resetResuults">@Cares.Web.Resources.Shared.Common.Reset</button>
+                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click:hideFilterSection" title="@Cares.Web.Resources.Shared.Common.HideSection"></a>
+            </form>
+        </div>
+    </div>
+    <div class="row searchFilterResultSection" data-bind="visible: !isBusinessPartnerSubTypeVisible()">
+        <div class="well">
+            <table id="BusinessPartnerSubTypeTable" class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th class="businessPartnerSubTypeCode"> <span id="1">@Cares.Web.Resources.BusinessPartner.BusinessPartnerSubType.Code<span class="icon-up"></span></span></th>
+                        <th class="businessPartnerSubTypeName"> <span id="2">@Cares.Web.Resources.BusinessPartner.BusinessPartnerSubType.Name<span></span></span></th>
+                        <th class="businessPartnerSubTypeDescription"> <span>@Cares.Web.Resources.BusinessPartner.BusinessPartnerSubType.Description<span></span></span></th>
+                        <th class="businessPartnerSubTypebpMain"> <span id="3">@Cares.Web.Resources.BusinessPartner.BusinessPartnerSubType.BusinessPartnerMainType<span></span></span></th>
+                        <th> <span></span></th>
+                        <th> <span></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- ko template: { name: 'BusinessPartnerSubTypeFilterResultTemplate' , foreach: businessPartnerSubTypes } -->
+                    <!-- /ko -->
+                </tbody>
+            </table>
+            <!-- ko with: pager -->
+            @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
+            <!-- /ko -->
+        </div>
+    </div>
+    <script id="deleteActionBusinessPartnerSubTypeTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onDeleteItem" title="@Cares.Web.Resources.Shared.Common.Delete"><span class="glyphicon glyphicon-remove"></span></a>
+    </script>
+
+    <script id="editActionBusinessPartnerSubTypeTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onEditItem" title="@Cares.Web.Resources.Shared.Common.Edit"><span class="glyphicon glyphicon-edit"></span></a>
+    </script>
+    <script id="BusinessPartnerSubTypeFilterResultTemplate" type="text/html">
+        <tr>
+            <td data-bind="text: code"></td>
+            <td data-bind="text: name"></td>
+            <td data-bind="text: description"></td>
+            <td data-bind="text: businessPartnerMainTypeName"></td>
+            <td>
+                <!-- ko template: { name: 'editActionBusinessPartnerSubTypeTemplate' } -->
+                <!-- /ko -->
+            </td>
+            <td>
+                <!-- ko template: { name: 'deleteActionBusinessPartnerSubTypeTemplate' } -->
+                <!-- /ko -->
+            </td>
+        </tr>
+    </script>
+    @Html.Partial("_BusinessPartnerSubTypeEditor")
+</div>
+<!-- ko stopBinding: true -->
+@Html.Partial("~/Areas/Common/Views/Shared/_ConfirmationDialog.cshtml")
+<!-- /ko -->
+@section inlinescripts
+{
+    <script type="text/javascript">
+        require(["bpSubType/bpSubType.view", "common/confirmation.view"]);
+        var ist = window.ist;
+        @{
+        <text>
+        ist.resourceText.BusinessPartnerSubTypeSuccessfullySavedMessage = '@Cares.Web.Resources.BusinessPartner.BusinessPartnerSubType.BusinessPartnerSubTypeSuccessfullySavedMessage';
+        ist.resourceText.FailedToSaveBusinessPartnerSubTypeError = '@Cares.Web.Resources.BusinessPartner.BusinessPartnerSubType.FailedToSaveBusinessPartnerSubTypeError';
+        ist.resourceText.FailedToLoadBusinessPartnerSubTypesError = '@Cares.Web.Resources.BusinessPartner.BusinessPartnerSubType.FailedToLoadBusinessPartnerSubTypesError';
+        ist.resourceText.BusinessPartnerSubTypeSuccessfullyDeletedMessage = '@Cares.Web.Resources.BusinessPartner.BusinessPartnerSubType.BusinessPartnerSubTypeSuccessfullyDeletedMessage';
+        ist.resourceText.FailedToDeleteBusinessPartnerSubTypeError = '@Cares.Web.Resources.BusinessPartner.BusinessPartnerSubType.FailedToDeleteBusinessPartnerSubTypeError';
+        ist.resourceText.FailedToloadBaseDataError = '@Cares.Web.Resources.BusinessPartner.BusinessPartnerSubType.FailedToloadBaseDataError';
+        </text>
+       }
+    </script>
+}

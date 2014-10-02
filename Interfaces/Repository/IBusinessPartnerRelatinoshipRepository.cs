@@ -6,5 +6,9 @@ namespace Cares.Interfaces.Repository
     /// </summary>
     public interface IBusinessPartnerRelationshipRepository : IBaseRepository<BusinessPartnerRelationship, int>
     {
+        /// <summary>
+        /// Association check b/w Business Partner Relationship and Business Partner Relationship Type
+        /// </summary>
+        bool IsBusinessPartnerRelationshipAssociatedBusinessPartnerRelationshipType(long businessPartnerRelationshipId);
     }
 }

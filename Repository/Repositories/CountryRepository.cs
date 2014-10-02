@@ -42,11 +42,10 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(country => country.UserDomainKey == UserDomainKey).ToList();
         }
+
         /// <summary>
         /// Find by Id
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         public Country Find(int id)
         {
             return DbSet.FirstOrDefault(country => country.UserDomainKey == UserDomainKey && country.CountryId == id);

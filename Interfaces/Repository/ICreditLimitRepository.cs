@@ -11,5 +11,11 @@ namespace Cares.Interfaces.Repository
         /// Associatin check of cradit limit with rating type
         /// </summary>
         bool IsRatingTypeAssociatedWithCreditLimit(long ratingTypeId);
+
+        /// <summary>
+        /// Association check of Business Partner Sub Type and credit limit
+        /// </summary>
+        bool IsBusinessPartnerSubTypeAssociatedWithCreditLimit(long businessPartnerSubTypeId);
+
     }
 }
