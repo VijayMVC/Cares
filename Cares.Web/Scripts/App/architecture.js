@@ -151,6 +151,48 @@ require(["ko", "knockout-validation"], function (ko) {
             }
         }
     };
+
+    // jquery date time picker binding. Usage: <input data-bind="datetimepicker: myDate, datepickerOptions: { minDate: new Date() }" />. Source: http://jsfiddle.net/rniemeyer/NAgNV/
+    ko.bindingHandlers.datetimepicker = {
+        init: function (element, valueAccessor, allBindingsAccessor) {
+            //initialize datepicker with some optional options
+            // ReSharper disable DuplicatingLocalDeclaration
+            var options = allBindingsAccessor().datepickerOptions || {};
+            // ReSharper restore DuplicatingLocalDeclaration
+            $(element).datetimepicker(options);
+            $(element).datetimepicker("option", "dateFormat", options.dateFormat || ist.customShortDatePattern);
+            //handle the field changing
+            ko.utils.registerEventHandler(element, "change", function () {
+                var observable = valueAccessor();
+                observable($(element).datetimepicker("getDate"));
+            });
+
+            //handle disposal (if KO removes by the template binding)
+            ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
+                $(element).datetimepicker("destroy");
+            });
+
+        },
+        update: function (element, valueAccessor) {
+            var observable = valueAccessor();
+
+            var value = ko.utils.unwrapObservable(valueAccessor()),
+                current = $(element).datetimepicker("getDate");
+
+            if (value - current !== 0) {
+                $(element).datetimepicker("setDate", value);
+            }
+            //For showing highlighted field if contains invalid value
+            if (observable.isValid) {
+                if (!observable.isValid() && observable.isModified()) {
+                    $(element).addClass('errorFill');
+                } else {
+                    $(element).removeClass('errorFill');
+                }
+            }
+        }
+    };
+
     ko.bindingHandlers.validationDependsOn = {
         update: function (element, valueAccessor) {
             var observable = valueAccessor();

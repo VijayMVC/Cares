@@ -20,5 +20,10 @@ namespace Cares.Interfaces.Repository
         /// Get Insurance Rate For RA Billing 
         /// </summary>
         IEnumerable<InsuranceRt> GetForRaBilling(string tariffTypeCode, long hireGroupDetailId, long insuranceTypeId, DateTime raRecCreatedDate);
+
+        /// <summary>
+        /// Get All Insurance Rate For RA 
+        /// </summary>
+        IEnumerable<InsuranceRt> GetAllForRa();
     }
 }

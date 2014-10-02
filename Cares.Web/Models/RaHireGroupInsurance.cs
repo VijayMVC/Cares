@@ -27,13 +27,8 @@ namespace Cares.Web.Models
         /// <summary>
         /// Insurance Type Code
         /// </summary>
-        public string InsuranceTypeCode { get; set; }
-
-        /// <summary>
-        /// Insurance Type Name
-        /// </summary>
-        public string InsuranceTypeName { get; set; }
-
+        public string InsuranceTypeCodeName { get; set; }
+        
         /// <summary>
         /// Start Datetime
         /// </summary>

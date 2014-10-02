@@ -83,6 +83,7 @@ namespace Cares.Implementation
             unityContainer.RegisterType<IDocumentGroupService, DocumentGroupService>();
             unityContainer.RegisterType<IBpMainTypeService, BpMainTypeService>();
             unityContainer.RegisterType<IDocumentService, DocumentService>();
+            unityContainer.RegisterType<IInsuranceTypeService, InsuranceTypeService>();
             unityContainer.RegisterType<IRatingTypeService, RatingTypeService>();
             unityContainer.RegisterType<IBusinessPartnerRelationTypeService, BusinessPartnerRelationTypeService>();
             unityContainer.RegisterType<IBusinessPartnerSubTypeService, BusinessPartnerSubTypeService>();

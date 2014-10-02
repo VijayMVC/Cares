@@ -226,6 +226,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalChargeBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\RaInsuranceRtsController.cs" />
+    <Compile Include="Areas\Api\Controllers\RaAdditionalChargesController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalChargeController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalChargeDetailController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalDriverChargeBaseController.cs" />
@@ -1434,6 +1436,7 @@
       <DependentUpon>JobType.css</DependentUpon>
     </Content>
     <Content Include="Content\jquery-ui-1.11.0.min.css" />
+    <Content Include="Content\jquery-ui-timepicker-addon.css" />
     <Content Include="Content\MainSite.css">
       <DependentUpon>MainSite.less</DependentUpon>
     </Content>
@@ -2105,6 +2108,8 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.10.4.js" />
     <Content Include="Scripts\jquery-ui-1.10.4.min.js" />
+    <Content Include="Scripts\jquery-ui-sliderAccess.js" />
+    <Content Include="Scripts\jquery-ui-timepicker-addon.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />

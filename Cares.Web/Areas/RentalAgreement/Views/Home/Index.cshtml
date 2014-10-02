@@ -17,44 +17,32 @@
                 </div>
                 <div id="collapseOne" class="panel-collapse collapse">
                     <div class="panel-body" data-bind="with: rentalAgreement">
-                        <table id="raServiceItemsTable" class="table table-condensed searchFilterResultSection">
-                            <thead>
-                                <tr>
-                                    <th id="ServiceType">Service Type</th>
-                                    <th id="ServiceItemCode">Service Item Code</th>
-                                    <th id="ServiceItemName">Service Item Name</th>
-                                    <th id="Quantity">Quantity</th>
-                                    <th id="StartDate">Start Date</th>
-                                    <th id="StartTime">Start Time</th>
-                                    <th id="EndDate">End Date</th>
-                                    <th id="EndTime">End Time</th>
-                                    <th id="DeleteServiceItem"></th>
-                                </tr>
-                            </thead>
-                            <tbody data-bind="foreach: rentalAgreementServiceItems">
-                                <tr>
-                                    <td data-bind="text: serviceTypeCodeName"></td>
-                                    <td data-bind="text: serviceItemCode"></td>
-                                    <td data-bind="text: serviceItemName"></td>
-                                    <td>
-                                        <input type="text" class="form-control" data-bind="value: quantity"/>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" data-bind="datepicker: startDate" />
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" data-bind="value: startTime" />
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" data-bind="datepicker: endDate" />
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" data-bind="value: endTime" />
-                                    </td>
-                                    <td><a data-bind="click: $parent.removeRaServiceItem"><span class="glyphicon glyphicon-remove"></span></a></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <!-- ko foreach: rentalAgreementServiceItems -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-8">
+                                            <span data-bind="text: serviceTypeCodeName"></span>
+                                            <span>|</span>
+                                            <span data-bind="text: serviceItemCodeName"></span>
+                                        </label>
+                                        <label for="qty" class="control-label col-sm-2">Qty</label>
+                                        <div class="col-sm-2"><input type="text" id="qty" class="form-control" data-bind="value: quantity" /></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="startDt" class="control-label col-sm-3">Start Dt</label>
+                                        <div class="col-md-5"><input id="startDt" type="text" class="form-control" data-bind="datetimepicker: start" /></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="endDt" class="control-label col-sm-3">End Dt</label>
+                                        <div class="col-md-5"><input id="endDt" type="text" class="form-control" data-bind="datetimepicker: end" /></div>
+                                        <a data-bind="click: $parent.removeRaServiceItem"><span class="glyphicon glyphicon-remove"></span></a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- /ko -->
                     </div>
                 </div>
             </div>
@@ -64,7 +52,6 @@
                         <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
                             Drivers
                         </a>
-                        @*<a class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Drivers', elementNode: 'addDriversTemplate', popoverId: 'addDriversTemplate_popoverContent' }, attr:{ title: 'Add Drivers' }"></a>*@
                     </h4>
                 </div>
                 <div id="collapseTwo" class="panel-collapse collapse">
@@ -73,43 +60,29 @@
                         <table id="raDriversTable" class="table table-condensed searchFilterResultSection">
                             <thead>
                                 <tr>
-                                    <th>Is Chauffer</th>
                                     <th>Driver Name</th>
                                     <th>License No</th>
                                     <th>License Expiry Date</th>
-                                    <th>License Expiry Time</th>
                                     <th>Start Date</th>
-                                    <th>Start Time</th>
                                     <th>End Date</th>
-                                    <th>End Time</th>
                                 </tr>
                             </thead>
                             <tbody data-bind="foreach: raDrivers">
                                 <tr>
-                                    <td data-bind="text: isChauffer"></td>
                                     <td>
-                                        <input type="text" class="form-control" data-bind="value: driverName"/>
+                                        <input type="text" class="form-control" data-bind="value: driverName" />
                                     </td>
                                     <td>
                                         <input type="text" class="form-control" data-bind="value: licenseNo" />
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control" data-bind="datepicker: licenseExpDate" />
+                                        <input type="text" class="form-control" data-bind="datetimepicker: licenseExpDt" />
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control" data-bind="value: licenseExpTime" />
+                                        <input type="text" class="form-control" data-bind="datetimepicker: start" />
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control" data-bind="datepicker: startDate" />
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" data-bind="value: startTime" />
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" data-bind="datepicker: endDate" />
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" data-bind="value: endTime" />
+                                        <input type="text" class="form-control" data-bind="datetimepicker: end" />
                                     </td>
                                     <td><a data-bind="click: $parent.removeRaDriver"><span class="glyphicon glyphicon-remove"></span></a></td>
                                 </tr>
@@ -132,30 +105,22 @@
                         <table id="raChauffersTable" class="table table-condensed searchFilterResultSection">
                             <thead>
                                 <tr>
-                                    <th>Is Chauffer</th>
                                     <th>Driver Name</th>
                                     <th>License No</th>
                                     <th>License Expiry Date</th>
-                                    <th>License Expiry Time</th>
                                     <th>License No</th>
                                     <th>Start Date</th>
-                                    <th>Start Time</th>
                                     <th>End Date</th>
-                                    <th>End Time</th>
                                 </tr>
                             </thead>
                             <tbody data-bind="foreach: raChauffers">
                                 <tr>
-                                    <td data-bind="text: isChauffer"></td>
                                     <td data-bind="text: driverName"></td>
                                     <td data-bind="text: licenseNo"></td>
-                                    <td data-bind="text: licenseExpDate"></td>
-                                    <td data-bind="text: licenseExpTime"></td>
+                                    <td data-bind="text: licenseExpDt"></td>
                                     <td data-bind="text: licenseNo"></td>
-                                    <td data-bind="text: startDate"></td>
-                                    <td data-bind="text: startTime"></td>
-                                    <td data-bind="text: endDate"></td>
-                                    <td data-bind="text: endTime"></td>
+                                    <td data-bind="text: start"></td>
+                                    <td data-bind="text: end"></td>
                                     <td><a data-bind="click: $parent.removeRaDriver"><span class="glyphicon glyphicon-remove"></span></a></td>
                                 </tr>
                             </tbody>
@@ -184,12 +149,35 @@
                         <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
                             Damages
                         </a>
-                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Damages', elementNode: 'addDamageTemplate', popoverId: 'addDamageTemplate_popoverContent' }, attr:{ title: 'Add Damages' }"></a>
+                        <a id="addDamagesPopoverLink" class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Damages', elementNode: 'addDamageTemplate', popoverId: 'addDamageTemplate_popoverContent' }, attr:{ title: 'Add Damages' }"></a>
                     </h4>
                 </div>
                 <div id="collapseFive" class="panel-collapse collapse">
-                    <div class="panel-body">
-
+                    <div class="panel-body" data-bind="with: $root.rentalAgreement">
+                        <!-- ko foreach: rentalAgreementAdditionalCharges -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-8">
+                                            <span data-bind="text: additionalChargeTypeCodeName"></span>
+                                        </label>
+                                        <label for="qty" class="control-label col-sm-2">Qty</label>
+                                        <div class="col-sm-2"><input type="text" id="qty" class="form-control" data-bind="value: quantity" /></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="plateNumber" class="control-label col-sm-3">Plate No.</label>
+                                        <div class="col-md-3"><input id="plateNumber" type="text" class="form-control" data-bind="value: plateNumber" /></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="rate" class="control-label col-sm-3">Rate</label>
+                                        <div class="col-md-3"><input id="rate" type="text" class="form-control" data-bind="value: additionalChargeRate" /></div>
+                                        <a data-bind="click: $parent.removeRaAdditionalCharge"><span class="glyphicon glyphicon-remove"></span></a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- /ko -->
                     </div>
                 </div>
             </div>
@@ -317,24 +305,49 @@
                 </div>
                 <div id="collapseSeven" class="panel-collapse collapse in">
                     <div class="panel-body">
-                        <form id="vehicle" class="form-horizontal" data-bind="with: $root.selectedVehicle">
-                            <div class="form-group">
-                                <label for="vehiclePlateNumber" class="control-label col-sm-2">Plate #</label>
-                                <div class="col-md-2">
-                                    <span id="vehiclePlateNumber" data-bind="text: plateNumber"></span>
-                                </div>
-                                <label for="vehicleHireGroup" class="control-label col-sm-2">Hire Group</label>
-                                <div class="col-md-2">
-                                    <span id="vehicleHireGroup" data-bind="text: code"></span>
-                                </div>
-                                <label for="vehicleMakeText" class="control-label col-sm-2">Make</label>
-                                <div class="col-md-2">
-                                    <span id="vehicleMakeText" data-bind="text: vehicleMake"></span>
-                                </div>
-                                <div class="col-md-2">
-                                    <img id="vehicleImage" src="#" alt="" data-bind="attr:{ src: $root.vehicleImage }" />
+                        <form id="vehicle" class="form-horizontal" data-bind="with: rentalAgreement">
+                            <!-- ko foreach: rentalAgreementHireGroups -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading" data-bind="with: vehicle">
+                                    <div class="form-group">
+                                        <label for="vehiclePlateNumber" class="control-label col-sm-2">Plate #</label>
+                                        <div class="col-md-2">
+                                            <span id="vehiclePlateNumber" data-bind="text: plateNumber"></span>
+                                        </div>
+                                        <label for="vehicleHireGroup" class="control-label col-sm-2">Hire Group</label>
+                                        <div class="col-md-2">
+                                            <span id="vehicleHireGroup" data-bind="text: code"></span>
+                                        </div>
+                                        <label for="vehicleMakeText" class="control-label col-sm-2">Make</label>
+                                        <div class="col-md-2">
+                                            <span id="vehicleMakeText" data-bind="text: vehicleMake"></span>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <img id="vehicleImage" src="#" alt="" data-bind="attr:{ src: $root.vehicleImage }" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="vehicleModel" class="control-label col-sm-2">Model</label>
+                                        <div class="col-md-2">
+                                            <span id="vehicleModel" data-bind="text: vehicleModel"></span>
+                                        </div>
+                                        <label for="vehicleCategory" class="control-label col-sm-2">Category</label>
+                                        <div class="col-md-2">
+                                            <span id="vehicleCategory" data-bind="text: category"></span>
+                                        </div>
+                                        <label for="modelYear" class="control-label col-sm-2">Model Year</label>
+                                        <div class="col-md-2">
+                                            <span id="modelYear" data-bind="text: modelYear"></span>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <a data-bind="click: openVehicleMovement, attr: { title: 'Movement Details' }">
+                                                <span class="glyphicon glyphicon-road"></span>
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            <!-- /ko -->
                         </form>
                     </div>
                 </div>
@@ -379,12 +392,10 @@
                             <div class="form-group">
                                 <label for="rentalAgreementStartDate" class="control-label col-sm-2"></label>
                                 <div class="col-md-4 dateTimeControl">
-                                    <input type="text" class="form-control dateControl" placeholder="<Start Date>" id="rentalAgreementStartDate" data-bind="datepicker: startDate" />
-                                    <input type="text" class="form-control timeControl" placeholder="<Time>" id="rentalAgreementStartDate" data-bind="value: startTime" />
+                                    <input type="text" class="form-control dateControl" placeholder="<Start Date>" id="rentalAgreementStartDate" data-bind="datetimepicker: start" />
                                 </div>
                                 <div class="col-md-4 dateTimeControl">
-                                    <input type="text" class="form-control dateControl" placeholder="<End Date>" id="rentalAgreementEndDate" data-bind="datepicker: endDate" />
-                                    <input type="text" class="form-control timeControl" placeholder="<Time>" id="rentalAgreementEndDate" data-bind="value: endTime" />
+                                    <input type="text" class="form-control dateControl" placeholder="<End Date>" id="rentalAgreementEndDate" data-bind="datetimepicker: end" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -514,7 +525,7 @@
             </table>
         </div>
     </script>
-    
+
     <script type="html/text" id="addExtrasTemplate">
         <div id="addExtrasTemplate_popoverContent" class="searchFilterResultSection">
             <table class="table table-condensed">
@@ -538,8 +549,10 @@
                 </tbody>
             </table>
             <div>
-                <button class="btn btn-primary addExtrasTemplate_popoverContent_addExtrasButton" 
-                        data-bind="click: addExtrasToRentalAgreement.bind($data, $data, 'addExtrasPopoverLink')">Add</button>
+                <button class="btn btn-primary addExtrasTemplate_popoverContent_addExtrasButton"
+                        data-bind="click: addExtrasToRentalAgreement.bind($data, $data, 'addExtrasPopoverLink')">
+                    Add
+                </button>
             </div>
         </div>
     </script>
@@ -549,25 +562,18 @@
             <table class="table table-condensed">
                 <thead>
                     <tr>
-                        <th>Is Chauffer</th>
                         <th>Driver Name</th>
                         <th>License No</th>
                         <th>License Expiry</th>
-                        <th>License No</th>
                         <th>Start Date</th>
-                        <th>Start Hour</th>
-                        <th>Start Minute</th>
                         <th>End Date</th>
-                        <th>End Hour</th>
-                        <th>End Minute</th>
                     </tr>
                 </thead>
-                <tbody data-bind="foreach: raDrivers">
-                </tbody>
+                <tbody data-bind="foreach: raDrivers"></tbody>
             </table>
         </div>
     </script>
-    
+
     <script type="html/text" id="addChaufferTemplate">
         <div id="addChaufferTemplate_popoverContent" class="searchFilterResultSection">
             <div>
@@ -575,17 +581,17 @@
                     <div class="form-group" data-bind="with: chaufferFilter">
                         <label class="control-label col-sm-2">Chauffer Out Dt</label>
                         <div class="col-md-4">
-                            <input type="text" class="form-control addChaufferTemplate_popoverContent_chaufferStDt" data-bind="datepicker: startDate" />
-                            <input type="text" class="form-control addChaufferTemplate_popoverContent_chaufferStTime" data-bind="value: startTime" />
+                            <input type="text" class="form-control addChaufferTemplate_popoverContent_chaufferStDt" data-bind="datetimepicker: start" />
                         </div>
                         <label class="control-label col-sm-2">Chauffer In Dt</label>
                         <div class="col-md-4">
-                            <input type="text" class="form-control addChaufferTemplate_popoverContent_chaufferEndDt" data-bind="datepicker: endDate" />
-                            <input type="text" class="form-control addChaufferTemplate_popoverContent_chaufferEndTime" data-bind="value: endTime" />
+                            <input type="text" class="form-control addChaufferTemplate_popoverContent_chaufferEndDt" data-bind="datetimepicker: end" />
                         </div>
                         <div class="col-md-4">
-                            <button class="btn btn-success addChaufferTemplate_popoverContent_searchChaufferButton" 
-                                    data-bind="click: $root.searchChauffers, enable: $root.canSearchChauffers">Search</button>
+                            <button class="btn btn-success addChaufferTemplate_popoverContent_searchChaufferButton"
+                                    data-bind="click: $root.searchChauffers, enable: $root.canSearchChauffers">
+                                Search
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -615,12 +621,14 @@
                 </tbody>
             </table>
             <div>
-                <button class="btn btn-primary addChaufferTemplate_popoverContent_chaufferAddButton" 
-                        data-bind="click: addChauffersToRentalAgreement.bind($data, $data, 'addChauffersPopoverLink')">Add</button>
+                <button class="btn btn-primary addChaufferTemplate_popoverContent_chaufferAddButton"
+                        data-bind="click: addChauffersToRentalAgreement.bind($data, $data, 'addChauffersPopoverLink')">
+                    Add
+                </button>
             </div>
         </div>
     </script>
-    
+
     <script type="html/text" id="addDiscountTemplate">
         <div id="addDiscountTemplate_popoverContent" class="searchFilterResultSection">
             <table class="table table-condensed">
@@ -641,9 +649,35 @@
             </table>
         </div>
     </script>
-    
+
     <script type="html/text" id="addDamageTemplate">
         <div id="addDamageTemplate_popoverContent" class="searchFilterResultSection">
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Additional Charge Type</th>
+                        <th>Hire Group</th>
+                        <th>Rate</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: additionalCharges">
+                    <tr>
+                        <td>
+                            <input type="checkbox" class="addDamageTemplate_popoverContent_isSelected" data-bind="checked: isSelected" />
+                        </td>
+                        <td data-bind="text: additionalChargeTypeCodeName"></td>
+                        <td data-bind="text: hireGroupDetailCodeName"></td>
+                        <td data-bind="text: rate"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+                <button class="btn btn-primary addDamageTemplate_popoverContent_chaufferAddButton"
+                        data-bind="click: addAdditionalChargesToRentalAgreement.bind($data, $data, 'addDamagesPopoverLink')">
+                    Add
+                </button>
+            </div>
         </div>
     </script>
 

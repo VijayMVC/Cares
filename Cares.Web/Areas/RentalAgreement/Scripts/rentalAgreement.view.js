@@ -74,6 +74,11 @@ define("rentalAgreement/rentalAgreement.view",
                         viewModel.setChaufferPopover();
                     });
 
+                    // Chauffer Popover shows - Clear Selection
+                    $('#addDamagesPopoverLink').on('show.bs.popover', function () {
+                        viewModel.resetAdditionalChargesSelection();
+                    });
+
                 };
 
             initialize();

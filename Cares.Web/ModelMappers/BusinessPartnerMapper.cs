@@ -78,6 +78,11 @@ namespace Cares.Web.ModelMappers
         /// </summary>
         public static Models.BusinessPartnerDetail CreateFromForRa(this BusinessPartner source)
         {
+            if (source == null)
+            {
+                return null;
+            }
+
             return new Models.BusinessPartnerDetail
             {
                 BusinessPartnerId = source.BusinessPartnerId,

@@ -206,6 +206,14 @@ namespace Cares.Implementation.Services
         }
 
         /// <summary>
+        /// Get All For RA
+        /// </summary>
+        public IEnumerable<AdditionalCharge> GetAllForRa()
+        {
+            return additionalChargeRepository.GetAllForRa();
+        }
+
+        /// <summary>
         /// Aditional Charge Validation
         /// </summary>
         /// <param name="additionalCharges"></param>

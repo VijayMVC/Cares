@@ -511,6 +511,7 @@
     <Compile Include="Services\AddressBaseDataService.cs" />
     <Compile Include="Services\AdditionalDriverService.cs" />
     <Compile Include="Services\BusinessPartnerRelationTypeService.cs" />
+    <Compile Include="Services\InsuranceTypeService.cs" />
     <Compile Include="Services\BusinessPartnerSubTypeService.cs" />
     <Compile Include="Services\RatingTypeService.cs" />
     <Compile Include="Services\DocumentService.cs" />
