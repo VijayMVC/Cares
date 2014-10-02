@@ -117,10 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BusinessPartnerRelationshipTypeCodeDuplicationError" xml:space="preserve">
-    <value>شريك تجاري نوع العلاقة مع نفس رمز موجود بالفعل </value>
+  <data name="BusinessPartnerMainType" xml:space="preserve">
+    <value>نوع الشركة الشريك الرئيسي</value>
   </data>
-  <data name="BusinessPartnerRelationshipTypeIsAssociatedWithBusinessPartnerRelationshipError" xml:space="preserve">
-    <value>ويرتبط نوع الشركة العلاقة مع الشريك علاقة شريك تجاري</value>
+  <data name="BusinessPartnerSubTypeDetail" xml:space="preserve">
+    <value>شريك تجاري الفرعية نوع</value>
+  </data>
+  <data name="BusinessPartnerSubTypeLabel" xml:space="preserve">
+    <value>شريك تجاري الفرعية نوع</value>
+  </data>
+  <data name="BusinessPartnerSubTypeSuccessfullyDeletedMessage" xml:space="preserve">
+    <value>شريك تجاري الفرعية نوع حذف بنجاح !</value>
+  </data>
+  <data name="BusinessPartnerSubTypeSuccessfullySavedMessage" xml:space="preserve">
+    <value>شريك تجاري الفرعية نوع حفظ بنجاح !</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>كود</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>وصف</value>
+  </data>
+  <data name="FailedToDeleteBusinessPartnerSubTypeError" xml:space="preserve">
+    <value>فشل في حذف شريك تجاري الفرعية نوع</value>
+  </data>
+  <data name="FailedToloadBaseDataError" xml:space="preserve">
+    <value>فشل تحميل قاعدة البيانات !</value>
+  </data>
+  <data name="FailedToLoadBusinessPartnerSubTypesError" xml:space="preserve">
+    <value>فشل تحميل شريك تجاري أنواع الفرعية</value>
+  </data>
+  <data name="FailedToSaveBusinessPartnerSubTypeError" xml:space="preserve">
+    <value>فشل في حفظ شريك تجاري الفرعية نوع</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>اسم</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>البحث</value>
   </data>
 </root>

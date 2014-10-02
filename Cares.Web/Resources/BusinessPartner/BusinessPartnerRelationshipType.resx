@@ -117,10 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BusinessPartnerRelationshipTypeCodeDuplicationError" xml:space="preserve">
-    <value>شريك تجاري نوع العلاقة مع نفس رمز موجود بالفعل </value>
+  <data name="BusinessPartnerRelationshipTypeDetail" xml:space="preserve">
+    <value>Business Partner Relationship Type Detail</value>
   </data>
-  <data name="BusinessPartnerRelationshipTypeIsAssociatedWithBusinessPartnerRelationshipError" xml:space="preserve">
-    <value>ويرتبط نوع الشركة العلاقة مع الشريك علاقة شريك تجاري</value>
+  <data name="BusinessPartnerRelationshipTypeLabel" xml:space="preserve">
+    <value>Business Partner Relationship Type</value>
+  </data>
+  <data name="BusinessPartnerRelationshipTypeSuccessfullyDeletedMessage" xml:space="preserve">
+    <value>Business Partner Relationship Type successfully deleted!</value>
+  </data>
+  <data name="BusinessPartnerRelationshipTypeSuccessfullySavedMessage" xml:space="preserve">
+    <value>Business Partner Relationship Type successfully saved!</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="FailedToDeleteBusinessPartnerRelationshipTypeError" xml:space="preserve">
+    <value>Failed to delete Business Partner Relationship Type</value>
+  </data>
+  <data name="FailedToLoadBusinessPartnerRelationshipTypesError" xml:space="preserve">
+    <value>Failed to load Business Partner Relationship Types</value>
+  </data>
+  <data name="FailedToSaveBusinessPartnerRelationshipTypeError" xml:space="preserve">
+    <value>Failed to save Business Partner Relationship Type</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
   </data>
 </root>

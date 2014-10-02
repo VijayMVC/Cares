@@ -19,6 +19,7 @@ namespace Cares.Web.ModelMappers
             return new Cares.Models.DomainModels.BusinessPartnerSubType
             {
                 BusinessPartnerMainTypeId = source.BusinessPartnerMainTypeId,
+                BusinessPartnerSubTypeId = source.BusinessPartnerSubTypeId,
                 BusinessPartnerSubTypeCode = source.BusinessPartnerSubTypeCode,
                 BusinessPartnerSubTypeName = source.BusinessPartnerSubTypeName,
                 BusinessPartnerSubTypeDescription = source.BusinessPartnerSubTypeDescription,
@@ -44,6 +45,7 @@ namespace Cares.Web.ModelMappers
             return new BusinessPartnerSubType
             {
                 BusinessPartnerMainTypeId = source.BusinessPartnerMainTypeId,
+                BusinessPartnerSubTypeId = source.BusinessPartnerSubTypeId,
                 BusinessPartnerMainTypeName = source.BusinessPartnerMainType.BusinessPartnerMainTypeName,
                 BusinessPartnerSubTypeCode = source.BusinessPartnerSubTypeCode,
                 BusinessPartnerSubTypeName = source.BusinessPartnerSubTypeName,

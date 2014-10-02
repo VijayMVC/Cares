@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BusinessPartnerRelationshipTypeCodeDuplicationError" xml:space="preserve">
-    <value>Business Partner RelationshipType With same name already exists!</value>
+    <value>Business Partner Relationship Type With same code already exists!</value>
   </data>
   <data name="BusinessPartnerRelationshipTypeIsAssociatedWithBusinessPartnerRelationshipError" xml:space="preserve">
     <value>Business Partner Relationship Type is associated with business partner relationship</value>

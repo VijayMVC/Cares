@@ -5,6 +5,7 @@ using Cares.Interfaces.Helpers;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.IdentityModels;
+using Cares.Repository.Repositories;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Practices.Unity;
@@ -84,6 +85,7 @@ namespace Cares.Implementation
             unityContainer.RegisterType<IDocumentService, DocumentService>();
             unityContainer.RegisterType<IRatingTypeService, RatingTypeService>();
             unityContainer.RegisterType<IBusinessPartnerRelationTypeService, BusinessPartnerRelationTypeService>();
+            unityContainer.RegisterType<IBusinessPartnerSubTypeService, BusinessPartnerSubTypeService>();
 
         }
     }

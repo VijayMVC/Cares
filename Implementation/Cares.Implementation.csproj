@@ -616,6 +616,7 @@
     <EmbeddedResource Include="Resources\BusinessPartner\BusinessPartnerRelationshipType.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BusinessPartnerRelationshipType.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\BusinessPartner\BusinessPartnerSubType.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

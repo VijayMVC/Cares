@@ -61,7 +61,7 @@ namespace Cares.Implementation.Resources.BusinessPartner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Business Partner RelationshipType With same name already exists!.
+        ///   Looks up a localized string similar to Business Partner Relationship Type With same code already exists!.
         /// </summary>
         public static string BusinessPartnerRelationshipTypeCodeDuplicationError {
             get {

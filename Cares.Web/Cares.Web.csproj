@@ -693,6 +693,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BusinessPartnerMainType.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\BusinessPartner\BusinessPartnerRelationshipType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessPartnerRelationshipType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\BusinessPartner\BusinessPartnerRelationshipType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessPartnerRelationshipType.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\BusinessPartner\BusinessPartnerSubType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessPartnerSubType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\BusinessPartner\BusinessPartnerSubType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessPartnerSubType.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\BusinessPartner\Document.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1099,14 +1119,19 @@
     <Compile Include="ViewModels\Common\MessageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\BusinessPartner\Models\occupationType.dataservice.js" />
-    <Content Include="Areas\BusinessPartner\Models\occupationType.model.js" />
-    <Content Include="Areas\BusinessPartner\Models\occupationType.view.js" />
-    <Content Include="Areas\BusinessPartner\Models\occupationType.viewModel.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\bpSubType.dataservice.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\bpSubType.model.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\bpSubType.view.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\bpSubType.viewModel.js" />
     <Content Include="Areas\BusinessPartner\Scripts\BusinessLegalStatus.dataservice.js" />
     <Content Include="Areas\BusinessPartner\Scripts\businessLegalStatus.model.js" />
     <Content Include="Areas\BusinessPartner\Scripts\businessLegalStatus.view.js" />
     <Content Include="Areas\BusinessPartner\Scripts\BusinessLegalStatus.viewModel.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\businessPartner.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\occupationType.dataservice.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\occupationType.model.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\occupationType.view.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\occupationType.viewModel.js" />
     <Content Include="Areas\BusinessPartner\Scripts\ratingType.dataservice.js" />
     <Content Include="Areas\BusinessPartner\Scripts\ratingType.model.js" />
     <Content Include="Areas\BusinessPartner\Scripts\ratingType.view.js" />
@@ -1127,6 +1152,10 @@
     <Content Include="Areas\BusinessPartner\Scripts\businessPartner.viewModel.js" />
     <Content Include="Areas\BusinessPartner\Scripts\businessPartner.dataservice.js" />
     <Content Include="Areas\BusinessPartner\Scripts\businessPartnerWithKoMapping.model.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\relationType.dataservice.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\relationType.model.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\relationType.view.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\relationType.viewModel.js" />
     <Content Include="Areas\Common\Scripts\confirmation.view.js" />
     <Content Include="Areas\Common\Scripts\confirmation.viewModel.js" />
     <Content Include="Areas\Common\Scripts\clientSidePagination.js" />
@@ -1297,6 +1326,18 @@
     </Content>
     <Content Include="Content\BusinessPartnerMainType.min.css">
       <DependentUpon>BusinessPartnerMainType.css</DependentUpon>
+    </Content>
+    <Content Include="Content\BusinessPartnerRelationshipType.css">
+      <DependentUpon>BusinessPartnerRelationshipType.less</DependentUpon>
+    </Content>
+    <Content Include="Content\BusinessPartnerRelationshipType.min.css">
+      <DependentUpon>BusinessPartnerRelationshipType.css</DependentUpon>
+    </Content>
+    <Content Include="Content\BusinessPartnerSubType.css">
+      <DependentUpon>BusinessPartnerSubType.less</DependentUpon>
+    </Content>
+    <Content Include="Content\BusinessPartnerSubType.min.css">
+      <DependentUpon>BusinessPartnerSubType.css</DependentUpon>
     </Content>
     <Content Include="Content\BusinessSegment.css">
       <DependentUpon>BusinessSegment.less</DependentUpon>
@@ -2022,6 +2063,18 @@
     <Content Include="Content\OccupationType.css.map">
       <DependentUpon>OccupationType.css</DependentUpon>
     </Content>
+    <Content Include="Areas\BusinessPartner\Views\Home\RelationType.cshtml" />
+    <Content Include="Areas\BusinessPartner\Views\Home\_RelationTypeEditor.cshtml" />
+    <Content Include="Content\BusinessPartnerRelationshipType.less" />
+    <Content Include="Content\BusinessPartnerRelationshipType.css.map">
+      <DependentUpon>BusinessPartnerRelationshipType.css</DependentUpon>
+    </Content>
+    <Content Include="Areas\BusinessPartner\Views\Home\BusinessPartnerSubType.cshtml" />
+    <Content Include="Areas\BusinessPartner\Views\Home\_BusinessPartnerSubTypeEditor.cshtml" />
+    <Content Include="Content\BusinessPartnerSubType.less" />
+    <Content Include="Content\BusinessPartnerSubType.css.map">
+      <DependentUpon>BusinessPartnerSubType.css</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\Khurram.pubxml" />
     <Content Include="RichTextEditor\plugins\Thumbs.db" />
     <None Include="Scripts\amplify-vsdoc.js" />
@@ -2164,6 +2217,7 @@
     <Folder Include="Areas\Api\Views\WorkPlaceTypeBase\" />
     <Folder Include="Areas\Api\Views\workplaceType\" />
     <Folder Include="Areas\Api\Views\Workplace\" />
+    <Folder Include="Areas\BusinessPartner\Models\" />
     <Folder Include="Areas\Common\Controllers\" />
     <Folder Include="Areas\Common\Models\" />
     <Folder Include="Areas\EmployeeManagement\Models\" />
@@ -2248,6 +2302,22 @@
     <EmbeddedResource Include="Resources\BusinessPartner\BusinessPartnerMainType.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BusinessPartnerMainType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\BusinessPartnerRelationshipType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BusinessPartnerRelationshipType.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\BusinessPartnerRelationshipType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BusinessPartnerRelationshipType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\BusinessPartnerSubType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BusinessPartnerSubType.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\BusinessPartnerSubType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BusinessPartnerSubType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\BusinessPartner\Document.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
