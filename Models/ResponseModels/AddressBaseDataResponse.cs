@@ -3,7 +3,7 @@ using Cares.Models.DomainModels;
 namespace Cares.Models.ResponseModels
 {
     /// <summary>
-    /// Address Base Data Domain Model
+    /// Address Base Data Domain Model Domain Model
     /// </summary>
     public class AddressBaseDataResponse
     {
