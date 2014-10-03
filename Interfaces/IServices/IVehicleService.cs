@@ -1,4 +1,6 @@
-﻿using Cares.Models.DomainModels;
+﻿using System;
+using System.Collections.Generic;
+using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
 
@@ -57,5 +59,15 @@ namespace Cares.Interfaces.IServices
         /// <param name="vehicleId">vehicleId</param>
         /// <returns></returns>
         Vehicle GetVehicleDetail(long vehicleId);
+
+        /// <summary>
+        /// Get Vehicle Info For NRT
+        /// </summary>
+        /// <param name="operationWorkPlaceId"></param>
+        /// <param name="startDtTime"></param>
+        /// <param name="endDtTime"></param>
+        /// <returns></returns>
+        IEnumerable<Vehicle> GetVehicleInfoForNrt(long operationWorkPlaceId, DateTime startDtTime,
+            DateTime endDtTime);
     }
 }

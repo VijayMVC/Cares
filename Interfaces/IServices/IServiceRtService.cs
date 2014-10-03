@@ -48,7 +48,7 @@ namespace Cares.Interfaces.IServices
         /// </summary>
         /// <param name="serviceRtMain"></param>
         /// <returns></returns>
-        ServiceRtMainContent SaveInsuranceRate(ServiceRtMain serviceRtMain);
+        ServiceRtMainContent SaveServiceRate(ServiceRtMain serviceRtMain);
         
         /// <summary>
         /// Calculate Charge for Ra Service Item

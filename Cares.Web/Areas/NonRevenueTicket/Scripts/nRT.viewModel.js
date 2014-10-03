@@ -15,6 +15,8 @@ define("nRT/nRT.viewModel",
                     filterSectionVisilble = ko.observable(false),
                     //Show Update and Cancel button For Update Additional Charge
                     showUpdateCancelBtn = ko.observable(false),
+                    //
+                   isVhicleChecked = ko.observable(false),
                     // #region Arrays
                     //Operations
                     operations = ko.observableArray([]),
@@ -27,9 +29,11 @@ define("nRT/nRT.viewModel",
                     nRTTypes = ko.observableArray([]),
                     //Vehicle Statuses
                     vehicleStatuses = ko.observableArray([]),
+                    //Vehicle Details
+                    vehicleDetails = ko.observableArray([]),
                     // #endregion Arrays
                     // #region Busy Indicators
-                    isLoadingChaufferCharge = ko.observable(false),
+                    isLoadingNrt = ko.observable(false),
                     // #endregion Busy Indicators
                     // #region Observables
                     // Sort On
@@ -100,7 +104,7 @@ define("nRT/nRT.viewModel",
                     },
                     //Get Chauffer Charge By Id
                     getChaufferChargeById = function (chaufferChrg) {
-                        //isLoadingChaufferCharge(true);
+                        //isLoadingNrt(true);
                         //dataservice.getChaufferChargeDetail(model.ChaufferChargeServerMapperForId(chaufferChrg), {
                         //    success: function (data) {
                         //        chaufferCharges.removeAll();
@@ -108,10 +112,10 @@ define("nRT/nRT.viewModel",
                         //            var chaferCharge = new model.ChaufferChargeClientMapper(item);
                         //            chaufferCharges.push(chaferCharge);
                         //        });
-                        //        isLoadingChaufferCharge(false);
+                        //        isLoadingNrt(false);
                         //    },
                         //    error: function () {
-                        //        isLoadingChaufferCharge(false);
+                        //        isLoadingNrt(false);
                         //        toastr.error(ist.resourceText.loadChaufferChargeDetailFailedMsg);
                         //    }
                         //});
@@ -181,14 +185,35 @@ define("nRT/nRT.viewModel",
                     },
                     onAddVehicleDetail = function (nRtMain) {
                         if (doBeforeAddVehicleDetail()) {
-                            toastr.error("test");
-                            //// Ask for confirmation
-                            //confirmation.afterProceed(function () {
-                            //    //deleteChaufferCharge(chaufferChrg);
-                            //});
-                            //confirmation.show();
-                            //Show The Dialog
-                            view.show();
+                            isLoadingNrt(true);
+                            dataservice.getVehiclesDetail({
+                                OperationWorkPlaceId: selectedNrtMain().outLocationId(),
+                                StartDtTime: moment(selectedNrtMain().startDate()).format(ist.utcFormat),
+                                EndDtTime: moment(selectedNrtMain().endDate()).format(ist.utcFormat),
+                            }, {
+                                success: function (data) {
+
+                                    var vehicleDetailList = [];
+                                    _.each(data, function (item) {
+                                        var vehicle = new model.VehicleDetailClientMapper(item);
+                                        vehicleDetailList.push(vehicle);
+                                    });
+                                    ko.utils.arrayPushAll(vehicleDetails(), vehicleDetailList);
+                                    vehicleDetails.valueHasMutated();
+                                    // Ask for confirmation
+                                    afterProceed(function () {
+                                        //deleteChaufferCharge(chaufferChrg);
+                                    });
+                                    //Show The Dialog
+                                    view.show();
+                                    isLoadingNrt(false);
+                                },
+                                error: function () {
+                                    isLoadingNrt(false);
+                                    toastr.error(ist.resourceText.additionalChargeLoadFailedMsg);
+                                }
+                            });
+
                         }
 
                     },
@@ -328,7 +353,16 @@ define("nRT/nRT.viewModel",
                             filteredLocations.valueHasMutated();
                         }
                     }, this),
-                    //Hide Update and cancel Button
+                     //Hide Dialog on selection vehicle
+                    isVhicleCheck = ko.computed(function () {
+                        if (selectedNrtMain() != undefined) {
+                            if (isVhicleChecked()) {
+                                hide();
+                            }
+                        }
+                    }, this),
+
+                   //Hide Update and cancel Button
                         hideUpdateCancelBtn = function () {
                             showUpdateCancelBtn(false);
                             selectedChaufferCharge(undefined);
@@ -378,7 +412,7 @@ define("nRT/nRT.viewModel",
                    },
                         // Get Additional Charges
                    getChaufferCharges = function () {
-                       isLoadingChaufferCharge(true);
+                       isLoadingNrt(true);
                        dataservice.getChaufferCharges({
                            SearchString: searchFilter(),
                            OperationId: operationFilter(),
@@ -392,10 +426,10 @@ define("nRT/nRT.viewModel",
                                pager().totalCount(data.TotalCount);
                                chaufferChargeMains.removeAll();
                                mapChaufferChargeMain(data);
-                               isLoadingChaufferCharge(false);
+                               isLoadingNrt(false);
                            },
                            error: function () {
-                               isLoadingChaufferCharge(false);
+                               isLoadingNrt(false);
                                toastr.error(ist.resourceText.additionalChargeLoadFailedMsg);
                            }
                        });
@@ -412,12 +446,14 @@ define("nRT/nRT.viewModel",
                     sortIsAscHg: sortIsAscHg,
                     filterSectionVisilble: filterSectionVisilble,
                     showUpdateCancelBtn: showUpdateCancelBtn,
+                    isVhicleChecked: isVhicleChecked,
                     //Arrays
                     filteredLocations: filteredLocations,
                     locations: locations,
                     operations: operations,
                     nRTTypes: nRTTypes,
                     vehicleStatuses: vehicleStatuses,
+                    vehicleDetails: vehicleDetails,
                     // Utility Methods
                     initialize: initialize,
                     pager: pager,

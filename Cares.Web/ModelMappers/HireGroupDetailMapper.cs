@@ -1,4 +1,5 @@
-﻿using DomainModel=Cares.Models.DomainModels;
+﻿using System.Linq;
+using DomainModel=Cares.Models.DomainModels;
 using Cares.Web.Models;
 
 namespace Cares.Web.ModelMappers
@@ -31,7 +32,8 @@ namespace Cares.Web.ModelMappers
                         ? source.VehicleCategory.VehicleCategoryCode + " - " + source.VehicleCategory.VehicleCategoryName
                         : string.Empty,
                 ModelYear = source.ModelYear,
-                HireGroupId = source.HireGroupId
+                HireGroupId = source.HireGroupId,
+               
             };
         }
 

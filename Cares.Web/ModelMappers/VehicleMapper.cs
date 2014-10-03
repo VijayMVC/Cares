@@ -37,6 +37,8 @@ namespace Cares.Web.ModelMappers
                 Image = image != null ? image.Image : new byte[] { }
             };
 
+
+
             // If Details are not required
             if (headerOnly)
             {
