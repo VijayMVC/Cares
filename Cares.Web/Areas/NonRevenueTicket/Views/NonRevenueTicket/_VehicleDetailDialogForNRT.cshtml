@@ -10,14 +10,38 @@
                 <div>
                     <form class="form-horizontal">
                         <div>
-                            <span data-bind="text: $root.messageText"></span>
+                            <div class="well">
+                                <table id="tariffTypeTable" class="table table-condensed ">
+                                    <thead>
+                                        <tr>
+                                            <th> <span><span></span></span></th>
+                                            <th class="make"> <span>Vehicle Make<span></span></span></th>
+                                            <th class="model"> <span>Vehicle Model<span></span></span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- ko template: { name: 'itemVehicleTemplate' , foreach: $root.vehicleDetails } -->
+                                        <!-- /ko -->
+                                    </tbody>
+                                </table>
+                                @*<!-- ko with: pager -->
+                                    @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
+                                    <!-- /ko -->*@
+                            </div>
                         </div>
+                        <script id="itemVehicleTemplate" type="text/html">
+                            <tr data-bind="click: $root.selecttariffType">
+                                <td><input type="checkbox" data-bind="checked:$root.isVhicleChecked" /></td>
+                                <td data-bind="text: vehicleMakeCodeName"></td>
+                                <td data-bind="text: vehicleModelCodeName"></td>
+                            </tr>
+                        </script>
                     </form>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="dialog-confirm-no" class="btn btn-default" data-bind="click: $root.cancel">No</button>
-                <button type="button" id="dialog-confirm-yes" class="btn btn-primary" data-bind="click: $root.proceed">Yes</button>
+                @*<button type="button" id="dialog-confirm-no" class="btn btn-default" data-bind="click: $root.cancel">No</button>
+                <button type="button" id="dialog-confirm-yes" class="btn btn-primary" data-bind="click: $root.proceed">Yes</button>*@
             </div>
         </div>
     </div>

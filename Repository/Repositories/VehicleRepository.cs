@@ -97,8 +97,8 @@ namespace Cares.Repository.Repositories
             int toRow = request.PageSize;
             Expression<Func<Vehicle, bool>> query =
                 s => (string.IsNullOrEmpty(request.SearchString) || s.VehicleName.Contains(request.SearchString) || s.PlateNumber.Contains(request.SearchString))
-                    && (string.IsNullOrEmpty(request.HireGroupString) || s.VehicleMake.VehicleMakeCode.Contains(request.HireGroupString) || s.VehicleMake.VehicleMakeName.Contains(request.HireGroupString) 
-                    || s.VehicleModel.VehicleModelCode.Contains(request.HireGroupString)|| s.VehicleModel.VehicleModelName.Contains(request.HireGroupString)
+                    && (string.IsNullOrEmpty(request.HireGroupString) || s.VehicleMake.VehicleMakeCode.Contains(request.HireGroupString) || s.VehicleMake.VehicleMakeName.Contains(request.HireGroupString)
+                    || s.VehicleModel.VehicleModelCode.Contains(request.HireGroupString) || s.VehicleModel.VehicleModelName.Contains(request.HireGroupString)
                     || s.VehicleCategory.VehicleCategoryCode.Contains(request.HireGroupString) || s.VehicleCategory.VehicleCategoryName.Contains(request.HireGroupString))
                     && (request.OperationId == null || s.OperationsWorkPlace.Operation.OperationId == request.OperationId) &&
                      (request.FleetPoolId == null ||
@@ -129,6 +129,27 @@ namespace Cares.Repository.Repositories
         public bool DuplicateVehiclePlateNumber(string plateNumber, long vehiclId)
         {
             return DbSet.Any(x => x.PlateNumber == plateNumber && x.VehicleId != vehiclId);
+        }
+
+        /// <summary>
+        /// Get Vehicle Info For NRT
+        /// </summary>
+        /// <param name="operationWorkPlaceId"></param>
+        /// <param name="startDtTime"></param>
+        /// <param name="endDtTime"></param>
+        /// <returns></returns>
+        public IEnumerable<Vehicle> GetVehicleInfoForNrt(long operationWorkPlaceId, DateTime startDtTime,
+            DateTime endDtTime)
+        {
+            return
+                DbSet.Where(
+                    vehicle =>
+                        vehicle.OperationsWorkPlaceId == operationWorkPlaceId &&
+                        (vehicle.VehicleReservations.Count == 0 ||
+                         !vehicle.VehicleReservations.Any(
+                             vehicleReservation =>
+                                 vehicleReservation.EndDtTime >= startDtTime &&
+                                 vehicleReservation.StartDtTime <= endDtTime)));
         }
         #endregion
     }

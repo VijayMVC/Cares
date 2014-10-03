@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Cares.Models.DomainModels
 {
@@ -93,13 +94,14 @@ namespace Cares.Models.DomainModels
         public long UserDomainKey { get; set; }
 
         #endregion
-        
+
         #region Reference Properties
 
         /// <summary>
         /// Child Insurance Rate
         /// </summary>
-        public virtual InsuranceRt ChildInsuranceRt { get; set; }
+        public virtual ICollection<InsuranceRt> ChildInsuranceRt { get; set; }
+
         /// <summary>
         /// Insurance Rate Main
         /// </summary>

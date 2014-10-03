@@ -36,6 +36,7 @@ namespace Cares.Repository.Repositories
         }
 
         #endregion
+        
         #region Public
 
         /// <summary>
