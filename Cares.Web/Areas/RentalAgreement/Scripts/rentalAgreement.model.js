@@ -418,7 +418,7 @@
             // Vehicle
             vehicle = ko.observable(specifiedVehicle || {}),
             // Ra HireGroup Insurances
-            raHireGroupInsurances = ko.observableArray(specifiedRaHireGroupInsurances ? _.map(specifiedRaHireGroupInsurances, function(raHireGroupInsurance) {
+            raHireGroupInsurances = ko.observableArray(specifiedRaHireGroupInsurances ? _.map(specifiedRaHireGroupInsurances, function (raHireGroupInsurance) {
                 return RentalAgreementHireGroupInsurance.Create(raHireGroupInsurance);
             }) : []),
             // Vehicle Movements
@@ -426,8 +426,8 @@
                 return VehicleMovement.Create(vehicleMovement);
             }) : []),
             // Vehicle Movement Out
-            vehicleMovementOut = ko.computed(function() {
-                var outMovement = vehicleMovements.find(function(vehicleMovement) {
+            vehicleMovementOut = ko.computed(function () {
+                var outMovement = vehicleMovements.find(function (vehicleMovement) {
                     return vehicleMovement.status() === vehicleMovementEnum.outMovement;
                 });
                 return outMovement || VehicleMovement.Create({});
@@ -452,11 +452,10 @@
                     RaMainId: rentalAgreementId(),
                     AllocationStatusKey: allocationStatusKey(),
                     AllocationStatusId: allocationStatusId(),
-                    RaHireGroupInsurances: raHireGroupInsurances.map(function (raHireGroupInsurance) {
-                        if (raHireGroupInsurance.isSelected()) {
-                            return raHireGroupInsurance.convertToServerData();
-                        }
-                        return null;
+                    RaHireGroupInsurances: raHireGroupInsurances.filter(function (raHireGroupInsurance) {
+                        return raHireGroupInsurance.isSelected();
+                    }).map(function (raHireGroupInsurance) {
+                        return raHireGroupInsurance.convertToServerData();
                     }),
                     VehicleMovements: vehicleMovements.map(function (vehicleMovement) {
                         return vehicleMovement.convertToServerData();
@@ -1494,7 +1493,7 @@
 
     // Vehicle Movement Factory
     VehicleMovement.Create = function (source) {
-        return new VehicleMovement(source.VehicleMovementId, source.RaHireGroupId, source.OperationsWorkPlaceId, source.VehicleStatusId, 
+        return new VehicleMovement(source.VehicleMovementId, source.RaHireGroupId, source.OperationsWorkPlaceId, source.VehicleStatusId,
             source.Status, source.DtTime, source.Odometer, source.FuelLevel, source.VehicleCondition, source.VehicleConditionDescription);
     };
 

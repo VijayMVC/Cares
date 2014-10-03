@@ -236,6 +236,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     selectRaHireGroup = function (raHireGroup) {
                         if (selectedRaHireGroup() !== raHireGroup) {
                             selectedRaHireGroup(raHireGroup);
+                            setRaHireGroupInsurances();
                         }
                     },
                     // Set Vehicle Popover Filters
@@ -244,16 +245,20 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         vehicleAllocationStatusFilter(allocationStatusItem ? allocationStatusItem.id : undefined);
                         vehicleOperationsWorkPlaceFilter(rentalAgreement().openLocation());
                     },
+                    // Open Ra Hire Group Insurance Dialog
+                    openRaHireGroupInsuranceDialog = function() {
+                        view.show();
+                    },
                     // Set Ra HireGroup Insurances
                     setRaHireGroupInsurances = function () {
                         insuranceRates.each(function (insuranceRt) {
-                            var raHireGroupIns = selectedRaHireGroup().rentalAgreementHireGroupInsurances.find(function (raHireGroupInsurance) {
+                            var raHireGroupIns = selectedRaHireGroup().raHireGroupInsurances.find(function (raHireGroupInsurance) {
                                 return raHireGroupInsurance.insuranceTypeId() === insuranceRt.id;
                             });
                             if (!raHireGroupIns) {
-                                selectRaHireGroup().rentalAgreementHireGroupInsurances
+                                selectedRaHireGroup().raHireGroupInsurances
                                     .push(model.RentalAgreementHireGroupInsurance.Create({
-                                        InsuranceTypeId: insuranceRates.id,
+                                        InsuranceTypeId: insuranceRt.id,
                                         InsuranceTypeCodeName: insuranceRt.codeName,
                                         StartDtTime: moment(rentalAgreement().start()).toDate(),
                                         EndDtTime: moment(rentalAgreement().end()).toDate()
@@ -568,7 +573,8 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     getVehicleStatusByKey: getVehicleStatusByKey,
                     getAllocationStatusByKey: getAllocationStatusByKey,
                     setVehicleFilters: setVehicleFilters,
-                    setRaHireGroupInsurances: setRaHireGroupInsurances
+                    setRaHireGroupInsurances: setRaHireGroupInsurances,
+                    openRaHireGroupInsuranceDialog: openRaHireGroupInsuranceDialog
                     // Utility Methods
                 };
             })()

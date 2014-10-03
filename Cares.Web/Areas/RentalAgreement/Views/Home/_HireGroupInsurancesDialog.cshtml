@@ -1,0 +1,44 @@
+﻿<div id="hiregroupInsuranceDialog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="hiregroupInsuranceDialogModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">@Cares.Web.Resources.Shared.Common.Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Insurances</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <form class="form-horizontal">
+                        <div>
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Insurance</th>
+                                        <th>Start Dt</th>
+                                        <th>End Dt</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: $root.selectedRaHireGroup().raHireGroupInsurances">
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" class="raHireGroupInsuranceTemplate_popoverContent_isSelected" data-bind="checked: isSelected" />
+                                        </td>
+                                        <td data-bind="text: insuranceTypeCodeName"></td>
+                                        <td>
+                                            <input type="text" class="form-control raHireGroupInsuranceTemplate_popoverContent" data-bind="datetimepicker: start" />
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control raHireGroupInsuranceTemplate_popoverContent" data-bind="datetimepicker: end" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>

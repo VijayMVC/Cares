@@ -20,6 +20,14 @@ define("rentalAgreement/rentalAgreement.view",
                         element.popover('hide');
                     }
                 },
+                // Show the dialog
+                show = function () {
+                    $("#hiregroupInsuranceDialog").modal("show");
+                },
+                // Hide the dialog
+                hide = function () {
+                    $("#hiregroupInsuranceDialog").modal("hide");
+                },
                 // Initialize
                 initialize = function () {
                     if (!bindingRoot) {
@@ -84,11 +92,6 @@ define("rentalAgreement/rentalAgreement.view",
                         viewModel.setVehicleFilters();
                     });
 
-                    // Insurance Popover shows - Clear Selection
-                    $('.insurancePopoverLink').on('show.bs.popover', function () {
-                        setRaHireGroupInsurances();
-                    });
-
                 };
 
             initialize();
@@ -97,7 +100,9 @@ define("rentalAgreement/rentalAgreement.view",
             return {
                 bindingRoot: bindingRoot,
                 closePopover: closePopover,
-                viewModel: viewModel
+                viewModel: viewModel,
+                show: show,
+                hide: hide
             };
         })(rentalAgreementViewModel);
 

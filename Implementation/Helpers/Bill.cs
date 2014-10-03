@@ -202,7 +202,7 @@ namespace Cares.Implementation.Helpers
 
 
                         RaHireGroupInsurance insurance = insuranceRateService.CalculateCharge(RACreatedDate, Convert.ToDateTime(raHireGroupInsurance.StartDtTime),
-                               Convert.ToDateTime(raHireGroupInsurance.EndDtTime), OperationID, raHireGroupInsurance.RaHireGroup.HireGroupDetailId,
+                               Convert.ToDateTime(raHireGroupInsurance.EndDtTime), OperationID, item.HireGroupDetailId,
                                raHireGroupInsurance.InsuranceTypeId, oTariffTypeList);
 
                         MapRaHireGroupInsuranceCharge(raHireGroupInsurance, insurance);

@@ -349,7 +349,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-sm-2"></label>
                                         <div class="col-md-2">
-                                            <a id="insurancePopoverLink" class="insurancePopoverLink glyphicon glyphicon-briefcase" data-bind="bootstrapPopover: { html: true, title: 'Insurance', elementNode: 'raHireGroupInsuranceTemplate', popoverId: 'raHireGroupInsuranceTemplate_popoverContent' }, attr: { title: 'Insurances' }">
+                                            <a id="insurancePopoverLink" class="insurancePopoverLink glyphicon glyphicon-briefcase" data-bind="click: $root.openRaHireGroupInsuranceDialog, attr: { title: 'Insurances' }">
                                             </a>
                                         </div>
                                     </div>
@@ -778,35 +778,7 @@
         </div>
     </script>
 
-    <script type="html/text" id="raHireGroupInsuranceTemplate">
-        <div id="raHireGroupInsuranceTemplate_popoverContent" class="searchFilterResultSection">
-            <table class="table table-condensed">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Insurance</th>
-                        <th>Start Dt</th>
-                        <th>End Dt</th>
-                    </tr>
-                </thead>
-                <tbody data-bind="foreach: $root.selectedRaHireGroup().rentalAgreementHireGroupInsurances">
-                    <tr>
-                        <td>
-                            <input type="checkbox" class="raHireGroupInsuranceTemplate_popoverContent_isSelected" data-bind="checked: isSelected" />
-                        </td>
-                        <td data-bind="text: insuranceTypeCodeName"></td>
-                        <td>
-                            <input type="text" class="form-control" data-bind="datetimepicker: start" />
-                        </td>
-                        <td>
-                            <input type="text" class="form-control" data-bind="datetimepicker: end" />
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </script>
-
+    @Html.Partial("_HireGroupInsurancesDialog")
 
 </div>
 

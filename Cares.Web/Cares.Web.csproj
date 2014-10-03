@@ -2091,6 +2091,7 @@
     <Content Include="Content\BusinessPartnerSubType.css.map">
       <DependentUpon>BusinessPartnerSubType.css</DependentUpon>
     </Content>
+    <Content Include="Areas\RentalAgreement\Views\Home\_HireGroupInsurancesDialog.cshtml" />
     <None Include="Properties\PublishProfiles\Khurram.pubxml" />
     <Content Include="RichTextEditor\plugins\Thumbs.db" />
     <None Include="Scripts\amplify-vsdoc.js" />
@@ -2578,6 +2579,7 @@
     <EmbeddedResource Include="Resources\Shared\Common.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Common.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Products\Product.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
