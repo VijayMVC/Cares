@@ -19,9 +19,9 @@ namespace Cares.Web.ModelMappers
             {
                 RaCustomerDocumentId = source.RaCustomerDocumentId,
                 RaMainId = source.RaMainId,
-                DocumentCode = source.Document.DocumentCode,
+                DocumentCode = source.Document != null ? source.Document.DocumentCode : string.Empty,
                 DocumentId = source.DocumentId,
-                DocumentName = source.Document.DocumentName,
+                DocumentName = source.Document != null ? source.Document.DocumentName : string.Empty,
                 RaCustomerDocumentDescription = source.RaCustomerDocumentDescription
             };
            

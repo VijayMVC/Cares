@@ -117,10 +117,10 @@
                                 <tr>
                                     <td data-bind="text: driverName"></td>
                                     <td data-bind="text: licenseNo"></td>
-                                    <td data-bind="text: licenseExpDt"></td>
+                                    <td data-bind="dateString: licenseExpDt, datePattern: 'DD-MM-YY HH:mm'"></td>
                                     <td data-bind="text: licenseNo"></td>
-                                    <td data-bind="text: start"></td>
-                                    <td data-bind="text: end"></td>
+                                    <td data-bind="dateString: start, datePattern: 'DD-MM-YY HH:mm'"></td>
+                                    <td data-bind="dateString: end, datePattern: 'DD-MM-YY HH:mm'"></td>
                                     <td><a data-bind="click: $parent.removeRaDriver"><span class="glyphicon glyphicon-remove"></span></a></td>
                                 </tr>
                             </tbody>
@@ -628,8 +628,7 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Chauffer Code</th>
-                        <th>Chauffer Name</th>
+                        <th>Chauffer</th>
                         <th>Category</th>
                         <th>License Number</th>
                         <th>License Expiry</th>
@@ -640,11 +639,10 @@
                         <td>
                             <input type="checkbox" class="addChaufferTemplate_popoverContent_isSelected" data-bind="checked: isSelected" />
                         </td>
-                        <td data-bind="text: code"></td>
-                        <td data-bind="text: name"></td>
+                        <td data-bind="text: codeName"></td>
                         <td data-bind="text: desigGrade"></td>
                         <td data-bind="text: licenseNo"></td>
-                        <td data-bind="text: licenseDt"></td>
+                        <td data-bind="dateString: licenseDt, datePattern: 'DD-MM-YY HH:mm'"></td>
                     </tr>
                 </tbody>
             </table>

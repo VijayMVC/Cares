@@ -24,7 +24,7 @@ namespace Cares.Web.ModelMappers
                 ChargedMinute = source.ChargedMinute,
                 InsuranceCharge = source.InsuranceCharge,
                 InsuranceRate = source.InsuranceRate,
-                InsuranceTypeCodeName = source.InsuranceType.InsuranceTypeCode + '-' + source.InsuranceType.InsuranceTypeName,
+                InsuranceTypeCodeName = source.InsuranceType != null ? source.InsuranceType.InsuranceTypeCode + '-' + source.InsuranceType.InsuranceTypeName : string.Empty,
                 StartDtTime = source.StartDtTime,
                 EndDtTime = source.EndDtTime,
                 InsuranceTypeId = source.InsuranceTypeId,

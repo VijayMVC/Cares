@@ -27,7 +27,7 @@ namespace Cares.Web.ModelMappers
                 RentalChargeStartDate = source.RentalChargeStartDate,
                 RentalChargeEndDate = source.RentalChargeEndDate,
                 AllocationStatusId = source.AllocationStatusId,
-                AllocationStatusKey = source.AllocationStatus.AllocationStatusKey,
+                AllocationStatusKey = source.AllocationStatus != null ? source.AllocationStatus.AllocationStatusKey : 0,
                 AllowedMileage = source.AllowedMileage,
                 ChargedDay = source.ChargedDay,
                 ChargedHour = source.ChargedHour,

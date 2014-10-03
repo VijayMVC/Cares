@@ -20,11 +20,11 @@ namespace Cares.Web.ModelMappers
                 RaVehicleCheckListId = source.RaVehicleCheckListId,
                 RaHireGroupId = source.RaHireGroupId,
                 VehicleCheckListId = source.VehicleCheckListId,
-                IsInterior = source.VehicleCheckList.IsInterior,
-                VehicleCheckListCode = source.VehicleCheckList.VehicleCheckListCode,
+                IsInterior = source.VehicleCheckList != null && source.VehicleCheckList.IsInterior,
+                VehicleCheckListCode = source.VehicleCheckList != null ? source.VehicleCheckList.VehicleCheckListCode : string.Empty,
                 Status = source.Status,
-                VehicleCheckListKey = source.VehicleCheckList.VehicleCheckListKey,
-                VehicleCheckListName = source.VehicleCheckList.VehicleCheckListName
+                VehicleCheckListKey = source.VehicleCheckList != null ? source.VehicleCheckList.VehicleCheckListKey : 0,
+                VehicleCheckListName = source.VehicleCheckList != null ? source.VehicleCheckList.VehicleCheckListName : string.Empty
             };
            
         }

@@ -452,6 +452,7 @@
                     RaMainId: rentalAgreementId(),
                     AllocationStatusKey: allocationStatusKey(),
                     AllocationStatusId: allocationStatusId(),
+                    AllocationStatus: { AllocationStatusId: allocationStatusId(), AllocationStatusKey: allocationStatusKey() },
                     RaHireGroupInsurances: raHireGroupInsurances.filter(function (raHireGroupInsurance) {
                         return raHireGroupInsurance.isSelected();
                     }).map(function (raHireGroupInsurance) {
@@ -879,6 +880,7 @@
             id: specifiedId,
             code: specifiedCode,
             name: specifiedName,
+            codeName: specifiedCode + '-' + specifiedName,
             desigGrade: specifiedDesigGradeName,
             desigGradeId: specifiedDesigGradeId,
             licenseNo: specifiedLicenseNo,
@@ -1452,7 +1454,7 @@
 
     // Chauffer Factory
     Chauffer.Create = function (source) {
-        return new Chauffer(source.ChaufferId, source.ChaufferCode, source.DesigGradeCodeName, source.DesigGradeId, source.LicenseNo,
+        return new Chauffer(source.ChaufferId, source.ChaufferCode, source.ChaufferName, source.DesigGradeCodeName, source.DesigGradeId, source.LicenseNo,
             source.LicenseExpDt);
     };
 

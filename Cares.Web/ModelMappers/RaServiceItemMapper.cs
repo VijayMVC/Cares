@@ -28,12 +28,12 @@ namespace Cares.Web.ModelMappers
                 Quantity = source.Quantity,
                 RaServiceItemDescription = source.RaServiceItemDescription,
                 ServiceCharge = source.ServiceCharge,
-                ServiceItemCode = source.ServiceItem.ServiceItemCode,
+                ServiceItemCode = source.ServiceItem != null ? source.ServiceItem.ServiceItemCode : string.Empty,
                 ServiceItemId = source.ServiceItemId,
-                ServiceItemName = source.ServiceItem.ServiceItemName,
+                ServiceItemName = source.ServiceItem != null ? source.ServiceItem.ServiceItemName : string.Empty,
                 ServiceRate = source.ServiceRate,
-                ServiceTypeCode = source.ServiceItem.ServiceType.ServiceTypeCode,
-                ServiceTypeName = source.ServiceItem.ServiceType.ServiceTypeName
+                ServiceTypeCode = source.ServiceItem != null && source.ServiceItem.ServiceType != null ? source.ServiceItem.ServiceType.ServiceTypeCode : string.Empty,
+                ServiceTypeName = source.ServiceItem != null && source.ServiceItem.ServiceType != null ? source.ServiceItem.ServiceType.ServiceTypeName : string.Empty
             };
            
         }

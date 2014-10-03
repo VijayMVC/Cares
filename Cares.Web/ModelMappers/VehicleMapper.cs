@@ -13,7 +13,7 @@ namespace Cares.Web.ModelMappers
         /// </summary>
         public static Vehicle CreateFrom(this DomainModels.Vehicle source, bool headerOnly = true)
         {
-            DomainModels.VehicleImage image = source.HireGroup != null ?
+            DomainModels.VehicleImage image = source.HireGroup != null && source.HireGroup.HireGroupDetails != null  ?
                 source.HireGroup.HireGroupDetails.Select(hg => hg.VehicleImageHireGroupDetails.Select(hgd => hgd.VehicleImage)
                     .FirstOrDefault()).FirstOrDefault() : new DomainModels.VehicleImage();
 
@@ -26,13 +26,13 @@ namespace Cares.Web.ModelMappers
                 PlateNumber = source.PlateNumber,
                 CurrentOdometer = source.CurrentOdometer,
                 VehicleCategoryId = source.VehicleCategoryId,
-                VehicleCategory = source.VehicleCategory.CreateFrom(),
+                VehicleCategory = source.VehicleCategory != null ? source.VehicleCategory.CreateFrom() : new VehicleCategoryDropDown(),
                 VehicleMakeId = source.VehicleMakeId,
-                VehicleMake = source.VehicleMake.CreateFrom(),
+                VehicleMake = source.VehicleMake != null ? source.VehicleMake.CreateFrom() : new VehicleMakeDropDown(),
                 VehicleModelId = source.VehicleModelId,
-                VehicleModel = source.VehicleModel.CreateFrom(),
+                VehicleModel = source.VehicleModel != null ? source.VehicleModel.CreateFrom() : new VehicleModelDropDown(),
                 VehicleStatusId = source.VehicleStatusId,
-                VehicleStatus = source.VehicleStatus.CreateFrom(),
+                VehicleStatus = source.VehicleStatus != null ? source.VehicleStatus.CreateFrom() : new VehicleStatus(),
                 ModelYear = source.ModelYear,
                 Image = image != null ? image.Image : new byte[] { }
             };
@@ -53,11 +53,12 @@ namespace Cares.Web.ModelMappers
             vehicle.FuelTypeId = source.FuelTypeId;
             vehicle.FuelType = source.FuelType.CreateFrom();
             vehicle.TransmissionTypeId = source.TransmissionTypeId;
-            vehicle.TransmissionType = source.TransmissionType.CreateFrom();
-            vehicle.OperationId = (int)source.OperationsWorkPlace.OperationId;
-            vehicle.Operation = source.OperationsWorkPlace.Operation.CreateFrom();
+            vehicle.TransmissionType = source.TransmissionType != null ? source.TransmissionType.CreateFrom() : new TransmissionType();
+            vehicle.OperationId = source.OperationsWorkPlace != null ? (int)source.OperationsWorkPlace.OperationId : 0;
+            vehicle.Operation = source.OperationsWorkPlace != null && source.OperationsWorkPlace.Operation != null ? 
+                source.OperationsWorkPlace.Operation.CreateFrom() : new OperationDropDown();
             vehicle.OperationsWorkPlaceId = source.OperationsWorkPlaceId;
-            vehicle.OperationsWorkPlace = source.OperationsWorkPlace.CreateFrom();
+            vehicle.OperationsWorkPlace = source.OperationsWorkPlace != null ? source.OperationsWorkPlace.CreateFrom() : new OperationsWorkPlace();
             vehicle.RegistrationDate = source.RegistrationDate;
             vehicle.RegistrationExpiryDate = source.RegistrationExpiryDate;
             vehicle.VehicleCondition = source.VehicleCondition;
