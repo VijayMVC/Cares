@@ -483,6 +483,19 @@ namespace Cares.Implementation.Services
         {
             return vehicleRepository.Find(vehicleId);
         }
+
+        
+        /// <summary>
+        /// Get Vehicle Info For NRT
+        /// </summary>
+        /// <param name="operationWorkPlaceId"></param>
+        /// <param name="startDtTime"></param>
+        /// <param name="endDtTime"></param>
+        /// <returns></returns>
+        public IEnumerable<Vehicle> GetVehicleInfoForNrt(long operationWorkPlaceId , DateTime startDtTime , DateTime endDtTime )
+        {
+           return vehicleRepository.GetVehicleInfoForNrt(operationWorkPlaceId, startDtTime,endDtTime);
+        }
         #endregion
 
     }

@@ -16,9 +16,9 @@ namespace Cares.Web.Areas.Api.Controllers
     // ReSharper disable once InconsistentNaming
     public class GetVehiclesForNRTController : ApiController
     {
-         #region Private
+        #region Private
 
-        private readonly IHireGroupService hireGroupService;
+        private readonly IVehicleService vehicleService;
 
         #endregion
 
@@ -26,13 +26,13 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public GetVehiclesForNRTController(IHireGroupService hireGroupService)
+        public GetVehiclesForNRTController(IVehicleService vehicleService)
         {
-            if (hireGroupService == null)
+            if (vehicleService == null)
             {
-                throw new ArgumentNullException("hireGroupService");
+                throw new ArgumentNullException("vehicleService");
             }
-            this.hireGroupService = hireGroupService;
+            this.vehicleService = vehicleService;
         }
 
         #endregion
@@ -42,16 +42,17 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Get Hire Groups by Hire Group Code, Vehicle Make / Category / Model / Model Year
         /// </summary>
-        public IEnumerable<HireGroupDetailContent> Post(string searchText, long operationWorkPlaceId, DateTime startDtTime, DateTime endDtTime)
+        public IEnumerable<VehicleListViewContent> Post(VehicleSeacrhRequestForNRT request)
         {
-            if (string.IsNullOrEmpty(searchText) || operationWorkPlaceId == 0)
+            if (request == null)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
 
-            return hireGroupService.GetByCodeAndVehicleInfo(searchText, operationWorkPlaceId, startDtTime, endDtTime)
-                .Select(hg => hg.CreateFrom());
+            return vehicleService.GetVehicleInfoForNrt(request.OperationWorkPlaceId, request.StartDtTime, request.EndDtTime)
+                .Select(hg => hg.CreateFromListViewContent());
         }
+
         #endregion
     }
 }

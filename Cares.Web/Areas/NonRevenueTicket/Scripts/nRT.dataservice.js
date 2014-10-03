@@ -17,10 +17,17 @@ define("nRT/nRT.dataservice", function () {
                         dataType: 'json',
                         type: 'GET'
                     });
-
+                    // Define request to Get Vehicles Detail 
+                    amplify.request.define('getVehiclesDetail', 'ajax', {
+                        url: ist.siteUrl + '/Api/GetVehiclesForNRT',
+                        dataType: 'json',
+                        decoder: amplify.request.decoders.istStatusDecoder,
+                        type: 'POST'
+                    });
                     isInitialized = true;
                 }
             },
+             
 
         // Non Revenue Ticket base data
         // ReSharper disable once InconsistentNaming
@@ -31,9 +38,20 @@ define("nRT/nRT.dataservice", function () {
                 success: callbacks.success,
                 error: callbacks.error,
             });
+        },
+        // Get Vehicles Detail 
+        getVehiclesDetail = function (param, callbacks) {
+            initialize();
+            return amplify.request({
+                resourceId: 'getVehiclesDetail',
+                success: callbacks.success,
+                error: callbacks.error,
+                data: param
+            });
         };
         return {
             getNRTBase: getNRTBase,
+            getVehiclesDetail: getVehiclesDetail,
         };
     })();
 

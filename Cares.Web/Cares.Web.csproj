@@ -614,6 +614,7 @@
     <Compile Include="Models\VehicleOtherDetail.cs" />
     <Compile Include="Models\VehiclePurchaseInfo.cs" />
     <Compile Include="Models\HireGroupVehiclesResponse.cs" />
+    <Compile Include="Models\VehicleSeacrhRequestForNRT.cs" />
     <Compile Include="Models\AllocationStatus.cs" />
     <Compile Include="Models\VehicleStatus.cs" />
     <Compile Include="Models\VehicleSearchResponse.cs" />

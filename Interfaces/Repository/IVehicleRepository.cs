@@ -1,4 +1,6 @@
-﻿using Cares.Models.DomainModels;
+﻿using System;
+using System.Collections.Generic;
+using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
 
@@ -19,6 +21,16 @@ namespace Cares.Interfaces.Repository
         /// Get Vehicle List Based On Search Criteria
         /// </summary>
         GetVehicleResponse GetVehicles(VehicleSearchRequest request);
+
+        /// <summary>
+        /// Get Vehicle Info For NRT
+        /// </summary>
+        /// <param name="operationWorkPlaceId"></param>
+        /// <param name="startDtTime"></param>
+        /// <param name="endDtTime"></param>
+        /// <returns></returns>
+        IEnumerable<Vehicle> GetVehicleInfoForNrt(long operationWorkPlaceId, DateTime startDtTime,
+            DateTime endDtTime);
 
         /// <summary>
         /// Load Dependencies

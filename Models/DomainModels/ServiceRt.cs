@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Cares.Models.DomainModels
 {
@@ -109,7 +110,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Child Service Rt
         /// </summary>
-        public virtual ServiceRt ChildServiceRt { get; set; }
+        public virtual ICollection<ServiceRt> ChildServiceRt { get; set; }
 
         /// <summary>
         /// Service Rate Main

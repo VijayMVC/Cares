@@ -225,10 +225,63 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         };
         return self;
     };
+    //Vehicle List View entity
+    // ReSharper disable once InconsistentNaming
+    var Vehicle = function () {
+        // ReSharper restore InconsistentNaming
+        var // Reference to this object
+            self,
+            // Unique key
+            vehicleId = ko.observable(),
+            //  Vehicle Name
+            vehicleName = ko.observable(),
+            //plate Number
+            plateNumber = ko.observable(),
+            //Current Odometer
+            currentOdometer = ko.observable(),
+            //Fuel Level
+            fuelLevel = ko.observable(),
+            //Model Year
+            modelYear = ko.observable(),
+            //Vehicle Make Code Name
+            vehicleMakeCodeName = ko.observable(),
+            //Vehicle Status Code Name
+            vehicleStatusCodeName = ko.observable(),
+            //Fleet Pool Code Name
+            fleetPoolCodeName = ko.observable(),
+            //
+            vehicleModelCodeName = ko.observable(),
+            //Location
+            location = ko.observable();
 
+        self = {
+            vehicleId: vehicleId,
+            vehicleName: vehicleName,
+            plateNumber: plateNumber,
+            currentOdometer: currentOdometer,
+            fuelLevel: fuelLevel,
+            modelYear: modelYear,
+            vehicleMakeCodeName: vehicleMakeCodeName,
+            vehicleStatusCodeName: vehicleStatusCodeName,
+            fleetPoolCodeName: fleetPoolCodeName,
+            vehicleModelCodeName: vehicleModelCodeName,
+            location: location
+        };
+        return self;
+    };
+    //Convert Server To Client
+    var VehicleDetailClientMapper = function (source) {
+        var vehicle = new Vehicle();
+        vehicle.vehicleId(source.VehicleId === null ? undefined : source.VehicleId);
+        vehicle.vehicleMakeCodeName(source.VehicleMakeCodeName === null ? undefined : source.VehicleMakeCodeName);
+        vehicle.vehicleModelCodeName(source.OperationCodeName === null ? undefined : source.OperationCodeName);
+        return vehicle;
+    };
     return {
         NRTMain: NRTMain,
+        Vehicle: Vehicle,
         VehicleDetail: VehicleDetail,
         MaintenanceActivity: MaintenanceActivity,
+        VehicleDetailClientMapper: VehicleDetailClientMapper,
     };
 });

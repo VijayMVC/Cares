@@ -134,7 +134,7 @@ namespace Cares.Implementation.Services
         /// </summary>
         /// <param name="serviceRtMain"></param>
         /// <returns></returns>
-        public ServiceRtMainContent SaveInsuranceRate(ServiceRtMain serviceRtMain)
+        public ServiceRtMainContent SaveServiceRate(ServiceRtMain serviceRtMain)
         {
             TariffType tariffType = tariffTypeRepository.Find(long.Parse(serviceRtMain.TariffTypeCode));
             serviceRtMain.TariffTypeCode = tariffType.TariffTypeCode;
