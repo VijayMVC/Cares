@@ -18,6 +18,8 @@ namespace Cares.Models.ResponseModels
             PaymentTerms = new List<PaymentTerm>();
             OperationsWorkPlaces = new List<OperationsWorkPlace>();
             Operations = new List<Operation>();
+            VehicleStatuses = new List<VehicleStatus>();
+            AllocationStatuses = new List<AllocationStatus>();
         }
 
         #endregion
@@ -38,6 +40,16 @@ namespace Cares.Models.ResponseModels
         /// Operations 
         /// </summary>
         public IEnumerable<Operation> Operations { get; set; }
+
+        /// <summary>
+        /// Vehicle Statuses 
+        /// </summary>
+        public IEnumerable<VehicleStatus> VehicleStatuses { get; set; }
+
+        /// <summary>
+        /// Allocation Statuses 
+        /// </summary>
+        public IEnumerable<AllocationStatus> AllocationStatuses { get; set; }
 
         #endregion
     }

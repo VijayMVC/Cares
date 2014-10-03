@@ -391,6 +391,7 @@
     <Compile Include="ModelMappers\ServiceRtMapper.cs" />
     <Compile Include="ModelMappers\ServiceTypeMapper.cs" />
     <Compile Include="ModelMappers\VehicleCheckListMapper.cs" />
+    <Compile Include="ModelMappers\AllocationStatusMapper.cs" />
     <Compile Include="ModelMappers\WorkLocationMapper.cs" />
     <Compile Include="ModelMappers\WorkplaceMapper.cs" />
     <Compile Include="ModelMappers\WorkplaceTypeMapper.cs" />
@@ -600,6 +601,7 @@
     <Compile Include="Models\VehiclePurchaseInfo.cs" />
     <Compile Include="Models\HireGroupVehiclesResponse.cs" />
     <Compile Include="Models\VehicleSeacrhRequestForNRT.cs" />
+    <Compile Include="Models\AllocationStatus.cs" />
     <Compile Include="Models\VehicleStatus.cs" />
     <Compile Include="Models\VehicleSearchResponse.cs" />
     <Compile Include="Models\HireGroupDataDetailResponse.cs" />

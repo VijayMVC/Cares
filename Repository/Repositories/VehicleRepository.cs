@@ -64,26 +64,30 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public GetVehicleResponse GetByHireGroup(VehicleSearchRequest request)
         {
-            int fromRow = (request.PageNo - 1) * request.PageSize;
-            int toRow = request.PageSize;
-            Expression<Func<Vehicle, bool>> query = vehicle => (vehicle.HireGroupId == request.HireGroupId);
+            Expression<Func<Vehicle, bool>> query = vehicle => 
+                (vehicle.HireGroup.HireGroupDetails.Any(hgd => hgd.HireGroupDetailId == request.HireGroupDetailId)) &&
+                (vehicle.OperationsWorkPlaceId == request.OperationsWorkPlaceId) &&
+                (vehicle.VehicleReservations.Count == 0 || 
+                !vehicle.VehicleReservations.Any(vehicleReservation => vehicleReservation.EndDtTime >= request.StarDtTime && 
+                    vehicleReservation.StartDtTime <= request.EndDtTime));
 
             IEnumerable<Vehicle> vehicles = request.IsAsc ? DbSet
                 .Include(vehicle => vehicle.HireGroup)
+                .Include(vehicle => vehicle.HireGroup.HireGroupDetails)
                 .Include(vehicle => vehicle.VehicleCategory)
                 .Include(vehicle => vehicle.VehicleMake)
                 .Include(vehicle => vehicle.VehicleModel)
                 .Include(vehicle => vehicle.VehicleStatus)
-                .Where(vehicle => vehicle.HireGroupId == request.HireGroupId)
-                .OrderBy(vehicleOrderByClause[request.VehicleOrderBy]).Skip(fromRow).Take(toRow).ToList() :
+                .Where(query)
+                .OrderBy(vehicleOrderByClause[request.VehicleOrderBy]).ToList() :
                 DbSet
                 .Include(vehicle => vehicle.HireGroup)
                 .Include(vehicle => vehicle.VehicleCategory)
                 .Include(vehicle => vehicle.VehicleMake)
                 .Include(vehicle => vehicle.VehicleModel)
                 .Include(vehicle => vehicle.VehicleStatus)
-                .Where(vehicle => vehicle.HireGroupId == request.HireGroupId)
-                .OrderByDescending(vehicleOrderByClause[request.VehicleOrderBy]).Skip(fromRow).Take(toRow).ToList();
+                .Where(query)
+                .OrderByDescending(vehicleOrderByClause[request.VehicleOrderBy]).ToList();
 
             return new GetVehicleResponse { Vehicles = vehicles, TotalCount = DbSet.Count(query) };
         }

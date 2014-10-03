@@ -300,16 +300,16 @@
                         <a class="headingLink" data-toggle="collapse" data-parent="#accordion3" href="#collapseSeven">
                             Vehicles
                         </a>
-                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Vehicles', elementNode: 'vehicleTemplate', popoverId: 'vehicleTemplate_popoverContent' }, attr:{ title: 'Add Vehicles' }"></a>
+                        <a id="addVehiclesPopoverLink" class="glyphicon glyphicon-chevron-right float-right" data-bind="bootstrapPopover: { html: true, title: 'Add Vehicles', elementNode: 'vehicleTemplate', popoverId: 'vehicleTemplate_popoverContent' }, attr:{ title: 'Add Vehicles' }"></a>
                     </h4>
                 </div>
                 <div id="collapseSeven" class="panel-collapse collapse in">
-                    <div class="panel-body">
+                    <div class="panel-body customPanel">
                         <form id="vehicle" class="form-horizontal" data-bind="with: rentalAgreement">
                             <!-- ko foreach: rentalAgreementHireGroups -->
-                            <div class="panel panel-default">
-                                <div class="panel-heading" data-bind="with: vehicle">
-                                    <div class="form-group">
+                            <div class="panel panel-default" data-bind="click: $root.selectRaHireGroup">
+                                <div class="panel-heading">
+                                    <div class="form-group" data-bind="with: vehicle">
                                         <label for="vehiclePlateNumber" class="control-label col-sm-2">Plate #</label>
                                         <div class="col-md-2">
                                             <span id="vehiclePlateNumber" data-bind="text: plateNumber"></span>
@@ -327,21 +327,29 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <!-- ko with: vehicle -->
                                         <label for="vehicleModel" class="control-label col-sm-2">Model</label>
                                         <div class="col-md-2">
                                             <span id="vehicleModel" data-bind="text: vehicleModel"></span>
                                         </div>
                                         <label for="vehicleCategory" class="control-label col-sm-2">Category</label>
                                         <div class="col-md-2">
-                                            <span id="vehicleCategory" data-bind="text: category"></span>
+                                            <span id="vehicleCategory" data-bind="text: vehicleCategory"></span>
                                         </div>
                                         <label for="modelYear" class="control-label col-sm-2">Model Year</label>
                                         <div class="col-md-2">
                                             <span id="modelYear" data-bind="text: modelYear"></span>
                                         </div>
+                                        <!-- /ko -->
                                         <div class="col-md-2">
-                                            <a data-bind="click: openVehicleMovement, attr: { title: 'Movement Details' }">
-                                                <span class="glyphicon glyphicon-road"></span>
+                                            <a id="vehicleMovementPopoverLink" class="glyphicon glyphicon-road" data-bind="bootstrapPopover: { html: true, title: 'Movement Details', elementNode: 'vehicleMovementTemplate', popoverId: 'vehicleMovementTemplate_popoverContent' }, attr: { title: 'Movement Details' }">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2"></label>
+                                        <div class="col-md-2">
+                                            <a id="insurancePopoverLink" class="insurancePopoverLink glyphicon glyphicon-briefcase" data-bind="bootstrapPopover: { html: true, title: 'Insurance', elementNode: 'raHireGroupInsuranceTemplate', popoverId: 'raHireGroupInsuranceTemplate_popoverContent' }, attr: { title: 'Insurances' }">
                                             </a>
                                         </div>
                                     </div>
@@ -411,10 +419,10 @@
                             <div class="form-group">
                                 <label for="rentalAgreementOutLocation" class="control-label col-sm-2">Location</label>
                                 <div class="col-md-5">
-                                    <select class="form-control" id="rentalAgreementOutLocation" data-bind="options: availableLocations, optionsCaption: '<Out Location>', optionsText: 'code', optionsValue: 'id', value: openLocation"></select>
+                                    <select class="form-control" id="rentalAgreementOutLocation" data-bind="options: $root.availableLocations, optionsCaption: '<Out Location>', optionsText: 'code', optionsValue: 'id', value: openLocation"></select>
                                 </div>
                                 <div class="col-md-4" id="returnLocationControl">
-                                    <select class="form-control" id="rentalAgreementReturnLocation" data-bind="options: availableLocations, optionsCaption: '<Return Location>', optionsText: 'code', optionsValue: 'id', value: closeLocation"></select>
+                                    <select class="form-control" id="rentalAgreementReturnLocation" data-bind="options: $root.availableLocations, optionsCaption: '<Return Location>', optionsText: 'code', optionsValue: 'id', value: closeLocation"></select>
                                 </div>
                             </div>
                             <div class="form-group" data-bind="with: $parent">
@@ -493,6 +501,26 @@
         <div id="vehicleTemplate_popoverContent" class="searchFilterResultSection">
             <div>
                 <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Start Dt/Time</label>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control vehicleTemplate_popoverContent_outDtTime" data-bind="datetimepicker: vehicleStartDtFilter" />
+                        </div>
+                        <label class="control-label col-sm-2">End Dt/Time</label>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control vehicleTemplate_popoverContent_inDtTime" data-bind="datetimepicker: vehicleEndDtFilter" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Allocation Status</label>
+                        <div class="col-md-3">
+                            <select class="form-control vehicleTemplate_popoverContent_allocationStatus" data-bind="options: $root.allocationStatuses, optionsCaption: '<Status>', optionsText: 'codeName', optionsValue: 'id', value: vehicleAllocationStatusFilter"></select>
+                        </div>
+                        <label class="control-label col-sm-2">Out Location</label>
+                        <div class="col-md-3">
+                            <select class="form-control vehicleTemplate_popoverContent_outLocation" data-bind="options: $root.availableLocations, optionsCaption: '<Location>', optionsText: 'code', optionsValue: 'id', value: vehicleOperationsWorkPlaceFilter"></select>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <div class="col-md-4">
                             <button class="btn btn-success vehicleTemplate_popoverContent_searchVehicleButton"
@@ -678,6 +706,104 @@
                     Add
                 </button>
             </div>
+        </div>
+    </script>
+
+    <script type="html/text" id="vehicleMovementTemplate">
+        <div id="vehicleMovementTemplate_popoverContent">
+            <div>
+                <form class="form-horizontal" data-bind="with: $root.selectedRaHireGroup">
+                    <div class="form-group" data-bind="with: vehicle">
+                        <label class="control-label col-sm-2">Plate #</label>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control vehicleMovementTemplate_popoverContent_plateNo" data-bind="value: plateNumber" />
+                        </div>
+                        <label class="control-label col-sm-2">Tank Size</label>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control vehicleMovementTemplate_popoverContent_tankSize" data-bind="value: tankSize" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Out Dt/Time</label>
+                        <div class="col-md-3" data-bind="with: vehicleMovementOut">
+                            <input type="text" class="form-control vehicleMovementTemplate_popoverContent_outDtTime" data-bind="datetimepicker: start" />
+                        </div>
+                        <label class="control-label col-sm-2">In Dt/Time</label>
+                        <div class="col-md-3" data-bind="with: vehicleMovementIn">
+                            <input type="text" class="form-control vehicleMovementTemplate_popoverContent_inDtTime" data-bind="datetimepicker: start" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Out Location</label>
+                        <div class="col-md-3" data-bind="with: vehicleMovementOut">
+                            <select class="form-control vehicleMovementTemplate_popoverContent_outLocation" data-bind="options: $root.availableLocations, optionsCaption: '<Operation>', optionsText: 'code', optionsValue: 'id', value: operationsWorkPlaceId"></select>
+                        </div>
+                        <label class="control-label col-sm-2">In Location</label>
+                        <div class="col-md-3" data-bind="with: vehicleMovementIn">
+                            <select class="form-control vehicleMovementTemplate_popoverContent_inLocation" data-bind="options: $root.availableLocations, optionsCaption: '<Operation>', optionsText: 'code', optionsValue: 'id', value: operationsWorkPlaceId"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Odometer Out</label>
+                        <div class="col-md-3" data-bind="with: vehicleMovementOut">
+                            <input type="text" class="form-control vehicleMovementTemplate_popoverContent_odometerOut" data-bind="value: odometer" />
+                        </div>
+                        <label class="control-label col-sm-2">Odometer In</label>
+                        <div class="col-md-3" data-bind="with: vehicleMovementIn">
+                            <input type="text" class="form-control vehicleMovementTemplate_popoverContent_odometerIn" data-bind="value: odometer" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Fuel Out</label>
+                        <div class="col-md-3" data-bind="with: vehicleMovementOut">
+                            <input type="text" class="form-control vehicleMovementTemplate_popoverContent_fuelOut" data-bind="value: fuelLevel" />
+                        </div>
+                        <label class="control-label col-sm-2">Fuel In</label>
+                        <div class="col-md-3" data-bind="with: vehicleMovementIn">
+                            <input type="text" class="form-control vehicleMovementTemplate_popoverContent_fuelIn" data-bind="value: fuelLevel" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Vehicle Status</label>
+                        <div class="col-md-3" data-bind="with: vehicleMovementOut">
+                            <select class="form-control vehicleMovementTemplate_popoverContent_vehicleStatusOut" data-bind="options: $root.vehicleStatuses, optionsCaption: '<Status>', optionsText: 'codeName', optionsValue: 'id', value: vehicleStatusId"></select>
+                        </div>
+                        <label class="control-label col-sm-2">Vehicle Status</label>
+                        <div class="col-md-3" data-bind="with: vehicleMovementIn">
+                            <select class="form-control vehicleMovementTemplate_popoverContent_vehicleStatusIn" data-bind="options: $root.vehicleStatuses, optionsCaption: '<Status>', optionsText: 'codeName', optionsValue: 'id', value: vehicleStatusId"></select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </script>
+
+    <script type="html/text" id="raHireGroupInsuranceTemplate">
+        <div id="raHireGroupInsuranceTemplate_popoverContent" class="searchFilterResultSection">
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Insurance</th>
+                        <th>Start Dt</th>
+                        <th>End Dt</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: $root.selectedRaHireGroup().rentalAgreementHireGroupInsurances">
+                    <tr>
+                        <td>
+                            <input type="checkbox" class="raHireGroupInsuranceTemplate_popoverContent_isSelected" data-bind="checked: isSelected" />
+                        </td>
+                        <td data-bind="text: insuranceTypeCodeName"></td>
+                        <td>
+                            <input type="text" class="form-control" data-bind="datetimepicker: start" />
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" data-bind="datetimepicker: end" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </script>
 
