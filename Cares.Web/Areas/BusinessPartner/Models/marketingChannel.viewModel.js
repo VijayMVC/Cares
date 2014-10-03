@@ -1,16 +1,16 @@
 ﻿/*
-    Module with the view model for the Document Group
+    Module with the view model for the Marketing Channel
 */
-define("documentGroup/documentGroup.viewModel",
-    ["jquery", "amplify", "ko", "documentGroup/documentGroup.dataservice", "documentGroup/documentGroup.model",
+define("marketingChannel/marketingChannel.viewModel",
+    ["jquery", "amplify", "ko", "marketingChannel/marketingChannel.dataservice", "marketingChannel/marketingChannel.model",
     "common/confirmation.viewModel", "common/pagination"],
     function($, amplify, ko, dataservice, model, confirmation, pagination) {
         var ist = window.ist || {};
-        ist.DocumentGroup = {
+        ist.MarketingChannel = {
             viewModel: (function() { 
                 var view,
-                    //array to save Document Groups
-                    documentGroups = ko.observableArray([]),
+                    //array to save Marketing Channels
+                    marketingChannels = ko.observableArray([]),
                     //pager%
                     pager = ko.observable(),
                     //org code filter in filter sec
@@ -20,46 +20,46 @@ define("documentGroup/documentGroup.viewModel",
                     //Assending  / Desending
                     sortIsAsc = ko.observable(true),
                     //to control the visibility of editor sec
-                    isDocumentGroupEditorVisible = ko.observable(false),
+                    isMarketingChannelEditorVisible = ko.observable(false),
                     //to control the visibility of filter ec
                     filterSectionVisilble = ko.observable(false),
                      // Editor View Model
-                    editorViewModel = new ist.ViewModel(model.DocumentGroupDetail),
-                    // Selected Document Group
-                    selectedDocumentGroup = editorViewModel.itemForEditing,
+                    editorViewModel = new ist.ViewModel(model.MarketingChannelGroupDetail),
+                    // Selected Marketing Channel
+                    selectedMarketingChannel = editorViewModel.itemForEditing,
                     //save button handler
                     onSavebtn = function() {
-                        if (dobeforeDocumentGroup())
-                            saveDocumentGroup(selectedDocumentGroup());
+                        if (dobeforeMarketingChannel())
+                            saveMarketingChannel(selectedMarketingChannel());
                 },
-                //Save Document Group
-                    saveDocumentGroup = function (item) {
-                        dataservice.saveDocumentGroup(item.convertToServerData(), {
+                //Save Marketing Channel
+                    saveMarketingChannel = function (item) {
+                        dataservice.saveMarketingChannel(item.convertToServerData(), {
                         success: function(dataFromServer) {
-                            var newItem = model.documentGroupServertoClinetMapper(dataFromServer);
+                            var newItem = model.marketingChannelServertoClinetMapper(dataFromServer);
                             if (item.id() !== undefined) {
-                                var newObjtodelete = documentGroups.find(function(temp) {
+                                var newObjtodelete = marketingChannels.find(function(temp) {
                                     return temp.id() == newItem.id();
                                 });
-                                documentGroups.remove(newObjtodelete);
-                                documentGroups.push(newItem);
+                                marketingChannels.remove(newObjtodelete);
+                                marketingChannels.push(newItem);
                             } else
-                                documentGroups.push(newItem);
-                            isDocumentGroupEditorVisible(false);
-                            toastr.success(ist.resourceText.DocumentGroupSuccessfullySavedMessage);
+                                marketingChannels.push(newItem);
+                            isMarketingChannelEditorVisible(false);
+                            toastr.success(ist.resourceText.MarketingChannelSuccessfullySavedMessage);
                         },
                         error: function(exceptionMessage, exceptionType) {
                             if (exceptionType === ist.exceptionType.CaresGeneralException)
                                 toastr.error(exceptionMessage);
                             else
-                                toastr.error(ist.resourceText.FailedToSaveDocumentGroupError);
+                                toastr.error(ist.resourceText.FailedToSaveMarketingChannelError);
                         }
                     });
                 },
                 //validation check 
-                    dobeforeDocumentGroup = function () {
-                    if (!selectedDocumentGroup().isValid()) {
-                        selectedDocumentGroup().errors.showAllMessages();
+                    dobeforeMarketingChannel = function () {
+                    if (!selectedMarketingChannel().isValid()) {
+                        selectedMarketingChannel().errors.showAllMessages();
                         return false;
                     }
                     return true;
@@ -67,55 +67,55 @@ define("documentGroup/documentGroup.viewModel",
                 //cancel button handler
                     onCancelbtn = function() {
                     editorViewModel.revertItem();
-                    isDocumentGroupEditorVisible(false);
+                    isMarketingChannelEditorVisible(false);
                 },
-                // create new Document Group
+                // create new Marketing Channel
                     onCreateForm = function () {
-                    var documentGroup = new model.DocumentGroupDetail();
-                    editorViewModel.selectItem(documentGroup);
-                    isDocumentGroupEditorVisible(true);
+                    var marketingChannel = new model.MarketingChannelGroupDetail();
+                    editorViewModel.selectItem(marketingChannel);
+                    isMarketingChannelEditorVisible(true);
                 },
                 //reset butto handle 
                     resetResuults = function() {
                     searchFilter(undefined);
-                    getDocumentGroups();
+                    getMarketingChannels();
                 },
                 //delete button handler
                     onDeleteItem = function(item) {
                     if (!item.id()) {
-                        documentGroups.remove(item);
+                        marketingChannels.remove(item);
                         return;
                     }
                     // Ask for confirmation
                     confirmation.afterProceed(function() {
-                        deleteDocumentGroup(item);
+                        deleteMarketingChannel(item);
                     });
                     confirmation.show();
                 },
                 //edit button handler
                     onEditItem = function(item) {
                     editorViewModel.selectItem(item);
-                    isDocumentGroupEditorVisible(true);
+                    isMarketingChannelEditorVisible(true);
                 },
-                //delete Document Group
-                    deleteDocumentGroup = function (documentGroup) {
-                        dataservice.deleteDocumentGroup(documentGroup.convertToServerData(), {
+                //delete Marketing Channel
+                    deleteMarketingChannel = function (marketingChannel) {
+                        dataservice.deleteMarketingChannel(marketingChannel.convertToServerData(), {
                         success: function() {
-                            documentGroups.remove(documentGroup);
-                            toastr.success(ist.resourceText.DocumentGroupSuccessfullyDeletedMessage);
+                            marketingChannels.remove(marketingChannel);
+                            toastr.success(ist.resourceText.MarketingChannelSuccessfullyDeletedMessage);
                         },
                         error: function(exceptionMessage, exceptionType) {
                             if (exceptionType === ist.exceptionType.CaresGeneralException)
                                 toastr.error(exceptionMessage);
                             else
-                                toastr.error(ist.resourceText.FailedToDeleteDocumentGroupError);
+                                toastr.error(ist.resourceText.FailedToDeleteMarketingChannelError);
                         }
                     });
                 },
                 //search button handler in filter section
                     search = function() {
                     pager().reset();
-                    getDocumentGroups();
+                    getMarketingChannels();
                 },
                 //hide filte section
                     hideFilterSection = function() {
@@ -125,11 +125,11 @@ define("documentGroup/documentGroup.viewModel",
                     showFilterSection = function() {
                         filterSectionVisilble(true);
                     },
-                    //get Document Group list from Dataservice
-                    getDocumentGroups = function () {
-                        dataservice.getDocumentGroups(
+                    //get Marketing Channels list from Dataservice
+                    getMarketingChannels = function () {
+                        dataservice.getMarketingChannels(
                         {
-                            DocumentGroupFilterText: searchFilter(),
+                            MarketingChannelFilterText: searchFilter(),
                             PageSize: pager().pageSize(),
                             PageNo: pager().currentPage(),
                             SortBy: sortOn(),
@@ -137,15 +137,15 @@ define("documentGroup/documentGroup.viewModel",
                     },
                     {
                         success: function (data) {
-                            documentGroups.removeAll();
+                            marketingChannels.removeAll();
                             pager().totalCount(data.TotalCount);
-                            _.each(data.DocumentGroups, function (item) {
-                                documentGroups.push(model.documentGroupServertoClinetMapper(item));
+                            _.each(data.MarketingChannels, function (item) {
+                                marketingChannels.push(model.marketingChannelServertoClinetMapper(item));
                             });
                         },
                         error: function() {
                             isLoadingFleetPools(false);
-                            toastr.error(ist.resourceText.FailedToLoadDocumentGroupsError);
+                            toastr.error(ist.resourceText.FailedToLoadMarketingChannelsError);
                         }
                     });
                     },
@@ -154,11 +154,11 @@ define("documentGroup/documentGroup.viewModel",
                     initialize = function(specifiedView) {
                         view = specifiedView;
                         ko.applyBindings(view.viewModel, view.bindingRoot);
-                        pager(pagination.Pagination({ PageSize: 10 }, documentGroups, getDocumentGroups));
-                        getDocumentGroups();
+                        pager(pagination.Pagination({ PageSize: 10 }, marketingChannels, getMarketingChannels));
+                        getMarketingChannels();
                     };
                 return {
-                    documentGroups: documentGroups,
+                    marketingChannels: marketingChannels,
                     initialize: initialize,
                     search: search,
                     searchFilter: searchFilter,
@@ -166,7 +166,7 @@ define("documentGroup/documentGroup.viewModel",
                     sortIsAsc: sortIsAsc,
                     onCreateForm: onCreateForm,
                     filterSectionVisilble: filterSectionVisilble,
-                    isDocumentGroupEditorVisible: isDocumentGroupEditorVisible,
+                    isMarketingChannelEditorVisible: isMarketingChannelEditorVisible,
                     hideFilterSection: hideFilterSection,
                     showFilterSection: showFilterSection,
                     pager: pager,
@@ -174,11 +174,11 @@ define("documentGroup/documentGroup.viewModel",
                     onDeleteItem: onDeleteItem,
                     onEditItem: onEditItem,
                     onCancelbtn: onCancelbtn,
-                    selectedDocumentGroup: selectedDocumentGroup,
+                    selectedMarketingChannel: selectedMarketingChannel,
                     onSavebtn: onSavebtn,
-                    getDocumentGroups: getDocumentGroups,
+                    getMarketingChannels: getMarketingChannels,
                 };
             })()
         };
-        return ist.DocumentGroup.viewModel;
+        return ist.MarketingChannel.viewModel;
     });

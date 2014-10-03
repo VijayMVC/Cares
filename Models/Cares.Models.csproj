@@ -105,6 +105,7 @@
     <Compile Include="CommonTypes\PhoneType.cs" />
     <Compile Include="CommonTypes\DepartmentType.cs" />
     <Compile Include="Common\CreditLimitByColumn.cs" />
+    <Compile Include="Common\MarketingChannelByColumn.cs" />
     <Compile Include="Common\VehicleStatusEnum.cs" />
     <Compile Include="Common\BillingSummary.cs" />
     <Compile Include="Common\AllocationStatusEnum.cs" />
@@ -332,6 +333,8 @@
     <Compile Include="RequestModels\CitySearchRequest.cs" />
     <Compile Include="RequestModels\JobTypeSearchRequest.cs" />
     <Compile Include="RequestModels\JobTypeSearchRequestResponse.cs" />
+    <Compile Include="RequestModels\MarketingChannelSearchRequest.cs" />
+    <Compile Include="RequestModels\MarketingChannelSearchRequestResponse.cs" />
     <Compile Include="RequestModels\OccupationTypeSearchRequest.cs" />
     <Compile Include="RequestModels\RatingTypeSearchRequest.cs" />
     <Compile Include="RequestModels\RatingTypeSearchRequestResponse.cs" />

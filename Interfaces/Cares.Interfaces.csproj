@@ -61,6 +61,7 @@
     <Compile Include="IServices\INRTService.cs" />
     <Compile Include="IServices\IInsuranceTypeService.cs" />
     <Compile Include="IServices\IRatingTypeService.cs" />
+    <Compile Include="IServices\IMarketingChannelService.cs" />
     <Compile Include="IServices\ISeasonalDiscountService.cs" />
     <Compile Include="IServices\IBpMainTypeService.cs" />
     <Compile Include="IServices\IDocumentGroupService.cs" />

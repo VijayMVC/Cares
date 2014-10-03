@@ -34,7 +34,6 @@ namespace Cares.Repository.Repositories
         }
 
         #endregion
-
         #region Public
         
         /// <summary>
@@ -44,15 +43,22 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(businessPartnerMarketingChannel => businessPartnerMarketingChannel.UserDomainKey == UserDomainKey).ToList();
         }
+
         /// <summary>
         /// Get Business Partner Marketing Channel by Id
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         public BusinessPartnerMarketingChannel Find(int id)
         {
-            throw new System.NotImplementedException();
-        } 
+            return DbSet.Find(id);
+        }
+
+        /// <summary>
+        /// Association check bw Marketing Channel and BP MarketingChannel
+        /// </summary>
+        public bool IsBpMarketingChannelAssociatedWithMarketingChannel(long marketingChannelId)
+        {
+            return DbSet.Count(bPMarketingChannel => bPMarketingChannel.MarketingChannelId == marketingChannelId) > 0;
+        }
         #endregion
     }
 }

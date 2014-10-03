@@ -1,0 +1,9 @@
+{
+  "version": 3,
+  "file": "MarketingChannel.css",
+  "sources": [
+    "MarketingChannel.less"
+  ],
+  "names": [],
+  "mappings": "AAAA,wBAEI,MACI,MACI,GAEI;EACI,UAAA;;AAPpB,wBAEI,MACI,MACI,GAKI;EACI,UAAA;;AAVpB,wBAEI,MACI,MACI,GAQI;EACI,UAAA;;AAbpB,wBAmBK;EACG,gBAAA;;AApBR,wBAmBK,wBAEG;EACI,WAAA;;AAtBZ,wBAmBK,wBAEG,kBAEI;EACI,WAAA;EACA,UAAA;EACA,mBAAA;EACA,gBAAA"
+}
