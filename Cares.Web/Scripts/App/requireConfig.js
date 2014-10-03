@@ -54,7 +54,9 @@
             "businessLegalStatus": ist.siteUrl + "/Areas/BusinessPartner/Scripts",
             "occupationType": ist.siteUrl + "/Areas/BusinessPartner/Scripts",
             "relationType": ist.siteUrl + "/Areas/BusinessPartner/Scripts",
-            "bpSubType": ist.siteUrl + "/Areas/BusinessPartner/Scripts"
+            "bpSubType": ist.siteUrl + "/Areas/BusinessPartner/Scripts",
+            "creditLimit": ist.siteUrl + "/Areas/BusinessPartner/Scripts",
+            "marketingChannel": ist.siteUrl + "/Areas/BusinessPartner/Models",
 
         }
     }); 

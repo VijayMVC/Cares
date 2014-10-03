@@ -32,12 +32,9 @@ namespace Cares.Web.Areas.Api.Controllers
          /// <summary>
          /// Get Address Base Data by Country
          /// </summary>
-         /// <param name="id"></param>
-         /// <returns></returns>
         public AddressBaseResponse Get(int id)
-        {
-            AddressBaseResponse response = addressBaseDataService.LoadDataByCountry(id).CreateFrom();
-            return response;
+         {
+             return addressBaseDataService.LoadDataByCountry(id).CreateFrom();
         }
         #endregion
     }

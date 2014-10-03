@@ -21,10 +21,11 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Set newly created Designation object Properties in case of adding
         /// </summary>
-        private void SetRegionProperties(Designation designation, Designation dbVersion)
+        private void SetDesignationProperties(Designation designation, Designation dbVersion)
         {
             dbVersion.RecLastUpdatedBy = dbVersion.RecCreatedBy = designationRepository.LoggedInUserIdentity;
             dbVersion.RecLastUpdatedDt = dbVersion.RecCreatedDt = DateTime.Now;
+            dbVersion.UserDomainKey = designationRepository.UserDomainKey;
             dbVersion.DesignationCode = designation.DesignationCode;
             dbVersion.DesignationName = designation.DesignationName;
             dbVersion.DesignationDescription = designation.DesignationDescription;
@@ -33,7 +34,7 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// update  Designation object Properties in case of updation
         /// </summary>
-        protected void UpdateRegionPropertie(Designation designation, Designation dbVersion)
+        protected void UpdateDesignationPropertie(Designation designation, Designation dbVersion)
         {
             dbVersion.RecLastUpdatedBy = designationRepository.LoggedInUserIdentity;
             dbVersion.RecLastUpdatedDt = DateTime.Now;
@@ -77,7 +78,6 @@ namespace Cares.Implementation.Services
             return designationRepository.GetAll();
         }
 
-        
         /// <summary>
         /// Search Designation
         /// </summary>
@@ -118,13 +118,13 @@ namespace Cares.Implementation.Services
 
             if (dbVersion != null)
             {
-                UpdateRegionPropertie(designation, dbVersion);
+                UpdateDesignationPropertie(designation, dbVersion);
                 designationRepository.Update(dbVersion);
             }
             else
             {
                 dbVersion = new Designation();
-                SetRegionProperties(designation, dbVersion);
+                SetDesignationProperties(designation, dbVersion);
                 designationRepository.Add(dbVersion);
             }
             designationRepository.SaveChanges();

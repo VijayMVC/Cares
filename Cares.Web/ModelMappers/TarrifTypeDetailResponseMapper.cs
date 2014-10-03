@@ -17,8 +17,8 @@ namespace Cares.Web.ModelMappers
         {
             return new TariffTypeDetailResponse
             {
-                TarrifType = source.TarrifType.CreateFromDetail(),
-                TarrifTypeRevisions = source.TarrifTypeRevisions != null?source.TarrifTypeRevisions.Select(m => m.CreateFromDetail()):null,
+                TariffType = source.TariffType.CreateFromDetail(),
+                TariffTypeRevisions = source.TariffTypeRevisions != null ? source.TariffTypeRevisions.Select(m => m.CreateFromDetail()) : null,
                
             };
         }

@@ -38,7 +38,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return tariffTypeService.GetBaseData().CreateFrom();
+            return tariffTypeService.GetBaseData().CreateFromm();
         }
         #endregion
     }

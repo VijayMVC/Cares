@@ -2,7 +2,7 @@
 namespace Cares.Web.Models
 {
     /// <summary>
-    /// Address Base Data Response entity
+    /// Address Base Data Response entity web model
     /// </summary>
     public class AddressBaseResponse
     {

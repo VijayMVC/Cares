@@ -226,6 +226,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalChargeBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\AddressBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\CreditLimitController.cs" />
+    <Compile Include="Areas\Api\Controllers\CreditLimitBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\GetVehiclesForNRTController.cs" />
     <Compile Include="Areas\Api\Controllers\RaInsuranceRtsController.cs" />
     <Compile Include="Areas\Api\Controllers\RaAdditionalChargesController.cs" />
@@ -243,6 +246,7 @@
     <Compile Include="Areas\Api\Controllers\RatingTypeController.cs" />
     <Compile Include="Areas\Api\Controllers\DocumentBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\DocumentController.cs" />
+    <Compile Include="Areas\Api\Controllers\MarketingChannelController.cs" />
     <Compile Include="Areas\Api\Controllers\RentalAgreementChauffersController.cs" />
     <Compile Include="Areas\Api\Controllers\RentalAgreementServiceItemsController.cs" />
     <Compile Include="Areas\Api\Controllers\SeasonalDiscountBaseController.cs" />
@@ -357,7 +361,11 @@
     <Compile Include="ModelMappers\AdditionalChargeMapper.cs" />
     <Compile Include="ModelMappers\AdditionalDriverChargeMapper.cs" />
     <Compile Include="ModelMappers\BpMainTypeMapper.cs" />
+    <Compile Include="ModelMappers\BusinessPartnerCompanyMapper.cs" />
+    <Compile Include="ModelMappers\BusinessPartnerIndividualMapper.cs" />
     <Compile Include="ModelMappers\BusinessPartnerRelationshipTypeMapper.cs" />
+    <Compile Include="ModelMappers\BusinessPartnerResponseBaseDataMapper.cs" />
+    <Compile Include="ModelMappers\BusinessPartnerResponseMapper.cs" />
     <Compile Include="ModelMappers\BusinessPartnerSubTypeMapper.cs" />
     <Compile Include="ModelMappers\ChaufferChargeMapper.cs" />
     <Compile Include="ModelMappers\DesigGradeMapper.cs" />
@@ -387,6 +395,9 @@
     <Compile Include="ModelMappers\RaHireGroupDiscountMapper.cs" />
     <Compile Include="ModelMappers\RaHireGroupInsuranceMapper.cs" />
     <Compile Include="ModelMappers\RaVehicleCheckListMapper.cs" />
+    <Compile Include="ModelMappers\TariffTypeBaseResponseMapper.cs" />
+    <Compile Include="ModelMappers\TarrifTypeDetailResponseMapper.cs" />
+    <Compile Include="ModelMappers\TarrifTypeResponseMapper.cs" />
     <Compile Include="ModelMappers\VehicleMovementMapper.cs" />
     <Compile Include="ModelMappers\ServiceRtMapper.cs" />
     <Compile Include="ModelMappers\ServiceTypeMapper.cs" />
@@ -427,6 +438,10 @@
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\CityBaseDataResponse.cs" />
     <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\CreditLimit.cs" />
+    <Compile Include="Models\CreditLimitBaseDataResponse.cs" />
+    <Compile Include="ModelMappers\CreditLimitMapper.cs" />
+    <Compile Include="Models\CreditLimitSearchRequestResponse.cs" />
     <Compile Include="Models\CustomerTypecs.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\DepartmentBaseDataResponse.cs" />
@@ -470,6 +485,8 @@
     <Compile Include="Models\JobTypeSearchRequestResponse.cs" />
     <Compile Include="Models\LicenseTypeDropDown.cs" />
     <Compile Include="Models\MaintenanceTypeDropDown.cs" />
+    <Compile Include="Models\MarketingChannel.cs" />
+    <Compile Include="Models\MarketingChannelSearchRequestResponse.cs" />
     <Compile Include="Models\NRTBaseResponse.cs" />
     <Compile Include="Models\NrtType.cs" />
     <Compile Include="Models\NrtTypeBaseDataResponse.cs" />
@@ -483,7 +500,7 @@
     <Compile Include="ModelMappers\BusinessSegmentMapper.cs" />
     <Compile Include="ModelMappers\CategoryMapper.cs" />
     <Compile Include="ModelMappers\BusinessPartnerMapper.cs" />
-    <Compile Include="ModelMappers\BPRatingTypeMapper.cs" />
+    <Compile Include="ModelMappers\BpRatingTypeMapper.cs" />
     <Compile Include="ModelMappers\BusinessLegalStatusMapper.cs" />
     <Compile Include="ModelMappers\AddressTypeMapper.cs" />
     <Compile Include="ModelMappers\AddressMapper.cs" />
@@ -723,6 +740,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BusinessPartnerSubType.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\BusinessPartner\CreditLimit.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreditLimit.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\BusinessPartner\CreditLimit.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreditLimit.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\BusinessPartner\Document.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -742,6 +769,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DocumentGroup.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\BusinessPartner\MarketingChannel.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MarketingChannel.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\BusinessPartner\MarketingChannel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MarketingChannel.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\BusinessPartner\OccupationType.ar.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1129,6 +1166,14 @@
     <Compile Include="ViewModels\Common\MessageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\BusinessPartner\Models\marketingChannel.dataservice.js" />
+    <Content Include="Areas\BusinessPartner\Models\marketingChannel.model.js" />
+    <Content Include="Areas\BusinessPartner\Models\marketingChannel.view.js" />
+    <Content Include="Areas\BusinessPartner\Models\marketingChannel.viewModel.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\creditLimit.dataservice.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\creditLimit.model.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\creditLimit.view.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\creditLimit.viewModel.js" />
     <Content Include="Areas\BusinessPartner\Scripts\bpSubType.dataservice.js" />
     <Content Include="Areas\BusinessPartner\Scripts\bpSubType.model.js" />
     <Content Include="Areas\BusinessPartner\Scripts\bpSubType.view.js" />
@@ -1371,6 +1416,12 @@
     <Content Include="Content\Company.min.css">
       <DependentUpon>Company.css</DependentUpon>
     </Content>
+    <Content Include="Content\CreditLimit.css">
+      <DependentUpon>CreditLimit.less</DependentUpon>
+    </Content>
+    <Content Include="Content\CreditLimit.min.css">
+      <DependentUpon>CreditLimit.css</DependentUpon>
+    </Content>
     <Content Include="Content\CSS\architecture.css" />
     <Content Include="Content\CSS\architecture.min.css">
       <DependentUpon>architecture.css</DependentUpon>
@@ -1454,6 +1505,12 @@
     </Content>
     <Content Include="Content\MainSite.min.css">
       <DependentUpon>MainSite.css</DependentUpon>
+    </Content>
+    <Content Include="Content\MarketingChannel.css">
+      <DependentUpon>MarketingChannel.less</DependentUpon>
+    </Content>
+    <Content Include="Content\MarketingChannel.min.css">
+      <DependentUpon>MarketingChannel.css</DependentUpon>
     </Content>
     <Content Include="Content\NrtType.css">
       <DependentUpon>NrtType.less</DependentUpon>
@@ -2093,6 +2150,18 @@
       <DependentUpon>BusinessPartnerSubType.css</DependentUpon>
     </Content>
     <Content Include="Areas\RentalAgreement\Views\Home\_HireGroupInsurancesDialog.cshtml" />
+    <Content Include="Areas\BusinessPartner\Views\Home\CreditLimit.cshtml" />
+    <Content Include="Areas\BusinessPartner\Views\Home\_CreditLimitEditor.cshtml" />
+    <Content Include="Content\CreditLimit.less" />
+    <Content Include="Content\CreditLimit.css.map">
+      <DependentUpon>CreditLimit.css</DependentUpon>
+    </Content>
+    <Content Include="Content\MarketingChannel.less" />
+    <Content Include="Content\MarketingChannel.css.map">
+      <DependentUpon>MarketingChannel.css</DependentUpon>
+    </Content>
+    <Content Include="Areas\BusinessPartner\Views\Home\MarketingChannel.cshtml" />
+    <Content Include="Areas\BusinessPartner\Views\Home\_MarketingChannelEditor.cshtml" />
     <None Include="Properties\PublishProfiles\Khurram.pubxml" />
     <Content Include="RichTextEditor\plugins\Thumbs.db" />
     <None Include="Scripts\amplify-vsdoc.js" />
@@ -2237,7 +2306,6 @@
     <Folder Include="Areas\Api\Views\WorkPlaceTypeBase\" />
     <Folder Include="Areas\Api\Views\workplaceType\" />
     <Folder Include="Areas\Api\Views\Workplace\" />
-    <Folder Include="Areas\BusinessPartner\Models\" />
     <Folder Include="Areas\Common\Controllers\" />
     <Folder Include="Areas\Common\Models\" />
     <Folder Include="Areas\EmployeeManagement\Models\" />
@@ -2339,6 +2407,14 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BusinessPartnerSubType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\CreditLimit.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CreditLimit.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\CreditLimit.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CreditLimit.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\BusinessPartner\Document.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Document.ar.Designer.cs</LastGenOutput>
@@ -2354,6 +2430,14 @@
     <EmbeddedResource Include="Resources\BusinessPartner\DocumentGroup.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>DocumentGroup.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\MarketingChannel.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MarketingChannel.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\MarketingChannel.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MarketingChannel.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\BusinessPartner\OccupationType.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

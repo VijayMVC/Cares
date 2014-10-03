@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using Cares.Models.ResponseModels;
 using ApiModels = Cares.Web.Models;
-
 namespace Cares.Web.ModelMappers
 {
     /// <summary>
@@ -13,12 +12,12 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static ApiModels.TarrifTypeResponse CreateFrom(this TarrifTypeResponse source)
+        public static ApiModels.TariffTypeSearchResponse CreateFrom(this TariffTypeResponse source)
         {
-            return new ApiModels.TarrifTypeResponse
+            return new ApiModels.TariffTypeSearchResponse
             {
                 TotalCount = source.TotalCount,
-                ServerTarrifTypes = source.TarrifTypes.Select(p => p.CreateFrom())
+                ServertariffTypes = source.TariffTypes.Select(p => p.CreateFrom())
             };
 
         }

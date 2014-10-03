@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Models.ResponseModels;
 namespace Cares.Web.ModelMappers
 {
     /// <summary>

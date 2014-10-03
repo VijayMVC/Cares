@@ -1,4 +1,6 @@
-﻿using Cares.Models.DomainModels;
+﻿using System.Linq;
+using Cares.Models.DomainModels;
+using Castle.Components.DictionaryAdapter.Xml;
 using ApiModel = Cares.Web.Models;
 
 namespace Cares.Web.ModelMappers
@@ -33,7 +35,7 @@ namespace Cares.Web.ModelMappers
                     AddressTypeId = source.AddressTypeId,
                     BusinessPartnerId = source.BusinessPartnerId
                 };
-            else return new Address();
+             return new Address();
         }
 
         /// <summary>
@@ -69,6 +71,19 @@ namespace Cares.Web.ModelMappers
             };
 
             #endregion
+        }
+
+
+        public static ApiModel.AddressBaseResponse CreateFrom(this Cares.Models.ResponseModels.AddressBaseDataResponse source)
+        {
+            return new ApiModel.AddressBaseResponse
+            {
+                ResponseCountry=source.ResponseCountry.CreateFrom(),
+                ResponseCities = source.ResponseCities.Select(city => city.CreateFrom()),
+                ResponseAreas = source.ResponseAreas.Select(area => area.CreateFrom()),
+                ResponseRegions = source.ResponseRegions.Select(region => region.CreateFrom()),
+                ResponseSubRegions = source.ResponseSubRegions.Select(subregion => subregion.CreateFrom())
+            };
         }
     }
 }

@@ -132,7 +132,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  tariff Type Detail Response Mapper
         /// </summary>
-        public static ApiModels.TariffTypeDetailResponse CreateFrom(this DomainResponseModel.TariffTypeDetailResponse source)
+        public static ApiModels.TariffTypeDetailResponse CreateFromm(this DomainResponseModel.TariffTypeDetailResponse source)
         {
             return new ApiModels.TariffTypeDetailResponse
             {
@@ -147,7 +147,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static ApiModels.TariffTypeSearchResponse CreateFrom(this DomainResponseModel.TariffTypeResponse source)
+        public static ApiModels.TariffTypeSearchResponse CreateFromm(this DomainResponseModel.TariffTypeResponse source)
         {
             return new ApiModels.TariffTypeSearchResponse
             {

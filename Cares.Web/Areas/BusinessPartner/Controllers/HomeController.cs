@@ -47,5 +47,14 @@ namespace Cares.Web.Areas.BusinessPartner.Controllers
         {
             return View();
         }
+        public ActionResult CreditLimit()
+        {
+            return View();
+        }
+
+        public ActionResult MarketingChannel()
+        {
+            return View();
+        }
 	}
 }
