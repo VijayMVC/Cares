@@ -7,5 +7,9 @@ namespace Cares.Interfaces.Repository
     /// </summary>
     public interface IVehicleMaintenanceTypeFrequencyRepository : IBaseRepository<VehicleMaintenanceTypeFrequency, long>
     {
+        /// <summary>
+        /// Association check b/w vehicle Maintenance Type Frequency and Maintenance Type
+        /// </summary>
+        bool IsVehicleMaintenanceTypeFrequencyAssociatedMaintenanceType(long maintenanceTypeId);
     }
 }

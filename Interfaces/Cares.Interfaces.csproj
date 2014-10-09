@@ -57,6 +57,8 @@
     <Compile Include="IServices\IBusinessPartnerRelationTypeService.cs" />
     <Compile Include="IServices\IBusinessPartnerSubTypeService.cs" />
     <Compile Include="IServices\ICreditLimitService.cs" />
+    <Compile Include="IServices\IMaintenanceTypeService.cs" />
+    <Compile Include="IServices\IMainteneceTypeGroupService.cs" />
     <Compile Include="IServices\IDocumentService.cs" />
     <Compile Include="IServices\INRTService.cs" />
     <Compile Include="IServices\IInsuranceTypeService.cs" />
@@ -100,6 +102,7 @@
     <Compile Include="Repository\IBusinessPartnerMainTypeRepository.cs" />
     <Compile Include="Repository\ICreditLimitRepository.cs" />
     <Compile Include="Repository\IBpSubTypeRepository.cs" />
+    <Compile Include="Repository\IMainteneceTypeGroupRepository.cs" />
     <Compile Include="Repository\IRACustomerDocumentRepository.cs" />
     <Compile Include="Repository\IChaufferChargeMainRepository.cs" />
     <Compile Include="Repository\IChaufferChargeRepository.cs" />

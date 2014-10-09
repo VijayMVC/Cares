@@ -2,7 +2,7 @@
 namespace Cares.Web.Models
 {
     /// <summary>
-    /// Company Model
+    /// Company web Model
     /// </summary>
     public class Company
     { /// <summary>

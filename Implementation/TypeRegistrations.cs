@@ -91,6 +91,8 @@ namespace Cares.Implementation
             unityContainer.RegisterType<ICreditLimitService, CreditLimitService>();
             unityContainer.RegisterType<IBusinessPartnerInTypeService, BusinessPartnerInTypeService>();
             unityContainer.RegisterType<IMarketingChannelService, MarketingChannelService>();
+            unityContainer.RegisterType<IMainteneceTypeGroupService, MainteneceTypeGroupService>();
+            unityContainer.RegisterType<MaintenanceTypeService, IMaintenanceTypeService>();
 
         }
     }

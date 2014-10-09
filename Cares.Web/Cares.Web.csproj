@@ -229,6 +229,9 @@
     <Compile Include="Areas\Api\Controllers\AddressBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\CreditLimitController.cs" />
     <Compile Include="Areas\Api\Controllers\CreditLimitBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\MaintenanceTypeController.cs" />
+    <Compile Include="Areas\Api\Controllers\MaintenanceTypeBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\MainteneceTypeGroupController.cs" />
     <Compile Include="Areas\Api\Controllers\GetVehiclesForNRTController.cs" />
     <Compile Include="Areas\Api\Controllers\RaInsuranceRtsController.cs" />
     <Compile Include="Areas\Api\Controllers\RaAdditionalChargesController.cs" />
@@ -380,6 +383,7 @@
     <Compile Include="ModelMappers\JobTypeMapper.cs" />
     <Compile Include="ModelMappers\LicenseTypeMapper.cs" />
     <Compile Include="ModelMappers\MaintenanceTypeMapper.cs" />
+    <Compile Include="ModelMappers\MainteneceTypeGroupMapper.cs" />
     <Compile Include="ModelMappers\NRTMapper.cs" />
     <Compile Include="ModelMappers\RaCustomerDocumentMapper.cs" />
     <Compile Include="ModelMappers\RaDriverMapper.cs" />
@@ -484,7 +488,13 @@
     <Compile Include="Models\JobTypeDropDown.cs" />
     <Compile Include="Models\JobTypeSearchRequestResponse.cs" />
     <Compile Include="Models\LicenseTypeDropDown.cs" />
+    <Compile Include="Models\MaintenanceType.cs" />
+    <Compile Include="Models\MaintenanceTypeBaseDataResponse.cs" />
     <Compile Include="Models\MaintenanceTypeDropDown.cs" />
+    <Compile Include="Models\MaintenanceTypeGroup.cs" />
+    <Compile Include="Models\MaintenanceTypeGroupDropDown.cs" />
+    <Compile Include="Models\MaintenanceTypeSearchRequestResponse.cs" />
+    <Compile Include="Models\MainteneceTypeGroupSearchRequestResponse.cs" />
     <Compile Include="Models\MarketingChannel.cs" />
     <Compile Include="Models\MarketingChannelSearchRequestResponse.cs" />
     <Compile Include="Models\NRTBaseResponse.cs" />
