@@ -1530,6 +1530,51 @@
   margin-bottom: 20px;
   margin-top: 10px;
 }
+#MaintenanceTypeGroupBinding table thead tr .maintenanceTypeGroupCode {
+  width: 33%;
+}
+#MaintenanceTypeGroupBinding table thead tr .maintenanceTypeGroupName {
+  width: 33%;
+}
+#MaintenanceTypeGroupBinding table thead tr .maintenanceTypeGroupDiscription {
+  width: 33%;
+}
+#MaintenanceTypeGroupBinding #MaintenanceTypeGroupEditor {
+  margin-top: 15px;
+}
+#MaintenanceTypeGroupBinding #MaintenanceTypeGroupEditor .detailsContainer {
+  width: 100%;
+}
+#MaintenanceTypeGroupBinding #MaintenanceTypeGroupEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#MaintenanceTypeBinding table thead tr .maintenanceTypeCode {
+  width: 25%;
+}
+#MaintenanceTypeBinding table thead tr .maintenanceTypeName {
+  width: 25%;
+}
+#MaintenanceTypeBinding table thead tr .maintenanceTypeDiscription {
+  width: 25%;
+}
+#MaintenanceTypeBinding table thead tr .maintenanceTypeGroup {
+  width: 25%;
+}
+#MaintenanceTypeBinding #MaintenanceTypeEditor {
+  margin-top: 15px;
+}
+#MaintenanceTypeBinding #MaintenanceTypeEditor .detailsContainer {
+  width: 100%;
+}
+#MaintenanceTypeBinding #MaintenanceTypeEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
 .float-left {
   float: left;
 }

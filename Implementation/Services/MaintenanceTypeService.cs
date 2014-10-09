@@ -56,10 +56,10 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Check Maintenance Type association with other entites before deletion
         /// </summary>
-        private void CheckMaintenanceTypeAssociations(long documentId)
+        private void CheckMaintenanceTypeAssociations(long maintenanceTypeId)
         {
             // Association check b/w vehicle Maintenance Type Frequency and Maintenance Type
-            if (vehicleMaintenanceTypeFrequencyRepository.IsVehicleMaintenanceTypeFrequencyAssociatedMaintenanceType(documentId))
+            if (vehicleMaintenanceTypeFrequencyRepository.IsVehicleMaintenanceTypeFrequencyAssociatedMaintenanceType(maintenanceTypeId))
                 throw new CaresException(Resources.FleetPool.MaintenanceType.MaintenanceTypeIsAssociatedWithVehicleMaintenanceTypeFrequencyError);
 
         }
@@ -126,7 +126,7 @@ namespace Cares.Implementation.Services
         /// </summary>
         public MaintenanceType AddUpdateMaintenanceType(MaintenanceType maintenanceType)
         {
-            MaintenanceType dbVersion = maintenanceTypeRepository.Find(maintenanceType.MaintenanceTypeGroupId);
+            MaintenanceType dbVersion = maintenanceTypeRepository.Find(maintenanceType.MaintenanceTypeId);
 
             if (maintenanceTypeRepository.MaintenanceTypeCodeDuplicationCheck(maintenanceType))            
             throw new CaresException(Resources.FleetPool.MaintenanceType.MaintenanceTypeCodeDuplicationError);
@@ -144,7 +144,7 @@ namespace Cares.Implementation.Services
                 }
                 maintenanceTypeRepository.SaveChanges();
                 // To Load the proprties
-                return maintenanceTypeRepository.LoadMaintenanceTypeWithDetail(dbVersion.MaintenanceTypeGroupId);
+                return maintenanceTypeRepository.LoadMaintenanceTypeWithDetail(dbVersion.MaintenanceTypeId);
         }
 
        

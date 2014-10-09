@@ -54,7 +54,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            maintenanceTypeService.DeleteMaintenanceType(maintenanceType.DocumentId);
+            maintenanceTypeService.DeleteMaintenanceType(maintenanceType.MaintenanceTypeId);
             return true;
         }
 

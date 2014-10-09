@@ -92,7 +92,7 @@ namespace Cares.Implementation
             unityContainer.RegisterType<IBusinessPartnerInTypeService, BusinessPartnerInTypeService>();
             unityContainer.RegisterType<IMarketingChannelService, MarketingChannelService>();
             unityContainer.RegisterType<IMainteneceTypeGroupService, MainteneceTypeGroupService>();
-            unityContainer.RegisterType<MaintenanceTypeService, IMaintenanceTypeService>();
+            unityContainer.RegisterType<IMaintenanceTypeService, MaintenanceTypeService>();
 
         }
     }

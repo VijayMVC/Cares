@@ -56,7 +56,9 @@
             "relationType": ist.siteUrl + "/Areas/BusinessPartner/Scripts",
             "bpSubType": ist.siteUrl + "/Areas/BusinessPartner/Scripts",
             "creditLimit": ist.siteUrl + "/Areas/BusinessPartner/Scripts",
-            "marketingChannel": ist.siteUrl + "/Areas/BusinessPartner/Models",
+            "marketingChannel": ist.siteUrl + "/Areas/BusinessPartner/Scripts",
+            "maintenanceTypeGroup": ist.siteUrl + "/Areas/Fleet/Scripts",
+            "maintenanceType": ist.siteUrl + "/Areas/Fleet/Models",
 
         }
     }); 
