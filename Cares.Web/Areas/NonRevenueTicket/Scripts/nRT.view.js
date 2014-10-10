@@ -21,21 +21,43 @@ define("nRT/nRT.view",
                 hide = function () {
                     $("#dialog-vehicleDetailDialog").modal("hide");
                 },
+                 // Show Activity the dialog
+                showActivityDialog = function () {
+                    $("#dialog-activityDialog").modal("show");
+                },
+                // Hide Activity the dialog
+                hideActivityDialog = function () {
+                    $("#dialog-activityDialog").modal("hide");
+                },
+                  // Show Chauffer the dialog
+                showChaufferDialog = function () {
+                    $("#dialog-chaufferDialog").modal("show");
+                },
+                // Hide Chauffer the dialog
+                hideChaufferDialog = function () {
+                    $("#dialog-chaufferDialog").modal("hide");
+                },
                 // Initialize
                 initialize = function () {
                     if (!bindingRoot) {
+                        
                         return;
                     }
 
                     // Handle Sorting
-                    handleSorting("nRTTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getTariffType);
+                    //handleSorting("nRTTable", viewModel.sortOn, viewModel.sortIsAsc, viewModel.getTariffType);
                 };
             initialize();
             return {
                 bindingRoot: bindingRoot,
                 viewModel: viewModel,
+                showActivityDialog: showActivityDialog,
+                hideActivityDialog: hideActivityDialog,
+                showChaufferDialog: showChaufferDialog,
+                hideChaufferDialog: hideChaufferDialog,
                 show: show,
-                hide: hide
+                hide: hide,
+               
             };
         })(nRTViewModel);
 

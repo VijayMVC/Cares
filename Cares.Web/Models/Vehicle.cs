@@ -202,6 +202,25 @@ namespace Cares.Web.Models
             }
         }
 
+        /// <summary>
+        /// Vehicle Make Code Name
+        /// </summary>
+        public string VehicleMakeCodeName { get; set; }
+
+        /// <summary>
+        /// Vehicle Model Code Name
+        /// </summary>
+        public string VehicleModelCodeName { get; set; }
+
+        /// <summary>
+        /// Vehicle Category Code Name
+        /// </summary>
+        public string VehicleCategoryCodeName { get; set; }
+
+        /// <summary>
+        /// Vehicle Status Code Name
+        /// </summary>
+        public string VehicleStatusCodeName { get; set; }
         #endregion
        
     }

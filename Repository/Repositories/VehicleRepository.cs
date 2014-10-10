@@ -64,11 +64,11 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public GetVehicleResponse GetByHireGroup(VehicleSearchRequest request)
         {
-            Expression<Func<Vehicle, bool>> query = vehicle => 
+            Expression<Func<Vehicle, bool>> query = vehicle =>
                 (vehicle.HireGroup.HireGroupDetails.Any(hgd => hgd.HireGroupDetailId == request.HireGroupDetailId)) &&
                 (vehicle.OperationsWorkPlaceId == request.OperationsWorkPlaceId) &&
-                (vehicle.VehicleReservations.Count == 0 || 
-                !vehicle.VehicleReservations.Any(vehicleReservation => vehicleReservation.EndDtTime >= request.StarDtTime && 
+                (vehicle.VehicleReservations.Count == 0 ||
+                !vehicle.VehicleReservations.Any(vehicleReservation => vehicleReservation.EndDtTime >= request.StarDtTime &&
                     vehicleReservation.StartDtTime <= request.EndDtTime));
 
             IEnumerable<Vehicle> vehicles = request.IsAsc ? DbSet
@@ -153,7 +153,7 @@ namespace Cares.Repository.Repositories
                          !vehicle.VehicleReservations.Any(
                              vehicleReservation =>
                                  vehicleReservation.EndDtTime >= startDtTime &&
-                                 vehicleReservation.StartDtTime <= endDtTime)));
+                                 vehicleReservation.StartDtTime <= endDtTime)) && vehicle.UserDomainKey == UserDomainKey).ToList();
         }
         #endregion
     }

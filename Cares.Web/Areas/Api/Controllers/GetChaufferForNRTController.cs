@@ -5,20 +5,22 @@ using System.Net;
 using System.Web;
 using System.Web.Http;
 using Cares.Interfaces.IServices;
+using Cares.Models.Common;
+using Cares.Models.RequestModels;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
     /// <summary>
-    /// Get Vehicles For NRT API Controller
+    /// Get Chauffer For NRT API Controller
     /// </summary>
     // ReSharper disable once InconsistentNaming
-    public class GetVehiclesForNRTController : ApiController
+    public class GetChaufferForNRTController : ApiController
     {
         #region Private
 
-        private readonly IVehicleService vehicleService;
+        private readonly IEmployeeService employeeService;
 
         #endregion
 
@@ -26,13 +28,13 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public GetVehiclesForNRTController(IVehicleService vehicleService)
+        public GetChaufferForNRTController(IEmployeeService employeeService)
         {
-            if (vehicleService == null)
+            if (employeeService == null)
             {
-                throw new ArgumentNullException("vehicleService");
+                throw new ArgumentNullException("employeeService");
             }
-            this.vehicleService = vehicleService;
+            this.employeeService = employeeService;
         }
 
         #endregion
@@ -40,17 +42,17 @@ namespace Cares.Web.Areas.Api.Controllers
         #region Public
 
         /// <summary>
-        /// Get Hire Groups by Hire Group Code, Vehicle Make / Category / Model / Model Year
+        ///  Get All Chauffers
         /// </summary>
-        public IEnumerable<Vehicle> Post(VehicleSeacrhRequestForNRT request)
+        public IEnumerable<Chauffer> Post(GetRaChaufferRequest request)
         {
-            if (request == null)
+            if (request == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
 
-            return vehicleService.GetVehicleInfoForNrt(request.OperationWorkPlaceId, request.StartDtTime, request.EndDtTime)
-                .Select(hg => hg.CreateFromForNrt());
+            request.DesignationKey = (long)DesignationEnum.Chauffer;
+            return employeeService.GetAllChauffers(request).Select(hg => hg.CreateChaufferFrom());
         }
 
         #endregion

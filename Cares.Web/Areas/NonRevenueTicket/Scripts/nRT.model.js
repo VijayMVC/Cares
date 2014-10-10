@@ -24,6 +24,12 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             nRtTypeId = ko.observable().extend({ required: true }),
             //Vehicle Detail In NRT Main
             vehicleDetail = ko.observable(new VehicleDetail()),
+            //chauffer In Nrt
+            chaufferInNrt = ko.observable(new ChaufferInNrt()),
+            //Chauffers List
+             chauffersList = ko.observableArray([]),
+             //NRT Charges List
+             nrtChargesList = ko.observableArray([]),
             // Errors
             errors = ko.validation.group({
                 operationId: operationId,
@@ -60,6 +66,9 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             endDate: endDate,
             nRtTypeId: nRtTypeId,
             vehicleDetail: vehicleDetail,
+            chaufferInNrt: chaufferInNrt,
+            chauffersList: chauffersList,
+            nrtChargesList: nrtChargesList,
             errors: errors,
             isValid: isValid,
             dirtyFlag: dirtyFlag,
@@ -84,7 +93,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             //Out Date Time
             outDtTime = ko.observable().extend({ required: true }),
             //In date Time
-            indDtTime = ko.observable().extend({ required: true }),
+            inDtTime = ko.observable().extend({ required: true }),
             //Out Location
             outLocId = ko.observable().extend({ required: true }),
              //In Location
@@ -111,7 +120,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
               // Errors
             errors = ko.validation.group({
                 outDtTime: outDtTime,
-                indDtTime: indDtTime,
+                inDtTime: inDtTime,
                 outLocId: outLocId,
                 inLocId: inLocId,
                 outOdemeter: outOdemeter,
@@ -145,7 +154,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             plateNum: plateNum,
             isReturnLoc: isReturnLoc,
             outDtTime: outDtTime,
-            indDtTime: indDtTime,
+            inDtTime: inDtTime,
             outLocId: outLocId,
             inLocId: inLocId,
             outOdemeter: outOdemeter,
@@ -165,6 +174,102 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         };
         return self;
     };
+    //Chauffer In Revenue TicketEntity
+    // ReSharper disable once InconsistentNaming
+    var ChaufferInNrt = function () {
+        var // Reference to this object
+            self,
+            // Unique key
+            id = ko.observable(),
+            //Desig Grade Id
+            desigGradeId = ko.observable(),
+            //Chauffer Id
+            chaufferId = ko.observable(),
+            //Code
+            code = ko.observable(),
+            //Name
+            name = ko.observable(),
+              //License Number
+            licenseNum = ko.observable(),
+              //License Expiry Date
+            licenseExpiryDt = ko.observable(),
+            //String valued formatted date
+            formattedLicenseExpiryDt = ko.computed({
+                read: function () {
+                    return moment(licenseExpiryDt()).format(ist.datePattern);
+                }
+            }),
+            //Start Date
+             startDt = ko.observable(),
+            //String valued formatted date
+            formattedStartDt = ko.computed({
+                read: function () {
+                    return moment(startDt()).format(ist.datePattern);
+                }
+            }),
+             //Start Hour
+             startHour = ko.observable(),
+             //Start Minute
+             startMinute = ko.observable(),
+             //End Date
+             endDt = ko.observable(),
+               //String valued formatted date
+                formattedEndDt = ko.computed({
+                    read: function () {
+                        return moment(endDt()).format(ist.datePattern);
+                    }
+                }),
+             //End Hour
+                endHour = ko.observable(),
+            //End Minute
+             endMinute = ko.observable(),
+
+              // Errors
+            errors = ko.validation.group({
+            }),
+            // Is Valid
+            isValid = ko.computed(function () {
+                return errors().length === 0;
+            }),
+
+            // True if the booking has been changed
+            // ReSharper disable InconsistentNaming
+            dirtyFlag = new ko.dirtyFlag({
+            }),
+            // Has Changes
+            hasChanges = ko.computed(function () {
+                return dirtyFlag.isDirty();
+            }),
+            // Reset
+            reset = function () {
+                dirtyFlag.reset();
+            };
+
+        self = {
+            id: id,
+            desigGradeId: desigGradeId,
+            code: code,
+            name: name,
+            licenseNum: licenseNum,
+            licenseExpiryDt: licenseExpiryDt,
+            formattedLicenseExpiryDt: formattedLicenseExpiryDt,
+            startDt: startDt,
+            startHour: startHour,
+            startMinute: startMinute,
+            endDt: endDt,
+            endHour: endHour,
+            endMinute: endMinute,
+            formattedStartDt: formattedStartDt,
+            formattedEndDt: formattedEndDt,
+            chaufferId: chaufferId,
+            errors: errors,
+            isValid: isValid,
+            dirtyFlag: dirtyFlag,
+            hasChanges: hasChanges,
+            reset: reset,
+        };
+        return self;
+    };
     //Maintenance Activity In Non Revenue Ticket Entity
     // ReSharper disable once InconsistentNaming
     var MaintenanceActivity = function () {
@@ -172,7 +277,9 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             self,
             // Unique key
             id = ko.observable(),
-            //Additional Charge Type Code
+            //Additonal Charge Type ID
+            additionalChargeTypeId = ko.observable(),
+            //Code
             code = ko.observable(),
             //Additional Charge Type Name
             name = ko.observable(),
@@ -217,6 +324,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             contactPerson: contactPerson,
             description: description,
             rate: rate,
+            additionalChargeTypeId: additionalChargeTypeId,
             errors: errors,
             isValid: isValid,
             dirtyFlag: dirtyFlag,
@@ -224,6 +332,18 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             reset: reset,
         };
         return self;
+    };
+    //Client To Server Mapper
+    var MaintenanceActivityServerMapper = function (source) {
+        var result = {};
+        result.NrtChargeId = source.id() === undefined ? 0 : source.id();
+        result.Quantity = source.qty() === undefined ? 0 : source.qty();
+        result.TotalNrtChargeRate = source.totalRate() === undefined ? 0 : source.totalRate();
+        result.ContactPerson = source.contactPerson() === undefined ? null : source.contactPerson();
+        result.Description = source.description() === undefined ? null : source.description();
+        result.NrtChargeRate = source.rate() === undefined ? 0 : source.rate();
+        result.AdditionalChargeTypeId = source.additionalChargeTypeId() === undefined ? null : source.additionalChargeTypeId();
+        return result;
     };
     //Vehicle List View entity
     // ReSharper disable once InconsistentNaming
@@ -233,10 +353,10 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             self,
             // Unique key
             vehicleId = ko.observable(),
-            //  Vehicle Name
-            vehicleName = ko.observable(),
             //plate Number
             plateNumber = ko.observable(),
+            //Tank Size
+            tankSize = ko.observable(),
             //Current Odometer
             currentOdometer = ko.observable(),
             //Fuel Level
@@ -245,43 +365,203 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             modelYear = ko.observable(),
             //Vehicle Make Code Name
             vehicleMakeCodeName = ko.observable(),
-            //Vehicle Status Code Name
-            vehicleStatusCodeName = ko.observable(),
-            //Fleet Pool Code Name
-            fleetPoolCodeName = ko.observable(),
-            //
+            //Vehicle Model Code Name
             vehicleModelCodeName = ko.observable(),
-            //Location
-            location = ko.observable();
+            //Vehicle Category Code Name
+            vehicleCategoryCodeName = ko.observable(),
+            //Vehicle Status Code Name
+            vehicleStatusCodeName = ko.observable();
 
         self = {
             vehicleId: vehicleId,
-            vehicleName: vehicleName,
             plateNumber: plateNumber,
+            tankSize: tankSize,
             currentOdometer: currentOdometer,
             fuelLevel: fuelLevel,
             modelYear: modelYear,
             vehicleMakeCodeName: vehicleMakeCodeName,
             vehicleStatusCodeName: vehicleStatusCodeName,
-            fleetPoolCodeName: fleetPoolCodeName,
             vehicleModelCodeName: vehicleModelCodeName,
-            location: location
+            vehicleCategoryCodeName: vehicleCategoryCodeName
+        };
+        return self;
+    };
+    //Chauffer List View entity
+    // ReSharper disable once InconsistentNaming
+    var Chauffer = function () {
+        // ReSharper restore InconsistentNaming
+        var // Reference to this object
+            self,
+            // Unique key
+            id = ko.observable(),
+            //Code
+            code = ko.observable(),
+            //Name
+            name = ko.observable(),
+            //Desig Grade Id
+            desigGradeId = ko.observable(),
+            //category
+            category = ko.observable(),
+            //License Number
+            licenseNum = ko.observable(),
+            //License Expiry Date
+            licenseExpiryDt = ko.observable(),
+            //String valued formatted date
+            formattedLicenseExpiryDt = ko.computed({
+                read: function () {
+                    return moment(licenseExpiryDt()).format(ist.datePattern);
+                }
+            });
+        self = {
+            id: id,
+            desigGradeId: desigGradeId,
+            code: code,
+            name: name,
+            category: category,
+            licenseNum: licenseNum,
+            licenseExpiryDt: licenseExpiryDt,
+            formattedLicenseExpiryDt: formattedLicenseExpiryDt,
+        };
+        return self;
+    };
+    //Chauffer List View entity
+    // ReSharper disable once InconsistentNaming
+    var AdditionalCharge = function () {
+        // ReSharper restore InconsistentNaming
+        var // Reference to this object
+            self,
+            //Additional Charge Type Id
+            additionalChargeTypeId = ko.observable(),
+            //Code
+            code = ko.observable(),
+            //Name
+            name = ko.observable(),
+            //Hire Group Detail
+            hireGroupDetail = ko.observable(),
+            //Rate
+            rate = ko.observable(),
+            //True when Additonal Charge Selected in dialog
+            isChecked = ko.observable();
+
+        self = {
+            additionalChargeTypeId: additionalChargeTypeId,
+            code: code,
+            name: name,
+            hireGroupDetail: hireGroupDetail,
+            rate: rate,
+            isChecked: isChecked,
         };
         return self;
     };
     //Convert Server To Client
-    var VehicleDetailClientMapper = function (source) {
+    var AdditionalChargeClientMapper = function (source) {
+        var addChrg = new AdditionalCharge();
+        addChrg.additionalChargeTypeId(source.AdditionalChargeTypeId === null ? undefined : source.AdditionalChargeTypeId);
+        addChrg.code(source.AdditionalChargeTypeCode === null ? undefined : source.AdditionalChargeTypeCode);
+        addChrg.name(source.AdditionalChargeTypeName === null ? undefined : source.AdditionalChargeTypeName);
+        addChrg.hireGroupDetail(source.HireGroupDetail === null ? undefined : source.HireGroupDetail);
+        addChrg.rate(source.AdditionalChargeRate === null ? undefined : source.AdditionalChargeRate);
+        return addChrg;
+    };
+    //Convert Server To Client
+    var VehicleClientMapper = function (source) {
         var vehicle = new Vehicle();
         vehicle.vehicleId(source.VehicleId === null ? undefined : source.VehicleId);
+        vehicle.plateNumber(source.PlateNumber === null ? undefined : source.PlateNumber);
+        vehicle.tankSize(source.TankSize === null ? undefined : source.TankSize);
+        vehicle.currentOdometer(source.CurrentOdometer === null ? undefined : source.CurrentOdometer);
+        vehicle.fuelLevel(source.FuelLevel === null ? undefined : source.FuelLevel);
+        vehicle.modelYear(source.ModelYear === null ? undefined : source.ModelYear);
         vehicle.vehicleMakeCodeName(source.VehicleMakeCodeName === null ? undefined : source.VehicleMakeCodeName);
-        vehicle.vehicleModelCodeName(source.OperationCodeName === null ? undefined : source.OperationCodeName);
+        vehicle.vehicleModelCodeName(source.VehicleModelCodeName === null ? undefined : source.VehicleModelCodeName);
+        vehicle.vehicleStatusCodeName(source.VehicleStatusCodeName === null ? undefined : source.VehicleStatusCodeName);
+        vehicle.vehicleCategoryCodeName(source.VehicleCategoryCodeName === null ? undefined : source.VehicleCategoryCodeName);
         return vehicle;
+    };
+    //Convert Server To Client
+    var ChaufferClientMapper = function (source) {
+        var chauffer = new Chauffer();
+        chauffer.id(source.ChaufferId === null ? undefined : source.ChaufferId);
+        chauffer.desigGradeId(source.DesigGradeId === null ? undefined : source.DesigGradeId);
+        chauffer.code(source.ChaufferCode === null ? undefined : source.ChaufferCode);
+        chauffer.name(source.ChaufferName === null ? undefined : source.ChaufferName);
+        chauffer.category(source.DesigGradeCodeName === null ? undefined : source.DesigGradeCodeName);
+        chauffer.licenseNum(source.LicenseNo === null ? undefined : source.LicenseNo);
+        chauffer.licenseExpiryDt(source.LicenseExpDt !== null ? moment(source.LicenseExpDt, ist.utcFormat).toDate() : undefined);
+        return chauffer;
+    };
+    //Client To Server Mapper
+    var NRTServerMapper = function (source) {
+        var result = {};
+        result.VehicleId = source.vehicleDetail().vehicleId() === undefined || source.vehicleDetail().vehicleId() === null ? 0 : source.vehicleDetail().vehicleId();
+        result.NrtMainId = source.id === undefined || source.id() === null ? 0 : source.id();
+        result.NrtMain = NRTMainServerMapper(source);
+        result.NrtVehicleMovements = [];
+        result.NrtVehicleMovements.push(VehicleDetailServerMapper(source.vehicleDetail()));
+        result.NrtCharges = [];
+        _.each(source.nrtChargesList(), function (item) {
+            result.NrtCharges.push(MaintenanceActivityServerMapper(item));
+        });
+        result.NrtDrivers = [];
+        _.each(source.chauffersList(), function (item) {
+            result.NrtDrivers.push(ChaufferServerMapper(item));
+        });
+        return result;
+    };
+    //Client To Server Mapper
+    var NRTMainServerMapper = function (source) {
+        var result = {};
+        result.NrtMainId = source.id() === undefined || source.id() === null ? 0 : source.id();
+        result.NrtTypeId = source.nRtTypeId() === undefined || source.nRtTypeId() === null ? 0 : source.nRtTypeId();
+        result.OpenLocationId = source.outLocationId() === undefined || source.outLocationId() === null ? 0 : source.outLocationId();
+        result.CloseLocationId = source.retLocationId() === undefined || source.retLocationId() === null ? 0 : source.retLocationId();
+        //result.NrtStatusId = source.tariffTypeId() === undefined || source.tariffTypeId() === null ? 0 : source.tariffTypeId();
+        result.StartDtTime = source.startDate() === undefined || source.startDate() === null ? undefined : moment(source.startDate()).format(ist.utcFormat);
+        result.EndDtTime = source.endDate() === undefined || source.endDate() === null ? undefined : moment(source.endDate()).format(ist.utcFormat);
+        result.NrtStatusMovement = VehicleDetailServerMapper(source.vehicleDetail());
+        return result;
+    };
+    //Client To Server Mapper
+    var VehicleDetailServerMapper = function (source) {
+        var result = {};
+        result.NrtVehicleMovementId = source.id() === undefined || source.id() === null ? 0 : source.id();
+        result.VehicleId = source.vehicleId() === undefined || source.vehicleId() === null ? 0 : source.vehicleId();
+        result.VehicleStatusId = source.vOutStatusId() === undefined || source.vOutStatusId() === null ? 0 : source.vOutStatusId();
+        result.OperationsWorkPlaceId = source.outLocId() === undefined || source.outLocId() === null ? 0 : source.outLocId();
+        result.Odometer = source.outOdemeter() === undefined || source.outOdemeter() === null ? 0 : source.outOdemeter();
+        result.FuelLevel = source.fuelOut() === undefined || source.fuelOut() === null ? 0 : source.fuelOut();
+        result.MovementStatus = false;
+        result.DtTime = source.outDtTime() === undefined || source.outDtTime() === null ? undefined : moment(source.outDtTime()).format(ist.utcFormat);
+
+        return result;
+    };
+    //Client To Server Mapper
+    var ChaufferServerMapper = function (source) {
+        var result = {};
+        result.NrtDriverId = source.id() === undefined || source.id() === null ? 0 : source.id();
+        result.ChaufferId = source.chaufferId() === undefined || source.chaufferId() === null ? 0 : source.chaufferId();
+        result.DesigGradeId = source.desigGradeId() === undefined || source.desigGradeId() === null ? 0 : source.desigGradeId();
+        result.LicenseNo = source.licenseNum() === undefined || source.licenseNum() === null ? null : source.licenseNum();
+        result.StartDtTime = source.startDt() === undefined || source.startDt() === null ? undefined : moment(source.startDt()).format(ist.utcFormat);
+        result.EndDtTime = source.endDt() === undefined || source.endDt() === null ? undefined : moment(source.endDt()).format(ist.utcFormat);
+        result.LicenseExpDt = source.licenseExpiryDt() === undefined || source.licenseExpiryDt() === null ? undefined : moment(source.licenseExpiryDt()).format(ist.utcFormat);
+        return result;
     };
     return {
         NRTMain: NRTMain,
         Vehicle: Vehicle,
         VehicleDetail: VehicleDetail,
+        Chauffer: Chauffer,
+        ChaufferInNrt: ChaufferInNrt,
+        AdditionalCharge: AdditionalCharge,
         MaintenanceActivity: MaintenanceActivity,
-        VehicleDetailClientMapper: VehicleDetailClientMapper,
+        VehicleClientMapper: VehicleClientMapper,
+        ChaufferClientMapper: ChaufferClientMapper,
+        NRTMainServerMapper: NRTMainServerMapper,
+        VehicleDetailServerMapper: VehicleDetailServerMapper,
+        ChaufferServerMapper: ChaufferServerMapper,
+        AdditionalChargeClientMapper: AdditionalChargeClientMapper,
+        MaintenanceActivityServerMapper: MaintenanceActivityServerMapper,
+        NRTServerMapper: NRTServerMapper,
     };
 });

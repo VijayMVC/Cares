@@ -226,7 +226,10 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalChargeBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\GetAdditionalChargeForNrtController.cs" />
+    <Compile Include="Areas\Api\Controllers\GetChaufferForNRTController.cs" />
     <Compile Include="Areas\Api\Controllers\GetVehiclesForNRTController.cs" />
+    <Compile Include="Areas\Api\Controllers\NRTController.cs" />
     <Compile Include="Areas\Api\Controllers\RaInsuranceRtsController.cs" />
     <Compile Include="Areas\Api\Controllers\RaAdditionalChargesController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalChargeController.cs" />
@@ -397,6 +400,7 @@
     <Compile Include="ModelMappers\WorkplaceTypeMapper.cs" />
     <Compile Include="Models\AdditionalChargeBaseResponse.cs" />
     <Compile Include="Models\AdditionalCharge.cs" />
+    <Compile Include="Models\AdditionalChargeForNrt.cs" />
     <Compile Include="Models\AdditionalChargeSearchResponse.cs" />
     <Compile Include="Models\AdditionalChargeType.cs" />
     <Compile Include="Models\AdditionalDriverCharge.cs" />
@@ -471,10 +475,15 @@
     <Compile Include="Models\LicenseTypeDropDown.cs" />
     <Compile Include="Models\MaintenanceTypeDropDown.cs" />
     <Compile Include="Models\NRTBaseResponse.cs" />
+    <Compile Include="Models\NrtCharge.cs" />
+    <Compile Include="Models\NrtDriver.cs" />
+    <Compile Include="Models\NrtMain.cs" />
     <Compile Include="Models\NrtType.cs" />
     <Compile Include="Models\NrtTypeBaseDataResponse.cs" />
     <Compile Include="Models\NrtTypeDropDown.cs" />
     <Compile Include="Models\NrtTypeSearchRequestResponse.cs" />
+    <Compile Include="Models\NrtVehicle.cs" />
+    <Compile Include="Models\NrtVehicleMovement.cs" />
     <Compile Include="Models\OccupationType.cs" />
     <Compile Include="Models\OccupationTypeSearchRequestResponse.cs" />
     <Compile Include="Models\OperationSearchResponse.cs" />
@@ -2092,6 +2101,8 @@
     <Content Include="Content\BusinessPartnerSubType.css.map">
       <DependentUpon>BusinessPartnerSubType.css</DependentUpon>
     </Content>
+    <Content Include="Areas\NonRevenueTicket\Views\NonRevenueTicket\_ActivityDialogForNRT.cshtml" />
+    <Content Include="Areas\NonRevenueTicket\Views\NonRevenueTicket\_ChaufferDialogForNRT.cshtml" />
     <None Include="Properties\PublishProfiles\Khurram.pubxml" />
     <Content Include="RichTextEditor\plugins\Thumbs.db" />
     <None Include="Scripts\amplify-vsdoc.js" />

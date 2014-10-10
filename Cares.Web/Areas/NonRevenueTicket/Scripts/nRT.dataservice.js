@@ -24,6 +24,28 @@ define("nRT/nRT.dataservice", function () {
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
                     });
+
+                    // Define request to Get Chauffeurs
+                    amplify.request.define('getChauffers', 'ajax', {
+                        url: ist.siteUrl + '/Api/GetChaufferForNRT',
+                        dataType: 'json',
+                        decoder: amplify.request.decoders.istStatusDecoder,
+                        type: 'POST'
+                    });
+                    // Define request to Get Additional Charge
+                    amplify.request.define('getAdditionlCharge', 'ajax', {
+                        url: ist.siteUrl + '/Api/GetAdditionalChargeForNrt',
+                        dataType: 'json',
+                        decoder: amplify.request.decoders.istStatusDecoder,
+                        type: 'POST'
+                    });
+                    // Define request to save NRT
+                    amplify.request.define('saveNRT', 'ajax', {
+                        url: ist.siteUrl + '/Api/NRT',
+                        dataType: 'json',
+                        decoder: amplify.request.decoders.istStatusDecoder,
+                        type: 'POST'
+                    });
                     isInitialized = true;
                 }
             },
@@ -39,6 +61,16 @@ define("nRT/nRT.dataservice", function () {
                 error: callbacks.error,
             });
         },
+          //Save NRT
+            saveNrt = function (param, callbacks) {
+                initialize();
+                return amplify.request({
+                    resourceId: 'saveNRT',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: param
+                });
+            },
         // Get Vehicles Detail 
         getVehiclesDetail = function (param, callbacks) {
             initialize();
@@ -48,10 +80,33 @@ define("nRT/nRT.dataservice", function () {
                 error: callbacks.error,
                 data: param
             });
-        };
+        },
+        // Get Chauffer
+        getChauffers = function (param, callbacks) {
+            initialize();
+            return amplify.request({
+                resourceId: 'getChauffers',
+                success: callbacks.success,
+                error: callbacks.error,
+                data: param
+            });
+        },
+        // Get Additional Charge
+        getAdditionlCharge = function (param, callbacks) {
+            initialize();
+            return amplify.request({
+                resourceId: 'getAdditionlCharge',
+                success: callbacks.success,
+                error: callbacks.error,
+                data: param
+            });
+        }; 
         return {
             getNRTBase: getNRTBase,
             getVehiclesDetail: getVehiclesDetail,
+            getChauffers: getChauffers,
+            getAdditionlCharge: getAdditionlCharge,
+            saveNrt: saveNrt,
         };
     })();
 

@@ -7,11 +7,23 @@
         <div class="header-toolsSection">
         </div>
     </div>
+
     <div data-bind="with:selectedNrtMain">
+        <div class="form-group">
+            <div class="addToBtnDiv row">
+                <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onOpenTicket">Open Ticket</button>
+            </div>
+        </div>
         <div class="panel panel-info">
             <div class="panel-heading">Non Revenue Ticket </div>
             <div class="well">
                 <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="tickectNum" class="control-label h5 col-sm-1">Non Revenue Ticket #</label>
+                        <div class="col-md-3">
+                            <label id="tickectNum" class="control-label h5 col-sm-3" data-bind="value:id"></label>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="operation" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.TariffType.Operation *</label>
                         <div class="col-md-3">
@@ -37,7 +49,7 @@
                         </div>
                         <label for="nrtTypes" class="control-label h5 col-sm-1">NRT Type  *</label>
                         <div class="col-md-3">
-                            <select id="nrtTypes" class="form-control" data-bind="options: $root.nRTTypes, optionsText: 'NrtTypeCodeName', optionsValue: 'NrtTypeId', optionsCaption: 'Return Location'  , value: nRtTypeId, validationTooltip: nRtTypeId"></select>
+                            <select id="nrtTypes" class="form-control" data-bind="options: $root.nRTTypes, optionsText: 'NrtTypeCodeName', optionsValue: 'NrtTypeId', optionsCaption: 'Return Location' , value: nRtTypeId, validationTooltip: nRtTypeId"></select>
                         </div>
                     </div>
                 </form>
@@ -46,14 +58,22 @@
         <div class="panel panel-info">
             <div class="panel-heading">Vehicle</div>
             <div class="well">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label for="code" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.ServiceRate.ServiceRateCode *</label>
-                        <div class="col-md-3">
-                            <input type="text" id="code" class="form-control" placeholder='@("<" + Cares.Web.Resources.Tariff.ServiceRate.ServiceRateCode + ">")' />
-                        </div>
-                    </div>
-                </form>
+                <table id="activityTable" class="table table-condensed ">
+                    <thead>
+                        <tr>
+                            <th> <span>Plate Number<span></span></span></th>
+                            <th> <span>Tank Size<span></span></span></th>
+                            <th> <span>Vehicle Make<span></span></span></th>
+                            <th> <span>Vehicle Model<span></span></span></th>
+                            <th> <span>Vehicle Category<span></span></span></th>
+                            <th> <span>Model Year<span></span></span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @*<!-- ko template: { name: $root.templateToUse , foreach: $root.selectedChaufferList } -->
+                            <!-- /ko -->*@
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="panel panel-info">
@@ -79,41 +99,41 @@
                             <div class="form-group">
                                 <label for="vPlateNumber" class="control-label h5 col-sm-1">Vehicle Plate Number</label>
                                 <div class="col-md-3">
-                                    <input type="text" id="vPlateNumber" class="form-control" placeholder='' />
+                                    <input type="text" id="vPlateNumber" class="form-control" placeholder='' data-bind="value:plateNum, validationTooltip:plateNum" />
                                 </div>
                                 <label for="isReturnVehicle" class="control-label h5 col-sm-1">Return Vehicle? </label>
                                 <div class="col-md-3">
-                                    <input type="checkbox" id="isReturnVehicle" class="form-control" placeholder='' />
+                                    <input type="checkbox" id="isReturnVehicle" class="form-control" placeholder='' data-bind="checked:isReturnLoc" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="outDateTime" class="control-label h5 col-sm-1">Out Date/Time *</label>
                                 <div class="col-md-3">
-                                    <input type="text" id="outDateTime" class="form-control" placeholder='' />
+                                    <input type="text" id="outDateTime" class="form-control" placeholder='' data-bind="datetimepicker:outDtTime, validationTooltip:outDtTime" />
                                 </div>
                                 <label for="inDateTime" class="control-label h5 col-sm-1">In Date/Time *</label>
                                 <div class="col-md-3">
-                                    <input type="text" id="inDateTime" class="form-control" placeholder='' />
+                                    <input type="text" id="inDateTime" class="form-control" placeholder='' data-bind="datetimepicker:inDtTime, validationTooltip:inDtTime" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="outLocation" class="control-label h5 col-sm-1">Out Location *</label>
                                 <div class="col-md-3">
-                                    <select id="outLocation" class="form-control" data-bind="options: $root.locations, optionsText: 'OperationsWorkPlaceCodeName', optionsValue: 'OperationsWorkPlaceId', optionsCaption: '< Out Location>' "></select>
+                                    <select id="outLocation" class="form-control" data-bind="options: $root.locations, optionsText: 'OperationsWorkPlaceCodeName', optionsValue: 'OperationsWorkPlaceId', optionsCaption: '< Out Location>' ,value:outLocId"></select>
                                 </div>
                                 <label for="retLocation" class="control-label h5 col-sm-1">Return Location *</label>
                                 <div class="col-md-3">
-                                    <select id="retLocation" class="form-control" data-bind="options: $root.locations, optionsText: 'OperationsWorkPlaceCodeName', optionsValue: 'OperationsWorkPlaceId', optionsCaption: 'Return Location' "></select>
+                                    <select id="retLocation" class="form-control" data-bind="options: $root.locations, optionsText: 'OperationsWorkPlaceCodeName', optionsValue: 'OperationsWorkPlaceId', optionsCaption: 'Return Location' ,value:inLocId"></select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="outOdometer" class="control-label h5 col-sm-1">Odometer Out *</label>
                                 <div class="col-md-3">
-                                    <input type="text" id="outOdometer" class="form-control" placeholder='' />
+                                    <input type="text" id="outOdometer" class="form-control" placeholder='' data-bind="value:outOdemeter, validationTooltip:outOdemeter" />
                                 </div>
                                 <label for="inOdometer" class="control-label h5 col-sm-1">Odometer In *</label>
                                 <div class="col-md-3">
-                                    <input type="text" id="inOdometer" class="form-control" placeholder='' />
+                                    <input type="text" id="inOdometer" class="form-control" placeholder='' data-bind="value:inOdemeter, validationTooltip:inOdemeter" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -143,11 +163,11 @@
                             <div class="form-group">
                                 <label for="vOutStatus" class="control-label h5 col-sm-1">Vehicle Out Status *</label>
                                 <div class="col-md-3">
-                                    <select id="vOutStatus" class="form-control" data-bind="options: $root.vehicleStatuses, optionsText: 'VehicleStatusCodeName ', optionsValue: 'VehicleStatusId ', optionsCaption: '<Vehicle Out Status>' "></select>
+                                    <select id="vOutStatus" class="form-control" data-bind="options: $root.vehicleStatuses, optionsText: 'VehicleStatusCodeName', optionsValue: 'VehicleStatusId', optionsCaption: '<Vehicle Out Status>' ,value:vOutStatusId"></select>
                                 </div>
                                 <label for="vInStatus" class="control-label h5 col-sm-1">Vehicle In Status *</label>
                                 <div class="col-md-3">
-                                    <select id="vInStatus" class="form-control" data-bind="options: $root.vehicleStatuses, optionsText: 'VehicleStatusCodeName ', optionsValue: 'VehicleStatusId ', optionsCaption: '<Vehicle In Status>' "></select>
+                                    <select id="vInStatus" class="form-control" data-bind="options: $root.vehicleStatuses, optionsText: 'VehicleStatusCodeName', optionsValue: 'VehicleStatusId', optionsCaption: '<Vehicle In Status>' ,value:vInStatusId"></select>
                                 </div>
                             </div>
                         </form>
@@ -158,7 +178,7 @@
                         <form class="form-horizontal">
                             <div class="form-group">
                                 <div class="addToBtnDiv row">
-                                    <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onAddActivity">Add Activity</button>
+                                    <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onAddActivity,visible: $root.selectedNrtMain().vehicleDetail().vehicleId()!=undefined">Add Activity</button>
                                 </div>
                             </div>
                         </form>
@@ -172,31 +192,59 @@
                                         <th> <span>Total Rate<span></span></span></th>
                                         <th> <span>Contact Person<span></span></span></th>
                                         <th> <span>Description<span></span></span></th>
-                                        <th> <span>Rate<span></span></span></th>
+                                        <th> <span>Rate *<span></span></span></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @*<!-- ko template: { name: 'itemtariffTypeTemplate' , foreach: tariffTypes } -->
-                                        <!-- /ko -->*@
+                                    <!-- ko template: { name:$root.templateToUseForMaintenaceActivity , foreach: $root.selectedAdditionalChargeList } -->
+                                    <!-- /ko -->
                                 </tbody>
                             </table>
                         </div>
                     </div>
-
                     <!-- 3nd tab - Chauffeur-->
-                    <div class="tab-pane " id="chauffeur">
-                        .....
+                    <div class="tab-pane " id="chauffeur" data-bind="with:chaufferInNrt">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <div class="addToBtnDiv row">
+                                    <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onAddChauffer,visible: $root.selectedNrtMain().vehicleDetail().vehicleId()!=undefined">Add Chauffer</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="well">
+                            <table id="activityTable" class="table table-condensed ">
+                                <thead>
+                                    <tr>
+                                        <th> <span>Chauffeur Code<span></span></span></th>
+                                        <th> <span>Chauffeur Name<span></span></span></th>
+                                        <th> <span>License Expiry Date<span></span></span></th>
+                                        <th> <span>License No.<span></span></span></th>
+                                        <th> <span>Start Date<span></span></span></th>
+                                        <th> <span>Start Hour *<span></span></span></th>
+                                        <th> <span>Start Minute *<span></span></span></th>
+                                        <th> <span>End Date<span></span></span></th>
+                                        <th> <span>End Hour *<span></span></span></th>
+                                        <th> <span>End Minute *<span></span></span></th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- ko template: { name: $root.templateToUse , foreach: $root.selectedChaufferList } -->
+                                    <!-- /ko -->
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-                @*@Html.Partial("_ChaufferChargeEditor")*@
             </div>
         </div>
     </div>
     @Html.Partial("~/Areas/NonRevenueTicket/Views/NonRevenueTicket/_VehicleDetailDialogForNRT.cshtml")
+    @Html.Partial("~/Areas/NonRevenueTicket/Views/NonRevenueTicket/_ActivityDialogForNRT.cshtml")
+    @Html.Partial("~/Areas/NonRevenueTicket/Views/NonRevenueTicket/_ChaufferDialogForNRT.cshtml")
 </div>
-<!-- ko stopBinding: true -->
-@*@Html.Partial("~/Areas/Common/Views/Shared/_ConfirmationDialog.cshtml")*@
-@Html.Partial("~/Areas/NonRevenueTicket/Views/NonRevenueTicket/_VehicleDetailDialogForNRT.cshtml")
+<!-- ko stopBinding: true
+
 <!-- /ko -->
 @section inlinescripts
 {
@@ -205,3 +253,111 @@
 
     </script>
 }
+<script id="editChaufferItemTemplate" type="text/html">
+    <tr data-bind="css: { selectedRow: $data === $root.selectedChaufferItem() }">
+        <td class="col-md-2">
+            <span data-bind="text: code"></span>
+        </td>
+        <td class="col-md-2">
+            <span data-bind="text: name"></span>
+        </td>
+        <td class="col-md-2">
+            <span data-bind="text: formattedLicenseExpiryDt"></span>
+        </td>
+        <td class="col-md-2">
+            <span data-bind="text: licenseNum"></span>
+        </td>
+        <td class="col-md-2">
+            <span data-bind="text: formattedStartDt"></span>
+        </td>
+        <td class="col-md-2">
+            <span data-bind="text: startHour"></span>
+        </td>
+        <td class="col-md-2">
+            <span data-bind="text: startMinute"></span>
+        </td>
+        <td class="col-md-2">
+            <span data-bind="text: formattedEndDt"></span>
+        </td>
+        <td class="col-md-2">
+            <input type="text" class="chaufferTime" data-bind="value: endHour, validationTooltip: endHour" />
+        </td>
+        <td class="col-md-2">
+            <input type="text" class="chaufferTime" data-bind="value: endMinute, validationTooltip: endMinute" />
+        </td>
+        <td>
+            <!-- ko template: { name: 'deleteChaufferItemTemplate' } -->
+            <!-- /ko -->
+        </td>
+    </tr>
+</script>
+<script id="itemChaufferItemTemplate" type="text/html">
+    <tr data-bind="click: $root.selectChaufferItem, css: { selectedRow: $data === $root.selectedChaufferItem() }">
+        <td data-bind="text: code"></td>
+        <td data-bind="text: name"></td>
+        <td data-bind="text: formattedLicenseExpiryDt"></td>
+        <td data-bind="text: licenseNum"></td>
+        <td data-bind="text: formattedStartDt"></td>
+        <td data-bind="text: startHour"></td>
+        <td data-bind="text: startMinute"></td>
+        <td data-bind="text: formattedEndDt"></td>
+        <td data-bind="text: endHour"></td>
+        <td data-bind="text: endMinute"></td>
+        <td>
+            <!-- ko template: { name: 'deleteChaufferItemTemplate' } -->
+            <!-- /ko -->
+        </td>
+    </tr>
+</script>
+<script id="deleteChaufferItemTemplate" type="text/html">
+    <a href="#" data-bind="click: $root.deleteChaufferItem" title=@Cares.Web.Resources.Shared.Common.Delete><span class="glyphicon glyphicon-remove"></span></a>
+</script>
+
+<script id="editAdditionalChargeTemplate" type="text/html">
+    <tr data-bind="css: { selectedRow: $data === $root.selectedAdditionalChargeItem() }">
+        <td class="col-md-2">
+            <span data-bind="text: code"></span>
+        </td>
+        <td class="col-md-2">
+            <span data-bind="text: name"></span>
+        </td>
+        <td class="col-md-2">
+            <input type="text" class="activityTextBox" data-bind="value: qty, validationTooltip: qty" />
+        </td>
+        <td class="col-md-2">
+            <span data-bind="text: totalRate"></span>
+        </td>
+        <td class="col-md-2">
+            <input type="text" class="activityTextBox" data-bind="value: contactPerson " />
+        </td>
+        <td class="col-md-2">
+            <input type="text" class="activityTextBox" data-bind="value: description " />
+        </td>
+        <td class="col-md-2">
+            <input type="text" class="activityTextBox" data-bind="value: rate, validationTooltip: rate" />
+        </td>
+
+        <td>
+            <!-- ko template: { name: 'deleteChaufferItemTemplate' } -->
+            <!-- /ko -->
+        </td>
+    </tr>
+</script>
+<script id="itemAdditionalChargeTemplate" type="text/html">
+    <tr data-bind="click: $root.selectAdditionalChargeItem, css: { selectedRow: $data === $root.selectedAdditionalChargeItem() }">
+        <td data-bind="text: code"></td>
+        <td data-bind="text: name"></td>
+        <td data-bind="text: qty"></td>
+        <td data-bind="text: totalRate"></td>
+        <td data-bind="text: contactPerson"></td>
+        <td data-bind="text: description"></td>
+        <td data-bind="text: rate"></td>
+        <td>
+            <!-- ko template: { name: 'deleteAdditionalChargeItemTemplate' } -->
+            <!-- /ko -->
+        </td>
+    </tr>
+</script>
+<script id="deleteAdditionalChargeItemTemplate" type="text/html">
+    <a href="#" data-bind="click: $root.deleteAdditionalChargeItem" title=@Cares.Web.Resources.Shared.Common.Delete><span class="glyphicon glyphicon-remove"></span></a>
+</script>

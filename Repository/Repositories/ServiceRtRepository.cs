@@ -34,6 +34,7 @@ namespace Cares.Repository.Repositories
             }
         }
         #endregion
+       
         #region Public
         /// <summary>
         /// Get All Service Rate for User Domain Key

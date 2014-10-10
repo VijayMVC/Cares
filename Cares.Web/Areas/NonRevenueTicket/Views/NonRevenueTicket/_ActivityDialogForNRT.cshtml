@@ -1,0 +1,53 @@
+﻿
+<div id="dialog-activityDialog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialogConfirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                @*<h4 class="modal-title" id="myModalLabel" data-bind="text: headingText">Confirmation</h4>*@
+            </div>
+            <div class="modal-body">
+                <div>
+                    <button class="btn btn-info" id="saveBtn" data-bind="click:$root.applyAdditionalCharges">Apply</button>
+                    <button class="btn btn-default" id="saveBtn" data-dismiss="modal">@Cares.Web.Resources.Shared.Common.Cancel</button>
+                </div>
+                <br />
+                <div>
+                    <form class="form-horizontal">
+                        <div>
+                            <div class="well">
+                                <table id="activityTable" class="table table-condensed ">
+                                    <thead>
+                                        <tr>
+                                            <th> <span><span></span></span></th>
+                                            <th> <span><span>Additional Charge Type Code</span></span></th>
+                                            <th> <span><span>Additional Charge Type Name</span></span></th>
+                                            <th class="make"> <span>Hire Group<span></span></span></th>
+                                            <th class="model"> <span>Rate<span></span></span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- ko template: { name: 'itemAcitivityTemplate' , foreach: $root.additionalCharges } -->
+                                        <!-- /ko -->
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                        <script id="itemAcitivityTemplate" type="text/html">
+                            <tr>
+                                <td><input type="checkbox" data-bind="checked:isChecked" /></td>
+                                <td data-bind="text: code"></td>
+                                <td data-bind="text: name"></td>
+                                <td data-bind="text: hireGroupDetail"></td>
+                                <td data-bind="text: rate"></td>
+                            </tr>
+                        </script>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>

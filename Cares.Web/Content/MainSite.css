@@ -1280,6 +1280,12 @@
   width: 100%;
   margin-bottom: 15px;
 }
+#nRTBinding .chaufferTime {
+  width: 28px;
+}
+#nRTBinding .activityTextBox {
+  width: 70px;
+}
 #nRTBinding .addToBtn {
   float: right;
   margin-right: 10px;

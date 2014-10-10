@@ -313,6 +313,7 @@
     <Compile Include="RequestModels\DiscountTypeSearchRequest.cs" />
     <Compile Include="RequestModels\DiscountTypeSearchRequestResponse.cs" />
     <Compile Include="RequestModels\DocumentSearchRequest.cs" />
+    <Compile Include="RequestModels\GetAdditionalChargeForNrtRequest.cs" />
     <Compile Include="RequestModels\GetRaChaufferRequest.cs" />
     <Compile Include="RequestModels\DocumentGroupSearchRequest.cs" />
     <Compile Include="RequestModels\DocumentGroupSearchRequestResponse.cs" />
@@ -355,6 +356,7 @@
     <Compile Include="RequestModels\WorkplaceSearchRequest.cs" />
     <Compile Include="RequestModels\WorkplaceTypeSearchRequest.cs" />
     <Compile Include="ResponseModels\AdditionalChargeBaseResponse.cs" />
+    <Compile Include="ResponseModels\AdditionalChargeForNrt.cs" />
     <Compile Include="ResponseModels\AdditionalChargeSearchResponse.cs" />
     <Compile Include="ResponseModels\AddressBaseDataResponse.cs" />
     <Compile Include="ResponseModels\AdditionalDriverBaseResponse.cs" />

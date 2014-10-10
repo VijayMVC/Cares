@@ -164,6 +164,7 @@
     <Compile Include="Repositories\DocumentGroupRepository.cs" />
     <Compile Include="Repositories\CityRepository.cs" />
     <Compile Include="Repositories\DocumentRepository.cs" />
+    <Compile Include="Repositories\RaStatusRepository.cs" />
     <Compile Include="Repositories\NrtMainRepository.cs" />
     <Compile Include="Repositories\NrtTypeRepository.cs" />
     <Compile Include="Repositories\DesignGradeRepository.cs" />
@@ -195,6 +196,7 @@
     <Compile Include="Repositories\MarketingChannelRepository.cs" />
     <Compile Include="Repositories\MeasurementUnitRepository.cs" />
     <Compile Include="Repositories\MenuRightRepository.cs" />
+    <Compile Include="Repositories\NrtVehicleRepository.cs" />
     <Compile Include="Repositories\OccupationTypeRepository.cs" />
     <Compile Include="Repositories\OperationRepository.cs" />
     <Compile Include="Repositories\OperationsWorkPlaceRepository.cs" />

@@ -40,6 +40,23 @@ namespace Cares.Web.ModelMappers
                 IsEditable = source.IsEditable,
             };
         }
+
+        /// <summary>
+        /// Domain Response To Web Response
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static ApiModel.AdditionalChargeForNrt CreateFrom(this DomainResponseModel.AdditionalChargeForNrt source)
+        {
+            return new ApiModel.AdditionalChargeForNrt
+            {
+                AdditionalChargeTypeId = source.AdditionalChargeTypeId,
+                AdditionalChargeTypeCode = source.AdditionalChargeTypeCode,
+                AdditionalChargeTypeName = source.AdditionalChargeTypeName,
+                AdditionalChargeRate = source.AdditionalChargeRate,
+                HireGroupDetail = source.HireGroupDetail,
+            };
+        }
         /// <summary>
         /// Domain Response To Web Response
         /// </summary>
@@ -58,7 +75,7 @@ namespace Cares.Web.ModelMappers
                 AdditionalChargeTypeName = source.AdditionalChargeType.AdditionalChargeTypeName,
                 AdditionalChargeTypeCodeName = source.AdditionalChargeType.AdditionalChargeTypeCode + '-' + source.AdditionalChargeType.AdditionalChargeTypeName,
                 HireGroupDetailCodeName = source.HireGroupDetail != null ? source.HireGroupDetail.CreateFromForAddtionalCharge().HireGroupDetailCodeName : string.Empty,
-                RevisionNumber =source.RevisionNumber
+                RevisionNumber = source.RevisionNumber
             };
         }
         /// <summary>
@@ -91,7 +108,7 @@ namespace Cares.Web.ModelMappers
                 AdditionalChargeTypeName = source.Name,
                 AdditionalChargeTypeDescription = source.Description,
                 IsEditable = source.IsEditable,
-                AdditionalCharges = source.AdditionalCharges!=null?source.AdditionalCharges.Select(addChrg => addChrg.CreateFrom()).ToList():null
+                AdditionalCharges = source.AdditionalCharges != null ? source.AdditionalCharges.Select(addChrg => addChrg.CreateFrom()).ToList() : null
             };
         }
         #endregion

@@ -120,6 +120,7 @@
     <Compile Include="Repository\ILicenseTypeRepository.cs" />
     <Compile Include="Repository\IMaintenanceTypeRepository.cs" />
     <Compile Include="Repository\IRAServiceItemRepository.cs" />
+    <Compile Include="Repository\IRaStatusRepository.cs" />
     <Compile Include="Repository\ISeasonalDiscountMainRepository.cs" />
     <Compile Include="Repository\ISeasonalDiscountRepository.cs" />
     <Compile Include="Repository\IServiceItemRepository.cs" />
@@ -214,6 +215,7 @@
     <Compile Include="Repository\IWorkplaceRepository.cs" />
     <Compile Include="Repository\IWorkplaceTypeRepository.cs" />
     <Compile Include="Repository\IRaVehicleCheckListRepository.cs" />
+    <Compile Include="Repository\INrtVehicleRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Cares.Models.csproj">

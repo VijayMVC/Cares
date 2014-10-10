@@ -137,8 +137,9 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Nrt Vehicles
         /// </summary>
-        public virtual ICollection<NrtVehicle> NrtVehicles { get; set; } 
-        
+        public virtual ICollection<NrtVehicle> NrtVehicles { get; set; }
+
+              
         #endregion
     }
 }

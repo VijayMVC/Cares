@@ -35,10 +35,9 @@
                     <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.ServiceRate.EffectiveFrom + ">")' class="form-control" id="sDate" data-bind="datepicker: startDt, validationTooltip: startDt" />
                 </div>
             </div>
-
         </form>
     </div>
-    <br/>
+    <br />
     <div class="panel panel-info searchFilterResultSection">
         <div class="panel-heading">@Cares.Web.Resources.Tariff.ServiceRate.ServiceItemRate</div>
         <table id="serviceItemRate" class="table table-condensed">
@@ -59,7 +58,6 @@
             </tbody>
         </table>
         <div class="well">
-
             <!-- ko with: clientPager -->
             @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
             <!-- /ko -->
@@ -79,7 +77,7 @@
                     <span data-bind="text: serviceTypeCodeName"></span>
                 </td>
                 <td class="col-md-2">
-                    <input type="text" class="serviceRate"  data-bind="value: serviceRate, validationTooltip: serviceRate" />
+                    <input type="text" class="serviceRate" data-bind="value: serviceRate, validationTooltip: serviceRate" />
                 </td>
                 <td class="col-md-2">
                     <input type="text" class="startDate" data-bind="datepicker: startDt, validationTooltip: startDt" />
@@ -98,7 +96,6 @@
                 <td data-bind="text: serviceRate"></td>
                 <td data-bind="dateString: startDt"></td>
                 <td data-bind="text: revisionNumber"></td>
-
             </tr>
         </script>
     </div>

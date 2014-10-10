@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Cares.Models.DomainModels;
+using Cares.Models.ResponseModels;
 
 namespace Cares.Interfaces.Repository
 {
@@ -19,5 +21,13 @@ namespace Cares.Interfaces.Repository
         /// Get All For RA
         /// </summary>
         IEnumerable<AdditionalCharge> GetAllForRa();
+
+        /// <summary>
+        /// Get Additional Charge For NRT
+        /// </summary>
+        /// <param name="startDt"></param>
+        /// <param name="vehicle"></param>
+        /// <returns></returns>
+        IEnumerable<AdditionalChargeForNrt> AdditionalChargeForNrt(DateTime startDt, Vehicle vehicle);
     }
 }

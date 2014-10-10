@@ -1,6 +1,5 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
@@ -31,5 +30,6 @@ namespace Cares.Interfaces.Repository
         /// Get All Chauffers - Used in Ra
         /// </summary>
         IEnumerable<Employee> GetAllChauffers(GetRaChaufferRequest request);
+
     }
 }
