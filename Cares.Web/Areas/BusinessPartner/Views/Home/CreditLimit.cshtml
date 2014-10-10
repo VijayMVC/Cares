@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = Cares.Web.Resources.BusinessPartner.CreditLimit.CreditLimitLabel;
+}
+<div class="row" id="CreditLimitBinding">
+
+    <div class="row " data-bind="visible: !isCreditLimitEditorVisible()">
+        <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.BusinessPartner.CreditLimit.CreditLimitLabel</h3>
+        <div class="header-toolsSection">
+            <a href="#" class="label label-default create-new-icon" data-bind="click: onCreateForm" title="@Cares.Web.Resources.Shared.Common.CreateNew">@Cares.Web.Resources.Shared.Common.New</a>
+            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title="@Cares.Web.Resources.Shared.Common.ShowFilter" style="display: none"></a>
+        </div>
+    </div>
+    <div class="row searchFilterSection" data-bind="visible: !isCreditLimitEditorVisible() && filterSectionVisilble()" style="display: none">
+        <div class="well">
+            <form class="form-horizontal">
+
+                <div class="col-md-3">
+                    <select class="form-control" data-bind="options: $root.baseSubTypesList, optionsText: 'BusinessPartnerSubTypeCodeName', optionsValue: 'BusinessPartnerSubTypeId', optionsCaption: '&lt;' + '@Cares.Web.Resources.BusinessPartner.CreditLimit.BPSubType'+ '&gt;' , value:baseSubTypeFilter "></select>
+                </div>
+
+
+                <div class="col-md-3">
+                    <select class="form-control" data-bind="options: $root.baseRatingTypesList, optionsText: 'BpRatingTypeCodeName', optionsValue: 'BpRatingTypeId', optionsCaption: '&lt;' + '@Cares.Web.Resources.BusinessPartner.CreditLimit.RatingType'+ '&gt;' , value:baseRatingTypeFilter "></select>
+                </div>
+
+                <button type="submit" class="btn btn-success" data-bind="click: search">@Cares.Web.Resources.Shared.Common.Search</button>
+                <button type="submit" class="btn btn-default" data-bind="click:resetResuults">@Cares.Web.Resources.Shared.Common.Reset</button>
+                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click:hideFilterSection" title="@Cares.Web.Resources.Shared.Common.HideSection"></a>
+            </form>
+        </div>
+    </div>
+    <div class="row searchFilterResultSection" data-bind="visible: !isCreditLimitEditorVisible()">
+        <div class="well">
+            <table id="CreditLimitTable" class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th class="creditLimitSubType"> <span id="1">@Cares.Web.Resources.BusinessPartner.CreditLimit.BPSubType<span class="icon-up"></span></span></th>
+                        <th class="creditLimitRatingType"> <span id="2">@Cares.Web.Resources.BusinessPartner.CreditLimit.RatingType<span></span></span></th>
+                        <th class="creditLimitIsIndividual"> <span>@Cares.Web.Resources.BusinessPartner.CreditLimit.IsIndividual<span></span></span></th>
+                        <th class="creditLimitCreditLimit"> <span id="3">@Cares.Web.Resources.BusinessPartner.CreditLimit.StandardCreditLimit<span></span></span></th>
+                        <th class="creditLimitDes"> <span>@Cares.Web.Resources.BusinessPartner.CreditLimit.Description<span></span></span></th>
+                        <th> <span></span></th>
+                        <th> <span></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- ko template: { name: 'CreditLimitFilterResultTemplate' , foreach: creditLimits } -->
+                    <!-- /ko -->
+                </tbody>
+            </table>
+            <!-- ko with: pager -->
+            @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
+            <!-- /ko -->
+        </div>
+    </div>
+    <script id="deleteActionCreditLimitTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onDeleteItem" title="@Cares.Web.Resources.Shared.Common.Delete"><span class="glyphicon glyphicon-remove"></span></a>
+    </script>
+
+    <script id="editActionCreditLimitTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onEditItem" title="@Cares.Web.Resources.Shared.Common.Edit"><span class="glyphicon glyphicon-edit"></span></a>
+    </script>
+    <script id="CreditLimitFilterResultTemplate" type="text/html">
+        <tr>
+            <td data-bind="text: bpSubName"></td>
+            <td data-bind="text: bpRatingTypeName"></td>
+            <td data-bind="text: isIndividual"></td>
+            <td data-bind="text: standardCreditLimit"></td>
+            <td data-bind="text: description"></td>
+            <td>
+                <!-- ko template: { name: 'editActionCreditLimitTemplate' } -->
+                <!-- /ko -->
+            </td>
+            <td>
+                <!-- ko template: { name: 'deleteActionCreditLimitTemplate' } -->
+                <!-- /ko -->
+            </td>
+        </tr>
+    </script>
+    @Html.Partial("_CreditLimitEditor")
+</div>
+<!-- ko stopBinding: true -->
+@Html.Partial("~/Areas/Common/Views/Shared/_ConfirmationDialog.cshtml")
+<!-- /ko -->
+@section inlinescripts
+{
+    <script type="text/javascript">
+        require(["creditLimit/creditLimit.view", "common/confirmation.view"]);
+    var ist = window.ist;
+    @{
+        <text>
+        ist.resourceText.CreditLimitSuccessfullySavedMessage = '@Cares.Web.Resources.BusinessPartner.CreditLimit.CreditLimitSuccessfullySavedMessage';
+        ist.resourceText.FailedToSaveCreditLimitError = '@Cares.Web.Resources.BusinessPartner.CreditLimit.FailedToSaveCreditLimitError';
+        ist.resourceText.FailedToLoadCreditLimitsError = '@Cares.Web.Resources.BusinessPartner.CreditLimit.FailedToLoadCreditLimitsError';
+        ist.resourceText.CreditLimitSuccessfullyDeletedMessage = '@Cares.Web.Resources.BusinessPartner.CreditLimit.CreditLimitSuccessfullyDeletedMessage';
+        ist.resourceText.FailedToDeleteCreditLimitError = '@Cares.Web.Resources.BusinessPartner.CreditLimit.FailedToDeleteCreditLimitError';
+        ist.resourceText.FailedToloadBaseDataError = '@Cares.Web.Resources.BusinessPartner.CreditLimit.FailedToloadBaseDataError';
+        </text>
+       }
+    </script>
+
+}

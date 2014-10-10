@@ -1488,6 +1488,162 @@
   margin-bottom: 20px;
   margin-top: 10px;
 }
+#CreditLimitBinding table thead tr .creditLimitSubType {
+  width: 20%;
+}
+#CreditLimitBinding table thead tr .creditLimitRatingType {
+  width: 20%;
+}
+#CreditLimitBinding table thead tr .creditLimitIsIndividual {
+  width: 10%;
+}
+#CreditLimitBinding table thead tr .creditLimitCreditLimit {
+  width: 20%;
+}
+#CreditLimitBinding table thead tr .creditLimitDes {
+  width: 30%;
+}
+#CreditLimitBinding #CreditLimitEditor {
+  margin-top: 15px;
+}
+#CreditLimitBinding #CreditLimitEditor .detailsContainer {
+  width: 100%;
+}
+#CreditLimitBinding #CreditLimitEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#MarketingChannelBinding table thead tr .MarketingChannelCode {
+  width: 33%;
+}
+#MarketingChannelBinding table thead tr .MarketingChannelName {
+  width: 33%;
+}
+#MarketingChannelBinding table thead tr .MarketingChannelDiscription {
+  width: 33%;
+}
+#MarketingChannelBinding #MarketingChannelEditor {
+  margin-top: 15px;
+}
+#MarketingChannelBinding #MarketingChannelEditor .detailsContainer {
+  width: 100%;
+}
+#MarketingChannelBinding #MarketingChannelEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#MaintenanceTypeGroupBinding table thead tr .maintenanceTypeGroupCode {
+  width: 33%;
+}
+#MaintenanceTypeGroupBinding table thead tr .maintenanceTypeGroupName {
+  width: 33%;
+}
+#MaintenanceTypeGroupBinding table thead tr .maintenanceTypeGroupDiscription {
+  width: 33%;
+}
+#MaintenanceTypeGroupBinding #MaintenanceTypeGroupEditor {
+  margin-top: 15px;
+}
+#MaintenanceTypeGroupBinding #MaintenanceTypeGroupEditor .detailsContainer {
+  width: 100%;
+}
+#MaintenanceTypeGroupBinding #MaintenanceTypeGroupEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#MaintenanceTypeBinding table thead tr .maintenanceTypeCode {
+  width: 25%;
+}
+#MaintenanceTypeBinding table thead tr .maintenanceTypeName {
+  width: 25%;
+}
+#MaintenanceTypeBinding table thead tr .maintenanceTypeDiscription {
+  width: 25%;
+}
+#MaintenanceTypeBinding table thead tr .maintenanceTypeGroup {
+  width: 25%;
+}
+#MaintenanceTypeBinding #MaintenanceTypeEditor {
+  margin-top: 15px;
+}
+#MaintenanceTypeBinding #MaintenanceTypeEditor .detailsContainer {
+  width: 100%;
+}
+#MaintenanceTypeBinding #MaintenanceTypeEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#InsuranceTypeBinding table thead tr .InsuranceTypeCode {
+  width: 33%;
+}
+#InsuranceTypeBinding table thead tr .InsuranceTypeName {
+  width: 33%;
+}
+#InsuranceTypeBinding table thead tr .InsuranceTypeDescription {
+  width: 33%;
+}
+#InsuranceTypeBinding #insuranceTypeEditor {
+  margin-top: 15px;
+}
+#InsuranceTypeBinding #insuranceTypeEditor .detailsContainer {
+  width: 100%;
+}
+#InsuranceTypeBinding #insuranceTypeEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#VehicleMakeBinding table thead tr .VehicleCode {
+  width: 33%;
+}
+#VehicleMakeBinding table thead tr .VehicleName {
+  width: 33%;
+}
+#VehicleMakeBinding table thead tr .VehicleDescription {
+  width: 33%;
+}
+#VehicleMakeBinding #VehicleMakeEditor {
+  margin-top: 15px;
+}
+#VehicleMakeBinding #VehicleMakeEditor .detailsContainer {
+  width: 100%;
+}
+#VehicleMakeBinding #VehicleMakeEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#VehicleCategoryBinding table thead tr .VehicleCategoryCode {
+  width: 33%;
+}
+#VehicleCategoryBinding table thead tr .VehicleCategoryName {
+  width: 33%;
+}
+#VehicleCategoryBinding table thead tr .VehicleCategoryDescription {
+  width: 33%;
+}
+#VehicleCategoryBinding #VehicleCategoryEditor {
+  margin-top: 15px;
+}
+#VehicleCategoryBinding #VehicleCategoryEditor .detailsContainer {
+  width: 100%;
+}
+#VehicleCategoryBinding #VehicleCategoryEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
 .float-left {
   float: left;
 }

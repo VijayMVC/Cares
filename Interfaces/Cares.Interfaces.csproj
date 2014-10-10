@@ -52,13 +52,20 @@
     <Compile Include="Helpers\IBill.cs" />
     <Compile Include="IServices\IAdditionalChargeService.cs" />
     <Compile Include="IServices\IAddressBaseDataService.cs" />
+    <Compile Include="IServices\IBusinessPartnerInTypeService.cs" />
     <Compile Include="IServices\IChaufferChargeService.cs" />
     <Compile Include="IServices\IBusinessPartnerRelationTypeService.cs" />
     <Compile Include="IServices\IBusinessPartnerSubTypeService.cs" />
+    <Compile Include="IServices\ICreditLimitService.cs" />
+    <Compile Include="IServices\IVehicleCategoryService.cs" />
+    <Compile Include="IServices\IVehicleMakeService.cs" />
+    <Compile Include="IServices\IMaintenanceTypeService.cs" />
+    <Compile Include="IServices\IMainteneceTypeGroupService.cs" />
     <Compile Include="IServices\IDocumentService.cs" />
     <Compile Include="IServices\INRTService.cs" />
     <Compile Include="IServices\IInsuranceTypeService.cs" />
     <Compile Include="IServices\IRatingTypeService.cs" />
+    <Compile Include="IServices\IMarketingChannelService.cs" />
     <Compile Include="IServices\ISeasonalDiscountService.cs" />
     <Compile Include="IServices\IBpMainTypeService.cs" />
     <Compile Include="IServices\IDocumentGroupService.cs" />
@@ -97,6 +104,7 @@
     <Compile Include="Repository\IBusinessPartnerMainTypeRepository.cs" />
     <Compile Include="Repository\ICreditLimitRepository.cs" />
     <Compile Include="Repository\IBpSubTypeRepository.cs" />
+    <Compile Include="Repository\IMainteneceTypeGroupRepository.cs" />
     <Compile Include="Repository\IRACustomerDocumentRepository.cs" />
     <Compile Include="Repository\IChaufferChargeMainRepository.cs" />
     <Compile Include="Repository\IChaufferChargeRepository.cs" />
@@ -170,6 +178,7 @@
     <Compile Include="Repository\IInsuranceRtMainRepository.cs" />
     <Compile Include="Repository\IInsuranceRtRepository.cs" />
     <Compile Include="Repository\IInsuranceTypeRepository.cs" />
+    <Compile Include="Repository\IStandardDiscountRepository.cs" />
     <Compile Include="Repository\ITransmissionTypeRepository.cs" />
     <Compile Include="Repository\IVehicleCheckListItemRepository.cs" />
     <Compile Include="Repository\IVehicleCheckListRepository.cs" />

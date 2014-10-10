@@ -1,0 +1,38 @@
+﻿
+<div class="well col-md-12" id="CreditLimitEditor" data-bind="visible: isCreditLimitEditorVisible, with: selectedCreditLimit " style="display: none; margin-top:15px">
+    <div class="float-left detailsContainer">
+        <h3 class="page-header detailsHeaderSection">@Cares.Web.Resources.BusinessPartner.CreditLimit.CreditLimitDetail</h3>
+        <button class="btn  btn-info" data-bind="click: $root.onSavebtn">@Cares.Web.Resources.Shared.Common.Save</button>
+        <button class="btn  btn-default" data-bind="click: $root.onCancelbtn">@Cares.Web.Resources.Shared.Common.Cancel</button>
+    </div>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.BusinessPartner.CreditLimit.BPSubType*</label>
+            <div class="col-md-3">
+                <select class="form-control" data-bind="options: $root.baseSubTypesList, optionsText: 'BusinessPartnerSubTypeCodeName', optionsValue: 'BusinessPartnerSubTypeId', optionsCaption: '&lt;' + '@Cares.Web.Resources.BusinessPartner.CreditLimit.BPSubType'+ '&gt;' , value:bpSubTypeId "></select>
+            </div>
+            <label class="control-label h5 col-sm-1">@Cares.Web.Resources.BusinessPartner.CreditLimit.RatingType*</label>
+            <div class="col-md-3">
+                <select class="form-control" data-bind="options: $root.baseRatingTypesList, optionsText: 'BpRatingTypeCodeName', optionsValue: 'BpRatingTypeId', optionsCaption: '&lt;' + '@Cares.Web.Resources.BusinessPartner.CreditLimit.RatingType'+ '&gt;' , value:bpRatingTypeId "></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.BusinessPartner.CreditLimit.StandardCreditLimit*</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.BusinessPartner.CreditLimit.StandardCreditLimit + ">")" data-bind="value: standardCreditLimit" />
+            </div>
+
+            <label class="control-label h5 col-sm-1">@Cares.Web.Resources.BusinessPartner.CreditLimit.IsIndividual*</label>
+            <div class="col-md-3">
+                <input type="checkbox" class="form-control" data-bind="checked:isIndividual" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.BusinessPartner.CreditLimit.Description</label>
+            <div class="col-md-3">
+                <textarea class="form-control" rows="4" placeholder="@("<" + Cares.Web.Resources.BusinessPartner.CreditLimit.Description + ">")" data-bind="value: description"></textarea>
+            </div>
+        </div>
+
+    </form>
+</div>

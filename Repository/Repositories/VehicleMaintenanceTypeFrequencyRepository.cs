@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Linq;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
 using Microsoft.Practices.Unity;
@@ -11,7 +12,7 @@ namespace Cares.Repository.Repositories
     /// </summary>
     public class VehicleMaintenanceTypeFrequencyRepository : BaseRepository<VehicleMaintenanceTypeFrequency>, IVehicleMaintenanceTypeFrequencyRepository
     {
-         #region Constructor
+        #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>
@@ -29,6 +30,16 @@ namespace Cares.Repository.Repositories
             {
                 return db.VehicleMaintenanceTypeFrequencies;
             }
+        }
+        #endregion
+        #region Public
+
+        /// <summary>
+        /// Association check b/w vehicle Maintenance Type Frequency and Maintenance Type
+        /// </summary>
+        public bool IsVehicleMaintenanceTypeFrequencyAssociatedMaintenanceType(long maintenanceTypeId)
+        {
+            return DbSet.Count(vehiclemaintenece => vehiclemaintenece.MaintenanceTypeId == maintenanceTypeId) > 0;
         }
         #endregion
     }

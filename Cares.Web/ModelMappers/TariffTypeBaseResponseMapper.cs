@@ -13,9 +13,9 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Tariff Type Base Response Mapper
         /// </summary>
-        public static TarrifTypeBaseResponse CreateFrom(this Cares.Models.ResponseModels.TarrifTypeBaseResponse source)
+        public static TariffTypeBaseResponse CreateFromm(this Cares.Models.ResponseModels.TariffTypeBaseResponse source)
         {
-            return new TarrifTypeBaseResponse
+            return new TariffTypeBaseResponse
             {
                 ResponseCompanies = source.Companies.Select(c => c.CreateFrom()),
                 ResponseMeasurementUnits = source.MeasurementUnits.Select(m => m.CreateFrom()),

@@ -98,10 +98,10 @@ define("documentGroup/documentGroup.viewModel",
                     isDocumentGroupEditorVisible(true);
                 },
                 //delete Document Group
-                    deleteDocumentGroup = function (region) {
-                        dataservice.deleteDocumentGroup(region.convertToServerData(), {
+                    deleteDocumentGroup = function (documentGroup) {
+                        dataservice.deleteDocumentGroup(documentGroup.convertToServerData(), {
                         success: function() {
-                            documentGroups.remove(region);
+                            documentGroups.remove(documentGroup);
                             toastr.success(ist.resourceText.DocumentGroupSuccessfullyDeletedMessage);
                         },
                         error: function(exceptionMessage, exceptionType) {

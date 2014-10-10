@@ -88,6 +88,13 @@ namespace Cares.Implementation
             unityContainer.RegisterType<INRTService, NRTService>();
             unityContainer.RegisterType<IBusinessPartnerRelationTypeService, BusinessPartnerRelationTypeService>();
             unityContainer.RegisterType<IBusinessPartnerSubTypeService, BusinessPartnerSubTypeService>();
+            unityContainer.RegisterType<ICreditLimitService, CreditLimitService>();
+            unityContainer.RegisterType<IBusinessPartnerInTypeService, BusinessPartnerInTypeService>();
+            unityContainer.RegisterType<IMarketingChannelService, MarketingChannelService>();
+            unityContainer.RegisterType<IMainteneceTypeGroupService, MainteneceTypeGroupService>();
+            unityContainer.RegisterType<IMaintenanceTypeService, MaintenanceTypeService>();
+            unityContainer.RegisterType<IVehicleMakeService, VehicleMakeService>();
+            unityContainer.RegisterType<IVehicleCategoryService, VehicleCategoryService>();
 
         }
     }

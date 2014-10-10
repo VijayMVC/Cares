@@ -354,6 +354,9 @@ require(["ko", "knockout-validation"], function (ko) {
                     popOver = popOver[0];
                 }
                 var childBindingContext = bindingContext.createChildContext(viewModel);
+                if (!popOver) {
+                    return;
+                }
                 ko.cleanNode(popOver);
                 ko.applyBindingsToDescendants(childBindingContext, popOver);
             });

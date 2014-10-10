@@ -45,8 +45,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            Cares.Models.RequestModels.RegionSearchRequestResponse response = regionService.SearchRegion(request);
-            return response.CreateFrom();
+            return regionService.SearchRegion(request).CreateFrom();
         }
 
         /// <summary>

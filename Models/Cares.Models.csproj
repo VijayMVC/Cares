@@ -104,6 +104,13 @@
   <ItemGroup>
     <Compile Include="CommonTypes\PhoneType.cs" />
     <Compile Include="CommonTypes\DepartmentType.cs" />
+    <Compile Include="Common\CreditLimitByColumn.cs" />
+    <Compile Include="Common\InsuranceTypeByColumn.cs" />
+    <Compile Include="Common\MaintenanceTypeByColumn.cs" />
+    <Compile Include="Common\MainteneceTypeGroupByColumn.cs" />
+    <Compile Include="Common\MarketingChannelByColumn.cs" />
+    <Compile Include="Common\VehicleCategoryByColumn.cs" />
+    <Compile Include="Common\VehicleMakeByColumn.cs" />
     <Compile Include="Common\VehicleStatusEnum.cs" />
     <Compile Include="Common\BillingSummary.cs" />
     <Compile Include="Common\AllocationStatusEnum.cs" />
@@ -303,6 +310,7 @@
     <Compile Include="RequestModels\ChaufferChargeSearchRequest.cs" />
     <Compile Include="RequestModels\CitySearchRequestResponse.cs" />
     <Compile Include="RequestModels\CompanySearchRequest.cs" />
+    <Compile Include="RequestModels\CreditLimitSearchRequest.cs" />
     <Compile Include="RequestModels\DepartmentSearchRequest.cs" />
     <Compile Include="RequestModels\DesignationSearchRequest.cs" />
     <Compile Include="RequestModels\DesignationSearchRequestResponse.cs" />
@@ -329,8 +337,20 @@
     <Compile Include="RequestModels\INrtTypeSearchRequest.cs" />
     <Compile Include="RequestModels\InsuranceRateSearchRequest.cs" />
     <Compile Include="RequestModels\CitySearchRequest.cs" />
+    <Compile Include="RequestModels\InsuranceTypeSearchRequest.cs" />
     <Compile Include="RequestModels\JobTypeSearchRequest.cs" />
     <Compile Include="RequestModels\JobTypeSearchRequestResponse.cs" />
+    <Compile Include="RequestModels\MaintenanceTypeSearchRequest.cs" />
+    <Compile Include="RequestModels\MainteneceTypeGroupSearchRequest.cs" />
+    <Compile Include="RequestModels\VehicleCategorySearchRequest.cs" />
+    <Compile Include="ResponseModels\VehicleCategorySearchRequestResponse.cs" />
+    <Compile Include="RequestModels\VehicleMakeSearchRequest.cs" />
+    <Compile Include="ResponseModels\InsuranceTypeSearchRequestResponse.cs" />
+    <Compile Include="ResponseModels\MaintenanceTypeBaseDataResponse.cs" />
+    <Compile Include="ResponseModels\MaintenanceTypeSearchRequestResponse.cs" />
+    <Compile Include="ResponseModels\MainteneceTypeGroupSearchRequestResponse.cs" />
+    <Compile Include="RequestModels\MarketingChannelSearchRequest.cs" />
+    <Compile Include="RequestModels\MarketingChannelSearchRequestResponse.cs" />
     <Compile Include="RequestModels\OccupationTypeSearchRequest.cs" />
     <Compile Include="RequestModels\RatingTypeSearchRequest.cs" />
     <Compile Include="RequestModels\RatingTypeSearchRequestResponse.cs" />
@@ -374,6 +394,8 @@
     <Compile Include="ResponseModels\CityBaseDataResponse.cs" />
     <Compile Include="ResponseModels\CompanyBaseDataResponse.cs" />
     <Compile Include="ResponseModels\CompanySearchResponse.cs" />
+    <Compile Include="ResponseModels\CreditLimitBaseDataResponse.cs" />
+    <Compile Include="ResponseModels\CreditLimitSearchRequestResponse.cs" />
     <Compile Include="ResponseModels\DepartmentBaseDataResponse.cs" />
     <Compile Include="ResponseModels\DepartmentSearchRequestResponse.cs" />
     <Compile Include="ResponseModels\DiscountSubTypeBaseDataResponse.cs" />
@@ -426,6 +448,7 @@
     <Compile Include="ResponseModels\TariffTypeResponse.cs" />
     <Compile Include="ResponseModels\VehicleBaseDataResponse.cs" />
     <Compile Include="ResponseModels\VehicleCheckListSearchRequestResponse.cs" />
+    <Compile Include="ResponseModels\VehicleMakeSearchRequestResponse.cs" />
     <Compile Include="ResponseModels\WorkLocationBaseDataResponse.cs" />
     <Compile Include="ResponseModels\WorkLocationSerachRequestResponse.cs" />
     <Compile Include="ResponseModels\WorkplaceBaseDataResponse.cs" />

@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Linq;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
 using Cares.Repository.BaseRepository;
@@ -29,6 +30,16 @@ namespace Cares.Repository.Repositories
             {
                 return db.VehicleInsuranceInfos;
             }
+        }
+        #endregion
+        #region Public
+
+        /// <summary>
+        /// Association check of InsuranceType and vehicle Insurance Info
+        /// </summary>
+        public bool IsInsuranceTypeAssociatedWithVehicleInsuranceInfo(long insuranceTypeId)
+        {
+            return DbSet.Count(vehicleInsuranceInfo => vehicleInsuranceInfo.InsuranceTypeId == insuranceTypeId) > 0;
         }
         #endregion
     }

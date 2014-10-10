@@ -98,6 +98,7 @@ namespace Cares.Repository.BaseRepository
         /// </summary>
         public DbSet<Company> Companies { get; set; }
         public DbSet<CreditLimit> CreditLimits { get; set; }
+        public DbSet<StandardDiscount> StandardDiscounts { get; set; }
 
         /// <summary>
         /// Business Segments DB Set

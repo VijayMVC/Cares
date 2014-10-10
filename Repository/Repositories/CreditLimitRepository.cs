@@ -1,5 +1,10 @@
-﻿using Cares.Interfaces.Repository;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+using Cares.Interfaces.Repository;
+using Cares.Models.Common;
 using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
 using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
 using System.Data.Entity;
@@ -12,7 +17,19 @@ namespace Cares.Repository.Repositories
     /// </summary>
     public sealed class CreditLimitRepository : BaseRepository<CreditLimit>, ICreditLimitRepository
     {
-         #region Constructor
+        #region Privte
+        /// <summary>
+        /// Credit Limit Orderby clause
+        /// </summary>
+        private readonly Dictionary<CreditLimitByColumn, Func<CreditLimit, object>> creditLimitOrderByClause = new Dictionary<CreditLimitByColumn, Func<CreditLimit, object>>
+                    {
+
+                        {CreditLimitByColumn.SubType, c => c.BpSubType.BusinessPartnerSubTypeId},
+                        {CreditLimitByColumn.Rating, n => n.BpRatingType.BpRatingTypeCode},
+                        {CreditLimitByColumn.CreditLimit, d=> d.StandardCreditLimit}
+                    };
+        #endregion
+        #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>
@@ -50,6 +67,43 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Count(creidtlimit => creidtlimit.BpSubTypeId == businessPartnerSubTypeId) > 0;            
         }
+
+        /// <summary>
+        /// Search Credit Limit
+        /// </summary>
+        public IEnumerable<CreditLimit> SearchCreditLimit(CreditLimitSearchRequest request, out int rowCount)
+        {
+            int fromRow = (request.PageNo - 1) * request.PageSize;
+            int toRow = request.PageSize;
+            Expression<Func<CreditLimit, bool>> query =
+                creditLimit =>
+                    (!request.BpSubTypeId.HasValue || request.BpSubTypeId == creditLimit.BpSubTypeId) &&
+                    (!request.RatingTypeId.HasValue || request.RatingTypeId == creditLimit.BpRatingTypeId);
+            rowCount = DbSet.Count(query);
+            return request.IsAsc
+                ? DbSet.Where(query)
+                    .OrderBy(creditLimitOrderByClause[request.CreditLimitOrderBy])
+                    .Skip(fromRow)
+                    .Take(toRow)
+                    .ToList()
+                : DbSet.Where(query)
+                    .OrderByDescending(creditLimitOrderByClause[request.CreditLimitOrderBy])
+                    .Skip(fromRow)
+                    .Take(toRow)
+                    .ToList();
+        }
+
+        /// <summary>
+        /// Get detail object of Credit Limit
+        /// </summary>
+        public CreditLimit GetCreditLimitWithDetail(long creditLimitId)
+        {
+            return DbSet.Include(creditLimit => creditLimit.BpSubType)
+                .Include(creditLimit => creditLimit.BpRatingType)
+                .FirstOrDefault(creditLimit => creditLimit.CreditLimitId == creditLimitId); 
+        }
+
+      
         #endregion
     }
 }

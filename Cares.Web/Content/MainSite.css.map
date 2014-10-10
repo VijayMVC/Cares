@@ -36,6 +36,13 @@
     "OccupationType.less",
     "BusinessPartnerRelationshipType.less",
     "BusinessPartnerSubType.less",
+    "CreditLimit.less",
+    "MarketingChannel.less",
+    "MaintenanceTypeGroup.less",
+    "MaintenanceType.less",
+    "InsuranceType.less",
+    "VehicleMake.less",
+    "VehicleCategory.less",
     "MainSite.less"
   ],
   "names": [],

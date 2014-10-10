@@ -1,0 +1,27 @@
+﻿
+<div class="well col-md-12" id="VehicleMakeEditor" data-bind="visible: isVehicleMakeEditorVisible, with: selectedVehicleMake " style="display: none; margin-top:15px">
+    <div class="float-left detailsContainer">
+        <h3 class="page-header detailsHeaderSection">@Cares.Web.Resources.FleetPool.VehicleMake.VehicleMakeDetail</h3>
+        <button class="btn  btn-info" data-bind="click: $root.onSavebtn">@Cares.Web.Resources.Shared.Common.Save</button>
+        <button class="btn  btn-default" data-bind="click: $root.onCancelbtn">@Cares.Web.Resources.Shared.Common.Cancel</button>
+    </div>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.FleetPool.VehicleMake.Code*</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.FleetPool.VehicleMake.Code + ">")" data-bind="value: code" />
+            </div>
+            <label class="control-label h5 col-sm-1">@Cares.Web.Resources.FleetPool.VehicleMake.Name*</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.FleetPool.VehicleMake.Name + ">")" data-bind="value:name" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.FleetPool.VehicleMake.Description</label>
+            <div class="col-md-3">
+                <textarea class="form-control" rows="4" placeholder="@("<" + Cares.Web.Resources.FleetPool.VehicleMake.Description + ">")" data-bind="value: description"></textarea>
+            </div>
+        </div>
+
+    </form>
+</div>

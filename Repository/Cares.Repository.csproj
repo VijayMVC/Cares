@@ -161,6 +161,7 @@
     <Compile Include="Repositories\ChaufferChargeMainRepository.cs" />
     <Compile Include="Repositories\BpMainTypeRepository.cs" />
     <Compile Include="Repositories\CreditLimitRepository.cs" />
+    <Compile Include="Repositories\MainteneceTypeGroupRepository.cs" />
     <Compile Include="Repositories\DocumentGroupRepository.cs" />
     <Compile Include="Repositories\CityRepository.cs" />
     <Compile Include="Repositories\DocumentRepository.cs" />
@@ -216,6 +217,7 @@
     <Compile Include="Repositories\ServiceRtMainRepository.cs" />
     <Compile Include="Repositories\ServiceRtRepository.cs" />
     <Compile Include="Repositories\ServiceTypeRepository.cs" />
+    <Compile Include="Repositories\StandardDiscountRepository.cs" />
     <Compile Include="Repositories\StandardRateMainRepository.cs" />
     <Compile Include="Repositories\StandardRateRepository.cs" />
     <Compile Include="Repositories\SubRegionRepository.cs" />

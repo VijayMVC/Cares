@@ -22,9 +22,11 @@ namespace Cares.Web.ModelMappers
                 Quantity = source.Quantity,
                 HireGroupDetailId = source.HireGroupDetailId,
                 AdditionalChargeRate = source.AdditionalChargeRate,
-                AdditionalChargeTypeCodeName = source.AdditionalChargeType.AdditionalChargeTypeCode + "-" + source.AdditionalChargeType.AdditionalChargeTypeName,
+                AdditionalChargeTypeCodeName = source.AdditionalChargeType != null ? 
+                source.AdditionalChargeType.AdditionalChargeTypeCode + "-" + source.AdditionalChargeType.AdditionalChargeTypeName : string.Empty,
                 AdditionalChargeTypeId = source.AdditionalChargeTypeId,
-                HireGroupCodeName = source.HireGroupDetail.HireGroup.HireGroupCode + '-' + source.HireGroupDetail.HireGroup.HireGroupName,
+                HireGroupCodeName = source.HireGroupDetail != null && source.HireGroupDetail.HireGroup != null ? 
+                source.HireGroupDetail.HireGroup.HireGroupCode + '-' + source.HireGroupDetail.HireGroup.HireGroupName : string.Empty,
                 PlateNumber = source.PlateNumber
             };
            

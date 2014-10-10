@@ -1,4 +1,5 @@
-﻿using Cares.Interfaces.Repository;
+﻿using Cares.Interfaces.IServices;
+using Cares.Interfaces.Repository;
 using Cares.Repository.BaseRepository;
 using Cares.Repository.Repositories;
 using Microsoft.Practices.Unity;
@@ -113,6 +114,11 @@ namespace Cares.Repository
             unityContainer.RegisterType<IBusinessPartnerMainTypeRepository, BusinessPartnerMainTypeRepository>();
             unityContainer.RegisterType<INrtVehicleRepository, NrtVehicleRepository>();
             unityContainer.RegisterType<IRaStatusRepository, RaStatusRepository>();
+            unityContainer.RegisterType<IMainteneceTypeGroupRepository, MainteneceTypeGroupRepository>();
+            unityContainer.RegisterType<IStandardDiscountRepository, StandardDiscountRepository>();
+            unityContainer.RegisterType<IVehicleInsuranceInfoRepository, VehicleInsuranceInfoRepository>();
+
+
         }
     }
 }

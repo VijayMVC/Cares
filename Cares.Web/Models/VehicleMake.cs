@@ -18,6 +18,10 @@
         /// Vehicle Make Name
         /// </summary>
         public string VehicleMakeName { get; set; }
+        /// <summary>
+        /// Vehicle Make Description
+        /// </summary>
+        public string VehicleMakeDescription { get; set; }
 
         /// <summary>
         /// VehicleMake Code Name

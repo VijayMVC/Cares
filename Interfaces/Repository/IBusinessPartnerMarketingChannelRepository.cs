@@ -7,6 +7,9 @@ namespace Cares.Interfaces.Repository
     /// </summary>
     public interface IBusinessPartnerMarketingChannelRepository : IBaseRepository<BusinessPartnerMarketingChannel, long>
     {
-
+        /// <summary>
+        /// Association check bw Marketing Channel and BP MarketingChannel
+        /// </summary>
+        bool IsBpMarketingChannelAssociatedWithMarketingChannel(long marketingChannelId);
     }
 }

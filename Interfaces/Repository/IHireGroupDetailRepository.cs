@@ -25,5 +25,16 @@ namespace Cares.Interfaces.Repository
         /// Get Hire Group Detail By Hire Group Id
         /// </summary>
         IEnumerable<HireGroupDetail> GetHireGroupDetailByHireGroupId(long hireGroupId);
+
+        /// <summary>
+        /// Association check of HireGroup Detail and Vehicle Make
+        /// </summary>
+        bool IsHireGroupDetailAssociatedWithVehicleMake(long vehiclemakeId);
+
+
+        /// <summary>
+        /// Association check of HireGroup Detail and Vehicle Category
+        /// </summary>
+        bool IsHireGroupDetailAssociatedWithVehicleCategory(long vehicleCategoryId);
     }
 }
