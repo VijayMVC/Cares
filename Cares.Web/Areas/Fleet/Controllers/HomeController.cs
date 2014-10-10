@@ -37,5 +37,13 @@ namespace Cares.Web.Areas.Fleet.Controllers
         {
             return View();
         }
+        public ActionResult InsuranceType()
+        {
+            return View();
+        }
+        public ActionResult VehicleMake()
+        {
+            return View();
+        }
 	}
 }

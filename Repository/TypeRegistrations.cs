@@ -114,6 +114,9 @@ namespace Cares.Repository
             unityContainer.RegisterType<IBusinessPartnerMainTypeRepository, BusinessPartnerMainTypeRepository>();
             unityContainer.RegisterType<IMainteneceTypeGroupRepository, MainteneceTypeGroupRepository>();
             unityContainer.RegisterType<IStandardDiscountRepository, StandardDiscountRepository>();
+            unityContainer.RegisterType<IVehicleInsuranceInfoRepository, VehicleInsuranceInfoRepository>();
+
+
         }
     }
 }

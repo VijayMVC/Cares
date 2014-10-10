@@ -175,7 +175,7 @@ define("maintenanceType/maintenanceType.viewModel",
                     initialize = function(specifiedView) {
                         view = specifiedView;
                         ko.applyBindings(view.viewModel, view.bindingRoot);
-                        pager(pagination.Pagination({ PageSize: 10 }, maintenanceTypes, getMaintenanceTypes));
+                        pager(pagination.Pagination({ PageSize: 5 }, maintenanceTypes, getMaintenanceTypes));
                         getBaseData();
                         getMaintenanceTypes();
                     };

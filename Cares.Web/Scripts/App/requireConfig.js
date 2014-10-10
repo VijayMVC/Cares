@@ -58,7 +58,9 @@
             "creditLimit": ist.siteUrl + "/Areas/BusinessPartner/Scripts",
             "marketingChannel": ist.siteUrl + "/Areas/BusinessPartner/Scripts",
             "maintenanceTypeGroup": ist.siteUrl + "/Areas/Fleet/Scripts",
-            "maintenanceType": ist.siteUrl + "/Areas/Fleet/Models",
+            "maintenanceType": ist.siteUrl + "/Areas/Fleet/Scripts",
+            "insuranceType": ist.siteUrl + "/Areas/Fleet/Scripts",
+            "vehicleMake": ist.siteUrl + "/Areas/Fleet/Models",
 
         }
     }); 
