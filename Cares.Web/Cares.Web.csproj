@@ -229,6 +229,7 @@
     <Compile Include="Areas\Api\Controllers\AddressBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\CreditLimitController.cs" />
     <Compile Include="Areas\Api\Controllers\CreditLimitBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\VehicleCategoryController.cs" />
     <Compile Include="Areas\Api\Controllers\InsuranceTypeController.cs" />
     <Compile Include="Areas\Api\Controllers\VehicleMakeController.cs" />
     <Compile Include="Areas\Api\Controllers\MaintenanceTypeController.cs" />
@@ -614,6 +615,7 @@
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Models\VehicleBaseDataResponse.cs" />
     <Compile Include="Models\VehicleCategory.cs" />
+    <Compile Include="Models\VehicleCategorySearchRequestResponse.cs" />
     <Compile Include="Models\VehicleCheckList.cs" />
     <Compile Include="Models\VehicleCheckListDropDown.cs" />
     <Compile Include="Models\VehicleCheckListItem.cs" />
@@ -904,6 +906,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MaintenanceTypeGroup.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\FleetPool\VehicleCategory.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VehicleCategory.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\FleetPool\VehicleCategory.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VehicleCategory.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\FleetPool\VehicleCheckList.ar.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1290,10 +1302,14 @@
     <Content Include="Areas\EmployeeManagement\Scripts\designation.model.js" />
     <Content Include="Areas\EmployeeManagement\Scripts\designation.view.js" />
     <Content Include="Areas\EmployeeManagement\Scripts\designation.viewModel.js" />
-    <Content Include="Areas\Fleet\Models\vehicleMake.dataservice.js" />
-    <Content Include="Areas\Fleet\Models\vehicleMake.model.js" />
-    <Content Include="Areas\Fleet\Models\vehicleMake.view.js" />
-    <Content Include="Areas\Fleet\Models\vehicleMake.viewModel.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicleCategory.dataservice.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicleCategory.model.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicleCategory.view.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicleCategory.viewModel.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicleMake.dataservice.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicleMake.model.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicleMake.view.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicleMake.viewModel.js" />
     <Content Include="Areas\Fleet\Scripts\insuranceType.dataservice.js" />
     <Content Include="Areas\Fleet\Scripts\insuranceType.model.js" />
     <Content Include="Areas\Fleet\Scripts\insuranceType.view.js" />
@@ -1801,6 +1817,12 @@
     <Content Include="Content\Vehicle.css">
       <DependentUpon>Vehicle.less</DependentUpon>
     </Content>
+    <Content Include="Content\VehicleCategory.css">
+      <DependentUpon>VehicleCategory.less</DependentUpon>
+    </Content>
+    <Content Include="Content\VehicleCategory.min.css">
+      <DependentUpon>VehicleCategory.css</DependentUpon>
+    </Content>
     <Content Include="Content\VehicleCheckList.css">
       <DependentUpon>VehicleCheckList.less</DependentUpon>
     </Content>
@@ -2281,6 +2303,12 @@
     <Content Include="Content\VehicleMake.css.map">
       <DependentUpon>VehicleMake.css</DependentUpon>
     </Content>
+    <Content Include="Areas\Fleet\Views\Home\VehicleCategory.cshtml" />
+    <Content Include="Areas\Fleet\Views\Home\_VehicleCategoryEditor.cshtml" />
+    <Content Include="Content\VehicleCategory.less" />
+    <Content Include="Content\VehicleCategory.css.map">
+      <DependentUpon>VehicleCategory.css</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\Khurram.pubxml" />
     <Content Include="RichTextEditor\plugins\Thumbs.db" />
     <None Include="Scripts\amplify-vsdoc.js" />
@@ -2429,6 +2457,7 @@
     <Folder Include="Areas\Common\Controllers\" />
     <Folder Include="Areas\Common\Models\" />
     <Folder Include="Areas\EmployeeManagement\Models\" />
+    <Folder Include="Areas\Fleet\Models\" />
     <Folder Include="Areas\GeographicalHierarchy\Models\" />
     <Folder Include="Areas\NonRevenueTicket\Models\" />
     <Folder Include="Areas\Organization\Models\" />
@@ -2645,6 +2674,14 @@
     <EmbeddedResource Include="Resources\FleetPool\MaintenanceTypeGroup.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MaintenanceTypeGroup.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FleetPool\VehicleCategory.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>VehicleCategory.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FleetPool\VehicleCategory.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>VehicleCategory.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\FleetPool\VehicleCheckList.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

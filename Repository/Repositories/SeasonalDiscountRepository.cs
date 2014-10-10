@@ -66,6 +66,16 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Count(sessionlaDiscount => sessionlaDiscount.VehicleMakeId == vehicleMakeId) > 0;
         }
+
+        /// <summary>
+        /// Association check of Seasonal Discount and Vehicle Category
+        /// </summary>
+        public bool IsSeasonalDiscountAssociatedWithVehicleCategory(long vehicleCategoryId)
+        {
+            return DbSet.Count(sessionlaDiscount => sessionlaDiscount.VehicleCategoryId == vehicleCategoryId) > 0;
+
+        }
+
         #endregion
     }
 }

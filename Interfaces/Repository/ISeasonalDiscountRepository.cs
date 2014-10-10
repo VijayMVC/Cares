@@ -19,5 +19,11 @@ namespace Cares.Interfaces.Repository
         /// Association check of Seasonal Discount and Vehicle Make
         /// </summary>
         bool IsSeasonalDiscountAssociatedWithVehicleMake(long vehicleMakeId);
+
+        /// <summary>
+        /// Association check of Seasonal Discount and Vehicle Category
+        /// </summary>
+        bool IsSeasonalDiscountAssociatedWithVehicleCategory(long vehicleCategoryId);
+
     }
 }

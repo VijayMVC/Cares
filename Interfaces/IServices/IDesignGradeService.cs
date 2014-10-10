@@ -5,7 +5,7 @@ using Cares.Models.RequestModels;
 namespace Cares.Interfaces.IServices
 {
     /// <summary>
-    /// Region Service Interface
+    /// Design Grade Service Interface
     /// </summary>
     public interface IDesignGradeService
     {

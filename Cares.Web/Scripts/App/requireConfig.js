@@ -60,7 +60,8 @@
             "maintenanceTypeGroup": ist.siteUrl + "/Areas/Fleet/Scripts",
             "maintenanceType": ist.siteUrl + "/Areas/Fleet/Scripts",
             "insuranceType": ist.siteUrl + "/Areas/Fleet/Scripts",
-            "vehicleMake": ist.siteUrl + "/Areas/Fleet/Models",
+            "vehicleMake": ist.siteUrl + "/Areas/Fleet/Scripts",
+            "vehicleCategory": ist.siteUrl + "/Areas/Fleet/Scripts",
 
         }
     }); 

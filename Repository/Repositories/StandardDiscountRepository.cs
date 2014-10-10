@@ -43,6 +43,15 @@ namespace Cares.Repository.Repositories
             return DbSet.Count(standardDicount => standardDicount.VehicleMakeId == vehicleMakeId) > 0;
         }
 
+        /// <summary>
+        /// Association check of Standard Discount and vehicle Category
+        /// </summary>
+        public bool IsStandardDiscountAssociatedWithVehicleCategory(long vehicleCategoryId)
+        {
+            return DbSet.Count(standardDicount => standardDicount.VehicleCategoryId == vehicleCategoryId) > 0;
+            
+        }
+
         #endregion
     }
 }

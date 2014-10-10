@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Cares.Models.DomainModels;
+﻿using Cares.Models.DomainModels;
 
 namespace Cares.Interfaces.Repository
 {
@@ -16,6 +11,11 @@ namespace Cares.Interfaces.Repository
         /// Association check of Standard Discount and vehicle make
         /// </summary>
         bool IsStandardDiscountAssociatedWithVehicleMake(long vehicleMakeId);
+
+        /// <summary>
+        /// Association check of Standard Discount and vehicle Category
+        /// </summary>
+        bool IsStandardDiscountAssociatedWithVehicleCategory(long vehicleCategoryId);
 
     }
 }
