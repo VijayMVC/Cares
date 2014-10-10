@@ -42,6 +42,11 @@ namespace Cares.Interfaces.Repository
         /// Check Vehicle Plate Number Already Exist
         /// </summary>
         bool DuplicateVehiclePlateNumber(string plateNumber, long vehicleId);
+       
+        /// <summary>
+        /// Association check b/n vehicle and vehicle make
+        /// </summary>
+        bool IsVehicleMakeAssociatedWithVehicle(long vehicleMakeId);
     }
 }
 

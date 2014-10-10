@@ -14,5 +14,10 @@ namespace Cares.Interfaces.Repository
         /// <param name="seasonalDiscountMainId"></param>
         /// <returns></returns>
         IEnumerable<SeasonalDiscount> GetSeasonalDiscountsBySeasonalDiscountMainId(long seasonalDiscountMainId);
+
+        /// <summary>
+        /// Association check of Seasonal Discount and Vehicle Make
+        /// </summary>
+        bool IsSeasonalDiscountAssociatedWithVehicleMake(long vehicleMakeId);
     }
 }

@@ -267,6 +267,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FleetPool.ar.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\FleetPool\InsuranceType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InsuranceType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\FleetPool\InsuranceType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InsuranceType.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\FleetPool\MaintenanceType.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -296,6 +306,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>VehicleCheckList.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\FleetPool\VehicleMake.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VehicleMake.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\FleetPool\VehicleMake.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VehicleMake.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\GeographicalHierarchy\Area.ar.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -542,6 +562,7 @@
     <Compile Include="Services\AdditionalDriverService.cs" />
     <Compile Include="Services\BusinessPartnerInTypeService.cs" />
     <Compile Include="Services\CreditLimitService.cs" />
+    <Compile Include="Services\VehicleMakeService.cs" />
     <Compile Include="Services\MaintenanceTypeService.cs" />
     <Compile Include="Services\MainteneceTypeGroupService.cs" />
     <Compile Include="Services\NRTService.cs" />
@@ -743,6 +764,14 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>FleetPool.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FleetPool\InsuranceType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>InsuranceType.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FleetPool\InsuranceType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>InsuranceType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\FleetPool\MaintenanceType.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MaintenanceType.ar.Designer.cs</LastGenOutput>
@@ -766,6 +795,14 @@
     <EmbeddedResource Include="Resources\FleetPool\VehicleCheckList.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>VehicleCheckList.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FleetPool\VehicleMake.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>VehicleMake.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FleetPool\VehicleMake.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>VehicleMake.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\GeographicalHierarchy\Area.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

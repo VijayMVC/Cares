@@ -75,6 +75,14 @@ namespace Cares.Repository.Repositories
             return DbSet.Where(ir => ir.UserDomainKey == UserDomainKey && !ir.IsDeleted && ir.ChildInsuranceRtId == null).ToList();
         }
 
+
+        /// <summary>
+        /// Association check B/W Insurance Type and Insurance RT
+        /// </summary>
+        public bool IsInsuranceTypeAssociatedWithInsuranceRt(long insuranceTypeId)
+        {
+            return DbSet.Count(insuranceRt => insuranceRt.InsuranceTypeId == insuranceTypeId) > 0;
+        }
         #endregion
     }
 }

@@ -105,9 +105,11 @@
     <Compile Include="CommonTypes\PhoneType.cs" />
     <Compile Include="CommonTypes\DepartmentType.cs" />
     <Compile Include="Common\CreditLimitByColumn.cs" />
+    <Compile Include="Common\InsuranceTypeByColumn.cs" />
     <Compile Include="Common\MaintenanceTypeByColumn.cs" />
     <Compile Include="Common\MainteneceTypeGroupByColumn.cs" />
     <Compile Include="Common\MarketingChannelByColumn.cs" />
+    <Compile Include="Common\VehicleMakeByColumn.cs" />
     <Compile Include="Common\VehicleStatusEnum.cs" />
     <Compile Include="Common\BillingSummary.cs" />
     <Compile Include="Common\AllocationStatusEnum.cs" />
@@ -333,10 +335,13 @@
     <Compile Include="RequestModels\INrtTypeSearchRequest.cs" />
     <Compile Include="RequestModels\InsuranceRateSearchRequest.cs" />
     <Compile Include="RequestModels\CitySearchRequest.cs" />
+    <Compile Include="RequestModels\InsuranceTypeSearchRequest.cs" />
     <Compile Include="RequestModels\JobTypeSearchRequest.cs" />
     <Compile Include="RequestModels\JobTypeSearchRequestResponse.cs" />
     <Compile Include="RequestModels\MaintenanceTypeSearchRequest.cs" />
     <Compile Include="RequestModels\MainteneceTypeGroupSearchRequest.cs" />
+    <Compile Include="RequestModels\VehicleMakeSearchRequest.cs" />
+    <Compile Include="ResponseModels\InsuranceTypeSearchRequestResponse.cs" />
     <Compile Include="ResponseModels\MaintenanceTypeBaseDataResponse.cs" />
     <Compile Include="ResponseModels\MaintenanceTypeSearchRequestResponse.cs" />
     <Compile Include="ResponseModels\MainteneceTypeGroupSearchRequestResponse.cs" />
@@ -438,6 +443,7 @@
     <Compile Include="ResponseModels\TariffTypeResponse.cs" />
     <Compile Include="ResponseModels\VehicleBaseDataResponse.cs" />
     <Compile Include="ResponseModels\VehicleCheckListSearchRequestResponse.cs" />
+    <Compile Include="ResponseModels\VehicleMakeSearchRequestResponse.cs" />
     <Compile Include="ResponseModels\WorkLocationBaseDataResponse.cs" />
     <Compile Include="ResponseModels\WorkLocationSerachRequestResponse.cs" />
     <Compile Include="ResponseModels\WorkplaceBaseDataResponse.cs" />

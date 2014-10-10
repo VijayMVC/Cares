@@ -229,6 +229,8 @@
     <Compile Include="Areas\Api\Controllers\AddressBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\CreditLimitController.cs" />
     <Compile Include="Areas\Api\Controllers\CreditLimitBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\InsuranceTypeController.cs" />
+    <Compile Include="Areas\Api\Controllers\VehicleMakeController.cs" />
     <Compile Include="Areas\Api\Controllers\MaintenanceTypeController.cs" />
     <Compile Include="Areas\Api\Controllers\MaintenanceTypeBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\MainteneceTypeGroupController.cs" />
@@ -483,7 +485,9 @@
     <Compile Include="Models\FleetPoolDropDown.cs" />
     <Compile Include="Models\FuelTypeDropDown.cs" />
     <Compile Include="Models\HireGroupDetailForAddtionalCharge.cs" />
+    <Compile Include="Models\InsuranceType.cs" />
     <Compile Include="Models\InsuranceTypeDropDown.cs" />
+    <Compile Include="Models\InsuranceTypeSearchRequestResponse.cs" />
     <Compile Include="Models\JobType.cs" />
     <Compile Include="Models\JobTypeDropDown.cs" />
     <Compile Include="Models\JobTypeSearchRequestResponse.cs" />
@@ -622,6 +626,7 @@
     <Compile Include="Models\VehicleListViewContent.cs" />
     <Compile Include="Models\VehicleMaintenanceTypeFrequency.cs" />
     <Compile Include="Models\VehicleMake.cs" />
+    <Compile Include="Models\VehicleMakeSearchRequestResponse.cs" />
     <Compile Include="Models\VehicleModel.cs" />
     <Compile Include="Models\VehicleMovement.cs" />
     <Compile Include="Models\VehicleOtherDetail.cs" />

@@ -88,6 +88,14 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(h => h.HireGroupId == hireGroupId);
         }
+
+        /// <summary>
+        /// Association check of HireGroup Detail and Vehicle Make
+        /// </summary>
+        public bool IsHireGroupDetailAssociatedWithVehicleMake(long vehiclemakeId)
+        {
+            return DbSet.Count(hiregroupDet => hiregroupDet.VehicleMakeId == vehiclemakeId) > 0;
+        }
         #endregion
     }
 }

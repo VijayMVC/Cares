@@ -117,6 +117,14 @@ namespace Cares.Repository.Repositories
         }
 
         /// <summary>
+        /// Association check b/n vehicle and vehicle make
+        /// </summary>
+        public bool IsVehicleMakeAssociatedWithVehicle(long vehicleMakeId)
+        {
+            return DbSet.Count(vehicle => vehicle.VehicleMakeId == vehicleMakeId) > 0;
+        }
+
+        /// <summary>
         /// Load Dependencies
         /// </summary>
         public void LoadDependencies(Vehicle vehicle)

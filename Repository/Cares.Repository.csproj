@@ -215,6 +215,7 @@
     <Compile Include="Repositories\ServiceRtMainRepository.cs" />
     <Compile Include="Repositories\ServiceRtRepository.cs" />
     <Compile Include="Repositories\ServiceTypeRepository.cs" />
+    <Compile Include="Repositories\StandardDiscountRepository.cs" />
     <Compile Include="Repositories\StandardRateMainRepository.cs" />
     <Compile Include="Repositories\StandardRateRepository.cs" />
     <Compile Include="Repositories\SubRegionRepository.cs" />
