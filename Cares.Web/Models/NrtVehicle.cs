@@ -44,6 +44,11 @@ namespace Cares.Web.Models
         /// </summary>
         public NrtMain NrtMain { get; set; }
 
+        /// <summary>
+        /// Vehicle
+        /// </summary>
+        public Vehicle Vehicle { get; set; }
+
         #endregion
     }
 }

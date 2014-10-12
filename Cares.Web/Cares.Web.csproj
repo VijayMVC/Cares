@@ -231,6 +231,7 @@
     <Compile Include="Areas\Api\Controllers\AddressBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\CreditLimitController.cs" />
     <Compile Include="Areas\Api\Controllers\CreditLimitBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\GetNrtDetailController.cs" />
     <Compile Include="Areas\Api\Controllers\VehicleCategoryController.cs" />
     <Compile Include="Areas\Api\Controllers\InsuranceTypeController.cs" />
     <Compile Include="Areas\Api\Controllers\VehicleMakeController.cs" />

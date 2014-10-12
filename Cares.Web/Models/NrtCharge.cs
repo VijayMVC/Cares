@@ -31,6 +31,16 @@
         public string Description { get; set; }
 
         /// <summary>
+        /// Additional Charge Type Code
+        /// </summary>
+        public string Code { get; set; }
+
+        /// <summary>
+        /// Additional Charge Type Name
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
         /// NRT Charge Rate
         /// </summary>
         public double NrtChargeRate { get; set; }

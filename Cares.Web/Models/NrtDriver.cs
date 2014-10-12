@@ -42,5 +42,15 @@ namespace Cares.Web.Models
         /// </summary>
         public string LicenseNo { get; set; }
         
+        /// <summary>
+        ///Code 
+        /// </summary>
+        public string Code { get; set; }
+
+        /// <summary>
+        /// Name
+        /// </summary>
+        public string Name { get; set; }
+        
     }
 }

@@ -30,5 +30,12 @@ namespace Cares.Interfaces.IServices
         /// <param name="nrtVehicle"></param>
         /// <returns></returns>
         long SaveNrt(NrtVehicle nrtVehicle);
+
+        /// <summary>
+        /// Find By Id
+        /// </summary>
+        /// <param name="nrtMainId"></param>
+        /// <returns></returns>
+        NrtMain FindById(long nrtMainId);
     }
 }

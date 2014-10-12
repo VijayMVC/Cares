@@ -89,7 +89,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             //Plate Number
             plateNum = ko.observable(),
             //Is Return Location
-            isReturnLoc = ko.observable(),
+            isReturnLoc = ko.observable(false),
             //Out Date Time
             outDtTime = ko.observable().extend({ required: true }),
             //In date Time
@@ -116,18 +116,12 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             vInStatusId = ko.observable().extend({ required: true }),
             //Vehicle Out Status Id
             vOutStatusId = ko.observable().extend({ required: true }),
-
               // Errors
             errors = ko.validation.group({
                 outDtTime: outDtTime,
-                inDtTime: inDtTime,
                 outLocId: outLocId,
-                inLocId: inLocId,
                 outOdemeter: outOdemeter,
-                inOdemeter: inOdemeter,
-                fuelIn: fuelIn,
                 fuelOut: fuelOut,
-                vInStatusId: vInStatusId,
                 vOutStatusId: vOutStatusId,
             }),
             // Is Valid
@@ -220,7 +214,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
                     }
                 }),
              //End Hour
-                endHour = ko.observable(),
+              endHour = ko.observable(),
             //End Minute
              endMinute = ko.observable(),
 
@@ -333,18 +327,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         };
         return self;
     };
-    //Client To Server Mapper
-    var MaintenanceActivityServerMapper = function (source) {
-        var result = {};
-        result.NrtChargeId = source.id() === undefined ? 0 : source.id();
-        result.Quantity = source.qty() === undefined ? 0 : source.qty();
-        result.TotalNrtChargeRate = source.totalRate() === undefined ? 0 : source.totalRate();
-        result.ContactPerson = source.contactPerson() === undefined ? null : source.contactPerson();
-        result.Description = source.description() === undefined ? null : source.description();
-        result.NrtChargeRate = source.rate() === undefined ? 0 : source.rate();
-        result.AdditionalChargeTypeId = source.additionalChargeTypeId() === undefined ? null : source.additionalChargeTypeId();
-        return result;
-    };
+
     //Vehicle List View entity
     // ReSharper disable once InconsistentNaming
     var Vehicle = function () {
@@ -381,6 +364,34 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             modelYear: modelYear,
             vehicleMakeCodeName: vehicleMakeCodeName,
             vehicleStatusCodeName: vehicleStatusCodeName,
+            vehicleModelCodeName: vehicleModelCodeName,
+            vehicleCategoryCodeName: vehicleCategoryCodeName
+        };
+        return self;
+    };
+    //Vehicle For List View
+    var VehicleForListView = function () {
+        // ReSharper restore InconsistentNaming
+        var // Reference to this object
+            self,
+            //plate Number
+            plateNumber = ko.observable(),
+            //Tank Size
+            tankSize = ko.observable(),
+            //Model Year
+            modelYear = ko.observable(),
+            //Vehicle Make Code Name
+            vehicleMakeCodeName = ko.observable(),
+            //Vehicle Model Code Name
+            vehicleModelCodeName = ko.observable(),
+            //Vehicle Category Code Name
+            vehicleCategoryCodeName = ko.observable();
+
+        self = {
+            plateNumber: plateNumber,
+            tankSize: tankSize,
+            modelYear: modelYear,
+            vehicleMakeCodeName: vehicleMakeCodeName,
             vehicleModelCodeName: vehicleModelCodeName,
             vehicleCategoryCodeName: vehicleCategoryCodeName
         };
@@ -454,6 +465,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         return self;
     };
     //Convert Server To Client
+    // ReSharper disable once InconsistentNaming
     var AdditionalChargeClientMapper = function (source) {
         var addChrg = new AdditionalCharge();
         addChrg.additionalChargeTypeId(source.AdditionalChargeTypeId === null ? undefined : source.AdditionalChargeTypeId);
@@ -464,6 +476,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         return addChrg;
     };
     //Convert Server To Client
+    // ReSharper disable once InconsistentNaming
     var VehicleClientMapper = function (source) {
         var vehicle = new Vehicle();
         vehicle.vehicleId(source.VehicleId === null ? undefined : source.VehicleId);
@@ -479,6 +492,80 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         return vehicle;
     };
     //Convert Server To Client
+    // ReSharper disable once InconsistentNaming
+    var VehicleForListViewClientMapper = function (source) {
+        var vehicle = new VehicleForListView();
+        vehicle.plateNumber(source.plateNumber() === null ? undefined : source.plateNumber());
+        vehicle.tankSize(source.tankSize() === null ? undefined : source.tankSize());
+        vehicle.modelYear(source.modelYear() === null ? undefined : source.modelYear());
+        vehicle.vehicleMakeCodeName(source.vehicleMakeCodeName() === null ? undefined : source.vehicleMakeCodeName());
+        vehicle.vehicleModelCodeName(source.vehicleModelCodeName() === null ? undefined : source.vehicleModelCodeName());
+        vehicle.vehicleCategoryCodeName(source.vehicleCategoryCodeName() === null ? undefined : source.vehicleCategoryCodeName());
+        return vehicle;
+    };
+    //Convert Server To Client
+    // ReSharper disable once InconsistentNaming
+    var NrtMainClientMapper = function (source) {
+        var nrtMain = new NRTMain();
+        nrtMain.id(source.NrtMainId === null ? undefined : source.NrtMainId);
+        nrtMain.operationId(source.OperationId === null ? undefined : source.OperationId);
+        nrtMain.outLocationId(source.OpenLocationId === null ? undefined : source.OpenLocationId);
+        nrtMain.retLocationId(source.CloseLocationId === null ? undefined : source.CloseLocationId);
+        nrtMain.nRtTypeId(source.NrtTypeId === null ? undefined : source.NrtTypeId);
+        nrtMain.startDate(source.StartDtTime !== null ? moment(source.StartDtTime, ist.utcFormat).toDate() : undefined);
+        nrtMain.endDate(source.EndDtTime !== null ? moment(source.EndDtTime, ist.utcFormat).toDate() : undefined);
+
+        return nrtMain;
+    };
+    //Convert Server To Client
+    // ReSharper disable once InconsistentNaming
+    var MaintenanceActivityClientMapper = function (source) {
+        var activity = new MaintenanceActivity();
+        activity.id(source.NrtChargeId === null ? undefined : source.NrtChargeId);
+        activity.code(source.Code === null ? undefined : source.Code);
+        activity.name(source.Name === null ? undefined : source.Name);
+        activity.qty(source.Quantity === null ? undefined : source.Quantity);
+        activity.totalRate(source.TotalNrtChargeRate === null ? undefined : source.TotalNrtChargeRate);
+        activity.contactPerson(source.ContactPerson === null ? undefined : source.ContactPerson);
+        activity.description(source.Description === null ? undefined : source.Description);
+        activity.rate(source.NrtChargeRate === null ? undefined : source.NrtChargeRate);
+        activity.additionalChargeTypeId(source.AdditionalChargeTypeId === null ? undefined : source.AdditionalChargeTypeId);
+        return activity;
+    };
+    //Client To Server Mapper
+    // ReSharper disable once InconsistentNaming
+    var MaintenanceActivityServerMapper = function (source) {
+        var result = {};
+        result.NrtChargeId = source.id() === undefined ? 0 : source.id();
+        result.Quantity = source.qty() === undefined ? 0 : source.qty();
+        result.TotalNrtChargeRate = source.totalRate() === undefined ? 0 : source.totalRate();
+        result.ContactPerson = source.contactPerson() === undefined ? null : source.contactPerson();
+        result.Description = source.description() === undefined ? null : source.description();
+        result.NrtChargeRate = source.rate() === undefined ? 0 : source.rate();
+        result.AdditionalChargeTypeId = source.additionalChargeTypeId() === undefined ? null : source.additionalChargeTypeId();
+        return result;
+    };
+    //Convert Server To Client
+    // ReSharper disable once InconsistentNaming
+    var ChaufferInNrtClientMapper = function (source) {
+        var chaufferInNrt = new ChaufferInNrt();
+        chaufferInNrt.id(source.NrtDriverId === null ? undefined : source.NrtDriverId);
+        chaufferInNrt.code(source.Code === null ? undefined : source.Code);
+        chaufferInNrt.name(source.Name === null ? undefined : source.Name);
+        chaufferInNrt.chaufferId(source.ChaufferId === null ? undefined : source.ChaufferId);
+        chaufferInNrt.desigGradeId(source.OpenLocationId === null ? undefined : source.OpenLocationId);
+        chaufferInNrt.licenseNum(source.CloseLocationId === null ? undefined : source.CloseLocationId);
+        chaufferInNrt.startDt(source.StartDtTime !== null ? moment(source.StartDtTime, ist.utcFormat).toDate() : undefined);
+        chaufferInNrt.startHour(source.StartDtTime !== null ? moment(source.StartDtTime, ist.utcFormat).format(ist.hourPattern) : undefined);
+        chaufferInNrt.startMinute(source.StartDtTime !== null ? moment(source.StartDtTime, ist.utcFormat).format(ist.minutePattern) : undefined);
+        chaufferInNrt.endDt(source.EndDtTime !== null ? moment(source.EndDtTime, ist.utcFormat).toDate() : undefined);
+        chaufferInNrt.endHour(source.EndDtTime !== null ? moment(source.EndDtTime, ist.hourPattern).format(ist.hourPattern) : undefined);
+        chaufferInNrt.endMinute(source.EndDtTime !== null ? moment(source.EndDtTime, ist.minutePattern).format(ist.minutePattern) : undefined);
+        chaufferInNrt.licenseExpiryDt(source.LicenseExpDt !== null ? moment(source.LicenseExpDt, ist.utcFormat).toDate() : undefined);
+        return chaufferInNrt;
+    };
+    //Convert Server To Client
+    // ReSharper disable once InconsistentNaming
     var ChaufferClientMapper = function (source) {
         var chauffer = new Chauffer();
         chauffer.id(source.ChaufferId === null ? undefined : source.ChaufferId);
@@ -491,6 +578,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         return chauffer;
     };
     //Client To Server Mapper
+    // ReSharper disable once InconsistentNaming
     var NRTServerMapper = function (source) {
         var result = {};
         result.VehicleId = source.vehicleDetail().vehicleId() === undefined || source.vehicleDetail().vehicleId() === null ? 0 : source.vehicleDetail().vehicleId();
@@ -509,6 +597,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         return result;
     };
     //Client To Server Mapper
+    // ReSharper disable once InconsistentNaming
     var NRTMainServerMapper = function (source) {
         var result = {};
         result.NrtMainId = source.id() === undefined || source.id() === null ? 0 : source.id();
@@ -518,10 +607,11 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         //result.NrtStatusId = source.tariffTypeId() === undefined || source.tariffTypeId() === null ? 0 : source.tariffTypeId();
         result.StartDtTime = source.startDate() === undefined || source.startDate() === null ? undefined : moment(source.startDate()).format(ist.utcFormat);
         result.EndDtTime = source.endDate() === undefined || source.endDate() === null ? undefined : moment(source.endDate()).format(ist.utcFormat);
-        result.NrtStatusMovement = VehicleDetailServerMapper(source.vehicleDetail());
+        //result.NrtStatusMovement = VehicleDetailServerMapper(source.vehicleDetail());
         return result;
     };
     //Client To Server Mapper
+    // ReSharper disable once InconsistentNaming
     var VehicleDetailServerMapper = function (source) {
         var result = {};
         result.NrtVehicleMovementId = source.id() === undefined || source.id() === null ? 0 : source.id();
@@ -530,12 +620,13 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.OperationsWorkPlaceId = source.outLocId() === undefined || source.outLocId() === null ? 0 : source.outLocId();
         result.Odometer = source.outOdemeter() === undefined || source.outOdemeter() === null ? 0 : source.outOdemeter();
         result.FuelLevel = source.fuelOut() === undefined || source.fuelOut() === null ? 0 : source.fuelOut();
-        result.MovementStatus = false;
+        result.MovementStatus = source.isReturnLoc() === undefined || source.isReturnLoc() === null ? 0 : source.isReturnLoc();;
         result.DtTime = source.outDtTime() === undefined || source.outDtTime() === null ? undefined : moment(source.outDtTime()).format(ist.utcFormat);
 
         return result;
     };
     //Client To Server Mapper
+    // ReSharper disable once InconsistentNaming
     var ChaufferServerMapper = function (source) {
         var result = {};
         result.NrtDriverId = source.id() === undefined || source.id() === null ? 0 : source.id();
@@ -547,10 +638,18 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.LicenseExpDt = source.licenseExpiryDt() === undefined || source.licenseExpiryDt() === null ? undefined : moment(source.licenseExpiryDt()).format(ist.utcFormat);
         return result;
     };
+    // Convert Client to server
+    // ReSharper disable once InconsistentNaming
+    var NrtMainServerMapperForId = function (source) {
+        var result = {};
+        result.NrtMainId = source.id() === undefined ? 0 : source.id();
+        return result;
+    };
     return {
         NRTMain: NRTMain,
         Vehicle: Vehicle,
         VehicleDetail: VehicleDetail,
+        VehicleForListView: VehicleForListView,
         Chauffer: Chauffer,
         ChaufferInNrt: ChaufferInNrt,
         AdditionalCharge: AdditionalCharge,
@@ -563,5 +662,10 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         AdditionalChargeClientMapper: AdditionalChargeClientMapper,
         MaintenanceActivityServerMapper: MaintenanceActivityServerMapper,
         NRTServerMapper: NRTServerMapper,
+        NrtMainServerMapperForId: NrtMainServerMapperForId,
+        NrtMainClientMapper: NrtMainClientMapper,
+        ChaufferInNrtClientMapper: ChaufferInNrtClientMapper,
+        MaintenanceActivityClientMapper: MaintenanceActivityClientMapper,
+        VehicleForListViewClientMapper: VehicleForListViewClientMapper,
     };
 });

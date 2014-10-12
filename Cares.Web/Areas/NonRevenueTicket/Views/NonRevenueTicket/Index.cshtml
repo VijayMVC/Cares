@@ -11,7 +11,11 @@
     <div data-bind="with:selectedNrtMain">
         <div class="form-group">
             <div class="addToBtnDiv row">
-                <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onOpenTicket">Open Ticket</button>
+                <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onOpenTicket,visible: id()===undefined">Open Ticket</button>
+            </div>
+            <div class="addToBtnDiv row">
+                <button class="btn btn-default addToBtn" style="display: none" id="saveBtn" data-bind="visible: id()!=undefined,click: $root.hideUpdateCancelBtn">Close Ticket</button>
+                <button class="btn btn-info btnUpdate" style="display: none" id="saveBtn" data-bind="visible: id()!=undefined,click:$root.onUpdateChaufferCharge">Update Ticket</button>
             </div>
         </div>
         <div class="panel panel-info">
@@ -70,8 +74,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @*<!-- ko template: { name: $root.templateToUse , foreach: $root.selectedChaufferList } -->
-                            <!-- /ko -->*@
+                        <!-- ko template: { name:'itemVehicleForListViewTemplate' , foreach: $root.vehiclesForListView } -->
+                        <!-- /ko -->
                     </tbody>
                 </table>
             </div>
@@ -93,7 +97,14 @@
                         <form class="form-horizontal">
                             <div class="form-group">
                                 <div class="addToBtnDiv row">
-                                    <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onAddVehicleDetail">Add Vehicle Detail</button>
+                                    <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onAddVehicleDetail,visible: vehicleId()===undefined">Add Vehicle Detail</button>
+                                    <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onEditVehicle,visible: $root.showEditBtn()">Edit</button>
+                                </div>
+                                <div class="addToBtnDiv row">
+                                    <button class="btn btn-default addToBtn" style="display: none" id="saveBtn" data-bind="visible: $root.showSaveCancelBtn(),click: $root.hideSaveCancelBtn">Cancel</button>
+                                    <button class="btn btn-info btnUpdate" style="display: none" id="saveBtn" data-bind="visible: $root.showSaveCancelBtn(),click:$root.onSaveVehicle">Save</button>
+                                    <button class="btn btn-default addToBtn" style="display: none" id="saveBtn" data-bind="visible: $root.showUpdateCancelBtn(),click: $root.hideUpdateCancelBtn">Cancel</button>
+                                    <button class="btn btn-info btnUpdate" style="display: none" id="saveBtn" data-bind="visible: $root.showUpdateCancelBtn(),click:$root.onUpdateVehicle">Update</button>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -147,7 +158,7 @@
                                 </div>
                                 <label for="fuelDifference" class="control-label h5 col-sm-1">Fuel Difference (ltrs) </label>
                                 <div class="col-md-3">
-                                    <input type="text" id="fuelDifference" class="form-control" placeholder='' />
+                                    <input type="text" id="fuelDifference" class="form-control" placeholder='' data-bind="value:fuelDiff" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -360,4 +371,14 @@
 </script>
 <script id="deleteAdditionalChargeItemTemplate" type="text/html">
     <a href="#" data-bind="click: $root.deleteAdditionalChargeItem" title=@Cares.Web.Resources.Shared.Common.Delete><span class="glyphicon glyphicon-remove"></span></a>
+</script>
+<script id="itemVehicleForListViewTemplate" type="text/html">
+    <tr>
+        <td data-bind="text: plateNumber"></td>
+        <td data-bind="text: tankSize"></td>
+        <td data-bind="text: vehicleMakeCodeName"></td>
+        <td data-bind="text: vehicleModelCodeName"></td>
+        <td data-bind="text: vehicleCategoryCodeName"></td>
+        <td data-bind="text: modelYear"></td>
+    </tr>
 </script>

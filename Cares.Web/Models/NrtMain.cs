@@ -14,6 +14,11 @@ namespace Cares.Web.Models
         /// Nrt Main ID
         /// </summary>
         public long NrtMainId { get; set; }
+        
+        /// <summary>
+        /// Operation Id 
+        /// </summary>
+        public long? OperationId { get; set; }
 
         /// <summary>
         /// Nrt Type

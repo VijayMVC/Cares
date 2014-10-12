@@ -17,14 +17,21 @@ define("nRT/nRT.dataservice", function () {
                         dataType: 'json',
                         type: 'GET'
                     });
-                    // Define request to Get Vehicles Detail 
+                    // Define request to Get NRT Detail 
+                    amplify.request.define('getNrtDetail', 'ajax', {
+                        url: ist.siteUrl + '/Api/GetNrtDetail',
+                        dataType: 'json',
+                        decoder: amplify.request.decoders.istStatusDecoder,
+                        type: 'POST'
+                    });
+                    // Define request to Get Vehicle Detail 
                     amplify.request.define('getVehiclesDetail', 'ajax', {
                         url: ist.siteUrl + '/Api/GetVehiclesForNRT',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
                     });
-
+                    
                     // Define request to Get Chauffeurs
                     amplify.request.define('getChauffers', 'ajax', {
                         url: ist.siteUrl + '/Api/GetChaufferForNRT',
@@ -71,11 +78,11 @@ define("nRT/nRT.dataservice", function () {
                     data: param
                 });
             },
-        // Get Vehicles Detail 
-        getVehiclesDetail = function (param, callbacks) {
+        // Get NRT Detail 
+        getNrtDetail = function (param, callbacks) {
             initialize();
             return amplify.request({
-                resourceId: 'getVehiclesDetail',
+                resourceId: 'getNrtDetail',
                 success: callbacks.success,
                 error: callbacks.error,
                 data: param
@@ -91,6 +98,16 @@ define("nRT/nRT.dataservice", function () {
                 data: param
             });
         },
+        // Get Vehicles
+        getVehiclesDetail = function (param, callbacks) {
+            initialize();
+            return amplify.request({
+                resourceId: 'getVehiclesDetail',
+                success: callbacks.success,
+                error: callbacks.error,
+                data: param
+            });
+        }, 
         // Get Additional Charge
         getAdditionlCharge = function (param, callbacks) {
             initialize();
@@ -103,10 +120,11 @@ define("nRT/nRT.dataservice", function () {
         }; 
         return {
             getNRTBase: getNRTBase,
-            getVehiclesDetail: getVehiclesDetail,
             getChauffers: getChauffers,
             getAdditionlCharge: getAdditionlCharge,
             saveNrt: saveNrt,
+            getNrtDetail: getNrtDetail,
+            getVehiclesDetail: getVehiclesDetail,
         };
     })();
 

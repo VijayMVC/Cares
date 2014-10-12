@@ -134,6 +134,22 @@ namespace Cares.Implementation.Services
                     }
                 }
 
+                //NRT Drivers
+                if (nrtVehicle.NrtVehicleMovements != null)
+                {
+                    foreach (var item in nrtVehicle.NrtVehicleMovements)
+                    {
+                        item.IsActive = true;
+                        item.IsDeleted = item.IsPrivate = item.IsReadOnly = false;
+                        item.RecLastUpdatedBy = item.RecCreatedBy = nrtMainRepository.LoggedInUserIdentity;
+                        item.RecCreatedDt = item.RecLastUpdatedDt = DateTime.Now;
+                        item.RowVersion = 0;
+                        item.UserDomainKey = nrtMainRepository.UserDomainKey;
+                        item.NrtVehicleId = nrtVehicle.NrtVehicleId;
+                        item.VehicleCondition = "0011111";
+                    }
+                }
+
                 //NRT Charges
                 if (nrtVehicle.NrtCharges != null)
                 {
@@ -153,6 +169,16 @@ namespace Cares.Implementation.Services
             }
 
             return nrtVehicle.NrtMain.NrtMainId;
+        }
+
+        /// <summary>
+        /// Find By Id
+        /// </summary>
+        /// <param name="nrtMainId"></param>
+        /// <returns></returns>
+        public NrtMain FindById(long nrtMainId)
+        {
+            return nrtMainRepository.Find(nrtMainId);
         }
         #endregion
     }

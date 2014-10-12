@@ -23,6 +23,10 @@ define("nRT/nRT.viewModel",
                     filterSectionVisilble = ko.observable(false),
                     //Show Update and Cancel button For Update Additional Charge
                     showUpdateCancelBtn = ko.observable(false),
+                    //Show save cancel 
+                    showSaveCancelBtn = ko.observable(false),
+                    //Show edit Button for vehicle detail
+                    showEditBtn = ko.observable(false),
                     //checked on dialog vehicle detail dialog
                     isVhicleChecked = ko.observable(false),
                     //checked on dialog chauffer dialog
@@ -51,6 +55,8 @@ define("nRT/nRT.viewModel",
                     selectedChaufferList = ko.observableArray([]),
                     //selected Additional Charge List
                     selectedAdditionalChargeList = ko.observableArray([]),
+                    //Vehicles List For List View
+                    vehiclesForListView = ko.observableArray([]),
                     // #endregion Arrays
                     // #region Busy Indicators
                     isLoadingNrt = ko.observable(false),
@@ -95,6 +101,7 @@ define("nRT/nRT.viewModel",
                         selectedNrtMain().vehicleDetail().outLocId(selectedNrtMain().outLocationId());
                         selectedNrtMain().vehicleDetail().inLocId(selectedNrtMain().retLocationId());
                         selectedNrtMain().vehicleDetail().outOdemeter(vehicle.currentOdometer());
+                        showSaveCancelBtn(true);
                     },
                     //Add to list Selected Additional Charges from dialog
                     applyAdditionalCharges = function () {
@@ -165,6 +172,20 @@ define("nRT/nRT.viewModel",
                             }
                         });
                     },
+
+                    //Edit Vehicle Detail
+                    onEditVehicle = function () {
+                        showEditBtn(false);
+                        showSaveCancelBtn(false);
+                        showUpdateCancelBtn(true);
+                    },
+                    //Update Vehicle Detail
+                    onUpdateVehicle = function () {
+                        showEditBtn(true);
+                        showSaveCancelBtn(false);
+                        showUpdateCancelBtn(false);
+                    },
+
                     //delete Chauffer Item
                     deleteChaufferItem = function (chauffer) {
                         selectedChaufferList.remove(chauffer);
@@ -188,17 +209,87 @@ define("nRT/nRT.viewModel",
                             ko.utils.arrayPushAll(nrtMain.nrtChargesList(), selectedAdditionalChargeList());
                             saveNrtMain(nrtMain);
                         }
+                        //getNrtById(nrtMain);
                     },
                     // Do Before Logic
                     doBeforeSave = function () {
                         var flag = true;
-                        if (!selectedNrtMain().isValid()) {
+                        if (!selectedNrtMain().isValid() || selectedNrtMain().vehicleDetail().vOutStatusId() === undefined) {
                             selectedNrtMain().errors.showAllMessages();
+                            selectedNrtMain().vehicleDetail().errors.showAllMessages();
                             flag = false;
                         }
                         return flag;
                     },
-                    // Do Before Logic
+                    onSaveVehicle = function () {
+                        if (!selectedNrtMain().vehicleDetail().isReturnLoc()) {
+                            showEditBtn(true);
+                            showSaveCancelBtn(false);
+                            _.each(vehicleDetails(), function (item) {
+                                if (item.vehicleId() === selectedNrtMain().vehicleDetail().vehicleId()) {
+                                    vehiclesForListView.push(model.VehicleForListViewClientMapper(item));
+                                }
+                            });
+                        }
+                    },
+
+
+                    //Get NRT By Id
+                    getNrtById = function (nrtMain) {
+                        isLoadingNrt(true);
+                        dataservice.getNrtDetail(model.NrtMainServerMapperForId(nrtMain), {
+                            success: function (data) {
+                                vehiclesForListView.removeAll();
+                                selectedChaufferList.removeAll();
+                                selectedAdditionalChargeList.removeAll();
+                                selectedNrtMain(model.NrtMainClientMapper(data));
+                                _.each(data.NrtVehicles, function (item) {
+                                    var vehicle = new model.VehicleClientMapper(item.Vehicle);
+                                    selectedNrtMain().vehicleDetail().vehicleId(item.Vehicle.VehicleId);
+                                    selectedNrtMain().vehicleDetail().plateNum(item.Vehicle.PlateNumber);
+                                    vehiclesForListView.push(model.VehicleForListViewClientMapper(vehicle));
+                                    //Selected Chauffer
+                                    _.each(item.NrtDrivers, function (driver) {
+                                        var drvr = new model.ChaufferInNrtClientMapper(driver);
+                                        selectedChaufferList.push(drvr);
+                                    });
+                                    //Selected Additiional Charge
+                                    _.each(item.NrtCharges, function (charge) {
+                                        var chrg = new model.MaintenanceActivityClientMapper(charge);
+                                        selectedAdditionalChargeList.push(chrg);
+                                    });
+                                    //Selected vehicle Movement status
+                                    _.each(item.NrtVehicleMovements, function (vhicle) {
+                                        selectedNrtMain().vehicleDetail().id(vhicle.NrtVehicleMovementId);
+                                        selectedNrtMain().vehicleDetail().isReturnLoc(vhicle.MovementStatus);
+                                        if (vhicle.MovementStatus) {
+                                            selectedNrtMain().vehicleDetail().inDtTime(moment(vhicle.DtTime, ist.utcFormat).toDate());
+                                            selectedNrtMain().vehicleDetail().inLocId(vhicle.OperationsWorkPlaceId);
+                                            selectedNrtMain().vehicleDetail().fuelIn(vhicle.FuelLevel);
+                                            selectedNrtMain().vehicleDetail().inOdemeter(vhicle.Odometer);
+                                            selectedNrtMain().vehicleDetail().vInStatusId(vhicle.VehicleStatusId);
+                                        } else {
+                                            selectedNrtMain().vehicleDetail().outDtTime(moment(vhicle.DtTime, ist.utcFormat).toDate());
+                                            selectedNrtMain().vehicleDetail().outLocId(vhicle.OperationsWorkPlaceId);
+                                            selectedNrtMain().vehicleDetail().fuelOut(vhicle.FuelLevel);
+                                            selectedNrtMain().vehicleDetail().outOdemeter(vhicle.Odometer);
+                                            selectedNrtMain().vehicleDetail().vOutStatusId(vhicle.VehicleStatusId);
+                                        }
+                                    });
+                                });
+
+
+                                showEditBtn(true);
+                                isLoadingNrt(false);
+                            },
+                            error: function () {
+                                isLoadingNrt(false);
+                                toastr.error(ist.resourceText.loadAddChargeDetailFailedMsg);
+                            }
+                        });
+                    },
+
+                // Do Before Logic
                     doBeforeAddVehicleDetail = function () {
                         var flag = true;
                         if (selectedNrtMain().startDate() === undefined) {
@@ -433,6 +524,14 @@ define("nRT/nRT.viewModel",
                         }
                     }, this),
 
+                    //Calculate Fuel difference
+                    fuelDiff = ko.computed(function () {
+                        if (selectedNrtMain() != undefined && selectedNrtMain().vehicleDetail().fuelOut() != undefined && selectedNrtMain().vehicleDetail().fuelIn() != undefined) {
+                            var diff = selectedNrtMain().vehicleDetail().fuelIn() - selectedNrtMain().vehicleDetail().fuelOut();
+                            selectedNrtMain().vehicleDetail().fuelDiff(diff);
+                        }
+                    }, this),
+
                     // Template Chooser
                     templateToUse = function (chauffer) {
                         return (chauffer === selectedChaufferItem() ? 'editChaufferItemTemplate' : 'itemChaufferItemTemplate');
@@ -443,10 +542,15 @@ define("nRT/nRT.viewModel",
                     },
                     //Hide Update and cancel Button
                     hideUpdateCancelBtn = function () {
-                        showUpdateCancelBtn(false);
-                        selectedChaufferCharge(undefined);
-                        addEditChaufferChargeMain().chaufferCharge(new model.ChaufferCharge());
+
                     },
+                    //Hide Save and cancel Button
+                    hideSaveCancelBtn = function () {
+                        selectedNrtMain().vehicleDetail(new model.VehicleDetail());
+                        showSaveCancelBtn(false);
+                    },
+
+
                     // Select a Chauffer
                     selectChaufferItem = function (chauffer) {
                         if (selectedChaufferItem() !== chauffer) {
@@ -472,6 +576,8 @@ define("nRT/nRT.viewModel",
                     sortIsAscHg: sortIsAscHg,
                     filterSectionVisilble: filterSectionVisilble,
                     showUpdateCancelBtn: showUpdateCancelBtn,
+                    showEditBtn: showEditBtn,
+                    showSaveCancelBtn: showSaveCancelBtn,
                     isVhicleChecked: isVhicleChecked,
                     selectVehicle: selectVehicle,
                     selectedVehicle: selectedVehicle,
@@ -493,6 +599,7 @@ define("nRT/nRT.viewModel",
                     selectedChaufferList: selectedChaufferList,
                     additionalCharges: additionalCharges,
                     selectedAdditionalChargeList: selectedAdditionalChargeList,
+                    vehiclesForListView: vehiclesForListView,
                     // Utility Methods
                     initialize: initialize,
                     pager: pager,
@@ -513,6 +620,10 @@ define("nRT/nRT.viewModel",
                     templateToUseForMaintenaceActivity: templateToUseForMaintenaceActivity,
                     deleteAdditionalChargeItem: deleteAdditionalChargeItem,
                     selectAdditionalChargeItem: selectAdditionalChargeItem,
+                    hideSaveCancelBtn: hideSaveCancelBtn,
+                    onSaveVehicle: onSaveVehicle,
+                    onEditVehicle: onEditVehicle,
+                    onUpdateVehicle: onUpdateVehicle,
                     // Utility Methods
 
                 };
