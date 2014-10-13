@@ -52,6 +52,15 @@ namespace Cares.Repository.Repositories
             
         }
 
+
+        /// <summary>
+        /// Association check of Standard Discount and vehicle Model
+        /// </summary>
+        public bool IsStandardDiscountAssociatedWithVehicleModel(long vehicleModelId)
+        {
+            return DbSet.Count(standardDicount => standardDicount.VehicleModelId == vehicleModelId) > 0;
+
+        }
         #endregion
     }
 }

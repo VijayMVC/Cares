@@ -346,6 +346,13 @@ namespace Cares.Repository.BaseRepository
         /// </summary>
         public DbSet<VehicleStatus> VehicleStatuses { get; set; }
 
+         /// <summary>
+        /// Vehicle sub Statuses  Db Set 
+        /// </summary>
+        public DbSet<VehicleSubStatus> VehicleSubStatuses { get; set; }
+
+        
+
         /// <summary>
         /// Transmission Type  Db Set 
         /// </summary>

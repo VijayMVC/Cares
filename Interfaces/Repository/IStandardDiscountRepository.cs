@@ -17,5 +17,10 @@ namespace Cares.Interfaces.Repository
         /// </summary>
         bool IsStandardDiscountAssociatedWithVehicleCategory(long vehicleCategoryId);
 
+        /// <summary>
+        /// Association check of Standard Discount and vehicle Model
+        /// </summary>
+        bool IsStandardDiscountAssociatedWithVehicleModel(long vehicleModelId);
+
     }
 }

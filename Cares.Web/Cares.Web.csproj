@@ -226,6 +226,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalChargeBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\VehicleModelController.cs" />
+    <Compile Include="Areas\Api\Controllers\VehicleStatusController.cs" />
     <Compile Include="Areas\Api\Controllers\GetAdditionalChargeForNrtController.cs" />
     <Compile Include="Areas\Api\Controllers\GetChaufferForNRTController.cs" />
     <Compile Include="Areas\Api\Controllers\AddressBaseController.cs" />
@@ -640,6 +642,7 @@
     <Compile Include="Models\VehicleMake.cs" />
     <Compile Include="Models\VehicleMakeSearchRequestResponse.cs" />
     <Compile Include="Models\VehicleModel.cs" />
+    <Compile Include="Models\VehicleModelSearcgRequestResponse.cs" />
     <Compile Include="Models\VehicleMovement.cs" />
     <Compile Include="Models\VehicleOtherDetail.cs" />
     <Compile Include="Models\VehiclePurchaseInfo.cs" />
@@ -714,6 +717,7 @@
     <Compile Include="Models\VehicleMakeDropDown.cs" />
     <Compile Include="Models\VehicleModelDropDown.cs" />
     <Compile Include="Models\VehicleStatusDropDown.cs" />
+    <Compile Include="Models\VehicleStatusSearchRequestResponse.cs" />
     <Compile Include="Models\WorkLocation.cs" />
     <Compile Include="Models\WorkLocationBaseDataResponse.cs" />
     <Compile Include="Models\WorkLocationDropDown.cs" />

@@ -76,6 +76,15 @@ namespace Cares.Repository.Repositories
 
         }
 
+        /// <summary>
+        /// Association check of Seasonal Discount and Vehicle Model
+        /// </summary>
+        public bool IsSeasonalDiscountAssociatedWithVehicleModel(long vehicleModelId)
+        {
+            return DbSet.Count(sessionlaDiscount => sessionlaDiscount.VehicleModelId == vehicleModelId) > 0;
+            
+        }
+
         #endregion
     }
 }

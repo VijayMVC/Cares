@@ -117,6 +117,7 @@ namespace Cares.Repository
             unityContainer.RegisterType<IMainteneceTypeGroupRepository, MainteneceTypeGroupRepository>();
             unityContainer.RegisterType<IStandardDiscountRepository, StandardDiscountRepository>();
             unityContainer.RegisterType<IVehicleInsuranceInfoRepository, VehicleInsuranceInfoRepository>();
+            unityContainer.RegisterType<IVehicleSubStatusRepository, VehicleSubStatusRepository>();
 
 
         }
