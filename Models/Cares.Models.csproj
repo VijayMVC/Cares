@@ -111,6 +111,8 @@
     <Compile Include="Common\MarketingChannelByColumn.cs" />
     <Compile Include="Common\VehicleCategoryByColumn.cs" />
     <Compile Include="Common\VehicleMakeByColumn.cs" />
+    <Compile Include="Common\VehicleModelByColumn.cs" />
+    <Compile Include="Common\VehicleStatusByColumn.cs" />
     <Compile Include="Common\VehicleStatusEnum.cs" />
     <Compile Include="Common\BillingSummary.cs" />
     <Compile Include="Common\AllocationStatusEnum.cs" />
@@ -343,6 +345,8 @@
     <Compile Include="RequestModels\MaintenanceTypeSearchRequest.cs" />
     <Compile Include="RequestModels\MainteneceTypeGroupSearchRequest.cs" />
     <Compile Include="RequestModels\VehicleCategorySearchRequest.cs" />
+    <Compile Include="RequestModels\VehicleModelSearcgRequest.cs" />
+    <Compile Include="RequestModels\VehicleStatusSearchRequest.cs" />
     <Compile Include="ResponseModels\VehicleCategorySearchRequestResponse.cs" />
     <Compile Include="RequestModels\VehicleMakeSearchRequest.cs" />
     <Compile Include="ResponseModels\InsuranceTypeSearchRequestResponse.cs" />
@@ -449,6 +453,8 @@
     <Compile Include="ResponseModels\VehicleBaseDataResponse.cs" />
     <Compile Include="ResponseModels\VehicleCheckListSearchRequestResponse.cs" />
     <Compile Include="ResponseModels\VehicleMakeSearchRequestResponse.cs" />
+    <Compile Include="ResponseModels\VehicleModelSearcgRequestResponse.cs" />
+    <Compile Include="ResponseModels\VehicleStatusSearchRequestResponse.cs" />
     <Compile Include="ResponseModels\WorkLocationBaseDataResponse.cs" />
     <Compile Include="ResponseModels\WorkLocationSerachRequestResponse.cs" />
     <Compile Include="ResponseModels\WorkplaceBaseDataResponse.cs" />

@@ -93,7 +93,7 @@ namespace Cares.Implementation.Services
                     workPlaceType.RecLastUpdatedBy = workplaceTypeRepository.LoggedInUserIdentity;
                     workPlaceType.RecCreatedDt = workPlaceType.RecLastUpdatedDt = DateTime.Now;
                     workPlaceType.RowVersion = 0;
-                    workPlaceType.UserDomainKey = 1;
+                    workPlaceType.UserDomainKey = workplaceTypeRepository.UserDomainKey;
                     workplaceTypeRepository.Add(workPlaceType);
                 }
                

@@ -131,6 +131,25 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Count(vehicle => vehicle.VehicleCategoryId == vehicleCategoryId) > 0;
         }
+
+        /// <summary>
+        /// Association check b/n vehicle and vehicle Status
+        /// </summary>
+        public bool IsVehicleStatusAssociatedWithVehicle(long vehicleStatusId)
+        {
+            return DbSet.Count(vehicle => vehicle.VehicleStatusId == vehicleStatusId) > 0;
+            
+        }
+
+         /// <summary>
+        /// Association check b/n vehicle and vehicle Model
+        /// </summary>
+        public bool IsVehicleModelAssociatedWithVehicle(long vehicleModelId)
+        {
+            return DbSet.Count(vehicle => vehicle.VehicleModelId == vehicleModelId) > 0;
+
+        }
+
         /// <summary>
         /// Load Dependencies
         /// </summary>
@@ -153,10 +172,6 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get Vehicle Info For NRT
         /// </summary>
-        /// <param name="operationWorkPlaceId"></param>
-        /// <param name="startDtTime"></param>
-        /// <param name="endDtTime"></param>
-        /// <returns></returns>
         public IEnumerable<Vehicle> GetVehicleInfoForNrt(long operationWorkPlaceId, DateTime startDtTime,
             DateTime endDtTime)
         {

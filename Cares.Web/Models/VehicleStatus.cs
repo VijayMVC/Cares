@@ -23,6 +23,11 @@
         public string VehicleStatusName { get; set; }
 
         /// <summary>
+        /// Vehicle Status Description
+        /// </summary>
+        public string VehicleStatusDescription { get; set; }
+
+        /// <summary>
         /// Vehicle Status Code Name
         /// </summary>
         public string VehicleStatusCodeName

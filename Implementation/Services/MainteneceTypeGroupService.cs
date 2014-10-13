@@ -31,7 +31,7 @@ namespace Cares.Implementation.Services
                 dbVersion.RecLastUpdatedBy = mainteneceTypeGroupRepository.LoggedInUserIdentity;
             dbVersion.RecCreatedDt = dbVersion.RecLastUpdatedDt = DateTime.Now;
             dbVersion.RowVersion = 0;
-            dbVersion.UserDomainKey = 1;
+            dbVersion.UserDomainKey = mainteneceTypeGroupRepository.UserDomainKey;
             dbVersion.MaintenanceTypeGroupCode = maintenanceTypeGroup.MaintenanceTypeGroupCode;
             dbVersion.MaintenanceTypeGroupName = maintenanceTypeGroup.MaintenanceTypeGroupName;
             dbVersion.MaintenanceTypeGroupDescription = maintenanceTypeGroup.MaintenanceTypeGroupDescription;

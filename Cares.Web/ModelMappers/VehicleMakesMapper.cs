@@ -58,7 +58,8 @@ namespace Cares.Web.ModelMappers
         {
             return new VehicleMakeSearchRequestResponse
             {
-                VehicleMakes = source.VehicleMakes.Select(vehiclemake => vehiclemake.CreateFromm())
+                VehicleMakes = source.VehicleMakes.Select(vehiclemake => vehiclemake.CreateFromm()),
+                TotalCount = source.TotalCount
             };
         }
 

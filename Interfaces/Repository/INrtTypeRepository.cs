@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Cares.Interfaces.Repository
 {
     /// <summary>
-    /// NrtType Repository Interface
+    /// Nrt Type Repository Interface
     /// </summary>
     public interface INrtTypeRepository : IBaseRepository<NrtType, long>
     {
@@ -23,5 +23,9 @@ namespace Cares.Interfaces.Repository
         /// </summary>
         bool IsNrtTypeCodeExists(NrtType nrtType);
 
+        /// <summary>
+        /// Association check b/n Vehicle Status and Nrt Type
+        /// </summary>
+        bool IsVehicleStatusAssociatedWithNrtType(long vehicleStatusId);
     }
 }

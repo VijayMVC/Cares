@@ -32,7 +32,7 @@ namespace Cares.Implementation.Services
                 dbVersion.RecLastUpdatedBy = maintenanceTypeRepository.LoggedInUserIdentity;
             dbVersion.RecCreatedDt = dbVersion.RecLastUpdatedDt = DateTime.Now;
             dbVersion.RowVersion = 0;
-            dbVersion.UserDomainKey = 1;
+            dbVersion.UserDomainKey = maintenanceTypeRepository.UserDomainKey;
             dbVersion.MaintenanceTypeCode = maintenanceType.MaintenanceTypeCode;
             dbVersion.MaintenanceTypeName = maintenanceType.MaintenanceTypeName;
             dbVersion.MaintenanceTypeDescription = maintenanceType.MaintenanceTypeDescription;

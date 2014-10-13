@@ -28,7 +28,7 @@ namespace Cares.Implementation.Services
                 dbVersion.RecLastUpdatedBy = businessLegalStatusRepository.LoggedInUserIdentity;
             dbVersion.RecCreatedDt = dbVersion.RecLastUpdatedDt = DateTime.Now;
             dbVersion.RowVersion = 0;
-            dbVersion.UserDomainKey = 1;
+            dbVersion.UserDomainKey = businessLegalStatusRepository.UserDomainKey;
             dbVersion.BusinessLegalStatusCode = businessLegalStatusRequest.BusinessLegalStatusCode;
             dbVersion.BusinessLegalStatusName = businessLegalStatusRequest.BusinessLegalStatusName;
             dbVersion.BusinessLegalStatusDescription = businessLegalStatusRequest.BusinessLegalStatusDescription;

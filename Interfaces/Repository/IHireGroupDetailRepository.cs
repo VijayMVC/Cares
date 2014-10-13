@@ -36,5 +36,10 @@ namespace Cares.Interfaces.Repository
         /// Association check of HireGroup Detail and Vehicle Category
         /// </summary>
         bool IsHireGroupDetailAssociatedWithVehicleCategory(long vehicleCategoryId);
+
+        /// <summary>
+        /// Association check of HireGroup Detail and Vehicle Model
+        /// </summary>
+        bool IsHireGroupDetailAssociatedWithVehicleModel(long vehicleModelId);
     }
 }

@@ -105,6 +105,15 @@ namespace Cares.Repository.Repositories
             return DbSet.Count(hiregroupDet => hiregroupDet.VehicleCategoryId == vehicleCategoryId) > 0;
             
         }
+
+        /// <summary>
+        /// Association check of HireGroup Detail and Vehicle Model
+        /// </summary>
+        public bool IsHireGroupDetailAssociatedWithVehicleModel(long vehicleModelId)
+        {
+            return DbSet.Count(hiregroupDet => hiregroupDet.VehicleMakeId == vehicleModelId) > 0;
+            
+        }
         #endregion
     }
 }

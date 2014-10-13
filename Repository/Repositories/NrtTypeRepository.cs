@@ -102,6 +102,14 @@ namespace Cares.Repository.Repositories
             return DbSet.Include(nrtType => nrtType.VehicleStatus)
                 .FirstOrDefault(nrtType => nrtType.NrtTypeId == nrtTypeId);
         }
+
+        /// <summary>
+        /// Association check b/n Vehicle Status and Nrt Type
+        /// </summary>
+        public bool IsVehicleStatusAssociatedWithNrtType(long vehicleStatusId)
+        {
+            return DbSet.Count(nrttype => nrttype.VehicleStatusId == vehicleStatusId) > 0;
+        }
         #endregion
     }
 }

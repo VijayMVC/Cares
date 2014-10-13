@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = Cares.Web.Resources.FleetPool.VehicleModel.VehicleModelLabel;
+}
+<div class="row" id="VehicleModelBinding">
+
+    <div class="row " data-bind="visible: !isVehicleModelEditorVisible()">
+        <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.FleetPool.VehicleModel.VehicleModelLabel</h3>
+        <div class="header-toolsSection">
+            <a href="#" class="label label-default create-new-icon" data-bind="click: onCreateForm" title="@Cares.Web.Resources.Shared.Common.CreateNew">@Cares.Web.Resources.Shared.Common.New</a>
+            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title="@Cares.Web.Resources.Shared.Common.ShowFilter" style="display: none"></a>
+        </div>
+    </div>
+    <div class="row searchFilterSection" data-bind="visible: !isVehicleModelEditorVisible() && filterSectionVisilble()" style="display: none">
+        <div class="well">
+            <form class="form-horizontal">
+                <div class="col-xs-3">
+                    <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.FleetPool.VehicleModel.Search + ">")" data-bind="value: searchFilter" />
+                </div>
+
+                <button type="submit" class="btn btn-success" data-bind="click: search">@Cares.Web.Resources.Shared.Common.Search</button>
+                <button type="submit" class="btn btn-default" data-bind="click:resetResuults">@Cares.Web.Resources.Shared.Common.Reset</button>
+                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click:hideFilterSection" title="@Cares.Web.Resources.Shared.Common.HideSection"></a>
+            </form>
+        </div>
+    </div>
+    <div class="row searchFilterResultSection" data-bind="visible: !isVehicleModelEditorVisible()">
+        <div class="well">
+            <table id="VehicleModelTable" class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th class="VehicleModelCode"> <span id="1">@Cares.Web.Resources.FleetPool.VehicleModel.Code<span class="icon-up"></span></span></th>
+                        <th class="VehicleModelName"> <span id="2">@Cares.Web.Resources.FleetPool.VehicleModel.Name<span></span></span></th>
+                        <th class="VehicleModelDiscription"> <span>@Cares.Web.Resources.FleetPool.VehicleModel.Description<span></span></span></th>
+                        <th> <span></span></th>
+                        <th> <span></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- ko template: { name: 'VehicleModelFilterResultTemplate' , foreach: vehicleModels } -->
+                    <!-- /ko -->
+                </tbody>
+            </table>
+            <!-- ko with: pager -->
+            @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
+            <!-- /ko -->
+        </div>
+    </div>
+    <script id="deleteActionVehicleModelTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onDeleteItem" title="@Cares.Web.Resources.Shared.Common.Delete"><span class="glyphicon glyphicon-remove"></span></a>
+    </script>
+
+    <script id="editActionVehicleModelTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onEditItem" title="@Cares.Web.Resources.Shared.Common.Edit"><span class="glyphicon glyphicon-edit"></span></a>
+    </script>
+    <script id="VehicleModelFilterResultTemplate" type="text/html">
+        <tr>
+            <td data-bind="text: code"></td>
+            <td data-bind="text: name"></td>
+            <td data-bind="text: description"></td>
+            <td>
+                <!-- ko template: { name: 'editActionVehicleModelTemplate' } -->
+                <!-- /ko -->
+            </td>
+            <td>
+                <!-- ko template: { name: 'deleteActionVehicleModelTemplate' } -->
+                <!-- /ko -->
+            </td>
+        </tr>
+    </script>
+    @Html.Partial("_VehicleModelEditor")
+</div>
+<!-- ko stopBinding: true -->
+@Html.Partial("~/Areas/Common/Views/Shared/_ConfirmationDialog.cshtml")
+<!-- /ko -->
+@section inlinescripts
+{
+    <script type="text/javascript">
+        require(["vehicleModel/vehicleModel.view", "common/confirmation.view"]);
+    var ist = window.ist;
+    @{
+        <text>
+        ist.resourceText.VehicleModelSuccessfullySavedMessage = '@Cares.Web.Resources.FleetPool.VehicleModel.VehicleModelSuccessfullySavedMessage';
+        ist.resourceText.FailedToSaveVehicleModelError = '@Cares.Web.Resources.FleetPool.VehicleModel.FailedToSaveVehicleModelError';
+        ist.resourceText.FailedToLoadVehicleModelError = '@Cares.Web.Resources.FleetPool.VehicleModel.FailedToLoadVehicleModelError';
+        ist.resourceText.VehicleModelSuccesfullyDeleted = '@Cares.Web.Resources.FleetPool.VehicleModel.VehicleModelSuccesfullyDeleted';
+        ist.resourceText.FailedToDeleteVehicleModelError = '@Cares.Web.Resources.FleetPool.VehicleModel.FailedToDeleteVehicleModelError';
+        </text>
+       }
+    </script>
+
+}

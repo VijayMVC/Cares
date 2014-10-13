@@ -118,6 +118,7 @@ namespace Cares.Repository
             unityContainer.RegisterType<IStandardDiscountRepository, StandardDiscountRepository>();
             unityContainer.RegisterType<IVehicleInsuranceInfoRepository, VehicleInsuranceInfoRepository>();
             unityContainer.RegisterType<IVehicleReservationRepository, VehicleReservationRepository>();
+            unityContainer.RegisterType<IVehicleSubStatusRepository, VehicleSubStatusRepository>();
             unityContainer.RegisterType<IChaufferReservationRepository, ChaufferReservationRepository>();
             unityContainer.RegisterType<INrtDriverRepository, NrtDriverRepository>();
             unityContainer.RegisterType<INrtChargeRepository, NrtChargeRepository>();

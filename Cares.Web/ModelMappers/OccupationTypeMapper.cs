@@ -46,6 +46,7 @@ namespace Cares.Web.ModelMappers
         {
             return new ApiModel.OccupationTypeSearchRequestResponse
             {
+                TotalCount = source.TotalCount,
                OccupationTypes = source.OccupationTypes.Select(occupationType => occupationType.CreateFromm())
             };
         }

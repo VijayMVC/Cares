@@ -69,7 +69,8 @@ namespace Cares.Web.ModelMappers
         {
             return new InsuranceTypeSearchRequestResponse
             {
-                InsuranceTypes = source.InsuranceTypes.Select(insuranceType => insuranceType.CreateFromm())
+                InsuranceTypes = source.InsuranceTypes.Select(insuranceType => insuranceType.CreateFromm()),
+                TotalCount = source.TotalCount
             };
         }
 

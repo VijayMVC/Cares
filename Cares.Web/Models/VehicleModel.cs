@@ -9,7 +9,7 @@
         /// <summary>
         /// Vehicle Mode ld
         /// </summary>
-        public short VehicleModeld { get; set; }
+        public short VehicleModelId { get; set; }
         /// <summary>
         /// Vehicl eModel Code
         /// </summary>
@@ -18,6 +18,10 @@
         /// Vehicl eModel Name
         /// </summary>
         public string VehicleModelName { get; set; }
+        /// <summary>
+        /// Vehicle Model Description
+        /// </summary>
+        public string VehicleModelDescription { get; set; }
 
         /// <summary>
         /// Vehicle Model Code Name

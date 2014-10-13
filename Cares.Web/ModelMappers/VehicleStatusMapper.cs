@@ -1,4 +1,5 @@
-﻿using Cares.Web.Models;
+﻿using System.Linq;
+using Cares.Web.Models;
 
 namespace Cares.Web.ModelMappers
 {
@@ -18,7 +19,8 @@ namespace Cares.Web.ModelMappers
             {
                 VehicleStatusId = source.VehicleStatusId,
                 VehicleStatusName = source.VehicleStatusName,
-                VehicleStatusCode = source.VehicleStatusCode
+                VehicleStatusCode = source.VehicleStatusCode,
+                VehicleStatusDescription = source.VehicleStatusDescription
             };
         }
 
@@ -31,6 +33,33 @@ namespace Cares.Web.ModelMappers
             {
                 VehicleStatusId = source.VehicleStatusId,
                 VehicleStatusCodeName = source.VehicleStatusCode+" - "+source.VehicleStatusName
+            };
+        }
+
+        /// <summary>
+        ///  Create From web model 
+        /// </summary>
+        public static Cares.Models.DomainModels.VehicleStatus CreateFrom(this VehicleStatus source)
+        {
+            return new Cares.Models.DomainModels.VehicleStatus
+            {
+                VehicleStatusId = source.VehicleStatusId,
+                VehicleStatusName = source.VehicleStatusName,
+                VehicleStatusCode = source.VehicleStatusCode,
+                VehicleStatusDescription = source.VehicleStatusDescription
+            };
+        }
+
+        /// <summary>
+        /// Create From Domain search request response
+        /// </summary>
+        public static VehicleStatusSearchRequestResponse CreateFrom(this Cares.Models.ResponseModels.VehicleStatusSearchRequestResponse source)
+        {
+
+            return new VehicleStatusSearchRequestResponse
+            {
+                TotalCount = source.TotalCount,
+               VehicleStatuses = source.VehicleStatuses.Select(vehicleStatus => vehicleStatus.CreateFrom())
             };
         }
         #endregion

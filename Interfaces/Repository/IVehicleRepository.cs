@@ -52,6 +52,16 @@ namespace Cares.Interfaces.Repository
         /// Association check b/n vehicle and vehicle Category
         /// </summary>
         bool IsVehicleCategoryAssociatedWithVehicle(long vehicleCategoryId);
+
+        /// <summary>
+        /// Association check b/n vehicle and vehicle Status
+        /// </summary>
+        bool IsVehicleStatusAssociatedWithVehicle(long vehicleStatusId);
+
+        /// <summary>
+        /// Association check b/n vehicle and vehicle Model
+        /// </summary>
+        bool IsVehicleModelAssociatedWithVehicle(long vehicleModelId);
     }
 }
 

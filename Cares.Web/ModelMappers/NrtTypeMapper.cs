@@ -52,10 +52,11 @@ namespace Cares.Web.ModelMappers
                 TotalCount = source.TotalCount
             };
         }
+
         /// <summary>
         /// Crete From Domain model
         /// </summary>
-        public static NrtType CreateFromm(this Cares.Models.DomainModels.NrtType source)
+        public static NrtType CreateFromm(this DomainModels.NrtType source)
         {
             return new NrtType
             {
