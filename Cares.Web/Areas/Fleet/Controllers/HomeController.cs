@@ -49,5 +49,13 @@ namespace Cares.Web.Areas.Fleet.Controllers
         {
             return View();
         }
+        public ActionResult VehicleModel()
+        {
+            return View();
+        }
+        public ActionResult VehicleStatus()
+        {
+            return View();
+        }
 	}
 }

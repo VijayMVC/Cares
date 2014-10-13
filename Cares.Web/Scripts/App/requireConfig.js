@@ -62,6 +62,8 @@
             "insuranceType": ist.siteUrl + "/Areas/Fleet/Scripts",
             "vehicleMake": ist.siteUrl + "/Areas/Fleet/Scripts",
             "vehicleCategory": ist.siteUrl + "/Areas/Fleet/Scripts",
+            "vehicleModel": ist.siteUrl + "/Areas/Fleet/Scripts",
+            "vehicleStatus": ist.siteUrl + "/Areas/Fleet/Models",
 
         }
     }); 

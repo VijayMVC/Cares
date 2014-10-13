@@ -133,7 +133,7 @@ namespace Cares.Implementation.Services
         {
             VehicleModel dbVersion = vehicleModelRepository.Find(vehicleModel.VehicleModelId);
             if (vehicleModelRepository.VehicleModelCodeDuplicationCheck(vehicleModel))
-                throw new CaresException(Resources.Organization.Company.CompanyWithSameCodeAlreadyExistsError);
+                throw new CaresException(Resources.FleetPool.VehicleModel.VehicleModelCodeDuplicationError);
             
                 if (dbVersion != null)
                 {
