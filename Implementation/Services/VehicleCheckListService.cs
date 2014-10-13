@@ -31,7 +31,7 @@ namespace Cares.Implementation.Services
                 dbVersion.RecLastUpdatedBy = vehicleCheckListRepository.LoggedInUserIdentity;
             dbVersion.RecCreatedDt = dbVersion.RecLastUpdatedDt = DateTime.Now;
             dbVersion.RowVersion = 0;
-            dbVersion.UserDomainKey = 1;
+            dbVersion.UserDomainKey = vehicleCheckListRepository.UserDomainKey;
             dbVersion.VehicleCheckListCode = vehicleCheckList.VehicleCheckListCode;
             dbVersion.VehicleCheckListName = vehicleCheckList.VehicleCheckListName;
             dbVersion.VehicleCheckListDescription = vehicleCheckList.VehicleCheckListDescription;

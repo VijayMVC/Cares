@@ -33,7 +33,7 @@ namespace Cares.Implementation.Services
                 dbVersion.RecLastUpdatedBy = businessPartnerSubTypeRepository.LoggedInUserIdentity;
             dbVersion.RecCreatedDt = dbVersion.RecLastUpdatedDt = DateTime.Now;
             dbVersion.RowVersion = 0;
-            dbVersion.UserDomainKey = 1;
+            dbVersion.UserDomainKey = businessPartnerSubTypeRepository.UserDomainKey;
             dbVersion.BusinessPartnerSubTypeCode = businessPartnerSubType.BusinessPartnerSubTypeCode;
             dbVersion.BusinessPartnerSubTypeName = businessPartnerSubType.BusinessPartnerSubTypeName;
             dbVersion.BusinessPartnerSubTypeDescription = businessPartnerSubType.BusinessPartnerSubTypeDescription;

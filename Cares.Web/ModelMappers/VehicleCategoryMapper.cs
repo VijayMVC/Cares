@@ -59,7 +59,8 @@ namespace Cares.Web.ModelMappers
         {
             return new VehicleCategorySearchRequestResponse
             {
-                VehicleCategories = source.VehicleCategories.Select(vehiclecategory => vehiclecategory.CreateFromm())
+                VehicleCategories = source.VehicleCategories.Select(vehiclecategory => vehiclecategory.CreateFromm()),
+                TotalCount = source.TotalCount
             };
         }
 

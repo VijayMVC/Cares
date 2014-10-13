@@ -48,7 +48,7 @@ namespace Cares.Implementation.Services
                 dbVersion.RecLastUpdatedBy = vehicleStatusRepository.LoggedInUserIdentity;
             dbVersion.RecCreatedDt = dbVersion.RecLastUpdatedDt = DateTime.Now;
             dbVersion.RowVersion = 0;
-            dbVersion.UserDomainKey = 1;
+            dbVersion.UserDomainKey = vehicleStatusRepository.UserDomainKey;
             dbVersion.VehicleStatusCode = vehicleStatus.VehicleStatusCode;
             dbVersion.VehicleStatusName = vehicleStatus.VehicleStatusName;
             dbVersion.VehicleStatusDescription = vehicleStatus.VehicleStatusDescription;
