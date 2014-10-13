@@ -11,11 +11,11 @@
     <div data-bind="with:selectedNrtMain">
         <div class="form-group">
             <div class="addToBtnDiv row">
-                <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onOpenTicket,visible: id()===undefined">Open Ticket</button>
+                <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onOpenTicket,visible: id()===undefined && !$root.isCloseTicket()">Open Ticket</button>
             </div>
             <div class="addToBtnDiv row">
-                <button class="btn btn-default addToBtn" style="display: none" id="saveBtn" data-bind="visible: id()!=undefined,click: $root.hideUpdateCancelBtn">Close Ticket</button>
-                <button class="btn btn-info btnUpdate" style="display: none" id="saveBtn" data-bind="visible: id()!=undefined,click:$root.onUpdateChaufferCharge">Update Ticket</button>
+                <button class="btn btn-default addToBtn" style="display: none" id="saveBtn" data-bind="visible: id()!=undefined&& !$root.isCloseTicket(),click: $root.onCloseTicket">Close Ticket</button>
+                <button class="btn btn-info btnUpdate" style="display: none" id="saveBtn" data-bind="visible: id()!=undefined&& !$root.isCloseTicket(),click:$root.onOpenTicket">Update Ticket</button>
             </div>
         </div>
         <div class="panel panel-info">
@@ -25,35 +25,35 @@
                     <div class="form-group">
                         <label for="tickectNum" class="control-label h5 col-sm-1">Non Revenue Ticket #</label>
                         <div class="col-md-3">
-                            <label id="tickectNum" class="control-label h5 col-sm-3" data-bind="value:id"></label>
+                            <label id="tickectNum" class="control-label h5 col-sm-3" data-bind="text:id"></label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="operation" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.TariffType.Operation *</label>
                         <div class="col-md-3">
-                            <select id="operation" class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '@("<" + Cares.Web.Resources.Tariff.TariffType.Operation + ">")'  , value: operationId, validationTooltip: operationId"></select>
+                            <select id="operation" class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '@("<" + Cares.Web.Resources.Tariff.TariffType.Operation + ">")'  , value: operationId, validationTooltip: operationId,disable:vehicleDetail().vehicleId()!=undefined"></select>
                         </div>
                         <label for="outLocation" class="control-label h5 col-sm-1">Out Location *</label>
                         <div class="col-md-3">
-                            <select id="outLocation" class="form-control" data-bind="options: $root.filteredLocations, optionsText: 'OperationsWorkPlaceCodeName', optionsValue: 'OperationsWorkPlaceId', optionsCaption: '< Out Location>'  , value: outLocationId, validationTooltip: outLocationId"></select>
+                            <select id="outLocation" class="form-control" data-bind="options: $root.filteredLocations, optionsText: 'OperationsWorkPlaceCodeName', optionsValue: 'OperationsWorkPlaceId', optionsCaption: '< Out Location>'  , value: outLocationId, validationTooltip: outLocationId,disable:vehicleDetail().vehicleId()!=undefined ||$root.isCloseTicket()"></select>
                         </div>
                         <label for="retLocation" class="control-label h5 col-sm-1">Return Location *</label>
                         <div class="col-md-3">
-                            <select id="retLocation" class="form-control" data-bind="options: $root.filteredLocations, optionsText: 'OperationsWorkPlaceCodeName', optionsValue: 'OperationsWorkPlaceId', optionsCaption: 'Return Location'  , value: retLocationId, validationTooltip: retLocationId"></select>
+                            <select id="retLocation" class="form-control" data-bind="options: $root.filteredLocations, optionsText: 'OperationsWorkPlaceCodeName', optionsValue: 'OperationsWorkPlaceId', optionsCaption: 'Return Location'  , value: retLocationId, validationTooltip: retLocationId,disable:$root.isCloseTicket()"></select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="sDate" class="control-label h5 col-sm-1">Start Date/Time  *</label>
                         <div class="col-md-3">
-                            <input type="text" placeholder='<Start Date/Time >' class="form-control" id="sDate" data-bind="datetimepicker:startDate, validationTooltip:startDate" />
+                            <input type="text" placeholder='<Start Date/Time >' class="form-control" id="sDate" data-bind="datetimepicker:startDate, validationTooltip:startDate,disable:vehicleDetail().vehicleId()!=undefined" />
                         </div>
                         <label for="eDate" class="control-label h5 col-sm-1">End Date/Time  *</label>
                         <div class="col-md-3">
-                            <input type="text" placeholder='<End Date/Time >' class="form-control" id="eDate" data-bind="datetimepicker:endDate, validationTooltip:endDate" />
+                            <input type="text" placeholder='<End Date/Time >' class="form-control" id="eDate" data-bind="datetimepicker:endDate, validationTooltip:endDate,disable:$root.isCloseTicket()" />
                         </div>
                         <label for="nrtTypes" class="control-label h5 col-sm-1">NRT Type  *</label>
                         <div class="col-md-3">
-                            <select id="nrtTypes" class="form-control" data-bind="options: $root.nRTTypes, optionsText: 'NrtTypeCodeName', optionsValue: 'NrtTypeId', optionsCaption: 'Return Location' , value: nRtTypeId, validationTooltip: nRtTypeId"></select>
+                            <select id="nrtTypes" class="form-control" data-bind="options: $root.nRTTypes, optionsText: 'NrtTypeCodeName', optionsValue: 'NrtTypeId', optionsCaption: 'NRT Type ' , value: nRtTypeId, validationTooltip: nRtTypeId,disable:id()!=undefined"></select>
                         </div>
                     </div>
                 </form>
@@ -97,68 +97,68 @@
                         <form class="form-horizontal">
                             <div class="form-group">
                                 <div class="addToBtnDiv row">
-                                    <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onAddVehicleDetail,visible: vehicleId()===undefined">Add Vehicle Detail</button>
-                                    <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onEditVehicle,visible: $root.showEditBtn()">Edit</button>
+                                    <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onAddVehicleDetail,visible: vehicleId()===undefined && !$root.isCloseTicket()">Add Vehicle Detail</button>
+                                    <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onEditVehicle,visible: $root.showEditBtn() && !$root.isCloseTicket()">Edit</button>
                                 </div>
                                 <div class="addToBtnDiv row">
-                                    <button class="btn btn-default addToBtn" style="display: none" id="saveBtn" data-bind="visible: $root.showSaveCancelBtn(),click: $root.hideSaveCancelBtn">Cancel</button>
-                                    <button class="btn btn-info btnUpdate" style="display: none" id="saveBtn" data-bind="visible: $root.showSaveCancelBtn(),click:$root.onSaveVehicle">Save</button>
-                                    <button class="btn btn-default addToBtn" style="display: none" id="saveBtn" data-bind="visible: $root.showUpdateCancelBtn(),click: $root.hideUpdateCancelBtn">Cancel</button>
-                                    <button class="btn btn-info btnUpdate" style="display: none" id="saveBtn" data-bind="visible: $root.showUpdateCancelBtn(),click:$root.onUpdateVehicle">Update</button>
+                                    <button class="btn btn-default addToBtn" style="display: none" id="saveBtn" data-bind="visible: $root.showSaveCancelBtn() && !$root.isCloseTicket(),click: $root.hideSaveCancelBtn">Cancel</button>
+                                    <button class="btn btn-info btnUpdate" style="display: none" id="saveBtn" data-bind="visible: $root.showSaveCancelBtn()&& !$root.isCloseTicket(),click:$root.onSaveVehicle">Save</button>
+                                    <button class="btn btn-default addToBtn" style="display: none" id="saveBtn" data-bind="visible: $root.showUpdateCancelBtn() && !$root.isCloseTicket(),click: $root.hideUpdateCancelBtn">Cancel</button>
+                                    <button class="btn btn-info btnUpdate" style="display: none" id="saveBtn" data-bind="visible: $root.showUpdateCancelBtn() && !$root.isCloseTicket(),click:$root.onUpdateVehicle">Update</button>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="vPlateNumber" class="control-label h5 col-sm-1">Vehicle Plate Number</label>
                                 <div class="col-md-3">
-                                    <input type="text" id="vPlateNumber" class="form-control" placeholder='' data-bind="value:plateNum, validationTooltip:plateNum" />
+                                    <input type="text" id="vPlateNumber" class="form-control" placeholder='' data-bind="value:plateNum, validationTooltip:plateNum,disable:true" />
                                 </div>
                                 <label for="isReturnVehicle" class="control-label h5 col-sm-1">Return Vehicle? </label>
                                 <div class="col-md-3">
-                                    <input type="checkbox" id="isReturnVehicle" class="form-control" placeholder='' data-bind="checked:isReturnLoc" />
+                                    <input type="checkbox" id="isReturnVehicle" class="form-control" placeholder='' data-bind="checked:isReturnLoc,disable:(virtualIsReturnLoc()||vehicleId()===undefined)" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="outDateTime" class="control-label h5 col-sm-1">Out Date/Time *</label>
                                 <div class="col-md-3">
-                                    <input type="text" id="outDateTime" class="form-control" placeholder='' data-bind="datetimepicker:outDtTime, validationTooltip:outDtTime" />
+                                    <input type="text" id="outDateTime" class="form-control" placeholder='' data-bind="datetimepicker:outDtTime, validationTooltip:outDtTime,disable:true" />
                                 </div>
                                 <label for="inDateTime" class="control-label h5 col-sm-1">In Date/Time *</label>
                                 <div class="col-md-3">
-                                    <input type="text" id="inDateTime" class="form-control" placeholder='' data-bind="datetimepicker:inDtTime, validationTooltip:inDtTime" />
+                                    <input type="text" id="inDateTime" class="form-control" placeholder='' data-bind="datetimepicker:inDtTime, validationTooltip:inDtTime,disable:true" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="outLocation" class="control-label h5 col-sm-1">Out Location *</label>
                                 <div class="col-md-3">
-                                    <select id="outLocation" class="form-control" data-bind="options: $root.locations, optionsText: 'OperationsWorkPlaceCodeName', optionsValue: 'OperationsWorkPlaceId', optionsCaption: '< Out Location>' ,value:outLocId"></select>
+                                    <select id="outLocation" class="form-control" data-bind="options: $root.locations, optionsText: 'OperationsWorkPlaceCodeName', optionsValue: 'OperationsWorkPlaceId', optionsCaption: '< Out Location>' ,value:outLocId,disable:true"></select>
                                 </div>
                                 <label for="retLocation" class="control-label h5 col-sm-1">Return Location *</label>
                                 <div class="col-md-3">
-                                    <select id="retLocation" class="form-control" data-bind="options: $root.locations, optionsText: 'OperationsWorkPlaceCodeName', optionsValue: 'OperationsWorkPlaceId', optionsCaption: 'Return Location' ,value:inLocId"></select>
+                                    <select id="retLocation" class="form-control" data-bind="options: $root.locations, optionsText: 'OperationsWorkPlaceCodeName', optionsValue: 'OperationsWorkPlaceId', optionsCaption: 'Return Location' ,value:inLocId,disable:!(isReturnLoc()) ||$root.isCloseTicket()"></select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="outOdometer" class="control-label h5 col-sm-1">Odometer Out *</label>
                                 <div class="col-md-3">
-                                    <input type="text" id="outOdometer" class="form-control" placeholder='' data-bind="value:outOdemeter, validationTooltip:outOdemeter" />
+                                    <input type="text" id="outOdometer" class="form-control" placeholder='' data-bind="value:outOdemeter, validationTooltip:outOdemeter,disable:true" />
                                 </div>
                                 <label for="inOdometer" class="control-label h5 col-sm-1">Odometer In *</label>
                                 <div class="col-md-3">
-                                    <input type="text" id="inOdometer" class="form-control" placeholder='' data-bind="value:inOdemeter, validationTooltip:inOdemeter" />
+                                    <input type="text" id="inOdometer" class="form-control" placeholder='' data-bind="value:inOdemeter, validationTooltip:inOdemeter,disable:!(isReturnLoc()) ||$root.isCloseTicket()" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label h5 col-sm-1">Fuel Out * </label>
-                                <div class="col-md-3">
-                                    <div style="margin: 10px" data-bind="slider: fuelOut, sliderOptions: {min: undefined, max: 100, range: 'min', step: 1}"></div>
+                                <div class="col-md-3" >
+                                    <div style="margin: 10px" data-bind="slider: fuelOut, sliderOptions: {min: undefined, max: 100, range: 'min', step: 1},disable:true"></div>
                                 </div>
                                 <label class="control-label h5 col-sm-1">Fuel In * </label>
                                 <div class="col-md-3">
-                                    <div style="margin: 10px" data-bind="slider: fuelIn, sliderOptions: {min: undefined, max: 100, range: 'min', step: 1}"></div>
+                                    <div style="margin: 10px" data-bind="slider: fuelIn, sliderOptions: {min: undefined, max: 100, range: 'min', step: 1},disable:!(isReturnLoc())"></div>
                                 </div>
                                 <label for="fuelDifference" class="control-label h5 col-sm-1">Fuel Difference (ltrs) </label>
                                 <div class="col-md-3">
-                                    <input type="text" id="fuelDifference" class="form-control" placeholder='' data-bind="value:fuelDiff" />
+                                    <input type="text" id="fuelDifference" class="form-control" placeholder='' data-bind="value:fuelDiff,disable:true" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -174,11 +174,11 @@
                             <div class="form-group">
                                 <label for="vOutStatus" class="control-label h5 col-sm-1">Vehicle Out Status *</label>
                                 <div class="col-md-3">
-                                    <select id="vOutStatus" class="form-control" data-bind="options: $root.vehicleStatuses, optionsText: 'VehicleStatusCodeName', optionsValue: 'VehicleStatusId', optionsCaption: '<Vehicle Out Status>' ,value:vOutStatusId"></select>
+                                    <select id="vOutStatus" class="form-control" data-bind="options: $root.vehicleStatuses, optionsText: 'VehicleStatusCodeName', optionsValue: 'VehicleStatusId', optionsCaption: '<Vehicle Out Status>' ,value:vOutStatusId, disable: $root.isCloseTicket()"></select>
                                 </div>
                                 <label for="vInStatus" class="control-label h5 col-sm-1">Vehicle In Status *</label>
                                 <div class="col-md-3">
-                                    <select id="vInStatus" class="form-control" data-bind="options: $root.vehicleStatuses, optionsText: 'VehicleStatusCodeName', optionsValue: 'VehicleStatusId', optionsCaption: '<Vehicle In Status>' ,value:vInStatusId"></select>
+                                    <select id="vInStatus" class="form-control" data-bind="options: $root.vehicleStatuses, optionsText: 'VehicleStatusCodeName', optionsValue: 'VehicleStatusId', optionsCaption: '<Vehicle In Status>' ,value:vInStatusId,disable:!(isReturnLoc()) || $root.isCloseTicket()"></select>
                                 </div>
                             </div>
                         </form>
@@ -189,7 +189,7 @@
                         <form class="form-horizontal">
                             <div class="form-group">
                                 <div class="addToBtnDiv row">
-                                    <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onAddActivity,visible: $root.selectedNrtMain().vehicleDetail().vehicleId()!=undefined">Add Activity</button>
+                                    <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onAddActivity,visible: $root.selectedNrtMain().vehicleDetail().vehicleId()!=undefined && !$root.isCloseTicket()">Add Activity</button>
                                 </div>
                             </div>
                         </form>
@@ -218,7 +218,7 @@
                         <form class="form-horizontal">
                             <div class="form-group">
                                 <div class="addToBtnDiv row">
-                                    <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onAddChauffer,visible: $root.selectedNrtMain().vehicleDetail().vehicleId()!=undefined">Add Chauffer</button>
+                                    <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onAddChauffer,visible: $root.selectedNrtMain().vehicleDetail().vehicleId()!=undefined && !$root.isCloseTicket()">Add Chauffer</button>
                                 </div>
                             </div>
                         </form>

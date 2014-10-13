@@ -125,11 +125,11 @@ namespace Cares.Repository.Repositories
                     employee =>
                         employee.EmpJobInfo.WorkPlace.OperationsWorkPlaces.Any(
                             ow => ow.OperationsWorkPlaceId == request.OperationsWorkPlaceId) &&
-                        employee.EmpJobInfo.Designation.DesignationKey == request.DesignationKey).ToList();
-            //(employee.ChaufferReservations.Count == 0 ||
-            // !employee.ChaufferReservations.Any(
-            //     chaufferRes => chaufferRes.StartDtTime >= request.EndDtTime &&
-            //                    chaufferRes.EndDtTime <= request.StartDtTime))).ToList();
+                        employee.EmpJobInfo.Designation.DesignationKey == request.DesignationKey &&
+            (employee.ChaufferReservations.Count == 0 ||
+             !employee.ChaufferReservations.Any(
+                 chaufferRes => chaufferRes.StartDtTime >= request.EndDtTime &&
+                                chaufferRes.EndDtTime <= request.StartDtTime))).ToList();
         }
 
 

@@ -102,9 +102,12 @@
     <Compile Include="IServices\IWorkplaceService.cs" />
     <Compile Include="IServices\IWorkplaceTypeService.cs" />
     <Compile Include="Repository\IBusinessPartnerMainTypeRepository.cs" />
+    <Compile Include="Repository\IChaufferReservationRepository.cs" />
     <Compile Include="Repository\ICreditLimitRepository.cs" />
     <Compile Include="Repository\IBpSubTypeRepository.cs" />
     <Compile Include="Repository\IMainteneceTypeGroupRepository.cs" />
+    <Compile Include="Repository\INrtChargeRepository.cs" />
+    <Compile Include="Repository\INrtDriverRepository.cs" />
     <Compile Include="Repository\IRACustomerDocumentRepository.cs" />
     <Compile Include="Repository\IChaufferChargeMainRepository.cs" />
     <Compile Include="Repository\IChaufferChargeRepository.cs" />
@@ -219,6 +222,7 @@
     <Compile Include="Repository\IVehicleMakeRepository.cs" />
     <Compile Include="Repository\IVehicleModelRepository.cs" />
     <Compile Include="Repository\IAllocationStatusRepository.cs" />
+    <Compile Include="Repository\IVehicleReservationRepository.cs" />
     <Compile Include="Repository\IVehicleStatusRepository.cs" />
     <Compile Include="Repository\IWorkLocationRepository.cs" />
     <Compile Include="Repository\IWorkplaceRepository.cs" />

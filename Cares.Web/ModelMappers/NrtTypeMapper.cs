@@ -15,9 +15,9 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         /// Crete From web model
         /// </summary>
-        public static Cares.Models.DomainModels.NrtType CreateFrom(this NrtType source)
+        public static DomainModels.NrtType CreateFrom(this NrtType source)
         {
-            return new Cares.Models.DomainModels.NrtType
+            return new DomainModels.NrtType
             {
                 NrtTypeId = source.NrtTypeId,
                 NrtTypeCode = source.NrtTypeCode,
