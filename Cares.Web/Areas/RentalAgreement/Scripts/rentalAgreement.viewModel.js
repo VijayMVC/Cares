@@ -50,6 +50,16 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         totalLoss: 6,
                         damaged: 7
                     },
+                    // RA Status Enums
+                    raStatusEnum = {
+                        open: 1,
+                        close: 2,
+                        paymentPending: 3,
+                        systemGeneratedBooking: 4,
+                        onlineBooking: 5,
+                        reservation: 6,
+                        convertedToAgreement: 7
+                    },
                     // Main RA
                     rentalAgreement = ko.observable(model.RentalAgreement.Create({}, rentalAgreementModelCallbacks)),
                     // #region Arrays
@@ -123,6 +133,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                 VehicleId: vehicle.id,
                                 HireGroupDetailId: selectedHireGroup().id,
                                 AllocationStatusKey: allocationStatus.desired,
+                                AllocationStatusId: vehicleAllocationStatusFilter(),
                                 RaMainId: rentalAgreement().id(),
                                 Vehicle: vehicle,
                                 VehicleMovements: [
@@ -476,6 +487,30 @@ define("rentalAgreement/rentalAgreement.viewModel",
                             }
                         });
                     },
+                    // Open Rental Agreement
+                    openRentalAgreement = function() {
+                        saveRentalAgreement(raStatusEnum.open);
+                    },
+                    // Close Rental Agreement
+                    closeRentalAgreement = function() {
+                        saveRentalAgreement(raStatusEnum.close);
+                    },
+                    // Save Rental Agreement
+                    saveRentalAgreement = function (action) {
+                        var raMain = rentalAgreement().convertToServerData();
+                        var saveRaRequest = {
+                            RaMain: raMain,
+                            Action: action
+                        };
+                        dataservice.saveRentalAgreement(saveRaRequest, {
+                            success: function (data) {
+                                rentalAgreement(model.RentalAgreement.Create(data, rentalAgreementModelCallbacks));
+                            },
+                            error: function (response) {
+                                toastr.error("Failed to process request. Error: " + response);
+                            }
+                        });
+                    },
                     // Get Customer Call back Handler
                     getCustomerCallbackHandler = {
                         success: function (data) {
@@ -574,7 +609,9 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     getAllocationStatusByKey: getAllocationStatusByKey,
                     setVehicleFilters: setVehicleFilters,
                     setRaHireGroupInsurances: setRaHireGroupInsurances,
-                    openRaHireGroupInsuranceDialog: openRaHireGroupInsuranceDialog
+                    openRaHireGroupInsuranceDialog: openRaHireGroupInsuranceDialog,
+                    openRentalAgreement: openRentalAgreement,
+                    closeRentalAgreement: closeRentalAgreement
                     // Utility Methods
                 };
             })()

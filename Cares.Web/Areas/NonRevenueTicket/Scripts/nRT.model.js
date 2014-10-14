@@ -12,6 +12,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             id = ko.observable(),
             //Operation ID
             operationId = ko.observable().extend({ required: true }),
+            //Nrt Status Id Contain nrt status key
+            nrtStatusId = ko.observable().extend({ required: true }),
             //Out Location Id
             outLocationId = ko.observable().extend({ required: true }),
             //Return Location Id
@@ -30,6 +32,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
              chauffersList = ko.observableArray([]),
              //NRT Charges List
              nrtChargesList = ko.observableArray([]),
+             //vehicle Detail List
+             vehicleDetailList = ko.observableArray([]),
             // Errors
             errors = ko.validation.group({
                 operationId: operationId,
@@ -64,11 +68,13 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             retLocationId: retLocationId,
             startDate: startDate,
             endDate: endDate,
+            nrtStatusId: nrtStatusId,
             nRtTypeId: nRtTypeId,
             vehicleDetail: vehicleDetail,
             chaufferInNrt: chaufferInNrt,
             chauffersList: chauffersList,
             nrtChargesList: nrtChargesList,
+            vehicleDetailList: vehicleDetailList,
             errors: errors,
             isValid: isValid,
             dirtyFlag: dirtyFlag,
@@ -90,6 +96,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             plateNum = ko.observable(),
             //Is Return Location
             isReturnLoc = ko.observable(false),
+            //virtual Is Return Loc
+            virtualIsReturnLoc = ko.observable(false),
             //Out Date Time
             outDtTime = ko.observable().extend({ required: true }),
             //In date Time
@@ -160,6 +168,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             conditionOut: conditionOut,
             vInStatusId: vInStatusId,
             vOutStatusId: vOutStatusId,
+            virtualIsReturnLoc: virtualIsReturnLoc,
             errors: errors,
             isValid: isValid,
             dirtyFlag: dirtyFlag,
@@ -220,6 +229,10 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
 
               // Errors
             errors = ko.validation.group({
+                startHour: startHour,
+                startMinute: startMinute,
+                endHour: endHour,
+                endMinute: endMinute,
             }),
             // Is Valid
             isValid = ko.computed(function () {
@@ -286,10 +299,11 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             //Description
             description = ko.observable(),
              //Rate
-            rate = ko.observable(),
+            rate = ko.observable().extend({ required: true }),
             // Errors
             errors = ko.validation.group({
-                qty: qty
+                qty: qty,
+                rate: rate
             }),
             // Is Valid
             isValid = ko.computed(function () {
@@ -508,6 +522,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
     var NrtMainClientMapper = function (source) {
         var nrtMain = new NRTMain();
         nrtMain.id(source.NrtMainId === null ? undefined : source.NrtMainId);
+        nrtMain.nrtStatusId(source.NrtStatusId === null ? undefined : source.NrtStatusId);
         nrtMain.operationId(source.OperationId === null ? undefined : source.OperationId);
         nrtMain.outLocationId(source.OpenLocationId === null ? undefined : source.OpenLocationId);
         nrtMain.retLocationId(source.CloseLocationId === null ? undefined : source.CloseLocationId);
@@ -585,7 +600,11 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.NrtMainId = source.id === undefined || source.id() === null ? 0 : source.id();
         result.NrtMain = NRTMainServerMapper(source);
         result.NrtVehicleMovements = [];
-        result.NrtVehicleMovements.push(VehicleDetailServerMapper(source.vehicleDetail()));
+
+        _.each(source.vehicleDetailList(), function (item) {
+            result.NrtVehicleMovements.push(VehicleDetailServerMapper(item));
+        });
+
         result.NrtCharges = [];
         _.each(source.nrtChargesList(), function (item) {
             result.NrtCharges.push(MaintenanceActivityServerMapper(item));
@@ -604,7 +623,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.NrtTypeId = source.nRtTypeId() === undefined || source.nRtTypeId() === null ? 0 : source.nRtTypeId();
         result.OpenLocationId = source.outLocationId() === undefined || source.outLocationId() === null ? 0 : source.outLocationId();
         result.CloseLocationId = source.retLocationId() === undefined || source.retLocationId() === null ? 0 : source.retLocationId();
-        //result.NrtStatusId = source.tariffTypeId() === undefined || source.tariffTypeId() === null ? 0 : source.tariffTypeId();
+        result.NrtStatusId = source.nrtStatusId() === undefined || source.nrtStatusId() === null ? 0 : source.nrtStatusId();
         result.StartDtTime = source.startDate() === undefined || source.startDate() === null ? undefined : moment(source.startDate()).format(ist.utcFormat);
         result.EndDtTime = source.endDate() === undefined || source.endDate() === null ? undefined : moment(source.endDate()).format(ist.utcFormat);
         //result.NrtStatusMovement = VehicleDetailServerMapper(source.vehicleDetail());
@@ -614,15 +633,23 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
     // ReSharper disable once InconsistentNaming
     var VehicleDetailServerMapper = function (source) {
         var result = {};
-        result.NrtVehicleMovementId = source.id() === undefined || source.id() === null ? 0 : source.id();
-        result.VehicleId = source.vehicleId() === undefined || source.vehicleId() === null ? 0 : source.vehicleId();
-        result.VehicleStatusId = source.vOutStatusId() === undefined || source.vOutStatusId() === null ? 0 : source.vOutStatusId();
-        result.OperationsWorkPlaceId = source.outLocId() === undefined || source.outLocId() === null ? 0 : source.outLocId();
-        result.Odometer = source.outOdemeter() === undefined || source.outOdemeter() === null ? 0 : source.outOdemeter();
-        result.FuelLevel = source.fuelOut() === undefined || source.fuelOut() === null ? 0 : source.fuelOut();
-        result.MovementStatus = source.isReturnLoc() === undefined || source.isReturnLoc() === null ? 0 : source.isReturnLoc();;
-        result.DtTime = source.outDtTime() === undefined || source.outDtTime() === null ? undefined : moment(source.outDtTime()).format(ist.utcFormat);
-
+        if (source.isReturnLoc()) {
+            result.VehicleStatusId = source.vInStatusId() === undefined || source.vInStatusId() === null ? 0 : source.vInStatusId();
+            result.OperationsWorkPlaceId = source.inLocId() === undefined || source.inLocId() === null ? 0 : source.inLocId();
+            result.Odometer = source.inOdemeter() === undefined || source.inOdemeter() === null ? 0 : source.inOdemeter();
+            result.FuelLevel = source.fuelIn() === undefined || source.fuelIn() === null ? 0 : source.fuelIn();
+            result.MovementStatus = source.isReturnLoc() === undefined || source.isReturnLoc() === null ? 0 : source.isReturnLoc();;
+            result.DtTime = source.inDtTime() === undefined || source.inDtTime() === null ? undefined : moment(source.inDtTime()).format(ist.utcFormat);
+        } else {
+            result.NrtVehicleMovementId = source.id() === undefined || source.id() === null ? 0 : source.id();
+            result.VehicleId = source.vehicleId() === undefined || source.vehicleId() === null ? 0 : source.vehicleId();
+            result.VehicleStatusId = source.vOutStatusId() === undefined || source.vOutStatusId() === null ? 0 : source.vOutStatusId();
+            result.OperationsWorkPlaceId = source.outLocId() === undefined || source.outLocId() === null ? 0 : source.outLocId();
+            result.Odometer = source.outOdemeter() === undefined || source.outOdemeter() === null ? 0 : source.outOdemeter();
+            result.FuelLevel = source.fuelOut() === undefined || source.fuelOut() === null ? 0 : source.fuelOut();
+            result.MovementStatus = source.isReturnLoc() === undefined || source.isReturnLoc() === null ? 0 : source.isReturnLoc();;
+            result.DtTime = source.outDtTime() === undefined || source.outDtTime() === null ? undefined : moment(source.outDtTime()).format(ist.utcFormat);
+        }
         return result;
     };
     //Client To Server Mapper

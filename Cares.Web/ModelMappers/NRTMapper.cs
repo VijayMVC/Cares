@@ -28,7 +28,7 @@ namespace Cares.Web.ModelMappers
                 StartDtTime = source.StartDtTime,
                 EndDtTime = source.EndDtTime,
                 NrtTypeId = source.NrtTypeId,
-
+                NrtStatusId = (source.NrtStatusId ?? 0),
             };
         }
 
@@ -49,7 +49,7 @@ namespace Cares.Web.ModelMappers
                 StartDtTime = source.StartDtTime,
                 EndDtTime = source.EndDtTime,
                 NrtTypeId = source.NrtTypeId,
-
+                NrtStatusId = source.NrtStatus.RaStatusKey,
                 NrtVehicles = source.NrtVehicles.Select(nrtVehicle => nrtVehicle.CreateFrom()).ToList()
             };
         }

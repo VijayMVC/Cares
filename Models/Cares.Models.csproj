@@ -104,11 +104,13 @@
   <ItemGroup>
     <Compile Include="CommonTypes\PhoneType.cs" />
     <Compile Include="CommonTypes\DepartmentType.cs" />
+    <Compile Include="Common\RaStatusEnum.cs" />
     <Compile Include="Common\CreditLimitByColumn.cs" />
     <Compile Include="Common\InsuranceTypeByColumn.cs" />
     <Compile Include="Common\MaintenanceTypeByColumn.cs" />
     <Compile Include="Common\MainteneceTypeGroupByColumn.cs" />
     <Compile Include="Common\MarketingChannelByColumn.cs" />
+    <Compile Include="Common\RaQueueByColumn.cs" />
     <Compile Include="Common\VehicleCategoryByColumn.cs" />
     <Compile Include="Common\VehicleMakeByColumn.cs" />
     <Compile Include="Common\VehicleModelByColumn.cs" />
@@ -344,9 +346,12 @@
     <Compile Include="RequestModels\JobTypeSearchRequestResponse.cs" />
     <Compile Include="RequestModels\MaintenanceTypeSearchRequest.cs" />
     <Compile Include="RequestModels\MainteneceTypeGroupSearchRequest.cs" />
+    <Compile Include="RequestModels\RaQueueSearchRequest.cs" />
     <Compile Include="RequestModels\VehicleCategorySearchRequest.cs" />
     <Compile Include="RequestModels\VehicleModelSearcgRequest.cs" />
     <Compile Include="RequestModels\VehicleStatusSearchRequest.cs" />
+    <Compile Include="ResponseModels\RaMainForRaQueueSearchResponse.cs" />
+    <Compile Include="ResponseModels\RaQueueBaseResponse.cs" />
     <Compile Include="ResponseModels\VehicleCategorySearchRequestResponse.cs" />
     <Compile Include="RequestModels\VehicleMakeSearchRequest.cs" />
     <Compile Include="ResponseModels\InsuranceTypeSearchRequestResponse.cs" />

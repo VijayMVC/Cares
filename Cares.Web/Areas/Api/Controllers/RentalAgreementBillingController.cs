@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Http;
 using Cares.Interfaces.IServices;
-using Cares.Models.DomainModels;
-using Cares.Models.RequestModels;
 using Cares.Web.ModelMappers;
-using Cares.Web.Models;
 using RaMain = Cares.Web.Models.RaMain;
 
 namespace Cares.Web.Areas.Api.Controllers

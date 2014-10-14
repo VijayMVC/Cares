@@ -24,6 +24,20 @@ namespace Cares.Web.ModelMappers
             };
         }
 
+        /// <summary>
+        ///  Create web model from entity
+        /// </summary>
+        public static Cares.Models.DomainModels.AllocationStatus CreateFrom(this AllocationStatus source)
+        {
+            return new Cares.Models.DomainModels.AllocationStatus
+            {
+                AllocationStatusId = source.AllocationStatusId,
+                AllocationStatusName = source.AllocationStatusName,
+                AllocationStatusCode = source.AllocationStatusCode,
+                AllocationStatusKey = source.AllocationStatusKey
+            };
+        }
+
         #endregion
     }
 }

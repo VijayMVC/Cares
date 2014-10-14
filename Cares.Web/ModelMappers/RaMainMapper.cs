@@ -67,7 +67,7 @@ namespace Cares.Web.ModelMappers
         /// </summary>
         public static DomainModels.RaMain CreateFrom(this RaMain source)
         {
-            return new DomainModels.RaMain
+            DomainModels.RaMain raMain = new DomainModels.RaMain
             {
                 RaMainId = source.RaMainId,
                 RaHireGroups = source.RaHireGroups != null ? source.RaHireGroups.Select(vm => vm.CreateFrom()).ToList() : new List<DomainModels.RaHireGroup>(),
@@ -111,6 +111,12 @@ namespace Cares.Web.ModelMappers
                 VoucherDiscount = source.VoucherDiscount
             };
 
+            if (source.BusinessPartner != null)
+            {
+                raMain.BusinessPartner = source.BusinessPartner.CreateFrom();
+            }
+
+            return raMain;
         }
 
         #endregion

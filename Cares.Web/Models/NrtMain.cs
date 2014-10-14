@@ -38,7 +38,7 @@ namespace Cares.Web.Models
         /// <summary>
         /// Nrt Status Id
         /// </summary>
-        public short NrtStatusId { get; set; }
+        public short? NrtStatusId { get; set; }
 
         /// <summary>
         /// Start Date

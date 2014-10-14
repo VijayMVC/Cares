@@ -130,6 +130,11 @@ namespace Cares.Web.Models
         public Vehicle Vehicle { get; set; }
 
         /// <summary>
+        /// Allocation Status
+        /// </summary>
+        public AllocationStatus AllocationStatus { get; set; }
+
+        /// <summary>
         /// Hire Group Detail
         /// </summary>
         public HireGroupDetailContent HireGroupDetail { get; set; }

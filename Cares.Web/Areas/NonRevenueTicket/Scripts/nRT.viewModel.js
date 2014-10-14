@@ -2,8 +2,8 @@
     Module with the view model for the Chauffer Charge
 */
 define("nRT/nRT.viewModel",
-    ["jquery", "amplify", "ko", "nRT/nRT.dataservice", "nRT/nRT.model", "common/confirmation.viewModel", "common/pagination"],
-    function ($, amplify, ko, dataservice, model, confirmation, pagination) {
+    ["jquery", "amplify", "ko", "nRT/nRT.dataservice", "nRT/nRT.model", "common/confirmation.viewModel", "common/pagination", "common/clientSidePagination"],
+    function ($, amplify, ko, dataservice, model, confirmation, pagination, clientPagination) {
         var ist = window.ist || {};
         ist.nRT = {
             viewModel: (function () {
@@ -31,8 +31,19 @@ define("nRT/nRT.viewModel",
                     isVhicleChecked = ko.observable(false),
                     //checked on dialog chauffer dialog
                     isChaufferChecked = ko.observable(false),
+                    //True,Ticket is closed
+                    isCloseTicket = ko.observable(false),
                     // Is Editable
                     isEditable = ko.observable(false),
+                     //Client Side Pagination
+                    clientPager = ko.observable(),
+                    //List Of Records 
+                    clientPagerRecords = ko.computed(function () {
+                        if (clientPager() !== undefined) {
+                            return clientPager().pagedRecords();
+                        }
+                        return [];
+                    }),
                     // #region Arrays
                     //Operations
                     operations = ko.observableArray([]),
@@ -86,9 +97,8 @@ define("nRT/nRT.viewModel",
                         ko.applyBindings(view.viewModel, view.bindingRoot);
                         getBase();
                         selectedNrtMain(model.NRTMain());
-                        // Set Pager
-                        // pager(new pagination.Pagination({}, chaufferChargeMains, getChaufferCharges));
-                        // getChaufferCharges();
+                        //Set Client Side Pager
+                        clientPager(new clientPagination.Pagination({}, vehicleDetails, null));
 
                     },
                     // Select a Vehicle from Dialog
@@ -196,21 +206,72 @@ define("nRT/nRT.viewModel",
                     },
                     // Save NRT
                     onOpenTicket = function (nrtMain) {
-                        if (doBeforeSave()) {
-                            //Add Chauffers List
-                            if (nrtMain.chauffersList().length != 0) {
-                                nrtMain.chauffersList.removeAll();
-                            }
-                            ko.utils.arrayPushAll(nrtMain.chauffersList(), selectedChaufferList());
-                            //Add NRT Charges
-                            if (nrtMain.nrtChargesList().length != 0) {
-                                nrtMain.nrtChargesList.removeAll();
-                            }
-                            ko.utils.arrayPushAll(nrtMain.nrtChargesList(), selectedAdditionalChargeList());
-                            saveNrtMain(nrtMain);
-                        }
+                        openCloseTicket(nrtMain, false);
                         //getNrtById(nrtMain);
                     },
+                    //on Close Ticket
+                    onCloseTicket = function (nrtMain) {
+                        if (dobeforeCloseTicket()) {
+                            openCloseTicket(nrtMain, true);
+                        }
+
+                    },
+
+                    dobeforeCloseTicket = function () {
+                        var flag = true;
+                        if (!selectedNrtMain().vehicleDetail().isReturnLoc() || selectedNrtMain().vehicleDetail().inLocId() === undefined || selectedNrtMain().vehicleDetail().vInStatusId() === undefined) {
+                            flag = false;
+                            toastr.error("Vehicle must be returned before Ticket can be closed.");
+                        }
+                        if (flag) {
+                            if (selectedNrtMain().vehicleDetail().outOdemeter() > selectedNrtMain().vehicleDetail().inOdemeter()) {
+                                flag = false;
+                                toastr.error("Vehicle Return odometer reading can not be lesser than out odometer reading");
+                            }
+                        }
+                        return flag;
+                    },
+                    //Common code or open and close ticket, true flag mean close ticket
+                    openCloseTicket = function (nrtMain, flag) {
+                        if (doBeforeSave()) {
+                            if (selectedNrtMain().vehicleDetail().isReturnLoc() === true && selectedNrtMain().vehicleDetail().inOdemeter() === undefined
+                                && selectedNrtMain().vehicleDetail().vInStatusId() === undefined) {
+                                toastr.error("Mandatory Fields Missing in Records.");
+                            } else {
+                                //Add Chauffers List
+                                if (nrtMain.chauffersList().length != 0) {
+                                    nrtMain.chauffersList.removeAll();
+                                }
+                                ko.utils.arrayPushAll(nrtMain.chauffersList(), selectedChaufferList());
+                                //Add NRT Charges
+                                if (nrtMain.nrtChargesList().length != 0) {
+                                    nrtMain.nrtChargesList.removeAll();
+                                }
+                                //Add NRT Charges
+                                if (nrtMain.vehicleDetailList().length != 0) {
+                                    nrtMain.vehicleDetailList.removeAll();
+                                }
+                                ko.utils.arrayPushAll(nrtMain.nrtChargesList(), selectedAdditionalChargeList());
+                                if (vehiclesForListView().length != 0) {
+
+                                    nrtMain.vehicleDetailList.push(nrtMain.vehicleDetail());
+                                    if (nrtMain.vehicleDetail().isReturnLoc()) {
+                                        nrtMain.vehicleDetailList.push(nrtMain.vehicleDetail());
+                                    }
+                                    if (flag) {
+                                        nrtMain.nrtStatusId(2);
+                                        selectedNrtMain().nrtStatusId(2);
+                                        isCloseTicket(true);
+                                    }
+                                    saveNrtMain(nrtMain);
+                                }
+                                if (vehiclesForListView().length === 0) {
+                                    toastr.error("Please Select Vehicle");
+                                }
+                            }
+                        }
+                    },
+
                     // Do Before Logic
                     doBeforeSave = function () {
                         var flag = true;
@@ -219,17 +280,45 @@ define("nRT/nRT.viewModel",
                             selectedNrtMain().vehicleDetail().errors.showAllMessages();
                             flag = false;
                         }
+                        _.each(selectedChaufferList(), function (item) {
+                            if (!item.isValid()) {
+                                flag = false;
+                                item.errors.showAllMessages();
+                            }
+                        });
+                        _.each(selectedAdditionalChargeList(), function (item) {
+                            if (!item.isValid()) {
+                                flag = false;
+                                item.errors.showAllMessages();
+                                toastr.error("Mandatory Fields Missing in Records :Quantity NRTChargeRate");
+                            }
+                        });
+                        if (selectedNrtMain().id() === undefined && selectedNrtMain().vehicleDetail().isReturnLoc() === true) {
+                            toastr.error("First Open Ticket. Then retrun vehicle.");
+                            flag = false;
+                        }
+                        return flag;
+                    },
+
+                    doBeforeSaveVehicle = function () {
+                        var flag = true;
+                        if (!selectedNrtMain().vehicleDetail().isValid()) {
+                            selectedNrtMain().vehicleDetail().errors.showAllMessages();
+                            flag = false;
+                        }
                         return flag;
                     },
                     onSaveVehicle = function () {
-                        if (!selectedNrtMain().vehicleDetail().isReturnLoc()) {
-                            showEditBtn(true);
-                            showSaveCancelBtn(false);
-                            _.each(vehicleDetails(), function (item) {
-                                if (item.vehicleId() === selectedNrtMain().vehicleDetail().vehicleId()) {
-                                    vehiclesForListView.push(model.VehicleForListViewClientMapper(item));
-                                }
-                            });
+                        if (doBeforeSaveVehicle()) {
+                            if (!selectedNrtMain().vehicleDetail().isReturnLoc()) {
+                                showEditBtn(true);
+                                showSaveCancelBtn(false);
+                                _.each(vehicleDetails(), function (item) {
+                                    if (item.vehicleId() === selectedNrtMain().vehicleDetail().vehicleId()) {
+                                        vehiclesForListView.push(model.VehicleForListViewClientMapper(item));
+                                    }
+                                });
+                            }
                         }
                     },
 
@@ -261,30 +350,32 @@ define("nRT/nRT.viewModel",
                                     //Selected vehicle Movement status
                                     _.each(item.NrtVehicleMovements, function (vhicle) {
                                         selectedNrtMain().vehicleDetail().id(vhicle.NrtVehicleMovementId);
-                                        selectedNrtMain().vehicleDetail().isReturnLoc(vhicle.MovementStatus);
                                         if (vhicle.MovementStatus) {
                                             selectedNrtMain().vehicleDetail().inDtTime(moment(vhicle.DtTime, ist.utcFormat).toDate());
                                             selectedNrtMain().vehicleDetail().inLocId(vhicle.OperationsWorkPlaceId);
                                             selectedNrtMain().vehicleDetail().fuelIn(vhicle.FuelLevel);
                                             selectedNrtMain().vehicleDetail().inOdemeter(vhicle.Odometer);
                                             selectedNrtMain().vehicleDetail().vInStatusId(vhicle.VehicleStatusId);
+                                            selectedNrtMain().vehicleDetail().isReturnLoc(vhicle.MovementStatus);
                                         } else {
                                             selectedNrtMain().vehicleDetail().outDtTime(moment(vhicle.DtTime, ist.utcFormat).toDate());
                                             selectedNrtMain().vehicleDetail().outLocId(vhicle.OperationsWorkPlaceId);
                                             selectedNrtMain().vehicleDetail().fuelOut(vhicle.FuelLevel);
                                             selectedNrtMain().vehicleDetail().outOdemeter(vhicle.Odometer);
                                             selectedNrtMain().vehicleDetail().vOutStatusId(vhicle.VehicleStatusId);
+                                            selectedNrtMain().vehicleDetail().virtualIsReturnLoc(vhicle.VehicleStatusId);
                                         }
                                     });
                                 });
-
-
+                                if (selectedNrtMain().nrtStatusId() === 2) {
+                                    isCloseTicket(true);
+                                }
                                 showEditBtn(true);
                                 isLoadingNrt(false);
                             },
                             error: function () {
                                 isLoadingNrt(false);
-                                toastr.error(ist.resourceText.loadAddChargeDetailFailedMsg);
+                                toastr.error(ist.resourceText.nRTDetailFailedMsg);
                             }
                         });
                     },
@@ -342,7 +433,7 @@ define("nRT/nRT.viewModel",
                                },
                                error: function () {
                                    isLoadingNrt(false);
-                                   toastr.error(ist.resourceText.additionalChargeLoadFailedMsg);
+                                   toastr.error(ist.resourceText.loadVehicleFailedMsg);
                                }
                            });
 
@@ -394,7 +485,7 @@ define("nRT/nRT.viewModel",
                                 },
                                 error: function () {
                                     isLoadingNrt(false);
-                                    toastr.error(ist.resourceText.additionalChargeLoadFailedMsg);
+                                    toastr.error(ist.resourceText.loadMaintenanceActivityFailedMsg);
                                 }
                             });
 
@@ -425,7 +516,7 @@ define("nRT/nRT.viewModel",
                                 },
                                 error: function () {
                                     isLoadingNrt(false);
-                                    toastr.error(ist.resourceText.additionalChargeLoadFailedMsg);
+                                    toastr.error(ist.resourceText.loadChuaffeurFailedMsg);
                                 }
                             });
 
@@ -469,7 +560,12 @@ define("nRT/nRT.viewModel",
                         dataservice.saveNrt(model.NRTServerMapper(nrtMain), {
                             success: function (data) {
                                 selectedNrtMain().id(data);
-                                toastr.success(ist.resourceText.chaufferChargeAddSuccessMsg);
+                                if (selectedNrtMain().nrtStatusId() === 2) {
+                                    toastr.success(ist.resourceText.nRTCloseSuccessMsg);
+                                } else {
+                                    toastr.success(ist.resourceText.nRTOpenSuccessMsg);
+                                }
+
                             },
                             error: function (exceptionMessage, exceptionType) {
 
@@ -479,7 +575,7 @@ define("nRT/nRT.viewModel",
 
                                 } else {
 
-                                    toastr.error(ist.resourceText.ist.resourceText.chaufferChargeAddFailedMsg);
+                                    toastr.error(ist.resourceText.nRTOpenFailedMsg);
 
                                 }
 
@@ -542,7 +638,8 @@ define("nRT/nRT.viewModel",
                     },
                     //Hide Update and cancel Button
                     hideUpdateCancelBtn = function () {
-
+                        showEditBtn(true);
+                        showUpdateCancelBtn(false);
                     },
                     //Hide Save and cancel Button
                     hideSaveCancelBtn = function () {
@@ -587,6 +684,8 @@ define("nRT/nRT.viewModel",
                     selectedChaufferItem: selectedChaufferItem,
                     templateToUse: templateToUse,
                     isEditable: isEditable,
+                    clientPager: clientPager,
+                    clientPagerRecords: clientPagerRecords,
                     selectedAdditionalChargeItem: selectedAdditionalChargeItem,
                     //Arrays
                     filteredLocations: filteredLocations,
@@ -624,6 +723,8 @@ define("nRT/nRT.viewModel",
                     onSaveVehicle: onSaveVehicle,
                     onEditVehicle: onEditVehicle,
                     onUpdateVehicle: onUpdateVehicle,
+                    onCloseTicket: onCloseTicket,
+                    isCloseTicket: isCloseTicket,
                     // Utility Methods
 
                 };

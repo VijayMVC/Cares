@@ -17,5 +17,10 @@ namespace Cares.Interfaces.IServices
         /// Generate Bill for RA
         /// </summary>
         RaMain GenerateBill(RaMain request);
+
+        /// <summary>
+        /// Save Rental Agreement
+        /// </summary>
+        RaMain SaveRentalAgreement(RaMain request);
     }
 }

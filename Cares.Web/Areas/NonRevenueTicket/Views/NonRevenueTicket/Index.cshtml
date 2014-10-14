@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Non Revenue Ticket";
+    ViewBag.Title = @Cares.Web.Resources.NonRevenueTicket.Nrt.NRT;
 }
 <div class="row" id="nRTBinding">
     <div class="row ">
@@ -11,66 +11,66 @@
     <div data-bind="with:selectedNrtMain">
         <div class="form-group">
             <div class="addToBtnDiv row">
-                <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onOpenTicket,visible: id()===undefined">Open Ticket</button>
+                <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onOpenTicket,visible: id()===undefined && !$root.isCloseTicket()">@Cares.Web.Resources.NonRevenueTicket.Nrt.OpenTicket</button>
             </div>
             <div class="addToBtnDiv row">
-                <button class="btn btn-default addToBtn" style="display: none" id="saveBtn" data-bind="visible: id()!=undefined,click: $root.hideUpdateCancelBtn">Close Ticket</button>
-                <button class="btn btn-info btnUpdate" style="display: none" id="saveBtn" data-bind="visible: id()!=undefined,click:$root.onUpdateChaufferCharge">Update Ticket</button>
+                <button class="btn btn-default addToBtn" style="display: none" id="saveBtn" data-bind="visible: id()!=undefined&& !$root.isCloseTicket(),click: $root.onCloseTicket">@Cares.Web.Resources.NonRevenueTicket.Nrt.CloseTicket</button>
+                <button class="btn btn-info btnUpdate" style="display: none" id="saveBtn" data-bind="visible: id()!=undefined&& !$root.isCloseTicket(),click:$root.onOpenTicket">@Cares.Web.Resources.NonRevenueTicket.Nrt.UpdateTicket</button>
             </div>
         </div>
         <div class="panel panel-info">
-            <div class="panel-heading">Non Revenue Ticket </div>
+            <div class="panel-heading">@Cares.Web.Resources.NonRevenueTicket.Nrt.NRT</div>
             <div class="well">
                 <form class="form-horizontal">
                     <div class="form-group">
-                        <label for="tickectNum" class="control-label h5 col-sm-1">Non Revenue Ticket #</label>
+                        <label for="tickectNum" class="control-label h5 col-sm-1">@Cares.Web.Resources.NonRevenueTicket.Nrt.NRTNumber</label>
                         <div class="col-md-3">
-                            <label id="tickectNum" class="control-label h5 col-sm-3" data-bind="value:id"></label>
+                            <label id="tickectNum" class="control-label h5 col-sm-3" data-bind="text:id"></label>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="operation" class="control-label h5 col-sm-1">@Cares.Web.Resources.Tariff.TariffType.Operation *</label>
+                        <label for="operation" class="control-label h5 col-sm-1">@Cares.Web.Resources.NonRevenueTicket.Nrt.Operation *</label>
                         <div class="col-md-3">
-                            <select id="operation" class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '@("<" + Cares.Web.Resources.Tariff.TariffType.Operation + ">")'  , value: operationId, validationTooltip: operationId"></select>
+                            <select id="operation" class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '@("<" + Cares.Web.Resources.NonRevenueTicket.Nrt.Operation + ">")'  , value: operationId, validationTooltip: operationId,disable:vehicleDetail().vehicleId()!=undefined"></select>
                         </div>
-                        <label for="outLocation" class="control-label h5 col-sm-1">Out Location *</label>
+                        <label for="outLocation" class="control-label h5 col-sm-1">@Cares.Web.Resources.NonRevenueTicket.Nrt.OutLocation *</label>
                         <div class="col-md-3">
-                            <select id="outLocation" class="form-control" data-bind="options: $root.filteredLocations, optionsText: 'OperationsWorkPlaceCodeName', optionsValue: 'OperationsWorkPlaceId', optionsCaption: '< Out Location>'  , value: outLocationId, validationTooltip: outLocationId"></select>
+                            <select id="outLocation" class="form-control" data-bind="options: $root.filteredLocations, optionsText: 'OperationsWorkPlaceCodeName', optionsValue: 'OperationsWorkPlaceId', optionsCaption: '@("<" + Cares.Web.Resources.NonRevenueTicket.Nrt.OutLocation + ">")'  , value: outLocationId, validationTooltip: outLocationId,disable:vehicleDetail().vehicleId()!=undefined ||$root.isCloseTicket()"></select>
                         </div>
-                        <label for="retLocation" class="control-label h5 col-sm-1">Return Location *</label>
+                        <label for="retLocation" class="control-label h5 col-sm-1">@Cares.Web.Resources.NonRevenueTicket.Nrt.ReturnLocation *</label>
                         <div class="col-md-3">
-                            <select id="retLocation" class="form-control" data-bind="options: $root.filteredLocations, optionsText: 'OperationsWorkPlaceCodeName', optionsValue: 'OperationsWorkPlaceId', optionsCaption: 'Return Location'  , value: retLocationId, validationTooltip: retLocationId"></select>
+                            <select id="retLocation" class="form-control" data-bind="options: $root.filteredLocations, optionsText: 'OperationsWorkPlaceCodeName', optionsValue: 'OperationsWorkPlaceId', optionsCaption: '@("<" + Cares.Web.Resources.NonRevenueTicket.Nrt.ReturnLocation + ">")'  , value: retLocationId, validationTooltip: retLocationId,disable:$root.isCloseTicket()"></select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="sDate" class="control-label h5 col-sm-1">Start Date/Time  *</label>
+                        <label for="sDate" class="control-label h5 col-sm-1">@Cares.Web.Resources.NonRevenueTicket.Nrt.StartDateTime  *</label>
                         <div class="col-md-3">
-                            <input type="text" placeholder='<Start Date/Time >' class="form-control" id="sDate" data-bind="datetimepicker:startDate, validationTooltip:startDate" />
+                            <input type="text" placeholder='@("<"+Cares.Web.Resources.NonRevenueTicket.Nrt.StartDateTime+">")' class="form-control" id="sDate" data-bind="datetimepicker:startDate, validationTooltip:startDate,disable:vehicleDetail().vehicleId()!=undefined" />
                         </div>
-                        <label for="eDate" class="control-label h5 col-sm-1">End Date/Time  *</label>
+                        <label for="eDate" class="control-label h5 col-sm-1">@Cares.Web.Resources.NonRevenueTicket.Nrt.EndDateTime  *</label>
                         <div class="col-md-3">
-                            <input type="text" placeholder='<End Date/Time >' class="form-control" id="eDate" data-bind="datetimepicker:endDate, validationTooltip:endDate" />
+                            <input type="text" placeholder='@("<"+Cares.Web.Resources.NonRevenueTicket.Nrt.EndDateTime+">")' class="form-control" id="eDate" data-bind="datetimepicker:endDate, validationTooltip:endDate,disable:$root.isCloseTicket()" />
                         </div>
-                        <label for="nrtTypes" class="control-label h5 col-sm-1">NRT Type  *</label>
+                        <label for="nrtTypes" class="control-label h5 col-sm-1">@Cares.Web.Resources.NonRevenueTicket.Nrt.NRTTYpe  *</label>
                         <div class="col-md-3">
-                            <select id="nrtTypes" class="form-control" data-bind="options: $root.nRTTypes, optionsText: 'NrtTypeCodeName', optionsValue: 'NrtTypeId', optionsCaption: 'Return Location' , value: nRtTypeId, validationTooltip: nRtTypeId"></select>
+                            <select id="nrtTypes" class="form-control" data-bind="options: $root.nRTTypes, optionsText: 'NrtTypeCodeName', optionsValue: 'NrtTypeId', optionsCaption: '@("<" + Cares.Web.Resources.NonRevenueTicket.Nrt.NRTTYpe + ">")' , value: nRtTypeId, validationTooltip: nRtTypeId,disable:id()!=undefined"></select>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
         <div class="panel panel-info">
-            <div class="panel-heading">Vehicle</div>
+            <div class="panel-heading">@Cares.Web.Resources.NonRevenueTicket.Nrt.Vehicle</div>
             <div class="well">
                 <table id="activityTable" class="table table-condensed ">
                     <thead>
                         <tr>
-                            <th> <span>Plate Number<span></span></span></th>
-                            <th> <span>Tank Size<span></span></span></th>
-                            <th> <span>Vehicle Make<span></span></span></th>
-                            <th> <span>Vehicle Model<span></span></span></th>
-                            <th> <span>Vehicle Category<span></span></span></th>
-                            <th> <span>Model Year<span></span></span></th>
+                            <th> <span>@Cares.Web.Resources.NonRevenueTicket.Nrt.PlateNumber<span></span></span></th>
+                            <th> <span>@Cares.Web.Resources.NonRevenueTicket.Nrt.TankSize<span></span></span></th>
+                            <th> <span>@Cares.Web.Resources.NonRevenueTicket.Nrt.VehicleMake<span></span></span></th>
+                            <th> <span>@Cares.Web.Resources.NonRevenueTicket.Nrt.VehicleModel<span></span></span></th>
+                            <th> <span>@Cares.Web.Resources.NonRevenueTicket.Nrt.VehicleCategory<span></span></span></th>
+                            <th> <span>@Cares.Web.Resources.NonRevenueTicket.Nrt.ModelYear<span></span></span></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -81,13 +81,13 @@
             </div>
         </div>
         <div class="panel panel-info">
-            <div class="panel-heading">Add/Edit </div>
+            <div class="panel-heading">@Cares.Web.Resources.NonRevenueTicket.Nrt.AddEdit </div>
             <div class="well">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
-                    <li class="active"><a href="#vehicleDetail" role="tab" data-toggle="tab">Vehicle Details</a></li>
-                    <li><a href="#maintenanceActivities" role="tab" data-toggle="tab">Maintenance Activities</a></li>
-                    <li><a href="#chauffeur" role="tab" data-toggle="tab">Chauffeur</a></li>
+                    <li class="active"><a href="#vehicleDetail" role="tab" data-toggle="tab">@Cares.Web.Resources.NonRevenueTicket.Nrt.VehicleDetails</a></li>
+                    <li><a href="#maintenanceActivities" role="tab" data-toggle="tab">@Cares.Web.Resources.NonRevenueTicket.Nrt.MaintenanceActivities</a></li>
+                    <li><a href="#chauffeur" role="tab" data-toggle="tab">@Cares.Web.Resources.NonRevenueTicket.Nrt.Chauffeur</a></li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
@@ -97,88 +97,88 @@
                         <form class="form-horizontal">
                             <div class="form-group">
                                 <div class="addToBtnDiv row">
-                                    <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onAddVehicleDetail,visible: vehicleId()===undefined">Add Vehicle Detail</button>
-                                    <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onEditVehicle,visible: $root.showEditBtn()">Edit</button>
+                                    <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onAddVehicleDetail,visible: vehicleId()===undefined && !$root.isCloseTicket()">@Cares.Web.Resources.NonRevenueTicket.Nrt.AddVehicleDetail</button>
+                                    <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onEditVehicle,visible: $root.showEditBtn() && !$root.isCloseTicket()">@Cares.Web.Resources.Shared.Common.Edit</button>
                                 </div>
                                 <div class="addToBtnDiv row">
-                                    <button class="btn btn-default addToBtn" style="display: none" id="saveBtn" data-bind="visible: $root.showSaveCancelBtn(),click: $root.hideSaveCancelBtn">Cancel</button>
-                                    <button class="btn btn-info btnUpdate" style="display: none" id="saveBtn" data-bind="visible: $root.showSaveCancelBtn(),click:$root.onSaveVehicle">Save</button>
-                                    <button class="btn btn-default addToBtn" style="display: none" id="saveBtn" data-bind="visible: $root.showUpdateCancelBtn(),click: $root.hideUpdateCancelBtn">Cancel</button>
-                                    <button class="btn btn-info btnUpdate" style="display: none" id="saveBtn" data-bind="visible: $root.showUpdateCancelBtn(),click:$root.onUpdateVehicle">Update</button>
+                                    <button class="btn btn-default addToBtn" style="display: none" id="saveBtn" data-bind="visible: $root.showSaveCancelBtn() && !$root.isCloseTicket(),click: $root.hideSaveCancelBtn">@Cares.Web.Resources.Shared.Common.Cancel</button>
+                                    <button class="btn btn-info btnUpdate" style="display: none" id="saveBtn" data-bind="visible: $root.showSaveCancelBtn()&& !$root.isCloseTicket(),click:$root.onSaveVehicle">@Cares.Web.Resources.Shared.Common.Save</button>
+                                    <button class="btn btn-default addToBtn" style="display: none" id="saveBtn" data-bind="visible: $root.showUpdateCancelBtn() && !$root.isCloseTicket(),click: $root.hideUpdateCancelBtn">@Cares.Web.Resources.Shared.Common.Cancel</button>
+                                    <button class="btn btn-info btnUpdate" style="display: none" id="saveBtn" data-bind="visible: $root.showUpdateCancelBtn() && !$root.isCloseTicket(),click:$root.onUpdateVehicle">@Cares.Web.Resources.Shared.Common.Update</button>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="vPlateNumber" class="control-label h5 col-sm-1">Vehicle Plate Number</label>
+                                <label for="vPlateNumber" class="control-label h5 col-sm-1">@Cares.Web.Resources.NonRevenueTicket.Nrt.VehiclePlateNumber</label>
                                 <div class="col-md-3">
-                                    <input type="text" id="vPlateNumber" class="form-control" placeholder='' data-bind="value:plateNum, validationTooltip:plateNum" />
+                                    <input type="text" id="vPlateNumber" class="form-control" placeholder='@("<" + Cares.Web.Resources.NonRevenueTicket.Nrt.PlateNumber + ">")' data-bind="value:plateNum, validationTooltip:plateNum,disable:true" />
                                 </div>
-                                <label for="isReturnVehicle" class="control-label h5 col-sm-1">Return Vehicle? </label>
+                                <label for="isReturnVehicle" class="control-label h5 col-sm-1">@Cares.Web.Resources.NonRevenueTicket.Nrt.ReturnVehicle </label>
                                 <div class="col-md-3">
-                                    <input type="checkbox" id="isReturnVehicle" class="form-control" placeholder='' data-bind="checked:isReturnLoc" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="outDateTime" class="control-label h5 col-sm-1">Out Date/Time *</label>
-                                <div class="col-md-3">
-                                    <input type="text" id="outDateTime" class="form-control" placeholder='' data-bind="datetimepicker:outDtTime, validationTooltip:outDtTime" />
-                                </div>
-                                <label for="inDateTime" class="control-label h5 col-sm-1">In Date/Time *</label>
-                                <div class="col-md-3">
-                                    <input type="text" id="inDateTime" class="form-control" placeholder='' data-bind="datetimepicker:inDtTime, validationTooltip:inDtTime" />
+                                    <input type="checkbox" id="isReturnVehicle" class="form-control" data-bind="checked:isReturnLoc,disable:(virtualIsReturnLoc() || !$root.showUpdateCancelBtn())" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="outLocation" class="control-label h5 col-sm-1">Out Location *</label>
+                                <label for="outDateTime" class="control-label h5 col-sm-1">@Cares.Web.Resources.NonRevenueTicket.Nrt.OutDateTime *</label>
                                 <div class="col-md-3">
-                                    <select id="outLocation" class="form-control" data-bind="options: $root.locations, optionsText: 'OperationsWorkPlaceCodeName', optionsValue: 'OperationsWorkPlaceId', optionsCaption: '< Out Location>' ,value:outLocId"></select>
+                                    <input type="text" id="outDateTime" class="form-control" placeholder='@("<"+Cares.Web.Resources.NonRevenueTicket.Nrt.OutDateTime+">")' data-bind="datetimepicker:outDtTime, validationTooltip:outDtTime,disable:true" />
                                 </div>
-                                <label for="retLocation" class="control-label h5 col-sm-1">Return Location *</label>
+                                <label for="inDateTime" class="control-label h5 col-sm-1">@Cares.Web.Resources.NonRevenueTicket.Nrt.InDateTime *</label>
                                 <div class="col-md-3">
-                                    <select id="retLocation" class="form-control" data-bind="options: $root.locations, optionsText: 'OperationsWorkPlaceCodeName', optionsValue: 'OperationsWorkPlaceId', optionsCaption: 'Return Location' ,value:inLocId"></select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="outOdometer" class="control-label h5 col-sm-1">Odometer Out *</label>
-                                <div class="col-md-3">
-                                    <input type="text" id="outOdometer" class="form-control" placeholder='' data-bind="value:outOdemeter, validationTooltip:outOdemeter" />
-                                </div>
-                                <label for="inOdometer" class="control-label h5 col-sm-1">Odometer In *</label>
-                                <div class="col-md-3">
-                                    <input type="text" id="inOdometer" class="form-control" placeholder='' data-bind="value:inOdemeter, validationTooltip:inOdemeter" />
+                                    <input type="text" id="inDateTime" class="form-control" placeholder='@("<"+Cares.Web.Resources.NonRevenueTicket.Nrt.InDateTime+">")' data-bind="datetimepicker:inDtTime, validationTooltip:inDtTime,disable:true" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label h5 col-sm-1">Fuel Out * </label>
+                                <label for="outLocation" class="control-label h5 col-sm-1">@Cares.Web.Resources.NonRevenueTicket.Nrt.OutLocation *</label>
                                 <div class="col-md-3">
-                                    <div style="margin: 10px" data-bind="slider: fuelOut, sliderOptions: {min: undefined, max: 100, range: 'min', step: 1}"></div>
+                                    <select id="outLocation" class="form-control" data-bind="options: $root.locations, optionsText: 'OperationsWorkPlaceCodeName', optionsValue: 'OperationsWorkPlaceId', optionsCaption: '@("<" + Cares.Web.Resources.NonRevenueTicket.Nrt.OutLocation + ">")' ,value:outLocId,disable:true"></select>
                                 </div>
-                                <label class="control-label h5 col-sm-1">Fuel In * </label>
+                                <label for="retLocation" class="control-label h5 col-sm-1">@Cares.Web.Resources.NonRevenueTicket.Nrt.ReturnLocation *</label>
                                 <div class="col-md-3">
-                                    <div style="margin: 10px" data-bind="slider: fuelIn, sliderOptions: {min: undefined, max: 100, range: 'min', step: 1}"></div>
-                                </div>
-                                <label for="fuelDifference" class="control-label h5 col-sm-1">Fuel Difference (ltrs) </label>
-                                <div class="col-md-3">
-                                    <input type="text" id="fuelDifference" class="form-control" placeholder='' data-bind="value:fuelDiff" />
+                                    <select id="retLocation" class="form-control" data-bind="options: $root.locations, optionsText: 'OperationsWorkPlaceCodeName', optionsValue: 'OperationsWorkPlaceId', optionsCaption: '@("<" + Cares.Web.Resources.NonRevenueTicket.Nrt.ReturnLocation + ">")' ,value:inLocId,disable:!(isReturnLoc()) ||$root.isCloseTicket()"></select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="conditionOut" class="control-label h5 col-sm-1">Condition Out *</label>
+                                <label for="outOdometer" class="control-label h5 col-sm-1">@Cares.Web.Resources.NonRevenueTicket.Nrt.OdometerOut *</label>
                                 <div class="col-md-3">
-                                    <input type="text" id="conditionOut" class="form-control" placeholder='' />
+                                    <input type="text" id="outOdometer" class="form-control" placeholder='@("<"+Cares.Web.Resources.NonRevenueTicket.Nrt.OdometerOut+">")' data-bind="value:outOdemeter, validationTooltip:outOdemeter,disable:true" />
                                 </div>
-                                <label for="conditionIn" class="control-label h5 col-sm-1">Condition In *</label>
+                                <label for="inOdometer" class="control-label h5 col-sm-1">@Cares.Web.Resources.NonRevenueTicket.Nrt.OdometerIn *</label>
                                 <div class="col-md-3">
-                                    <input type="text" id="conditionIn" class="form-control" placeholder='' />
+                                    <input type="text" id="inOdometer" class="form-control" placeholder='@("<"+Cares.Web.Resources.NonRevenueTicket.Nrt.OdometerIn+">")' data-bind="value:inOdemeter, validationTooltip:inOdemeter,disable:!(isReturnLoc()) ||$root.isCloseTicket()" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="vOutStatus" class="control-label h5 col-sm-1">Vehicle Out Status *</label>
+                                <label class="control-label h5 col-sm-1">@Cares.Web.Resources.NonRevenueTicket.Nrt.FuelOut * </label>
                                 <div class="col-md-3">
-                                    <select id="vOutStatus" class="form-control" data-bind="options: $root.vehicleStatuses, optionsText: 'VehicleStatusCodeName', optionsValue: 'VehicleStatusId', optionsCaption: '<Vehicle Out Status>' ,value:vOutStatusId"></select>
+                                    <div style="margin: 10px" data-bind="slider: fuelOut, sliderOptions: {min: undefined, max: 100, range: 'min', step: 1},disable:true"></div>
                                 </div>
-                                <label for="vInStatus" class="control-label h5 col-sm-1">Vehicle In Status *</label>
+                                <label class="control-label h5 col-sm-1">@Cares.Web.Resources.NonRevenueTicket.Nrt.FuelIn * </label>
                                 <div class="col-md-3">
-                                    <select id="vInStatus" class="form-control" data-bind="options: $root.vehicleStatuses, optionsText: 'VehicleStatusCodeName', optionsValue: 'VehicleStatusId', optionsCaption: '<Vehicle In Status>' ,value:vInStatusId"></select>
+                                    <div style="margin: 10px" data-bind="slider: fuelIn, sliderOptions: {min: undefined, max: 100, range: 'min', step: 1},disable:!(isReturnLoc())"></div>
+                                </div>
+                                <label for="fuelDifference" class="control-label h5 col-sm-1">@Cares.Web.Resources.NonRevenueTicket.Nrt.FuelDifference </label>
+                                <div class="col-md-3">
+                                    <input type="text" id="fuelDifference" class="form-control" placeholder='@("<"+Cares.Web.Resources.NonRevenueTicket.Nrt.FuelDifference+">")' data-bind="value:fuelDiff,disable:true" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="conditionOut" class="control-label h5 col-sm-1">@Cares.Web.Resources.NonRevenueTicket.Nrt.ConditionOut *</label>
+                                <div class="col-md-3">
+                                    <input type="button" id="conditionOut" class="form-control" placeholder='' value='@Cares.Web.Resources.Shared.Common.Edit' />
+                                </div>
+                                <label for="conditionIn" class="control-label h5 col-sm-1">@Cares.Web.Resources.NonRevenueTicket.Nrt.ConditionIn *</label>
+                                <div class="col-md-3">
+                                    <input type="button" id="conditionIn" class="form-control" placeholder='' value='@Cares.Web.Resources.Shared.Common.Edit' />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="vOutStatus" class="control-label h5 col-sm-1">@Cares.Web.Resources.NonRevenueTicket.Nrt.VehicleOutStatus *</label>
+                                <div class="col-md-3">
+                                    <select id="vOutStatus" class="form-control" data-bind="options: $root.vehicleStatuses, optionsText: 'VehicleStatusCodeName', optionsValue: 'VehicleStatusId', optionsCaption: '@("<" + Cares.Web.Resources.NonRevenueTicket.Nrt.VehicleOutStatus + ">")' ,value:vOutStatusId, disable: $root.isCloseTicket()"></select>
+                                </div>
+                                <label for="vInStatus" class="control-label h5 col-sm-1">@Cares.Web.Resources.NonRevenueTicket.Nrt.VehicleInStatus *</label>
+                                <div class="col-md-3">
+                                    <select id="vInStatus" class="form-control" data-bind="options: $root.vehicleStatuses, optionsText: 'VehicleStatusCodeName', optionsValue: 'VehicleStatusId', optionsCaption: '@("<" + Cares.Web.Resources.NonRevenueTicket.Nrt.VehicleInStatus + ">")' ,value:vInStatusId,disable:!(isReturnLoc()) || $root.isCloseTicket()"></select>
                                 </div>
                             </div>
                         </form>
@@ -189,7 +189,7 @@
                         <form class="form-horizontal">
                             <div class="form-group">
                                 <div class="addToBtnDiv row">
-                                    <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onAddActivity,visible: $root.selectedNrtMain().vehicleDetail().vehicleId()!=undefined">Add Activity</button>
+                                    <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onAddActivity,visible: $root.selectedNrtMain().vehicleDetail().vehicleId()!=undefined && !$root.isCloseTicket()">@Cares.Web.Resources.NonRevenueTicket.Nrt.AddActivity</button>
                                 </div>
                             </div>
                         </form>
@@ -197,13 +197,13 @@
                             <table id="activityTable" class="table table-condensed ">
                                 <thead>
                                     <tr>
-                                        <th> <span>Additional Charge Type Code<span></span></span></th>
-                                        <th> <span>Additional Charge Type Name<span></span></span></th>
-                                        <th> <span>Quantity *<span></span></span></th>
-                                        <th> <span>Total Rate<span></span></span></th>
-                                        <th> <span>Contact Person<span></span></span></th>
-                                        <th> <span>Description<span></span></span></th>
-                                        <th> <span>Rate *<span></span></span></th>
+                                        <th> <span>@Cares.Web.Resources.NonRevenueTicket.Nrt.AdditionalChargeTypeCode<span></span></span></th>
+                                        <th> <span>@Cares.Web.Resources.NonRevenueTicket.Nrt.AdditionalChargeTypeName<span></span></span></th>
+                                        <th> <span>@Cares.Web.Resources.NonRevenueTicket.Nrt.Quantity *<span></span></span></th>
+                                        <th> <span>@Cares.Web.Resources.NonRevenueTicket.Nrt.TotalRate<span></span></span></th>
+                                        <th> <span>@Cares.Web.Resources.NonRevenueTicket.Nrt.ContactPerson<span></span></span></th>
+                                        <th> <span>@Cares.Web.Resources.NonRevenueTicket.Nrt.Description<span></span></span></th>
+                                        <th> <span>@Cares.Web.Resources.NonRevenueTicket.Nrt.Rate *<span></span></span></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -218,7 +218,7 @@
                         <form class="form-horizontal">
                             <div class="form-group">
                                 <div class="addToBtnDiv row">
-                                    <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onAddChauffer,visible: $root.selectedNrtMain().vehicleDetail().vehicleId()!=undefined">Add Chauffer</button>
+                                    <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onAddChauffer,visible: $root.selectedNrtMain().vehicleDetail().vehicleId()!=undefined && !$root.isCloseTicket()">@Cares.Web.Resources.NonRevenueTicket.Nrt.AddChauffeur</button>
                                 </div>
                             </div>
                         </form>
@@ -226,16 +226,16 @@
                             <table id="activityTable" class="table table-condensed ">
                                 <thead>
                                     <tr>
-                                        <th> <span>Chauffeur Code<span></span></span></th>
-                                        <th> <span>Chauffeur Name<span></span></span></th>
-                                        <th> <span>License Expiry Date<span></span></span></th>
-                                        <th> <span>License No.<span></span></span></th>
-                                        <th> <span>Start Date<span></span></span></th>
-                                        <th> <span>Start Hour *<span></span></span></th>
-                                        <th> <span>Start Minute *<span></span></span></th>
-                                        <th> <span>End Date<span></span></span></th>
-                                        <th> <span>End Hour *<span></span></span></th>
-                                        <th> <span>End Minute *<span></span></span></th>
+                                        <th> <span>@Cares.Web.Resources.NonRevenueTicket.Nrt.ChauffeurCode<span></span></span></th>
+                                        <th> <span>@Cares.Web.Resources.NonRevenueTicket.Nrt.ChauffeurName<span></span></span></th>
+                                        <th> <span>@Cares.Web.Resources.NonRevenueTicket.Nrt.LicenseExpiryDate<span></span></span></th>
+                                        <th> <span>@Cares.Web.Resources.NonRevenueTicket.Nrt.LicenseNumber<span></span></span></th>
+                                        <th> <span>@Cares.Web.Resources.NonRevenueTicket.Nrt.StartDate<span></span></span></th>
+                                        <th> <span>@Cares.Web.Resources.NonRevenueTicket.Nrt.StartHour *<span></span></span></th>
+                                        <th> <span>@Cares.Web.Resources.NonRevenueTicket.Nrt.StartMinute *<span></span></span></th>
+                                        <th> <span>@Cares.Web.Resources.NonRevenueTicket.Nrt.EndDate<span></span></span></th>
+                                        <th> <span>@Cares.Web.Resources.NonRevenueTicket.Nrt.EndHour *<span></span></span></th>
+                                        <th> <span>@Cares.Web.Resources.NonRevenueTicket.Nrt.EndMinute *<span></span></span></th>
 
                                     </tr>
                                 </thead>
@@ -261,7 +261,19 @@
 {
     <script type="text/javascript">
         require(["nRT/nRT.view", "common/confirmation.view"]);
-
+        var ist = window.ist;
+        @{
+            <text>
+        ist.resourceText.nRTOpenSuccessMsg = '@Cares.Web.Resources.NonRevenueTicket.Nrt.NRTOpenSuccessMsg';
+        ist.resourceText.nRTCloseSuccessMsg = '@Cares.Web.Resources.NonRevenueTicket.Nrt.NRTCloseSuccessMsg';
+        ist.resourceText.nRTOpenFailedMsg = '@Cares.Web.Resources.NonRevenueTicket.Nrt.NRTOpenFailedMsg';
+        ist.resourceText.loadBaseDataFailedMsg = '@Cares.Web.Resources.NonRevenueTicket.Nrt.LoadBaseDataFailedMsg';
+        ist.resourceText.loadVehicleFailedMsg = '@Cares.Web.Resources.NonRevenueTicket.Nrt.LoadVehicleFailedMsg';
+        ist.resourceText.loadMaintenanceActivityFailedMsg = '@Cares.Web.Resources.NonRevenueTicket.Nrt.LoadMaintenanceActivityFailedMsg';
+        ist.resourceText.loadChuaffeurFailedMsg = '@Cares.Web.Resources.NonRevenueTicket.Nrt.LoadChuaffeurFailedMsg';
+        ist.resourceText.nRTDetailFailedMsg = '@Cares.Web.Resources.NonRevenueTicket.Nrt.NRTDetailFailedMsg';
+             </text>
+        }
     </script>
 }
 <script id="editChaufferItemTemplate" type="text/html">

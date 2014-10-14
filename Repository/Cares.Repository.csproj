@@ -137,6 +137,7 @@
     <Compile Include="Repositories\AdditionalChargeTypeRepository.cs" />
     <Compile Include="Repositories\BpSubTypeRepository.cs" />
     <Compile Include="Repositories\BusinessPartnerDocumentRepository.cs" />
+    <Compile Include="Repositories\RentalAgreementRepository.cs" />
     <Compile Include="Repositories\BusinessPartnerMainTypeRepository.cs" />
     <Compile Include="Repositories\ChaufferChargeRepository.cs" />
     <Compile Include="Repositories\AdditionalDriverChargeRepository.cs" />
@@ -160,11 +161,14 @@
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\ChaufferChargeMainRepository.cs" />
     <Compile Include="Repositories\BpMainTypeRepository.cs" />
+    <Compile Include="Repositories\ChaufferReservationRepository.cs" />
     <Compile Include="Repositories\CreditLimitRepository.cs" />
     <Compile Include="Repositories\MainteneceTypeGroupRepository.cs" />
     <Compile Include="Repositories\DocumentGroupRepository.cs" />
     <Compile Include="Repositories\CityRepository.cs" />
     <Compile Include="Repositories\DocumentRepository.cs" />
+    <Compile Include="Repositories\NrtChargeRepository.cs" />
+    <Compile Include="Repositories\NrtDriverRepository.cs" />
     <Compile Include="Repositories\RaStatusRepository.cs" />
     <Compile Include="Repositories\NrtMainRepository.cs" />
     <Compile Include="Repositories\NrtTypeRepository.cs" />
@@ -237,6 +241,7 @@
     <Compile Include="Repositories\VehiclePurchaseInfoRepository.cs" />
     <Compile Include="Repositories\VehicleRepository.cs" />
     <Compile Include="Repositories\AllocationStatusRepository.cs" />
+    <Compile Include="Repositories\VehicleReservationRepository.cs" />
     <Compile Include="Repositories\VehicleStatusRepository.cs" />
     <Compile Include="Repositories\VehicleSubStatusRepository.cs" />
     <Compile Include="Repositories\WorkLocationRepository.cs" />

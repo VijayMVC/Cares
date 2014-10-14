@@ -226,6 +226,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalChargeBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\RaQueueBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\RaQueueController.cs" />
     <Compile Include="Areas\Api\Controllers\VehicleModelController.cs" />
     <Compile Include="Areas\Api\Controllers\VehicleStatusController.cs" />
     <Compile Include="Areas\Api\Controllers\GetAdditionalChargeForNrtController.cs" />
@@ -259,6 +261,7 @@
     <Compile Include="Areas\Api\Controllers\DocumentBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\DocumentController.cs" />
     <Compile Include="Areas\Api\Controllers\MarketingChannelController.cs" />
+    <Compile Include="Areas\Api\Controllers\RentalAgreementController.cs" />
     <Compile Include="Areas\Api\Controllers\RentalAgreementChauffersController.cs" />
     <Compile Include="Areas\Api\Controllers\RentalAgreementServiceItemsController.cs" />
     <Compile Include="Areas\Api\Controllers\SeasonalDiscountBaseController.cs" />
@@ -397,6 +400,8 @@
     <Compile Include="ModelMappers\RaCustomerDocumentMapper.cs" />
     <Compile Include="ModelMappers\RaDriverMapper.cs" />
     <Compile Include="ModelMappers\NrtTypeMapper.cs" />
+    <Compile Include="ModelMappers\RaQueueMapper.cs" />
+    <Compile Include="ModelMappers\RaStatusMapper.cs" />
     <Compile Include="ModelMappers\RatingTypeMapper.cs" />
     <Compile Include="ModelMappers\SeasonalDiscountMapper.cs" />
     <Compile Include="ModelMappers\ServiceItemMapper.cs" />
@@ -431,6 +436,9 @@
     <Compile Include="Models\Area.cs" />
     <Compile Include="Models\AreaBaseDataResponse.cs" />
     <Compile Include="Models\AreaSearchRequestResponse.cs" />
+    <Compile Include="Models\RaMainForRaQueue.cs" />
+    <Compile Include="Models\RaMainForRaQueueSearchResponse.cs" />
+    <Compile Include="Models\SaveRentalAgreementRequest.cs" />
     <Compile Include="Models\BpMainTypeSearchRequestResponse.cs" />
     <Compile Include="Models\BpRatingType.cs" />
     <Compile Include="Models\BusinessLegalStatus.cs" />
@@ -594,7 +602,9 @@
     <Compile Include="Models\RaHireGroupInsurance.cs" />
     <Compile Include="Models\RaMain.cs" />
     <Compile Include="Models\RaPayment.cs" />
+    <Compile Include="Models\RaQueueBaseResponse.cs" />
     <Compile Include="Models\RaServiceItem.cs" />
+    <Compile Include="Models\RaStatusDropDown.cs" />
     <Compile Include="Models\RatingTypeSearchRequestResponse.cs" />
     <Compile Include="Models\RaVehicleCheckList.cs" />
     <Compile Include="Models\Region.cs" />
@@ -1010,6 +1020,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Region.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\NonRevenueTicket\Nrt.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Nrt.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\NonRevenueTicket\Nrt.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Nrt.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\NonRevenueTicket\NrtType.ar.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1480,6 +1500,10 @@
     <Content Include="Areas\Pricing\Scripts\insuranceRate.viewModel.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.viewModel.js" />
     <Content Include="Areas\Pricing\Scripts\insuranceRate.dataservice.js" />
+    <Content Include="Areas\RentalAgreement\Scripts\raQueue.dataservice.js" />
+    <Content Include="Areas\RentalAgreement\Scripts\raQueue.model.js" />
+    <Content Include="Areas\RentalAgreement\Scripts\raQueue.view.js" />
+    <Content Include="Areas\RentalAgreement\Scripts\raQueue.viewModel.js" />
     <Content Include="Areas\RentalAgreement\Scripts\Mocks\rentalAgreement.dataservice.js" />
     <Content Include="Areas\RentalAgreement\Scripts\rentalAgreement.dataservice.js" />
     <Content Include="Areas\RentalAgreement\Scripts\rentalAgreement.model.js" />
@@ -2379,6 +2403,10 @@
     <Content Include="Content\VehicleStatus.css.map">
       <DependentUpon>VehicleStatus.css</DependentUpon>
     </Content>
+    <Content Include="Areas\RentalAgreement\Views\Home\RaQueue.cshtml" />
+    <Content Include="Content\RentalAgreement.css.map">
+      <DependentUpon>RentalAgreement.css</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\Khurram.pubxml" />
     <Content Include="RichTextEditor\plugins\Thumbs.db" />
     <None Include="Scripts\amplify-vsdoc.js" />
@@ -2817,6 +2845,14 @@
     <EmbeddedResource Include="Resources\GeographicalHierarchy\Region.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Region.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\NonRevenueTicket\Nrt.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Nrt.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\NonRevenueTicket\Nrt.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Nrt.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\NonRevenueTicket\NrtType.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

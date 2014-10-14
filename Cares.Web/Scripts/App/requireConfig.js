@@ -23,6 +23,7 @@
             "chaufferCharge": ist.siteUrl + "/Areas/Pricing/Scripts",
             "seasonalDiscount": ist.siteUrl + "/Areas/Pricing/Scripts",
             "rentalAgreement": ist.siteUrl + "/Areas/RentalAgreement/Scripts",
+            "raQueue": ist.siteUrl + "/Areas/RentalAgreement/Scripts",
             "Organization": ist.siteUrl + "/Areas/Organization/Scripts",
             "company": ist.siteUrl + "/Areas/Organization/Scripts",
             "operation": ist.siteUrl + "/Areas/Organization/Scripts",

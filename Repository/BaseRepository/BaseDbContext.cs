@@ -90,6 +90,26 @@ namespace Cares.Repository.BaseRepository
         public DbSet<NrtVehicle> NrtVehicles { get; set; }
         public DbSet<RaStatus> RaStatuses { get; set; }
 
+        /// <summary>
+        /// Vehicle Reservations Db Set
+        /// </summary>
+        public DbSet<VehicleReservation> VehicleReservations { get; set; }
+
+        /// <summary>
+        /// Chauffer Reservations Db 
+        /// </summary>
+        public DbSet<ChaufferReservation> ChaufferReservations { get; set; }
+
+        /// <summary>
+        /// Nrt Charge
+        /// </summary>
+        public DbSet<NrtCharge> NrtCharges { get; set; }
+
+        /// <summary>
+        /// Nrt Drivers Db Set
+        /// </summary>
+        public DbSet<NrtDriver> NrtDrivers { get; set; }
+
         public DbSet<RaVehicleCheckList>  RaVehicleCheckLists { get; set; }
 
         public DbSet<Employee> Employees { get; set; }
@@ -492,6 +512,11 @@ namespace Cares.Repository.BaseRepository
         /// Allocation Status Db set
         /// </summary>
         public DbSet<AllocationStatus> AllocationStatuses { get; set; }
+
+        /// <summary>
+        /// Rental Agreement Db set
+        /// </summary>
+        public DbSet<RaMain> RaMains { get; set; }
 
         #endregion
     }
