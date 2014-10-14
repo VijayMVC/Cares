@@ -447,7 +447,7 @@
             // Rental Agreement Id
             rentalAgreementId = ko.observable(specifiedRentalAgreementId),
             // Vehicle
-            vehicle = ko.observable(specifiedVehicle || {}),
+            vehicle = ko.observable(specifiedVehicle || Vehicle.Create({})),
             // Ra HireGroup Insurances
             raHireGroupInsurances = ko.observableArray(specifiedRaHireGroupInsurances ? _.map(specifiedRaHireGroupInsurances, function (raHireGroupInsurance) {
                 return RentalAgreementHireGroupInsurance.Create(raHireGroupInsurance);
@@ -1421,9 +1421,9 @@
     };
 
     // Rental Agreement Hire Group Factory
-    RentalAgreementHireGroup.Create = function (source) {
+    RentalAgreementHireGroup.Create = function (source, isExisting) {
         return new RentalAgreementHireGroup(source.RentalAgreementHireGroupId, source.HireGroupDetailId, source.VehicleId,
-            source.RaMainId, source.Vehicle, source.VehicleMovements, source.RaHireGroupInsurances, source.AllocationStatusKey, source.AllocationStatusId);
+            source.RaMainId, source.Vehicle && isExisting ? Vehicle.Create(source.Vehicle) : source.Vehicle, source.VehicleMovements, source.RaHireGroupInsurances, source.AllocationStatusKey, source.AllocationStatusId);
     };
 
     // Phone Type Enums
@@ -1487,7 +1487,7 @@
     };
 
     // Rental Agreement Factory
-    RentalAgreement.Create = function (source, callbacks) {
+    RentalAgreement.Create = function (source, callbacks, isExisting) {
         var rentalAgreement = new RentalAgreement(source.RentalAgreementId, source.StartDateTime ? moment(source.StartDateTime).toDate() : undefined,
             source.EndDateTime ? moment(source.EndDateTime).toDate() : undefined, source.PaymentTermId, source.OperationId, source.OpenLocation, source.CloseLocation,
             source.BusinessPartner || {}, source.RentersName, source.RentersLicenseNumber, source.RentersLicenseExpDt ? moment(source.RentersLicenseExpDt).toDate() : undefined,
@@ -1496,7 +1496,7 @@
         // Add Ra Hire Groups if Any
         if (source.RaHireGroups) {
             var raHireGroups = _.map(source.RaHireGroups, function(raHireGroup) {
-                return RentalAgreementHireGroup.Create(raHireGroup);
+                return RentalAgreementHireGroup.Create(raHireGroup, isExisting);
             });
 
             ko.utils.arrayPushAll(rentalAgreement.rentalAgreementHireGroups(), raHireGroups);

@@ -7,6 +7,9 @@ namespace Cares.Interfaces.Repository
     /// </summary>
     public interface IRentalAgreementRepository : IBaseRepository<RaMain, long>
     {
-        
+        /// <summary>
+        /// Load Dependencies
+        /// </summary>
+        void LoadDependencies(RaMain raMain);
     }
 }

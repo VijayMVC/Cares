@@ -37,7 +37,21 @@ namespace Cares.Repository.Repositories
         #endregion
 
         #region Public
-        
+
+        /// <summary>
+        /// Load Dependencies
+        /// </summary>
+        public void LoadDependencies(RaMain raMain)
+        {
+            LoadProperty(raMain, () => raMain.RaHireGroups, true);
+            LoadProperty(raMain, () => raMain.RaServiceItems, true);
+            LoadProperty(raMain, () => raMain.RaAdditionalCharges, true);
+            LoadProperty(raMain, () => raMain.RaDrivers, true);
+            LoadProperty(raMain, () => raMain.RaPayments, true);
+            LoadProperty(raMain, () => raMain.RaCustomerDocuments, true);
+            LoadProperty(raMain, () => raMain.BusinessPartner);
+        }
+
         #endregion
     }
 }
