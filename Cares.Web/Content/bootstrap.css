@@ -757,8 +757,8 @@ pre code {
 }
 
 .container {
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 1px;
+  padding-left: 1px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -784,8 +784,9 @@ pre code {
 }
 
 .row {
-  margin-right: -15px;
-  margin-left: -15px;
+    margin-right: 1px;
+    margin-left: 1px;
+  
 }
 
 .row:before,
@@ -926,7 +927,7 @@ pre code {
 
 @media (min-width: 768px) {
   .container {
-    max-width: 750px;
+    max-width: 1300px;
   }
   .col-sm-1,
   .col-sm-2,
@@ -1080,7 +1081,7 @@ pre code {
 
 @media (min-width: 992px) {
   .container {
-    max-width: 970px;
+    max-width: 1300px;
   }
   .col-md-1,
   .col-md-2,
@@ -1243,7 +1244,7 @@ pre code {
 
 @media (min-width: 1200px) {
   .container {
-    max-width: 1170px;
+    max-width: 1300px;
   }
   .col-lg-1,
   .col-lg-2,
@@ -4144,8 +4145,9 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .container > .navbar-header,
 .container > .navbar-collapse {
-  margin-right: -15px;
-  margin-left: -15px;
+  margin-right: 1px;
+    margin-top: -10px;
+  margin-left: 1px;
 }
 
 @media (min-width: 768px) {

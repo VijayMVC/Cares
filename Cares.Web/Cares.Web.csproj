@@ -1915,6 +1915,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Resources\Images\favicon.ico" />
+    <Content Include="Resources\Images\logo.jpg" />
+    <Content Include="Resources\Images\White_Car.jpg" />
     <Content Include="Resources\Product.xml" />
     <Content Include="RichTextEditor\adapters\jquery.js" />
     <Content Include="RichTextEditor\build-config.js" />
@@ -2499,6 +2501,8 @@
     <Content Include="Views\Shared\LoadMenu.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\Create.cshtml" />
+    <Content Include="Views\Shared\_Layout - Copy.cshtml" />
+    <Content Include="Views\Shared\LoadMenu - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\ProfileImages\" />

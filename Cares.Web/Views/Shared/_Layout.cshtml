@@ -31,9 +31,65 @@
     <link rel="stylesheet" type="text/css" href="~/Content/MainSite.css" />
     <link rel="shortcut icon" href="~/Resources/Images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="~/Resources/Images/favicon.ico" type="image/x-icon">
+    <style>
+        ul.nav li.dropdown:hover > ul.dropdown-menu{
+    display: block;
+    margin: 0;
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+
+
+    </style>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: black; height: 20px">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -44,22 +100,24 @@
 
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
 
-                    @{ Html.RenderAction("LoadMenu", "Menu", new { area = "" }); }
-                </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
+        <img src="~/Resources/Images/White_Car.jpg" style="height: 50px; width: 75px; margin-top: -57px; margin-left: 68px" />
     </div>
     <div class="container body-content @(ViewBag.FluidLayout != null && ViewBag.FluidLayout ? "container-fluid" : "")">
-        @RenderBody()
-        <div id="spinner">
+       
+        <div class="row">
+            <div class="col-md-2" style=" border-radius: 10px; margin-top: 12px">
+                @{ Html.RenderAction("LoadMenu", "Menu", new { area = "" }); }
+            </div>
+            <div class="col-md-10">
+                @RenderBody()
+                <div id="spinner">
+                </div>
+            </div>
         </div>
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - CaReS</p>
-        </footer>
     </div>
     @RenderSection("scripts", required: false)
 
