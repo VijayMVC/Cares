@@ -261,6 +261,7 @@
     <Compile Include="Areas\Api\Controllers\DocumentBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\DocumentController.cs" />
     <Compile Include="Areas\Api\Controllers\MarketingChannelController.cs" />
+    <Compile Include="Areas\Api\Controllers\RentalAgreementController.cs" />
     <Compile Include="Areas\Api\Controllers\RentalAgreementChauffersController.cs" />
     <Compile Include="Areas\Api\Controllers\RentalAgreementServiceItemsController.cs" />
     <Compile Include="Areas\Api\Controllers\SeasonalDiscountBaseController.cs" />
@@ -435,6 +436,7 @@
     <Compile Include="Models\Area.cs" />
     <Compile Include="Models\AreaBaseDataResponse.cs" />
     <Compile Include="Models\AreaSearchRequestResponse.cs" />
+    <Compile Include="Models\SaveRentalAgreementRequest.cs" />
     <Compile Include="Models\BpMainTypeSearchRequestResponse.cs" />
     <Compile Include="Models\BpRatingType.cs" />
     <Compile Include="Models\BusinessLegalStatus.cs" />

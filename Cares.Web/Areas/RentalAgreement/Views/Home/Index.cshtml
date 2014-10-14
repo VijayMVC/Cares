@@ -4,6 +4,9 @@
 }
 
 <div class="row" id="rentalAgreementBinding">
+    <div class="row">
+        <button class="btn btn-primary" data-bind="click: openRentalAgreement">Open Agreement</button>
+    </div>
     <div id="raPanels">
         <div class="panel-group" id="accordion">
             <div class="panel panel-default">
@@ -269,8 +272,17 @@
                                 <div class="col-md-3">
                                     <input type="text" class="form-control" placeholder="<Company Name>" id="customerCompanyName" data-bind="value: name" />
                                 </div>
+                            </div>
+                            <div class="form-group" data-bind="with: $root.rentalAgreement, visible: !isIndividual()" style="display: none">
+                                <label for="renterName" class="control-label col-sm-2">Renter</label>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" placeholder="<Renter's Name>" id="customerCompanyRenterName" />
+                                    <input type="text" class="form-control" placeholder="<Name>" id="renterName" data-bind="value: rentersName" />
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" placeholder="<License No>" id="renterLicenseNo" data-bind="value: rentersLicenseNo" />
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" placeholder="<License Expiry>" id="renterLicenseExpiry" data-bind="datetimepicker: rentersLicenseExpiry" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -724,7 +736,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2">Out Dt/Time</label>
                         <div class="col-md-3" data-bind="with: vehicleMovementOut">
-                            <input type="text" class="form-control vehicleMovementTemplate_popoverContent_outDtTime" data-bind="datetimepicker: start" />
+                            <input type="text" class="form-control vehicleMovementTemplate_popoverContent_outDtTime" data-bind="datetimepicker: start, enable: false" />
                         </div>
                         <label class="control-label col-sm-2">In Dt/Time</label>
                         <div class="col-md-3" data-bind="with: vehicleMovementIn">
@@ -734,7 +746,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2">Out Location</label>
                         <div class="col-md-3" data-bind="with: vehicleMovementOut">
-                            <select class="form-control vehicleMovementTemplate_popoverContent_outLocation" data-bind="options: $root.availableLocations, optionsCaption: '<Operation>', optionsText: 'code', optionsValue: 'id', value: operationsWorkPlaceId"></select>
+                            <select class="form-control vehicleMovementTemplate_popoverContent_outLocation" data-bind="options: $root.availableLocations, optionsCaption: '<Operation>', optionsText: 'code', optionsValue: 'id', value: operationsWorkPlaceId, enable: false"></select>
                         </div>
                         <label class="control-label col-sm-2">In Location</label>
                         <div class="col-md-3" data-bind="with: vehicleMovementIn">
@@ -744,7 +756,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2">Odometer Out</label>
                         <div class="col-md-3" data-bind="with: vehicleMovementOut">
-                            <input type="text" class="form-control vehicleMovementTemplate_popoverContent_odometerOut" data-bind="value: odometer" />
+                            <input type="text" class="form-control vehicleMovementTemplate_popoverContent_odometerOut" data-bind="value: odometer, enable: false" />
                         </div>
                         <label class="control-label col-sm-2">Odometer In</label>
                         <div class="col-md-3" data-bind="with: vehicleMovementIn">
@@ -754,7 +766,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2">Fuel Out</label>
                         <div class="col-md-3" data-bind="with: vehicleMovementOut">
-                            <input type="text" class="form-control vehicleMovementTemplate_popoverContent_fuelOut" data-bind="value: fuelLevel" />
+                            <input type="text" class="form-control vehicleMovementTemplate_popoverContent_fuelOut" data-bind="value: fuelLevel, enable: false" />
                         </div>
                         <label class="control-label col-sm-2">Fuel In</label>
                         <div class="col-md-3" data-bind="with: vehicleMovementIn">
@@ -764,7 +776,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2">Vehicle Status</label>
                         <div class="col-md-3" data-bind="with: vehicleMovementOut">
-                            <select class="form-control vehicleMovementTemplate_popoverContent_vehicleStatusOut" data-bind="options: $root.vehicleStatuses, optionsCaption: '<Status>', optionsText: 'codeName', optionsValue: 'id', value: vehicleStatusId"></select>
+                            <select class="form-control vehicleMovementTemplate_popoverContent_vehicleStatusOut" data-bind="options: $root.vehicleStatuses, optionsCaption: '<Status>', optionsText: 'codeName', optionsValue: 'id', value: vehicleStatusId, enable: false"></select>
                         </div>
                         <label class="control-label col-sm-2">Vehicle Status</label>
                         <div class="col-md-3" data-bind="with: vehicleMovementIn">

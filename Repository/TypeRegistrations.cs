@@ -112,6 +112,7 @@ namespace Cares.Repository
             unityContainer.RegisterType<ICreditLimitRepository, CreditLimitRepository>();
             unityContainer.RegisterType<IAlloactionStatusRepository, AllocationStatusRepository>();
             unityContainer.RegisterType<IBusinessPartnerMainTypeRepository, BusinessPartnerMainTypeRepository>();
+            unityContainer.RegisterType<IRentalAgreementRepository, RentalAgreementRepository>();
             unityContainer.RegisterType<INrtVehicleRepository, NrtVehicleRepository>();
             unityContainer.RegisterType<IRaStatusRepository, RaStatusRepository>();
             unityContainer.RegisterType<IMainteneceTypeGroupRepository, MainteneceTypeGroupRepository>();

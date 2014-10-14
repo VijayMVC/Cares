@@ -89,7 +89,7 @@ namespace Cares.Implementation.Helpers
         /// </summary>
         private static RaHireGroup GetDesiredHireGroup(List<RaHireGroup> raHireGroupList)
         {
-            return raHireGroupList.Find(item => (item.AllocationStatus.AllocationStatusKey == (short)AllocationStatusEnum.Desired));
+            return raHireGroupList.Find(item => (item.AllocationStatusId == (short)AllocationStatusEnum.Desired));
         }
 
         /// <summary>
@@ -188,7 +188,7 @@ namespace Cares.Implementation.Helpers
                         RaHireGroup chargeHireGroup = rentalCharge.CalculateCharge(RACreatedDate, StartDate, EndDate,
                                 Convert.ToDateTime(vehicleMovementOut.DtTime),
                                 Convert.ToDateTime(vehicleMovementIn.DtTime), OperationID,
-                                (item.AllocationStatus.AllocationStatusKey == (short)AllocationStatusEnum.Upgraded ?
+                                (item.AllocationStatusId == (short)AllocationStatusEnum.Upgraded ?
                                 DesiredHireGroupID : item.HireGroupDetailId), OutOdometer, InOdometer, oTariffTypeList);
 
                         MapRaHireGroupCharge(item, chargeHireGroup);

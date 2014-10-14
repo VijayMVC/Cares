@@ -4,14 +4,15 @@ using System.Web;
 using System.Web.Http;
 using Cares.Interfaces.IServices;
 using Cares.Web.ModelMappers;
+using Cares.Web.Models;
 using RaMain = Cares.Web.Models.RaMain;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
     /// <summary>
-    /// Rental Agreement Billing Api Controller
+    /// Rental Agreement Api Controller
     /// </summary>
-    public class RentalAgreementBillingController : ApiController
+    public class RentalAgreementController : ApiController
     {
         #region Private
 
@@ -24,7 +25,7 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public RentalAgreementBillingController(IRentalAgreementService rentalAgreementService)
+        public RentalAgreementController(IRentalAgreementService rentalAgreementService)
         {
             if (rentalAgreementService == null)
             {
@@ -39,16 +40,17 @@ namespace Cares.Web.Areas.Api.Controllers
         #region Public
 
         /// <summary>
-        /// Calculates Bill
+        /// Save Rental Agreement
         /// </summary>
-        public RaMain Post(RaMain request)
+        public RaMain Post(SaveRentalAgreementRequest request)
         {
             if (request == null)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
 
-            return rentalAgreementService.GenerateBill(request.CreateFrom()).CreateFrom();
+            request.RaMain.RaStatusId = (short) request.Action;
+            return rentalAgreementService.SaveRentalAgreement(request.RaMain.CreateFrom()).CreateFrom();
         }
 
         #endregion

@@ -57,7 +57,7 @@
             // Operations Workplace Id
             operationsWorkPlaceId = ko.observable(specifiedOperationsWorkPlaceId),
             // Vehicle Condition
-            vehicleCondition = ko.observable(specifiedVehicleCondition),
+            vehicleCondition = ko.observable(specifiedVehicleCondition || "000000000000000000000000000"),
             // Vehicle Condition Description
             vehicleConditionDescription = ko.observable(specifiedVehicleConditionDescription),
             // Start Date Time
@@ -159,7 +159,8 @@
     // Rental Agreement entity
     // ReSharper disable InconsistentNaming
     RentalAgreement = function (specifiedId, specifiedStartDate, specifiedEndDate, specifiedPaymentTermId, specifiedOperationId, specifiedOpenLocation,
-        specifiedCloseLocation, specifiedBusinessPartner, callbacks) {
+        specifiedCloseLocation, specifiedBusinessPartner, specifiedRentersName, specifiedRentersLicenseNo, specifiedRentersLicenseExpiry, specifiedRecCreatedDt,
+        specifiedRaStatusId, specifiedRaBookingId, callbacks) {
         // ReSharper restore InconsistentNaming
         var
             // unique key
@@ -341,6 +342,14 @@
             removeRaAdditionalCharge = function (raAdditionalCharge) {
                 rentalAgreementAdditionalCharges.remove(raAdditionalCharge);
             },
+            // Renters Name
+            rentersName = ko.observable(specifiedRentersName),
+            // Renters License No
+            rentersLicenseNo = ko.observable(specifiedRentersLicenseNo),
+            // Renters License Expiry
+            rentersLicenseExpiry = ko.observable(specifiedRentersLicenseExpiry),
+            // RecCreated Dt
+            recCreatedDt = ko.observable(specifiedRecCreatedDt || moment().toDate()),
             // Convert To Server Data
             convertToServerData = function () {
                 return {
@@ -352,7 +361,26 @@
                     EndDtTime: moment(end()).format(ist.utcFormat) + 'Z',
                     OperationId: operationId(),
                     BusinessPartnerId: businessPartner().id(),
-                    RecCreatedDt: moment().format(ist.utcFormat) + 'Z',
+                    RecCreatedDt: moment(recCreatedDt()).format(ist.utcFormat) + 'Z',
+                    AmountPaid: billing().amountPaid(),
+                    TotalVehicleCharge: billing().vehicleCharge(),
+                    TotalInsuranceCharge: billing().insuranceCharge(),
+                    VoucherDiscount: billing().voucherDiscount(),
+                    SeasonalDiscount: billing().seasonalDiscount(),
+                    SpecialDiscount: billing().specialDiscount(),
+                    IsSpecialDiscountPerc: billing().isSpecialDiscountPerc(),
+                    NetBillAfterDiscount: billing().netBilling(),
+                    TotalExcessMileageCharge: billing().excessMileage(),
+                    TotalServiceCharge: billing().serviceCharge(),
+                    TotalDriverCharge: billing().driverCharge(),
+                    TotalAdditionalCharge: billing().additionalCharge(),
+                    TotalOtherCharge: billing().totalCharges(),
+                    TotalDropOffCharge: billing().totalDropOffCharge(),
+                    SpecialDiscountPerc: billing().specialDiscountPerc(),
+                    StandardDiscount: billing().standardDiscount(),
+                    RentersName: rentersName(),
+                    RentersLicenseNo: rentersLicenseNo(),
+                    RentersLicenseExpDt: rentersLicenseExpiry() ? moment(rentersLicenseExpiry()).format(ist.utcFormat) + 'Z' : undefined,
                     RaHireGroups: rentalAgreementHireGroups.map(function (raHireGroup) {
                         return raHireGroup.convertToServerData();
                     }),
@@ -380,6 +408,9 @@
             days: days,
             hours: hours,
             minutes: minutes,
+            rentersName: rentersName,
+            rentersLicenseNo: rentersLicenseNo,
+            rentersLicenseExpiry: rentersLicenseExpiry,
             rentalAgreementHireGroups: rentalAgreementHireGroups,
             businessPartner: businessPartner,
             billing: billing,
@@ -518,14 +549,25 @@
 
                     internalPhoneNo(value);
                 }
-            });
+            }),
+            // Convert To Server Data
+            convertToServerData = function () {
+                return {
+                    PhoneId: id(),
+                    IsDefault: isDefault(),
+                    BusinessPartnerId: businessPartnerId(),
+                    PhoneNumber: phoneNo(),
+                    PhoneTypeId: type() ? type().key : 0
+                }
+            };
 
         return {
             id: id,
             isDefault: isDefault,
             businessPartnerId: businessPartnerId,
             type: type,
-            phoneNo: phoneNo
+            phoneNo: phoneNo,
+            convertToServerData: convertToServerData
         };
     },
 
@@ -639,7 +681,7 @@
                     LastName: lastName(),
                     DateOfBirth: moment(dateOfBirth()).format(ist.utcFormat) + 'Z',
                     NicExpiryDate: moment(nicExpiry()).format(ist.utcFormat) + 'Z',
-                    LicenseExpiryDate: moment(licenseExpiry()).format(ist.utcFormat) + 'Z',
+                    LiscenseExpiryDate: moment(licenseExpiry()).format(ist.utcFormat) + 'Z',
                     PassportExpiryDate: moment(passportExpiry()).format(ist.utcFormat) + 'Z',
                     NicNumber: nicNo(),
                     LiscenseNumber: licenseNo(),
@@ -746,7 +788,10 @@
                     PaymentTermId: paymentTermId(),
                     BusinessPartnerEmailAddress: email(),
                     BusinessPartnerIndividual: businessPartnerIndividual().convertToServerData(),
-                    BusinessPartnerCompany: businessPartnerCompany().convertToServerData()
+                    BusinessPartnerCompany: businessPartnerCompany().convertToServerData(),
+                    BusinessPartnerPhoneNumbers: phones.map(function(phone) {
+                        return phone.convertToServerData();
+                    })
                 };
             };
 
@@ -772,11 +817,13 @@
     // ReSharper disable InconsistentNaming
     Billing = function (specifiedVehicleCharge, specifiedStandardDiscount, specifiedSeasonalDiscount, specifiedVoucherDiscount, specifiedSpecialDiscount,
         specifiedExcessMileage, specifiedServiceCharge, specifiedInsuranceCharge, specifiedDriverCharge, specifiedAdditionalCharge, specifiedAmountPaid,
-        specifiedNetBill, specifiedBalance, specifiedTotalCharges) {
+        specifiedNetBill, specifiedBalance, specifiedTotalCharges, specifiedSpecialDiscountPerc, specifiedTotalDropOffCharge, specifiedIsSpecialDiscountPerc) {
         // ReSharper restore InconsistentNaming
         var
             // Vehicle Charge
             vehicleCharge = ko.observable(specifiedVehicleCharge || 0),
+            // total Drop Off Charge
+            totalDropOffCharge = ko.observable(specifiedTotalDropOffCharge || 0),
             // Standard Discount
             standardDiscount = ko.observable(specifiedSeasonalDiscount || 0),
             // Seasonal Discount
@@ -785,6 +832,10 @@
             voucherDiscount = ko.observable(specifiedVoucherDiscount || 0),
             // Special Discount
             specialDiscount = ko.observable(specifiedSpecialDiscount || 0),
+            // Special Discount Perc
+            specialDiscountPerc = ko.observable(specifiedSpecialDiscountPerc || 0),
+            // Is Special Discount Perc
+            isSpecialDiscountPerc = ko.observable(specifiedIsSpecialDiscountPerc || false),
             // Excess Mileage
             excessMileage = ko.observable(specifiedExcessMileage || 0),
             // Service Charge
@@ -818,6 +869,9 @@
             netBilling: netBilling,
             totalCharges: totalCharges,
             amountPaid: amountPaid,
+            specialDiscountPerc: specialDiscountPerc,
+            isSpecialDiscountPerc: isSpecialDiscountPerc,
+            totalDropOffCharge: totalDropOffCharge,
             balance: balance
         };
     },
@@ -1390,8 +1444,8 @@
 
     // Phone Factory
     Phone.Create = function (source, callbacks) {
-        return new Phone(source.PhoneId, source.IsDefault, source.BusinessPartnerId, source.PhoneTypeId ?
-            PhoneType.Create({ PhoneTypeId: source.PhoneTypeId, PhoneTypeKey: source.PhoneTypeKey }) : undefined, source.PhoneNo,
+        return new Phone(source.PhoneId, source.IsDefault, source.BusinessPartnerId, 
+            PhoneType.Create({ PhoneTypeId: source.PhoneTypeId, PhoneTypeKey: source.PhoneTypeKey }), source.PhoneNo,
         callbacks);
     };
 
@@ -1434,9 +1488,54 @@
 
     // Rental Agreement Factory
     RentalAgreement.Create = function (source, callbacks) {
-        return new RentalAgreement(source.RentalAgreementId, source.StartDateTime ? moment(source.StartDateTime).toDate() : undefined,
+        var rentalAgreement = new RentalAgreement(source.RentalAgreementId, source.StartDateTime ? moment(source.StartDateTime).toDate() : undefined,
             source.EndDateTime ? moment(source.EndDateTime).toDate() : undefined, source.PaymentTermId, source.OperationId, source.OpenLocation, source.CloseLocation,
-        source.BusinessPartner || {}, callbacks);
+            source.BusinessPartner || {}, source.RentersName, source.RentersLicenseNumber, source.RentersLicenseExpDt ? moment(source.RentersLicenseExpDt).toDate() : undefined,
+            source.RecCreatedDt ? moment(source.RecCreatedDt).toDate() : undefined, source.RaStatusId, source.RaBookingId, callbacks);
+
+        // Add Ra Hire Groups if Any
+        if (source.RaHireGroups) {
+            var raHireGroups = _.map(source.RaHireGroups, function(raHireGroup) {
+                return RentalAgreementHireGroup.Create(raHireGroup);
+            });
+
+            ko.utils.arrayPushAll(rentalAgreement.rentalAgreementHireGroups(), raHireGroups);
+            rentalAgreement.rentalAgreementHireGroups.valueHasMutated();
+        }
+
+        // Add Ra Service Items if Any
+        if (source.RaServiceItems) {
+            var raServiceItems = _.map(source.RaServiceItems, function (raServiceItem) {
+                return RentalAgreementServiceItem.Create(raServiceItem);
+            });
+
+            ko.utils.arrayPushAll(rentalAgreement.rentalAgreementServiceItems(), raServiceItems);
+            rentalAgreement.rentalAgreementServiceItems.valueHasMutated();
+        }
+
+        // Add Ra Drivers if Any
+        if (source.RaDrivers) {
+            var raDrivers = _.map(source.RaDrivers, function(raDriver) {
+                return RentalAgreementDriver.Create(raDriver);
+            });
+
+            ko.utils.arrayPushAll(rentalAgreement.rentalAgreementDrivers(), raDrivers);
+            rentalAgreement.rentalAgreementDrivers.valueHasMutated();
+        }
+
+        // Add Ra Additional Charges if Any
+        if (source.RaAdditionalCharges) {
+            var raAdditionalCharges = _.map(source.RaAdditionalCharges, function (raAddCharge) {
+                return RentalAgreementAdditionalCharge.Create(raAddCharge);
+            });
+
+            ko.utils.arrayPushAll(rentalAgreement.rentalAgreementAdditionalCharges(), raAdditionalCharges);
+            rentalAgreement.rentalAgreementAdditionalCharges.valueHasMutated();
+        }
+
+        rentalAgreement.billing(Billing.Create(source));
+        
+        return rentalAgreement;
     };
 
     // Billing Factory
