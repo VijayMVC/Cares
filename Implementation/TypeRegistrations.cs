@@ -97,6 +97,7 @@ namespace Cares.Implementation
             unityContainer.RegisterType<IVehicleCategoryService, VehicleCategoryService>();
             unityContainer.RegisterType<IVehicleStatusService, VehicleStatusService>();
             unityContainer.RegisterType<IVehicleModelService, VehicleModelService>();
+            unityContainer.RegisterType<IRaQueueService, RaQueueService>();
 
 
         }

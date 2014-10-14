@@ -3,10 +3,15 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                @*<h4 class="modal-title" id="myModalLabel" data-bind="text: headingText">Confirmation</h4>*@
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">@Cares.Web.Resources.Shared.Common.Close</span></button>
             </div>
             <div class="modal-body">
+                <div class="addToBtn">
+                    <button class="btn btn-default" id="saveBtn" data-dismiss="modal">@Cares.Web.Resources.Shared.Common.Cancel</button>
+                </div>
+                <br />
+                <br />
+                <br />
                 <div>
                     <form class="form-horizontal">
                         <div>
@@ -15,11 +20,11 @@
                                     <thead>
                                         <tr>
                                             <th> <span><span></span></span></th>
-                                            <th> <span><span>Chauffeur Code</span></span></th>
-                                            <th> <span><span>Chauffeur Name</span></span></th>
-                                            <th> <span>Category<span></span></span></th>
-                                            <th> <span>License Number<span></span></span></th>
-                                            <th> <span>License Expiry<span></span></span></th>
+                                            <th> <span><span>@Cares.Web.Resources.NonRevenueTicket.Nrt.ChauffeurCode</span></span></th>
+                                            <th> <span><span>@Cares.Web.Resources.NonRevenueTicket.Nrt.ChauffeurName</span></span></th>
+                                            <th> <span>@Cares.Web.Resources.NonRevenueTicket.Nrt.Category<span></span></span></th>
+                                            <th> <span>@Cares.Web.Resources.NonRevenueTicket.Nrt.LicenseNumber<span></span></span></th>
+                                            <th> <span>@Cares.Web.Resources.NonRevenueTicket.Nrt.LicenseExpiry<span></span></span></th>
                                         </tr>
                                     </thead>
                                     <tbody>

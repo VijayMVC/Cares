@@ -3,10 +3,15 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                @*<h4 class="modal-title" id="myModalLabel" data-bind="text: headingText">Confirmation</h4>*@
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">@Cares.Web.Resources.Shared.Common.Close</span></button>
             </div>
             <div class="modal-body">
+                <div class="addToBtn">
+                    <button class="btn btn-default" id="saveBtn" data-dismiss="modal">@Cares.Web.Resources.Shared.Common.Cancel</button>
+                </div>
+                <br />
+                <br />
+                <br />
                 <div>
                     <form class="form-horizontal">
                         <div>
@@ -15,23 +20,25 @@
                                     <thead>
                                         <tr>
                                             <th> <span><span></span></span></th>
-                                            <th> <span><span>Plate Number</span></span></th>
-                                            <th> <span><span>Current Odemetor</span></span></th>
-                                            <th class="make"> <span>Vehicle Make<span></span></span></th>
-                                            <th class="model"> <span>Vehicle Model<span></span></span></th>
-                                            <th class="model"> <span>Vehicle Category<span></span></span></th>
-                                            <th class="model"> <span>Vehicle Status<span></span></span></th>
-                                            <th class="model"> <span>Model Year<span></span></span></th>
+                                            <th> <span><span>@Cares.Web.Resources.NonRevenueTicket.Nrt.PlateNumber</span></span></th>
+                                            <th> <span><span>@Cares.Web.Resources.NonRevenueTicket.Nrt.CurrentOdemetor</span></span></th>
+                                            <th class="make"> <span>@Cares.Web.Resources.NonRevenueTicket.Nrt.VehicleMake<span></span></span></th>
+                                            <th class="model"> <span>@Cares.Web.Resources.NonRevenueTicket.Nrt.VehicleModel<span></span></span></th>
+                                            <th class="model"> <span>@Cares.Web.Resources.NonRevenueTicket.Nrt.VehicleCategory<span></span></span></th>
+                                            <th class="model"> <span>@Cares.Web.Resources.NonRevenueTicket.Nrt.VehicleStatus<span></span></span></th>
+                                            <th class="model"> <span>@Cares.Web.Resources.NonRevenueTicket.Nrt.ModelYear<span></span></span></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!-- ko template: { name: 'itemVehicleTemplate' , foreach: $root.vehicleDetails } -->
+                                        <!-- ko template: { name: 'itemVehicleTemplate', foreach: $root.clientPagerRecords } -->
                                         <!-- /ko -->
                                     </tbody>
                                 </table>
-                                @*<!-- ko with: pager -->
+                                <div class="well">
+                                    <!-- ko with: clientPager -->
                                     @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
-                                    <!-- /ko -->*@
+                                    <!-- /ko -->
+                                </div>
                             </div>
                         </div>
                         <script id="itemVehicleTemplate" type="text/html">

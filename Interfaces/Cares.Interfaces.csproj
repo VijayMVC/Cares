@@ -76,6 +76,7 @@
     <Compile Include="IServices\IServiceItemService.cs" />
     <Compile Include="IServices\IServiceTypeService.cs" />
     <Compile Include="IServices\IJobTypeService.cs" />
+    <Compile Include="IServices\IRaQueueService.cs" />
     <Compile Include="Repository\IAdditionalChargeRepository.cs" />
     <Compile Include="Repository\IAdditionalChargeTypeRepository.cs" />
     <Compile Include="IServices\IDiscountTypeService.cs" />

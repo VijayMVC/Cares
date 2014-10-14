@@ -591,6 +591,7 @@
     <Compile Include="Services\AddressBaseDataService.cs" />
     <Compile Include="Services\AdditionalDriverService.cs" />
     <Compile Include="Services\BusinessPartnerInTypeService.cs" />
+    <Compile Include="Services\RaQueueService.cs" />
     <Compile Include="Services\VehicleModelService.cs" />
     <Compile Include="Services\CreditLimitService.cs" />
     <Compile Include="Services\VehicleStatusService.cs" />

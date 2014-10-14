@@ -18,6 +18,7 @@ namespace Cares.Web.Areas.Api.Controllers
         #region Private
         private readonly ITariffTypeService tariffTypeService;
         #endregion
+       
         #region Constructors
         /// <summary>
         /// Constructor
@@ -32,6 +33,7 @@ namespace Cares.Web.Areas.Api.Controllers
             this.tariffTypeService = tariffTypeService;
         }
         #endregion
+       
         #region Public
         // GET api/<controller>
         public TariffTypeSearchResponse Get([FromUri] TariffTypeSearchRequest request)

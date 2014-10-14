@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddActivity" xml:space="preserve">
+    <value>إضافة نشاط</value>
+  </data>
+  <data name="AddChauffeur" xml:space="preserve">
+    <value>إضافة السائق</value>
+  </data>
+  <data name="AddEdit" xml:space="preserve">
+    <value>إضافة / تعديل</value>
+  </data>
+  <data name="AdditionalChargeTypeCode" xml:space="preserve">
+    <value>نوع إضافي المسؤول كود</value>
+  </data>
+  <data name="AdditionalChargeTypeName" xml:space="preserve">
+    <value>إضافي اسم المسؤول النوع</value>
+  </data>
+  <data name="AddVehicleDetail" xml:space="preserve">
+    <value>إضافة تفاصيل السيارة</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>تطبيق</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>فئة</value>
+  </data>
+  <data name="Chauffeur" xml:space="preserve">
+    <value>سائق</value>
+  </data>
+  <data name="ChauffeurCode" xml:space="preserve">
+    <value>سائق كود</value>
+  </data>
+  <data name="ChauffeurName" xml:space="preserve">
+    <value>اسم السائق</value>
+  </data>
+  <data name="CloseTicket" xml:space="preserve">
+    <value>وثيق تذكرة</value>
+  </data>
+  <data name="ConditionIn" xml:space="preserve">
+    <value>وفي حالة</value>
+  </data>
+  <data name="ConditionOut" xml:space="preserve">
+    <value>حالة خارج</value>
+  </data>
+  <data name="ContactPerson" xml:space="preserve">
+    <value>الشخص الذي يمكن الاتصال</value>
+  </data>
+  <data name="CurrentOdemetor" xml:space="preserve">
+    <value>عداد المسافات الحالي</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>وصف</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>تاريخ نهاية</value>
+  </data>
+  <data name="EndDateTime" xml:space="preserve">
+    <value>نهاية التاريخ / التوقيت</value>
+  </data>
+  <data name="EndHour" xml:space="preserve">
+    <value>نهاية ساعة</value>
+  </data>
+  <data name="EndMinute" xml:space="preserve">
+    <value>دقيقة نهاية</value>
+  </data>
+  <data name="FuelDifference" xml:space="preserve">
+    <value>الفرق الوقود (لتر)</value>
+  </data>
+  <data name="FuelIn" xml:space="preserve">
+    <value>الوقود و</value>
+  </data>
+  <data name="FuelOut" xml:space="preserve">
+    <value>الوقود بالنفاد</value>
+  </data>
+  <data name="HireGroup" xml:space="preserve">
+    <value>استئجار المجموعة</value>
+  </data>
+  <data name="InDateTime" xml:space="preserve">
+    <value>في تاريخ / وقت</value>
+  </data>
+  <data name="LicenseExpiry" xml:space="preserve">
+    <value>انتهاء رخصة</value>
+  </data>
+  <data name="LicenseExpiryDate" xml:space="preserve">
+    <value>تاريخ انتهاء الترخيص</value>
+  </data>
+  <data name="LicenseNumber" xml:space="preserve">
+    <value>ترخيص رقم</value>
+  </data>
+  <data name="LoadBaseDataFailedMsg" xml:space="preserve">
+    <value>فشل تحميل قاعدة البيانات.</value>
+  </data>
+  <data name="LoadChuaffeurFailedMsg" xml:space="preserve">
+    <value>فشل تحميل السائقين.</value>
+  </data>
+  <data name="LoadMaintenanceActivityFailedMsg" xml:space="preserve">
+    <value>فشل تحميل أنشطة الصيانة.</value>
+  </data>
+  <data name="LoadVehicleFailedMsg" xml:space="preserve">
+    <value>فشل تحميل المركبات.</value>
+  </data>
+  <data name="MaintenanceActivities" xml:space="preserve">
+    <value>أنشطة الصيانة</value>
+  </data>
+  <data name="ModelYear" xml:space="preserve">
+    <value>سنة الصنع</value>
+  </data>
+  <data name="NRT" xml:space="preserve">
+    <value>الإيرادات غير تذكرة</value>
+  </data>
+  <data name="NRTCloseSuccessMsg" xml:space="preserve">
+    <value>تم إغلاق الإيرادات غير تذكرة بنجاح.</value>
+  </data>
+  <data name="NRTDetailFailedMsg" xml:space="preserve">
+    <value>فشل تحميل غير إيرادات التذاكر.</value>
+  </data>
+  <data name="NRTNumber" xml:space="preserve">
+    <value>الإيرادات غير تذكرة #</value>
+  </data>
+  <data name="NRTOpenFailedMsg" xml:space="preserve">
+    <value>فشل في فتح التذاكر.</value>
+  </data>
+  <data name="NRTOpenSuccessMsg" xml:space="preserve">
+    <value>تم فتح الإيرادات غير تذكرة بنجاح.</value>
+  </data>
+  <data name="NRTTYpe" xml:space="preserve">
+    <value>نوع الإيرادات غير تذكرة</value>
+  </data>
+  <data name="OdometerIn" xml:space="preserve">
+    <value>وفي عداد المسافات</value>
+  </data>
+  <data name="OdometerOut" xml:space="preserve">
+    <value>عداد المسافات خارج</value>
+  </data>
+  <data name="OpenTicket" xml:space="preserve">
+    <value>فتح تذكرة</value>
+  </data>
+  <data name="Operation" xml:space="preserve">
+    <value>عملية</value>
+  </data>
+  <data name="OutDateTime" xml:space="preserve">
+    <value>خارج وقت / زمن</value>
+  </data>
+  <data name="OutLocation" xml:space="preserve">
+    <value>خارج الدولة</value>
+  </data>
+  <data name="PlateNumber" xml:space="preserve">
+    <value>رقم اللوحة</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>الكمية</value>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>معدل</value>
+  </data>
+  <data name="ReturnLocation" xml:space="preserve">
+    <value>عودة الدولة</value>
+  </data>
+  <data name="ReturnVehicle" xml:space="preserve">
+    <value>عودة سيارة؟</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>بدء التسجيل</value>
+  </data>
+  <data name="StartDateTime" xml:space="preserve">
+    <value>تاريخ بدء / وقت</value>
+  </data>
+  <data name="StartHour" xml:space="preserve">
+    <value>بداية ساعة</value>
+  </data>
+  <data name="StartMinute" xml:space="preserve">
+    <value>بدء دقيقة</value>
+  </data>
+  <data name="TankSize" xml:space="preserve">
+    <value>خزان الحجم</value>
+  </data>
+  <data name="TotalRate" xml:space="preserve">
+    <value>المعدل العام</value>
+  </data>
+  <data name="UpdateTicket" xml:space="preserve">
+    <value>تحديث تذكرة</value>
+  </data>
+  <data name="Vehicle" xml:space="preserve">
+    <value>السيارة</value>
+  </data>
+  <data name="VehicleCategory" xml:space="preserve">
+    <value>سيارة الفئة</value>
+  </data>
+  <data name="VehicleDetails" xml:space="preserve">
+    <value>تفاصيل السيارة</value>
+  </data>
+  <data name="VehicleInStatus" xml:space="preserve">
+    <value>السيارة في حالة</value>
+  </data>
+  <data name="VehicleMake" xml:space="preserve">
+    <value>السيارة جعل</value>
+  </data>
+  <data name="VehicleModel" xml:space="preserve">
+    <value>المركبة الموديل</value>
+  </data>
+  <data name="VehicleOutStatus" xml:space="preserve">
+    <value>السيارة خارج الحالة</value>
+  </data>
+  <data name="VehiclePlateNumber" xml:space="preserve">
+    <value>رقم اللوحة المركبة</value>
+  </data>
+  <data name="VehicleStatus" xml:space="preserve">
+    <value>الحالة السيارة</value>
+  </data>
+</root>
