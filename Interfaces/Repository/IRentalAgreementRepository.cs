@@ -1,4 +1,6 @@
 ﻿using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
+using Cares.Models.ResponseModels;
 
 namespace Cares.Interfaces.Repository
 {
@@ -11,5 +13,10 @@ namespace Cares.Interfaces.Repository
         /// Load Dependencies
         /// </summary>
         void LoadDependencies(RaMain raMain);
+        
+        /// <summary>
+        /// Get all Ra Main
+        /// </summary>
+        RaMainForRaQueueSearchResponse GetRaMainsForRaQueue(RaQueueSearchRequest request);
     }
 }

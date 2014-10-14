@@ -228,3 +228,7 @@
 #rentalAgreementBinding #raBilling #billing div.form-group div {
   border-bottom: 1px solid black;
 }
+#raQueueBinding .txtBox {
+  width: 142px;
+}
+/*# sourceMappingURL=RentalAgreement.css.map */

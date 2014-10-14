@@ -128,8 +128,8 @@ namespace Cares.Repository.Repositories
                         employee.EmpJobInfo.Designation.DesignationKey == request.DesignationKey &&
             (employee.ChaufferReservations.Count == 0 ||
              !employee.ChaufferReservations.Any(
-                 chaufferRes => chaufferRes.StartDtTime >= request.EndDtTime &&
-                                chaufferRes.EndDtTime <= request.StartDtTime))).ToList();
+                 chaufferRes => chaufferRes.StartDtTime <= request.EndDtTime &&
+                                chaufferRes.EndDtTime >= request.StartDtTime))).ToList();
         }
 
 

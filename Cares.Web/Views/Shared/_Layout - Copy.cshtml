@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="@Cares.Web.Helper.CultureHelper.GetCurrentNeutralCulture()" dir="@(Cares.Web.Helper.CultureHelper.IsRighToLeft() ? "rtl" : "ltr")">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title | Cares</title>
+    @Styles.Render("~/Content/css" + (Cares.Web.Helper.CultureHelper.IsRighToLeft() ? "-rtl" : ""))
+    @Styles.Render("~/Content/siteCss")
+    @Styles.Render("~/Content/themes/base/css")
+    <link href="~/Content/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Bundle/BaseLibs")
+    <script src="~/Scripts/jquery-ui-timepicker-addon.js"></script>
+    @Scripts.Render("~/bundles/bootstrap" + (Cares.Web.Helper.CultureHelper.IsRighToLeft() ? "-rtl" : ""))
+    <script src="~/Scripts/App/architecture.js"></script>
+    <script type="text/javascript">
+    var ist = window.ist;
+    @{
+        <text>
+        ist.siteUrl = '@(System.Configuration.ConfigurationManager.AppSettings["SiteURL"].ToString())';
+        ist.resourceText.defaultConfirmationText = '@Cares.Web.Resources.Shared.Common.DefaultConfirmationText';
+        ist.resourceText.defaultHeaderText = '@Cares.Web.Resources.Shared.Common.Confirmation';
+        ist.resourceText.showing = '@Cares.Web.Resources.Shared.Common.Showing';
+        ist.resourceText.of = '@Cares.Web.Resources.Shared.Common.Of';
+        </text>
+    }
+    </script>
+    <script src="~/Scripts/App/requireConfig.js"></script>
+    <script src="~/Scripts/typeahead.bundle.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Content/MainSite.css" />
+    <link rel="shortcut icon" href="~/Resources/Images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="~/Resources/Images/favicon.ico" type="image/x-icon">
+    <style></style>
+</head>
+<body>
+    
+    <div class="container">
+        <h1><a href="#">Bootstrap Site</a></h1>
+       
+        <div class="row">
+            <div class="col-md-4">
+                <p>Dummy Text</p>
+            </div>
+            <div class="col-md-4">
+                <p>Dummy Text</p>
+            </div>
+        </div>
+    </div>
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

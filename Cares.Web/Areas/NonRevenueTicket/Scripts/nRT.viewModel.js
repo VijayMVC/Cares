@@ -2,8 +2,8 @@
     Module with the view model for the Chauffer Charge
 */
 define("nRT/nRT.viewModel",
-    ["jquery", "amplify", "ko", "nRT/nRT.dataservice", "nRT/nRT.model", "common/confirmation.viewModel", "common/pagination"],
-    function ($, amplify, ko, dataservice, model, confirmation, pagination) {
+    ["jquery", "amplify", "ko", "nRT/nRT.dataservice", "nRT/nRT.model", "common/confirmation.viewModel", "common/pagination", "common/clientSidePagination"],
+    function ($, amplify, ko, dataservice, model, confirmation, pagination, clientPagination) {
         var ist = window.ist || {};
         ist.nRT = {
             viewModel: (function () {
@@ -35,6 +35,15 @@ define("nRT/nRT.viewModel",
                     isCloseTicket = ko.observable(false),
                     // Is Editable
                     isEditable = ko.observable(false),
+                     //Client Side Pagination
+                    clientPager = ko.observable(),
+                    //List Of Records 
+                    clientPagerRecords = ko.computed(function () {
+                        if (clientPager() !== undefined) {
+                            return clientPager().pagedRecords();
+                        }
+                        return [];
+                    }),
                     // #region Arrays
                     //Operations
                     operations = ko.observableArray([]),
@@ -88,9 +97,8 @@ define("nRT/nRT.viewModel",
                         ko.applyBindings(view.viewModel, view.bindingRoot);
                         getBase();
                         selectedNrtMain(model.NRTMain());
-                        // Set Pager
-                        // pager(new pagination.Pagination({}, chaufferChargeMains, getChaufferCharges));
-                        // getChaufferCharges();
+                        //Set Client Side Pager
+                        clientPager(new clientPagination.Pagination({}, vehicleDetails, null));
 
                     },
                     // Select a Vehicle from Dialog
@@ -226,8 +234,9 @@ define("nRT/nRT.viewModel",
                     //Common code or open and close ticket, true flag mean close ticket
                     openCloseTicket = function (nrtMain, flag) {
                         if (doBeforeSave()) {
-                            if (selectedNrtMain().id() === undefined && selectedNrtMain().vehicleDetail().isReturnLoc() === true) {
-                                toastr.error("Error");
+                            if (selectedNrtMain().vehicleDetail().isReturnLoc() === true && selectedNrtMain().vehicleDetail().inOdemeter() === undefined
+                                && selectedNrtMain().vehicleDetail().vInStatusId() === undefined) {
+                                toastr.error("Mandatory Fields Missing in Records.");
                             } else {
                                 //Add Chauffers List
                                 if (nrtMain.chauffersList().length != 0) {
@@ -251,6 +260,7 @@ define("nRT/nRT.viewModel",
                                     }
                                     if (flag) {
                                         nrtMain.nrtStatusId(2);
+                                        selectedNrtMain().nrtStatusId(2);
                                         isCloseTicket(true);
                                     }
                                     saveNrtMain(nrtMain);
@@ -280,8 +290,13 @@ define("nRT/nRT.viewModel",
                             if (!item.isValid()) {
                                 flag = false;
                                 item.errors.showAllMessages();
+                                toastr.error("Mandatory Fields Missing in Records :Quantity NRTChargeRate");
                             }
                         });
+                        if (selectedNrtMain().id() === undefined && selectedNrtMain().vehicleDetail().isReturnLoc() === true) {
+                            toastr.error("First Open Ticket. Then retrun vehicle.");
+                            flag = false;
+                        }
                         return flag;
                     },
 
@@ -294,7 +309,7 @@ define("nRT/nRT.viewModel",
                         return flag;
                     },
                     onSaveVehicle = function () {
-                        if (doBeforeSaveVehicle) {
+                        if (doBeforeSaveVehicle()) {
                             if (!selectedNrtMain().vehicleDetail().isReturnLoc()) {
                                 showEditBtn(true);
                                 showSaveCancelBtn(false);
@@ -360,7 +375,7 @@ define("nRT/nRT.viewModel",
                             },
                             error: function () {
                                 isLoadingNrt(false);
-                                toastr.error(ist.resourceText.loadAddChargeDetailFailedMsg);
+                                toastr.error(ist.resourceText.nRTDetailFailedMsg);
                             }
                         });
                     },
@@ -418,7 +433,7 @@ define("nRT/nRT.viewModel",
                                },
                                error: function () {
                                    isLoadingNrt(false);
-                                   toastr.error(ist.resourceText.additionalChargeLoadFailedMsg);
+                                   toastr.error(ist.resourceText.loadVehicleFailedMsg);
                                }
                            });
 
@@ -470,7 +485,7 @@ define("nRT/nRT.viewModel",
                                 },
                                 error: function () {
                                     isLoadingNrt(false);
-                                    toastr.error(ist.resourceText.additionalChargeLoadFailedMsg);
+                                    toastr.error(ist.resourceText.loadMaintenanceActivityFailedMsg);
                                 }
                             });
 
@@ -501,7 +516,7 @@ define("nRT/nRT.viewModel",
                                 },
                                 error: function () {
                                     isLoadingNrt(false);
-                                    toastr.error(ist.resourceText.additionalChargeLoadFailedMsg);
+                                    toastr.error(ist.resourceText.loadChuaffeurFailedMsg);
                                 }
                             });
 
@@ -545,7 +560,12 @@ define("nRT/nRT.viewModel",
                         dataservice.saveNrt(model.NRTServerMapper(nrtMain), {
                             success: function (data) {
                                 selectedNrtMain().id(data);
-                                toastr.success(ist.resourceText.chaufferChargeAddSuccessMsg);
+                                if (selectedNrtMain().nrtStatusId() === 2) {
+                                    toastr.success(ist.resourceText.nRTCloseSuccessMsg);
+                                } else {
+                                    toastr.success(ist.resourceText.nRTOpenSuccessMsg);
+                                }
+
                             },
                             error: function (exceptionMessage, exceptionType) {
 
@@ -555,7 +575,7 @@ define("nRT/nRT.viewModel",
 
                                 } else {
 
-                                    toastr.error(ist.resourceText.ist.resourceText.chaufferChargeAddFailedMsg);
+                                    toastr.error(ist.resourceText.nRTOpenFailedMsg);
 
                                 }
 
@@ -664,6 +684,8 @@ define("nRT/nRT.viewModel",
                     selectedChaufferItem: selectedChaufferItem,
                     templateToUse: templateToUse,
                     isEditable: isEditable,
+                    clientPager: clientPager,
+                    clientPagerRecords: clientPagerRecords,
                     selectedAdditionalChargeItem: selectedAdditionalChargeItem,
                     //Arrays
                     filteredLocations: filteredLocations,

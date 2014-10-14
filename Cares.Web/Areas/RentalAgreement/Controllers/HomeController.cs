@@ -11,5 +11,13 @@ namespace Cares.Web.Areas.RentalAgreement.Controllers
         {
             return View();
         }
+
+        /// <summary>
+        /// Rental Agreement Queue
+        /// </summary>
+        public ActionResult RaQueue()
+        {
+            return View();
+        }
 	}
 }
