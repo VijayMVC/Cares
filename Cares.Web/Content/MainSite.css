@@ -1280,6 +1280,16 @@
   width: 100%;
   margin-bottom: 15px;
 }
+#nRTBinding .btnUpdate {
+  float: right;
+  margin-right: 10px;
+}
+#nRTBinding .chaufferTime {
+  width: 28px;
+}
+#nRTBinding .activityTextBox {
+  width: 70px;
+}
 #nRTBinding .addToBtn {
   float: right;
   margin-right: 10px;
@@ -1525,6 +1535,156 @@
   width: 100%;
 }
 #MarketingChannelBinding #MarketingChannelEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#MaintenanceTypeGroupBinding table thead tr .maintenanceTypeGroupCode {
+  width: 33%;
+}
+#MaintenanceTypeGroupBinding table thead tr .maintenanceTypeGroupName {
+  width: 33%;
+}
+#MaintenanceTypeGroupBinding table thead tr .maintenanceTypeGroupDiscription {
+  width: 33%;
+}
+#MaintenanceTypeGroupBinding #MaintenanceTypeGroupEditor {
+  margin-top: 15px;
+}
+#MaintenanceTypeGroupBinding #MaintenanceTypeGroupEditor .detailsContainer {
+  width: 100%;
+}
+#MaintenanceTypeGroupBinding #MaintenanceTypeGroupEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#MaintenanceTypeBinding table thead tr .maintenanceTypeCode {
+  width: 25%;
+}
+#MaintenanceTypeBinding table thead tr .maintenanceTypeName {
+  width: 25%;
+}
+#MaintenanceTypeBinding table thead tr .maintenanceTypeDiscription {
+  width: 25%;
+}
+#MaintenanceTypeBinding table thead tr .maintenanceTypeGroup {
+  width: 25%;
+}
+#MaintenanceTypeBinding #MaintenanceTypeEditor {
+  margin-top: 15px;
+}
+#MaintenanceTypeBinding #MaintenanceTypeEditor .detailsContainer {
+  width: 100%;
+}
+#MaintenanceTypeBinding #MaintenanceTypeEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#InsuranceTypeBinding table thead tr .InsuranceTypeCode {
+  width: 33%;
+}
+#InsuranceTypeBinding table thead tr .InsuranceTypeName {
+  width: 33%;
+}
+#InsuranceTypeBinding table thead tr .InsuranceTypeDescription {
+  width: 33%;
+}
+#InsuranceTypeBinding #insuranceTypeEditor {
+  margin-top: 15px;
+}
+#InsuranceTypeBinding #insuranceTypeEditor .detailsContainer {
+  width: 100%;
+}
+#InsuranceTypeBinding #insuranceTypeEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#VehicleMakeBinding table thead tr .VehicleCode {
+  width: 33%;
+}
+#VehicleMakeBinding table thead tr .VehicleName {
+  width: 33%;
+}
+#VehicleMakeBinding table thead tr .VehicleDescription {
+  width: 33%;
+}
+#VehicleMakeBinding #VehicleMakeEditor {
+  margin-top: 15px;
+}
+#VehicleMakeBinding #VehicleMakeEditor .detailsContainer {
+  width: 100%;
+}
+#VehicleMakeBinding #VehicleMakeEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#VehicleCategoryBinding table thead tr .VehicleCategoryCode {
+  width: 33%;
+}
+#VehicleCategoryBinding table thead tr .VehicleCategoryName {
+  width: 33%;
+}
+#VehicleCategoryBinding table thead tr .VehicleCategoryDescription {
+  width: 33%;
+}
+#VehicleCategoryBinding #VehicleCategoryEditor {
+  margin-top: 15px;
+}
+#VehicleCategoryBinding #VehicleCategoryEditor .detailsContainer {
+  width: 100%;
+}
+#VehicleCategoryBinding #VehicleCategoryEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#VehicleModelBinding table thead tr .VehicleModelCode {
+  width: 33%;
+}
+#VehicleModelBinding table thead tr .VehicleModelName {
+  width: 33%;
+}
+#VehicleModelBinding table thead tr .VehicleModelDiscription {
+  width: 33%;
+}
+#VehicleModelBinding #VehicleModelEditor {
+  margin-top: 15px;
+}
+#VehicleModelBinding #VehicleModelEditor .detailsContainer {
+  width: 100%;
+}
+#VehicleModelBinding #VehicleModelEditor .detailsContainer .detailsHeaderSection {
+  float: left;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+#VehicleStatusBinding table thead tr .VehicleStatusCode {
+  width: 33%;
+}
+#VehicleStatusBinding table thead tr .VehicleStatusName {
+  width: 33%;
+}
+#VehicleStatusBinding table thead tr .VehicleStatusDiscription {
+  width: 33%;
+}
+#VehicleStatusBinding #VehicleStatusEditor {
+  margin-top: 15px;
+}
+#VehicleStatusBinding #VehicleStatusEditor .detailsContainer {
+  width: 100%;
+}
+#VehicleStatusBinding #VehicleStatusEditor .detailsContainer .detailsHeaderSection {
   float: left;
   width: 85%;
   margin-bottom: 20px;

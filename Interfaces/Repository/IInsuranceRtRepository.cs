@@ -25,5 +25,10 @@ namespace Cares.Interfaces.Repository
         /// Get All Insurance Rate For RA 
         /// </summary>
         IEnumerable<InsuranceRt> GetAllForRa();
+
+        /// <summary>
+        /// Association check B/W Insurance Type and Insurance RT
+        /// </summary>
+        bool IsInsuranceTypeAssociatedWithInsuranceRt(long insuranceTypeId);
     }
 }

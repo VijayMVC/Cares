@@ -226,10 +226,22 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalChargeBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\VehicleModelController.cs" />
+    <Compile Include="Areas\Api\Controllers\VehicleStatusController.cs" />
+    <Compile Include="Areas\Api\Controllers\GetAdditionalChargeForNrtController.cs" />
+    <Compile Include="Areas\Api\Controllers\GetChaufferForNRTController.cs" />
     <Compile Include="Areas\Api\Controllers\AddressBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\CreditLimitController.cs" />
     <Compile Include="Areas\Api\Controllers\CreditLimitBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\GetNrtDetailController.cs" />
+    <Compile Include="Areas\Api\Controllers\VehicleCategoryController.cs" />
+    <Compile Include="Areas\Api\Controllers\InsuranceTypeController.cs" />
+    <Compile Include="Areas\Api\Controllers\VehicleMakeController.cs" />
+    <Compile Include="Areas\Api\Controllers\MaintenanceTypeController.cs" />
+    <Compile Include="Areas\Api\Controllers\MaintenanceTypeBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\MainteneceTypeGroupController.cs" />
     <Compile Include="Areas\Api\Controllers\GetVehiclesForNRTController.cs" />
+    <Compile Include="Areas\Api\Controllers\NRTController.cs" />
     <Compile Include="Areas\Api\Controllers\RaInsuranceRtsController.cs" />
     <Compile Include="Areas\Api\Controllers\RaAdditionalChargesController.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalChargeController.cs" />
@@ -381,6 +393,7 @@
     <Compile Include="ModelMappers\JobTypeMapper.cs" />
     <Compile Include="ModelMappers\LicenseTypeMapper.cs" />
     <Compile Include="ModelMappers\MaintenanceTypeMapper.cs" />
+    <Compile Include="ModelMappers\MainteneceTypeGroupMapper.cs" />
     <Compile Include="ModelMappers\NRTMapper.cs" />
     <Compile Include="ModelMappers\RaCustomerDocumentMapper.cs" />
     <Compile Include="ModelMappers\RaDriverMapper.cs" />
@@ -409,6 +422,7 @@
     <Compile Include="ModelMappers\WorkplaceTypeMapper.cs" />
     <Compile Include="Models\AdditionalChargeBaseResponse.cs" />
     <Compile Include="Models\AdditionalCharge.cs" />
+    <Compile Include="Models\AdditionalChargeForNrt.cs" />
     <Compile Include="Models\AdditionalChargeSearchResponse.cs" />
     <Compile Include="Models\AdditionalChargeType.cs" />
     <Compile Include="Models\AdditionalDriverCharge.cs" />
@@ -481,19 +495,32 @@
     <Compile Include="Models\FleetPoolDropDown.cs" />
     <Compile Include="Models\FuelTypeDropDown.cs" />
     <Compile Include="Models\HireGroupDetailForAddtionalCharge.cs" />
+    <Compile Include="Models\InsuranceType.cs" />
     <Compile Include="Models\InsuranceTypeDropDown.cs" />
+    <Compile Include="Models\InsuranceTypeSearchRequestResponse.cs" />
     <Compile Include="Models\JobType.cs" />
     <Compile Include="Models\JobTypeDropDown.cs" />
     <Compile Include="Models\JobTypeSearchRequestResponse.cs" />
     <Compile Include="Models\LicenseTypeDropDown.cs" />
+    <Compile Include="Models\MaintenanceType.cs" />
+    <Compile Include="Models\MaintenanceTypeBaseDataResponse.cs" />
     <Compile Include="Models\MaintenanceTypeDropDown.cs" />
+    <Compile Include="Models\MaintenanceTypeGroup.cs" />
+    <Compile Include="Models\MaintenanceTypeGroupDropDown.cs" />
+    <Compile Include="Models\MaintenanceTypeSearchRequestResponse.cs" />
+    <Compile Include="Models\MainteneceTypeGroupSearchRequestResponse.cs" />
     <Compile Include="Models\MarketingChannel.cs" />
     <Compile Include="Models\MarketingChannelSearchRequestResponse.cs" />
     <Compile Include="Models\NRTBaseResponse.cs" />
+    <Compile Include="Models\NrtCharge.cs" />
+    <Compile Include="Models\NrtDriver.cs" />
+    <Compile Include="Models\NrtMain.cs" />
     <Compile Include="Models\NrtType.cs" />
     <Compile Include="Models\NrtTypeBaseDataResponse.cs" />
     <Compile Include="Models\NrtTypeDropDown.cs" />
     <Compile Include="Models\NrtTypeSearchRequestResponse.cs" />
+    <Compile Include="Models\NrtVehicle.cs" />
+    <Compile Include="Models\NrtVehicleMovement.cs" />
     <Compile Include="Models\OccupationType.cs" />
     <Compile Include="Models\OccupationTypeSearchRequestResponse.cs" />
     <Compile Include="Models\OperationSearchResponse.cs" />
@@ -602,6 +629,7 @@
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Models\VehicleBaseDataResponse.cs" />
     <Compile Include="Models\VehicleCategory.cs" />
+    <Compile Include="Models\VehicleCategorySearchRequestResponse.cs" />
     <Compile Include="Models\VehicleCheckList.cs" />
     <Compile Include="Models\VehicleCheckListDropDown.cs" />
     <Compile Include="Models\VehicleCheckListItem.cs" />
@@ -614,7 +642,9 @@
     <Compile Include="Models\VehicleListViewContent.cs" />
     <Compile Include="Models\VehicleMaintenanceTypeFrequency.cs" />
     <Compile Include="Models\VehicleMake.cs" />
+    <Compile Include="Models\VehicleMakeSearchRequestResponse.cs" />
     <Compile Include="Models\VehicleModel.cs" />
+    <Compile Include="Models\VehicleModelSearcgRequestResponse.cs" />
     <Compile Include="Models\VehicleMovement.cs" />
     <Compile Include="Models\VehicleOtherDetail.cs" />
     <Compile Include="Models\VehiclePurchaseInfo.cs" />
@@ -689,6 +719,7 @@
     <Compile Include="Models\VehicleMakeDropDown.cs" />
     <Compile Include="Models\VehicleModelDropDown.cs" />
     <Compile Include="Models\VehicleStatusDropDown.cs" />
+    <Compile Include="Models\VehicleStatusSearchRequestResponse.cs" />
     <Compile Include="Models\WorkLocation.cs" />
     <Compile Include="Models\WorkLocationBaseDataResponse.cs" />
     <Compile Include="Models\WorkLocationDropDown.cs" />
@@ -862,6 +893,46 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FleetPool.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\FleetPool\InsuranceType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InsuranceType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\FleetPool\InsuranceType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InsuranceType.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\FleetPool\MaintenanceType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MaintenanceType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\FleetPool\MaintenanceType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MaintenanceType.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\FleetPool\MaintenanceTypeGroup.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MaintenanceTypeGroup.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\FleetPool\MaintenanceTypeGroup.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MaintenanceTypeGroup.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\FleetPool\VehicleCategory.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VehicleCategory.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\FleetPool\VehicleCategory.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VehicleCategory.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\FleetPool\VehicleCheckList.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -871,6 +942,36 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>VehicleCheckList.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\FleetPool\VehicleMake.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VehicleMake.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\FleetPool\VehicleMake.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VehicleMake.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\FleetPool\VehicleModel.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VehicleModel.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\FleetPool\VehicleModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VehicleModel.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\FleetPool\VehicleStatus.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VehicleStatus.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\FleetPool\VehicleStatus.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VehicleStatus.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\GeographicalHierarchy\Area.ar.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1168,10 +1269,10 @@
     <Compile Include="ViewModels\Common\MessageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\BusinessPartner\Models\marketingChannel.dataservice.js" />
-    <Content Include="Areas\BusinessPartner\Models\marketingChannel.model.js" />
-    <Content Include="Areas\BusinessPartner\Models\marketingChannel.view.js" />
-    <Content Include="Areas\BusinessPartner\Models\marketingChannel.viewModel.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\marketingChannel.dataservice.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\marketingChannel.model.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\marketingChannel.view.js" />
+    <Content Include="Areas\BusinessPartner\Scripts\marketingChannel.viewModel.js" />
     <Content Include="Areas\BusinessPartner\Scripts\creditLimit.dataservice.js" />
     <Content Include="Areas\BusinessPartner\Scripts\creditLimit.model.js" />
     <Content Include="Areas\BusinessPartner\Scripts\creditLimit.view.js" />
@@ -1237,6 +1338,30 @@
     <Content Include="Areas\EmployeeManagement\Scripts\designation.model.js" />
     <Content Include="Areas\EmployeeManagement\Scripts\designation.view.js" />
     <Content Include="Areas\EmployeeManagement\Scripts\designation.viewModel.js" />
+    <Content Include="Areas\Fleet\Models\vehicleStatus.dataservice.js" />
+    <Content Include="Areas\Fleet\Models\vehicleStatus.model.js" />
+    <Content Include="Areas\Fleet\Models\vehicleStatus.view.js" />
+    <Content Include="Areas\Fleet\Models\vehicleStatus.viewModel.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicleCategory.dataservice.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicleCategory.model.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicleCategory.view.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicleCategory.viewModel.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicleMake.dataservice.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicleMake.model.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicleMake.view.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicleMake.viewModel.js" />
+    <Content Include="Areas\Fleet\Scripts\insuranceType.dataservice.js" />
+    <Content Include="Areas\Fleet\Scripts\insuranceType.model.js" />
+    <Content Include="Areas\Fleet\Scripts\insuranceType.view.js" />
+    <Content Include="Areas\Fleet\Scripts\insuranceType.viewModel.js" />
+    <Content Include="Areas\Fleet\Scripts\maintenanceType.dataservice.js" />
+    <Content Include="Areas\Fleet\Scripts\maintenanceType.model.js" />
+    <Content Include="Areas\Fleet\Scripts\maintenanceType.view.js" />
+    <Content Include="Areas\Fleet\Scripts\maintenanceType.viewModel.js" />
+    <Content Include="Areas\Fleet\Scripts\maintenanceTypeGroup.dataservice.js" />
+    <Content Include="Areas\Fleet\Scripts\maintenanceTypeGroup.model.js" />
+    <Content Include="Areas\Fleet\Scripts\maintenanceTypeGroup.view.js" />
+    <Content Include="Areas\Fleet\Scripts\maintenanceTypeGroup.viewModel.js" />
     <Content Include="Areas\Fleet\Scripts\vehicleCheckList.dataservice.js" />
     <Content Include="Areas\Fleet\Scripts\vehicleCheckList.model.js" />
     <Content Include="Areas\Fleet\Scripts\vehicleCheckList.view.js" />
@@ -1253,6 +1378,10 @@
     <Content Include="Areas\Fleet\Scripts\hireGroup.view.js" />
     <Content Include="Areas\Fleet\Scripts\vehicle.viewModel.js" />
     <Content Include="Areas\Fleet\Scripts\hireGroup.viewModel.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicleModel.dataservice.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicleModel.model.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicleModel.view.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicleModel.viewModel.js" />
     <Content Include="Areas\GeographicalHierarchy\Scripts\area.dataservice.js" />
     <Content Include="Areas\GeographicalHierarchy\Scripts\area.model.js" />
     <Content Include="Areas\GeographicalHierarchy\Scripts\area.view.js" />
@@ -1494,6 +1623,12 @@
     <Content Include="Content\Images\delete.png" />
     <Content Include="Content\Images\edit.png" />
     <Content Include="Content\Images\spinner.gif" />
+    <Content Include="Content\InsuranceType.css">
+      <DependentUpon>InsuranceType.less</DependentUpon>
+    </Content>
+    <Content Include="Content\InsuranceType.min.css">
+      <DependentUpon>InsuranceType.css</DependentUpon>
+    </Content>
     <Content Include="Content\JobType.css">
       <DependentUpon>JobType.less</DependentUpon>
     </Content>
@@ -1507,6 +1642,18 @@
     </Content>
     <Content Include="Content\MainSite.min.css">
       <DependentUpon>MainSite.css</DependentUpon>
+    </Content>
+    <Content Include="Content\MaintenanceType.css">
+      <DependentUpon>MaintenanceType.less</DependentUpon>
+    </Content>
+    <Content Include="Content\MaintenanceType.min.css">
+      <DependentUpon>MaintenanceType.css</DependentUpon>
+    </Content>
+    <Content Include="Content\MaintenanceTypeGroup.css">
+      <DependentUpon>MaintenanceTypeGroup.less</DependentUpon>
+    </Content>
+    <Content Include="Content\MaintenanceTypeGroup.min.css">
+      <DependentUpon>MaintenanceTypeGroup.css</DependentUpon>
     </Content>
     <Content Include="Content\MarketingChannel.css">
       <DependentUpon>MarketingChannel.less</DependentUpon>
@@ -1714,11 +1861,35 @@
     <Content Include="Content\Vehicle.css">
       <DependentUpon>Vehicle.less</DependentUpon>
     </Content>
+    <Content Include="Content\VehicleCategory.css">
+      <DependentUpon>VehicleCategory.less</DependentUpon>
+    </Content>
+    <Content Include="Content\VehicleCategory.min.css">
+      <DependentUpon>VehicleCategory.css</DependentUpon>
+    </Content>
     <Content Include="Content\VehicleCheckList.css">
       <DependentUpon>VehicleCheckList.less</DependentUpon>
     </Content>
     <Content Include="Content\VehicleCheckList.min.css">
       <DependentUpon>VehicleCheckList.css</DependentUpon>
+    </Content>
+    <Content Include="Content\VehicleMake.css">
+      <DependentUpon>VehicleMake.less</DependentUpon>
+    </Content>
+    <Content Include="Content\VehicleMake.min.css">
+      <DependentUpon>VehicleMake.css</DependentUpon>
+    </Content>
+    <Content Include="Content\VehicleModel.css">
+      <DependentUpon>VehicleModel.less</DependentUpon>
+    </Content>
+    <Content Include="Content\VehicleModel.min.css">
+      <DependentUpon>VehicleModel.css</DependentUpon>
+    </Content>
+    <Content Include="Content\VehicleStatus.css">
+      <DependentUpon>VehicleStatus.less</DependentUpon>
+    </Content>
+    <Content Include="Content\VehicleStatus.min.css">
+      <DependentUpon>VehicleStatus.css</DependentUpon>
     </Content>
     <Content Include="Content\WorkLocation.css">
       <DependentUpon>WorkLocation.less</DependentUpon>
@@ -2151,6 +2322,8 @@
     <Content Include="Content\BusinessPartnerSubType.css.map">
       <DependentUpon>BusinessPartnerSubType.css</DependentUpon>
     </Content>
+    <Content Include="Areas\NonRevenueTicket\Views\NonRevenueTicket\_ActivityDialogForNRT.cshtml" />
+    <Content Include="Areas\NonRevenueTicket\Views\NonRevenueTicket\_ChaufferDialogForNRT.cshtml" />
     <Content Include="Areas\RentalAgreement\Views\Home\_HireGroupInsurancesDialog.cshtml" />
     <Content Include="Areas\BusinessPartner\Views\Home\CreditLimit.cshtml" />
     <Content Include="Areas\BusinessPartner\Views\Home\_CreditLimitEditor.cshtml" />
@@ -2164,6 +2337,48 @@
     </Content>
     <Content Include="Areas\BusinessPartner\Views\Home\MarketingChannel.cshtml" />
     <Content Include="Areas\BusinessPartner\Views\Home\_MarketingChannelEditor.cshtml" />
+    <Content Include="Areas\Fleet\Views\Home\MaintenanceTypeGroup.cshtml" />
+    <Content Include="Areas\Fleet\Views\Home\_MaintenanceTypeGroupEditor.cshtml" />
+    <Content Include="Content\MaintenanceTypeGroup.less" />
+    <Content Include="Content\MaintenanceTypeGroup.css.map">
+      <DependentUpon>MaintenanceTypeGroup.css</DependentUpon>
+    </Content>
+    <Content Include="Content\MaintenanceType.less" />
+    <Content Include="Content\MaintenanceType.css.map">
+      <DependentUpon>MaintenanceType.css</DependentUpon>
+    </Content>
+    <Content Include="Areas\Fleet\Views\Home\MaintenanceType.cshtml" />
+    <Content Include="Areas\Fleet\Views\Home\_MaintenaceTypeEditor.cshtml" />
+    <Content Include="Areas\Fleet\Views\Home\InsuranceType.cshtml" />
+    <Content Include="Areas\Fleet\Views\Home\_InsuranceTypeEditor.cshtml" />
+    <Content Include="Content\InsuranceType.less" />
+    <Content Include="Content\InsuranceType.css.map">
+      <DependentUpon>InsuranceType.css</DependentUpon>
+    </Content>
+    <Content Include="Areas\Fleet\Views\Home\VehicleMake.cshtml" />
+    <Content Include="Areas\Fleet\Views\Home\_VehicleMakeEditor.cshtml" />
+    <Content Include="Content\VehicleMake.less" />
+    <Content Include="Content\VehicleMake.css.map">
+      <DependentUpon>VehicleMake.css</DependentUpon>
+    </Content>
+    <Content Include="Areas\Fleet\Views\Home\VehicleCategory.cshtml" />
+    <Content Include="Areas\Fleet\Views\Home\_VehicleCategoryEditor.cshtml" />
+    <Content Include="Content\VehicleCategory.less" />
+    <Content Include="Content\VehicleCategory.css.map">
+      <DependentUpon>VehicleCategory.css</DependentUpon>
+    </Content>
+    <Content Include="Areas\Fleet\Views\Home\VehicleModel.cshtml" />
+    <Content Include="Areas\Fleet\Views\Home\_VehicleModelEditor.cshtml" />
+    <Content Include="Content\VehicleModel.less" />
+    <Content Include="Content\VehicleModel.css.map">
+      <DependentUpon>VehicleModel.css</DependentUpon>
+    </Content>
+    <Content Include="Areas\Fleet\Views\Home\VehicleStatus.cshtml" />
+    <Content Include="Areas\Fleet\Views\Home\_VehicleStatusEditor.cshtml" />
+    <Content Include="Content\VehicleStatus.less" />
+    <Content Include="Content\VehicleStatus.css.map">
+      <DependentUpon>VehicleStatus.css</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\Khurram.pubxml" />
     <Content Include="RichTextEditor\plugins\Thumbs.db" />
     <None Include="Scripts\amplify-vsdoc.js" />
@@ -2308,10 +2523,10 @@
     <Folder Include="Areas\Api\Views\WorkPlaceTypeBase\" />
     <Folder Include="Areas\Api\Views\workplaceType\" />
     <Folder Include="Areas\Api\Views\Workplace\" />
+    <Folder Include="Areas\BusinessPartner\Models\" />
     <Folder Include="Areas\Common\Controllers\" />
     <Folder Include="Areas\Common\Models\" />
     <Folder Include="Areas\EmployeeManagement\Models\" />
-    <Folder Include="Areas\Fleet\Models\" />
     <Folder Include="Areas\GeographicalHierarchy\Models\" />
     <Folder Include="Areas\NonRevenueTicket\Models\" />
     <Folder Include="Areas\Organization\Models\" />
@@ -2505,6 +2720,38 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>FleetPool.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FleetPool\InsuranceType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>InsuranceType.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FleetPool\InsuranceType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>InsuranceType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FleetPool\MaintenanceType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MaintenanceType.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FleetPool\MaintenanceType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MaintenanceType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FleetPool\MaintenanceTypeGroup.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MaintenanceTypeGroup.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FleetPool\MaintenanceTypeGroup.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MaintenanceTypeGroup.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FleetPool\VehicleCategory.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>VehicleCategory.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FleetPool\VehicleCategory.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>VehicleCategory.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\FleetPool\VehicleCheckList.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>VehicleCheckList.ar.Designer.cs</LastGenOutput>
@@ -2512,6 +2759,30 @@
     <EmbeddedResource Include="Resources\FleetPool\VehicleCheckList.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>VehicleCheckList.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FleetPool\VehicleMake.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>VehicleMake.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FleetPool\VehicleMake.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>VehicleMake.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FleetPool\VehicleModel.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>VehicleModel.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FleetPool\VehicleModel.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>VehicleModel.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FleetPool\VehicleStatus.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>VehicleStatus.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FleetPool\VehicleStatus.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>VehicleStatus.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\GeographicalHierarchy\Area.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

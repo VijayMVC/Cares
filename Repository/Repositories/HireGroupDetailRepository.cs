@@ -88,6 +88,32 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(h => h.HireGroupId == hireGroupId);
         }
+
+        /// <summary>
+        /// Association check of HireGroup Detail and Vehicle Make
+        /// </summary>
+        public bool IsHireGroupDetailAssociatedWithVehicleMake(long vehiclemakeId)
+        {
+            return DbSet.Count(hiregroupDet => hiregroupDet.VehicleMakeId == vehiclemakeId) > 0;
+        }
+
+        /// <summary>
+        /// Association check of HireGroup Detail and Vehicle Category
+        /// </summary>
+        public bool IsHireGroupDetailAssociatedWithVehicleCategory(long vehicleCategoryId)
+        {
+            return DbSet.Count(hiregroupDet => hiregroupDet.VehicleCategoryId == vehicleCategoryId) > 0;
+            
+        }
+
+        /// <summary>
+        /// Association check of HireGroup Detail and Vehicle Model
+        /// </summary>
+        public bool IsHireGroupDetailAssociatedWithVehicleModel(long vehicleModelId)
+        {
+            return DbSet.Count(hiregroupDet => hiregroupDet.VehicleMakeId == vehicleModelId) > 0;
+            
+        }
         #endregion
     }
 }

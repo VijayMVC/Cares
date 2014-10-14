@@ -4,6 +4,8 @@ var ist = {
     shortDatePattern: "dd-M-yy",
     customShortDatePattern: "dd-mm-yy",
     timePattern: "HH:mm",
+    hourPattern: "HH",
+    minutePattern: "mm",
     dateTimePattern: "DD/MM/YY HH:mm",
     dateTimeWithSecondsPattern: "DD/MM/YY HH:mm:ss",
     // UTC Date Format

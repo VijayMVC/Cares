@@ -42,7 +42,7 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Get Hire Groups by Hire Group Code, Vehicle Make / Category / Model / Model Year
         /// </summary>
-        public IEnumerable<VehicleListViewContent> Post(VehicleSeacrhRequestForNRT request)
+        public IEnumerable<Vehicle> Post(VehicleSeacrhRequestForNRT request)
         {
             if (request == null)
             {
@@ -50,7 +50,7 @@ namespace Cares.Web.Areas.Api.Controllers
             }
 
             return vehicleService.GetVehicleInfoForNrt(request.OperationWorkPlaceId, request.StartDtTime, request.EndDtTime)
-                .Select(hg => hg.CreateFromListViewContent());
+                .Select(hg => hg.CreateFromForNrt());
         }
 
         #endregion

@@ -7,7 +7,14 @@ namespace Cares.Models.RequestModels
     /// </summary>
     public class DocumentSearchRequest : GetPagedListRequest
     {
+        /// <summary>
+        /// Document code and name for search
+        /// </summary>
         public string DocumentCodeNameText { get; set; }
+
+        /// <summary>
+        /// Document Group ID used for search
+        /// </summary>
         public int? DocumentGroypId { get; set; }
      
         /// <summary>

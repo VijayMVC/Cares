@@ -40,7 +40,7 @@ namespace Cares.Implementation.Services
                 dbVersion.RecLastUpdatedBy = occupationTypeRepository.LoggedInUserIdentity;
             dbVersion.RecCreatedDt = dbVersion.RecLastUpdatedDt = DateTime.Now;
             dbVersion.RowVersion = 0;
-            dbVersion.UserDomainKey = 1;
+            dbVersion.UserDomainKey = occupationTypeRepository.UserDomainKey;
             dbVersion.OccupationTypeCode = occupationTypeRequest.OccupationTypeCode;
             dbVersion.OccupationTypeName = occupationTypeRequest.OccupationTypeName;
             dbVersion.OccupationTypeDescription = occupationTypeRequest.OccupationTypeDescription;

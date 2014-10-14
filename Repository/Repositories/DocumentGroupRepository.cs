@@ -74,10 +74,10 @@ namespace Cares.Repository.Repositories
             int fromRow = (request.PageNo - 1) * request.PageSize;
             int toRow = request.PageSize;
             Expression<Func<DocumentGroup, bool>> query =
-                city =>
+                documentGroup =>
                     (string.IsNullOrEmpty(request.DocumentGroupFilterText) ||
-                     (city.DocumentGroupName.Contains(request.DocumentGroupFilterText)) ||
-                     (city.DocumentGroupCode.Contains(request.DocumentGroupFilterText)));
+                     (documentGroup.DocumentGroupName.Contains(request.DocumentGroupFilterText)) ||
+                     (documentGroup.DocumentGroupCode.Contains(request.DocumentGroupFilterText)));
 
             rowCount = DbSet.Count(query);
             return request.IsAsc

@@ -1,4 +1,5 @@
-﻿using Cares.Interfaces.Repository;
+﻿using Cares.Interfaces.IServices;
+using Cares.Interfaces.Repository;
 using Cares.Repository.BaseRepository;
 using Cares.Repository.Repositories;
 using Microsoft.Practices.Unity;
@@ -112,6 +113,18 @@ namespace Cares.Repository
             unityContainer.RegisterType<IAlloactionStatusRepository, AllocationStatusRepository>();
             unityContainer.RegisterType<IBusinessPartnerMainTypeRepository, BusinessPartnerMainTypeRepository>();
             unityContainer.RegisterType<IRentalAgreementRepository, RentalAgreementRepository>();
+            unityContainer.RegisterType<INrtVehicleRepository, NrtVehicleRepository>();
+            unityContainer.RegisterType<IRaStatusRepository, RaStatusRepository>();
+            unityContainer.RegisterType<IMainteneceTypeGroupRepository, MainteneceTypeGroupRepository>();
+            unityContainer.RegisterType<IStandardDiscountRepository, StandardDiscountRepository>();
+            unityContainer.RegisterType<IVehicleInsuranceInfoRepository, VehicleInsuranceInfoRepository>();
+            unityContainer.RegisterType<IVehicleReservationRepository, VehicleReservationRepository>();
+            unityContainer.RegisterType<IVehicleSubStatusRepository, VehicleSubStatusRepository>();
+            unityContainer.RegisterType<IChaufferReservationRepository, ChaufferReservationRepository>();
+            unityContainer.RegisterType<INrtDriverRepository, NrtDriverRepository>();
+            unityContainer.RegisterType<INrtChargeRepository, NrtChargeRepository>();
+
+
         }
     }
 }

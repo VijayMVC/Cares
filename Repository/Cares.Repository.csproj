@@ -161,10 +161,15 @@
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\ChaufferChargeMainRepository.cs" />
     <Compile Include="Repositories\BpMainTypeRepository.cs" />
+    <Compile Include="Repositories\ChaufferReservationRepository.cs" />
     <Compile Include="Repositories\CreditLimitRepository.cs" />
+    <Compile Include="Repositories\MainteneceTypeGroupRepository.cs" />
     <Compile Include="Repositories\DocumentGroupRepository.cs" />
     <Compile Include="Repositories\CityRepository.cs" />
     <Compile Include="Repositories\DocumentRepository.cs" />
+    <Compile Include="Repositories\NrtChargeRepository.cs" />
+    <Compile Include="Repositories\NrtDriverRepository.cs" />
+    <Compile Include="Repositories\RaStatusRepository.cs" />
     <Compile Include="Repositories\NrtMainRepository.cs" />
     <Compile Include="Repositories\NrtTypeRepository.cs" />
     <Compile Include="Repositories\DesignGradeRepository.cs" />
@@ -196,6 +201,7 @@
     <Compile Include="Repositories\MarketingChannelRepository.cs" />
     <Compile Include="Repositories\MeasurementUnitRepository.cs" />
     <Compile Include="Repositories\MenuRightRepository.cs" />
+    <Compile Include="Repositories\NrtVehicleRepository.cs" />
     <Compile Include="Repositories\OccupationTypeRepository.cs" />
     <Compile Include="Repositories\OperationRepository.cs" />
     <Compile Include="Repositories\OperationsWorkPlaceRepository.cs" />
@@ -215,6 +221,7 @@
     <Compile Include="Repositories\ServiceRtMainRepository.cs" />
     <Compile Include="Repositories\ServiceRtRepository.cs" />
     <Compile Include="Repositories\ServiceTypeRepository.cs" />
+    <Compile Include="Repositories\StandardDiscountRepository.cs" />
     <Compile Include="Repositories\StandardRateMainRepository.cs" />
     <Compile Include="Repositories\StandardRateRepository.cs" />
     <Compile Include="Repositories\SubRegionRepository.cs" />
@@ -234,7 +241,9 @@
     <Compile Include="Repositories\VehiclePurchaseInfoRepository.cs" />
     <Compile Include="Repositories\VehicleRepository.cs" />
     <Compile Include="Repositories\AllocationStatusRepository.cs" />
+    <Compile Include="Repositories\VehicleReservationRepository.cs" />
     <Compile Include="Repositories\VehicleStatusRepository.cs" />
+    <Compile Include="Repositories\VehicleSubStatusRepository.cs" />
     <Compile Include="Repositories\WorkLocationRepository.cs" />
     <Compile Include="Repositories\WorkplaceRepository.cs" />
     <Compile Include="Repositories\WorkplaceTypeRepository.cs" />

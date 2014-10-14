@@ -41,7 +41,7 @@ namespace Cares.Implementation.Services
                 businessSegment.RecLastUpdatedBy = businessSegmentRepository.LoggedInUserIdentity;
             businessSegment.RecCreatedDt = businessSegment.RecLastUpdatedDt = DateTime.Now;
             businessSegment.RowVersion = 0;
-            businessSegment.UserDomainKey = 1;
+            businessSegment.UserDomainKey = businessSegmentRepository.UserDomainKey;
         }
 
         /// <summary>

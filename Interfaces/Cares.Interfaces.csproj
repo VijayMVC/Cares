@@ -56,7 +56,13 @@
     <Compile Include="IServices\IChaufferChargeService.cs" />
     <Compile Include="IServices\IBusinessPartnerRelationTypeService.cs" />
     <Compile Include="IServices\IBusinessPartnerSubTypeService.cs" />
+    <Compile Include="IServices\IVehicleModelService.cs" />
     <Compile Include="IServices\ICreditLimitService.cs" />
+    <Compile Include="IServices\IVehicleStatusService.cs" />
+    <Compile Include="IServices\IVehicleCategoryService.cs" />
+    <Compile Include="IServices\IVehicleMakeService.cs" />
+    <Compile Include="IServices\IMaintenanceTypeService.cs" />
+    <Compile Include="IServices\IMainteneceTypeGroupService.cs" />
     <Compile Include="IServices\IDocumentService.cs" />
     <Compile Include="IServices\INRTService.cs" />
     <Compile Include="IServices\IInsuranceTypeService.cs" />
@@ -99,8 +105,12 @@
     <Compile Include="IServices\IWorkplaceTypeService.cs" />
     <Compile Include="Repository\IRentalAgreementRepository.cs" />
     <Compile Include="Repository\IBusinessPartnerMainTypeRepository.cs" />
+    <Compile Include="Repository\IChaufferReservationRepository.cs" />
     <Compile Include="Repository\ICreditLimitRepository.cs" />
     <Compile Include="Repository\IBpSubTypeRepository.cs" />
+    <Compile Include="Repository\IMainteneceTypeGroupRepository.cs" />
+    <Compile Include="Repository\INrtChargeRepository.cs" />
+    <Compile Include="Repository\INrtDriverRepository.cs" />
     <Compile Include="Repository\IRACustomerDocumentRepository.cs" />
     <Compile Include="Repository\IChaufferChargeMainRepository.cs" />
     <Compile Include="Repository\IChaufferChargeRepository.cs" />
@@ -124,6 +134,7 @@
     <Compile Include="Repository\ILicenseTypeRepository.cs" />
     <Compile Include="Repository\IMaintenanceTypeRepository.cs" />
     <Compile Include="Repository\IRAServiceItemRepository.cs" />
+    <Compile Include="Repository\IRaStatusRepository.cs" />
     <Compile Include="Repository\ISeasonalDiscountMainRepository.cs" />
     <Compile Include="Repository\ISeasonalDiscountRepository.cs" />
     <Compile Include="Repository\IServiceItemRepository.cs" />
@@ -173,6 +184,7 @@
     <Compile Include="Repository\IInsuranceRtMainRepository.cs" />
     <Compile Include="Repository\IInsuranceRtRepository.cs" />
     <Compile Include="Repository\IInsuranceTypeRepository.cs" />
+    <Compile Include="Repository\IStandardDiscountRepository.cs" />
     <Compile Include="Repository\ITransmissionTypeRepository.cs" />
     <Compile Include="Repository\IVehicleCheckListItemRepository.cs" />
     <Compile Include="Repository\IVehicleCheckListRepository.cs" />
@@ -213,11 +225,14 @@
     <Compile Include="Repository\IVehicleMakeRepository.cs" />
     <Compile Include="Repository\IVehicleModelRepository.cs" />
     <Compile Include="Repository\IAllocationStatusRepository.cs" />
+    <Compile Include="Repository\IVehicleReservationRepository.cs" />
     <Compile Include="Repository\IVehicleStatusRepository.cs" />
+    <Compile Include="Repository\IVehicleSubStatusRepository.cs" />
     <Compile Include="Repository\IWorkLocationRepository.cs" />
     <Compile Include="Repository\IWorkplaceRepository.cs" />
     <Compile Include="Repository\IWorkplaceTypeRepository.cs" />
     <Compile Include="Repository\IRaVehicleCheckListRepository.cs" />
+    <Compile Include="Repository\INrtVehicleRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Cares.Models.csproj">

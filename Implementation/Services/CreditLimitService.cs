@@ -31,7 +31,7 @@ namespace Cares.Implementation.Services
                 dbVersion.RecLastUpdatedBy = creditLimitRepository.LoggedInUserIdentity;
             dbVersion.RecCreatedDt = dbVersion.RecLastUpdatedDt = DateTime.Now;
             dbVersion.RowVersion = 0;
-            dbVersion.UserDomainKey = 1;
+            dbVersion.UserDomainKey = creditLimitRepository.UserDomainKey;
             dbVersion.BpSubTypeId = creditLimit.BpSubTypeId;
             dbVersion.BpRatingTypeId = creditLimit.BpRatingTypeId;
             dbVersion.Description = creditLimit.Description;
@@ -47,7 +47,7 @@ namespace Cares.Implementation.Services
         {
             dbVersion.RecLastUpdatedBy = creditLimitRepository.LoggedInUserIdentity;
             dbVersion.RecLastUpdatedDt = DateTime.Now;
-            dbVersion.RowVersion = dbVersion.RowVersion + 1;
+            dbVersion.RowVersion = dbVersion.RowVersion ++;
             dbVersion.BpSubTypeId = creditLimit.BpSubTypeId;
             dbVersion.BpRatingTypeId = creditLimit.BpRatingTypeId;
             dbVersion.Description = creditLimit.Description;

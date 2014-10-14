@@ -15,8 +15,13 @@
                                     <thead>
                                         <tr>
                                             <th> <span><span></span></span></th>
+                                            <th> <span><span>Plate Number</span></span></th>
+                                            <th> <span><span>Current Odemetor</span></span></th>
                                             <th class="make"> <span>Vehicle Make<span></span></span></th>
                                             <th class="model"> <span>Vehicle Model<span></span></span></th>
+                                            <th class="model"> <span>Vehicle Category<span></span></span></th>
+                                            <th class="model"> <span>Vehicle Status<span></span></span></th>
+                                            <th class="model"> <span>Model Year<span></span></span></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -30,10 +35,15 @@
                             </div>
                         </div>
                         <script id="itemVehicleTemplate" type="text/html">
-                            <tr data-bind="click: $root.selecttariffType">
+                            <tr data-bind="click: $root.selectVehicle, css: { selectedRow: $data === $root.selectedVehicle() }">
                                 <td><input type="checkbox" data-bind="checked:$root.isVhicleChecked" /></td>
+                                <td data-bind="text: plateNumber"></td>
+                                <td data-bind="text: currentOdometer"></td>
                                 <td data-bind="text: vehicleMakeCodeName"></td>
                                 <td data-bind="text: vehicleModelCodeName"></td>
+                                <td data-bind="text: vehicleCategoryCodeName"></td>
+                                <td data-bind="text: vehicleStatusCodeName"></td>
+                                <td data-bind="text: modelYear"></td>
                             </tr>
                         </script>
                     </form>
@@ -41,7 +51,7 @@
             </div>
             <div class="modal-footer">
                 @*<button type="button" id="dialog-confirm-no" class="btn btn-default" data-bind="click: $root.cancel">No</button>
-                <button type="button" id="dialog-confirm-yes" class="btn btn-primary" data-bind="click: $root.proceed">Yes</button>*@
+                    <button type="button" id="dialog-confirm-yes" class="btn btn-primary" data-bind="click: $root.proceed">Yes</button>*@
             </div>
         </div>
     </div>

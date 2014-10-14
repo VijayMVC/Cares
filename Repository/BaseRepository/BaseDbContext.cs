@@ -87,6 +87,28 @@ namespace Cares.Repository.BaseRepository
 
         public DbSet<NrtType> NrtTypes { get; set; }
         public DbSet<NrtMain> NrtMain { get; set; }
+        public DbSet<NrtVehicle> NrtVehicles { get; set; }
+        public DbSet<RaStatus> RaStatuses { get; set; }
+
+        /// <summary>
+        /// Vehicle Reservations Db Set
+        /// </summary>
+        public DbSet<VehicleReservation> VehicleReservations { get; set; }
+
+        /// <summary>
+        /// Chauffer Reservations Db 
+        /// </summary>
+        public DbSet<ChaufferReservation> ChaufferReservations { get; set; }
+
+        /// <summary>
+        /// Nrt Charge
+        /// </summary>
+        public DbSet<NrtCharge> NrtCharges { get; set; }
+
+        /// <summary>
+        /// Nrt Drivers Db Set
+        /// </summary>
+        public DbSet<NrtDriver> NrtDrivers { get; set; }
 
         public DbSet<RaVehicleCheckList>  RaVehicleCheckLists { get; set; }
 
@@ -96,6 +118,7 @@ namespace Cares.Repository.BaseRepository
         /// </summary>
         public DbSet<Company> Companies { get; set; }
         public DbSet<CreditLimit> CreditLimits { get; set; }
+        public DbSet<StandardDiscount> StandardDiscounts { get; set; }
 
         /// <summary>
         /// Business Segments DB Set
@@ -342,6 +365,13 @@ namespace Cares.Repository.BaseRepository
         /// Vehicle Status  Db Set 
         /// </summary>
         public DbSet<VehicleStatus> VehicleStatuses { get; set; }
+
+         /// <summary>
+        /// Vehicle sub Statuses  Db Set 
+        /// </summary>
+        public DbSet<VehicleSubStatus> VehicleSubStatuses { get; set; }
+
+        
 
         /// <summary>
         /// Transmission Type  Db Set 

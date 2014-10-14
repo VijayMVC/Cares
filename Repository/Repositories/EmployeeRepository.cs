@@ -123,13 +123,15 @@ namespace Cares.Repository.Repositories
                 .Include("EmpJobInfo.DesigGrade")
                 .Where(
                     employee =>
-                        employee.EmpJobInfo.WorkPlace.OperationsWorkPlaces.Any(ow => ow.OperationsWorkPlaceId == request.OperationsWorkPlaceId) &&
+                        employee.EmpJobInfo.WorkPlace.OperationsWorkPlaces.Any(
+                            ow => ow.OperationsWorkPlaceId == request.OperationsWorkPlaceId) &&
                         employee.EmpJobInfo.Designation.DesignationKey == request.DesignationKey &&
-                        (employee.ChaufferReservations.Count == 0 ||
-                         !employee.ChaufferReservations.Any(
-                             chaufferRes => chaufferRes.StartDtTime >= request.EndDtTime &&
-                                            chaufferRes.EndDtTime <= request.StartDtTime))).ToList();
+            (employee.ChaufferReservations.Count == 0 ||
+             !employee.ChaufferReservations.Any(
+                 chaufferRes => chaufferRes.StartDtTime >= request.EndDtTime &&
+                                chaufferRes.EndDtTime <= request.StartDtTime))).ToList();
         }
+
 
         #endregion
     }

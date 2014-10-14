@@ -32,7 +32,7 @@ namespace Cares.Implementation.Services
                 dbVersion.RecLastUpdatedBy = nrtTypeRepository.LoggedInUserIdentity;
             dbVersion.RecCreatedDt = dbVersion.RecLastUpdatedDt = DateTime.Now;
             dbVersion.RowVersion = 0;
-            dbVersion.UserDomainKey = 1;
+            dbVersion.UserDomainKey = nrtTypeRepository.UserDomainKey;
             dbVersion.NrtTypeCode = nrtType.NrtTypeCode;
             dbVersion.NrtTypeName = nrtType.NrtTypeName;
             dbVersion.Description = nrtType.Description;

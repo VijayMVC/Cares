@@ -93,6 +93,30 @@ namespace Cares.Web.ModelMappers
         }
 
         /// <summary>
+        ///  Create web model from entity
+        /// </summary>
+        public static Vehicle CreateFromForNrt(this DomainModels.Vehicle source)
+        {
+
+            return new Vehicle
+            {
+                VehicleId = source.VehicleId,
+                VehicleName = source.VehicleName,
+                PlateNumber = source.PlateNumber,
+                TankSize = source.TankSize,
+                CurrentOdometer = source.CurrentOdometer,
+                FuelLevel = source.FuelLevel,
+                ModelYear = source.ModelYear,
+                VehicleMakeCodeName = source.VehicleMake != null ? source.VehicleMake.VehicleMakeCode + " - " + source.VehicleMake.VehicleMakeName : string.Empty,
+                VehicleStatusCodeName = source.VehicleStatus != null ? source.VehicleStatus.VehicleStatusCode + " - " + source.VehicleStatus.VehicleStatusName : string.Empty,
+                VehicleModelCodeName = source.VehicleModel != null ? source.VehicleModel.VehicleModelCode + " - " + source.VehicleModel.VehicleModelName : string.Empty,
+                VehicleCategoryCodeName = source.VehicleCategory != null ? source.VehicleCategory.VehicleCategoryCode + " - " + source.VehicleCategory.VehicleCategoryName : string.Empty,
+               
+            };
+        }
+
+
+        /// <summary>
         /// Create Vehicle Search Response from domain Vehicle Search Response
         /// </summary>
         public static GetVehicleResponse CreateFrom(this ResponseModel.GetVehicleResponse source)

@@ -49,8 +49,6 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get Seasonal Discounts By Seasonal Discount Main Id
         /// </summary>
-        /// <param name="seasonalDiscountMainId"></param>
-        /// <returns></returns>
         public IEnumerable<SeasonalDiscount> GetSeasonalDiscountsBySeasonalDiscountMainId(long seasonalDiscountMainId)
         {
             return
@@ -61,6 +59,31 @@ namespace Cares.Repository.Repositories
 
         }
 
+        /// <summary>
+        /// Association check of Seasonal Discount and Vehicle Make
+        /// </summary>
+        public bool IsSeasonalDiscountAssociatedWithVehicleMake(long vehicleMakeId)
+        {
+            return DbSet.Count(sessionlaDiscount => sessionlaDiscount.VehicleMakeId == vehicleMakeId) > 0;
+        }
+
+        /// <summary>
+        /// Association check of Seasonal Discount and Vehicle Category
+        /// </summary>
+        public bool IsSeasonalDiscountAssociatedWithVehicleCategory(long vehicleCategoryId)
+        {
+            return DbSet.Count(sessionlaDiscount => sessionlaDiscount.VehicleCategoryId == vehicleCategoryId) > 0;
+
+        }
+
+        /// <summary>
+        /// Association check of Seasonal Discount and Vehicle Model
+        /// </summary>
+        public bool IsSeasonalDiscountAssociatedWithVehicleModel(long vehicleModelId)
+        {
+            return DbSet.Count(sessionlaDiscount => sessionlaDiscount.VehicleModelId == vehicleModelId) > 0;
+            
+        }
 
         #endregion
     }

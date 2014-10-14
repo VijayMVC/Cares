@@ -1,0 +1,98 @@
+﻿@{
+    ViewBag.Title = Cares.Web.Resources.FleetPool.MaintenanceType.MaintenanceTypeLabel;
+}
+<div class="row" id="MaintenanceTypeBinding">
+
+    <div class="row " data-bind="visible: !isMaintenanceTypeEditorVisible()">
+        <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.FleetPool.MaintenanceType.MaintenanceTypeLabel</h3>
+        <div class="header-toolsSection">
+            <a href="#" class="label label-default create-new-icon" data-bind="click: onCreateForm" title="@Cares.Web.Resources.Shared.Common.CreateNew">@Cares.Web.Resources.Shared.Common.New</a>
+            <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title="@Cares.Web.Resources.Shared.Common.ShowFilter" style="display: none"></a>
+        </div>
+    </div>
+    <div class="row searchFilterSection" data-bind="visible: !isMaintenanceTypeEditorVisible() && filterSectionVisilble()" style="display: none">
+        <div class="well">
+            <form class="form-horizontal">
+                <div class="col-xs-3">
+                    <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.FleetPool.MaintenanceType.Search + ">")" data-bind="value: searchFilter" />
+                </div>
+
+                <div class="col-md-3">
+                    <select class="form-control" data-bind="options: $root.baseMaintenanceTypeGroupsList, optionsText: 'MaintenanceTypeGroupCodeName', optionsValue: 'MaintenanceTypeGroupId', optionsCaption: '&lt;' + '@Cares.Web.Resources.BusinessPartner.Document.DocumentGroup'+ '&gt;' , value:baseMaintenanceTypeGroupFilter "></select>
+                </div>
+
+                <button type="submit" class="btn btn-success" data-bind="click: search">@Cares.Web.Resources.Shared.Common.Search</button>
+                <button type="submit" class="btn btn-default" data-bind="click:resetResuults">@Cares.Web.Resources.Shared.Common.Reset</button>
+                <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click:hideFilterSection" title="@Cares.Web.Resources.Shared.Common.HideSection"></a>
+            </form>
+        </div>
+    </div>
+    <div class="row searchFilterResultSection" data-bind="visible: !isMaintenanceTypeEditorVisible()">
+        <div class="well">
+            <table id="MaintenanceTypeTable" class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th class="maintenanceTypeCode"> <span id="1">@Cares.Web.Resources.FleetPool.MaintenanceType.Code<span class="icon-up"></span></span></th>
+                        <th class="maintenanceTypeName"> <span id="2">@Cares.Web.Resources.FleetPool.MaintenanceType.Name<span></span></span></th>
+                        <th class="maintenanceTypeDiscription"> <span>@Cares.Web.Resources.FleetPool.MaintenanceType.Description<span></span></span></th>
+                        <th class="maintenanceTypeGroup"> <span id="3">@Cares.Web.Resources.FleetPool.MaintenanceType.MaintenanceTypeGroup<span></span></span></th>
+                        <th> <span></span></th>
+                        <th> <span></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- ko template: { name: 'MaintenanceTypeFilterResultTemplate' , foreach: maintenanceTypes } -->
+                    <!-- /ko -->
+                </tbody>
+            </table>
+            <!-- ko with: pager -->
+            @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
+            <!-- /ko -->
+        </div>
+    </div>
+    <script id="deleteActionMaintenanceTypeTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onDeleteItem" title="@Cares.Web.Resources.Shared.Common.Delete"><span class="glyphicon glyphicon-remove"></span></a>
+    </script>
+
+    <script id="editActionMaintenanceTypeTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onEditItem" title="@Cares.Web.Resources.Shared.Common.Edit"><span class="glyphicon glyphicon-edit"></span></a>
+    </script>
+    <script id="MaintenanceTypeFilterResultTemplate" type="text/html">
+        <tr>
+            <td data-bind="text: code"></td>
+            <td data-bind="text: name"></td>
+            <td data-bind="text: description"></td>
+            <td data-bind="text: maintenanceTypeGroupName"></td>
+            <td>
+                <!-- ko template: { name: 'editActionMaintenanceTypeTemplate' } -->
+                <!-- /ko -->
+            </td>
+            <td>
+                <!-- ko template: { name: 'deleteActionMaintenanceTypeTemplate' } -->
+                <!-- /ko -->
+            </td>
+        </tr>
+    </script>
+    @Html.Partial("_MaintenaceTypeEditor")
+</div>
+<!-- ko stopBinding: true -->
+@Html.Partial("~/Areas/Common/Views/Shared/_ConfirmationDialog.cshtml")
+<!-- /ko -->
+@section inlinescripts
+{
+    <script type="text/javascript">
+        require(["maintenanceType/maintenanceType.view", "common/confirmation.view"]);
+    var ist = window.ist;
+    @{
+        <text>
+        ist.resourceText.MaintenanceTypeSuccessfullySavedMessage = '@Cares.Web.Resources.FleetPool.MaintenanceType.MaintenanceTypeSuccessfullySavedMessage';
+        ist.resourceText.FailedToSaveMaintenanceTypeError = '@Cares.Web.Resources.FleetPool.MaintenanceType.FailedToSaveMaintenanceTypeError';
+        ist.resourceText.FailedToLoadMaintenanceTypesError = '@Cares.Web.Resources.FleetPool.MaintenanceType.FailedToLoadMaintenanceTypesError';
+        ist.resourceText.MaintenanceTypeSuccessfullyDeletedMessage = '@Cares.Web.Resources.FleetPool.MaintenanceType.MaintenanceTypeSuccessfullyDeletedMessage';
+        ist.resourceText.FailedToDeleteMaintenanceTypeError = '@Cares.Web.Resources.FleetPool.MaintenanceType.FailedToDeleteMaintenanceTypeError';
+        ist.resourceText.FailedToLoadMaintenanceTypeBaseDataError = '@Cares.Web.Resources.FleetPool.MaintenanceType.FailedToLoadMaintenanceTypeBaseDataError';
+        </text>
+       }
+    </script>
+
+}

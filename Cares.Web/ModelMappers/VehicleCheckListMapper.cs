@@ -38,6 +38,7 @@ namespace Cares.Web.ModelMappers
                 IsInterior = source.IsInterior
             };
         }
+
         /// <summary>
         /// Crete From  search Response domain model
         /// </summary>
@@ -49,6 +50,7 @@ namespace Cares.Web.ModelMappers
                 TotalCount = source.TotalCount
             };
         }
+
         /// <summary>
         /// Crete From Domain model
         /// </summary>

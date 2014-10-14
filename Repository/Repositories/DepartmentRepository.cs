@@ -20,7 +20,7 @@ namespace Cares.Repository.Repositories
         
         #region privte
         /// <summary>
-        /// Company Orderby clause
+        /// Department Orderby clause
         /// </summary>
         private readonly Dictionary<DepartmentByColumn, Func<Department, object>> departmentOrderByClause = new Dictionary<DepartmentByColumn, Func<Department, object>>
                     {

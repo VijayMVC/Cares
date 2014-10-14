@@ -15,7 +15,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// </summary>
     public class AdditionalChargeDetailController : ApiController
     {
-      #region Private
+        #region Private
 
         private readonly IAdditionalChargeService additionalChargeService;
 
@@ -49,7 +49,7 @@ namespace Cares.Web.Areas.Api.Controllers
             }
             List<AdditionalCharge> result =
                 additionalChargeService.GetAdditionalChargesByAdditionChargeTypeId(additionalChargeType.AdditionalChargeTypeId).ToList();
-            return result.Count>0?result.Select(x => x.CreateFrom()).ToList():null;
+            return result.Count > 0 ? result.Select(x => x.CreateFrom()).ToList() : null;
         }
 
         #endregion

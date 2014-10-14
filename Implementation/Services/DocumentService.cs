@@ -33,7 +33,7 @@ namespace Cares.Implementation.Services
                 dbVersion.RecLastUpdatedBy = documentRepository.LoggedInUserIdentity;
             dbVersion.RecCreatedDt = dbVersion.RecLastUpdatedDt = DateTime.Now;
             dbVersion.RowVersion = 0;
-            dbVersion.UserDomainKey = 1;
+            dbVersion.UserDomainKey = documentRepository.UserDomainKey;
             dbVersion.DocumentCode = documentRequest.DocumentCode;
             dbVersion.DocumentName = documentRequest.DocumentName;
             dbVersion.DocumentDescription = documentRequest.DocumentDescription;

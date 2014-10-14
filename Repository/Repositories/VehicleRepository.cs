@@ -64,11 +64,11 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public GetVehicleResponse GetByHireGroup(VehicleSearchRequest request)
         {
-            Expression<Func<Vehicle, bool>> query = vehicle => 
+            Expression<Func<Vehicle, bool>> query = vehicle =>
                 (vehicle.HireGroup.HireGroupDetails.Any(hgd => hgd.HireGroupDetailId == request.HireGroupDetailId)) &&
                 (vehicle.OperationsWorkPlaceId == request.OperationsWorkPlaceId) &&
-                (vehicle.VehicleReservations.Count == 0 || 
-                !vehicle.VehicleReservations.Any(vehicleReservation => vehicleReservation.EndDtTime >= request.StarDtTime && 
+                (vehicle.VehicleReservations.Count == 0 ||
+                !vehicle.VehicleReservations.Any(vehicleReservation => vehicleReservation.EndDtTime >= request.StarDtTime &&
                     vehicleReservation.StartDtTime <= request.EndDtTime));
 
             IEnumerable<Vehicle> vehicles = request.IsAsc ? DbSet
@@ -117,6 +117,40 @@ namespace Cares.Repository.Repositories
         }
 
         /// <summary>
+        /// Association check b/n vehicle and vehicle make
+        /// </summary>
+        public bool IsVehicleMakeAssociatedWithVehicle(long vehicleMakeId)
+        {
+            return DbSet.Count(vehicle => vehicle.VehicleMakeId == vehicleMakeId) > 0;
+        }
+
+        /// <summary>
+        /// Association check b/n vehicle and vehicle Category
+        /// </summary>
+        public bool IsVehicleCategoryAssociatedWithVehicle(long vehicleCategoryId)
+        {
+            return DbSet.Count(vehicle => vehicle.VehicleCategoryId == vehicleCategoryId) > 0;
+        }
+
+        /// <summary>
+        /// Association check b/n vehicle and vehicle Status
+        /// </summary>
+        public bool IsVehicleStatusAssociatedWithVehicle(long vehicleStatusId)
+        {
+            return DbSet.Count(vehicle => vehicle.VehicleStatusId == vehicleStatusId) > 0;
+            
+        }
+
+         /// <summary>
+        /// Association check b/n vehicle and vehicle Model
+        /// </summary>
+        public bool IsVehicleModelAssociatedWithVehicle(long vehicleModelId)
+        {
+            return DbSet.Count(vehicle => vehicle.VehicleModelId == vehicleModelId) > 0;
+
+        }
+
+        /// <summary>
         /// Load Dependencies
         /// </summary>
         public void LoadDependencies(Vehicle vehicle)
@@ -138,10 +172,6 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get Vehicle Info For NRT
         /// </summary>
-        /// <param name="operationWorkPlaceId"></param>
-        /// <param name="startDtTime"></param>
-        /// <param name="endDtTime"></param>
-        /// <returns></returns>
         public IEnumerable<Vehicle> GetVehicleInfoForNrt(long operationWorkPlaceId, DateTime startDtTime,
             DateTime endDtTime)
         {
@@ -153,7 +183,7 @@ namespace Cares.Repository.Repositories
                          !vehicle.VehicleReservations.Any(
                              vehicleReservation =>
                                  vehicleReservation.EndDtTime >= startDtTime &&
-                                 vehicleReservation.StartDtTime <= endDtTime)));
+                                 vehicleReservation.StartDtTime <= endDtTime)) && vehicle.UserDomainKey == UserDomainKey).ToList();
         }
         #endregion
     }

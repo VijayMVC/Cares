@@ -27,6 +27,6 @@ namespace Cares.Web.Models
         /// <summary>
         /// Vehicle Statuses
         /// </summary>
-        public List<VehicleStatus> VehicleStatuses { get; set; }
+        public List<VehicleStatusDropDown> VehicleStatuses { get; set; }
     }
 }
