@@ -8,7 +8,6 @@ using Cares.Interfaces.Repository;
 using Cares.Models.Common;
 using Cares.Models.DomainModels;
 using Cares.Models.ResponseModels;
-using FaceSharp.Api.Extensions;
 
 namespace Cares.Implementation.Services
 {
@@ -464,6 +463,16 @@ namespace Cares.Implementation.Services
         /// </summary>
         private void AddBusinessPartnerIndividual(BusinessPartner businessPartner)
         {
+            if (businessPartner.BusinessPartnerIndividual.FirstName == null)
+            {
+                businessPartner.BusinessPartnerIndividual.FirstName = string.Empty;
+            }
+
+            if (businessPartner.BusinessPartnerIndividual.LastName == null)
+            {
+                businessPartner.BusinessPartnerIndividual.LastName = string.Empty;
+            }
+            
             businessPartner.BusinessPartnerIndividual.RecCreatedBy =
                 businessPartner.BusinessPartnerIndividual.RecLastUpdatedBy =
                     businessPartnerRepository.LoggedInUserIdentity;
@@ -872,7 +881,8 @@ namespace Cares.Implementation.Services
                 RaMainId = raMain.RaMainId,
                 ChaufferId = chauffer.ChaufferId ?? 0,
                 StartDtTime = chauffer.StartDtTime,
-                EndDtTime = chauffer.EndDtTime
+                EndDtTime = chauffer.EndDtTime,
+                UserDomainKey = rentalAgreementRepository.UserDomainKey
             };
         }
 
