@@ -97,6 +97,7 @@
     <Compile Include="IServices\IWorkLocationService.cs" />
     <Compile Include="IServices\IWorkplaceService.cs" />
     <Compile Include="IServices\IWorkplaceTypeService.cs" />
+    <Compile Include="Repository\IRentalAgreementRepository.cs" />
     <Compile Include="Repository\IBusinessPartnerMainTypeRepository.cs" />
     <Compile Include="Repository\ICreditLimitRepository.cs" />
     <Compile Include="Repository\IBpSubTypeRepository.cs" />

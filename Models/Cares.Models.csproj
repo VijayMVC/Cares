@@ -104,6 +104,7 @@
   <ItemGroup>
     <Compile Include="CommonTypes\PhoneType.cs" />
     <Compile Include="CommonTypes\DepartmentType.cs" />
+    <Compile Include="Common\RaStatusEnum.cs" />
     <Compile Include="Common\CreditLimitByColumn.cs" />
     <Compile Include="Common\MarketingChannelByColumn.cs" />
     <Compile Include="Common\VehicleStatusEnum.cs" />

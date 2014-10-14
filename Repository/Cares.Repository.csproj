@@ -137,6 +137,7 @@
     <Compile Include="Repositories\AdditionalChargeTypeRepository.cs" />
     <Compile Include="Repositories\BpSubTypeRepository.cs" />
     <Compile Include="Repositories\BusinessPartnerDocumentRepository.cs" />
+    <Compile Include="Repositories\RentalAgreementRepository.cs" />
     <Compile Include="Repositories\BusinessPartnerMainTypeRepository.cs" />
     <Compile Include="Repositories\ChaufferChargeRepository.cs" />
     <Compile Include="Repositories\AdditionalDriverChargeRepository.cs" />

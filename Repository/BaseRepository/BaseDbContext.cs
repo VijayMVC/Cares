@@ -483,6 +483,11 @@ namespace Cares.Repository.BaseRepository
         /// </summary>
         public DbSet<AllocationStatus> AllocationStatuses { get; set; }
 
+        /// <summary>
+        /// Rental Agreement Db set
+        /// </summary>
+        public DbSet<RaMain> RaMains { get; set; }
+
         #endregion
     }
 }

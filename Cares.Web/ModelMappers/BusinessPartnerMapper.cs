@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Cares.Models.DomainModels;
 using Cares.Models.ResponseModels;
 using ApiModel = Cares.Web.Models;
@@ -100,11 +101,11 @@ namespace Cares.Web.ModelMappers
                 IsSystemGuarantor = source.IsSystemGuarantor,
                 NonSystemGuarantor = source.NonSystemGuarantor,
                 SystemGuarantorId = source.SystemGuarantorId,
-                BusinessPartnerIndividual = source.BusinessPartnerIndividual.CreateFrom(),
-                BusinessPartnerCompany = source.BusinessPartnerCompany.CreateFrom(),
-                BusinessPartnerPhoneNumbers = source.BusinessPartnerPhoneNumbers.Select(x => x.CreateFrom()).ToList(),
-                BusinessPartnerAddressList = source.BusinessPartnerAddressList.Select(x => x.CreateFrom()).ToList(),
-                PaymentTerm = source.PaymentTerm.CreateFrom()
+                BusinessPartnerIndividual = source.BusinessPartnerIndividual != null ? source.BusinessPartnerIndividual.CreateFrom() : new ApiModel.BusinessPartnerIndividual(),
+                BusinessPartnerCompany = source.BusinessPartnerCompany != null ? source.BusinessPartnerCompany.CreateFrom() : new ApiModel.BusinessPartnerCompany(),
+                BusinessPartnerPhoneNumbers = source.BusinessPartnerPhoneNumbers != null ? source.BusinessPartnerPhoneNumbers.Select(x => x.CreateFrom()).ToList() : new List<ApiModel.Phone>(),
+                BusinessPartnerAddressList = source.BusinessPartnerAddressList != null ? source.BusinessPartnerAddressList.Select(x => x.CreateFrom()).ToList() : new List<ApiModel.Address>(),
+                PaymentTerm = source.PaymentTerm != null ? source.PaymentTerm.CreateFrom() : null
             };
         }
 
@@ -141,13 +142,15 @@ namespace Cares.Web.ModelMappers
                 CompanyId = source.CompanyId,
                 BusinessPartnerIsValid = true,
                 BusinessPartnerEmailAddress = source.BusinessPartnerEmailAddress,
-                BusinessPartnerIndividual = source.BusinessPartnerIndividual.CreateFrom(),
-                BusinessPartnerCompany = source.BusinessPartnerCompany.CreateFrom(),
-                BusinessPartnerInTypes = source.BusinessPartnerInTypes.Select(x => x.CreateFrom()).ToList(),
-                BusinessPartnerPhoneNumbers = source.BusinessPartnerPhoneNumbers.Select(x => x.CreateFrom()).ToList(),
-                BusinessPartnerAddressList = source.BusinessPartnerAddressList.Select(x => x.CreateFrom()).ToList(),
-                BusinessPartnerMarketingChannels = source.BusinessPartnerMarketingChannels.Select(x => x.CreateFrom()).ToList(),
-                BusinessPartnerRelationshipItemList = source.BusinessPartnerRelationshipItemList.Select(x => x.CreateFrom()).ToList()
+                BusinessPartnerIndividual = source.BusinessPartnerIndividual != null ? source.BusinessPartnerIndividual.CreateFrom() : new BusinessPartnerIndividual(),
+                BusinessPartnerCompany = source.BusinessPartnerCompany != null ? source.BusinessPartnerCompany.CreateFrom() : new BusinessPartnerCompany(),
+                BusinessPartnerInTypes = source.BusinessPartnerInTypes != null  ? source.BusinessPartnerInTypes.Select(x => x.CreateFrom()).ToList() : new List<BusinessPartnerInType>(),
+                BusinessPartnerPhoneNumbers = source.BusinessPartnerPhoneNumbers != null ? source.BusinessPartnerPhoneNumbers.Select(x => x.CreateFrom()).ToList() : new List<Phone>(),
+                BusinessPartnerAddressList = source.BusinessPartnerAddressList != null ? source.BusinessPartnerAddressList.Select(x => x.CreateFrom()).ToList() : new List<Address>(),
+                BusinessPartnerMarketingChannels = source.BusinessPartnerMarketingChannels != null ? 
+                source.BusinessPartnerMarketingChannels.Select(x => x.CreateFrom()).ToList() : new List<BusinessPartnerMarketingChannel>(),
+                BusinessPartnerRelationshipItemList = source.BusinessPartnerRelationshipItemList != null ? 
+                source.BusinessPartnerRelationshipItemList.Select(x => x.CreateFrom()).ToList() : new List<BusinessPartnerRelationship>()
             };
         }
 
@@ -207,6 +210,11 @@ namespace Cares.Web.ModelMappers
         /// </summary>
         public static ApiModel.BusinessPartnerIndividual CreateFrom(this BusinessPartnerIndividual source)
         {
+            if (source == null)
+            {
+                return null;
+            }
+
             return new ApiModel.BusinessPartnerIndividual
             {
                 BusinessPartnerId = source.BusinessPartnerId,
@@ -242,9 +250,14 @@ namespace Cares.Web.ModelMappers
         /// </summary>
         public static BusinessPartnerIndividual CreateFrom(this ApiModel.BusinessPartnerIndividual source)
         {
+            if (source == null)
+            {
+                return null;
+            }
+
             return new BusinessPartnerIndividual
             {
-                BusinessPartnerId = source.BusinessPartnerId != null ? (long)source.BusinessPartnerId : 0,
+                BusinessPartnerId = source.BusinessPartnerId,
                 FirstName = source.FirstName,
                 LastName = source.LastName,
                 GenderStatus = source.GenderStatus,
@@ -281,6 +294,11 @@ namespace Cares.Web.ModelMappers
         /// </summary>
         public static ApiModel.BusinessPartnerCompany CreateFrom(this BusinessPartnerCompany source)
         {
+            if (source == null)
+            {
+                return new ApiModel.BusinessPartnerCompany();
+            }
+
             return new ApiModel.BusinessPartnerCompany
             {
                 BusinessPartnerId = source.BusinessPartnerId,
@@ -299,9 +317,14 @@ namespace Cares.Web.ModelMappers
         /// </summary>
         public static BusinessPartnerCompany CreateFrom(this ApiModel.BusinessPartnerCompany source)
         {
+            if (source == null)
+            {
+                return null;
+            }
+
             return new BusinessPartnerCompany
             {
-                BusinessPartnerId = source.BusinessPartnerId != null ? (long)source.BusinessPartnerId : 0,
+                BusinessPartnerId = source.BusinessPartnerId,
                 BusinessPartnerCompanyCode = source.BusinessPartnerCompanyCode,
                 BusinessPartnerCompanyName = source.BusinessPartnerCompanyName,
                 BusinessSegmentId = source.BusinessSegmentId,
@@ -348,6 +371,11 @@ namespace Cares.Web.ModelMappers
         /// </summary>
         public static ApiModel.BusinessPartnerInType CreateFrom(this BusinessPartnerInType source)
         {
+            if (source == null)
+            {
+                return null;
+            }
+
             return new ApiModel.BusinessPartnerInType
                    {
                        BusinessPartnerInTypeId = source.BusinessPartnerInTypeId,
@@ -374,6 +402,11 @@ namespace Cares.Web.ModelMappers
         /// </summary>
         public static BusinessPartnerInType CreateFrom(this ApiModel.BusinessPartnerInType source)
         {
+            if (source == null)
+            {
+                return null;
+            }
+
             return new BusinessPartnerInType
             {
                 BusinessPartnerInTypeId = source.BusinessPartnerInTypeId != null ? (long)source.BusinessPartnerInTypeId : 0,
@@ -395,7 +428,12 @@ namespace Cares.Web.ModelMappers
         /// </summary>
         public static ApiModel.BusinessPartnerMarketingChannel CreateFrom(this BusinessPartnerMarketingChannel source)
         {
-            return new ApiModel.BusinessPartnerMarketingChannel()
+            if (source == null)
+            {
+                return null;
+            }
+
+            return new ApiModel.BusinessPartnerMarketingChannel
             {
                 BusinessPartnerMarketingChannelId = source.BusinessPartnerMarketingChannelId,
                 MarketingChannelId = source.MarketingChannelId,
@@ -409,6 +447,11 @@ namespace Cares.Web.ModelMappers
         /// </summary>
         public static BusinessPartnerMarketingChannel CreateFrom(this ApiModel.BusinessPartnerMarketingChannel source)
         {
+            if (source == null)
+            {
+                return null;
+            }
+
             return new BusinessPartnerMarketingChannel
             {
                 BusinessPartnerMarketingChannelId = source.BusinessPartnerMarketingChannelId != null ? (long)source.BusinessPartnerMarketingChannelId : 0,
@@ -426,7 +469,7 @@ namespace Cares.Web.ModelMappers
         /// </summary>
         public static ApiModel.BusinessPartnerRelationshipTypeDropDown CreateFrom(this BusinessPartnerRelationshipType source)
         {
-            return new ApiModel.BusinessPartnerRelationshipTypeDropDown()
+            return new ApiModel.BusinessPartnerRelationshipTypeDropDown
             {
                 BusinessPartnerRelationshipTypeId = source.BusinessPartnerRelationshipTypeId,
                 BusinessPartnerRelationshipTypeCodeName = source.BusinessPartnerRelationshpTypeCode + " - " + source.BusinessPartnerRelationshipTypeName
@@ -438,6 +481,11 @@ namespace Cares.Web.ModelMappers
         public static BusinessPartnerRelationshipType CreateFrom(
             this ApiModel.BusinessPartnerRelationshipTypeDropDown source)
         {
+            if (source == null)
+            {
+                return null;
+            }
+
             return new BusinessPartnerRelationshipType
                    {
                        BusinessPartnerRelationshipTypeId = source.BusinessPartnerRelationshipTypeId,
@@ -453,7 +501,12 @@ namespace Cares.Web.ModelMappers
         /// </summary>
         public static ApiModel.BusinessPartnerRelationship CreateFrom(this BusinessPartnerRelationship source)
         {
-            return new ApiModel.BusinessPartnerRelationship()
+            if (source == null)
+            {
+                return null;
+            }
+
+            return new ApiModel.BusinessPartnerRelationship
             {
                 BusinessPartnerRelationshipTypeId = source.BusinessPartnerRelationshipTypeId,
                 BusinessPartnerRelationshipTypeName = source.BusinessPartnerRelationshipType != null ?
@@ -473,6 +526,11 @@ namespace Cares.Web.ModelMappers
         public static BusinessPartnerRelationship CreateFrom(
             this ApiModel.BusinessPartnerRelationship source)
         {
+            if (source == null)
+            {
+                return null;
+            }
+
             return new BusinessPartnerRelationship
             {
                 BusinessPartnerRelationshipId = source.BusinessPartnerRelationshipId != null ? (int)source.BusinessPartnerRelationshipId : 0,
