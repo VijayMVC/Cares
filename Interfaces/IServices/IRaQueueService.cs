@@ -19,6 +19,6 @@ namespace Cares.Interfaces.IServices
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        RaQueueBaseResponse LoadRaQueues(RaQueueSearchRequest request);
+        RaMainForRaQueueSearchResponse LoadRaQueues(RaQueueSearchRequest request);
     }
 }

@@ -1,5 +1,9 @@
-﻿using Cares.Interfaces.IServices;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
+using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
 
@@ -15,16 +19,18 @@ namespace Cares.Implementation.Services
         private readonly IOperationsWorkPlaceRepository operationsWorkPlaceRepository;
         private readonly IPaymentTermRepository paymentTermRepository;
         private readonly IRaStatusRepository raStatusRepository;
+        private readonly IRentalAgreementRepository rentalAgreementRepository;
         #endregion
 
         #region Constructors
         public RaQueueService(IOperationRepository operationRepository, IOperationsWorkPlaceRepository operationsWorkPlaceRepository,
-            IPaymentTermRepository paymentTermRepository, IRaStatusRepository raStatusRepository)
+            IPaymentTermRepository paymentTermRepository, IRaStatusRepository raStatusRepository, IRentalAgreementRepository rentalAgreementRepository)
         {
             this.operationRepository = operationRepository;
             this.operationsWorkPlaceRepository = operationsWorkPlaceRepository;
             this.paymentTermRepository = paymentTermRepository;
             this.raStatusRepository = raStatusRepository;
+            this.rentalAgreementRepository = rentalAgreementRepository;
         }
         #endregion
 
@@ -52,10 +58,9 @@ namespace Cares.Implementation.Services
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public RaQueueBaseResponse LoadRaQueues(RaQueueSearchRequest request)
+        public RaMainForRaQueueSearchResponse LoadRaQueues(RaQueueSearchRequest request)
         {
-            //return tariffTypeRepository.GettariffTypes(tariffTypeRequest);
-            return null;
+            return rentalAgreementRepository.GetRaMainsForRaQueue(request);
         }
         #endregion
     }

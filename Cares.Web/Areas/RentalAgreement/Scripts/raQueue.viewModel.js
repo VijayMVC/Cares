@@ -122,15 +122,19 @@ define("raQueue/raQueue.viewModel",
                           endDt(undefined);
                           search();
                       },
-                    // Map Insurance Rates - Server to Client
-                    mapInsuranceRates = function (data) {
-                        var insuranceRateList = [];
-                        _.each(data.InsuranceRtMains, function (item) {
-                            var insuranceRtMain = new model.InsuranceRtMainClientMapper(item);
-                            insuranceRateList.push(insuranceRtMain);
+                    // Map RA Mains - Server to Client
+                    mapRaMains = function (data) {
+                        var raMainsList = [];
+                        _.each(data.RaMains, function (item) {
+                            var raMain = new model.RaMainClientMapper(item);
+                            raMainsList.push(raMain);
                         });
-                        ko.utils.arrayPushAll(insuranceRtMains(), insuranceRateList);
-                        insuranceRtMains.valueHasMutated();
+                        ko.utils.arrayPushAll(raMains(), raMainsList);
+                        raMains.valueHasMutated();
+                    },
+                    //Edit RA Main
+                    onEditRaMain =function(raMain) {
+                        toastr.success(raMain.raMainId());
                     },
                     // Get RA Main
                     getRaMains = function () {
@@ -151,8 +155,8 @@ define("raQueue/raQueue.viewModel",
                         }, {
                             success: function (data) {
                                 pager().totalCount(data.TotalCount);
-                                insuranceRtMains.removeAll();
-                                mapInsuranceRates(data);
+                                raMains.removeAll();
+                                mapRaMains(data);
                                 isLoadingRaQueues(false);
                             },
                             error: function () {
@@ -195,7 +199,8 @@ define("raQueue/raQueue.viewModel",
                     collapseFilterSection: collapseFilterSection,
                     showFilterSection: showFilterSection,
                     getRaMains: getRaMains,
-                    reset: reset
+                    reset: reset,
+                    onEditRaMain: onEditRaMain
                     // Utility Methods
 
                 };

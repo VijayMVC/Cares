@@ -42,12 +42,12 @@ namespace Cares.Models.RequestModels
         /// <summary>
         /// Start Date
         /// </summary>
-        public DateTime StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
 
         /// <summary>
         /// End Date
         /// </summary>
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
 
         /// <summary>
         /// Ra Queue By Order

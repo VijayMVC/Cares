@@ -2,6 +2,7 @@
 using System.Web.Http;
 using Cares.Interfaces.IServices;
 using Cares.Models.RequestModels;
+using Cares.Web.ModelMappers;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
@@ -31,9 +32,9 @@ namespace Cares.Web.Areas.Api.Controllers
 
         #region Public
         // GET api/<controller>
-        public void Get([FromUri] RaQueueSearchRequest request)
+        public Models.RaMainForRaQueueSearchResponse Get([FromUri] RaQueueSearchRequest request)
         {
-            //return raQueueService.LoadRaQueues((request)).CreateFrom();
+            return raQueueService.LoadRaQueues((request)).CreateFrom();
         }
 
         #endregion

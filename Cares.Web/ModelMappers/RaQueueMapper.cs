@@ -13,7 +13,7 @@ namespace Cares.Web.ModelMappers
         #region Base Data Mapper
 
         /// <summary>
-        ///  Tariff Type Base Response Mapper
+        ///  Ra Queue Base Response Mapper
         /// </summary>
         public static ApiModels.RaQueueBaseResponse CreateFrom(this DomainResponseModel.RaQueueBaseResponse source)
         {
@@ -26,6 +26,38 @@ namespace Cares.Web.ModelMappers
             };
         }
 
+        #endregion
+
+        #region Public
+
+        /// <summary>
+        ///  Ra Queue Search Response Mapper
+        /// </summary>
+        public static ApiModels.RaMainForRaQueueSearchResponse CreateFrom(this DomainResponseModel.RaMainForRaQueueSearchResponse source)
+        {
+            return new ApiModels.RaMainForRaQueueSearchResponse
+            {
+                RaMains = source.RaMains.Select(raMain => raMain.CreateFromForRaQueue()).ToList(),
+                TotalCount = source.TotalCount,
+            };
+        }
+
+        /// <summary>
+        ///  Ra Queue Search Response Mapper
+        /// </summary>
+        public static ApiModels.RaMainForRaQueue CreateFromForRaQueue(this DomainModels.RaMain source)
+        {
+            return new ApiModels.RaMainForRaQueue
+            {
+                RaMainId = source.RaMainId,
+                CloseLocation = source.OperationsWorkPlaceClose.LocationCode,
+                OpenLocation = source.OperationsWorkPlaceOpen.LocationCode,
+                StartDtTime = source.StartDtTime,
+                EndDtTime = source.EndDtTime,
+                OperationCode = source.Operation.OperationCode,
+                RaStatusCode = source.RaStatus.RaStatusCode,
+            };
+        }
         #endregion
     }
 }

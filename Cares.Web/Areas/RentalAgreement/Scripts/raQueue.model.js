@@ -10,7 +10,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
          var // Reference to this object
              self,
              // Unique key
-            raMianId = ko.observable(),
+            raMainId = ko.observable(),
             //Start Date
             startDate = ko.observable(),
             //End Date
@@ -37,7 +37,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
              });
 
          self = {
-             raMianId: raMianId,
+             raMainId: raMainId,
              startDate: startDate,
              endDate: endDate,
              openLocCode: openLocCode,
@@ -54,13 +54,13 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
     // ReSharper disable once InconsistentNaming
     var RaMainClientMapper = function (source) {
         var raMain = new RaMain();
-        raMain.raMianId(source.EffectiveDate !== null ? moment(source.EffectiveDate, ist.utcFormat).toDate() : undefined);
-        raMain.startDate(source.EffectiveDate !== null ? moment(source.EffectiveDate, ist.utcFormat).toDate() : undefined);
-        raMain.endDate(source.InsuranceRtId === null ? undefined : source.InsuranceRtId);
-        raMain.openLocCode(source.InsuranceRtId === null ? undefined : source.InsuranceRtId);
-        raMain.closeLocCode(source.InsuranceRtId === null ? undefined : source.InsuranceRtId);
-        raMain.oprationCode(source.InsuranceRtId === null ? undefined : source.InsuranceRtId);
-        raMain.statusCode(source.InsuranceRtId === null ? undefined : source.InsuranceRtId);
+        raMain.raMainId(source.RaMainId === null ? undefined : source.RaMainId);
+        raMain.startDate(source.StartDtTime !== null ? moment(source.StartDtTime, ist.utcFormat).toDate() : undefined);
+        raMain.endDate(source.EndDtTime !== null ? moment(source.EndDtTime, ist.utcFormat).toDate() : undefined);
+        raMain.openLocCode(source.OpenLocation === null ? undefined : source.OpenLocation);
+        raMain.closeLocCode(source.CloseLocation === null ? undefined : source.CloseLocation);
+        raMain.oprationCode(source.OperationCode === null ? undefined : source.OperationCode);
+        raMain.statusCode(source.RaStatusCode === null ? undefined : source.RaStatusCode);
         return raMain;
     };
     return {

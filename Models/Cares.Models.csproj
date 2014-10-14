@@ -350,6 +350,7 @@
     <Compile Include="RequestModels\VehicleCategorySearchRequest.cs" />
     <Compile Include="RequestModels\VehicleModelSearcgRequest.cs" />
     <Compile Include="RequestModels\VehicleStatusSearchRequest.cs" />
+    <Compile Include="ResponseModels\RaMainForRaQueueSearchResponse.cs" />
     <Compile Include="ResponseModels\RaQueueBaseResponse.cs" />
     <Compile Include="ResponseModels\VehicleCategorySearchRequestResponse.cs" />
     <Compile Include="RequestModels\VehicleMakeSearchRequest.cs" />

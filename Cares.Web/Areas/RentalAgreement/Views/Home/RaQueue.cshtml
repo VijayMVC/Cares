@@ -3,7 +3,7 @@
 }
 <div class="row" id="raQueueBinding">
     <div class="row ">
-        <h3 class="page-header float-left pageHeaderSection"></h3>
+        <h3 class="page-header float-left pageHeaderSection">Ra Queue</h3>
         <div class="header-toolsSection">
             <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title='@Cares.Web.Resources.Shared.Common.ShowFilter' style="display: none"></a>
         </div>
@@ -67,11 +67,11 @@
         </div>
     </div>
     <script id="editActionRaMainTemplate" type="text/html">
-        <a href="#" data-bind="click: $root.onEditTariffType" title=@Cares.Web.Resources.Shared.Common.Edit><span class="glyphicon glyphicon-edit"></span></a>
+        <a href="#" data-bind="click: $root.onEditRaMain" title=@Cares.Web.Resources.Shared.Common.Edit><span class="glyphicon glyphicon-edit"></span></a>
     </script>
     <script id="itemRaMainTemplate" type="text/html">
         <tr>
-            <td data-bind="text: raMianId"></td>
+            <td data-bind="text: raMainId"></td>
             <td data-bind="text: formattedStartDate"></td>
             <td data-bind="text: formattedEndDate"></td>
             <td data-bind="text: openLocCode"></td>
