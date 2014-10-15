@@ -10,6 +10,11 @@ namespace Cares.Interfaces.Repository
     public interface IRentalAgreementRepository : IBaseRepository<RaMain, long>
     {
         /// <summary>
+        /// Load Dependencies
+        /// </summary>
+        void LoadDependencies(RaMain raMain);
+        
+        /// <summary>
         /// Get all Ra Main
         /// </summary>
         RaMainForRaQueueSearchResponse GetRaMainsForRaQueue(RaQueueSearchRequest request);

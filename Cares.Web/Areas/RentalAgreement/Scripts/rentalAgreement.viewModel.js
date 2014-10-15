@@ -153,6 +153,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                     }
                                 ]
                             });
+                            selectedVehicle(vehicle);
                             rentalAgreement().rentalAgreementHireGroups.push(raHireGroup);
                             calculateBill();
                         }
@@ -229,7 +230,10 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     addAdditionalChargesToRentalAgreement = function (data, popoverId) {
                         additionalCharges.each(function (additionalCharge) {
                             if (additionalCharge.isSelected()) {
-                                rentalAgreement().rentalAgreementAdditionalCharges.push(model.RentalAgreementAdditionalCharge.Create(additionalCharge.convertToServerData()));
+                                var addCharge = additionalCharge.convertToServerData();
+                                addCharge.HireGroupDetailId = selectedHireGroup() ? selectedHireGroup().id : undefined;
+                                addCharge.PlateNumber = selectedVehicle() ? selectedVehicle().plateNumber() : undefined;
+                                rentalAgreement().rentalAgreementAdditionalCharges.push(model.RentalAgreementAdditionalCharge.Create(addCharge));
                             }
                         });
                         // Close Popover
@@ -504,7 +508,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         };
                         dataservice.saveRentalAgreement(saveRaRequest, {
                             success: function (data) {
-                                rentalAgreement(model.RentalAgreement.Create(data, rentalAgreementModelCallbacks));
+                                rentalAgreement(model.RentalAgreement.Create(data, rentalAgreementModelCallbacks, true));
                             },
                             error: function (response) {
                                 toastr.error("Failed to process request. Error: " + response);

@@ -29,6 +29,7 @@ namespace Cares.Implementation.Services
         private readonly IBusinessPartnerRepository businessPartnerRepository;
         private readonly IPhoneRepository businessPartnerPhoneRepository;
         private readonly IAddressRepository businessPartnerAddressRepository;
+        private readonly IVehicleRepository vehicleRepository;
 
         /// <summary>
         /// Add Vehicle Movements
@@ -120,7 +121,130 @@ namespace Cares.Implementation.Services
 
                 // Vehicle Movements
                 AddVehicleMovements(raHireGroup);
+
+                // Find Vehicle By Id
+                Vehicle vehicle = GetVehicle(raHireGroup);
+
+                if (vehicle == null)
+                {
+                    return;
+                }
+
+                // Add Vehicle Reservations
+                AddVehicleReservation(raHireGroup, vehicle);
+
+                // Update Vehicle Status Out
+                UpdateVehicleStatusOut(raHireGroup, vehicle);
             }
+        }
+
+        private Vehicle GetVehicle(RaHireGroup raHireGroup)
+        {
+            // Add Vehicle Reservation and Update Vehicle Status
+            if (!raHireGroup.VehicleId.HasValue || raHireGroup.VehicleId.Value <= 0)
+            {
+                return null;
+            }
+
+            Vehicle vehicle = vehicleRepository.Find(raHireGroup.VehicleId.Value);
+
+            if (vehicle == null)
+            {
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
+                    "Vehicle with Id {0} not found", raHireGroup.VehicleId.Value));
+            }
+
+            return vehicle;
+        }
+
+        /// <summary>
+        /// Update Vehicle Status Out
+        /// </summary>
+        private void UpdateVehicleStatusOut(RaHireGroup raHireGroup, Vehicle vehicle)
+        {
+            VehicleMovement vehicleMovementOut =
+                raHireGroup.VehicleMovements.FirstOrDefault(vm => vm.Status == Convert.ToBoolean(VehicleMovementEnum.Out));
+
+            if (vehicleMovementOut == null || !vehicleMovementOut.VehicleStatusId.HasValue)
+            {
+                return;
+            }
+
+            UpdateVehicle(vehicle, vehicleMovementOut.VehicleStatusId.Value);
+        }
+
+        /// <summary>
+        /// Update Vehicle
+        /// </summary>
+        private void UpdateVehicle(Vehicle vehicle, short vehicleStatusId)
+        {
+            vehicle.VehicleStatusId = vehicleStatusId;
+            vehicle.RowVersion = vehicle.RowVersion + 1;
+            vehicle.RecLastUpdatedBy = rentalAgreementRepository.LoggedInUserIdentity;
+            vehicle.RecLastUpdatedDt = DateTime.Now;
+        }
+
+        /// <summary>
+        /// Update Vehicle Status In
+        /// </summary>
+// ReSharper disable UnusedMember.Local
+        private void UpdateVehicleStatusIn(RaHireGroup raHireGroup, Vehicle vehicle)
+// ReSharper restore UnusedMember.Local
+        {
+            VehicleMovement vehicleMovementIn =
+                raHireGroup.VehicleMovements.FirstOrDefault(vm => vm.Status == Convert.ToBoolean(VehicleMovementEnum.In));
+
+            if (vehicleMovementIn == null || !vehicleMovementIn.VehicleStatusId.HasValue)
+            {
+                return;
+            }
+
+            UpdateVehicle(vehicle, vehicleMovementIn.VehicleStatusId.Value);
+        }
+
+        /// <summary>
+        /// Adds Vehicle Reservation
+        /// </summary>
+        private void AddVehicleReservation(RaHireGroup raHireGroup, Vehicle vehicle)
+        {
+
+            // Check For Vehicle Reservations 
+            if (vehicle.VehicleReservations == null)
+            {
+                vehicle.VehicleReservations = new List<VehicleReservation>();
+            }
+
+            // Get Vehicle Movements
+            VehicleMovement vehicleMovementOut =
+                raHireGroup.VehicleMovements.FirstOrDefault(vm => vm.Status == Convert.ToBoolean(VehicleMovementEnum.Out));
+            VehicleMovement vehicleMovementIn =
+                raHireGroup.VehicleMovements.FirstOrDefault(vm => vm.Status == Convert.ToBoolean(VehicleMovementEnum.In));
+
+            if (vehicleMovementIn != null && vehicleMovementOut != null)
+            {
+                vehicle.VehicleReservations.Add(CreateVehicleReservation(raHireGroup.RaMainId, vehicleMovementOut.DtTime, vehicleMovementIn.DtTime, vehicle.VehicleId));
+            }
+        }
+
+        /// <summary>
+        /// Creates New Vehicle Reservation
+        /// </summary>
+        private VehicleReservation CreateVehicleReservation(long raMainId, DateTime startDt, DateTime endDt, long vehicleId)
+        {
+            return new VehicleReservation
+            {
+                StartDtTime = startDt,
+                EndDtTime = endDt,
+                VehicleId = vehicleId,
+                RaMainId = raMainId,
+                IsActive = true,
+                RecCreatedBy = rentalAgreementRepository.LoggedInUserIdentity,
+                RecLastUpdatedBy = rentalAgreementRepository.LoggedInUserIdentity,
+                RecCreatedDt = DateTime.Now,
+                RecLastUpdatedDt = DateTime.Now,
+                RowVersion = 0,
+                UserDomainKey = rentalAgreementRepository.UserDomainKey
+            };
         }
 
         /// <summary>
@@ -339,6 +463,16 @@ namespace Cares.Implementation.Services
         /// </summary>
         private void AddBusinessPartnerIndividual(BusinessPartner businessPartner)
         {
+            if (businessPartner.BusinessPartnerIndividual.FirstName == null)
+            {
+                businessPartner.BusinessPartnerIndividual.FirstName = string.Empty;
+            }
+
+            if (businessPartner.BusinessPartnerIndividual.LastName == null)
+            {
+                businessPartner.BusinessPartnerIndividual.LastName = string.Empty;
+            }
+            
             businessPartner.BusinessPartnerIndividual.RecCreatedBy =
                 businessPartner.BusinessPartnerIndividual.RecLastUpdatedBy =
                     businessPartnerRepository.LoggedInUserIdentity;
@@ -414,8 +548,7 @@ namespace Cares.Implementation.Services
 
                 // Update Main
                 UpdateRaHireGroupExistingHeader(raHireGroupDbVersion, raHireGroup);
-
-
+                
                 // Update Ra Hire Group Insurances
                 UpdateRaHireGroupInsurances(raHireGroup, raHireGroupDbVersion);
 
@@ -423,9 +556,10 @@ namespace Cares.Implementation.Services
                 UpdateVehicleMovementInDetails(raHireGroupDbVersion, raHireGroup);
 
                 // Update Ra Hire Group Discounts
-
-
+                
                 // Update Ra Vehicle CheckLists
+
+                // Update Vehicle Reservation and Vehicle Status In
             }
         }
 
@@ -699,6 +833,59 @@ namespace Cares.Implementation.Services
 
         }
 
+        /// <summary>
+        /// Map RaMain Header
+        /// </summary>
+        private void MapRaHeader(RaMain raMain)
+        {
+            raMain.RaStatusId = (short)RaStatusEnum.Open;
+            raMain.RecCreatedBy = raMain.RecLastUpdatedBy = rentalAgreementRepository.LoggedInUserIdentity;
+            raMain.RecLastUpdatedDt = raMain.RecCreatedDt;
+            raMain.UserDomainKey = rentalAgreementRepository.UserDomainKey;
+            raMain.IsActive = true;
+            raMain.RowVersion = 0;
+        }
+
+        /// <summary>
+        /// Save Chauffer Reservations
+        /// </summary>
+        private void SaveChaufferReservation(RaMain raMain)
+        {
+            List<RaDriver> chauffers =
+                raMain.RaDrivers.Where(driver => driver.IsChauffer && driver.ChaufferId.HasValue).ToList();
+
+            // Check for Chauffer Reservation
+            if (raMain.ChaufferReservations == null)
+            {
+                raMain.ChaufferReservations = new List<ChaufferReservation>();
+            }
+
+            foreach (RaDriver chauffer in chauffers)
+            {
+                raMain.ChaufferReservations.Add(CreateChaufferReservation(raMain, chauffer));
+            }
+        }
+
+        /// <summary>
+        /// Create Chauffer Reservation
+        /// </summary>
+        private ChaufferReservation CreateChaufferReservation(RaMain raMain, RaDriver chauffer)
+        {
+            return new ChaufferReservation
+            {
+                IsActive = true,
+                RecCreatedDt = DateTime.Now,
+                RecLastUpdatedDt = DateTime.Now,
+                RecLastUpdatedBy = rentalAgreementRepository.LoggedInUserIdentity,
+                RecCreatedBy = rentalAgreementRepository.LoggedInUserIdentity,
+                RaMainId = raMain.RaMainId,
+                ChaufferId = chauffer.ChaufferId ?? 0,
+                StartDtTime = chauffer.StartDtTime,
+                EndDtTime = chauffer.EndDtTime,
+                UserDomainKey = rentalAgreementRepository.UserDomainKey
+            };
+        }
+
         #endregion
 
         #region Constructors
@@ -709,7 +896,8 @@ namespace Cares.Implementation.Services
         public RentalAgreementService(IPaymentTermRepository paymentTermRepository, IOperationRepository operationRepository,
             IOperationsWorkPlaceRepository operationsWorkPlaceRepository, ITariffTypeRepository tariffTypeRepository, IBill bill,
             IVehicleStatusRepository vehicleStatusRepository, IAlloactionStatusRepository alloactionStatusRepository, IRentalAgreementRepository rentalAgreementRepository,
-            IBusinessPartnerRepository businessPartnerRepository, IPhoneRepository businessPartnerPhoneRepository, IAddressRepository businessPartnerAddressRepository)
+            IBusinessPartnerRepository businessPartnerRepository, IPhoneRepository businessPartnerPhoneRepository, IAddressRepository businessPartnerAddressRepository,
+            IVehicleRepository vehicleRepository)
         {
             if (paymentTermRepository == null)
             {
@@ -734,6 +922,7 @@ namespace Cares.Implementation.Services
                 throw new ArgumentNullException("businessPartnerPhoneRepository");
             if (businessPartnerAddressRepository == null)
                 throw new ArgumentNullException("businessPartnerAddressRepository");
+            if (vehicleRepository == null) throw new ArgumentNullException("vehicleRepository");
 
             this.paymentTermRepository = paymentTermRepository;
             this.operationRepository = operationRepository;
@@ -746,6 +935,7 @@ namespace Cares.Implementation.Services
             this.businessPartnerRepository = businessPartnerRepository;
             this.businessPartnerPhoneRepository = businessPartnerPhoneRepository;
             this.businessPartnerAddressRepository = businessPartnerAddressRepository;
+            this.vehicleRepository = vehicleRepository;
         }
 
         #endregion
@@ -787,7 +977,7 @@ namespace Cares.Implementation.Services
         {
             // Generate Bill
             raMain = GenerateBill(raMain);
-            
+
             // Add Rental Agreement
             if (raMain.RaMainId == 0)
             {
@@ -795,11 +985,7 @@ namespace Cares.Implementation.Services
                 rentalAgreementRepository.Add(raMain);
 
                 // Map Main
-                raMain.RaStatusId = (short)RaStatusEnum.Open;
-                raMain.RecCreatedBy = raMain.RecLastUpdatedBy = rentalAgreementRepository.LoggedInUserIdentity;
-                raMain.RecLastUpdatedDt = raMain.RecCreatedDt;
-                raMain.IsActive = true;
-                raMain.RowVersion = 0;
+                MapRaHeader(raMain);
 
                 // Ra Hire Groups
                 AddRaHireGroups(raMain.RaHireGroups);
@@ -828,6 +1014,9 @@ namespace Cares.Implementation.Services
                 {
                     UpdateBusinessPartner(raMain.BusinessPartner);
                 }
+
+                // Save Chauffer Reservations
+                SaveChaufferReservation(raMain);
             }
             // Update Rental Agreement
             else
@@ -860,11 +1049,16 @@ namespace Cares.Implementation.Services
 
                 // Update Business Partner
                 UpdateBusinessPartner(raMain.BusinessPartner);
+
+                // Update Chauffer Reservations
             }
 
 
             // Save Changes
             rentalAgreementRepository.SaveChanges();
+
+            // Load Properties
+            rentalAgreementRepository.LoadDependencies(raMain);
 
             return raMain;
         }
