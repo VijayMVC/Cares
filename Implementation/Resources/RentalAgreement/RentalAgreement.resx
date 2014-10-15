@@ -141,6 +141,21 @@
   <data name="RaHireGroupNotFound" xml:space="preserve">
     <value>RaHireGroup with Id {0} not found.</value>
   </data>
+  <data name="RentalAgreementService_RaAdditionalChargeNotFound" xml:space="preserve">
+    <value>RaAdditionalCharge with Id {0} not found.</value>
+  </data>
+  <data name="RentalAgreementService_RaCustomerDocumentNotFound" xml:space="preserve">
+    <value>RaCustomerDocument with Id {0} not found.</value>
+  </data>
+  <data name="RentalAgreementService_RaDriverNotFound" xml:space="preserve">
+    <value>RaDriver with Id {0} not found.</value>
+  </data>
+  <data name="RentalAgreementService_RaPaymentNotFound" xml:space="preserve">
+    <value>RaPayment with Id {0} not found.</value>
+  </data>
+  <data name="RentalAgreementService_RaServiceItemNotFound" xml:space="preserve">
+    <value>RaServiceItem with Id {0} not found.</value>
+  </data>
   <data name="ServiceRateNotDefinedForServiceItem" xml:space="preserve">
     <value>Service Rate not defined for selected Service Item.</value>
   </data>

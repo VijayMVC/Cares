@@ -133,6 +133,51 @@ namespace Cares.Implementation.Resources.RentalAgreement {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to RaAdditionalCharge with Id {0} not found..
+        /// </summary>
+        public static string RentalAgreementService_RaAdditionalChargeNotFound {
+            get {
+                return ResourceManager.GetString("RentalAgreementService_RaAdditionalChargeNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RaCustomerDocument with Id {0} not found..
+        /// </summary>
+        public static string RentalAgreementService_RaCustomerDocumentNotFound {
+            get {
+                return ResourceManager.GetString("RentalAgreementService_RaCustomerDocumentNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RaDriver with Id {0} not found..
+        /// </summary>
+        public static string RentalAgreementService_RaDriverNotFound {
+            get {
+                return ResourceManager.GetString("RentalAgreementService_RaDriverNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RaPayment with Id {0} not found..
+        /// </summary>
+        public static string RentalAgreementService_RaPaymentNotFound {
+            get {
+                return ResourceManager.GetString("RentalAgreementService_RaPaymentNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RaServiceItem with Id {0} not found..
+        /// </summary>
+        public static string RentalAgreementService_RaServiceItemNotFound {
+            get {
+                return ResourceManager.GetString("RentalAgreementService_RaServiceItemNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Service Rate not defined for selected Service Item..
         /// </summary>
         public static string ServiceRateNotDefinedForServiceItem {

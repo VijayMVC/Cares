@@ -36,7 +36,7 @@ namespace Cares.Models.RequestModels
         /// <summary>
         /// Start Dt
         /// </summary>
-        public DateTime StarDtTime { get; set; }
+        public DateTime StartDtTime { get; set; }
 
         /// <summary>
         /// End Dt

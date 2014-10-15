@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Net;
+using System.Web;
 using System.Web.Http;
 using Cares.Interfaces.IServices;
 using Cares.Models.RequestModels;
@@ -39,8 +41,13 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Get Vehicles
         /// </summary>
-        public HireGroupVehiclesResponse Get([FromUri] VehicleSearchRequest request)
+        public HireGroupVehiclesResponse Post(VehicleSearchRequest request)
         {
+            if (request == null || !ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+
             return vehicleService.GetByHireGroup(request).CreateFromFoRa();
         }
         #endregion

@@ -23,7 +23,9 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
                     amplify.request.define('getVehiclesByHireGroup', 'ajax', {
                         url: ist.siteUrl + '/Api/HireGroupVehicles',
                         dataType: 'json',
-                        type: 'GET'
+                        dataMap: JSON.stringify,
+                        contentType: "application/json; charset=utf-8",
+                        type: 'POST'
                     });
                     
                     // Define request to get Hire Group by code , vehicle category / make / mode / model year

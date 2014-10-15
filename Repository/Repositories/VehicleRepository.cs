@@ -68,7 +68,7 @@ namespace Cares.Repository.Repositories
                 (vehicle.HireGroup.HireGroupDetails.Any(hgd => hgd.HireGroupDetailId == request.HireGroupDetailId)) &&
                 (vehicle.OperationsWorkPlaceId == request.OperationsWorkPlaceId) &&
                 (vehicle.VehicleReservations.Count == 0 ||
-                !vehicle.VehicleReservations.Any(vehicleReservation => vehicleReservation.EndDtTime >= request.StarDtTime &&
+                !vehicle.VehicleReservations.Any(vehicleReservation => vehicleReservation.EndDtTime >= request.StartDtTime &&
                     vehicleReservation.StartDtTime <= request.EndDtTime));
 
             IEnumerable<Vehicle> vehicles = request.IsAsc ? DbSet

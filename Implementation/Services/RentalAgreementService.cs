@@ -50,9 +50,9 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Add Ra Vehicle Checklists
         /// </summary>
-        private void AddRaVehicleCheckLists(RaHireGroup raHireGroup)
+        private void AddRaVehicleCheckLists(IEnumerable<RaVehicleCheckList> raVehicleCheckLists)
         {
-            foreach (RaVehicleCheckList raVehicleCheckList in raHireGroup.RaVehicleCheckLists)
+            foreach (RaVehicleCheckList raVehicleCheckList in raVehicleCheckLists)
             {
                 raVehicleCheckList.IsActive = true;
                 raVehicleCheckList.RecCreatedBy =
@@ -66,9 +66,9 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Add Ra HireGroup Discounts
         /// </summary>
-        private void AddRaHireGroupDiscounts(RaHireGroup raHireGroup)
+        private void AddRaHireGroupDiscounts(IEnumerable<RaHireGroupDiscount> raHireGroupDiscounts)
         {
-            foreach (RaHireGroupDiscount raHireGroupDiscount in raHireGroup.RaHireGroupDiscounts)
+            foreach (RaHireGroupDiscount raHireGroupDiscount in raHireGroupDiscounts)
             {
                 raHireGroupDiscount.IsActive = true;
                 raHireGroupDiscount.RecCreatedBy =
@@ -114,10 +114,10 @@ namespace Cares.Implementation.Services
                 AddRaHireGroupInsurances(raHireGroup.RaHireGroupInsurances);
 
                 // Ra Hire Group Discounts
-                AddRaHireGroupDiscounts(raHireGroup);
+                AddRaHireGroupDiscounts(raHireGroup.RaHireGroupDiscounts);
 
                 // Ra Vehicle Check Lists
-                AddRaVehicleCheckLists(raHireGroup);
+                AddRaVehicleCheckLists(raHireGroup.RaVehicleCheckLists);
 
                 // Vehicle Movements
                 AddVehicleMovements(raHireGroup);
@@ -190,12 +190,8 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Update Vehicle Status In
         /// </summary>
-        // ReSharper disable UnusedMember.Local
-        private void UpdateVehicleStatusIn(RaHireGroup raHireGroup, Vehicle vehicle)
-        // ReSharper restore UnusedMember.Local
+        private void UpdateVehicleStatusIn(Vehicle vehicle, VehicleMovement vehicleMovementIn)
         {
-            VehicleMovement vehicleMovementIn =
-                raHireGroup.VehicleMovements.FirstOrDefault(vm => vm.Status == Convert.ToBoolean(VehicleMovementEnum.In));
 
             if (vehicleMovementIn == null || !vehicleMovementIn.VehicleStatusId.HasValue)
             {
@@ -253,9 +249,9 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Add Ra Additional Charges
         /// </summary>
-        private void AddRaAdditionalCharges(RaMain raMain)
+        private void AddRaAdditionalCharges(IEnumerable<RaAdditionalCharge> raAdditionalCharges)
         {
-            foreach (RaAdditionalCharge raAdditionalCharge in raMain.RaAdditionalCharges)
+            foreach (RaAdditionalCharge raAdditionalCharge in raAdditionalCharges)
             {
                 // Set Required Fields 
                 raAdditionalCharge.IsActive = true;
@@ -270,9 +266,9 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Add Ra Service Items
         /// </summary>
-        private void AddRaServiceItems(RaMain raMain)
+        private void AddRaServiceItems(IEnumerable<RaServiceItem> raServiceItems)
         {
-            foreach (RaServiceItem raServiceItem in raMain.RaServiceItems)
+            foreach (RaServiceItem raServiceItem in raServiceItems)
             {
                 // Set Required Fields 
                 raServiceItem.IsActive = true;
@@ -287,9 +283,9 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Add Ra Drivers
         /// </summary>
-        private void AddRaDrivers(RaMain raMain)
+        private void AddRaDrivers(IEnumerable<RaDriver> raDrivers)
         {
-            foreach (RaDriver raDriver in raMain.RaDrivers)
+            foreach (RaDriver raDriver in raDrivers)
             {
                 // Set Required Fields 
                 raDriver.IsActive = true;
@@ -304,9 +300,9 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Add Ra Payments
         /// </summary>
-        private void AddRaPayments(RaMain raMain)
+        private void AddRaPayments(IEnumerable<RaPayment> raPayments)
         {
-            foreach (RaPayment raPayment in raMain.RaPayments)
+            foreach (RaPayment raPayment in raPayments)
             {
                 // Set Required Fields 
                 raPayment.IsActive = true;
@@ -321,9 +317,9 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Add Ra Customer Documents
         /// </summary>
-        private void AddRaCustomerDocuments(RaMain raMain)
+        private void AddRaCustomerDocuments(IEnumerable<RaCustomerDocument> raCustomerDocuments)
         {
-            foreach (RaCustomerDocument raCustomerDocument in raMain.RaCustomerDocuments)
+            foreach (RaCustomerDocument raCustomerDocument in raCustomerDocuments)
             {
                 // Set Required Fields 
                 raCustomerDocument.IsActive = true;
@@ -543,6 +539,8 @@ namespace Cares.Implementation.Services
                 RaHireGroup raHireGroupDbVersion =
                     raMainDbVersion.RaHireGroups.FirstOrDefault(hg => hg.RaHireGroupId == raHireGroup.RaHireGroupId);
 
+                VehicleMovement vehicleMovementIn = raHireGroup.VehicleMovements.FirstOrDefault(vm => vm.Status == Convert.ToBoolean(VehicleMovementEnum.In));
+
                 if (raHireGroupDbVersion == null)
                 {
                     throw new CaresException(string.Format(CultureInfo.InvariantCulture,
@@ -556,25 +554,133 @@ namespace Cares.Implementation.Services
                 UpdateRaHireGroupInsurances(raHireGroup, raHireGroupDbVersion);
 
                 // Update Vehicle Movements
-                UpdateVehicleMovementInDetails(raHireGroupDbVersion, raHireGroup);
+                UpdateVehicleMovementInDetails(raHireGroupDbVersion, vehicleMovementIn);
 
                 // Update Ra Hire Group Discounts
+                UpdateRaHireGroupDiscounts(raHireGroup, raHireGroupDbVersion);
 
                 // Update Ra Vehicle CheckLists
+                UpdateRaVehicleCheckLists(raHireGroup, raHireGroupDbVersion);
 
-                // Update Vehicle Reservation and Vehicle Status In
+                // Update Vehicle Reservation
+                UpdateVehicleReservation(raHireGroupDbVersion, vehicleMovementIn);
+
+                // Update Vehicle Status
+                UpdateVehicleStatusIn(raHireGroupDbVersion.Vehicle, vehicleMovementIn);
+            }
+        }
+
+        /// <summary>
+        /// Update Ra Vehicle CheckLists
+        /// </summary>
+        private void UpdateRaVehicleCheckLists(RaHireGroup raHireGroup, RaHireGroup raHireGroupDbVersion)
+        {
+            // Add
+            AddRaVehicleCheckListToExistingRaHireGroup(raHireGroup, raHireGroupDbVersion);
+
+            // Delete 
+            DeleteRaVehicleCheckLists(raHireGroup, raHireGroupDbVersion);
+        }
+
+        /// <summary>
+        /// Delete Ra Vehicle Checklists
+        /// </summary>
+        private static void DeleteRaVehicleCheckLists(RaHireGroup raHireGroup, RaHireGroup raHireGroupDbVersion)
+        {
+            List<RaVehicleCheckList> vehicleCheckListsToDelete =
+                raHireGroupDbVersion.RaVehicleCheckLists.Where(
+                    chk =>
+                        raHireGroup.RaVehicleCheckLists.All(
+                            vch => vch.RaVehicleCheckListId != chk.RaVehicleCheckListId)).ToList();
+            vehicleCheckListsToDelete.ForEach(vch => raHireGroupDbVersion.RaVehicleCheckLists.Remove(vch));
+        }
+
+        /// <summary>
+        /// Add Vehicle CheckList To Existing RaHireGroup
+        /// </summary>
+        private void AddRaVehicleCheckListToExistingRaHireGroup(RaHireGroup raHireGroup, RaHireGroup raHireGroupDbVersion)
+        {
+            List<RaVehicleCheckList> vehicleCheckListsToAdd =
+                raHireGroup.RaVehicleCheckLists.Where(ch => ch.RaVehicleCheckListId == 0).ToList();
+
+            vehicleCheckListsToAdd.ForEach(vch => raHireGroupDbVersion.RaVehicleCheckLists.Add(vch));
+
+            AddRaVehicleCheckLists(vehicleCheckListsToAdd);
+        }
+
+        /// <summary>
+        /// Update Ra Hire Group Discounts
+        /// </summary>
+        private void UpdateRaHireGroupDiscounts(RaHireGroup raHireGroup, RaHireGroup raHireGroupDbVersion)
+        {
+            // Update Ra Hire Group Discounts
+            // Add Discounts
+            AddRaHireGroupDiscountForExistingRaHireGroup(raHireGroup, raHireGroupDbVersion);
+
+            // Delete Discounts
+            DeleteRaHireGroupDiscounts(raHireGroup, raHireGroupDbVersion);
+        }
+
+        /// <summary>
+        /// Delete HireGroup Discounts
+        /// </summary>
+        private static void DeleteRaHireGroupDiscounts(RaHireGroup raHireGroup, RaHireGroup raHireGroupDbVersion)
+        {
+            List<RaHireGroupDiscount> discountsToDelete =
+                raHireGroupDbVersion.RaHireGroupDiscounts.Where(
+                    discount =>
+                        raHireGroup.RaHireGroupDiscounts.All(
+                            hg => hg.RaHireGroupDiscountId != discount.RaHireGroupDiscountId)).ToList();
+            discountsToDelete.ForEach(discount => raHireGroupDbVersion.RaHireGroupDiscounts.Remove(discount));
+        }
+
+        /// <summary>
+        /// Add Discounts To Existing Ra HireGroup
+        /// </summary>
+        private void AddRaHireGroupDiscountForExistingRaHireGroup(RaHireGroup raHireGroup, RaHireGroup raHireGroupDbVersion)
+        {
+            List<RaHireGroupDiscount> discountsToAdd =
+                raHireGroup.RaHireGroupDiscounts.Where(discount => discount.RaHireGroupDiscountId == 0).ToList();
+
+            // Check For Null
+            if (raHireGroupDbVersion.RaHireGroupDiscounts == null)
+            {
+                raHireGroupDbVersion.RaHireGroupDiscounts = new List<RaHireGroupDiscount>();
+            }
+
+            discountsToAdd.ForEach(discount => raHireGroupDbVersion.RaHireGroupDiscounts.Add(discount));
+
+            AddRaHireGroupDiscounts(discountsToAdd);
+        }
+
+        /// <summary>
+        /// Updates Vehicle Reservation
+        /// </summary>
+        private void UpdateVehicleReservation(RaHireGroup raHireGroupDbVersion, VehicleMovement vehicleMovementIn)
+        {
+            if (raHireGroupDbVersion.Vehicle.VehicleReservations.Any())
+            {
+                if (vehicleMovementIn != null)
+                {
+                    foreach (VehicleReservation vehicleReservation in raHireGroupDbVersion.Vehicle.VehicleReservations)
+                    {
+                        vehicleReservation.EndDtTime = vehicleMovementIn.DtTime;
+                        vehicleReservation.RecLastUpdatedBy = rentalAgreementRepository.LoggedInUserIdentity;
+                        vehicleReservation.RecLastUpdatedDt = DateTime.Now;
+                        vehicleReservation.RowVersion = vehicleReservation.RowVersion + 1;
+                    }
+                }
             }
         }
 
         /// <summary>
         /// Update Vehicle Movement In Details
         /// </summary>
-        private static void UpdateVehicleMovementInDetails(RaHireGroup raHireGroupDbVersion, RaHireGroup raHireGroup)
+        private void UpdateVehicleMovementInDetails(RaHireGroup raHireGroupDbVersion, VehicleMovement vehicleMovementIn)
         {
             VehicleMovement vehicleMovementInDbVersion = raHireGroupDbVersion.VehicleMovements
                 .FirstOrDefault(vm => vm.Status == Convert.ToBoolean(VehicleMovementEnum.In));
-            VehicleMovement vehicleMovementIn = raHireGroup.VehicleMovements
-                .FirstOrDefault(vm => vm.Status == Convert.ToBoolean(VehicleMovementEnum.In));
+
             if (vehicleMovementInDbVersion != null && vehicleMovementIn != null)
             {
                 vehicleMovementInDbVersion.VehicleStatusId = vehicleMovementIn.VehicleStatusId;
@@ -583,6 +689,8 @@ namespace Cares.Implementation.Services
                 vehicleMovementInDbVersion.FuelLevel = vehicleMovementIn.FuelLevel;
                 vehicleMovementInDbVersion.OperationsWorkPlaceId = vehicleMovementIn.OperationsWorkPlaceId;
                 vehicleMovementInDbVersion.RowVersion = vehicleMovementInDbVersion.RowVersion + 1;
+                vehicleMovementInDbVersion.RecLastUpdatedBy = rentalAgreementRepository.LoggedInUserIdentity;
+                vehicleMovementInDbVersion.RecLastUpdatedDt = DateTime.Now;
             }
         }
 
@@ -607,7 +715,7 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Update Ra HireGroup Insurances Existing
         /// </summary>
-        private static void UpdateRaHireGroupInsurancesExisting(RaHireGroup raHireGroup, RaHireGroup raHireGroupDbVersion)
+        private void UpdateRaHireGroupInsurancesExisting(RaHireGroup raHireGroup, RaHireGroup raHireGroupDbVersion)
         {
             foreach (RaHireGroupInsurance raHireGroupInsurance in raHireGroup.RaHireGroupInsurances)
             {
@@ -633,6 +741,8 @@ namespace Cares.Implementation.Services
                 raHireGroupInsuranceDbVersion.InsuranceTypeId = raHireGroupInsurance.InsuranceTypeId;
                 raHireGroupInsuranceDbVersion.TariffType = raHireGroupInsurance.TariffType;
                 raHireGroupInsuranceDbVersion.RowVersion = raHireGroupInsurance.RowVersion + 1;
+                raHireGroupInsuranceDbVersion.RecLastUpdatedBy = rentalAgreementRepository.LoggedInUserIdentity;
+                raHireGroupInsuranceDbVersion.RecLastUpdatedDt = DateTime.Now;
             }
         }
 
@@ -651,7 +761,7 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Update RaHireGroup Existing Header Info
         /// </summary>
-        private static void UpdateRaHireGroupExistingHeader(RaHireGroup raHireGroupDbVersion, RaHireGroup raHireGroup)
+        private void UpdateRaHireGroupExistingHeader(RaHireGroup raHireGroupDbVersion, RaHireGroup raHireGroup)
         {
             raHireGroupDbVersion.AllocationStatusId = raHireGroup.AllocationStatusId;
             raHireGroupDbVersion.VehicleId = raHireGroup.VehicleId;
@@ -668,6 +778,9 @@ namespace Cares.Implementation.Services
             raHireGroupDbVersion.RentalChargeEndDate = raHireGroup.RentalChargeEndDate;
             raHireGroupDbVersion.StandardRate = raHireGroup.StandardRate;
             raHireGroupDbVersion.RentalChargeStartDate = raHireGroup.RentalChargeStartDate;
+            raHireGroupDbVersion.RecLastUpdatedBy = rentalAgreementRepository.LoggedInUserIdentity;
+            raHireGroupDbVersion.RecLastUpdatedDt = DateTime.Now;
+            raHireGroupDbVersion.RowVersion = raHireGroupDbVersion.RowVersion + 1;
         }
 
         /// <summary>
@@ -872,7 +985,7 @@ namespace Cares.Implementation.Services
         private void SaveChaufferReservation(RaMain raMain)
         {
             List<RaDriver> chauffers =
-                raMain.RaDrivers.Where(driver => driver.IsChauffer && driver.ChaufferId.HasValue).ToList();
+                raMain.RaDrivers.Where(driver => driver.IsChauffer && driver.ChaufferId.HasValue && driver.RaDriverId == 0).ToList();
 
             // Check for Chauffer Reservation
             if (raMain.ChaufferReservations == null)
@@ -902,8 +1015,464 @@ namespace Cares.Implementation.Services
                 ChaufferId = chauffer.ChaufferId ?? 0,
                 StartDtTime = chauffer.StartDtTime,
                 EndDtTime = chauffer.EndDtTime,
+                RowVersion = 0,
                 UserDomainKey = rentalAgreementRepository.UserDomainKey
             };
+        }
+
+        /// <summary>
+        /// Updates Ra Service Items
+        /// </summary>
+        private void UpdateRaServiceItems(RaMain raMain, RaMain raMainDbVersion)
+        {
+            // Check for RaService Items
+            if (raMainDbVersion.RaServiceItems == null)
+            {
+                raMainDbVersion.RaServiceItems = new List<RaServiceItem>();
+            }
+
+            // Add New
+            AddRaServiceItemForExistingRa(raMain, raMainDbVersion);
+
+            // Delete
+            DeleteRaServiceItem(raMain, raMainDbVersion);
+
+            // Update Existing
+            UpdateRaServiceItemsExisting(raMain, raMainDbVersion);
+        }
+
+        /// <summary>
+        /// Add RaService Item For Existing RA
+        /// </summary>
+        private void AddRaServiceItemForExistingRa(RaMain raMain, RaMain raMainDbVersion)
+        {
+            List<RaServiceItem> raServiceItemsToAdd =
+                raMain.RaServiceItems.Where(serItem => serItem.RaServiceItemId == 0).ToList();
+            raServiceItemsToAdd.ForEach(serItem => raMainDbVersion.RaServiceItems.Add(serItem));
+            AddRaServiceItems(raServiceItemsToAdd);
+        }
+
+        /// <summary>
+        /// Delete Ra Additional Charges
+        /// </summary>
+        private static void DeleteRaServiceItem(RaMain raMain, RaMain raMainDbVersion)
+        {
+            List<RaServiceItem> raServiceItemsToDelete =
+                raMainDbVersion.RaServiceItems.Where(
+                    raSerItem =>
+                        raMain.RaServiceItems.All(
+                            raServItem => raServItem.RaServiceItemId != raSerItem.RaServiceItemId)).ToList();
+            raServiceItemsToDelete.ForEach(addChg => raMainDbVersion.RaServiceItems.Remove(addChg));
+        }
+
+        /// <summary>
+        /// Update Ra Service Items Existing
+        /// </summary>
+        private void UpdateRaServiceItemsExisting(RaMain raMain, RaMain raMainDbVersion)
+        {
+            List<RaServiceItem> raServiceItemsToUpdate =
+                raMain.RaServiceItems.Where(
+                    addCh =>
+                        raMainDbVersion.RaServiceItems.All(
+                            addC => addCh.RaServiceItemId == addC.RaServiceItemId)).ToList();
+
+            foreach (RaServiceItem raServiceItem in raServiceItemsToUpdate)
+            {
+                RaServiceItem raServiceItemDbVersion = raMainDbVersion.RaServiceItems.FirstOrDefault(addChg =>
+                    addChg.RaServiceItemId == raServiceItem.RaServiceItemId);
+
+                if (raServiceItemDbVersion == null)
+                {
+                    throw new CaresException(string.Format(CultureInfo.InvariantCulture,
+                        Resources.RentalAgreement.RentalAgreement.RentalAgreementService_RaServiceItemNotFound,
+                        raServiceItem.RaServiceItemId));
+                }
+
+                UpdateRaServiceItemHeader(raServiceItemDbVersion, raServiceItem);
+            }
+        }
+
+        /// <summary>
+        /// Update Ra Service Item Header
+        /// </summary>
+        private void UpdateRaServiceItemHeader(RaServiceItem raServiceItemDbVersion, RaServiceItem raServiceItem)
+        {
+            raServiceItemDbVersion.Quantity = raServiceItem.Quantity;
+            raServiceItemDbVersion.ServiceRate = raServiceItem.ServiceRate;
+            raServiceItemDbVersion.ServiceCharge = raServiceItem.ServiceCharge;
+            raServiceItemDbVersion.ChargedDay = raServiceItem.ChargedDay;
+            raServiceItemDbVersion.ChargedHour = raServiceItem.ChargedHour;
+            raServiceItemDbVersion.ChargedMinute = raServiceItem.ChargedMinute;
+            raServiceItemDbVersion.TariffType = raServiceItem.TariffType;
+            raServiceItemDbVersion.StartDtTime = raServiceItem.StartDtTime;
+            raServiceItemDbVersion.EndDtTime = raServiceItem.EndDtTime;
+            raServiceItemDbVersion.RecLastUpdatedBy = rentalAgreementRepository.LoggedInUserIdentity;
+            raServiceItemDbVersion.RecLastUpdatedDt = DateTime.Now;
+            raServiceItemDbVersion.RowVersion = raServiceItemDbVersion.RowVersion + 1;
+        }
+
+        /// <summary>
+        /// Updates Ra Additional Charges
+        /// </summary>
+        private void UpdateRaAdditionalCharges(RaMain raMain, RaMain raMainDbVersion)
+        {
+            // Check for RaAdditoinalCharges
+            if (raMainDbVersion.RaAdditionalCharges == null)
+            {
+                raMainDbVersion.RaAdditionalCharges = new List<RaAdditionalCharge>();
+            }
+
+            // Add New
+            AddRaAdditionalChargesForExistingRa(raMain, raMainDbVersion);
+
+            // Delete
+            DeleteRaAdditionalCharges(raMain, raMainDbVersion);
+
+            // Update Existing
+            UpdateRaAdditionalChargesExisting(raMain, raMainDbVersion);
+        }
+
+        /// <summary>
+        /// Update Ra Additional Charges Existing
+        /// </summary>
+        private void UpdateRaAdditionalChargesExisting(RaMain raMain, RaMain raMainDbVersion)
+        {
+            List<RaAdditionalCharge> raAdditionalChargesToUpdate =
+                raMain.RaAdditionalCharges.Where(
+                    addCh =>
+                        raMainDbVersion.RaAdditionalCharges.All(
+                            addC => addCh.RaAdditionalChargeId == addC.RaAdditionalChargeId)).ToList();
+
+            foreach (RaAdditionalCharge raAdditionalCharge in raAdditionalChargesToUpdate)
+            {
+                RaAdditionalCharge raAdditionalChargeDbVersion = raMainDbVersion.RaAdditionalCharges.FirstOrDefault(addChg =>
+                    addChg.RaAdditionalChargeId == raAdditionalCharge.RaAdditionalChargeId);
+
+                if (raAdditionalChargeDbVersion == null)
+                {
+                    throw new CaresException(string.Format(CultureInfo.InvariantCulture,
+                        Resources.RentalAgreement.RentalAgreement.RentalAgreementService_RaAdditionalChargeNotFound,
+                        raAdditionalCharge.RaAdditionalChargeId));
+                }
+
+                raAdditionalChargeDbVersion.Quantity = raAdditionalCharge.Quantity;
+                raAdditionalChargeDbVersion.PlateNumber = raAdditionalCharge.PlateNumber;
+                raAdditionalChargeDbVersion.AdditionalChargeRate = raAdditionalCharge.AdditionalChargeRate;
+                raAdditionalChargeDbVersion.RecLastUpdatedBy = rentalAgreementRepository.LoggedInUserIdentity;
+                raAdditionalChargeDbVersion.RecLastUpdatedDt = DateTime.Now;
+                raAdditionalChargeDbVersion.RowVersion = raAdditionalChargeDbVersion.RowVersion + 1;
+            }
+        }
+
+        /// <summary>
+        /// Add RaAdditional Charges For Existing RA
+        /// </summary>
+        private void AddRaAdditionalChargesForExistingRa(RaMain raMain, RaMain raMainDbVersion)
+        {
+            List<RaAdditionalCharge> raAdditionalChargesToAdd =
+                raMain.RaAdditionalCharges.Where(addChg => addChg.RaAdditionalChargeId == 0).ToList();
+            raAdditionalChargesToAdd.ForEach(addChg => raMainDbVersion.RaAdditionalCharges.Add(addChg));
+            AddRaAdditionalCharges(raAdditionalChargesToAdd);
+        }
+
+        /// <summary>
+        /// Delete Ra Additional Charges
+        /// </summary>
+        private static void DeleteRaAdditionalCharges(RaMain raMain, RaMain raMainDbVersion)
+        {
+            List<RaAdditionalCharge> raAdditionalChargesToDelete =
+                raMainDbVersion.RaAdditionalCharges.Where(
+                    addCh =>
+                        raMain.RaAdditionalCharges.All(
+                            addC => addCh.RaAdditionalChargeId != addC.RaAdditionalChargeId)).ToList();
+            raAdditionalChargesToDelete.ForEach(addChg => raMainDbVersion.RaAdditionalCharges.Remove(addChg));
+        }
+
+        /// <summary>
+        /// Updates Ra Drivers
+        /// </summary>
+        private void UpdateRaDrivers(RaMain raMain, RaMain raMainDbVersion)
+        {
+            // Check for RaService Items
+            if (raMainDbVersion.RaDrivers == null)
+            {
+                raMainDbVersion.RaDrivers = new List<RaDriver>();
+            }
+
+            // Add New
+            AddRaDriverForExistingRa(raMain, raMainDbVersion);
+
+            // Delete
+            DeleteRaDriver(raMain, raMainDbVersion);
+
+            // Update Existing
+            UpdateRaDriversExisting(raMain, raMainDbVersion);
+        }
+
+        /// <summary>
+        /// Add RaDriver For Existing RA
+        /// </summary>
+        private void AddRaDriverForExistingRa(RaMain raMain, RaMain raMainDbVersion)
+        {
+            List<RaDriver> raDriversToAdd =
+                raMain.RaDrivers.Where(serItem => serItem.RaDriverId == 0).ToList();
+            raDriversToAdd.ForEach(serItem => raMainDbVersion.RaDrivers.Add(serItem));
+            AddRaDrivers(raDriversToAdd);
+        }
+
+        /// <summary>
+        /// Delete Ra Drivers
+        /// </summary>
+        private static void DeleteRaDriver(RaMain raMain, RaMain raMainDbVersion)
+        {
+            List<RaDriver> raDriversToDelete =
+                raMainDbVersion.RaDrivers.Where(
+                    raSerItem =>
+                        raMain.RaDrivers.All(
+                            raServItem => raServItem.RaDriverId != raSerItem.RaDriverId)).ToList();
+            raDriversToDelete.ForEach(addChg => raMainDbVersion.RaDrivers.Remove(addChg));
+        }
+
+        /// <summary>
+        /// Update Ra Drivers Existing
+        /// </summary>
+        private void UpdateRaDriversExisting(RaMain raMain, RaMain raMainDbVersion)
+        {
+            List<RaDriver> raDriversToUpdate =
+                raMain.RaDrivers.Where(
+                    addCh =>
+                        raMainDbVersion.RaDrivers.All(
+                            addC => addCh.RaDriverId == addC.RaDriverId)).ToList();
+
+            foreach (RaDriver raDriver in raDriversToUpdate)
+            {
+                RaDriver raDriverDbVersion = raMainDbVersion.RaDrivers.FirstOrDefault(addChg =>
+                    addChg.RaDriverId == raDriver.RaDriverId);
+
+                if (raDriverDbVersion == null)
+                {
+                    throw new CaresException(string.Format(CultureInfo.InvariantCulture,
+                        Resources.RentalAgreement.RentalAgreement.RentalAgreementService_RaDriverNotFound,
+                        raDriver.RaDriverId));
+                }
+
+                UpdateRaDriverHeader(raDriverDbVersion, raDriver);
+            }
+        }
+
+        /// <summary>
+        /// Update Ra Driver Header
+        /// </summary>
+        private void UpdateRaDriverHeader(RaDriver raDriverDbVersion, RaDriver raDriver)
+        {
+            raDriverDbVersion.ChargedDay = raDriver.ChargedDay;
+            raDriverDbVersion.ChargedHour = raDriver.ChargedHour;
+            raDriverDbVersion.ChargedMinute = raDriver.ChargedMinute;
+            raDriverDbVersion.TariffType = raDriver.TariffType;
+            raDriverDbVersion.StartDtTime = raDriver.StartDtTime;
+            raDriverDbVersion.EndDtTime = raDriver.EndDtTime;
+            raDriverDbVersion.TotalCharge = raDriver.TotalCharge;
+            raDriverDbVersion.Rate = raDriver.Rate;
+            raDriverDbVersion.LicenseNo = raDriver.LicenseNo;
+            raDriverDbVersion.LicenseExpDt = raDriver.LicenseExpDt;
+            raDriverDbVersion.DriverName = raDriver.DriverName;
+            raDriverDbVersion.RecLastUpdatedBy = rentalAgreementRepository.LoggedInUserIdentity;
+            raDriverDbVersion.RecLastUpdatedDt = DateTime.Now;
+            raDriverDbVersion.RowVersion = raDriverDbVersion.RowVersion + 1;
+        }
+
+        /// <summary>
+        /// Updates Ra Payments
+        /// </summary>
+        private void UpdateRaPayments(RaMain raMain, RaMain raMainDbVersion)
+        {
+            // Check for RaService Items
+            if (raMainDbVersion.RaPayments == null)
+            {
+                raMainDbVersion.RaPayments = new List<RaPayment>();
+            }
+
+            // Add New
+            AddRaPaymentForExistingRa(raMain, raMainDbVersion);
+
+            // Delete
+            DeleteRaPayment(raMain, raMainDbVersion);
+
+            // Update Existing
+            UpdateRaPaymentsExisting(raMain, raMainDbVersion);
+        }
+
+        /// <summary>
+        /// Add RaPayment For Existing RA
+        /// </summary>
+        private void AddRaPaymentForExistingRa(RaMain raMain, RaMain raMainDbVersion)
+        {
+            List<RaPayment> raPaymentsToAdd =
+                raMain.RaPayments.Where(serItem => serItem.RaPaymentId == 0).ToList();
+            raPaymentsToAdd.ForEach(serItem => raMainDbVersion.RaPayments.Add(serItem));
+            AddRaPayments(raPaymentsToAdd);
+        }
+
+        /// <summary>
+        /// Delete Ra Payments
+        /// </summary>
+        private static void DeleteRaPayment(RaMain raMain, RaMain raMainDbVersion)
+        {
+            List<RaPayment> raPaymentsToDelete =
+                raMainDbVersion.RaPayments.Where(
+                    raSerItem =>
+                        raMain.RaPayments.All(
+                            raServItem => raServItem.RaPaymentId != raSerItem.RaPaymentId)).ToList();
+            raPaymentsToDelete.ForEach(addChg => raMainDbVersion.RaPayments.Remove(addChg));
+        }
+
+        /// <summary>
+        /// Update Ra Payments Existing
+        /// </summary>
+        private void UpdateRaPaymentsExisting(RaMain raMain, RaMain raMainDbVersion)
+        {
+            List<RaPayment> raPaymentsToUpdate =
+                raMain.RaPayments.Where(
+                    addCh =>
+                        raMainDbVersion.RaPayments.All(
+                            addC => addCh.RaPaymentId == addC.RaPaymentId)).ToList();
+
+            foreach (RaPayment raPayment in raPaymentsToUpdate)
+            {
+                RaPayment raPaymentDbVersion = raMainDbVersion.RaPayments.FirstOrDefault(addChg =>
+                    addChg.RaPaymentId == raPayment.RaPaymentId);
+
+                if (raPaymentDbVersion == null)
+                {
+                    throw new CaresException(string.Format(CultureInfo.InvariantCulture,
+                        Resources.RentalAgreement.RentalAgreement.RentalAgreementService_RaPaymentNotFound,
+                        raPayment.RaPaymentId));
+                }
+
+                UpdateRaPaymentHeader(raPaymentDbVersion, raPayment);
+            }
+        }
+
+        /// <summary>
+        /// Update Ra Payment Header
+        /// </summary>
+        private void UpdateRaPaymentHeader(RaPayment raPaymentDbVersion, RaPayment raPayment)
+        {
+            raPaymentDbVersion.Bank = raPayment.Bank;
+            raPaymentDbVersion.ChequeNumber = raPayment.ChequeNumber;
+            raPaymentDbVersion.PaymentModeId = raPayment.PaymentModeId;
+            raPaymentDbVersion.RaPaymentAmount = raPayment.RaPaymentAmount;
+            raPaymentDbVersion.RaPaymentDt = raPayment.RaPaymentDt;
+            raPaymentDbVersion.PaidBy = raPayment.PaidBy;
+            raPaymentDbVersion.RecLastUpdatedBy = rentalAgreementRepository.LoggedInUserIdentity;
+            raPaymentDbVersion.RecLastUpdatedDt = DateTime.Now;
+            raPaymentDbVersion.RowVersion = raPaymentDbVersion.RowVersion + 1;
+        }
+
+        /// <summary>
+        /// Updates Ra CustomerDocuments
+        /// </summary>
+        private void UpdateRaCustomerDocuments(RaMain raMain, RaMain raMainDbVersion)
+        {
+            // Check for RaService Items
+            if (raMainDbVersion.RaCustomerDocuments == null)
+            {
+                raMainDbVersion.RaCustomerDocuments = new List<RaCustomerDocument>();
+            }
+
+            // Add New
+            AddRaCustomerDocumentForExistingRa(raMain, raMainDbVersion);
+
+            // Delete
+            DeleteRaCustomerDocument(raMain, raMainDbVersion);
+        }
+
+        /// <summary>
+        /// Add RaCustomerDocument For Existing RA
+        /// </summary>
+        private void AddRaCustomerDocumentForExistingRa(RaMain raMain, RaMain raMainDbVersion)
+        {
+            List<RaCustomerDocument> raCustomerDocumentsToAdd =
+                raMain.RaCustomerDocuments.Where(serItem => serItem.RaCustomerDocumentId == 0).ToList();
+            raCustomerDocumentsToAdd.ForEach(serItem => raMainDbVersion.RaCustomerDocuments.Add(serItem));
+            AddRaCustomerDocuments(raCustomerDocumentsToAdd);
+        }
+
+        /// <summary>
+        /// Delete Ra CustomerDocuments
+        /// </summary>
+        private static void DeleteRaCustomerDocument(RaMain raMain, RaMain raMainDbVersion)
+        {
+            List<RaCustomerDocument> raCustomerDocumentsToDelete =
+                raMainDbVersion.RaCustomerDocuments.Where(
+                    raSerItem =>
+                        raMain.RaCustomerDocuments.All(
+                            raServItem => raServItem.RaCustomerDocumentId != raSerItem.RaCustomerDocumentId)).ToList();
+            raCustomerDocumentsToDelete.ForEach(addChg => raMainDbVersion.RaCustomerDocuments.Remove(addChg));
+        }
+
+        /// <summary>
+        /// Update Chuaffer Reservations
+        /// </summary>
+        private void UpdateChaufferReservations(RaMain raMain, RaMain raMainDbVersion)
+        {
+            // Update Chauffer Reservations
+            SaveChaufferReservation(raMain);
+
+            // Delete Reservations
+            DeleteChaufferReservations(raMain, raMainDbVersion);
+
+            // Update Existing Chauffer Reservations
+            UpdateChaufferReservationsExisting(raMain, raMainDbVersion);
+        }
+
+        /// <summary>
+        /// Update Existing Chauffer Reservations
+        /// </summary>
+        private void UpdateChaufferReservationsExisting(RaMain raMain, RaMain raMainDbVersion)
+        {
+            List<RaDriver> chauffersToUpdate =
+                raMainDbVersion.RaDrivers.Where(
+                    raDriver =>
+                        raMain.RaDrivers.All(driver => driver.RaDriverId == raDriver.RaDriverId) &&
+                        raDriver.IsChauffer && raDriver.ChaufferId.HasValue && raDriver.ChaufferId.Value > 0).ToList();
+
+            if (raMainDbVersion.ChaufferReservations.Any())
+            {
+                foreach (RaDriver raDriver in chauffersToUpdate)
+                {
+                    List<ChaufferReservation> chaufferReservationsToUpdate = raMainDbVersion.ChaufferReservations.Where(
+                        cr => chauffersToUpdate.Select(ch => ch.ChaufferId).Contains(cr.ChaufferId)).ToList();
+
+                    chaufferReservationsToUpdate.ForEach(cr =>
+                    {
+                        cr.StartDtTime = raDriver.StartDtTime;
+                        cr.EndDtTime = raDriver.EndDtTime;
+                        cr.RecLastUpdatedBy = rentalAgreementRepository.LoggedInUserIdentity;
+                        cr.RecLastUpdatedDt = DateTime.Now;
+                        cr.RowVersion = cr.RowVersion + 1;
+                    });
+                }
+            }
+        }
+
+        /// <summary>
+        /// Delete Chauffer Reservations
+        /// </summary>
+        private static void DeleteChaufferReservations(RaMain raMain, RaMain raMainDbVersion)
+        {
+            List<RaDriver> chauffersToDelete =
+                raMainDbVersion.RaDrivers.Where(
+                    raDriver =>
+                        raMain.RaDrivers.All(driver => driver.RaDriverId != raDriver.RaDriverId) &&
+                        raDriver.IsChauffer && raDriver.ChaufferId.HasValue && raDriver.ChaufferId.Value > 0).ToList();
+
+            if (raMainDbVersion.ChaufferReservations.Any())
+            {
+                List<ChaufferReservation> chaufferReservationsToDelete = raMainDbVersion.ChaufferReservations.Where(
+                    cr => chauffersToDelete.Select(ch => ch.ChaufferId).Contains(cr.ChaufferId)).ToList();
+                chaufferReservationsToDelete.ForEach(cr => raMainDbVersion.ChaufferReservations.Remove(cr));
+            }
         }
 
         #endregion
@@ -1010,19 +1579,19 @@ namespace Cares.Implementation.Services
                 AddRaHireGroups(raMain.RaHireGroups);
 
                 // Ra Additional Charges
-                AddRaAdditionalCharges(raMain);
+                AddRaAdditionalCharges(raMain.RaAdditionalCharges);
 
                 // Ra Service Items
-                AddRaServiceItems(raMain);
+                AddRaServiceItems(raMain.RaServiceItems);
 
                 // Ra Drivers
-                AddRaDrivers(raMain);
+                AddRaDrivers(raMain.RaDrivers);
 
                 // Ra Payments
-                AddRaPayments(raMain);
+                AddRaPayments(raMain.RaPayments);
 
                 // Ra Customer Documents
-                AddRaCustomerDocuments(raMain);
+                AddRaCustomerDocuments(raMain.RaCustomerDocuments);
 
                 // Update / Add Business Partner
                 if (raMain.BusinessPartnerId == 0)
@@ -1057,19 +1626,25 @@ namespace Cares.Implementation.Services
                 UpdateRaHireGroups(raMain, raMainDbVersion);
 
                 // Update / Add Ra Additional Charges
+                UpdateRaAdditionalCharges(raMain, raMainDbVersion);
 
                 // Update / Add Ra Service Items
+                UpdateRaServiceItems(raMain, raMainDbVersion);
 
                 // Update / Add Ra Drivers
+                UpdateRaDrivers(raMain, raMainDbVersion);
 
                 // Update / Add Ra Payments
+                UpdateRaPayments(raMain, raMainDbVersion);
 
                 // Update / Add Ra Customer Documents
+                UpdateRaCustomerDocuments(raMain, raMainDbVersion);
 
                 // Update Business Partner
                 UpdateBusinessPartner(raMain.BusinessPartner);
 
                 // Update Chauffer Reservations
+                UpdateChaufferReservations(raMain, raMainDbVersion);
             }
 
 

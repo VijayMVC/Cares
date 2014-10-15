@@ -547,7 +547,9 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         };
                         dataservice.saveRentalAgreement(saveRaRequest, {
                             success: function (data) {
-                                rentalAgreement(model.RentalAgreement.Create(data, rentalAgreementModelCallbacks, true));
+                                if (data && data.RaMainId > 0) {
+                                    load(data.RaMainId);
+                                }
                                 toastr.success("Agreement saved successfully!");
                             },
                             error: function (response) {
