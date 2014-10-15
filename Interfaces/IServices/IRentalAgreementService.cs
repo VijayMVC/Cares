@@ -22,5 +22,10 @@ namespace Cares.Interfaces.IServices
         /// Save Rental Agreement
         /// </summary>
         RaMain SaveRentalAgreement(RaMain request);
+
+        /// <summary>
+        /// Get By Id
+        /// </summary>
+        RaMain GetById(long id);
     }
 }

@@ -141,26 +141,19 @@ namespace Cares.Implementation.Helpers
         /// </summary>
         public void CalculateBill(ref RaMain raMain, List<TariffType> oTariffTypeList)
         {
-            try
-            {
-                List<RaHireGroup> raHireGroupList = raMain.RaHireGroups.ToList();
-                List<RaServiceItem> raServiceItems = raMain.RaServiceItems.ToList();
-                List<RaDriver> raDrivers = raMain.RaDrivers.ToList();
-                List<RaPayment> raPayments = raMain.RaPayments.ToList();
-                List<RaAdditionalCharge> raAdditionalCharges = raMain.RaAdditionalCharges.ToList();
+            List<RaHireGroup> raHireGroupList = raMain.RaHireGroups.ToList();
+            List<RaServiceItem> raServiceItems = raMain.RaServiceItems.ToList();
+            List<RaDriver> raDrivers = raMain.RaDrivers.ToList();
+            List<RaPayment> raPayments = raMain.RaPayments.ToList();
+            List<RaAdditionalCharge> raAdditionalCharges = raMain.RaAdditionalCharges.ToList();
                 
-                CalculateHireGroupCharges(raMain.RecCreatedDt, raMain.StartDtTime, raMain.EndDtTime, raMain.OperationId, ref raHireGroupList, 
-                    oTariffTypeList);
-                CalculateRACharges(ref raServiceItems, ref raDrivers, raMain.RecCreatedDt, raMain.OperationId, oTariffTypeList);
-                BillingSummary billingSummary = GenerateBillingSummary(raHireGroupList, raServiceItems, raDrivers, raPayments, raAdditionalCharges, raMain.SpecialDiscountPerc != null ? 
-                    (float)raMain.SpecialDiscountPerc : 0, (float)raMain.SpecialDiscount, raMain.IsSpecialDiscountPerc);
+            CalculateHireGroupCharges(raMain.RecCreatedDt, raMain.StartDtTime, raMain.EndDtTime, raMain.OperationId, ref raHireGroupList, 
+                oTariffTypeList);
+            CalculateRACharges(ref raServiceItems, ref raDrivers, raMain.RecCreatedDt, raMain.OperationId, oTariffTypeList);
+            BillingSummary billingSummary = GenerateBillingSummary(raHireGroupList, raServiceItems, raDrivers, raPayments, raAdditionalCharges, raMain.SpecialDiscountPerc != null ? 
+                (float)raMain.SpecialDiscountPerc : 0, (float)raMain.SpecialDiscount, raMain.IsSpecialDiscountPerc);
 
-                MapBilling(raMain, billingSummary);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            MapBilling(raMain, billingSummary);
         }
 
         /// <summary>

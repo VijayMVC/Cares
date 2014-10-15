@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Cares.ExceptionHandling;
 using Cares.Interfaces.Helpers;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
@@ -27,7 +28,6 @@ namespace Cares.Implementation.Services
         private readonly IAlloactionStatusRepository alloactionStatusRepository;
         private readonly IRentalAgreementRepository rentalAgreementRepository;
         private readonly IBusinessPartnerRepository businessPartnerRepository;
-        private readonly IPhoneRepository businessPartnerPhoneRepository;
         private readonly IAddressRepository businessPartnerAddressRepository;
         private readonly IVehicleRepository vehicleRepository;
 
@@ -138,6 +138,9 @@ namespace Cares.Implementation.Services
             }
         }
 
+        /// <summary>
+        /// Get Vehicle
+        /// </summary>
         private Vehicle GetVehicle(RaHireGroup raHireGroup)
         {
             // Add Vehicle Reservation and Update Vehicle Status
@@ -150,8 +153,8 @@ namespace Cares.Implementation.Services
 
             if (vehicle == null)
             {
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                    "Vehicle with Id {0} not found", raHireGroup.VehicleId.Value));
+                throw new CaresException(string.Format(CultureInfo.InvariantCulture,
+                    Resources.RentalAgreement.RentalAgreement.VehicleNotFound, raHireGroup.VehicleId.Value));
             }
 
             return vehicle;
@@ -187,9 +190,9 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Update Vehicle Status In
         /// </summary>
-// ReSharper disable UnusedMember.Local
+        // ReSharper disable UnusedMember.Local
         private void UpdateVehicleStatusIn(RaHireGroup raHireGroup, Vehicle vehicle)
-// ReSharper restore UnusedMember.Local
+        // ReSharper restore UnusedMember.Local
         {
             VehicleMovement vehicleMovementIn =
                 raHireGroup.VehicleMovements.FirstOrDefault(vm => vm.Status == Convert.ToBoolean(VehicleMovementEnum.In));
@@ -472,7 +475,7 @@ namespace Cares.Implementation.Services
             {
                 businessPartner.BusinessPartnerIndividual.LastName = string.Empty;
             }
-            
+
             businessPartner.BusinessPartnerIndividual.RecCreatedBy =
                 businessPartner.BusinessPartnerIndividual.RecLastUpdatedBy =
                     businessPartnerRepository.LoggedInUserIdentity;
@@ -542,13 +545,13 @@ namespace Cares.Implementation.Services
 
                 if (raHireGroupDbVersion == null)
                 {
-                    throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                        "RaHireGroup with Id {0} not found", raHireGroup.RaHireGroupId));
+                    throw new CaresException(string.Format(CultureInfo.InvariantCulture,
+                        Resources.RentalAgreement.RentalAgreement.RaHireGroupNotFound, raHireGroup.RaHireGroupId));
                 }
 
                 // Update Main
                 UpdateRaHireGroupExistingHeader(raHireGroupDbVersion, raHireGroup);
-                
+
                 // Update Ra Hire Group Insurances
                 UpdateRaHireGroupInsurances(raHireGroup, raHireGroupDbVersion);
 
@@ -556,7 +559,7 @@ namespace Cares.Implementation.Services
                 UpdateVehicleMovementInDetails(raHireGroupDbVersion, raHireGroup);
 
                 // Update Ra Hire Group Discounts
-                
+
                 // Update Ra Vehicle CheckLists
 
                 // Update Vehicle Reservation and Vehicle Status In
@@ -614,8 +617,8 @@ namespace Cares.Implementation.Services
 
                 if (raHireGroupInsuranceDbVersion == null)
                 {
-                    throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                        "RaHireGroupInsurance with Id {0} not found",
+                    throw new CaresException(string.Format(CultureInfo.InvariantCulture,
+                        Resources.RentalAgreement.RentalAgreement.RaHireGroupInsuranceNotFound,
                         raHireGroupInsurance.RaHireGroupInsuranceId));
                 }
 
@@ -688,149 +691,166 @@ namespace Cares.Implementation.Services
         {
             BusinessPartner businessPartnerDbVersion = businessPartnerRepository.Find(businessPartner.BusinessPartnerId);
 
-            if (businessPartnerDbVersion != null)
+            if (businessPartnerDbVersion == null)
             {
-                //set master(business partner) properties
-                #region Business Partner
-                businessPartnerDbVersion.BusinessPartnerName = businessPartner.BusinessPartnerName;
-                businessPartnerDbVersion.BusinessPartnerDesciption = businessPartner.BusinessPartnerDesciption;
-                businessPartnerDbVersion.IsSystemGuarantor = businessPartner.IsSystemGuarantor;
-                businessPartnerDbVersion.NonSystemGuarantor = businessPartner.NonSystemGuarantor;
-                businessPartnerDbVersion.IsIndividual = businessPartner.IsIndividual;
-                businessPartnerDbVersion.BusinessPartnerEmailAddress = businessPartner.BusinessPartnerEmailAddress;
-                businessPartnerDbVersion.CompanyId = businessPartner.CompanyId;
-                businessPartnerDbVersion.SystemGuarantorId = businessPartner.SystemGuarantorId;
-                businessPartnerDbVersion.BusinessLegalStatusId = businessPartner.BusinessLegalStatusId;
-                businessPartnerDbVersion.DealingEmployeeId = businessPartner.DealingEmployeeId;
-                businessPartnerDbVersion.PaymentTermId = businessPartner.PaymentTermId;
-                businessPartnerDbVersion.BPRatingTypeId = businessPartner.BPRatingTypeId;
-
-                businessPartnerDbVersion.RecLastUpdatedDt = DateTime.Now;
-                businessPartnerDbVersion.RecCreatedBy = businessPartnerRepository.LoggedInUserIdentity;
-                businessPartnerDbVersion.RowVersion = businessPartnerDbVersion.RowVersion + 1;
-                #endregion
-
-                //set child (buiness partner individual properties)
-                #region Business Partner Individual
-                businessPartnerDbVersion.BusinessPartnerIndividual.BusinessPartnerId = businessPartner.BusinessPartnerIndividual.BusinessPartnerId;
-                businessPartnerDbVersion.BusinessPartnerIndividual.FirstName = businessPartner.BusinessPartnerIndividual.FirstName;
-                businessPartnerDbVersion.BusinessPartnerIndividual.MiddleName = businessPartner.BusinessPartnerIndividual.MiddleName;
-                businessPartnerDbVersion.BusinessPartnerIndividual.LastName = businessPartner.BusinessPartnerIndividual.LastName;
-                businessPartnerDbVersion.BusinessPartnerIndividual.Initials = businessPartner.BusinessPartnerIndividual.Initials;
-                businessPartnerDbVersion.BusinessPartnerIndividual.GenderStatus = businessPartner.BusinessPartnerIndividual.GenderStatus;
-                businessPartnerDbVersion.BusinessPartnerIndividual.MaritalStatusCode = businessPartner.BusinessPartnerIndividual.MaritalStatusCode;
-                businessPartnerDbVersion.BusinessPartnerIndividual.OccupationTypeId = businessPartner.BusinessPartnerIndividual.OccupationTypeId;
-                businessPartnerDbVersion.BusinessPartnerIndividual.LastName = businessPartner.BusinessPartnerIndividual.LastName;
-                businessPartnerDbVersion.BusinessPartnerIndividual.DateOfBirth = businessPartner.BusinessPartnerIndividual.DateOfBirth;
-                businessPartnerDbVersion.BusinessPartnerIndividual.NicNumber = businessPartner.BusinessPartnerIndividual.NicNumber;
-                businessPartnerDbVersion.BusinessPartnerIndividual.NicExpiryDate = businessPartner.BusinessPartnerIndividual.NicExpiryDate;
-                businessPartnerDbVersion.BusinessPartnerIndividual.IqamaNo = businessPartner.BusinessPartnerIndividual.IqamaNo;
-                businessPartnerDbVersion.BusinessPartnerIndividual.IqamaExpiryDate = businessPartner.BusinessPartnerIndividual.IqamaExpiryDate;
-                businessPartnerDbVersion.BusinessPartnerIndividual.PassportNumber = businessPartner.BusinessPartnerIndividual.PassportNumber;
-                businessPartnerDbVersion.BusinessPartnerIndividual.PassportExpiryDate = businessPartner.BusinessPartnerIndividual.PassportExpiryDate;
-                businessPartnerDbVersion.BusinessPartnerIndividual.PassportCountryId = businessPartner.BusinessPartnerIndividual.PassportCountryId;
-                businessPartnerDbVersion.BusinessPartnerIndividual.LiscenseNumber = businessPartner.BusinessPartnerIndividual.LiscenseNumber;
-                businessPartnerDbVersion.BusinessPartnerIndividual.LiscenseExpiryDate = businessPartner.BusinessPartnerIndividual.LiscenseExpiryDate;
-                businessPartnerDbVersion.BusinessPartnerIndividual.TaxRegisterationCode = businessPartner.BusinessPartnerIndividual.TaxRegisterationCode;
-                businessPartnerDbVersion.BusinessPartnerIndividual.TaxNumber = businessPartner.BusinessPartnerIndividual.TaxNumber;
-                businessPartnerDbVersion.BusinessPartnerIndividual.IsCompanyExternal = businessPartner.BusinessPartnerIndividual.IsCompanyExternal;
-                businessPartnerDbVersion.BusinessPartnerIndividual.BusinessPartnerCompanyId = businessPartner.BusinessPartnerIndividual.BusinessPartnerCompanyId;
-                businessPartnerDbVersion.BusinessPartnerIndividual.CompanyName = businessPartner.BusinessPartnerIndividual.CompanyName;
-                businessPartnerDbVersion.BusinessPartnerIndividual.CompanyPhone = businessPartner.BusinessPartnerIndividual.CompanyPhone;
-                businessPartnerDbVersion.BusinessPartnerIndividual.CompanyAddress = businessPartner.BusinessPartnerIndividual.CompanyAddress;
-
-                businessPartnerDbVersion.BusinessPartnerIndividual.RowVersion = businessPartnerDbVersion.BusinessPartnerIndividual.RowVersion + 1;
-                businessPartnerDbVersion.BusinessPartnerIndividual.RecLastUpdatedDt = DateTime.Now;
-                businessPartnerDbVersion.BusinessPartnerIndividual.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
-                #endregion
-
-                //set child (buiness partner company properties)
-                #region Business Partner Company
-                businessPartnerDbVersion.BusinessPartnerCompany.BusinessPartnerId = businessPartner.BusinessPartnerId;
-                businessPartnerDbVersion.BusinessPartnerCompany.BusinessPartnerCompanyCode =
-                    businessPartner.BusinessPartnerCompany.BusinessPartnerCompanyCode;
-                businessPartnerDbVersion.BusinessPartnerCompany.BusinessPartnerCompanyName =
-                    businessPartner.BusinessPartnerCompany.BusinessPartnerCompanyName;
-                businessPartnerDbVersion.BusinessPartnerCompany.BusinessSegmentId =
-                    businessPartner.BusinessPartnerCompany.BusinessSegmentId;
-                businessPartnerDbVersion.BusinessPartnerCompany.AccountNumber =
-                    businessPartner.BusinessPartnerCompany.AccountNumber;
-                businessPartnerDbVersion.BusinessPartnerCompany.EstablishedSince =
-                    businessPartner.BusinessPartnerCompany.EstablishedSince;
-                businessPartnerDbVersion.BusinessPartnerCompany.SwiftCode =
-                    businessPartner.BusinessPartnerCompany.SwiftCode;
-
-                businessPartnerDbVersion.BusinessPartnerCompany.RowVersion =
-                    businessPartnerDbVersion.BusinessPartnerCompany.RowVersion + 1;
-                businessPartnerDbVersion.BusinessPartnerCompany.RecLastUpdatedDt = DateTime.Now;
-                businessPartnerDbVersion.BusinessPartnerCompany.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
-                #endregion
-
-                //set child (business partner phones)
-                #region Business Partner Phones
-                //add new phone items
-                foreach (Phone phone in businessPartner.BusinessPartnerPhoneNumbers)
-                {
-                    if (businessPartnerDbVersion.BusinessPartnerPhoneNumbers.All(x => x.PhoneId != phone.PhoneId) || phone.PhoneId == 0)
-                    {
-                        // set properties
-                        phone.IsActive = true;
-                        phone.RecCreatedDt = DateTime.Now;
-                        phone.RecLastUpdatedDt = DateTime.Now;
-                        phone.RecCreatedBy = businessPartnerRepository.LoggedInUserIdentity;
-                        phone.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
-                        phone.RowVersion = 0;
-                        phone.UserDomainKey = businessPartnerRepository.UserDomainKey;
-                        businessPartnerDbVersion.BusinessPartnerPhoneNumbers.Add(phone);
-                    }
-                }
-                //find missing phone items
-                List<Phone> missingPhoneItems = businessPartnerDbVersion.BusinessPartnerPhoneNumbers.Where(phone => phone.IsDefault).Where(dbversionPhoneItem => businessPartner.BusinessPartnerPhoneNumbers.All(x => x.PhoneId != dbversionPhoneItem.PhoneId)).ToList();
-                //remove missing phone items
-                foreach (Phone missingBusinessPartnerPhone in missingPhoneItems)
-                {
-                    Phone dbVersionMissingPhoneItem = businessPartnerDbVersion.BusinessPartnerPhoneNumbers.First(x => x.PhoneId == missingBusinessPartnerPhone.PhoneId);
-                    if (dbVersionMissingPhoneItem.PhoneId > 0)
-                    {
-                        businessPartnerDbVersion.BusinessPartnerPhoneNumbers.Remove(dbVersionMissingPhoneItem);
-                        businessPartnerPhoneRepository.Delete(dbVersionMissingPhoneItem);
-                    }
-                }
-                #endregion
-
-                //set child (business partner address list)
-                #region Business Partner Address List
-                //add new address items
-                foreach (Address address in businessPartner.BusinessPartnerAddressList)
-                {
-                    if (businessPartnerDbVersion.BusinessPartnerAddressList.All(x => x.AddressId != address.AddressId) || address.AddressId == 0)
-                    {
-                        // set properties
-                        address.IsActive = true;
-                        address.RecCreatedDt = DateTime.Now;
-                        address.RecLastUpdatedDt = DateTime.Now;
-                        address.RecCreatedBy = businessPartnerRepository.LoggedInUserIdentity;
-                        address.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
-                        address.RowVersion = 0;
-                        address.UserDomainKey = businessPartnerRepository.UserDomainKey;
-                        businessPartnerDbVersion.BusinessPartnerAddressList.Add(address);
-                    }
-                }
-                //find missing address items
-                List<Address> missingAddressItems = businessPartnerDbVersion.BusinessPartnerAddressList.Where(dbversionAddressItem => businessPartner.BusinessPartnerAddressList.All(x => x.AddressId != dbversionAddressItem.AddressId)).ToList();
-                //remove missing address items
-                foreach (Address missingBusinessPartnerAddress in missingAddressItems)
-                {
-                    Address dbVersionMissingAddressItem = businessPartnerDbVersion.BusinessPartnerAddressList.First(x => x.AddressId == missingBusinessPartnerAddress.AddressId);
-                    if (dbVersionMissingAddressItem.AddressId > 0)
-                    {
-                        businessPartnerDbVersion.BusinessPartnerAddressList.Remove(dbVersionMissingAddressItem);
-                        businessPartnerAddressRepository.Delete(dbVersionMissingAddressItem);
-                    }
-                }
-                #endregion
+                throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.RentalAgreement.RentalAgreement.BusinessPartnerNotFound,
+                    businessPartner.BusinessPartnerId));
             }
 
+            //set master(business partner) properties
+            #region Business Partner
+            businessPartnerDbVersion.BusinessPartnerName = businessPartner.BusinessPartnerName;
+            businessPartnerDbVersion.IsIndividual = businessPartner.IsIndividual;
+            businessPartnerDbVersion.BusinessPartnerEmailAddress = businessPartner.BusinessPartnerEmailAddress;
+            businessPartnerDbVersion.PaymentTermId = businessPartner.PaymentTermId;
+
+            businessPartnerDbVersion.RecLastUpdatedDt = DateTime.Now;
+            businessPartnerDbVersion.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
+            businessPartnerDbVersion.RowVersion = businessPartnerDbVersion.RowVersion + 1;
+            #endregion
+
+            //set child (buiness partner individual properties)
+            #region Business Partner Individual
+            businessPartnerDbVersion.BusinessPartnerIndividual.FirstName = businessPartner.BusinessPartnerIndividual.FirstName ?? string.Empty;
+            businessPartnerDbVersion.BusinessPartnerIndividual.LastName = businessPartner.BusinessPartnerIndividual.LastName ?? string.Empty;
+            businessPartnerDbVersion.BusinessPartnerIndividual.DateOfBirth = businessPartner.BusinessPartnerIndividual.DateOfBirth;
+            businessPartnerDbVersion.BusinessPartnerIndividual.NicNumber = businessPartner.BusinessPartnerIndividual.NicNumber;
+            businessPartnerDbVersion.BusinessPartnerIndividual.NicExpiryDate = businessPartner.BusinessPartnerIndividual.NicExpiryDate;
+            businessPartnerDbVersion.BusinessPartnerIndividual.PassportNumber = businessPartner.BusinessPartnerIndividual.PassportNumber;
+            businessPartnerDbVersion.BusinessPartnerIndividual.PassportExpiryDate = businessPartner.BusinessPartnerIndividual.PassportExpiryDate;
+            businessPartnerDbVersion.BusinessPartnerIndividual.PassportCountryId = businessPartner.BusinessPartnerIndividual.PassportCountryId;
+            businessPartnerDbVersion.BusinessPartnerIndividual.LiscenseNumber = businessPartner.BusinessPartnerIndividual.LiscenseNumber;
+            businessPartnerDbVersion.BusinessPartnerIndividual.LiscenseExpiryDate = businessPartner.BusinessPartnerIndividual.LiscenseExpiryDate;
+            businessPartnerDbVersion.BusinessPartnerIndividual.RowVersion = businessPartnerDbVersion.BusinessPartnerIndividual.RowVersion + 1;
+            businessPartnerDbVersion.BusinessPartnerIndividual.RecLastUpdatedDt = DateTime.Now;
+            businessPartnerDbVersion.BusinessPartnerIndividual.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
+            #endregion
+
+            //set child (buiness partner company properties)
+            #region Business Partner Company
+            businessPartnerDbVersion.BusinessPartnerCompany.BusinessPartnerCompanyCode =
+                businessPartner.BusinessPartnerCompany.BusinessPartnerCompanyCode ?? string.Empty;
+            businessPartnerDbVersion.BusinessPartnerCompany.BusinessPartnerCompanyName =
+                businessPartner.BusinessPartnerCompany.BusinessPartnerCompanyName;
+
+            businessPartnerDbVersion.BusinessPartnerCompany.RowVersion =
+                businessPartnerDbVersion.BusinessPartnerCompany.RowVersion + 1;
+            businessPartnerDbVersion.BusinessPartnerCompany.RecLastUpdatedDt = DateTime.Now;
+            businessPartnerDbVersion.BusinessPartnerCompany.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
+            #endregion
+
+            //set child (business partner phones)
+            #region Business Partner Phones
+            //add new phone items
+            AddBusinessPartnerPhone(businessPartner, businessPartnerDbVersion);
+
+            // Find existing phone items
+            List<Phone> phoneItems = businessPartnerDbVersion.BusinessPartnerPhoneNumbers.Where(dbversionPhoneItem => businessPartner.BusinessPartnerPhoneNumbers.All(x => x.PhoneId == dbversionPhoneItem.PhoneId)).ToList();
+            // Update phone items
+            UpdateBusinessPartnerPhone(phoneItems, businessPartnerDbVersion);
+
+            #endregion
+
+            //set child (business partner address list)
+            #region Business Partner Address List
+            //add new address items
+            AddBusinessPartnerAddress(businessPartner, businessPartnerDbVersion);
+
+            // Delete 
+            DeleteBusinessPartnerAddress(businessPartner, businessPartnerDbVersion);
+
+            #endregion
+        }
+
+        /// <summary>
+        /// Delete Business Partner Address
+        /// </summary>
+        private void DeleteBusinessPartnerAddress(BusinessPartner businessPartner, BusinessPartner businessPartnerDbVersion)
+        {
+            // Find existing address items
+            List<Address> missingAddressItems =
+                businessPartnerDbVersion.BusinessPartnerAddressList.Where(
+                    dbversionAddressItem =>
+                        businessPartner.BusinessPartnerAddressList.All(x => x.AddressId != dbversionAddressItem.AddressId))
+                    .ToList();
+            //remove missing address items
+            foreach (Address missingBusinessPartnerAddress in missingAddressItems)
+            {
+                Address dbVersionMissingAddressItem =
+                    businessPartnerDbVersion.BusinessPartnerAddressList.First(
+                        x => x.AddressId == missingBusinessPartnerAddress.AddressId);
+                if (dbVersionMissingAddressItem.AddressId > 0)
+                {
+                    businessPartnerDbVersion.BusinessPartnerAddressList.Remove(dbVersionMissingAddressItem);
+                    businessPartnerAddressRepository.Delete(dbVersionMissingAddressItem);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Add Business Partner Address
+        /// </summary>
+        private void AddBusinessPartnerAddress(BusinessPartner businessPartner, BusinessPartner businessPartnerDbVersion)
+        {
+            foreach (Address address in businessPartner.BusinessPartnerAddressList)
+            {
+                if (businessPartnerDbVersion.BusinessPartnerAddressList.All(x => x.AddressId != address.AddressId) ||
+                    address.AddressId == 0)
+                {
+                    // set properties
+                    address.IsActive = true;
+                    address.RecCreatedDt = DateTime.Now;
+                    address.RecLastUpdatedDt = DateTime.Now;
+                    address.RecCreatedBy = businessPartnerRepository.LoggedInUserIdentity;
+                    address.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
+                    address.RowVersion = 0;
+                    address.UserDomainKey = businessPartnerRepository.UserDomainKey;
+                    businessPartnerDbVersion.BusinessPartnerAddressList.Add(address);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Update BusinessPartner Phone
+        /// </summary>
+        private void UpdateBusinessPartnerPhone(IEnumerable<Phone> missingPhoneItems, BusinessPartner businessPartnerDbVersion)
+        {
+            foreach (Phone phone in missingPhoneItems)
+            {
+                Phone phoneItem = businessPartnerDbVersion.BusinessPartnerPhoneNumbers.First(x => x.PhoneId == phone.PhoneId);
+
+                if (phoneItem == null)
+                {
+                    throw new CaresException(string.Format(Resources.RentalAgreement.RentalAgreement.PhoneNotFound,
+                        phone.PhoneId));
+                }
+
+                phoneItem.PhoneNumber = phone.PhoneNumber;
+                phoneItem.RecLastUpdatedBy = rentalAgreementRepository.LoggedInUserIdentity;
+                phoneItem.RecLastUpdatedDt = DateTime.Now;
+                phoneItem.RowVersion = phoneItem.RowVersion + 1;
+            }
+        }
+
+        /// <summary>
+        /// Add Business Partner Phone
+        /// </summary>
+        private void AddBusinessPartnerPhone(BusinessPartner businessPartner, BusinessPartner businessPartnerDbVersion)
+        {
+            foreach (Phone phone in businessPartner.BusinessPartnerPhoneNumbers)
+            {
+                if (businessPartnerDbVersion.BusinessPartnerPhoneNumbers.All(x => x.PhoneId != phone.PhoneId) ||
+                    phone.PhoneId == 0)
+                {
+                    // set properties
+                    phone.IsActive = true;
+                    phone.RecCreatedDt = phone.RecLastUpdatedDt = DateTime.Now;
+                    phone.RecCreatedBy = phone.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
+                    phone.RowVersion = 0;
+                    phone.UserDomainKey = businessPartnerRepository.UserDomainKey;
+                    businessPartnerDbVersion.BusinessPartnerPhoneNumbers.Add(phone);
+                }
+            }
         }
 
         /// <summary>
@@ -933,7 +953,6 @@ namespace Cares.Implementation.Services
             this.alloactionStatusRepository = alloactionStatusRepository;
             this.rentalAgreementRepository = rentalAgreementRepository;
             this.businessPartnerRepository = businessPartnerRepository;
-            this.businessPartnerPhoneRepository = businessPartnerPhoneRepository;
             this.businessPartnerAddressRepository = businessPartnerAddressRepository;
             this.vehicleRepository = vehicleRepository;
         }
@@ -1027,8 +1046,8 @@ namespace Cares.Implementation.Services
                 // Assert
                 if (raMainDbVersion == null)
                 {
-                    throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                        "Rental Agreement with id {0} not found", raMain.RaMainId));
+                    throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.RentalAgreement.RentalAgreement.RentalAgreementNotFound,
+                        raMain.RaMainId));
                 }
 
                 // Map Main 
@@ -1059,6 +1078,21 @@ namespace Cares.Implementation.Services
 
             // Load Properties
             rentalAgreementRepository.LoadDependencies(raMain);
+
+            return raMain;
+        }
+
+        /// <summary>
+        /// Get Rental Agreement By Id
+        /// </summary>
+        public RaMain GetById(long id)
+        {
+            RaMain raMain = rentalAgreementRepository.Find(id);
+
+            if (raMain == null)
+            {
+                throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.RentalAgreement.RentalAgreement.RentalAgreementNotFound, id));
+            }
 
             return raMain;
         }

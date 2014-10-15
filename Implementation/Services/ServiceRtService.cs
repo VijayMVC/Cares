@@ -298,14 +298,14 @@ namespace Cares.Implementation.Services
             Helpers.PricingStrategy objPs = PricingStrategyFactory.GetPricingStrategy(raCreatedDate, startDtTime, endDtTime, operationId, oTariffTypeList);
             if (objPs == null)
             {
-                throw new CaresException("TarrifType not defined", null);
+                throw new CaresException(Resources.RentalAgreement.RentalAgreement.TariffTypeNotDefinedForServiceItem, null);
             }
 
             List<ServiceRt> serviceRts = serviceRtRepository.GetForRaBilling(objPs.TariffType.TariffTypeCode, serviceItemId, raCreatedDate).ToList();
 
             if (serviceRts.Count == 0)
             {
-                throw new CaresException("No ServiceItem rate defined");
+                throw new CaresException(Resources.RentalAgreement.RentalAgreement.ServiceRateNotDefinedForServiceItem);
             }
 
             ServiceRt oServiceRate = serviceRts[0];

@@ -109,6 +109,13 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
                         type: 'GET'
                     });
 
+                    // Define request to get RA
+                    amplify.request.define('getRentalAgreement', 'ajax', {
+                        url: ist.siteUrl + '/Api/RentalAgreement',
+                        dataType: 'json',
+                        type: 'GET'
+                    });
+
                     // Define request to save RA
                     amplify.request.define('saveRentalAgreement', 'ajax', {
                         url: ist.siteUrl + '/Api/RentalAgreement',
@@ -260,6 +267,17 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
                     data: params
                 });
             },
+
+            // Get Rental Agreement
+            getRentalAgreement = function (params, callbacks) {
+                initialize();
+                return amplify.request({
+                    resourceId: 'getRentalAgreement',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: params
+                });
+            },
             
             // Save RA
             saveRentalAgreement = function (params, callbacks) {
@@ -287,6 +305,7 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
             getChauffers: getChauffers,
             getInsuranceRates: getInsuranceRates,
             getAdditionalCharges: getAdditionalCharges,
+            getRentalAgreement: getRentalAgreement,
             saveRentalAgreement: saveRentalAgreement
         };
     })();

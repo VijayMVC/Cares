@@ -34,14 +34,14 @@ namespace Cares.Implementation.Helpers
             PricingStrategy objPs = PricingStrategyFactory.GetPricingStrategy(recCreatedDate, rAStDate, rAEndDate, operationId, oTariffTypeList);
             if (objPs == null)
             {
-                throw new CaresException("Tarrif Type not defined", null);
+                throw new CaresException(Resources.RentalAgreement.RentalAgreement.TariffTypeNotDefinedForRentalCharge, null);
             }
 
             List<StandardRate> standardRates = standardRateRepository.GetForRaBilling(objPs.TariffType.TariffTypeCode, hireGroupDetailId, recCreatedDate).ToList();
 
             if (standardRates.Count == 0)
             {
-                throw new CaresException("Standart Tariff Rate not defined", null);
+                throw new CaresException(Resources.RentalAgreement.RentalAgreement.StandardTariffRateNotDefinedForRentalCharge, null);
             }
 
             StandardRate otStRate = standardRates[0];

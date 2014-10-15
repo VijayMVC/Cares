@@ -435,7 +435,7 @@
     // Rental Agreement Hire Group entity
     // ReSharper disable InconsistentNaming
     RentalAgreementHireGroup = function (specifiedId, specifiedHireGroupDetailId, specifiedVehicleId, specifiedRentalAgreementId, specifiedVehicle,
-        specifiedVehicleMovements, specifiedRaHireGroupInsurances, specifiedAllocationStatusKey, specifiedAllocationStatusId) {
+        specifiedVehicleMovements, specifiedRaHireGroupInsurances, specifiedAllocationStatusKey, specifiedAllocationStatusId, isExisting) {
         // ReSharper restore InconsistentNaming
         var
             // unique key
@@ -450,7 +450,13 @@
             vehicle = ko.observable(specifiedVehicle || Vehicle.Create({})),
             // Ra HireGroup Insurances
             raHireGroupInsurances = ko.observableArray(specifiedRaHireGroupInsurances ? _.map(specifiedRaHireGroupInsurances, function (raHireGroupInsurance) {
-                return RentalAgreementHireGroupInsurance.Create(raHireGroupInsurance);
+                var raHireGroupInsuranceItem = RentalAgreementHireGroupInsurance.Create(raHireGroupInsurance);
+
+                if (isExisting) {
+                    raHireGroupInsuranceItem.isSelected(true);
+                }
+
+                return raHireGroupInsuranceItem;
             }) : []),
             // Vehicle Movements
             vehicleMovements = ko.observableArray(specifiedVehicleMovements ? _.map(specifiedVehicleMovements, function (vehicleMovement) {
@@ -1423,7 +1429,8 @@
     // Rental Agreement Hire Group Factory
     RentalAgreementHireGroup.Create = function (source, isExisting) {
         return new RentalAgreementHireGroup(source.RentalAgreementHireGroupId, source.HireGroupDetailId, source.VehicleId,
-            source.RaMainId, source.Vehicle && isExisting ? Vehicle.Create(source.Vehicle) : source.Vehicle, source.VehicleMovements, source.RaHireGroupInsurances, source.AllocationStatusKey, source.AllocationStatusId);
+            source.RaMainId, source.Vehicle && isExisting ? Vehicle.Create(source.Vehicle) : source.Vehicle, source.VehicleMovements, source.RaHireGroupInsurances, source.AllocationStatusKey,
+            source.AllocationStatusId, isExisting);
     };
 
     // Phone Type Enums
@@ -1488,7 +1495,7 @@
 
     // Rental Agreement Factory
     RentalAgreement.Create = function (source, callbacks, isExisting) {
-        var rentalAgreement = new RentalAgreement(source.RentalAgreementId, source.StartDateTime ? moment(source.StartDateTime).toDate() : undefined,
+        var rentalAgreement = new RentalAgreement(source.RaMainId, source.StartDateTime ? moment(source.StartDateTime).toDate() : undefined,
             source.EndDateTime ? moment(source.EndDateTime).toDate() : undefined, source.PaymentTermId, source.OperationId, source.OpenLocation, source.CloseLocation,
             source.BusinessPartner || {}, source.RentersName, source.RentersLicenseNumber, source.RentersLicenseExpDt ? moment(source.RentersLicenseExpDt).toDate() : undefined,
             source.RecCreatedDt ? moment(source.RecCreatedDt).toDate() : undefined, source.RaStatusId, source.RaBookingId, callbacks);

@@ -2,8 +2,8 @@
     Module with the view model for the rentalAgreement
 */
 define("rentalAgreement/rentalAgreement.viewModel",
-    ["jquery", "amplify", "ko", "rentalAgreement/rentalAgreement.dataservice", "rentalAgreement/rentalAgreement.model", "common/pagination"],
-    function ($, amplify, ko, dataservice, model, pagination) {
+    ["jquery", "amplify", "ko", "rentalAgreement/rentalAgreement.dataservice", "rentalAgreement/rentalAgreement.model", "common/pagination", "sammy"],
+    function ($, amplify, ko, dataservice, model, pagination, sammy) {
 
         var ist = window.ist || {};
         ist.rentalAgreement = {
@@ -303,6 +303,12 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         // Get Insurance Rates
                         getInsuranceRates();
                     },
+                    // Sammy root
+                    app = sammy(function () {
+                        this.get("#/byId/:raMainId", function () {
+                            load(this.params["raMainId"]);
+                        });
+                    }),
                     // Get Base
                     getBase = function () {
                         dataservice.getBase({
@@ -344,6 +350,8 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                 ko.utils.arrayPushAll(vehicleStatuses(), vehicleStatusItems);
                                 vehicleStatuses.valueHasMutated();
 
+                                // Run Sammy
+                                app.run();
                             },
                             error: function (response) {
                                 toastr.error("Failed to load base data. Error: " + response);
@@ -499,6 +507,37 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     closeRentalAgreement = function() {
                         saveRentalAgreement(raStatusEnum.close);
                     },
+                    // Get Desired Hire Group
+                    getDesiredHireGroup = function(raMain) {
+                        var raHireGroupItem = _.find(raMain.RaHireGroups, function(raHireGroup) {
+                            return raHireGroup.AllocationStatusKey === allocationStatus.desired;
+                        });
+
+                        return raHireGroupItem ? raHireGroupItem.HireGroupDetail : undefined;
+                    },
+                    // Select Desired Hire Group
+                    selectDesiredHireGroup = function(hireGroup) {
+                        if (!hireGroup) {
+                            return;
+                        }
+
+                        selectHireGroup(model.HireGroupDetail.Create(hireGroup));
+                    },
+                    // Load Rental Agreement
+                    load = function (raMainId) {
+                        dataservice.getRentalAgreement({ id: raMainId }, {
+                            success: function (data) {
+                                // Set Ra Main
+                                rentalAgreement(model.RentalAgreement.Create(data, rentalAgreementModelCallbacks, true));
+
+                                // Select Desired Hire Group
+                                selectDesiredHireGroup(getDesiredHireGroup(data));
+                            },
+                            error: function (response) {
+                                toastr.error("Failed to load Rental Agreement. Error: " + response);
+                            }
+                        });
+                    },
                     // Save Rental Agreement
                     saveRentalAgreement = function (action) {
                         var raMain = rentalAgreement().convertToServerData();
@@ -509,6 +548,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         dataservice.saveRentalAgreement(saveRaRequest, {
                             success: function (data) {
                                 rentalAgreement(model.RentalAgreement.Create(data, rentalAgreementModelCallbacks, true));
+                                toastr.success("Agreement saved successfully!");
                             },
                             error: function (response) {
                                 toastr.error("Failed to process request. Error: " + response);

@@ -477,6 +477,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ServiceType.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\RentalAgreement\RentalAgreement.ar.Designer.cs">
+      <DependentUpon>RentalAgreement.ar.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\RentalAgreement\RentalAgreement.Designer.cs">
+      <DependentUpon>RentalAgreement.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Resources\Tariff\AdditionalCharge.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -969,6 +979,14 @@
     <EmbeddedResource Include="Resources\Pricing\ServiceType.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ServiceType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\RentalAgreement\RentalAgreement.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RentalAgreement.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\RentalAgreement\RentalAgreement.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RentalAgreement.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tariff\AdditionalCharge.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
