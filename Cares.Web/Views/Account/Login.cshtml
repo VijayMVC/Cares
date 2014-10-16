@@ -4,60 +4,83 @@
 
 @{
     ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_BlankLayout.cshtml";
 }
-
-<h2>@ViewBag.Title.</h2>
-<div class="row">
-    <div class="col-md-8">
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" })) {
+<link rel="stylesheet" href="~/Content/CSS/Pages/login.css">
+<link href="~/Content/CSS/Global/componentsGlobal.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/CSS/Global/plugins.css" rel="stylesheet" type="text/css" />
+<body class="login">
+    <div class="logo">
+        <a href="index.html">
+            <img src="~/Content/Images/logo-big.png" alt="" />
+        </a>
+    </div>
+    <div class="menu-toggler sidebar-toggler">
+    </div>
+    <div class="content">
+        <section id="loginForm ">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login-form", role = "form" }))//form-horizontal
+            {
                 @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <h3 class="form-title">Login to your account</h3>
+                <div>
+
+                    <span>
+                        @Html.ValidationSummary(true,"", new { @class = "alert alert-danger" } )
+                    </span>
+                </div>
+
+
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                    <label class="control-label visible-ie8 visible-ie9">Username</label>
+                    <div class="input-icon">
+                        <i class="fa fa-user"></i>
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control placeholder-no-fix", placeholder = "Email", autocomplete = "off" })
+
+
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    <label class="control-label visible-ie8 visible-ie9">Password</label>
+                    <div class="input-icon">
+                        <i class="fa fa-lock"></i>
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control placeholder-no-fix", placeholder = "Password", autocomplete = "off" })
+
+
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
-                        </div>
-                    </div>
+                <div class="form-actions">
+                    <label class="checkbox">
+                        @Html.CheckBoxFor(m => m.RememberMe) Remember me
+                    </label>
+                    <button type="submit" class="btn green pull-right">
+                        Login <i class="m-icon-swapright m-icon-white"></i>
+                    </button>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
-                    </div>
+                <div class="forget-password">
+                    <h4>Forgot your password ?</h4>
+                    <p>
+                        No worries, click   @Html.ActionLink("here", "ForgotPassword")
+
+                        to reset your password.
+                    </p>
                 </div>
-                <p>
-                    @Html.ActionLink("Register a new user?", "Register")
-                </p>
-                <p>
-                    @Html.ActionLink("Forget your password?", "ForgotPassword")
-                </p>
+                @*<div class="create-account">
+                        <p>
+                            Don't have an account yet ?&nbsp; @Html.ActionLink("Create an account ", "Register")
+
+                        </p>
+                    </div>*@
+
+
             }
         </section>
     </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @*@Html.Partial("_ExternalLoginsListPartial", new IdentitySample.Models.ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })*@
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>
-</div>
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    <script src="~/Scripts/App/Pages/login.js" type="text/javascript"></script>
+    <script>
+        jQuery(document).ready(function() {
+            Login.init();
+        });
+    </script>
+</body>

@@ -4,37 +4,42 @@
 @{
     Layout = null;
 }
-<ul class="nav nav-pills nav-stacked">
-    <li class="active" ><a href="#" style="margin-top: 15px"><span class="glyphicon glyphicon-th-list"></span>&nbsp;Menues </a></li>
-    @{
-        if (Model.MenuRights != null)
+
+@{
+    if (Model.MenuRights != null)
+    {
+        foreach (MenuRight header in Model.MenuHeaders.ToList())
         {
-            foreach (MenuRight header in Model.MenuHeaders.ToList())
-            {
 
+            <li class="toActive">
+                <a href="javascript:;">
+                    <i class="icon-home"></i>@*class="@header.Menu.Icon"*@
+                    <span class="title">@header.Menu.MenuTitle </span>
+                    <span class="toSelect"></span>
+                    <span class="arrow open"></span>
+                </a>
+                <ul class="sub-menu" role="menu">
+                    @{
+                        IList<MenuRight> menuRightchildList = Model.MenuRights.Where(menuright => menuright.Menu.ParentItem != null &&
+                                                                                      menuright.Menu.ParentItem.MenuId == header.Menu.MenuId).ToList();
+                        foreach (MenuRight menuRight in menuRightchildList)
+                        {
+                            <li>
+                                <a href="@Url.Action(menuRight.Menu.MenuFunction, menuRight.Menu.MenuTargetController)"> @*~/@menuRight.Menu.MenuTargetController/@menuRight.Menu.MenuFunction*@
+                                    <i class="icon-home"></i>@*class="@menuRight.Menu.Icon"*@
+                                    @menuRight.Menu.MenuTitle
+                                </a>
+                            </li>
 
-                <li class="dropdown-submenu" style="height: 45px; margin-bottom: 5px; margin-left: -10px">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: burlywood; padding-bottom: 0">
-                        <span class="glyphicon glyphicon-pencil" ></span>
-                        @header.Menu.MenuTitle
-                    </a><hr />
-                    <ul class="dropdown-menu">
-                        @{
-                IList<MenuRight> menuRightchildList = Model.MenuRights.Where(menuright => menuright.Menu.ParentItem != null &&
-                                                                                          menuright.Menu.ParentItem.MenuId == header.Menu.MenuId).ToList();
-                foreach (MenuRight menuRight in menuRightchildList)
-                {
-                    <li><a href="~/@menuRight.Menu.MenuTargetController/@menuRight.Menu.MenuFunction">@menuRight.Menu.MenuTitle</a></li>
-
-                }
                         }
-                    </ul>
-                </li>
+                    }
+                </ul>
 
-            }
+            </li>
+
         }
     }
-</ul>
+}
 
 
 
