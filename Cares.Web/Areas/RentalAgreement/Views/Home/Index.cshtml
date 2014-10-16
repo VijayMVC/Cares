@@ -7,7 +7,9 @@
 
 <div class="row" id="rentalAgreementBinding">
     <div class="row">
-        <button class="btn btn-primary" data-bind="click: openRentalAgreement">Open Agreement</button>
+        <button class="btn btn-primary" data-bind="click: openRentalAgreement, visible: canOpen">Open Agreement</button>
+        <button class="btn btn-primary" data-bind="click: updateRentalAgreement, visible: canUpdate">Update Agreement</button>
+        <button class="btn" data-bind="click: closeRentalAgreement, visible: canClose">Close Agreement</button>
     </div><br/>
     <div id="raPanels">
         <div class="panel-group" id="accordion">
@@ -362,9 +364,10 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-sm-2"></label>
-                                        <div class="col-md-2">
+                                        <div class="col-md-3">
                                             <a id="insurancePopoverLink" class="insurancePopoverLink glyphicon glyphicon-briefcase" data-bind="click: $root.openRaHireGroupInsuranceDialog, attr: { title: 'Insurances' }">
                                             </a>
+                                            <a data-bind="click: $parent.removeRaHireGroup, visible: canRemove"><span class="glyphicon glyphicon-remove"></span></a>
                                         </div>
                                     </div>
                                 </div>

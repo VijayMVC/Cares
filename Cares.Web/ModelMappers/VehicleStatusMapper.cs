@@ -18,6 +18,7 @@ namespace Cares.Web.ModelMappers
             return new VehicleStatus
             {
                 VehicleStatusId = source.VehicleStatusId,
+                VehicleStatusKey = source.VehicleStatusKey,
                 VehicleStatusName = source.VehicleStatusName,
                 VehicleStatusCode = source.VehicleStatusCode,
                 VehicleStatusDescription = source.VehicleStatusDescription

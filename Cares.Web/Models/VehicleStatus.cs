@@ -13,6 +13,11 @@
         public short VehicleStatusId { get; set; }
 
         /// <summary>
+        /// Vehicle Status Key
+        /// </summary>
+        public short? VehicleStatusKey { get; set; }
+
+        /// <summary>
         /// Vehicle Status Code
         /// </summary>
         public string VehicleStatusCode { get; set; }

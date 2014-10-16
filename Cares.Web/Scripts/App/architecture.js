@@ -438,3 +438,13 @@ modelYearsGlobal = [{ Id: 2001, Text: '2001' },
     { Id: 2006, Text: '2006' },
     { Id: 2007, Text: '2007' }
 ];
+
+$(function() {
+    // Fix for bootstrap popovers, sometimes they are left in the DOM when they shouldn't be.
+    $('body').on('hidden.bs.popover', function () {
+        var popovers = $('.popover').not('.in');
+        if (popovers) {
+            popovers.remove();
+        }
+    });
+});

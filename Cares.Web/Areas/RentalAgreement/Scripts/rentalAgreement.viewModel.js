@@ -29,9 +29,15 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         },
                         OnRentalDurationChange: function () {
                             resetHireGroups();
+                            // Set Vehicle Popup Start Date
+                            vehicleStartDtFilter(moment(rentalAgreement().start()).toDate());
+                            // Set Vehicle Popup End Date
+                            vehicleEndDtFilter(moment(rentalAgreement().end()).toDate());
                         },
                         OnOutLocationChange: function () {
                             resetHireGroups();
+                            // Set Vehicle Popup Out Location
+                            vehicleOperationsWorkPlaceFilter(rentalAgreement().openLocation());
                         }
                     },
                     // Allocation Status Enums
@@ -129,6 +135,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     // #region Utility Functions
                     selectVehicle = function (vehicle) {
                         if (selectedVehicle() !== vehicle) {
+                            var vehicleStatus = getVehicleStatusByKey(vehicleStatusEnum.reserved);
                             var raHireGroup = model.RentalAgreementHireGroup.Create({
                                 VehicleId: vehicle.id,
                                 HireGroupDetailId: selectedHireGroup().id,
@@ -140,7 +147,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                     {
                                         OperationsWorkPlaceId: rentalAgreement().openLocation(),
                                         Odometer: vehicle.currentOdometer,
-                                        VehicleStatusId: vehicle.vehicleStatusId,
+                                        VehicleStatusId: vehicleStatus ? vehicleStatus.id : vehicle.vehicleStatudId,
                                         DtTime: moment(rentalAgreement().start()).toDate(),
                                         FuelLevel: vehicle.fuelLevel,
                                         Status: model.vehicleMovementEnum.outMovement
@@ -171,7 +178,11 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     addExtrasToRentalAgreement = function (data, popoverId) {
                         serviceItems.each(function (serviceItem) {
                             if (serviceItem.isSelected()) {
-                                rentalAgreement().rentalAgreementServiceItems.push(model.RentalAgreementServiceItem.Create(serviceItem.convertToServerData()));
+                                var raServiceItem = model.RentalAgreementServiceItem.Create(serviceItem.convertToServerData());
+                                raServiceItem.start(moment(rentalAgreement().start()).toDate());
+                                raServiceItem.end(moment(rentalAgreement().end()).toDate());
+                                raServiceItem.rentalAgreementId(rentalAgreement().id() || 0);
+                                rentalAgreement().rentalAgreementServiceItems.push(raServiceItem);
                             }
                         });
                         // Close Popover
@@ -206,6 +217,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                 driver.IsChauffer = true;
                                 driver.StartDtTime = moment(rentalAgreement().start()).toDate();
                                 driver.EndDtTime = moment(rentalAgreement().end()).toDate();
+                                driver.RaMainId = rentalAgreement().id() || 0;
                                 rentalAgreement().rentalAgreementDrivers.push(model.RentalAgreementDriver.Create(driver));
                             }
                         });
@@ -222,7 +234,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     addDriverToRentalAgreement = function () {
                         var driver = model.RentalAgreementDriver.Create({
                             IsChauffer: false, StartDtTime: moment(rentalAgreement().start()).toDate(),
-                            EndDtTime: moment(rentalAgreement().end()).toDate()
+                            EndDtTime: moment(rentalAgreement().end()).toDate(), RaMainId: rentalAgreement().id() || 0
                         });
                         rentalAgreement().rentalAgreementDrivers.push(driver);
                     },
@@ -233,6 +245,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                 var addCharge = additionalCharge.convertToServerData();
                                 addCharge.HireGroupDetailId = selectedHireGroup() ? selectedHireGroup().id : undefined;
                                 addCharge.PlateNumber = selectedVehicle() ? selectedVehicle().plateNumber() : undefined;
+                                addCharge.RaMainId = rentalAgreement().id() || 0;
                                 rentalAgreement().rentalAgreementAdditionalCharges.push(model.RentalAgreementAdditionalCharge.Create(addCharge));
                             }
                         });
@@ -251,6 +264,8 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     selectRaHireGroup = function (raHireGroup) {
                         if (selectedRaHireGroup() !== raHireGroup) {
                             selectedRaHireGroup(raHireGroup);
+                            // Select Vehicle
+                            selectedVehicle(raHireGroup.vehicle);
                             setRaHireGroupInsurances();
                         }
                     },
@@ -274,9 +289,10 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                 selectedRaHireGroup().raHireGroupInsurances
                                     .push(model.RentalAgreementHireGroupInsurance.Create({
                                         InsuranceTypeId: insuranceRt.id,
+                                        RaHireGroupId: selectedRaHireGroup().id(),
                                         InsuranceTypeCodeName: insuranceRt.codeName,
-                                        StartDtTime: moment(rentalAgreement().start()).toDate(),
-                                        EndDtTime: moment(rentalAgreement().end()).toDate()
+                                        StartDtTime: moment(vehicleStartDtFilter()).toDate(),
+                                        EndDtTime: moment(vehicleEndDtFilter()).toDate()
                                     }));
                             }
                         });
@@ -363,6 +379,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         selectedHireGroup(undefined);
                         vehicles.removeAll();
                         if (!rentalAgreement().id()) {
+                            rentalAgreement().rentalAgreementHireGroups.removeAll();
                             selectedVehicle(model.Vehicle.Create({}));
                         }
                     },
@@ -499,13 +516,42 @@ define("rentalAgreement/rentalAgreement.viewModel",
                             }
                         });
                     },
+                    // Can Open Rental Agreement
+                    canOpen = ko.computed(function() {
+                        return !rentalAgreement().id() || rentalAgreement().raStatusId() == raStatusEnum.close;
+                    }),
                     // Open Rental Agreement
                     openRentalAgreement = function() {
                         saveRentalAgreement(raStatusEnum.open);
                     },
+                    // Can Update Rental Agreement
+                    canUpdate = ko.computed(function () {
+                        return rentalAgreement().id() && rentalAgreement().raStatusId() != raStatusEnum.close;
+                    }),
+                    // Update Rental Agreement
+                    updateRentalAgreement = function () {
+                        saveRentalAgreement(raStatusEnum.open);
+                    },
+                    // Can Close Rental Agreement
+                    canClose = ko.computed(function () {
+                        return rentalAgreement().id() && rentalAgreement().raStatusId() != raStatusEnum.close;
+                    }),
                     // Close Rental Agreement
-                    closeRentalAgreement = function() {
+                    closeRentalAgreement = function () {
+                        // Validate Rental Agreement Before Close
+                        if (!validateBeforeClose) {
+                            return;
+                        }
+
                         saveRentalAgreement(raStatusEnum.close);
+                    },
+                    // Validate Before Close
+                    validateBeforeClose = function() {
+                        if (rentalAgreement().billing().balance() > 0) {
+                            toastr.info("Can not close agreement because payment is pending.");
+                            return false;
+                        }
+                        return true;
                     },
                     // Get Desired Hire Group
                     getDesiredHireGroup = function(raMain) {
@@ -657,7 +703,11 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     setRaHireGroupInsurances: setRaHireGroupInsurances,
                     openRaHireGroupInsuranceDialog: openRaHireGroupInsuranceDialog,
                     openRentalAgreement: openRentalAgreement,
-                    closeRentalAgreement: closeRentalAgreement
+                    closeRentalAgreement: closeRentalAgreement,
+                    updateRentalAgreement: updateRentalAgreement,
+                    canOpen: canOpen,
+                    canUpdate: canUpdate,
+                    canClose: canClose
                     // Utility Methods
                 };
             })()

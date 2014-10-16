@@ -342,6 +342,10 @@
             removeRaAdditionalCharge = function (raAdditionalCharge) {
                 rentalAgreementAdditionalCharges.remove(raAdditionalCharge);
             },
+            // Remove Ra Hire Group
+            removeRaHireGroup = function (raHireGroup) {
+                rentalAgreementHireGroups.remove(raHireGroup);
+            },
             // Renters Name
             rentersName = ko.observable(specifiedRentersName),
             // Renters License No
@@ -350,6 +354,8 @@
             rentersLicenseExpiry = ko.observable(specifiedRentersLicenseExpiry),
             // RecCreated Dt
             recCreatedDt = ko.observable(specifiedRecCreatedDt || moment().toDate()),
+            // RaStatus Id
+            raStatusId = ko.observable(specifiedRaStatusId || undefined),
             // Convert To Server Data
             convertToServerData = function () {
                 return {
@@ -381,6 +387,7 @@
                     RentersName: rentersName(),
                     RentersLicenseNo: rentersLicenseNo(),
                     RentersLicenseExpDt: rentersLicenseExpiry() ? moment(rentersLicenseExpiry()).format(ist.utcFormat) + 'Z' : undefined,
+                    RaStatusId: raStatusId(),
                     RaHireGroups: rentalAgreementHireGroups.map(function (raHireGroup) {
                         return raHireGroup.convertToServerData();
                     }),
@@ -414,6 +421,7 @@
             rentalAgreementHireGroups: rentalAgreementHireGroups,
             businessPartner: businessPartner,
             billing: billing,
+            raStatusId: raStatusId,
             rentalAgreementServiceItems: rentalAgreementServiceItems,
             removeRaServiceItem: removeRaServiceItem,
             rentalAgreementDrivers: rentalAgreementDrivers,
@@ -421,6 +429,7 @@
             raChauffers: raChauffers,
             raDrivers: raDrivers,
             removeRaDriver: removeRaDriver,
+            removeRaHireGroup: removeRaHireGroup,
             removeRaAdditionalCharge: removeRaAdditionalCharge,
             convertToServerData: convertToServerData
         };
@@ -480,6 +489,10 @@
             allocationStatusKey = ko.observable(specifiedAllocationStatusKey),
             // Allocation Status Id
             allocationStatusId = ko.observable(specifiedAllocationStatusId),
+            // Can Remove
+            canRemove = ko.computed(function() {
+                return !id();
+            }),
             // Convert To Server Data
             convertToServerData = function () {
                 return {
@@ -513,6 +526,7 @@
             raHireGroupInsurances: raHireGroupInsurances,
             allocationStatusKey: allocationStatusKey,
             allocationStatusId: allocationStatusId,
+            canRemove: canRemove,
             convertToServerData: convertToServerData
         };
     },
@@ -749,7 +763,12 @@
             // Individual
             businessPartnerIndividual = ko.observable(BusinessPartnerIndividual.Create(specifiedBusinessPartnerIndividual || {}, callbacks, self)),
             // Phones
-            phones = ko.observableArray([]),
+            phones = ko.observableArray(_.map([
+                { IsDefault: true, PhoneTypeKey: phoneTypes.HomePhone },
+                { IsDefault: true, PhoneTypeKey: phoneTypes.CellularPone }
+            ], function(phone) {
+                return Phone.Create(phone);
+            })),
             // Home Phone
             internalHomePhone = ko.observable(),
             // Home Phone
@@ -796,7 +815,9 @@
                     BusinessPartnerIndividual: businessPartnerIndividual().convertToServerData(),
                     BusinessPartnerCompany: businessPartnerCompany().convertToServerData(),
                     BusinessPartnerPhoneNumbers: phones.map(function(phone) {
-                        return phone.convertToServerData();
+                        var phoneItem = phone.convertToServerData();
+                        phoneItem.PhoneNumber = phoneItem.PhoneTypeId === phoneTypes.HomePhone ? homePhone() : mobile();
+                        return phoneItem;
                     })
                 };
             };
@@ -1222,12 +1243,13 @@
 
     // Vehicle Status Entity
     // ReSharper disable InconsistentNaming
-    VehicleStatus = function (specifiedId, specifiedTypeCodeName) {
+    VehicleStatus = function (specifiedId, specifiedTypeCodeName, specifiedKey) {
         // ReSharper restore InconsistentNaming
 
         return {
             id: specifiedId,
-            codeName: specifiedTypeCodeName
+            codeName: specifiedTypeCodeName,
+            key: specifiedKey
         };
     },
 
@@ -1428,7 +1450,7 @@
 
     // Rental Agreement Hire Group Factory
     RentalAgreementHireGroup.Create = function (source, isExisting) {
-        return new RentalAgreementHireGroup(source.RentalAgreementHireGroupId, source.HireGroupDetailId, source.VehicleId,
+        return new RentalAgreementHireGroup(source.RaHireGroupId, source.HireGroupDetailId, source.VehicleId,
             source.RaMainId, source.Vehicle && isExisting ? Vehicle.Create(source.Vehicle) : source.Vehicle, source.VehicleMovements, source.RaHireGroupInsurances, source.AllocationStatusKey,
             source.AllocationStatusId, isExisting);
     };
@@ -1472,21 +1494,21 @@
         var businessPartner = new BusinessPartner(source.BusinessPartnerId, source.IsIndividual, source.PaymentTerm,
             source.BusinessPartnerIndividual, source.BusinessPartnerCompany, source.BusinessPartnerEmailAddress, callbacks);
 
-        // Add Phones
-        if (!source.BusinessPartnerPhoneNumbers) {
-            source.BusinessPartnerPhoneNumbers = [
-                { IsDefault: true, PhoneTypeKey: phoneTypes.HomePhone },
-                { IsDefault: true, PhoneTypeKey: phoneTypes.CellularPone }
-            ];
-        }
-
+        // Update Phone Numbers
         _.each(source.BusinessPartnerPhoneNumbers, function (phone) {
-            businessPartner.phones.push(Phone.Create(phone));
-            if (phone.PhoneTypeKey === phoneTypes.HomePhone) {
-                businessPartner.internalHomePhone(phone.PhoneNumber);
-            }
-            else {
-                businessPartner.internalMobile(phone.PhoneNumber);
+            var phoneItem = businessPartner.phones.find(function (bpPhone) {
+                return bpPhone.type().key === phone.PhoneTypeKey;
+            });
+            if (phoneItem) {
+                phoneItem.businessPartnerId(phone.BusinessPartnerId);
+                phoneItem.id(phone.PhoneId);
+                phoneItem.isDefault(phone.IsDefault);
+                if (phone.PhoneTypeKey === phoneTypes.HomePhone) {
+                    businessPartner.internalHomePhone(phone.PhoneNumber);
+                }
+                else {
+                    businessPartner.internalMobile(phone.PhoneNumber);
+                }
             }
         });
 
@@ -1495,8 +1517,8 @@
 
     // Rental Agreement Factory
     RentalAgreement.Create = function (source, callbacks, isExisting) {
-        var rentalAgreement = new RentalAgreement(source.RaMainId, source.StartDateTime ? moment(source.StartDateTime).toDate() : undefined,
-            source.EndDateTime ? moment(source.EndDateTime).toDate() : undefined, source.PaymentTermId, source.OperationId, source.OpenLocation, source.CloseLocation,
+        var rentalAgreement = new RentalAgreement(source.RaMainId, source.StartDtTime ? moment(source.StartDtTime).toDate() : undefined,
+            source.EndDtTime ? moment(source.EndDtTime).toDate() : undefined, source.PaymentTermId, source.OperationId, source.OpenLocation, source.CloseLocation,
             source.BusinessPartner || {}, source.RentersName, source.RentersLicenseNumber, source.RentersLicenseExpDt ? moment(source.RentersLicenseExpDt).toDate() : undefined,
             source.RecCreatedDt ? moment(source.RecCreatedDt).toDate() : undefined, source.RaStatusId, source.RaBookingId, callbacks);
 
@@ -1567,19 +1589,22 @@
     // Rental Agreement Service Item Factory
     RentalAgreementServiceItem.Create = function (source) {
         return new RentalAgreementServiceItem(source.RaServiceItemId, source.ServiceItemId, source.ServiceItemCode, source.ServiceItemName, source.ServiceTypeCode,
-            source.ServiceTypeName, source.RaMainId, source.Quantity, source.StartDtTime, source.EndDtTime, source.ServiceRate, source.ServiceCharge);
+            source.ServiceTypeName, source.RaMainId, source.Quantity, source.StartDtTime ? moment(source.StartDtTime).toDate() : undefined,
+            source.EndDtTime ? moment(source.EndDtTime).toDate() : undefined, source.ServiceRate, source.ServiceCharge);
     };
 
     // Rental Agreement Driver Factory
     RentalAgreementDriver.Create = function (source) {
-        return new RentalAgreementDriver(source.RaDriverId, source.ChaufferId, source.DesigGradeId, source.StartDtTime, source.EndDtTime, source.LicenseExpDt,
-            source.LicenseNo, source.DriverName, source.IsChauffer, source.TariffType, source.Rate, source.TotalCharge, source.RaMainId);
+        return new RentalAgreementDriver(source.RaDriverId, source.ChaufferId, source.DesigGradeId, source.StartDtTime ? moment(source.StartDtTime).toDate() : undefined,
+            source.EndDtTime ? moment(source.EndDtTime).toDate() : undefined, source.LicenseExpDt ? moment(source.LicenseExpDt).toDate() : undefined, source.LicenseNo,
+            source.DriverName, source.IsChauffer, source.TariffType, source.Rate, source.TotalCharge, source.RaMainId);
     };
 
     // Rental Agreement HireGroup Insurance Factory
     RentalAgreementHireGroupInsurance.Create = function (source) {
         return new RentalAgreementHireGroupInsurance(source.RaHireGroupInsuranceId, source.RaHireGroupId, source.InsuranceTypeId, source.InsuranceTypeCodeName,
-            source.StartDtTime, source.EndDtTime, source.InsuranceRate, source.InsuranceCharg, source.TariffType);
+            source.StartDtTime ? moment(source.StartDtTime).toDate() : undefined, source.EndDtTime ? moment(source.EndDtTime).toDate() : undefined, source.InsuranceRate,
+            source.InsuranceCharg, source.TariffType);
     };
 
     // Insurance Type Factory
@@ -1602,7 +1627,8 @@
     // Vehicle Movement Factory
     VehicleMovement.Create = function (source) {
         return new VehicleMovement(source.VehicleMovementId, source.RaHireGroupId, source.OperationsWorkPlaceId, source.VehicleStatusId,
-            source.Status, source.DtTime, source.Odometer, source.FuelLevel, source.VehicleCondition, source.VehicleConditionDescription);
+            source.Status, source.DtTime ? moment(source.DtTime).toDate() : undefined, source.Odometer, source.FuelLevel, source.VehicleCondition,
+            source.VehicleConditionDescription);
     };
 
     // Allocation Status Factory
@@ -1612,7 +1638,7 @@
 
     // Vehicle Status Factory
     VehicleStatus.Create = function (source) {
-        return new VehicleStatus(source.VehicleStatusId, source.VehicleStatusCodeName);
+        return new VehicleStatus(source.VehicleStatusId, source.VehicleStatusCodeName, source.VehicleStatusKey);
     };
 
     return {

@@ -115,6 +115,7 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
                     amplify.request.define('getRentalAgreement', 'ajax', {
                         url: ist.siteUrl + '/Api/RentalAgreement',
                         dataType: 'json',
+                        decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
 
@@ -124,6 +125,7 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
                         dataType: 'json',
                         dataMap: JSON.stringify,
                         contentType: "application/json; charset=utf-8",
+                        decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
                     });
                     
