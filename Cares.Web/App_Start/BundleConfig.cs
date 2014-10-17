@@ -47,6 +47,9 @@ namespace Cares.Web
 
             bundles.Add(new StyleBundle("~/Content/siteCss").Include(
                       "~/Content/toastr.css",
+                      "~/Content/CSS/layout.css",
+                      "~/Content/CSS/default.css",
+                      "~/Content/CSS/components.css",
                       "~/Content/site.css",                      
                       "~/Content/CSS/architecture.css"));
 

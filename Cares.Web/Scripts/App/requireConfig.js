@@ -8,6 +8,7 @@
         baseUrl: "/Scripts/App",
         waitSeconds: 20,
         paths: {
+            "sammy": ist.siteUrl + "/Scripts/sammy-0.7.5.min",
             "businessPartner": ist.siteUrl + "/Areas/BusinessPartner/Scripts",
             "product": ist.siteUrl + "/Areas/Product/Scripts",
             "common": ist.siteUrl + "/Areas/Common/Scripts",

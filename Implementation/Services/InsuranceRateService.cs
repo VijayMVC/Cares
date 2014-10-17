@@ -279,7 +279,7 @@ namespace Cares.Implementation.Services
             Helpers.PricingStrategy objPs = PricingStrategyFactory.GetPricingStrategy(raRecCreatedDate, stDate, eDate, operationId, oTariffTypeList);
             if (objPs == null)
             {
-                throw new CaresException("Insurance Tariff Type not defined", null);
+                throw new CaresException(Resources.RentalAgreement.RentalAgreement.TariffTypeNotDefinedForHireGroupInsurance, null);
             }
 
             List<InsuranceRt> insuranceRts = insuranceRtRepository.
@@ -287,7 +287,7 @@ namespace Cares.Implementation.Services
 
             if (insuranceRts.Count == 0)
             {
-                throw new CaresException("No insurance Rate defined");
+                throw new CaresException(Resources.RentalAgreement.RentalAgreement.InsuranceRateNotDefinedForHireGroupInsurance);
             }
 
             InsuranceRt oInsRate = insuranceRts[0];

@@ -23,7 +23,9 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
                     amplify.request.define('getVehiclesByHireGroup', 'ajax', {
                         url: ist.siteUrl + '/Api/HireGroupVehicles',
                         dataType: 'json',
-                        type: 'GET'
+                        dataMap: JSON.stringify,
+                        contentType: "application/json; charset=utf-8",
+                        type: 'POST'
                     });
                     
                     // Define request to get Hire Group by code , vehicle category / make / mode / model year
@@ -109,12 +111,21 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
                         type: 'GET'
                     });
 
+                    // Define request to get RA
+                    amplify.request.define('getRentalAgreement', 'ajax', {
+                        url: ist.siteUrl + '/Api/RentalAgreement',
+                        dataType: 'json',
+                        decoder: amplify.request.decoders.istStatusDecoder,
+                        type: 'GET'
+                    });
+
                     // Define request to save RA
                     amplify.request.define('saveRentalAgreement', 'ajax', {
                         url: ist.siteUrl + '/Api/RentalAgreement',
                         dataType: 'json',
                         dataMap: JSON.stringify,
                         contentType: "application/json; charset=utf-8",
+                        decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
                     });
                     
@@ -260,6 +271,17 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
                     data: params
                 });
             },
+
+            // Get Rental Agreement
+            getRentalAgreement = function (params, callbacks) {
+                initialize();
+                return amplify.request({
+                    resourceId: 'getRentalAgreement',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: params
+                });
+            },
             
             // Save RA
             saveRentalAgreement = function (params, callbacks) {
@@ -287,6 +309,7 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
             getChauffers: getChauffers,
             getInsuranceRates: getInsuranceRates,
             getAdditionalCharges: getAdditionalCharges,
+            getRentalAgreement: getRentalAgreement,
             saveRentalAgreement: saveRentalAgreement
         };
     })();

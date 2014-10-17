@@ -1614,10 +1614,43 @@
     <Content Include="Content\CSS\bootstrap-rtl.min.css">
       <DependentUpon>bootstrap-rtl.css</DependentUpon>
     </Content>
+    <Content Include="Content\CSS\components.css" />
+    <Content Include="Content\CSS\default.css" />
+    <Content Include="Content\CSS\Global\componentsGlobal.css" />
+    <Content Include="Content\CSS\Global\plugins.css" />
+    <Content Include="Content\CSS\Global\Plugin\font-awesome\css\font-awesome.css" />
+    <Content Include="Content\CSS\Global\Plugin\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Content\CSS\Global\Plugin\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\CSS\Global\Plugin\font-awesome\fonts\temp\fontawesome-webfont.svg" />
+    <Content Include="Content\CSS\Global\Plugin\simple-line-icons\fonts\Simple-Line-Icons.dev.svg" />
+    <Content Include="Content\CSS\Global\Plugin\simple-line-icons\fonts\Simple-Line-Icons.svg" />
+    <Content Include="Content\CSS\Global\Plugin\simple-line-icons\icons-lte-ie7.js" />
+    <Content Include="Content\CSS\Global\Plugin\simple-line-icons\License.txt" />
+    <Content Include="Content\CSS\Global\Plugin\simple-line-icons\Readme.txt" />
+    <Content Include="Content\CSS\Global\Plugin\simple-line-icons\simple-line-icons.css" />
+    <Content Include="Content\CSS\Global\Plugin\simple-line-icons\simple-line-icons.min.css" />
+    <Content Include="Content\CSS\layout.css" />
     <Content Include="Content\CSS\PagedList.css" />
     <Content Include="Content\CSS\PagedList.min.css">
       <DependentUpon>PagedList.css</DependentUpon>
     </Content>
+    <Content Include="Content\CSS\Pages\about-us.css" />
+    <Content Include="Content\CSS\Pages\blog.css" />
+    <Content Include="Content\CSS\Pages\coming-soon.css" />
+    <Content Include="Content\CSS\Pages\error.css" />
+    <Content Include="Content\CSS\Pages\image-crop.css" />
+    <Content Include="Content\CSS\Pages\inbox.css" />
+    <Content Include="Content\CSS\Pages\invoice.css" />
+    <Content Include="Content\CSS\Pages\lock.css" />
+    <Content Include="Content\CSS\Pages\login-soft.css" />
+    <Content Include="Content\CSS\Pages\login.css" />
+    <Content Include="Content\CSS\Pages\news.css" />
+    <Content Include="Content\CSS\Pages\portfolio.css" />
+    <Content Include="Content\CSS\Pages\pricing-table.css" />
+    <Content Include="Content\CSS\Pages\profile.css" />
+    <Content Include="Content\CSS\Pages\search.css" />
+    <Content Include="Content\CSS\Pages\tasks.css" />
+    <Content Include="Content\CSS\Pages\timeline.css" />
     <Content Include="Content\CSS\spinner.gif" />
     <Content Include="Content\DesignationGrade.css">
       <DependentUpon>DesignationGrade.less</DependentUpon>
@@ -1670,6 +1703,41 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Images\arrow-down-small.png" />
     <Content Include="Content\Images\arrow-up-small.png" />
+    <Content Include="Content\Images\logo-big.png" />
+    <Content Include="Content\Images\logo-invert.png" />
+    <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Images\menu-toggler.png" />
+    <Content Include="Content\Images\portlet-collapse-icon-white.png" />
+    <Content Include="Content\Images\portlet-collapse-icon.png" />
+    <Content Include="Content\Images\portlet-config-icon-white.png" />
+    <Content Include="Content\Images\portlet-config-icon.png" />
+    <Content Include="Content\Images\portlet-expand-icon-white.png" />
+    <Content Include="Content\Images\portlet-expand-icon.png" />
+    <Content Include="Content\Images\portlet-reload-icon-white.png" />
+    <Content Include="Content\Images\portlet-reload-icon.png" />
+    <Content Include="Content\Images\portlet-remove-icon-white.png" />
+    <Content Include="Content\Images\portlet-remove-icon.png" />
+    <Content Include="Content\Images\remove-icon-small.png" />
+    <Content Include="Content\Images\search_icon_light.png" />
+    <Content Include="Content\Images\sidebar-menu-arrow-reverse.png" />
+    <Content Include="Content\Images\sidebar-menu-arrow-right.png" />
+    <Content Include="Content\Images\sidebar-menu-arrow.png" />
+    <Content Include="Content\Images\sidebar_arrow_icon_light.png" />
+    <Content Include="Content\Images\sidebar_arrow_icon_light_rtl.png" />
+    <Content Include="Content\Images\sidebar_inline_toggler_icon_blue.jpg" />
+    <Content Include="Content\Images\sidebar_inline_toggler_icon_darkblue.jpg" />
+    <Content Include="Content\Images\sidebar_inline_toggler_icon_default.jpg" />
+    <Content Include="Content\Images\sidebar_inline_toggler_icon_grey.jpg" />
+    <Content Include="Content\Images\sidebar_inline_toggler_icon_light.jpg" />
+    <Content Include="Content\Images\sidebar_inline_toggler_icon_light2.jpg" />
+    <Content Include="Content\Images\sidebar_toggler_icon_blue.png" />
+    <Content Include="Content\Images\sidebar_toggler_icon_darkblue.png" />
+    <Content Include="Content\Images\sidebar_toggler_icon_default.png" />
+    <Content Include="Content\Images\sidebar_toggler_icon_grey.png" />
+    <Content Include="Content\Images\sidebar_toggler_icon_light.png" />
+    <Content Include="Content\Images\sidebar_toggler_icon_light2.png" />
+    <Content Include="Content\Images\syncfusion-icons-white.png" />
+    <Content Include="Content\Images\syncfusion-icons.png" />
     <Content Include="Content\Images\up-arrow-small.png" />
     <Content Include="Content\Images\arrow-down.png" />
     <Content Include="Content\Images\arrow-up.png" />
@@ -2439,6 +2507,17 @@
     <Content Include="Content\RentalAgreement.css.map">
       <DependentUpon>RentalAgreement.css</DependentUpon>
     </Content>
+    <Content Include="Content\CSS\Global\Plugin\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\CSS\Global\Plugin\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\CSS\Global\Plugin\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\CSS\Global\Plugin\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Content\CSS\Global\Plugin\font-awesome\fonts\temp\fontawesome-webfont.eot" />
+    <Content Include="Content\CSS\Global\Plugin\font-awesome\fonts\temp\fontawesome-webfont.ttf" />
+    <Content Include="Content\CSS\Global\Plugin\font-awesome\fonts\temp\fontawesome-webfont.woff" />
+    <Content Include="Content\CSS\Global\Plugin\font-awesome\fonts\temp\FontAwesome.otf" />
+    <Content Include="Content\CSS\Global\Plugin\simple-line-icons\fonts\Simple-Line-Icons.eot" />
+    <Content Include="Content\CSS\Global\Plugin\simple-line-icons\fonts\Simple-Line-Icons.ttf" />
+    <Content Include="Content\CSS\Global\Plugin\simple-line-icons\fonts\Simple-Line-Icons.woff" />
     <None Include="Properties\PublishProfiles\Khurram.pubxml" />
     <Content Include="RichTextEditor\plugins\Thumbs.db" />
     <Content Include="Reports\FleetDS.xsc">
@@ -2456,6 +2535,8 @@
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
     <Content Include="Scripts\App\architecture.js" />
+    <Content Include="Scripts\App\Pages\login-soft.js" />
+    <Content Include="Scripts\App\Pages\login.js" />
     <Content Include="Scripts\App\requireConfig.js" />
     <Content Include="Scripts\bloodhound.js" />
     <Content Include="Scripts\bloodhound.min.js" />
@@ -2496,6 +2577,8 @@
     <Content Include="Scripts\knockout.mapping-latest.js" />
     <Content Include="Scripts\knockout.validation.debug.js" />
     <Content Include="Scripts\knockout.validation.js" />
+    <Content Include="Scripts\layout.js" />
+    <Content Include="Scripts\metronic.js" />
     <Content Include="Scripts\MIT-LICENSE.txt" />
     <Content Include="Scripts\modal.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -2504,11 +2587,14 @@
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\popover.js" />
+    <Content Include="Scripts\quick-sidebar.js" />
     <Content Include="Scripts\r.js" />
     <Content Include="Scripts\README.txt" />
     <Content Include="Scripts\require.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\sammy-0.7.5.js" />
+    <Content Include="Scripts\sammy-0.7.5.min.js" />
     <Content Include="Scripts\scrollspy.js" />
     <Content Include="Scripts\tab.js" />
     <Content Include="Scripts\toastr.js" />
@@ -2572,8 +2658,7 @@
     <Content Include="Views\Shared\LoadMenu.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\Create.cshtml" />
-    <Content Include="Views\Shared\_Layout - Copy.cshtml" />
-    <Content Include="Views\Shared\LoadMenu - Copy.cshtml" />
+    <Content Include="Views\Shared\_BlankLayout.cshtml" />
     <Content Include="Views\Shared\Reports.Master" />
   </ItemGroup>
   <ItemGroup>

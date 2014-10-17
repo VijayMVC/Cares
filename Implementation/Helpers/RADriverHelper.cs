@@ -39,7 +39,7 @@ namespace Cares.Implementation.Helpers
             PricingStrategy objPs = PricingStrategyFactory.GetPricingStrategy(rACreatedDate, startDtTime, endDtTime, operationId, oTariffTypeList);
             if (objPs == null)
             {
-                throw new CaresException("TarrifType not defined", null);
+                throw new CaresException(Resources.RentalAgreement.RentalAgreement.TariffTypeNotDefinedForRaDriver, null);
             }
 
             RaDriver tmp;
@@ -50,7 +50,7 @@ namespace Cares.Implementation.Helpers
 
                 if (chaufferCharges.Count == 0)
                 {
-                    throw new CaresException("Chauffer Tariff Rate not defined", null);
+                    throw new CaresException(Resources.RentalAgreement.RentalAgreement.ChaufferRateNotDefinedForChauffer, null);
                 }
 
                 ChaufferCharge oChfRate = chaufferCharges[0];
@@ -64,7 +64,7 @@ namespace Cares.Implementation.Helpers
 
                 if (additionalDriverCharges.Count == 0)
                 {
-                    throw new CaresException("Additional Driver Charge not defined", null);
+                    throw new CaresException(Resources.RentalAgreement.RentalAgreement.DriverChargeNotDefined, null);
                 }
 
                 AdditionalDriverCharge oAddDrvRate = additionalDriverCharges[0];

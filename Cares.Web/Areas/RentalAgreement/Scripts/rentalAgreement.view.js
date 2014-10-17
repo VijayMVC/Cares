@@ -95,7 +95,6 @@ define("rentalAgreement/rentalAgreement.view",
                 };
 
             initialize();
-
            
             return {
                 bindingRoot: bindingRoot,

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Globalization
+<!DOCTYPE html>
 <html lang="@Cares.Web.Helper.CultureHelper.GetCurrentNeutralCulture()" dir="@(Cares.Web.Helper.CultureHelper.IsRighToLeft() ? "rtl" : "ltr")">
 <head>
     <meta charset="utf-8" />
@@ -18,7 +19,7 @@
     var ist = window.ist;
     @{
         <text>
-        ist.siteUrl = '@(System.Configuration.ConfigurationManager.AppSettings["SiteURL"].ToString())';
+        ist.siteUrl = '@System.Configuration.ConfigurationManager.AppSettings["SiteURL"].ToString(CultureInfo.InvariantCulture)';
         ist.resourceText.defaultConfirmationText = '@Cares.Web.Resources.Shared.Common.DefaultConfirmationText';
         ist.resourceText.defaultHeaderText = '@Cares.Web.Resources.Shared.Common.Confirmation';
         ist.resourceText.showing = '@Cares.Web.Resources.Shared.Common.Showing';
@@ -31,24 +32,9 @@
     <link rel="stylesheet" type="text/css" href="~/Content/MainSite.css" />
     <link rel="shortcut icon" href="~/Resources/Images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="~/Resources/Images/favicon.ico" type="image/x-icon">
-    <style></style>
+    <link href="~/Content/CSS/Global/Plugin/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    
-    <div class="container">
-        <h1><a href="#">Bootstrap Site</a></h1>
-       
-        <div class="row">
-            <div class="col-md-4">
-                <p>Dummy Text</p>
-            </div>
-            <div class="col-md-4">
-                <p>Dummy Text</p>
-            </div>
-        </div>
-    </div>
-
-    @RenderSection("scripts", required: false)
-
+    @RenderBody()
 </body>
 </html>
