@@ -134,7 +134,7 @@ define("raQueue/raQueue.viewModel",
                     },
                     //Edit RA Main
                     onEditRaMain =function(raMain) {
-                        toastr.success(raMain.raMainId());
+                        view.gotoRentalAgreement(raMain.raMainId());
                     },
                     // Get RA Main
                     getRaMains = function () {

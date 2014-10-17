@@ -13,6 +13,14 @@ define("raQueue/raQueue.view",
                 viewModel = specifiedViewModel,
                 // Binding root used with knockout
                 bindingRoot = $("#raQueueBinding")[0],
+                // Goto Rental Agreement
+                gotoRentalAgreement = function (raMainId) {
+                    openUrlInNewWindow("/RentalAgreement/Home/Index/#/byId/" + raMainId);
+                },
+                // Open url in new window
+                openUrlInNewWindow = function (url) {
+                    window.open(url, "_blank");
+                },
                 // Initialize
                 initialize = function () {
                     if (!bindingRoot) {
@@ -24,7 +32,8 @@ define("raQueue/raQueue.view",
             initialize();
             return {
                 bindingRoot: bindingRoot,
-                viewModel: viewModel
+                viewModel: viewModel,
+                gotoRentalAgreement: gotoRentalAgreement
             };
         })(raQueueViewModel);
 

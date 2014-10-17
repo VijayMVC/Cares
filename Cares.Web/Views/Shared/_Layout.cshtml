@@ -36,7 +36,7 @@
     <link rel="icon" href="~/Resources/Images/favicon.ico" type="image/x-icon">
 
 </head>
-<body class="page-header-fixed page-quick-sidebar-over-content page-footer-fixed">
+<body class="page-header-fixed page-quick-sidebar-over-content page-footer-fixed page-sidebar-closed">
     <!-- BEGIN HEADER -->
     <div class="page-header navbar navbar-fixed-top">
         <!-- BEGIN HEADER INNER -->
@@ -113,7 +113,7 @@
                 <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
                 <div class="page-sidebar navbar-collapse collapse" style="min-height: 735px;">
                     <!-- BEGIN SIDEBAR MENU -->
-                    <ul class="page-sidebar-menu" data-auto-scroll="true" data-slide-speed="200">
+                    <ul class="page-sidebar-menu page-sidebar-menu-closed" data-auto-scroll="true" data-slide-speed="200">
                         <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
                         <li class="sidebar-toggler-wrapper">
                             <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
@@ -129,7 +129,7 @@
                             <br />
                             <!-- END RESPONSIVE QUICK SEARCH FORM -->
                         </li>
-                        @Html.Action("LoadMenu", "Menu", new {area = ""})
+                        @Html.Action("LoadMenu", "Menu", new { area = "" })
 
                     </ul>
                     <!-- END SIDEBAR MENU -->
