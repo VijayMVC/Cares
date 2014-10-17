@@ -130,6 +130,18 @@
     <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention">
       <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.WebForms.DLL</HintPath>
+    </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
@@ -741,6 +753,18 @@
     <Compile Include="Models\WorkplaceTypeDropDown.cs" />
     <Compile Include="Models\WorkPlaceTypeSearchRequestResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\FleetDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FleetDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\VehiclesReport.aspx.cs">
+      <DependentUpon>VehiclesReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\VehiclesReport.aspx.designer.cs">
+      <DependentUpon>VehiclesReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\BusinessPartner\BusinessLegalStatus.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1285,6 +1309,13 @@
     <Compile Include="TypeRegistrations.cs" />
     <Compile Include="ViewModels\Common\MenuViewModel.cs" />
     <Compile Include="ViewModels\Common\MessageViewModel.cs" />
+    <Compile Include="Views\Shared\Reports.Master.cs">
+      <DependentUpon>Reports.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Shared\Reports.Master.designer.cs">
+      <DependentUpon>Reports.Master</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\BusinessPartner\Scripts\marketingChannel.dataservice.js" />
@@ -1938,6 +1969,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Reports\VehiclesReport.aspx" />
     <Content Include="Resources\Images\favicon.ico" />
     <Content Include="Resources\Images\logo.jpg" />
     <Content Include="Resources\Images\White_Car.jpg" />
@@ -2409,6 +2441,17 @@
     </Content>
     <None Include="Properties\PublishProfiles\Khurram.pubxml" />
     <Content Include="RichTextEditor\plugins\Thumbs.db" />
+    <Content Include="Reports\FleetDS.xsc">
+      <DependentUpon>FleetDS.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\FleetDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FleetDS.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reports\FleetDS.xss">
+      <DependentUpon>FleetDS.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
@@ -2531,6 +2574,7 @@
     <Content Include="Views\Employee\Create.cshtml" />
     <Content Include="Views\Shared\_Layout - Copy.cshtml" />
     <Content Include="Views\Shared\LoadMenu - Copy.cshtml" />
+    <Content Include="Views\Shared\Reports.Master" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\ProfileImages\" />
@@ -2622,6 +2666,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\RDLC\Vehicle.rdlc" />
     <EmbeddedResource Include="Resources\BusinessPartner\BusinessLegalStatus.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BusinessLegalStatus.ar.Designer.cs</LastGenOutput>
@@ -3083,7 +3128,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>43063</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:43065/</IISUrl>
+          <IISUrl>http://localhost:43066/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

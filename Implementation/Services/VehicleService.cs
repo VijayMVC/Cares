@@ -40,7 +40,6 @@ namespace Cares.Implementation.Services
         private readonly IVehicleMaintenanceTypeFrequencyRepository maintenanceTypeFrequencyRepository;
         private readonly IVehicleCheckListItemRepository vehicleCheckListItemRepository;
         #endregion
-
         #region Constructors
 
         /// <summary>

@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using Cares.Interfaces.Repository;
 using Cares.Models.Common;
 using Cares.Models.DomainModels;
+using Cares.Models.ReportModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
 using Cares.Repository.BaseRepository;
@@ -58,6 +61,33 @@ namespace Cares.Repository.Repositories
         #endregion
 
         #region Public
+
+        public IList<RptFleetHireGroupDetail> GetFleetReport()
+        {
+            var fleetHireGroupDetailQuery = from vehicle in DbSet                
+                join hgd in db.HireGroupDetails on
+                    new {ModelID = vehicle.VehicleModelId, MakeID = vehicle.VehicleMakeId, CategoryId = vehicle.VehicleCategoryId, Year= vehicle.ModelYear }
+                    equals new { ModelID = hgd.VehicleMakeId, MakeID = hgd.VehicleMakeId, CategoryId = hgd.VehicleCategoryId, Year = hgd.ModelYear }
+                select new RptFleetHireGroupDetail
+                {
+                    HireGroupName = hgd.HireGroup.HireGroupName,
+                    PlateNumber = vehicle.PlateNumber,
+                 //   ParentHireGroupName = hgd.HireGroup.ParentHireGroup.HireGroupName,
+                    VehicleMakeName = vehicle.VehicleMake.VehicleMakeName,
+                    FleetPoolName=vehicle.FleetPool.FleetPoolName,
+                    VehicleModelName = vehicle.VehicleModel.VehicleModelName,
+                    VehicleCategoryName=vehicle.VehicleCategory.VehicleCategoryName,
+                    ModelYear=vehicle.ModelYear,
+                    Color=vehicle.Color,
+                    CurrentOdometer=vehicle.CurrentOdometer,
+                    VehicleStatusName= vehicle.VehicleStatus.VehicleStatusName,
+                    VehicleAge= DateTime.Now.Year - vehicle.ModelYear,
+                    Location= vehicle.OperationsWorkPlace.LocationCode
+                };
+            return fleetHireGroupDetailQuery.OrderBy(fhgd => fhgd.FleetPoolName).ToList();
+        }
+
+
 
         /// <summary>
         /// Get By Hire Group
