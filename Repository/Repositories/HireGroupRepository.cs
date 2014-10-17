@@ -103,9 +103,8 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public void LoadDependencies(HireGroup hireGroup)
         {
-            //LoadProperty<HireGroup>(hireGroup, "Company");
-            LoadProperty(hireGroup, () => hireGroup.Company);
-            LoadProperty(hireGroup, () => hireGroup.ParentHireGroup);
+              LoadProperty(hireGroup, () => hireGroup.Company);
+            //LoadProperty(hireGroup, () => hireGroup.ParentHireGroup);
            
         }
         #endregion

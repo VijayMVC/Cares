@@ -123,12 +123,12 @@ define("hireGroup/hireGroup.viewModel",
                     },
                     //Is checked
                     isChecked = ko.computed(function () {
-                    if (selectedHireGroup() != undefined) {
-                        return virtualIsChecked(selectedHireGroup().isParent());
-                    } else {
-                        return false;
-                    }
-                }),
+                        if (selectedHireGroup() != undefined) {
+                            return virtualIsChecked(selectedHireGroup().isParent());
+                        } else {
+                            return false;
+                        }
+                    }),
                      //Get Hire Group data By Id
                     getHireGroupById = function () {
                         isLoadingHireGroups(true);
@@ -198,12 +198,25 @@ define("hireGroup/hireGroup.viewModel",
                     onAddVehicleDetail = function (vehicleDetail) {
                         if (doBeforeAdd()) {
                             hireGroupDetails.push(model.HireGroupDetailCopier(vehicleDetail));
+                            selectedHireGroup().vehicleDetail(model.HireGroupDetail());
                         }
                     },
                       // Add To list HIre Group Up Grade
                     onAddHireGroupUpGrade = function (vehicleDetail) {
                         if (doBeforeAddHireGroupUpGrade()) {
-                            hireGroupUpGradeList.push(model.HireGroupUpGradeClientMapper(vehicleDetail.hireGroupIdForUpGrade()));
+                            var flag = true;
+                            _.each(hireGroupUpGradeList(), function (item) {
+                                if (item.hireGroupIdForUpGrade() === vehicleDetail.hireGroupIdForUpGrade().HireGroupId) {
+                                    toastr.error("Hire Group already exist in the Allowed Hire Group List");
+                                    flag = false;
+                                }
+
+                            });
+                            if (flag) {
+                                hireGroupUpGradeList.push(model.HireGroupUpGradeClientMapper(vehicleDetail.hireGroupIdForUpGrade()));
+                                selectedHireGroup().hireGroupUpGrade(model.HireGroupUpGrade());
+                            }
+
                         }
                     },
                      // Delete a Hire Group
@@ -254,6 +267,7 @@ define("hireGroup/hireGroup.viewModel",
                             selectedHireGroup().hireGroupUpGrade().errors.showAllMessages();
                             flag = false;
                         }
+
                         return flag;
                     },
                       // Save Hire Group
@@ -385,7 +399,7 @@ define("hireGroup/hireGroup.viewModel",
                         isLoadingHireGroups(true);
                         dataservice.getHireGroup({
                             SearchString: hireGroupCodeFilter(),
-                             CompanyId: companyFilter(),
+                            CompanyId: companyFilter(),
                             ParentHireGroupId: parentHireGroupFilter(),
                             PageSize: pager().pageSize(),
                             PageNo: pager().currentPage(),

@@ -911,7 +911,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
     // ReSharper disable once InconsistentNaming
     var OtherVehicleDetailClientMapper = function (source) {
         var otherVehicleDetail = new OtherVehicleDetail();
-        otherVehicleDetail.otherVehicleDetailId(source.VehicleOtherDetailId === null ? undefined : source.VehicleOtherDetailId);
+        otherVehicleDetail.otherVehicleDetailId(source.VehicleId === null ? undefined : source.VehicleId);
         otherVehicleDetail.numberOfDoors(source.NumberOfDoors === null ? undefined : source.NumberOfDoors);
         otherVehicleDetail.horsePowerCc(source.HorsePower_CC === null ? undefined : source.HorsePower_CC);
         otherVehicleDetail.numberOfCylinders(source.NumberOfCylinders === null ? undefined : source.NumberOfCylinders);

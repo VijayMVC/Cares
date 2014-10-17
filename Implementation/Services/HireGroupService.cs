@@ -125,8 +125,6 @@ namespace Cares.Implementation.Services
             hireGroup.IsDeleted = false;
             hireGroup.IsPrivate = false;
             hireGroup.IsActive = false;
-            //hireGroupRepository.Add(request.HireGroup);
-            //hireGroupRepository.SaveChanges();
             if (hireGroup.HireGroupDetails != null)
             {
                 foreach (var hireGroupDetail in hireGroup.HireGroupDetails)
@@ -141,9 +139,7 @@ namespace Cares.Implementation.Services
                     hireGroupDetail.IsDeleted = false;
                     hireGroupDetail.IsPrivate = false;
                     hireGroupDetail.IsActive = false;
-                    hireGroupDetail.HireGroupId = hireGroup.HireGroupId;
-                    //hireGroupDetailRepository.Add(hireGroupDetail);
-                    //hireGroupDetailRepository.SaveChanges();
+                    //hireGroupDetail.HireGroupId = hireGroup.HireGroupId;
                 }
             }
             if (hireGroup.HireGroupUpGrades != null)
@@ -160,10 +156,8 @@ namespace Cares.Implementation.Services
                     hireGroupUpGrade.IsDeleted = false;
                     hireGroupUpGrade.IsPrivate = false;
                     hireGroupUpGrade.IsActive = false;
-                    hireGroupUpGrade.HireGroupId = hireGroup.HireGroupId;
+                   // hireGroupUpGrade.HireGroupId = hireGroup.HireGroupId;
                     hireGroupUpGrade.AllowedHireGroupId = hireGroupUpGrade.AllowedHireGroupId;
-                    //hireGroupUpGradeRepository.Add(hireGroupUpGrade);
-                    //hireGroupUpGradeRepository.SaveChanges();
                 }
             }
             hireGroupRepository.Add(hireGroup);
