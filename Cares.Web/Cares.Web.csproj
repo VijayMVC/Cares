@@ -226,6 +226,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalChargeBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\NrtQueueBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\NrtQueueController.cs" />
     <Compile Include="Areas\Api\Controllers\RaQueueBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\RaQueueController.cs" />
     <Compile Include="Areas\Api\Controllers\VehicleModelController.cs" />
@@ -397,6 +399,7 @@
     <Compile Include="ModelMappers\MaintenanceTypeMapper.cs" />
     <Compile Include="ModelMappers\MainteneceTypeGroupMapper.cs" />
     <Compile Include="ModelMappers\NRTMapper.cs" />
+    <Compile Include="ModelMappers\NrtQueueMapper.cs" />
     <Compile Include="ModelMappers\RaCustomerDocumentMapper.cs" />
     <Compile Include="ModelMappers\RaDriverMapper.cs" />
     <Compile Include="ModelMappers\NrtTypeMapper.cs" />
@@ -436,6 +439,9 @@
     <Compile Include="Models\Area.cs" />
     <Compile Include="Models\AreaBaseDataResponse.cs" />
     <Compile Include="Models\AreaSearchRequestResponse.cs" />
+    <Compile Include="Models\NrtMainForNrtQueue.cs" />
+    <Compile Include="Models\NrtQueueBaseResponse.cs" />
+    <Compile Include="Models\NrtQueueSearchResponse.cs" />
     <Compile Include="Models\RaMainForRaQueue.cs" />
     <Compile Include="Models\RaMainForRaQueueSearchResponse.cs" />
     <Compile Include="Models\SaveRentalAgreementRequest.cs" />
@@ -1031,6 +1037,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Nrt.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\NonRevenueTicket\NrtQueue.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NrtQueue.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\NonRevenueTicket\NrtQueue.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NrtQueue.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\NonRevenueTicket\NrtType.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1424,6 +1440,10 @@
     <Content Include="Areas\NonRevenueTicket\Scripts\nRTType.model.js" />
     <Content Include="Areas\NonRevenueTicket\Scripts\nRTType.view.js" />
     <Content Include="Areas\NonRevenueTicket\Scripts\nRTType.viewModel.js" />
+    <Content Include="Areas\NonRevenueTicket\Scripts\nRTQueue.dataservice.js" />
+    <Content Include="Areas\NonRevenueTicket\Scripts\nRTQueue.model.js" />
+    <Content Include="Areas\NonRevenueTicket\Scripts\nRTQueue.view.js" />
+    <Content Include="Areas\NonRevenueTicket\Scripts\nRTQueue.viewModel.js" />
     <Content Include="Areas\Organization\Scripts\company.dataservice.js" />
     <Content Include="Areas\Organization\Scripts\company.model.js" />
     <Content Include="Areas\Organization\Scripts\company.view.js" />
@@ -2486,6 +2506,7 @@
     <Content Include="Content\CSS\Global\Plugin\simple-line-icons\fonts\Simple-Line-Icons.eot" />
     <Content Include="Content\CSS\Global\Plugin\simple-line-icons\fonts\Simple-Line-Icons.ttf" />
     <Content Include="Content\CSS\Global\Plugin\simple-line-icons\fonts\Simple-Line-Icons.woff" />
+    <Content Include="Areas\NonRevenueTicket\Views\NonRevenueTicket\NrtQueue.cshtml" />
     <None Include="Properties\PublishProfiles\Khurram.pubxml" />
     <Content Include="RichTextEditor\plugins\Thumbs.db" />
     <None Include="Scripts\amplify-vsdoc.js" />
@@ -2938,6 +2959,14 @@
     <EmbeddedResource Include="Resources\NonRevenueTicket\Nrt.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Nrt.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\NonRevenueTicket\NrtQueue.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NrtQueue.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\NonRevenueTicket\NrtQueue.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NrtQueue.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\NonRevenueTicket\NrtType.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

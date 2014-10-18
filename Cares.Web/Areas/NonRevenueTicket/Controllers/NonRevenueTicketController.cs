@@ -13,8 +13,14 @@ namespace Cares.Web.Areas.NonRevenueTicket.Controllers
             return View();
         }
 
-        // GET: NonRevenueTicket/NonRevenueTicket
+        // GET: NonRevenueTicket/Index
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        // GET: NonRevenueTicket/NrtQueue
+        public ActionResult NrtQueue()
         {
             return View();
         }

@@ -1,7 +1,7 @@
 ﻿/*
     Data service module with ajax calls to the server
 */
-define("raQueue/raQueue.dataservice", function () {
+define("nRTQueue/nRTQueue.dataservice", function () {
 
     // Data service for forecast 
     var dataService = (function () {
@@ -11,15 +11,15 @@ define("raQueue/raQueue.dataservice", function () {
             initialize = function () {
                 if (!isInitialized) {
 
-                    // Define request to get RA queue base Data
-                    amplify.request.define('getRaQueueBaseData', 'ajax', {
-                        url: ist.siteUrl + '/Api/RaQueueBase',
+                    // Define request to get NRT queue base Data
+                    amplify.request.define('getNrtQueueBaseData', 'ajax', {
+                        url: ist.siteUrl + '/Api/NrtQueueBase',
                         dataType: 'json',
                         type: 'GET'
                     });
-                    // Define request to get RA Mains 
-                    amplify.request.define('getRaMains', 'ajax', {
-                        url: ist.siteUrl + '/Api/RaQueue',
+                    // Define request to get NRT Mains 
+                    amplify.request.define('getNrtMains', 'ajax', {
+                        url: ist.siteUrl + '/Api/NrtQueue',
                         dataType: 'json',
                         type: 'GET'
                     });
@@ -27,20 +27,20 @@ define("raQueue/raQueue.dataservice", function () {
                     isInitialized = true;
                 }
             },
-            // Get RA Queue base
-            getRaQueueBaseData = function (callbacks) {
+            // Get NRT Queue base
+            getNrtQueueBaseData = function (callbacks) {
                 initialize();
                 return amplify.request({
-                    resourceId: 'getRaQueueBaseData',
+                    resourceId: 'getNrtQueueBaseData',
                     success: callbacks.success,
                     error: callbacks.error,
                 });
             },
-        // Get RA Mains
-        getRaMains = function (params, callbacks) {
+        // Get NRT Mains
+        getNrtMains = function (params, callbacks) {
             initialize();
             return amplify.request({
-                resourceId: 'getRaMains',
+                resourceId: 'getNrtMains',
                 success: callbacks.success,
                 error: callbacks.error,
                 data: params
@@ -48,8 +48,8 @@ define("raQueue/raQueue.dataservice", function () {
         };
 
         return {
-            getRaQueueBaseData: getRaQueueBaseData,
-            getRaMains: getRaMains,
+            getNrtQueueBaseData: getNrtQueueBaseData,
+            getNrtMains: getNrtMains,
         };
     })();
 

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using Cares.Interfaces.IServices;
+﻿using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
-using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
 
