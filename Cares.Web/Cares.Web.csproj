@@ -230,6 +230,7 @@
     <Compile Include="Areas\Api\Controllers\NrtQueueController.cs" />
     <Compile Include="Areas\Api\Controllers\RaQueueBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\RaQueueController.cs" />
+    <Compile Include="Areas\Api\Controllers\RentalAgreementVehicleCheckListController.cs" />
     <Compile Include="Areas\Api\Controllers\VehicleModelController.cs" />
     <Compile Include="Areas\Api\Controllers\VehicleStatusController.cs" />
     <Compile Include="Areas\Api\Controllers\GetAdditionalChargeForNrtController.cs" />
@@ -424,6 +425,7 @@
     <Compile Include="ModelMappers\ServiceTypeMapper.cs" />
     <Compile Include="ModelMappers\VehicleCheckListMapper.cs" />
     <Compile Include="ModelMappers\AllocationStatusMapper.cs" />
+    <Compile Include="ModelMappers\PaymentModeMapper.cs" />
     <Compile Include="ModelMappers\WorkLocationMapper.cs" />
     <Compile Include="ModelMappers\WorkplaceMapper.cs" />
     <Compile Include="ModelMappers\WorkplaceTypeMapper.cs" />
@@ -440,10 +442,12 @@
     <Compile Include="Models\AreaBaseDataResponse.cs" />
     <Compile Include="Models\AreaSearchRequestResponse.cs" />
     <Compile Include="Models\NrtMainForNrtQueue.cs" />
+    <Compile Include="Models\PaymentMode.cs" />
     <Compile Include="Models\NrtQueueBaseResponse.cs" />
     <Compile Include="Models\NrtQueueSearchResponse.cs" />
     <Compile Include="Models\RaMainForRaQueue.cs" />
     <Compile Include="Models\RaMainForRaQueueSearchResponse.cs" />
+    <Compile Include="Models\GetRaVehicleCheckListRequest.cs" />
     <Compile Include="Models\SaveRentalAgreementRequest.cs" />
     <Compile Include="Models\BpMainTypeSearchRequestResponse.cs" />
     <Compile Include="Models\BpRatingType.cs" />
@@ -732,6 +736,7 @@
     <Compile Include="Models\VehicleCategoryDropDown.cs" />
     <Compile Include="Models\VehicleMakeDropDown.cs" />
     <Compile Include="Models\VehicleModelDropDown.cs" />
+    <Compile Include="Models\PaymentModeDropDown.cs" />
     <Compile Include="Models\VehicleStatusDropDown.cs" />
     <Compile Include="Models\VehicleStatusSearchRequestResponse.cs" />
     <Compile Include="Models\WorkLocation.cs" />
@@ -2507,6 +2512,8 @@
     <Content Include="Content\CSS\Global\Plugin\simple-line-icons\fonts\Simple-Line-Icons.ttf" />
     <Content Include="Content\CSS\Global\Plugin\simple-line-icons\fonts\Simple-Line-Icons.woff" />
     <Content Include="Areas\NonRevenueTicket\Views\NonRevenueTicket\NrtQueue.cshtml" />
+    <Content Include="Areas\RentalAgreement\Views\Home\_RaVehicleCheckListInDialog.cshtml" />
+    <Content Include="Areas\RentalAgreement\Views\Home\_RaVehicleCheckListOutDialog.cshtml" />
     <None Include="Properties\PublishProfiles\Khurram.pubxml" />
     <Content Include="RichTextEditor\plugins\Thumbs.db" />
     <None Include="Scripts\amplify-vsdoc.js" />

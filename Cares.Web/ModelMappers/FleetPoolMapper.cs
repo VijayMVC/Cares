@@ -16,6 +16,11 @@ namespace Cares.Web.ModelMappers
         /// </summary>
         public static ApiModel.FleetPool CreateFrom(this FleetPool source)
         {
+            if (source == null)
+            {
+                return null;
+            }
+
             return new ApiModel.FleetPool
                    {
                        FleetPoolId = source.FleetPoolId,

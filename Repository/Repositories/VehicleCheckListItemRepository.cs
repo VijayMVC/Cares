@@ -50,6 +50,16 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Count(raVehicleCheckListItem => raVehicleCheckListItem.VehicleCheckListId == vehicleCheckListId) > 0;
         }
+
+        /// <summary>
+        /// Get For Vehicle
+        /// </summary>
+        public IEnumerable<VehicleCheckList> GetByVehicleId(long vehicleId)
+        {
+            return DbSet.Where(vch => vch.UserDomainKey == UserDomainKey && vch.VehicleId == vehicleId && vch.VehicleCheckListId.HasValue)
+                .Select(vch => vch.VehicleCheckList).Distinct().ToList();
+        }
+
         #endregion
     }
 }

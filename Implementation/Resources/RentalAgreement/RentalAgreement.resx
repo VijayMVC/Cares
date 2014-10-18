@@ -156,6 +156,9 @@
   <data name="RentalAgreementService_RaServiceItemNotFound" xml:space="preserve">
     <value>RaServiceItem with Id {0} not found.</value>
   </data>
+  <data name="RentalAgreementService_RaStatusNotFound" xml:space="preserve">
+    <value>RaStatus with Key {0} not found.</value>
+  </data>
   <data name="ServiceRateNotDefinedForServiceItem" xml:space="preserve">
     <value>Service Rate not defined for selected Service Item.</value>
   </data>

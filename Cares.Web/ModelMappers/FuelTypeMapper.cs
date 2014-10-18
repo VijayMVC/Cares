@@ -14,6 +14,11 @@ namespace Cares.Web.ModelMappers
         /// </summary>
         public static FuelType CreateFrom(this Cares.Models.DomainModels.FuelType source)
         {
+            if (source == null)
+            {
+                return null;
+            }
+
             return new FuelType
             {
                 FuelTypeId = source.FuelTypeId,

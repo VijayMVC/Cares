@@ -1,4 +1,5 @@
-﻿using Cares.Models.DomainModels;
+﻿using System.Collections.Generic;
+using Cares.Models.DomainModels;
 
 namespace Cares.Interfaces.Repository
 {
@@ -11,5 +12,10 @@ namespace Cares.Interfaces.Repository
         /// Association check Vehicle CheckList Item with  Vehicle CheckList
         /// </summary>
         bool IsVehicleCheckListItemAssociatedWithVehicleCheckList(long vehicleCheckListId);
+        
+        /// <summary>
+        /// Get By Vehicle Id
+        /// </summary>
+        IEnumerable<VehicleCheckList> GetByVehicleId(long vehicleId);
     }
 }

@@ -28,6 +28,24 @@ define("rentalAgreement/rentalAgreement.view",
                 hide = function () {
                     $("#hiregroupInsuranceDialog").modal("hide");
                 },
+                // Show the dialog
+                showRaVehicleCheckListDialog = function (status) {
+                    if (status) {
+                        $("#raVehicleCheckListOutDialog").modal("show");
+                    }
+                    else {
+                        $("#raVehicleCheckListInDialog").modal("show");
+                    }
+                },
+                // Hide the dialog
+                hideRaVehicleCheckListDialog = function (status) {
+                    if (status) {
+                        $("#raVehicleCheckListOutDialog").modal("hide");
+                    }
+                    else {
+                        $("#raVehicleCheckListInDialog").modal("hide");
+                    }
+                },
                 // Initialize
                 initialize = function () {
                     if (!bindingRoot) {
@@ -101,7 +119,9 @@ define("rentalAgreement/rentalAgreement.view",
                 closePopover: closePopover,
                 viewModel: viewModel,
                 show: show,
-                hide: hide
+                hide: hide,
+                showRaVehicleCheckListDialog: showRaVehicleCheckListDialog,
+                hideRaVehicleCheckListDialog: hideRaVehicleCheckListDialog
             };
         })(rentalAgreementViewModel);
 

@@ -61,7 +61,9 @@ namespace Cares.Web.ModelMappers
                 VehicleCheckListId=source.VehicleCheckListId,
                 VehicleCheckListCode = source.VehicleCheckListCode,
                 VehicleCheckListName = source.VehicleCheckListName,
+                VehicleCheckListKey = source.VehicleCheckListKey,
                 VehicleCheckListDescription = source.VehicleCheckListDescription,
+                VehicleCheckListCodeName = source.VehicleCheckListCode + " - " + source.VehicleCheckListName,
                 IsInterior = source.IsInterior
             };
         }

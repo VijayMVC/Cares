@@ -22,6 +22,11 @@ namespace Cares.Web.Models
         public string VehicleCheckListName { get; set; }
 
         /// <summary>
+        /// Vehicle Check List Code Name
+        /// </summary>
+        public string VehicleCheckListCodeName { get; set; }
+
+        /// <summary>
         /// Vehicle Check List Description
         /// </summary>
         public string VehicleCheckListDescription { get; set; }

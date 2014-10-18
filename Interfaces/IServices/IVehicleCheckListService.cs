@@ -28,5 +28,10 @@ namespace Cares.Interfaces.IServices
         /// Add / Update Vehicle CheckList
         /// </summary>
         VehicleCheckList AddUpdateVehicleCheckList(VehicleCheckList vehicleCheckList);
+
+        /// <summary>
+        /// Load all Vehicle CheckLists For Vehicle
+        /// </summary>
+        IEnumerable<VehicleCheckList> GetForVehicle(long vehicleId);
     }
 }
