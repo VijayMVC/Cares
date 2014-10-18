@@ -6543,8 +6543,8 @@
             <End Role="Vehicle" EntitySet="Vehicles" />
           </AssociationSet>
           <AssociationSet Name="RefHireGroup308" Association="DomainModels.RefHireGroup308">
-            <End Role="HireGroup" EntitySet="HireGroups" />
-            <End Role="HireGroup1" EntitySet="HireGroups" />
+            <End EntitySet="HireGroups" Role="HireGroup" />
+            <End EntitySet="HireGroups" Role="HireGroup1" />
           </AssociationSet>
           <AssociationSet Name="RefHireGroup360" Association="DomainModels.RefHireGroup360">
             <End Role="HireGroup" EntitySet="HireGroups" />
@@ -9129,8 +9129,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefHireGroup308">
-          <End Type="DomainModels.HireGroup" Role="HireGroup" Multiplicity="0..1" />
-          <End Type="DomainModels.HireGroup" Role="HireGroup1" Multiplicity="*" />
+          <End Type="DomainModels.HireGroup" Multiplicity="0..1" Role="HireGroup" />
+          <End Type="DomainModels.HireGroup" Multiplicity="*" Role="HireGroup1" />
           <ReferentialConstraint>
             <Principal Role="HireGroup">
               <PropertyRef Name="HireGroupId" />

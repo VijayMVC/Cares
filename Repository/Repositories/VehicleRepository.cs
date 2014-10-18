@@ -156,8 +156,8 @@ namespace Cares.Repository.Repositories
         public void LoadDependencies(Vehicle vehicle)
         {
             //LoadProperty(vehicle, () => vehicle.OperationsWorkPlace);
-            LoadProperty(vehicle, () => vehicle.VehicleMake);
-            LoadProperty(vehicle, () => vehicle.VehicleStatus);
+            //LoadProperty(vehicle, () => vehicle.VehicleMake);
+            //LoadProperty(vehicle, () => vehicle.VehicleStatus);
             //LoadProperty(vehicle, () => vehicle.FleetPool);
         }
 
