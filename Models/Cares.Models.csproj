@@ -105,6 +105,7 @@
     <Compile Include="CommonTypes\PhoneType.cs" />
     <Compile Include="CommonTypes\DepartmentType.cs" />
     <Compile Include="Common\BookingQueueByColumn.cs" />
+    <Compile Include="Common\NrtQueueByColumn.cs" />
     <Compile Include="Common\RaStatusEnum.cs" />
     <Compile Include="Common\CreditLimitByColumn.cs" />
     <Compile Include="Common\InsuranceTypeByColumn.cs" />
@@ -348,10 +349,13 @@
     <Compile Include="RequestModels\JobTypeSearchRequestResponse.cs" />
     <Compile Include="RequestModels\MaintenanceTypeSearchRequest.cs" />
     <Compile Include="RequestModels\MainteneceTypeGroupSearchRequest.cs" />
+    <Compile Include="RequestModels\NrtQueueSearchRequest.cs" />
     <Compile Include="RequestModels\RaQueueSearchRequest.cs" />
     <Compile Include="RequestModels\VehicleCategorySearchRequest.cs" />
     <Compile Include="RequestModels\VehicleModelSearcgRequest.cs" />
     <Compile Include="RequestModels\VehicleStatusSearchRequest.cs" />
+    <Compile Include="ResponseModels\NrtQueueBaseResponse.cs" />
+    <Compile Include="ResponseModels\NrtQueueSearchResponse.cs" />
     <Compile Include="ResponseModels\RaMainForRaQueueSearchResponse.cs" />
     <Compile Include="ResponseModels\RaQueueBaseResponse.cs" />
     <Compile Include="ResponseModels\VehicleCategorySearchRequestResponse.cs" />

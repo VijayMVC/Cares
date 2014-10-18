@@ -1,30 +1,28 @@
 ﻿/*
-    Module with the view model for the RA Queue
+    Module with the view model for the NRT Queue
 */
-define("raQueue/raQueue.viewModel",
-    ["jquery", "amplify", "ko", "raQueue/raQueue.dataservice", "raQueue/raQueue.model", "common/confirmation.viewModel", "common/pagination"],
+define("nRTQueue/nRTQueue.viewModel",
+    ["jquery", "amplify", "ko", "nRTQueue/nRTQueue.dataservice", "nRTQueue/nRTQueue.model", "common/confirmation.viewModel", "common/pagination"],
     function ($, amplify, ko, dataservice, model, confirmation, pagination) {
         var ist = window.ist || {};
-        ist.raQueue = {
+        ist.nRTQueue = {
             viewModel: (function () {
                 var // the view 
                     view,
                     // Show Filter Section
                     filterSectionVisilble = ko.observable(false),
                     // #region Arrays
-                    // Operations
-                    operations = ko.observableArray([]),
                     //Operation Work Places
                     operationWorkPlaces = ko.observableArray([]),
                     //Ra Statuses
                     raStatuses = ko.observableArray([]),
-                    //Payment Terms
-                    paymentTerms = ko.observableArray([]),
-                    //Rental Agreements
-                    raMains = ko.observableArray([]),
+                    //NRT Types
+                    nrtTypes = ko.observableArray([]),
+                    //NRT Main Array
+                    nrtMains = ko.observableArray([]),
                      // #endregion Arrays
                     // #region Busy Indicators
-                    isLoadingRaQueues = ko.observable(false),
+                    isLoadingNrtQueues = ko.observable(false),
                     // #endregion Busy Indicators
                     // #region Observables
                     // Sort On
@@ -35,26 +33,22 @@ define("raQueue/raQueue.viewModel",
                     sortOnHg = ko.observable(1),
                     // Sort Order -  true means asc, false means desc
                     sortIsAscHg = ko.observable(true),
-                        // Is Editable
-                    isEditable = ko.observable(false),
-                    // Pagination
+                        // Pagination
                     pager = ko.observable(),
                       //Ra Status Filter
                     raStatusFilter = ko.observable(),
-                    //payement Filter
-                    paymentTermFilter = ko.observable(),
-                    //Open Location Filter
+                     //Open Location Filter
                      openLocFilter = ko.observable(),
                      //Close Location Filter
                     closeLocFilter = ko.observable(),
-                    //Operation Filter
-                    operationFilter = ko.observable(),
+                    //NRT Type Filter
+                    nrtTypeFilter = ko.observable(),
                     //Start Date
                     startDt = ko.observable(),
                     //End Date
                     endDt = ko.observable(),
-                    //RA Number
-                    raNumber = ko.observable(),
+                    //NRT Number
+                    nrtNumberFilter = ko.observable(),
                           // #region Utility Functions
                     // Initialize the view model
                     initialize = function (specifiedView) {
@@ -62,8 +56,8 @@ define("raQueue/raQueue.viewModel",
                         ko.applyBindings(view.viewModel, view.bindingRoot);
                         getBase();
                         // Set Pager
-                        pager(new pagination.Pagination({}, raMains, getRaMains));
-                        getRaMains();
+                        pager(new pagination.Pagination({}, nrtMains, getNrtMains));
+                        getNrtMains();
 
                     },
                                   // Collapase filter section
@@ -74,14 +68,11 @@ define("raQueue/raQueue.viewModel",
                     showFilterSection = function () {
                         filterSectionVisilble(true);
                     },
+                  
                     // Get Base
                     getBase = function (callBack) {
-                        dataservice.getRaQueueBaseData({
+                        dataservice.getNrtQueueBaseData({
                             success: function (data) {
-                                //Operations Array
-                                operations.removeAll();
-                                ko.utils.arrayPushAll(operations(), data.Operations);
-                                operations.valueHasMutated();
                                 //operation WorkPlaces Array
                                 operationWorkPlaces.removeAll();
                                 ko.utils.arrayPushAll(operationWorkPlaces(), data.OperationWorkPlaces);
@@ -90,10 +81,11 @@ define("raQueue/raQueue.viewModel",
                                 raStatuses.removeAll();
                                 ko.utils.arrayPushAll(raStatuses(), data.RaStatuses);
                                 raStatuses.valueHasMutated();
-                                //Payment Terms Array
-                                paymentTerms.removeAll();
-                                ko.utils.arrayPushAll(paymentTerms(), data.PaymentTerms);
-                                paymentTerms.valueHasMutated();
+                                //NRT Type Array
+                                nrtTypes.removeAll();
+                                ko.utils.arrayPushAll(nrtTypes(), data.NrtTypes);
+                                nrtTypes.valueHasMutated();
+
                                 if (callBack && typeof callBack === 'function') {
                                     callBack();
                                 }
@@ -103,47 +95,46 @@ define("raQueue/raQueue.viewModel",
                             }
                         });
                     },
+                    
                     // Search 
                     search = function () {
                         pager().reset();
-                        getRaMains();
+                        getNrtMains();
                     },
                     //Reset
                       reset = function () {
-                          raNumber(undefined);
+                          nrtNumberFilter(undefined);
                           raStatusFilter(undefined);
                           openLocFilter(undefined);
                           closeLocFilter(undefined);
-                          paymentTermFilter(undefined);
-                          operationFilter(undefined);
                           startDt(undefined);
                           endDt(undefined);
+                          nrtTypeFilter(undefined);
                           search();
                       },
-                    // Map RA Mains - Server to Client
-                    mapRaMains = function (data) {
-                        var raMainsList = [];
-                        _.each(data.RaMains, function (item) {
-                            var raMain = new model.RaMainClientMapper(item);
-                            raMainsList.push(raMain);
+                    // Map NRT Mains - Server to Client
+                    mapNrtMains = function (data) {
+                        var nrtMainsList = [];
+                        _.each(data.NrtMains, function (item) {
+                            var raMain = new model.NrtMainClientMapper(item);
+                            nrtMainsList.push(raMain);
                         });
-                        ko.utils.arrayPushAll(raMains(), raMainsList);
-                        raMains.valueHasMutated();
+                        ko.utils.arrayPushAll(nrtMains(), nrtMainsList);
+                        nrtMains.valueHasMutated();
                     },
-                    //Edit RA Main
-                    onEditRaMain = function (raMain) {
-                        view.gotoRentalAgreement(raMain.raMainId());
+                    //Edit NRT Main
+                    onEditNrtMain = function (nrtMain) {
+                        view.gotoNrt(nrtMain.nRtMainId());
                     },
-                    // Get RA Main
-                    getRaMains = function () {
-                        isLoadingRaQueues(true);
-                        dataservice.getRaMains({
-                            RaNumber: raNumber(),
-                            RaStatusId: raStatusFilter(),
+                    // Get NRT Main
+                    getNrtMains = function () {
+                        isLoadingNrtQueues(true);
+                        dataservice.getNrtMains({
+                            NrtNumber: nrtNumberFilter(),
+                            NrtStatusId: raStatusFilter(),
                             OpenLocationId: openLocFilter(),
                             CloseLocationId: closeLocFilter(),
-                            PaymentTermId: paymentTermFilter(),
-                            OperationId: operationFilter(),
+                            NrtTypeId: nrtTypeFilter(),
                             StartDate: (startDt() === undefined ? null : moment(startDt()).format(ist.utcFormat)),
                             EndDate: (endDt() === undefined ? null : moment(endDt()).format(ist.utcFormat)),
                             PageSize: pager().pageSize(),
@@ -153,12 +144,12 @@ define("raQueue/raQueue.viewModel",
                         }, {
                             success: function (data) {
                                 pager().totalCount(data.TotalCount);
-                                raMains.removeAll();
-                                mapRaMains(data);
-                                isLoadingRaQueues(false);
+                                nrtMains.removeAll();
+                                mapNrtMains(data);
+                                isLoadingNrtQueues(false);
                             },
                             error: function () {
-                                isLoadingRaQueues(false);
+                                isLoadingNrtQueues(false);
                                 toastr.error(ist.resourceText.insuranceRatesLoadFailedMsg);
                             }
                         });
@@ -167,42 +158,38 @@ define("raQueue/raQueue.viewModel",
 
                 return {
                     // Observables
-
-                    isLoadingRaQueues: isLoadingRaQueues,
+                    isLoadingNrtQueues: isLoadingNrtQueues,
                     sortOn: sortOn,
                     sortIsAsc: sortIsAsc,
                     sortOnHg: sortOnHg,
                     sortIsAscHg: sortIsAscHg,
-                    isEditable: isEditable,
                     filterSectionVisilble: filterSectionVisilble,
                     //Arrays
-                    operations: operations,
-                    raMains: raMains,
+                    nrtMains: nrtMains,
                     operationWorkPlaces: operationWorkPlaces,
                     raStatuses: raStatuses,
-                    paymentTerms: paymentTerms,
+                    nrtTypes: nrtTypes,
                     //Filters
-                    operationFilter: operationFilter,
                     raStatusFilter: raStatusFilter,
-                    paymentTermFilter: paymentTermFilter,
                     openLocFilter: openLocFilter,
                     closeLocFilter: closeLocFilter,
                     startDt: startDt,
+                    nrtTypeFilter: nrtTypeFilter,
                     endDt: endDt,
-                    raNumber: raNumber,
+                    nrtNumberFilter: nrtNumberFilter,
                     // Utility Methods
                     initialize: initialize,
                     search: search,
                     pager: pager,
                     collapseFilterSection: collapseFilterSection,
                     showFilterSection: showFilterSection,
-                    getRaMains: getRaMains,
+                    getNrtMains: getNrtMains,
                     reset: reset,
-                    onEditRaMain: onEditRaMain
+                    onEditNrtMain: onEditNrtMain
                     // Utility Methods
 
                 };
             })()
         };
-        return ist.raQueue.viewModel;
+        return ist.nRTQueue.viewModel;
     });

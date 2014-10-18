@@ -114,7 +114,7 @@
                                 </div>
                                 <label for="isReturnVehicle" class="control-label h5 col-sm-1">@Cares.Web.Resources.NonRevenueTicket.Nrt.ReturnVehicle </label>
                                 <div class="col-md-3">
-                                    <input type="checkbox" id="isReturnVehicle" class="form-control" data-bind="checked:isReturnLoc,disable:(virtualIsReturnLoc() || !$root.showUpdateCancelBtn())" />
+                                    <input type="checkbox" id="isReturnVehicle" class="form-control" data-bind="checked:isReturnLoc,disable:(!$root.showUpdateCancelBtn() || virtualIsReturnLoc())" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -134,7 +134,7 @@
                                 </div>
                                 <label for="retLocation" class="control-label h5 col-sm-1">@Cares.Web.Resources.NonRevenueTicket.Nrt.ReturnLocation *</label>
                                 <div class="col-md-3">
-                                    <select id="retLocation" class="form-control" data-bind="options: $root.locations, optionsText: 'OperationsWorkPlaceCodeName', optionsValue: 'OperationsWorkPlaceId', optionsCaption: '@("<" + Cares.Web.Resources.NonRevenueTicket.Nrt.ReturnLocation + ">")' ,value:inLocId,disable:!(isReturnLoc()) ||$root.isCloseTicket()"></select>
+                                    <select id="retLocation" class="form-control" data-bind="options: $root.locations, optionsText: 'OperationsWorkPlaceCodeName', optionsValue: 'OperationsWorkPlaceId', optionsCaption: '@("<" + Cares.Web.Resources.NonRevenueTicket.Nrt.ReturnLocation + ">")' ,value:inLocId,disable:!(isReturnLoc()) ||$root.isCloseTicket()|| !$root.showUpdateCancelBtn()"></select>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -144,7 +144,7 @@
                                 </div>
                                 <label for="inOdometer" class="control-label h5 col-sm-1">@Cares.Web.Resources.NonRevenueTicket.Nrt.OdometerIn *</label>
                                 <div class="col-md-3">
-                                    <input type="text" id="inOdometer" class="form-control" placeholder='@("<"+Cares.Web.Resources.NonRevenueTicket.Nrt.OdometerIn+">")' data-bind="value:inOdemeter, validationTooltip:inOdemeter,disable:!(isReturnLoc()) ||$root.isCloseTicket()" />
+                                    <input type="text" id="inOdometer" class="form-control" placeholder='@("<"+Cares.Web.Resources.NonRevenueTicket.Nrt.OdometerIn+">")' data-bind="value:inOdemeter, validationTooltip:inOdemeter,disable:!(isReturnLoc()) ||$root.isCloseTicket()|| !$root.showUpdateCancelBtn()" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -174,11 +174,11 @@
                             <div class="form-group">
                                 <label for="vOutStatus" class="control-label h5 col-sm-1">@Cares.Web.Resources.NonRevenueTicket.Nrt.VehicleOutStatus *</label>
                                 <div class="col-md-3">
-                                    <select id="vOutStatus" class="form-control" data-bind="options: $root.vehicleStatuses, optionsText: 'VehicleStatusCodeName', optionsValue: 'VehicleStatusId', optionsCaption: '@("<" + Cares.Web.Resources.NonRevenueTicket.Nrt.VehicleOutStatus + ">")' ,value:vOutStatusId, disable: $root.isCloseTicket()"></select>
+                                    <select id="vOutStatus" class="form-control" data-bind="options: $root.vehicleStatuses, optionsText: 'VehicleStatusCodeName', optionsValue: 'VehicleStatusId', optionsCaption: '@("<" + Cares.Web.Resources.NonRevenueTicket.Nrt.VehicleOutStatus + ">")' ,value:vOutStatusId, disable: (virtualVehicleId()!=undefined || $root.isCloseTicket())"></select>
                                 </div>
                                 <label for="vInStatus" class="control-label h5 col-sm-1">@Cares.Web.Resources.NonRevenueTicket.Nrt.VehicleInStatus *</label>
                                 <div class="col-md-3">
-                                    <select id="vInStatus" class="form-control" data-bind="options: $root.vehicleStatuses, optionsText: 'VehicleStatusCodeName', optionsValue: 'VehicleStatusId', optionsCaption: '@("<" + Cares.Web.Resources.NonRevenueTicket.Nrt.VehicleInStatus + ">")' ,value:vInStatusId,disable:!(isReturnLoc()) || $root.isCloseTicket()"></select>
+                                    <select id="vInStatus" class="form-control" data-bind="options: $root.vehicleStatuses, optionsText: 'VehicleStatusCodeName', optionsValue: 'VehicleStatusId', optionsCaption: '@("<" + Cares.Web.Resources.NonRevenueTicket.Nrt.VehicleInStatus + ">")' ,value:vInStatusId,disable:!(isReturnLoc()) || $root.isCloseTicket() || !$root.showUpdateCancelBtn()"></select>
                                 </div>
                             </div>
                         </form>

@@ -1,14 +1,14 @@
 ﻿namespace Cares.Models.Common
 {
     /// <summary>
-    /// Ra Queue By Column
+    /// Nrt Queue By Column
     /// </summary>
-    public enum RaQueueByColumn
+    public enum NrtQueueByColumn
     {
         /// <summary>
-        /// RA Main Number
+        /// NRT Number
         /// </summary>
-        RaMainId = 1,
+        NrtMainId = 1,
 
         /// <summary>
         /// Start Date
@@ -31,9 +31,9 @@
         CloseLocation = 5,
 
         /// <summary>
-        /// Operation
+        /// NRT Type ID
         /// </summary>
-        Operation = 6,
+        NrtTypeId = 6,
 
         /// <summary>
         /// Ra Status

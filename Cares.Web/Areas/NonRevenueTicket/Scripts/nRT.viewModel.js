@@ -2,8 +2,8 @@
     Module with the view model for the Chauffer Charge
 */
 define("nRT/nRT.viewModel",
-    ["jquery", "amplify", "ko", "nRT/nRT.dataservice", "nRT/nRT.model", "common/confirmation.viewModel", "common/pagination", "common/clientSidePagination"],
-    function ($, amplify, ko, dataservice, model, confirmation, pagination, clientPagination) {
+    ["jquery", "amplify", "ko", "nRT/nRT.dataservice", "nRT/nRT.model", "common/confirmation.viewModel", "common/pagination", "common/clientSidePagination", "sammy"],
+    function ($, amplify, ko, dataservice, model, confirmation, pagination, clientPagination, sammy) {
         var ist = window.ist || {};
         ist.nRT = {
             viewModel: (function () {
@@ -11,6 +11,8 @@ define("nRT/nRT.viewModel",
                     view,
                     // Non Revenue Ticket Main
                     selectedNrtMain = ko.observable(),
+                    //Vehicle Copy of NRT Main For edit, cancel
+                    selectedVehicleCopyInNrtMain = ko.observable(),
                     //Selected Vehicle
                     selectedVehicle = ko.observable(),
                     //Selected Chauffer
@@ -153,6 +155,12 @@ define("nRT/nRT.viewModel",
                     showFilterSection = function () {
                         filterSectionVisilble(true);
                     },
+                      // Sammy root
+                    app = sammy(function () {
+                        this.get("#/byId/:nrtMainId", function () {
+                            getNrtById(this.params["nrtMainId"]);
+                        });
+                    }),
                     // Get Base
                     getBase = function (callBack) {
                         dataservice.getNRTBase({
@@ -173,6 +181,10 @@ define("nRT/nRT.viewModel",
                                 vehicleStatuses.removeAll();
                                 ko.utils.arrayPushAll(vehicleStatuses(), data.VehicleStatuses);
                                 vehicleStatuses.valueHasMutated();
+
+                                // Run Sammy
+                                app.run();
+
                                 if (callBack && typeof callBack === 'function') {
                                     callBack();
                                 }
@@ -185,15 +197,26 @@ define("nRT/nRT.viewModel",
 
                     //Edit Vehicle Detail
                     onEditVehicle = function () {
+                        selectedVehicleCopyInNrtMain(model.VehicleDetail());
+                        selectedVehicleCopyInNrtMain().isReturnLoc(selectedNrtMain().vehicleDetail().isReturnLoc());
+                        selectedVehicleCopyInNrtMain().inOdemeter(selectedNrtMain().vehicleDetail().inOdemeter());
+                        selectedVehicleCopyInNrtMain().fuelIn(selectedNrtMain().vehicleDetail().fuelIn());
+                        selectedVehicleCopyInNrtMain().vInStatusId(selectedNrtMain().vehicleDetail().vInStatusId());
                         showEditBtn(false);
                         showSaveCancelBtn(false);
                         showUpdateCancelBtn(true);
                     },
                     //Update Vehicle Detail
                     onUpdateVehicle = function () {
-                        showEditBtn(true);
-                        showSaveCancelBtn(false);
-                        showUpdateCancelBtn(false);
+                        if (selectedNrtMain().vehicleDetail().isReturnLoc() === true && selectedNrtMain().vehicleDetail().inOdemeter() === undefined
+                               && selectedNrtMain().vehicleDetail().vInStatusId() === undefined) {
+                            toastr.error("Mandatory Fields Missing in Records.Odometer In:Vehicle In Status");
+                        } else {
+                            showEditBtn(true);
+                            showSaveCancelBtn(false);
+                            showUpdateCancelBtn(false);
+                        }
+
                     },
 
                     //delete Chauffer Item
@@ -207,8 +230,67 @@ define("nRT/nRT.viewModel",
                     // Save NRT
                     onOpenTicket = function (nrtMain) {
                         openCloseTicket(nrtMain, false);
-                        //getNrtById(nrtMain);
                     },
+                                        //Get NRT By Id
+                    getNrtById = function (nrtMainId) {
+                        isLoadingNrt(true);
+                        dataservice.getNrtDetail({ id: nrtMainId }, {
+                            success: function (data) {
+                                vehiclesForListView.removeAll();
+                                selectedChaufferList.removeAll();
+                                selectedAdditionalChargeList.removeAll();
+                                selectedNrtMain(model.NrtMainClientMapper(data));
+                                _.each(data.NrtVehicles, function (item) {
+                                    var vehicle = new model.VehicleClientMapper(item.Vehicle);
+                                    selectedNrtMain().vehicleDetail().vehicleId(item.Vehicle.VehicleId);
+                                    selectedNrtMain().vehicleDetail().virtualVehicleId(item.Vehicle.VehicleId);
+                                    selectedNrtMain().vehicleDetail().plateNum(item.Vehicle.PlateNumber);
+                                    selectedNrtMain().vehicleDetail().inDtTime(selectedNrtMain().endDate());
+                                    vehiclesForListView.push(model.VehicleForListViewClientMapper(vehicle));
+                                    //Selected Chauffer
+                                    _.each(item.NrtDrivers, function (driver) {
+                                        var drvr = new model.ChaufferInNrtClientMapper(driver);
+                                        selectedChaufferList.push(drvr);
+                                    });
+                                    //Selected Additiional Charge
+                                    _.each(item.NrtCharges, function (charge) {
+                                        var chrg = new model.MaintenanceActivityClientMapper(charge);
+                                        selectedAdditionalChargeList.push(chrg);
+                                    });
+                                    //Selected vehicle Movement status
+                                    _.each(item.NrtVehicleMovements, function (vhicle) {
+                                        selectedNrtMain().vehicleDetail().id(vhicle.NrtVehicleMovementId);
+                                        if (vhicle.MovementStatus) {
+                                            selectedNrtMain().vehicleDetail().inDtTime(moment(vhicle.DtTime, ist.utcFormat).toDate());
+                                            selectedNrtMain().vehicleDetail().inLocId(vhicle.OperationsWorkPlaceId);
+                                            selectedNrtMain().vehicleDetail().fuelIn(vhicle.FuelLevel);
+                                            selectedNrtMain().vehicleDetail().inOdemeter(vhicle.Odometer);
+                                            selectedNrtMain().vehicleDetail().vInStatusId(vhicle.VehicleStatusId);
+                                            selectedNrtMain().vehicleDetail().isReturnLoc(vhicle.MovementStatus);
+                                            selectedNrtMain().vehicleDetail().virtualIsReturnLoc(vhicle.MovementStatus);
+                                        } else {
+                                            selectedNrtMain().vehicleDetail().outDtTime(moment(vhicle.DtTime, ist.utcFormat).toDate());
+                                            selectedNrtMain().vehicleDetail().outLocId(vhicle.OperationsWorkPlaceId);
+                                            selectedNrtMain().vehicleDetail().fuelOut(vhicle.FuelLevel);
+                                            selectedNrtMain().vehicleDetail().outOdemeter(vhicle.Odometer);
+                                            selectedNrtMain().vehicleDetail().vOutStatusId(vhicle.VehicleStatusId);
+                                           
+                                        }
+                                    });
+                                });
+                                if (selectedNrtMain().nrtStatusId() === 2) {
+                                    isCloseTicket(true);
+                                }
+                                showEditBtn(true);
+                                isLoadingNrt(false);
+                            },
+                            error: function () {
+                                isLoadingNrt(false);
+                                toastr.error(ist.resourceText.nRTDetailFailedMsg);
+                            }
+                        });
+                    },
+
                     //on Close Ticket
                     onCloseTicket = function (nrtMain) {
                         if (dobeforeCloseTicket()) {
@@ -322,63 +404,6 @@ define("nRT/nRT.viewModel",
                         }
                     },
 
-
-                    //Get NRT By Id
-                    getNrtById = function (nrtMain) {
-                        isLoadingNrt(true);
-                        dataservice.getNrtDetail(model.NrtMainServerMapperForId(nrtMain), {
-                            success: function (data) {
-                                vehiclesForListView.removeAll();
-                                selectedChaufferList.removeAll();
-                                selectedAdditionalChargeList.removeAll();
-                                selectedNrtMain(model.NrtMainClientMapper(data));
-                                _.each(data.NrtVehicles, function (item) {
-                                    var vehicle = new model.VehicleClientMapper(item.Vehicle);
-                                    selectedNrtMain().vehicleDetail().vehicleId(item.Vehicle.VehicleId);
-                                    selectedNrtMain().vehicleDetail().plateNum(item.Vehicle.PlateNumber);
-                                    vehiclesForListView.push(model.VehicleForListViewClientMapper(vehicle));
-                                    //Selected Chauffer
-                                    _.each(item.NrtDrivers, function (driver) {
-                                        var drvr = new model.ChaufferInNrtClientMapper(driver);
-                                        selectedChaufferList.push(drvr);
-                                    });
-                                    //Selected Additiional Charge
-                                    _.each(item.NrtCharges, function (charge) {
-                                        var chrg = new model.MaintenanceActivityClientMapper(charge);
-                                        selectedAdditionalChargeList.push(chrg);
-                                    });
-                                    //Selected vehicle Movement status
-                                    _.each(item.NrtVehicleMovements, function (vhicle) {
-                                        selectedNrtMain().vehicleDetail().id(vhicle.NrtVehicleMovementId);
-                                        if (vhicle.MovementStatus) {
-                                            selectedNrtMain().vehicleDetail().inDtTime(moment(vhicle.DtTime, ist.utcFormat).toDate());
-                                            selectedNrtMain().vehicleDetail().inLocId(vhicle.OperationsWorkPlaceId);
-                                            selectedNrtMain().vehicleDetail().fuelIn(vhicle.FuelLevel);
-                                            selectedNrtMain().vehicleDetail().inOdemeter(vhicle.Odometer);
-                                            selectedNrtMain().vehicleDetail().vInStatusId(vhicle.VehicleStatusId);
-                                            selectedNrtMain().vehicleDetail().isReturnLoc(vhicle.MovementStatus);
-                                        } else {
-                                            selectedNrtMain().vehicleDetail().outDtTime(moment(vhicle.DtTime, ist.utcFormat).toDate());
-                                            selectedNrtMain().vehicleDetail().outLocId(vhicle.OperationsWorkPlaceId);
-                                            selectedNrtMain().vehicleDetail().fuelOut(vhicle.FuelLevel);
-                                            selectedNrtMain().vehicleDetail().outOdemeter(vhicle.Odometer);
-                                            selectedNrtMain().vehicleDetail().vOutStatusId(vhicle.VehicleStatusId);
-                                            selectedNrtMain().vehicleDetail().virtualIsReturnLoc(vhicle.VehicleStatusId);
-                                        }
-                                    });
-                                });
-                                if (selectedNrtMain().nrtStatusId() === 2) {
-                                    isCloseTicket(true);
-                                }
-                                showEditBtn(true);
-                                isLoadingNrt(false);
-                            },
-                            error: function () {
-                                isLoadingNrt(false);
-                                toastr.error(ist.resourceText.nRTDetailFailedMsg);
-                            }
-                        });
-                    },
 
                 // Do Before Logic
                     doBeforeAddVehicleDetail = function () {
@@ -638,6 +663,10 @@ define("nRT/nRT.viewModel",
                     },
                     //Hide Update and cancel Button
                     hideUpdateCancelBtn = function () {
+                        selectedNrtMain().vehicleDetail().isReturnLoc(selectedVehicleCopyInNrtMain().isReturnLoc());
+                        selectedNrtMain().vehicleDetail().inOdemeter(selectedVehicleCopyInNrtMain().inOdemeter());
+                        selectedNrtMain().vehicleDetail().fuelIn(selectedVehicleCopyInNrtMain().fuelIn());
+                        selectedNrtMain().vehicleDetail().vInStatusId(selectedVehicleCopyInNrtMain().vInStatusId());
                         showEditBtn(true);
                         showUpdateCancelBtn(false);
                     },

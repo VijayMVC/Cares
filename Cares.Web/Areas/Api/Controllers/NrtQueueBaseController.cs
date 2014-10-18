@@ -2,42 +2,39 @@
 using System.Web.Http;
 using Cares.Interfaces.IServices;
 using Cares.Web.ModelMappers;
-using Cares.Web.Models;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
     /// <summary>
-    /// RA Queue Base API Controller
+    /// NRT Queue Base Controller
     /// </summary>
-    public class RaQueueBaseController : ApiController
+    public class NrtQueueBaseController : ApiController
     {
-
         #region Private
-        private readonly IRaQueueService raQueueService;
+        private readonly INrtQueueService nrtQueueService;
         #endregion
 
         #region Constructors
         /// <summary>
         /// Constructor
         /// </summary>
-        public RaQueueBaseController(IRaQueueService raQueueService)
+        public NrtQueueBaseController(INrtQueueService nrtQueueService)
         {
-            if (raQueueService == null)
+            if (nrtQueueService == null)
             {
-                throw new ArgumentNullException("raQueueService");
+                throw new ArgumentNullException("nrtQueueService");
             }
 
-            this.raQueueService = raQueueService;
+            this.nrtQueueService = nrtQueueService;
         }
         #endregion
 
         #region Public
         // GET api/<controller>
-        public RaQueueBaseResponse Get()
+        public Models.NrtQueueBaseResponse Get()
         {
-            return raQueueService.GetBaseData().CreateFrom();
+            return nrtQueueService.GetBaseData().CreateFrom();
         }
         #endregion
-
     }
 }

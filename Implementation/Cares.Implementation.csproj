@@ -601,6 +601,7 @@
     <Compile Include="Services\AddressBaseDataService.cs" />
     <Compile Include="Services\AdditionalDriverService.cs" />
     <Compile Include="Services\BusinessPartnerInTypeService.cs" />
+    <Compile Include="Services\NrtQueueService.cs" />
     <Compile Include="Services\RaQueueService.cs" />
     <Compile Include="Services\VehicleModelService.cs" />
     <Compile Include="Services\CreditLimitService.cs" />
@@ -983,6 +984,7 @@
     <EmbeddedResource Include="Resources\RentalAgreement\RentalAgreement.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RentalAgreement.ar.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\RentalAgreement\RentalAgreement.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

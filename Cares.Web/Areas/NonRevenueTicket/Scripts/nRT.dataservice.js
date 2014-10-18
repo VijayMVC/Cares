@@ -22,7 +22,7 @@ define("nRT/nRT.dataservice", function () {
                         url: ist.siteUrl + '/Api/GetNrtDetail',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
-                        type: 'POST'
+                        type: 'Get'
                     });
                     // Define request to Get Vehicle Detail 
                     amplify.request.define('getVehiclesDetail', 'ajax', {

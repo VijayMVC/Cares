@@ -92,6 +92,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             id = ko.observable(),
             //vehicle ID
             vehicleId = ko.observable(),
+            //Virtual Vehicle Id
+            virtualVehicleId = ko.observable(),
             //Plate Number
             plateNum = ko.observable(),
             //Is Return Location
@@ -169,6 +171,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             vInStatusId: vInStatusId,
             vOutStatusId: vOutStatusId,
             virtualIsReturnLoc: virtualIsReturnLoc,
+            virtualVehicleId: virtualVehicleId,
             errors: errors,
             isValid: isValid,
             dirtyFlag: dirtyFlag,
