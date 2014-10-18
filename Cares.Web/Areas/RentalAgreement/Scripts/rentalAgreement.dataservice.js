@@ -128,6 +128,13 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
                     });
+
+                    // Define request to get CheckLists For Vehicle
+                    amplify.request.define('getCheckListsForVehicle', 'ajax', {
+                        url: ist.siteUrl + '/Api/RentalAgreementVehicleCheckList',
+                        dataType: 'json',
+                        type: 'GET'
+                    });
                     
                     isInitialized = true;
                 }
@@ -282,6 +289,17 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
                     data: params
                 });
             },
+
+            // Get CheckList For Vehicle
+            getCheckListsForVehicle = function (params, callbacks) {
+                initialize();
+                return amplify.request({
+                    resourceId: 'getCheckListsForVehicle',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: params
+                });
+            },
             
             // Save RA
             saveRentalAgreement = function (params, callbacks) {
@@ -310,7 +328,8 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
             getInsuranceRates: getInsuranceRates,
             getAdditionalCharges: getAdditionalCharges,
             getRentalAgreement: getRentalAgreement,
-            saveRentalAgreement: saveRentalAgreement
+            saveRentalAgreement: saveRentalAgreement,
+            getCheckListsForVehicle: getCheckListsForVehicle
         };
     })();
 

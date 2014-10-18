@@ -30,6 +30,8 @@ namespace Cares.Implementation.Services
         private readonly IBusinessPartnerRepository businessPartnerRepository;
         private readonly IAddressRepository businessPartnerAddressRepository;
         private readonly IVehicleRepository vehicleRepository;
+        private readonly IPaymentModeRepository paymentModeRepository;
+        private readonly IRaStatusRepository raStatusRepository;
 
         /// <summary>
         /// Add Vehicle Movements
@@ -334,7 +336,7 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Update Ra Main Header
         /// </summary>
-        private static void UpdateRaMainHeader(RaMain raMain, RaMain raMainDbVersion)
+        private void UpdateRaMainHeader(RaMain raMain, RaMain raMainDbVersion)
         {
             raMainDbVersion.StartDtTime = raMain.StartDtTime;
             raMainDbVersion.EndDtTime = raMain.EndDtTime;
@@ -357,6 +359,17 @@ namespace Cares.Implementation.Services
             raMainDbVersion.SpecialDiscountPerc = raMain.SpecialDiscountPerc;
             raMainDbVersion.NetBillAfterDiscount = raMain.NetBillAfterDiscount;
             raMainDbVersion.PaymentTermId = raMain.PaymentTermId;
+
+            short statusId = raMainDbVersion.Balance > 0 ? (short) RaStatusEnum.PaymentPending : raMain.RaStatusId;
+            RaStatus status = raStatusRepository.FindByStatusKey(statusId);
+
+            if (status == null)
+            {
+                throw new CaresException(string.Format(CultureInfo.InvariantCulture, 
+                    Resources.RentalAgreement.RentalAgreement.RentalAgreementService_RaStatusNotFound,
+                   (short)RaStatusEnum.PaymentPending));
+            }
+
             raMainDbVersion.RaStatusId = raMain.RaStatusId;
         }
 
@@ -528,10 +541,10 @@ namespace Cares.Implementation.Services
         private void UpdateRaHireGroupsExisting(RaMain raMain, RaMain raMainDbVersion)
         {
             List<RaHireGroup> raHireGroupsToUpdate = new List<RaHireGroup>();
-            raHireGroupsToUpdate.AddRange(from raHireGroup in raMainDbVersion.RaHireGroups
+            raHireGroupsToUpdate.AddRange(from raHireGroup in raMain.RaHireGroups
                                           let @group = raHireGroup
                                           where
-                                              raMain.RaHireGroups.All(hg => hg.RaHireGroupId == @group.RaHireGroupId)
+                                              raMainDbVersion.RaHireGroups.All(hg => hg.RaHireGroupId == @group.RaHireGroupId) && @group.RaHireGroupId > 0
                                           select raHireGroup);
 
             foreach (RaHireGroup raHireGroup in raHireGroupsToUpdate)
@@ -971,7 +984,17 @@ namespace Cares.Implementation.Services
         /// </summary>
         private void MapRaHeader(RaMain raMain)
         {
-            raMain.RaStatusId = (short)RaStatusEnum.Open;
+            // Find Status For Ra By Key
+            RaStatus status = raStatusRepository.FindByStatusKey(raMain.RaStatusId);
+
+            if (status == null)
+            {
+                throw new CaresException(string.Format(CultureInfo.InvariantCulture,
+                    Resources.RentalAgreement.RentalAgreement.RentalAgreementService_RaStatusNotFound,
+                   (short)RaStatusEnum.Open));
+            }
+            
+            raMain.RaStatusId = status.RaStatusId;
             raMain.RecCreatedBy = raMain.RecLastUpdatedBy = rentalAgreementRepository.LoggedInUserIdentity;
             raMain.RecLastUpdatedDt = raMain.RecCreatedDt;
             raMain.UserDomainKey = rentalAgreementRepository.UserDomainKey;
@@ -1432,9 +1455,9 @@ namespace Cares.Implementation.Services
         private void UpdateChaufferReservationsExisting(RaMain raMain, RaMain raMainDbVersion)
         {
             List<RaDriver> chauffersToUpdate =
-                raMainDbVersion.RaDrivers.Where(
+                raMain.RaDrivers.Where(
                     raDriver =>
-                        raMain.RaDrivers.All(driver => driver.RaDriverId == raDriver.RaDriverId) &&
+                        raMainDbVersion.RaDrivers.All(driver => driver.RaDriverId == raDriver.RaDriverId) &&
                         raDriver.IsChauffer && raDriver.ChaufferId.HasValue && raDriver.ChaufferId.Value > 0).ToList();
 
             if (raMainDbVersion.ChaufferReservations.Any())
@@ -1486,7 +1509,7 @@ namespace Cares.Implementation.Services
             IOperationsWorkPlaceRepository operationsWorkPlaceRepository, ITariffTypeRepository tariffTypeRepository, IBill bill,
             IVehicleStatusRepository vehicleStatusRepository, IAlloactionStatusRepository alloactionStatusRepository, IRentalAgreementRepository rentalAgreementRepository,
             IBusinessPartnerRepository businessPartnerRepository, IPhoneRepository businessPartnerPhoneRepository, IAddressRepository businessPartnerAddressRepository,
-            IVehicleRepository vehicleRepository)
+            IVehicleRepository vehicleRepository, IPaymentModeRepository paymentModeRepository, IRaStatusRepository raStatusRepository)
         {
             if (paymentTermRepository == null)
             {
@@ -1512,6 +1535,8 @@ namespace Cares.Implementation.Services
             if (businessPartnerAddressRepository == null)
                 throw new ArgumentNullException("businessPartnerAddressRepository");
             if (vehicleRepository == null) throw new ArgumentNullException("vehicleRepository");
+            if (paymentModeRepository == null) throw new ArgumentNullException("paymentModeRepository");
+            if (raStatusRepository == null) throw new ArgumentNullException("raStatusRepository");
 
             this.paymentTermRepository = paymentTermRepository;
             this.operationRepository = operationRepository;
@@ -1524,6 +1549,8 @@ namespace Cares.Implementation.Services
             this.businessPartnerRepository = businessPartnerRepository;
             this.businessPartnerAddressRepository = businessPartnerAddressRepository;
             this.vehicleRepository = vehicleRepository;
+            this.paymentModeRepository = paymentModeRepository;
+            this.raStatusRepository = raStatusRepository;
         }
 
         #endregion
@@ -1541,7 +1568,8 @@ namespace Cares.Implementation.Services
                 Operations = operationRepository.GetSalesOperation(),
                 OperationsWorkPlaces = operationsWorkPlaceRepository.GetSalesOperationsWorkPlace(),
                 AllocationStatuses = alloactionStatusRepository.GetAll(),
-                VehicleStatuses = vehicleStatusRepository.GetAll()
+                VehicleStatuses = vehicleStatusRepository.GetAll(),
+                PaymentModes = paymentModeRepository.GetAll()
             };
         }
 
@@ -1650,9 +1678,6 @@ namespace Cares.Implementation.Services
 
             // Save Changes
             rentalAgreementRepository.SaveChanges();
-
-            // Load Properties
-            rentalAgreementRepository.LoadDependencies(raMain);
 
             return raMain;
         }

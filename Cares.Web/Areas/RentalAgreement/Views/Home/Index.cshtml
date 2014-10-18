@@ -188,6 +188,55 @@
                     </div>
                 </div>
             </div>
+            <div class="panel panel-default">
+                <div id="paymentsHeading" class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseRaPayment">
+                            Payments
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseRaPayment" class="panel-collapse collapse">
+                    <div class="panel-body" data-bind="with: rentalAgreement">
+                        <button class="btn btn-primary" data-bind="click: $root.addPaymentToRentalAgreement">Add</button>
+                        <table id="raPayments" class="table table-condensed searchFilterResultSection">
+                            <thead>
+                                <tr>
+                                    <th>Payment Mode</th>
+                                    <th>Payment Dt</th>
+                                    <th>Payment Amount</th>
+                                    <th>Paid By</th>
+                                    <th>Check Number</th>
+                                    <th>Bank</th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: raPayments">
+                                <tr>
+                                    <td>
+                                        <select class="form-control" id="paymentMode" data-bind="options: $root.paymentModes, optionsCaption: '<Payment Mode>', optionsText: 'codeName', optionsValue: 'id', value: paymentModeId"></select>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" data-bind="datetimepicker: paymentDt" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" data-bind="value: paymentAmount" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" data-bind="value: paidBy" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" data-bind="value: checkNumber" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" data-bind="value: bank" />
+                                    </td>
+                                    <td><a data-bind="click: $parent.removeRaPayment"><span class="glyphicon glyphicon-remove"></span></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div id="raMain">
@@ -206,16 +255,16 @@
                             <div class="form-group">
                                 <label for="customerNumber" class="control-label col-sm-2">Customer #</label>
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control" placeholder="<Customer #>" id="customerNumber" data-bind="value: customerNo" />
+                                    <input type="text" class="form-control" placeholder="<Customer #>" id="customerNumber" data-bind="value: customerNo, enable: !$root.rentalAgreement().id()" />
                                 </div>
                                 <label for="isCustomerIndividual" id="isIndividualLabel" class="control-label col-sm-3">Is Individual</label>
                                 @* ReSharper disable UnknownCssClass *@
                                 <div class="col-md-1 checkBoxCol">
                                     @* ReSharper restore UnknownCssClass *@
-                                    <input type="checkbox" class="form-control" id="isCustomerIndividual" data-bind="checked: isIndividual" />
+                                    <input type="checkbox" class="form-control" id="isCustomerIndividual" data-bind="checked: isIndividual, enable: !$root.rentalAgreement().id()" />
                                 </div>
                                 <div class="col-md-4">
-                                    <select class="form-control" id="customerPaymentTerm" data-bind="options: $root.paymentTerms, optionsCaption: '<Payment Term>', optionsText: 'codeName', optionsValue: 'id', value: paymentTermId"></select>
+                                    <select class="form-control" id="customerPaymentTerm" data-bind="options: $root.paymentTerms, optionsCaption: '<Payment Term>', optionsText: 'codeName', optionsValue: 'id', value: paymentTermId, enable: !$root.rentalAgreement().id()"></select>
                                 </div>
                             </div>
                             <!-- ko if: isIndividual -->
@@ -223,44 +272,44 @@
                             <div class="form-group">
                                 <label for="customerFirstName" class="control-label col-sm-2">Name</label>
                                 <div class="col-md-5">
-                                    <input type="text" class="form-control" placeholder="<First Name>" id="customerFirstName" data-bind="value: firstName" />
+                                    <input type="text" class="form-control" placeholder="<First Name>" id="customerFirstName" data-bind="value: firstName, enable: !$root.rentalAgreement().id()" />
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" class="form-control" placeholder="<Last Name>" id="customerLastName" data-bind="value: lastName" />
+                                    <input type="text" class="form-control" placeholder="<Last Name>" id="customerLastName" data-bind="value: lastName, enable: !$root.rentalAgreement().id()" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="customerNic" class="control-label col-sm-2">NIC</label>
                                 <div class="col-md-5">
-                                    <input type="text" class="form-control" placeholder="<NIC No.>" id="customerNic" data-bind="value: nicNo" />
+                                    <input type="text" class="form-control" placeholder="<NIC No.>" id="customerNic" data-bind="value: nicNo, enable: !$root.rentalAgreement().id()" />
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" class="form-control" placeholder="<NIC Expiry>" id="customerNicExpiry" data-bind="datepicker: nicExpiry" />
+                                    <input type="text" class="form-control" placeholder="<NIC Expiry>" id="customerNicExpiry" data-bind="datepicker: nicExpiry, enable: !$root.rentalAgreement().id()" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="customerPassport" class="control-label col-sm-2">Passport</label>
                                 <div class="col-md-5">
-                                    <input type="text" class="form-control" placeholder="<Passport No.>" id="customerPassport" data-bind="value: passportNo" />
+                                    <input type="text" class="form-control" placeholder="<Passport No.>" id="customerPassport" data-bind="value: passportNo, enable: !$root.rentalAgreement().id()" />
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" class="form-control" placeholder="<Passport Expiry>" id="customerPassportExpiry" data-bind="datepicker: passportExpiry" />
+                                    <input type="text" class="form-control" placeholder="<Passport Expiry>" id="customerPassportExpiry" data-bind="datepicker: passportExpiry, enable: !$root.rentalAgreement().id()" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="customerLicense" class="control-label col-sm-2">License</label>
 
                                 <div class="col-md-5">
-                                    <input type="text" class="form-control" placeholder="<License No.>" id="customerLicense" data-bind="value: licenseNo" />
+                                    <input type="text" class="form-control" placeholder="<License No.>" id="customerLicense" data-bind="value: licenseNo, enable: !$root.rentalAgreement().id()" />
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" class="form-control" placeholder="<License Expiry>" id="customerLicenseExpiry" data-bind="datepicker: licenseExpiry" />
+                                    <input type="text" class="form-control" placeholder="<License Expiry>" id="customerLicenseExpiry" data-bind="datepicker: licenseExpiry, enable: !$root.rentalAgreement().id()" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="customerDOB" class="control-label col-sm-2">DOB/Sponsor</label>
                                 <div class="col-md-5">
-                                    <input type="text" class="form-control" placeholder="<DOB>" id="customerDOB" data-bind="datepicker: dateOfBirth" />
+                                    <input type="text" class="form-control" placeholder="<DOB>" id="customerDOB" data-bind="datepicker: dateOfBirth, enable: !$root.rentalAgreement().id()" />
                                 </div>
                                 <div class="col-md-4">
                                     <input type="text" class="form-control" placeholder="<Sponsor/Kafeel>" id="customerSponsor" />
@@ -271,37 +320,37 @@
                             <div class="form-group" data-bind="with: businessPartnerCompany, visible: !isIndividual()" style="display: none">
                                 <label for="customerCompanyCode" class="control-label col-sm-2">Company</label>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" placeholder="<Company Code>" id="customerCompanyCode" data-bind="value: code" />
+                                    <input type="text" class="form-control" placeholder="<Company Code>" id="customerCompanyCode" data-bind="value: code, enable: !$root.rentalAgreement().id()" />
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" placeholder="<Company Name>" id="customerCompanyName" data-bind="value: name" />
+                                    <input type="text" class="form-control" placeholder="<Company Name>" id="customerCompanyName" data-bind="value: name, enable: !$root.rentalAgreement().id()" />
                                 </div>
                             </div>
                             <div class="form-group" data-bind="with: $root.rentalAgreement, visible: !isIndividual()" style="display: none">
                                 <label for="renterName" class="control-label col-sm-2">Renter</label>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" placeholder="<Name>" id="renterName" data-bind="value: rentersName" />
+                                    <input type="text" class="form-control" placeholder="<Name>" id="renterName" data-bind="value: rentersName, enable: !$root.rentalAgreement().id()" />
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" placeholder="<License No>" id="renterLicenseNo" data-bind="value: rentersLicenseNo" />
+                                    <input type="text" class="form-control" placeholder="<License No>" id="renterLicenseNo" data-bind="value: rentersLicenseNo, enable: !$root.rentalAgreement().id()" />
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" placeholder="<License Expiry>" id="renterLicenseExpiry" data-bind="datetimepicker: rentersLicenseExpiry" />
+                                    <input type="text" class="form-control" placeholder="<License Expiry>" id="renterLicenseExpiry" data-bind="datetimepicker: rentersLicenseExpiry, enable: !$root.rentalAgreement().id()" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="customerPhone" class="control-label col-sm-2">Phone/Mobile</label>
                                 <div class="col-md-5">
-                                    <input type="text" class="form-control" placeholder="<Phone>" id="customerPhone" data-bind="value: homePhone" />
+                                    <input type="text" class="form-control" placeholder="<Phone>" id="customerPhone" data-bind="value: homePhone, enable: !$root.rentalAgreement().id()" />
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" class="form-control" placeholder="<Mobile>" id="customerMobile" data-bind="value: mobile" />
+                                    <input type="text" class="form-control" placeholder="<Mobile>" id="customerMobile" data-bind="value: mobile, enable: !$root.rentalAgreement().id()" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="customerPhone" class="control-label col-sm-2">Email</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" placeholder="<Email>" id="customerEmail" data-bind="value: email" />
+                                    <input type="text" class="form-control" placeholder="<Email>" id="customerEmail" data-bind="value: email, enable: !$root.rentalAgreement().id()" />
                                 </div>
                             </div>
                         </form>
@@ -364,8 +413,12 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-sm-2"></label>
-                                        <div class="col-md-3">
+                                        <div class="col-md-5">
                                             <a id="insurancePopoverLink" class="insurancePopoverLink glyphicon glyphicon-briefcase" data-bind="click: $root.openRaHireGroupInsuranceDialog, attr: { title: 'Insurances' }">
+                                            </a>
+                                            <a class="glyphicon glyphicon-export" data-bind="click: $root.addVehicleCheckListsOutToRa, attr: { title: 'CheckList Out' }">
+                                            </a>
+                                            <a class="glyphicon glyphicon-import" data-bind="click: $root.addVehicleCheckListsInToRa, attr: { title: 'CheckList In' }">
                                             </a>
                                             <a data-bind="click: $parent.removeRaHireGroup, visible: canRemove"><span class="glyphicon glyphicon-remove"></span></a>
                                         </div>
@@ -399,47 +452,47 @@
                                 </div>
                                 <label for="rentalAgreementBookingNumber" class="control-label col-sm-2 notFirstColumn">Booking #</label>
                                 <div class="col-md-3" id="bookingNumberControl">
-                                    <input type="text" class="form-control" placeholder="<Booking No>" id="rentalAgreementBookingNumber" data-bind="enable: false" />
+                                    <input type="text" class="form-control" placeholder="<Booking No>" id="rentalAgreementBookingNumber" data-bind="enable: false, value: raBookingId" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="rentalAgreementDuration" class="control-label col-sm-2">Duration</label>
                                 <div class="col-md-2 input-small">
-                                    <input type="text" class="form-control" placeholder="<Days>" id="rentalAgreementDuration" data-bind="value: days" />
+                                    <input type="text" class="form-control" placeholder="<Days>" id="rentalAgreementDuration" data-bind="value: days, enable: !id()" />
                                 </div>
                                 <div class="col-md-2 input-small">
-                                    <input type="text" class="form-control" placeholder="<Hours>" id="rentalAgreementHours" data-bind="value: hours" />
+                                    <input type="text" class="form-control" placeholder="<Hours>" id="rentalAgreementHours" data-bind="value: hours, enable: !id()" />
                                 </div>
                                 <div class="col-md-2 input-small">
-                                    <input type="text" class="form-control" placeholder="<Mins>" id="rentalAgreementMins" data-bind="value: minutes" />
+                                    <input type="text" class="form-control" placeholder="<Mins>" id="rentalAgreementMins" data-bind="value: minutes, enable: !id()" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="rentalAgreementStartDate" class="control-label col-sm-2"></label>
                                 <div class="col-md-4 dateTimeControl">
-                                    <input type="text" class="form-control dateControl" placeholder="<Start Date>" id="rentalAgreementStartDate" data-bind="datetimepicker: start" />
+                                    <input type="text" class="form-control dateControl" placeholder="<Start Date>" id="rentalAgreementStartDate" data-bind="datetimepicker: start, enable: !id()" />
                                 </div>
                                 <div class="col-md-4 dateTimeControl">
-                                    <input type="text" class="form-control dateControl" placeholder="<End Date>" id="rentalAgreementEndDate" data-bind="datetimepicker: end" />
+                                    <input type="text" class="form-control dateControl" placeholder="<End Date>" id="rentalAgreementEndDate" data-bind="datetimepicker: end, enable: !id()" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="rentalAgreementOperation" class="control-label col-sm-2">Operation</label>
                                 <div class="col-md-4">
-                                    <select class="form-control" id="rentalAgreementOperation" data-bind="options: $root.operations, optionsCaption: '<Operation>', optionsText: 'codeName', optionsValue: 'id', value: operationId"></select>
+                                    <select class="form-control" id="rentalAgreementOperation" data-bind="options: $root.operations, optionsCaption: '<Operation>', optionsText: 'codeName', optionsValue: 'id', value: operationId, enable: !id()"></select>
                                 </div>
                                 <label for="rentalAgreementOperation" id="rentalPaymentTermLabel" class="control-label col-sm-2 notFirstColumn">Payment</label>
                                 <div class="col-md-4" id="rentalPaymentTermControl">
-                                    <select class="form-control" id="rentalAgreementPaymentTerm" data-bind="options: $root.paymentTerms, optionsCaption: '<Payment Term>', optionsText: 'codeName', optionsValue: 'id', value: paymentTermId"></select>
+                                    <select class="form-control" id="rentalAgreementPaymentTerm" data-bind="options: $root.paymentTerms, optionsCaption: '<Payment Term>', optionsText: 'codeName', optionsValue: 'id', value: paymentTermId, enable: !id()"></select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="rentalAgreementOutLocation" class="control-label col-sm-2">Location</label>
                                 <div class="col-md-5">
-                                    <select class="form-control" id="rentalAgreementOutLocation" data-bind="options: $root.availableLocations, optionsCaption: '<Out Location>', optionsText: 'code', optionsValue: 'id', value: openLocation"></select>
+                                    <select class="form-control" id="rentalAgreementOutLocation" data-bind="options: $root.availableLocations, optionsCaption: '<Out Location>', optionsText: 'code', optionsValue: 'id', value: openLocation, enable: !id()"></select>
                                 </div>
                                 <div class="col-md-4" id="returnLocationControl">
-                                    <select class="form-control" id="rentalAgreementReturnLocation" data-bind="options: $root.availableLocations, optionsCaption: '<Return Location>', optionsText: 'code', optionsValue: 'id', value: closeLocation"></select>
+                                    <select class="form-control" id="rentalAgreementReturnLocation" data-bind="options: $root.availableLocations, optionsCaption: '<Return Location>', optionsText: 'code', optionsValue: 'id', value: closeLocation, enable: !id()"></select>
                                 </div>
                             </div>
                             <div class="form-group" data-bind="with: $parent">
@@ -794,6 +847,10 @@
     </script>
 
     @Html.Partial("_HireGroupInsurancesDialog")
+    
+    @Html.Partial("_RaVehicleCheckListOutDialog")
+    
+    @Html.Partial("_RaVehicleCheckListInDialog")
 
 </div>
 

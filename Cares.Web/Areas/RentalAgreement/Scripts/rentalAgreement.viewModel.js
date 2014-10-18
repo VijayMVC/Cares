@@ -85,6 +85,8 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     }),
                     // payment terms
                     paymentTerms = ko.observableArray([]),
+                    // payment modes
+                    paymentModes = ko.observableArray([]),
                     // Vehicles
                     vehicles = ko.observableArray([]),
                     // Pagination
@@ -107,7 +109,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     vehicleStatuses = ko.observableArray([]),
                     // Can search hire group
                     canLookForHireGroups = ko.computed(function () {
-                        return rentalAgreement().start() && rentalAgreement().end() && rentalAgreement().openLocation();
+                        return !rentalAgreement().id() && rentalAgreement().start() && rentalAgreement().end() && rentalAgreement().openLocation();
                     }),
                     // selected Hire Group 
                     selectedHireGroup = ko.observable(),
@@ -297,6 +299,13 @@ define("rentalAgreement/rentalAgreement.viewModel",
                             }
                         });
                     },
+                    // Add Payment To Rental Agreement
+                    addPaymentToRentalAgreement = function () {
+                        var payment = model.RentalAgreementPayment.Create({
+                            RaMainId: rentalAgreement().id() || 0
+                        });
+                        rentalAgreement().raPayments.push(payment);
+                    },
                     // #endregion Utility Functions
                     // #region Observables
                     // Initialize the view model
@@ -330,7 +339,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         dataservice.getBase({
                             success: function (data) {
                                 var operationItems = [], locationItems = [], paymentTermItems = [], allocationStatusItems = [],
-                                    vehicleStatusItems = [];
+                                    vehicleStatusItems = [], paymentModeItems = [];
                                 // Operations
                                 _.each(data.Operations, function (operation) {
                                     operationItems.push(model.Operation.Create(operation));
@@ -365,6 +374,13 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                 });
                                 ko.utils.arrayPushAll(vehicleStatuses(), vehicleStatusItems);
                                 vehicleStatuses.valueHasMutated();
+
+                                // Payment Modes
+                                _.each(data.PaymentModes, function (paymentMode) {
+                                    paymentModeItems.push(model.PaymentMode.Create(paymentMode));
+                                });
+                                ko.utils.arrayPushAll(paymentModes(), paymentModeItems);
+                                paymentModes.valueHasMutated();
 
                                 // Run Sammy
                                 app.run();
@@ -539,18 +555,41 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     // Close Rental Agreement
                     closeRentalAgreement = function () {
                         // Validate Rental Agreement Before Close
-                        if (!validateBeforeClose) {
+                        if (!validateBeforeClose()) {
                             return;
                         }
 
                         saveRentalAgreement(raStatusEnum.close);
                     },
                     // Validate Before Close
-                    validateBeforeClose = function() {
+                    validateBeforeClose = function () {
+                        // Validate Bill
+                        if (!validateBill() || !validateVehicle()) {
+                            return false;
+                        }
+
+                        return true;
+                    },
+                    // Validate Bill
+                    validateBill = function() {
                         if (rentalAgreement().billing().balance() > 0) {
                             toastr.info("Can not close agreement because payment is pending.");
                             return false;
                         }
+                        return true;
+                    },
+                    // Validate Vehicle
+                    validateVehicle = function() {
+                        var vehiclesNotReturned = rentalAgreement().rentalAgreementHireGroups.filter(function(raHireGroup) {
+                            return !raHireGroup.vehicleMovementIn().odometer || !raHireGroup.vehicleMovementIn().operationsWorkPlaceId() ||
+                            !raHireGroup.vehicleMovementIn().vehicleStatusId();
+                        });
+
+                        if (vehiclesNotReturned.length > 0) {
+                            toastr.info("One of the Vehicle(s) not returned");
+                            return false;
+                        }
+
                         return true;
                     },
                     // Get Desired Hire Group
@@ -600,6 +639,54 @@ define("rentalAgreement/rentalAgreement.viewModel",
                             },
                             error: function (response) {
                                 toastr.error("Failed to process request. Error: " + response);
+                            }
+                        });
+                    },
+                    // Add Vehicle CheckLists Out
+                    addVehicleCheckListsOutToRa = function() {
+                        getVehicleCheckLists(model.vehicleMovementEnum.out);
+                        view.showRaVehicleCheckListDialog(model.vehicleMovementEnum.out);
+                    },
+                    // Add Vehicle CheckLists In
+                    addVehicleCheckListsInToRa = function () {
+                        getVehicleCheckLists(model.vehicleMovementEnum.In);
+                        view.showRaVehicleCheckListDialog(model.vehicleMovementEnum.In);
+                    },
+                    // Get CheckLists For Vehicle
+                    getVehicleCheckLists = function (status) {
+                        if (!selectedRaHireGroup() || !selectedRaHireGroup().vehicle()) {
+                            return;
+                        }
+
+                        dataservice.getCheckListsForVehicle({ id: selectedRaHireGroup().vehicle().id }, {
+                            success: function (data) {
+                                // Set Vehicle CheckLists into RA
+                                addVehicleCheckListsToRa(data, status);
+                            },
+                            error: function (response) {
+                                toastr.error("Failed to load checklists for vehicle. Error: " + response);
+                            }
+                        });
+                    },
+                    // Add Vehicle CheckLists To RA
+                    addVehicleCheckListsToRa = function(data, status) {
+                        _.each(data, function (vehicleCheckList) {
+                            vehicleCheckList = model.VehicleCheckList.Create(vehicleCheckList);
+
+                            var raVehicleChkList = selectedRaHireGroup().raVehicleCheckLists.find(function (raVehicleCheckList) {
+                                return raVehicleCheckList.vehicleCheckListId() === vehicleCheckList.id && raVehicleCheckList.status() === status;
+                            });
+
+                            if (!raVehicleChkList) {
+                                selectedRaHireGroup().raVehicleCheckLists.push(model.RentalAgreementVehicleCheckList.Create({
+                                    VehicleCheckListId: vehicleCheckList.id,
+                                    RaHireGroupId: selectedRaHireGroup().id() || 0,
+                                    VehicleCheckListKey: vehicleCheckList.key,
+                                    VehicleCheckListCodeName: vehicleCheckList.codeName,
+                                    IsInterior: vehicleCheckList.isInterior,
+                                    RaVehicleCheckListDescription: vehicleCheckList.description,
+                                    Status: status
+                                }));
                             }
                         });
                     },
@@ -678,6 +765,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     availableLocations: availableLocations,
                     selectedRaHireGroup: selectedRaHireGroup,
                     selectRaHireGroup: selectRaHireGroup,
+                    paymentModes: paymentModes,
                     // Observables
                     // Utility Methods
                     initialize: initialize,
@@ -707,7 +795,10 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     updateRentalAgreement: updateRentalAgreement,
                     canOpen: canOpen,
                     canUpdate: canUpdate,
-                    canClose: canClose
+                    canClose: canClose,
+                    addPaymentToRentalAgreement: addPaymentToRentalAgreement,
+                    addVehicleCheckListsOutToRa: addVehicleCheckListsOutToRa,
+                    addVehicleCheckListsInToRa: addVehicleCheckListsInToRa
                     // Utility Methods
                 };
             })()

@@ -518,6 +518,11 @@ namespace Cares.Repository.BaseRepository
         /// </summary>
         public DbSet<RaMain> RaMains { get; set; }
 
+        /// <summary>
+        /// PaymentMode Db set
+        /// </summary>
+        public DbSet<PaymentMode> PaymentModes { get; set; }
+
         #endregion
     }
 }

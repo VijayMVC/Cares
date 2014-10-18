@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Cares.Web.Models
+﻿namespace Cares.Web.Models
 {
     /// <summary>
     /// RaVehicle Check List Model
@@ -43,14 +38,9 @@ namespace Cares.Web.Models
         public short? VehicleCheckListKey { get; set; }
 
         /// <summary>
-        /// Vehicle Check List Code
+        /// Vehicle Check List Code Name
         /// </summary>
-        public string VehicleCheckListCode { get; set; }
-
-        /// <summary>
-        /// Vehicle Check List Name
-        /// </summary>
-        public string VehicleCheckListName { get; set; }
+        public string VehicleCheckListCodeName { get; set; }
         
         #endregion
 

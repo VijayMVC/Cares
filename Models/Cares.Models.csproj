@@ -114,6 +114,7 @@
     <Compile Include="Common\VehicleCategoryByColumn.cs" />
     <Compile Include="Common\VehicleMakeByColumn.cs" />
     <Compile Include="Common\VehicleModelByColumn.cs" />
+    <Compile Include="Common\VehicleCheckListEnum.cs" />
     <Compile Include="Common\VehicleStatusByColumn.cs" />
     <Compile Include="Common\VehicleStatusEnum.cs" />
     <Compile Include="Common\BillingSummary.cs" />

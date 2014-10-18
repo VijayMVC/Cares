@@ -123,8 +123,7 @@ namespace Cares.Repository
             unityContainer.RegisterType<IChaufferReservationRepository, ChaufferReservationRepository>();
             unityContainer.RegisterType<INrtDriverRepository, NrtDriverRepository>();
             unityContainer.RegisterType<INrtChargeRepository, NrtChargeRepository>();
-
-
+            unityContainer.RegisterType<IPaymentModeRepository, PaymentModeRepository>();
         }
     }
 }
