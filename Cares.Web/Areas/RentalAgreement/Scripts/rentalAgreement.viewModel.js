@@ -141,6 +141,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                             var raHireGroup = model.RentalAgreementHireGroup.Create({
                                 VehicleId: vehicle.id,
                                 HireGroupDetailId: selectedHireGroup().id,
+                                HireGroupDetail: { HireGroup: selectedHireGroup().code },
                                 AllocationStatusKey: allocationStatus.desired,
                                 AllocationStatusId: vehicleAllocationStatusFilter(),
                                 RaMainId: rentalAgreement().id(),

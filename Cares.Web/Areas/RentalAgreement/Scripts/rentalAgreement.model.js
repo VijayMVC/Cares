@@ -461,7 +461,7 @@
     // ReSharper disable InconsistentNaming
     RentalAgreementHireGroup = function (specifiedId, specifiedHireGroupDetailId, specifiedVehicleId, specifiedRentalAgreementId, specifiedVehicle,
         specifiedVehicleMovements, specifiedRaHireGroupInsurances, specifiedAllocationStatusKey, specifiedAllocationStatusId, specifiedRaVehicleCheckLists,
-        isExisting) {
+        specifiedHirGroup, isExisting) {
         // ReSharper restore InconsistentNaming
         var
             // unique key
@@ -557,6 +557,7 @@
         return {
             id: id,
             hireGroupDetailId: hireGroupDetailId,
+            hireGroup: specifiedHirGroup,
             vehicleId: vehicleId,
             rentalAgreementId: rentalAgreementId,
             vehicle: vehicle,
@@ -1636,7 +1637,8 @@
     RentalAgreementHireGroup.Create = function (source, isExisting) {
         return new RentalAgreementHireGroup(source.RaHireGroupId, source.HireGroupDetailId, source.VehicleId,
             source.RaMainId, source.Vehicle && isExisting ? Vehicle.Create(source.Vehicle) : source.Vehicle, source.VehicleMovements, source.RaHireGroupInsurances,
-            source.AllocationStatusKey, source.AllocationStatusId, source.RaVehicleCheckLists, isExisting);
+            source.AllocationStatusKey, source.AllocationStatusId, source.RaVehicleCheckLists, source.HireGroupDetail ? source.HireGroupDetail.HireGroup : undefined,
+            isExisting);
     };
 
     // Phone Type Enums
