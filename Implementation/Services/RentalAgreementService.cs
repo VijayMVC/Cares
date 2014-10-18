@@ -540,17 +540,10 @@ namespace Cares.Implementation.Services
         /// </summary>
         private void UpdateRaHireGroupsExisting(RaMain raMain, RaMain raMainDbVersion)
         {
-            List<RaHireGroup> raHireGroupsToUpdate = new List<RaHireGroup>();
-            raHireGroupsToUpdate.AddRange(from raHireGroup in raMain.RaHireGroups
-                                          let @group = raHireGroup
-                                          where
-                                              raMainDbVersion.RaHireGroups.All(hg => hg.RaHireGroupId == @group.RaHireGroupId) && @group.RaHireGroupId > 0
-                                          select raHireGroup);
-
-            foreach (RaHireGroup raHireGroup in raHireGroupsToUpdate)
+            foreach (RaHireGroup raHireGroup in raMain.RaHireGroups)
             {
                 RaHireGroup raHireGroupDbVersion =
-                    raMainDbVersion.RaHireGroups.FirstOrDefault(hg => hg.RaHireGroupId == raHireGroup.RaHireGroupId);
+                    raMainDbVersion.RaHireGroups.FirstOrDefault(hg => hg.RaHireGroupId == raHireGroup.RaHireGroupId && hg.RaHireGroupId > 0);
 
                 VehicleMovement vehicleMovementIn = raHireGroup.VehicleMovements.FirstOrDefault(vm => vm.Status == Convert.ToBoolean(VehicleMovementEnum.In));
 
@@ -732,6 +725,11 @@ namespace Cares.Implementation.Services
         {
             foreach (RaHireGroupInsurance raHireGroupInsurance in raHireGroup.RaHireGroupInsurances)
             {
+                if (raHireGroupInsurance.RaHireGroupInsuranceId == 0)
+                {
+                    continue;
+                }
+
                 RaHireGroupInsurance raHireGroupInsuranceDbVersion =
                     raHireGroupDbVersion.RaHireGroupInsurances.FirstOrDefault(
                         ins => ins.RaHireGroupInsuranceId == raHireGroupInsurance.RaHireGroupInsuranceId);
@@ -1093,14 +1091,13 @@ namespace Cares.Implementation.Services
         /// </summary>
         private void UpdateRaServiceItemsExisting(RaMain raMain, RaMain raMainDbVersion)
         {
-            List<RaServiceItem> raServiceItemsToUpdate =
-                raMain.RaServiceItems.Where(
-                    addCh =>
-                        raMainDbVersion.RaServiceItems.All(
-                            addC => addCh.RaServiceItemId == addC.RaServiceItemId)).ToList();
-
-            foreach (RaServiceItem raServiceItem in raServiceItemsToUpdate)
+            foreach (RaServiceItem raServiceItem in raMain.RaServiceItems)
             {
+                if (raServiceItem.RaServiceItemId == 0)
+                {
+                    continue;
+                }
+
                 RaServiceItem raServiceItemDbVersion = raMainDbVersion.RaServiceItems.FirstOrDefault(addChg =>
                     addChg.RaServiceItemId == raServiceItem.RaServiceItemId);
 
@@ -1160,14 +1157,13 @@ namespace Cares.Implementation.Services
         /// </summary>
         private void UpdateRaAdditionalChargesExisting(RaMain raMain, RaMain raMainDbVersion)
         {
-            List<RaAdditionalCharge> raAdditionalChargesToUpdate =
-                raMain.RaAdditionalCharges.Where(
-                    addCh =>
-                        raMainDbVersion.RaAdditionalCharges.All(
-                            addC => addCh.RaAdditionalChargeId == addC.RaAdditionalChargeId)).ToList();
-
-            foreach (RaAdditionalCharge raAdditionalCharge in raAdditionalChargesToUpdate)
+            foreach (RaAdditionalCharge raAdditionalCharge in raMain.RaAdditionalCharges)
             {
+                if (raAdditionalCharge.RaAdditionalChargeId == 0)
+                {
+                    continue;
+                }
+
                 RaAdditionalCharge raAdditionalChargeDbVersion = raMainDbVersion.RaAdditionalCharges.FirstOrDefault(addChg =>
                     addChg.RaAdditionalChargeId == raAdditionalCharge.RaAdditionalChargeId);
 
@@ -1261,14 +1257,13 @@ namespace Cares.Implementation.Services
         /// </summary>
         private void UpdateRaDriversExisting(RaMain raMain, RaMain raMainDbVersion)
         {
-            List<RaDriver> raDriversToUpdate =
-                raMain.RaDrivers.Where(
-                    addCh =>
-                        raMainDbVersion.RaDrivers.All(
-                            addC => addCh.RaDriverId == addC.RaDriverId)).ToList();
-
-            foreach (RaDriver raDriver in raDriversToUpdate)
+            foreach (RaDriver raDriver in raMain.RaDrivers)
             {
+                if (raDriver.RaDriverId == 0)
+                {
+                    continue;
+                }
+
                 RaDriver raDriverDbVersion = raMainDbVersion.RaDrivers.FirstOrDefault(addChg =>
                     addChg.RaDriverId == raDriver.RaDriverId);
 
@@ -1354,14 +1349,13 @@ namespace Cares.Implementation.Services
         /// </summary>
         private void UpdateRaPaymentsExisting(RaMain raMain, RaMain raMainDbVersion)
         {
-            List<RaPayment> raPaymentsToUpdate =
-                raMain.RaPayments.Where(
-                    addCh =>
-                        raMainDbVersion.RaPayments.All(
-                            addC => addCh.RaPaymentId == addC.RaPaymentId)).ToList();
-
-            foreach (RaPayment raPayment in raPaymentsToUpdate)
+            foreach (RaPayment raPayment in raMain.RaPayments)
             {
+                if (raPayment.RaPaymentId == 0)
+                {
+                    continue;
+                }
+
                 RaPayment raPaymentDbVersion = raMainDbVersion.RaPayments.FirstOrDefault(addChg =>
                     addChg.RaPaymentId == raPayment.RaPaymentId);
 
@@ -1457,8 +1451,8 @@ namespace Cares.Implementation.Services
             List<RaDriver> chauffersToUpdate =
                 raMain.RaDrivers.Where(
                     raDriver =>
-                        raMainDbVersion.RaDrivers.All(driver => driver.RaDriverId == raDriver.RaDriverId) &&
-                        raDriver.IsChauffer && raDriver.ChaufferId.HasValue && raDriver.ChaufferId.Value > 0).ToList();
+                        raMainDbVersion.RaDrivers.Select(driver => driver.RaDriverId).Contains(raDriver.RaDriverId) &&
+                        raDriver.IsChauffer && raDriver.ChaufferId.HasValue && raDriver.ChaufferId.Value > 0 && raDriver.RaDriverId > 0).ToList();
 
             if (raMainDbVersion.ChaufferReservations.Any())
             {

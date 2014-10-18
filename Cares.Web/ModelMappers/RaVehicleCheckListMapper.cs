@@ -21,6 +21,7 @@ namespace Cares.Web.ModelMappers
                 RaHireGroupId = source.RaHireGroupId,
                 VehicleCheckListId = source.VehicleCheckListId,
                 IsInterior = source.VehicleCheckList != null && source.VehicleCheckList.IsInterior,
+                RaVehicleCheckListDescription = source.VehicleCheckList != null ? source.VehicleCheckList.VehicleCheckListDescription : string.Empty,
                 Status = source.Status,
                 VehicleCheckListKey = source.VehicleCheckList != null ? source.VehicleCheckList.VehicleCheckListKey : 0,
                 VehicleCheckListCodeName = source.VehicleCheckList != null ? source.VehicleCheckList.VehicleCheckListCode + "-" + 

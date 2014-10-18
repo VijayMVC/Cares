@@ -10,7 +10,7 @@
         <button class="btn btn-primary" data-bind="click: openRentalAgreement, visible: canOpen">Open Agreement</button>
         <button class="btn btn-primary" data-bind="click: updateRentalAgreement, visible: canUpdate">Update Agreement</button>
         <button class="btn" data-bind="click: closeRentalAgreement, visible: canClose">Close Agreement</button>
-    </div><br/>
+    </div><br />
     <div id="raPanels">
         <div class="panel-group" id="accordion">
             <div class="panel panel-default">
@@ -30,21 +30,16 @@
                                 <form class="form-horizontal">
                                     <div class="form-group">
                                         <label class="control-label col-md-8">
-                                            <span data-bind="text: serviceTypeCodeName"></span>
-                                            <span>|</span>
                                             <span data-bind="text: serviceItemCodeName"></span>
                                         </label>
-                                        <label for="qty" class="control-label col-sm-2">Qty</label>
                                         <div class="col-sm-2"><input type="text" id="qty" class="form-control" data-bind="value: quantity" /></div>
+                                        <div class="col-sm-2">
+                                            <a data-bind="click: $parent.removeRaServiceItem"><span class="glyphicon glyphicon-remove"></span></a>
+                                        </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="startDt" class="control-label col-sm-3">Start Dt</label>
                                         <div class="col-md-5"><input id="startDt" type="text" class="form-control" data-bind="datetimepicker: start" /></div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="endDt" class="control-label col-sm-3">End Dt</label>
                                         <div class="col-md-5"><input id="endDt" type="text" class="form-control" data-bind="datetimepicker: end" /></div>
-                                        <a data-bind="click: $parent.removeRaServiceItem"><span class="glyphicon glyphicon-remove"></span></a>
                                     </div>
                                 </form>
                             </div>
@@ -63,38 +58,34 @@
                 </div>
                 <div id="collapseTwo" class="panel-collapse collapse">
                     <div class="panel-body" data-bind="with: rentalAgreement">
-                        <button class="btn btn-primary" data-bind="click: $root.addDriverToRentalAgreement">Add</button>
-                        <table id="raDriversTable" class="table table-condensed searchFilterResultSection">
-                            <thead>
-                                <tr>
-                                    <th>Driver Name</th>
-                                    <th>License No</th>
-                                    <th>License Expiry Date</th>
-                                    <th>Start Date</th>
-                                    <th>End Date</th>
-                                </tr>
-                            </thead>
-                            <tbody data-bind="foreach: raDrivers">
-                                <tr>
-                                    <td>
-                                        <input type="text" class="form-control" data-bind="value: driverName" />
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" data-bind="value: licenseNo" />
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" data-bind="datetimepicker: licenseExpDt" />
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" data-bind="datetimepicker: start" />
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" data-bind="datetimepicker: end" />
-                                    </td>
-                                    <td><a data-bind="click: $parent.removeRaDriver"><span class="glyphicon glyphicon-remove"></span></a></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <button class="btn btn-primary" data-bind="click: $root.addDriverToRentalAgreement">Add</button><br/>
+                        <!-- ko foreach: raDrivers -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-10">
+                                            <span data-bind="text: driverName"></span>
+                                        </label>
+                                        <div class="col-sm-2">
+                                            <a data-bind="click: $parent.removeRaDriver"><span class="glyphicon glyphicon-remove"></span></a>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">
+                                            Lic
+                                        </label>
+                                        <div class="col-md-3"><input type="text" class="form-control" data-bind="value: licenseNo" /></div>
+                                        <div class="col-md-5"><input type="text" class="form-control" data-bind="datetimepicker: licenseExpDt" /></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-5"><input id="startDt" type="text" class="form-control" data-bind="datetimepicker: start" /></div>
+                                        <div class="col-md-5"><input id="endDt" type="text" class="form-control" data-bind="datetimepicker: end" /></div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- /ko -->
                     </div>
                 </div>
             </div>
@@ -126,8 +117,12 @@
                                     <td data-bind="text: licenseNo"></td>
                                     <td data-bind="dateString: licenseExpDt, datePattern: 'DD-MM-YY HH:mm'"></td>
                                     <td data-bind="text: licenseNo"></td>
-                                    <td data-bind="dateString: start, datePattern: 'DD-MM-YY HH:mm'"></td>
-                                    <td data-bind="dateString: end, datePattern: 'DD-MM-YY HH:mm'"></td>
+                                    <td>
+                                        <input type="text" class="form-control" data-bind="datetimepicker: start" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" data-bind="datetimepicker: end" />
+                                    </td>
                                     <td><a data-bind="click: $parent.removeRaDriver"><span class="glyphicon glyphicon-remove"></span></a></td>
                                 </tr>
                             </tbody>
@@ -174,7 +169,9 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="plateNumber" class="control-label col-sm-3">Plate No.</label>
-                                        <div class="col-md-3"><input id="plateNumber" type="text" class="form-control" data-bind="value: plateNumber" /></div>
+                                        <div class="col-md-3">
+                                            <select id="plateNumber" class="form-control" data-bind="options: $root.plateNumbers, value: plateNumber"></select>
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="rate" class="control-label col-sm-3">Rate</label>
@@ -847,9 +844,9 @@
     </script>
 
     @Html.Partial("_HireGroupInsurancesDialog")
-    
+
     @Html.Partial("_RaVehicleCheckListOutDialog")
-    
+
     @Html.Partial("_RaVehicleCheckListInDialog")
 
 </div>

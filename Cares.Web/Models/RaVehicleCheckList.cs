@@ -41,6 +41,11 @@
         /// Vehicle Check List Code Name
         /// </summary>
         public string VehicleCheckListCodeName { get; set; }
+
+        /// <summary>
+        /// Vehicle Check List Description
+        /// </summary>
+        public string RaVehicleCheckListDescription { get; set; }
         
         #endregion
 

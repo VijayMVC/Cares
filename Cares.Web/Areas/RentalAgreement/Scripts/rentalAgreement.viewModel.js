@@ -240,13 +240,22 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         });
                         rentalAgreement().rentalAgreementDrivers.push(driver);
                     },
+                    // Plate Numbers To Select From For Additional Charge
+                    plateNumbers = ko.computed(function () {
+                        if (rentalAgreement().rentalAgreementHireGroups().length === 0) {
+                            return [];
+                        }
+
+                        return rentalAgreement().rentalAgreementHireGroups.map(function(raHireGroup) {
+                            return raHireGroup.vehicle().plateNumber();
+                        });
+                    }),
                     // Add Additional Charges to Rental Agreement
                     addAdditionalChargesToRentalAgreement = function (data, popoverId) {
                         additionalCharges.each(function (additionalCharge) {
                             if (additionalCharge.isSelected()) {
                                 var addCharge = additionalCharge.convertToServerData();
                                 addCharge.HireGroupDetailId = selectedHireGroup() ? selectedHireGroup().id : undefined;
-                                addCharge.PlateNumber = selectedVehicle() ? selectedVehicle().plateNumber() : undefined;
                                 addCharge.RaMainId = rentalAgreement().id() || 0;
                                 rentalAgreement().rentalAgreementAdditionalCharges.push(model.RentalAgreementAdditionalCharge.Create(addCharge));
                             }
@@ -643,14 +652,18 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         });
                     },
                     // Add Vehicle CheckLists Out
-                    addVehicleCheckListsOutToRa = function() {
-                        getVehicleCheckLists(model.vehicleMovementEnum.out);
-                        view.showRaVehicleCheckListDialog(model.vehicleMovementEnum.out);
+                    addVehicleCheckListsOutToRa = function (raHireGroup, e) {
+                        selectRaHireGroup(raHireGroup);
+                        getVehicleCheckLists(model.vehicleMovementEnum.outMovement);
+                        view.showRaVehicleCheckListDialog(model.vehicleMovementEnum.outMovement);
+                        e.stopImmediatePropagation();
                     },
                     // Add Vehicle CheckLists In
-                    addVehicleCheckListsInToRa = function () {
-                        getVehicleCheckLists(model.vehicleMovementEnum.In);
-                        view.showRaVehicleCheckListDialog(model.vehicleMovementEnum.In);
+                    addVehicleCheckListsInToRa = function (raHireGroup, e) {
+                        selectRaHireGroup(raHireGroup);
+                        getVehicleCheckLists(model.vehicleMovementEnum.inMovement);
+                        view.showRaVehicleCheckListDialog(model.vehicleMovementEnum.inMovement);
+                        e.stopImmediatePropagation();
                     },
                     // Get CheckLists For Vehicle
                     getVehicleCheckLists = function (status) {
@@ -658,7 +671,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                             return;
                         }
 
-                        dataservice.getCheckListsForVehicle({ id: selectedRaHireGroup().vehicle().id }, {
+                        dataservice.getCheckListsForVehicle({ VehicleId: selectedRaHireGroup().vehicle().id }, {
                             success: function (data) {
                                 // Set Vehicle CheckLists into RA
                                 addVehicleCheckListsToRa(data, status);
@@ -766,6 +779,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     selectedRaHireGroup: selectedRaHireGroup,
                     selectRaHireGroup: selectRaHireGroup,
                     paymentModes: paymentModes,
+                    plateNumbers: plateNumbers,
                     // Observables
                     // Utility Methods
                     initialize: initialize,

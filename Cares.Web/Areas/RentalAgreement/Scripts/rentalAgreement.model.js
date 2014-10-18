@@ -486,7 +486,7 @@
             }) : []),
             // Ra Vehicle CheckLists
             raVehicleCheckLists = ko.observableArray(specifiedRaVehicleCheckLists ? _.map(specifiedRaVehicleCheckLists, function (raVehicleCheckList) {
-                return RentalAgreementVehicleCheckList.Create(raVehicleCheckList);
+                return RentalAgreementVehicleCheckList.Create(raVehicleCheckList, isExisting);
             }) : []),
             // Vehicle CheckLists Out
             raVehicleCheckListsOut = ko.computed(function () {
@@ -1596,9 +1596,8 @@
             status: status,
             isInterior: isInterior,
             vehicleCheckListKey: vehicleCheckListKey,
-            insuranceRate: insuranceRate,
-            insuranceCharge: insuranceCharge,
             isSelected: isSelected,
+            comments: comments,
             convertToServerData: convertToServerData
         };
     };
