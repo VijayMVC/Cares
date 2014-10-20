@@ -32,7 +32,7 @@ namespace Cares.Web.ModelMappers
             return new Operation
             {
                 OperationId = operation.OperationId,
-                OperationCode = operation.OperationCode,
+                OperationCode = operation.OperationCode.Trim(),
                 OperationName = operation.OperationName,
                 OperationDescription = operation.OperationDescription,
                 DepartmentId = operation.DepartmentId

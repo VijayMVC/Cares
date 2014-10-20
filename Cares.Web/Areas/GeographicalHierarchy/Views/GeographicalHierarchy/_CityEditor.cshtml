@@ -22,13 +22,13 @@
             <div class="col-md-3">
                 <select class="form-control" data-bind="options: $root.baseCountriesList, optionsText: 'CountryCodeName', optionsValue: 'CountryId', optionsCaption: '&lt;' + '@Cares.Web.Resources.GeographicalHierarchy.city.Country'+ '&gt;', value:countryId, event{change:$root.onCountryChanged } "></select>
             </div>
-            <label class="control-label h5 col-sm-1">@Cares.Web.Resources.GeographicalHierarchy.city.Region*</label>
+            <label class="control-label h5 col-sm-1">@Cares.Web.Resources.GeographicalHierarchy.city.Region</label>
             <div class="col-md-3">
                 <select class="form-control" data-bind="options: $root.filteredRegionsList, optionsText: 'RegionCodeName', optionsValue: 'RegionId', optionsCaption: '&lt;' + '@Cares.Web.Resources.GeographicalHierarchy.city.Region'+ '&gt;', value:regionId , event{change:$root.onRegionChanged }"></select>
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.GeographicalHierarchy.city.SubRegion*</label>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.GeographicalHierarchy.city.SubRegion</label>
             <div class="col-md-3">
                 <select class="form-control" data-bind="options: $root.filteredSubRegionsList, optionsText: 'SubRegionCodeName', optionsValue: 'SubRegionId', optionsCaption: '&lt;' + '@Cares.Web.Resources.GeographicalHierarchy.city.SubRegion'+ '&gt;', value:subRegionId "></select>
             </div>

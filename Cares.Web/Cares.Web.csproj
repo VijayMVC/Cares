@@ -764,6 +764,18 @@
     <Compile Include="Models\WorkplaceTypeDropDown.cs" />
     <Compile Include="Models\WorkPlaceTypeSearchRequestResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\DailyAction.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DailyAction.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\DailyActionReport.aspx.cs">
+      <DependentUpon>DailyActionReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\DailyActionReport.aspx.designer.cs">
+      <DependentUpon>DailyActionReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\FleetDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2062,6 +2074,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Reports\DailyActionReport.aspx" />
     <Content Include="Reports\VehiclesReport.aspx" />
     <Content Include="Resources\Images\favicon.ico" />
     <Content Include="Resources\Images\logo.jpg" />
@@ -2551,6 +2564,17 @@
     <Content Include="Reports\FleetDS.xsc">
       <DependentUpon>FleetDS.xsd</DependentUpon>
     </Content>
+    <Content Include="Reports\DailyAction.xsc">
+      <DependentUpon>DailyAction.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\DailyAction.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DailyAction.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reports\DailyAction.xss">
+      <DependentUpon>DailyAction.xsd</DependentUpon>
+    </Content>
     <None Include="Reports\FleetDS.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -2779,6 +2803,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\RDLC\DailyAction.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\Vehicle.rdlc" />
     <EmbeddedResource Include="Resources\BusinessPartner\BusinessLegalStatus.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -81,7 +81,7 @@ namespace Cares.Repository.Repositories
                     Color=vehicle.Color,
                     CurrentOdometer=vehicle.CurrentOdometer,
                     VehicleStatusName= vehicle.VehicleStatus.VehicleStatusName,
-                    VehicleAge= DateTime.Now.Year - vehicle.ModelYear,
+                    VehicleAge= (DateTime.Now.Year - vehicle.ModelYear)*12,
                     Location= vehicle.OperationsWorkPlace.LocationCode
                 };
             return fleetHireGroupDetailQuery.OrderBy(fhgd => fhgd.FleetPoolName).ToList();
