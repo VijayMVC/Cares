@@ -178,6 +178,15 @@ namespace Cares.Implementation.Resources.RentalAgreement {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to RaStatus with Key {0} not found..
+        /// </summary>
+        public static string RentalAgreementService_RaStatusNotFound {
+            get {
+                return ResourceManager.GetString("RentalAgreementService_RaStatusNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Service Rate not defined for selected Service Item..
         /// </summary>
         public static string ServiceRateNotDefinedForServiceItem {

@@ -48,6 +48,7 @@
             "serviceItem": ist.siteUrl + "/Areas/Pricing/Scripts",
             "nRTType": ist.siteUrl + "/Areas/NonRevenueTicket/Scripts",
             "nRT": ist.siteUrl + "/Areas/NonRevenueTicket/Scripts",
+            "nRTQueue": ist.siteUrl + "/Areas/NonRevenueTicket/Scripts",
             "vehicleCheckList": ist.siteUrl + "/Areas/Fleet/Scripts",
             "documentGroup": ist.siteUrl + "/Areas/BusinessPartner/Scripts",
             "bpMainType": ist.siteUrl + "/Areas/BusinessPartner/Scripts",

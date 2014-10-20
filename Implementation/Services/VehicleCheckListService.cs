@@ -139,7 +139,15 @@ namespace Cares.Implementation.Services
                 return vehicleCheckListRepository.Find(dbVersion.VehicleCheckListId);
         }
 
-       
+        /// <summary>
+        /// Get All For Vehicle 
+        /// </summary>
+        public IEnumerable<VehicleCheckList> GetForVehicle(long vehicleId)
+        {
+            return vehicleCheckListItemRepository.GetByVehicleId(vehicleId);
+        }
+
+
         /// <summary>
         /// Load All Vehicle CheckList
         /// </summary>

@@ -6,6 +6,9 @@ using Cares.Web.Models;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
+    /// <summary>
+    /// RA Queue Base API Controller
+    /// </summary>
     public class RaQueueBaseController : ApiController
     {
 

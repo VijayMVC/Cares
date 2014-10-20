@@ -23,11 +23,11 @@ define("raQueue/raQueue.dataservice", function () {
                         dataType: 'json',
                         type: 'GET'
                     });
-                    
+
                     isInitialized = true;
                 }
             },
-            // Get Insurance Rate base
+            // Get RA Queue base
             getRaQueueBaseData = function (callbacks) {
                 initialize();
                 return amplify.request({

@@ -6,7 +6,7 @@
     public enum RaQueueByColumn
     {
         /// <summary>
-        /// NRT Nymber
+        /// RA Main Number
         /// </summary>
         RaMainId = 1,
 

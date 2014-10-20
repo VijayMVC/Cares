@@ -35,6 +35,11 @@ namespace Cares.Web.Models
         /// </summary>
         public IEnumerable<AllocationStatus> AllocationStatuses { get; set; }
 
+        /// <summary>
+        /// Payment Modes
+        /// </summary>
+        public IEnumerable<PaymentModeDropDown> PaymentModes { get; set; }
+
         #endregion
 
     }

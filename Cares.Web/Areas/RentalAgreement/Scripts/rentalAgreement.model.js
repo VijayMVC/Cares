@@ -177,6 +177,8 @@
             businessPartner = ko.observable(BusinessPartner.Create(specifiedBusinessPartner || {}, callbacks)),
             // Billing
             billing = ko.observable(Billing.Create({})),
+            // Ra Payments
+            raPayments = ko.observableArray([]),
             // Start Date Time
             internalStartDateTime = ko.observable(specifiedStartDate || moment().toDate()),
             // End Date Time
@@ -346,6 +348,10 @@
             removeRaHireGroup = function (raHireGroup) {
                 rentalAgreementHireGroups.remove(raHireGroup);
             },
+            // Remove Ra Payment
+            removeRaPayment = function (raPayment) {
+                raPayments.remove(raPayment);
+            },
             // Renters Name
             rentersName = ko.observable(specifiedRentersName),
             // Renters License No
@@ -356,6 +362,8 @@
             recCreatedDt = ko.observable(specifiedRecCreatedDt || moment().toDate()),
             // RaStatus Id
             raStatusId = ko.observable(specifiedRaStatusId || undefined),
+            // RaBooking Id
+            raBookingId = ko.observable(specifiedRaBookingId || undefined),
             // Convert To Server Data
             convertToServerData = function () {
                 return {
@@ -369,6 +377,7 @@
                     BusinessPartnerId: businessPartner().id(),
                     RecCreatedDt: moment(recCreatedDt()).format(ist.utcFormat) + 'Z',
                     AmountPaid: billing().amountPaid(),
+                    Balance: billing().balance(),
                     TotalVehicleCharge: billing().vehicleCharge(),
                     TotalInsuranceCharge: billing().insuranceCharge(),
                     VoucherDiscount: billing().voucherDiscount(),
@@ -388,6 +397,7 @@
                     RentersLicenseNo: rentersLicenseNo(),
                     RentersLicenseExpDt: rentersLicenseExpiry() ? moment(rentersLicenseExpiry()).format(ist.utcFormat) + 'Z' : undefined,
                     RaStatusId: raStatusId(),
+                    RaBookingId: raBookingId(),
                     RaHireGroups: rentalAgreementHireGroups.map(function (raHireGroup) {
                         return raHireGroup.convertToServerData();
                     }),
@@ -400,6 +410,9 @@
                     }),
                     RaAdditionalCharges: rentalAgreementAdditionalCharges.map(function (raAdditionalCharge) {
                         return raAdditionalCharge.convertToServerData();
+                    }),
+                    RaPayments: raPayments.map(function (raPayment) {
+                        return raPayment.convertToServerData();
                     })
                 };
             };
@@ -422,15 +435,18 @@
             businessPartner: businessPartner,
             billing: billing,
             raStatusId: raStatusId,
+            raBookingId: raBookingId,
             rentalAgreementServiceItems: rentalAgreementServiceItems,
             removeRaServiceItem: removeRaServiceItem,
             rentalAgreementDrivers: rentalAgreementDrivers,
             rentalAgreementAdditionalCharges: rentalAgreementAdditionalCharges,
+            raPayments: raPayments,
             raChauffers: raChauffers,
             raDrivers: raDrivers,
             removeRaDriver: removeRaDriver,
             removeRaHireGroup: removeRaHireGroup,
             removeRaAdditionalCharge: removeRaAdditionalCharge,
+            removeRaPayment: removeRaPayment,
             convertToServerData: convertToServerData
         };
     },
@@ -444,7 +460,8 @@
     // Rental Agreement Hire Group entity
     // ReSharper disable InconsistentNaming
     RentalAgreementHireGroup = function (specifiedId, specifiedHireGroupDetailId, specifiedVehicleId, specifiedRentalAgreementId, specifiedVehicle,
-        specifiedVehicleMovements, specifiedRaHireGroupInsurances, specifiedAllocationStatusKey, specifiedAllocationStatusId, isExisting) {
+        specifiedVehicleMovements, specifiedRaHireGroupInsurances, specifiedAllocationStatusKey, specifiedAllocationStatusId, specifiedRaVehicleCheckLists,
+        specifiedHirGroup, isExisting) {
         // ReSharper restore InconsistentNaming
         var
             // unique key
@@ -467,6 +484,24 @@
 
                 return raHireGroupInsuranceItem;
             }) : []),
+            // Ra Vehicle CheckLists
+            raVehicleCheckLists = ko.observableArray(specifiedRaVehicleCheckLists ? _.map(specifiedRaVehicleCheckLists, function (raVehicleCheckList) {
+                return RentalAgreementVehicleCheckList.Create(raVehicleCheckList, isExisting);
+            }) : []),
+            // Vehicle CheckLists Out
+            raVehicleCheckListsOut = ko.computed(function () {
+                var outvehicleCheckLists = raVehicleCheckLists.filter(function (vehicleCheckList) {
+                    return vehicleCheckList.status() === vehicleMovementEnum.outMovement;
+                });
+                return outvehicleCheckLists || [];
+            }),
+            // Vehicle CheckLists In
+            raVehicleCheckListsIn = ko.computed(function () {
+                var invehicleCheckLists = raVehicleCheckLists.filter(function (vehicleCheckList) {
+                    return vehicleCheckList.status() === vehicleMovementEnum.inMovement;
+                });
+                return invehicleCheckLists || [];
+            }),
             // Vehicle Movements
             vehicleMovements = ko.observableArray(specifiedVehicleMovements ? _.map(specifiedVehicleMovements, function (vehicleMovement) {
                 return VehicleMovement.Create(vehicleMovement);
@@ -510,6 +545,11 @@
                     }),
                     VehicleMovements: vehicleMovements.map(function (vehicleMovement) {
                         return vehicleMovement.convertToServerData();
+                    }),
+                    RaVehicleCheckLists: raVehicleCheckLists.filter(function (raVehicleCheckList) {
+                        return raVehicleCheckList.isSelected();
+                    }).map(function (raVehicleCheckList) {
+                        return raVehicleCheckList.convertToServerData();
                     })
                 };
             };
@@ -517,6 +557,7 @@
         return {
             id: id,
             hireGroupDetailId: hireGroupDetailId,
+            hireGroup: specifiedHirGroup,
             vehicleId: vehicleId,
             rentalAgreementId: rentalAgreementId,
             vehicle: vehicle,
@@ -524,6 +565,9 @@
             vehicleMovementOut: vehicleMovementOut,
             vehicleMovementIn: vehicleMovementIn,
             raHireGroupInsurances: raHireGroupInsurances,
+            raVehicleCheckLists: raVehicleCheckLists,
+            raVehicleCheckListsOut: raVehicleCheckListsOut,
+            raVehicleCheckListsIn: raVehicleCheckListsIn,
             allocationStatusKey: allocationStatusKey,
             allocationStatusId: allocationStatusId,
             canRemove: canRemove,
@@ -1253,6 +1297,32 @@
         };
     },
 
+    // Payment Mode Entity
+    // ReSharper disable InconsistentNaming
+    PaymentMode = function (specifiedId, specifiedCodeName, specifiedKey) {
+        // ReSharper restore InconsistentNaming
+
+        return {
+            id: specifiedId,
+            codeName: specifiedCodeName,
+            key: specifiedKey
+        };
+    },
+
+    // Vehicle CheckList Entity
+    // ReSharper disable InconsistentNaming
+    VehicleCheckList = function (specifiedId, specifiedCodeName, specifiedKey, specifiedIsInterior, specifiedDescription) {
+        // ReSharper restore InconsistentNaming
+
+        return {
+            id: specifiedId,
+            codeName: specifiedCodeName,
+            key: specifiedKey,
+            isInterior: specifiedIsInterior,
+            description: specifiedDescription
+        };
+    },
+
     // Rental Agreement Hire Group Insurance entity
     // ReSharper disable InconsistentNaming
     RentalAgreementHireGroupInsurance = function (specifiedId, specifiedRaHireGroupId, specifiedInsuranceTypeId, specifiedInsuranceTypeCodeName,
@@ -1416,6 +1486,121 @@
             hireGroupDetail: specifiedHireGroupDetailCodeName,
             convertToServerData: convertToServerData
         };
+    },
+        
+    // Rental Agreement Payment entity
+    // ReSharper disable InconsistentNaming
+    RentalAgreementPayment = function (specifiedId, specifiedRaMainId, specifiedPaymentModeId, specifiedRaPaymentDt,
+        specifiedPaymentAmount, specifiedCheckNumber, specifiedBank, specifiedPaidBy) {
+        // ReSharper restore InconsistentNaming
+        var
+            // unique key
+            id = ko.observable(specifiedId || 0),
+            // Ra Main Id
+            raMainId = ko.observable(specifiedRaMainId),
+            // Payment Mode Id
+            paymentModeId = ko.observable(specifiedPaymentModeId || 0),
+            // Payment Amount
+            paymentAmount = ko.observable(specifiedPaymentAmount || 0),
+            // Check Number
+            checkNumber = ko.observable(specifiedCheckNumber),
+            // Bank
+            bank = ko.observable(specifiedBank || undefined),
+            // Paid By
+            paidBy = ko.observable(specifiedPaidBy || undefined),
+            // Payment Dt
+            internalPaymentDt = ko.observable(specifiedRaPaymentDt || moment().toDate()),
+            // Payment Dt
+            paymentDt = ko.computed({
+                read: function () {
+                    return internalPaymentDt();
+                },
+                write: function (value) {
+                    if (value === internalPaymentDt()) {
+                        return;
+                    }
+                    if (!value) {
+                        internalPaymentDt(undefined);
+                    } else {
+                        internalPaymentDt(value);
+                    }
+                }
+            }),
+            // Convert To Server Data
+            convertToServerData = function () {
+                return {
+                    RaPaymentId: id(),
+                    RaMainId: raMainId(),
+                    PaymentModeId: paymentModeId(),
+                    CheckNumber: checkNumber(),
+                    Bank: bank(),
+                    RaPaymentDt: paymentDt(),
+                    RaPaymentAmount: paymentAmount(),
+                    PaidBy: paidBy()
+                };
+            };
+
+        return {
+            id: id,
+            raMainId: raMainId,
+            paymentModeId: paymentModeId,
+            checkNumber: checkNumber,
+            bank: bank,
+            paymentAmount: paymentAmount,
+            paidBy: paidBy,
+            paymentDt: paymentDt,
+            convertToServerData: convertToServerData
+        };
+    },
+        
+    // Rental Agreement Vehicle CheckList entity
+    // ReSharper disable InconsistentNaming
+    RentalAgreementVehicleCheckList = function (specifiedId, specifiedRaHireGroupId, specifiedVehicleCheckListId, specifiedStatus,
+        specifiedVehicleCheckListKey, specifiedVehicleCheckListCodeName, specifiedIsInterior, specifiedComments) {
+        // ReSharper restore InconsistentNaming
+        var
+            // Is Selected
+            isSelected = ko.observable(false),
+            // unique key
+            id = ko.observable(specifiedId || 0),
+            // Ra Hire Group Id
+            raHireGroupId = ko.observable(specifiedRaHireGroupId),
+            // Vehicle CheckList Id
+            vehicleCheckListId = ko.observable(specifiedVehicleCheckListId),
+            // Vehicle CheckList Code Name
+            vehicleCheckListCodeName = ko.observable(specifiedVehicleCheckListCodeName),
+            // status
+            status = ko.observable(specifiedStatus),
+            // Is Interior
+            isInterior = ko.observable(specifiedIsInterior),
+            // vehicle CheckList Key
+            vehicleCheckListKey = ko.observable(specifiedVehicleCheckListKey),
+            // Comments
+            comments = ko.observable(specifiedComments),
+            // Convert To Server Data
+            convertToServerData = function () {
+                return {
+                    RaVehicleCheckListId: id(),
+                    RaHireGroupId: raHireGroupId(),
+                    VehicleCheckListId: vehicleCheckListId(),
+                    Status: status(),
+                    IsInterior: isInterior(),
+                    RaVehicleCheckListDescription: comments()
+                };
+            };
+
+        return {
+            id: id,
+            raHireGroupId: raHireGroupId,
+            vehicleCheckListId: vehicleCheckListId,
+            vehicleCheckListCodeName: vehicleCheckListCodeName,
+            status: status,
+            isInterior: isInterior,
+            vehicleCheckListKey: vehicleCheckListKey,
+            isSelected: isSelected,
+            comments: comments,
+            convertToServerData: convertToServerData
+        };
     };
 
     // Vehicle Factory
@@ -1451,8 +1636,9 @@
     // Rental Agreement Hire Group Factory
     RentalAgreementHireGroup.Create = function (source, isExisting) {
         return new RentalAgreementHireGroup(source.RaHireGroupId, source.HireGroupDetailId, source.VehicleId,
-            source.RaMainId, source.Vehicle && isExisting ? Vehicle.Create(source.Vehicle) : source.Vehicle, source.VehicleMovements, source.RaHireGroupInsurances, source.AllocationStatusKey,
-            source.AllocationStatusId, isExisting);
+            source.RaMainId, source.Vehicle && isExisting ? Vehicle.Create(source.Vehicle) : source.Vehicle, source.VehicleMovements, source.RaHireGroupInsurances,
+            source.AllocationStatusKey, source.AllocationStatusId, source.RaVehicleCheckLists, source.HireGroupDetail ? source.HireGroupDetail.HireGroup : undefined,
+            isExisting);
     };
 
     // Phone Type Enums
@@ -1562,6 +1748,16 @@
             rentalAgreement.rentalAgreementAdditionalCharges.valueHasMutated();
         }
 
+        // Add Ra Payments if Any
+        if (source.RaPayments) {
+            var raPayments = _.map(source.RaPayments, function (raPayment) {
+                return RentalAgreementPayment.Create(raPayment);
+            });
+
+            ko.utils.arrayPushAll(rentalAgreement.raPayments(), raPayments);
+            rentalAgreement.raPayments.valueHasMutated();
+        }
+
         rentalAgreement.billing(Billing.Create(source));
         
         return rentalAgreement;
@@ -1641,6 +1837,36 @@
         return new VehicleStatus(source.VehicleStatusId, source.VehicleStatusCodeName, source.VehicleStatusKey);
     };
 
+    // Payment Mode Factory
+    PaymentMode.Create = function (source) {
+        return new PaymentMode(source.PaymentModeId, source.PaymentModeCodeName, source.PaymentModeKey);
+    };
+
+    // Rental Agreement Payment Factory
+    RentalAgreementPayment.Create = function (source) {
+        return new RentalAgreementPayment(source.RaPaymentId, source.RaMainId, source.PaymentModeId,
+            source.RaPaymentDt ? moment(source.RaPaymentDt).toDate() : undefined, source.RaPaymentAmount,
+            source.CheckNumber, source.Bank, source.PaidBy);
+    };
+
+    // Rental Agreement Vehicle CheckList Factory
+    RentalAgreementVehicleCheckList.Create = function (source, isExisting) {
+        var raVehicleCheckList = new RentalAgreementVehicleCheckList(source.RaVehicleCheckListId, source.RaHireGroupId, source.VehicleCheckListId,
+            source.Status, source.VehicleCheckListKey, source.VehicleCheckListCodeName, source.IsInterior, source.RaVehicleCheckListDescription);
+
+        if (isExisting) {
+            raVehicleCheckList.isSelected(true);
+        }
+
+        return raVehicleCheckList;
+    };
+
+    // Vehicle CheckList Factory
+    VehicleCheckList.Create = function (source) {
+        return new VehicleCheckList(source.VehicleCheckListId, source.VehicleCheckListCodeName, source.VehicleCheckListKey, source.IsInterior,
+            source.VehicleCheckListDescription);
+    };
+
     return {
         // Vehicle Constructor
         Vehicle: Vehicle,
@@ -1683,6 +1909,14 @@
         // Allocation Status Constructor
         AllocationStatus: AllocationStatus,
         // Vehicle Status Constructor
-        VehicleStatus: VehicleStatus
+        VehicleStatus: VehicleStatus,
+        // Payment Mode Constructor
+        PaymentMode: PaymentMode,
+        // RaPayment Constructor
+        RentalAgreementPayment: RentalAgreementPayment,
+        // Ra Vehicle CheckList Constructor
+        RentalAgreementVehicleCheckList: RentalAgreementVehicleCheckList,
+        // Vehicle CheckList Constructor
+        VehicleCheckList: VehicleCheckList
     };
 });

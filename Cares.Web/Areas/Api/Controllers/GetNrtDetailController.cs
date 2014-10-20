@@ -13,7 +13,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// </summary>
     public class GetNrtDetailController : ApiController
     {
-       #region Private
+        #region Private
 
         private readonly INRTService nrtService;
 
@@ -39,15 +39,15 @@ namespace Cares.Web.Areas.Api.Controllers
         ///  Get NRT by Id
         /// </summary>
         /// <returns></returns>
-        public NrtMain Post([FromUri]NrtMain nrtMain)
+        public NrtMain Get(long id)
         {
-            if (!ModelState.IsValid)
+            if (id == 0)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-           //nrtService.FindById(nrtMain.NrtMainId);
-            return nrtService.FindById(29).CreateFrom();
-            
+            return nrtService.FindById(id).CreateFrom();
+            //return nrtService.FindById(29).CreateFrom();
+
         }
 
         #endregion

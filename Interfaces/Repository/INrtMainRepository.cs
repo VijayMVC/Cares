@@ -1,5 +1,7 @@
 ﻿
 using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
+using Cares.Models.ResponseModels;
 
 namespace Cares.Interfaces.Repository
 {
@@ -12,5 +14,11 @@ namespace Cares.Interfaces.Repository
         /// Associaton check with nrt type before deletion
         /// </summary>
         bool IsNrtMainAssociatedWithNrtType(long nrtTypeId);
+
+        /// <summary>
+        /// Get all NRT Main
+        /// </summary>
+        NrtQueueSearchResponse GetNrtMainsForNrtQueue(NrtQueueSearchRequest request);
+
     }
 }

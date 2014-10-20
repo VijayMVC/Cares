@@ -85,7 +85,7 @@
   margin-top: 6px;
 }
 #rentalAgreementBinding #raPanels {
-  width: 25.9%;
+  width: 28.9%;
   float: left;
 }
 #rentalAgreementBinding #raPanels #raServiceItemsTable thead tr #ServiceType {
@@ -124,6 +124,26 @@
   width: 10%;
   max-width: 10%;
 }
+#rentalAgreementBinding #raPanels .panel-body {
+  padding: 8px;
+}
+#rentalAgreementBinding #raPanels .panel-body .panelCustom {
+  border-radius: 12px !important;
+}
+#rentalAgreementBinding #raPanels .panel-body .panelCustom .panel-heading {
+  border-radius: 10px !important;
+}
+#rentalAgreementBinding #raPanels .panel-body .panelCustom .clearBoth {
+  clear: both;
+}
+#rentalAgreementBinding #raPanels .formGroupCustom {
+  margin-right: 0;
+  margin-left: 0;
+}
+#rentalAgreementBinding #raPanels .formGroupCustom hr {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
 #rentalAgreementBinding .panel-heading {
   color: gray;
 }
@@ -158,6 +178,26 @@
 #rentalAgreementBinding #raMain #accordion3 {
   margin-top: 5px;
 }
+#rentalAgreementBinding #raMain #collapseSeven .panel-body {
+  padding: 8px;
+}
+#rentalAgreementBinding #raMain #collapseSeven .panel-body .panelCustom {
+  border-radius: 12px !important;
+}
+#rentalAgreementBinding #raMain #collapseSeven .panel-body .panelCustom .panel-heading {
+  border-radius: 10px !important;
+}
+#rentalAgreementBinding #raMain #collapseSeven .panel-body .panelCustom .clearBoth {
+  clear: both;
+}
+#rentalAgreementBinding #raMain #collapseSeven .formGroupCustom {
+  margin-right: 0;
+  margin-left: 0;
+}
+#rentalAgreementBinding #raMain #collapseSeven .formGroupCustom hr {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
 #rentalAgreementBinding #raMain #vehicle {
   margin-top: .5%;
   min-height: 268px;
@@ -170,7 +210,7 @@
   max-height: 32px;
 }
 #rentalAgreementBinding #raBilling {
-  width: 36.5%;
+  width: 33.5%;
   float: left;
 }
 #rentalAgreementBinding #raBilling #accordion5 {
@@ -212,7 +252,7 @@
   }
 }
 #rentalAgreementBinding #raBilling #ra #rentalAgreementHireGroup {
-  width: 369px;
+  width: 339px;
 }
 #rentalAgreementBinding #raBilling #billing {
   margin-top: .5%;
@@ -231,4 +271,3 @@
 #raQueueBinding .txtBox {
   width: 142px;
 }
-/*# sourceMappingURL=RentalAgreement.css.map */

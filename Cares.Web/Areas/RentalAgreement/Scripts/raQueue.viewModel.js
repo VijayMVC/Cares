@@ -9,9 +9,7 @@ define("raQueue/raQueue.viewModel",
             viewModel: (function () {
                 var // the view 
                     view,
-                     // Active Insurance Rate Main
-                    selectedInsuranceRtMain = ko.observable(),
-                      // Show Filter Section
+                    // Show Filter Section
                     filterSectionVisilble = ko.observable(false),
                     // #region Arrays
                     // Operations
@@ -133,7 +131,7 @@ define("raQueue/raQueue.viewModel",
                         raMains.valueHasMutated();
                     },
                     //Edit RA Main
-                    onEditRaMain =function(raMain) {
+                    onEditRaMain = function (raMain) {
                         view.gotoRentalAgreement(raMain.raMainId());
                     },
                     // Get RA Main
@@ -146,7 +144,7 @@ define("raQueue/raQueue.viewModel",
                             CloseLocationId: closeLocFilter(),
                             PaymentTermId: paymentTermFilter(),
                             OperationId: operationFilter(),
-                            StartDate: (startDt() === undefined  ? null : moment(startDt()).format(ist.utcFormat)),
+                            StartDate: (startDt() === undefined ? null : moment(startDt()).format(ist.utcFormat)),
                             EndDate: (endDt() === undefined ? null : moment(endDt()).format(ist.utcFormat)),
                             PageSize: pager().pageSize(),
                             PageNo: pager().currentPage(),
@@ -169,7 +167,7 @@ define("raQueue/raQueue.viewModel",
 
                 return {
                     // Observables
-                    selectedInsuranceRtMain: selectedInsuranceRtMain,
+
                     isLoadingRaQueues: isLoadingRaQueues,
                     sortOn: sortOn,
                     sortIsAsc: sortIsAsc,

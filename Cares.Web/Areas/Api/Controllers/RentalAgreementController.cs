@@ -65,7 +65,7 @@ namespace Cares.Web.Areas.Api.Controllers
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
 
-            request.RaMain.RaStatusId = (short) request.Action;
+            request.RaMain.RaStatusId = (short)request.Action;
             return rentalAgreementService.SaveRentalAgreement(request.RaMain.CreateFrom()).CreateFrom();
         }
 
