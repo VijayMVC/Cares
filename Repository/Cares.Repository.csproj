@@ -228,6 +228,7 @@
     <Compile Include="Repositories\SubRegionRepository.cs" />
     <Compile Include="Repositories\TariffTypeRepository.cs" />
     <Compile Include="Repositories\TransmissionTypeRepository.cs" />
+    <Compile Include="Repositories\VehcilceImageDetailRepository.cs" />
     <Compile Include="Repositories\VehicleCategoryRepository.cs" />
     <Compile Include="Repositories\VehicleCheckListItemRepository.cs" />
     <Compile Include="Repositories\VehicleCheckListRepository.cs" />

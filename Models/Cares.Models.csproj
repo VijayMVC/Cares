@@ -177,6 +177,7 @@
     <Compile Include="DomainModels\SeasonalDiscountMain.cs" />
     <Compile Include="DomainModels\DocumentGroup.cs" />
     <Compile Include="DomainModels\Document.cs" />
+    <Compile Include="DomainModels\VehicleImageDetail.cs" />
     <Compile Include="DomainModels\VehicleMovement.cs" />
     <Compile Include="DomainModels\PaymentMode.cs" />
     <Compile Include="DomainModels\AllocationStatus.cs" />

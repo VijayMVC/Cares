@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
@@ -349,7 +350,7 @@ namespace Cares.Implementation.Services
                     {
                         missingItems.Add(dbversionItemeMaintenanceTypeFrequency);
                     }
-                    if (vehicle.VehicleMaintenanceTypeFrequencies==null)
+                    if (vehicle.VehicleMaintenanceTypeFrequencies == null)
                     {
                         missingItems.Add(dbversionItemeMaintenanceTypeFrequency);
                     }
@@ -419,7 +420,7 @@ namespace Cares.Implementation.Services
             }
             vehicleRepository.SaveChanges();
             #endregion
-            Vehicle vehicleResponse=vehicleRepository.Find(vehicle.VehicleId);
+            Vehicle vehicleResponse = vehicleRepository.Find(vehicle.VehicleId);
             vehicleRepository.LoadDependencies(vehicleResponse);
             return vehicleResponse;
         }
@@ -484,7 +485,7 @@ namespace Cares.Implementation.Services
             return vehicleRepository.Find(vehicleId);
         }
 
-        
+
         /// <summary>
         /// Get Vehicle Info For NRT
         /// </summary>
@@ -492,10 +493,46 @@ namespace Cares.Implementation.Services
         /// <param name="startDtTime"></param>
         /// <param name="endDtTime"></param>
         /// <returns></returns>
-        public IEnumerable<Vehicle> GetVehicleInfoForNrt(long operationWorkPlaceId , DateTime startDtTime , DateTime endDtTime )
+        public IEnumerable<Vehicle> GetVehicleInfoForNrt(long operationWorkPlaceId, DateTime startDtTime, DateTime endDtTime)
         {
-           return vehicleRepository.GetVehicleInfoForNrt(operationWorkPlaceId, startDtTime,endDtTime);
+            return vehicleRepository.GetVehicleInfoForNrt(operationWorkPlaceId, startDtTime, endDtTime);
         }
+
+        /// <summary>
+        /// Save Vehicle Image
+        /// </summary>
+        /// <param name="fileStream"></param>
+        /// <param name="vehilceId"></param>
+        public void SaveVehicleImage(MemoryStream fileStream, long vehilceId)
+        {
+            Vehicle vehicle = vehicleRepository.Find(vehilceId);
+            if (vehicle.VehicleImages != null)
+            {
+                foreach (var item in vehicle.VehicleImages)
+                {
+                    item.Image = fileStream.ToArray();
+                }
+            }
+            else
+            {
+                VehicleImage vehicleImage = new VehicleImage();
+                vehicleImage.UserDomainKey = vehicleRepository.UserDomainKey;
+                vehicleImage.RecLastUpdatedDt = vehicleImage.RecCreatedDt = DateTime.Now;
+                vehicleImage.RecLastUpdatedBy = vehicleImage.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
+                vehicleImage.RowVersion = 0;
+                vehicleImage.VehicleImageCode = "COde";
+                vehicleImage.VehicleImageName = "Name";
+                vehicleImage.VehicleImageDescription = "Des";
+                vehicleImage.Image = fileStream.ToArray();
+                vehicleImage.VehicleId = vehilceId;
+                vehicle.VehicleImages.Add(vehicleImage);
+            }
+
+            vehicleRepository.SaveChanges();
+
+
+        }
+
         #endregion
 
     }

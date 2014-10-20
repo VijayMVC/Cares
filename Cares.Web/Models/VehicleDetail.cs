@@ -136,7 +136,7 @@ namespace Cares.Web.Models
         /// Registration Expiry Date
         /// </summary>
         public DateTime? RegistrationExpiryDate { get; set; }
-        
+
         #endregion
 
         #region refrence Data
@@ -181,6 +181,11 @@ namespace Cares.Web.Models
         /// Vehicle Check List Item List
         /// </summary>
         public List<VehicleCheckListItem> VehicleCheckListItems { get; set; }
+
+        /// <summary>
+        /// Vehicle Image
+        /// </summary>
+        public List<VehicleImage> VehicleImages { get; set; }
         #endregion
 
     }

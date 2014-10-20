@@ -655,6 +655,7 @@
     <Compile Include="Models\VehicleDepreciation.cs" />
     <Compile Include="Models\VehicleDetail.cs" />
     <Compile Include="Models\VehicleDisposalInfo.cs" />
+    <Compile Include="Models\VehicleImage.cs" />
     <Compile Include="Models\VehicleInsuranceInfo.cs" />
     <Compile Include="Models\VehicleLeasedInfo.cs" />
     <Compile Include="Models\VehicleListViewContent.cs" />
@@ -2548,6 +2549,7 @@
     <Content Include="Scripts\jquery-ui-1.10.4.min.js" />
     <Content Include="Scripts\jquery-ui-sliderAccess.js" />
     <Content Include="Scripts\jquery-ui-timepicker-addon.js" />
+    <Content Include="Scripts\jquery.form.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />

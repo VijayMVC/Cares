@@ -2321,6 +2321,7 @@
             <PropertyRef Name="VehicleImageID" />
           </Key>
           <Property Name="VehicleImageID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VehicleID" Type="bigint" Nullable="false" />
           <Property Name="Image" Type="image" Nullable="false" />
           <Property Name="VehicleImageCode" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="VehicleImageName" Type="nvarchar" MaxLength="255" />
@@ -2715,6 +2716,18 @@
             </Principal>
             <Dependent Role="Vehicle">
               <PropertyRef Name="VehicleStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VehicleImage_Vehicle">
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="VehicleImage" Type="Self.VehicleImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle">
+              <PropertyRef Name="VehicleID" />
+            </Principal>
+            <Dependent Role="VehicleImage">
+              <PropertyRef Name="VehicleID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5437,6 +5450,10 @@
             <End Role="VehicleStatus" EntitySet="VehicleStatus" />
             <End Role="Vehicle" EntitySet="Vehicle" />
           </AssociationSet>
+          <AssociationSet Name="FK_VehicleImage_Vehicle" Association="Self.FK_VehicleImage_Vehicle">
+            <End Role="Vehicle" EntitySet="Vehicle" />
+            <End Role="VehicleImage" EntitySet="VehicleImage" />
+          </AssociationSet>
           <AssociationSet Name="RefAdditionalCharge400" Association="Self.RefAdditionalCharge400">
             <End Role="AdditionalCharge" EntitySet="AdditionalCharge" />
             <End Role="AdditionalCharge1" EntitySet="AdditionalCharge" />
@@ -7287,6 +7304,10 @@
             <End Role="SeasonalDiscount" EntitySet="SeasonalDiscounts" />
             <End Role="SeasonalDiscount1" EntitySet="SeasonalDiscounts" />
           </AssociationSet>
+          <AssociationSet Name="FK_VehicleImage_Vehicle" Association="DomainModels.FK_VehicleImage_Vehicle">
+            <End Role="Vehicle" EntitySet="Vehicles" />
+            <End Role="VehicleImage" EntitySet="VehicleImages" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Company">
           <Key>
@@ -8317,6 +8338,7 @@
           <NavigationProperty Name="VehicleDepreciation" Relationship="DomainModels.RefVehicle2251" FromRole="Vehicle" ToRole="VehicleDepreciation" />
           <NavigationProperty Name="NrtVehicles" Relationship="DomainModels.RefVehicle594" FromRole="Vehicle" ToRole="NRTVehicle" />
           <NavigationProperty Name="RaHireGroups" Relationship="DomainModels.RefVehicle523" FromRole="Vehicle" ToRole="RAHireGroup" />
+          <NavigationProperty Name="VehicleImages" Relationship="DomainModels.FK_VehicleImage_Vehicle" FromRole="Vehicle" ToRole="VehicleImage" />
         </EntityType>
         <EntityType Name="VehicleCategory">
           <Key>
@@ -8404,6 +8426,8 @@
           <Property Name="RecLastUpdatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
           <NavigationProperty Name="VehicleImageHireGroupDetails" Relationship="DomainModels.RefVehicleImage626" FromRole="VehicleImage" ToRole="VehicleImageHireGroupDetail" />
+          <Property Name="VehicleId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Vehicle" Relationship="DomainModels.FK_VehicleImage_Vehicle" FromRole="VehicleImage" ToRole="Vehicle" />
         </EntityType>
         <EntityType Name="VehicleMake">
           <Key>
@@ -12917,6 +12941,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_VehicleImage_Vehicle">
+          <End Type="DomainModels.Vehicle" Role="Vehicle" Multiplicity="1" />
+          <End Type="DomainModels.VehicleImage" Role="VehicleImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle">
+              <PropertyRef Name="VehicleId" />
+            </Principal>
+            <Dependent Role="VehicleImage">
+              <PropertyRef Name="VehicleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -13856,6 +13892,7 @@
           <EntitySetMapping Name="VehicleImages">
             <EntityTypeMapping TypeName="DomainModels.VehicleImage">
               <MappingFragment StoreEntitySet="VehicleImage">
+                <ScalarProperty Name="VehicleId" ColumnName="VehicleID" />
                 <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
                 <ScalarProperty Name="RecLastUpdatedBy" ColumnName="RecLastUpdatedBy" />
                 <ScalarProperty Name="RecLastUpdatedDt" ColumnName="RecLastUpdatedDt" />

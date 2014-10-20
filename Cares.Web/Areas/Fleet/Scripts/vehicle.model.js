@@ -119,6 +119,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             vehicleDisposalInfo = ko.observable(new VehicleDisposalInfo()),
             //Maintenance Schedule
             maintenanceSchedule = ko.observable(new MaintenanceSchedule()),
+            //Vehicle Image
+            vehicleImage = ko.observable(new VehicleImage()),
             //Check List Item
             checkListItem = ko.observable(new CheckListItem()),
 
@@ -165,7 +167,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
                 fleetPoolId: fleetPoolId,
                 locationId: locationId,
                 fuelTypeId: fuelTypeId,
-                 vehicleMakeId: vehicleMakeId,
+                vehicleMakeId: vehicleMakeId,
                 vehicleModelId: vehicleModelId,
                 vehicleCategoryId: vehicleCategoryId,
                 statusId: statusId,
@@ -228,7 +230,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             maintenanceSchedule: maintenanceSchedule,
             maintenanceScheduleListInVehicle: maintenanceScheduleListInVehicle,
             checkListItem: checkListItem,
-            checkListItemListInVehicle: checkListItemListInVehicle
+            checkListItemListInVehicle: checkListItemListInVehicle,
+            vehicleImage: vehicleImage
         };
         return self;
     };
@@ -758,6 +761,24 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         };
         return self;
     };
+    //Insurance Info Entity
+    // ReSharper disable once InconsistentNaming
+    var VehicleImage = function () {
+        var // Reference to this object
+            self,
+            // Unique key
+            id = ko.observable(),
+            //Image URL
+            imageUrl = ko.observable();
+
+
+        self = {
+            id: id,
+            imageUrl: imageUrl,
+        };
+        return self;
+    }
+
     // Vehicle Detail Factory
     VehicleDetail.Create = function () {
         return new VehicleDetail(0, "", "", undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined,
@@ -928,6 +949,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
 
         return otherVehicleDetail;
     };
+
     //Client To Server(Vehicle Purchase Info)
     var VehiclePurchaseInfoServerMapper = function (source) {
         var result = {};
@@ -1127,6 +1149,13 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         checkListItem.vehicleCheckListCodeName(source.VehicleCheckListCodeName === null ? undefined : source.VehicleCheckListCodeName);
         return checkListItem;
     };
+    //Client To Server(Vehicle Image Upload)
+    var VehicleImageServerMapper = function (source) {
+        var result = {};
+        result.VehicleImageId = source.id() === undefined ? 0 : source.id();
+        //result.InsuranceAgent = source.insuranceAgent() === undefined ? null : source.insuranceAgent();
+        return result;
+    };
     return {
         Vehicle: Vehicle,
         VehicleDetail: VehicleDetail,
@@ -1138,6 +1167,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         CheckListItem: CheckListItem,
         VehicleDepreciation: VehicleDepreciation,
         VehicleDisposalInfo: VehicleDisposalInfo,
+        VehicleImage: VehicleImage,
         //Server Mappers
         VehicleDetailServerMapper: VehicleDetailServerMapper,
         VehicleDetailServerMappeForDelete: VehicleDetailServerMappeForDelete,
@@ -1159,6 +1189,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         VehicleDisposalInfoClientMapper: VehicleDisposalInfoClientMapper,
         MaintenanceScheduleClientMapper: MaintenanceScheduleClientMapper,
         CheckListItemClientMapper: CheckListItemClientMapper,
-        VehicleDetailClientMapper: VehicleDetailClientMapper
+        VehicleDetailClientMapper: VehicleDetailClientMapper,
+        VehicleImageServerMapper: VehicleImageServerMapper
     };
 });
