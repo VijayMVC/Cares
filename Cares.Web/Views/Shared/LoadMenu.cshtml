@@ -13,7 +13,7 @@
 
             <li class="toActive">
                 <a href="javascript:;">
-                    <i class="icon-home"></i>@*class="@header.Menu.Icon"*@
+                    <i class="@header.Menu.MenuImagePath"></i>
                     <span class="title">@header.Menu.MenuTitle </span>
                     <span class="toSelect"></span>
                     <span class="arrow open"></span>
@@ -25,8 +25,8 @@
                         foreach (MenuRight menuRight in menuRightchildList)
                         {
                             <li>
-                                <a href="@Url.Action(menuRight.Menu.MenuFunction, menuRight.Menu.MenuTargetController)"> @*~/@menuRight.Menu.MenuTargetController/@menuRight.Menu.MenuFunction*@
-                                    <i class="icon-home"></i>@*class="@menuRight.Menu.Icon"*@
+                                <a href="@Url.Action(menuRight.Menu.MenuFunction, menuRight.Menu.MenuTargetController)"> 
+                                    <i class="@header.Menu.MenuImagePath"></i>
                                     @menuRight.Menu.MenuTitle
                                 </a>
                             </li>
