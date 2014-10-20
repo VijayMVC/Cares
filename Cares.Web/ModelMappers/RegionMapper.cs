@@ -50,7 +50,7 @@ namespace Cares.Web.ModelMappers
                 RegionName = source.RegionName,
                 RegionDescription = source.RegionDescription,
                 CountryId = source.CountryId,
-                CountryName = source.Country.CountryName
+                CountryName = source.Country.CountryCode+"-"+source.Country.CountryName
             };
         }
 
@@ -62,7 +62,7 @@ namespace Cares.Web.ModelMappers
             return new Region
             {
                 RegionId = source.RegionId,
-                RegionCode = source.RegionCode,
+                RegionCode = source.RegionCode.Trim(),
                 RegionName = source.RegionName,
                 RegionDescription = source.RegionDescription,
                 CountryId = source.CountryId,
@@ -149,7 +149,7 @@ namespace Cares.Web.ModelMappers
             return new SubRegion
             {
                 SubRegionId = source.SubRegionId,
-                SubRegionCode = source.SubRegionCode,
+                SubRegionCode = source.SubRegionCode.Trim(),
                 SubRegionName = source.SubRegionName,
                 SubRegionDescription = source.SubRegionDescription,
                 RegionId = source.RegionId

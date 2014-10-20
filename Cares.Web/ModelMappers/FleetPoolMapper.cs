@@ -24,7 +24,7 @@ namespace Cares.Web.ModelMappers
             return new ApiModel.FleetPool
                    {
                        FleetPoolId = source.FleetPoolId,
-                       FleetPoolCode = source.FleetPoolCode,
+                       FleetPoolCode = source.FleetPoolCode.Trim(),
                        FleetPoolName = source.FleetPoolName,
                        ApproximateVehiclesAsgnd = source.ApproximateVehiclesAsgnd,
                        Description = source.FleetPoolDescription,
@@ -84,7 +84,7 @@ namespace Cares.Web.ModelMappers
             return new FleetPool
             {
                 FleetPoolId = source.FleetPoolId,
-                FleetPoolCode = source.FleetPoolCode,
+                FleetPoolCode = source.FleetPoolCode.Trim(),
                 FleetPoolName = source.FleetPoolName,
                 FleetPoolDescription = source.Description,
                 ApproximateVehiclesAsgnd = source.ApproximateVehiclesAsgnd,

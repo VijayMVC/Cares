@@ -73,7 +73,7 @@ namespace Cares.Web.ModelMappers
             return new DomainModels.Department
             {
                 DepartmentId = source.DepartmentId,
-                DepartmentCode = source.DepartmentCode,
+                DepartmentCode = source.DepartmentCode.Trim(),
                 DepartmentName = source.DepartmentName,
                 DepartmentDescription = source.DepartmentDescription,
                 DepartmentType = source.DepartmentType,

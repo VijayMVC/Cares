@@ -60,7 +60,7 @@ namespace Cares.Web.ModelMappers
             return new BusinessSegment
             {
                 BusinessSegmentId = source.BusinessSegmentId,
-                BusinessSegmentCode = source.BusinessSegmentCode,
+                BusinessSegmentCode = source.BusinessSegmentCode.Trim(),
                 BusinessSegmentName = source.BusinessSegmentName,
                 BusinessSegmentDescription = source.BusinessSegmentDescription,
             };
