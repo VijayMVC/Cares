@@ -16,7 +16,6 @@ namespace Cares.Implementation.ReportServices
         private readonly IVehicleRepository vehicleRepository;
 
         #endregion
-
         #region Constructors
 
         /// <summary>
@@ -28,7 +27,6 @@ namespace Cares.Implementation.ReportServices
         }
 
         #endregion
-
         #region Public
 
         public IList<RptFleetHireGroupDetail> LoadFleetHireGroupDetail()
