@@ -62,15 +62,13 @@ namespace Cares.Web.Areas.Fleet.Controllers
                 // Copy the file
                 using (MemoryStream stream = new MemoryStream())
                 {
-                   // MasterSite masterSite = new MasterSite();
                     file.InputStream.CopyTo(stream);
-                    //masterSite.MLogo = stream.ToArray();
-                    //companyProfileSaveOperation.Execute(site, masterSite);
-                    vehicleService.SaveVehicleImage(stream, vehicleId);
+                       vehicleService.SaveVehicleImage(stream, vehicleId);
                 }
                 
             }
-            return Json("Uploaded successfully", JsonRequestBehavior.AllowGet);
+            //return Json("Uploaded successfully", JsonRequestBehavior.AllowGet);
+            return null;
         }
 
         public ActionResult VehicleCheckList()

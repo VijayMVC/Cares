@@ -91,6 +91,11 @@ namespace Cares.Repository.BaseRepository
         public DbSet<RaStatus> RaStatuses { get; set; }
 
         /// <summary>
+        /// Vehicle Images Db Set
+        /// </summary>
+        public DbSet<VehicleImage> VehicleImages { get; set; }
+
+        /// <summary>
         /// Vehcilce Image Details DB Set
         /// </summary>
         public DbSet<VehicleImageDetail> VehcilceImageDetails { get; set; }

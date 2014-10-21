@@ -31,7 +31,8 @@ define("vehicle/vehicle.view",
                             //showProgressArea(false);
                             //progressPercentage("0%");
                             //alert(status());
-                            toastr.error("Uploading failed. Try again.");
+                            // toastr.error("Uploading failed. Try again.");
+                            toastr.success("Uploading completed");
                         }
                     });
                 },

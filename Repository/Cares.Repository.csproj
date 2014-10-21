@@ -234,6 +234,7 @@
     <Compile Include="Repositories\VehicleCheckListRepository.cs" />
     <Compile Include="Repositories\VehicleDepreciationRepository.cs" />
     <Compile Include="Repositories\VehicleDisposalInfoRepository.cs" />
+    <Compile Include="Repositories\VehicleImageRepository.cs" />
     <Compile Include="Repositories\VehicleInsuranceInfoRepository.cs" />
     <Compile Include="Repositories\VehicleLeasedInfoRepository.cs" />
     <Compile Include="Repositories\VehicleMaintenanceTypeFrequencyRepository.cs" />

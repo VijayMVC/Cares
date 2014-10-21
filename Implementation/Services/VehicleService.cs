@@ -40,7 +40,9 @@ namespace Cares.Implementation.Services
         private readonly IOperationsWorkPlaceRepository operationsWorkPlaceRepository;
         private readonly IVehicleMaintenanceTypeFrequencyRepository maintenanceTypeFrequencyRepository;
         private readonly IVehicleCheckListItemRepository vehicleCheckListItemRepository;
+        private readonly IVehicleImageRepository vehicleImageRepository;
         #endregion
+
         #region Constructors
 
         /// <summary>
@@ -52,7 +54,8 @@ namespace Cares.Implementation.Services
                ITransmissionTypeRepository transmissionTypeResposirory, IBusinessPartnerRepository businessPartnerRepository,
             IInsuranceTypeRepository insuranceTypeRepository, IMaintenanceTypeRepository maintenanceTypeRepository, IVehicleCheckListRepository vehicleCheckListRepository,
             IVehicleModelRepository vehicleModelRepository, IVehicleCategoryRepository vehicleCategoryRepository, IOperationsWorkPlaceRepository operationsWorkPlaceRepository,
-            IVehicleMaintenanceTypeFrequencyRepository maintenanceTypeFrequencyRepository, IVehicleCheckListItemRepository vehicleCheckListItemRepository)
+            IVehicleMaintenanceTypeFrequencyRepository maintenanceTypeFrequencyRepository, IVehicleCheckListItemRepository vehicleCheckListItemRepository,
+            IVehicleImageRepository vehicleImageRepository)
         {
             if (vehicleRepository == null)
             {
@@ -78,6 +81,7 @@ namespace Cares.Implementation.Services
             this.operationsWorkPlaceRepository = operationsWorkPlaceRepository;
             this.maintenanceTypeFrequencyRepository = maintenanceTypeFrequencyRepository;
             this.vehicleCheckListItemRepository = vehicleCheckListItemRepository;
+            this.vehicleImageRepository = vehicleImageRepository;
         }
 
         #endregion
@@ -524,7 +528,8 @@ namespace Cares.Implementation.Services
                 vehicleImage.VehicleImageDescription = "Des";
                 vehicleImage.Image = fileStream.ToArray();
                 vehicleImage.VehicleId = vehilceId;
-                vehicle.VehicleImages.Add(vehicleImage);
+                vehicleImageRepository.Add(vehicleImage);
+                vehicleImageRepository.SaveChanges();
             }
 
             vehicleRepository.SaveChanges();
