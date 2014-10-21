@@ -29,6 +29,7 @@ namespace Cares.Implementation.Services
         private readonly IPhoneTypeRepository phoneTypeRepository;
         private readonly IPhoneRepository phoneRepository;
         private readonly IAddressRepository addressRepository;
+        private readonly IAddressTypeRepository addressTypeRepository;
 
         /// <summary>
         /// Updates the db instance with user data for add/update operation
@@ -68,7 +69,7 @@ namespace Cares.Implementation.Services
                     WebPage = upDatedWorkLocation.Address.WebPage,
                     ZipCode = upDatedWorkLocation.Address.ZipCode,
                     POBox = upDatedWorkLocation.Address.POBox,
-                    AddressTypeId = 1,
+                    AddressTypeId = addressTypeRepository.GetAddressTypeIdByAddressTypeKey(1),
                     CountryId = upDatedWorkLocation.Address.CountryId,
                     RegionId = upDatedWorkLocation.Address.RegionId,
                     SubRegionId = upDatedWorkLocation.Address.SubRegionId,
@@ -78,14 +79,12 @@ namespace Cares.Implementation.Services
                     RecCreatedDt = DateTime.Now,
                     RecLastUpdatedDt = DateTime.Now,
                     RecLastUpdatedBy = workLocationRepository.LoggedInUserIdentity,
-                    UserDomainKey = 1
                 };
                 dbvWorkLocation.RecCreatedBy = dbvWorkLocation.RecLastUpdatedBy = workLocationRepository.LoggedInUserIdentity;
 
                 dbvWorkLocation.RecCreatedDt =  DateTime.Now;
                 dbvWorkLocation.RecLastUpdatedDt = DateTime.Now;
-                dbvWorkLocation.UserDomainKey = 1;
-                dbvWorkLocation.Address.AddressTypeId = 1;
+                dbvWorkLocation.UserDomainKey = workLocationRepository.UserDomainKey;
                 dbvWorkLocation.CompanyId = upDatedWorkLocation.CompanyId;
                 dbvWorkLocation.WorkLocationCode = upDatedWorkLocation.WorkLocationCode;
                 dbvWorkLocation.WorkLocationName = upDatedWorkLocation.WorkLocationName;
@@ -115,9 +114,11 @@ namespace Cares.Implementation.Services
         public WorkLocationService(IWorkLocationRepository workLocationRepository, ICompanyRepository companyRepository,
             ICountryRepository countryRepository,
             IRegionRepository regionRepository, ISubRegionRepository subRegionRepository, ICityRepository cityRepository,
-            IAreaRepository areaRepository, IPhoneTypeRepository phoneTypeRepository, IPhoneRepository phoneRepository, IAddressRepository addressRepository)
+            IAreaRepository areaRepository, IPhoneTypeRepository phoneTypeRepository, IPhoneRepository phoneRepository, IAddressRepository addressRepository,
+            IAddressTypeRepository addressTypeRepository)
         {
             this.workLocationRepository = workLocationRepository;
+            this.addressTypeRepository = addressTypeRepository;
             this.companyRepository = companyRepository;
             this.countryRepository = countryRepository;
             this.regionRepository = regionRepository;
