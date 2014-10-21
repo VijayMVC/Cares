@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using Cares.Interfaces.Repository;
 using Microsoft.Practices.Unity;
 using Cares.Models.DomainModels;
@@ -33,7 +34,6 @@ namespace Cares.Repository.Repositories
             }
         }
         #endregion
-
         #region Public
         /// <summary>
         /// Get All Address Types for User Domain Key
@@ -50,7 +50,17 @@ namespace Cares.Repository.Repositories
         public AddressType Find(int id)
         {
             throw new System.NotImplementedException();
-        }    
+        }
+
+        /// <summary>
+        /// Get Address Type Id using Address Type Key 
+        /// </summary>    
+        public short GetAddressTypeIdByAddressTypeKey(long addressTypeKey)
+        {
+            return DbSet.Where(addresstype => addresstype.AddressTypeKey == addressTypeKey)
+                .Select(addresstype => addresstype.AddressTypeId).FirstOrDefault();
+        }
+
         #endregion
     }
 }

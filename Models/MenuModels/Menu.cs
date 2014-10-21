@@ -48,10 +48,6 @@ namespace Cares.Models.DomainModels
         /// </summary>
         public int? ParentMenuId { get; set; }
         /// <summary>
-        /// Icon to Display
-        /// </summary>
-        public string Icon { get; set; }
-        /// <summary>
         /// Menu Parent Item
         /// </summary>
         public virtual Menu ParentItem { get; set; }

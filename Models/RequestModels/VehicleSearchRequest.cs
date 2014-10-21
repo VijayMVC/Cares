@@ -34,6 +34,11 @@ namespace Cares.Models.RequestModels
         public long OperationsWorkPlaceId { get; set; }
 
         /// <summary>
+        /// Allocation Status Key
+        /// </summary>
+        public short AllocationStatusKey { get; set; }
+
+        /// <summary>
         /// Start Dt
         /// </summary>
         public DateTime StartDtTime { get; set; }

@@ -506,15 +506,26 @@ define("rentalAgreement/rentalAgreement.viewModel",
                             return allocationStatusItem.key === key;
                         });
                     },
+                    // Get Allocation Status By Id
+                    getAllocationStatusById = function (id) {
+                        return allocationStatuses.find(function (allocationStatusItem) {
+                            return allocationStatusItem.id === id;
+                        });
+                    },
                     // Get Vehicles
                     getVehicles = function () {
+                        var allocationStatusItem = getAllocationStatusById(vehicleAllocationStatusFilter());
+
                         dataservice.getVehiclesByHireGroup({
                             HireGroupDetailId: selectedHireGroup().id,
                             StartDtTime: moment(vehicleStartDtFilter()).format(ist.utcFormat) + 'Z',
                             EndDtTime: moment(vehicleEndDtFilter()).format(ist.utcFormat) + 'Z',
-                            OperationsWorkPlaceId: vehicleOperationsWorkPlaceFilter()
+                            OperationsWorkPlaceId: vehicleOperationsWorkPlaceFilter(),
+                            AllocationStatusKey: allocationStatusItem ? allocationStatusItem.key : undefined
                         }, {
                             success: function (data) {
+                                vehicles.removeAll();
+
                                 var vehicleItems = [];
 
                                 _.each(data.Vehicles, function (vehicle) {

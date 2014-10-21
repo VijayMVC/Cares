@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
+using Cares.Models.Common;
 using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
@@ -42,7 +43,6 @@ namespace Cares.Implementation.Services
         private readonly IVehicleCheckListItemRepository vehicleCheckListItemRepository;
         private readonly IVehicleImageRepository vehicleImageRepository;
         #endregion
-
         #region Constructors
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Cares.Implementation.Services
             {
                 throw new ArgumentNullException("vehicleRepository");
             }
-
+            
             this.vehicleRepository = vehicleRepository;
             this.operationRepository = operationRepository;
             this.fleetPoolRepository = fleetPoolRepository;
@@ -102,6 +102,16 @@ namespace Cares.Implementation.Services
         /// </summary>
         public GetVehicleResponse GetByHireGroup(VehicleSearchRequest request)
         {
+            if (request.AllocationStatusKey == (short)AllocationStatusEnum.Replaced)
+            {
+                request.HireGroupDetailId = 0;
+            }
+            else if (request.AllocationStatusKey == (short)AllocationStatusEnum.Upgraded)
+            {
+                // Get Upgraded Hire Groups
+                return vehicleRepository.GetUpgradedVehiclesByHireGroup(request);
+            }
+
             return vehicleRepository.GetByHireGroup(request);
         }
 

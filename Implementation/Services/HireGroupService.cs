@@ -71,11 +71,12 @@ namespace Cares.Implementation.Services
 
         /// <summary>
         /// Get Hire Groups By Code, Vehicle Make / Category / Model / Model Year
+        /// Used In TypeAhead in RA
         /// </summary>
         public IEnumerable<HireGroupDetail> GetByCodeAndVehicleInfo(string searchText, long operationWorkPlaceId, DateTime startDtTime,
             DateTime endDtTime)
         {
-            return hireGroupDetailRepository.GetByCodeAndVehicleInfo(searchText, operationWorkPlaceId, startDtTime, endDtTime);
+            return hireGroupDetailRepository.GetByCodeAndVehicleInfo(searchText, operationWorkPlaceId, startDtTime, endDtTime).Take(10).ToList();
         }
 
         /// <summary>

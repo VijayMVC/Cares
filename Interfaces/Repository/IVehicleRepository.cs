@@ -24,6 +24,11 @@ namespace Cares.Interfaces.Repository
         GetVehicleResponse GetByHireGroup(VehicleSearchRequest request);
 
         /// <summary>
+        /// Get Upgraded Vehicles
+        /// </summary>
+        GetVehicleResponse GetUpgradedVehiclesByHireGroup(VehicleSearchRequest request);
+
+        /// <summary>
         /// Get Vehicle List Based On Search Criteria
         /// </summary>
         GetVehicleResponse GetVehicles(VehicleSearchRequest request);

@@ -89,37 +89,128 @@ namespace Cares.Repository.Repositories
 
 
 
+        public IList<RptFleetHireGroupDetail> GetFleetReport()
+        {
+            var fleetHireGroupDetailQuery = from vehicle in DbSet                
+                join hgd in db.HireGroupDetails on
+                    new {ModelID = vehicle.VehicleModelId, MakeID = vehicle.VehicleMakeId, CategoryId = vehicle.VehicleCategoryId, Year= vehicle.ModelYear }
+                    equals new { ModelID = hgd.VehicleMakeId, MakeID = hgd.VehicleMakeId, CategoryId = hgd.VehicleCategoryId, Year = hgd.ModelYear }
+                select new RptFleetHireGroupDetail
+                {
+                    HireGroupName = hgd.HireGroup.HireGroupName,
+                    PlateNumber = vehicle.PlateNumber,
+                    ParentHireGroupName = /*!hgd.HireGroup.ParentHireGroup != null ? */"Parent Hire Group ", //: string.Empty,
+                    VehicleMakeName = vehicle.VehicleMake.VehicleMakeName,
+                    FleetPoolName=vehicle.FleetPool.FleetPoolName,
+                    VehicleModelName = vehicle.VehicleModel.VehicleModelName,
+                    VehicleCategoryName=vehicle.VehicleCategory.VehicleCategoryName,
+                    ModelYear=vehicle.ModelYear,
+                    Color=vehicle.Color,
+                    CurrentOdometer=vehicle.CurrentOdometer,
+                    VehicleStatusName= vehicle.VehicleStatus.VehicleStatusName,
+                    VehicleAge= (DateTime.Now.Year - vehicle.ModelYear)*12,
+                    Location= vehicle.OperationsWorkPlace.LocationCode
+                };
+            return fleetHireGroupDetailQuery.OrderBy(fhgd => fhgd.FleetPoolName).ToList();
+        }
+
+
+
         /// <summary>
         /// Get By Hire Group
         /// </summary>
         public GetVehicleResponse GetByHireGroup(VehicleSearchRequest request)
         {
-            Expression<Func<Vehicle, bool>> query = vehicle =>
-                (vehicle.HireGroup.HireGroupDetails.Any(hgd => hgd.HireGroupDetailId == request.HireGroupDetailId)) &&
-                (vehicle.OperationsWorkPlaceId == request.OperationsWorkPlaceId) &&
-                (vehicle.VehicleReservations.Count == 0 ||
-                !vehicle.VehicleReservations.Any(vehicleReservation => vehicleReservation.EndDtTime >= request.StartDtTime &&
-                    vehicleReservation.StartDtTime <= request.EndDtTime));
 
-            IEnumerable<Vehicle> vehicles = request.IsAsc ? DbSet
-                .Include(vehicle => vehicle.HireGroup)
-                .Include(vehicle => vehicle.HireGroup.HireGroupDetails)
-                .Include(vehicle => vehicle.VehicleCategory)
-                .Include(vehicle => vehicle.VehicleMake)
-                .Include(vehicle => vehicle.VehicleModel)
-                .Include(vehicle => vehicle.VehicleStatus)
-                .Where(query)
-                .OrderBy(vehicleOrderByClause[request.VehicleOrderBy]).ToList() :
-                DbSet
-                .Include(vehicle => vehicle.HireGroup)
-                .Include(vehicle => vehicle.VehicleCategory)
-                .Include(vehicle => vehicle.VehicleMake)
-                .Include(vehicle => vehicle.VehicleModel)
-                .Include(vehicle => vehicle.VehicleStatus)
-                .Where(query)
-                .OrderByDescending(vehicleOrderByClause[request.VehicleOrderBy]).ToList();
+            var query = from hireGroupDetail in db.HireGroupDetails
+                        join hireGroup in db.HireGroups on hireGroupDetail.HireGroupId equals hireGroup.HireGroupId
+                        where (hireGroupDetail.HireGroupDetailId == request.HireGroupDetailId || request.HireGroupDetailId == 0)
+                        join vc in db.VehicleCategories on hireGroupDetail.VehicleCategoryId equals vc.VehicleCategoryId
+                        join vm in db.VehicleMakes on hireGroupDetail.VehicleMakeId equals vm.VehicleMakeId
+                        join vmod in db.VehicleModels on hireGroupDetail.VehicleModelId equals vmod.VehicleModelId
+                        join v in db.Vehicles on new { vc.VehicleCategoryId, vm.VehicleMakeId, vmod.VehicleModelId, hireGroupDetail.ModelYear } equals
+                        new { v.VehicleCategoryId, v.VehicleMakeId, v.VehicleModelId, v.ModelYear }
+                        join vs in db.VehicleStatuses on v.VehicleStatusId equals vs.VehicleStatusId
+                        where vs.AvailabilityCheck
+                        join fleetPool in db.FleetPools on v.FleetPoolId equals fleetPool.FleetPoolId
+                        join owp in db.OperationsWorkPlaces on fleetPool.FleetPoolId equals owp.FleetPoolId
+                        where owp.OperationsWorkPlaceId == request.OperationsWorkPlaceId
+                        join vr in db.VehicleReservations on v.VehicleId equals vr.VehicleId into vehicleGroup
+                        from vg in vehicleGroup.DefaultIfEmpty()
+                        where !(vg.EndDtTime >= request.StartDtTime && vg.StartDtTime <= request.EndDtTime)
+                        orderby hireGroup.HireGroupCode, hireGroup.HireGroupName
+                        group v by new
+                        {
+                            hireGroup.HireGroupId,
+                            hireGroup.HireGroupCode,
+                            hireGroup.HireGroupName,
+                            hireGroupDetail.HireGroupDetailId,
+                            hireGroupDetail.VehicleCategoryId,
+                            hireGroupDetail.VehicleMakeId,
+                            hireGroupDetail.VehicleModelId,
+                            vm.VehicleMakeCode,
+                            vm.VehicleMakeName,
+                            vc.VehicleCategoryCode,
+                            vc.VehicleCategoryName,
+                            vmod.VehicleModelCode,
+                            vmod.VehicleModelName,
+                            v.ModelYear
+                        } into vehicle
+                        select vehicle;
 
-            return new GetVehicleResponse { Vehicles = vehicles, TotalCount = DbSet.Count(query) };
+            return new GetVehicleResponse { Vehicles = query.SelectMany(hgd => hgd).Distinct().ToList() };
+        }
+
+        /// <summary>
+        /// Get Upgraded Vehicles By HireGroup
+        /// </summary>
+        public GetVehicleResponse GetUpgradedVehiclesByHireGroup(VehicleSearchRequest request)
+        {
+            var subQuery = from hireGroupDetail in db.HireGroupDetails
+                           join hireGroupUpGrade in db.HireGroupUpGrades on hireGroupDetail.HireGroupId equals hireGroupUpGrade.HireGroupId into hireGroupUpgradeSet
+                           from hgu in hireGroupUpgradeSet.DefaultIfEmpty()
+                           where (hireGroupDetail.HireGroupDetailId == request.HireGroupDetailId || request.HireGroupDetailId == 0)
+                           join hireGroup in db.HireGroups on hireGroupDetail.HireGroupId equals hireGroup.HireGroupId
+                           where (hireGroupDetail.HireGroupDetailId == request.HireGroupDetailId || request.HireGroupDetailId == 0)
+                           select hireGroupDetail;
+
+            var query = from hireGroupDetail in db.HireGroupDetails
+                        join hireGroup in subQuery on hireGroupDetail.HireGroupId equals hireGroup.HireGroupId
+                        where (hireGroupDetail.HireGroupDetailId == request.HireGroupDetailId || request.HireGroupDetailId == 0)
+                        join vc in db.VehicleCategories on hireGroupDetail.VehicleCategoryId equals vc.VehicleCategoryId
+                        join vm in db.VehicleMakes on hireGroupDetail.VehicleMakeId equals vm.VehicleMakeId
+                        join vmod in db.VehicleModels on hireGroupDetail.VehicleModelId equals vmod.VehicleModelId
+                        join v in db.Vehicles on new { vc.VehicleCategoryId, vm.VehicleMakeId, vmod.VehicleModelId, hireGroupDetail.ModelYear } equals
+                        new { v.VehicleCategoryId, v.VehicleMakeId, v.VehicleModelId, v.ModelYear }
+                        join vs in db.VehicleStatuses on v.VehicleStatusId equals vs.VehicleStatusId
+                        where vs.AvailabilityCheck
+                        join fleetPool in db.FleetPools on v.FleetPoolId equals fleetPool.FleetPoolId
+                        join owp in db.OperationsWorkPlaces on fleetPool.FleetPoolId equals owp.FleetPoolId
+                        where owp.OperationsWorkPlaceId == request.OperationsWorkPlaceId
+                        join vr in db.VehicleReservations on v.VehicleId equals vr.VehicleId into vehicleGroup
+                        from vg in vehicleGroup.DefaultIfEmpty()
+                        where vg.EndDtTime >= request.StartDtTime && vg.StartDtTime <= request.EndDtTime
+                        orderby hireGroup.HireGroup.HireGroupCode, hireGroup.HireGroup.HireGroupName
+                        group v by new
+                        {
+                            hireGroup.HireGroupId,
+                            hireGroup.HireGroup.HireGroupCode,
+                            hireGroup.HireGroup.HireGroupName,
+                            hireGroupDetail.HireGroupDetailId,
+                            hireGroupDetail.VehicleCategoryId,
+                            hireGroupDetail.VehicleMakeId,
+                            hireGroupDetail.VehicleModelId,
+                            vm.VehicleMakeCode,
+                            vm.VehicleMakeName,
+                            vc.VehicleCategoryCode,
+                            vc.VehicleCategoryName,
+                            vmod.VehicleModelCode,
+                            vmod.VehicleModelName,
+                            v.ModelYear
+                        } into vehicle
+                        select vehicle;
+
+            return new GetVehicleResponse { Vehicles = query.SelectMany(hgd => hgd).Distinct().ToList() };
         }
 
         /// <summary>
@@ -168,10 +259,10 @@ namespace Cares.Repository.Repositories
         public bool IsVehicleStatusAssociatedWithVehicle(long vehicleStatusId)
         {
             return DbSet.Count(vehicle => vehicle.VehicleStatusId == vehicleStatusId) > 0;
-            
+
         }
 
-         /// <summary>
+        /// <summary>
         /// Association check b/n vehicle and vehicle Model
         /// </summary>
         public bool IsVehicleModelAssociatedWithVehicle(long vehicleModelId)

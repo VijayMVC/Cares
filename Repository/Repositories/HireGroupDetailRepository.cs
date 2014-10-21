@@ -47,22 +47,43 @@ namespace Cares.Repository.Repositories
         {
             short modelYear;
             bool isModelYear = Int16.TryParse(searchText, out modelYear);
-            return DbSet
-                .Include("HireGroup")
-                .Include("VehicleCategory")
-                .Include("VehicleMake")
-                .Include("VehicleModel")
-                .Where(hg => (string.IsNullOrEmpty(searchText) ||
-                                      ((hg.HireGroup.HireGroupCode.Contains(searchText) || hg.HireGroup.HireGroupName.Contains(searchText)) ||
-                                       (hg.VehicleMake.VehicleMakeCode.Contains(searchText) || hg.VehicleMake.VehicleMakeName.Contains(searchText)) ||
-                                       (hg.VehicleCategory.VehicleCategoryCode.Contains(searchText) || hg.VehicleCategory.VehicleCategoryName.Contains(searchText)) ||
-                                       (hg.VehicleModel.VehicleModelCode.Contains(searchText) || hg.VehicleModel.VehicleModelName.Contains(searchText)) ||
-                                       (!isModelYear || hg.ModelYear == modelYear)))
-                                       && (!hg.HireGroup.ParentHireGroupId.HasValue)
-                                       && (hg.HireGroup.Vehicles.Any(vehicle => vehicle.OperationsWorkPlaceId == operationWorkPlaceId && 
-                                           (vehicle.VehicleReservations.Count == 0 || 
-                                           !vehicle.VehicleReservations.Any(vehicleReservation => vehicleReservation.EndDtTime >= startDtTime && vehicleReservation.StartDtTime <= endDtTime)))))
-                                      .OrderBy(hg => hg.HireGroup.HireGroupCode).ThenBy(hg => hg.HireGroup.HireGroupName).Take(10).ToList();
+
+            var query = from hireGroupDetail in DbSet
+                        join hireGroup in db.HireGroups on hireGroupDetail.HireGroupId equals hireGroup.HireGroupId where !hireGroup.ParentHireGroupId.HasValue
+                        join vc in db.VehicleCategories on hireGroupDetail.VehicleCategoryId equals vc.VehicleCategoryId
+                        join vm in db.VehicleMakes on hireGroupDetail.VehicleMakeId equals vm.VehicleMakeId
+                        join vmod in db.VehicleModels on hireGroupDetail.VehicleModelId equals vmod.VehicleModelId
+                        join v in db.Vehicles on new { vc.VehicleCategoryId, vm.VehicleMakeId, vmod.VehicleModelId, hireGroupDetail.ModelYear } equals 
+                        new { v.VehicleCategoryId, v.VehicleMakeId, v.VehicleModelId, v.ModelYear } where v.OperationsWorkPlaceId == operationWorkPlaceId
+                        join vs in db.VehicleStatuses on v.VehicleStatusId equals vs.VehicleStatusId where vs.AvailabilityCheck
+                        join vr in db.VehicleReservations on v.VehicleId equals vr.VehicleId into vehicleGroup
+                        from vg in vehicleGroup.DefaultIfEmpty() where !(vg.EndDtTime >= startDtTime && vg.StartDtTime <= endDtTime)
+                        where (((hireGroup.HireGroupCode.Contains(searchText) || hireGroup.HireGroupName.Contains(searchText)) || 
+                               (hireGroupDetail.VehicleCategory.VehicleCategoryCode.Contains(searchText) || hireGroupDetail.VehicleCategory.VehicleCategoryName.Contains(searchText)) ||
+                               (hireGroupDetail.VehicleMake.VehicleMakeCode.Contains(searchText) || hireGroupDetail.VehicleMake.VehicleMakeName.Contains(searchText)) ||
+                               (hireGroupDetail.VehicleModel.VehicleModelCode.Contains(searchText) || hireGroupDetail.VehicleModel.VehicleModelName.Contains(searchText))) &&
+                               (!isModelYear || hireGroupDetail.ModelYear == modelYear))
+                        orderby hireGroup.HireGroupCode, hireGroup.HireGroupName
+                        group hireGroupDetail by new
+                        {
+                            hireGroup.HireGroupId,
+                            hireGroup.HireGroupCode,
+                            hireGroup.HireGroupName,
+                            hireGroupDetail.HireGroupDetailId,
+                            hireGroupDetail.VehicleCategoryId,
+                            hireGroupDetail.VehicleMakeId,
+                            hireGroupDetail.VehicleModelId,
+                            vm.VehicleMakeCode,
+                            vm.VehicleMakeName,
+                            vc.VehicleCategoryCode,
+                            vc.VehicleCategoryName,
+                            vmod.VehicleModelCode,
+                            vmod.VehicleModelName,
+                            v.ModelYear
+                        } into finalHireGroup
+                        select finalHireGroup;
+
+            return query.SelectMany(hg => hg).Distinct().ToList();
         }
 
         /// <summary>
