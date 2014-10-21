@@ -533,6 +533,11 @@ namespace Cares.Repository.BaseRepository
         /// </summary>
         public DbSet<PaymentMode> PaymentModes { get; set; }
 
+        /// <summary>
+        /// Booking Db set
+        /// </summary>
+        public DbSet<BookingMain> BookingMains { get; set; }
+
         #endregion
     }
 }
