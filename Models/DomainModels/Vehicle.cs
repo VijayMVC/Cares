@@ -260,6 +260,11 @@ namespace Cares.Models.DomainModels
         public virtual VehicleDisposalInfo VehicleDisposalInfo { get; set; }
 
         /// <summary>
+        /// vehicle Image Detail
+        /// </summary>
+        public virtual ICollection<VehicleImage> VehicleImages { get; set; }
+
+        /// <summary>
         /// Vehicle Maintenance Type Frequency List
         /// </summary>
         public virtual ICollection<VehicleMaintenanceTypeFrequency> VehicleMaintenanceTypeFrequencies { get; set; }

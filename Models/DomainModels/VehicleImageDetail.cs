@@ -4,41 +4,26 @@ using System.Collections.Generic;
 namespace Cares.Models.DomainModels
 {
     /// <summary>
-    /// Vehicle Image Domain Model
+    /// Vehicle Image Detail
     /// </summary>
-    public class VehicleImage
+    public class VehicleImageDetail
     {
         #region Persisted Properties
+
+        /// <summary>
+        /// Vehicle Image Detail ID
+        /// </summary>
+        public long VehicleImageDetailId { get; set; }
+
+        /// <summary>
+        /// vehicle Id
+        /// </summary>
+        public long VehicleId { get; set; }
 
         /// <summary>
         /// Vehicle Image ID
         /// </summary>
         public long VehicleImageId { get; set; }
-
-        /// <summary>
-        /// Vehicle Id
-        /// </summary>
-        public long VehicleId { get; set; }
-
-        /// <summary>
-        /// Vehicle Image Code
-        /// </summary>
-        public string VehicleImageCode { get; set; }
-
-        /// <summary>
-        /// Vehicle Image Name
-        /// </summary>
-        public string VehicleImageName { get; set; }
-
-        /// <summary>
-        /// Vehicle Image Description
-        /// </summary>
-        public string VehicleImageDescription { get; set; }
-
-        /// <summary>
-        /// Image
-        /// </summary>
-        public byte[] Image { get; set; }
 
         /// <summary>
         /// Row Version
@@ -90,20 +75,21 @@ namespace Cares.Models.DomainModels
         /// </summary>
         public long UserDomainKey { get; set; }
 
+
         #endregion
 
         #region Reference Properties
 
         /// <summary>
-        /// Vehicle Image Hire Group Details Associated to this Vehicle Image
-        /// </summary>
-        public virtual ICollection<VehicleImageHireGroupDetail> VehicleImageHireGroupDetails { get; set; }
-
-        /// <summary>
-        /// Vehcilce Image Detail
+        /// Vehicle
         /// </summary>
         public virtual Vehicle Vehicle { get; set; }
 
+        /// <summary>
+        /// Departments
+        /// </summary>
+        public virtual VehicleImage VehicleImage { get; set; }
         #endregion
+
     }
 }

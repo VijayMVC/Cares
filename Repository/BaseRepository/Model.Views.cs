@@ -29,7 +29,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySetsB30E1036E2FE97380E6DC0189B0F2A9E106401A1B2B816F0BC8209C4F069CA19))]
+[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySetsCF2593DB7E83EEFB828A241CB75EC9E8C179C6E768FF9495EAD1BDDDC43EC593))]
 
 namespace Edm_EntityMappingGeneratedViews
 {
@@ -38,18 +38,18 @@ namespace Edm_EntityMappingGeneratedViews
     /// <Summary>
     /// The type contains views for EntitySets and AssociationSets that were generated at design time.
     /// </Summary>
-    public sealed class ViewsForBaseEntitySetsB30E1036E2FE97380E6DC0189B0F2A9E106401A1B2B816F0BC8209C4F069CA19 : System.Data.Mapping.EntityViewContainer
+    public sealed class ViewsForBaseEntitySetsCF2593DB7E83EEFB828A241CB75EC9E8C179C6E768FF9495EAD1BDDDC43EC593 : System.Data.Mapping.EntityViewContainer
     {
         
         /// <Summary>
         /// The constructor stores the views for the extents and also the hash values generated based on the metadata and mapping closure and views.
         /// </Summary>
-        public ViewsForBaseEntitySetsB30E1036E2FE97380E6DC0189B0F2A9E106401A1B2B816F0BC8209C4F069CA19()
+        public ViewsForBaseEntitySetsCF2593DB7E83EEFB828A241CB75EC9E8C179C6E768FF9495EAD1BDDDC43EC593()
         {
             this.EdmEntityContainerName = "BaseDbContext";
             this.StoreEntityContainerName = "CaresModelStoreContainer";
-            this.HashOverMappingClosure = "1daa25757dfc5b67cb48fad5d09200e77e22389f91cde97f164c98bff516550e";
-            this.HashOverAllExtentViews = "4587696d765fc95096a37bfec011e9dc9e630d1ebfac7c8f565fa8dae5110758";
+            this.HashOverMappingClosure = "828ab80838cc124ccb9201cfd0f20e55145949fff3ad881d264d2e5fe0c2c798";
+            this.HashOverAllExtentViews = "62e5f42417342c4c2e3627de6336ff53193d02902e9cf7a10be4245e1d42bad9";
             this.ViewCount = 248;
         }
         
@@ -2320,13 +2320,14 @@ namespace Edm_EntityMappingGeneratedViews
         private System.Collections.Generic.KeyValuePair<string, string> GetView42()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("CaresModelStoreContainer.VehicleImage", "\r\n    SELECT VALUE -- Constructing VehicleImage\r\n        [CaresModel.Store.Vehicl" +
-                    "eImage](T1.VehicleImage_VehicleImageID, T1.VehicleImage_Image, T1.VehicleImage_V" +
-                    "ehicleImageCode, T1.VehicleImage_VehicleImageName, T1.VehicleImage_VehicleImageD" +
-                    "escription, T1.VehicleImage_RowVersion, T1.VehicleImage_IsActive, T1.VehicleImag" +
-                    "e_IsDeleted, T1.VehicleImage_IsPrivate, T1.VehicleImage_IsReadOnly, T1.VehicleIm" +
-                    "age_RecCreatedDt, T1.VehicleImage_RecCreatedBy, T1.VehicleImage_RecLastUpdatedDt" +
-                    ", T1.VehicleImage_RecLastUpdatedBy, T1.VehicleImage_UserDomainKey)\r\n    FROM (\r\n" +
-                    "        SELECT \r\n            T.VehicleImageId AS VehicleImage_VehicleImageID, \r\n" +
+                    "eImage](T1.VehicleImage_VehicleImageID, T1.VehicleImage_VehicleID, T1.VehicleIma" +
+                    "ge_Image, T1.VehicleImage_VehicleImageCode, T1.VehicleImage_VehicleImageName, T1" +
+                    ".VehicleImage_VehicleImageDescription, T1.VehicleImage_RowVersion, T1.VehicleIma" +
+                    "ge_IsActive, T1.VehicleImage_IsDeleted, T1.VehicleImage_IsPrivate, T1.VehicleIma" +
+                    "ge_IsReadOnly, T1.VehicleImage_RecCreatedDt, T1.VehicleImage_RecCreatedBy, T1.Ve" +
+                    "hicleImage_RecLastUpdatedDt, T1.VehicleImage_RecLastUpdatedBy, T1.VehicleImage_U" +
+                    "serDomainKey)\r\n    FROM (\r\n        SELECT \r\n            T.VehicleImageId AS Vehi" +
+                    "cleImage_VehicleImageID, \r\n            T.VehicleId AS VehicleImage_VehicleID, \r\n" +
                     "            T.Image AS VehicleImage_Image, \r\n            T.VehicleImageCode AS V" +
                     "ehicleImage_VehicleImageCode, \r\n            T.VehicleImageName AS VehicleImage_V" +
                     "ehicleImageName, \r\n            T.VehicleImageDescription AS VehicleImage_Vehicle" +
@@ -5972,19 +5973,20 @@ namespace Edm_EntityMappingGeneratedViews
                     "ription, T1.VehicleImage_RowVersion, T1.VehicleImage_IsActive, T1.VehicleImage_I" +
                     "sDeleted, T1.VehicleImage_IsPrivate, T1.VehicleImage_IsReadOnly, T1.VehicleImage" +
                     "_RecCreatedDt, T1.VehicleImage_RecCreatedBy, T1.VehicleImage_RecLastUpdatedDt, T" +
-                    "1.VehicleImage_RecLastUpdatedBy, T1.VehicleImage_UserDomainKey)\r\n    FROM (\r\n   " +
-                    "     SELECT \r\n            T.VehicleImageID AS VehicleImage_VehicleImageId, \r\n   " +
-                    "         T.Image AS VehicleImage_Image, \r\n            T.VehicleImageCode AS Vehi" +
-                    "cleImage_VehicleImageCode, \r\n            T.VehicleImageName AS VehicleImage_Vehi" +
-                    "cleImageName, \r\n            T.VehicleImageDescription AS VehicleImage_VehicleIma" +
-                    "geDescription, \r\n            T.RowVersion AS VehicleImage_RowVersion, \r\n        " +
-                    "    T.IsActive AS VehicleImage_IsActive, \r\n            T.IsDeleted AS VehicleIma" +
-                    "ge_IsDeleted, \r\n            T.IsPrivate AS VehicleImage_IsPrivate, \r\n           " +
-                    " T.IsReadOnly AS VehicleImage_IsReadOnly, \r\n            T.RecCreatedDt AS Vehicl" +
-                    "eImage_RecCreatedDt, \r\n            T.RecCreatedBy AS VehicleImage_RecCreatedBy, " +
-                    "\r\n            T.RecLastUpdatedDt AS VehicleImage_RecLastUpdatedDt, \r\n           " +
-                    " T.RecLastUpdatedBy AS VehicleImage_RecLastUpdatedBy, \r\n            T.UserDomain" +
-                    "Key AS VehicleImage_UserDomainKey, \r\n            True AS _from0\r\n        FROM Ca" +
+                    "1.VehicleImage_RecLastUpdatedBy, T1.VehicleImage_UserDomainKey, T1.VehicleImage_" +
+                    "VehicleId)\r\n    FROM (\r\n        SELECT \r\n            T.VehicleImageID AS Vehicle" +
+                    "Image_VehicleImageId, \r\n            T.Image AS VehicleImage_Image, \r\n           " +
+                    " T.VehicleImageCode AS VehicleImage_VehicleImageCode, \r\n            T.VehicleIma" +
+                    "geName AS VehicleImage_VehicleImageName, \r\n            T.VehicleImageDescription" +
+                    " AS VehicleImage_VehicleImageDescription, \r\n            T.RowVersion AS VehicleI" +
+                    "mage_RowVersion, \r\n            T.IsActive AS VehicleImage_IsActive, \r\n          " +
+                    "  T.IsDeleted AS VehicleImage_IsDeleted, \r\n            T.IsPrivate AS VehicleIma" +
+                    "ge_IsPrivate, \r\n            T.IsReadOnly AS VehicleImage_IsReadOnly, \r\n         " +
+                    "   T.RecCreatedDt AS VehicleImage_RecCreatedDt, \r\n            T.RecCreatedBy AS " +
+                    "VehicleImage_RecCreatedBy, \r\n            T.RecLastUpdatedDt AS VehicleImage_RecL" +
+                    "astUpdatedDt, \r\n            T.RecLastUpdatedBy AS VehicleImage_RecLastUpdatedBy," +
+                    " \r\n            T.UserDomainKey AS VehicleImage_UserDomainKey, \r\n            T.Ve" +
+                    "hicleID AS VehicleImage_VehicleId, \r\n            True AS _from0\r\n        FROM Ca" +
                     "resModelStoreContainer.VehicleImage AS T\r\n    ) AS T1");
         }
         

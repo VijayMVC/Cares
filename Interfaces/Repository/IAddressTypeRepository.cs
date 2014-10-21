@@ -7,6 +7,9 @@ namespace Cares.Interfaces.Repository
     /// </summary>
     public interface IAddressTypeRepository : IBaseRepository<AddressType, int>
     {
-
+        /// <summary>
+        /// Get Address Type Id using Address Type Key value
+        /// </summary>    
+        short GetAddressTypeIdByAddressTypeKey(long addressTypeKey);
     }
 }

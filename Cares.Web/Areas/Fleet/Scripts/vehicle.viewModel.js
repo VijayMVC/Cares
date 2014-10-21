@@ -15,6 +15,10 @@ define("vehicle/vehicle.viewModel",
                    selectedVehicleCopy = ko.observable(),
                    //Add/Edit Vehicle Item
                    addVehicleItem = ko.observable(),
+                   //Vehicle Image
+                   vehicleIdForImageUpload = ko.observable(),
+                   ///
+                   vehicleImage= ko.observable(),
                     // Show Filter Section
                     filterSectionVisilble = ko.observable(false),
                     // #region Arrays
@@ -121,6 +125,7 @@ define("vehicle/vehicle.viewModel",
                         //Select the newly added Vehicle
                         addVehicleItem(vehicle);
                         showVehicleEditor();
+                        view.initializeForm();
                     },
                       //Edit Vehicle
                     onEditVehicle = function (vehicle, e) {
@@ -128,7 +133,9 @@ define("vehicle/vehicle.viewModel",
                         maintenanceScheduleList.removeAll();
                         selectedVehicle(vehicle);
                         getVehicleById(vehicle);
+                        vehicleIdForImageUpload(vehicle.vehicleId());
                         showVehicleEditor();
+                        view.initializeForm();
                         e.stopImmediatePropagation();
                     },
                       //Get Vehicle data By Id
@@ -146,6 +153,11 @@ define("vehicle/vehicle.viewModel",
                                     var maintenanceScheduleItem = model.MaintenanceScheduleClientMapper(item);
                                     maintenanceScheduleList.push(maintenanceScheduleItem);
                                 });
+
+                                _.each(data.VehicleImages, function (item) {
+                                    vehicleImage(item.ImageSource);
+                                });
+                                
                                 isLoadingVehicles(false);
                             },
                             error: function () {
@@ -466,6 +478,8 @@ define("vehicle/vehicle.viewModel",
                     isVehicleEditorVisible: isVehicleEditorVisible,
                     filterSectionVisilble: filterSectionVisilble,
                     addVehicleItem: addVehicleItem,
+                    vehicleIdForImageUpload: vehicleIdForImageUpload,
+                    vehicleImage: vehicleImage,
                     //Arrays
                     vehicles: vehicles,
                     operations: operations,

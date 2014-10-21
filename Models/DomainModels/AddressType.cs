@@ -11,6 +11,12 @@ namespace Cares.Models.DomainModels
     {
         #region Persisted Properties
         /// <summary>
+        /// Address Type Key
+        /// </summary>
+        public short AddressTypeKey
+        { get; set; }
+
+        /// <summary>
         /// Address Type ID
         /// </summary>
         public short AddressTypeId { get; set; }
