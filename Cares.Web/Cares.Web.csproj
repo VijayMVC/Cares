@@ -242,6 +242,7 @@
     <Compile Include="Areas\Api\Controllers\NrtQueueController.cs" />
     <Compile Include="Areas\Api\Controllers\RaQueueBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\RaQueueController.cs" />
+    <Compile Include="Areas\Api\Controllers\RentalAgreementBookingController.cs" />
     <Compile Include="Areas\Api\Controllers\RentalAgreementVehicleCheckListController.cs" />
     <Compile Include="Areas\Api\Controllers\VehicleModelController.cs" />
     <Compile Include="Areas\Api\Controllers\VehicleStatusController.cs" />

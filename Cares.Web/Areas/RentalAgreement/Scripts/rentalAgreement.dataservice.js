@@ -135,6 +135,14 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
                         dataType: 'json',
                         type: 'GET'
                     });
+
+                    // Define request to get Rental Agreement By Booking
+                    amplify.request.define('getRentalAgreementByBooking', 'ajax', {
+                        url: ist.siteUrl + '/Api/RentalAgreementBooking',
+                        dataType: 'json',
+                        decoder: amplify.request.decoders.istStatusDecoder,
+                        type: 'GET'
+                    });
                     
                     isInitialized = true;
                 }
@@ -300,6 +308,17 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
                     data: params
                 });
             },
+
+            // Get Rental Agreement By Booking
+            getRentalAgreementByBooking = function (params, callbacks) {
+                initialize();
+                return amplify.request({
+                    resourceId: 'getRentalAgreementByBooking',
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    data: params
+                });
+            },
             
             // Save RA
             saveRentalAgreement = function (params, callbacks) {
@@ -329,7 +348,8 @@ define("rentalAgreement/rentalAgreement.dataservice", function () {
             getAdditionalCharges: getAdditionalCharges,
             getRentalAgreement: getRentalAgreement,
             saveRentalAgreement: saveRentalAgreement,
-            getCheckListsForVehicle: getCheckListsForVehicle
+            getCheckListsForVehicle: getCheckListsForVehicle,
+            getRentalAgreementByBooking: getRentalAgreementByBooking
         };
     })();
 
