@@ -54,9 +54,11 @@ namespace Cares.Web.Areas.Fleet.Controllers
         [HttpPost]
         public ActionResult Vehicle(HttpPostedFileBase file, long vehicleId)
         {
+
+            
             if (file != null && file.InputStream != null)
             {
-                
+              
                 // Copy the file
                 using (MemoryStream stream = new MemoryStream())
                 {

@@ -1,7 +1,9 @@
 ﻿using Cares.Implementation.Helpers;
 using Cares.Implementation.Identity;
+using Cares.Implementation.ReportServices;
 using Cares.Implementation.Services;
 using Cares.Interfaces.Helpers;
+using Cares.Interfaces.IReportServices;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.IdentityModels;
@@ -98,6 +100,7 @@ namespace Cares.Implementation
             unityContainer.RegisterType<IVehicleStatusService, VehicleStatusService>();
             unityContainer.RegisterType<IVehicleModelService, VehicleModelService>();
             unityContainer.RegisterType<IRaQueueService, RaQueueService>();
+            unityContainer.RegisterType<IFleetReportService, FleetReportService>();
             unityContainer.RegisterType<INrtQueueService, NrtQueueService>();
 
 

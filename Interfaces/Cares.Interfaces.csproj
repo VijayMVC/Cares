@@ -50,6 +50,7 @@
     <Compile Include="Helpers\IRaDriverHelper.cs" />
     <Compile Include="Helpers\IRentalCharge.cs" />
     <Compile Include="Helpers\IBill.cs" />
+    <Compile Include="IReportServices\IFleetReportService.cs" />
     <Compile Include="IServices\IAdditionalChargeService.cs" />
     <Compile Include="IServices\IAddressBaseDataService.cs" />
     <Compile Include="IServices\IBusinessPartnerInTypeService.cs" />
@@ -248,6 +249,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

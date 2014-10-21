@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Cares.Models.DomainModels;
+using Cares.Models.ReportModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
 
@@ -11,6 +13,10 @@ namespace Cares.Interfaces.Repository
     /// </summary>
     public interface IVehicleRepository : IBaseRepository<Vehicle, long>
     {
+        /// <summary>
+        /// Get fleet HireGroup Detail Report
+        /// </summary>        
+        IList<RptFleetHireGroupDetail>  GetFleetReport();
 
         /// <summary>
         /// Get Vechile against HireGroup

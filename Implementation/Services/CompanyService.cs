@@ -145,6 +145,7 @@ namespace Cares.Implementation.Services
         /// </summary>
         public Company AddUpdateCompany(Company companyRequest)
         {
+
             Company dbVersion = companyRepository.Find(companyRequest.CompanyId);
             if (!companyRepository.IsCompanyCodeExists(companyRequest))
             {

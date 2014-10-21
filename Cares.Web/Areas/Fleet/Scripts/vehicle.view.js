@@ -67,16 +67,27 @@ define("vehicle/vehicle.view",
 // Reads File - Print Out Section
 function readURL(input) {
     if (input.files && input.files[0]) {
-        // ReSharper disable UseOfImplicitGlobalInFunctionScope
         var reader = new FileReader();
-        // ReSharper restore UseOfImplicitGlobalInFunctionScope
         reader.onload = function (e) {
-            $('#vehicleImage')
-                .attr('src', e.target.result)
-                .width(120)
-                .height(120);
-        };
+            var img = new Image;
+            img.onload = function () {
+                if (img.height > 1024 || img.width > 1280) {
+                    toastr.error("Image Max. width 1280 and height 1024px; please resize the image and try again");
+                    $("#vehicleImageSubmitBtn").attr("disabled", "disabled");
+                } else {
+                    $('#vehicleImage')
+                    .attr('src', e.target.result)
+                    .width(120)
+                    .height(120);
+                    if (viewModel.vehicleIdForImageUpload() !== undefined) {
+                        $('#vehicleImageSubmitBtn').attr('disabled', false);
+                    }
+                   
+                }
+            };
+            img.src = reader.result;
 
+        };
         reader.readAsDataURL(input.files[0]);
     }
 }

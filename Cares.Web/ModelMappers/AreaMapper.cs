@@ -67,7 +67,7 @@ namespace Cares.Web.ModelMappers
             return new Area
             {
                 AreaId = source.AreaId,
-                AreaCode = source.AreaCode,
+                AreaCode = source.AreaCode.Trim(),
                 AreaName = source.AreaName,
                 AreaDescription = source.AreaDescription,
                 CityId = source.CityId,

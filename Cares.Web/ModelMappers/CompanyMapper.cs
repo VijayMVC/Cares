@@ -19,7 +19,7 @@ namespace Cares.Web.ModelMappers
             return new DomainModels.Company
             {
                 CompanyId = source.CompanyId,
-                CompanyCode = source.CompanyCode,
+                CompanyCode = source.CompanyCode.Trim(),
                 CompanyName = source.CompanyName,
                 CompanyLegalName = source.CompanyLegalName ?? string.Empty,
                 ParentCompanyId = source.ParentCompanyId,

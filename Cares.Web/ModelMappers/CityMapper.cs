@@ -80,7 +80,7 @@ namespace Cares.Web.ModelMappers
             return new City
             {
                 CityId = source.CityId,
-                CityCode = source.CityCode ,
+                CityCode = source.CityCode.Trim() ,
                 CityName = source.CityName,
                 CityDescription = source.CityDescription,
                 RegionId = source.RegionId,

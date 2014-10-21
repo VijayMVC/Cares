@@ -44,7 +44,7 @@ namespace Cares.Web.ModelMappers
             return new OrgGroup
             {
                   OrgGroupId = orgGroup.OrgGroupId,
-                  OrgGroupCode = orgGroup.OrgGroupCode,
+                  OrgGroupCode = orgGroup.OrgGroupCode.Trim(),
                   OrgGroupName = orgGroup.OrgGroupName,
                   OrgGroupDescription = orgGroup.OrgGroupDescription
             };
