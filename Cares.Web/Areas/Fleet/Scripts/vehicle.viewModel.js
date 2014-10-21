@@ -16,7 +16,7 @@ define("vehicle/vehicle.viewModel",
                    //Add/Edit Vehicle Item
                    addVehicleItem = ko.observable(),
                    //Vehicle Image
-                   vehicleIdForImageUpload = ko.observable(16),
+                   vehicleIdForImageUpload = ko.observable(),
                    ///
                    vehicleImage= ko.observable(),
                     // Show Filter Section

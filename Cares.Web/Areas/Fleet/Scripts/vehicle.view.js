@@ -80,7 +80,7 @@ function readURL(input) {
                     .attr('src', e.target.result)
                     .width(120)
                     .height(120);
-                    if (viewModel.vehicleIdForImageUpload() !== undefined) {
+                    if (ist.vehicle.viewModel.vehicleIdForImageUpload() !== undefined) {
                         $('#vehicleImageSubmitBtn').attr('disabled', false);
                     }
                    
