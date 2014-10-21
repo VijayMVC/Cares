@@ -72,7 +72,7 @@ namespace Cares.Repository.Repositories
                 {
                     HireGroupName = hgd.HireGroup.HireGroupName,
                     PlateNumber = vehicle.PlateNumber,
-                    ParentHireGroupName = hgd.HireGroup.ParentHireGroup != null ? "Parent Hire Group " : string.Empty,
+                    ParentHireGroupName = /*!hgd.HireGroup.ParentHireGroup != null ? */"Parent Hire Group ", //: string.Empty,
                     VehicleMakeName = vehicle.VehicleMake.VehicleMakeName,
                     FleetPoolName=vehicle.FleetPool.FleetPoolName,
                     VehicleModelName = vehicle.VehicleModel.VehicleModelName,
