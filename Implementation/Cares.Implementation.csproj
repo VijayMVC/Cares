@@ -132,6 +132,7 @@
     <Compile Include="Helpers\RentalCharge.cs" />
     <Compile Include="Helpers\TariffTypeHelper.cs" />
     <Compile Include="Identity\IdentityOperation.cs" />
+    <Compile Include="ReportServices\DailyActionService.cs" />
     <Compile Include="ReportServices\FleetReportService.cs" />
     <Compile Include="Resources\BusinessPartner\BpMainType.ar.Designer.cs">
       <AutoGen>True</AutoGen>

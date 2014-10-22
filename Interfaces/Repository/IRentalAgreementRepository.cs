@@ -1,4 +1,6 @@
-﻿using Cares.Models.DomainModels;
+﻿using System.Collections.Generic;
+using Cares.Models.DomainModels;
+using Cares.Models.ReportModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
 
@@ -18,5 +20,10 @@ namespace Cares.Interfaces.Repository
         /// Get all Ra Main
         /// </summary>
         RaMainForRaQueueSearchResponse GetRaMainsForRaQueue(RaQueueSearchRequest request);
+
+        /// <summary>
+        /// Daily Action Detail Report
+        /// </summary>        
+        IList<DailyActionReportResponse> GetDailyActionReport();
     }
 }

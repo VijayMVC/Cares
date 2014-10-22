@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 using Cares.Interfaces.Repository;
 using Cares.Models.Common;
 using Cares.Models.DomainModels;
+using Cares.Models.ReportModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
 using Cares.Repository.BaseRepository;
@@ -91,6 +92,39 @@ namespace Cares.Repository.Repositories
 
             return new RaMainForRaQueueSearchResponse { RaMains = raMains, TotalCount = DbSet.Count(query) };
         }
+
+
+        /// <summary>
+        /// Daily Action Detail Report
+        /// </summary>        
+        public IList<DailyActionReportResponse> GetDailyActionReport()
+        {
+            //var dailyActionDetailQuery = from ramain in db.RaMains
+            //    join address in db.AddressList on
+            //        new {ramain.BusinessPartnerId}
+            //        equals new {address.BusinessPartnerId}
+            //    join raHireGroup in db.RaHireGroups on
+            //        new { ramain.RaMainId }
+            //        equals new{raHireGroup.RaMainId }
+            //    select new DailyActionReportResponse
+            //    {
+            //        Ra = ramain.RaMainId,
+            //        RaStatus = ramain.RaStatus.RaStatusCode,
+            //        CustomerName=address.ContactPerson ,
+            //        Nationality= address.Country.CountryName,
+            //        MobileNumber="not found!",
+            //        HireGroup = raHireGroup.HireGroupDetail.HireGroup.HireGroupName,
+            //        PalteNumber = raHireGroup.Vehicle.PlateNumber,
+            //        FleetPool = raHireGroup.Vehicle.FleetPool.FleetPoolName,
+            //        VehicleMake = raHireGroup.Vehicle.VehicleMake.VehicleMakeName,
+            //        VehicleModel= raHireGroup.Vehicle.VehicleModel.VehicleModelName,
+            //        ModelYear= raHireGroup.Vehicle.ModelYear,
+            //     //   Mileage= raHireGroup.Vehicle.
+
+            //    };
+            return null;
+        }
+
         #endregion
     }
 }

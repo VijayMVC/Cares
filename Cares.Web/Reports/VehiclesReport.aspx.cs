@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using Cares.Interfaces.IReportServices;
-using Cares.Interfaces.IServices;
-using Cares.Models.DomainModels;
+﻿using Cares.Interfaces.IReportServices;
 using Cares.Models.ReportModels;
-using Cares.Models.RequestModels;
-using Cares.Models.ResponseModels;
 using Cares.WebBase.UnityConfiguration;
 using Microsoft.Practices.Unity;
 using Microsoft.Reporting.WebForms;
+using System;
+using System.Collections.Generic;
+using System.Web.UI;
 
 namespace Cares.Web.Reports
 {

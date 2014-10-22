@@ -64,10 +64,10 @@ namespace Cares.Repository.Repositories
 
         public IList<RptFleetHireGroupDetail> GetFleetReport()
         {
-            var fleetHireGroupDetailQuery = from vehicle in DbSet                
+            var fleetHireGroupDetailQuery = from vehicle in db.Vehicles                
                 join hgd in db.HireGroupDetails on
-                    new {ModelID = vehicle.VehicleModelId, MakeID = vehicle.VehicleMakeId, CategoryId = vehicle.VehicleCategoryId, Year= vehicle.ModelYear }
-                    equals new { ModelID = hgd.VehicleMakeId, MakeID = hgd.VehicleMakeId, CategoryId = hgd.VehicleCategoryId, Year = hgd.ModelYear }
+                    new { vehicle.VehicleModelId, vehicle.VehicleMakeId,vehicle.VehicleCategoryId, vehicle.ModelYear }
+                    equals new { hgd.VehicleModelId, hgd.VehicleMakeId,  hgd.VehicleCategoryId, hgd.ModelYear }
                 select new RptFleetHireGroupDetail
                 {
                     HireGroupName = hgd.HireGroup.HireGroupName,
@@ -84,6 +84,7 @@ namespace Cares.Repository.Repositories
                     VehicleAge= (DateTime.Now.Year - vehicle.ModelYear)*12,
                     Location= vehicle.OperationsWorkPlace.LocationCode
                 };
+            
             return fleetHireGroupDetailQuery.OrderBy(fhgd => fhgd.FleetPoolName).ToList();
         }
 

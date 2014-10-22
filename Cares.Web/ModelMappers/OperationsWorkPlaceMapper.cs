@@ -54,6 +54,7 @@ namespace Cares.Web.ModelMappers
             {
                 OperationsWorkPlaceId = source.OperationsWorkPlaceId,
                 LocationCode = source.LocationCode,
+                LocationName = source.LocationName,
                 OperationId = source.OperationId,
                 WorkPlaceId = source.WorkPlaceId,
                 FleetPoolId = source.FleetPoolId,
@@ -71,6 +72,7 @@ namespace Cares.Web.ModelMappers
                 WorkPlaceId = source.WorkPlaceId,
                 OperationsWorkPlaceId = source.OperationsWorkPlaceId,
                 LocationCode = source.LocationCode,
+                LocationName = source.LocationName,
                 OperationId = source.OperationId,
                 OperationName = source.Operation.OperationName,
                 CostCenter = source.CostCenter,

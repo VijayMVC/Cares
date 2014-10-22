@@ -106,6 +106,11 @@ namespace Cares.Repository.BaseRepository
         public DbSet<NrtCharge> NrtCharges { get; set; }
 
         /// <summary>
+        /// Ra Hire Group
+        /// </summary>
+        public DbSet<RaHireGroup> RaHireGroups { get; set; }
+
+        /// <summary>
         /// Nrt Drivers Db Set
         /// </summary>
         public DbSet<NrtDriver> NrtDrivers { get; set; }
