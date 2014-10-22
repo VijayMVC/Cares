@@ -1543,6 +1543,9 @@ namespace Cares.Implementation.Services
             // Create RAHireGroup
             RaHireGroup raHireGroup = new RaHireGroup
             {
+                // TODO: Uncomment when HireGoup Detail gets added to Booking
+                //HireGroupDetailId = bookingMain.HireGroupDetailId,
+                //HireGroupDetail = bookingMain.HireGroupDetail, 
                 RaHireGroupInsurances = new List<RaHireGroupInsurance>()
             };
 
@@ -1559,7 +1562,10 @@ namespace Cares.Implementation.Services
             }
 
             // Add RaHireGroup to RaMain
-            raMain.RaHireGroups.Add(raHireGroup);
+            if (raHireGroup.RaHireGroupInsurances.Count > 0)
+            {
+                raMain.RaHireGroups.Add(raHireGroup);    
+            }
         }
 
         /// <summary>
