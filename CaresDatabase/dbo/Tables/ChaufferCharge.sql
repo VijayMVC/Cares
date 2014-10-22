@@ -18,7 +18,9 @@
     [UserDomainKey]         BIGINT         NOT NULL,
     CONSTRAINT [PK80_1] PRIMARY KEY NONCLUSTERED ([ChaufferChargeID] ASC),
     CONSTRAINT [RefChaufferCharge397] FOREIGN KEY ([ChildChaufferChargeID]) REFERENCES [dbo].[ChaufferCharge] ([ChaufferChargeID]),
-    CONSTRAINT [RefChaufferChargeMain399] FOREIGN KEY ([ChaufferChargeMainID]) REFERENCES [dbo].[ChaufferChargeMain] ([ChaufferChargeMainID]),
+    CONSTRAINT [RefChaufferChargeMain399] FOREIGN KEY ([ChaufferChargeMainID]) REFERENCES [dbo].[ChaufferChargeMain] ([ChaufferChargeMainID]) ON DELETE CASCADE,
     CONSTRAINT [RefDesigGrade528] FOREIGN KEY ([DesigGradeID]) REFERENCES [dbo].[DesigGrade] ([DesigGradeID])
 );
+
+
 

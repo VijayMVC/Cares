@@ -13,7 +13,9 @@
     [RecLastUpdatedDt]       DATETIME       NOT NULL,
     [UserDomainKey]          BIGINT         NOT NULL,
     CONSTRAINT [PK106_1] PRIMARY KEY NONCLUSTERED ([VehicleCheckListItemID] ASC),
-    CONSTRAINT [RefVehicle609] FOREIGN KEY ([VehicleID]) REFERENCES [dbo].[Vehicle] ([VehicleID]),
+    CONSTRAINT [RefVehicle609] FOREIGN KEY ([VehicleID]) REFERENCES [dbo].[Vehicle] ([VehicleID]) ON DELETE CASCADE,
     CONSTRAINT [RefVehicleCheckList608] FOREIGN KEY ([VehicleCheckListID]) REFERENCES [dbo].[VehicleCheckList] ([VehicleCheckListID])
 );
+
+
 

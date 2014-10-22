@@ -13,7 +13,9 @@
     [RecLastUpdatedDt]   DATETIME       NOT NULL,
     [UserDomainKey]      BIGINT         NOT NULL,
     CONSTRAINT [PK12_2_1] PRIMARY KEY NONCLUSTERED ([HireGroupUpGradeID] ASC),
-    CONSTRAINT [RefHireGroup613] FOREIGN KEY ([HireGroupID]) REFERENCES [dbo].[HireGroup] ([HireGroupID]),
+    CONSTRAINT [RefHireGroup613] FOREIGN KEY ([HireGroupID]) REFERENCES [dbo].[HireGroup] ([HireGroupID]) ON DELETE CASCADE,
     CONSTRAINT [RefHireGroup615] FOREIGN KEY ([AllowedHireGroupID]) REFERENCES [dbo].[HireGroup] ([HireGroupID])
 );
+
+
 

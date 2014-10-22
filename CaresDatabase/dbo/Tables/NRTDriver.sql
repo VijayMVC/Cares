@@ -20,7 +20,8 @@
     CONSTRAINT [PK126_2_1_1_1] PRIMARY KEY NONCLUSTERED ([NRTDriverID] ASC),
     CONSTRAINT [RefDesigGrade604] FOREIGN KEY ([DesigGradeID]) REFERENCES [dbo].[DesigGrade] ([DesigGradeID]),
     CONSTRAINT [RefEmployee603] FOREIGN KEY ([ChaufferID]) REFERENCES [dbo].[Employee] ([EmployeeID]),
-    CONSTRAINT [RefNRTVehicle596] FOREIGN KEY ([NRTVehicleID]) REFERENCES [dbo].[NRTVehicle] ([NRTVehicleID]),
-    CONSTRAINT [RefNRTVehicle605] FOREIGN KEY ([NRTVehicleID]) REFERENCES [dbo].[NRTVehicle] ([NRTVehicleID])
+    CONSTRAINT [RefNRTVehicle596] FOREIGN KEY ([NRTVehicleID]) REFERENCES [dbo].[NRTVehicle] ([NRTVehicleID])
 );
+
+
 

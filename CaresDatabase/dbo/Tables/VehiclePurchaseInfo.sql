@@ -15,6 +15,8 @@
     [UserDomainKey]       BIGINT         NOT NULL,
     CONSTRAINT [PK99] PRIMARY KEY NONCLUSTERED ([VehicleID] ASC),
     CONSTRAINT [RefBPMain284] FOREIGN KEY ([BPMainID]) REFERENCES [dbo].[BPMain] ([BPMainID]),
-    CONSTRAINT [RefVehicle212] FOREIGN KEY ([VehicleID]) REFERENCES [dbo].[Vehicle] ([VehicleID])
+    CONSTRAINT [RefVehicle212] FOREIGN KEY ([VehicleID]) REFERENCES [dbo].[Vehicle] ([VehicleID]) ON DELETE CASCADE
 );
+
+
 

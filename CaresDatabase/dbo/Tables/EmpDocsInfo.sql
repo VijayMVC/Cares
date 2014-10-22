@@ -27,7 +27,9 @@
     [RecLastUpdatedBy]   NVARCHAR (100) NOT NULL,
     [UserDomainKey]      BIGINT         NOT NULL,
     CONSTRAINT [PK43_1_2] PRIMARY KEY CLUSTERED ([EmployeeID] ASC),
-    CONSTRAINT [RefEmployee348] FOREIGN KEY ([EmployeeID]) REFERENCES [dbo].[Employee] ([EmployeeID]),
+    CONSTRAINT [RefEmployee348] FOREIGN KEY ([EmployeeID]) REFERENCES [dbo].[Employee] ([EmployeeID]) ON DELETE CASCADE,
     CONSTRAINT [RefLicenseType418] FOREIGN KEY ([LicenseTypeID]) REFERENCES [dbo].[LicenseType] ([LicenseTypeID])
 );
+
+
 

@@ -29,9 +29,11 @@
     CONSTRAINT [RefHireGroup575] FOREIGN KEY ([HireGroupID]) REFERENCES [dbo].[HireGroup] ([HireGroupID]),
     CONSTRAINT [RefOperationsWorkplace412] FOREIGN KEY ([OperationsWorkplaceID]) REFERENCES [dbo].[OperationsWorkplace] ([OperationsWorkplaceID]),
     CONSTRAINT [RefSeasonalDiscount409] FOREIGN KEY ([ChildSeasonalDiscountID]) REFERENCES [dbo].[SeasonalDiscount] ([SeasonalDiscountID]),
-    CONSTRAINT [RefSeasonalDiscountMain568] FOREIGN KEY ([SeasonalDiscountMainID]) REFERENCES [dbo].[SeasonalDiscountMain] ([SeasonalDiscountMainID]),
+    CONSTRAINT [RefSeasonalDiscountMain568] FOREIGN KEY ([SeasonalDiscountMainID]) REFERENCES [dbo].[SeasonalDiscountMain] ([SeasonalDiscountMainID]) ON DELETE CASCADE,
     CONSTRAINT [RefVehicleCategory563] FOREIGN KEY ([VehicleCategoryID]) REFERENCES [dbo].[VehicleCategory] ([VehicleCategoryID]),
     CONSTRAINT [RefVehicleMake562] FOREIGN KEY ([VehicleMakeID]) REFERENCES [dbo].[VehicleMake] ([VehicleMakeID]),
     CONSTRAINT [RefVehicleModel564] FOREIGN KEY ([VehicleModelID]) REFERENCES [dbo].[VehicleModel] ([VehicleModelID])
 );
+
+
 
