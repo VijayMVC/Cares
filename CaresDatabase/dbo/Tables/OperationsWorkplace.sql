@@ -1,6 +1,7 @@
 ﻿CREATE TABLE [dbo].[OperationsWorkplace] (
     [OperationsWorkplaceID] BIGINT         IDENTITY (1, 1) NOT NULL,
     [LocationCode]          NVARCHAR (100) NULL,
+    [LocationName]          NVARCHAR (100) NULL,
     [WorkplaceID]           BIGINT         NOT NULL,
     [OperationID]           BIGINT         NOT NULL,
     [FleetPoolID]           BIGINT         NULL,
@@ -17,9 +18,11 @@
     [UserDomainKey]         BIGINT         NOT NULL,
     CONSTRAINT [PK90] PRIMARY KEY NONCLUSTERED ([OperationsWorkplaceID] ASC),
     CONSTRAINT [RefFleetPool1913] FOREIGN KEY ([FleetPoolID]) REFERENCES [dbo].[FleetPool] ([FleetPoolID]),
-    CONSTRAINT [RefOperation2561] FOREIGN KEY ([OperationID]) REFERENCES [dbo].[Operation] ([OperationID]),
+    CONSTRAINT [RefOperation2561] FOREIGN KEY ([OperationID]) REFERENCES [dbo].[Operation] ([OperationID]) ON DELETE CASCADE,
     CONSTRAINT [RefWorkplace1811] FOREIGN KEY ([WorkplaceID]) REFERENCES [dbo].[Workplace] ([WorkplaceID]) ON DELETE CASCADE
 );
+
+
 
 
 

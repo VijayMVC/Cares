@@ -46,8 +46,6 @@ namespace Cares.Web.Areas.Api.Controllers
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
             return nrtService.FindById(id).CreateFrom();
-            //return nrtService.FindById(29).CreateFrom();
-
         }
 
         #endregion

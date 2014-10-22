@@ -1,5 +1,6 @@
 ﻿CREATE TABLE [dbo].[VehicleImage] (
     [VehicleImageID]          BIGINT         IDENTITY (1, 1) NOT NULL,
+    [VehicleID]               BIGINT         NOT NULL,
     [Image]                   IMAGE          NOT NULL,
     [VehicleImageCode]        NVARCHAR (255) NOT NULL,
     [VehicleImageName]        NVARCHAR (255) NULL,
@@ -14,6 +15,9 @@
     [RecLastUpdatedDt]        DATETIME       NOT NULL,
     [RecLastUpdatedBy]        NVARCHAR (100) NOT NULL,
     [UserDomainKey]           BIGINT         NOT NULL,
-    CONSTRAINT [PK61_1] PRIMARY KEY CLUSTERED ([VehicleImageID] ASC)
+    CONSTRAINT [PK61_1] PRIMARY KEY CLUSTERED ([VehicleImageID] ASC),
+    CONSTRAINT [FK_VehicleImage_Vehicle] FOREIGN KEY ([VehicleID]) REFERENCES [dbo].[Vehicle] ([VehicleID])
 );
+
+
 

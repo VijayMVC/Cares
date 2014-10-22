@@ -24,6 +24,8 @@
     [IsPrivate]           BIT            NOT NULL,
     [UserDomainKey]       BIGINT         NOT NULL,
     CONSTRAINT [PK146] PRIMARY KEY NONCLUSTERED ([VehicleID] ASC),
-    CONSTRAINT [RefVehicle327] FOREIGN KEY ([VehicleID]) REFERENCES [dbo].[Vehicle] ([VehicleID])
+    CONSTRAINT [RefVehicle327] FOREIGN KEY ([VehicleID]) REFERENCES [dbo].[Vehicle] ([VehicleID]) ON DELETE CASCADE
 );
+
+
 

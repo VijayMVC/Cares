@@ -147,27 +147,27 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Service Items
         /// </summary>
-        public virtual ICollection<RaServiceItem> BookingServiceItems { get; set; }
+        public virtual ICollection<BookingService> BookingServiceItems { get; set; }
 
         /// <summary>
         /// Insurances
         /// </summary>
-        public virtual ICollection<RaHireGroupInsurance> BookingInsurances { get; set; }
+        public virtual ICollection<BookingIsurance> BookingInsurances { get; set; }
 
         /// <summary>
         /// Drivers Booked
         /// </summary>
-        public virtual ICollection<RaDriver> BookingDrivers { get; set; }
+        public virtual ICollection<BookingAdditionalDriver> BookingDrivers { get; set; }
 
         /// <summary>
         /// Chauffers Booked
         /// </summary>
-        public virtual ICollection<RaDriver> BookingChauffers { get; set; }
+        public virtual ICollection<BookingChauffeur> BookingChauffers { get; set; }
 
         /// <summary>
-        /// Payments
+        /// Booking Payment
         /// </summary>
-        public virtual ICollection<RaPayment> BookingPayments { get; set; }
+        public virtual ICollection<BookingPayment> BookingPayments { get; set; }
 
         #endregion
     }

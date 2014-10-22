@@ -13,6 +13,8 @@
     [UserDomainKey]              BIGINT         NOT NULL,
     CONSTRAINT [PK106] PRIMARY KEY NONCLUSTERED ([MaintenanceTypeFrequencyID] ASC),
     CONSTRAINT [RefMaintenanceType314] FOREIGN KEY ([MaintenanceTypeID]) REFERENCES [dbo].[MaintenanceType] ([MaintenanceTypeID]),
-    CONSTRAINT [RefVehicle220] FOREIGN KEY ([VehicleID]) REFERENCES [dbo].[Vehicle] ([VehicleID])
+    CONSTRAINT [RefVehicle220] FOREIGN KEY ([VehicleID]) REFERENCES [dbo].[Vehicle] ([VehicleID]) ON DELETE CASCADE
 );
+
+
 

@@ -19,6 +19,8 @@
     CONSTRAINT [PK111_1] PRIMARY KEY NONCLUSTERED ([ServiceRtID] ASC),
     CONSTRAINT [RefServiceItem383] FOREIGN KEY ([ServiceItemID]) REFERENCES [dbo].[ServiceItem] ([ServiceItemID]),
     CONSTRAINT [RefServiceRt386] FOREIGN KEY ([ChildServiceRtID]) REFERENCES [dbo].[ServiceRt] ([ServiceRtID]),
-    CONSTRAINT [RefServiceRtMain385] FOREIGN KEY ([ServiceRtMainID]) REFERENCES [dbo].[ServiceRtMain] ([ServiceRtMainID])
+    CONSTRAINT [RefServiceRtMain385] FOREIGN KEY ([ServiceRtMainID]) REFERENCES [dbo].[ServiceRtMain] ([ServiceRtMainID]) ON DELETE CASCADE
 );
+
+
 

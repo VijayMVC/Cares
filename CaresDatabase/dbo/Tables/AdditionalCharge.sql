@@ -18,7 +18,9 @@
     [UserDomainKey]           BIGINT         NOT NULL,
     CONSTRAINT [PK82_1] PRIMARY KEY NONCLUSTERED ([AdditionalChargeID] ASC),
     CONSTRAINT [RefAdditionalCharge400] FOREIGN KEY ([ChildAdditionalChargeID]) REFERENCES [dbo].[AdditionalCharge] ([AdditionalChargeID]),
-    CONSTRAINT [RefAdditionalChargeType393] FOREIGN KEY ([AdditionalChargeTypeID]) REFERENCES [dbo].[AdditionalChargeType] ([AdditionalChargeTypeID]),
-    CONSTRAINT [RefHireGroupDetail394] FOREIGN KEY ([HireGroupDetailID]) REFERENCES [dbo].[HireGroupDetail] ([HireGroupDetailID])
+    CONSTRAINT [RefAdditionalChargeType393] FOREIGN KEY ([AdditionalChargeTypeID]) REFERENCES [dbo].[AdditionalChargeType] ([AdditionalChargeTypeID]) ON DELETE CASCADE,
+    CONSTRAINT [RefHireGroupDetail394] FOREIGN KEY ([HireGroupDetailID]) REFERENCES [dbo].[HireGroupDetail] ([HireGroupDetailID]) ON DELETE CASCADE
 );
+
+
 

@@ -60,6 +60,7 @@
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
     <Folder Include="dbo\Views\" />
+    <Folder Include="Security\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\WorkplaceType.sql" />
@@ -291,5 +292,12 @@
     <Build Include="dbo\Views\AddressView.sql" />
     <Build Include="dbo\Views\AdditionalDriverChargeView.sql" />
     <Build Include="dbo\Views\AdditionalChargeView.sql" />
+    <Build Include="dbo\Tables\BookingService.sql" />
+    <Build Include="dbo\Tables\BookingIsurance.sql" />
+    <Build Include="dbo\Tables\BookingChauffeur.sql" />
+    <Build Include="dbo\Tables\BookingAdditionalDriver.sql" />
+    <Build Include="Security\cares.sql" />
+    <Build Include="Security\RoleMemberships.sql" />
+    <Build Include="dbo\Tables\BookingPayment.sql" />
   </ItemGroup>
 </Project>

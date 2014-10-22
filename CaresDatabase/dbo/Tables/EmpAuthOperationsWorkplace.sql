@@ -15,7 +15,9 @@
     [IsOperationDefault]           BIT            CONSTRAINT [DF__EmpAuthOp__IsOpe__64CCF2AE] DEFAULT ((0)) NOT NULL,
     [UserDomainKey]                BIGINT         NOT NULL,
     CONSTRAINT [PK43_1_3_1] PRIMARY KEY NONCLUSTERED ([EmpAuthOperationsWorkplaceID] ASC),
-    CONSTRAINT [RefEmployee612] FOREIGN KEY ([EmployeeID]) REFERENCES [dbo].[Employee] ([EmployeeID]),
+    CONSTRAINT [RefEmployee612] FOREIGN KEY ([EmployeeID]) REFERENCES [dbo].[Employee] ([EmployeeID]) ON DELETE CASCADE,
     CONSTRAINT [RefOperationsWorkplace611] FOREIGN KEY ([OperationsWorkplaceID]) REFERENCES [dbo].[OperationsWorkplace] ([OperationsWorkplaceID])
 );
+
+
 

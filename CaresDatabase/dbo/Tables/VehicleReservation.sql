@@ -21,6 +21,8 @@
     CONSTRAINT [RefBookingMain510] FOREIGN KEY ([BookingMainID]) REFERENCES [dbo].[BookingMain] ([BookingMainID]),
     CONSTRAINT [RefNRTMain584] FOREIGN KEY ([NRTMainID]) REFERENCES [dbo].[NRTMain] ([NRTMainID]),
     CONSTRAINT [RefRAMain512] FOREIGN KEY ([RAMainID]) REFERENCES [dbo].[RAMain] ([RAMainID]),
-    CONSTRAINT [RefVehicle509] FOREIGN KEY ([VehicleID]) REFERENCES [dbo].[Vehicle] ([VehicleID])
+    CONSTRAINT [RefVehicle509] FOREIGN KEY ([VehicleID]) REFERENCES [dbo].[Vehicle] ([VehicleID]) ON DELETE CASCADE
 );
+
+
 

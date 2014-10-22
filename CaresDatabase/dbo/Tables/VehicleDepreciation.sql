@@ -13,6 +13,8 @@
     [RecLastUpdatedDt]      DATETIME       NOT NULL,
     [UserDomainKey]         BIGINT         NOT NULL,
     CONSTRAINT [PK_VehicleDepreciation_1] PRIMARY KEY CLUSTERED ([VehicleID] ASC),
-    CONSTRAINT [RefVehicle2251] FOREIGN KEY ([VehicleID]) REFERENCES [dbo].[Vehicle] ([VehicleID])
+    CONSTRAINT [RefVehicle2251] FOREIGN KEY ([VehicleID]) REFERENCES [dbo].[Vehicle] ([VehicleID]) ON DELETE CASCADE
 );
+
+
 

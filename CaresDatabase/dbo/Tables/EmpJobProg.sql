@@ -17,7 +17,9 @@
     [UserDomainKey]    BIGINT         NOT NULL,
     CONSTRAINT [PK43_1_3] PRIMARY KEY CLUSTERED ([EmpJobProgID] ASC),
     CONSTRAINT [RefDesignation350] FOREIGN KEY ([DesignationID]) REFERENCES [dbo].[Designation] ([DesignationID]),
-    CONSTRAINT [RefEmployee349] FOREIGN KEY ([EmployeeID]) REFERENCES [dbo].[Employee] ([EmployeeID]),
+    CONSTRAINT [RefEmployee349] FOREIGN KEY ([EmployeeID]) REFERENCES [dbo].[Employee] ([EmployeeID]) ON DELETE CASCADE,
     CONSTRAINT [RefWorkplace351] FOREIGN KEY ([WorkplaceID]) REFERENCES [dbo].[Workplace] ([WorkplaceID])
 );
+
+
 
