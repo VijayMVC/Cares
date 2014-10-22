@@ -13,7 +13,7 @@ namespace Cares.Implementation.ReportServices
     {
         #region Private
 
-        private readonly IVehicleRepository vehicleRepository;
+        private readonly IRentalAgreementRepository rentalAgreementRepository;
 
         #endregion
         #region Constructors
@@ -21,17 +21,17 @@ namespace Cares.Implementation.ReportServices
         /// <summary>
         /// Constructor
         /// </summary>
-        public DailyActionService(IVehicleRepository vehicleRepository)
+        public DailyActionService(IRentalAgreementRepository rentalAgreementRepository)
         {
-            this.vehicleRepository = vehicleRepository;
+            this.rentalAgreementRepository = rentalAgreementRepository;
         }
 
         #endregion
         #region Public
 
-        public IList<RptFleetHireGroupDetail> LoadFleetHireGroupDetail()
+        public IList<DailyActionReportResponse> LoadDailyActionReportDetail()
         {
-            return vehicleRepository.GetFleetReport();
+            return rentalAgreementRepository.GetDailyActionReport();
 
         }
 

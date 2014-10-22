@@ -5,6 +5,6 @@ namespace Cares.Interfaces.IReportServices
 {
     public interface IDailyActionService
     {
-      //  IList<DailyActionReportResponse> LoadDailyActionReportDetail();
+        IList<DailyActionReportResponse> LoadDailyActionReportDetail();
     }
 }

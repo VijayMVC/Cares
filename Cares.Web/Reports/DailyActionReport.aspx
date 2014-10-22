@@ -1,16 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DailyActionReport.aspx.cs" Inherits="Cares.Web.Reports.DailyActionReport" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DailyActionReport.aspx.cs" Inherits="Cares.Web.Reports.DailyActionReport" MasterPageFile="~/Views/Shared/Reports.Master" %>
 
-<!DOCTYPE html>
+<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
-    
-    </div>
-    </form>
-</body>
-</html>
+
+
+<asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <rsweb:ReportViewer ID="dailyActionReport" runat="server" Width="100%" Font-Names="Verdana" Font-Size="8pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Height="600px"></rsweb:ReportViewer>    
+ <asp:ScriptManager ID="ScriptManager1" runat="server" ></asp:ScriptManager>                       
+</asp:Content>

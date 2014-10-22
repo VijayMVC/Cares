@@ -99,30 +99,29 @@ namespace Cares.Repository.Repositories
         /// </summary>        
         public IList<DailyActionReportResponse> GetDailyActionReport()
         {
-            //var dailyActionDetailQuery = from ramain in db.RaMains
-            //    join address in db.AddressList on
-            //        new {ramain.BusinessPartnerId}
-            //        equals new {address.BusinessPartnerId}
-            //    join raHireGroup in db.RaHireGroups on
-            //        new { ramain.RaMainId }
-            //        equals new{raHireGroup.RaMainId }
-            //    select new DailyActionReportResponse
-            //    {
-            //        Ra = ramain.RaMainId,
-            //        RaStatus = ramain.RaStatus.RaStatusCode,
-            //        CustomerName=address.ContactPerson ,
-            //        Nationality= address.Country.CountryName,
-            //        MobileNumber="not found!",
-            //        HireGroup = raHireGroup.HireGroupDetail.HireGroup.HireGroupName,
-            //        PalteNumber = raHireGroup.Vehicle.PlateNumber,
-            //        FleetPool = raHireGroup.Vehicle.FleetPool.FleetPoolName,
-            //        VehicleMake = raHireGroup.Vehicle.VehicleMake.VehicleMakeName,
-            //        VehicleModel= raHireGroup.Vehicle.VehicleModel.VehicleModelName,
-            //        ModelYear= raHireGroup.Vehicle.ModelYear,
-            //     //   Mileage= raHireGroup.Vehicle.
-
-            //    };
-            return null;
+            var dailyActionDetailQuery = from raHireGroup in db.RaHireGroups                
+                select new DailyActionReportResponse
+                {
+                    RaNumber = raHireGroup.RaMain.RaMainId,
+                    RAStutus = raHireGroup.RaMain.RaStatus.RaStatusCode,
+                    CustomerName = raHireGroup.RaMain.BusinessPartner.BusinessPartnerName,
+                //    Nationality = raHireGroup.RaMain.BusinessPartner.BusinessPartnerAddressList != null ? raHireGroup.RaMain.BusinessPartner.BusinessPartnerAddressList.FirstOrDefault().Country.CountryName : string.Empty,
+                    Mobile = "Not found!",
+                    HireGroup = raHireGroup.RaMain.RaHireGroups.FirstOrDefault().HireGroupDetail.HireGroup.HireGroupName,
+                    PlateNumber = raHireGroup.Vehicle.PlateNumber,
+                    FleetPool = raHireGroup.Vehicle.FleetPool.FleetPoolName,
+                    VehicleMake = raHireGroup.Vehicle.VehicleMake.VehicleMakeName,
+                    VehicleModel = raHireGroup.Vehicle.VehicleModel.VehicleModelName,
+                    Mileage=raHireGroup.Vehicle.InitialOdometer-raHireGroup.Vehicle.CurrentOdometer,
+                    ModelYear = raHireGroup.Vehicle.ModelYear,
+                    VehicleStatus = raHireGroup.Vehicle.VehicleStatus.VehicleStatusName,
+                    CurrentLocation = raHireGroup.Vehicle.OperationsWorkPlace.LocationCode,
+                    AmountBalance = raHireGroup.RaMain.Balance,
+                    AmountPaid = raHireGroup.RaMain.AmountPaid,
+                    InDate = raHireGroup.RaMain.StartDtTime,
+                    OutDate = raHireGroup.RaMain.EndDtTime
+                };
+            return dailyActionDetailQuery.OrderBy(raHireGroup => raHireGroup.HireGroup).ToList();
         }
 
         #endregion

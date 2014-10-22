@@ -289,25 +289,25 @@ namespace Cares.Web.Reports {
             
             private global::System.Data.DataColumn columnMobile;
             
-            private global::System.Data.DataColumn columnPaid;
+            private global::System.Data.DataColumn columnAmountPaid;
             
-            private global::System.Data.DataColumn columnBalance;
+            private global::System.Data.DataColumn columnAmountBalance;
             
             private global::System.Data.DataColumn columnHireGroup;
             
-            private global::System.Data.DataColumn columnPlate;
+            private global::System.Data.DataColumn columnPlateNumber;
             
             private global::System.Data.DataColumn columnFleetPool;
             
-            private global::System.Data.DataColumn columnMake;
+            private global::System.Data.DataColumn columnVehicleMake;
             
-            private global::System.Data.DataColumn columnModel;
+            private global::System.Data.DataColumn columnVehicleModel;
             
             private global::System.Data.DataColumn columnModelYear;
             
             private global::System.Data.DataColumn columnMileage;
             
-            private global::System.Data.DataColumn columnStatus;
+            private global::System.Data.DataColumn columnVehicleStatus;
             
             private global::System.Data.DataColumn columnCurrentLocation;
             
@@ -396,17 +396,17 @@ namespace Cares.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn PaidColumn {
+            public global::System.Data.DataColumn AmountPaidColumn {
                 get {
-                    return this.columnPaid;
+                    return this.columnAmountPaid;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn BalanceColumn {
+            public global::System.Data.DataColumn AmountBalanceColumn {
                 get {
-                    return this.columnBalance;
+                    return this.columnAmountBalance;
                 }
             }
             
@@ -420,9 +420,9 @@ namespace Cares.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn PlateColumn {
+            public global::System.Data.DataColumn PlateNumberColumn {
                 get {
-                    return this.columnPlate;
+                    return this.columnPlateNumber;
                 }
             }
             
@@ -436,17 +436,17 @@ namespace Cares.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MakeColumn {
+            public global::System.Data.DataColumn VehicleMakeColumn {
                 get {
-                    return this.columnMake;
+                    return this.columnVehicleMake;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ModelColumn {
+            public global::System.Data.DataColumn VehicleModelColumn {
                 get {
-                    return this.columnModel;
+                    return this.columnVehicleModel;
                 }
             }
             
@@ -468,9 +468,9 @@ namespace Cares.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn StatusColumn {
+            public global::System.Data.DataColumn VehicleStatusColumn {
                 get {
-                    return this.columnStatus;
+                    return this.columnVehicleStatus;
                 }
             }
             
@@ -565,16 +565,16 @@ namespace Cares.Web.Reports {
                         string CustomerName, 
                         string Nationality, 
                         string Mobile, 
-                        string Paid, 
-                        string Balance, 
+                        string AmountPaid, 
+                        string AmountBalance, 
                         string HireGroup, 
-                        string Plate, 
+                        string PlateNumber, 
                         string FleetPool, 
-                        string Make, 
-                        string Model, 
+                        string VehicleMake, 
+                        string VehicleModel, 
                         string ModelYear, 
                         string Mileage, 
-                        string Status, 
+                        string VehicleStatus, 
                         string CurrentLocation, 
                         string OutDate, 
                         string InDate, 
@@ -588,16 +588,16 @@ namespace Cares.Web.Reports {
                         CustomerName,
                         Nationality,
                         Mobile,
-                        Paid,
-                        Balance,
+                        AmountPaid,
+                        AmountBalance,
                         HireGroup,
-                        Plate,
+                        PlateNumber,
                         FleetPool,
-                        Make,
-                        Model,
+                        VehicleMake,
+                        VehicleModel,
                         ModelYear,
                         Mileage,
-                        Status,
+                        VehicleStatus,
                         CurrentLocation,
                         OutDate,
                         InDate,
@@ -631,16 +631,16 @@ namespace Cares.Web.Reports {
                 this.columnCustomerName = base.Columns["CustomerName"];
                 this.columnNationality = base.Columns["Nationality"];
                 this.columnMobile = base.Columns["Mobile"];
-                this.columnPaid = base.Columns["Paid"];
-                this.columnBalance = base.Columns["Balance"];
+                this.columnAmountPaid = base.Columns["AmountPaid"];
+                this.columnAmountBalance = base.Columns["AmountBalance"];
                 this.columnHireGroup = base.Columns["HireGroup"];
-                this.columnPlate = base.Columns["Plate"];
+                this.columnPlateNumber = base.Columns["PlateNumber"];
                 this.columnFleetPool = base.Columns["FleetPool"];
-                this.columnMake = base.Columns["Make"];
-                this.columnModel = base.Columns["Model"];
+                this.columnVehicleMake = base.Columns["VehicleMake"];
+                this.columnVehicleModel = base.Columns["VehicleModel"];
                 this.columnModelYear = base.Columns["ModelYear"];
                 this.columnMileage = base.Columns["Mileage"];
-                this.columnStatus = base.Columns["Status"];
+                this.columnVehicleStatus = base.Columns["VehicleStatus"];
                 this.columnCurrentLocation = base.Columns["CurrentLocation"];
                 this.columnOutDate = base.Columns["OutDate"];
                 this.columnInDate = base.Columns["InDate"];
@@ -662,26 +662,26 @@ namespace Cares.Web.Reports {
                 base.Columns.Add(this.columnNationality);
                 this.columnMobile = new global::System.Data.DataColumn("Mobile", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMobile);
-                this.columnPaid = new global::System.Data.DataColumn("Paid", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPaid);
-                this.columnBalance = new global::System.Data.DataColumn("Balance", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnBalance);
+                this.columnAmountPaid = new global::System.Data.DataColumn("AmountPaid", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAmountPaid);
+                this.columnAmountBalance = new global::System.Data.DataColumn("AmountBalance", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAmountBalance);
                 this.columnHireGroup = new global::System.Data.DataColumn("HireGroup", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnHireGroup);
-                this.columnPlate = new global::System.Data.DataColumn("Plate", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPlate);
+                this.columnPlateNumber = new global::System.Data.DataColumn("PlateNumber", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPlateNumber);
                 this.columnFleetPool = new global::System.Data.DataColumn("FleetPool", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFleetPool);
-                this.columnMake = new global::System.Data.DataColumn("Make", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMake);
-                this.columnModel = new global::System.Data.DataColumn("Model", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnModel);
+                this.columnVehicleMake = new global::System.Data.DataColumn("VehicleMake", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVehicleMake);
+                this.columnVehicleModel = new global::System.Data.DataColumn("VehicleModel", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVehicleModel);
                 this.columnModelYear = new global::System.Data.DataColumn("ModelYear", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnModelYear);
                 this.columnMileage = new global::System.Data.DataColumn("Mileage", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMileage);
-                this.columnStatus = new global::System.Data.DataColumn("Status", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnStatus);
+                this.columnVehicleStatus = new global::System.Data.DataColumn("VehicleStatus", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVehicleStatus);
                 this.columnCurrentLocation = new global::System.Data.DataColumn("CurrentLocation", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCurrentLocation);
                 this.columnOutDate = new global::System.Data.DataColumn("OutDate", typeof(string), null, global::System.Data.MappingType.Element);
@@ -918,33 +918,33 @@ namespace Cares.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Paid {
+            public string AmountPaid {
                 get {
                     try {
-                        return ((string)(this[this.tableDailyAction.PaidColumn]));
+                        return ((string)(this[this.tableDailyAction.AmountPaidColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Paid\' in table \'DailyAction\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'AmountPaid\' in table \'DailyAction\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDailyAction.PaidColumn] = value;
+                    this[this.tableDailyAction.AmountPaidColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Balance {
+            public string AmountBalance {
                 get {
                     try {
-                        return ((string)(this[this.tableDailyAction.BalanceColumn]));
+                        return ((string)(this[this.tableDailyAction.AmountBalanceColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Balance\' in table \'DailyAction\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'AmountBalance\' in table \'DailyAction\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDailyAction.BalanceColumn] = value;
+                    this[this.tableDailyAction.AmountBalanceColumn] = value;
                 }
             }
             
@@ -966,17 +966,17 @@ namespace Cares.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Plate {
+            public string PlateNumber {
                 get {
                     try {
-                        return ((string)(this[this.tableDailyAction.PlateColumn]));
+                        return ((string)(this[this.tableDailyAction.PlateNumberColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Plate\' in table \'DailyAction\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'PlateNumber\' in table \'DailyAction\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDailyAction.PlateColumn] = value;
+                    this[this.tableDailyAction.PlateNumberColumn] = value;
                 }
             }
             
@@ -998,33 +998,33 @@ namespace Cares.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Make {
+            public string VehicleMake {
                 get {
                     try {
-                        return ((string)(this[this.tableDailyAction.MakeColumn]));
+                        return ((string)(this[this.tableDailyAction.VehicleMakeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Make\' in table \'DailyAction\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'VehicleMake\' in table \'DailyAction\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDailyAction.MakeColumn] = value;
+                    this[this.tableDailyAction.VehicleMakeColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Model {
+            public string VehicleModel {
                 get {
                     try {
-                        return ((string)(this[this.tableDailyAction.ModelColumn]));
+                        return ((string)(this[this.tableDailyAction.VehicleModelColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Model\' in table \'DailyAction\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'VehicleModel\' in table \'DailyAction\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDailyAction.ModelColumn] = value;
+                    this[this.tableDailyAction.VehicleModelColumn] = value;
                 }
             }
             
@@ -1062,17 +1062,17 @@ namespace Cares.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Status {
+            public string VehicleStatus {
                 get {
                     try {
-                        return ((string)(this[this.tableDailyAction.StatusColumn]));
+                        return ((string)(this[this.tableDailyAction.VehicleStatusColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Status\' in table \'DailyAction\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'VehicleStatus\' in table \'DailyAction\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDailyAction.StatusColumn] = value;
+                    this[this.tableDailyAction.VehicleStatusColumn] = value;
                 }
             }
             
@@ -1234,26 +1234,26 @@ namespace Cares.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsPaidNull() {
-                return this.IsNull(this.tableDailyAction.PaidColumn);
+            public bool IsAmountPaidNull() {
+                return this.IsNull(this.tableDailyAction.AmountPaidColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetPaidNull() {
-                this[this.tableDailyAction.PaidColumn] = global::System.Convert.DBNull;
+            public void SetAmountPaidNull() {
+                this[this.tableDailyAction.AmountPaidColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsBalanceNull() {
-                return this.IsNull(this.tableDailyAction.BalanceColumn);
+            public bool IsAmountBalanceNull() {
+                return this.IsNull(this.tableDailyAction.AmountBalanceColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetBalanceNull() {
-                this[this.tableDailyAction.BalanceColumn] = global::System.Convert.DBNull;
+            public void SetAmountBalanceNull() {
+                this[this.tableDailyAction.AmountBalanceColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1270,14 +1270,14 @@ namespace Cares.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsPlateNull() {
-                return this.IsNull(this.tableDailyAction.PlateColumn);
+            public bool IsPlateNumberNull() {
+                return this.IsNull(this.tableDailyAction.PlateNumberColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetPlateNull() {
-                this[this.tableDailyAction.PlateColumn] = global::System.Convert.DBNull;
+            public void SetPlateNumberNull() {
+                this[this.tableDailyAction.PlateNumberColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1294,26 +1294,26 @@ namespace Cares.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMakeNull() {
-                return this.IsNull(this.tableDailyAction.MakeColumn);
+            public bool IsVehicleMakeNull() {
+                return this.IsNull(this.tableDailyAction.VehicleMakeColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMakeNull() {
-                this[this.tableDailyAction.MakeColumn] = global::System.Convert.DBNull;
+            public void SetVehicleMakeNull() {
+                this[this.tableDailyAction.VehicleMakeColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsModelNull() {
-                return this.IsNull(this.tableDailyAction.ModelColumn);
+            public bool IsVehicleModelNull() {
+                return this.IsNull(this.tableDailyAction.VehicleModelColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetModelNull() {
-                this[this.tableDailyAction.ModelColumn] = global::System.Convert.DBNull;
+            public void SetVehicleModelNull() {
+                this[this.tableDailyAction.VehicleModelColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1342,14 +1342,14 @@ namespace Cares.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsStatusNull() {
-                return this.IsNull(this.tableDailyAction.StatusColumn);
+            public bool IsVehicleStatusNull() {
+                return this.IsNull(this.tableDailyAction.VehicleStatusColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetStatusNull() {
-                this[this.tableDailyAction.StatusColumn] = global::System.Convert.DBNull;
+            public void SetVehicleStatusNull() {
+                this[this.tableDailyAction.VehicleStatusColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
