@@ -298,5 +298,6 @@
     <Build Include="dbo\Tables\BookingAdditionalDriver.sql" />
     <Build Include="Security\cares.sql" />
     <Build Include="Security\RoleMemberships.sql" />
+    <Build Include="dbo\Tables\BookingPayment.sql" />
   </ItemGroup>
 </Project>

@@ -170,6 +170,7 @@
     <Compile Include="DomainModels\BookingAdditionalDriver.cs" />
     <Compile Include="DomainModels\BookingChauffeur.cs" />
     <Compile Include="DomainModels\BookingIsurance.cs" />
+    <Compile Include="DomainModels\BookingPayment.cs" />
     <Compile Include="DomainModels\BookingService.cs" />
     <Compile Include="DomainModels\BusinessPartnerDocument.cs" />
     <Compile Include="DomainModels\CreditLimit.cs" />

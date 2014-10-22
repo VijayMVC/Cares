@@ -214,6 +214,25 @@
           <Property Name="OperationID" Type="bigint" Nullable="false" />
           <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
         </EntityType>
+        <EntityType Name="BookingPayment">
+          <Key>
+            <PropertyRef Name="BookingPaymentID" />
+          </Key>
+          <Property Name="BookingPaymentID" Type="bigint" Nullable="false" />
+          <Property Name="PaymentModeID" Type="smallint" Nullable="false" />
+          <Property Name="BookingMainID" Type="bigint" Nullable="false" />
+          <Property Name="BookingPaymentDt" Type="datetime" Nullable="false" />
+          <Property Name="BookingPaymentAmount" Type="float" Nullable="false" />
+          <Property Name="ChequeNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreditCardNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="IssueDate" Type="datetime" />
+          <Property Name="ClearanceDate" Type="datetime" />
+          <Property Name="CreditCardType" Type="nvarchar" MaxLength="100" />
+          <Property Name="Bank" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreditCardExpiryDt" Type="datetime" />
+          <Property Name="PaidBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
+        </EntityType>
         <EntityType Name="BookingService">
           <Key>
             <PropertyRef Name="BookingServiceID" />
@@ -2771,6 +2790,30 @@
             </Principal>
             <Dependent Role="BookingIsurance">
               <PropertyRef Name="InsuranceTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookingPayment_BookingMain">
+          <End Role="BookingMain" Type="Self.BookingMain" Multiplicity="1" />
+          <End Role="BookingPayment" Type="Self.BookingPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BookingMain">
+              <PropertyRef Name="BookingMainID" />
+            </Principal>
+            <Dependent Role="BookingPayment">
+              <PropertyRef Name="BookingMainID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookingPayment_PaymentMode">
+          <End Role="PaymentMode" Type="Self.PaymentMode" Multiplicity="1" />
+          <End Role="BookingPayment" Type="Self.BookingPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentMode">
+              <PropertyRef Name="PaymentModeID" />
+            </Principal>
+            <Dependent Role="BookingPayment">
+              <PropertyRef Name="PaymentModeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5460,6 +5503,7 @@
           <EntitySet Name="BookingChauffeur" EntityType="Self.BookingChauffeur" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BookingIsurance" EntityType="Self.BookingIsurance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BookingMain" EntityType="Self.BookingMain" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookingPayment" EntityType="Self.BookingPayment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BookingService" EntityType="Self.BookingService" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BookingStatus" EntityType="Self.BookingStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BPCompany" EntityType="Self.BPCompany" Schema="dbo" store:Type="Tables" />
@@ -5596,6 +5640,14 @@
           <AssociationSet Name="FK_BookingIsurance_InsuranceType" Association="Self.FK_BookingIsurance_InsuranceType">
             <End Role="InsuranceType" EntitySet="InsuranceType" />
             <End Role="BookingIsurance" EntitySet="BookingIsurance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookingPayment_BookingMain" Association="Self.FK_BookingPayment_BookingMain">
+            <End Role="BookingMain" EntitySet="BookingMain" />
+            <End Role="BookingPayment" EntitySet="BookingPayment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookingPayment_PaymentMode" Association="Self.FK_BookingPayment_PaymentMode">
+            <End Role="PaymentMode" EntitySet="PaymentMode" />
+            <End Role="BookingPayment" EntitySet="BookingPayment" />
           </AssociationSet>
           <AssociationSet Name="FK_BookingService_BookingMain" Association="Self.FK_BookingService_BookingMain">
             <End Role="BookingMain" EntitySet="BookingMain" />
@@ -7514,6 +7566,15 @@
           <AssociationSet Name="FK_BookingService_ServiceType" Association="DomainModels.FK_BookingService_ServiceType">
             <End Role="ServiceType" EntitySet="ServiceTypes" />
             <End Role="BookingService" EntitySet="BookingServices" />
+          </AssociationSet>
+          <EntitySet Name="BookingPayments" EntityType="DomainModels.BookingPayment" />
+          <AssociationSet Name="FK_BookingPayment_BookingMain" Association="DomainModels.FK_BookingPayment_BookingMain">
+            <End Role="BookingMain" EntitySet="BookingMains" />
+            <End Role="BookingPayment" EntitySet="BookingPayments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookingPayment_PaymentMode" Association="DomainModels.FK_BookingPayment_PaymentMode">
+            <End Role="PaymentMode" EntitySet="PaymentModes" />
+            <End Role="BookingPayment" EntitySet="BookingPayments" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Company">
@@ -11111,6 +11172,7 @@
           <NavigationProperty Name="BookingChauffeurs" Relationship="DomainModels.FK_BookingChauffeur_BookingMain" FromRole="BookingMain" ToRole="BookingChauffeur" />
           <NavigationProperty Name="BookingIsurances" Relationship="DomainModels.FK_BookingIsurance_BookingMain" FromRole="BookingMain" ToRole="BookingIsurance" />
           <NavigationProperty Name="BookingServices" Relationship="DomainModels.FK_BookingService_BookingMain" FromRole="BookingMain" ToRole="BookingService" />
+          <NavigationProperty Name="BookingPayments" Relationship="DomainModels.FK_BookingPayment_BookingMain" FromRole="BookingMain" ToRole="BookingPayment" />
         </EntityType>
         <EntityType Name="BookingStatus">
           <Key>
@@ -12920,6 +12982,7 @@
           <Property Name="RecLastUpdatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
           <NavigationProperty Name="RaPayments" Relationship="DomainModels.RefPaymentMode541" FromRole="PaymentMode" ToRole="RAPayment" />
+          <NavigationProperty Name="BookingPayments" Relationship="DomainModels.FK_BookingPayment_PaymentMode" FromRole="PaymentMode" ToRole="BookingPayment" />
         </EntityType>
         <Association Name="RefAllocationStatus502">
           <End Type="DomainModels.AllocationStatus" Role="AllocationStatu" Multiplicity="1" />
@@ -13314,6 +13377,51 @@
             </Principal>
             <Dependent Role="BookingService">
               <PropertyRef Name="ServiceTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BookingPayment">
+          <Key>
+            <PropertyRef Name="BookingPaymentID" />
+          </Key>
+          <Property Name="BookingPaymentID" Type="Int64" Nullable="false" />
+          <Property Name="PaymentModeID" Type="Int16" Nullable="false" />
+          <Property Name="BookingMainID" Type="Int64" Nullable="false" />
+          <Property Name="BookingPaymentDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BookingPaymentAmount" Type="Double" Nullable="false" />
+          <Property Name="ChequeNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreditCardNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IssueDate" Type="DateTime" Precision="3" />
+          <Property Name="ClearanceDate" Type="DateTime" Precision="3" />
+          <Property Name="CreditCardType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Bank" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreditCardExpiryDt" Type="DateTime" Precision="3" />
+          <Property Name="PaidBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="BookingMain" Relationship="DomainModels.FK_BookingPayment_BookingMain" FromRole="BookingPayment" ToRole="BookingMain" />
+          <NavigationProperty Name="PaymentMode" Relationship="DomainModels.FK_BookingPayment_PaymentMode" FromRole="BookingPayment" ToRole="PaymentMode" />
+        </EntityType>
+        <Association Name="FK_BookingPayment_BookingMain">
+          <End Type="DomainModels.BookingMain" Role="BookingMain" Multiplicity="1" />
+          <End Type="DomainModels.BookingPayment" Role="BookingPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BookingMain">
+              <PropertyRef Name="BookingMainId" />
+            </Principal>
+            <Dependent Role="BookingPayment">
+              <PropertyRef Name="BookingMainID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookingPayment_PaymentMode">
+          <End Type="DomainModels.PaymentMode" Role="PaymentMode" Multiplicity="1" />
+          <End Type="DomainModels.BookingPayment" Role="BookingPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentMode">
+              <PropertyRef Name="PaymentModeId" />
+            </Principal>
+            <Dependent Role="BookingPayment">
+              <PropertyRef Name="PaymentModeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -16145,6 +16253,26 @@
                 <ScalarProperty Name="ServiceTypeId" ColumnName="ServiceTypeID" />
                 <ScalarProperty Name="BookingMainId" ColumnName="BookingMainID" />
                 <ScalarProperty Name="BookingServiceId" ColumnName="BookingServiceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookingPayments">
+            <EntityTypeMapping TypeName="DomainModels.BookingPayment">
+              <MappingFragment StoreEntitySet="BookingPayment">
+                <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
+                <ScalarProperty Name="PaidBy" ColumnName="PaidBy" />
+                <ScalarProperty Name="CreditCardExpiryDt" ColumnName="CreditCardExpiryDt" />
+                <ScalarProperty Name="Bank" ColumnName="Bank" />
+                <ScalarProperty Name="CreditCardType" ColumnName="CreditCardType" />
+                <ScalarProperty Name="ClearanceDate" ColumnName="ClearanceDate" />
+                <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+                <ScalarProperty Name="CreditCardNumber" ColumnName="CreditCardNumber" />
+                <ScalarProperty Name="ChequeNumber" ColumnName="ChequeNumber" />
+                <ScalarProperty Name="BookingPaymentAmount" ColumnName="BookingPaymentAmount" />
+                <ScalarProperty Name="BookingPaymentDt" ColumnName="BookingPaymentDt" />
+                <ScalarProperty Name="BookingMainID" ColumnName="BookingMainID" />
+                <ScalarProperty Name="PaymentModeID" ColumnName="PaymentModeID" />
+                <ScalarProperty Name="BookingPaymentID" ColumnName="BookingPaymentID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

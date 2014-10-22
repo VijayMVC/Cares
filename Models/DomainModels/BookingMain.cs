@@ -165,9 +165,9 @@ namespace Cares.Models.DomainModels
         public virtual ICollection<BookingChauffeur> BookingChauffers { get; set; }
 
         /// <summary>
-        /// Payments
+        /// Booking Payment
         /// </summary>
-        public virtual ICollection<RaPayment> BookingPayments { get; set; }
+        public virtual ICollection<BookingPayment> BookingPayments { get; set; }
 
         #endregion
     }

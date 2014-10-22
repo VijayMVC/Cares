@@ -379,6 +379,9 @@
         <AssociationConnector Association="DomainModels.FK_BookingIsurance_InsuranceType" />
         <AssociationConnector Association="DomainModels.FK_BookingService_BookingMain" />
         <AssociationConnector Association="DomainModels.FK_BookingService_ServiceType" />
+        <EntityTypeShape EntityType="DomainModels.BookingPayment" Width="1.5" PointX="40.625" PointY="23" />
+        <AssociationConnector Association="DomainModels.FK_BookingPayment_BookingMain" />
+        <AssociationConnector Association="DomainModels.FK_BookingPayment_PaymentMode" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
