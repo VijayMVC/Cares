@@ -38,6 +38,9 @@ define("rentalAgreement/rentalAgreement.viewModel",
                             resetHireGroups();
                             // Set Vehicle Popup Out Location
                             vehicleOperationsWorkPlaceFilter(rentalAgreement().openLocation());
+                        },
+                        OnBookingNoChange: function(bookingId) {
+                            loadByBooking(bookingId);
                         }
                     },
                     // Allocation Status Enums
@@ -638,6 +641,18 @@ define("rentalAgreement/rentalAgreement.viewModel",
 
                                 // Select Desired Hire Group
                                 selectDesiredHireGroup(getDesiredHireGroup(data));
+                            },
+                            error: function (response) {
+                                toastr.error("Failed to load Rental Agreement. Error: " + response);
+                            }
+                        });
+                    },
+                    // Load Rental Agreement
+                    loadByBooking = function (bookingMainId) {
+                        dataservice.getRentalAgreementByBooking({ id: bookingMainId }, {
+                            success: function (data) {
+                                // Set Ra Main
+                                rentalAgreement(model.RentalAgreement.Create(data, rentalAgreementModelCallbacks, true));
                             },
                             error: function (response) {
                                 toastr.error("Failed to load Rental Agreement. Error: " + response);

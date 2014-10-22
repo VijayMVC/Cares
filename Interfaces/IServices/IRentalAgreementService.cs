@@ -27,5 +27,10 @@ namespace Cares.Interfaces.IServices
         /// Get By Id
         /// </summary>
         RaMain GetById(long id);
+
+        /// <summary>
+        /// Get By Booking Main
+        /// </summary>
+        RaMain GetByBooking(long bookingMainId);
     }
 }

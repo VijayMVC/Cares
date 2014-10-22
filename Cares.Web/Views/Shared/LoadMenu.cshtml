@@ -20,18 +20,18 @@
                 </a>
                 <ul class="sub-menu" role="menu">
                     @{
-                        IList<MenuRight> menuRightchildList = Model.MenuRights.Where(menuright => menuright.Menu.ParentItem != null &&
-                                                                                      menuright.Menu.ParentItem.MenuId == header.Menu.MenuId).ToList();
-                        foreach (MenuRight menuRight in menuRightchildList)
-                        {
-                            <li>
-                                <a href="@Url.Action(menuRight.Menu.MenuFunction, menuRight.Menu.MenuTargetController)"> 
-                                    <i class="@header.Menu.MenuImagePath"></i>
-                                    @menuRight.Menu.MenuTitle
-                                </a>
-                            </li>
+            IList<MenuRight> menuRightchildList = Model.MenuRights.Where(menuright => menuright.Menu.ParentItem != null &&
+                                                                          menuright.Menu.ParentItem.MenuId == header.Menu.MenuId).ToList();
+            foreach (MenuRight menuRight in menuRightchildList)
+            {
+                <li class="@(Request.Url != null && Request.Url.ToString().Contains(menuRight.Menu.MenuTargetController + "/" + menuRight.Menu.MenuFunction) ? "active innerSelected" : "")">
+                    <a href="@Url.Action(menuRight.Menu.MenuFunction, menuRight.Menu.MenuTargetController)">
+                        <i></i>
+                        @menuRight.Menu.MenuTitle
+                    </a>
+                </li>
 
-                        }
+            }
                     }
                 </ul>
 

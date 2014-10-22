@@ -120,6 +120,9 @@
   <data name="RentalAgreementNotFound" xml:space="preserve">
     <value>Rental Agreement with Id {0} not found.</value>
   </data>
+  <data name="BookingNotFound" xml:space="preserve">
+    <value>Booking with Id {0} not found.</value>
+  </data>
   <data name="BusinessPartnerNotFound" xml:space="preserve">
     <value>Business Partner with Id {0} not found.</value>
   </data>

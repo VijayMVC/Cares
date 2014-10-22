@@ -61,6 +61,15 @@ namespace Cares.Implementation.Resources.RentalAgreement {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Booking with Id {0} not found..
+        /// </summary>
+        public static string BookingNotFound {
+            get {
+                return ResourceManager.GetString("BookingNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Business Partner with Id {0} not found..
         /// </summary>
         public static string BusinessPartnerNotFound {
