@@ -368,6 +368,17 @@
         <AssociationConnector Association="DomainModels.AspNetUserRoles" />
         <AssociationConnector Association="DomainModels.RefSeasonalDiscount409" />
         <AssociationConnector Association="DomainModels.FK_VehicleImage_Vehicle" />
+        <EntityTypeShape EntityType="DomainModels.BookingAdditionalDriver" Width="1.5" PointX="29.625" PointY="57" />
+        <EntityTypeShape EntityType="DomainModels.BookingChauffeur" Width="1.5" PointX="29.625" PointY="16.875" />
+        <EntityTypeShape EntityType="DomainModels.BookingIsurance" Width="1.5" PointX="32.625" PointY="44.125" />
+        <EntityTypeShape EntityType="DomainModels.BookingService" Width="1.5" PointX="37.625" PointY="24.5" />
+        <AssociationConnector Association="DomainModels.FK_BookingAdditionalDriver_BookingMain" />
+        <AssociationConnector Association="DomainModels.FK_BookingChauffeur_BookingMain" />
+        <AssociationConnector Association="DomainModels.FK_BookingChauffeur_Employee" />
+        <AssociationConnector Association="DomainModels.FK_BookingIsurance_BookingMain" />
+        <AssociationConnector Association="DomainModels.FK_BookingIsurance_InsuranceType" />
+        <AssociationConnector Association="DomainModels.FK_BookingService_BookingMain" />
+        <AssociationConnector Association="DomainModels.FK_BookingService_ServiceType" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
