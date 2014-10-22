@@ -1531,6 +1531,38 @@ namespace Cares.Implementation.Services
         }
 
         /// <summary>
+        /// Create Insurances From Booking
+        /// </summary>
+        private static void CreateRaInsurancesFromBooking(RaMain raMain, BookingMain bookingMain)
+        {
+            if (raMain.RaHireGroups == null)
+            {
+                raMain.RaHireGroups = new List<RaHireGroup>();
+            }
+
+            // Create RAHireGroup
+            RaHireGroup raHireGroup = new RaHireGroup
+            {
+                RaHireGroupInsurances = new List<RaHireGroupInsurance>()
+            };
+
+            // Add Insurances to RAHireGroup
+            foreach (RaHireGroupInsurance insurance in bookingMain.BookingInsurances)
+            {
+                raHireGroup.RaHireGroupInsurances.Add(new RaHireGroupInsurance
+                {
+                    InsuranceTypeId = insurance.InsuranceTypeId,
+                    StartDtTime = insurance.StartDtTime,
+                    EndDtTime = insurance.EndDtTime,
+                    InsuranceType = insurance.InsuranceType
+                });
+            }
+
+            // Add RaHireGroup to RaMain
+            raMain.RaHireGroups.Add(raHireGroup);
+        }
+
+        /// <summary>
         /// Create Drivers From Booking
         /// </summary>
         private static void CreateRaDriversFromBooking(RaMain raMain, BookingMain bookingMain)
@@ -1540,12 +1572,29 @@ namespace Cares.Implementation.Services
                 raMain.RaDrivers = new List<RaDriver>();
             }
 
+            // Add Drivers From Booking to RA
             foreach (RaDriver driver in bookingMain.BookingDrivers)
             {
                 raMain.RaDrivers.Add(new RaDriver
                 {
+                    IsChauffer = false,
+                    EndDtTime = driver.EndDtTime,
+                    StartDtTime = driver.StartDtTime,
+                    DriverName = driver.DriverName,
+                    DesigGradeId = driver.DesigGradeId,
+                    DesigGrade = driver.DesigGrade,
+                    LicenseExpDt = driver.LicenseExpDt,
+                    LicenseNo = driver.LicenseNo
+                });
+            }
+
+            // Add Chauffers from Booking to RA
+            foreach (RaDriver driver in bookingMain.BookingChauffers)
+            {
+                raMain.RaDrivers.Add(new RaDriver
+                {
                     ChaufferId = driver.ChaufferId,
-                    IsChauffer = driver.IsChauffer,
+                    IsChauffer = true,
                     EndDtTime = driver.EndDtTime,
                     StartDtTime = driver.StartDtTime,
                     DriverName = driver.DriverName,
@@ -1801,6 +1850,9 @@ namespace Cares.Implementation.Services
 
             // Map Header
             CreateRaHeaderFromBooking(raMain, bookingMain);
+
+            // Map Insurances
+            CreateRaInsurancesFromBooking(raMain, bookingMain);
 
             // Map Services
             CreateRaServiceItemsFromBooking(raMain, bookingMain);

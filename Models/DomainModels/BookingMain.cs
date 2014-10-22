@@ -150,9 +150,19 @@ namespace Cares.Models.DomainModels
         public virtual ICollection<RaServiceItem> BookingServiceItems { get; set; }
 
         /// <summary>
+        /// Insurances
+        /// </summary>
+        public virtual ICollection<RaHireGroupInsurance> BookingInsurances { get; set; }
+
+        /// <summary>
         /// Drivers Booked
         /// </summary>
         public virtual ICollection<RaDriver> BookingDrivers { get; set; }
+
+        /// <summary>
+        /// Chauffers Booked
+        /// </summary>
+        public virtual ICollection<RaDriver> BookingChauffers { get; set; }
 
         /// <summary>
         /// Payments
