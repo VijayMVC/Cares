@@ -32,7 +32,7 @@ namespace Cares.Web.ModelMappers
             return new Cares.Models.DomainModels.VehicleCheckList
             {
                 VehicleCheckListId = source.VehicleCheckListId,
-                VehicleCheckListCode = source.VehicleCheckListCode.Trim(),
+                VehicleCheckListCode = source.VehicleCheckListCode,
                 VehicleCheckListName = source.VehicleCheckListName,
                 VehicleCheckListDescription = source.VehicleCheckListDescription,
                 IsInterior = source.IsInterior

@@ -44,7 +44,7 @@ namespace Cares.Web.ModelMappers
             return new Cares.Models.DomainModels.VehicleModel
             {
                 VehicleModelId = source.VehicleModelId,
-                VehicleModelCode = source.VehicleModelCode.Trim(),
+                VehicleModelCode = source.VehicleModelCode,
                 VehicleModelName = source.VehicleModelName,
                 VehicleModelDescription = source.VehicleModelDescription
             };

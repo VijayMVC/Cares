@@ -58,7 +58,7 @@ namespace Cares.Web.ModelMappers
             return new DomainModels.EmpStatus
             {
                 EmpStatusId = source.EmpStatusId,
-                EmpStatusCode = source.EmpStatusCode.Trim(),
+                EmpStatusCode = source.EmpStatusCode,
                 EmpStatusName = source.EmpStatusName,
                 EmpStatusDescription = source.EmpStatusDescription,
                 EmpStatusFlag = source.EmpStatusFlag

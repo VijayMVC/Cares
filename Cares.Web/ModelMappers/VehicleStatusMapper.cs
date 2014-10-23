@@ -46,7 +46,7 @@ namespace Cares.Web.ModelMappers
             {
                 VehicleStatusId = source.VehicleStatusId,
                 VehicleStatusName = source.VehicleStatusName,
-                VehicleStatusCode = source.VehicleStatusCode.Trim(),
+                VehicleStatusCode = source.VehicleStatusCode,
                 VehicleStatusDescription = source.VehicleStatusDescription
             };
         }

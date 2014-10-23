@@ -72,7 +72,7 @@ namespace Cares.Web.ModelMappers
             return new DomainModels.BusinessLegalStatus
             {
                 BusinessLegalStatusId = source.BusinessLegalStatusId,
-                BusinessLegalStatusCode = source.BusinessLegalStatusCode.Trim(),
+                BusinessLegalStatusCode = source.BusinessLegalStatusCode,
                 BusinessLegalStatusName = source.BusinessLegalStatusName,
                 BusinessLegalStatusDescription = source.BusinessLegalStatusDescription
             };

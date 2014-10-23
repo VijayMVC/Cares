@@ -56,7 +56,7 @@ namespace Cares.Web.ModelMappers
             return new BusinessPartnerRelationshipType
             {
                 BusinessPartnerRelationshipTypeId = source.BusinessPartnerRelationshipTypeId,
-                BusinessPartnerRelationshpTypeCode = source.BusinessPartnerRelationshpTypeCode.Trim(),
+                BusinessPartnerRelationshpTypeCode = source.BusinessPartnerRelationshpTypeCode,
                 BusinessPartnerRelationshipTypeName = source.BusinessPartnerRelationshipTypeName,
                 BusinessPartnerRelationshipTypeDescription = source.BusinessPartnerRelationshipTypeDescription
             };

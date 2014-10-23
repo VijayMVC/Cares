@@ -73,7 +73,7 @@ namespace Cares.Web.ModelMappers
             return new OccupationType
             {
                 OccupationTypeId = source.OccupationTypeId,
-                OccupationTypeCode = source.OccupationTypeCode.Trim(),
+                OccupationTypeCode = source.OccupationTypeCode,
                 OccupationTypeName = source.OccupationTypeName,
                 OccupationTypeDescription = source.OccupationTypeDescription
             };

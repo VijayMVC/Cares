@@ -1,16 +1,19 @@
-﻿using Cares.Models.DomainModels;
-using Cares.Models.RequestModels;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Web;
+using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
 
 namespace Cares.Web.ModelMappers
 {
     /// <summary>
     ///  Document Group Mapper 
     /// </summary>
-    public static class DocumentGroupMapper
+    public static class DocumentGroupRepositoryMapper
     {
         /// <summary>
-        ///  Create web model [dropdown] from entity 
+        ///  Create web model from entity [dropdown]
         /// </summary>
         public static Models.DocumentGroupDropDown CreateFromm(this DocumentGroup source)
         {
@@ -56,7 +59,7 @@ namespace Cares.Web.ModelMappers
             return new DocumentGroup
             {
                 DocumentGroupId = source.DocumentGroupId,
-                DocumentGroupCode = source.DocumentGroupCode.Trim(),
+                DocumentGroupCode = source.DocumentGroupCode,
                 DocumentGroupName = source.DocumentGroupName,
                 DocumentGroupDescription = source.DocumentGroupDescription
             };

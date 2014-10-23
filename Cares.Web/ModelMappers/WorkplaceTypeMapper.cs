@@ -59,7 +59,7 @@ namespace Cares.Web.ModelMappers
             return new Cares.Models.DomainModels.WorkPlaceType
             {
                 WorkPlaceTypeId = source.WorkPlaceTypeId,
-                WorkPlaceTypeCode = source.WorkPlaceTypeCode.Trim(),
+                WorkPlaceTypeCode = source.WorkPlaceTypeCode,
                 WorkPlaceTypeName = source.WorkPlaceTypeName,
                 WorkPlaceTypeDescription = source.WorkPlaceTypeDescription,
                 WorkPlaceNature = source.WorkPlaceNature

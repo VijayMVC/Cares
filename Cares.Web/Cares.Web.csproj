@@ -407,7 +407,7 @@
     <Compile Include="ModelMappers\DiscountTypeMapper.cs" />
     <Compile Include="ModelMappers\DocumentMapper.cs" />
     <Compile Include="ModelMappers\EmpStatusMapper.cs" />
-    <Compile Include="ModelMappers\DocumentGroupMapper.cs" />
+    <Compile Include="ModelMappers\DocumentGroupRepositoryMapper.cs" />
     <Compile Include="ModelMappers\InsuranceRateMapper.cs" />
     <Compile Include="ModelMappers\InsuranceTypeMapper.cs" />
     <Compile Include="ModelMappers\JobTypeMapper.cs" />

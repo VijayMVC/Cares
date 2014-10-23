@@ -58,7 +58,7 @@ namespace Cares.Web.ModelMappers
             return new Cares.Models.DomainModels.DiscountType
             {
                 DiscountTypeId = source.DiscountTypeId,
-                DiscountTypeCode = source.DiscountTypeCode.Trim(),
+                DiscountTypeCode = source.DiscountTypeCode,
                 DiscountTypeName = source.DiscountTypeName,
                 DiscountTypeDescription = source.DiscountTypeDescrition
             };

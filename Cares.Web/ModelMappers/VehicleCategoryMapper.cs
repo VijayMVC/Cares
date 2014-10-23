@@ -11,7 +11,7 @@ namespace Cares.Web.ModelMappers
         #region Public
         
         /// <summary>
-        ///  Create web model [dropdown]from entity
+        ///  Create web model from entity
         /// </summary>
         public static VehicleCategoryDropDown CreateFrom(this Cares.Models.DomainModels.VehicleCategory source)
         {
@@ -45,7 +45,7 @@ namespace Cares.Web.ModelMappers
             return new Cares.Models.DomainModels.VehicleCategory
             {
                 VehicleCategoryId = source.VehicleCategoryId,
-                VehicleCategoryCode = source.VehicleCategoryCode.Trim(),
+                VehicleCategoryCode = source.VehicleCategoryCode,
                 VehicleCategoryName = source.VehicleCategoryName,
                 VehicleCategoryDescription = source.VehicleCategoryDescription
             };

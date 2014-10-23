@@ -56,7 +56,7 @@ namespace Cares.Web.ModelMappers
             return new Cares.Models.DomainModels.InsuranceType
             {
                 InsuranceTypeId = source.InsuranceTypeId,
-                InsuranceTypeCode = source.InsuranceTypeCode.Trim(),
+                InsuranceTypeCode = source.InsuranceTypeCode,
                 InsuranceTypeName = source.InsuranceTypeName,
                 InsuranceTypeDescription = source.InsuranceTypeDescription
             };
