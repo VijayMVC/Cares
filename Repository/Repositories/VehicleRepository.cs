@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 using Cares.Interfaces.Repository;
 using Cares.Models.Common;
 using Cares.Models.DomainModels;
@@ -96,21 +94,19 @@ namespace Cares.Repository.Repositories
         {
 
             var query = from hireGroupDetail in db.HireGroupDetails
-                        join hireGroup in db.HireGroups on hireGroupDetail.HireGroupId equals hireGroup.HireGroupId
-                        where (hireGroupDetail.HireGroupDetailId == request.HireGroupDetailId || request.HireGroupDetailId == 0)
+                        from hireGroup in db.HireGroups.Where(hg => hg.HireGroupId == hireGroupDetail.HireGroupId &&
+                            (hireGroupDetail.HireGroupDetailId == request.HireGroupDetailId || request.HireGroupDetailId == 0))
                         join vc in db.VehicleCategories on hireGroupDetail.VehicleCategoryId equals vc.VehicleCategoryId
                         join vm in db.VehicleMakes on hireGroupDetail.VehicleMakeId equals vm.VehicleMakeId
                         join vmod in db.VehicleModels on hireGroupDetail.VehicleModelId equals vmod.VehicleModelId
                         join v in db.Vehicles on new { vc.VehicleCategoryId, vm.VehicleMakeId, vmod.VehicleModelId, hireGroupDetail.ModelYear } equals
                         new { v.VehicleCategoryId, v.VehicleMakeId, v.VehicleModelId, v.ModelYear }
-                        join vs in db.VehicleStatuses on v.VehicleStatusId equals vs.VehicleStatusId
-                        where vs.AvailabilityCheck
+                        from vs in db.VehicleStatuses.Where(vs => vs.VehicleStatusId == v.VehicleStatusId && vs.AvailabilityCheck)
                         join fleetPool in db.FleetPools on v.FleetPoolId equals fleetPool.FleetPoolId
-                        join owp in db.OperationsWorkPlaces on fleetPool.FleetPoolId equals owp.FleetPoolId
+                        from owp in db.OperationsWorkPlaces.Where(owp => owp.FleetPoolId == fleetPool.FleetPoolId && owp.OperationsWorkPlaceId == request.OperationsWorkPlaceId)
                         where owp.OperationsWorkPlaceId == request.OperationsWorkPlaceId
                         join vr in db.VehicleReservations on v.VehicleId equals vr.VehicleId into vehicleGroup
-                        from vg in vehicleGroup.DefaultIfEmpty()
-                        where !(vg.EndDtTime >= request.StartDtTime && vg.StartDtTime <= request.EndDtTime)
+                        from vg in vehicleGroup.Where(vg => !(vg.EndDtTime >= request.StartDtTime && vg.StartDtTime <= request.EndDtTime)).DefaultIfEmpty()
                         orderby hireGroup.HireGroupCode, hireGroup.HireGroupName
                         group v by new
                         {
@@ -140,29 +136,25 @@ namespace Cares.Repository.Repositories
         public GetVehicleResponse GetUpgradedVehiclesByHireGroup(VehicleSearchRequest request)
         {
             var subQuery = from hireGroupDetail in db.HireGroupDetails
-                           join hireGroupUpGrade in db.HireGroupUpGrades on hireGroupDetail.HireGroupId equals hireGroupUpGrade.HireGroupId into hireGroupUpgradeSet
-                           from hgu in hireGroupUpgradeSet.DefaultIfEmpty()
-                           where (hireGroupDetail.HireGroupDetailId == request.HireGroupDetailId || request.HireGroupDetailId == 0)
-                           join hireGroup in db.HireGroups on hireGroupDetail.HireGroupId equals hireGroup.HireGroupId
-                           where (hireGroupDetail.HireGroupDetailId == request.HireGroupDetailId || request.HireGroupDetailId == 0)
+                           from hireGroupUpgrade in db.HireGroupUpGrades.Where(hgu => hgu.HireGroupId == hireGroupDetail.HireGroupId &&
+                               (hireGroupDetail.HireGroupDetailId == request.HireGroupDetailId || request.HireGroupDetailId == 0)).DefaultIfEmpty()
+                           from hireGroup in db.HireGroups.Where(hg => hg.HireGroupId == hireGroupDetail.HireGroupId &&
+                               (hireGroupDetail.HireGroupDetailId == request.HireGroupDetailId || request.HireGroupDetailId == 0) || 
+                               (hireGroupUpgrade.AllowedHireGroupId == hg.HireGroupId))
                            select hireGroupDetail;
 
             var query = from hireGroupDetail in db.HireGroupDetails
                         join hireGroup in subQuery on hireGroupDetail.HireGroupId equals hireGroup.HireGroupId
-                        where (hireGroupDetail.HireGroupDetailId == request.HireGroupDetailId || request.HireGroupDetailId == 0)
                         join vc in db.VehicleCategories on hireGroupDetail.VehicleCategoryId equals vc.VehicleCategoryId
                         join vm in db.VehicleMakes on hireGroupDetail.VehicleMakeId equals vm.VehicleMakeId
                         join vmod in db.VehicleModels on hireGroupDetail.VehicleModelId equals vmod.VehicleModelId
                         join v in db.Vehicles on new { vc.VehicleCategoryId, vm.VehicleMakeId, vmod.VehicleModelId, hireGroupDetail.ModelYear } equals
                         new { v.VehicleCategoryId, v.VehicleMakeId, v.VehicleModelId, v.ModelYear }
-                        join vs in db.VehicleStatuses on v.VehicleStatusId equals vs.VehicleStatusId
-                        where vs.AvailabilityCheck
+                        from vs in db.VehicleStatuses.Where(vs => vs.VehicleStatusId == v.VehicleStatusId && vs.AvailabilityCheck)
                         join fleetPool in db.FleetPools on v.FleetPoolId equals fleetPool.FleetPoolId
-                        join owp in db.OperationsWorkPlaces on fleetPool.FleetPoolId equals owp.FleetPoolId
-                        where owp.OperationsWorkPlaceId == request.OperationsWorkPlaceId
+                        from owp in db.OperationsWorkPlaces.Where(owp => owp.FleetPoolId == fleetPool.FleetPoolId && owp.OperationsWorkPlaceId == request.OperationsWorkPlaceId)
                         join vr in db.VehicleReservations on v.VehicleId equals vr.VehicleId into vehicleGroup
-                        from vg in vehicleGroup.DefaultIfEmpty()
-                        where vg.EndDtTime >= request.StartDtTime && vg.StartDtTime <= request.EndDtTime
+                        from vg in vehicleGroup.Where(vg => !(vg.EndDtTime >= request.StartDtTime && vg.StartDtTime <= request.EndDtTime)).DefaultIfEmpty()
                         orderby hireGroup.HireGroup.HireGroupCode, hireGroup.HireGroup.HireGroupName
                         group v by new
                         {

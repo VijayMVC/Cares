@@ -49,15 +49,16 @@ namespace Cares.Repository.Repositories
             bool isModelYear = Int16.TryParse(searchText, out modelYear);
 
             var query = from hireGroupDetail in DbSet
-                        join hireGroup in db.HireGroups on hireGroupDetail.HireGroupId equals hireGroup.HireGroupId where !hireGroup.ParentHireGroupId.HasValue
+                        join hireGroup in db.HireGroups on hireGroupDetail.HireGroupId equals hireGroup.HireGroupId
                         join vc in db.VehicleCategories on hireGroupDetail.VehicleCategoryId equals vc.VehicleCategoryId
                         join vm in db.VehicleMakes on hireGroupDetail.VehicleMakeId equals vm.VehicleMakeId
                         join vmod in db.VehicleModels on hireGroupDetail.VehicleModelId equals vmod.VehicleModelId
                         join v in db.Vehicles on new { vc.VehicleCategoryId, vm.VehicleMakeId, vmod.VehicleModelId, hireGroupDetail.ModelYear } equals 
-                        new { v.VehicleCategoryId, v.VehicleMakeId, v.VehicleModelId, v.ModelYear } where v.OperationsWorkPlaceId == operationWorkPlaceId
-                        join vs in db.VehicleStatuses on v.VehicleStatusId equals vs.VehicleStatusId where vs.AvailabilityCheck
+                        new { v.VehicleCategoryId, v.VehicleMakeId, v.VehicleModelId, v.ModelYear }
+                        from vs in db.VehicleStatuses.Where(vs => vs.VehicleStatusId == v.VehicleStatusId && 
+                            vs.AvailabilityCheck && v.OperationsWorkPlaceId == operationWorkPlaceId)
                         join vr in db.VehicleReservations on v.VehicleId equals vr.VehicleId into vehicleGroup
-                        from vg in vehicleGroup.DefaultIfEmpty() where !(vg.EndDtTime >= startDtTime && vg.StartDtTime <= endDtTime)
+                        from vg in vehicleGroup.Where(vg => !(vg.EndDtTime >= startDtTime && vg.StartDtTime <= endDtTime)).DefaultIfEmpty()
                         where (((hireGroup.HireGroupCode.Contains(searchText) || hireGroup.HireGroupName.Contains(searchText)) || 
                                (hireGroupDetail.VehicleCategory.VehicleCategoryCode.Contains(searchText) || hireGroupDetail.VehicleCategory.VehicleCategoryName.Contains(searchText)) ||
                                (hireGroupDetail.VehicleMake.VehicleMakeCode.Contains(searchText) || hireGroupDetail.VehicleMake.VehicleMakeName.Contains(searchText)) ||
