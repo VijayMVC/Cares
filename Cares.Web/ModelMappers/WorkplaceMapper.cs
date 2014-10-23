@@ -83,7 +83,7 @@ namespace Cares.Web.ModelMappers
             return new WorkPlace
              {
                  WorkPlaceId = source.WorkPlaceId,
-                 WorkPlaceCode = source.WorkPlaceCode,
+                 WorkPlaceCode = source.WorkPlaceCode.Trim(),
                  WorkPlaceName = source.WorkPlaceName,
                  WorkPlaceDescription = source.WorkPlaceDescription,
                  ParentWorkPlaceId = source.ParentWorkPlaceId,

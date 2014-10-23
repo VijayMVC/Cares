@@ -45,7 +45,7 @@ namespace Cares.Web.ModelMappers
             {
 
                 VehicleMakeId = source.VehicleMakeId,
-                VehicleMakeCode = source.VehicleMakeCode,
+                VehicleMakeCode = source.VehicleMakeCode.Trim(),
                 VehicleMakeName = source.VehicleMakeName,
                 VehicleMakeDescription = source.VehicleMakeDescription
             };

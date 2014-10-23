@@ -30,7 +30,7 @@ namespace Cares.Web.ModelMappers
             return new BusinessPartnerMainType
             {
                 BusinessPartnerMainTypeId = source.BusinessPartnerMainTypeId,
-                BusinessPartnerMainTypeCode = source.BusinessPartnerMainTypeCode,
+                BusinessPartnerMainTypeCode = source.BusinessPartnerMainTypeCode.Trim(),
                 BusinessPartnerMainTypeName = source.BusinessPartnerMainTypeName,
                 BusinessPartnerMainTypeDescription = source.BusinessPartnerMainTypeDescription,
                 BusinessPartnerMainTypeKey = source.BusinessPartnerMainTypeKey

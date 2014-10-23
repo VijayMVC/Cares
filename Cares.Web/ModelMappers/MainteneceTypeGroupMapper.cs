@@ -17,7 +17,7 @@ namespace Cares.Web.ModelMappers
             return new Cares.Models.DomainModels.MaintenanceTypeGroup
             {
                MaintenanceTypeGroupId = source.MaintenanceTypeGroupId,
-               MaintenanceTypeGroupCode = source.MaintenanceTypeGroupCode,
+               MaintenanceTypeGroupCode = source.MaintenanceTypeGroupCode.Trim(),
                MaintenanceTypeGroupName = source.MaintenanceTypeGroupName,
                MaintenanceTypeGroupDescription = source.MaintenanceTypeGroupDescription
             };

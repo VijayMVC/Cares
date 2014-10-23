@@ -57,7 +57,7 @@ namespace Cares.Web.ModelMappers
             return new DomainModels.Designation
             {
                 DesignationId = source.DesignationId,
-                DesignationCode = source.DesignationCode,
+                DesignationCode = source.DesignationCode.Trim(),
                 DesignationName = source.DesignationName,
                 DesignationDescription = source.DesignationDescription
             };

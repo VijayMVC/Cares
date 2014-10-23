@@ -62,7 +62,7 @@ namespace Cares.Web.ModelMappers
             return new DomainModel.MarketingChannel
             {
                 MarketingChannelId = source.MarketingChannelId,
-                MarketingChannelCode = source.MarketingChannelCode,
+                MarketingChannelCode = source.MarketingChannelCode.Trim(),
                 MarketingChannelName = source.MarketingChannelName,
                 MarketingChannelDescription = source.MarketingChannelDescription
             };

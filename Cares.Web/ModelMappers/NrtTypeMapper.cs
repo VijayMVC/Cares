@@ -20,7 +20,7 @@ namespace Cares.Web.ModelMappers
             return new DomainModels.NrtType
             {
                 NrtTypeId = source.NrtTypeId,
-                NrtTypeCode = source.NrtTypeCode,
+                NrtTypeCode = source.NrtTypeCode.Trim(),
                 NrtTypeName = source.NrtTypeName,
                 Description = source.Description,
                 NrtTypeKey = source.NrtTypeKey,
@@ -30,7 +30,7 @@ namespace Cares.Web.ModelMappers
         }
 
         /// <summary>
-        /// Crete From Domain Model
+        /// Crete [dropdown] From Domain Model 
         /// </summary>
         public static NrtTypeDropDown CreateFrom(this DomainModels.NrtType source)
         {

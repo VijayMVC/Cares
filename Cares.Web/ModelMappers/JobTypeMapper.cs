@@ -44,7 +44,7 @@ namespace Cares.Web.ModelMappers
             {
                 JobTypeId = source.JobTypeId,
                 JobTypeName = source.JobTypeName,
-                JobTypeCode = source.JobTypeCode,
+                JobTypeCode = source.JobTypeCode.Trim(),
                 JobTypeDescription = source.JobTypeDescription
             };
         }

@@ -44,7 +44,7 @@ namespace Cares.Web.ModelMappers
             return new Cares.Models.DomainModels.ServiceItem
             {
                 ServiceItemId = source.ServiceItemId,
-                ServiceItemCode = source.ServiceItemCode,
+                ServiceItemCode = source.ServiceItemCode.Trim(),
                 ServiceItemName = source.ServiceItemName,
                 ServiceItemDescription = source.ServiceItemDescription,
                 ServiceTypeId = source.ServiceTypeId
