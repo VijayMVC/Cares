@@ -104,6 +104,11 @@ namespace Cares.Models.DomainModels
         /// </summary>
         public virtual ICollection<RaServiceItem> RaServiceItems { get; set; }
 
+        /// <summary>
+        /// Booking Service Items
+        /// </summary>
+        public virtual ICollection<BookingService> BookingServices { get; set; }
+
         #endregion
     }
 }

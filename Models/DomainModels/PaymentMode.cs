@@ -94,6 +94,11 @@ namespace Cares.Models.DomainModels
         /// </summary>
         public virtual ICollection<RaPayment> RaPayments { get; set; }
 
+        /// <summary>
+        /// Booking Payments
+        /// </summary>
+        public virtual ICollection<BookingPayment> BookingPayments { get; set; }
+
         #endregion
     }
 }

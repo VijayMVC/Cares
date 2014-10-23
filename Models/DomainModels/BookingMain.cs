@@ -56,6 +56,11 @@ namespace Cares.Models.DomainModels
         public DateTime EndDtTime { get; set; }
 
         /// <summary>
+        /// Hire Group Detail Id
+        /// </summary>
+        public long HireGroupDetailId { get; set; }
+
+        /// <summary>
         /// Row Version
         /// </summary>
         public long RowVersion { get; set; }
@@ -110,6 +115,11 @@ namespace Cares.Models.DomainModels
         #region Reference Properties
 
         /// <summary>
+        /// Hire Group Detail
+        /// </summary>
+        public virtual HireGroupDetail HireGroupDetail { get; set; }
+
+        /// <summary>
         /// Booking Status
         /// </summary>
         public virtual BookingStatus BookingStatus { get; set; }
@@ -147,22 +157,22 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Service Items
         /// </summary>
-        public virtual ICollection<BookingService> BookingServiceItems { get; set; }
+        public virtual ICollection<BookingService> BookingServices { get; set; }
 
         /// <summary>
         /// Insurances
         /// </summary>
-        public virtual ICollection<BookingIsurance> BookingInsurances { get; set; }
+        public virtual ICollection<BookingIsurance> BookingIsurances { get; set; }
 
         /// <summary>
         /// Drivers Booked
         /// </summary>
-        public virtual ICollection<BookingAdditionalDriver> BookingDrivers { get; set; }
+        public virtual ICollection<BookingAdditionalDriver> BookingAdditionalDrivers { get; set; }
 
         /// <summary>
         /// Chauffers Booked
         /// </summary>
-        public virtual ICollection<BookingChauffeur> BookingChauffers { get; set; }
+        public virtual ICollection<BookingChauffeur> BookingChauffeurs { get; set; }
 
         /// <summary>
         /// Booking Payment

@@ -22,7 +22,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Payment ModeI D
         /// </summary>
-        public long PaymentModeId { get; set; }
+        public short PaymentModeId { get; set; }
 
         /// <summary>
         /// Booking Payment Dt
@@ -32,7 +32,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Booking Payment Amount
         /// </summary>
-        public float BookingPaymentAmount { get; set; }
+        public double BookingPaymentAmount { get; set; }
 
         /// <summary>
         /// Cheque Number
@@ -63,6 +63,16 @@ namespace Cares.Models.DomainModels
         /// Paid By
         /// </summary>
         public string PaidBy { get; set; }
+
+        /// <summary>
+        /// Credit Card Number
+        /// </summary>
+        public string CreditCardNumber { get; set; }
+
+        /// <summary>
+        /// Credit Card Type
+        /// </summary>
+        public string CreditCardType { get; set; }
 
         /// <summary>
         /// User Domain Key

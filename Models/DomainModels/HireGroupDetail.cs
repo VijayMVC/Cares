@@ -127,6 +127,11 @@ namespace Cares.Models.DomainModels
         /// </summary>
         public virtual ICollection<RaAdditionalCharge> RaAdditionalCharges { get; set; }
 
+        /// <summary>
+        /// Booking Mains
+        /// </summary>
+        public virtual ICollection<BookingMain> BookingMains { get; set; }
+
         #endregion
     }
 }

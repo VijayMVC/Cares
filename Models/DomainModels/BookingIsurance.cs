@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Cares.Models.DomainModels
 {
@@ -23,7 +22,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Insurance Type ID
         /// </summary>
-        public long InsuranceTypeId { get; set; }
+        public short InsuranceTypeId { get; set; }
 
         /// <summary>
         /// Start Date

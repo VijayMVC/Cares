@@ -20,9 +20,9 @@ namespace Cares.Models.DomainModels
         public long BookingMainId { get; set; }
 
         /// <summary>
-        /// Service Type ID
+        /// Service Item ID
         /// </summary>
-        public long ServiceTypeId { get; set; }
+        public long ServiceItemId { get; set; }
 
         /// <summary>
         /// Start Date
@@ -33,6 +33,11 @@ namespace Cares.Models.DomainModels
         /// End Date
         /// </summary>
         public DateTime EndDate { get; set; }
+
+        /// <summary>
+        /// Quantity
+        /// </summary>
+        public int Quantity { get; set; }
 
         /// <summary>
         /// User Domain Key
@@ -49,9 +54,9 @@ namespace Cares.Models.DomainModels
         public virtual BookingMain BookingMain { get; set; }
 
         /// <summary>
-        /// Service Type
+        /// Service Item
         /// </summary>
-        public virtual ServiceType ServiceType { get; set; }
+        public virtual ServiceItem ServiceItem { get; set; }
 
         #endregion
     }
