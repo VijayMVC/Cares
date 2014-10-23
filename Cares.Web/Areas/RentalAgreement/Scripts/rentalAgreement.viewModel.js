@@ -189,11 +189,6 @@ define("rentalAgreement/rentalAgreement.viewModel",
                             calculateBill();
                         }
                     },
-                    // Vehicle Image
-                    vehicleImage = ko.computed(function () {
-                        var id = selectedVehicle().id;
-                        return id ? "/VehicleImage/Index?id=" + id : "";
-                    }),
                     // Stop Event Bubbling
                     stopEventBubbling = function (data, e) {
                         e.stopImmediatePropagation();
@@ -679,11 +674,12 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                     return;
                                 }
 
+                                var desiredHireGroup = undefined;
                                 // Look for Added Insurances - Need to add to the vehicle
                                 if (data.RaHireGroups.length > 0) {
                                     var insuranceItems = [];
 
-                                    _.each(data, function (insurance) {
+                                    _.each(data.RaHireGroups[0].RaHireGroupInsurances, function (insurance) {
                                         var insuranceItem = model.RentalAgreementHireGroupInsurance.Create(insurance);
                                         insuranceItem.isSelected(true);
                                         insuranceItems.push(insuranceItem);
@@ -692,8 +688,8 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                     ko.utils.arrayPushAll(bookingInsurances(), insuranceItems);
                                     bookingInsurances.valueHasMutated();
 
-                                    // Select Desired Hire Group
-                                    selectDesiredHireGroup(data.RaHireGroups[0].HireGroupDetail);
+                                    // Keep Desired Hire Group
+                                    desiredHireGroup = data.RaHireGroups[0].HireGroupDetail;
 
                                     // Reset RaHireGroups
                                     data.RaHireGroups = [];
@@ -701,6 +697,10 @@ define("rentalAgreement/rentalAgreement.viewModel",
 
                                 // Set Ra Main
                                 rentalAgreement(model.RentalAgreement.Create(data, rentalAgreementModelCallbacks, true));
+
+                                // Select Desired Hire Group
+                                selectDesiredHireGroup(desiredHireGroup);
+                                
                             },
                             error: function (response) {
                                 toastr.error("Failed to load Rental Agreement. Error: " + response);
@@ -830,7 +830,6 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     paymentTerms: paymentTerms,
                     selectedVehicle: selectedVehicle,
                     selectHireGroup: selectHireGroup,
-                    vehicleImage: vehicleImage,
                     rentalAgreement: rentalAgreement,
                     model: model,
                     canLookForHireGroups: canLookForHireGroups,
