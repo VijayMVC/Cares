@@ -16,9 +16,11 @@
     [RecLastUpdatedDt]  DATETIME       NOT NULL,
     [UserDomainKey]     BIGINT         NOT NULL,
     CONSTRAINT [PK12_2] PRIMARY KEY NONCLUSTERED ([HireGroupDetailID] ASC),
-    CONSTRAINT [RefHireGroup360] FOREIGN KEY ([HireGroupID]) REFERENCES [dbo].[HireGroup] ([HireGroupID]),
+    CONSTRAINT [RefHireGroup360] FOREIGN KEY ([HireGroupID]) REFERENCES [dbo].[HireGroup] ([HireGroupID]) ON DELETE CASCADE,
     CONSTRAINT [RefVehicleCategory361] FOREIGN KEY ([VehicleCategoryID]) REFERENCES [dbo].[VehicleCategory] ([VehicleCategoryID]),
     CONSTRAINT [RefVehicleMake363] FOREIGN KEY ([VehicleMakeID]) REFERENCES [dbo].[VehicleMake] ([VehicleMakeID]),
     CONSTRAINT [RefVehicleModel362] FOREIGN KEY ([VehicleModelID]) REFERENCES [dbo].[VehicleModel] ([VehicleModelID])
 );
+
+
 

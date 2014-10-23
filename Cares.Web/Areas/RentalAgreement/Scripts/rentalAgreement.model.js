@@ -362,8 +362,28 @@
             recCreatedDt = ko.observable(specifiedRecCreatedDt || moment().toDate()),
             // RaStatus Id
             raStatusId = ko.observable(specifiedRaStatusId || undefined),
+            // Internal Ra Booking Id
+            internalRaBookingId = ko.observable(specifiedRaBookingId || undefined),
             // RaBooking Id
-            raBookingId = ko.observable(specifiedRaBookingId || undefined),
+            raBookingId = ko.computed({
+                read: function() {
+                    return internalRaBookingId();
+                },
+                write: function(value) {
+                    if (!value || internalRaBookingId() === value) {
+                        return;
+                    }
+
+                    internalRaBookingId(value);
+                    if (callbacks && callbacks.OnBookingNoChange) {
+                        callbacks.OnBookingNoChange(value);
+                    }
+                }
+            }),
+            // Can Edit Booking No
+            canEditBooking = ko.computed(function() {
+                return !id();
+            }),
             // Convert To Server Data
             convertToServerData = function () {
                 return {
@@ -436,6 +456,7 @@
             billing: billing,
             raStatusId: raStatusId,
             raBookingId: raBookingId,
+            canEditBooking: canEditBooking,
             rentalAgreementServiceItems: rentalAgreementServiceItems,
             removeRaServiceItem: removeRaServiceItem,
             rentalAgreementDrivers: rentalAgreementDrivers,

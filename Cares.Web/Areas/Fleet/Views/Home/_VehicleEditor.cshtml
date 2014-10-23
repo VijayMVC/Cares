@@ -4,7 +4,7 @@
         <button class="btn  btn-info" id="saveBtn" data-bind="click: $root.onSaveVehicle, enable: hasChanges, css: { 'btn-warning': hasChanges }">@Cares.Web.Resources.Shared.Common.Save</button>
         <button class="btn btn-default" id="saveBtn" data-bind="click: $root.closeVehicleEditor">@Cares.Web.Resources.Shared.Common.Cancel</button>
     </div>
-    <form class="form-horizontal">
+    <form class="form-horizontal" method="post" enctype="multipart/form-data" id="fileUploadForm">
         <div class="form-group">
             <label for="plateNumber" class="control-label h5 col-sm-2">@Cares.Web.Resources.Vehicle.Vehicle.PlateNumber *</label>
             <div class="col-md-2">
@@ -117,7 +117,6 @@
                 <input id="registrationExpDate" type="text" class="form-control" placeholder='@("<" +Cares.Web.Resources.Vehicle.Vehicle.RegisterationExpDate + ">")' data-bind="datepicker: registrationExpDate, validationTooltip: registrationExpDate" />
             </div>
         </div>
-
         <div class="panel panel-info">
             <div class="panel-heading">.</div>
             <!-- Nav tabs -->
@@ -188,7 +187,6 @@
                         <div class="col-md-2">
                             <input type="text" id="bWheelSize" class="form-control" placeholder='@("<" +Cares.Web.Resources.Vehicle.Vehicle.BackWheelSize + ">")' data-bind="value:backWheelSize  , validationTooltip:backWheelSize" />
                         </div>
-
                     </div>
                     <div class="form-group">
                         <label for="accessories" class="control-label h5 col-sm-2">@Cares.Web.Resources.Vehicle.Vehicle.Accessories </label>
@@ -231,7 +229,6 @@
                             <textarea class="form-control" rows="4" placeholder='@("<" +Cares.Web.Resources.Vehicle.Vehicle.PurchaseDescription + ">")' id="pDescription" data-bind="value: purchaseDescription , valueUpdate: 'keyup'"></textarea>
                         </div>
                     </div>
-
                 </div>
                 <!-- third tab - Lease Info-->
                 <div class="tab-pane" id="leaseInfo" data-bind="with: vehicleLeasedInfo">
@@ -380,7 +377,6 @@
                         <thead>
                             <tr>
                                 <th class="checkListItem"> <span>@Cares.Web.Resources.Vehicle.Vehicle.CheckListItem<span></span></span></th>
-
                             </tr>
                         </thead>
                         <tbody>
@@ -419,7 +415,6 @@
                             <input type="text" id="residualVal" class="form-control" placeholder='@("<" +Cares.Web.Resources.Vehicle.Vehicle.ResidualValue + ">")' data-bind="value:residualValue, validationTooltip:residualValue" />
                         </div>
                     </div>
-
                 </div>
                 <!-- eight tab - Disposal Info-->
                 <div class="tab-pane" id="disposalInfo" data-bind="with: vehicleDisposalInfo">
@@ -445,9 +440,22 @@
                     </div>
                 </div>
                 <!-- ninth tab - Upload Image-->
-                <div class="tab-pane" id="uploadImages">
-                </div>
+                <div class="tab-pane" id="uploadImages" >
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            <input type="file" class="form-control" id="vehicleLandingLogo" name="file" onchange="readURL(this);" />
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" id="vehicleImageSubmitBtn" disabled class="btn btn-primary" >Upload</button>
+                        </div>
+                        <div class="col-md-3">
+                            <img id="vehicleImage" src="#" alt="" style="width: 120px;height:120px"data-bind="attr:{ src: $root.vehicleImage }" />
+                            <h5>Vehicle Image<span>(Max size 1280 * 1024 pixels)</span></h5>
+                        </div>
 
+                    </div>
+                    <input type="hidden" id="vehicleId" name="vehicleId" data-bind="value:$root.vehicleIdForImageUpload" />
+                </div>
             </div>
         </div>
 

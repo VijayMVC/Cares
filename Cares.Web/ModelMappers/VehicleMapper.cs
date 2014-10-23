@@ -13,7 +13,7 @@ namespace Cares.Web.ModelMappers
         /// </summary>
         public static Vehicle CreateFrom(this DomainModels.Vehicle source, bool headerOnly = true)
         {
-            DomainModels.VehicleImage image = source.HireGroup != null && source.HireGroup.HireGroupDetails != null  ?
+            DomainModels.VehicleImage image = source.HireGroup != null && source.HireGroup.HireGroupDetails != null ?
                 source.HireGroup.HireGroupDetails.Select(hg => hg.VehicleImageHireGroupDetails.Select(hgd => hgd.VehicleImage)
                     .FirstOrDefault()).FirstOrDefault() : new DomainModels.VehicleImage();
 
@@ -55,7 +55,7 @@ namespace Cares.Web.ModelMappers
             vehicle.TransmissionTypeId = source.TransmissionTypeId;
             vehicle.TransmissionType = source.TransmissionType != null ? source.TransmissionType.CreateFrom() : new TransmissionType();
             vehicle.OperationId = source.OperationsWorkPlace != null ? (int)source.OperationsWorkPlace.OperationId : 0;
-            vehicle.Operation = source.OperationsWorkPlace != null && source.OperationsWorkPlace.Operation != null ? 
+            vehicle.Operation = source.OperationsWorkPlace != null && source.OperationsWorkPlace.Operation != null ?
                 source.OperationsWorkPlace.Operation.CreateFrom() : new OperationDropDown();
             vehicle.OperationsWorkPlaceId = source.OperationsWorkPlaceId;
             vehicle.OperationsWorkPlace = source.OperationsWorkPlace != null ? source.OperationsWorkPlace.CreateFrom() : new OperationsWorkPlace();
@@ -111,7 +111,7 @@ namespace Cares.Web.ModelMappers
                 VehicleStatusCodeName = source.VehicleStatus != null ? source.VehicleStatus.VehicleStatusCode + " - " + source.VehicleStatus.VehicleStatusName : string.Empty,
                 VehicleModelCodeName = source.VehicleModel != null ? source.VehicleModel.VehicleModelCode + " - " + source.VehicleModel.VehicleModelName : string.Empty,
                 VehicleCategoryCodeName = source.VehicleCategory != null ? source.VehicleCategory.VehicleCategoryCode + " - " + source.VehicleCategory.VehicleCategoryName : string.Empty,
-               
+
             };
         }
 
@@ -176,8 +176,8 @@ namespace Cares.Web.ModelMappers
                        VehicleInsuranceInfo = source.VehicleInsuranceInfo.CreateFrom(),
                        VehicleDepreciation = source.VehicleDepreciation.CreateFrom(),
                        VehicleDisposalInfo = source.VehicleDisposalInfo.CreateFrom(),
-                       VehicleMaintenanceTypeFrequencies = source.VehicleMaintenanceTypeFrequency!=null?source.VehicleMaintenanceTypeFrequency.Select(vm => vm.CreateFrom()).ToList():null,
-                       VehicleCheckListItems = source.VehicleCheckListItems!=null?source.VehicleCheckListItems.Select(vm => vm.CreateFrom()).ToList():null
+                       VehicleMaintenanceTypeFrequencies = source.VehicleMaintenanceTypeFrequency != null ? source.VehicleMaintenanceTypeFrequency.Select(vm => vm.CreateFrom()).ToList() : null,
+                       VehicleCheckListItems = source.VehicleCheckListItems != null ? source.VehicleCheckListItems.Select(vm => vm.CreateFrom()).ToList() : null
                    };
         }
 
@@ -219,9 +219,28 @@ namespace Cares.Web.ModelMappers
                 VehicleDisposalInfo = source.VehicleDisposalInfo != null ? source.VehicleDisposalInfo.CreateFrom() : null,
                 VehicleMaintenanceTypeFrequency = source.VehicleMaintenanceTypeFrequencies != null ? source.VehicleMaintenanceTypeFrequencies.Select(mt => mt.CreateFrom()).ToList() : null,
                 VehicleCheckListItems = source.VehicleCheckListItems != null ? source.VehicleCheckListItems.Select(mt => mt.CreateFrom()).ToList() : null,
+                VehicleImages = source.VehicleImages != null ? source.VehicleImages.Select(mt => mt.CreateFrom()).ToList() : null,
             };
         }
 
+
+
+        #endregion
+
+        #region
+        /// <summary>
+        /// Create entity from web model
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static VehicleImage CreateFrom(this DomainModels.VehicleImage source)
+        {
+            return new VehicleImage
+            {
+                VehicleImageId = source.VehicleImageId,
+                Image = source.Image,
+            };
+        }
         #endregion
 
         #region Vehicle Base Data Response
@@ -376,7 +395,7 @@ namespace Cares.Web.ModelMappers
                 LeaseToOwnership = source.LeaseToOwnership,
                 FirstMonthPayment = source.FirstMonthPayment,
                 BPMainId = source.BPMainId,
-                
+
 
             };
         }
@@ -449,8 +468,8 @@ namespace Cares.Web.ModelMappers
                 BPMainId = source.BPMainId,
                 InsuranceTypeId = source.InsuranceTypeId,
                 InsuredValue = source.InsuredValue,
-                
-                
+
+
             };
         }
 

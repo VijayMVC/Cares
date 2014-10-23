@@ -167,6 +167,11 @@
     <Compile Include="Common\WorkLocationByColumn.cs" />
     <Compile Include="Common\WorkplaceByColumn.cs" />
     <Compile Include="Common\WorkplaceTypeByColumn.cs" />
+    <Compile Include="DomainModels\BookingAdditionalDriver.cs" />
+    <Compile Include="DomainModels\BookingChauffeur.cs" />
+    <Compile Include="DomainModels\BookingIsurance.cs" />
+    <Compile Include="DomainModels\BookingPayment.cs" />
+    <Compile Include="DomainModels\BookingService.cs" />
     <Compile Include="DomainModels\BusinessPartnerDocument.cs" />
     <Compile Include="DomainModels\CreditLimit.cs" />
     <Compile Include="DomainModels\StandartDiscount.cs" />
@@ -177,6 +182,7 @@
     <Compile Include="DomainModels\SeasonalDiscountMain.cs" />
     <Compile Include="DomainModels\DocumentGroup.cs" />
     <Compile Include="DomainModels\Document.cs" />
+    <Compile Include="DomainModels\VehicleImageDetail.cs" />
     <Compile Include="DomainModels\VehicleMovement.cs" />
     <Compile Include="DomainModels\PaymentMode.cs" />
     <Compile Include="DomainModels\AllocationStatus.cs" />

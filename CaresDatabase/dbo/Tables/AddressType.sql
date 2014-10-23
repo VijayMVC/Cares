@@ -12,6 +12,9 @@
     [RecLastUpdatedDt]       DATETIME       NOT NULL,
     [RecLastUpdatedBy]       NVARCHAR (100) NOT NULL,
     [UserDomainKey]          BIGINT         NOT NULL,
+    [AddressTypeKey]         INT            NULL,
     CONSTRAINT [PK94] PRIMARY KEY NONCLUSTERED ([AddressTypeID] ASC)
 );
+
+
 

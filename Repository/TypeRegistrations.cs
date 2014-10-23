@@ -124,6 +124,9 @@ namespace Cares.Repository
             unityContainer.RegisterType<INrtDriverRepository, NrtDriverRepository>();
             unityContainer.RegisterType<INrtChargeRepository, NrtChargeRepository>();
             unityContainer.RegisterType<IPaymentModeRepository, PaymentModeRepository>();
+            unityContainer.RegisterType<IVehcilceImageDetailRepository, VehcilceImageDetailRepository>();
+            unityContainer.RegisterType<IVehicleImageRepository, VehicleImageRepository>();
+            unityContainer.RegisterType<IBookingMainRepository, BookingMainRepository>();
         }
     }
 }

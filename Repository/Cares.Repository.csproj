@@ -138,6 +138,7 @@
     <Compile Include="Repositories\BpSubTypeRepository.cs" />
     <Compile Include="Repositories\BusinessPartnerDocumentRepository.cs" />
     <Compile Include="Repositories\PaymentModeRepository.cs" />
+    <Compile Include="Repositories\BookingMainRepository.cs" />
     <Compile Include="Repositories\RentalAgreementRepository.cs" />
     <Compile Include="Repositories\BusinessPartnerMainTypeRepository.cs" />
     <Compile Include="Repositories\ChaufferChargeRepository.cs" />
@@ -228,11 +229,13 @@
     <Compile Include="Repositories\SubRegionRepository.cs" />
     <Compile Include="Repositories\TariffTypeRepository.cs" />
     <Compile Include="Repositories\TransmissionTypeRepository.cs" />
+    <Compile Include="Repositories\VehcilceImageDetailRepository.cs" />
     <Compile Include="Repositories\VehicleCategoryRepository.cs" />
     <Compile Include="Repositories\VehicleCheckListItemRepository.cs" />
     <Compile Include="Repositories\VehicleCheckListRepository.cs" />
     <Compile Include="Repositories\VehicleDepreciationRepository.cs" />
     <Compile Include="Repositories\VehicleDisposalInfoRepository.cs" />
+    <Compile Include="Repositories\VehicleImageRepository.cs" />
     <Compile Include="Repositories\VehicleInsuranceInfoRepository.cs" />
     <Compile Include="Repositories\VehicleLeasedInfoRepository.cs" />
     <Compile Include="Repositories\VehicleMaintenanceTypeFrequencyRepository.cs" />

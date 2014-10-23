@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
@@ -69,5 +70,13 @@ namespace Cares.Interfaces.IServices
         /// <returns></returns>
         IEnumerable<Vehicle> GetVehicleInfoForNrt(long operationWorkPlaceId, DateTime startDtTime,
             DateTime endDtTime);
+
+        /// <summary>
+        /// Save Vehicle Image
+        /// </summary>
+        /// <param name="fileStream"></param>
+        /// <param name="vehilceId"></param>
+        void SaveVehicleImage(MemoryStream fileStream, long vehilceId);
+
     }
 }

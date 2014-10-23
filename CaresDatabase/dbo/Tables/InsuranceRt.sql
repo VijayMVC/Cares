@@ -18,9 +18,11 @@
     [RecCreatedBy]       NVARCHAR (100) NOT NULL,
     [UserDomainKey]      BIGINT         NOT NULL,
     CONSTRAINT [PK111_1_1] PRIMARY KEY NONCLUSTERED ([InsuranceRtID] ASC),
-    CONSTRAINT [RefHireGroupDetail404] FOREIGN KEY ([HireGroupDetailID]) REFERENCES [dbo].[HireGroupDetail] ([HireGroupDetailID]),
+    CONSTRAINT [RefHireGroupDetail404] FOREIGN KEY ([HireGroupDetailID]) REFERENCES [dbo].[HireGroupDetail] ([HireGroupDetailID]) ON DELETE CASCADE,
     CONSTRAINT [RefInsuranceRt391] FOREIGN KEY ([ChildInsuranceRtID]) REFERENCES [dbo].[InsuranceRt] ([InsuranceRtID]),
-    CONSTRAINT [RefInsuranceRtMain390] FOREIGN KEY ([InsuranceRtMainID]) REFERENCES [dbo].[InsuranceRtMain] ([InsuranceRtMainID]),
+    CONSTRAINT [RefInsuranceRtMain390] FOREIGN KEY ([InsuranceRtMainID]) REFERENCES [dbo].[InsuranceRtMain] ([InsuranceRtMainID]) ON DELETE CASCADE,
     CONSTRAINT [RefInsuranceType392] FOREIGN KEY ([InsuranceTypeID]) REFERENCES [dbo].[InsuranceType] ([InsuranceTypeID])
 );
+
+
 

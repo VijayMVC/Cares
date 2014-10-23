@@ -26,14 +26,16 @@
     [UserDomainKey]    BIGINT         NOT NULL,
     CONSTRAINT [PK32] PRIMARY KEY NONCLUSTERED ([AddressID] ASC),
     CONSTRAINT [RefAddressType1971] FOREIGN KEY ([AddressTypeID]) REFERENCES [dbo].[AddressType] ([AddressTypeID]),
-    CONSTRAINT [RefArea1973] FOREIGN KEY ([AreaID]) REFERENCES [dbo].[Area] ([AreaID]) ON DELETE CASCADE,
+    CONSTRAINT [RefArea1973] FOREIGN KEY ([AreaID]) REFERENCES [dbo].[Area] ([AreaID]),
     CONSTRAINT [RefBPMain241] FOREIGN KEY ([BPMainID]) REFERENCES [dbo].[BPMain] ([BPMainID]),
-    CONSTRAINT [RefCity1973] FOREIGN KEY ([CityID]) REFERENCES [dbo].[City] ([CityID]) ON DELETE CASCADE,
-    CONSTRAINT [RefCountry1971] FOREIGN KEY ([CountryID]) REFERENCES [dbo].[Country] ([CountryID]) ON DELETE CASCADE,
-    CONSTRAINT [RefEmployee343] FOREIGN KEY ([EmployeeID]) REFERENCES [dbo].[Employee] ([EmployeeID]),
-    CONSTRAINT [RefRegion332] FOREIGN KEY ([RegionID]) REFERENCES [dbo].[Region] ([RegionID]) ON DELETE CASCADE,
-    CONSTRAINT [RefSubRegion333] FOREIGN KEY ([SubRegionID]) REFERENCES [dbo].[SubRegion] ([SubRegionID]) ON DELETE CASCADE
+    CONSTRAINT [RefCity1973] FOREIGN KEY ([CityID]) REFERENCES [dbo].[City] ([CityID]),
+    CONSTRAINT [RefCountry1971] FOREIGN KEY ([CountryID]) REFERENCES [dbo].[Country] ([CountryID]),
+    CONSTRAINT [RefEmployee343] FOREIGN KEY ([EmployeeID]) REFERENCES [dbo].[Employee] ([EmployeeID]) ON DELETE CASCADE,
+    CONSTRAINT [RefRegion332] FOREIGN KEY ([RegionID]) REFERENCES [dbo].[Region] ([RegionID]),
+    CONSTRAINT [RefSubRegion333] FOREIGN KEY ([SubRegionID]) REFERENCES [dbo].[SubRegion] ([SubRegionID])
 );
+
+
 
 
 

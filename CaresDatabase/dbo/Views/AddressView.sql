@@ -1,29 +1,28 @@
-﻿
-CREATE VIEW [dbo].[AddressView]
+﻿CREATE VIEW dbo.AddressView
 AS
-SELECT     dbo.Address.AddressID, dbo.Address.ContactPerson, dbo.Address.StreetAddress, dbo.Address.EmailAddress, dbo.Address.WebPage, 
-              dbo.Address.ZipCode, dbo.Address.POBox, dbo.Address.CountryID, dbo.Address.RegionID, dbo.Address.SubRegionID, dbo.Address.CityID, 
-              dbo.Address.AreaID, dbo.Address.AddressTypeID, dbo.Address.BPMainID ,dbo.Address.EmployeeID, 
-			  dbo.Address.RowVersion, dbo.Address.IsActive, dbo.Address.IsDeleted, dbo.Address.IsPrivate, dbo.Address.IsReadOnly, 
-			  dbo.Address.RecCreatedDt, dbo.Address.RecCreatedBy, dbo.Address.RecLastUpdatedDt, dbo.Address.RecLastUpdatedBy, 
-              dbo.AddressType.AddressTypeCode + '-' + dbo.AddressType.AddressTypeName AS AddressTypeCodeName, 
-			  dbo.Country.CountryCode + '-' + dbo.Country.CountryName AS CountryCodeName, dbo.City.CityCode + '-' + dbo.City.CityName AS CityCodeName, 
-              dbo.Area.AreaCode + '-' + dbo.Area.AreaName AS AreaCodeName, dbo.Region.RegionCode + '-' + dbo.Region.RegionName AS RegionCodeName, 
-              dbo.SubRegion.SubRegionCode + '-' + dbo.SubRegion.SubRegionName AS SubRegionCodeName
-FROM         dbo.Address INNER JOIN
-              dbo.AddressType ON dbo.Address.AddressTypeID = dbo.AddressType.AddressTypeID INNER JOIN
-              dbo.Country ON dbo.Address.CountryID = dbo.Country.CountryID LEFT OUTER JOIN
-              dbo.Region ON dbo.Address.RegionID = dbo.Region.RegionID AND dbo.Country.CountryID = dbo.Region.CountryID LEFT OUTER JOIN
-              dbo.SubRegion ON dbo.Address.SubRegionID = dbo.SubRegion.SubRegionID AND dbo.Region.RegionID = dbo.SubRegion.RegionID LEFT OUTER JOIN
-              dbo.City ON dbo.SubRegion.SubRegionID = dbo.City.SubRegionID AND dbo.Region.RegionID = dbo.City.RegionID AND 
-              dbo.Address.CityID = dbo.City.CityID AND dbo.Country.CountryID = dbo.City.CountryID LEFT OUTER JOIN
-              dbo.Area ON dbo.Address.AreaID = dbo.Area.AreaID AND dbo.City.CityID = dbo.Area.CityID
+SELECT        dbo.Address.AddressID, dbo.Address.ContactPerson, dbo.Address.StreetAddress, dbo.Address.EmailAddress, dbo.Address.WebPage, dbo.Address.ZipCode, 
+                         dbo.Address.POBox, dbo.Address.CountryID, dbo.Address.RegionID, dbo.Address.SubRegionID, dbo.Address.CityID, dbo.Address.AreaID, 
+                         dbo.Address.AddressTypeID, dbo.Address.BPMainID, dbo.Address.EmployeeID, dbo.Address.RowVersion, dbo.Address.IsActive, dbo.Address.IsDeleted, 
+                         dbo.Address.IsPrivate, dbo.Address.IsReadOnly, dbo.Address.RecCreatedDt, dbo.Address.RecCreatedBy, dbo.Address.RecLastUpdatedDt, 
+                         dbo.Address.RecLastUpdatedBy, dbo.AddressType.AddressTypeCode + '-' + dbo.AddressType.AddressTypeName AS AddressTypeCodeName, 
+                         dbo.Country.CountryCode + '-' + dbo.Country.CountryName AS CountryCodeName, dbo.City.CityCode + '-' + dbo.City.CityName AS CityCodeName, 
+                         dbo.Area.AreaCode + '-' + dbo.Area.AreaName AS AreaCodeName, dbo.Region.RegionCode + '-' + dbo.Region.RegionName AS RegionCodeName, 
+                         dbo.SubRegion.SubRegionCode + '-' + dbo.SubRegion.SubRegionName AS SubRegionCodeName
+FROM            dbo.Address INNER JOIN
+                         dbo.AddressType ON dbo.Address.AddressTypeID = dbo.AddressType.AddressTypeID INNER JOIN
+                         dbo.Country ON dbo.Address.CountryID = dbo.Country.CountryID LEFT OUTER JOIN
+                         dbo.Region ON dbo.Address.RegionID = dbo.Region.RegionID AND dbo.Country.CountryID = dbo.Region.CountryID LEFT OUTER JOIN
+                         dbo.SubRegion ON dbo.Address.SubRegionID = dbo.SubRegion.SubRegionID AND dbo.Region.RegionID = dbo.SubRegion.RegionID LEFT OUTER JOIN
+                         dbo.City ON dbo.SubRegion.SubRegionID = dbo.City.SubRegionID AND dbo.Region.RegionID = dbo.City.RegionID AND dbo.Address.CityID = dbo.City.CityID AND 
+                         dbo.Country.CountryID = dbo.City.CountryID LEFT OUTER JOIN
+                         dbo.Area ON dbo.Address.AreaID = dbo.Area.AreaID AND dbo.City.CityID = dbo.Area.CityID
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 2, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'AddressView';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_DiagramPane2', @value = N'           TopColumn = 0
+EXECUTE sp_addextendedproperty @name = N'MS_DiagramPane2', @value = N'
+            TopColumn = 0
          End
       End
    End
@@ -54,13 +53,17 @@ End
 ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'AddressView';
 
 
+
+
+
+
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPane1', @value = N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
 Begin DesignProperties = 
    Begin PaneConfigurations = 
       Begin PaneConfiguration = 0
          NumPanes = 4
-         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
+         Configuration = "(H (1[24] 4[26] 2[32] 3) )"
       End
       Begin PaneConfiguration = 1
          NumPanes = 3
@@ -122,7 +125,7 @@ Begin DesignProperties =
    End
    Begin DiagramPane = 
       Begin Origin = 
-         Top = 0
+         Top = -96
          Left = 0
       End
       Begin Tables = 
@@ -156,26 +159,6 @@ Begin DesignProperties =
             DisplayFlags = 280
             TopColumn = 0
          End
-         Begin Table = "City"
-            Begin Extent = 
-               Top = 6
-               Left = 691
-               Bottom = 114
-               Right = 862
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-         Begin Table = "Area"
-            Begin Extent = 
-               Top = 6
-               Left = 900
-               Bottom = 114
-               Right = 1071
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
          Begin Table = "Region"
             Begin Extent = 
                Top = 131
@@ -194,5 +177,26 @@ Begin DesignProperties =
                Right = 917
             End
             DisplayFlags = 280
- ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'AddressView';
+            TopColumn = 0
+         End
+         Begin Table = "City"
+            Begin Extent = 
+               Top = 6
+               Left = 691
+               Bottom = 114
+               Right = 862
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "Area"
+            Begin Extent = 
+               Top = 6
+               Left = 900
+               Bottom = 114
+               Right = 1071
+            End
+            DisplayFlags = 280', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'AddressView';
+
+
 

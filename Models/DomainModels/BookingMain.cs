@@ -112,7 +112,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Booking Status
         /// </summary>
-        public virtual AdditionalCharge BookingStatus { get; set; }
+        public virtual BookingStatus BookingStatus { get; set; }
 
         /// <summary>
         /// Payment Term
@@ -143,6 +143,31 @@ namespace Cares.Models.DomainModels
         /// Chauffer Reservations
         /// </summary>
         public virtual ICollection<ChaufferReservation> ChaufferReservations { get; set; }
+
+        /// <summary>
+        /// Service Items
+        /// </summary>
+        public virtual ICollection<BookingService> BookingServiceItems { get; set; }
+
+        /// <summary>
+        /// Insurances
+        /// </summary>
+        public virtual ICollection<BookingIsurance> BookingInsurances { get; set; }
+
+        /// <summary>
+        /// Drivers Booked
+        /// </summary>
+        public virtual ICollection<BookingAdditionalDriver> BookingDrivers { get; set; }
+
+        /// <summary>
+        /// Chauffers Booked
+        /// </summary>
+        public virtual ICollection<BookingChauffeur> BookingChauffers { get; set; }
+
+        /// <summary>
+        /// Booking Payment
+        /// </summary>
+        public virtual ICollection<BookingPayment> BookingPayments { get; set; }
 
         #endregion
     }

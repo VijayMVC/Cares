@@ -17,6 +17,9 @@
     [RowVersion]           BIGINT         NOT NULL,
     [UserDomainKey]        BIGINT         NOT NULL,
     CONSTRAINT [PK12] PRIMARY KEY NONCLUSTERED ([HireGroupID] ASC),
+    CONSTRAINT [FK_HireGroup_Company] FOREIGN KEY ([CompanyID]) REFERENCES [dbo].[Company] ([CompanyID]),
     CONSTRAINT [RefHireGroup308] FOREIGN KEY ([ParentHireGroupID]) REFERENCES [dbo].[HireGroup] ([HireGroupID])
 );
+
+
 

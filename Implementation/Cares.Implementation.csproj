@@ -991,6 +991,7 @@
     <EmbeddedResource Include="Resources\RentalAgreement\RentalAgreement.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RentalAgreement.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tariff\AdditionalCharge.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

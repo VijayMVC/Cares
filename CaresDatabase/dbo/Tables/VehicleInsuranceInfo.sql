@@ -18,6 +18,8 @@
     CONSTRAINT [PK98] PRIMARY KEY NONCLUSTERED ([VehicleID] ASC),
     CONSTRAINT [RefBPMain285] FOREIGN KEY ([BPMainID]) REFERENCES [dbo].[BPMain] ([BPMainID]),
     CONSTRAINT [RefInsuranceType315] FOREIGN KEY ([InsuranceTypeID]) REFERENCES [dbo].[InsuranceType] ([InsuranceTypeID]),
-    CONSTRAINT [RefVehicle211] FOREIGN KEY ([VehicleID]) REFERENCES [dbo].[Vehicle] ([VehicleID])
+    CONSTRAINT [RefVehicle211] FOREIGN KEY ([VehicleID]) REFERENCES [dbo].[Vehicle] ([VehicleID]) ON DELETE CASCADE
 );
+
+
 

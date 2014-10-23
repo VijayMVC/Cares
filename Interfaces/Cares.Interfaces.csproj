@@ -108,6 +108,7 @@
     <Compile Include="IServices\IWorkplaceService.cs" />
     <Compile Include="IServices\IWorkplaceTypeService.cs" />
     <Compile Include="Repository\IPaymentModeRepositor.cs" />
+    <Compile Include="Repository\IBookingMainRepository.cs" />
     <Compile Include="Repository\IRentalAgreementRepository.cs" />
     <Compile Include="Repository\IBusinessPartnerMainTypeRepository.cs" />
     <Compile Include="Repository\IChaufferReservationRepository.cs" />
@@ -191,10 +192,12 @@
     <Compile Include="Repository\IInsuranceTypeRepository.cs" />
     <Compile Include="Repository\IStandardDiscountRepository.cs" />
     <Compile Include="Repository\ITransmissionTypeRepository.cs" />
+    <Compile Include="Repository\IVehcilceImageDetailRepository.cs" />
     <Compile Include="Repository\IVehicleCheckListItemRepository.cs" />
     <Compile Include="Repository\IVehicleCheckListRepository.cs" />
     <Compile Include="Repository\IVehicleDepreciationRepository.cs" />
     <Compile Include="Repository\IVehicleDisposalInfoRepository.cs" />
+    <Compile Include="Repository\IVehicleImageRepository.cs" />
     <Compile Include="Repository\IVehicleInsuranceInfoRepository.cs" />
     <Compile Include="Repository\IVehicleLeasedInfoRepository.cs" />
     <Compile Include="Repository\IVehicleMaintenanceTypeFrequencyRepository.cs" />

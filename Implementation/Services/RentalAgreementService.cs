@@ -32,6 +32,7 @@ namespace Cares.Implementation.Services
         private readonly IVehicleRepository vehicleRepository;
         private readonly IPaymentModeRepository paymentModeRepository;
         private readonly IRaStatusRepository raStatusRepository;
+        private readonly IBookingMainRepository bookingMainRepository;
 
         /// <summary>
         /// Add Vehicle Movements
@@ -1492,6 +1493,144 @@ namespace Cares.Implementation.Services
             }
         }
 
+        /// <summary>
+        /// Create Ra Header From Booking
+        /// </summary>
+        private static void CreateRaHeaderFromBooking(RaMain raMain, BookingMain bookingMain)
+        {
+            raMain.StartDtTime = bookingMain.StartDtTime;
+            raMain.EndDtTime = bookingMain.EndDtTime;
+            raMain.PaymentTermId = bookingMain.PaymentTermId;
+            raMain.RaBookingId = bookingMain.BookingMainId;
+            raMain.OperationId = bookingMain.OperationId;
+            raMain.OpenLocation = bookingMain.OpenLocation;
+            raMain.CloseLocation = bookingMain.CloseLocation;
+        }
+
+        /// <summary>
+        /// Create Service Items From Booking
+        /// </summary>
+        private static void CreateRaServiceItemsFromBooking(RaMain raMain, BookingMain bookingMain)
+        {
+            if (raMain.RaServiceItems == null)
+            {
+                raMain.RaServiceItems = new List<RaServiceItem>();
+            }
+
+            foreach (RaServiceItem serviceItem in bookingMain.BookingServiceItems)
+            {
+                raMain.RaServiceItems.Add(new RaServiceItem
+                {
+                    ServiceItemId = serviceItem.ServiceItemId,
+                    StartDtTime = serviceItem.StartDtTime,
+                    EndDtTime = serviceItem.EndDtTime,
+                    Quantity = serviceItem.Quantity,
+                    ServiceItem = serviceItem.ServiceItem
+                });
+            }
+        }
+
+        /// <summary>
+        /// Create Insurances From Booking
+        /// </summary>
+        private static void CreateRaInsurancesFromBooking(RaMain raMain, BookingMain bookingMain)
+        {
+            if (raMain.RaHireGroups == null)
+            {
+                raMain.RaHireGroups = new List<RaHireGroup>();
+            }
+
+            // Create RAHireGroup
+            RaHireGroup raHireGroup = new RaHireGroup
+            {
+                RaHireGroupInsurances = new List<RaHireGroupInsurance>()
+            };
+
+            // Add Insurances to RAHireGroup
+            foreach (RaHireGroupInsurance insurance in bookingMain.BookingInsurances)
+            {
+                raHireGroup.RaHireGroupInsurances.Add(new RaHireGroupInsurance
+                {
+                    InsuranceTypeId = insurance.InsuranceTypeId,
+                    StartDtTime = insurance.StartDtTime,
+                    EndDtTime = insurance.EndDtTime,
+                    InsuranceType = insurance.InsuranceType
+                });
+            }
+
+            // Add RaHireGroup to RaMain
+            raMain.RaHireGroups.Add(raHireGroup);
+        }
+
+        /// <summary>
+        /// Create Drivers From Booking
+        /// </summary>
+        private static void CreateRaDriversFromBooking(RaMain raMain, BookingMain bookingMain)
+        {
+            if (raMain.RaDrivers == null)
+            {
+                raMain.RaDrivers = new List<RaDriver>();
+            }
+
+            // Add Drivers From Booking to RA
+            foreach (RaDriver driver in bookingMain.BookingDrivers)
+            {
+                raMain.RaDrivers.Add(new RaDriver
+                {
+                    IsChauffer = false,
+                    EndDtTime = driver.EndDtTime,
+                    StartDtTime = driver.StartDtTime,
+                    DriverName = driver.DriverName,
+                    DesigGradeId = driver.DesigGradeId,
+                    DesigGrade = driver.DesigGrade,
+                    LicenseExpDt = driver.LicenseExpDt,
+                    LicenseNo = driver.LicenseNo
+                });
+            }
+
+            // Add Chauffers from Booking to RA
+            foreach (RaDriver driver in bookingMain.BookingChauffers)
+            {
+                raMain.RaDrivers.Add(new RaDriver
+                {
+                    ChaufferId = driver.ChaufferId,
+                    IsChauffer = true,
+                    EndDtTime = driver.EndDtTime,
+                    StartDtTime = driver.StartDtTime,
+                    DriverName = driver.DriverName,
+                    DesigGradeId = driver.DesigGradeId,
+                    DesigGrade = driver.DesigGrade,
+                    Employee = driver.Employee,
+                    LicenseExpDt = driver.LicenseExpDt,
+                    LicenseNo = driver.LicenseNo
+                });
+            }
+        }
+
+        /// <summary>
+        /// Create Payments From Booking
+        /// </summary>
+        private static void CreateRaPaymentsFromBooking(RaMain raMain, BookingMain bookingMain)
+        {
+            if (raMain.RaPayments == null)
+            {
+                raMain.RaPayments = new List<RaPayment>();
+            }
+
+            foreach (RaPayment payment in bookingMain.BookingPayments)
+            {
+                raMain.RaPayments.Add(new RaPayment
+                {
+                    PaymentModeId = payment.PaymentModeId,
+                    Bank = payment.Bank,
+                    PaidBy = payment.PaidBy,
+                    ChequeNumber = payment.ChequeNumber,
+                    RaPaymentDt = payment.RaPaymentDt,
+                    RaPaymentAmount = payment.RaPaymentAmount
+                });
+            }
+        }
+
         #endregion
 
         #region Constructors
@@ -1503,7 +1642,8 @@ namespace Cares.Implementation.Services
             IOperationsWorkPlaceRepository operationsWorkPlaceRepository, ITariffTypeRepository tariffTypeRepository, IBill bill,
             IVehicleStatusRepository vehicleStatusRepository, IAlloactionStatusRepository alloactionStatusRepository, IRentalAgreementRepository rentalAgreementRepository,
             IBusinessPartnerRepository businessPartnerRepository, IPhoneRepository businessPartnerPhoneRepository, IAddressRepository businessPartnerAddressRepository,
-            IVehicleRepository vehicleRepository, IPaymentModeRepository paymentModeRepository, IRaStatusRepository raStatusRepository)
+            IVehicleRepository vehicleRepository, IPaymentModeRepository paymentModeRepository, IRaStatusRepository raStatusRepository, 
+            IBookingMainRepository bookingMainRepository)
         {
             if (paymentTermRepository == null)
             {
@@ -1531,6 +1671,7 @@ namespace Cares.Implementation.Services
             if (vehicleRepository == null) throw new ArgumentNullException("vehicleRepository");
             if (paymentModeRepository == null) throw new ArgumentNullException("paymentModeRepository");
             if (raStatusRepository == null) throw new ArgumentNullException("raStatusRepository");
+            if (bookingMainRepository == null) throw new ArgumentNullException("bookingMainRepository");
 
             this.paymentTermRepository = paymentTermRepository;
             this.operationRepository = operationRepository;
@@ -1545,6 +1686,7 @@ namespace Cares.Implementation.Services
             this.vehicleRepository = vehicleRepository;
             this.paymentModeRepository = paymentModeRepository;
             this.raStatusRepository = raStatusRepository;
+            this.bookingMainRepository = bookingMainRepository;
         }
 
         #endregion
@@ -1687,6 +1829,39 @@ namespace Cares.Implementation.Services
             {
                 throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.RentalAgreement.RentalAgreement.RentalAgreementNotFound, id));
             }
+
+            return raMain;
+        }
+
+        /// <summary>
+        /// Get Rental Agreement By Id
+        /// </summary>
+        public RaMain GetByBooking(long bookingMainId)
+        {
+            BookingMain bookingMain = bookingMainRepository.Find(bookingMainId);
+
+            if (bookingMain == null)
+            {
+                throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.RentalAgreement.RentalAgreement.BookingNotFound, bookingMainId));
+            }
+
+            // Create RA
+            RaMain raMain = rentalAgreementRepository.Create();
+
+            // Map Header
+            CreateRaHeaderFromBooking(raMain, bookingMain);
+
+            // Map Insurances
+            CreateRaInsurancesFromBooking(raMain, bookingMain);
+
+            // Map Services
+            CreateRaServiceItemsFromBooking(raMain, bookingMain);
+
+            // Map Drivers
+            CreateRaDriversFromBooking(raMain, bookingMain);
+
+            // Map Payments
+            CreateRaPaymentsFromBooking(raMain, bookingMain);
 
             return raMain;
         }

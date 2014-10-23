@@ -22,9 +22,11 @@
     CONSTRAINT [RefDepartment340] FOREIGN KEY ([DepartmentID]) REFERENCES [dbo].[Department] ([DepartmentID]),
     CONSTRAINT [RefDesigGrade354] FOREIGN KEY ([DesigGradeID]) REFERENCES [dbo].[DesigGrade] ([DesigGradeID]),
     CONSTRAINT [RefDesignation346] FOREIGN KEY ([DesignationID]) REFERENCES [dbo].[Designation] ([DesignationID]),
-    CONSTRAINT [RefEmployee345] FOREIGN KEY ([EmployeeID]) REFERENCES [dbo].[Employee] ([EmployeeID]),
+    CONSTRAINT [RefEmployee345] FOREIGN KEY ([EmployeeID]) REFERENCES [dbo].[Employee] ([EmployeeID]) ON DELETE CASCADE,
     CONSTRAINT [RefEmployee352] FOREIGN KEY ([SupervisorID]) REFERENCES [dbo].[Employee] ([EmployeeID]),
     CONSTRAINT [RefJobType339] FOREIGN KEY ([JobTypeID]) REFERENCES [dbo].[JobType] ([JobTypeID]),
     CONSTRAINT [RefWorkplace342] FOREIGN KEY ([WorkplaceID]) REFERENCES [dbo].[Workplace] ([WorkplaceID])
 );
+
+
 

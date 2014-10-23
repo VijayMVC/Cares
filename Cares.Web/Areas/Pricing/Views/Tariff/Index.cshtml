@@ -1,7 +1,6 @@
 ﻿@{
     ViewBag.Title = @Cares.Web.Resources.Tariff.TariffType.TariffTypeText;
 }
-
 <div class="row" id="tariffTypeBinding">
     <div class="row " data-bind="visible: !isTariffTypeEditorVisible()">
         <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.Tariff.TariffType.TariffTypes</h3>
@@ -15,7 +14,7 @@
             <form class="form-horizontal" data-bind="submit: search">
                 <div class="col-xs-3">
                     <input type="text" class="form-control" placeholder='@("<"+Cares.Web.Resources.Shared.Common.Search+">")' data-bind="value: tariffTypeCodeFilter" />
-                    
+
                 </div>
                 <div class="col-xs-3">
                     <select class="form-control" data-bind="options: $root.measurementUnits, optionsText: 'MeasurementUnitCodeName', optionsValue: 'MeasurementUnitId', optionsCaption: '&lt;' +'@Cares.Web.Resources.Tariff.TariffType.MeasurementUnit'+ '&gt;', value: measurementUnitFilter"></select>
@@ -59,7 +58,6 @@
     <script id="editActiontariffTypeTemplate" type="text/html">
         <a href="#" data-bind="click: $root.onEditTariffType" title=@Cares.Web.Resources.Shared.Common.Edit><span class="glyphicon glyphicon-edit"></span></a>
     </script>
-
     <script id="itemtariffTypeTemplate" type="text/html">
         <tr data-bind="click: $root.selecttariffType">
             <td data-bind="text: tariffTypeCode"></td>
@@ -78,16 +76,14 @@
             </td>
         </tr>
     </script>
-
     @Html.Partial("_TariffTypeEditor")
-
 </div>
-
 <!-- ko stopBinding: true -->
 @Html.Partial("~/Areas/Common/Views/Shared/_ConfirmationDialog.cshtml")
 <!-- /ko -->
 @section inlinescripts
 {
+
     <script type="text/javascript">
         require(["tariffType/tariffType.view", "common/confirmation.view"]);
 
@@ -104,3 +100,4 @@
 
     </script>
 }
+<script src="~/Scripts/jquery.form.js"></script>

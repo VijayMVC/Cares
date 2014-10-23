@@ -9,12 +9,17 @@ namespace Cares.Models.DomainModels
     public class VehicleImage
     {
         #region Persisted Properties
-        
+
         /// <summary>
         /// Vehicle Image ID
         /// </summary>
         public long VehicleImageId { get; set; }
-        
+
+        /// <summary>
+        /// Vehicle Id
+        /// </summary>
+        public long VehicleId { get; set; }
+
         /// <summary>
         /// Vehicle Image Code
         /// </summary>
@@ -34,7 +39,7 @@ namespace Cares.Models.DomainModels
         /// Image
         /// </summary>
         public byte[] Image { get; set; }
-        
+
         /// <summary>
         /// Row Version
         /// </summary>
@@ -84,7 +89,7 @@ namespace Cares.Models.DomainModels
         /// User Domain Key
         /// </summary>
         public long UserDomainKey { get; set; }
-        
+
         #endregion
 
         #region Reference Properties
@@ -92,7 +97,12 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Vehicle Image Hire Group Details Associated to this Vehicle Image
         /// </summary>
-        public virtual ICollection<VehicleImageHireGroupDetail> VehicleImageHireGroupDetails { get; set; } 
+        public virtual ICollection<VehicleImageHireGroupDetail> VehicleImageHireGroupDetails { get; set; }
+
+        /// <summary>
+        /// Vehcilce Image Detail
+        /// </summary>
+        public virtual Vehicle Vehicle { get; set; }
 
         #endregion
     }

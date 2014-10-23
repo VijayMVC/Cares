@@ -91,6 +91,16 @@ namespace Cares.Repository.BaseRepository
         public DbSet<RaStatus> RaStatuses { get; set; }
 
         /// <summary>
+        /// Vehicle Images Db Set
+        /// </summary>
+        public DbSet<VehicleImage> VehicleImages { get; set; }
+
+        /// <summary>
+        /// Vehcilce Image Details DB Set
+        /// </summary>
+        public DbSet<VehicleImageDetail> VehcilceImageDetails { get; set; }
+
+        /// <summary>
         /// Vehicle Reservations Db Set
         /// </summary>
         public DbSet<VehicleReservation> VehicleReservations { get; set; }
@@ -115,7 +125,7 @@ namespace Cares.Repository.BaseRepository
         /// </summary>
         public DbSet<NrtDriver> NrtDrivers { get; set; }
 
-        public DbSet<RaVehicleCheckList>  RaVehicleCheckLists { get; set; }
+        public DbSet<RaVehicleCheckList> RaVehicleCheckLists { get; set; }
 
         public DbSet<Employee> Employees { get; set; }
         /// <summary>
@@ -371,12 +381,12 @@ namespace Cares.Repository.BaseRepository
         /// </summary>
         public DbSet<VehicleStatus> VehicleStatuses { get; set; }
 
-         /// <summary>
+        /// <summary>
         /// Vehicle sub Statuses  Db Set 
         /// </summary>
         public DbSet<VehicleSubStatus> VehicleSubStatuses { get; set; }
 
-        
+
 
         /// <summary>
         /// Transmission Type  Db Set 
@@ -483,7 +493,7 @@ namespace Cares.Repository.BaseRepository
         /// </summary>
         public DbSet<AdditionalChargeType> AdditionalChargeTypes { get; set; }
 
-       /// <summary>
+        /// <summary>
         /// Chauffer Charges Db Set
         /// </summary>
         public DbSet<ChaufferCharge> ChaufferCharges { get; set; }
@@ -492,8 +502,8 @@ namespace Cares.Repository.BaseRepository
         /// Chauffer Charge Main Db Set
         /// </summary>
         public DbSet<ChaufferChargeMain> ChaufferChargeMains { get; set; }
-        
-      /// <summary>
+
+        /// <summary>
         /// Ra Service Items Db Set
         /// </summary>
 
@@ -527,6 +537,11 @@ namespace Cares.Repository.BaseRepository
         /// PaymentMode Db set
         /// </summary>
         public DbSet<PaymentMode> PaymentModes { get; set; }
+
+        /// <summary>
+        /// Booking Db set
+        /// </summary>
+        public DbSet<BookingMain> BookingMains { get; set; }
 
         #endregion
     }
