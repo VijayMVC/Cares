@@ -382,6 +382,7 @@
         <EntityTypeShape EntityType="DomainModels.BookingPayment" Width="1.5" PointX="40.625" PointY="23" />
         <AssociationConnector Association="DomainModels.FK_BookingPayment_BookingMain" />
         <AssociationConnector Association="DomainModels.FK_BookingPayment_PaymentMode" />
+        <AssociationConnector Association="DomainModels.RefHireGroupDetail" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

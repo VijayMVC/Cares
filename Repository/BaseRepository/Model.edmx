@@ -213,6 +213,7 @@
           <Property Name="PaymentTermID" Type="smallint" Nullable="false" />
           <Property Name="OperationID" Type="bigint" Nullable="false" />
           <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
+          <Property Name="HireGroupDetailID" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="BookingPayment">
           <Key>
@@ -3957,6 +3958,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="RefHireGroupDetail">
+          <End Role="HireGroupDetail" Type="Self.HireGroupDetail" Multiplicity="1" />
+          <End Role="BookingMain" Type="Self.BookingMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HireGroupDetail">
+              <PropertyRef Name="HireGroupDetailID" />
+            </Principal>
+            <Dependent Role="BookingMain">
+              <PropertyRef Name="HireGroupDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="RefHireGroupDetail377">
           <End Role="HireGroupDetail" Type="Self.HireGroupDetail" Multiplicity="1" />
           <End Role="StandardRt" Type="Self.StandardRt" Multiplicity="*" />
@@ -6021,6 +6034,10 @@
             <End Role="HireGroup" EntitySet="HireGroup" />
             <End Role="Vehicle" EntitySet="Vehicle" />
           </AssociationSet>
+          <AssociationSet Name="RefHireGroupDetail" Association="Self.RefHireGroupDetail">
+            <End Role="HireGroupDetail" EntitySet="HireGroupDetail" />
+            <End Role="BookingMain" EntitySet="BookingMain" />
+          </AssociationSet>
           <AssociationSet Name="RefHireGroupDetail377" Association="Self.RefHireGroupDetail377">
             <End Role="HireGroupDetail" EntitySet="HireGroupDetail" />
             <End Role="StandardRt" EntitySet="StandardRt" />
@@ -7576,6 +7593,10 @@
             <End Role="PaymentMode" EntitySet="PaymentModes" />
             <End Role="BookingPayment" EntitySet="BookingPayments" />
           </AssociationSet>
+          <AssociationSet Name="RefHireGroupDetail" Association="DomainModels.RefHireGroupDetail">
+            <End Role="HireGroupDetail" EntitySet="HireGroupDetails" />
+            <End Role="BookingMain" EntitySet="BookingMains" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Company">
           <Key>
@@ -8328,6 +8349,7 @@
           <NavigationProperty Name="AdditionalCharges" Relationship="DomainModels.RefHireGroupDetail394" FromRole="HireGroupDetail" ToRole="AdditionalCharge" />
           <NavigationProperty Name="RaHireGroups" Relationship="DomainModels.RefHireGroupDetail503" FromRole="HireGroupDetail" ToRole="RAHireGroup" />
           <NavigationProperty Name="RaAdditionalCharges" Relationship="DomainModels.RefHireGroupDetail551" FromRole="HireGroupDetail" ToRole="RAAdditionalCharge" />
+          <NavigationProperty Name="BookingMains" Relationship="DomainModels.RefHireGroupDetail" FromRole="HireGroupDetail" ToRole="BookingMain" />
         </EntityType>
         <EntityType Name="Operation">
           <Key>
@@ -11173,6 +11195,8 @@
           <NavigationProperty Name="BookingIsurances" Relationship="DomainModels.FK_BookingIsurance_BookingMain" FromRole="BookingMain" ToRole="BookingIsurance" />
           <NavigationProperty Name="BookingServices" Relationship="DomainModels.FK_BookingService_BookingMain" FromRole="BookingMain" ToRole="BookingService" />
           <NavigationProperty Name="BookingPayments" Relationship="DomainModels.FK_BookingPayment_BookingMain" FromRole="BookingMain" ToRole="BookingPayment" />
+          <Property Name="HireGroupDetailID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="HireGroupDetail" Relationship="DomainModels.RefHireGroupDetail" FromRole="BookingMain" ToRole="HireGroupDetail" />
         </EntityType>
         <EntityType Name="BookingStatus">
           <Key>
@@ -13425,6 +13449,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="RefHireGroupDetail">
+          <End Type="DomainModels.HireGroupDetail" Role="HireGroupDetail" Multiplicity="1" />
+          <End Type="DomainModels.BookingMain" Role="BookingMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HireGroupDetail">
+              <PropertyRef Name="HireGroupDetailId" />
+            </Principal>
+            <Dependent Role="BookingMain">
+              <PropertyRef Name="HireGroupDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -15311,6 +15347,7 @@
           <EntitySetMapping Name="BookingMains">
             <EntityTypeMapping TypeName="DomainModels.BookingMain">
               <MappingFragment StoreEntitySet="BookingMain">
+                <ScalarProperty Name="HireGroupDetailID" ColumnName="HireGroupDetailID" />
                 <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
                 <ScalarProperty Name="OperationId" ColumnName="OperationID" />
                 <ScalarProperty Name="PaymentTermId" ColumnName="PaymentTermID" />
