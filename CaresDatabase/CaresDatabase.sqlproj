@@ -59,8 +59,6 @@
     <Folder Include="Properties" />
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
-    <Folder Include="dbo\Views\" />
-    <Folder Include="Security\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\WorkplaceType.sql" />
@@ -200,104 +198,10 @@
     <Build Include="dbo\Tables\AdditionalDriverCharge.sql" />
     <Build Include="dbo\Tables\AdditionalChargeType.sql" />
     <Build Include="dbo\Tables\AdditionalCharge.sql" />
-    <Build Include="dbo\Views\WorkplaceView.sql" />
-    <Build Include="dbo\Views\WorkLocationView.sql" />
-    <Build Include="dbo\Views\VehicleView.sql" />
-    <Build Include="dbo\Views\VehicleSubStatusView.sql" />
-    <Build Include="dbo\Views\VehicleOtherDetailView.sql" />
-    <Build Include="dbo\Views\VehicleMovementView.sql" />
-    <Build Include="dbo\Views\VehicleMaintenanceTypeFrequencyView.sql" />
-    <Build Include="dbo\Views\VehicleCheckListItemView.sql" />
-    <Build Include="dbo\Views\UserFunctionView.sql" />
-    <Build Include="dbo\Views\TariffTypeView.sql" />
-    <Build Include="dbo\Views\SubRegionView.sql" />
-    <Build Include="dbo\Views\StandardRtView.sql" />
-    <Build Include="dbo\Views\StandardRtMainView.sql" />
-    <Build Include="dbo\Views\StandardDiscountView.sql" />
-    <Build Include="dbo\Views\ServiceRtView.sql" />
-    <Build Include="dbo\Views\ServiceRtMainView.sql" />
-    <Build Include="dbo\Views\ServiceItemView.sql" />
-    <Build Include="dbo\Views\SeasonalDiscountView.sql" />
-    <Build Include="dbo\Views\SeasonalDiscountMainView.sql" />
-    <Build Include="dbo\Views\rptStandardRtView.sql" />
-    <Build Include="dbo\Views\rptRAVehicleCheckListView.sql" />
-    <Build Include="dbo\Views\rptRAPaymentView.sql" />
-    <Build Include="dbo\Views\rptRAHireGroupView.sql" />
-    <Build Include="dbo\Views\rptRACustomerView.sql" />
-    <Build Include="dbo\Views\rptNRTVehicleView.sql" />
-    <Build Include="dbo\Views\rptNRTMainView.sql" />
-    <Build Include="dbo\Views\rptNRTMaintenanceView.sql" />
-    <Build Include="dbo\Views\rptNRTDriverView.sql" />
-    <Build Include="dbo\Views\rptMissingHireGroupDetailsView.sql" />
-    <Build Include="dbo\Views\rptInsuranceRtView.sql" />
-    <Build Include="dbo\Views\rptHireGroupDetailView.sql" />
-    <Build Include="dbo\Views\rptActionList.sql" />
-    <Build Include="dbo\Views\RegionView.sql" />
-    <Build Include="dbo\Views\RAServiceItemView.sql" />
-    <Build Include="dbo\Views\RAQueueView.sql">
-      <AnsiNulls>Off</AnsiNulls>
-      <QuotedIdentifier>Off</QuotedIdentifier>
-    </Build>
-    <Build Include="dbo\Views\RAPaymentView.sql" />
-    <Build Include="dbo\Views\RAHireGroupView.sql" />
-    <Build Include="dbo\Views\RAHireGroupInsuranceView.sql" />
-    <Build Include="dbo\Views\RADriverView.sql" />
-    <Build Include="dbo\Views\RAAdditionalChargeView.sql" />
-    <Build Include="dbo\Views\PhoneView.sql" />
-    <Build Include="dbo\Views\OperationWorkplaceView.sql" />
-    <Build Include="dbo\Views\OperationView.sql" />
-    <Build Include="dbo\Views\NRTVehicleView.sql" />
-    <Build Include="dbo\Views\NRTVehicleMovementView.sql" />
-    <Build Include="dbo\Views\NRTTypeView.sql" />
-    <Build Include="dbo\Views\NRTQueueView.sql" />
-    <Build Include="dbo\Views\NRTMainView.sql" />
-    <Build Include="dbo\Views\NRTDriverView.sql" />
-    <Build Include="dbo\Views\NRTChargeView.sql" />
-    <Build Include="dbo\Views\MaintenanceTypeView.sql" />
-    <Build Include="dbo\Views\LoadHireGroupStandardRtView.sql" />
-    <Build Include="dbo\Views\InsuranceRtView.sql" />
-    <Build Include="dbo\Views\InsuranceRtRAView.sql" />
-    <Build Include="dbo\Views\InsuranceRtMainView.sql" />
-    <Build Include="dbo\Views\HireGroupView.sql" />
-    <Build Include="dbo\Views\HireGroupUpGradeView.sql" />
-    <Build Include="dbo\Views\HireGroupDetailView.sql" />
-    <Build Include="dbo\Views\FleetPoolView.sql" />
-    <Build Include="dbo\Views\EmployeeView.sql">
-      <AnsiNulls>Off</AnsiNulls>
-      <QuotedIdentifier>Off</QuotedIdentifier>
-    </Build>
-    <Build Include="dbo\Views\EmpJobProgView.sql" />
-    <Build Include="dbo\Views\EmpCompanyInfoView.sql" />
-    <Build Include="dbo\Views\EmpAuthOperationsWorkplaceView.sql" />
-    <Build Include="dbo\Views\DocumentView.sql" />
-    <Build Include="dbo\Views\DiscountSubTypeView.sql" />
-    <Build Include="dbo\Views\DesigGradeView.sql" />
-    <Build Include="dbo\Views\DepartmentView.sql" />
-    <Build Include="dbo\Views\CreditLimitView.sql" />
-    <Build Include="dbo\Views\CompanyView.sql" />
-    <Build Include="dbo\Views\CityView.sql" />
-    <Build Include="dbo\Views\ChaufferChargeView.sql" />
-    <Build Include="dbo\Views\ChaufferChargeRAView.sql" />
-    <Build Include="dbo\Views\ChaufferChargeMainView.sql" />
-    <Build Include="dbo\Views\CaresUserView.sql" />
-    <Build Include="dbo\Views\BPSubTypeView.sql" />
-    <Build Include="dbo\Views\BPRelationshipView.sql" />
-    <Build Include="dbo\Views\BPMarketingChannelView.sql" />
-    <Build Include="dbo\Views\BPMainView.sql" />
-    <Build Include="dbo\Views\BPInTypeView.sql" />
-    <Build Include="dbo\Views\BPCustomerIndividualView.sql" />
-    <Build Include="dbo\Views\BPCustomerCompanyView.sql" />
-    <Build Include="dbo\Views\BPCustomerCompany.sql" />
-    <Build Include="dbo\Views\AreaView.sql" />
-    <Build Include="dbo\Views\AddressView.sql" />
-    <Build Include="dbo\Views\AdditionalDriverChargeView.sql" />
-    <Build Include="dbo\Views\AdditionalChargeView.sql" />
     <Build Include="dbo\Tables\BookingService.sql" />
     <Build Include="dbo\Tables\BookingIsurance.sql" />
     <Build Include="dbo\Tables\BookingChauffeur.sql" />
     <Build Include="dbo\Tables\BookingAdditionalDriver.sql" />
-    <Build Include="Security\cares.sql" />
-    <Build Include="Security\RoleMemberships.sql" />
     <Build Include="dbo\Tables\BookingPayment.sql" />
   </ItemGroup>
 </Project>

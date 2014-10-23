@@ -222,7 +222,7 @@
         <EntityTypeShape EntityType="DomainModels.DiscountType" Width="1.5" PointX="25.375" PointY="1.125" />
         <EntityTypeShape EntityType="DomainModels.NrtCharge" Width="1.5" PointX="33.875" PointY="54.125" />
         <EntityTypeShape EntityType="DomainModels.NrtDriver" Width="1.5" PointX="39.875" PointY="34.5" />
-        <EntityTypeShape EntityType="DomainModels.NrtMain" Width="1.5" PointX="27.375" PointY="42.125" />
+        <EntityTypeShape EntityType="DomainModels.NrtMain" Width="1.5" PointX="27.375" PointY="42.625" />
         <EntityTypeShape EntityType="DomainModels.NrtType" Width="1.5" PointX="25.125" PointY="62.625" />
         <EntityTypeShape EntityType="DomainModels.NrtVehicle" Width="1.5" PointX="29.625" PointY="44.25" />
         <EntityTypeShape EntityType="DomainModels.NrtVehicleMovement" Width="1.5" PointX="38.875" PointY="40.75" />
@@ -378,10 +378,11 @@
         <AssociationConnector Association="DomainModels.FK_BookingIsurance_BookingMain" />
         <AssociationConnector Association="DomainModels.FK_BookingIsurance_InsuranceType" />
         <AssociationConnector Association="DomainModels.FK_BookingService_BookingMain" />
-        <AssociationConnector Association="DomainModels.FK_BookingService_ServiceType" />
         <EntityTypeShape EntityType="DomainModels.BookingPayment" Width="1.5" PointX="40.625" PointY="23" />
         <AssociationConnector Association="DomainModels.FK_BookingPayment_BookingMain" />
         <AssociationConnector Association="DomainModels.FK_BookingPayment_PaymentMode" />
+        <AssociationConnector Association="DomainModels.RefHireGroupDetail" />
+        <AssociationConnector Association="DomainModels.FK_BookingService_ServiceType1" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

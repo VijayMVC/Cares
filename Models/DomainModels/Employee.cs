@@ -210,6 +210,11 @@ namespace Cares.Models.DomainModels
         /// </summary>
         public virtual ICollection<RaDriver> RaDrivers { get; set; }
 
+        /// <summary>
+        /// Booking Chauffers
+        /// </summary>
+        public virtual ICollection<BookingChauffeur> BookingChauffeurs { get; set; }
+
         
         #endregion
     }

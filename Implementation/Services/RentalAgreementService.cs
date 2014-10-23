@@ -1517,15 +1517,15 @@ namespace Cares.Implementation.Services
                 raMain.RaServiceItems = new List<RaServiceItem>();
             }
 
-            foreach (RaServiceItem serviceItem in bookingMain.BookingServiceItems)
+            foreach (BookingService serviceItem in bookingMain.BookingServices)
             {
                 raMain.RaServiceItems.Add(new RaServiceItem
                 {
                     ServiceItemId = serviceItem.ServiceItemId,
-                    StartDtTime = serviceItem.StartDtTime,
-                    EndDtTime = serviceItem.EndDtTime,
+                    ServiceItem = serviceItem.ServiceItem,
                     Quantity = serviceItem.Quantity,
-                    ServiceItem = serviceItem.ServiceItem
+                    StartDtTime = serviceItem.StartDate,
+                    EndDtTime = serviceItem.EndDate
                 });
             }
         }
@@ -1543,20 +1543,19 @@ namespace Cares.Implementation.Services
             // Create RAHireGroup
             RaHireGroup raHireGroup = new RaHireGroup
             {
-                // TODO: Uncomment when HireGoup Detail gets added to Booking
-                //HireGroupDetailId = bookingMain.HireGroupDetailId,
-                //HireGroupDetail = bookingMain.HireGroupDetail, 
+                HireGroupDetailId = bookingMain.HireGroupDetailId,
+                HireGroupDetail = bookingMain.HireGroupDetail, 
                 RaHireGroupInsurances = new List<RaHireGroupInsurance>()
             };
 
             // Add Insurances to RAHireGroup
-            foreach (RaHireGroupInsurance insurance in bookingMain.BookingInsurances)
+            foreach (BookingIsurance insurance in bookingMain.BookingIsurances)
             {
                 raHireGroup.RaHireGroupInsurances.Add(new RaHireGroupInsurance
                 {
                     InsuranceTypeId = insurance.InsuranceTypeId,
-                    StartDtTime = insurance.StartDtTime,
-                    EndDtTime = insurance.EndDtTime,
+                    StartDtTime = insurance.StartDate,
+                    EndDtTime = insurance.EndDate,
                     InsuranceType = insurance.InsuranceType
                 });
             }
@@ -1579,36 +1578,27 @@ namespace Cares.Implementation.Services
             }
 
             // Add Drivers From Booking to RA
-            foreach (RaDriver driver in bookingMain.BookingDrivers)
+            foreach (BookingAdditionalDriver driver in bookingMain.BookingAdditionalDrivers)
             {
                 raMain.RaDrivers.Add(new RaDriver
                 {
                     IsChauffer = false,
-                    EndDtTime = driver.EndDtTime,
-                    StartDtTime = driver.StartDtTime,
-                    DriverName = driver.DriverName,
-                    DesigGradeId = driver.DesigGradeId,
-                    DesigGrade = driver.DesigGrade,
-                    LicenseExpDt = driver.LicenseExpDt,
-                    LicenseNo = driver.LicenseNo
+                    DriverName = driver.AdditionDriverName,
+                    LicenseExpDt = driver.AdditionalDriverLicenseExpDt,
+                    LicenseNo = driver.AdditionaDriverLicenseNo
                 });
             }
 
             // Add Chauffers from Booking to RA
-            foreach (RaDriver driver in bookingMain.BookingChauffers)
+            foreach (BookingChauffeur driver in bookingMain.BookingChauffeurs)
             {
                 raMain.RaDrivers.Add(new RaDriver
                 {
-                    ChaufferId = driver.ChaufferId,
+                    ChaufferId = driver.ChauffeurId,
                     IsChauffer = true,
-                    EndDtTime = driver.EndDtTime,
-                    StartDtTime = driver.StartDtTime,
-                    DriverName = driver.DriverName,
-                    DesigGradeId = driver.DesigGradeId,
-                    DesigGrade = driver.DesigGrade,
-                    Employee = driver.Employee,
-                    LicenseExpDt = driver.LicenseExpDt,
-                    LicenseNo = driver.LicenseNo
+                    DriverName = driver.Employee.EmpFName + driver.Employee.EmpLName,
+                    StartDtTime = driver.StartDate,
+                    EndDtTime = driver.EndDate
                 });
             }
         }
@@ -1623,7 +1613,7 @@ namespace Cares.Implementation.Services
                 raMain.RaPayments = new List<RaPayment>();
             }
 
-            foreach (RaPayment payment in bookingMain.BookingPayments)
+            foreach (BookingPayment payment in bookingMain.BookingPayments)
             {
                 raMain.RaPayments.Add(new RaPayment
                 {
@@ -1631,8 +1621,8 @@ namespace Cares.Implementation.Services
                     Bank = payment.Bank,
                     PaidBy = payment.PaidBy,
                     ChequeNumber = payment.ChequeNumber,
-                    RaPaymentDt = payment.RaPaymentDt,
-                    RaPaymentAmount = payment.RaPaymentAmount
+                    RaPaymentDt = payment.BookingPaymentDt,
+                    RaPaymentAmount = payment.BookingPaymentAmount
                 });
             }
         }

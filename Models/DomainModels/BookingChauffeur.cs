@@ -48,6 +48,11 @@ namespace Cares.Models.DomainModels
         /// </summary>
         public virtual BookingMain BookingMain { get; set; }
 
+        /// <summary>
+        /// Employee
+        /// </summary>
+        public virtual Employee Employee { get; set; }
+
         #endregion
     }
 }

@@ -21,6 +21,11 @@ namespace Cares.Models.DomainModels
         public string LocationCode { get; set; }
 
         /// <summary>
+        /// Location Name
+        /// </summary>
+        public string LocationName { get; set; }
+
+        /// <summary>
         /// Work Place Id
         /// </summary>
         public long WorkPlaceId { get; set; }

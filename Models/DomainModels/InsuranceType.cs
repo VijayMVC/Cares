@@ -100,6 +100,11 @@ namespace Cares.Models.DomainModels
         /// </summary>
         public virtual ICollection<RaHireGroupInsurance> RaHireGroupInsurances { get; set; }
 
+        /// <summary>
+        /// Booking Insurances
+        /// </summary>
+        public virtual ICollection<BookingIsurance> BookingIsurances { get; set; }
+
         #endregion
     }
 }
