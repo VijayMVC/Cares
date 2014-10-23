@@ -18,11 +18,15 @@
     [PaymentTermID]          SMALLINT       NOT NULL,
     [OperationID]            BIGINT         NOT NULL,
     [UserDomainKey]          BIGINT         NOT NULL,
+    [HireGroupDetailID]      BIGINT         NOT NULL,
     CONSTRAINT [PK20_1] PRIMARY KEY NONCLUSTERED ([BookingMainID] ASC),
     CONSTRAINT [RefBookingStatus438] FOREIGN KEY ([BookingStatusID]) REFERENCES [dbo].[BookingStatus] ([BookingStatusID]),
+    CONSTRAINT [RefHireGroupDetail] FOREIGN KEY ([HireGroupDetailID]) REFERENCES [dbo].[HireGroupDetail] ([HireGroupDetailID]),
     CONSTRAINT [RefOperation500] FOREIGN KEY ([OperationID]) REFERENCES [dbo].[Operation] ([OperationID]),
     CONSTRAINT [RefOperationsWorkplace436] FOREIGN KEY ([OpenLocation]) REFERENCES [dbo].[OperationsWorkplace] ([OperationsWorkplaceID]),
     CONSTRAINT [RefOperationsWorkplace437] FOREIGN KEY ([CloseLocation]) REFERENCES [dbo].[OperationsWorkplace] ([OperationsWorkplaceID]),
     CONSTRAINT [RefPaymentTerm494] FOREIGN KEY ([PaymentTermID]) REFERENCES [dbo].[PaymentTerm] ([PaymentTermID])
 );
+
+
 
