@@ -219,7 +219,7 @@
           <Key>
             <PropertyRef Name="BookingPaymentID" />
           </Key>
-          <Property Name="BookingPaymentID" Type="bigint" Nullable="false" />
+          <Property Name="BookingPaymentID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PaymentModeID" Type="smallint" Nullable="false" />
           <Property Name="BookingMainID" Type="bigint" Nullable="false" />
           <Property Name="BookingPaymentDt" Type="datetime" Nullable="false" />
@@ -2833,7 +2833,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_BookingService_ServiceType">
+        <Association Name="FK_BookingService_ServiceItem">
           <End Role="ServiceItem" Type="Self.ServiceItem" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -5667,7 +5667,7 @@
             <End Role="BookingMain" EntitySet="BookingMain" />
             <End Role="BookingService" EntitySet="BookingService" />
           </AssociationSet>
-          <AssociationSet Name="FK_BookingService_ServiceType" Association="Self.FK_BookingService_ServiceType">
+          <AssociationSet Name="FK_BookingService_ServiceItem" Association="Self.FK_BookingService_ServiceItem">
             <End Role="ServiceItem" EntitySet="ServiceItem" />
             <End Role="BookingService" EntitySet="BookingService" />
           </AssociationSet>
