@@ -104,6 +104,14 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     additionalCharges = ko.observableArray([]),
                     // Insurance Rates
                     insuranceRates = ko.observableArray([]),
+                    // Opening RA from Booking
+                    openingRaUsingBooking = ko.observable(false),
+                    // Can Edit Booking No
+                    canEditBooking = ko.computed(function() {
+                        return !openingRaUsingBooking() && !rentalAgreement().id();
+                    }),
+                    // Booking Insurance
+                    bookingInsurances = ko.observableArray([]),
                     // Chauffer Filter
                     chaufferFilter = ko.observable(model.Chauffer.Create({})),
                     // allocation statuses
@@ -168,6 +176,16 @@ define("rentalAgreement/rentalAgreement.viewModel",
                             });
                             selectedVehicle(vehicle);
                             rentalAgreement().rentalAgreementHireGroups.push(raHireGroup);
+
+                            // Add Insurance if it being opened from booking
+                            if (openingRaUsingBooking() && bookingInsurances().length > 0) {
+                                bookingInsurances.each(function (insurance) {
+                                    insurance.start(moment(vehicleStartDtFilter()).toDate());
+                                    insurance.end(moment(vehicleEndDtFilter()).toDate());
+                                    raHireGroup.raHireGroupInsurances.push(insurance);
+                                });
+                            }
+
                             calculateBill();
                         }
                     },
@@ -634,6 +652,8 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     },
                     // Load Rental Agreement
                     load = function (raMainId) {
+                        openingRaUsingBooking(false);
+
                         dataservice.getRentalAgreement({ id: raMainId }, {
                             success: function (data) {
                                 // Set Ra Main
@@ -649,8 +669,36 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     },
                     // Load Rental Agreement
                     loadByBooking = function (bookingMainId) {
+                        openingRaUsingBooking(true);
+
                         dataservice.getRentalAgreementByBooking({ id: bookingMainId }, {
                             success: function (data) {
+                                // If no Booking Found
+                                if (!data) {
+                                    openingRaUsingBooking(false);
+                                    return;
+                                }
+
+                                // Look for Added Insurances - Need to add to the vehicle
+                                if (data.RaHireGroups.length > 0) {
+                                    var insuranceItems = [];
+
+                                    _.each(data, function (insurance) {
+                                        var insuranceItem = model.RentalAgreementHireGroupInsurance.Create(insurance);
+                                        insuranceItem.isSelected(true);
+                                        insuranceItems.push(insuranceItem);
+                                    });
+
+                                    ko.utils.arrayPushAll(bookingInsurances(), insuranceItems);
+                                    bookingInsurances.valueHasMutated();
+
+                                    // Select Desired Hire Group
+                                    selectDesiredHireGroup(data.RaHireGroups[0].HireGroupDetail);
+
+                                    // Reset RaHireGroups
+                                    data.RaHireGroups = [];
+                                }
+
                                 // Set Ra Main
                                 rentalAgreement(model.RentalAgreement.Create(data, rentalAgreementModelCallbacks, true));
                             },
@@ -807,6 +855,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     selectRaHireGroup: selectRaHireGroup,
                     paymentModes: paymentModes,
                     plateNumbers: plateNumbers,
+                    canEditBooking: canEditBooking,
                     // Observables
                     // Utility Methods
                     initialize: initialize,

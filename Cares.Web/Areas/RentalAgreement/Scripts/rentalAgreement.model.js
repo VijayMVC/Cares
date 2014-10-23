@@ -380,10 +380,6 @@
                     }
                 }
             }),
-            // Can Edit Booking No
-            canEditBooking = ko.computed(function() {
-                return !id();
-            }),
             // Convert To Server Data
             convertToServerData = function () {
                 return {
@@ -456,7 +452,6 @@
             billing: billing,
             raStatusId: raStatusId,
             raBookingId: raBookingId,
-            canEditBooking: canEditBooking,
             rentalAgreementServiceItems: rentalAgreementServiceItems,
             removeRaServiceItem: removeRaServiceItem,
             rentalAgreementDrivers: rentalAgreementDrivers,
@@ -1821,7 +1816,7 @@
     RentalAgreementHireGroupInsurance.Create = function (source) {
         return new RentalAgreementHireGroupInsurance(source.RaHireGroupInsuranceId, source.RaHireGroupId, source.InsuranceTypeId, source.InsuranceTypeCodeName,
             source.StartDtTime ? moment(source.StartDtTime).toDate() : undefined, source.EndDtTime ? moment(source.EndDtTime).toDate() : undefined, source.InsuranceRate,
-            source.InsuranceCharg, source.TariffType);
+            source.InsuranceCharge, source.TariffType);
     };
 
     // Insurance Type Factory
