@@ -1744,6 +1744,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Images\arrow-down-small.png" />
     <Content Include="Content\Images\arrow-up-small.png" />
+    <Content Include="Content\Images\cares-logo.png" />
     <Content Include="Content\Images\logo-big.png" />
     <Content Include="Content\Images\logo-invert.png" />
     <Content Include="Content\Images\logo.png" />
