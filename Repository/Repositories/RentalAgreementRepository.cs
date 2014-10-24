@@ -106,7 +106,7 @@ namespace Cares.Repository.Repositories
                     RAStutus = raHireGroup.RaMain.RaStatus.RaStatusCode,
                     CustomerName = raHireGroup.RaMain.BusinessPartner.BusinessPartnerName,
                 //    Nationality = raHireGroup.RaMain.BusinessPartner.BusinessPartnerAddressList != null ? raHireGroup.RaMain.BusinessPartner.BusinessPartnerAddressList.FirstOrDefault().Country.CountryName : string.Empty,
-                    Mobile = "Not found!",
+                    Mobile = "Not Found!",
                     HireGroup = raHireGroup.RaMain.RaHireGroups.FirstOrDefault().HireGroupDetail.HireGroup.HireGroupName,
                     PlateNumber = raHireGroup.Vehicle.PlateNumber,
                     FleetPool = raHireGroup.Vehicle.FleetPool.FleetPoolName,
@@ -122,6 +122,14 @@ namespace Cares.Repository.Repositories
                     OutDate = raHireGroup.RaMain.EndDtTime
                 };
             return dailyActionDetailQuery.OrderBy(raHireGroup => raHireGroup.HireGroup).ToList();
+        }
+
+        /// <summary>
+        /// Rental Agreement Detail Report
+        /// </summary>        
+        public List<RaMain> GetRentalAgreementReport()
+        {
+            return DbSet.Select(ravehicle => ravehicle).Where(ramain => ramain.RaMainId == 1).ToList();
         }
 
         #endregion

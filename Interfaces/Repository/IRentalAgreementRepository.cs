@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Cares.Models.DomainModels;
 using Cares.Models.ReportModels;
 using Cares.Models.RequestModels;
@@ -25,5 +26,12 @@ namespace Cares.Interfaces.Repository
         /// Daily Action Detail Report
         /// </summary>        
         IList<DailyActionReportResponse> GetDailyActionReport();
+
+
+        /// <summary>
+        /// Rental Agreement Detail Report
+        /// </summary>        
+        List<RaMain> GetRentalAgreementReport();
+
     }
 }

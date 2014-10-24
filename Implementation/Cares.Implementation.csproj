@@ -605,6 +605,7 @@
     <Compile Include="Services\BusinessPartnerInTypeService.cs" />
     <Compile Include="Services\NrtQueueService.cs" />
     <Compile Include="Services\RaQueueService.cs" />
+    <Compile Include="ReportServices\RentalAgreementReportService.cs" />
     <Compile Include="Services\VehicleModelService.cs" />
     <Compile Include="Services\CreditLimitService.cs" />
     <Compile Include="Services\VehicleStatusService.cs" />

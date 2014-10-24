@@ -13463,18 +13463,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="RefHireGroupDetail">
-          <End Type="DomainModels.HireGroupDetail" Role="HireGroupDetail" Multiplicity="1" />
-          <End Type="DomainModels.BookingMain" Role="BookingMain" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HireGroupDetail">
-              <PropertyRef Name="HireGroupDetailId" />
-            </Principal>
-            <Dependent Role="BookingMain">
-              <PropertyRef Name="HireGroupDetailID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

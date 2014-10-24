@@ -103,6 +103,7 @@ namespace Cares.Implementation
             unityContainer.RegisterType<IFleetReportService, FleetReportService>();
             unityContainer.RegisterType<INrtQueueService, NrtQueueService>();
             unityContainer.RegisterType<IDailyActionService, DailyActionService>();
+            unityContainer.RegisterType<IRentalAgreementReportService, RentalAgreementReportService>();
 
 
         }

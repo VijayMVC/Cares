@@ -422,6 +422,7 @@
     <Compile Include="ModelMappers\RaQueueMapper.cs" />
     <Compile Include="ModelMappers\RaStatusMapper.cs" />
     <Compile Include="ModelMappers\RatingTypeMapper.cs" />
+    <Compile Include="ModelMappers\RentalAgreementReportMapper.cs" />
     <Compile Include="ModelMappers\SeasonalDiscountMapper.cs" />
     <Compile Include="ModelMappers\ServiceItemMapper.cs" />
     <Compile Include="ModelMappers\RaAdditionalChargeMapper.cs" />
@@ -784,6 +785,23 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FleetDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RACustomerDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RACustomerDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RentalAgreementDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RentalAgreementDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RentalAgreementReport.aspx.cs">
+      <DependentUpon>RentalAgreementReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RentalAgreementReport.aspx.designer.cs">
+      <DependentUpon>RentalAgreementReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\VehiclesReport.aspx.cs">
       <DependentUpon>VehiclesReport.aspx</DependentUpon>
@@ -2079,6 +2097,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Reports\DailyActionReport.aspx" />
+    <Content Include="Reports\RentalAgreementReport.aspx" />
     <Content Include="Reports\VehiclesReport.aspx" />
     <Content Include="Resources\Images\favicon.ico" />
     <Content Include="Resources\Images\logo.jpg" />
@@ -2568,6 +2587,7 @@
     <Content Include="Areas\Reports\Views\Report\FleetReport.cshtml" />
     <Content Include="Areas\Reports\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Reports\Views\Report\DailyActionReport.cshtml" />
+    <Content Include="Areas\Reports\Views\Report\RentalAgreementReport.cshtml" />
     <None Include="Properties\PublishProfiles\Khurram.pubxml" />
     <Content Include="RichTextEditor\plugins\Thumbs.db" />
     <Content Include="Reports\FleetDS.xsc">
@@ -2591,6 +2611,28 @@
     </None>
     <Content Include="Reports\FleetDS.xss">
       <DependentUpon>FleetDS.xsd</DependentUpon>
+    </Content>
+    <Content Include="Reports\RentalAgreementDS.xsc">
+      <DependentUpon>RentalAgreementDS.xsd</DependentUpon>
+    </Content>
+    <Content Include="Reports\RACustomerDS.xsc">
+      <DependentUpon>RACustomerDS.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\RACustomerDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RACustomerDS.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reports\RACustomerDS.xss">
+      <DependentUpon>RACustomerDS.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\RentalAgreementDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RentalAgreementDS.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reports\RentalAgreementDS.xss">
+      <DependentUpon>RentalAgreementDS.xsd</DependentUpon>
     </Content>
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
@@ -2815,6 +2857,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Reports\RDLC\DailyAction.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\RentalAgreement.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\Vehicle.rdlc" />
     <EmbeddedResource Include="Resources\BusinessPartner\BusinessLegalStatus.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

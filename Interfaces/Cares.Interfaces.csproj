@@ -59,6 +59,7 @@
     <Compile Include="IServices\IBusinessPartnerRelationTypeService.cs" />
     <Compile Include="IServices\IBusinessPartnerSubTypeService.cs" />
     <Compile Include="IServices\INrtQueueService.cs" />
+    <Compile Include="IServices\IRentalAgreementReportService.cs" />
     <Compile Include="IServices\IVehicleModelService.cs" />
     <Compile Include="IServices\ICreditLimitService.cs" />
     <Compile Include="IServices\IVehicleStatusService.cs" />
