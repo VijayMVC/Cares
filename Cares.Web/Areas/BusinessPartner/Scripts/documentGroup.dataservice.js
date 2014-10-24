@@ -13,21 +13,21 @@ define("documentGroup/documentGroup.dataservice", function () {
                 if (!isInitialized) {
                     // Define request to get Document Groups
                     amplify.request.define('getDocumentGroups', 'ajax', {
-                        url: '/Api/DocumentGroup',
+                        url: ist.siteUrl + '/Api/DocumentGroup',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
                     // Define request to delete Document Group
                     amplify.request.define('deleteDocumentGroup', 'ajax', {
-                        url: '/Api/DocumentGroup',
+                        url: ist.siteUrl + '/Api/DocumentGroup',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
                     // Define request to add/update Document Group
                     amplify.request.define('saveDocumentGroup', 'ajax', {
-                        url: '/Api/DocumentGroup',
+                        url: ist.siteUrl + '/Api/DocumentGroup',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'

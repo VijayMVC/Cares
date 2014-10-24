@@ -13,32 +13,32 @@ define("seasonalDiscount/seasonalDiscount.dataservice", function () {
 
                     // Define request to get Seasonal Discount  base 
                     amplify.request.define('getSeasonalDiscountBase', 'ajax', {
-                        url: '/Api/SeasonalDiscountBase',
+                        url: ist.siteUrl + '/Api/SeasonalDiscountBase',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to get Seasonal Discounts
                     amplify.request.define('getSeasonalDiscounts', 'ajax', {
-                        url: '/Api/SeasonalDiscount',
+                        url: ist.siteUrl + '/Api/SeasonalDiscount',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to get  Seasonal Discount  detail
                     amplify.request.define('getSeasonalDiscountDetail', 'ajax', {
-                        url: '/Api/SeasonalDiscountDetail',
+                        url: ist.siteUrl + '/Api/SeasonalDiscountDetail',
                         dataType: 'json',
                         type: 'GET'
                     });
                     // Define request to save Seasonal Discount
                     amplify.request.define('saveSeasonalDiscount', 'ajax', {
-                        url: '/Api/SeasonalDiscount',
+                        url: ist.siteUrl + '/Api/SeasonalDiscount',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
                     });
                     // Define request to delete Seasonal Discounts
                     amplify.request.define('deleteSeasonalDiscount', 'ajax', {
-                        url: '/Api/SeasonalDiscount',
+                        url: ist.siteUrl + '/Api/SeasonalDiscount',
                         dataType: 'json',
                         type: 'DELETE'
                     });

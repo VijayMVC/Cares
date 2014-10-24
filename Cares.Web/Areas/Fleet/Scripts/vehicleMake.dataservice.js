@@ -13,21 +13,21 @@ define("vehicleMake/vehicleMake.dataservice", function () {
                 if (!isInitialized) {
                     // Define request to get Vehicle Makes
                     amplify.request.define('getVehicleMakes', 'ajax', {
-                        url: '/Api/VehicleMake',
+                        url: ist.siteUrl + '/Api/VehicleMake',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
                     // Define request to delete Vehicle Make
                     amplify.request.define('deleteVehicleMake', 'ajax', {
-                        url: '/Api/VehicleMake',
+                        url: ist.siteUrl + '/Api/VehicleMake',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
                     // Define request to add/update Vehicle Makes
                     amplify.request.define('saveVehicleMake', 'ajax', {
-                        url: '/Api/VehicleMake',
+                        url: ist.siteUrl + '/Api/VehicleMake',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
