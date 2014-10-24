@@ -13,21 +13,21 @@ define("marketingChannel/marketingChannel.dataservice", function () {
                 if (!isInitialized) {
                     // Define request to get Marketing Channels
                     amplify.request.define('getMarketingChannels', 'ajax', {
-                        url: '/Api/MarketingChannel',
+                        url: ist.siteUrl + '/Api/MarketingChannel',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
                     // Define request to delete Marketing Channel
                     amplify.request.define('deleteMarketingChannel', 'ajax', {
-                        url: '/Api/MarketingChannel',
+                        url: ist.siteUrl + '/Api/MarketingChannel',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
                     // Define request to add/update Marketing Channel
                     amplify.request.define('saveMarketingChannel', 'ajax', {
-                        url: '/Api/MarketingChannel',
+                        url: ist.siteUrl + '/Api/MarketingChannel',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'

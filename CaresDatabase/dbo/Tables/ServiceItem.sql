@@ -12,9 +12,11 @@
     [RecLastUpdatedDt]       DATETIME       NOT NULL,
     [RecCreatedBy]           NVARCHAR (100) NOT NULL,
     [RecLastUpdatedBy]       NVARCHAR (100) NOT NULL,
-    [ServiceTypeID]          SMALLINT       NOT NULL,
+    [ServiceTypeID]          BIGINT         NOT NULL,
     [UserDomainKey]          BIGINT         NOT NULL,
     CONSTRAINT [PK79_1] PRIMARY KEY NONCLUSTERED ([ServiceItemID] ASC),
     CONSTRAINT [RefServiceType382] FOREIGN KEY ([ServiceTypeID]) REFERENCES [dbo].[ServiceType] ([ServiceTypeID])
 );
+
+
 

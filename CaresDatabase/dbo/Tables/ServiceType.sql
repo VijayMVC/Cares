@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[ServiceType] (
-    [ServiceTypeID]          SMALLINT       IDENTITY (1, 1) NOT NULL,
+    [ServiceTypeID]          BIGINT         IDENTITY (1, 1) NOT NULL,
     [ServiceTypeCode]        NVARCHAR (100) NOT NULL,
     [ServiceTypeName]        NVARCHAR (255) NOT NULL,
     [ServiceTypeDescription] NVARCHAR (500) NULL,
@@ -15,4 +15,6 @@
     [UserDomainKey]          BIGINT         NOT NULL,
     CONSTRAINT [PK168] PRIMARY KEY NONCLUSTERED ([ServiceTypeID] ASC)
 );
+
+
 

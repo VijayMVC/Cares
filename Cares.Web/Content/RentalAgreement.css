@@ -206,8 +206,8 @@
   width: 500px;
 }
 #rentalAgreementBinding #raMain #vehicleImage {
-  max-width: 32px;
-  max-height: 32px;
+  max-width: 100px;
+  max-height: 100px;
 }
 #rentalAgreementBinding #raBilling {
   width: 33.5%;

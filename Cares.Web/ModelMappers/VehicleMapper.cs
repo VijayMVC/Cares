@@ -13,9 +13,7 @@ namespace Cares.Web.ModelMappers
         /// </summary>
         public static Vehicle CreateFrom(this DomainModels.Vehicle source, bool headerOnly = true)
         {
-            DomainModels.VehicleImage image = source.HireGroup != null && source.HireGroup.HireGroupDetails != null ?
-                source.HireGroup.HireGroupDetails.Select(hg => hg.VehicleImageHireGroupDetails.Select(hgd => hgd.VehicleImage)
-                    .FirstOrDefault()).FirstOrDefault() : new DomainModels.VehicleImage();
+            DomainModels.VehicleImage image = source.VehicleImages != null ? source.VehicleImages.FirstOrDefault() : new DomainModels.VehicleImage();
 
             Vehicle vehicle = new Vehicle
             {

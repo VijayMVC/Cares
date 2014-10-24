@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[BookingPayment] (
-    [BookingPaymentID]     BIGINT         NOT NULL,
+    [BookingPaymentID]     BIGINT         IDENTITY (1, 1) NOT NULL,
     [PaymentModeID]        SMALLINT       NOT NULL,
     [BookingMainID]        BIGINT         NOT NULL,
     [BookingPaymentDt]     DATETIME       NOT NULL,
@@ -17,4 +17,6 @@
     CONSTRAINT [FK_BookingPayment_BookingMain] FOREIGN KEY ([BookingMainID]) REFERENCES [dbo].[BookingMain] ([BookingMainID]),
     CONSTRAINT [FK_BookingPayment_PaymentMode] FOREIGN KEY ([PaymentModeID]) REFERENCES [dbo].[PaymentMode] ([PaymentModeID])
 );
+
+
 

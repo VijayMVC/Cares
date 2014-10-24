@@ -13,21 +13,21 @@ define("bpMainType/bpMainType.dataservice", function () {
                 if (!isInitialized) {
                     // Define request to get save Bp MainTypes
                     amplify.request.define('getBpMainTypes', 'ajax', {
-                        url: '/Api/BpMainType',
+                        url: ist.siteUrl + '/Api/BpMainType',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
                     // Define request to delete Bp Main Type
                     amplify.request.define('deleteBpMainType', 'ajax', {
-                        url: '/Api/BpMainType',
+                        url: ist.siteUrl + '/Api/BpMainType',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
                     // Define request to add/update Bp Main Type
                     amplify.request.define('saveBpMainType', 'ajax', {
-                        url: '/Api/BpMainType',
+                        url: ist.siteUrl + '/Api/BpMainType',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'

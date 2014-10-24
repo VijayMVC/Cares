@@ -13,21 +13,21 @@ define("maintenanceTypeGroup/maintenanceTypeGroup.dataservice", function () {
                 if (!isInitialized) {
                     // Define request to get Maintenece Type Groups
                     amplify.request.define('getMainteneceTypeGroups', 'ajax', {
-                        url: '/Api/MainteneceTypeGroup',
+                        url: ist.siteUrl + '/Api/MainteneceTypeGroup',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
                     // Define request to delete Maintenece Type
                     amplify.request.define('deleteMainteneceTypeGroup', 'ajax', {
-                        url: '/Api/MainteneceTypeGroup',
+                        url: ist.siteUrl + '/Api/MainteneceTypeGroup',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
                     // Define request to add/update Maintenece Type
                     amplify.request.define('saveMainteneceTypeGroup', 'ajax', {
-                        url: '/Api/MainteneceTypeGroup',
+                        url: ist.siteUrl + '/Api/MainteneceTypeGroup',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
