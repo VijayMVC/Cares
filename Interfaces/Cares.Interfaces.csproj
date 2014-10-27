@@ -242,6 +242,7 @@
     <Compile Include="Repository\IWorkplaceTypeRepository.cs" />
     <Compile Include="Repository\IRaVehicleCheckListRepository.cs" />
     <Compile Include="Repository\INrtVehicleRepository.cs" />
+    <Compile Include="Security\IWebApiAuthenticationChecker.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Cares.Models.csproj">
