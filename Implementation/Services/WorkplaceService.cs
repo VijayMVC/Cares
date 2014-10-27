@@ -233,8 +233,6 @@ namespace Cares.Implementation.Services
             }
             #endregion
             workplaceRepository.SaveChanges();
-        //    operationsWorkPlaceRepository.SaveChanges();
-
             // To Load the proprties
             return  workplaceRepository.GetWorkplaceWithDetails(dbWorkPlace.WorkPlaceId);
         }

@@ -20,17 +20,17 @@ namespace Cares.Web.Reports {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("DailyAction")]
+    [global::System.Xml.Serialization.XmlRootAttribute("RACustomerDS")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class DailyAction : global::System.Data.DataSet {
+    public partial class RACustomerDS : global::System.Data.DataSet {
         
-        private DailyActionDataTable tableDailyAction;
+        private RACustomerDSDataTable tableRACustomerDS;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public DailyAction() {
+        public RACustomerDS() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace Cares.Web.Reports {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected DailyAction(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected RACustomerDS(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -54,8 +54,8 @@ namespace Cares.Web.Reports {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["DailyAction"] != null)) {
-                    base.Tables.Add(new DailyActionDataTable(ds.Tables["DailyAction"]));
+                if ((ds.Tables["RACustomerDS"] != null)) {
+                    base.Tables.Add(new RACustomerDSDataTable(ds.Tables["RACustomerDS"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace Cares.Web.Reports {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public DailyActionDataTable _DailyAction {
+        public RACustomerDSDataTable _RACustomerDS {
             get {
-                return this.tableDailyAction;
+                return this.tableRACustomerDS;
             }
         }
         
@@ -127,7 +127,7 @@ namespace Cares.Web.Reports {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            DailyAction cln = ((DailyAction)(base.Clone()));
+            RACustomerDS cln = ((RACustomerDS)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -152,8 +152,8 @@ namespace Cares.Web.Reports {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["DailyAction"] != null)) {
-                    base.Tables.Add(new DailyActionDataTable(ds.Tables["DailyAction"]));
+                if ((ds.Tables["RACustomerDS"] != null)) {
+                    base.Tables.Add(new RACustomerDSDataTable(ds.Tables["RACustomerDS"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace Cares.Web.Reports {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableDailyAction = ((DailyActionDataTable)(base.Tables["DailyAction"]));
+            this.tableRACustomerDS = ((RACustomerDSDataTable)(base.Tables["RACustomerDS"]));
             if ((initTable == true)) {
-                if ((this.tableDailyAction != null)) {
-                    this.tableDailyAction.InitVars();
+                if ((this.tableRACustomerDS != null)) {
+                    this.tableRACustomerDS.InitVars();
                 }
             }
         }
@@ -199,18 +199,18 @@ namespace Cares.Web.Reports {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "DailyAction";
+            this.DataSetName = "RACustomerDS";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/DailyAction.xsd";
+            this.Namespace = "http://tempuri.org/RACustomerDS.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableDailyAction = new DailyActionDataTable();
-            base.Tables.Add(this.tableDailyAction);
+            this.tableRACustomerDS = new RACustomerDSDataTable();
+            base.Tables.Add(this.tableRACustomerDS);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerialize_DailyAction() {
+        private bool ShouldSerialize_RACustomerDS() {
             return false;
         }
         
@@ -225,7 +225,7 @@ namespace Cares.Web.Reports {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            DailyAction ds = new DailyAction();
+            RACustomerDS ds = new RACustomerDS();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -270,61 +270,49 @@ namespace Cares.Web.Reports {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void DailyActionRowChangeEventHandler(object sender, DailyActionRowChangeEvent e);
+        public delegate void RACustomerDSRowChangeEventHandler(object sender, RACustomerDSRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class DailyActionDataTable : global::System.Data.TypedTableBase<DailyActionRow> {
+        public partial class RACustomerDSDataTable : global::System.Data.TypedTableBase<RACustomerDSRow> {
             
-            private global::System.Data.DataColumn columnRaNumber;
+            private global::System.Data.DataColumn columnRenterName;
             
-            private global::System.Data.DataColumn columnRAStutus;
+            private global::System.Data.DataColumn columnDriver;
             
-            private global::System.Data.DataColumn columnCustomerName;
+            private global::System.Data.DataColumn columnContactPerson;
             
-            private global::System.Data.DataColumn columnNationality;
+            private global::System.Data.DataColumn columnCity;
             
-            private global::System.Data.DataColumn columnMobile;
+            private global::System.Data.DataColumn columnCountry;
             
-            private global::System.Data.DataColumn columnAmountPaid;
+            private global::System.Data.DataColumn columnTelephone;
             
-            private global::System.Data.DataColumn columnAmountBalance;
+            private global::System.Data.DataColumn columnRegion;
             
-            private global::System.Data.DataColumn columnHireGroup;
+            private global::System.Data.DataColumn columnStreetAddress;
             
-            private global::System.Data.DataColumn columnPlateNumber;
+            private global::System.Data.DataColumn columnIdentification;
             
-            private global::System.Data.DataColumn columnFleetPool;
+            private global::System.Data.DataColumn columnLicenceNumber;
             
-            private global::System.Data.DataColumn columnVehicleMake;
+            private global::System.Data.DataColumn columnPassportNumber;
             
-            private global::System.Data.DataColumn columnVehicleModel;
+            private global::System.Data.DataColumn columnDOB;
             
-            private global::System.Data.DataColumn columnModelYear;
+            private global::System.Data.DataColumn columnLicenceDOE;
             
-            private global::System.Data.DataColumn columnMileage;
+            private global::System.Data.DataColumn columnPassportDOE;
             
-            private global::System.Data.DataColumn columnVehicleStatus;
-            
-            private global::System.Data.DataColumn columnCurrentLocation;
-            
-            private global::System.Data.DataColumn columnOutDate;
-            
-            private global::System.Data.DataColumn columnInDate;
-            
-            private global::System.Data.DataColumn columnODTD;
-            
-            private global::System.Data.DataColumn columnORTD;
-            
-            private global::System.Data.DataColumn columnEDTR;
+            private global::System.Data.DataColumn columnNID_DOE;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DailyActionDataTable() {
-                this.TableName = "DailyAction";
+            public RACustomerDSDataTable() {
+                this.TableName = "RACustomerDS";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -332,7 +320,7 @@ namespace Cares.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal DailyActionDataTable(global::System.Data.DataTable table) {
+            internal RACustomerDSDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -349,176 +337,128 @@ namespace Cares.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected DailyActionDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected RACustomerDSDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn RaNumberColumn {
+            public global::System.Data.DataColumn RenterNameColumn {
                 get {
-                    return this.columnRaNumber;
+                    return this.columnRenterName;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn RAStutusColumn {
+            public global::System.Data.DataColumn DriverColumn {
                 get {
-                    return this.columnRAStutus;
+                    return this.columnDriver;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CustomerNameColumn {
+            public global::System.Data.DataColumn ContactPersonColumn {
                 get {
-                    return this.columnCustomerName;
+                    return this.columnContactPerson;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn NationalityColumn {
+            public global::System.Data.DataColumn CityColumn {
                 get {
-                    return this.columnNationality;
+                    return this.columnCity;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MobileColumn {
+            public global::System.Data.DataColumn CountryColumn {
                 get {
-                    return this.columnMobile;
+                    return this.columnCountry;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn AmountPaidColumn {
+            public global::System.Data.DataColumn TelephoneColumn {
                 get {
-                    return this.columnAmountPaid;
+                    return this.columnTelephone;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn AmountBalanceColumn {
+            public global::System.Data.DataColumn RegionColumn {
                 get {
-                    return this.columnAmountBalance;
+                    return this.columnRegion;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn HireGroupColumn {
+            public global::System.Data.DataColumn StreetAddressColumn {
                 get {
-                    return this.columnHireGroup;
+                    return this.columnStreetAddress;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn PlateNumberColumn {
+            public global::System.Data.DataColumn IdentificationColumn {
                 get {
-                    return this.columnPlateNumber;
+                    return this.columnIdentification;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn FleetPoolColumn {
+            public global::System.Data.DataColumn LicenceNumberColumn {
                 get {
-                    return this.columnFleetPool;
+                    return this.columnLicenceNumber;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn VehicleMakeColumn {
+            public global::System.Data.DataColumn PassportNumberColumn {
                 get {
-                    return this.columnVehicleMake;
+                    return this.columnPassportNumber;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn VehicleModelColumn {
+            public global::System.Data.DataColumn DOBColumn {
                 get {
-                    return this.columnVehicleModel;
+                    return this.columnDOB;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ModelYearColumn {
+            public global::System.Data.DataColumn LicenceDOEColumn {
                 get {
-                    return this.columnModelYear;
+                    return this.columnLicenceDOE;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MileageColumn {
+            public global::System.Data.DataColumn PassportDOEColumn {
                 get {
-                    return this.columnMileage;
+                    return this.columnPassportDOE;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn VehicleStatusColumn {
+            public global::System.Data.DataColumn NID_DOEColumn {
                 get {
-                    return this.columnVehicleStatus;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CurrentLocationColumn {
-                get {
-                    return this.columnCurrentLocation;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn OutDateColumn {
-                get {
-                    return this.columnOutDate;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn InDateColumn {
-                get {
-                    return this.columnInDate;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ODTDColumn {
-                get {
-                    return this.columnODTD;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ORTDColumn {
-                get {
-                    return this.columnORTD;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn EDTRColumn {
-                get {
-                    return this.columnEDTR;
+                    return this.columnNID_DOE;
                 }
             }
             
@@ -533,86 +473,59 @@ namespace Cares.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DailyActionRow this[int index] {
+            public RACustomerDSRow this[int index] {
                 get {
-                    return ((DailyActionRow)(this.Rows[index]));
+                    return ((RACustomerDSRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DailyActionRowChangeEventHandler DailyActionRowChanging;
+            public event RACustomerDSRowChangeEventHandler RACustomerDSRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DailyActionRowChangeEventHandler DailyActionRowChanged;
+            public event RACustomerDSRowChangeEventHandler RACustomerDSRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DailyActionRowChangeEventHandler DailyActionRowDeleting;
+            public event RACustomerDSRowChangeEventHandler RACustomerDSRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DailyActionRowChangeEventHandler DailyActionRowDeleted;
+            public event RACustomerDSRowChangeEventHandler RACustomerDSRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddDailyActionRow(DailyActionRow row) {
+            public void AddRACustomerDSRow(RACustomerDSRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DailyActionRow AddDailyActionRow(
-                        string RaNumber, 
-                        string RAStutus, 
-                        string CustomerName, 
-                        string Nationality, 
-                        string Mobile, 
-                        string AmountPaid, 
-                        string AmountBalance, 
-                        string HireGroup, 
-                        string PlateNumber, 
-                        string FleetPool, 
-                        string VehicleMake, 
-                        string VehicleModel, 
-                        string ModelYear, 
-                        string Mileage, 
-                        string VehicleStatus, 
-                        string CurrentLocation, 
-                        string OutDate, 
-                        string InDate, 
-                        string ODTD, 
-                        string ORTD, 
-                        string EDTR) {
-                DailyActionRow rowDailyActionRow = ((DailyActionRow)(this.NewRow()));
+            public RACustomerDSRow AddRACustomerDSRow(string RenterName, string Driver, string ContactPerson, string City, string Country, string Telephone, string Region, string StreetAddress, string Identification, string LicenceNumber, string PassportNumber, string DOB, string LicenceDOE, string PassportDOE, string NID_DOE) {
+                RACustomerDSRow rowRACustomerDSRow = ((RACustomerDSRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        RaNumber,
-                        RAStutus,
-                        CustomerName,
-                        Nationality,
-                        Mobile,
-                        AmountPaid,
-                        AmountBalance,
-                        HireGroup,
-                        PlateNumber,
-                        FleetPool,
-                        VehicleMake,
-                        VehicleModel,
-                        ModelYear,
-                        Mileage,
-                        VehicleStatus,
-                        CurrentLocation,
-                        OutDate,
-                        InDate,
-                        ODTD,
-                        ORTD,
-                        EDTR};
-                rowDailyActionRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowDailyActionRow);
-                return rowDailyActionRow;
+                        RenterName,
+                        Driver,
+                        ContactPerson,
+                        City,
+                        Country,
+                        Telephone,
+                        Region,
+                        StreetAddress,
+                        Identification,
+                        LicenceNumber,
+                        PassportNumber,
+                        DOB,
+                        LicenceDOE,
+                        PassportDOE,
+                        NID_DOE};
+                rowRACustomerDSRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowRACustomerDSRow);
+                return rowRACustomerDSRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                DailyActionDataTable cln = ((DailyActionDataTable)(base.Clone()));
+                RACustomerDSDataTable cln = ((RACustomerDSDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -620,108 +533,90 @@ namespace Cares.Web.Reports {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new DailyActionDataTable();
+                return new RACustomerDSDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnRaNumber = base.Columns["RaNumber"];
-                this.columnRAStutus = base.Columns["RAStutus"];
-                this.columnCustomerName = base.Columns["CustomerName"];
-                this.columnNationality = base.Columns["Nationality"];
-                this.columnMobile = base.Columns["Mobile"];
-                this.columnAmountPaid = base.Columns["AmountPaid"];
-                this.columnAmountBalance = base.Columns["AmountBalance"];
-                this.columnHireGroup = base.Columns["HireGroup"];
-                this.columnPlateNumber = base.Columns["PlateNumber"];
-                this.columnFleetPool = base.Columns["FleetPool"];
-                this.columnVehicleMake = base.Columns["VehicleMake"];
-                this.columnVehicleModel = base.Columns["VehicleModel"];
-                this.columnModelYear = base.Columns["ModelYear"];
-                this.columnMileage = base.Columns["Mileage"];
-                this.columnVehicleStatus = base.Columns["VehicleStatus"];
-                this.columnCurrentLocation = base.Columns["CurrentLocation"];
-                this.columnOutDate = base.Columns["OutDate"];
-                this.columnInDate = base.Columns["InDate"];
-                this.columnODTD = base.Columns["ODTD"];
-                this.columnORTD = base.Columns["ORTD"];
-                this.columnEDTR = base.Columns["EDTR"];
+                this.columnRenterName = base.Columns["RenterName"];
+                this.columnDriver = base.Columns["Driver"];
+                this.columnContactPerson = base.Columns["ContactPerson"];
+                this.columnCity = base.Columns["City"];
+                this.columnCountry = base.Columns["Country"];
+                this.columnTelephone = base.Columns["Telephone"];
+                this.columnRegion = base.Columns["Region"];
+                this.columnStreetAddress = base.Columns["StreetAddress"];
+                this.columnIdentification = base.Columns["Identification"];
+                this.columnLicenceNumber = base.Columns["LicenceNumber"];
+                this.columnPassportNumber = base.Columns["PassportNumber"];
+                this.columnDOB = base.Columns["DOB"];
+                this.columnLicenceDOE = base.Columns["LicenceDOE"];
+                this.columnPassportDOE = base.Columns["PassportDOE"];
+                this.columnNID_DOE = base.Columns["NID_DOE"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnRaNumber = new global::System.Data.DataColumn("RaNumber", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRaNumber);
-                this.columnRAStutus = new global::System.Data.DataColumn("RAStutus", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRAStutus);
-                this.columnCustomerName = new global::System.Data.DataColumn("CustomerName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCustomerName);
-                this.columnNationality = new global::System.Data.DataColumn("Nationality", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNationality);
-                this.columnMobile = new global::System.Data.DataColumn("Mobile", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMobile);
-                this.columnAmountPaid = new global::System.Data.DataColumn("AmountPaid", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAmountPaid);
-                this.columnAmountBalance = new global::System.Data.DataColumn("AmountBalance", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAmountBalance);
-                this.columnHireGroup = new global::System.Data.DataColumn("HireGroup", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnHireGroup);
-                this.columnPlateNumber = new global::System.Data.DataColumn("PlateNumber", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPlateNumber);
-                this.columnFleetPool = new global::System.Data.DataColumn("FleetPool", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFleetPool);
-                this.columnVehicleMake = new global::System.Data.DataColumn("VehicleMake", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnVehicleMake);
-                this.columnVehicleModel = new global::System.Data.DataColumn("VehicleModel", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnVehicleModel);
-                this.columnModelYear = new global::System.Data.DataColumn("ModelYear", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnModelYear);
-                this.columnMileage = new global::System.Data.DataColumn("Mileage", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMileage);
-                this.columnVehicleStatus = new global::System.Data.DataColumn("VehicleStatus", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnVehicleStatus);
-                this.columnCurrentLocation = new global::System.Data.DataColumn("CurrentLocation", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCurrentLocation);
-                this.columnOutDate = new global::System.Data.DataColumn("OutDate", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOutDate);
-                this.columnInDate = new global::System.Data.DataColumn("InDate", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnInDate);
-                this.columnODTD = new global::System.Data.DataColumn("ODTD", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnODTD);
-                this.columnORTD = new global::System.Data.DataColumn("ORTD", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnORTD);
-                this.columnEDTR = new global::System.Data.DataColumn("EDTR", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEDTR);
-                this.ExtendedProperties.Add("Generator_TablePropName", "_DailyAction");
-                this.ExtendedProperties.Add("Generator_UserTableName", "DailyAction");
+                this.columnRenterName = new global::System.Data.DataColumn("RenterName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRenterName);
+                this.columnDriver = new global::System.Data.DataColumn("Driver", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDriver);
+                this.columnContactPerson = new global::System.Data.DataColumn("ContactPerson", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnContactPerson);
+                this.columnCity = new global::System.Data.DataColumn("City", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCity);
+                this.columnCountry = new global::System.Data.DataColumn("Country", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCountry);
+                this.columnTelephone = new global::System.Data.DataColumn("Telephone", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTelephone);
+                this.columnRegion = new global::System.Data.DataColumn("Region", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRegion);
+                this.columnStreetAddress = new global::System.Data.DataColumn("StreetAddress", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStreetAddress);
+                this.columnIdentification = new global::System.Data.DataColumn("Identification", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdentification);
+                this.columnLicenceNumber = new global::System.Data.DataColumn("LicenceNumber", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLicenceNumber);
+                this.columnPassportNumber = new global::System.Data.DataColumn("PassportNumber", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPassportNumber);
+                this.columnDOB = new global::System.Data.DataColumn("DOB", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDOB);
+                this.columnLicenceDOE = new global::System.Data.DataColumn("LicenceDOE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLicenceDOE);
+                this.columnPassportDOE = new global::System.Data.DataColumn("PassportDOE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPassportDOE);
+                this.columnNID_DOE = new global::System.Data.DataColumn("NID_DOE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNID_DOE);
+                this.ExtendedProperties.Add("Generator_TablePropName", "_RACustomerDS");
+                this.ExtendedProperties.Add("Generator_UserTableName", "RACustomerDS");
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DailyActionRow NewDailyActionRow() {
-                return ((DailyActionRow)(this.NewRow()));
+            public RACustomerDSRow NewRACustomerDSRow() {
+                return ((RACustomerDSRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new DailyActionRow(builder);
+                return new RACustomerDSRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(DailyActionRow);
+                return typeof(RACustomerDSRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.DailyActionRowChanged != null)) {
-                    this.DailyActionRowChanged(this, new DailyActionRowChangeEvent(((DailyActionRow)(e.Row)), e.Action));
+                if ((this.RACustomerDSRowChanged != null)) {
+                    this.RACustomerDSRowChanged(this, new RACustomerDSRowChangeEvent(((RACustomerDSRow)(e.Row)), e.Action));
                 }
             }
             
@@ -729,8 +624,8 @@ namespace Cares.Web.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.DailyActionRowChanging != null)) {
-                    this.DailyActionRowChanging(this, new DailyActionRowChangeEvent(((DailyActionRow)(e.Row)), e.Action));
+                if ((this.RACustomerDSRowChanging != null)) {
+                    this.RACustomerDSRowChanging(this, new RACustomerDSRowChangeEvent(((RACustomerDSRow)(e.Row)), e.Action));
                 }
             }
             
@@ -738,8 +633,8 @@ namespace Cares.Web.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.DailyActionRowDeleted != null)) {
-                    this.DailyActionRowDeleted(this, new DailyActionRowChangeEvent(((DailyActionRow)(e.Row)), e.Action));
+                if ((this.RACustomerDSRowDeleted != null)) {
+                    this.RACustomerDSRowDeleted(this, new RACustomerDSRowChangeEvent(((RACustomerDSRow)(e.Row)), e.Action));
                 }
             }
             
@@ -747,14 +642,14 @@ namespace Cares.Web.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.DailyActionRowDeleting != null)) {
-                    this.DailyActionRowDeleting(this, new DailyActionRowChangeEvent(((DailyActionRow)(e.Row)), e.Action));
+                if ((this.RACustomerDSRowDeleting != null)) {
+                    this.RACustomerDSRowDeleting(this, new RACustomerDSRowChangeEvent(((RACustomerDSRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveDailyActionRow(DailyActionRow row) {
+            public void RemoveRACustomerDSRow(RACustomerDSRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -763,7 +658,7 @@ namespace Cares.Web.Reports {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                DailyAction ds = new DailyAction();
+                RACustomerDS ds = new RACustomerDS();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -781,7 +676,7 @@ namespace Cares.Web.Reports {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "DailyActionDataTable";
+                attribute2.FixedValue = "RACustomerDSDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -825,603 +720,435 @@ namespace Cares.Web.Reports {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class DailyActionRow : global::System.Data.DataRow {
+        public partial class RACustomerDSRow : global::System.Data.DataRow {
             
-            private DailyActionDataTable tableDailyAction;
+            private RACustomerDSDataTable tableRACustomerDS;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal DailyActionRow(global::System.Data.DataRowBuilder rb) : 
+            internal RACustomerDSRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableDailyAction = ((DailyActionDataTable)(this.Table));
+                this.tableRACustomerDS = ((RACustomerDSDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string RaNumber {
+            public string RenterName {
                 get {
                     try {
-                        return ((string)(this[this.tableDailyAction.RaNumberColumn]));
+                        return ((string)(this[this.tableRACustomerDS.RenterNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'RaNumber\' in table \'DailyAction\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'RenterName\' in table \'RACustomerDS\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDailyAction.RaNumberColumn] = value;
+                    this[this.tableRACustomerDS.RenterNameColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string RAStutus {
+            public string Driver {
                 get {
                     try {
-                        return ((string)(this[this.tableDailyAction.RAStutusColumn]));
+                        return ((string)(this[this.tableRACustomerDS.DriverColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'RAStutus\' in table \'DailyAction\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Driver\' in table \'RACustomerDS\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDailyAction.RAStutusColumn] = value;
+                    this[this.tableRACustomerDS.DriverColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CustomerName {
+            public string ContactPerson {
                 get {
                     try {
-                        return ((string)(this[this.tableDailyAction.CustomerNameColumn]));
+                        return ((string)(this[this.tableRACustomerDS.ContactPersonColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CustomerName\' in table \'DailyAction\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'ContactPerson\' in table \'RACustomerDS\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDailyAction.CustomerNameColumn] = value;
+                    this[this.tableRACustomerDS.ContactPersonColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Nationality {
+            public string City {
                 get {
                     try {
-                        return ((string)(this[this.tableDailyAction.NationalityColumn]));
+                        return ((string)(this[this.tableRACustomerDS.CityColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Nationality\' in table \'DailyAction\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'City\' in table \'RACustomerDS\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDailyAction.NationalityColumn] = value;
+                    this[this.tableRACustomerDS.CityColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Mobile {
+            public string Country {
                 get {
                     try {
-                        return ((string)(this[this.tableDailyAction.MobileColumn]));
+                        return ((string)(this[this.tableRACustomerDS.CountryColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Mobile\' in table \'DailyAction\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Country\' in table \'RACustomerDS\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDailyAction.MobileColumn] = value;
+                    this[this.tableRACustomerDS.CountryColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string AmountPaid {
+            public string Telephone {
                 get {
                     try {
-                        return ((string)(this[this.tableDailyAction.AmountPaidColumn]));
+                        return ((string)(this[this.tableRACustomerDS.TelephoneColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'AmountPaid\' in table \'DailyAction\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Telephone\' in table \'RACustomerDS\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDailyAction.AmountPaidColumn] = value;
+                    this[this.tableRACustomerDS.TelephoneColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string AmountBalance {
+            public string Region {
                 get {
                     try {
-                        return ((string)(this[this.tableDailyAction.AmountBalanceColumn]));
+                        return ((string)(this[this.tableRACustomerDS.RegionColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'AmountBalance\' in table \'DailyAction\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Region\' in table \'RACustomerDS\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDailyAction.AmountBalanceColumn] = value;
+                    this[this.tableRACustomerDS.RegionColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string HireGroup {
+            public string StreetAddress {
                 get {
                     try {
-                        return ((string)(this[this.tableDailyAction.HireGroupColumn]));
+                        return ((string)(this[this.tableRACustomerDS.StreetAddressColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'HireGroup\' in table \'DailyAction\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'StreetAddress\' in table \'RACustomerDS\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDailyAction.HireGroupColumn] = value;
+                    this[this.tableRACustomerDS.StreetAddressColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string PlateNumber {
+            public string Identification {
                 get {
                     try {
-                        return ((string)(this[this.tableDailyAction.PlateNumberColumn]));
+                        return ((string)(this[this.tableRACustomerDS.IdentificationColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'PlateNumber\' in table \'DailyAction\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Identification\' in table \'RACustomerDS\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDailyAction.PlateNumberColumn] = value;
+                    this[this.tableRACustomerDS.IdentificationColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string FleetPool {
+            public string LicenceNumber {
                 get {
                     try {
-                        return ((string)(this[this.tableDailyAction.FleetPoolColumn]));
+                        return ((string)(this[this.tableRACustomerDS.LicenceNumberColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'FleetPool\' in table \'DailyAction\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'LicenceNumber\' in table \'RACustomerDS\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDailyAction.FleetPoolColumn] = value;
+                    this[this.tableRACustomerDS.LicenceNumberColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string VehicleMake {
+            public string PassportNumber {
                 get {
                     try {
-                        return ((string)(this[this.tableDailyAction.VehicleMakeColumn]));
+                        return ((string)(this[this.tableRACustomerDS.PassportNumberColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'VehicleMake\' in table \'DailyAction\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'PassportNumber\' in table \'RACustomerDS\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDailyAction.VehicleMakeColumn] = value;
+                    this[this.tableRACustomerDS.PassportNumberColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string VehicleModel {
+            public string DOB {
                 get {
                     try {
-                        return ((string)(this[this.tableDailyAction.VehicleModelColumn]));
+                        return ((string)(this[this.tableRACustomerDS.DOBColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'VehicleModel\' in table \'DailyAction\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'DOB\' in table \'RACustomerDS\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDailyAction.VehicleModelColumn] = value;
+                    this[this.tableRACustomerDS.DOBColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string ModelYear {
+            public string LicenceDOE {
                 get {
                     try {
-                        return ((string)(this[this.tableDailyAction.ModelYearColumn]));
+                        return ((string)(this[this.tableRACustomerDS.LicenceDOEColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ModelYear\' in table \'DailyAction\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'LicenceDOE\' in table \'RACustomerDS\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDailyAction.ModelYearColumn] = value;
+                    this[this.tableRACustomerDS.LicenceDOEColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Mileage {
+            public string PassportDOE {
                 get {
                     try {
-                        return ((string)(this[this.tableDailyAction.MileageColumn]));
+                        return ((string)(this[this.tableRACustomerDS.PassportDOEColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Mileage\' in table \'DailyAction\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'PassportDOE\' in table \'RACustomerDS\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDailyAction.MileageColumn] = value;
+                    this[this.tableRACustomerDS.PassportDOEColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string VehicleStatus {
+            public string NID_DOE {
                 get {
                     try {
-                        return ((string)(this[this.tableDailyAction.VehicleStatusColumn]));
+                        return ((string)(this[this.tableRACustomerDS.NID_DOEColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'VehicleStatus\' in table \'DailyAction\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NID_DOE\' in table \'RACustomerDS\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDailyAction.VehicleStatusColumn] = value;
+                    this[this.tableRACustomerDS.NID_DOEColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CurrentLocation {
-                get {
-                    try {
-                        return ((string)(this[this.tableDailyAction.CurrentLocationColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CurrentLocation\' in table \'DailyAction\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDailyAction.CurrentLocationColumn] = value;
-                }
+            public bool IsRenterNameNull() {
+                return this.IsNull(this.tableRACustomerDS.RenterNameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string OutDate {
-                get {
-                    try {
-                        return ((string)(this[this.tableDailyAction.OutDateColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'OutDate\' in table \'DailyAction\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDailyAction.OutDateColumn] = value;
-                }
+            public void SetRenterNameNull() {
+                this[this.tableRACustomerDS.RenterNameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string InDate {
-                get {
-                    try {
-                        return ((string)(this[this.tableDailyAction.InDateColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'InDate\' in table \'DailyAction\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDailyAction.InDateColumn] = value;
-                }
+            public bool IsDriverNull() {
+                return this.IsNull(this.tableRACustomerDS.DriverColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string ODTD {
-                get {
-                    try {
-                        return ((string)(this[this.tableDailyAction.ODTDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ODTD\' in table \'DailyAction\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDailyAction.ODTDColumn] = value;
-                }
+            public void SetDriverNull() {
+                this[this.tableRACustomerDS.DriverColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string ORTD {
-                get {
-                    try {
-                        return ((string)(this[this.tableDailyAction.ORTDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ORTD\' in table \'DailyAction\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDailyAction.ORTDColumn] = value;
-                }
+            public bool IsContactPersonNull() {
+                return this.IsNull(this.tableRACustomerDS.ContactPersonColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string EDTR {
-                get {
-                    try {
-                        return ((string)(this[this.tableDailyAction.EDTRColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'EDTR\' in table \'DailyAction\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDailyAction.EDTRColumn] = value;
-                }
+            public void SetContactPersonNull() {
+                this[this.tableRACustomerDS.ContactPersonColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsRaNumberNull() {
-                return this.IsNull(this.tableDailyAction.RaNumberColumn);
+            public bool IsCityNull() {
+                return this.IsNull(this.tableRACustomerDS.CityColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetRaNumberNull() {
-                this[this.tableDailyAction.RaNumberColumn] = global::System.Convert.DBNull;
+            public void SetCityNull() {
+                this[this.tableRACustomerDS.CityColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsRAStutusNull() {
-                return this.IsNull(this.tableDailyAction.RAStutusColumn);
+            public bool IsCountryNull() {
+                return this.IsNull(this.tableRACustomerDS.CountryColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetRAStutusNull() {
-                this[this.tableDailyAction.RAStutusColumn] = global::System.Convert.DBNull;
+            public void SetCountryNull() {
+                this[this.tableRACustomerDS.CountryColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCustomerNameNull() {
-                return this.IsNull(this.tableDailyAction.CustomerNameColumn);
+            public bool IsTelephoneNull() {
+                return this.IsNull(this.tableRACustomerDS.TelephoneColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCustomerNameNull() {
-                this[this.tableDailyAction.CustomerNameColumn] = global::System.Convert.DBNull;
+            public void SetTelephoneNull() {
+                this[this.tableRACustomerDS.TelephoneColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsNationalityNull() {
-                return this.IsNull(this.tableDailyAction.NationalityColumn);
+            public bool IsRegionNull() {
+                return this.IsNull(this.tableRACustomerDS.RegionColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetNationalityNull() {
-                this[this.tableDailyAction.NationalityColumn] = global::System.Convert.DBNull;
+            public void SetRegionNull() {
+                this[this.tableRACustomerDS.RegionColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMobileNull() {
-                return this.IsNull(this.tableDailyAction.MobileColumn);
+            public bool IsStreetAddressNull() {
+                return this.IsNull(this.tableRACustomerDS.StreetAddressColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMobileNull() {
-                this[this.tableDailyAction.MobileColumn] = global::System.Convert.DBNull;
+            public void SetStreetAddressNull() {
+                this[this.tableRACustomerDS.StreetAddressColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsAmountPaidNull() {
-                return this.IsNull(this.tableDailyAction.AmountPaidColumn);
+            public bool IsIdentificationNull() {
+                return this.IsNull(this.tableRACustomerDS.IdentificationColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetAmountPaidNull() {
-                this[this.tableDailyAction.AmountPaidColumn] = global::System.Convert.DBNull;
+            public void SetIdentificationNull() {
+                this[this.tableRACustomerDS.IdentificationColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsAmountBalanceNull() {
-                return this.IsNull(this.tableDailyAction.AmountBalanceColumn);
+            public bool IsLicenceNumberNull() {
+                return this.IsNull(this.tableRACustomerDS.LicenceNumberColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetAmountBalanceNull() {
-                this[this.tableDailyAction.AmountBalanceColumn] = global::System.Convert.DBNull;
+            public void SetLicenceNumberNull() {
+                this[this.tableRACustomerDS.LicenceNumberColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsHireGroupNull() {
-                return this.IsNull(this.tableDailyAction.HireGroupColumn);
+            public bool IsPassportNumberNull() {
+                return this.IsNull(this.tableRACustomerDS.PassportNumberColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetHireGroupNull() {
-                this[this.tableDailyAction.HireGroupColumn] = global::System.Convert.DBNull;
+            public void SetPassportNumberNull() {
+                this[this.tableRACustomerDS.PassportNumberColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsPlateNumberNull() {
-                return this.IsNull(this.tableDailyAction.PlateNumberColumn);
+            public bool IsDOBNull() {
+                return this.IsNull(this.tableRACustomerDS.DOBColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetPlateNumberNull() {
-                this[this.tableDailyAction.PlateNumberColumn] = global::System.Convert.DBNull;
+            public void SetDOBNull() {
+                this[this.tableRACustomerDS.DOBColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsFleetPoolNull() {
-                return this.IsNull(this.tableDailyAction.FleetPoolColumn);
+            public bool IsLicenceDOENull() {
+                return this.IsNull(this.tableRACustomerDS.LicenceDOEColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetFleetPoolNull() {
-                this[this.tableDailyAction.FleetPoolColumn] = global::System.Convert.DBNull;
+            public void SetLicenceDOENull() {
+                this[this.tableRACustomerDS.LicenceDOEColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsVehicleMakeNull() {
-                return this.IsNull(this.tableDailyAction.VehicleMakeColumn);
+            public bool IsPassportDOENull() {
+                return this.IsNull(this.tableRACustomerDS.PassportDOEColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetVehicleMakeNull() {
-                this[this.tableDailyAction.VehicleMakeColumn] = global::System.Convert.DBNull;
+            public void SetPassportDOENull() {
+                this[this.tableRACustomerDS.PassportDOEColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsVehicleModelNull() {
-                return this.IsNull(this.tableDailyAction.VehicleModelColumn);
+            public bool IsNID_DOENull() {
+                return this.IsNull(this.tableRACustomerDS.NID_DOEColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetVehicleModelNull() {
-                this[this.tableDailyAction.VehicleModelColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsModelYearNull() {
-                return this.IsNull(this.tableDailyAction.ModelYearColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetModelYearNull() {
-                this[this.tableDailyAction.ModelYearColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMileageNull() {
-                return this.IsNull(this.tableDailyAction.MileageColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMileageNull() {
-                this[this.tableDailyAction.MileageColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsVehicleStatusNull() {
-                return this.IsNull(this.tableDailyAction.VehicleStatusColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetVehicleStatusNull() {
-                this[this.tableDailyAction.VehicleStatusColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCurrentLocationNull() {
-                return this.IsNull(this.tableDailyAction.CurrentLocationColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCurrentLocationNull() {
-                this[this.tableDailyAction.CurrentLocationColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsOutDateNull() {
-                return this.IsNull(this.tableDailyAction.OutDateColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetOutDateNull() {
-                this[this.tableDailyAction.OutDateColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsInDateNull() {
-                return this.IsNull(this.tableDailyAction.InDateColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetInDateNull() {
-                this[this.tableDailyAction.InDateColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsODTDNull() {
-                return this.IsNull(this.tableDailyAction.ODTDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetODTDNull() {
-                this[this.tableDailyAction.ODTDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsORTDNull() {
-                return this.IsNull(this.tableDailyAction.ORTDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetORTDNull() {
-                this[this.tableDailyAction.ORTDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsEDTRNull() {
-                return this.IsNull(this.tableDailyAction.EDTRColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetEDTRNull() {
-                this[this.tableDailyAction.EDTRColumn] = global::System.Convert.DBNull;
+            public void SetNID_DOENull() {
+                this[this.tableRACustomerDS.NID_DOEColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1429,22 +1156,22 @@ namespace Cares.Web.Reports {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class DailyActionRowChangeEvent : global::System.EventArgs {
+        public class RACustomerDSRowChangeEvent : global::System.EventArgs {
             
-            private DailyActionRow eventRow;
+            private RACustomerDSRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DailyActionRowChangeEvent(DailyActionRow row, global::System.Data.DataRowAction action) {
+            public RACustomerDSRowChangeEvent(RACustomerDSRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DailyActionRow Row {
+            public RACustomerDSRow Row {
                 get {
                     return this.eventRow;
                 }

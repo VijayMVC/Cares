@@ -298,6 +298,7 @@ define("workplace/workplace.viewModel",
                     baseOperationsList.valueHasMutated();
                 },
                 workPalceClientToServerMapper = function (operation) {
+                    debugger;
                     _.each(operationsTabList(), function (item) {
                             var v = item.convertToServerData();
                             operation.OperationsWorkPlaces.push(v);

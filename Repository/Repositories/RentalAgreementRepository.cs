@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 using Cares.Interfaces.Repository;
 using Cares.Models.Common;
 using Cares.Models.DomainModels;
+using Cares.Models.ReportModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
 using Cares.Repository.BaseRepository;
@@ -91,6 +92,46 @@ namespace Cares.Repository.Repositories
 
             return new RaMainForRaQueueSearchResponse { RaMains = raMains, TotalCount = DbSet.Count(query) };
         }
+
+
+        /// <summary>
+        /// Daily Action Detail Report
+        /// </summary>        
+        public IList<DailyActionReportResponse> GetDailyActionReport()
+        {
+            var dailyActionDetailQuery = from raHireGroup in db.RaHireGroups                
+                select new DailyActionReportResponse
+                {
+                    RaNumber = raHireGroup.RaMain.RaMainId,
+                    RAStutus = raHireGroup.RaMain.RaStatus.RaStatusCode,
+                    CustomerName = raHireGroup.RaMain.BusinessPartner.BusinessPartnerName,
+                //    Nationality = raHireGroup.RaMain.BusinessPartner.BusinessPartnerAddressList != null ? raHireGroup.RaMain.BusinessPartner.BusinessPartnerAddressList.FirstOrDefault().Country.CountryName : string.Empty,
+                    Mobile = "Not Found!",
+                    HireGroup = raHireGroup.RaMain.RaHireGroups.FirstOrDefault().HireGroupDetail.HireGroup.HireGroupName,
+                    PlateNumber = raHireGroup.Vehicle.PlateNumber,
+                    FleetPool = raHireGroup.Vehicle.FleetPool.FleetPoolName,
+                    VehicleMake = raHireGroup.Vehicle.VehicleMake.VehicleMakeName,
+                    VehicleModel = raHireGroup.Vehicle.VehicleModel.VehicleModelName,
+                    Mileage=raHireGroup.Vehicle.InitialOdometer-raHireGroup.Vehicle.CurrentOdometer,
+                    ModelYear = raHireGroup.Vehicle.ModelYear,
+                    VehicleStatus = raHireGroup.Vehicle.VehicleStatus.VehicleStatusName,
+                    CurrentLocation = raHireGroup.Vehicle.OperationsWorkPlace.LocationCode,
+                    AmountBalance = raHireGroup.RaMain.Balance,
+                    AmountPaid = raHireGroup.RaMain.AmountPaid,
+                    InDate = raHireGroup.RaMain.StartDtTime,
+                    OutDate = raHireGroup.RaMain.EndDtTime
+                };
+            return dailyActionDetailQuery.OrderBy(raHireGroup => raHireGroup.HireGroup).ToList();
+        }
+
+        /// <summary>
+        /// Rental Agreement Detail Report
+        /// </summary>        
+        public List<RaMain> GetRentalAgreementReport()
+        {
+            return DbSet.Select(ravehicle => ravehicle).Where(ramain => ramain.RaMainId == 1).ToList();
+        }
+
         #endregion
     }
 }

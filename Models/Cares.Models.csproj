@@ -314,7 +314,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="ReportModels\DailyActionReportResponse.cs" />
     <Compile Include="ReportModels\FleetHireGroupDetail.cs" />
+    <Compile Include="ReportModels\RaCustomerInfo.cs" />
+    <Compile Include="ReportModels\RaVehicleInfo.cs" />
+    <Compile Include="ReportModels\RentalAgreementDetailResponse.cs" />
     <Compile Include="RequestModels\AdditionalChargeSearchRequest.cs" />
     <Compile Include="RequestModels\AdditionalDriverChargeSearchRequest.cs" />
     <Compile Include="RequestModels\AreaSearchRequest.cs" />

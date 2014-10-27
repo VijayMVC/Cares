@@ -136,6 +136,7 @@
                    return {
                        OperationsWorkPlaceId: operationsWorkPlaceId(),
                        LocationCode: locationCode(),
+                       LocationName:locationName(),
                        OperationId: operationId(),
                        FleetPoolId: fleelPoolId(),
                        CostCenter: costCenter(),
@@ -163,7 +164,7 @@
        };
     // operation Workplace Server to Client Mapper
     var operationWorkplaceServertoClientMapper = function (itemFromServer) {
-        var pob = new operationWorkplace(itemFromServer.OperationsWorkPlaceId, itemFromServer.LocationCode, "-", "-",
+        var pob = new operationWorkplace(itemFromServer.OperationsWorkPlaceId, itemFromServer.LocationCode, itemFromServer.LocationName, "-",
             itemFromServer.OperationId, itemFromServer.OperationName,
           itemFromServer.FleetPoolId, itemFromServer.FleetPoolName, itemFromServer.CostCenter, itemFromServer.WorkPlaceId);
         return pob;

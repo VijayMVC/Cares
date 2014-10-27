@@ -13,5 +13,15 @@ namespace Cares.Web.Areas.Reports.Controllers
         {
             return View();
         }
+
+        public ActionResult DailyActionReport()
+        {
+            return View();
+        }
+
+        public ActionResult RentalAgreementReport()
+        {
+            return View();
+        }
     }
 }

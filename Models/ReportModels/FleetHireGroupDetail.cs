@@ -7,17 +7,13 @@ namespace Cares.Models.ReportModels
     /// </summary>
     public class RptFleetHireGroupDetail
     {
-        
         #region Public
-        
         public string HireGroupName { get; set; }
         public string ParentHireGroupName { get; set; }
         public string PlateNumber { get; set; }
-
         public string FleetPoolName { get; set; }
         public string VehicleMakeName { get; set; }
         public string VehicleModelName { get; set; }
-
         public string VehicleCategoryName { get; set; }
         public short ModelYear { get; set; }
         public string Color { get; set; }

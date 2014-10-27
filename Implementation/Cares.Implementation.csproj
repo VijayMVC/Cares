@@ -132,6 +132,7 @@
     <Compile Include="Helpers\RentalCharge.cs" />
     <Compile Include="Helpers\TariffTypeHelper.cs" />
     <Compile Include="Identity\IdentityOperation.cs" />
+    <Compile Include="ReportServices\DailyActionService.cs" />
     <Compile Include="ReportServices\FleetReportService.cs" />
     <Compile Include="Resources\BusinessPartner\BpMainType.ar.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -604,6 +605,7 @@
     <Compile Include="Services\BusinessPartnerInTypeService.cs" />
     <Compile Include="Services\NrtQueueService.cs" />
     <Compile Include="Services\RaQueueService.cs" />
+    <Compile Include="ReportServices\RentalAgreementReportService.cs" />
     <Compile Include="Services\VehicleModelService.cs" />
     <Compile Include="Services\CreditLimitService.cs" />
     <Compile Include="Services\VehicleStatusService.cs" />

@@ -18,24 +18,24 @@ namespace Cares.Web.ModelMappers
         public static Address CreateFrom(this ApiModel.Address source)
         {
             if (source.CountryId != null)
-                return new Address
-                {
-                    AddressId = source.AddressId != null ? (long) source.AddressId : 0,
-                    ContactPerson = source.ContactPerson,
-                    StreetAddress = source.StreetAddress,
-                    EmailAddress = source.EmailAddress,
-                    WebPage = source.WebPage,
-                    ZipCode = source.ZipCode,
-                    POBox = source.POBox,
-                    CountryId = (short) source.CountryId,
-                    RegionId = source.RegionId,
-                    SubRegionId = source.SubRegionId,
-                    CityId = source.CityId,
-                    AreaId = source.AreaId,
-                    AddressTypeId = source.AddressTypeId,
-                    BusinessPartnerId = source.BusinessPartnerId
-                };
-             return new Address();
+                    return new Address
+                    {
+                        AddressId = source.AddressId != null ? (long) source.AddressId : 0,
+                        ContactPerson = source.ContactPerson,
+                        StreetAddress = source.StreetAddress,
+                        EmailAddress = source.EmailAddress,
+                        WebPage = source.WebPage,
+                        ZipCode = source.ZipCode,
+                        POBox = source.POBox,
+                        CountryId = (short) source.CountryId,
+                        RegionId = source.RegionId,
+                        SubRegionId = source.SubRegionId,
+                        CityId = source.CityId,
+                        AreaId = source.AreaId,
+                        AddressTypeId = source.AddressTypeId,
+                        BusinessPartnerId =  source.BusinessPartnerId
+                    };
+            return new Address();
         }
 
         /// <summary>

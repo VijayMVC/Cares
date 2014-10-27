@@ -10,24 +10,24 @@
 namespace Cares.Web.Reports {
     
     
-    public partial class DailyActionReport {
+    public partial class RentalAgreementReport {
         
         /// <summary>
-        /// dailyActionReport control.
+        /// rentalAgreementReportViewer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.Reporting.WebForms.ReportViewer dailyActionReport;
+        protected global::Microsoft.Reporting.WebForms.ReportViewer rentalAgreementReportViewer;
         
         /// <summary>
-        /// ScriptManager1 control.
+        /// ScriptManagerrentalAgreementReportViewer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::System.Web.UI.ScriptManager ScriptManagerrentalAgreementReportViewer;
     }
 }
