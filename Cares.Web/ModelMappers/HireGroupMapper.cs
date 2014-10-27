@@ -20,6 +20,7 @@ namespace Cares.Web.ModelMappers
             };
         }
         #endregion
+
         #region Hire Group
 
         /// <summary>
@@ -34,8 +35,8 @@ namespace Cares.Web.ModelMappers
                 HireGroupCode = source.HireGroupCode,
                 Description = source.HireGroupDescription,
                 IsParent = source.IsParent,
-                ParentHireGroupName = source.ParentHireGroup != null ? source.ParentHireGroup.HireGroupCode + '-' + source.ParentHireGroup.HireGroupName : string.Empty,
-                ParentHireGroupId = source.ParentHireGroup != null ? source.ParentHireGroup.HireGroupId : 0,
+                ParentHireGroupName = source.ParentHireGroup != null ? source.ParentHireGroup.Select(x => x.HireGroupCode).FirstOrDefault() + '-' + source.ParentHireGroup.Select(x => x.HireGroupName).FirstOrDefault() : string.Empty,
+                ParentHireGroupId = source.ParentHireGroup != null ? source.ParentHireGroup.Select(x => x.HireGroupId).FirstOrDefault() : 0,
                 CompanyName = source.Company.CompanyCode + '-' + source.Company.CompanyName,
                 CompanyId = source.Company.CompanyId,
             };
