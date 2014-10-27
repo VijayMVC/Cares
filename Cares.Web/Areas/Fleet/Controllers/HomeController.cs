@@ -46,7 +46,7 @@ namespace Cares.Web.Areas.Fleet.Controllers
         }
 
         // GET: /Vehicle/Home/
-        public ActionResult Vehicle()
+        public ActionResult VehicleMain()
         {
             return View();
         }
