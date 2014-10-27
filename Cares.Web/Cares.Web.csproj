@@ -2321,7 +2321,7 @@
     <Content Include="Areas\Organization\Views\Organization\_CompanyEditor.cshtml" />
     <Content Include="Areas\Organization\Views\Organization\_DepartmentEditor.cshtml" />
     <Content Include="Areas\Organization\Views\Organization\_OperationEditor.cshtml" />
-    <Content Include="Areas\Fleet\Views\Home\Vehicle.cshtml" />
+    <Content Include="Areas\Fleet\Views\Home\VehicleMain.cshtml" />
     <Content Include="Areas\Fleet\Views\Home\_VehicleEditor.cshtml" />
     <Content Include="Areas\Organization\Views\Organization\Workplace.cshtml" />
     <Content Include="Areas\Organization\Views\Organization\_WorkplaceEditor.cshtml" />
@@ -2587,6 +2587,7 @@
     <Content Include="Areas\Reports\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Reports\Views\Report\FleetReport.cshtml" />
     <Content Include="Areas\Reports\Views\_ViewStart.cshtml" />
+    <None Include="Properties\PublishProfiles\cares.pubxml" />
     <Content Include="Areas\Reports\Views\Report\DailyActionReport.cshtml" />
     <Content Include="Areas\Reports\Views\Report\RentalAgreementReport.cshtml" />
     <None Include="Properties\PublishProfiles\Khurram.pubxml" />

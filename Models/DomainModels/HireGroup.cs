@@ -102,7 +102,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Parent Hire Group
         /// </summary>
-        public virtual HireGroup ParentHireGroup { get; set; }
+        public virtual ICollection<HireGroup> ParentHireGroup { get; set; }
 
         /// <summary>
         /// Company 
