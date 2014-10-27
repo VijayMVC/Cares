@@ -333,10 +333,10 @@
         <EntityTypeShape EntityType="DomainModels.Document" Width="2.625" PointX="26.5" PointY="7.75" />
         <AssociationConnector Association="DomainModels.RefDocument507" />
         <AssociationConnector Association="DomainModels.RefDocumentGroup444" />
-        <EntityTypeShape EntityType="DomainModels.AspNetRole" Width="1.5" PointX="1.125" PointY="28.625" />
-        <EntityTypeShape EntityType="DomainModels.AspNetUserClaim" Width="1.5" PointX="5.625" PointY="58.75" />
-        <EntityTypeShape EntityType="DomainModels.AspNetUserLogin" Width="1.5" PointX="5.625" PointY="56.25" />
-        <EntityTypeShape EntityType="DomainModels.AspNetUser" Width="1.5" PointX="3.375" PointY="56.5" />
+        <EntityTypeShape EntityType="DomainModels.UserRole" Width="1.5" PointX="1.125" PointY="28.625" />
+        <EntityTypeShape EntityType="DomainModels.UserClaim" Width="1.5" PointX="5.625" PointY="58.75" />
+        <EntityTypeShape EntityType="DomainModels.UserLogin" Width="1.5" PointX="5.625" PointY="56.25" />
+        <EntityTypeShape EntityType="DomainModels.User" Width="1.5" PointX="3.375" PointY="56.5" />
         <EntityTypeShape EntityType="DomainModels.BusinessPartnerDocument" Width="3.375" PointX="33.25" PointY="7.25" />
         <EntityTypeShape EntityType="DomainModels.CaresUser" Width="1.5" PointX="31" PointY="7.5" />
         <EntityTypeShape EntityType="DomainModels.CreditLimit" Width="2.25" PointX="36.5" PointY="14.875" IsExpanded="true" />
@@ -344,7 +344,7 @@
         <EntityTypeShape EntityType="DomainModels.InspectionReportType" Width="1.5" PointX="40" PointY="54.5" />
         <EntityTypeShape EntityType="DomainModels.MenuFunction" Width="1.5" PointX="1.5" PointY="43.625" />
         <EntityTypeShape EntityType="DomainModels.PageAction" Width="1.5" PointX="0.75" PointY="32.125" />
-        <EntityTypeShape EntityType="DomainModels.Role" Width="1.5" PointX="0.75" PointY="37.625" />
+        <EntityTypeShape EntityType="DomainModels.UserRole" Width="1.5" PointX="0.75" PointY="37.625" />
         <EntityTypeShape EntityType="DomainModels.UserFunction" Width="1.5" PointX="3" PointY="37.875" />
         <EntityTypeShape EntityType="DomainModels.UserPageAction" Width="1.5" PointX="3" PointY="33" />
         <AssociationConnector Association="DomainModels.FK_dbo_MenuRight_dbo_AspNetRoles_Role_Id" />

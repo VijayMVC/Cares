@@ -6,6 +6,7 @@ namespace Cares.Models.DomainModels
     /// </summary>
     public class MenuRight
     {
+        #region Persistance Properties
         /// <summary>
         /// Menu Right Id
         /// </summary>
@@ -21,9 +22,20 @@ namespace Cares.Models.DomainModels
         /// </summary>
         public string RoleId { get; set; }
 
+        #endregion
+
+        #region Reference Properties
+
         /// <summary>
         /// Menu
         /// </summary>
         public virtual Menu Menu { get; set; }
+
+        /// <summary>
+        /// Role
+        /// </summary>
+        public virtual UserRole Role { get; set; }
+
+        #endregion
     }
 }

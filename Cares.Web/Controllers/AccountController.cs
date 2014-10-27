@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Web.Routing;
 using System.Web.Security;
 using Cares.Implementation.Identity;
 using Cares.Interfaces.IServices;
@@ -35,25 +36,21 @@ namespace IdentitySample.Controllers
         /// </summary>
         private void SetUserPermissions(string userEmail)
         {
-            ClaimsIdentity userIdentity = (ClaimsIdentity) User.Identity;
-            IEnumerable<Claim> claims = userIdentity.Claims;
-            string roleClaimType = userIdentity.RoleClaimType;
+            User userResult = UserManager.FindByEmail(userEmail);
+            IList<UserRole> aspUserroles = userResult.Roles.ToList();
+            //IEnumerable<MenuRight> permissionSet = menuRightService.FindMenuItemsByRoleId(aspUserroles[0].Id).ToList();
 
-            IEnumerable<Claim> roles = claims.Where(c => c.Type == roleClaimType).ToList();
-
-            //ApplicationUser userResult = UserManager.FindByEmail(userEmail);
-            //IList<IdentityUserRole> roles = userResult.Roles.ToList();
-            //menuRightService.FindMenuItemsByRoleId(roles[0].RoleId);
-
+            //Session["UserMenu"] = permissionSet;
+            //Session["UserPermissionSet"] = permissionSet.Select(menuRight => menuRight.Menu.PermissionKey).ToList();
         }
 
         #endregion
 
         #region Constructor
 
-        public AccountController()
+        public AccountController(IMenuRightsService menuRightService)
         {
-            //this.menuRightService = menuRightService;
+            this.menuRightService = menuRightService;
         }
 
         #endregion
@@ -79,8 +76,12 @@ namespace IdentitySample.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            ViewBag.ReturnUrl = returnUrl;
-            return View();
+            if (!User.Identity.IsAuthenticated)
+            {
+                ViewBag.ReturnUrl = returnUrl;
+                return View();
+            }
+            return RedirectToAction("Region", "GeographicalHierarchy", new { area = "GeographicalHierarchy" });
         }
 
         public ApplicationSignInManager SignInManager
@@ -103,6 +104,19 @@ namespace IdentitySample.Controllers
 
             // This doen't count login failures towards lockout only two factor authentication
             // To enable password failures to trigger lockout, change to shouldLockout: true
+
+            var user = await UserManager.FindByNameAsync(model.Email);
+            if (user != null)
+            {
+                if (!await UserManager.IsEmailConfirmedAsync(user.Id))
+                {
+                    ModelState.AddModelError("", "Please confirm your email");
+                    return View();
+                }
+            }
+
+            // This doen't count login failures towards lockout only two factor authentication
+            // To enable password failures to trigger lockout, change to shouldLockout: true
             var result =
                 await
                     SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe,
@@ -117,7 +131,7 @@ namespace IdentitySample.Controllers
                 case SignInStatus.Success:
                 {
 
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Region", "GeographicalHierarchy", new { area = "GeographicalHierarchy" });
                 }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -195,7 +209,7 @@ namespace IdentitySample.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser {UserName = model.Email, Email = model.Email};
+                var user = new User {UserName = model.Email, Email = model.Email};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -203,9 +217,9 @@ namespace IdentitySample.Controllers
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new {userId = user.Id, code = code},
                         protocol: Request.Url.Scheme);
                     await
-                        UserManager.SendEmailAsync(user.Id, "Confirm your account",
+                        UserManager.SendEmailAsync(model.Email, "Confirm your account",
                             "Please confirm your account by clicking this link: <a href=\"" + callbackUrl +
-                            "\">link</a>");
+                            "\">link</a><br>Your Password is:" + model.Password);
                     ViewBag.Link = callbackUrl;
                     return View("DisplayEmail");
                 }
@@ -417,7 +431,7 @@ namespace IdentitySample.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser {UserName = model.Email, Email = model.Email};
+                var user = new User {UserName = model.Email, Email = model.Email};
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
@@ -436,9 +450,7 @@ namespace IdentitySample.Controllers
         }
 
         //
-        // POST: /Account/LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        // Get: /Account/LogOff
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();

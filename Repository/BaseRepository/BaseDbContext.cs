@@ -543,6 +543,26 @@ namespace Cares.Repository.BaseRepository
         /// </summary>
         public DbSet<BookingMain> BookingMains { get; set; }
 
+        /// <summary>
+        /// Users
+        /// </summary>
+        public DbSet<User> Users { get; set; }
+
+        /// <summary>
+        /// User Roles
+        /// </summary>
+        public DbSet<UserRole> UserRoles { get; set; }
+
+        /// <summary>
+        /// User Claims
+        /// </summary>
+        public DbSet<UserClaim> UserClaims{ get; set; }
+
+        /// <summary>
+        /// User Logins
+        /// </summary>
+        public DbSet<UserLogin> UserLogins { get; set; }
+
         #endregion
     }
 }

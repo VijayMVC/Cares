@@ -5,12 +5,14 @@ namespace Cares.Web.Areas.GeographicalHierarchy.Controllers
     /// <summary>
     /// Geographical Hierarchy Controller
     /// </summary>
+    [Authorize]
     public class GeographicalHierarchyController : Controller
     {
         
         /// <summary>
         /// Region Area
         /// </summary>
+        [Authorize]
         public ActionResult Region()
         {
             return View();

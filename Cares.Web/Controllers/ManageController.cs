@@ -1,4 +1,5 @@
 ﻿using Cares.Implementation.Identity;
+using Cares.Models.DomainModels;
 using Cares.Models.IdentityModels;
 using Cares.Models.IdentityModels.ViewModels;
 using IdentitySample.Models;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Owin.Security.OAuth;
 
 namespace IdentitySample.Controllers
 {
@@ -346,10 +348,11 @@ namespace IdentitySample.Controllers
             }
         }
 
-        private async Task SignInAsync(ApplicationUser user, bool isPersistent)
+        private async Task SignInAsync(User user, bool isPersistent)
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie, DefaultAuthenticationTypes.TwoFactorCookie);
-            AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = isPersistent }, await user.GenerateUserIdentityAsync(UserManager));
+            AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = isPersistent }, await user.GenerateUserIdentityAsync(UserManager,
+                DefaultAuthenticationTypes.ApplicationCookie));
         }
 
         private void AddErrors(IdentityResult result)
