@@ -196,10 +196,23 @@ define("hireGroup/hireGroup.viewModel",
                     },
                        // Add To list vehicle detail
                     onAddVehicleDetail = function (vehicleDetail) {
-                        if (doBeforeAdd()) {
+                        if (doBeforeAdd() && checkDuplicateHireGroup(vehicleDetail)) {
                             hireGroupDetails.push(model.HireGroupDetailCopier(vehicleDetail));
                             selectedHireGroup().vehicleDetail(model.HireGroupDetail());
                         }
+                    },
+                    // Do Before Logic
+                    checkDuplicateHireGroup = function (vehicleDetail) {
+                        var flag = true;
+                        _.each(hireGroupDetails(), function (item) {
+                            if (item.vehicleMakeId() === vehicleDetail.vehicleMakeId() && item.vehicleCategoryId() === vehicleDetail.vehicleCategoryId() &&
+                                item.vehicleModelId() === vehicleDetail.vehicleModelId() && item.vehicleModelYear() === vehicleDetail.vehicleModelYear()) {
+                                toastr.error("Hire Group Detail already exist in List");
+                                flag = false;
+                            }
+
+                        });
+                        return flag;
                     },
                       // Add To list HIre Group Up Grade
                     onAddHireGroupUpGrade = function (vehicleDetail) {
