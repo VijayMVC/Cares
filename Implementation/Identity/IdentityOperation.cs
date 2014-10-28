@@ -1,11 +1,9 @@
-﻿using System;
-using System.Configuration;
-using System.Data.Entity;
+﻿using System.Configuration;
 using System.Threading.Tasks;
-using Cares.Models.IdentityModels;
+using Cares.Models.DomainModels;
 using Cares.Repository.BaseRepository;
+using Cares.Repository.Repositories;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Practices.Unity;
@@ -19,95 +17,38 @@ namespace Cares.Implementation.Identity
         private static IUnityContainer unityContainer;
         public static IUnityContainer UnityContainer { get { return unityContainer; } set { unityContainer = value; } }
     }
-    public class ApplicationUserManager : UserManager<ApplicationUser>
+
+    /// <summary>
+    /// Role Manager
+    /// </summary>
+    public class ApplicationRoleManager : RoleManager<UserRole, string>
     {
-             public ApplicationUserManager(IUserStore<ApplicationUser> store)
-            : base(store)
-        {
-            
-        }
-
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options,
-            IOwinContext context)
-        {
-            
-        //    var manager = new ApplicationUserManager(new UserStore<ApplicationUser>
-        //        (context.Get<>()));
-
-            //BaseDbContext db =UnityConfig.UnityContainer.Resolve<DbContext>();
-            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-
-
-            IdentityDbContext db = new IdentityDbContext(connectionString);
-
-
-
-            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(db));
-            // Configure validation logic for usernames
-            manager.UserValidator = new UserValidator<ApplicationUser>(manager)
-            {
-                AllowOnlyAlphanumericUserNames = false,
-                RequireUniqueEmail = true
-            };
-            // Configure validation logic for passwords
-            manager.PasswordValidator = new PasswordValidator
-            {
-                RequiredLength = 6,
-                RequireNonLetterOrDigit = false,
-                RequireDigit = false,
-                RequireLowercase = false,
-                RequireUppercase = false,
-            };
-            // Configure user lockout defaults
-            manager.UserLockoutEnabledByDefault = true;
-            manager.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
-            manager.MaxFailedAccessAttemptsBeforeLockout = 5;
-            // Register two factor authentication providers. This application uses Phone and Emails as a step of receiving a code for verifying the user
-            // You can write your own provider and plug in here.
-            manager.RegisterTwoFactorProvider("PhoneCode", new PhoneNumberTokenProvider<ApplicationUser>
-            {
-                MessageFormat = "Your security code is: {0}"
-            });
-            manager.RegisterTwoFactorProvider("EmailCode", new EmailTokenProvider<ApplicationUser>
-            {
-                Subject = "SecurityCode",
-                BodyFormat = "Your security code is {0}"
-            });
-            manager.EmailService = new EmailService();
-            manager.SmsService = new SmsService();
-            var dataProtectionProvider = options.DataProtectionProvider;
-            if (dataProtectionProvider != null)
-            {
-                manager.UserTokenProvider =
-                    new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
-            }
-            return manager;
-        }
-    }
-
-    // Configure the RoleManager used in the application. RoleManager is defined in the ASP.NET Identity core assembly
-    public class ApplicationRoleManager : RoleManager<IdentityRole>
-    {
-        public ApplicationRoleManager(IRoleStore<IdentityRole, string> roleStore)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public ApplicationRoleManager(IRoleStore<UserRole, string> roleStore)
             : base(roleStore)
         {
         }
 
+        /// <summary>
+        /// Create Role
+        /// </summary>
         public static ApplicationRoleManager Create(IdentityFactoryOptions<ApplicationRoleManager> options, IOwinContext context)
         {
 
-           // ApplicationDbContext db = new ApplicationDbContext();
-            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            //BaseDbContext db = UnityConfig.UnityContainer.Resolve<BaseDbContext>();
-
-            DbContext db = new DbContext(connectionString);
-
-            return new ApplicationRoleManager(new RoleStore<IdentityRole>(db));
+            string connectionString = ConfigurationManager.ConnectionStrings["BaseDbContext"].ConnectionString;
             
-            //return new ApplicationRoleManager(new RoleStore<IdentityRole>(context.Get<ApplicationDbContext>()));
+            BaseDbContext db = (BaseDbContext)UnityConfig.UnityContainer.Resolve(typeof(BaseDbContext),
+                new ResolverOverride[] { new ParameterOverride("connectionString", connectionString) });
+
+            return new ApplicationRoleManager(new UserRoleStore(db));
         }
     }
 
+    /// <summary>
+    /// Email Service
+    /// </summary>
     public class EmailService : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)
@@ -117,6 +58,9 @@ namespace Cares.Implementation.Identity
         }
     }
 
+    /// <summary>
+    /// Sms Service
+    /// </summary>
     public class SmsService : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)

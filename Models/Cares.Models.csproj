@@ -300,6 +300,12 @@
     <Compile Include="DomainModels\VehicleModel.cs" />
     <Compile Include="IdentityModels\ApplicationRights.cs" />
     <Compile Include="IdentityModels\ApplicationUser.cs" />
+    <Compile Include="IdentityModels\User.cs" />
+    <Compile Include="IdentityModels\UserClaim.cs" />
+    <Compile Include="IdentityModels\UserLogin.cs" />
+    <Compile Include="IdentityModels\UserRole.cs" />
+    <Compile Include="IdentityModels\UserRole`.cs" />
+    <Compile Include="IdentityModels\User`.cs" />
     <Compile Include="IdentityModels\ViewModels\AccountViewModels.cs" />
     <Compile Include="IdentityModels\ViewModels\AdminViewModel.cs" />
     <Compile Include="IdentityModels\ViewModels\ManageViewModels.cs" />

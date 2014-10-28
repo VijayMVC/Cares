@@ -105,8 +105,10 @@
     <Compile Include="Mvc\ApiException.cs" />
     <Compile Include="Mvc\LogExceptionFilterAttribute.cs" />
     <Compile Include="Mvc\LoggerCategories.cs" />
+    <Compile Include="Mvc\SecurityExceptionFilter.cs" />
     <Compile Include="Mvc\SiteAuthorizeAttribute.cs" />
     <Compile Include="Mvc\ValidateFilterAttribute.cs" />
+    <Compile Include="Mvc\WebApiAuthenticationChecker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TypeRegistrations.cs" />
     <Compile Include="UnityConfiguration\UnityConfig.cs" />
