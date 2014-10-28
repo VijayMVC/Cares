@@ -207,7 +207,7 @@ define("hireGroup/hireGroup.viewModel",
                         _.each(hireGroupDetails(), function (item) {
                             if (item.vehicleMakeId() === vehicleDetail.vehicleMakeId() && item.vehicleCategoryId() === vehicleDetail.vehicleCategoryId() &&
                                 item.vehicleModelId() === vehicleDetail.vehicleModelId() && item.vehicleModelYear() === vehicleDetail.vehicleModelYear()) {
-                                toastr.error("Hire Group Detail already exist in List");
+                                toastr.error("Hire Group Detail already exist with same combination.");
                                 flag = false;
                             }
 
@@ -332,8 +332,15 @@ define("hireGroup/hireGroup.viewModel",
                                 closeHireGroupEditor();
                                 toastr.success(ist.resourceText.hirGroupAddSuccesMsg);
                             },
-                            error: function () {
-                                toastr.error(ist.resourceText.hirGroupAddFailedMsg);
+                            error: function (exceptionMessage, exceptionType) {
+
+                                if (exceptionType === ist.exceptionType.CaresGeneralException) {
+
+                                    toastr.error(exceptionMessage);
+
+                                } else {
+                                    toastr.error(ist.resourceText.hirGroupAddFailedMsg);
+                                }
                             }
                         });
                     },

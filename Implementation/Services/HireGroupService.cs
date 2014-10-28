@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Cares.ExceptionHandling;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -116,6 +117,8 @@ namespace Cares.Implementation.Services
         /// <param name="hireGroup"></param>
         public HireGroup AddHireGroup(HireGroup hireGroup)
         {
+            HireGroupValidation(hireGroup);
+
             hireGroup.RecCreatedDt = DateTime.Now;
             hireGroup.RecLastUpdatedDt = DateTime.Now;
             hireGroup.UserDomainKey = hireGroupRepository.UserDomainKey;
@@ -157,7 +160,7 @@ namespace Cares.Implementation.Services
                     hireGroupUpGrade.IsDeleted = false;
                     hireGroupUpGrade.IsPrivate = false;
                     hireGroupUpGrade.IsActive = false;
-                   // hireGroupUpGrade.HireGroupId = hireGroup.HireGroupId;
+                    // hireGroupUpGrade.HireGroupId = hireGroup.HireGroupId;
                     hireGroupUpGrade.AllowedHireGroupId = hireGroupUpGrade.AllowedHireGroupId;
                 }
             }
@@ -174,6 +177,8 @@ namespace Cares.Implementation.Services
         /// <param name="hireGroup"></param>
         public HireGroup UpdateHireGroup(HireGroup hireGroup)
         {
+            HireGroupValidation(hireGroup);
+
             HireGroup hireGroupDbVersion = hireGroupRepository.Find(hireGroup.HireGroupId);
             if (hireGroupDbVersion != null)
             {
@@ -306,6 +311,28 @@ namespace Cares.Implementation.Services
                        HireGroupDetails = hireGroupDetailRepository.GetHireGroupDetailByHireGroupId(id),
                        HireGroupUpGrades = hireGroupUpGradeRepository.FindByHireGroupId(id)
                    };
+        }
+
+        /// <summary>
+        /// Hire Group Validation
+        /// </summary>
+        /// <param name="hireGroup"></param>
+        private void HireGroupValidation(HireGroup hireGroup)
+        {
+            IEnumerable<HireGroupDetail> hireGroupDetails = hireGroupDetailRepository.GetAll();
+            if (hireGroup.HireGroupDetails != null)
+            {
+                foreach (var item in hireGroup.HireGroupDetails)
+                {
+                    if (hireGroupDetails.Any(x => x.VehicleCategoryId == item.VehicleCategoryId && x.VehicleMakeId == item.VehicleMakeId &&
+                        x.VehicleModelId == item.VehicleModelId && x.ModelYear == item.ModelYear && item.HireGroupDetailId == 0))
+                    {
+                        HireGroupDetail hireGroupDetail = hireGroupDetailRepository.GetHireGroupDetailByVehicleMakeIdModelIdCategoryIdModelYear(item.VehicleMakeId, item.VehicleModelId, item.VehicleCategoryId, item.ModelYear);
+                        throw new CaresException("Hire Group Detail already exist with combination " + hireGroupDetail.VehicleMake.VehicleMakeName + "," +
+                            hireGroupDetail.VehicleModel.VehicleModelName + "," + hireGroupDetail.VehicleCategory.VehicleCategoryName + "," + item.ModelYear);
+                    }
+                }
+            }
         }
         #endregion
 

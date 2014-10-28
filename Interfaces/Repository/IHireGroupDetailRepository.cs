@@ -7,7 +7,7 @@ namespace Cares.Interfaces.Repository
     /// <summary>
     /// Hire Group Detail Interface
     /// </summary>
-    public interface IHireGroupDetailRepository: IBaseRepository<HireGroupDetail, long>
+    public interface IHireGroupDetailRepository : IBaseRepository<HireGroupDetail, long>
     {
         /// <summary>
         /// Get Hire Groups By Vehicle Make, Category, Model, Year and Hire Group Code
@@ -41,5 +41,17 @@ namespace Cares.Interfaces.Repository
         /// Association check of HireGroup Detail and Vehicle Model
         /// </summary>
         bool IsHireGroupDetailAssociatedWithVehicleModel(long vehicleModelId);
+
+        /// <summary>
+        /// GetHire Group Detail By Vehicle Make Id, Model Id, Category Id, Model Year 
+        /// </summary>
+        /// <param name="vMakeId"></param>
+        /// <param name="vModelId"></param>
+        /// <param name="vCategoryId"></param>
+        /// <param name="modelYear"></param>
+        /// <returns></returns>
+        HireGroupDetail GetHireGroupDetailByVehicleMakeIdModelIdCategoryIdModelYear(long vMakeId, long vModelId,
+            long vCategoryId, short modelYear);
+
     }
 }
