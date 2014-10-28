@@ -36,7 +36,7 @@ namespace Cares.Repository.Repositories
         }
 
         #endregion
-        
+
         #region Public
 
         /// <summary>
@@ -53,13 +53,13 @@ namespace Cares.Repository.Repositories
                         join vc in db.VehicleCategories on hireGroupDetail.VehicleCategoryId equals vc.VehicleCategoryId
                         join vm in db.VehicleMakes on hireGroupDetail.VehicleMakeId equals vm.VehicleMakeId
                         join vmod in db.VehicleModels on hireGroupDetail.VehicleModelId equals vmod.VehicleModelId
-                        join v in db.Vehicles on new { vc.VehicleCategoryId, vm.VehicleMakeId, vmod.VehicleModelId, hireGroupDetail.ModelYear } equals 
+                        join v in db.Vehicles on new { vc.VehicleCategoryId, vm.VehicleMakeId, vmod.VehicleModelId, hireGroupDetail.ModelYear } equals
                         new { v.VehicleCategoryId, v.VehicleMakeId, v.VehicleModelId, v.ModelYear }
-                        from vs in db.VehicleStatuses.Where(vs => vs.VehicleStatusId == v.VehicleStatusId && 
+                        from vs in db.VehicleStatuses.Where(vs => vs.VehicleStatusId == v.VehicleStatusId &&
                             vs.AvailabilityCheck && v.OperationsWorkPlaceId == operationWorkPlaceId)
                         join vr in db.VehicleReservations on v.VehicleId equals vr.VehicleId into vehicleGroup
                         from vg in vehicleGroup.Where(vg => !(vg.EndDtTime >= startDtTime && vg.StartDtTime <= endDtTime)).DefaultIfEmpty()
-                        where (((hireGroup.HireGroupCode.Contains(searchText) || hireGroup.HireGroupName.Contains(searchText)) || 
+                        where (((hireGroup.HireGroupCode.Contains(searchText) || hireGroup.HireGroupName.Contains(searchText)) ||
                                (hireGroupDetail.VehicleCategory.VehicleCategoryCode.Contains(searchText) || hireGroupDetail.VehicleCategory.VehicleCategoryName.Contains(searchText)) ||
                                (hireGroupDetail.VehicleMake.VehicleMakeCode.Contains(searchText) || hireGroupDetail.VehicleMake.VehicleMakeName.Contains(searchText)) ||
                                (hireGroupDetail.VehicleModel.VehicleModelCode.Contains(searchText) || hireGroupDetail.VehicleModel.VehicleModelName.Contains(searchText))) &&
@@ -125,7 +125,7 @@ namespace Cares.Repository.Repositories
         public bool IsHireGroupDetailAssociatedWithVehicleCategory(long vehicleCategoryId)
         {
             return DbSet.Count(hiregroupDet => hiregroupDet.VehicleCategoryId == vehicleCategoryId) > 0;
-            
+
         }
 
         /// <summary>
@@ -134,7 +134,20 @@ namespace Cares.Repository.Repositories
         public bool IsHireGroupDetailAssociatedWithVehicleModel(long vehicleModelId)
         {
             return DbSet.Count(hiregroupDet => hiregroupDet.VehicleMakeId == vehicleModelId) > 0;
-            
+
+        }
+
+        /// <summary>
+        /// GetHire Group Detail By Vehicle Make Id, Model Id, Category Id, Model Year 
+        /// </summary>
+        /// <param name="vMakeId"></param>
+        /// <param name="vModelId"></param>
+        /// <param name="vCategoryId"></param>
+        /// <param name="modelYear"></param>
+        /// <returns></returns>
+        public HireGroupDetail GetHireGroupDetailByVehicleMakeIdModelIdCategoryIdModelYear(long vMakeId, long vModelId, long vCategoryId, short modelYear)
+        {
+            return DbSet.FirstOrDefault(hGd => hGd.VehicleMakeId == vMakeId && hGd.VehicleModelId == vModelId && hGd.VehicleCategoryId == vCategoryId && hGd.ModelYear == modelYear);
         }
         #endregion
     }

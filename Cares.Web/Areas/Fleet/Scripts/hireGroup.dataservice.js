@@ -27,6 +27,7 @@ define("hireGroup/hireGroup.dataservice", function () {
                     amplify.request.define('createHireGroup', 'ajax', {
                         url: ist.siteUrl + '/Api/HireGroup',
                         dataType: 'json',
+                        decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'PUT'
                     });
 
@@ -34,6 +35,7 @@ define("hireGroup/hireGroup.dataservice", function () {
                     amplify.request.define('updateHireGroup', 'ajax', {
                         url: ist.siteUrl + '/Api/HireGroup',
                         dataType: 'json',
+                        decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'
                     });
                     // Define request to get Hire Group
