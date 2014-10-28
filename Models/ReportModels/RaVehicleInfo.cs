@@ -1,16 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Cares.Models.ReportModels
 {
     public class RaVehicleInfo
     {
-        #region Public
-        public long RentalAgreementId { get; set; }
-        public string Status { get; set; }
-        public long RaOpenLocatoin { get; set; }
-        public DateTime StartDateTime { get; set; }
-        public DateTime ReturnDateTime { get; set; }
-        public long RaCloseLocation { get; set; }
         public string PlateNumber { get; set; }
         public string VehicleModel { get; set; }
         public string VehicleMake { get; set; }
@@ -24,10 +21,28 @@ namespace Cares.Models.ReportModels
         public long ChargedDay { get; set; }
         public long ChargedHour { get; set; }
         public long ChargedMint { get; set; }
+
+        public long ConsumedDay { get; set; }
+        public long ConsumedHour { get; set; }
+        public long ConsumedMint { get; set; }
+
         public long GraceDay { get; set; }
         public long GraceHour { get; set; }
         public long GraceMint { get; set; }
 
-        #endregion
+
+
+        public string TariffType { get; set; }
+        public double StandardRate { get; set; }
+        public double ExcessMileageCharges { get; set; }
+        public double DiscoutAmount { get; set; }
+        public double DicountPercentage { get; set; }
+
+        public string DicountType { get; set; }
+        public double TotalChargeVehicle { get; set; }
+
+
+
+
     }
 }

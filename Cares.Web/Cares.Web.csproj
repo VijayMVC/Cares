@@ -791,6 +791,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RACustomerDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reports\RaVehicleInfoDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RaVehicleInfoDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reports\RentalAgreementDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1442,10 +1447,10 @@
     <Content Include="Areas\EmployeeManagement\Scripts\designation.model.js" />
     <Content Include="Areas\EmployeeManagement\Scripts\designation.view.js" />
     <Content Include="Areas\EmployeeManagement\Scripts\designation.viewModel.js" />
-    <Content Include="Areas\Fleet\Models\vehicleStatus.dataservice.js" />
-    <Content Include="Areas\Fleet\Models\vehicleStatus.model.js" />
-    <Content Include="Areas\Fleet\Models\vehicleStatus.view.js" />
-    <Content Include="Areas\Fleet\Models\vehicleStatus.viewModel.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicleStatus.dataservice.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicleStatus.model.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicleStatus.view.js" />
+    <Content Include="Areas\Fleet\Scripts\vehicleStatus.viewModel.js" />
     <Content Include="Areas\Fleet\Scripts\vehicleCategory.dataservice.js" />
     <Content Include="Areas\Fleet\Scripts\vehicleCategory.model.js" />
     <Content Include="Areas\Fleet\Scripts\vehicleCategory.view.js" />
@@ -2628,6 +2633,17 @@
     <Content Include="Reports\RACustomerDS.xss">
       <DependentUpon>RACustomerDS.xsd</DependentUpon>
     </Content>
+    <Content Include="Reports\RaVehicleInfoDS.xsc">
+      <DependentUpon>RaVehicleInfoDS.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\RaVehicleInfoDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RaVehicleInfoDS.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reports\RaVehicleInfoDS.xss">
+      <DependentUpon>RaVehicleInfoDS.xsd</DependentUpon>
+    </Content>
     <None Include="Reports\RentalAgreementDS.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -2716,7 +2732,7 @@
     <Content Include="Scripts\underscore-min.js" />
     <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config">
+    <Content Include="Areas\Fleet\Scripts\Web.config">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Web.config" />
@@ -2766,6 +2782,13 @@
     <Content Include="Views\Employee\Create.cshtml" />
     <Content Include="Views\Shared\_BlankLayout.cshtml" />
     <Content Include="Views\Shared\Reports.Master" />
+    <Content Include="web.config" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\ProfileImages\" />
@@ -2792,6 +2815,7 @@
     <Folder Include="Areas\Common\Controllers\" />
     <Folder Include="Areas\Common\Models\" />
     <Folder Include="Areas\EmployeeManagement\Models\" />
+    <Folder Include="Areas\Fleet\Models\" />
     <Folder Include="Areas\GeographicalHierarchy\Models\" />
     <Folder Include="Areas\NonRevenueTicket\Models\" />
     <Folder Include="Areas\Organization\Models\" />

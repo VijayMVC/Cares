@@ -76,7 +76,7 @@ namespace Cares.Web.ModelMappers
         {
             return new Cares.Models.DomainModels.WorkLocation
             {
-                WorkLocationCode = source.WorkLocationCode,
+                WorkLocationCode = source.WorkLocationCode.Trim(),
                 WorkLocationId = source.WorkLocationId,
                 WorkLocationName = source.WorkLocationName,
                 WorkLocationDescription = source.WorkLocationDescription,
