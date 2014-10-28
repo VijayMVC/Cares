@@ -120,7 +120,8 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     vehicleStatuses = ko.observableArray([]),
                     // Can search hire group
                     canLookForHireGroups = ko.computed(function () {
-                        return !rentalAgreement().id() && rentalAgreement().start() && rentalAgreement().end() && rentalAgreement().openLocation();
+                        return !rentalAgreement().id() && rentalAgreement().start() && rentalAgreement().end() && rentalAgreement().openLocation() &&
+                            rentalAgreement().isValid();
                     }),
                     // selected Hire Group 
                     selectedHireGroup = ko.observable(),
@@ -194,7 +195,10 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         e.stopImmediatePropagation();
                     },
                     // Add Selected Extras to Rental Agreement
-                    addExtrasToRentalAgreement = function (data, popoverId) {
+                    // Data - Binding Data
+                    // PopoverId - Id 
+                    // Panel - Id of the Panel to Expand if collapsed
+                    addExtrasToRentalAgreement = function (data, popoverId, panel) {
                         serviceItems.each(function (serviceItem) {
                             if (serviceItem.isSelected()) {
                                 var raServiceItem = model.RentalAgreementServiceItem.Create(serviceItem.convertToServerData());
@@ -206,6 +210,8 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         });
                         // Close Popover
                         view.closePopover(popoverId);
+                        // Expand Panel
+                        view.expandPanel(panel);
                     },
                     // Reset Service Items Selection
                     resetServiceItemsSelection = function () {
@@ -229,7 +235,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         getChauffers();
                     },
                     // Add Selected Chauffers to Rental Agreement
-                    addChauffersToRentalAgreement = function (data, popoverId) {
+                    addChauffersToRentalAgreement = function (data, popoverId, panel) {
                         chauffers.each(function (chauffer) {
                             if (chauffer.isSelected()) {
                                 var driver = chauffer.convertToServerData();
@@ -242,6 +248,8 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         });
                         // Close Popover
                         view.closePopover(popoverId);
+                        // Expand Panel
+                        view.expandPanel(panel);
                     },
                     // Reset Chauffers Selection
                     resetChauffersSelection = function () {
@@ -250,12 +258,14 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         });
                     },
                     // Add Driver To Rental Agreement
-                    addDriverToRentalAgreement = function () {
+                    addDriverToRentalAgreement = function (data, panel) {
                         var driver = model.RentalAgreementDriver.Create({
                             IsChauffer: false, StartDtTime: moment(rentalAgreement().start()).toDate(),
                             EndDtTime: moment(rentalAgreement().end()).toDate(), RaMainId: rentalAgreement().id() || 0
                         });
                         rentalAgreement().rentalAgreementDrivers.push(driver);
+                        // Expand Panel
+                        view.expandPanel(panel);
                     },
                     // Plate Numbers To Select From For Additional Charge
                     plateNumbers = ko.computed(function () {
@@ -268,7 +278,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         });
                     }),
                     // Add Additional Charges to Rental Agreement
-                    addAdditionalChargesToRentalAgreement = function (data, popoverId) {
+                    addAdditionalChargesToRentalAgreement = function (data, popoverId, panel) {
                         additionalCharges.each(function (additionalCharge) {
                             if (additionalCharge.isSelected()) {
                                 var addCharge = additionalCharge.convertToServerData();
@@ -279,6 +289,8 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         });
                         // Close Popover
                         view.closePopover(popoverId);
+                        // Expand Panel
+                        view.expandPanel(panel);
                     },
                     // Reset Additional Charges Selection
                     resetAdditionalChargesSelection = function () {
@@ -326,11 +338,13 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         });
                     },
                     // Add Payment To Rental Agreement
-                    addPaymentToRentalAgreement = function () {
+                    addPaymentToRentalAgreement = function (data, panel) {
                         var payment = model.RentalAgreementPayment.Create({
                             RaMainId: rentalAgreement().id() || 0
                         });
                         rentalAgreement().raPayments.push(payment);
+                        // Expand Panel
+                        view.expandPanel(panel);
                     },
                     // #endregion Utility Functions
                     // #region Observables
@@ -703,6 +717,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                 
                             },
                             error: function (response) {
+                                openingRaUsingBooking(false);
                                 toastr.error("Failed to load Rental Agreement. Error: " + response);
                             }
                         });

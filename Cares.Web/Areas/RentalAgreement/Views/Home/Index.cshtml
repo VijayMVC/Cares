@@ -66,7 +66,7 @@
                         <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
                             Drivers
                         </a>
-                        <a class="float-right" data-bind="click: $root.addDriverToRentalAgreement"><span class="glyphicon glyphicon-plus"></span></a>
+                        <a class="float-right" data-bind="click: $root.addDriverToRentalAgreement.bind($data, $data, 'collapseTwo')"><span class="glyphicon glyphicon-plus"></span></a>
                     </h4>
                 </div>
                 <div id="collapseTwo" class="panel-collapse collapse">
@@ -74,18 +74,30 @@
                         <!-- ko foreach: raDrivers -->
                         <div class="panel panel-default panelCustom">
                             <div class="panel-heading">
-                                <span>&nbsp;</span>
+                                <!-- ko if: driverName -->
+                                    <span data-bind="text: driverName"></span>
+                                <!-- /ko -->
+                                <!-- ko ifnot: driverName -->
+                                    <span>&nbsp;</span>
+                                <!-- /ko -->
                                 <a class="float-right" data-bind="click: $parent.removeRaDriver"><span class="glyphicon glyphicon-remove"></span></a>
                             </div>
                             <div class="panel-collapse">
                                 <form class="form-horizontal">
                                     <div class="form-group formGroupCustom">
                                         <div>
+                                            <label class="control-label col-md-4">
+                                                Name
+                                            </label>
+                                        </div>
+                                        <br />
+                                        <hr />
+                                        <div class="clearBoth">
                                             <div class="col-md-5">
                                                 <input type="text" class="form-control" data-bind="value: driverName" />
                                             </div>
                                         </div>
-                                        <br/>
+                                        <br />
                                         <div class="clearBoth">
                                             <label class="control-label col-md-4">
                                                 License No
@@ -100,7 +112,7 @@
                                             <div class="col-md-4"><input type="text" class="form-control" data-bind="datetimepicker: licenseNo" /></div>
                                             <div class="col-md-4"><input type="text" class="form-control" data-bind="datetimepicker: licenseExpDt" /></div>
                                         </div>
-                                        <br/>
+                                        <br />
                                         <div class="clearBoth">
                                             <label class="control-label col-md-4">
                                                 Start Date
@@ -151,13 +163,13 @@
                                                 License Expiry
                                             </label>
                                         </div>
-                                        <br/>
-                                        <hr/>
+                                        <br />
+                                        <hr />
                                         <div class="clearBoth">
                                             <div class="col-md-4"><input type="text" class="form-control" data-bind="value: licenseNo, enable: false" /></div>
                                             <div class="col-md-4"><input type="text" class="form-control" data-bind="datetimepicker: licenseExpDt, enable: false" /></div>
                                         </div>
-                                        <br/>
+                                        <br />
                                         <div class="clearBoth">
                                             <label class="control-label col-md-4">
                                                 Start Date
@@ -243,7 +255,7 @@
                         <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseRaPayment">
                             Payments
                         </a>
-                        <a class="float-right" data-bind="click: $root.addPaymentToRentalAgreement"><span class="glyphicon glyphicon-plus"></span></a>
+                        <a class="float-right" data-bind="click: $root.addPaymentToRentalAgreement.bind($data, $data, 'collapseRaPayment')"><span class="glyphicon glyphicon-plus"></span></a>
                     </h4>
                 </div>
                 <div id="collapseRaPayment" class="panel-collapse collapse">
@@ -273,7 +285,7 @@
                                             </div>
                                             <div class="col-md-3"><input type="text" class="form-control" data-bind="value: paymentAmount" /></div>
                                         </div>
-                                        <br/>
+                                        <br />
                                         <div class="clearBoth">
                                             <label class="control-label col-sm-3">By</label>
                                             <label class="control-label col-sm-3">Chk No</label>
@@ -442,79 +454,41 @@
                                 </div>
                                 <div class="panel-collapse">
                                     <div class="form-group formGroupCustom">
+                                        <br />
                                         <!-- ko with: vehicle -->
-                                        <div>
-                                            <label class="control-label col-sm-2">Image</label>
-                                        </div>
-                                        <br/>
-                                        <hr/>
                                         <div class="clearBoth">
-                                            <div class="col-md-2">
+                                            <div class="col-md-3">
                                                 <img id="vehicleImage" src="#" alt="" data-bind="attr:{ src: image }" />
                                             </div>
-                                        </div>
-                                        <br/>
-                                        <div class="clearBoth">
-                                            <label for="vehicleHireGroup" class="control-label col-sm-3">Hire Group</label>
-                                            <label for="vehicleCategory" class="control-label col-sm-2">Category</label>
-                                            <label for="vehicleMakeText" class="control-label col-sm-2">Make</label>
-                                        </div>
-                                        <br />
-                                        <hr />
-                                        <div class="clearBoth">
-                                            <div class="col-md-3">
-                                                <input type="text" id="vehicleHireGroup" data-bind="value: $parent.hireGroup, enable: false" />
+                                            <div class="col-md-9">
+                                                <span data-bind="text: $parent.hireGroup"></span>
+                                                <span>-</span>
+                                                <span data-bind="text: vehicleCategory"></span>
+                                                <span>|</span>
+                                                <span data-bind="text: vehicleMake"></span>
+                                                <span>|</span>
+                                                <span data-bind="text: vehicleModel"></span>
+                                                <span>|</span>
+                                                <span data-bind="text: modelYear"></span>
                                             </div>
-                                            <div class="col-md-2">
-                                                <input id="vehicleCategory" data-bind="value: vehicleCategory, enable: false"/>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <input id="vehicleMakeText" data-bind="value: vehicleMake, enable: false"/>
-                                            </div>
-                                        </div>
-                                        <br/>
-                                        <div class="clearBoth">
-                                            <label for="vehicleModel" class="control-label col-sm-3">Model</label>
-                                            <label for="modelYear" class="control-label col-sm-2">Year</label>
-                                            <label class="control-label col-sm-2">Movement</label>
-                                        </div>
-                                        <br/>
-                                        <hr/>
-                                        <div class="clearBoth">
-                                            <div class="col-md-3">
-                                                <input id="vehicleModel" data-bind="value: vehicleModel, enable: false"/>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <input id="modelYear" data-bind="value: modelYear, enable: false"/>
-                                            </div>
-                                            <div class="col-md-2">
+                                            <div class="col-sm-2">
                                                 <a id="vehicleMovementPopoverLink" class="glyphicon glyphicon-road" data-bind="bootstrapPopover: { html: true, title: 'Movement Details', elementNode: 'vehicleMovementTemplate', popoverId: 'vehicleMovementTemplate_popoverContent' }, attr: { title: 'Movement Details' }">
                                                 </a>
                                             </div>
-                                        </div>
-                                        <br/>
-                                        <div class="clearBoth">
-                                            <label for="vehicleModel" class="control-label col-sm-3">Insurance</label>
-                                            <label for="modelYear" class="control-label col-sm-3">CheckList Out</label>
-                                            <label class="control-label col-sm-3">CheckList In</label>
-                                        </div>
-                                        <!-- /ko -->
-                                        <br />
-                                        <hr />
-                                        <div class="clearBoth">
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-2">
                                                 <a id="insurancePopoverLink" class="insurancePopoverLink glyphicon glyphicon-briefcase" data-bind="click: $root.openRaHireGroupInsuranceDialog, attr: { title: 'Insurances' }">
                                                 </a>
                                             </div>
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-2">
                                                 <a class="glyphicon glyphicon-export" data-bind="click: $root.addVehicleCheckListsOutToRa, attr: { title: 'CheckList Out' }">
                                                 </a>
                                             </div>
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-2">
                                                 <a class="glyphicon glyphicon-import" data-bind="click: $root.addVehicleCheckListsInToRa, attr: { title: 'CheckList In' }">
                                                 </a>
                                             </div>
                                         </div>
+                                        <!-- /ko -->
                                     </div>
                                 </div>
                             </div>
@@ -563,10 +537,10 @@
                             <div class="form-group">
                                 <label for="rentalAgreementStartDate" class="control-label col-sm-2"></label>
                                 <div class="col-md-4 dateTimeControl">
-                                    <input type="text" class="form-control dateControl" placeholder="<Start Date>" id="rentalAgreementStartDate" data-bind="datetimepicker: start, enable: !id()" />
+                                    <input type="text" class="form-control dateControl" placeholder="<Start Date>" id="rentalAgreementStartDate" data-bind="datetimepicker: start, enable: !id(), css:{ 'errorFill': isInvalidPeriod() }" />
                                 </div>
                                 <div class="col-md-4 dateTimeControl">
-                                    <input type="text" class="form-control dateControl" placeholder="<End Date>" id="rentalAgreementEndDate" data-bind="datetimepicker: end, enable: !id()" />
+                                    <input type="text" class="form-control dateControl" placeholder="<End Date>" id="rentalAgreementEndDate" data-bind="datetimepicker: end, enable: !id(), css:{ 'errorFill': isInvalidPeriod() }" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -741,7 +715,7 @@
             </table>
             <div>
                 <button class="btn btn-primary addExtrasTemplate_popoverContent_addExtrasButton"
-                        data-bind="click: addExtrasToRentalAgreement.bind($data, $data, 'addExtrasPopoverLink')">
+                        data-bind="click: addExtrasToRentalAgreement.bind($data, $data, 'addExtrasPopoverLink', 'collapseOne')">
                     Add
                 </button>
             </div>
@@ -811,7 +785,7 @@
             </table>
             <div>
                 <button class="btn btn-primary addChaufferTemplate_popoverContent_chaufferAddButton"
-                        data-bind="click: addChauffersToRentalAgreement.bind($data, $data, 'addChauffersPopoverLink')">
+                        data-bind="click: addChauffersToRentalAgreement.bind($data, $data, 'addChauffersPopoverLink', 'collapseThree')">
                     Add
                 </button>
             </div>
@@ -863,7 +837,7 @@
             </table>
             <div>
                 <button class="btn btn-primary addDamageTemplate_popoverContent_chaufferAddButton"
-                        data-bind="click: addAdditionalChargesToRentalAgreement.bind($data, $data, 'addDamagesPopoverLink')">
+                        data-bind="click: addAdditionalChargesToRentalAgreement.bind($data, $data, 'addDamagesPopoverLink', 'collapseFive')">
                     Add
                 </button>
             </div>
