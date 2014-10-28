@@ -133,6 +133,11 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     vehicleStartDtFilter = ko.observable(moment(rentalAgreement().start()).toDate()),
                     // Vehicle End Dt Filter
                     vehicleEndDtFilter = ko.observable(moment(rentalAgreement().end()).toDate()),
+                    // Is Valid Vehicle Duration 
+                    isValidVehicleDuration = ko.computed(function() {
+                        return vehicleEndDtFilter() > vehicleStartDtFilter() &&
+                            (rentalAgreement().start() <= vehicleStartDtFilter() && rentalAgreement().end() >= vehicleEndDtFilter());
+                    }),
                     // Vehicle OperationsWorkplace Filter
                     vehicleOperationsWorkPlaceFilter = ko.observable(),
                     // Vehicle Allocation Status Filter
@@ -518,7 +523,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     // Can Search Vehicles
                     canSearchVehicles = ko.computed(function () {
                         return selectedHireGroup() && vehicleStartDtFilter() && vehicleEndDtFilter() && vehicleOperationsWorkPlaceFilter() &&
-                            vehicleAllocationStatusFilter();
+                            vehicleAllocationStatusFilter() && isValidVehicleDuration();
                     }),
                     // Search Vehicles
                     searchVehicles = function () {
@@ -870,6 +875,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     paymentModes: paymentModes,
                     plateNumbers: plateNumbers,
                     canEditBooking: canEditBooking,
+                    isValidVehicleDuration: isValidVehicleDuration,
                     // Observables
                     // Utility Methods
                     initialize: initialize,

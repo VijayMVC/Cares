@@ -641,11 +641,11 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2">Start Dt/Time</label>
                         <div class="col-md-3">
-                            <input type="text" class="form-control vehicleTemplate_popoverContent_outDtTime" data-bind="datetimepicker: vehicleStartDtFilter" />
+                            <input type="text" class="form-control vehicleTemplate_popoverContent_outDtTime" data-bind="datetimepicker: vehicleStartDtFilter, css:{ 'errorFill': !isValidVehicleDuration() }" />
                         </div>
                         <label class="control-label col-sm-2">End Dt/Time</label>
                         <div class="col-md-3">
-                            <input type="text" class="form-control vehicleTemplate_popoverContent_inDtTime" data-bind="datetimepicker: vehicleEndDtFilter" />
+                            <input type="text" class="form-control vehicleTemplate_popoverContent_inDtTime" data-bind="datetimepicker: vehicleEndDtFilter, css:{ 'errorFill': !isValidVehicleDuration() }" />
                         </div>
                     </div>
                     <div class="form-group">
