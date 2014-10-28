@@ -563,6 +563,11 @@ namespace Cares.Repository.BaseRepository
         /// </summary>
         public DbSet<UserLogin> UserLogins { get; set; }
 
+        /// <summary>
+        /// WebApi Users
+        /// </summary>
+        public DbSet<WebApiUser> WebApiUsers { get; set; }
+
         #endregion
     }
 }

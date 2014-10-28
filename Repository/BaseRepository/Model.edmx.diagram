@@ -382,6 +382,7 @@
         <AssociationConnector Association="DomainModels.FK_BookingPayment_PaymentMode" />
         <AssociationConnector Association="DomainModels.RefHireGroupDetail" />
         <AssociationConnector Association="DomainModels.FK_BookingService_ServiceType1" />
+        <EntityTypeShape EntityType="DomainModels.WebApiUser" Width="1.5" PointX="15.375" PointY="1.125" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -7,6 +7,7 @@ using Cares.Interfaces.IServices;
 using Cares.Models.RequestModels;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
+using Cares.WebBase.Mvc;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
@@ -35,6 +36,7 @@ namespace Cares.Web.Areas.Api.Controllers
         #endregion
 
         #region Public
+
         // GET api controller
         public HireGroupSearchResponse Get([FromUri] HireGroupSearchRequest request)
         {
@@ -44,9 +46,11 @@ namespace Cares.Web.Areas.Api.Controllers
             }
             return hireGroupService.LoadHireGroups((request)).CreateFrom();
         }
+
         /// <summary>
         /// Add a Hire Group
         /// </summary>
+        [ApiException]
         public HireGroup Put(HireGroup hireGroup)
         {
 
@@ -57,9 +61,11 @@ namespace Cares.Web.Areas.Api.Controllers
 
             return hireGroupService.AddHireGroup(hireGroup.CreateFrom()).CreateFrom();
         }
+
         /// <summary>
         /// Update a Hire Group
         /// </summary>
+        [ApiException]
         public HireGroup Post(HireGroup hireGroup)
         {
             if (hireGroup == null || !ModelState.IsValid)
@@ -68,6 +74,7 @@ namespace Cares.Web.Areas.Api.Controllers
             }
             return hireGroupService.UpdateHireGroup(hireGroup.CreateFrom()).CreateFrom();
         }
+
         /// <summary>
         /// Delete a Hire Group
         /// </summary>
