@@ -203,5 +203,6 @@
     <Build Include="dbo\Tables\BookingChauffeur.sql" />
     <Build Include="dbo\Tables\BookingAdditionalDriver.sql" />
     <Build Include="dbo\Tables\BookingPayment.sql" />
+    <Build Include="dbo\Tables\WebApiUser.sql" />
   </ItemGroup>
 </Project>
