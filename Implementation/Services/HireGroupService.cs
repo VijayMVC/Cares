@@ -324,8 +324,9 @@ namespace Cares.Implementation.Services
             {
                 foreach (var item in hireGroup.HireGroupDetails)
                 {
-                    if (hireGroupDetails.Any(x => x.VehicleCategoryId == item.VehicleCategoryId && x.VehicleMakeId == item.VehicleMakeId &&
-                        x.VehicleModelId == item.VehicleModelId && x.ModelYear == item.ModelYear && item.HireGroupDetailId == 0))
+                    // ReSharper disable once PossibleMultipleEnumeration
+                    if (hireGroupDetails != null && hireGroupDetails.Any(x => x.VehicleCategoryId == item.VehicleCategoryId && x.VehicleMakeId == item.VehicleMakeId &&
+                                                                              x.VehicleModelId == item.VehicleModelId && x.ModelYear == item.ModelYear && item.HireGroupDetailId == 0))
                     {
                         HireGroupDetail hireGroupDetail = hireGroupDetailRepository.GetHireGroupDetailByVehicleMakeIdModelIdCategoryIdModelYear(item.VehicleMakeId, item.VehicleModelId, item.VehicleCategoryId, item.ModelYear);
                         throw new CaresException("Hire Group Detail already exist with combination " + hireGroupDetail.VehicleMake.VehicleMakeName + "," +
