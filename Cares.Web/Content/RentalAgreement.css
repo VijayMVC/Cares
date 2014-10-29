@@ -193,6 +193,9 @@
 #rentalAgreementBinding #raMain #collapseSeven .formGroupCustom {
   margin-right: 0;
   margin-left: 0;
+  margin-bottom: 0;
+  border-radius: 10px !important;
+  background-color: silver;
 }
 #rentalAgreementBinding #raMain #collapseSeven .formGroupCustom hr {
   margin-top: 5px;
@@ -206,8 +209,9 @@
   width: 500px;
 }
 #rentalAgreementBinding #raMain #vehicleImage {
-  max-width: 100px;
-  max-height: 100px;
+  max-width: 90px;
+  max-height: 55px;
+  vertical-align: super;
 }
 #rentalAgreementBinding #raBilling {
   width: 33.5%;

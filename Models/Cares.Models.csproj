@@ -167,6 +167,7 @@
     <Compile Include="Common\WorkLocationByColumn.cs" />
     <Compile Include="Common\WorkplaceByColumn.cs" />
     <Compile Include="Common\WorkplaceTypeByColumn.cs" />
+    <Compile Include="DomainModels\WebApiUser.cs" />
     <Compile Include="DomainModels\BookingAdditionalDriver.cs" />
     <Compile Include="DomainModels\BookingChauffeur.cs" />
     <Compile Include="DomainModels\BookingIsurance.cs" />
@@ -324,6 +325,7 @@
     <Compile Include="ReportModels\FleetHireGroupDetail.cs" />
     <Compile Include="ReportModels\RaCustomerInfo.cs" />
     <Compile Include="ReportModels\RaVehicleInfo.cs" />
+    <Compile Include="ReportModels\RentalAgreementInfo.cs" />
     <Compile Include="ReportModels\RentalAgreementDetailResponse.cs" />
     <Compile Include="RequestModels\AdditionalChargeSearchRequest.cs" />
     <Compile Include="RequestModels\AdditionalDriverChargeSearchRequest.cs" />

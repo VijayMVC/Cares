@@ -29,7 +29,7 @@ namespace Cares.Repository.Repositories
                        
                     };
         #endregion
-        
+
         #region Constructor
         /// <summary>
         /// Constructor
@@ -51,7 +51,7 @@ namespace Cares.Repository.Repositories
         }
 
         #endregion
-        
+
         #region Public
         /// <summary>
         /// Get All Hire Groups 
@@ -60,7 +60,7 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(hireGroup => hireGroup.UserDomainKey == UserDomainKey && (hireGroup.ParentHireGroupId == 0 || hireGroup.ParentHireGroupId == null)).ToList();
         }
-        
+
         /// <summary>
         /// Get All Hire Group based on search crateria
         /// </summary>
@@ -81,15 +81,15 @@ namespace Cares.Repository.Repositories
 
             return new HireGroupSearchResponse { HireGroups = hireGroups, TotalCount = DbSet.Count(query) };
         }
-        
+
         /// <summary>
         /// Get All Parent Hire Groups 
         /// </summary>
         public IEnumerable<HireGroup> GetParentHireGroups()
         {
-            return DbSet.Where(hireGroup => hireGroup.UserDomainKey == UserDomainKey && hireGroup.IsParent);
+            return DbSet.Where(hireGroup => hireGroup.UserDomainKey == UserDomainKey && hireGroup.IsParent).ToList();
         }
-        
+
         /// <summary>
         /// Get Hire Groups that are not parent hire groups 
         /// </summary>
@@ -97,15 +97,15 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(hireGroup => hireGroup.UserDomainKey == UserDomainKey && !hireGroup.IsParent);
         }
-        
+
         /// <summary>
         /// Load Dependencies
         /// </summary>
         public void LoadDependencies(HireGroup hireGroup)
         {
-              LoadProperty(hireGroup, () => hireGroup.Company);
+            LoadProperty(hireGroup, () => hireGroup.Company);
             //LoadProperty(hireGroup, () => hireGroup.ParentHireGroup);
-           
+
         }
         #endregion
     }

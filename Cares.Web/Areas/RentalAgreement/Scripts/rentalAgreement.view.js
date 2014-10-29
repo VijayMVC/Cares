@@ -20,6 +20,13 @@ define("rentalAgreement/rentalAgreement.view",
                         element.popover('hide');
                     }
                 },
+                // Expand Panel
+                expandPanel = function (panelId) {
+                    var element = $("#" + panelId);
+                    if (element && !element.hasClass('collapse.in')) {
+                        element.collapse('show');
+                    }
+                },
                 // Show the dialog
                 show = function () {
                     $("#hiregroupInsuranceDialog").modal("show");
@@ -121,7 +128,8 @@ define("rentalAgreement/rentalAgreement.view",
                 show: show,
                 hide: hide,
                 showRaVehicleCheckListDialog: showRaVehicleCheckListDialog,
-                hideRaVehicleCheckListDialog: hideRaVehicleCheckListDialog
+                hideRaVehicleCheckListDialog: hideRaVehicleCheckListDialog,
+                expandPanel: expandPanel
             };
         })(rentalAgreementViewModel);
 

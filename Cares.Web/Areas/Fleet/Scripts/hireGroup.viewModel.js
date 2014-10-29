@@ -44,6 +44,8 @@ define("hireGroup/hireGroup.viewModel",
                     hireGroupsForDdList = ko.observableArray([]),
                     //Filtered Hire Group list based on company For drop-down list
                     filteredHireGroupsForDdList = ko.observableArray([]),
+                    //model Years
+                    modelYears = ko.observableArray([]),
                     // #endregion Arrays
                     // #region Busy Indicators
                     isLoadingHireGroups = ko.observable(false),
@@ -101,6 +103,8 @@ define("hireGroup/hireGroup.viewModel",
                         var hireGroup = new model.HireGroup();
                         hireGroupDetails.removeAll();
                         hireGroupUpGradeList.removeAll();
+                        filteredHireGroupsForDdList.removeAll();
+                        filteredParentHireGroups.removeAll();
                         // Select the newly added Hire Group
                         selectedHireGroup(hireGroup);
                         selectedHireGroup().vehicleDetail(new model.HireGroupDetail());
@@ -116,6 +120,18 @@ define("hireGroup/hireGroup.viewModel",
                         selectedHireGroup().vehicleDetail(new model.HireGroupDetail());
                         selectedHireGroup().hireGroupUpGrade(new model.HireGroupUpGrade());
                         virtualIsChecked(hireGroup.isParent());
+                        filteredHireGroupsForDdList.removeAll();
+                        _.each(hireGroupsForDdList(), function (item) {
+                            if (item.CompanyId === hireGroup.companyId())
+                                filteredHireGroupsForDdList.push(item);
+                        });
+                        filteredHireGroupsForDdList.valueHasMutated();
+                        filteredParentHireGroups.removeAll();
+                        _.each(parentHireGroups(), function (item) {
+                            if (item.CompanyId === hireGroup.companyId())
+                                filteredParentHireGroups.push(item);
+                        });
+
                         //selectedtariffRateCopy(model.TariffRateCoppier(selectedtariffRate()));
                         getHireGroupById();
                         showHireGroupEditor();
@@ -207,7 +223,7 @@ define("hireGroup/hireGroup.viewModel",
                         _.each(hireGroupDetails(), function (item) {
                             if (item.vehicleMakeId() === vehicleDetail.vehicleMakeId() && item.vehicleCategoryId() === vehicleDetail.vehicleCategoryId() &&
                                 item.vehicleModelId() === vehicleDetail.vehicleModelId() && item.vehicleModelYear() === vehicleDetail.vehicleModelYear()) {
-                                toastr.error("Hire Group Detail already exist in List");
+                                toastr.error("Hire Group Detail already exist with same combination.");
                                 flag = false;
                             }
 
@@ -332,8 +348,15 @@ define("hireGroup/hireGroup.viewModel",
                                 closeHireGroupEditor();
                                 toastr.success(ist.resourceText.hirGroupAddSuccesMsg);
                             },
-                            error: function () {
-                                toastr.error(ist.resourceText.hirGroupAddFailedMsg);
+                            error: function (exceptionMessage, exceptionType) {
+
+                                if (exceptionType === ist.exceptionType.CaresGeneralException) {
+
+                                    toastr.error(exceptionMessage);
+
+                                } else {
+                                    toastr.error(ist.resourceText.hirGroupAddFailedMsg);
+                                }
                             }
                         });
                     },
@@ -341,6 +364,12 @@ define("hireGroup/hireGroup.viewModel",
                     getBaseData = function (callBack) {
                         dataservice.getHireGroupBase({
                             success: function (data) {
+
+                                //Model Years 
+                                modelYears.removeAll();
+                                ko.utils.arrayPushAll(modelYears(), modelYearsGlobal);
+                                modelYears.valueHasMutated();
+
                                 //Hire Groups
                                 hireGroupsForDdList.removeAll();
                                 ko.utils.arrayPushAll(hireGroupsForDdList(), data.HireGroups);
@@ -395,18 +424,7 @@ define("hireGroup/hireGroup.viewModel",
                           parentHireGroupFilter(undefined);
                           search();
                       },
-                    //Model Year
-                    modelYears = [{ Id: 2001, Text: '2001' },
-                        { Id: 2002, Text: '2002' },
-                        { Id: 2003, Text: '2003' },
-                         { Id: 2004, Text: '2004' },
-                        { Id: 2005, Text: '2005' },
-                        { Id: 2006, Text: '2006' },
-                        { Id: 2007, Text: '2007' }
 
-
-
-                    ],
                     // Get Hire Group
                     getHireGroup = function () {
                         isLoadingHireGroups(true);

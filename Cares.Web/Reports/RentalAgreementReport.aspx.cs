@@ -36,13 +36,19 @@ namespace Cares.Web.Reports
                 ReportDataSource reportDataSource1 = new ReportDataSource
                 {
                     Name = "RentalAgreementDS",
-                    Value = detailResponse.RaVehicleInfo
+                    Value = detailResponse.RentalAgreementInfos
                 };
 
                 ReportDataSource reportDataSource2 = new ReportDataSource
                 {
                     Name = "RACustomerDS",
                     Value = detailResponse.RaCustomerInfo
+                };
+                IList<RaVehicleInfo> raVehicleInfos = detailResponse.RentalAgreementInfos.First().RaVehicleInfos;
+                ReportDataSource reportDataSource3 = new ReportDataSource
+                {
+                    Name = "RaVehicleInfoDS",
+                    Value = raVehicleInfos
                 };
                 rentalAgreementReportViewer.LocalReport.EnableExternalImages = true;
                 rentalAgreementReportViewer.LocalReport.EnableHyperlinks = true;
@@ -51,6 +57,8 @@ namespace Cares.Web.Reports
                 rentalAgreementReportViewer.LocalReport.DataSources.Clear();
                 rentalAgreementReportViewer.LocalReport.DataSources.Add(reportDataSource1);
                 rentalAgreementReportViewer.LocalReport.DataSources.Add(reportDataSource2);
+                rentalAgreementReportViewer.LocalReport.DataSources.Add(reportDataSource3);
+               
             }
         }
     }
