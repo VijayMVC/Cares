@@ -25,10 +25,10 @@
                                         </td>
                                         <td data-bind="text: insuranceTypeCodeName"></td>
                                         <td>
-                                            <input type="text" class="form-control raHireGroupInsuranceTemplate_popoverContent" data-bind="datetimepicker: start" />
+                                            <input type="text" class="form-control raHireGroupInsuranceTemplate_popoverContent" data-bind="datetimepicker: start, validationDependsOn: internalStartDtTime, css: { 'errorFill': isInvalidPeriod() }" />
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control raHireGroupInsuranceTemplate_popoverContent" data-bind="datetimepicker: end" />
+                                            <input type="text" class="form-control raHireGroupInsuranceTemplate_popoverContent" data-bind="datetimepicker: end, validationDependsOn: internalEndDtTime, css: { 'errorFill': isInvalidPeriod() }" />
                                         </td>
                                     </tr>
                                 </tbody>

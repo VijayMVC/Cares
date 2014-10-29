@@ -296,11 +296,17 @@
                 }
             }),
             // Payment Term
-            paymentTermId = ko.observable(specifiedPaymentTermId || undefined),
+            paymentTermId = ko.observable(specifiedPaymentTermId || undefined).extend({
+                required: true
+            }),
             // Operation
-            operationId = ko.observable(specifiedOperationId || undefined),
+            operationId = ko.observable(specifiedOperationId || undefined).extend({
+                required: true
+            }),
             // Open Location
-            internalOpenLocation = ko.observable(specifiedOpenLocation || undefined),
+            internalOpenLocation = ko.observable(specifiedOpenLocation || undefined).extend({
+                required: true
+            }),
             // Open Location
             openLocation = ko.computed({
                 read: function () {
@@ -366,10 +372,10 @@
             internalRaBookingId = ko.observable(specifiedRaBookingId || undefined),
             // RaBooking Id
             raBookingId = ko.computed({
-                read: function() {
+                read: function () {
                     return internalRaBookingId();
                 },
-                write: function(value) {
+                write: function (value) {
                     if (!value || internalRaBookingId() === value) {
                         return;
                     }
@@ -382,14 +388,36 @@
             }),
             // Validation Errors
             errors = ko.validation.group({
-                
+                paymentTermId: paymentTermId,
+                operationId: operationId,
+                internalOpenLocation: internalOpenLocation
             }),
             // Is Invalid period
             isInvalidPeriod = ko.computed(function () {
                 return end() < start();
             }),
+            // Is License Expired
+            isLicenseExpired = ko.computed(function () {
+                if (!rentersLicenseExpiry()) {
+                    return false;
+                }
+
+                return !businessPartner().isIndividual() && moment(rentersLicenseExpiry()).clone().hours(0).minutes(0).seconds(0).milliseconds(0) < moment().hours(0).minutes(0).seconds(0).milliseconds(0).toDate();
+            }),
             isValid = ko.computed(function () {
-                return errors().length === 0 && !isInvalidPeriod();
+                return errors().length === 0 && !isInvalidPeriod() && businessPartner().isValid() && !isLicenseExpired() &&
+                    rentalAgreementServiceItems.filter(function (raServiceItem) {
+                        return !raServiceItem.isValid();
+                    }).length === 0 &&
+                    rentalAgreementDrivers.filter(function (raDriver) {
+                        return !raDriver.isValid();
+                    }).length === 0 &&
+                    rentalAgreementAdditionalCharges.filter(function (raAdditionalCharge) {
+                        return !raAdditionalCharge.isValid();
+                    }).length === 0 &&
+                    rentalAgreementHireGroups.filter(function (raHireGroup) {
+                        return !raHireGroup.isValid();
+                    }).length === 0;
             }),
             // Convert To Server Data
             convertToServerData = function () {
@@ -449,6 +477,7 @@
             paymentTermId: paymentTermId,
             operationId: operationId,
             openLocation: openLocation,
+            internalOpenLocation: internalOpenLocation,
             closeLocation: closeLocation,
             start: start,
             end: end,
@@ -477,6 +506,7 @@
             errors: errors,
             isValid: isValid,
             isInvalidPeriod: isInvalidPeriod,
+            isLicenseExpired: isLicenseExpired,
             convertToServerData: convertToServerData
         };
     },
@@ -491,7 +521,7 @@
     // ReSharper disable InconsistentNaming
     RentalAgreementHireGroup = function (specifiedId, specifiedHireGroupDetailId, specifiedVehicleId, specifiedRentalAgreementId, specifiedVehicle,
         specifiedVehicleMovements, specifiedRaHireGroupInsurances, specifiedAllocationStatusKey, specifiedAllocationStatusId, specifiedRaVehicleCheckLists,
-        specifiedHirGroup, isExisting) {
+        specifiedHirGroup, isExisting, specifiedAgreement) {
         // ReSharper restore InconsistentNaming
         var
             // unique key
@@ -506,7 +536,7 @@
             vehicle = ko.observable(specifiedVehicle || Vehicle.Create({})),
             // Ra HireGroup Insurances
             raHireGroupInsurances = ko.observableArray(specifiedRaHireGroupInsurances ? _.map(specifiedRaHireGroupInsurances, function (raHireGroupInsurance) {
-                var raHireGroupInsuranceItem = RentalAgreementHireGroupInsurance.Create(raHireGroupInsurance);
+                var raHireGroupInsuranceItem = RentalAgreementHireGroupInsurance.Create(raHireGroupInsurance, specifiedAgreement);
 
                 if (isExisting) {
                     raHireGroupInsuranceItem.isSelected(true);
@@ -555,8 +585,19 @@
             // Allocation Status Id
             allocationStatusId = ko.observable(specifiedAllocationStatusId),
             // Can Remove
-            canRemove = ko.computed(function() {
+            canRemove = ko.computed(function () {
                 return !id();
+            }),
+            // Errors
+            errors = ko.validation.group({
+
+            }),
+            // Is Valid
+            isValid = ko.computed(function () {
+                return errors().length === 0 &&
+                    raHireGroupInsurances.filter(function (raHireGroupInsurance) {
+                        return raHireGroupInsurance.isSelected() && !raHireGroupInsurance.isValid();
+                    }).length === 0;
             }),
             // Convert To Server Data
             convertToServerData = function () {
@@ -601,6 +642,8 @@
             allocationStatusKey: allocationStatusKey,
             allocationStatusId: allocationStatusId,
             canRemove: canRemove,
+            errors: errors,
+            isValid: isValid,
             convertToServerData: convertToServerData
         };
     },
@@ -702,11 +745,29 @@
             // Business Partner key
             id = ko.observable(specifiedId || 0),
             // First Name
-            firstName = ko.observable(specifiedFirstName || undefined),
+            firstName = ko.observable(specifiedFirstName || undefined).extend({
+                required: {
+                    onlyIf: function () {
+                        return businessPartner.isIndividual();
+                    }
+                }
+            }),
             // Last Name
-            lastName = ko.observable(specifiedLastName || undefined),
+            lastName = ko.observable(specifiedLastName || undefined).extend({
+                required: {
+                    onlyIf: function () {
+                        return businessPartner.isIndividual();
+                    }
+                }
+            }),
             // Date of Birth
-            dateOfBirth = ko.observable(specifiedDOB ? moment(specifiedDOB).toDate() : undefined),
+            dateOfBirth = ko.observable(specifiedDOB ? moment(specifiedDOB).toDate() : undefined).extend({
+                required: {
+                    onlyIf: function () {
+                        return businessPartner.isIndividual();
+                    }
+                }
+            }),
             // Nic Expiry
             nicExpiry = ko.observable(specifiedNicExpiry ? moment(specifiedNicExpiry).toDate() : undefined),
             // Passport Expiry
@@ -767,6 +828,27 @@
                     }
                 }
             }),
+            // Validation Errors
+            errors = ko.validation.group({
+                firstName: firstName,
+                lastName: lastName,
+                dateOfBirth: dateOfBirth
+            }),
+            // Is License Expired
+            isLicenseExpired = ko.computed(function () {
+                if (!licenseExpiry()) {
+                    return false;
+                }
+
+                return businessPartner.isIndividual() && moment(licenseExpiry()).clone().hours(0).minutes(0).seconds(0).milliseconds(0) < moment().hours(0).minutes(0).seconds(0).milliseconds(0).toDate();
+            }),
+            // Is Age Valid
+            isAgeValid = ko.computed(function () {
+                return !dateOfBirth() || (businessPartner.isIndividual() && moment().add('years', -21).toDate() > dateOfBirth());
+            }),
+            isValid = ko.computed(function () {
+                return errors().length === 0 && !isLicenseExpired() && isAgeValid();
+            }),
             // Convert To Server Data
             convertToServerData = function () {
                 return {
@@ -794,6 +876,10 @@
             nicNo: nicNo,
             passportNo: passportNo,
             licenseNo: licenseNo,
+            errors: errors,
+            isValid: isValid,
+            isLicenseExpired: isLicenseExpired,
+            isAgeValid: isAgeValid,
             convertToServerData: convertToServerData
         };
     },
@@ -825,9 +911,11 @@
             // Is Individual
             isIndividual = ko.observable(specifiedIsIndividual || true),
             // Email
-            email = ko.observable(specifiedEmail || undefined),
+            email = ko.observable(specifiedEmail || undefined).extend({
+                required: true
+            }),
             // Payment Term
-            paymentTermId = ko.observable(specifiedPaymentTerm ? specifiedPaymentTerm.PaymentTermId : undefined),
+            paymentTermId = ko.observable(specifiedPaymentTerm ? specifiedPaymentTerm.PaymentTermId : undefined).extend({ required: true }),
             // Company
             businessPartnerCompany = ko.observable(BusinessPartnerCompany.Create(specifiedCompany || {})),
             // Reference to this
@@ -840,7 +928,7 @@
             phones = ko.observableArray(_.map([
                 { IsDefault: true, PhoneTypeKey: phoneTypes.HomePhone },
                 { IsDefault: true, PhoneTypeKey: phoneTypes.CellularPone }
-            ], function(phone) {
+            ], function (phone) {
                 return Phone.Create(phone);
             })),
             // Home Phone
@@ -879,6 +967,14 @@
                     }
                 }
             }),
+            // Validation Errors
+            errors = ko.validation.group({
+                paymentTermId: paymentTermId,
+                email: email
+            }),
+            isValid = ko.computed(function () {
+                return errors().length === 0 && (!isIndividual() || businessPartnerIndividual().isValid());
+            }),
             // Convert To Server Data
             convertToServerData = function () {
                 return {
@@ -888,7 +984,7 @@
                     BusinessPartnerEmailAddress: email(),
                     BusinessPartnerIndividual: businessPartnerIndividual().convertToServerData(),
                     BusinessPartnerCompany: businessPartnerCompany().convertToServerData(),
-                    BusinessPartnerPhoneNumbers: phones.map(function(phone) {
+                    BusinessPartnerPhoneNumbers: phones.map(function (phone) {
                         var phoneItem = phone.convertToServerData();
                         phoneItem.PhoneNumber = phoneItem.PhoneTypeId === phoneTypes.HomePhone ? homePhone() : mobile();
                         return phoneItem;
@@ -910,6 +1006,8 @@
             mobile: mobile,
             internalHomePhone: internalHomePhone,
             internalMobile: internalMobile,
+            errors: errors,
+            isValid: isValid,
             convertToServerData: convertToServerData
         };
     },
@@ -1080,7 +1178,7 @@
     // ReSharper disable InconsistentNaming
     RentalAgreementServiceItem = function (specifiedId, specifiedServiceItemId, specifiedServiceItemCode, specifiedServiceItemName, specifiedServiceTypeCode,
         specifiedServiceTypeName, specifiedRentalAgreementId, specifiedQuantity, specifiedStartDtTime, specifiedEndDtTime, specifiedServiceRate,
-        specifiedServiceCharge) {
+        specifiedServiceCharge, specifiedAgreement) {
         // ReSharper restore InconsistentNaming
         var
             // unique key
@@ -1098,15 +1196,21 @@
             // Rental Agreement Id
             rentalAgreementId = ko.observable(specifiedRentalAgreementId),
             // Quantity
-            quantity = ko.observable(specifiedQuantity || 1),
+            quantity = ko.observable(specifiedQuantity || 1).extend({
+                required: true
+            }),
             // Service Rate
             serviceRate = ko.observable(specifiedServiceRate || 0),
             // Service Charge
             serviceCharge = ko.observable(specifiedServiceCharge || 0),
             // Start Date Time
-            internalStartDateTime = ko.observable(specifiedStartDtTime || moment().toDate()),
+            internalStartDateTime = ko.observable(specifiedStartDtTime || moment().toDate()).extend({
+                required: true
+            }),
             // End Date Time
-            internalEndDateTime = ko.observable(specifiedEndDtTime || moment().add('days', 1).toDate()),
+            internalEndDateTime = ko.observable(specifiedEndDtTime || moment().add('days', 1).toDate()).extend({
+                required: true
+            }),
             // Start Date
             start = ko.computed({
                 read: function () {
@@ -1138,6 +1242,19 @@
                         internalEndDateTime(value);
                     }
                 }
+            }),
+            // Validation Errors
+            errors = ko.validation.group({
+                quantity: quantity,
+                internalStartDateTime: internalStartDateTime,
+                internalEndDateTime: internalEndDateTime
+            }),
+            // Is Invalid period
+            isInvalidPeriod = ko.computed(function () {
+                return (end() < start()) || (start() < specifiedAgreement.start() || end() > specifiedAgreement.end());
+            }),
+            isValid = ko.computed(function () {
+                return errors().length === 0 && !isInvalidPeriod();
             }),
             // Convert To Server Data
             convertToServerData = function () {
@@ -1170,8 +1287,13 @@
             quantity: quantity,
             start: start,
             end: end,
+            internalStartDateTime: internalStartDateTime,
+            internalEndDateTime: internalEndDateTime,
             serviceRate: serviceRate,
             serviceCharge: serviceCharge,
+            errors: errors,
+            isInvalidPeriod: isInvalidPeriod,
+            isValid: isValid,
             convertToServerData: convertToServerData
         };
     },
@@ -1179,7 +1301,8 @@
     // Rental Agreement Driver Item entity
     // ReSharper disable InconsistentNaming
     RentalAgreementDriver = function (specifiedId, specifiedChaufferId, specifiedDesigGradeId, specifiedStartDtTime, specifiedEndDtTime, specifiedLicenseExpDt,
-        specifiedLicenseNo, specifiedDriverName, specifiedIsChauffer, specifiedTariffType, specifiedRate, specifiedTotalCharge, specifiedRentalAgreementId) {
+        specifiedLicenseNo, specifiedDriverName, specifiedIsChauffer, specifiedTariffType, specifiedRate, specifiedTotalCharge, specifiedRentalAgreementId,
+        specifiedAgreement) {
         // ReSharper restore InconsistentNaming
         var
             // unique key
@@ -1191,9 +1314,13 @@
             // Rental Agreement Id
             rentalAgreementId = ko.observable(specifiedRentalAgreementId),
             // Start Date Time
-            internalStartDateTime = ko.observable(specifiedStartDtTime || moment().toDate()),
+            internalStartDateTime = ko.observable(specifiedStartDtTime || moment().toDate()).extend({
+                required: true
+            }),
             // End Date Time
-            internalEndDateTime = ko.observable(specifiedEndDtTime || moment().add('days', 1).toDate()),
+            internalEndDateTime = ko.observable(specifiedEndDtTime || moment().add('days', 1).toDate()).extend({
+                required: true
+            }),
             // Start Date
             start = ko.computed({
                 read: function () {
@@ -1227,7 +1354,9 @@
                 }
             }),
             // License Exp Dt
-            internalLicenseExpDateTime = ko.observable(specifiedLicenseExpDt || moment().toDate()),
+            internalLicenseExpDateTime = ko.observable(specifiedLicenseExpDt || moment().toDate()).extend({
+                required: true
+            }),
             // License Exp Dt
             licenseExpDt = ko.computed({
                 read: function () {
@@ -1245,9 +1374,13 @@
                 }
             }),
             // License No
-            licenseNo = ko.observable(specifiedLicenseNo),
+            licenseNo = ko.observable(specifiedLicenseNo).extend({
+                required: true
+            }),
             // Driver Name
-            driverName = ko.observable(specifiedDriverName),
+            driverName = ko.observable(specifiedDriverName).extend({
+                required: true
+            }),
             // Is Chauffer
             isChauffer = ko.observable(specifiedIsChauffer),
             // Tariff Type
@@ -1256,6 +1389,29 @@
             rate = ko.observable(specifiedRate),
             // Total Charge
             totalCharge = ko.observable(specifiedTotalCharge),
+            // Validation Errors
+            errors = ko.validation.group({
+                internalStartDateTime: internalStartDateTime,
+                internalEndDateTime: internalEndDateTime,
+                driverName: driverName,
+                licenseNo: licenseNo,
+                licenseExpDt: licenseExpDt
+            }),
+            // Is Invalid period
+            isInvalidPeriod = ko.computed(function () {
+                return (end() < start()) || (start() < specifiedAgreement.start() || end() > specifiedAgreement.end());
+            }),
+            // Is License Expired
+            isLicenseExpired = ko.computed(function () {
+                if (!licenseExpDt()) {
+                    return false;
+                }
+
+                return moment(licenseExpDt()).clone().hours(0).minutes(0).seconds(0).milliseconds(0) < moment().hours(0).minutes(0).seconds(0).milliseconds(0).toDate();
+            }),
+            isValid = ko.computed(function () {
+                return errors().length === 0 && !isInvalidPeriod() && !isLicenseExpired();
+            }),
             // Convert To Server Data
             convertToServerData = function () {
                 return {
@@ -1282,13 +1438,20 @@
             rentalAgreementId: rentalAgreementId,
             start: start,
             end: end,
+            internalStartDateTime: internalStartDateTime,
+            internalEndDateTime: internalEndDateTime,
             licenseNo: licenseNo,
             licenseExpDt: licenseExpDt,
+            internalLicenseExpDateTime: internalLicenseExpDateTime,
             rate: rate,
             totalCharge: totalCharge,
             driverName: driverName,
             isChauffer: isChauffer,
             tariffType: tariffType,
+            errors: errors,
+            isValid: isValid,
+            isInvalidPeriod: isInvalidPeriod,
+            isLicenseExpired: isLicenseExpired,
             convertToServerData: convertToServerData
         };
     },
@@ -1356,7 +1519,7 @@
     // Rental Agreement Hire Group Insurance entity
     // ReSharper disable InconsistentNaming
     RentalAgreementHireGroupInsurance = function (specifiedId, specifiedRaHireGroupId, specifiedInsuranceTypeId, specifiedInsuranceTypeCodeName,
-        specifiedStartDtTime, specifiedEndDtTime, specifiedInsuranceRate, specifiedInsuranceCharge, specifiedTariffType) {
+        specifiedStartDtTime, specifiedEndDtTime, specifiedInsuranceRate, specifiedInsuranceCharge, specifiedTariffType, specifiedAgreement) {
         // ReSharper restore InconsistentNaming
         var
             // Is Selected
@@ -1376,9 +1539,21 @@
             // Tariff Type
             tariffType = ko.observable(specifiedTariffType),
             // Start Date Time
-            internalStartDateTime = ko.observable(specifiedStartDtTime || moment().toDate()),
+            internalStartDateTime = ko.observable(specifiedStartDtTime || moment().toDate()).extend({
+                required: {
+                    onlyIf: function () {
+                        return isSelected();
+                    }
+                }
+            }),
             // End Date Time
-            internalEndDateTime = ko.observable(specifiedEndDtTime || moment().add('days', 1).toDate()),
+            internalEndDateTime = ko.observable(specifiedEndDtTime || moment().add('days', 1).toDate()).extend({
+                required: {
+                    onlyIf: function () {
+                        return isSelected();
+                    }
+                }
+            }),
             // Start Date
             start = ko.computed({
                 read: function () {
@@ -1411,6 +1586,18 @@
                     }
                 }
             }),
+            // Validation Errors
+            errors = ko.validation.group({
+                internalStartDateTime: internalStartDateTime,
+                internalEndDateTime: internalEndDateTime
+            }),
+            // Is Invalid period
+            isInvalidPeriod = ko.computed(function () {
+                return (end() < start()) || (start() < specifiedAgreement.start() || end() > specifiedAgreement.end());
+            }),
+            isValid = ko.computed(function () {
+                return errors().length === 0 && !isInvalidPeriod();
+            }),
             // Convert To Server Data
             convertToServerData = function () {
                 return {
@@ -1433,9 +1620,14 @@
             tariffType: tariffType,
             start: start,
             end: end,
+            internalStartDateTime: internalStartDateTime,
+            internalEndDateTime: internalEndDateTime,
             insuranceRate: insuranceRate,
             insuranceCharge: insuranceCharge,
             isSelected: isSelected,
+            errors: errors,
+            isInvalidPeriod: isInvalidPeriod,
+            isValid: isValid,
             convertToServerData: convertToServerData
         };
     },
@@ -1484,13 +1676,28 @@
             // Additional Charge Type Id
             additionalChargeTypeId = ko.observable(specifiedAdditionalChargeTypeId),
             // Additional Charge Rate
-            additionalChargeRate = ko.observable(specifiedAdditionalChargeRate || 0),
+            additionalChargeRate = ko.observable(specifiedAdditionalChargeRate || 0).extend({
+                required: true
+            }),
             // Plate Number
-            plateNumber = ko.observable(specifiedPlateNumber),
+            plateNumber = ko.observable(specifiedPlateNumber).extend({
+                required: true
+            }),
             // Quantity
-            quantity = ko.observable(specifiedQuantity || 1),
+            quantity = ko.observable(specifiedQuantity || 1).extend({
+                required: true
+            }),
             // Hire Group Detail Id
             hireGroupDetailId = ko.observable(specifiedHireGroupDetailId),
+            // Validation Errors
+            errors = ko.validation.group({
+                plateNumber: plateNumber,
+                quantity: quantity,
+                additionalChargeRate: additionalChargeRate
+            }),
+            isValid = ko.computed(function () {
+                return errors().length === 0;
+            }),
             // Convert To Server Data
             convertToServerData = function () {
                 return {
@@ -1514,10 +1721,12 @@
             plateNumber: plateNumber,
             hireGroupDetailId: hireGroupDetailId,
             hireGroupDetail: specifiedHireGroupDetailCodeName,
+            errors: errors,
+            isValid: isValid,
             convertToServerData: convertToServerData
         };
     },
-        
+
     // Rental Agreement Payment entity
     // ReSharper disable InconsistentNaming
     RentalAgreementPayment = function (specifiedId, specifiedRaMainId, specifiedPaymentModeId, specifiedRaPaymentDt,
@@ -1582,7 +1791,7 @@
             convertToServerData: convertToServerData
         };
     },
-        
+
     // Rental Agreement Vehicle CheckList entity
     // ReSharper disable InconsistentNaming
     RentalAgreementVehicleCheckList = function (specifiedId, specifiedRaHireGroupId, specifiedVehicleCheckListId, specifiedStatus,
@@ -1664,11 +1873,11 @@
     };
 
     // Rental Agreement Hire Group Factory
-    RentalAgreementHireGroup.Create = function (source, isExisting) {
+    RentalAgreementHireGroup.Create = function (source, isExisting, agreement) {
         return new RentalAgreementHireGroup(source.RaHireGroupId, source.HireGroupDetailId, source.VehicleId,
             source.RaMainId, source.Vehicle && isExisting ? Vehicle.Create(source.Vehicle) : source.Vehicle, source.VehicleMovements, source.RaHireGroupInsurances,
             source.AllocationStatusKey, source.AllocationStatusId, source.RaVehicleCheckLists, source.HireGroupDetail ? source.HireGroupDetail.HireGroup : undefined,
-            isExisting);
+            isExisting, agreement);
     };
 
     // Phone Type Enums
@@ -1689,7 +1898,7 @@
 
     // Phone Factory
     Phone.Create = function (source, callbacks) {
-        return new Phone(source.PhoneId, source.IsDefault, source.BusinessPartnerId, 
+        return new Phone(source.PhoneId, source.IsDefault, source.BusinessPartnerId,
             PhoneType.Create({ PhoneTypeId: source.PhoneTypeId, PhoneTypeKey: source.PhoneTypeKey }), source.PhoneNo,
         callbacks);
     };
@@ -1740,8 +1949,8 @@
 
         // Add Ra Hire Groups if Any
         if (source.RaHireGroups) {
-            var raHireGroups = _.map(source.RaHireGroups, function(raHireGroup) {
-                return RentalAgreementHireGroup.Create(raHireGroup, isExisting);
+            var raHireGroups = _.map(source.RaHireGroups, function (raHireGroup) {
+                return RentalAgreementHireGroup.Create(raHireGroup, isExisting, rentalAgreement);
             });
 
             ko.utils.arrayPushAll(rentalAgreement.rentalAgreementHireGroups(), raHireGroups);
@@ -1751,7 +1960,7 @@
         // Add Ra Service Items if Any
         if (source.RaServiceItems) {
             var raServiceItems = _.map(source.RaServiceItems, function (raServiceItem) {
-                return RentalAgreementServiceItem.Create(raServiceItem);
+                return RentalAgreementServiceItem.Create(raServiceItem, rentalAgreement);
             });
 
             ko.utils.arrayPushAll(rentalAgreement.rentalAgreementServiceItems(), raServiceItems);
@@ -1760,8 +1969,8 @@
 
         // Add Ra Drivers if Any
         if (source.RaDrivers) {
-            var raDrivers = _.map(source.RaDrivers, function(raDriver) {
-                return RentalAgreementDriver.Create(raDriver);
+            var raDrivers = _.map(source.RaDrivers, function (raDriver) {
+                return RentalAgreementDriver.Create(raDriver, rentalAgreement);
             });
 
             ko.utils.arrayPushAll(rentalAgreement.rentalAgreementDrivers(), raDrivers);
@@ -1789,7 +1998,7 @@
         }
 
         rentalAgreement.billing(Billing.Create(source));
-        
+
         return rentalAgreement;
     };
 
@@ -1813,24 +2022,24 @@
     };
 
     // Rental Agreement Service Item Factory
-    RentalAgreementServiceItem.Create = function (source) {
+    RentalAgreementServiceItem.Create = function (source, agreement) {
         return new RentalAgreementServiceItem(source.RaServiceItemId, source.ServiceItemId, source.ServiceItemCode, source.ServiceItemName, source.ServiceTypeCode,
             source.ServiceTypeName, source.RaMainId, source.Quantity, source.StartDtTime ? moment(source.StartDtTime).toDate() : undefined,
-            source.EndDtTime ? moment(source.EndDtTime).toDate() : undefined, source.ServiceRate, source.ServiceCharge);
+            source.EndDtTime ? moment(source.EndDtTime).toDate() : undefined, source.ServiceRate, source.ServiceCharge, agreement);
     };
 
     // Rental Agreement Driver Factory
-    RentalAgreementDriver.Create = function (source) {
+    RentalAgreementDriver.Create = function (source, agreement) {
         return new RentalAgreementDriver(source.RaDriverId, source.ChaufferId, source.DesigGradeId, source.StartDtTime ? moment(source.StartDtTime).toDate() : undefined,
             source.EndDtTime ? moment(source.EndDtTime).toDate() : undefined, source.LicenseExpDt ? moment(source.LicenseExpDt).toDate() : undefined, source.LicenseNo,
-            source.DriverName, source.IsChauffer, source.TariffType, source.Rate, source.TotalCharge, source.RaMainId);
+            source.DriverName, source.IsChauffer, source.TariffType, source.Rate, source.TotalCharge, source.RaMainId, agreement);
     };
 
     // Rental Agreement HireGroup Insurance Factory
-    RentalAgreementHireGroupInsurance.Create = function (source) {
+    RentalAgreementHireGroupInsurance.Create = function (source, agreement) {
         return new RentalAgreementHireGroupInsurance(source.RaHireGroupInsuranceId, source.RaHireGroupId, source.InsuranceTypeId, source.InsuranceTypeCodeName,
             source.StartDtTime ? moment(source.StartDtTime).toDate() : undefined, source.EndDtTime ? moment(source.EndDtTime).toDate() : undefined, source.InsuranceRate,
-            source.InsuranceCharge, source.TariffType);
+            source.InsuranceCharge, source.TariffType, agreement);
     };
 
     // Insurance Type Factory

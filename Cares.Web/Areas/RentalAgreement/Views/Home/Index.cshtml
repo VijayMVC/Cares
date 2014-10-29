@@ -47,9 +47,9 @@
                                         <br />
                                         <hr />
                                         <div class="clearBoth">
-                                            <div class="col-md-4"><input id="startDt" type="text" class="form-control" data-bind="datetimepicker: start" /></div>
-                                            <div class="col-md-4"><input id="endDt" type="text" class="form-control" data-bind="datetimepicker: end" /></div>
-                                            <div class="col-sm-2"><input type="text" id="qty" class="form-control" data-bind="value: quantity" /></div>
+                                            <div class="col-md-4"><input id="startDt" type="text" class="form-control" data-bind="datetimepicker: start, validationDependsOn: internalStartDateTime, css:{ 'errorFillWithValidation': isInvalidPeriod }" /></div>
+                                            <div class="col-md-4"><input id="endDt" type="text" class="form-control" data-bind="datetimepicker: end, validationDependsOn: internalEndDateTime, css:{ 'errorFillWithValidation': isInvalidPeriod }" /></div>
+                                            <div class="col-sm-2"><input type="text" id="qty" class="form-control" data-bind="value: quantity, validationTooltip: quantity" /></div>
                                         </div>
                                     </div>
                                 </form>
@@ -94,7 +94,7 @@
                                         <hr />
                                         <div class="clearBoth">
                                             <div class="col-md-5">
-                                                <input type="text" class="form-control" data-bind="value: driverName" />
+                                                <input type="text" class="form-control" data-bind="value: driverName, validationTooltip: driverName" />
                                             </div>
                                         </div>
                                         <br />
@@ -109,8 +109,8 @@
                                         <br />
                                         <hr />
                                         <div class="clearBoth">
-                                            <div class="col-md-4"><input type="text" class="form-control" data-bind="datetimepicker: licenseNo" /></div>
-                                            <div class="col-md-4"><input type="text" class="form-control" data-bind="datetimepicker: licenseExpDt" /></div>
+                                            <div class="col-md-4"><input type="text" class="form-control" data-bind="datetimepicker: licenseNo, validationTooltip: licenseNo" /></div>
+                                            <div class="col-md-4"><input type="text" class="form-control" data-bind="datetimepicker: licenseExpDt, validationDependsOn: internalLicenseExpDateTime, css: { 'errorFillWithValidation': isLicenseExpired() }" /></div>
                                         </div>
                                         <br />
                                         <div class="clearBoth">
@@ -124,8 +124,8 @@
                                         <br />
                                         <hr />
                                         <div class="clearBoth">
-                                            <div class="col-md-4"><input id="startDt" type="text" class="form-control" data-bind="datetimepicker: start" /></div>
-                                            <div class="col-md-4"><input id="endDt" type="text" class="form-control" data-bind="datetimepicker: end" /></div>
+                                            <div class="col-md-4"><input id="startDt" type="text" class="form-control" data-bind="datetimepicker: start, validationDependsOn: internalStartDateTime, css: { 'errorFillWithValidation': isInvalidPeriod() }" /></div>
+                                            <div class="col-md-4"><input id="endDt" type="text" class="form-control" data-bind="datetimepicker: end, validationDependsOn: internalEndDateTime, css: { 'errorFillWithValidation': isInvalidPeriod() }" /></div>
                                         </div>
                                     </div>
                                 </form>
@@ -167,7 +167,7 @@
                                         <hr />
                                         <div class="clearBoth">
                                             <div class="col-md-4"><input type="text" class="form-control" data-bind="value: licenseNo, enable: false" /></div>
-                                            <div class="col-md-4"><input type="text" class="form-control" data-bind="datetimepicker: licenseExpDt, enable: false" /></div>
+                                            <div class="col-md-4"><input type="text" class="form-control" data-bind="datetimepicker: licenseExpDt, validationDependsOn: internalLicenseExpDateTime, enable: false, css: { 'errorFillWithValidation': isLicenseExpired() }" /></div>
                                         </div>
                                         <br />
                                         <div class="clearBoth">
@@ -181,8 +181,8 @@
                                         <br />
                                         <hr />
                                         <div class="clearBoth">
-                                            <div class="col-md-4"><input id="startDt" type="text" class="form-control" data-bind="datetimepicker: start" /></div>
-                                            <div class="col-md-4"><input id="endDt" type="text" class="form-control" data-bind="datetimepicker: end" /></div>
+                                            <div class="col-md-4"><input id="startDt" type="text" class="form-control" data-bind="datetimepicker: start, validationDependsOn: internalStartDateTime, css: { 'errorFillWithValidation': isInvalidPeriod() }" /></div>
+                                            <div class="col-md-4"><input id="endDt" type="text" class="form-control" data-bind="datetimepicker: end, validationDependsOn: internalEndDateTime, css: { 'errorFillWithValidation': isInvalidPeriod() }" /></div>
                                         </div>
                                     </div>
                                 </form>
@@ -236,10 +236,10 @@
                                         <hr />
                                         <div class="clearBoth">
                                             <div class="col-md-4">
-                                                <select id="plateNumber" class="form-control" data-bind="options: $root.plateNumbers, value: plateNumber"></select>
+                                                <select id="plateNumber" class="form-control" data-bind="options: $root.plateNumbers, value: plateNumber, validationTooltip: plateNumber"></select>
                                             </div>
-                                            <div class="col-md-4"><input id="rate" type="text" class="form-control" data-bind="value: additionalChargeRate" /></div>
-                                            <div class="col-md-4"><input type="text" class="form-control" data-bind="value: quantity" /></div>
+                                            <div class="col-md-4"><input id="rate" type="text" class="form-control" data-bind="value: additionalChargeRate, validationTooltip: additionalChargeRate" /></div>
+                                            <div class="col-md-4"><input type="text" class="form-control" data-bind="value: quantity, validationTooltip: quantity" /></div>
                                         </div>
                                     </div>
                                 </form>
@@ -323,7 +323,7 @@
                     </h4>
                 </div>
                 <div id="collapseSix" class="panel-collapse collapse in">
-                    <div class="panel-body">
+                    <div class="panel-body customPanel">
                         <form id="customer" class="form-horizontal" data-bind="with: rentalAgreement().businessPartner">
                             <div class="form-group">
                                 <label for="customerNumber" class="control-label col-sm-2">Customer #</label>
@@ -337,7 +337,7 @@
                                     <input type="checkbox" class="form-control" id="isCustomerIndividual" data-bind="checked: isIndividual, enable: !$root.rentalAgreement().id()" />
                                 </div>
                                 <div class="col-md-4">
-                                    <select class="form-control" id="customerPaymentTerm" data-bind="options: $root.paymentTerms, optionsCaption: '<Payment Term>', optionsText: 'codeName', optionsValue: 'id', value: paymentTermId, enable: !$root.rentalAgreement().id()"></select>
+                                    <select class="form-control" id="customerPaymentTerm" data-bind="options: $root.paymentTerms, optionsCaption: '<Payment Term>', optionsText: 'codeName', optionsValue: 'id', value: paymentTermId, enable: !$root.rentalAgreement().id(), validationTooltip: paymentTermId"></select>
                                 </div>
                             </div>
                             <!-- ko if: isIndividual -->
@@ -345,10 +345,10 @@
                             <div class="form-group">
                                 <label for="customerFirstName" class="control-label col-sm-2">Name</label>
                                 <div class="col-md-5">
-                                    <input type="text" class="form-control" placeholder="<First Name>" id="customerFirstName" data-bind="value: firstName, enable: !$root.rentalAgreement().id()" />
+                                    <input type="text" class="form-control" placeholder="<First Name>" id="customerFirstName" data-bind="value: firstName, enable: !$root.rentalAgreement().id(), validationTooltip: firstName" />
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" class="form-control" placeholder="<Last Name>" id="customerLastName" data-bind="value: lastName, enable: !$root.rentalAgreement().id()" />
+                                    <input type="text" class="form-control" placeholder="<Last Name>" id="customerLastName" data-bind="value: lastName, enable: !$root.rentalAgreement().id(), validationTooltip: lastName" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -376,13 +376,13 @@
                                     <input type="text" class="form-control" placeholder="<License No.>" id="customerLicense" data-bind="value: licenseNo, enable: !$root.rentalAgreement().id()" />
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" class="form-control" placeholder="<License Expiry>" id="customerLicenseExpiry" data-bind="datepicker: licenseExpiry, enable: !$root.rentalAgreement().id()" />
+                                    <input type="text" class="form-control" placeholder="<License Expiry>" id="customerLicenseExpiry" data-bind="datepicker: licenseExpiry, enable: !$root.rentalAgreement().id(), css: { 'errorFill': isLicenseExpired() }" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="customerDOB" class="control-label col-sm-2">DOB/Sponsor</label>
                                 <div class="col-md-5">
-                                    <input type="text" class="form-control" placeholder="<DOB>" id="customerDOB" data-bind="datepicker: dateOfBirth, enable: !$root.rentalAgreement().id()" />
+                                    <input type="text" class="form-control" placeholder="<DOB>" id="customerDOB" data-bind="datepicker: dateOfBirth, enable: !$root.rentalAgreement().id(), validationTooltip: dateOfBirth, css: { 'errorFillWithValidation': !isAgeValid() }" />
                                 </div>
                                 <div class="col-md-4">
                                     <input type="text" class="form-control" placeholder="<Sponsor/Kafeel>" id="customerSponsor" />
@@ -408,7 +408,7 @@
                                     <input type="text" class="form-control" placeholder="<License No>" id="renterLicenseNo" data-bind="value: rentersLicenseNo, enable: !$root.rentalAgreement().id()" />
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" placeholder="<License Expiry>" id="renterLicenseExpiry" data-bind="datetimepicker: rentersLicenseExpiry, enable: !$root.rentalAgreement().id()" />
+                                    <input type="text" class="form-control" placeholder="<License Expiry>" id="renterLicenseExpiry" data-bind="datetimepicker: rentersLicenseExpiry, enable: !$root.rentalAgreement().id(), css: { 'errorFill': isLicenseExpired() }" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -423,7 +423,7 @@
                             <div class="form-group">
                                 <label for="customerPhone" class="control-label col-sm-2">Email</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" placeholder="<Email>" id="customerEmail" data-bind="value: email, enable: !$root.rentalAgreement().id()" />
+                                    <input type="text" class="form-control" placeholder="<Email>" id="customerEmail" data-bind="value: email, enable: !$root.rentalAgreement().id(), validationTooltip: email" />
                                 </div>
                             </div>
                         </form>
@@ -546,17 +546,17 @@
                             <div class="form-group">
                                 <label for="rentalAgreementOperation" class="control-label col-sm-2">Operation</label>
                                 <div class="col-md-4">
-                                    <select class="form-control" id="rentalAgreementOperation" data-bind="options: $root.operations, optionsCaption: '<Operation>', optionsText: 'codeName', optionsValue: 'id', value: operationId, enable: !id()"></select>
+                                    <select class="form-control" id="rentalAgreementOperation" data-bind="options: $root.operations, optionsCaption: '<Operation>', optionsText: 'codeName', optionsValue: 'id', value: operationId, enable: !id(), validationTooltip: operationId"></select>
                                 </div>
                                 <label for="rentalAgreementOperation" id="rentalPaymentTermLabel" class="control-label col-sm-2 notFirstColumn">Payment</label>
                                 <div class="col-md-4" id="rentalPaymentTermControl">
-                                    <select class="form-control" id="rentalAgreementPaymentTerm" data-bind="options: $root.paymentTerms, optionsCaption: '<Payment Term>', optionsText: 'codeName', optionsValue: 'id', value: paymentTermId, enable: !id()"></select>
+                                    <select class="form-control" id="rentalAgreementPaymentTerm" data-bind="options: $root.paymentTerms, optionsCaption: '<Payment Term>', optionsText: 'codeName', optionsValue: 'id', value: paymentTermId, enable: !id(), validationTooltip: paymentTermId"></select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="rentalAgreementOutLocation" class="control-label col-sm-2">Location</label>
                                 <div class="col-md-5">
-                                    <select class="form-control" id="rentalAgreementOutLocation" data-bind="options: $root.availableLocations, optionsCaption: '<Out Location>', optionsText: 'code', optionsValue: 'id', value: openLocation, enable: !id()"></select>
+                                    <select class="form-control" id="rentalAgreementOutLocation" data-bind="options: $root.availableLocations, optionsCaption: '<Out Location>', optionsText: 'code', optionsValue: 'id', value: openLocation, enable: !id(), validationDependsOn: internalOpenLocation"></select>
                                 </div>
                                 <div class="col-md-4" id="returnLocationControl">
                                     <select class="form-control" id="rentalAgreementReturnLocation" data-bind="options: $root.availableLocations, optionsCaption: '<Return Location>', optionsText: 'code', optionsValue: 'id', value: closeLocation, enable: !id()"></select>
