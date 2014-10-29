@@ -2732,7 +2732,7 @@
     <Content Include="Scripts\underscore-min.js" />
     <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Areas\Fleet\Scripts\Web.config">
+    <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Web.config" />
@@ -2787,7 +2787,6 @@
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
-    </None>
     </None>
   </ItemGroup>
   <ItemGroup>
