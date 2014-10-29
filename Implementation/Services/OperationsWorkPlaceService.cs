@@ -1,5 +1,8 @@
-﻿using Cares.Interfaces.IServices;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
+using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
+using Cares.Models.DomainModels;
 using Cares.Models.ResponseModels;
 
 namespace Cares.Implementation.Services
@@ -38,6 +41,15 @@ namespace Cares.Implementation.Services
                 OperationWorkPlaces = operationsWorkPlaceRepository.GetWorkPlaceOperationByWorkPlaceId(workPlaceId)
             };
         }
+
+        /// <summary>
+        /// Get Operation workplaces by Domain key
+        /// </summary>
+        public IEnumerable<OperationsWorkPlace> GetOperationsWorkPlacesByDomainKey(long domainKey)
+        {
+            return operationsWorkPlaceRepository.GetSalesBranchesByDomainKey(domainKey);
+        }
+
         #endregion
     }
 }

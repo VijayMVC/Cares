@@ -23,6 +23,11 @@ namespace Cares.Interfaces.Repository
         /// Get Operation Work Place With Details
         /// </summary>
         OperationsWorkPlace GetOperationWorkPlaceWithDetails(long id);
+
+        /// <summary>
+        /// Get Operation Workplace by domainKey
+        /// </summary>
+        IEnumerable<OperationsWorkPlace> GetSalesBranchesByDomainKey(long domainKey);
     }
 }
  

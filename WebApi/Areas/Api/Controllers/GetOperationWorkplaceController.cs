@@ -1,5 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Web;
 using System.Web.Http;
+using Cares.Interfaces.IServices;
+using Cares.WebApi.ModelMappers;
+using Cares.WebApi.Models;
 
 namespace Cares.WebApi.Areas.Api.Controllers
 {
@@ -9,10 +16,23 @@ namespace Cares.WebApi.Areas.Api.Controllers
     [Authorize]
     public class GetOperationWorkplaceController : ApiController
     {
-        [HttpGet]
-        public List<string> Get()
+        public IOperationsWorkPlaceService operationsWorkPlaceService { get; set; }
+
+        public GetOperationWorkplaceController(IOperationsWorkPlaceService operationsWorkPlaceService)
         {
-            return new List<string>{ "a", "b", "c" };
+            if (operationsWorkPlaceService == null) throw new ArgumentNullException("operationsWorkPlaceService");
+            this.operationsWorkPlaceService = operationsWorkPlaceService;
+        }
+
+        [HttpGet]
+        public IEnumerable<WebApiOperationWorkplace> Get(long domainKey)
+        {
+            if (!ModelState.IsValid || domainKey == 0)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+            return
+                operationsWorkPlaceService.GetOperationsWorkPlacesByDomainKey(domainKey).Select(owp => owp.CreateFrom());
         } 
     }
 }

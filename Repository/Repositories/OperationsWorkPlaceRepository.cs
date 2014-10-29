@@ -66,7 +66,14 @@ namespace Cares.Repository.Repositories
                    .Include(opp => opp.FleetPool)
                    .FirstOrDefault(opp => opp.OperationsWorkPlaceId == id);
         }
-        
+        /// <summary>
+        /// Get Operation Workplace by domainkey
+        /// </summary>
+        public IEnumerable<OperationsWorkPlace> GetSalesBranchesByDomainKey(long domainKey)
+        {
+            return DbSet.Where(owp => owp.UserDomainKey == domainKey && owp.Operation.Department.DepartmentType == DepartmentTypes.Sales).OrderBy(owp => owp.LocationName);
+        }
+
         /// <summary>
         /// Get Employee Status for User Domain Key
         /// </summary>
