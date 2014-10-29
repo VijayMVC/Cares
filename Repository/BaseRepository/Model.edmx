@@ -2712,6 +2712,15 @@
           <Property Name="RowVersion" Type="bigint" Nullable="false" />
           <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
         </EntityType>
+        <EntityType Name="WebApiUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
+        </EntityType>
         <EntityType Name="WorkLocation">
           <Key>
             <PropertyRef Name="WorkLocationID" />
@@ -5756,6 +5765,7 @@
           <EntitySet Name="VehicleReservation" EntityType="Self.VehicleReservation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VehicleStatus" EntityType="Self.VehicleStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VehicleSubStatus" EntityType="Self.VehicleSubStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WebApiUser" EntityType="Self.WebApiUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WorkLocation" EntityType="Self.WorkLocation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Workplace" EntityType="Self.Workplace" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WorkplaceType" EntityType="Self.WorkplaceType" Schema="dbo" store:Type="Tables" />
@@ -7762,6 +7772,7 @@
             <End Role="AspNetUser" EntitySet="Users" />
             <End Role="AspNetUserLogin" EntitySet="UserLogins" />
           </AssociationSet>
+          <EntitySet Name="WebApiUsers" EntityType="DomainModels.WebApiUser" />
         </EntityContainer>
         <EntityType Name="Company">
           <Key>
@@ -13722,6 +13733,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="WebApiUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -16625,6 +16645,16 @@
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
                 <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebApiUsers">
+            <EntityTypeMapping TypeName="DomainModels.WebApiUser">
+              <MappingFragment StoreEntitySet="WebApiUser">
+                <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

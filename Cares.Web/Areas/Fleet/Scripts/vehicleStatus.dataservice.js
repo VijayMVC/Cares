@@ -13,21 +13,21 @@ define("vehicleStatus/vehicleStatus.dataservice", function () {
                 if (!isInitialized) {
                     // Define request to get  Vehicle Statuses
                     amplify.request.define('getVehicleStatuses', 'ajax', {
-                        url: '/Api/VehicleStatus',
+                        url: ist.siteUrl + '/Api/VehicleStatus',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'GET'
                     });
                     // Define request to delete  Vehicle Status
                     amplify.request.define('deleteVehicleStatus', 'ajax', {
-                        url: '/Api/VehicleStatus',
+                        url: ist.siteUrl + '/Api/VehicleStatus',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
                     // Define request to add/update  Vehicle Status 
                     amplify.request.define('saveVehicleStatus', 'ajax', {
-                        url: '/Api/VehicleStatus',
+                        url: ist.siteUrl + '/Api/VehicleStatus',
                         dataType: 'json',
                         decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'POST'

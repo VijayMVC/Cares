@@ -380,6 +380,17 @@
                     }
                 }
             }),
+            // Validation Errors
+            errors = ko.validation.group({
+                
+            }),
+            // Is Invalid period
+            isInvalidPeriod = ko.computed(function () {
+                return end() < start();
+            }),
+            isValid = ko.computed(function () {
+                return errors().length === 0 && !isInvalidPeriod();
+            }),
             // Convert To Server Data
             convertToServerData = function () {
                 return {
@@ -463,6 +474,9 @@
             removeRaHireGroup: removeRaHireGroup,
             removeRaAdditionalCharge: removeRaAdditionalCharge,
             removeRaPayment: removeRaPayment,
+            errors: errors,
+            isValid: isValid,
+            isInvalidPeriod: isInvalidPeriod,
             convertToServerData: convertToServerData
         };
     },

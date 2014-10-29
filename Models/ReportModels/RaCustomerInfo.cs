@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity.Migrations.Model;
 
 namespace Cares.Models.ReportModels
 {
@@ -22,10 +23,8 @@ namespace Cares.Models.ReportModels
         public DateTime? LicenceDOE { get; set; }
         public DateTime PassportDOE { get; set; }
 
-        public string TariffType { get; set; }
-        public double StandardRate { get; set; }
-        public double? ExcessMileageCharges { get; set; }
-        public double? VehicleCharges { get; set; }
-        public double? DicountPercentage { get; set; }
+       
+        
+
     }
 }
