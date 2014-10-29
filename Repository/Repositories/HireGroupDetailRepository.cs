@@ -149,6 +149,8 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.FirstOrDefault(hGd => hGd.VehicleMakeId == vMakeId && hGd.VehicleModelId == vModelId && hGd.VehicleCategoryId == vCategoryId && hGd.ModelYear == modelYear);
         }
+
+        
         #endregion
     }
 }

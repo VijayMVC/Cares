@@ -17,7 +17,7 @@ namespace Cares.Interfaces.Repository
         /// <param name="hireGroupSearchRequest"></param>
         /// <returns></returns>
         HireGroupSearchResponse GetHireGroups(HireGroupSearchRequest hireGroupSearchRequest);
-        
+
         /// <summary>
         /// Get Parent Hire Groups
         /// </summary>
@@ -28,12 +28,18 @@ namespace Cares.Interfaces.Repository
         /// Get Hire Groups that are not parent hire groups 
         /// </summary>
         IEnumerable<HireGroup> GetHireGroupList();
-        
+
         /// <summary>
         /// Load Dependencies
         /// </summary>
         /// <param name="hireGroup"></param>
         void LoadDependencies(HireGroup hireGroup);
+
+        /// <summary>
+        /// Hire Group Code validation check
+        /// </summary>
+        bool IsHireGroupCodeExists(string hireGroupCode, long hireGroupId);
+
     }
 }
 

@@ -23,5 +23,11 @@ namespace Cares.Interfaces.Repository
         /// <param name="tariffTypeCode"></param>
         /// <returns></returns>
         IEnumerable<ServiceRtMain> FindByTariffTypeCode(string tariffTypeCode);
+
+        /// <summary>
+        /// Service Rate Main Code validation check
+        /// </summary>
+        bool IsServiceRtMainCodeExists(string serviceRtMainCode, long serviceRtMainId);
+
     }
 }

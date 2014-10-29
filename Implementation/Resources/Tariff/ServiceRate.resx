@@ -129,4 +129,7 @@
   <data name="ServRateInvalidEffectiveDate" xml:space="preserve">
     <value>Start Date for Service Item Rate must be greater than their Start Effective Date.</value>
   </data>
+  <data name="CodeDuplicationError" xml:space="preserve">
+    <value>Service Rate with the same code already exists. Please choose a different code!</value>
+  </data>
 </root>

@@ -117,8 +117,12 @@ namespace Cares.Implementation.Services
         /// <param name="hireGroup"></param>
         public HireGroup AddHireGroup(HireGroup hireGroup)
         {
-            HireGroupValidation(hireGroup);
+            if (hireGroupRepository.IsHireGroupCodeExists(hireGroup.HireGroupCode, hireGroup.HireGroupId))
+            {
+                throw new CaresException("Hire Group with the same code already exists. Please choose a different code!");
+            }
 
+            HireGroupValidation(hireGroup);
             hireGroup.RecCreatedDt = DateTime.Now;
             hireGroup.RecLastUpdatedDt = DateTime.Now;
             hireGroup.UserDomainKey = hireGroupRepository.UserDomainKey;
@@ -177,6 +181,10 @@ namespace Cares.Implementation.Services
         /// <param name="hireGroup"></param>
         public HireGroup UpdateHireGroup(HireGroup hireGroup)
         {
+            if (hireGroupRepository.IsHireGroupCodeExists(hireGroup.HireGroupCode, hireGroup.HireGroupId))
+            {
+                throw new CaresException(Resources.FleetPool.HireGroup.CodeDuplication);
+            }
             HireGroupValidation(hireGroup);
 
             HireGroup hireGroupDbVersion = hireGroupRepository.Find(hireGroup.HireGroupId);

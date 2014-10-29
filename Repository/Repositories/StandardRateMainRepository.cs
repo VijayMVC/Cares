@@ -28,7 +28,7 @@ namespace Cares.Repository.Repositories
                     };
 
         #endregion
-        
+
         #region Constructor
         /// <summary>
         /// Constructor
@@ -50,9 +50,9 @@ namespace Cares.Repository.Repositories
         }
 
         #endregion
-        
+
         #region Public
-       
+
         /// <summary>
         /// Get All Standard Rates Main for User Domain Key
         /// </summary>
@@ -60,7 +60,7 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(department => department.UserDomainKey == UserDomainKey).ToList();
         }
-       
+
         /// <summary>
         /// Get All Tariff Rates based on search crateria
         /// </summary>
@@ -70,26 +70,26 @@ namespace Cares.Repository.Repositories
             int toRow = tariffRateRequest.PageSize;
 
             var getTariffRateQuery = from tariffRate in DbSet
-                join tariffType in db.TariffTypes on tariffRate.TariffTypeCode equals tariffType.TariffTypeCode
-                where
-                    ((string.IsNullOrEmpty(tariffRateRequest.SearchString) || tariffRate.StandardRtMainCode.Contains(tariffRateRequest.SearchString) || tariffRate.StandardRtMainName.Contains(tariffRateRequest.SearchString)) &&
-                    (!tariffRateRequest.OperationId.HasValue ||
-                      tariffType.OperationId == tariffRateRequest.OperationId.Value) &&
-                     (!tariffRateRequest.TariffTypeId.HasValue ||
-                      tariffType.TariffTypeId == tariffRateRequest.TariffTypeId)) && !(tariffType.ChildTariffTypeId.HasValue)
-                select new TariffRateContent
-                {                    
-                    StandardRtMainId = tariffRate.StandardRtMainId,
-                    StandardRtMainCode = tariffRate.StandardRtMainCode,
-                    StandardRtMainName = tariffRate.StandardRtMainName,
-                    StandardRtMainDescription = tariffRate.StandardRtMainDescription,
-                    StartDt = tariffRate.StartDt,
-                    EndDt = tariffRate.EndDt,
-                    TariffTypeId = tariffType.TariffTypeId,
-                    TariffTypeCodeName = tariffType.TariffTypeCode + " - " + tariffType.TariffTypeName,                    
-                    OperationId = tariffType.OperationId,
-                    OperationCodeName = tariffType.Operation.OperationCode + " - " + tariffType.Operation.OperationName,                    
-                };
+                                     join tariffType in db.TariffTypes on tariffRate.TariffTypeCode equals tariffType.TariffTypeCode
+                                     where
+                                         ((string.IsNullOrEmpty(tariffRateRequest.SearchString) || tariffRate.StandardRtMainCode.Contains(tariffRateRequest.SearchString) || tariffRate.StandardRtMainName.Contains(tariffRateRequest.SearchString)) &&
+                                         (!tariffRateRequest.OperationId.HasValue ||
+                                           tariffType.OperationId == tariffRateRequest.OperationId.Value) &&
+                                          (!tariffRateRequest.TariffTypeId.HasValue ||
+                                           tariffType.TariffTypeId == tariffRateRequest.TariffTypeId)) && !(tariffType.ChildTariffTypeId.HasValue)
+                                     select new TariffRateContent
+                                     {
+                                         StandardRtMainId = tariffRate.StandardRtMainId,
+                                         StandardRtMainCode = tariffRate.StandardRtMainCode,
+                                         StandardRtMainName = tariffRate.StandardRtMainName,
+                                         StandardRtMainDescription = tariffRate.StandardRtMainDescription,
+                                         StartDt = tariffRate.StartDt,
+                                         EndDt = tariffRate.EndDt,
+                                         TariffTypeId = tariffType.TariffTypeId,
+                                         TariffTypeCodeName = tariffType.TariffTypeCode + " - " + tariffType.TariffTypeName,
+                                         OperationId = tariffType.OperationId,
+                                         OperationCodeName = tariffType.Operation.OperationCode + " - " + tariffType.Operation.OperationName,
+                                     };
 
             IEnumerable<TariffRateContent> tariffRates = tariffRateRequest.IsAsc
                 ? getTariffRateQuery.OrderBy(tariffRateClause[tariffRateRequest.TariffRateByOrder])
@@ -101,7 +101,7 @@ namespace Cares.Repository.Repositories
 
             return new TariffRateResponse { TariffRates = tariffRates, TotalCount = getTariffRateQuery.Count() };
         }
-        
+
         /// <summary>
         /// Find By Id
         /// </summary>
@@ -109,15 +109,25 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.FirstOrDefault(standardRateMain => standardRateMain.StandardRtMainId == standardRateMainId);
         }
-        
+
         /// <summary>
         /// Find By Tariff Type Code
         /// </summary>
         /// <param name="tariffTypeCode"></param>
         /// <returns></returns>
-        public IEnumerable<StandardRateMain>  FindByTariffTypeCode(string tariffTypeCode)
+        public IEnumerable<StandardRateMain> FindByTariffTypeCode(string tariffTypeCode)
         {
-            return DbSet.Where(standardRateMain => standardRateMain.TariffTypeCode == tariffTypeCode);
+            return DbSet.Where(standardRateMain => standardRateMain.TariffTypeCode == tariffTypeCode && standardRateMain.UserDomainKey == UserDomainKey);
+        }
+
+        /// <summary>
+        /// Get By Standard Rate Main Code
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<StandardRateMain> GetByStandardRateMainCode(string standardRateMainCode)
+        {
+            return DbSet.Where(strm => strm.UserDomainKey == UserDomainKey
+                && strm.StandardRtMainCode.ToLower() == standardRateMainCode.ToLower()).ToList();
         }
         #endregion
     }
