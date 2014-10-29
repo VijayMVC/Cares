@@ -103,6 +103,8 @@ define("hireGroup/hireGroup.viewModel",
                         var hireGroup = new model.HireGroup();
                         hireGroupDetails.removeAll();
                         hireGroupUpGradeList.removeAll();
+                        filteredHireGroupsForDdList.removeAll();
+                        filteredParentHireGroups.removeAll();
                         // Select the newly added Hire Group
                         selectedHireGroup(hireGroup);
                         selectedHireGroup().vehicleDetail(new model.HireGroupDetail());
@@ -118,6 +120,18 @@ define("hireGroup/hireGroup.viewModel",
                         selectedHireGroup().vehicleDetail(new model.HireGroupDetail());
                         selectedHireGroup().hireGroupUpGrade(new model.HireGroupUpGrade());
                         virtualIsChecked(hireGroup.isParent());
+                        filteredHireGroupsForDdList.removeAll();
+                        _.each(hireGroupsForDdList(), function (item) {
+                            if (item.CompanyId === hireGroup.companyId())
+                                filteredHireGroupsForDdList.push(item);
+                        });
+                        filteredHireGroupsForDdList.valueHasMutated();
+                        filteredParentHireGroups.removeAll();
+                        _.each(parentHireGroups(), function (item) {
+                            if (item.CompanyId === hireGroup.companyId())
+                                filteredParentHireGroups.push(item);
+                        });
+
                         //selectedtariffRateCopy(model.TariffRateCoppier(selectedtariffRate()));
                         getHireGroupById();
                         showHireGroupEditor();
@@ -410,7 +424,7 @@ define("hireGroup/hireGroup.viewModel",
                           parentHireGroupFilter(undefined);
                           search();
                       },
-                    
+
                     // Get Hire Group
                     getHireGroup = function () {
                         isLoadingHireGroups(true);
