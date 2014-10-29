@@ -144,4 +144,7 @@
   <data name="StRateInvalidRangeEffectiveDate" xml:space="preserve">
     <value>Start Date and End Date for Hire Groups Rate should be between the Start and Effective Date.</value>
   </data>
+  <data name="CodeDuplication" xml:space="preserve">
+    <value>Standard Rate Main with the same code already exists. Please choose a different code!</value>
+  </data>
 </root>

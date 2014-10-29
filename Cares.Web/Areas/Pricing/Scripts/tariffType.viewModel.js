@@ -190,9 +190,46 @@ define("tariffType/tariffType.viewModel",
                         // Select the newly added tariffType
                         addTariffType(tariffType);
                     },
+                    // Do Before Logic
+                    validation = function () {
+                        var flag = true;
+                        var measurementUnitKey;
+                        _.each(measurementUnits(), function (item) {
+                            if (item.MeasurementUnitId == addTariffType().measurementUnitId()) {
+                                measurementUnitKey = item.MeasurementUnitKey;
+                            }
+
+                        });
+                        //For Minute
+                        if (measurementUnitKey === 1) {
+                            if (addTariffType().durationFrom() <= 0 || addTariffType().durationFrom() > 59 || addTariffType().durationTo() <= 0 || addTariffType().durationTo() > 59
+                                ) {
+                                toastr.error("Start From and End To values always between 1 to 59.");
+                                flag = false;
+                            }
+                            else if (addTariffType().durationTo() > addTariffType().durationFrom()) {
+                                toastr.error("End To must greater than Start From.");
+                                flag = false;
+                            }
+
+                        }
+                        //For Hours
+                        if (measurementUnitKey === 2) {
+                            if (addTariffType().durationFrom() <= 0 || addTariffType().durationFrom() > 23 || addTariffType().durationTo() <= 0 || addTariffType().durationTo() > 23
+                               ) {
+                                toastr.error("Start From and End To values always between 1 to 23.");
+                                flag = false;
+                            }
+                            else if (addTariffType().durationTo() > addTariffType().durationFrom()) {
+                                toastr.error("End To must greater than Start From.");
+                                flag = false;
+                            }
+                        }
+                        return flag;
+                    },
                      // Save Tariff Type
                     onSaveTariffType = function (tariffType) {
-                        if (doBeforeSave()) {
+                        if (doBeforeSave() && validation()) {
                             if (addTariffType().tariffTypeId() > 0) {
                                 var date = new Date();
                                 date.setHours(0, 0, 0, 0);
@@ -271,6 +308,8 @@ define("tariffType/tariffType.viewModel",
                         }
                         return flag;
                     },
+
+
                     //Create Tariff Type In Form 
                     createTariffTypeInForm = function () {
                         createTariffType();

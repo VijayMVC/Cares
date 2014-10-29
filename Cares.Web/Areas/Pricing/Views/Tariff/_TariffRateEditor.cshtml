@@ -19,10 +19,9 @@
                 <div class="col-md-2">
                     <select id="operation" class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '&lt;' + '@(Cares.Web.Resources.Tariff.TariffRate.Operation )' + '&gt;' , value: operationId, validationTooltip: operationId, disable :(tariffRateId()!=undefined)"></select>
                 </div>
-
             </div>
             <div class="form-group">
-               
+
                 <label for="tariffType" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.TariffRate.TariffType *</label>
                 <div class="col-xs-2">
                     <select id="tariffType" class="form-control" data-bind="options: $root.filteredTariffTypes, optionsText: 'TariffTypeCodeName', optionsValue: 'TariffTypeId', optionsCaption: '&lt;' + '@(Cares.Web.Resources.Tariff.TariffRate.TariffType )' + '&gt;', value: tariffTypeId, disable :(tariffRateId()!=undefined)"></select>
@@ -44,7 +43,7 @@
             </div>
         </form>
     </div>
-  
+
     <div class="panel panel-info searchFilterResultSection">
         <div class="panel-heading">@Cares.Web.Resources.Tariff.TariffRate.HireGroupRate</div>
         <div class="row">
@@ -77,18 +76,18 @@
         <table id="hireGroupRate" class="table table-condensed">
             <thead>
                 <tr>
-                    <th> <span></span></th>
-                    <th> <span>@Cares.Web.Resources.Tariff.TariffRate.Hire<br />@Cares.Web.Resources.Tariff.TariffRate.Group<span></span></span></th>
-                    <th> <span>@Cares.Web.Resources.Tariff.TariffRate.Vehicle<br />@Cares.Web.Resources.Tariff.TariffRate.Make'<span></span></span></th>
-                    <th> <span>@Cares.Web.Resources.Tariff.TariffRate.Vehicle<br />@Cares.Web.Resources.Tariff.TariffRate.Model<span></span></span></th>
-                    <th> <span>@Cares.Web.Resources.Tariff.TariffRate.Vehicle<br />@Cares.Web.Resources.Tariff.TariffRate.Category<span></span></span></th>
-                    <th> <span>@Cares.Web.Resources.Tariff.TariffRate.Model<br />@Cares.Web.Resources.Tariff.TariffRate.Year<span></span></span></th>
-                    <th> <span>@Cares.Web.Resources.Tariff.TariffRate.Allowed<br />@Cares.Web.Resources.Tariff.TariffRate.Mileage<span></span></span></th>
-                    <th> <span>@Cares.Web.Resources.Tariff.TariffRate.Excess<br />@Cares.Web.Resources.Tariff.TariffRate.MileageCharge<span></span></span></th>
-                    <th> <span>@Cares.Web.Resources.Tariff.TariffRate.Standard<br />@Cares.Web.Resources.Tariff.TariffRate.Rate<span></span></span></th>
-                    <th> <span>@Cares.Web.Resources.Tariff.TariffRate.Start<br />@Cares.Web.Resources.Tariff.TariffRate.Date<span></span></span></th>
-                    <th> <span>@Cares.Web.Resources.Tariff.TariffRate.End<br />@Cares.Web.Resources.Tariff.TariffRate.Date<span></span></span></th>
-                    <th> <span>@Cares.Web.Resources.Tariff.TariffRate.Revision<br />@Cares.Web.Resources.Tariff.TariffRate.Number<span></span></span></th>
+                    <th> <span class="chckBox"></span></th>
+                    <th> <span class="hireGroupTh">@Cares.Web.Resources.Tariff.TariffRate.Hire<br />@Cares.Web.Resources.Tariff.TariffRate.Group<span></span></span></th>
+                    <th> <span class="make">@Cares.Web.Resources.Tariff.TariffRate.Vehicle<br />@Cares.Web.Resources.Tariff.TariffRate.Make'<span></span></span></th>
+                    <th> <span class="model">@Cares.Web.Resources.Tariff.TariffRate.Vehicle<br />@Cares.Web.Resources.Tariff.TariffRate.Model<span></span></span></th>
+                    <th> <span class="category">@Cares.Web.Resources.Tariff.TariffRate.Vehicle<br />@Cares.Web.Resources.Tariff.TariffRate.Category<span></span></span></th>
+                    <th> <span class="model">@Cares.Web.Resources.Tariff.TariffRate.Model<br />@Cares.Web.Resources.Tariff.TariffRate.Year<span></span></span></th>
+                    <th> <span class="allowMileageTh">@Cares.Web.Resources.Tariff.TariffRate.Allowed<br />@Cares.Web.Resources.Tariff.TariffRate.Mileage<span></span></span></th>
+                    <th> <span class="accessMileage">@Cares.Web.Resources.Tariff.TariffRate.Excess<br />@Cares.Web.Resources.Tariff.TariffRate.MileageCharge<span></span></span></th>
+                    <th> <span class="standardRate">@Cares.Web.Resources.Tariff.TariffRate.Standard<br />@Cares.Web.Resources.Tariff.TariffRate.Rate<span></span></span></th>
+                    <th> <span class="startDateTh">@Cares.Web.Resources.Tariff.TariffRate.Start<br />@Cares.Web.Resources.Tariff.TariffRate.Date<span></span></span></th>
+                    <th> <span class="endDateTh">@Cares.Web.Resources.Tariff.TariffRate.End<br />@Cares.Web.Resources.Tariff.TariffRate.Date<span></span></span></th>
+                    <th> <span class="revisionNumber">@Cares.Web.Resources.Tariff.TariffRate.Revision<br />@Cares.Web.Resources.Tariff.TariffRate.Number<span></span></span></th>
                 </tr>
             </thead>
             <tbody>
@@ -98,40 +97,40 @@
         </table>
         <script id="editHireGroupTemplate" type="text/html">
             <tr data-bind="css: { selectedRow: $data === $root.selectedHireGroup() }">
-                <td class="col-md-2">
+                <td class="chckBox">
                     <input type="checkbox" data-bind="checked: isChecked, disable :isChecked() && (virtualHireGroupDetailId()!=0) " />
                 </td>
-                <td class="col-md-2">
+                <td class="hireGroupTh">
                     <span data-bind="text: hireGroup"></span>
                 </td>
-                <td class="col-md-2">
+                <td class="make">
                     <span data-bind="text: vehicleMake"></span>
                 </td>
-                <td class="col-md-2">
+                <td class="model">
                     <span data-bind="text: vehicleModel"></span>
                 </td>
-                <td class="col-md-2">
+                <td class="category">
                     <span data-bind="text: vehicleCategory"></span>
                 </td>
-                <td class="col-md-2">
+                <td class="col-md-1">
                     <span data-bind="text: modelYear"></span>
                 </td>
-                <td class="col-md-2" >
+                <td class="allowMileageTh">
                     <input class="allowMileage" type="text" data-bind="value: allowMileage, validationTooltip: allowMileage" />
                 </td>
-                <td class="col-md-2" >
+                <td class="accessMileage">
                     <input class="excessMileageCharge" style="width: 70px;" type="text" data-bind="value: excessMileageCharge, validationTooltip: excessMileageCharge" />
                 </td>
-                <td class="col-md-2">
+                <td class="standardRate">
                     <input class="standardRt" type="text" data-bind="value: standardRt, validationTooltip: standardRt" />
                 </td>
-                <td class="col-md-2">
+                <td class="startDateTh">
                     <input class="startDate" type="text" data-bind="datepicker: startDate, validationTooltip: startDate" />
                 </td>
-                <td class="col-md-2">
+                <td class="endDateTh">
                     <input class="endDate" type="text" data-bind="datepicker: endDate, validationTooltip: endDate" />
                 </td>
-                <td class="col-md-2">
+                <td class="revisionNumber">
                     <span data-bind="text: revisionNumber"></span>
                 </td>
             </tr>

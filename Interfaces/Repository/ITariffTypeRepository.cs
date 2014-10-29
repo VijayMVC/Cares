@@ -34,5 +34,12 @@ namespace Cares.Interfaces.Repository
         /// </summary>
         /// <returns></returns>
         IEnumerable<TariffType> GetByTariffTypeCode(string tariffTypeCode);
+
+        /// <summary>
+        /// Is Tariff Type Ovelap
+        /// </summary>
+        /// <param name="tariffType"></param>
+        /// <returns></returns>
+        bool IsTariffTypeOvelap(TariffType tariffType);
     }
 }

@@ -107,6 +107,15 @@ namespace Cares.Repository.Repositories
             //LoadProperty(hireGroup, () => hireGroup.ParentHireGroup);
 
         }
+
+        /// <summary>
+        /// Hire Group Code validation check
+        /// </summary>
+        public bool IsHireGroupCodeExists(string hireGroupCode, long hireGroupId)
+        {
+            return DbSet.Count(hg => hg.HireGroupCode.ToLower() == hireGroupCode.ToLower() && hg.UserDomainKey == UserDomainKey &
+                hg.HireGroupId != hireGroupId) > 0;
+        }
         #endregion
     }
 }
