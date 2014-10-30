@@ -672,6 +672,8 @@
     <Compile Include="Services\TariffRateService.cs" />
     <Compile Include="Services\RentalAgreementService.cs" />
     <Compile Include="Services\TariffTypeService.cs" />
+    <Compile Include="Services\WebApiAuthenticationService.cs" />
+    <Compile Include="Services\WebApiAvailableRentalService.cs" />
     <Compile Include="Services\WorkLocationService.cs" />
     <Compile Include="Services\WorkplaceService.cs" />
     <Compile Include="Services\WorkPlaceTypeService.cs" />

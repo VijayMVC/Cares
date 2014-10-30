@@ -490,6 +490,7 @@
     <Compile Include="ResponseModels\VehicleMakeSearchRequestResponse.cs" />
     <Compile Include="ResponseModels\VehicleModelSearcgRequestResponse.cs" />
     <Compile Include="ResponseModels\VehicleStatusSearchRequestResponse.cs" />
+    <Compile Include="ResponseModels\WebApiAvailaleHireGroup.cs" />
     <Compile Include="ResponseModels\WorkLocationBaseDataResponse.cs" />
     <Compile Include="ResponseModels\WorkLocationSerachRequestResponse.cs" />
     <Compile Include="ResponseModels\WorkplaceBaseDataResponse.cs" />
