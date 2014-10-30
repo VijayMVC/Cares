@@ -1,0 +1,40 @@
+﻿<div id="discountsDialog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="discountsDialogModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">@Cares.Web.Resources.Shared.Common.Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Discounts</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <form class="form-horizontal">
+                        <div>
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Plate Number</th>
+                                        <th>Hire Group</th>
+                                        <th>Vehicle Make</th>
+                                        <th>Vehicle Model</th>
+                                        <th>Vehicle Category</th>
+                                        <th>Model Year</th>
+                                        <th>Discount Code</th>
+                                        <th>Tariff Type</th>
+                                        <th>Disount Percentage</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: raDiscounts"></tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary"
+                        data-bind="click: addDiscountsToRentalAgreement.bind($data, $data, 'collapseFour')">
+                    Add
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

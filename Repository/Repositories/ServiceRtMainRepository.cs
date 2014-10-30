@@ -108,6 +108,14 @@ namespace Cares.Repository.Repositories
             return DbSet.Where(insuranceRtMain => insuranceRtMain.UserDomainKey == UserDomainKey && insuranceRtMain.TariffTypeCode == tariffTypeCode).ToList();
         }
 
+        /// <summary>
+        /// Service Rate Main Code validation check
+        /// </summary>
+        public bool IsServiceRtMainCodeExists(string serviceRtMainCode, long serviceRtMainId)
+        {
+            return DbSet.Count(srm => srm.ServiceRtMainCode.ToLower() == serviceRtMainCode.ToLower() && srm.UserDomainKey == UserDomainKey && srm.ServiceRtMainId != serviceRtMainId) > 0;
+        }
+
         #endregion
     }
 }

@@ -129,4 +129,7 @@
   <data name="ServRateInvalidEffectiveDate" xml:space="preserve">
     <value>التسجيل للخدمة أسعار الإغلاق بدء يجب أن تكون أكبر من البداية على تاريخ النفاذ.</value>
   </data>
+  <data name="CodeDuplicationError" xml:space="preserve">
+    <value>سعر الخدمة مع نفس الرمز موجود بالفعل. يرجى اختيار رمز مختلف!</value>
+  </data>
 </root>

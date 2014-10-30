@@ -104,8 +104,8 @@ namespace Cares.Implementation
             unityContainer.RegisterType<INrtQueueService, NrtQueueService>();
             unityContainer.RegisterType<IDailyActionService, DailyActionService>();
             unityContainer.RegisterType<IRentalAgreementReportService, RentalAgreementReportService>();
-
-
+            unityContainer.RegisterType<IWebApiAvailableRentalService, WebApiAvailableRentalService>();
+            unityContainer.RegisterType<IWebApiAuthenticationService, WebApiAuthenticationService>();
         }
     }
 }

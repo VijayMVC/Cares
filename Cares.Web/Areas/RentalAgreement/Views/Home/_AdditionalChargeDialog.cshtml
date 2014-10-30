@@ -1,0 +1,45 @@
+﻿<div id="additionalChargeDialog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="additionalChargeDialogModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">@Cares.Web.Resources.Shared.Common.Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Additional Charges</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <form class="form-horizontal">
+                        <div>
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Charge Type</th>
+                                        <th>Hire Group</th>
+                                        <th>Rate</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: additionalCharges">
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" class="addDamageTemplate_popoverContent_isSelected" data-bind="checked: isSelected" />
+                                        </td>
+                                        <td data-bind="text: additionalChargeTypeCodeName"></td>
+                                        <td data-bind="text: hireGroupDetailCodeName"></td>
+                                        <td data-bind="text: rate"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary"
+                        data-bind="click: addAdditionalChargesToRentalAgreement.bind($data, $data, 'collapseFive')">
+                    Add
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

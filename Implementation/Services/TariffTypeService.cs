@@ -58,7 +58,7 @@ namespace Cares.Implementation.Services
             };
 
         }
-        
+
         /// <summary>
         /// Load All Tariff Type 
         /// </summary>
@@ -67,7 +67,7 @@ namespace Cares.Implementation.Services
         {
             return tariffTypeRepository.GetAll();
         }
-        
+
         /// <summary>
         /// Load tariff type, based on search filters
         /// </summary>
@@ -77,7 +77,7 @@ namespace Cares.Implementation.Services
         {
             return tariffTypeRepository.GettariffTypes(tariffTypeRequest);
         }
-        
+
         /// <summary>
         /// Find Tariff Type By Id
         /// </summary>
@@ -103,7 +103,7 @@ namespace Cares.Implementation.Services
             }
             return new TariffTypeDetailResponse { TariffType = tariffType, TariffTypeRevisions = revisionList };
         }
-        
+
         /// <summary>
         /// Add Tariff Type
         /// </summary>
@@ -111,12 +111,14 @@ namespace Cares.Implementation.Services
         /// <returns></returns>
         public TariffType SaveTariffType(TariffType tariffType)
         {
+            TariffTypeValidation(tariffType);
+
             long oldRecordId = tariffType.TariffTypeId;
             if (tariffType.TariffTypeId == 0) //Add Case
             {
                 List<TariffType> tariffTypes = tariffTypeRepository.GetByTariffTypeCode(tariffType.TariffTypeCode).ToList();
-                if (tariffTypes.Count()>0)
-                    throw new CaresException("Tariff Type with the same code already exists. Please choose a different code!");
+                if (tariffTypes.Count() > 0)
+                    throw new CaresException(Resources.Pricing.TariffType.CodeDuplicationError);
                 tariffType.IsActive = true;
                 tariffType.IsDeleted = tariffType.IsPrivate = tariffType.IsReadOnly = false;
                 tariffType.RecLastUpdatedBy = tariffType.RecCreatedBy = tariffTypeRepository.LoggedInUserIdentity;
@@ -147,6 +149,17 @@ namespace Cares.Implementation.Services
 
         }
 
+        /// <summary>
+        /// Tariff type Validation
+        /// </summary>
+        /// <param name="tariffType"></param>
+        public void TariffTypeValidation(TariffType tariffType)
+        {
+            if (tariffTypeRepository.IsTariffTypeOvelap(tariffType))
+            {
+                throw new CaresException(Resources.Pricing.TariffType.OverlapDuration);
+            }
+        }
         #endregion
     }
 }

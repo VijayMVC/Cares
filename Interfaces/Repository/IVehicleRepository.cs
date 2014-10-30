@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Cares.Models.DomainModels;
 using Cares.Models.ReportModels;
 using Cares.Models.RequestModels;
@@ -73,6 +72,11 @@ namespace Cares.Interfaces.Repository
         /// Association check b/n vehicle and vehicle Model
         /// </summary>
         bool IsVehicleModelAssociatedWithVehicle(long vehicleModelId);
+
+        /// <summary>
+        /// GetAvailable Vehicles for WebApi
+        /// </summary>
+        IEnumerable<WebApiAvailaleHireGroup> GetAvaibaleVehiclesForWebApi(IEnumerable<long> hireGroupDetailsIds, long domainKey);
     }
 }
 
