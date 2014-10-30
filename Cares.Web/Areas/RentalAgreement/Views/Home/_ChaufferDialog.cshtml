@@ -1,0 +1,62 @@
+﻿<div id="chaufferDialog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="chaufferDialogModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">@Cares.Web.Resources.Shared.Common.Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Chauffers</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <form class="form-horizontal">
+                        <div class="form-group" data-bind="with: chaufferFilter">
+                            <label class="control-label col-sm-3">Chauffer Out Dt</label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" data-bind="datetimepicker: start" />
+                            </div>
+                            <label class="control-label col-sm-3">Chauffer In Dt</label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" data-bind="datetimepicker: end" />
+                            </div>
+                            <div class="col-md-4">
+                                <button class="btn btn-success"
+                                        data-bind="click: $root.searchChauffers, enable: $root.canSearchChauffers">
+                                    Search
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Chauffer</th>
+                                        <th>Category</th>
+                                        <th>License Number</th>
+                                        <th>License Expiry</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: chauffers">
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" class="addChaufferTemplate_popoverContent_isSelected" data-bind="checked: isSelected" />
+                                        </td>
+                                        <td data-bind="text: codeName"></td>
+                                        <td data-bind="text: desigGrade"></td>
+                                        <td data-bind="text: licenseNo"></td>
+                                        <td data-bind="dateString: licenseDt, datePattern: 'DD-MM-YY HH:mm'"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-bind="click: addChauffersToRentalAgreement.bind($data, $data, 'collapseThree')">
+                    Add
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

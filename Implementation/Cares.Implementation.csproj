@@ -270,6 +270,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FleetPool.ar.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\FleetPool\HireGroup.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HireGroup.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\FleetPool\HireGroup.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HireGroup.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\FleetPool\InsuranceType.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -479,6 +489,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ServiceType.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Pricing\TariffType.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TariffType.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Pricing\TariffType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TariffType.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\RentalAgreement\RentalAgreement.ar.Designer.cs">
       <DependentUpon>RentalAgreement.ar.resx</DependentUpon>
@@ -815,6 +835,14 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>FleetPool.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FleetPool\HireGroup.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HireGroup.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FleetPool\HireGroup.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HireGroup.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\FleetPool\InsuranceType.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>InsuranceType.ar.Designer.cs</LastGenOutput>
@@ -986,6 +1014,14 @@
     <EmbeddedResource Include="Resources\Pricing\ServiceType.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ServiceType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Pricing\TariffType.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TariffType.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Pricing\TariffType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TariffType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\RentalAgreement\RentalAgreement.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

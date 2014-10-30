@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Cares.Implementation.Resources.Tariff {
+namespace Cares.Implementation.Resources.Pricing {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace Cares.Implementation.Resources.Tariff {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ServiceRate {
+    public class TariffType {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ServiceRate() {
+        internal TariffType() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Cares.Implementation.Resources.Tariff {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Cares.Implementation.Resources.Tariff.ServiceRate", typeof(ServiceRate).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Cares.Implementation.Resources.Pricing.TariffType", typeof(TariffType).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace Cares.Implementation.Resources.Tariff {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Service Rate with the same code already exists. Please choose a different code!.
+        ///   Looks up a localized string similar to Tariff Type with the same code already exists. Please choose a different code!.
         /// </summary>
         public static string CodeDuplicationError {
             get {
@@ -70,38 +70,11 @@ namespace Cares.Implementation.Resources.Tariff {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start Effective Date must be a current or future date..
+        ///   Looks up a localized string similar to The current defined range falls within the duration of another tariff type..
         /// </summary>
-        public static string InvalidStartDate {
+        public static string OverlapDuration {
             get {
-                return ResourceManager.GetString("InvalidStartDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Service rate for the selected tariff type already exist..
-        /// </summary>
-        public static string ServiceRtByTariffExist {
-            get {
-                return ResourceManager.GetString("ServiceRtByTariffExist", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Start Date for Service Item Rate must be a current or future date..
-        /// </summary>
-        public static string ServRateCurrentDateViolation {
-            get {
-                return ResourceManager.GetString("ServRateCurrentDateViolation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Start Date for Service Item Rate must be greater than their Start Effective Date..
-        /// </summary>
-        public static string ServRateInvalidEffectiveDate {
-            get {
-                return ResourceManager.GetString("ServRateInvalidEffectiveDate", resourceCulture);
+                return ResourceManager.GetString("OverlapDuration", resourceCulture);
             }
         }
     }

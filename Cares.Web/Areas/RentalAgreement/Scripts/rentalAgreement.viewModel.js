@@ -39,7 +39,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                             // Set Vehicle Popup Out Location
                             vehicleOperationsWorkPlaceFilter(rentalAgreement().openLocation());
                         },
-                        OnBookingNoChange: function(bookingId) {
+                        OnBookingNoChange: function (bookingId) {
                             loadByBooking(bookingId);
                         }
                     },
@@ -107,7 +107,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     // Opening RA from Booking
                     openingRaUsingBooking = ko.observable(false),
                     // Can Edit Booking No
-                    canEditBooking = ko.computed(function() {
+                    canEditBooking = ko.computed(function () {
                         return !openingRaUsingBooking() && !rentalAgreement().id();
                     }),
                     // Booking Insurance
@@ -121,7 +121,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     // Can search hire group
                     canLookForHireGroups = ko.computed(function () {
                         return !rentalAgreement().id() && rentalAgreement().start() && rentalAgreement().end() && rentalAgreement().openLocation() &&
-                            rentalAgreement().isValid();
+                            rentalAgreement().isHeaderValid();
                     }),
                     // selected Hire Group 
                     selectedHireGroup = ko.observable(),
@@ -134,7 +134,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     // Vehicle End Dt Filter
                     vehicleEndDtFilter = ko.observable(moment(rentalAgreement().end()).toDate()),
                     // Is Valid Vehicle Duration 
-                    isValidVehicleDuration = ko.computed(function() {
+                    isValidVehicleDuration = ko.computed(function () {
                         return vehicleEndDtFilter() > vehicleStartDtFilter() &&
                             (rentalAgreement().start() <= vehicleStartDtFilter() && rentalAgreement().end() >= vehicleEndDtFilter());
                     }),
@@ -179,7 +179,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                         Status: model.vehicleMovementEnum.inMovement
                                     }
                                 ]
-                            });
+                            }, false, rentalAgreement());
                             selectedVehicle(vehicle);
                             rentalAgreement().rentalAgreementHireGroups.push(raHireGroup);
 
@@ -192,6 +192,9 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                 });
                             }
 
+                            // Close vehicle Dialog
+                            view.hideVehicleDialog();
+
                             calculateBill();
                         }
                     },
@@ -199,22 +202,27 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     stopEventBubbling = function (data, e) {
                         e.stopImmediatePropagation();
                     },
+                    // Open Extras Dialog
+                    openExtrasDialog = function () {
+                        resetServiceItemsSelection();
+                        view.showExtrasDialog();
+                    },
                     // Add Selected Extras to Rental Agreement
                     // Data - Binding Data
                     // PopoverId - Id 
                     // Panel - Id of the Panel to Expand if collapsed
-                    addExtrasToRentalAgreement = function (data, popoverId, panel) {
+                    addExtrasToRentalAgreement = function (data, panel) {
                         serviceItems.each(function (serviceItem) {
                             if (serviceItem.isSelected()) {
-                                var raServiceItem = model.RentalAgreementServiceItem.Create(serviceItem.convertToServerData());
+                                var raServiceItem = model.RentalAgreementServiceItem.Create(serviceItem.convertToServerData(), rentalAgreement());
                                 raServiceItem.start(moment(rentalAgreement().start()).toDate());
                                 raServiceItem.end(moment(rentalAgreement().end()).toDate());
                                 raServiceItem.rentalAgreementId(rentalAgreement().id() || 0);
                                 rentalAgreement().rentalAgreementServiceItems.push(raServiceItem);
                             }
                         });
-                        // Close Popover
-                        view.closePopover(popoverId);
+                        // Close Extras Dialog
+                        view.hideExtrasDialog();
                         // Expand Panel
                         view.expandPanel(panel);
                     },
@@ -223,6 +231,13 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         serviceItems.each(function (serviceItem) {
                             serviceItem.isSelected(false);
                         });
+                    },
+                    // Open Chauffer Dialog
+                    openChaufferDialog = function() {
+                        // Set Filters
+                        setChaufferPopover();
+                        // Show Dialog
+                        view.showChaufferDialog();
                     },
                     // Set Chauffer Popover
                     setChaufferPopover = function () {
@@ -240,7 +255,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         getChauffers();
                     },
                     // Add Selected Chauffers to Rental Agreement
-                    addChauffersToRentalAgreement = function (data, popoverId, panel) {
+                    addChauffersToRentalAgreement = function (data, panel) {
                         chauffers.each(function (chauffer) {
                             if (chauffer.isSelected()) {
                                 var driver = chauffer.convertToServerData();
@@ -248,11 +263,11 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                 driver.StartDtTime = moment(rentalAgreement().start()).toDate();
                                 driver.EndDtTime = moment(rentalAgreement().end()).toDate();
                                 driver.RaMainId = rentalAgreement().id() || 0;
-                                rentalAgreement().rentalAgreementDrivers.push(model.RentalAgreementDriver.Create(driver));
+                                rentalAgreement().rentalAgreementDrivers.push(model.RentalAgreementDriver.Create(driver, rentalAgreement()));
                             }
                         });
-                        // Close Popover
-                        view.closePopover(popoverId);
+                        // Close Dialog
+                        view.hideChaufferDialog();
                         // Expand Panel
                         view.expandPanel(panel);
                     },
@@ -267,7 +282,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         var driver = model.RentalAgreementDriver.Create({
                             IsChauffer: false, StartDtTime: moment(rentalAgreement().start()).toDate(),
                             EndDtTime: moment(rentalAgreement().end()).toDate(), RaMainId: rentalAgreement().id() || 0
-                        });
+                        }, rentalAgreement());
                         rentalAgreement().rentalAgreementDrivers.push(driver);
                         // Expand Panel
                         view.expandPanel(panel);
@@ -278,12 +293,19 @@ define("rentalAgreement/rentalAgreement.viewModel",
                             return [];
                         }
 
-                        return rentalAgreement().rentalAgreementHireGroups.map(function(raHireGroup) {
+                        return rentalAgreement().rentalAgreementHireGroups.map(function (raHireGroup) {
                             return raHireGroup.vehicle().plateNumber();
                         });
                     }),
+                    // Open Add Charges Dialog
+                    openAddChargesDialog = function () {
+                        // Reset Selection
+                        resetAdditionalChargesSelection();
+                        // Show Dialog
+                        view.showDamagesDialog();
+                    },
                     // Add Additional Charges to Rental Agreement
-                    addAdditionalChargesToRentalAgreement = function (data, popoverId, panel) {
+                    addAdditionalChargesToRentalAgreement = function (data, panel) {
                         additionalCharges.each(function (additionalCharge) {
                             if (additionalCharge.isSelected()) {
                                 var addCharge = additionalCharge.convertToServerData();
@@ -292,8 +314,8 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                 rentalAgreement().rentalAgreementAdditionalCharges.push(model.RentalAgreementAdditionalCharge.Create(addCharge));
                             }
                         });
-                        // Close Popover
-                        view.closePopover(popoverId);
+                        // Close Dialog
+                        view.hideDamagesDialog();
                         // Expand Panel
                         view.expandPanel(panel);
                     },
@@ -304,7 +326,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         });
                     },
                     // Selected Ra Hire Group
-                    selectedRaHireGroup = ko.observable(model.RentalAgreementHireGroup.Create({ Vehicle: model.Vehicle.Create({}) })),
+                    selectedRaHireGroup = ko.observable(model.RentalAgreementHireGroup.Create({ Vehicle: model.Vehicle.Create({}) }, false, rentalAgreement())),
                     // Select Ra HireGroup
                     selectRaHireGroup = function (raHireGroup) {
                         if (selectedRaHireGroup() !== raHireGroup) {
@@ -314,6 +336,13 @@ define("rentalAgreement/rentalAgreement.viewModel",
                             setRaHireGroupInsurances();
                         }
                     },
+                    // Open vehicle dialog
+                    openVehicleDialog = function() {
+                        // Set Filters
+                        setVehicleFilters();
+                        // Show Dialog
+                        view.showVehicleDialog();
+                    },
                     // Set Vehicle Popover Filters
                     setVehicleFilters = function () {
                         var allocationStatusItem = getAllocationStatusByKey(allocationStatus.desired);
@@ -321,7 +350,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         vehicleOperationsWorkPlaceFilter(rentalAgreement().openLocation());
                     },
                     // Open Ra Hire Group Insurance Dialog
-                    openRaHireGroupInsuranceDialog = function() {
+                    openRaHireGroupInsuranceDialog = function () {
                         view.show();
                     },
                     // Set Ra HireGroup Insurances
@@ -338,7 +367,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                         InsuranceTypeCodeName: insuranceRt.codeName,
                                         StartDtTime: moment(vehicleStartDtFilter()).toDate(),
                                         EndDtTime: moment(vehicleEndDtFilter()).toDate()
-                                    }));
+                                    }, rentalAgreement()));
                             }
                         });
                     },
@@ -350,6 +379,25 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         rentalAgreement().raPayments.push(payment);
                         // Expand Panel
                         view.expandPanel(panel);
+                    },
+                    // Open Vehicle Movement Dialog
+                    openVehicleMovementDialog = function() {
+                        view.showVehicleMovementDialog();
+                    },
+                    // Hide Vehicle Movement Dialog
+                    hideVehicleMovementDialog = function() {
+                        view.hideVehicleMovementDialog();
+                    },
+                    // Open Discounts Dialog
+                    openDiscountsDialog = function () {
+                        view.showDiscountsDialog();
+                    },
+                    // Add Discounts to Ra
+                    addDiscountsToRentalAgreement = function (data, panelId) {
+                        // Close Dialog
+                        view.hideDiscountsDialog();
+                        // Expand Panel
+                        view.expandPanel(panelId);
                     },
                     // #endregion Utility Functions
                     // #region Observables
@@ -589,12 +637,138 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         });
                     },
                     // Can Open Rental Agreement
-                    canOpen = ko.computed(function() {
+                    canOpen = ko.computed(function () {
                         return !rentalAgreement().id() || rentalAgreement().raStatusId() == raStatusEnum.close;
                     }),
                     // Open Rental Agreement
-                    openRentalAgreement = function() {
+                    openRentalAgreement = function () {
                         saveRentalAgreement(raStatusEnum.open);
+                    },
+                    // Validate Drivers
+                    validateDrivers = function () {
+                        rentalAgreement().rentalAgreementDrivers.each(function (raDriver) {
+                            if (!raDriver.isValid()) {
+                                raDriver.errors.showAllMessages();
+
+                                var driverText = raDriver.isChauffer() ? "Chauffer " : "Driver ";
+
+                                // If Invalid Period
+                                if (raDriver.isInvalidPeriod()) {
+                                    toastr.info("Selected " + driverText + "Start and End Date/Time should be between Rental Dates!");
+                                }
+
+                                // If License Expired
+                                if (raDriver.isLicenseExpired()) {
+                                    toastr.info("Selected " + driverText + "License has expired!");
+                                }
+                            }
+                        });
+                    },
+                    // Validate Add Charges
+                    validateAddCharges = function () {
+                        rentalAgreement().rentalAgreementAdditionalCharges.each(function (raAdditionalCharge) {
+                            if (!raAdditionalCharge.isValid()) {
+                                raAdditionalCharge.errors.showAllMessages();
+                            }
+                        });
+                    },
+                    // Validate Extras
+                    validateExtras = function () {
+                        rentalAgreement().rentalAgreementServiceItems.each(function (raServiceItem) {
+                            if (!raServiceItem.isValid()) {
+                                raServiceItem.errors.showAllMessages();
+
+                                // If Invalid Period
+                                if (raServiceItem.isInvalidPeriod()) {
+                                    toastr.info("Selected Service Item(s) Start and End Date/Time should be between Rental Dates!");
+                                }
+                            }
+                        });
+                    },
+                    // Validate Chauffers
+                    validateChauffers = function () {
+                        // Check for Overlapping Chauffers
+                        var isOverlapping = false;
+                        var chauffer, internalChauffer;
+                        for (var i = 0; i < rentalAgreement().raChauffers().length - 1 ; i++) {
+                            chauffer = rentalAgreement().raChauffers()[i];
+                            for (var j = i + 1; j < rentalAgreement().raChauffers().length - 1; j++) {
+                                internalChauffer = rentalAgreement().raChauffers()[j];
+                                if (chauffer.id() === internalChauffer().id() && !isOverlapping) {
+                                    isOverlapping = chauffer.end() > internalChauffer().start() && internalChauffer().end() < chauffer().start();
+                                    break;
+                                }
+                            }
+                        }
+                        return isOverlapping;
+                    },
+                    // Validate HireGroup insurances
+                    validateInsurances = function () {
+                        rentalAgreement().rentalAgreementHireGroups.each(function (raHireGroup) {
+                            if (!raHireGroup.isValid()) {
+                                raHireGroup.raHireGroupInsurances.each(function (raHireGroupInsurance) {
+                                    if (raHireGroupInsurance().isSelected() && !raHireGroupInsurance.isValid()) {
+                                        raHireGroupInsurance.errors.showAllMessages();
+                                    }
+                                });
+                            }
+                        });
+                    },
+                    // Validate Errors
+                    validateErrors = function () {
+                        if (!rentalAgreement().isValid()) {
+                            rentalAgreement().errors.showAllMessages();
+                            if (!rentalAgreement().businessPartner().isValid()) {
+                                rentalAgreement().businessPartner().errors.showAllMessages();
+                                if (rentalAgreement().businessPartner().isIndividual() && !rentalAgreement().businessPartner().businessPartnerIndividual().isValid()) {
+                                    rentalAgreement().businessPartner().businessPartnerIndividual().errors.showAllMessages();
+
+                                    // Validate Age
+                                    if (!rentalAgreement().businessPartner().businessPartnerIndividual().isAgeValid()) {
+                                        toastr.info("Customer age must be 21 years minimum!");
+                                    }
+
+                                    // Validate License
+                                    if (rentalAgreement().businessPartner().businessPartnerIndividual().isLicenseExpired()) {
+                                        toastr.info("Customer License has expired!");
+                                    }
+                                }
+                            }
+
+                            // Validate Drivers
+                            validateDrivers();
+
+                            // Validate Additional Charges
+                            validateAddCharges();
+
+                            // Validate Service items
+                            validateExtras();
+
+                            // Validate Hire Group Insurances
+                            validateInsurances();
+
+                            return false;
+                        }
+                        return true;
+                    },
+                    // Validate Before Opening Agreement
+                    validateBeforeSave = function () {
+                        // Validate Validation Errors
+                        if (!validateErrors()) {
+                            return;
+                        }
+
+                        // Chauffers Overlap
+                        if (validateChauffers()) {
+                            toastr.info("Selected Chauffers are overlapping, please adjust their duration!");
+                            return;
+                        }
+
+                        // Validate Hire Group
+                        if (rentalAgreement().rentalAgreementHireGroups().length === 0) {
+                            toastr.info("Vehicle not selected");
+                            return;
+                        }
                     },
                     // Can Update Rental Agreement
                     canUpdate = ko.computed(function () {
@@ -614,6 +788,10 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         if (!validateBeforeClose()) {
                             return;
                         }
+                        if (!rentalAgreement().isValid()) {
+                            toastr.info("Please fix errors first!");
+                            return;
+                        }
 
                         saveRentalAgreement(raStatusEnum.close);
                     },
@@ -627,7 +805,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         return true;
                     },
                     // Validate Bill
-                    validateBill = function() {
+                    validateBill = function () {
                         if (rentalAgreement().billing().balance() > 0) {
                             toastr.info("Can not close agreement because payment is pending.");
                             return false;
@@ -635,8 +813,8 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         return true;
                     },
                     // Validate Vehicle
-                    validateVehicle = function() {
-                        var vehiclesNotReturned = rentalAgreement().rentalAgreementHireGroups.filter(function(raHireGroup) {
+                    validateVehicle = function () {
+                        var vehiclesNotReturned = rentalAgreement().rentalAgreementHireGroups.filter(function (raHireGroup) {
                             return !raHireGroup.vehicleMovementIn().odometer || !raHireGroup.vehicleMovementIn().operationsWorkPlaceId() ||
                             !raHireGroup.vehicleMovementIn().vehicleStatusId();
                         });
@@ -649,15 +827,15 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         return true;
                     },
                     // Get Desired Hire Group
-                    getDesiredHireGroup = function(raMain) {
-                        var raHireGroupItem = _.find(raMain.RaHireGroups, function(raHireGroup) {
+                    getDesiredHireGroup = function (raMain) {
+                        var raHireGroupItem = _.find(raMain.RaHireGroups, function (raHireGroup) {
                             return raHireGroup.AllocationStatusKey === allocationStatus.desired;
                         });
 
                         return raHireGroupItem ? raHireGroupItem.HireGroupDetail : undefined;
                     },
                     // Select Desired Hire Group
-                    selectDesiredHireGroup = function(hireGroup) {
+                    selectDesiredHireGroup = function (hireGroup) {
                         if (!hireGroup) {
                             return;
                         }
@@ -699,7 +877,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                     var insuranceItems = [];
 
                                     _.each(data.RaHireGroups[0].RaHireGroupInsurances, function (insurance) {
-                                        var insuranceItem = model.RentalAgreementHireGroupInsurance.Create(insurance);
+                                        var insuranceItem = model.RentalAgreementHireGroupInsurance.Create(insurance, rentalAgreement());
                                         insuranceItem.isSelected(true);
                                         insuranceItems.push(insuranceItem);
                                     });
@@ -719,7 +897,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
 
                                 // Select Desired Hire Group
                                 selectDesiredHireGroup(desiredHireGroup);
-                                
+
                             },
                             error: function (response) {
                                 openingRaUsingBooking(false);
@@ -729,6 +907,10 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     },
                     // Save Rental Agreement
                     saveRentalAgreement = function (action) {
+                        if (!validateBeforeSave()) {
+                            return;
+                        }
+
                         var raMain = rentalAgreement().convertToServerData();
                         var saveRaRequest = {
                             RaMain: raMain,
@@ -777,7 +959,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         });
                     },
                     // Add Vehicle CheckLists To RA
-                    addVehicleCheckListsToRa = function(data, status) {
+                    addVehicleCheckListsToRa = function (data, status) {
                         _.each(data, function (vehicleCheckList) {
                             vehicleCheckList = model.VehicleCheckList.Create(vehicleCheckList);
 
@@ -842,7 +1024,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         }, getCustomerCallbackHandler);
                     };
                 // #endregion Service Calls
-                
+
                 return {
                     // Observables
                     operations: operations,
@@ -908,7 +1090,15 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     canClose: canClose,
                     addPaymentToRentalAgreement: addPaymentToRentalAgreement,
                     addVehicleCheckListsOutToRa: addVehicleCheckListsOutToRa,
-                    addVehicleCheckListsInToRa: addVehicleCheckListsInToRa
+                    addVehicleCheckListsInToRa: addVehicleCheckListsInToRa,
+                    openExtrasDialog: openExtrasDialog,
+                    openChaufferDialog: openChaufferDialog,
+                    openAddChargesDialog: openAddChargesDialog,
+                    openVehicleDialog: openVehicleDialog,
+                    openVehicleMovementDialog: openVehicleMovementDialog,
+                    hideVehicleMovementDialog: hideVehicleMovementDialog,
+                    openDiscountsDialog: openDiscountsDialog,
+                    addDiscountsToRentalAgreement: addDiscountsToRentalAgreement
                     // Utility Methods
                 };
             })()

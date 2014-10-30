@@ -117,19 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="InvalidStartDate" xml:space="preserve">
-    <value>يجب أن يكون بدء تاريخ السريان تاريخ الحالي أو في المستقبل.</value>
-  </data>
-  <data name="ServiceRtByTariffExist" xml:space="preserve">
-    <value>معدل خدمة لنوع التعرفة اختيار موجودة بالفعل</value>
-  </data>
-  <data name="ServRateCurrentDateViolation" xml:space="preserve">
-    <value>يجب أن يكون تاريخ بدء الخدمة لسعر الإغلاق في التاريخ الحالي أو في المستقبل.</value>
-  </data>
-  <data name="ServRateInvalidEffectiveDate" xml:space="preserve">
-    <value>التسجيل للخدمة أسعار الإغلاق بدء يجب أن تكون أكبر من البداية على تاريخ النفاذ.</value>
-  </data>
   <data name="CodeDuplicationError" xml:space="preserve">
-    <value>سعر الخدمة مع نفس الرمز موجود بالفعل. يرجى اختيار رمز مختلف!</value>
+    <value>نوع التعرفة مع نفس الرمز موجود بالفعل. يرجى اختيار رمز مختلف!</value>
+  </data>
+  <data name="OverlapDuration" xml:space="preserve">
+    <value>يقع نطاق محدد الحالي خلال مدة نوع التعرفة آخر.</value>
   </data>
 </root>

@@ -208,6 +208,7 @@
           <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="BookingAdditionalDriver">
           <Key>
@@ -2716,7 +2717,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" />
           <Property Name="PasswordHash" Type="nvarchar(max)" />
           <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
@@ -5096,7 +5097,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RefStandardRtMain148">
-          <End Role="StandardRtMain" Type="Self.StandardRtMain" Multiplicity="1" />
+          <End Role="StandardRtMain" Type="Self.StandardRtMain" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="StandardRt" Type="Self.StandardRt" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="StandardRtMain">
@@ -13667,6 +13670,7 @@
           <NavigationProperty Name="Roles" Relationship="DomainModels.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
           <NavigationProperty Name="Claims" Relationship="DomainModels.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
           <NavigationProperty Name="Logins" Relationship="DomainModels.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+          <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
         </EntityType>
         <Association Name="FK_dbo_MenuRight_dbo_AspNetRoles_Role_Id">
           <End Type="DomainModels.UserRole" Role="AspNetRole" Multiplicity="0..1" />
@@ -13737,7 +13741,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
@@ -16606,6 +16610,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="DomainModels.User">
               <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
                 <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />

@@ -36,7 +36,7 @@ namespace Cares.Repository.Repositories
                        
                     };
         #endregion.
-       
+
         #region Constructor
         /// <summary>
         /// Constructor
@@ -47,9 +47,9 @@ namespace Cares.Repository.Repositories
 
         }
         #endregion
-       
+
         #region Protected
-       
+
         /// <summary>
         /// Primary database set
         /// </summary>
@@ -60,9 +60,9 @@ namespace Cares.Repository.Repositories
                 return db.TariffTypes;
             }
         }
-        
+
         #endregion
-        
+
         #region Public
 
         /// <summary>
@@ -138,8 +138,20 @@ namespace Cares.Repository.Repositories
         public IEnumerable<TariffType> GetByTariffTypeCode(string tariffTypeCode)
         {
             return DbSet.Where(tariffType => tariffType.UserDomainKey == UserDomainKey && tariffType.ChildTariffTypeId == null
-                && tariffType.TariffTypeCode == tariffTypeCode).ToList();
-        } 
+                && tariffType.TariffTypeCode.ToLower() == tariffTypeCode.ToLower()).ToList();
+        }
+
+        /// <summary>
+        /// Is Tariff Type Ovelap
+        /// </summary>
+        /// <param name="tariffType"></param>
+        /// <returns></returns>
+        public bool IsTariffTypeOvelap(TariffType tariffType)
+        {
+            return DbSet.Count(tt => tt.TariffTypeId != tariffType.TariffTypeId && (tt.DurationTo + tt.GracePeriod) > tariffType.DurationFrom
+        && tt.DurationFrom < tariffType.DurationTo && tt.UserDomainKey == UserDomainKey && tt.MeasurementUnitId == tariffType.MeasurementUnitId
+        && tt.EffectiveDate == tariffType.EffectiveDate && tt.ChildTariffTypeId == null) > 0;
+        }
         #endregion
     }
 }

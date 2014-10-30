@@ -53,6 +53,54 @@ define("rentalAgreement/rentalAgreement.view",
                         $("#raVehicleCheckListInDialog").modal("hide");
                     }
                 },
+                // Show Vehilce the dialog
+                showVehicleDialog = function () {
+                    $("#vehicleDialog").modal("show");
+                },
+                // Hide Vehicle the dialog
+                hideVehicleDialog = function () {
+                    $("#vehicleDialog").modal("hide");
+                },
+                // Show Extras the dialog
+                showExtrasDialog = function () {
+                    $("#serviceItemDialog").modal("show");
+                },
+                // Hide Extras the dialog
+                hideExtrasDialog = function () {
+                    $("#serviceItemDialog").modal("hide");
+                },
+                // Show Chauffer the dialog
+                showChaufferDialog = function () {
+                    $("#chaufferDialog").modal("show");
+                },
+                // Hide Chauffer the dialog
+                hideChaufferDialog = function () {
+                    $("#chaufferDialog").modal("hide");
+                },
+                // Show Damages the dialog
+                showDamagesDialog = function () {
+                    $("#additionalChargeDialog").modal("show");
+                },
+                // Hide Damages the dialog
+                hideDamagesDialog = function () {
+                    $("#additionalChargeDialog").modal("hide");
+                },
+                // Show Vehicle Movement the dialog
+                showVehicleMovementDialog = function () {
+                    $("#vehicleMovementDialog").modal("show");
+                },
+                // Hide Vehicle Movement the dialog
+                hideVehicleMovementDialog = function () {
+                    $("#vehicleMovementDialog").modal("hide");
+                },
+                // Show Discounts the dialog
+                showDiscountsDialog = function () {
+                    $("#discountsDialog").modal("show");
+                },
+                // Hide Discounts the dialog
+                hideDiscountsDialog = function () {
+                    $("#discountsDialog").modal("hide");
+                },
                 // Initialize
                 initialize = function () {
                     if (!bindingRoot) {
@@ -96,27 +144,7 @@ define("rentalAgreement/rentalAgreement.view",
                             viewModel.selectHireGroup(selected);
                         }
                     });
-
-                    // Extras Popover shows - Clear Selection
-                    $('#addExtrasPopoverLink').on('show.bs.popover', function () {
-                        viewModel.resetServiceItemsSelection();
-                    });
-
-                    // Chauffer Popover shows - Clear Selection
-                    $('#addChauffersPopoverLink').on('show.bs.popover', function () {
-                        viewModel.setChaufferPopover();
-                    });
-
-                    // Damages Popover shows - Clear Selection
-                    $('#addDamagesPopoverLink').on('show.bs.popover', function () {
-                        viewModel.resetAdditionalChargesSelection();
-                    });
-
-                    // Add Vehicle Popover shows - Clear Selection
-                    $('#addVehiclesPopoverLink').on('show.bs.popover', function () {
-                        viewModel.setVehicleFilters();
-                    });
-
+                    
                 };
 
             initialize();
@@ -129,7 +157,19 @@ define("rentalAgreement/rentalAgreement.view",
                 hide: hide,
                 showRaVehicleCheckListDialog: showRaVehicleCheckListDialog,
                 hideRaVehicleCheckListDialog: hideRaVehicleCheckListDialog,
-                expandPanel: expandPanel
+                expandPanel: expandPanel,
+                showVehicleDialog: showVehicleDialog,
+                hideVehicleDialog: hideVehicleDialog,
+                showDamagesDialog: showDamagesDialog,
+                hideDamagesDialog: hideDamagesDialog,
+                showExtrasDialog: showExtrasDialog,
+                hideExtrasDialog: hideExtrasDialog,
+                showChaufferDialog: showChaufferDialog,
+                hideChaufferDialog: hideChaufferDialog,
+                showVehicleMovementDialog: showVehicleMovementDialog,
+                hideVehicleMovementDialog: hideVehicleMovementDialog,
+                showDiscountsDialog: showDiscountsDialog,
+                hideDiscountsDialog: hideDiscountsDialog
             };
         })(rentalAgreementViewModel);
 

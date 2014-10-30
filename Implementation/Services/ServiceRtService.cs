@@ -136,6 +136,12 @@ namespace Cares.Implementation.Services
         /// <returns></returns>
         public ServiceRtMainContent SaveServiceRate(ServiceRtMain serviceRtMain)
         {
+            if (serviceRtMainRepository.IsServiceRtMainCodeExists(serviceRtMain.ServiceRtMainCode,
+                serviceRtMain.ServiceRtMainId))
+            {
+                throw new CaresException(Resources.Tariff.ServiceRate.CodeDuplicationError);
+            }
+
             TariffType tariffType = tariffTypeRepository.Find(long.Parse(serviceRtMain.TariffTypeCode));
             serviceRtMain.TariffTypeCode = tariffType.TariffTypeCode;
 

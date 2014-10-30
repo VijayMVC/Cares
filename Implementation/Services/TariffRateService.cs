@@ -130,6 +130,10 @@ namespace Cares.Implementation.Services
             #region Add
             if (standardRateMain.StandardRtMainId == 0)
             {
+                List<StandardRateMain> standardRateMains = standardRateMainRepository.GetByStandardRateMainCode(standardRateMain.StandardRtMainCode).ToList();
+                if (standardRateMains.Count() > 0)
+                    throw new CaresException(Resources.Tariff.TariffRate.CodeDuplication);
+
                 StandardRateValidation(standardRateMain, true);
                 standardRateMain.UserDomainKey = standardRateMainRepository.UserDomainKey;
                 standardRateMain.IsActive = true;
