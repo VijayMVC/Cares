@@ -90,7 +90,7 @@ div#spinner
     /*border:1px solid #666;*/
     margin-left: -50px;
     margin-top: -50px;
-    z-index:1050;
+    z-index:10051;
     overflow: auto;
 }
 
@@ -157,6 +157,13 @@ div#spinner
 }
 
 .errorFill 
+{
+	border: 1px solid red !important;
+	background-color: #fdd !important;
+}
+
+/* For Elements That use ValidationTooltip + Css: { 'errorFill': someValue } , css should be css: { 'errorFillWithValidation': someValue }  */
+.errorFillWithValidation 
 {
 	border: 1px solid red !important;
 	background-color: #fdd !important;
