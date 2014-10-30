@@ -419,6 +419,10 @@
                         return !raHireGroup.isValid();
                     }).length === 0;
             }),
+            // Is Header Valid - For Agreement Part
+            isHeaderValid = ko.computed(function() {
+                return errors().length === 0;
+            }),
             // Convert To Server Data
             convertToServerData = function () {
                 return {
@@ -507,6 +511,7 @@
             isValid: isValid,
             isInvalidPeriod: isInvalidPeriod,
             isLicenseExpired: isLicenseExpired,
+            isHeaderValid: isHeaderValid,
             convertToServerData: convertToServerData
         };
     },

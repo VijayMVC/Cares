@@ -90,7 +90,7 @@ div#spinner
     /*border:1px solid #666;*/
     margin-left: -50px;
     margin-top: -50px;
-    z-index:1050;
+    z-index:10051;
     overflow: auto;
 }
 
