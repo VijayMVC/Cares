@@ -22,6 +22,8 @@
     CONSTRAINT [PK80] PRIMARY KEY NONCLUSTERED ([StandardRtID] ASC),
     CONSTRAINT [RefHireGroupDetail377] FOREIGN KEY ([HireGroupDetailID]) REFERENCES [dbo].[HireGroupDetail] ([HireGroupDetailID]),
     CONSTRAINT [RefStandardRt371] FOREIGN KEY ([ChildStandardRtID]) REFERENCES [dbo].[StandardRt] ([StandardRtID]),
-    CONSTRAINT [RefStandardRtMain148] FOREIGN KEY ([StandardRtMainID]) REFERENCES [dbo].[StandardRtMain] ([StandardRtMainID])
+    CONSTRAINT [RefStandardRtMain148] FOREIGN KEY ([StandardRtMainID]) REFERENCES [dbo].[StandardRtMain] ([StandardRtMainID]) ON DELETE CASCADE
 );
+
+
 
