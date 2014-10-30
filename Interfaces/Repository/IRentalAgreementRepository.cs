@@ -28,10 +28,5 @@ namespace Cares.Interfaces.Repository
         IList<DailyActionReportResponse> GetDailyActionReport();
 
 
-        /// <summary>
-        /// Rental Agreement Detail Report
-        /// </summary>        
-        List<RaMain> GetRentalAgreementReport();
-
     }
 }

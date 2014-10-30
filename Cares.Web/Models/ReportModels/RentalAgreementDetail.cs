@@ -1,34 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 
-namespace Cares.Models.ReportModels
+namespace Cares.Web.Models.ReportModels
 {
-    public class RentalAgreementInfo
+    /// <summary>
+    /// Contains Rental Agreement Details and Billing info
+    /// </summary>
+    public class RentalAgreementDetail
     {
         #region Public
+        public string RenterName { get; set; }
         public long RentalAgreementId { get; set; }
         public string Status { get; set; }
         public long RaOpenLocatoin { get; set; }
         public DateTime StartDateTime { get; set; }
         public DateTime ReturnDateTime { get; set; }
-        public long RaCloseLocation { get; set; }
-
-        public IList<RaVehicleInfo> RaVehicleInfos { get; set; } 
-
-
-        public string ChargeType { get; set; }
-        public string ItemName { get; set; }
-        public DateTime ServiceStartDateTime { get; set; }
-        public DateTime ServiceEndDateTime { get; set; }
-        public long ChargedDays { get; set; }
-        public long ChargedHours { get; set; }
-        public long ChargedMinutes { get; set; }
-
-        public string Rate { get; set; }
-        public long TotalCharge { get; set; }
-        public string VehicleCheckList { get; set; }
-
-        public double TotalVehicleCharges { get; set; }
+        public long RaCloseLocation { get; set; }      
+        public double TotalVehicleCharge { get; set; }
         public double StandardDiscount { get; set; }
         public double SessionalDiscount { get; set; }
         public double VoucherDiscount { get; set; }
@@ -42,11 +29,6 @@ namespace Cares.Models.ReportModels
         public double? TotalOtherCharges { get; set; }
         public double AmountPaid { get; set; }
         public double Balance { get; set; }
-
-
-
-
-
         #endregion
     }
 }

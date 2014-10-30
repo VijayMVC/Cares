@@ -3,7 +3,7 @@
 namespace Cares.Web.Models
 {
     /// <summary>
-    /// Ra ServiceItem Web Model
+    /// Ra Service Item Web Model
     /// </summary>
     public class RaServiceItem
     {

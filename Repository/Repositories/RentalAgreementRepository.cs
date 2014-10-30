@@ -124,14 +124,7 @@ namespace Cares.Repository.Repositories
             return dailyActionDetailQuery.OrderBy(raHireGroup => raHireGroup.HireGroup).ToList();
         }
 
-        /// <summary>
-        /// Rental Agreement Detail Report
-        /// </summary>        
-        public List<RaMain> GetRentalAgreementReport()
-        {
-            return DbSet.Select(ravehicle => ravehicle).Where(ramain => ramain.RaMainId == 1).ToList();
-        }
-
+       
         #endregion
     }
 }
