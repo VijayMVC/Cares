@@ -148,10 +148,9 @@ namespace Cares.Repository.Repositories
         /// <returns></returns>
         public bool IsTariffTypeOvelap(TariffType tariffType)
         {
-
-            return DbSet.Count(tt => tt.ChildTariffTypeId != tariffType.TariffTypeId && (tt.DurationTo + tt.GracePeriod) > tariffType.DurationFrom
-                && tt.DurationFrom < tariffType.DurationTo && tt.UserDomainKey == UserDomainKey && tt.MeasurementUnitId == tariffType.MeasurementUnitId
-                && tt.EffectiveDate == tariffType.EffectiveDate) > 0;
+            return DbSet.Count(tt => tt.TariffTypeId != tariffType.TariffTypeId && (tt.DurationTo + tt.GracePeriod) > tariffType.DurationFrom
+        && tt.DurationFrom < tariffType.DurationTo && tt.UserDomainKey == UserDomainKey && tt.MeasurementUnitId == tariffType.MeasurementUnitId
+        && tt.EffectiveDate == tariffType.EffectiveDate && tt.ChildTariffTypeId == null) > 0;
         }
         #endregion
     }

@@ -235,6 +235,7 @@ define("tariffRate/tariffRate.viewModel",
                             selectedTariffRate().operationCodeName(selectedtariffRateCopy().operationCodeName());
                             selectedTariffRate().operationId(selectedtariffRateCopy().operationId());
                         }
+                        selectedTariffRate(undefined);
                         isTariffRateEditorVisible(false);
                     },
                     // Show Tariff Type Editor
@@ -349,7 +350,13 @@ define("tariffRate/tariffRate.viewModel",
                     onEditTariffRate = function (tariffRate, e) {
                         selectedTariffRateId(tariffRate.tariffRateId());
                         selectedTariffRate(tariffRate);
-                        selectedTariffRate(model.TariffRateCoppier(selectedTariffRate()));
+                        //filteredTariffTypes.removeAll();
+                        //_.each(tariffTypes(), function (item) {
+                        //    if (item.OperationId === tariffRate.operationId())
+                        //        filteredTariffTypes.push(item);
+                        //});
+                        //filteredTariffTypes.valueHasMutated();
+                        selectedtariffRateCopy(model.TariffRateCoppier(selectedTariffRate()));
                         getHireGroupDetails(tariffRate);
                         showTariffRateEditor();
                         e.stopImmediatePropagation();

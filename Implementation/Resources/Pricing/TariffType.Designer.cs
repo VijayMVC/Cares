@@ -70,7 +70,7 @@ namespace Cares.Implementation.Resources.Pricing {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Duration Overlap.
+        ///   Looks up a localized string similar to The current defined range falls within the duration of another tariff type..
         /// </summary>
         public static string OverlapDuration {
             get {

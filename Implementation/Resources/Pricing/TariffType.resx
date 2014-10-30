@@ -121,6 +121,6 @@
     <value>Tariff Type with the same code already exists. Please choose a different code!</value>
   </data>
   <data name="OverlapDuration" xml:space="preserve">
-    <value>Duration Overlap</value>
+    <value>The current defined range falls within the duration of another tariff type.</value>
   </data>
 </root>

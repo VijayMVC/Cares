@@ -207,7 +207,7 @@ define("tariffType/tariffType.viewModel",
                                 toastr.error("Start From and End To values always between 1 to 59.");
                                 flag = false;
                             }
-                            else if (addTariffType().durationTo() > addTariffType().durationFrom()) {
+                            else if (addTariffType().durationTo() < addTariffType().durationFrom()) {
                                 toastr.error("End To must greater than Start From.");
                                 flag = false;
                             }
@@ -220,7 +220,7 @@ define("tariffType/tariffType.viewModel",
                                 toastr.error("Start From and End To values always between 1 to 23.");
                                 flag = false;
                             }
-                            else if (addTariffType().durationTo() > addTariffType().durationFrom()) {
+                            else if (addTariffType().durationTo() < addTariffType().durationFrom()) {
                                 toastr.error("End To must greater than Start From.");
                                 flag = false;
                             }

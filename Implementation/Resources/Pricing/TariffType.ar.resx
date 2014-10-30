@@ -121,6 +121,6 @@
     <value>نوع التعرفة مع نفس الرمز موجود بالفعل. يرجى اختيار رمز مختلف!</value>
   </data>
   <data name="OverlapDuration" xml:space="preserve">
-    <value />
+    <value>يقع نطاق محدد الحالي خلال مدة نوع التعرفة آخر.</value>
   </data>
 </root>
