@@ -30,15 +30,15 @@ namespace Cares.WebApi.Areas.Api.Controllers
         }
         #endregion
         #region Public
-        [HttpPost]
-        public IEnumerable<WebApiOperationWorkplace> Post(long domainKey)
+
+        public IEnumerable<WebApiOperationWorkplace> Post(GetOperationWorkplaceRequest request)
         {
-            if (!ModelState.IsValid || domainKey == 0)
+            if (!ModelState.IsValid || request == null || !request.DomainKey.HasValue)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
             return
-                operationsWorkPlaceService.GetOperationsWorkPlacesByDomainKey(domainKey).Select(owp => owp.CreateFrom());
+                operationsWorkPlaceService.GetOperationsWorkPlacesByDomainKey(request.DomainKey.Value).Select(owp => owp.CreateFrom());
         }
         #endregion
     }
