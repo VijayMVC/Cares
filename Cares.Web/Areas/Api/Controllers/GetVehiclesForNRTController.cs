@@ -14,6 +14,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// Get Vehicles For NRT API Controller
     /// </summary>
     // ReSharper disable once InconsistentNaming
+    [Authorize]
     public class GetVehiclesForNRTController : ApiController
     {
         #region Private

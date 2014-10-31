@@ -12,6 +12,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Fleet Pool Base Controller
     /// </summary>
+    [Authorize]
     public class FleetPoolBaseController: ApiController
     {
         #region Private

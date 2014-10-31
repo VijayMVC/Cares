@@ -11,6 +11,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Nrt Type base Controller
     /// </summary>
+    [Authorize]
     public class NrtTypeBaseController : ApiController
     {
         #region Private

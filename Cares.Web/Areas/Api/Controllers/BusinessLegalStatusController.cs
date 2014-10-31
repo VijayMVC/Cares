@@ -13,6 +13,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Business Legal Status API Controller
     /// </summary>
+    [Authorize]
     public class BusinessLegalStatusController : ApiController
     {  
         #region Private

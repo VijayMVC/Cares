@@ -13,6 +13,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Vehicle Make API Controller
     /// </summary>
+    [Authorize]
     public class VehicleMakeController : ApiController
     {  
         #region Private

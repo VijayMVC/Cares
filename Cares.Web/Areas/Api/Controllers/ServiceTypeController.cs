@@ -14,6 +14,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Service Type Controller
     /// </summary>
+    [Authorize]
     public class ServiceTypeController : ApiController
     {
        #region Private

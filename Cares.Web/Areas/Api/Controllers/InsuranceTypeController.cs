@@ -13,6 +13,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Insurance Type API Controller
     /// </summary>
+    [Authorize]
     public class InsuranceTypeController : ApiController
     {  
         #region Private

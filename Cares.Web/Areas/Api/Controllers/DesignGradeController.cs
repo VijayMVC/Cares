@@ -14,6 +14,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     ///  Design Grade Controller
     /// </summary>
+    [Authorize]
     public class DesignGradeController : ApiController
     {
        #region Private

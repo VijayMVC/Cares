@@ -5,7 +5,6 @@ using System.Web.Http;
 using Cares.Interfaces.IServices;
 using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
-using Cares.Models.ResponseModels;
 using Cares.Web.ModelMappers;
 using Cares.WebBase.Mvc;
 
@@ -14,6 +13,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Additional Charge Api Controller
     /// </summary>
+    [Authorize]
     public class AdditionalChargeController : ApiController
     {
 

@@ -13,6 +13,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Occupation Type API Controller
     /// </summary>
+    [Authorize]
     public class OccupationTypeController : ApiController
     {  
         #region Private

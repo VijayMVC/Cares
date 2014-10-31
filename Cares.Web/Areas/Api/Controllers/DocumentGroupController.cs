@@ -13,6 +13,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Document Group Controller
     /// </summary>
+    [Authorize]
     public class DocumentGroupController : ApiController
     {
        #region Private

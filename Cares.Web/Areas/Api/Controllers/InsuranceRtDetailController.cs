@@ -11,6 +11,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Insurance Rate Detail Api Controller
     /// </summary>
+    [Authorize]
     public class InsuranceRtDetailController : ApiController
     {
         #region Private

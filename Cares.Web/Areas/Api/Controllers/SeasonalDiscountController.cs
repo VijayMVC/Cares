@@ -12,6 +12,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Seasonal Discount API Controller
     /// </summary>
+    [Authorize]
     public class SeasonalDiscountController : ApiController
     {
         #region Private

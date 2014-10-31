@@ -11,6 +11,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Rental Agreement Base Api Controller
     /// </summary>
+    [Authorize]
     public class RentalAgreementBaseController : ApiController
     {
         #region Private

@@ -11,6 +11,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Ra Insurance Rts Api Controller
     /// </summary>
+    [Authorize]
     public class RaInsuranceRtsController : ApiController
     {
 

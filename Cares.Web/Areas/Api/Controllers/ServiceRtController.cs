@@ -12,6 +12,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Service Rate Api Controller
     /// </summary>
+    [Authorize]
     public class ServiceRtController : ApiController
     {
         #region Private

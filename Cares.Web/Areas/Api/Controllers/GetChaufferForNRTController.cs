@@ -16,6 +16,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// Get Chauffer For NRT API Controller
     /// </summary>
     // ReSharper disable once InconsistentNaming
+    [Authorize]
     public class GetChaufferForNRTController : ApiController
     {
         #region Private

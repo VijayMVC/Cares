@@ -14,6 +14,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Rating Type Controller
     /// </summary>
+    [Authorize]
     public class RatingTypeController : ApiController
     {
        #region Private

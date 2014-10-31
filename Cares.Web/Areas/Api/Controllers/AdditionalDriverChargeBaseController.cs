@@ -10,6 +10,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Additional Driver Base Api Controller
     /// </summary>
+    [Authorize]
     public class AdditionalDriverChargeBaseController : ApiController
     {
         #region Private
