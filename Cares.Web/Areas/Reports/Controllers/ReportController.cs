@@ -1,24 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using Cares.Web.Controllers;
+using Cares.WebBase.Mvc;
 
 namespace Cares.Web.Areas.Reports.Controllers
 {
-    public class ReportController : Controller
+    [SiteAuthorize(PermissionKey = "Reports")]
+    public class ReportController : BaseController
     {
         // GET: Reports/Report
+        [SiteAuthorize(PermissionKey = "FleetReport")]
         public ActionResult FleetReport()
         {
             return View();
         }
 
+        [SiteAuthorize(PermissionKey = "DailyActionReport")]
         public ActionResult DailyActionReport()
         {
             return View();
         }
 
+        [SiteAuthorize(PermissionKey = "RentalAgreementReport")]
         public ActionResult RentalAgreementReport()
         {
             return View();

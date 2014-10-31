@@ -1,5 +1,4 @@
-﻿using Cares.Interfaces.IServices;
-using Cares.Interfaces.Repository;
+﻿using Cares.Interfaces.Repository;
 using Cares.Repository.BaseRepository;
 using Cares.Repository.Repositories;
 using Microsoft.Practices.Unity;
@@ -127,6 +126,7 @@ namespace Cares.Repository
             unityContainer.RegisterType<IVehcilceImageDetailRepository, VehcilceImageDetailRepository>();
             unityContainer.RegisterType<IVehicleImageRepository, VehicleImageRepository>();
             unityContainer.RegisterType<IBookingMainRepository, BookingMainRepository>();
+            unityContainer.RegisterType<IMenuRepository, MenuRepository>();
         }
     }
 }

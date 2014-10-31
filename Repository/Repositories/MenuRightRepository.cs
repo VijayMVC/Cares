@@ -40,5 +40,6 @@ namespace Cares.Repository.Repositories
                     .Include(menu => menu.Menu)
                     .Include(menu => menu.Menu.ParentItem);
         }
+
     }
 }

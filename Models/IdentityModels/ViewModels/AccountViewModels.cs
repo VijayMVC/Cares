@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Cares.Models.DomainModels;
 
 namespace Cares.Models.IdentityModels.ViewModels
 {
@@ -76,6 +77,11 @@ namespace Cares.Models.IdentityModels.ViewModels
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        public string SelectedRole { get; set; }
+
+        public List<UserRole> Roles { get; set; }  
     }
 
     public class ResetPasswordViewModel

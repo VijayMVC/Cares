@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -20,7 +21,7 @@ namespace Cares.WebBase.Mvc
             object userPermissionSet = HttpContext.Current.Session["UserPermissionSet"];
             if (userPermissionSet != null)
             {
-                string[] userPermissionsSet = (string[])userPermissionSet;
+                IList<string> userPermissionsSet = (IList<string>)userPermissionSet;
                 return (userPermissionsSet.Contains(PermissionKey));
             }
             return false;
