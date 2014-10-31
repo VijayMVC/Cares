@@ -1,15 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using Cares.Interfaces.IServices;
 
-namespace WebApi.Controllers
+namespace Cares.WebApi.Controllers
 {
+    
     public class HomeController : Controller
     {
+        private readonly IWebApiAuthenticationService authenticationService;
+
+        public HomeController(IWebApiAuthenticationService authenticationService)
+        {
+            if (authenticationService == null)
+            {
+                throw new ArgumentNullException("authenticationService");
+            }
+            this.authenticationService = authenticationService;
+        }
+
         public ActionResult Index()
         {
+
+            var item = authenticationService.IsValidWebApiUser("asf", "asfasf");
             return View();
         }
 

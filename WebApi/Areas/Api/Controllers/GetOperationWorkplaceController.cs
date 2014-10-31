@@ -16,16 +16,22 @@ namespace Cares.WebApi.Areas.Api.Controllers
     [Authorize]
     public class GetOperationWorkplaceController : ApiController
     {
+        #region Private
         public IOperationsWorkPlaceService operationsWorkPlaceService { get; set; }
-
+        #endregion
+        #region Constructor
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public GetOperationWorkplaceController(IOperationsWorkPlaceService operationsWorkPlaceService)
         {
             if (operationsWorkPlaceService == null) throw new ArgumentNullException("operationsWorkPlaceService");
             this.operationsWorkPlaceService = operationsWorkPlaceService;
         }
-
-        [HttpGet]
-        public IEnumerable<WebApiOperationWorkplace> Get(long domainKey)
+        #endregion
+        #region Public
+        [HttpPost]
+        public IEnumerable<WebApiOperationWorkplace> Post(long domainKey)
         {
             if (!ModelState.IsValid || domainKey == 0)
             {
@@ -33,6 +39,7 @@ namespace Cares.WebApi.Areas.Api.Controllers
             }
             return
                 operationsWorkPlaceService.GetOperationsWorkPlacesByDomainKey(domainKey).Select(owp => owp.CreateFrom());
-        } 
+        }
+        #endregion
     }
 }
