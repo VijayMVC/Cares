@@ -87,6 +87,13 @@ namespace Cares.Implementation.Services
         /// <returns></returns>
         public ChaufferChargeMainContent SaveChaufferCharge(ChaufferChargeMain chaufferChargeMain)
         {
+            //Code Duplication Check
+            if (chaufferChargeMainRepository.IsChauffeurChargeMainCodeExists(chaufferChargeMain.ChaufferChargeMainCode,
+              chaufferChargeMain.ChaufferChargeMainId))
+            {
+                throw new CaresException(Resources.Tariff.ChaufferCharge.CodeDuplicationError);
+            }
+
             ChaufferChargeMain chaufferChargeMainDbVersion =
                chaufferChargeMainRepository.Find(chaufferChargeMain.ChaufferChargeMainId);
             TariffType tariffType = tariffTypeRepository.Find(long.Parse(chaufferChargeMain.TariffTypeCode));

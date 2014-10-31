@@ -74,7 +74,7 @@ namespace Cares.Repository.Repositories
                 s => (!request.NrtNumber.HasValue || s.NrtMainId == request.NrtNumber) && (!request.CloseLocationId.HasValue || s.CloseLocationId == request.CloseLocationId)
                      && (!request.OpenLocationId.HasValue || s.OpenLocationId == request.OpenLocationId) && (!request.StartDate.HasValue || DbFunctions.TruncateTime(s.StartDtTime) == DbFunctions.TruncateTime(request.StartDate))
                      && (!request.EndDate.HasValue || DbFunctions.TruncateTime(s.EndDtTime) == DbFunctions.TruncateTime(request.EndDate)) && (!request.NrtStatusId.HasValue || s.NrtStatusId == request.NrtStatusId)
-                     && (!request.NrtTypeId.HasValue || s.NrtTypeId == request.NrtTypeId);
+                     && (!request.NrtTypeId.HasValue || s.NrtTypeId == request.NrtTypeId && s.UserDomainKey == UserDomainKey);
 
             IEnumerable<NrtMain> nRtMains = request.IsAsc ? DbSet.Where(query)
                                             .OrderBy(nRtMainClause[request.NrtQueueOrderBy]).Skip(fromRow).Take(toRow).ToList()

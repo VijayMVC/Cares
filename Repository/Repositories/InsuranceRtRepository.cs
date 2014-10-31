@@ -36,7 +36,7 @@ namespace Cares.Repository.Repositories
         #endregion
 
         #region Public
-        
+
         /// <summary>
         /// Get All Insurance Rate for User Domain Key
         /// </summary>
@@ -44,7 +44,7 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(insuranceRt => insuranceRt.UserDomainKey == UserDomainKey).ToList();
         }
-       
+
         /// <summary>
         /// Get Insurance Rate By Insurance Rate MainI d
         /// </summary>
@@ -81,7 +81,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsInsuranceTypeAssociatedWithInsuranceRt(long insuranceTypeId)
         {
-            return DbSet.Count(insuranceRt => insuranceRt.InsuranceTypeId == insuranceTypeId) > 0;
+            return DbSet.Count(insuranceRt => insuranceRt.InsuranceTypeId == insuranceTypeId && insuranceRt.UserDomainKey == UserDomainKey) > 0;
         }
         #endregion
     }

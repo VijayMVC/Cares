@@ -530,6 +530,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ChaufferCharge.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Tariff\InsuranceRate.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InsuranceRate.ar.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Tariff\InsuranceRate.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

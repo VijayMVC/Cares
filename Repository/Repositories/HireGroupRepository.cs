@@ -72,7 +72,7 @@ namespace Cares.Repository.Repositories
                 s => (string.IsNullOrEmpty(hireGroupSearchRequest.SearchString) || s.HireGroupCode.Contains(hireGroupSearchRequest.SearchString) || s.HireGroupName.Contains(hireGroupSearchRequest.SearchString)) &&
                     (hireGroupSearchRequest.CompanyId == null || s.Company.CompanyId == hireGroupSearchRequest.CompanyId) &&
                      (hireGroupSearchRequest.ParentHireGroupId == null ||
-                      s.ParentHireGroupId == hireGroupSearchRequest.ParentHireGroupId);
+                      s.ParentHireGroupId == hireGroupSearchRequest.ParentHireGroupId && s.UserDomainKey == UserDomainKey);
 
             IEnumerable<HireGroup> hireGroups = hireGroupSearchRequest.IsAsc ? DbSet.Where(query)
                                             .OrderBy(hireGroupClause[hireGroupSearchRequest.HireGroupOrderBy]).Skip(fromRow).Take(toRow).ToList()

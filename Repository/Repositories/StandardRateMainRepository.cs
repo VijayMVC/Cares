@@ -58,7 +58,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public override IEnumerable<StandardRateMain> GetAll()
         {
-            return DbSet.Where(department => department.UserDomainKey == UserDomainKey).ToList();
+            return DbSet.Where(srtm => srtm.UserDomainKey == UserDomainKey).ToList();
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace Cares.Repository.Repositories
                                          (!tariffRateRequest.OperationId.HasValue ||
                                            tariffType.OperationId == tariffRateRequest.OperationId.Value) &&
                                           (!tariffRateRequest.TariffTypeId.HasValue ||
-                                           tariffType.TariffTypeId == tariffRateRequest.TariffTypeId)) && !(tariffType.ChildTariffTypeId.HasValue)
+                                           tariffType.TariffTypeId == tariffRateRequest.TariffTypeId)) && !(tariffType.ChildTariffTypeId.HasValue && tariffRate.UserDomainKey == UserDomainKey)
                                      select new TariffRateContent
                                      {
                                          StandardRtMainId = tariffRate.StandardRtMainId,
@@ -107,7 +107,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public override StandardRateMain Find(long standardRateMainId)
         {
-            return DbSet.FirstOrDefault(standardRateMain => standardRateMain.StandardRtMainId == standardRateMainId);
+            return DbSet.FirstOrDefault(standardRateMain => standardRateMain.StandardRtMainId == standardRateMainId && standardRateMain.UserDomainKey == UserDomainKey);
         }
 
         /// <summary>

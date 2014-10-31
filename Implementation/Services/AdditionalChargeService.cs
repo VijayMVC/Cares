@@ -73,6 +73,14 @@ namespace Cares.Implementation.Services
         /// <returns></returns>
         public AdditionalChargeType SaveAdditionalCharge(AdditionalChargeType additionalChargeType)
         {
+
+            //Code Duplication Check
+            if (additionalChargeTypeRepository.IsAdditionalChargeCodeExists(additionalChargeType.AdditionalChargeTypeCode,
+              additionalChargeType.AdditionalChargeTypeId))
+            {
+                throw new CaresException(Resources.Tariff.AdditionalCharge.CodeDuplicationError);
+            }
+
             AdditionalChargeType additionalChargeTypeDbVersion =
                 additionalChargeTypeRepository.Find(additionalChargeType.AdditionalChargeTypeId);
             if (additionalChargeTypeDbVersion == null) //Add Case
@@ -219,7 +227,7 @@ namespace Cares.Implementation.Services
         /// <param name="additionalCharges"></param>
         private void AditionalChargeValidation(IEnumerable<AdditionalCharge> additionalCharges)
         {
-            if (additionalCharges!=null)
+            if (additionalCharges != null)
             {
                 if (additionalCharges.Any(item => item.StartDt < DateTime.Now))
                 {
@@ -231,4 +239,3 @@ namespace Cares.Implementation.Services
         #endregion
     }
 }
-    

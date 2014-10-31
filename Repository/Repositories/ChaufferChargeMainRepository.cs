@@ -111,6 +111,14 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(chaufferChrg => chaufferChrg.TariffTypeCode == tariffTypeCode).ToList().Count > 0;
         }
+
+        /// <summary>
+        /// Chauffeur Charge Main Code validation check
+        /// </summary>
+        public bool IsChauffeurChargeMainCodeExists(string chauffeurChargeMainCode, long chauffeurChargeMainId)
+        {
+            return DbSet.Count(ccm => ccm.ChaufferChargeMainCode.ToLower().Trim() == chauffeurChargeMainCode.ToLower().Trim() && ccm.UserDomainKey == UserDomainKey && ccm.ChaufferChargeMainId != chauffeurChargeMainId) > 0;
+        }
         #endregion
     }
 }

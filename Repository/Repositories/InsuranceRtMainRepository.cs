@@ -51,7 +51,7 @@ namespace Cares.Repository.Repositories
         #endregion
 
         #region Public
-        
+
         /// <summary>
         /// Get All Insurance Rate Main for User Domain Key
         /// </summary>
@@ -75,7 +75,7 @@ namespace Cares.Repository.Repositories
                                             (!insuranceRateSearchRequest.OperationId.HasValue ||
                                               tariffType.OperationId == insuranceRateSearchRequest.OperationId.Value) &&
                                              (!insuranceRateSearchRequest.TariffTypeId.HasValue ||
-                                              tariffType.TariffTypeId == insuranceRateSearchRequest.TariffTypeId)) && !(tariffType.ChildTariffTypeId.HasValue)
+                                              tariffType.TariffTypeId == insuranceRateSearchRequest.TariffTypeId)) && !(tariffType.ChildTariffTypeId.HasValue && insuranceRtMain.UserDomainKey == UserDomainKey && tariffType.UserDomainKey == UserDomainKey)
                                         select new InsuranceRtMainContent
                                         {
                                             InsuranceRtMainId = insuranceRtMain.InsuranceRtMainId,
@@ -99,7 +99,7 @@ namespace Cares.Repository.Repositories
 
             return new InsuranceRateSearchResponse { InsuranceRtMains = insuranceRtMains, TotalCount = getInsuranceRateQuery.Count() };
         }
-        
+
         /// <summary>
         /// Get  Insurance Rate Main By Tariff Type Code
         /// </summary>
@@ -107,7 +107,14 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(insuranceRtMain => insuranceRtMain.UserDomainKey == UserDomainKey && insuranceRtMain.TariffTypeCode == tariffTypeCode).ToList();
         }
-        
+
+        /// <summary>
+        /// Insurance Rate Main Code validation check
+        /// </summary>
+        public bool IsInsuranceRtMainCodeExists(string insuranceRtMainCode, long insuranceRtMainId)
+        {
+            return DbSet.Count(irm => irm.InsuranceRtMainCode.ToLower().Trim() == insuranceRtMainCode.ToLower().Trim() && irm.UserDomainKey == UserDomainKey && irm.InsuranceRtMainId != insuranceRtMainId) > 0;
+        }
         #endregion
     }
 }
