@@ -57,7 +57,7 @@ namespace Cares.Repository.Repositories
                 DbSet.Where(
                     addChrg =>
                         addChrg.ChildAdditionalChargeId == null &&
-                        addChrg.AdditionalChargeTypeId == additionChargeTypeId).ToList();
+                        addChrg.AdditionalChargeTypeId == additionChargeTypeId && addChrg.UserDomainKey == UserDomainKey).ToList();
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace Cares.Repository.Repositories
                         where
                             (additionalCharge.StartDt <= startDt && hgDetail.VehicleCategory.VehicleCategoryId == vehicle.VehicleCategoryId
                             && hgDetail.VehicleMake.VehicleMakeId == vehicle.VehicleMakeId && hgDetail.VehicleModel.VehicleModelId == vehicle.VehicleModelId
-                            && hgDetail.ModelYear == vehicle.ModelYear)
+                            && hgDetail.ModelYear == vehicle.ModelYear && additionalCharge.UserDomainKey == UserDomainKey && hgDetail.UserDomainKey == UserDomainKey)
                         select new AdditionalChargeForNrt
                 {
                     AdditionalChargeTypeCode = additionalCharge.AdditionalChargeType.AdditionalChargeTypeCode,

@@ -21,5 +21,11 @@ namespace Cares.Interfaces.Repository
         /// <returns></returns>
         bool LoadChaufferChargeMainExist(string tariffTypeCode);
 
+        /// <summary>
+        /// Chauffeur Charge Main Code validation check
+        /// </summary>
+        bool IsChauffeurChargeMainCodeExists(string chauffeurChargeMainCode, long chauffeurChargeMainId);
+
+
     }
 }

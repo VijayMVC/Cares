@@ -61,6 +61,15 @@ namespace Cares.Implementation.Resources.Tariff {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Additional Charge with the same code already exists. Please choose a different code!.
+        /// </summary>
+        public static string CodeDuplicationError {
+            get {
+                return ResourceManager.GetString("CodeDuplicationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start Date must be a current or future date..
         /// </summary>
         public static string InvalidStartDate {

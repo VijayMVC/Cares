@@ -15,5 +15,10 @@ namespace Cares.Interfaces.Repository
         /// </summary>
         AdditionalChargeSearchResponse GetAdditionalCharges(AdditionalChargeSearchRequest request);
 
+        /// <summary>
+        /// Additional Charge Type Code validation check
+        /// </summary>
+        bool IsAdditionalChargeCodeExists(string additionalChargeTypeCode, long additionalChargeTypeId);
+
     }
 }

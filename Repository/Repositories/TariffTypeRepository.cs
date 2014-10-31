@@ -86,7 +86,7 @@ namespace Cares.Repository.Repositories
                                 (!(tariffTypeRequest.OperationId > 0) || s.OperationId == tariffTypeRequest.OperationId) &&
                                 (!(tariffTypeRequest.MeasurementUnitId > 0) || s.MeasurementUnitId == tariffTypeRequest.MeasurementUnitId) &&
                                  (string.IsNullOrEmpty(tariffTypeRequest.TariffTypeCode) || s.TariffTypeCode.Contains(tariffTypeRequest.TariffTypeCode))) &&
-                                 (s.ChildTariffTypeId == 0 || s.ChildTariffTypeId == null);
+                                 (s.ChildTariffTypeId == 0 || s.ChildTariffTypeId == null && s.UserDomainKey == UserDomainKey);
 
             IEnumerable<TariffType> tariffTypes = tariffTypeRequest.IsAsc ? DbSet.Where(query)
                                             .OrderBy(tariffTypeClause[tariffTypeRequest.TariffTypeByOrder]).Skip(fromRow).Take(toRow).ToList()
@@ -116,7 +116,7 @@ namespace Cares.Repository.Repositories
               DbSet.Include(tariffType => tariffType.Operation)
                   .Include(tariffType => tariffType.Operation.Department)
                   .Include(tariffType => tariffType.Operation.Department.Company)
-                  .FirstOrDefault(tariffType => tariffType.TariffTypeId == tariffTypeId);
+                  .FirstOrDefault(tariffType => tariffType.TariffTypeId == tariffTypeId && tariffType.UserDomainKey == UserDomainKey);
         }
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace Cares.Repository.Repositories
               DbSet.Include(tariffType => tariffType.Operation)
                   .Include(tariffType => tariffType.Operation.Department)
                   .Include(tariffType => tariffType.Operation.Department.Company)
-                  .FirstOrDefault(tariffType => tariffType.ChildTariffTypeId == tariffTypeId);
+                  .FirstOrDefault(tariffType => tariffType.ChildTariffTypeId == tariffTypeId && tariffType.UserDomainKey == UserDomainKey);
         }
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace Cares.Repository.Repositories
         public IEnumerable<TariffType> GetByTariffTypeCode(string tariffTypeCode)
         {
             return DbSet.Where(tariffType => tariffType.UserDomainKey == UserDomainKey && tariffType.ChildTariffTypeId == null
-                && tariffType.TariffTypeCode.ToLower() == tariffTypeCode.ToLower()).ToList();
+                && tariffType.TariffTypeCode.ToLower().Trim() == tariffTypeCode.ToLower().Trim() && tariffType.UserDomainKey == UserDomainKey).ToList();
         }
 
         /// <summary>

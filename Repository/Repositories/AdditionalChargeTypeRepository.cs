@@ -82,6 +82,13 @@ namespace Cares.Repository.Repositories
             return new AdditionalChargeSearchResponse { AdditionalChargeTypes = additionalChargeTypes, TotalCount = DbSet.Count(query) };
         }
 
+        /// <summary>
+        /// Additional Charge Type Code validation check
+        /// </summary>
+        public bool IsAdditionalChargeCodeExists(string additionalChargeTypeCode, long additionalChargeTypeId)
+        {
+            return DbSet.Count(act => act.AdditionalChargeTypeCode.ToLower().Trim() == additionalChargeTypeCode.ToLower().Trim() && act.UserDomainKey == UserDomainKey && act.AdditionalChargeTypeId != additionalChargeTypeId) > 0;
+        }
         #endregion
     }
 }
