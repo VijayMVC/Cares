@@ -1,14 +1,14 @@
-﻿using Cares.Interfaces.IReportServices;
+﻿using System.Collections.Generic;
+using Cares.Interfaces.IReportServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.ReportModels;
-using System.Collections.Generic;
 
 namespace Cares.Implementation.ReportServices
 {
     /// <summary>
     /// 
     /// </summary>
-    public class FleetReportService : IFleetReportService
+    public class MissingHireGroupService : IMissingHireGroupService
     {
         #region Private
 
@@ -20,7 +20,7 @@ namespace Cares.Implementation.ReportServices
         /// <summary>
         /// Constructor
         /// </summary>
-        public FleetReportService(IVehicleRepository vehicleRepository)
+        public MissingHireGroupService(IVehicleRepository vehicleRepository)
         {
             this.vehicleRepository = vehicleRepository;
         }
@@ -28,12 +28,10 @@ namespace Cares.Implementation.ReportServices
         #endregion
         #region Public
 
-        public IList<RptFleetHireGroupDetail> LoadFleetHireGroupDetail()
+        public IList<MissingHireGroupResponse> LoadMissingHireGroups()
         {
-            return vehicleRepository.GetFleetReport();
-
+            return vehicleRepository.GetMissingHireGroups();
         }
-
         #endregion
 
     }

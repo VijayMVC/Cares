@@ -18,6 +18,12 @@ namespace Cares.Interfaces.Repository
         IList<RptFleetHireGroupDetail>  GetFleetReport();
 
         /// <summary>
+        /// Get Missing Hire Groups Details 
+        /// </summary>        
+        IList<MissingHireGroupResponse> GetMissingHireGroups();
+
+
+        /// <summary>
         /// Get Vechile against HireGroup
         /// </summary>
         GetVehicleResponse GetByHireGroup(VehicleSearchRequest request);

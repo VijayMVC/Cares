@@ -1,7 +1,7 @@
 ﻿
 using Cares.Models.DomainModels;
 
-namespace Cares.Interfaces.IServices
+namespace Cares.Interfaces.IReportServices
 {
     public interface IRentalAgreementReportService
     {

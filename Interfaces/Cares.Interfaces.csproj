@@ -50,6 +50,7 @@
     <Compile Include="Helpers\IRaDriverHelper.cs" />
     <Compile Include="Helpers\IRentalCharge.cs" />
     <Compile Include="Helpers\IBill.cs" />
+    <Compile Include="IReportServices\IMissingHireGroupService.cs" />
     <Compile Include="IReportServices\IDailyActionService.cs" />
     <Compile Include="IReportServices\IFleetReportService.cs" />
     <Compile Include="IServices\IAdditionalChargeService.cs" />
@@ -59,7 +60,7 @@
     <Compile Include="IServices\IBusinessPartnerRelationTypeService.cs" />
     <Compile Include="IServices\IBusinessPartnerSubTypeService.cs" />
     <Compile Include="IServices\INrtQueueService.cs" />
-    <Compile Include="IServices\IRentalAgreementReportService.cs" />
+    <Compile Include="IReportServices\IRentalAgreementReportService.cs" />
     <Compile Include="IServices\IVehicleModelService.cs" />
     <Compile Include="IServices\ICreditLimitService.cs" />
     <Compile Include="IServices\IVehicleStatusService.cs" />

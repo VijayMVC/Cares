@@ -792,6 +792,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FleetDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reports\MissingHireGroupDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MissingHireGroupDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\MissingHireGroupReport.aspx.cs">
+      <DependentUpon>MissingHireGroupReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\MissingHireGroupReport.aspx.designer.cs">
+      <DependentUpon>MissingHireGroupReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\RentalAgreementDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2099,6 +2111,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Reports\DailyActionReport.aspx" />
+    <Content Include="Reports\MissingHireGroupReport.aspx" />
     <Content Include="Reports\RentalAgreementReport.aspx" />
     <Content Include="Reports\VehiclesReport.aspx" />
     <Content Include="Resources\Images\favicon.ico" />
@@ -2594,6 +2607,7 @@
     <Content Include="Areas\RentalAgreement\Views\Home\_AdditionalChargeDialog.cshtml" />
     <Content Include="Areas\RentalAgreement\Views\Home\_VehicleMovementDialog.cshtml" />
     <Content Include="Areas\RentalAgreement\Views\Home\_DiscountsDialog.cshtml" />
+    <Content Include="Areas\Reports\Views\Report\MissingHireGroupReport.cshtml" />
     <None Include="Properties\PublishProfiles\cares.pubxml" />
     <Content Include="Areas\Reports\Views\Report\DailyActionReport.cshtml" />
     <Content Include="Areas\Reports\Views\Report\RentalAgreementReport.cshtml" />
@@ -2623,6 +2637,17 @@
     </Content>
     <Content Include="Reports\RentalAgreementDS.xsc">
       <DependentUpon>RentalAgreementDS.xsd</DependentUpon>
+    </Content>
+    <Content Include="Reports\MissingHireGroupDS.xsc">
+      <DependentUpon>MissingHireGroupDS.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\MissingHireGroupDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MissingHireGroupDS.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reports\MissingHireGroupDS.xss">
+      <DependentUpon>MissingHireGroupDS.xsd</DependentUpon>
     </Content>
     <None Include="Reports\RentalAgreementDS.xsd">
       <SubType>Designer</SubType>
@@ -2861,6 +2886,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\RDLC\MissingHireGroup.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DailyAction.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\RentalAgreement.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\Vehicle.rdlc" />

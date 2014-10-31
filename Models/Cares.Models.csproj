@@ -323,6 +323,7 @@
     </Compile>
     <Compile Include="ReportModels\DailyActionReportResponse.cs" />
     <Compile Include="ReportModels\FleetHireGroupDetail.cs" />
+    <Compile Include="ReportModels\MissingHireGroupResponse.cs" />
     <Compile Include="RequestModels\AdditionalChargeSearchRequest.cs" />
     <Compile Include="RequestModels\AdditionalDriverChargeSearchRequest.cs" />
     <Compile Include="RequestModels\AreaSearchRequest.cs" />

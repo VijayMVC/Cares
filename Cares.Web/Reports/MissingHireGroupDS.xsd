@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="MissingHireGroup" targetNamespace="http://tempuri.org/MissingHireGroup.xsd" xmlns:mstns="http://tempuri.org/MissingHireGroup.xsd" xmlns="http://tempuri.org/MissingHireGroup.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="MissingHireGroup" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="MissingHireGroup" msprop:Generator_UserDSName="MissingHireGroup">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="MissingHireGroupDetail" msprop:Generator_TableClassName="MissingHireGroupDetailDataTable" msprop:Generator_TableVarName="tableMissingHireGroupDetail" msprop:Generator_TablePropName="MissingHireGroupDetail" msprop:Generator_RowDeletingName="MissingHireGroupDetailRowDeleting" msprop:Generator_RowChangingName="MissingHireGroupDetailRowChanging" msprop:Generator_RowEvHandlerName="MissingHireGroupDetailRowChangeEventHandler" msprop:Generator_RowDeletedName="MissingHireGroupDetailRowDeleted" msprop:Generator_UserTableName="MissingHireGroupDetail" msprop:Generator_RowChangedName="MissingHireGroupDetailRowChanged" msprop:Generator_RowEvArgName="MissingHireGroupDetailRowChangeEvent" msprop:Generator_RowClassName="MissingHireGroupDetailRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NumberPlate" msprop:Generator_ColumnVarNameInTable="columnNumberPlate" msprop:Generator_ColumnPropNameInRow="NumberPlate" msprop:Generator_ColumnPropNameInTable="NumberPlateColumn" msprop:Generator_UserColumnName="NumberPlate" type="xs:string" minOccurs="0" />
+              <xs:element name="VehicleMake" msprop:Generator_ColumnVarNameInTable="columnVehicleMake" msprop:Generator_ColumnPropNameInRow="VehicleMake" msprop:Generator_ColumnPropNameInTable="VehicleMakeColumn" msprop:Generator_UserColumnName="VehicleMake" type="xs:string" minOccurs="0" />
+              <xs:element name="VehicleModel" msprop:Generator_ColumnVarNameInTable="columnVehicleModel" msprop:Generator_ColumnPropNameInRow="VehicleModel" msprop:Generator_ColumnPropNameInTable="VehicleModelColumn" msprop:Generator_UserColumnName="VehicleModel" type="xs:string" minOccurs="0" />
+              <xs:element name="VehicleCategory" msprop:Generator_ColumnVarNameInTable="columnVehicleCategory" msprop:Generator_ColumnPropNameInRow="VehicleCategory" msprop:Generator_ColumnPropNameInTable="VehicleCategoryColumn" msprop:Generator_UserColumnName="VehicleCategory" type="xs:string" minOccurs="0" />
+              <xs:element name="ModelYear" msprop:Generator_ColumnVarNameInTable="columnModelYear" msprop:Generator_ColumnPropNameInRow="ModelYear" msprop:Generator_ColumnPropNameInTable="ModelYearColumn" msprop:Generator_UserColumnName="ModelYear" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
