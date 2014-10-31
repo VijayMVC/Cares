@@ -13,6 +13,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Credit Limit Controller
     /// </summary>
+    [Authorize]
     public class CreditLimitController : ApiController
     {
        #region Private

@@ -5,7 +5,6 @@ using System.Net;
 using System.Web;
 using System.Web.Http;
 using Cares.Interfaces.IServices;
-using Cares.Models.RequestModels;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
 
@@ -14,6 +13,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Rental Agreement Hire Groups Api Controller
     /// </summary>
+    [Authorize]
     public class RentalAgreementHireGroupsController : ApiController
     {
         #region Private

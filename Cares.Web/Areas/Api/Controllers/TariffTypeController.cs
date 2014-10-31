@@ -13,6 +13,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// tariff Type Api Controller
     /// </summary>
+    [Authorize]
     public class TariffTypeController : ApiController
     {
         #region Private

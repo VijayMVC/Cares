@@ -13,6 +13,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Maintenance Type API Controller
     /// </summary>
+    [Authorize]
     public class MaintenanceTypeController : ApiController
     {  
         #region Private

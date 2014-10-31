@@ -11,6 +11,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Get Nrt Detail API Controller
     /// </summary>
+    [Authorize]
     public class GetNrtDetailController : ApiController
     {
         #region Private

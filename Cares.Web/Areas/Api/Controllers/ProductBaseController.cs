@@ -11,6 +11,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Product Base Controller
     /// </summary>
+    [Authorize]
     public class ProductBaseController : ApiController
     {
         private readonly ICategoryService categoryService;

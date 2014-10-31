@@ -14,6 +14,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Additional Driver Charge Api Controller
     /// </summary>
+    [Authorize]
     public class AdditionalDriverChargeController : ApiController
     {
 

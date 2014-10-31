@@ -11,6 +11,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// Non Revenue Ticket Base API Controller
     /// </summary>
     // ReSharper disable once InconsistentNaming
+    [Authorize]
     public class NRTBaseController : ApiController
     {
         #region Private

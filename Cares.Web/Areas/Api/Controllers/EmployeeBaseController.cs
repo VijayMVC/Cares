@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Web;
 using System.Web.Http;
@@ -12,6 +11,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Employee Base Api Controller
     /// </summary>
+    [Authorize]
     public class EmployeeBaseController : ApiController
     {
         #region Private

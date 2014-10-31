@@ -1,19 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Http;
 using Cares.Interfaces.IServices;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
-using Operation = Cares.Models.DomainModels.Operation;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
     /// <summary>
     /// tariff Type Base Api Controller
     /// </summary>
+    [Authorize]
     public class TariffTypeBaseController : ApiController
     {
         #region Private

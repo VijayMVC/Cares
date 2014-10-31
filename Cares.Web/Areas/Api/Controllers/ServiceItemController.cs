@@ -13,6 +13,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Service Item Controller
     /// </summary>
+    [Authorize]
     public class ServiceItemController : ApiController
     {
        #region Private

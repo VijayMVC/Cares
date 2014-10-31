@@ -14,6 +14,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Job Type Controller
     /// </summary>
+    [Authorize]
     public class JobTypeController : ApiController
     {
         #region Private

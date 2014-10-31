@@ -14,6 +14,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Discount Type Controller
     /// </summary>
+    [Authorize]
     public class DiscountTypeController : ApiController
     {
        #region Private

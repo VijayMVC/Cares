@@ -10,6 +10,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Phone Controller
     /// </summary>
+    [Authorize]
     public class PhoneController : ApiController
     {
         #region Private

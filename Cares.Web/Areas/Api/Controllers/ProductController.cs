@@ -8,6 +8,7 @@ using Cares.Web.Models;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
+    [Authorize]
     public class ProductController : ApiController
     {
         private readonly IProductService productService;
