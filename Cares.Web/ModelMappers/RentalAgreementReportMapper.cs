@@ -1,108 +1,70 @@
-﻿using System;
+﻿using Cares.Models.DomainModels;
+using Cares.Web.Models.ReportModels;
 using System.Collections.Generic;
-using Cares.Models.DomainModels;
-using Cares.Models.ReportModels;
 using System.Linq;
 
 namespace Cares.Web.ModelMappers
 {
     public static class RentalAgreementReportMapper
     {
-        public static RentalAgreementInfo CreateVehicleInfoFromRa(this RaMain rentalAgreement)
+
+        private static RentalAgreementDetail CreateRentalAgreementDetail(this RaMain rentalAgreement)
         {
-            RaHireGroup hireGroup = rentalAgreement.RaHireGroups.FirstOrDefault();
-            if (hireGroup != null)
+
+            return new RentalAgreementDetail
             {
-                RaHireGroupDiscount raHireGroupDiscount = hireGroup.RaHireGroupDiscounts.FirstOrDefault();
-               
-               
-                    return new RentalAgreementInfo
-                    {
-                        RentalAgreementId = rentalAgreement.RaMainId,
-                        Status = rentalAgreement.RaStatus.RaStatusCode,
-                        RaOpenLocatoin = rentalAgreement.OpenLocation,
-                        StartDateTime = rentalAgreement.StartDtTime,
-                        ReturnDateTime = rentalAgreement.EndDtTime,
-                        RaCloseLocation = rentalAgreement.CloseLocation,
-                        
-                       
-
-                        RaVehicleInfos = rentalAgreement.RaHireGroups.Select(abc => abc.CreateVehicelDetail()).ToList(),
-
-                        StandardDiscount = rentalAgreement.StandardDiscount,
-                        SessionalDiscount = rentalAgreement.SeasonalDiscount,
-                        VoucherDiscount = rentalAgreement.VoucherDiscount,
-                        SpecialDiscount = rentalAgreement.SpecialDiscount,
-                        NetBillAfterDiscount = rentalAgreement.NetBillAfterDiscount,
-                        TotalExcessNileageCharges = rentalAgreement.TotalExcessMileageCharge,
-                        TotalServiceCharges = rentalAgreement.TotalServiceCharge,
-                        TotalInsurenceCharges = rentalAgreement.TotalInsuranceCharge,
-                        TotalDriverChufferCharges = rentalAgreement.TotalDriverCharge,
-                        TotalAdditionalCharges = rentalAgreement.TotalAdditionalCharge,
-                        TotalOtherCharges = rentalAgreement.TotalOtherCharge,
-                        AmountPaid = rentalAgreement.AmountPaid,
-                        Balance = rentalAgreement.Balance,
-
-                      
-
-                    };
-            }
-            return new RentalAgreementInfo();
-        }
-
-        public static RaCustomerInfo CreateCustomerInfoFromRa(this RaMain rentalAgreement)
-        {
-            RaHireGroup hireGroup = rentalAgreement.RaHireGroups.FirstOrDefault();
-            if (hireGroup != null)
-            {
-                RaDriver firstOrDefault = rentalAgreement.RaDrivers.FirstOrDefault();
-                if (firstOrDefault != null)
-                {
-                    Address address = rentalAgreement.BusinessPartner.BusinessPartnerAddressList.FirstOrDefault();
-                    RaHireGroup raHireGroup = rentalAgreement.RaHireGroups.FirstOrDefault();
-                    return new RaCustomerInfo
-                    {
-                        RenterName = rentalAgreement.RentersName,
-                        Driver = firstOrDefault.DriverName,
-                        LicenceNumber = rentalAgreement.RentersLicenseNumber,
-                        LicenceDOE = rentalAgreement.RentersLicenseExpDt,
-                        ContactPerson = rentalAgreement.BusinessPartner != null ? address.ContactPerson : string.Empty,
-                        City = rentalAgreement.BusinessPartner != null ? address.City.CityName : string.Empty,
-                        Country = rentalAgreement.BusinessPartner != null ? address.Country.CountryName : string.Empty,
-                        Region = rentalAgreement.BusinessPartner != null ? address.Region.RegionName : string.Empty,
-                        StreetAddress = rentalAgreement.BusinessPartner != null ? address.StreetAddress : string.Empty,
-
-                       
-                        //TariffType = rentalAgreement.RaHireGroups != null ? raHireGroup.TariffTypeCode : string.Empty,
-                        //StandardRate = rentalAgreement.RaHireGroups != null ? raHireGroup.StandardRate : 0,
-                        //ExcessMileageCharges = raHireGroup.TotalExcMileageCharge,
-                        //VehicleCharges= rentalAgreement.TotalVehicleCharge,
-                        //DicountPercentage=rentalAgreement.SpecialDiscountPerc,
-
-                       
-                        
-
-                    };
-                }
-            }
-            return new RaCustomerInfo();
-        }
-        
-        /// <summary>
-        /// Crete From Rental Agreement Response List
-        /// </summary>
-        public static RentalAgreementDetailResponse CreteFrom(this  List<RaMain> rentalAgreement)
-        {
-            return new RentalAgreementDetailResponse
-            {
-                RentalAgreementInfos = rentalAgreement.Select(abc => abc.CreateVehicleInfoFromRa()),
-                RaCustomerInfo = rentalAgreement.Select(abc => abc.CreateCustomerInfoFromRa())
+                RenterName = rentalAgreement.RentersName,
+                RentalAgreementId = rentalAgreement.RaMainId,
+                Status = rentalAgreement.RaStatus.RaStatusCode,
+                RaOpenLocatoin = rentalAgreement.OpenLocation,
+                StartDateTime = rentalAgreement.StartDtTime,
+                ReturnDateTime = rentalAgreement.EndDtTime,
+                RaCloseLocation = rentalAgreement.CloseLocation,
+                TotalVehicleCharge = rentalAgreement.TotalVehicleCharge,
+                StandardDiscount = rentalAgreement.StandardDiscount,
+                SessionalDiscount = rentalAgreement.SeasonalDiscount,
+                VoucherDiscount = rentalAgreement.VoucherDiscount,
+                SpecialDiscount = rentalAgreement.SpecialDiscount,
+                NetBillAfterDiscount = rentalAgreement.NetBillAfterDiscount,
+                TotalExcessNileageCharges = rentalAgreement.TotalExcessMileageCharge,
+                TotalServiceCharges = rentalAgreement.TotalServiceCharge,
+                TotalInsurenceCharges = rentalAgreement.TotalInsuranceCharge,
+                TotalDriverChufferCharges = rentalAgreement.TotalDriverCharge,
+                TotalAdditionalCharges = rentalAgreement.TotalAdditionalCharge,
+                TotalOtherCharges = rentalAgreement.TotalOtherCharge,
+                AmountPaid = rentalAgreement.AmountPaid,
+                Balance = rentalAgreement.Balance,
             };
         }
 
-
-        public static RaVehicleInfo CreateVehicelDetail(this RaHireGroup raHireGroup)
+        /// <summary>
+        /// Rental Agreement Customer 
+        /// </summary>
+        private static RaCustomerInfo CreateCustomerInfo(this RaMain rentalAgreement)
         {
+             Address address = rentalAgreement.BusinessPartner.BusinessPartnerAddressList.FirstOrDefault();
+            return new RaCustomerInfo
+            {
+                RenterName = rentalAgreement.BusinessPartner.BusinessPartnerName,
+                LicenceNumber = rentalAgreement.RentersLicenseNumber,
+                LicenceDOE = rentalAgreement.RentersLicenseExpDt,
+                ContactPerson = rentalAgreement.BusinessPartner != null ? address.ContactPerson : string.Empty,
+                City = rentalAgreement.BusinessPartner != null ? address.City.CityName : string.Empty,
+                Country = rentalAgreement.BusinessPartner != null ? address.Country.CountryName : string.Empty,
+                Region = rentalAgreement.BusinessPartner != null ? address.Region.RegionName : string.Empty,
+                StreetAddress = rentalAgreement.BusinessPartner != null ? address.StreetAddress : string.Empty,
+            };
+
+        }
+        
+        /// <summary>
+        /// Vehicel Detail and Charges info
+        /// </summary>
+        private static RaVehicleInfo CreateVehicelDetail(this RaHireGroup raHireGroup)
+        {
+            long toalHours = 0;
+            long totalDays =0;
+           
             return new RaVehicleInfo
             {
                 PlateNumber = raHireGroup.Vehicle.PlateNumber,
@@ -114,23 +76,84 @@ namespace Cares.Web.ModelMappers
                 ChargedHour = raHireGroup.ChargedHour,
                 ChargedMint = raHireGroup.ChargedMinute,
                 GraceDay = raHireGroup.GraceDay,
-                GraceHour = raHireGroup.GraceMinute,
+                GraceHour = raHireGroup.GraceHour,
                 GraceMint = raHireGroup.GraceMinute,
-                VehicelOutDateTime = raHireGroup.VehicleMovements.Where(vehiclemovement => vehiclemovement.Status).Select(vehicle=>vehicle.DtTime).First(),
-                VehicelInDateTime = raHireGroup.VehicleMovements.Where(vehiclemovement => vehiclemovement.Status == false).Select(vehicle => vehicle.DtTime).First(),
-
+                ConsumedMint = CalculateConsumedDaysHoursMints(raHireGroup.GraceMinute + raHireGroup.ChargedMinute ,60, ref toalHours),
+                ConsumedHour = CalculateConsumedDaysHoursMints(raHireGroup.ChargedHour + raHireGroup.GraceHour+toalHours,24,ref totalDays),
+                ConsumedDay =  raHireGroup.GraceDay + raHireGroup.ChargedDay+ totalDays ,
+                VehicelOutDateTime = raHireGroup.VehicleMovements.Where(vehiclemovement => vehiclemovement.Status).Select(vehicle=>vehicle.DtTime).FirstOrDefault(),
+                VehicelInDateTime = raHireGroup.VehicleMovements.Where(vehiclemovement => vehiclemovement.Status == false).Select(vehicle => vehicle.DtTime).FirstOrDefault(),
                 TariffType = raHireGroup.TariffTypeCode,
                 StandardRate = raHireGroup.StandardRate,
                 ExcessMileageCharges = raHireGroup.ExcessMileageRt * raHireGroup.TotalExcMileage,
-                DiscoutAmount = raHireGroup.RaHireGroupDiscounts.First().DiscountAmount,
-                DicountPercentage = raHireGroup.RaHireGroupDiscounts.First().DiscountPerc,
-                DicountType = "Set Type",
-                TotalChargeVehicle = 1001
-
-
-
-
+                DiscoutAmount = raHireGroup.RaHireGroupDiscounts!=null ? raHireGroup.RaHireGroupDiscounts.FirstOrDefault() !=null? raHireGroup.RaHireGroupDiscounts.FirstOrDefault().DiscountAmount:0 : 0,
+                DicountPercentage = raHireGroup.RaHireGroupDiscounts!=null ? raHireGroup.RaHireGroupDiscounts.FirstOrDefault() !=null? raHireGroup.RaHireGroupDiscounts.FirstOrDefault().DiscountPerc:0 :0,
+                DicountType = "Set The Type",
+                TotalChargeVehicle = 1001,
             };
         }
+
+        /// <summary>
+        /// Service Item and Additional Charges
+        /// </summary>
+        private static RaAdditionaItemInfo CreateServiceItemDetail(this RaServiceItem raServiceItem)
+        {
+            return new RaAdditionaItemInfo
+            {
+                ServiceStartDateTime = raServiceItem.StartDtTime,
+                ServiceEndDateTime = raServiceItem.EndDtTime,
+                ServiceChargedDays = raServiceItem.ChargedDay,
+                ServiceChargedHours = raServiceItem.ChargedHour,
+                ServiceChargedMinutes = raServiceItem.ChargedMinute,
+                ServiceTarrifApplied = raServiceItem.TariffType,
+                Rate = raServiceItem.ServiceRate,
+                ServiceTotal = 1001,
+                ServicePlateNumber = "-",
+               ItemName = raServiceItem.ServiceItem.ServiceItemName,
+               ChargedType= raServiceItem.ServiceItem.ServiceType.ServiceTypeCode,
+            };
+        }
+
+
+        private static RaAdditionalChargeInfo CreateAdditionalChargeDetail(this RaAdditionalCharge raAdditionalCharge)
+        {
+            return new RaAdditionalChargeInfo
+            {
+                ChargedType = raAdditionalCharge.AdditionalChargeType.AdditionalChargeTypeCode,
+                PlateNumber = raAdditionalCharge.PlateNumber,
+                Rate = raAdditionalCharge.AdditionalChargeRate
+            };
+        }
+
+        /// <summary>
+        /// Crete From Rental Agreement Response List  [Master]
+        /// </summary>
+        public static RentalAgreementDetailResponse CreteFrom(this  RaMain rentalAgreement)
+        {
+            return new RentalAgreementDetailResponse
+            {
+                RentalAgreementDetail = new List<RentalAgreementDetail> { rentalAgreement.CreateRentalAgreementDetail() },
+                RaCustomerInfo = new List<RaCustomerInfo> { rentalAgreement.CreateCustomerInfo() },
+                RaVehicleInfos = rentalAgreement.RaHireGroups.Select(hireGroup => hireGroup.CreateVehicelDetail()),
+                RaAdditionaItemInfos = rentalAgreement.RaServiceItems.Select(serviceItem => serviceItem.CreateServiceItemDetail()),
+                RaDriverInfo = rentalAgreement.RaDrivers.Select(radriver => radriver.CreateFrom()),
+                RaAdditionalChargeInfos = rentalAgreement.RaAdditionalCharges.Select(additionalCharge => additionalCharge.CreateAdditionalChargeDetail()),
+                RaHireGroupInsuranceInfos = (from raHireGroup in rentalAgreement.RaHireGroups from hireGroupInsurance in raHireGroup.RaHireGroupInsurances select hireGroupInsurance.CreateFrom()).ToList()
+            };
+        }
+
+        /// <summary>
+        /// Calculates Consumed Days,Hours and minutes 
+        /// </summary>
+        private static long CalculateConsumedDaysHoursMints(long sumOfValues, long maxValue, ref long valueToIncrement)
+        {
+            if (sumOfValues >= maxValue)
+            {
+                valueToIncrement = valueToIncrement + 1;
+                return sumOfValues-maxValue;
+            }
+                return sumOfValues;
+        }
+
     }
 }

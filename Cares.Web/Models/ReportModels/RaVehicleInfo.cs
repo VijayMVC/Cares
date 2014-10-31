@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Cares.Models.ReportModels
+namespace Cares.Web.Models.ReportModels
 {
     public class RaVehicleInfo
     {
@@ -14,14 +10,11 @@ namespace Cares.Models.ReportModels
         public string Color { get; set; }
         public long ModelYear { get; set; }
         public string Category { get; set; }
-
         public DateTime VehicelOutDateTime { get; set; }
         public DateTime VehicelInDateTime { get; set; }
-
         public long ChargedDay { get; set; }
         public long ChargedHour { get; set; }
         public long ChargedMint { get; set; }
-
         public long ConsumedDay { get; set; }
         public long ConsumedHour { get; set; }
         public long ConsumedMint { get; set; }
@@ -29,20 +22,13 @@ namespace Cares.Models.ReportModels
         public long GraceDay { get; set; }
         public long GraceHour { get; set; }
         public long GraceMint { get; set; }
-
-
-
         public string TariffType { get; set; }
         public double StandardRate { get; set; }
         public double ExcessMileageCharges { get; set; }
         public double DiscoutAmount { get; set; }
         public double DicountPercentage { get; set; }
-
         public string DicountType { get; set; }
         public double TotalChargeVehicle { get; set; }
-
-
-
 
     }
 }

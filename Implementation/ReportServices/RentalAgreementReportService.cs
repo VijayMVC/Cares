@@ -33,9 +33,11 @@ namespace Cares.Implementation.ReportServices
         /// <summary>
         /// Get Details for Rental Agreement Report Generation
         /// </summary>
-        public List<RaMain> GetRentalAgreementReportDetail()
+        public RaMain GetRentalAgreementReportDetail(long rAMainId)
         {
-            return rentalAgreementRepository.GetRentalAgreementReport();
+            return rentalAgreementRepository.Find(rAMainId);
+
+            
         }
         #endregion
     }

@@ -81,6 +81,8 @@
     <Compile Include="IServices\IServiceTypeService.cs" />
     <Compile Include="IServices\IJobTypeService.cs" />
     <Compile Include="IServices\IRaQueueService.cs" />
+    <Compile Include="IServices\IWebApiAuthenticationService.cs" />
+    <Compile Include="IServices\IWebApiAvailableRentalService.cs" />
     <Compile Include="Repository\IAdditionalChargeRepository.cs" />
     <Compile Include="Repository\IAdditionalChargeTypeRepository.cs" />
     <Compile Include="IServices\IDiscountTypeService.cs" />
@@ -237,6 +239,7 @@
     <Compile Include="Repository\IVehicleReservationRepository.cs" />
     <Compile Include="Repository\IVehicleStatusRepository.cs" />
     <Compile Include="Repository\IVehicleSubStatusRepository.cs" />
+    <Compile Include="Repository\IWebApiUserRepository.cs" />
     <Compile Include="Repository\IWorkLocationRepository.cs" />
     <Compile Include="Repository\IWorkplaceRepository.cs" />
     <Compile Include="Repository\IWorkplaceTypeRepository.cs" />

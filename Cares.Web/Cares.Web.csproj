@@ -464,6 +464,12 @@
     <Compile Include="Models\RaMainForRaQueue.cs" />
     <Compile Include="Models\RaMainForRaQueueSearchResponse.cs" />
     <Compile Include="Models\GetRaVehicleCheckListRequest.cs" />
+    <Compile Include="Models\ReportModels\RaAdditionaItemInfo.cs" />
+    <Compile Include="Models\ReportModels\RaAdditionalChargeInfo.cs" />
+    <Compile Include="Models\ReportModels\RaCustomerInfo.cs" />
+    <Compile Include="Models\ReportModels\RaVehicleInfo.cs" />
+    <Compile Include="Models\ReportModels\RentalAgreementDetailResponse.cs" />
+    <Compile Include="Models\ReportModels\RentalAgreementDetail.cs" />
     <Compile Include="Models\SaveRentalAgreementRequest.cs" />
     <Compile Include="Models\BpMainTypeSearchRequestResponse.cs" />
     <Compile Include="Models\BpRatingType.cs" />
@@ -785,16 +791,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FleetDS.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\RACustomerDS.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RACustomerDS.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\RaVehicleInfoDS.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RaVehicleInfoDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="Reports\RentalAgreementDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -2627,28 +2623,6 @@
     </Content>
     <Content Include="Reports\RentalAgreementDS.xsc">
       <DependentUpon>RentalAgreementDS.xsd</DependentUpon>
-    </Content>
-    <Content Include="Reports\RACustomerDS.xsc">
-      <DependentUpon>RACustomerDS.xsd</DependentUpon>
-    </Content>
-    <None Include="Reports\RACustomerDS.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>RACustomerDS.Designer.cs</LastGenOutput>
-    </None>
-    <Content Include="Reports\RACustomerDS.xss">
-      <DependentUpon>RACustomerDS.xsd</DependentUpon>
-    </Content>
-    <Content Include="Reports\RaVehicleInfoDS.xsc">
-      <DependentUpon>RaVehicleInfoDS.xsd</DependentUpon>
-    </Content>
-    <None Include="Reports\RaVehicleInfoDS.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>RaVehicleInfoDS.Designer.cs</LastGenOutput>
-    </None>
-    <Content Include="Reports\RaVehicleInfoDS.xss">
-      <DependentUpon>RaVehicleInfoDS.xsd</DependentUpon>
     </Content>
     <None Include="Reports\RentalAgreementDS.xsd">
       <SubType>Designer</SubType>

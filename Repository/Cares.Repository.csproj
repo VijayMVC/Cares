@@ -251,6 +251,7 @@
     <Compile Include="Repositories\VehicleReservationRepository.cs" />
     <Compile Include="Repositories\VehicleStatusRepository.cs" />
     <Compile Include="Repositories\VehicleSubStatusRepository.cs" />
+    <Compile Include="Repositories\WebApiUserRepository.cs" />
     <Compile Include="Repositories\WorkLocationRepository.cs" />
     <Compile Include="Repositories\WorkplaceRepository.cs" />
     <Compile Include="Repositories\WorkplaceTypeRepository.cs" />
