@@ -170,6 +170,7 @@
     <Compile Include="Repositories\AdditionalChargeTypeRepository.cs" />
     <Compile Include="Repositories\BpSubTypeRepository.cs" />
     <Compile Include="Repositories\BusinessPartnerDocumentRepository.cs" />
+    <Compile Include="Repositories\MenuRepository.cs" />
     <Compile Include="Repositories\PaymentModeRepository.cs" />
     <Compile Include="Repositories\BookingMainRepository.cs" />
     <Compile Include="Repositories\RentalAgreementRepository.cs" />

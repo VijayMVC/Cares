@@ -13,12 +13,6 @@ namespace Cares.Web.Reports
     {
         private IFleetReportService fleetReportService;
 
-        //public VehiclesReport(IVehicleService vehicleService)
-        //{
-        //    this.vehicleService = vehicleService;
-        //}
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

@@ -118,13 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ChaufferChargeByTariffExist" xml:space="preserve">
-    <value>Chauffer Charge for the selected tariff type already exist.</value>
+    <value>Chauffeur Charge for the selected tariff type already exist.</value>
   </data>
   <data name="ChaufferChargeInvalidEffectiveDates" xml:space="preserve">
-    <value>Start Date for Chauffer Charge Rate must be a current or future date.</value>
+    <value>Start Date for Chauffeur Charge Rate must be a current or future date.</value>
   </data>
   <data name="ChaufferChargeInvalidRangeEffectiveDate" xml:space="preserve">
-    <value>Start Date for Chauffer Charge Rate should be Greater or Equal to the Chauffer charge Policy Start Date.</value>
+    <value>Start Date for Chauffeur Charge Rate should be Greater or Equal to the Chauffer charge Policy Start Date.</value>
+  </data>
+  <data name="CodeDuplicationError" xml:space="preserve">
+    <value>Chauffeur Charge with the same code already exists. Please choose a different code!</value>
   </data>
   <data name="InvalidStartDate" xml:space="preserve">
     <value>Start Date must be a current or future date.</value>

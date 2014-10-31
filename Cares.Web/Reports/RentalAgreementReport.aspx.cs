@@ -1,4 +1,4 @@
-﻿using Cares.Interfaces.IServices;
+﻿using Cares.Interfaces.IReportServices;
 using Cares.Models.DomainModels;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models.ReportModels;

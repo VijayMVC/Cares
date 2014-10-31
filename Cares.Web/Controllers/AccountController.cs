@@ -30,7 +30,6 @@ namespace IdentitySample.Controllers
         private ApplicationUserManager _userManager;
         private IMenuRightsService menuRightService;
 
-
         /// <summary>
         /// Set User Permission
         /// </summary>
@@ -38,10 +37,17 @@ namespace IdentitySample.Controllers
         {
             User userResult = UserManager.FindByEmail(userEmail);
             IList<UserRole> aspUserroles = userResult.Roles.ToList();
-            //IEnumerable<MenuRight> permissionSet = menuRightService.FindMenuItemsByRoleId(aspUserroles[0].Id).ToList();
+            
+            // If No role assigned
+            if (aspUserroles.Count == 0)
+            {
+                return;
+            }
 
-            //Session["UserMenu"] = permissionSet;
-            //Session["UserPermissionSet"] = permissionSet.Select(menuRight => menuRight.Menu.PermissionKey).ToList();
+            IEnumerable<MenuRight> permissionSet = menuRightService.FindMenuItemsByRoleId(aspUserroles[0].Id).ToList();
+
+            Session["UserMenu"] = permissionSet;
+            Session["UserPermissionSet"] = permissionSet.Select(menuRight => menuRight.Menu.PermissionKey).ToList();
         }
 
         #endregion
@@ -125,7 +131,6 @@ namespace IdentitySample.Controllers
 
             SetUserPermissions(model.Email);
 
-
             switch (result)
             {
                 case SignInStatus.Success:
@@ -197,7 +202,9 @@ namespace IdentitySample.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            RegisterViewModel register = new RegisterViewModel();
+            register.Roles = RoleManager.Roles.Where(role => !role.Name.Equals("Admin")).ToList();
+            return View(register);
         }
 
         //
@@ -209,10 +216,16 @@ namespace IdentitySample.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User {UserName = model.Email, Email = model.Email};
+                var user = new User { UserName = model.Email, Email = model.Email, UserDomainKey = Session["UserDomainKey"] != null ? Convert.ToInt64(Session["UserDomainKey"]) : 0 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    var addUserToRoleResult = await UserManager.AddToRoleAsync(user.Id, model.SelectedRole);
+                    if (!addUserToRoleResult.Succeeded)
+                    {
+                        throw new InvalidOperationException(string.Format("Failed to add user to role {0}", model.SelectedRole));
+                    }
+
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new {userId = user.Id, code = code},
                         protocol: Request.Url.Scheme);
@@ -453,8 +466,9 @@ namespace IdentitySample.Controllers
         // Get: /Account/LogOff
         public ActionResult LogOff()
         {
+            Session.Abandon();
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login");
         }
 
         //
@@ -463,6 +477,35 @@ namespace IdentitySample.Controllers
         public ActionResult ExternalLoginFailure()
         {
             return View();
+        }
+
+        public ActionResult Manage()
+        {
+            return View();
+        }
+
+        // POST: /Account/Manage
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Manage(ChangePasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+            if (result.Succeeded)
+            {
+                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                if (user != null)
+                {
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                }
+
+                return View();
+            }
+            AddErrors(result);
+            return View(model);
         }
 
         #endregion

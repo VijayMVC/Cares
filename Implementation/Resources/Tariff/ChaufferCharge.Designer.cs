@@ -61,7 +61,7 @@ namespace Cares.Implementation.Resources.Tariff {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chauffer Charge for the selected tariff type already exist..
+        ///   Looks up a localized string similar to Chauffeur Charge for the selected tariff type already exist..
         /// </summary>
         public static string ChaufferChargeByTariffExist {
             get {
@@ -70,7 +70,7 @@ namespace Cares.Implementation.Resources.Tariff {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start Date for Chauffer Charge Rate must be a current or future date..
+        ///   Looks up a localized string similar to Start Date for Chauffeur Charge Rate must be a current or future date..
         /// </summary>
         public static string ChaufferChargeInvalidEffectiveDates {
             get {
@@ -79,11 +79,20 @@ namespace Cares.Implementation.Resources.Tariff {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start Date for Chauffer Charge Rate should be Greater or Equal to the Chauffer charge Policy Start Date..
+        ///   Looks up a localized string similar to Start Date for Chauffeur Charge Rate should be Greater or Equal to the Chauffer charge Policy Start Date..
         /// </summary>
         public static string ChaufferChargeInvalidRangeEffectiveDate {
             get {
                 return ResourceManager.GetString("ChaufferChargeInvalidRangeEffectiveDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chauffeur Charge with the same code already exists. Please choose a different code!.
+        /// </summary>
+        public static string CodeDuplicationError {
+            get {
+                return ResourceManager.GetString("CodeDuplicationError", resourceCulture);
             }
         }
         

@@ -60,6 +60,26 @@ namespace Cares.Repository.Repositories
 
         #region Public
 
+
+        /// <summary>
+        /// Get Missing Hire Groups Details 
+        /// </summary>        
+        public IList<MissingHireGroupResponse> GetMissingHireGroups()
+        {
+            var missingHireGroupDetailQuery = from vehicle in db.Vehicles
+                                            where !(from hgd in db.HireGroupDetails
+                                                    select new { hgd.VehicleMakeId, hgd.ModelYear }).Contains(new { vehicle.VehicleMakeId, vehicle.ModelYear })
+                                            select new MissingHireGroupResponse
+                                            {
+                                                NumberPlate = vehicle.PlateNumber,
+                                                VehicleCategory = vehicle.VehicleCategory.VehicleCategoryCode+" - "+vehicle.VehicleCategory.VehicleCategoryName,
+                                                VehicleMake = vehicle.VehicleMake.VehicleMakeCode + " - " + vehicle.VehicleMake.VehicleMakeName,
+                                                VehicleModel = vehicle.VehicleModel.VehicleModelCode + " - " + vehicle.VehicleModel.VehicleModelName,
+                                                ModelYear = vehicle.ModelYear
+                                            };
+        return  missingHireGroupDetailQuery.OrderBy(fhgd => fhgd.NumberPlate).ToList();
+        }
+
         public IList<RptFleetHireGroupDetail> GetFleetReport()
         {
             var fleetHireGroupDetailQuery = from vehicle in db.Vehicles                

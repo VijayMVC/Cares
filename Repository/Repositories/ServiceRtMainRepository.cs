@@ -75,7 +75,8 @@ namespace Cares.Repository.Repositories
                                             (!serviceRateSearchRequest.OperationId.HasValue ||
                                               tariffType.OperationId == serviceRateSearchRequest.OperationId.Value) &&
                                              (!serviceRateSearchRequest.TariffTypeId.HasValue ||
-                                              tariffType.TariffTypeId == serviceRateSearchRequest.TariffTypeId)) && !(tariffType.ChildTariffTypeId.HasValue)
+                                              tariffType.TariffTypeId == serviceRateSearchRequest.TariffTypeId)) && !(tariffType.ChildTariffTypeId.HasValue && serviceRtMain.UserDomainKey == UserDomainKey
+                                              && tariffType.UserDomainKey == UserDomainKey)
                                         select new ServiceRtMainContent
                                         {
                                             ServiceRtMainId = serviceRtMain.ServiceRtMainId,
@@ -113,7 +114,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsServiceRtMainCodeExists(string serviceRtMainCode, long serviceRtMainId)
         {
-            return DbSet.Count(srm => srm.ServiceRtMainCode.ToLower() == serviceRtMainCode.ToLower() && srm.UserDomainKey == UserDomainKey && srm.ServiceRtMainId != serviceRtMainId) > 0;
+            return DbSet.Count(srm => srm.ServiceRtMainCode.ToLower().Trim() == serviceRtMainCode.ToLower().Trim() && srm.UserDomainKey == UserDomainKey && srm.ServiceRtMainId != serviceRtMainId) > 0;
         }
 
         #endregion

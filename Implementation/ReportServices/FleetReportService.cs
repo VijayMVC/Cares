@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using Cares.Interfaces.IReportServices;
+﻿using Cares.Interfaces.IReportServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.ReportModels;
-using Cares.Repository.Repositories;
+using System.Collections.Generic;
 
 namespace Cares.Implementation.ReportServices
 {

@@ -126,6 +126,9 @@
   <data name="ChaufferChargeInvalidRangeEffectiveDate" xml:space="preserve">
     <value>التسجيل للسائق تهمة أسعار تبدأ يجب أن تكون أكبر أو يساوي التاريخ سائق تهمة ابدأ السياسة.</value>
   </data>
+  <data name="CodeDuplicationError" xml:space="preserve">
+    <value>سائق المسؤول مع نفس الرمز موجود بالفعل. يرجى اختيار رمز مختلف!</value>
+  </data>
   <data name="InvalidStartDate" xml:space="preserve">
     <value>يجب أن يكون تاريخ بدء التاريخ الحالي أو في المستقبل.</value>
   </data>

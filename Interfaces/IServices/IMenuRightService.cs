@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Cares.Models.DomainModels;
+using Cares.Models.MenuModels;
 
 namespace Cares.Interfaces.IServices
 {
@@ -11,6 +12,16 @@ namespace Cares.Interfaces.IServices
         /// <summary>
         /// Find Menu item by Role
         /// </summary>        
-        IQueryable<MenuRight> FindMenuItemsByRoleId(string roleId); 
+        IQueryable<MenuRight> FindMenuItemsByRoleId(string roleId);
+
+        /// <summary>
+        /// Save Roles Menu Rights
+        /// </summary>
+        UserMenuResponse SaveRoleMenuRight(string roleId, string menuIds, UserRole role);
+
+        /// <summary>
+        /// Get Role Menu Rights
+        /// </summary>
+        UserMenuResponse GetRoleMenuRights(string roleId);
     }
 }

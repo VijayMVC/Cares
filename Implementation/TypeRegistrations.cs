@@ -106,6 +106,8 @@ namespace Cares.Implementation
             unityContainer.RegisterType<IRentalAgreementReportService, RentalAgreementReportService>();
             unityContainer.RegisterType<IWebApiAvailableRentalService, WebApiAvailableRentalService>();
             unityContainer.RegisterType<IWebApiAuthenticationService, WebApiAuthenticationService>();
+            unityContainer.RegisterType<IMissingHireGroupService, MissingHireGroupService>();
+
         }
     }
 }
