@@ -24,6 +24,10 @@ namespace Cares.Interfaces.Repository
         /// <returns></returns>
         IEnumerable<InsuranceRtMain> FindByTariffTypeCode(string tariffTypeCode);
 
-        
+        /// <summary>
+        /// Insurance Rate Main Code validation check
+        /// </summary>
+        bool IsInsuranceRtMainCodeExists(string insuranceRtMainCode, long insuranceRtMainId);
+
     }
 }

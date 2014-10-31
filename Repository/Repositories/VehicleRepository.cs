@@ -60,6 +60,26 @@ namespace Cares.Repository.Repositories
 
         #region Public
 
+
+        /// <summary>
+        /// Get Missing Hire Groups Details 
+        /// </summary>        
+        public IList<MissingHireGroupResponse> GetMissingHireGroups()
+        {
+            var missingHireGroupDetailQuery = from vehicle in db.Vehicles
+                                            where !(from hgd in db.HireGroupDetails
+                                                    select new { hgd.VehicleMakeId, hgd.ModelYear }).Contains(new { vehicle.VehicleMakeId, vehicle.ModelYear })
+                                            select new MissingHireGroupResponse
+                                            {
+                                                NumberPlate = vehicle.PlateNumber,
+                                                VehicleCategory = vehicle.VehicleCategory.VehicleCategoryCode+" - "+vehicle.VehicleCategory.VehicleCategoryName,
+                                                VehicleMake = vehicle.VehicleMake.VehicleMakeCode + " - " + vehicle.VehicleMake.VehicleMakeName,
+                                                VehicleModel = vehicle.VehicleModel.VehicleModelCode + " - " + vehicle.VehicleModel.VehicleModelName,
+                                                ModelYear = vehicle.ModelYear
+                                            };
+        return  missingHireGroupDetailQuery.OrderBy(fhgd => fhgd.NumberPlate).ToList();
+        }
+
         public IList<RptFleetHireGroupDetail> GetFleetReport()
         {
             var fleetHireGroupDetailQuery = from vehicle in db.Vehicles                
@@ -70,7 +90,7 @@ namespace Cares.Repository.Repositories
                                             {
                                                 HireGroupName = hgd.HireGroup.HireGroupName,
                                                 PlateNumber = vehicle.PlateNumber,
-                                                ParentHireGroupName = hgd.HireGroup.ParentHireGroup != null ? "Parent Hire Group " : string.Empty,
+                                                ParentHireGroupName =/* hgd.HireGroup.ParentHireGroup != null ?*/ "Parent Hire Group ",// : string.Empty,
                                                 VehicleMakeName = vehicle.VehicleMake.VehicleMakeName,
                                                 FleetPoolName = vehicle.FleetPool.FleetPoolName,
                                                 VehicleModelName = vehicle.VehicleModel.VehicleModelName,
@@ -272,6 +292,40 @@ namespace Cares.Repository.Repositories
                                  vehicleReservation.EndDtTime >= startDtTime &&
                                  vehicleReservation.StartDtTime <= endDtTime)) && vehicle.UserDomainKey == UserDomainKey).ToList();
         }
+
+        /// <summary>
+        /// Get Available Vehicles for Web Api
+        /// </summary>
+        public IEnumerable<WebApiAvailaleHireGroup> GetAvaibaleVehiclesForWebApi(IEnumerable<long> hireGroupDetailsIds, long domainKey)
+        {
+            var query = from HireGroupDetails in db.HireGroupDetails
+                        join vc in db.VehicleCategories on HireGroupDetails.VehicleCategoryId equals vc.VehicleCategoryId 
+                        join vm in db.VehicleMakes on HireGroupDetails.VehicleMakeId equals vm.VehicleMakeId
+                        join vmod in db.VehicleModels on HireGroupDetails.VehicleModelId equals vmod.VehicleModelId //&& vmod.UserDomainKey == domainKey
+                        from v in
+                            (from x in DbSet//.Include(vimg => vimg.VehicleImages)
+                             where
+                             x.VehicleCategoryId == vc.VehicleCategoryId &&
+                             x.VehicleMakeId == vm.VehicleMakeId &&
+                             vmod.VehicleModelId == x.VehicleModelId &&
+                             x.ModelYear == HireGroupDetails.ModelYear
+                             select x).Take(1).DefaultIfEmpty()
+                        where hireGroupDetailsIds.Contains(HireGroupDetails.HireGroupDetailId)
+                        select new WebApiAvailaleHireGroup()
+                        {
+                            HireGroupDetailId = HireGroupDetails.HireGroupDetailId,
+                            Image = v != null ? (v.VehicleImages.Any()? v.VehicleImages.FirstOrDefault().Image : null ) : null,
+                            ModelYear = HireGroupDetails.ModelYear,
+                            VehicleMakeName = vm.VehicleMakeName,
+                            VehilceModelName = vmod.VehicleModelName,
+                            VehicleCategoryName = vc.VehicleCategoryName,
+                            RentalCharge = 100,
+                            DomainKey = HireGroupDetails.UserDomainKey
+                        };
+
+            return query.Where(vehicles => vehicles.DomainKey == domainKey).ToList();
+        }
+
         #endregion
     }
 }

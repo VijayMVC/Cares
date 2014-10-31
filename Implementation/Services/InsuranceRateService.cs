@@ -131,6 +131,13 @@ namespace Cares.Implementation.Services
         /// <returns></returns>
         public InsuranceRtMainContent SaveInsuranceRate(InsuranceRtMain insuranceRtMain)
         {
+            //Code Duplication Check
+            if (insuranceRtMainRepository.IsInsuranceRtMainCodeExists(insuranceRtMain.InsuranceRtMainCode,
+              insuranceRtMain.InsuranceRtMainId))
+            {
+                throw new CaresException(Resources.Tariff.InsuranceRate.CodeDuplicationError);
+            }
+
             TariffType tariffType = tariffTypeRepository.Find(long.Parse(insuranceRtMain.TariffTypeCode));
             insuranceRtMain.TariffTypeCode = tariffType.TariffTypeCode;
 

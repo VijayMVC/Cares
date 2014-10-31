@@ -54,6 +54,7 @@
     <Compile Include="Helpers\IRaDriverHelper.cs" />
     <Compile Include="Helpers\IRentalCharge.cs" />
     <Compile Include="Helpers\IBill.cs" />
+    <Compile Include="IReportServices\IMissingHireGroupService.cs" />
     <Compile Include="IReportServices\IDailyActionService.cs" />
     <Compile Include="IReportServices\IFleetReportService.cs" />
     <Compile Include="IServices\IAdditionalChargeService.cs" />
@@ -63,7 +64,7 @@
     <Compile Include="IServices\IBusinessPartnerRelationTypeService.cs" />
     <Compile Include="IServices\IBusinessPartnerSubTypeService.cs" />
     <Compile Include="IServices\INrtQueueService.cs" />
-    <Compile Include="IServices\IRentalAgreementReportService.cs" />
+    <Compile Include="IReportServices\IRentalAgreementReportService.cs" />
     <Compile Include="IServices\IVehicleModelService.cs" />
     <Compile Include="IServices\ICreditLimitService.cs" />
     <Compile Include="IServices\IVehicleStatusService.cs" />
@@ -85,6 +86,8 @@
     <Compile Include="IServices\IServiceTypeService.cs" />
     <Compile Include="IServices\IJobTypeService.cs" />
     <Compile Include="IServices\IRaQueueService.cs" />
+    <Compile Include="IServices\IWebApiAuthenticationService.cs" />
+    <Compile Include="IServices\IWebApiAvailableRentalService.cs" />
     <Compile Include="Repository\IAdditionalChargeRepository.cs" />
     <Compile Include="Repository\IAdditionalChargeTypeRepository.cs" />
     <Compile Include="IServices\IDiscountTypeService.cs" />
@@ -242,6 +245,7 @@
     <Compile Include="Repository\IVehicleReservationRepository.cs" />
     <Compile Include="Repository\IVehicleStatusRepository.cs" />
     <Compile Include="Repository\IVehicleSubStatusRepository.cs" />
+    <Compile Include="Repository\IWebApiUserRepository.cs" />
     <Compile Include="Repository\IWorkLocationRepository.cs" />
     <Compile Include="Repository\IWorkplaceRepository.cs" />
     <Compile Include="Repository\IWorkplaceTypeRepository.cs" />

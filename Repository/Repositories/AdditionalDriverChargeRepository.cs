@@ -74,7 +74,7 @@ namespace Cares.Repository.Repositories
                                             (!request.OperationId.HasValue ||
                                               tariffType.OperationId == request.OperationId.Value) &&
                                              (!request.TariffTypeId.HasValue ||
-                                              tariffType.TariffTypeId == request.TariffTypeId))
+                                              tariffType.TariffTypeId == request.TariffTypeId) && addDriverChrg.UserDomainKey == UserDomainKey && tariffType.UserDomainKey == UserDomainKey)
                                         select new AdditionalDriverChargeSearchContent
                                         {
                                             AdditionalDriverChargeId = addDriverChrg.AdditionalDriverChargeId,
@@ -116,7 +116,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public AdditionalDriverCharge GetRevision(long additionalDriverChargeId)
         {
-            return DbSet.FirstOrDefault(addDriverChrg => addDriverChrg.ChildAdditionalDriverChargeId == additionalDriverChargeId);
+            return DbSet.FirstOrDefault(addDriverChrg => addDriverChrg.ChildAdditionalDriverChargeId == additionalDriverChargeId && addDriverChrg.UserDomainKey == UserDomainKey);
         }
 
         /// <summary>

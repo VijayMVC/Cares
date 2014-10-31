@@ -24,6 +24,7 @@ namespace Cares.Web.Models
         /// </summary>
         public short InsuranceTypeId { get; set; }
 
+       
         /// <summary>
         /// Insurance Type Code
         /// </summary>

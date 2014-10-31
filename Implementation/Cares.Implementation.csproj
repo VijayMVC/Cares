@@ -133,6 +133,7 @@
     <Compile Include="Helpers\TariffTypeHelper.cs" />
     <Compile Include="Identity\ApplicationUserManager.cs" />
     <Compile Include="Identity\IdentityOperation.cs" />
+    <Compile Include="ReportServices\MissingHireGroupService.cs" />
     <Compile Include="ReportServices\DailyActionService.cs" />
     <Compile Include="ReportServices\FleetReportService.cs" />
     <Compile Include="Resources\BusinessPartner\BpMainType.ar.Designer.cs">
@@ -530,6 +531,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ChaufferCharge.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Tariff\InsuranceRate.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InsuranceRate.ar.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Tariff\InsuranceRate.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -692,6 +698,8 @@
     <Compile Include="Services\TariffRateService.cs" />
     <Compile Include="Services\RentalAgreementService.cs" />
     <Compile Include="Services\TariffTypeService.cs" />
+    <Compile Include="Services\WebApiAuthenticationService.cs" />
+    <Compile Include="Services\WebApiAvailableRentalService.cs" />
     <Compile Include="Services\WorkLocationService.cs" />
     <Compile Include="Services\WorkplaceService.cs" />
     <Compile Include="Services\WorkPlaceTypeService.cs" />

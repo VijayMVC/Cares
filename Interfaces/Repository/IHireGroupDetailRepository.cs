@@ -31,7 +31,6 @@ namespace Cares.Interfaces.Repository
         /// </summary>
         bool IsHireGroupDetailAssociatedWithVehicleMake(long vehiclemakeId);
 
-
         /// <summary>
         /// Association check of HireGroup Detail and Vehicle Category
         /// </summary>
@@ -45,13 +44,13 @@ namespace Cares.Interfaces.Repository
         /// <summary>
         /// GetHire Group Detail By Vehicle Make Id, Model Id, Category Id, Model Year 
         /// </summary>
-        /// <param name="vMakeId"></param>
-        /// <param name="vModelId"></param>
-        /// <param name="vCategoryId"></param>
-        /// <param name="modelYear"></param>
-        /// <returns></returns>
         HireGroupDetail GetHireGroupDetailByVehicleMakeIdModelIdCategoryIdModelYear(long vMakeId, long vModelId,
             long vCategoryId, short modelYear);
 
+        /// <summary>
+        /// Get available vehicles for WebApi
+        /// </summary>
+        IEnumerable<long> GetAvailableVehicleInfoForWebApi(long operationWorkPlaceId, DateTime startDtTime,
+            DateTime endDtTime, long userDomainKey);
     }
 }

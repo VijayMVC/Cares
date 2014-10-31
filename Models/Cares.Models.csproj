@@ -324,10 +324,7 @@
     </Compile>
     <Compile Include="ReportModels\DailyActionReportResponse.cs" />
     <Compile Include="ReportModels\FleetHireGroupDetail.cs" />
-    <Compile Include="ReportModels\RaCustomerInfo.cs" />
-    <Compile Include="ReportModels\RaVehicleInfo.cs" />
-    <Compile Include="ReportModels\RentalAgreementInfo.cs" />
-    <Compile Include="ReportModels\RentalAgreementDetailResponse.cs" />
+    <Compile Include="ReportModels\MissingHireGroupResponse.cs" />
     <Compile Include="RequestModels\AdditionalChargeSearchRequest.cs" />
     <Compile Include="RequestModels\AdditionalDriverChargeSearchRequest.cs" />
     <Compile Include="RequestModels\AreaSearchRequest.cs" />
@@ -491,6 +488,7 @@
     <Compile Include="ResponseModels\VehicleMakeSearchRequestResponse.cs" />
     <Compile Include="ResponseModels\VehicleModelSearcgRequestResponse.cs" />
     <Compile Include="ResponseModels\VehicleStatusSearchRequestResponse.cs" />
+    <Compile Include="ResponseModels\WebApiAvailaleHireGroup.cs" />
     <Compile Include="ResponseModels\WorkLocationBaseDataResponse.cs" />
     <Compile Include="ResponseModels\WorkLocationSerachRequestResponse.cs" />
     <Compile Include="ResponseModels\WorkplaceBaseDataResponse.cs" />

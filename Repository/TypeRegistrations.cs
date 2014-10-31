@@ -127,6 +127,7 @@ namespace Cares.Repository
             unityContainer.RegisterType<IVehicleImageRepository, VehicleImageRepository>();
             unityContainer.RegisterType<IBookingMainRepository, BookingMainRepository>();
             unityContainer.RegisterType<IMenuRepository, MenuRepository>();
+            unityContainer.RegisterType<IWebApiUserRepository, WebApiUserRepository>();
         }
     }
 }

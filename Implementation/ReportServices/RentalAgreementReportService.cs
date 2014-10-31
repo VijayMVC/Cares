@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using Cares.Interfaces.IServices;
+﻿using Cares.Interfaces.IReportServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
-using Cares.Models.ReportModels;
 
 namespace Cares.Implementation.ReportServices
 {
@@ -33,9 +31,11 @@ namespace Cares.Implementation.ReportServices
         /// <summary>
         /// Get Details for Rental Agreement Report Generation
         /// </summary>
-        public List<RaMain> GetRentalAgreementReportDetail()
+        public RaMain GetRentalAgreementReportDetail(long rAMainId)
         {
-            return rentalAgreementRepository.GetRentalAgreementReport();
+            return rentalAgreementRepository.Find(rAMainId);
+
+            
         }
         #endregion
     }

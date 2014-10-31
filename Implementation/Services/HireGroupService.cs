@@ -119,7 +119,7 @@ namespace Cares.Implementation.Services
         {
             if (hireGroupRepository.IsHireGroupCodeExists(hireGroup.HireGroupCode, hireGroup.HireGroupId))
             {
-                throw new CaresException("Hire Group with the same code already exists. Please choose a different code!");
+                throw new CaresException(Resources.FleetPool.HireGroup.CodeDuplication);
             }
 
             HireGroupValidation(hireGroup);

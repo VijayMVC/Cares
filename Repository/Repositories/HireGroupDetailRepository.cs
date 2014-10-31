@@ -150,7 +150,31 @@ namespace Cares.Repository.Repositories
             return DbSet.FirstOrDefault(hGd => hGd.VehicleMakeId == vMakeId && hGd.VehicleModelId == vModelId && hGd.VehicleCategoryId == vCategoryId && hGd.ModelYear == modelYear);
         }
 
-        
+        /// <summary>
+        /// user domainKey
+        /// </summary>
+        public IEnumerable<long> GetAvailableVehicleInfoForWebApi(long operationWorkPlaceId, DateTime startDtTime, DateTime endDtTime, long userDomainKey)
+        {
+            var query = from hireGroupDetail in DbSet
+                        join hireGroup in db.HireGroups on hireGroupDetail.HireGroupId equals hireGroup.HireGroupId
+                        join vc in db.VehicleCategories on hireGroupDetail.VehicleCategoryId equals vc.VehicleCategoryId
+                        join vm in db.VehicleMakes on hireGroupDetail.VehicleMakeId equals vm.VehicleMakeId
+                        join vmod in db.VehicleModels on hireGroupDetail.VehicleModelId equals vmod.VehicleModelId
+                        join v in db.Vehicles on new { vc.VehicleCategoryId, vm.VehicleMakeId, vmod.VehicleModelId, hireGroupDetail.ModelYear } equals
+                        new { v.VehicleCategoryId, v.VehicleMakeId, v.VehicleModelId, v.ModelYear }
+                        from vs in db.VehicleStatuses.Where(vs => vs.VehicleStatusId == v.VehicleStatusId &&
+                            vs.AvailabilityCheck && v.OperationsWorkPlaceId == operationWorkPlaceId)
+                        join vr in db.VehicleReservations on v.VehicleId equals vr.VehicleId into vehicleGroup
+                        from vg in vehicleGroup.Where(vg => !(vg.EndDtTime >= startDtTime && vg.StartDtTime <= endDtTime)).DefaultIfEmpty()
+                        orderby hireGroup.HireGroupCode, hireGroup.HireGroupName
+                        group hireGroupDetail by new
+                        {
+                            hireGroupDetail.HireGroupDetailId,                            
+                        } into finalHireGroup
+                        select finalHireGroup;
+
+            return query.SelectMany(hg => hg.Where(hgd => hgd.UserDomainKey == userDomainKey).Select(hgd => hgd.HireGroupDetailId)).Distinct().ToList();
+        }
         #endregion
     }
 }
