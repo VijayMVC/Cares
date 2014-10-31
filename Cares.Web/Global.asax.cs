@@ -9,6 +9,8 @@ using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using Microsoft.Practices.EnterpriseLibrary.Logging;
 using System.Web.Http;
+using System;
+using System.Web.SessionState;
 
 namespace Cares.Web
 {
@@ -74,6 +76,18 @@ namespace Cares.Web
             // Set Web Api resolver
             //GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
             GlobalConfiguration.Configuration.DependencyResolver = new WebBase.UnityConfiguration.UnityDependencyResolver(container);
+        }
+
+        public override void Init()
+        {
+            this.PostAuthenticateRequest += MvcApplication_PostAuthenticateRequest;
+            base.Init();
+        }
+
+        void MvcApplication_PostAuthenticateRequest(object sender, EventArgs e)
+        {
+            System.Web.HttpContext.Current.SetSessionStateBehavior(
+                SessionStateBehavior.Required);
         }
     }
 }

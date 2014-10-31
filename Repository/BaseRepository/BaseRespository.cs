@@ -6,6 +6,7 @@ using System.Data.Entity.Migrations;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Web;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
 using Microsoft.Practices.Unity;
@@ -141,7 +142,7 @@ namespace Cares.Repository.BaseRepository
         {
             get
             {
-                return 1;
+                return HttpContext.Current.Session["UserDomainKey"] != null ? Convert.ToInt64(HttpContext.Current.Session["UserDomainKey"]) : 1;
             }
         }
         /// <summary>
@@ -151,7 +152,7 @@ namespace Cares.Repository.BaseRepository
         {
             get
             {
-                return "cares";
+                return HttpContext.Current.Session["LoggedInUser"] != null ? HttpContext.Current.Session["LoggedInUser"].ToString() : "cares";
             }
         }
 
