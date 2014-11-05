@@ -68,7 +68,8 @@ namespace Cares.Repository.Repositories
         {
             var missingHireGroupDetailQuery = from vehicle in db.Vehicles
                                             where !(from hgd in db.HireGroupDetails
-                                                    select new { hgd.VehicleMakeId, hgd.ModelYear }).Contains(new { vehicle.VehicleMakeId, vehicle.ModelYear })
+                                                    select new { hgd.VehicleModelId, hgd.VehicleMakeId, hgd.VehicleCategoryId, hgd.ModelYear })
+                                                    .Contains(new { vehicle.VehicleModelId, vehicle.VehicleMakeId, vehicle.VehicleCategoryId, vehicle.ModelYear })
                                             select new MissingHireGroupResponse
                                             {
                                                 NumberPlate = vehicle.PlateNumber,
