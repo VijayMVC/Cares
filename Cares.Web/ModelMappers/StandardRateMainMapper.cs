@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Cares.Models.DomainModels;
+using Cares.Models.ReportModels;
 using Cares.Models.ResponseModels;
 using ApiModels = Cares.Web.Models;
 
@@ -48,6 +49,8 @@ namespace Cares.Web.ModelMappers
                 StandardRates = source.HireGroupDetailsInStandardRtMain!=null?source.HireGroupDetailsInStandardRtMain.Select(standardRate => standardRate.CreateFrom()).ToList():null
             };
         }
+
+
         #endregion
     }
 }

@@ -57,6 +57,7 @@
     <Compile Include="IReportServices\IMissingHireGroupService.cs" />
     <Compile Include="IReportServices\IDailyActionService.cs" />
     <Compile Include="IReportServices\IFleetReportService.cs" />
+    <Compile Include="IReportServices\IStandardRateReportService.cs" />
     <Compile Include="IServices\IAdditionalChargeService.cs" />
     <Compile Include="IServices\IAddressBaseDataService.cs" />
     <Compile Include="IServices\IBusinessPartnerInTypeService.cs" />

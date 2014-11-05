@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Cares.Models.DomainModels;
+using Cares.Models.ReportModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
 
@@ -29,5 +30,7 @@ namespace Cares.Interfaces.Repository
         /// <returns></returns>
         IEnumerable<StandardRateMain> GetByStandardRateMainCode(string standardRateMainCode);
 
+
+      
     }
 }
