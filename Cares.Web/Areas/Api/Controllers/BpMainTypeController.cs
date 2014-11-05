@@ -12,6 +12,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Business Partner Main Type Controller
     /// </summary>
+    [Authorize]
     public class BpMainTypeController : ApiController
     {
        #region Private

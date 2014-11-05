@@ -13,6 +13,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Chauffer Charge API Controller
     /// </summary>
+    [Authorize]
     public class ChaufferChargeController : ApiController
     {
         #region Private

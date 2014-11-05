@@ -10,6 +10,7 @@ using Cares.WebBase.Mvc;
 
 namespace Cares.Web.Areas.Api.Controllers
 {
+    [Authorize]
     public class OrganizationGroupController : ApiController
     {
         #region Private

@@ -3,11 +3,16 @@ using System.IO;
 using System.Web;
 using System.Web.Mvc;
 using Cares.Interfaces.IServices;
-using Cares.Web.Models;
+using Cares.Web.Controllers;
+using Cares.WebBase.Mvc;
 
 namespace Cares.Web.Areas.Fleet.Controllers
 {
-    public class HomeController : Controller
+    /// <summary>
+    /// Fleet Controller
+    /// </summary>
+    [SiteAuthorize(PermissionKey = "Fleet")]
+    public class HomeController : BaseController
     {
 
         #region Private
@@ -33,6 +38,7 @@ namespace Cares.Web.Areas.Fleet.Controllers
 
         //
         // GET: /FleetPool/Home/
+        [SiteAuthorize(PermissionKey = "FleetPool")]
         public ActionResult Index()
         {
             return View();
@@ -40,18 +46,21 @@ namespace Cares.Web.Areas.Fleet.Controllers
        
         //
         // GET: /HireGroup/Home/
+        [SiteAuthorize(PermissionKey = "HireGroup")]
         public ActionResult HireGroup()
         {
             return View();
         }
 
         // GET: /Vehicle/Home/
+        [SiteAuthorize(PermissionKey = "Vehicle")]
         public ActionResult VehicleMain()
         {
             return View();
         }
 
         [HttpPost]
+        [SiteAuthorize(PermissionKey = "Vehicle")]
         public ActionResult Vehicle(HttpPostedFileBase file, long vehicleId)
         {
 
@@ -70,36 +79,42 @@ namespace Cares.Web.Areas.Fleet.Controllers
             //return Json("Uploaded successfully", JsonRequestBehavior.AllowGet);
             return null;
         }
-
+        [SiteAuthorize(PermissionKey = "VehicleCheckList")]
         public ActionResult VehicleCheckList()
         {
             return View();
         }
-
+        [SiteAuthorize(PermissionKey = "MaintenanceTypeGroup")]
         public ActionResult MaintenanceTypeGroup()
         {
             return View();
         }
+        [SiteAuthorize(PermissionKey = "MaintenanceType")]
         public ActionResult MaintenanceType()
         {
             return View();
         }
+        [SiteAuthorize(PermissionKey = "InsuranceType")]
         public ActionResult InsuranceType()
         {
             return View();
         }
+        [SiteAuthorize(PermissionKey = "VehicleMake")]
         public ActionResult VehicleMake()
         {
             return View();
         }
+        [SiteAuthorize(PermissionKey = "VehicleCategory")]
         public ActionResult VehicleCategory()
         {
             return View();
         }
+        [SiteAuthorize(PermissionKey = "VehicleModel")]
         public ActionResult VehicleModel()
         {
             return View();
         }
+        [SiteAuthorize(PermissionKey = "VehicleStatus")]
         public ActionResult VehicleStatus()
         {
             return View();

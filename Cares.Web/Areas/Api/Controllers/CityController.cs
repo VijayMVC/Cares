@@ -13,6 +13,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// City Controller
     /// </summary>
+    [Authorize]
     public class CityController : ApiController
     {
        #region Private

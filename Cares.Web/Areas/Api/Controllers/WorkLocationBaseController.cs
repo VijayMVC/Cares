@@ -11,6 +11,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Work Location Base Controller
     /// </summary>
+    [Authorize]
     public class WorkLocationBaseController :ApiController
     {
        #region Private

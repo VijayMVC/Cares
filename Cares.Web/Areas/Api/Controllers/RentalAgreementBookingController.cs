@@ -4,7 +4,6 @@ using System.Web;
 using System.Web.Http;
 using Cares.Interfaces.IServices;
 using Cares.Web.ModelMappers;
-using Cares.Web.Models;
 using Cares.WebBase.Mvc;
 using RaMain = Cares.Web.Models.RaMain;
 
@@ -13,6 +12,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Rental Agreement Booking Api Controller
     /// </summary>
+    [Authorize]
     public class RentalAgreementBookingController : ApiController
     {
         #region Private

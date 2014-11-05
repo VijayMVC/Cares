@@ -13,6 +13,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     ///  Maintenece Type Group Controller
     /// </summary>
+    [Authorize]
     public class MainteneceTypeGroupController : ApiController
     {
        #region Private

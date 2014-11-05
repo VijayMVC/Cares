@@ -14,6 +14,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Hire Group Api Controller
     /// </summary>
+    [Authorize]
     public class HireGroupController : ApiController
     {
         #region Private

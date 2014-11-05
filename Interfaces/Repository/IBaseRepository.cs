@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Cares.Models.DomainModels;
 
 namespace Cares.Interfaces.Repository
 {
@@ -58,5 +59,10 @@ namespace Cares.Interfaces.Repository
         /// Logged in user identity
         /// </summary>
         string LoggedInUserIdentity { get; }
+
+        /// <summary>
+        /// Returns the Identoty roles 
+        /// </summary>
+        IEnumerable<UserRole> Roles();
     }
 }

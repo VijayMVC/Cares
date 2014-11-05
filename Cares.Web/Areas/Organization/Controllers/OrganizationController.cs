@@ -1,15 +1,19 @@
 ﻿using System.Web.Mvc;
+using Cares.Web.Controllers;
+using Cares.WebBase.Mvc;
 
 namespace Cares.Web.Areas.Organization.Controllers
 {
     /// <summary>
     /// Organization Controller
     /// </summary>
-    public class OrganizationController : Controller
+    [SiteAuthorize(PermissionKey = "OrgSetup")]
+    public class OrganizationController : BaseController
     {
         /// <summary>
         /// Organization Group Area
         /// </summary>
+        [SiteAuthorize(PermissionKey = "OrganizationGroup")]
         public ActionResult OrganizationGroup()
         {
             return View();
@@ -18,6 +22,7 @@ namespace Cares.Web.Areas.Organization.Controllers
         /// <summary>
         /// Company Area
         /// </summary>
+        [SiteAuthorize(PermissionKey = "Company")]
         public ActionResult Company()
         {
             return View();
@@ -26,6 +31,7 @@ namespace Cares.Web.Areas.Organization.Controllers
         /// <summary>
         /// Department Area
         /// </summary>
+        [SiteAuthorize(PermissionKey = "Department")]
         public ActionResult Department()
         {
             return View();
@@ -34,6 +40,7 @@ namespace Cares.Web.Areas.Organization.Controllers
         /// <summary>
         /// Operation Area
         /// </summary>
+        [SiteAuthorize(PermissionKey = "Operation")]
         public ActionResult Operation()
         {
             return View();
@@ -42,6 +49,7 @@ namespace Cares.Web.Areas.Organization.Controllers
         /// <summary>
         /// Operation Area
         /// </summary>
+        [SiteAuthorize(PermissionKey = "Workplace")]
         public ActionResult Workplace()
         {
             return View();
@@ -50,6 +58,7 @@ namespace Cares.Web.Areas.Organization.Controllers
         /// <summary>
         /// Work Location Area
         /// </summary>
+        [SiteAuthorize(PermissionKey = "WorkLocation")]
         public ActionResult WorkLocation()
         {
             return View();
@@ -58,19 +67,21 @@ namespace Cares.Web.Areas.Organization.Controllers
         /// <summary>
         /// WorkplaceType Area
         /// </summary>
-         public ActionResult WorkplaceType()
+        [SiteAuthorize(PermissionKey = "WorkplaceType")]
+        public ActionResult WorkplaceType()
         {
             return View();
         }
 
         /// <summary>
-         /// Business Segment Area
+        /// Business Segment Area
         /// </summary>
         /// <returns></returns>
-         public ActionResult BusinessSegment()
-         {
-             return View();
-         }
+        [SiteAuthorize(PermissionKey = "BusinessSegment")]
+        public ActionResult BusinessSegment()
+        {
+            return View();
+        }
 
     }
 }

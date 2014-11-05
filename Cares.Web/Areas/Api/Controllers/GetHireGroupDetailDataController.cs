@@ -11,6 +11,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Get Hire Group Detail Data Api Controller
     /// </summary>
+    [Authorize]
     public class GetHireGroupDetailDataController : ApiController
     {
         #region Private

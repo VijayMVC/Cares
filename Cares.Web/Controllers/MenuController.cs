@@ -6,10 +6,8 @@ using System.Web.Mvc;
 using Cares.Implementation.Identity;
 using Cares.Interfaces.IServices;
 using Cares.Models.DomainModels;
-using Cares.Models.IdentityModels;
 using Cares.Web.ViewModels.Common;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 
 namespace Cares.Web.Controllers
@@ -19,19 +17,16 @@ namespace Cares.Web.Controllers
     /// </summary>
     public class MenuController : Controller
     {
-        // ReSharper disable InconsistentNaming
         private readonly IMenuRightsService menuRightService;
-        // ReSharper restore InconsistentNaming
         
         /// <summary>
         /// Menu Controller Constructure
         /// </summary>
-        /// <param name="menuRightService"></param>
         public MenuController(IMenuRightsService menuRightService)
         {
             this.menuRightService = menuRightService;
         }
-        
+
         /// <summary>
         /// User Manger for logged in user credientals
         /// </summary>
@@ -47,35 +42,38 @@ namespace Cares.Web.Controllers
                 _userManager = value;
             }
         }
-        
+
         /// <summary>
         /// Load Menu items with respect to roles
         /// </summary>
-        /// <returns></returns>
         [ChildActionOnly]
         public ActionResult LoadMenu()
         {
+            if (Session["MenuItems"] != null)
+            {
+                return View(Session["MenuItems"] as MenuViewModel);
+            }
+
             MenuViewModel menuVM = new MenuViewModel();
-            //string userName = HttpContext.User.Identity.Name;
-            //if (!String.IsNullOrEmpty(userName))
-            //{
-                //ApplicationUser userResult = UserManager.FindByEmail(userName);
-                //IList<IdentityUserRole> roles = userResult.Roles.ToList();
-                //if (roles.Count > 0)
-                //{
-            IQueryable<MenuRight> menuItems = menuRightService.FindMenuItemsByRoleId("73953B69-8C5A-458F-A75B-399EF9E16371");
+            string userName = HttpContext.User.Identity.Name;
+            if (!String.IsNullOrEmpty(userName))
+            {
+                User userResult = UserManager.FindByEmail(userName);
+                IList<UserRole> roles = userResult.Roles.ToList();
+                if (roles.Count > 0)
+                {
+                    IEnumerable<MenuRight> menuItems = menuRightService.FindMenuItemsByRoleId(roles[0].Id).ToList(); //"73953B69-8C5A-458F-A75B-399EF9E16371"
 
-                    //save menu items in session
-                    //Session["UserPermissionSet"] = menuItems;
+                    menuVM = new MenuViewModel
+                    {
+                        MenuRights = menuItems,
+                        MenuHeaders = menuItems.Where(x => x.Menu.IsRootItem)
+                    };
+                }
+            }
 
-            menuVM = new MenuViewModel
-                        {
-                            MenuRights = menuItems,
-                            MenuHeaders = menuItems.Where(x => x.Menu.IsRootItem)
-                        };
-                //}
-            //}
+            Session["MenuItems"] = menuVM;
             return View(menuVM);
         }
-	}
+    }
 }

@@ -16,23 +16,30 @@ namespace Cares.WebApi.Areas.Api.Controllers
     [Authorize]
     public class GetOperationWorkplaceController : ApiController
     {
+        #region Private
         public IOperationsWorkPlaceService operationsWorkPlaceService { get; set; }
-
+        #endregion
+        #region Constructor
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public GetOperationWorkplaceController(IOperationsWorkPlaceService operationsWorkPlaceService)
         {
             if (operationsWorkPlaceService == null) throw new ArgumentNullException("operationsWorkPlaceService");
             this.operationsWorkPlaceService = operationsWorkPlaceService;
         }
+        #endregion
+        #region Public
 
-        [HttpGet]
-        public IEnumerable<WebApiOperationWorkplace> Get(long domainKey)
+        public IEnumerable<WebApiOperationWorkplace> Post(GetOperationWorkplaceRequest request)
         {
-            if (!ModelState.IsValid || domainKey == 0)
+            if (!ModelState.IsValid || request == null || !request.DomainKey.HasValue)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
             return
-                operationsWorkPlaceService.GetOperationsWorkPlacesByDomainKey(domainKey).Select(owp => owp.CreateFrom());
-        } 
+                operationsWorkPlaceService.GetOperationsWorkPlacesByDomainKey(request.DomainKey.Value).Select(owp => owp.CreateFrom());
+        }
+        #endregion
     }
 }

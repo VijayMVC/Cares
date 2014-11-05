@@ -13,6 +13,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Employee Api Contoller
     /// </summary>
+    [Authorize]
     public class EmployeeController : ApiController
     {
         #region Private

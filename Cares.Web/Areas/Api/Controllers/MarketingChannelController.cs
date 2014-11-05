@@ -14,6 +14,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// marketing Channel Controller
     /// </summary>
+    [Authorize]
     public class MarketingChannelController : ApiController
     {
        #region Private

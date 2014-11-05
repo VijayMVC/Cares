@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -16,6 +15,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Get Additional Charge For Nrt API Controller
     /// </summary>
+    [Authorize]
     public class GetAdditionalChargeForNrtController : ApiController
     {
         #region Private

@@ -6,7 +6,9 @@ using System.Data.Entity.Migrations;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Web;
 using Cares.Interfaces.Repository;
+using Cares.Models.DomainModels;
 using Microsoft.Practices.Unity;
 
 namespace Cares.Repository.BaseRepository
@@ -19,7 +21,7 @@ namespace Cares.Repository.BaseRepository
     {
         #region Private
 
-// ReSharper disable once InconsistentNaming
+        // ReSharper disable once InconsistentNaming
         private readonly IUnityContainer container;
         #endregion
         #region Protected
@@ -82,7 +84,7 @@ namespace Cares.Repository.BaseRepository
         /// <returns></returns>
         public virtual IEnumerable<TDomainClass> GetAll()
         {
-            throw new NotImplementedException();
+            return DbSet;
         }
         /// <summary>
         /// Save Changes in the entities
@@ -125,7 +127,7 @@ namespace Cares.Repository.BaseRepository
         {
             DbSet.AddOrUpdate(instance);
         }
-        
+
         /// <summary>
         /// Eager load property
         /// </summary>
@@ -136,11 +138,31 @@ namespace Cares.Repository.BaseRepository
         /// <summary>that specifies the User's domain on the system
         /// User Domain key 
         /// </summary>        
-        public long UserDomainKey { get { return 1; } }
+        public long UserDomainKey
+        {
+            get
+            {
+                return HttpContext.Current.Session["UserDomainKey"] != null ? Convert.ToInt64(HttpContext.Current.Session["UserDomainKey"]) : 1;
+            }
+        }
         /// <summary>
         /// Logged in User Identity
         /// </summary>
-        public string LoggedInUserIdentity { get { return "cares"; }  }
+        public string LoggedInUserIdentity
+        {
+            get
+            {
+                return HttpContext.Current.Session["LoggedInUser"] != null ? HttpContext.Current.Session["LoggedInUser"].ToString() : "cares";
+            }
+        }
+
+        /// <summary>
+        /// All Role in DB
+        /// </summary>
+        public IEnumerable<UserRole> Roles()
+        {
+            return db.UserRoles.Where(r => !r.Name.Equals("Admin"));
+        }
 
         #endregion
 

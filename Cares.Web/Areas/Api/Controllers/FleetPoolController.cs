@@ -1,5 +1,4 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using System.Web;
 using System.Web.Http;
 using Cares.Interfaces.IServices;
@@ -13,6 +12,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Fleet Pool Api Controller
     /// </summary>
+    [Authorize]
     public class FleetPoolController : ApiController
     {
         #region Private

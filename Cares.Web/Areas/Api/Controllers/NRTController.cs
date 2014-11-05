@@ -12,6 +12,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// NRT API Controller
     /// </summary>
     // ReSharper disable once InconsistentNaming
+    [Authorize]
     public class NRTController : ApiController
     {
         #region Private

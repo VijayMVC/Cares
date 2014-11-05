@@ -13,6 +13,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Ra Additional Charge Api Controller
     /// </summary>
+    [Authorize]
     public class RaAdditionalChargeController : ApiController
     {
 

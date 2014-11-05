@@ -11,7 +11,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Additional Charge Base API Controller
     /// </summary>
-   
+    [Authorize]
     public class AdditionalChargeBaseController : ApiController
     {
         #region Private

@@ -9,6 +9,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Get Tariff Details Api Controller
     /// </summary>
+    [Authorize]
     public class GetBusinessPartnerDetailsController : ApiController
     {
         #region Private

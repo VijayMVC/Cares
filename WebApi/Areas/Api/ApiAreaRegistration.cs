@@ -1,7 +1,7 @@
 ﻿using System.Web.Http;
 using System.Web.Mvc;
 
-namespace WebApi.Areas.Api
+namespace Cares.WebApi.Areas.Api
 {
     public class ApiAreaRegistration : AreaRegistration 
     {

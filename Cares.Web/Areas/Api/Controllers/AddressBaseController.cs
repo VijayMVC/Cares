@@ -8,6 +8,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Address Base Controller
     /// </summary>
+    [Authorize]
     public class AddressBaseController : ApiController
     {
         #region Private

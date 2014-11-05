@@ -10,6 +10,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Region Base Controller
     /// </summary>
+    [Authorize]
     public class RegionBaseController : ApiController
     {
         #region Private

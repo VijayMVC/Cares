@@ -41,6 +41,11 @@ namespace Cares.Repository.Repositories
                 throw new ArgumentNullException("role");
             }
 
+            if (string.IsNullOrEmpty(role.Id))
+            {
+                role.Id = Guid.NewGuid().ToString();
+            }
+
             _db.UserRoles.Add(role);
             return _db.SaveChangesAsync();
         }

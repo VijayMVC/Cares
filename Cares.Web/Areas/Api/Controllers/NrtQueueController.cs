@@ -9,6 +9,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// NRT Queue API Controller
     /// </summary>
+    [Authorize]
     public class NrtQueueController : ApiController
     {
         #region Private

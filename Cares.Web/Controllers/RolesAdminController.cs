@@ -1,7 +1,9 @@
 ﻿using Cares.Implementation.Identity;
+using Cares.Interfaces.IServices;
 using Cares.Models.DomainModels;
 using Cares.Models.IdentityModels;
 using Cares.Models.IdentityModels.ViewModels;
+using Cares.Web.Controllers;
 using IdentitySample.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -12,21 +14,27 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Collections.Generic;
+using Cares.Web.ViewModels.RightsManagement;
+using Cares.Models.MenuModels;
+using MenuRightModel = Cares.Web.Models.MenuRight;
 
 namespace IdentitySample.Controllers
 {
     [Authorize(Roles = "Admin")]
     public class RolesAdminController : Controller
     {
+
+        private IMenuRightsService menuRightsService;
         public RolesAdminController()
         {
         }
 
-        public RolesAdminController(ApplicationUserManager userManager,
-            ApplicationRoleManager roleManager)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public RolesAdminController(IMenuRightsService menuRightsService)
         {
-            UserManager = userManager;
-            RoleManager = roleManager;
+            this.menuRightsService = menuRightsService;
         }
 
         private ApplicationUserManager _userManager;
@@ -59,7 +67,7 @@ namespace IdentitySample.Controllers
         // GET: /Roles/
         public ActionResult Index()
         {
-            return View(RoleManager.Roles);
+            return View(RoleManager.Roles.Where(role => !role.Name.ToLower().Equals("admin")));
         }
 
         //
@@ -198,6 +206,77 @@ namespace IdentitySample.Controllers
                 return RedirectToAction("Index");
             }
             return View();
+        }
+
+        [Authorize (Roles = "Admin")]
+        public ActionResult RightsManagement()
+        {
+
+            UserMenuResponse userMenuRights = menuRightsService.GetRoleMenuRights(string.Empty);
+            RightsManagementViewModel viewModel = new RightsManagementViewModel();
+
+            viewModel.Roles = userMenuRights.Roles.ToList();
+            viewModel.Rights =
+                userMenuRights.Menus.Select(
+                    m =>
+                        new MenuRightModel
+                        {
+                            MenuId = m.MenuId,
+                            MenuTitle = m.MenuTitle,
+                            IsParent = m.IsRootItem,
+                            IsSelected = userMenuRights.MenuRights.Any(menu => menu.Menu.MenuId == m.MenuId),
+                            ParentId = m.ParentItem != null ? m.ParentItem.MenuId : (int?)null
+                        }).ToList();
+            return View(viewModel);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult PostRightsManagement(string roleValue, string selectedList)
+        {
+
+            UserMenuResponse userMenuRights = menuRightsService.SaveRoleMenuRight(roleValue, selectedList, RoleManager.FindById(roleValue));
+            RightsManagementViewModel viewModel = new RightsManagementViewModel();
+
+            viewModel.Roles = userMenuRights.Roles.ToList();
+            viewModel.Rights =
+                userMenuRights.Menus.Select(
+                    m =>
+                        new MenuRightModel
+                        {
+                            MenuId = m.MenuId,
+                            MenuTitle = m.MenuTitle,
+                            IsParent = m.IsRootItem,
+                            IsSelected = userMenuRights.MenuRights.Any(menu => menu.Menu.MenuId == m.MenuId),
+                            ParentId = m.ParentItem != null ? m.ParentItem.MenuId : (int?)null
+                        }).ToList();
+            viewModel.SelectedRoleId = roleValue;
+            return View("RightsManagement", viewModel);
+
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public ActionResult RightsManagement(FormCollection collection)
+        {
+            string RoleId = collection.Get("SelectedRoleId");
+            UserMenuResponse userMenuRights = menuRightsService.GetRoleMenuRights(RoleId);
+            RightsManagementViewModel viewModel = new RightsManagementViewModel();
+
+            viewModel.Roles = userMenuRights.Roles.ToList();
+            viewModel.Rights =
+                userMenuRights.Menus.Select(
+                    m =>
+                        new MenuRightModel
+                        {
+                            MenuId = m.MenuId,
+                            MenuTitle = m.MenuTitle,
+                            IsParent = m.IsRootItem,
+                            IsSelected = userMenuRights.MenuRights.Any(menu => menu.Menu.MenuId == m.MenuId),
+                            ParentId = m.ParentItem != null ? m.ParentItem.MenuId : (int?)null,
+
+                        }).ToList();
+            viewModel.SelectedRoleId = RoleId;
+            return View(viewModel);
         }
     }
 }

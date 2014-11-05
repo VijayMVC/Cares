@@ -12,6 +12,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Department Controller 
     /// </summary>
+    [Authorize]
     public class DepartmentController : ApiController
     {
         #region Private

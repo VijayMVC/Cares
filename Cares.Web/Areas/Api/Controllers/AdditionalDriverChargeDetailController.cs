@@ -5,7 +5,6 @@ using System.Net;
 using System.Web;
 using System.Web.Http;
 using Cares.Interfaces.IServices;
-using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
 using Cares.Web.ModelMappers;
 
@@ -14,6 +13,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Additional Driver Charge Detail Api Controller
     /// </summary>
+    [Authorize]
     public class AdditionalDriverChargeDetailController : ApiController
     {
 

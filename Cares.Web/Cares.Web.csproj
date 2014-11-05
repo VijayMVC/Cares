@@ -180,6 +180,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.2.0.0\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Razor.3.1.2\lib\net45\System.Web.Razor.dll</HintPath>
@@ -380,6 +383,7 @@
     <Compile Include="Areas\Reports\Controllers\ReportController.cs" />
     <Compile Include="Areas\Reports\ReportsAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\VehicleImageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -465,6 +469,7 @@
     <Compile Include="Models\RaMainForRaQueueSearchResponse.cs" />
     <Compile Include="Models\GetRaVehicleCheckListRequest.cs" />
     <Compile Include="Models\ReportModels\RaAdditionaItemInfo.cs" />
+    <Compile Include="Models\MenuRight.cs" />
     <Compile Include="Models\ReportModels\RaAdditionalChargeInfo.cs" />
     <Compile Include="Models\ReportModels\RaCustomerInfo.cs" />
     <Compile Include="Models\ReportModels\RaVehicleInfo.cs" />
@@ -1377,6 +1382,7 @@
     <Compile Include="TypeRegistrations.cs" />
     <Compile Include="ViewModels\Common\MenuViewModel.cs" />
     <Compile Include="ViewModels\Common\MessageViewModel.cs" />
+    <Compile Include="ViewModels\RightsManagement\RightsManagementViewModel.cs" />
     <Compile Include="Views\Shared\Reports.Master.cs">
       <DependentUpon>Reports.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2787,6 +2793,7 @@
     <Content Include="Views\Employee\Create.cshtml" />
     <Content Include="Views\Shared\_BlankLayout.cshtml" />
     <Content Include="Views\Shared\Reports.Master" />
+    <Content Include="Views\RolesAdmin\RightsManagement.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2857,6 +2864,7 @@
     <Folder Include="RichTextEditor\plugins\wsc\dialogs\" />
     <Folder Include="RichTextEditor\samples\plugins\htmlwriter\assets\outputforflash\" />
     <Folder Include="RichTextEditor\samples\plugins\magicline\" />
+    <Folder Include="Views\Base\" />
     <Folder Include="Views\Menu\" />
     <Folder Include="Views\OperationBaseDataResponse\" />
   </ItemGroup>

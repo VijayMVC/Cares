@@ -5,7 +5,6 @@ using System.Net;
 using System.Web;
 using System.Web.Http;
 using Cares.Interfaces.IServices;
-using Cares.Models.RequestModels;
 using Cares.Web.ModelMappers;
 using Cares.Web.Models;
 using Cares.WebBase.Mvc;
@@ -15,6 +14,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// Chauffer Charge Detail API Controller
     /// </summary>
+    [Authorize]
     public class ChaufferChargeDetailController : ApiController
     {
         #region Private

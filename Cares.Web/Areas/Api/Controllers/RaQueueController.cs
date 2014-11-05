@@ -9,6 +9,7 @@ namespace Cares.Web.Areas.Api.Controllers
     /// <summary>
     /// RA Queue API Controller
     /// </summary>
+    [Authorize]
     public class RaQueueController : ApiController
     {
         #region Private
