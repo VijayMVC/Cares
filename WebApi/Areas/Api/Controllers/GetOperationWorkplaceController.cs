@@ -19,6 +19,7 @@ namespace Cares.WebApi.Areas.Api.Controllers
         #region Private
         public IOperationsWorkPlaceService operationsWorkPlaceService { get; set; }
         #endregion
+       
         #region Constructor
         /// <summary>
         /// Constructor
@@ -29,6 +30,7 @@ namespace Cares.WebApi.Areas.Api.Controllers
             this.operationsWorkPlaceService = operationsWorkPlaceService;
         }
         #endregion
+        
         #region Public
 
         public IEnumerable<WebApiOperationWorkplace> Post(GetOperationWorkplaceRequest request)
