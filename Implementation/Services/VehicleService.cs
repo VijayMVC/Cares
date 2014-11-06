@@ -85,7 +85,6 @@ namespace Cares.Implementation.Services
         }
 
         #endregion
-
         #region Public
 
         /// <summary>

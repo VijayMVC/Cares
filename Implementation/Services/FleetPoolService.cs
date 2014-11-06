@@ -19,7 +19,8 @@ namespace Cares.Implementation.Services
         private readonly IOperationRepository operationRepository;
         private readonly ICountryRepository countryRepository;
         private readonly IRegionRepository regionRepository;
-         private readonly IFleetPoolRepository fleetPoolRepository;
+        private readonly IFleetPoolRepository fleetPoolRepository;
+        private readonly IOperationsWorkPlaceRepository operationsWorkPlaceRepository;
 
         #endregion
        #region Constructors
@@ -28,12 +29,13 @@ namespace Cares.Implementation.Services
          /// </summary>
          public FleetPoolService(
              IOperationRepository operationRepository, ICountryRepository countryRepository,
-             IRegionRepository regionRepository, IFleetPoolRepository fleetPoolRepository)
+             IRegionRepository regionRepository, IFleetPoolRepository fleetPoolRepository, IOperationsWorkPlaceRepository operationsWorkPlaceRepository)
          {
              this.operationRepository = operationRepository;
              this.countryRepository = countryRepository;
              this.regionRepository = regionRepository;
              this.fleetPoolRepository = fleetPoolRepository;
+             this.operationsWorkPlaceRepository = operationsWorkPlaceRepository;
          }
 
          #endregion
@@ -76,6 +78,10 @@ namespace Cares.Implementation.Services
                      throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
                          "FleetPool with Id {0} not found!", fleetPoolId));
                  }
+             //Association check
+            if(operationsWorkPlaceRepository.IsOperationWorkPlaceAssociatedWithFleetPool(fleetPoolId))
+            throw new CaresException(Resources.FleetPool.FleetPool.FleetPoolIsAssociatedWithOperationWorkPlaceError);
+
                  fleetPoolRepository.Delete(dbVersion);
                  fleetPoolRepository.SaveChanges();
          }
