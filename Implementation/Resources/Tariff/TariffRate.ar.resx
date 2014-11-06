@@ -147,4 +147,7 @@
   <data name="CodeDuplication" xml:space="preserve">
     <value>معدل قياسي الرئيسي مع نفس الرمز موجود بالفعل. يرجى اختيار رمز مختلف!</value>
   </data>
+  <data name="StRateIsAssociatedWithHireGroupError" xml:space="preserve">
+    <value>تعرفة ويرتبط مع مجموعة تأجير</value>
+  </data>
 </root>

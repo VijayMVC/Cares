@@ -49,6 +49,7 @@ define("tariffRate/tariffRate.dataservice", function () {
                     amplify.request.define('deleteTariffRate', 'ajax', {
                         url: ist.siteUrl + '/Api/TariffRate',
                         dataType: 'json',
+                        decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
                     isInitialized = true;

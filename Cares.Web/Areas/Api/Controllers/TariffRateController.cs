@@ -21,7 +21,7 @@ namespace Cares.Web.Areas.Api.Controllers
         #region Private
         private readonly ITariffRateService tariffRateService;
         #endregion
-        
+
         #region Constructors
         /// <summary>
         /// Constructor
@@ -38,9 +38,9 @@ namespace Cares.Web.Areas.Api.Controllers
 
         }
         #endregion
-       
+
         #region Public
-        
+
         // GET api/<controller>
         public TariffRateSearchResponse Get([FromUri] DomainRequestModels.TariffRateSearchRequest request)
         {
@@ -68,6 +68,7 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Delete a Tariff Rate
         /// </summary>
+        [ApiException]
         public void Delete(StandardRateMain standardRateMain)
         {
             if (standardRateMain == null || !ModelState.IsValid)
@@ -76,7 +77,7 @@ namespace Cares.Web.Areas.Api.Controllers
             }
             tariffRateService.DeleteTariffRate(tariffRateService.Find(standardRateMain.StandardRtMainId));
         }
-        
+
         /// <summary>
         /// Standard Rate Validation
         /// </summary>
@@ -135,7 +136,7 @@ namespace Cares.Web.Areas.Api.Controllers
             }
 
         }
-        
+
         #endregion
     }
 }

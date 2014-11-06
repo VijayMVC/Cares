@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
@@ -14,12 +15,14 @@ namespace Cares.Implementation.Services
         #region Private
         private readonly IHireGroupDetailRepository hireGroupDetailRepository;
         private readonly IVehicleRepository vehicleRepository;
+        private readonly IInsuranceRtRepository insuranceRtRepository;
         #endregion
+
         #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>
-        public WebApiAvailableRentalService(IHireGroupDetailRepository hireGroupDetailRepository, IVehicleRepository vehicleRepository)
+        public WebApiAvailableRentalService(IHireGroupDetailRepository hireGroupDetailRepository, IVehicleRepository vehicleRepository, IInsuranceRtRepository insuranceRtRepository)
         {
             if (hireGroupDetailRepository == null)
             {
@@ -29,10 +32,16 @@ namespace Cares.Implementation.Services
             {
                 throw new ArgumentNullException("vehicleRepository");
             }
+            if (insuranceRtRepository == null)
+            {
+                throw new ArgumentNullException("insuranceRtRepository");
+            }
             this.hireGroupDetailRepository = hireGroupDetailRepository;
             this.vehicleRepository = vehicleRepository;
+            this.insuranceRtRepository = insuranceRtRepository;
         }
         #endregion
+
         #region Public
         /// <summary>
         /// Get Avialable Vehicles on the location for the given time duration
@@ -45,6 +54,15 @@ namespace Cares.Implementation.Services
             IEnumerable<WebApiAvailaleHireGroup> vehicles = vehicleRepository.GetAvaibaleVehiclesForWebApi(availableHireGroups, domainKey);
             return vehicles;
         }
+
+        public IEnumerable<WebApiAvailableServices> GetAvailableServicesWithRates(long operationWorkplaceId, DateTime startDateTime, DateTime endDateTime,
+            long domainKey, long hireGroupDetailId)
+        {
+
+            IEnumerable<WebApiAvailableInsurance> insurances=insuranceRtRepository.GetAvailableInsuranceRtForWebApi(hireGroupDetailId,startDateTime,domainKey);
+           return null;
+        }
+
         #endregion
     }
 }

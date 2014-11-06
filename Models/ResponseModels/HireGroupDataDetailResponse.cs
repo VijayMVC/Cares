@@ -17,5 +17,10 @@ namespace Cares.Models.ResponseModels
         /// Hire Group Up Grades
         /// </summary>
         public IEnumerable<HireGroupUpGrade> HireGroupUpGrades { get; set; }
+
+        /// <summary>
+        /// Hire Groups
+        /// </summary>
+        public IEnumerable<HireGroup> HireGroups { get; set; }
     }
 }

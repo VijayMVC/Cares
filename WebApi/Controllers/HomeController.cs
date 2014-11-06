@@ -7,21 +7,17 @@ namespace Cares.WebApi.Controllers
     
     public class HomeController : Controller
     {
-        private readonly IWebApiAuthenticationService authenticationService;
+        //private readonly IWebApiAuthenticationService authenticationService;
 
         public HomeController(IWebApiAuthenticationService authenticationService)
         {
-            if (authenticationService == null)
-            {
-                throw new ArgumentNullException("authenticationService");
-            }
-            this.authenticationService = authenticationService;
+            
         }
 
         public ActionResult Index()
         {
 
-            var item = authenticationService.IsValidWebApiUser("asf", "asfasf");
+            //var item = authenticationService.IsValidWebApiUser("asf", "asfasf");
             return View();
         }
 

@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
+using Cares.Models.ResponseModels;
 using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
 
@@ -83,6 +84,23 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Count(insuranceRt => insuranceRt.InsuranceTypeId == insuranceTypeId && insuranceRt.UserDomainKey == UserDomainKey) > 0;
         }
+
+        /// <summary>
+        /// Get Available Insurance Rate ForWebApi
+        /// </summary>
+        public IEnumerable<WebApiAvailableInsurance> GetAvailableInsuranceRtForWebApi(long hireGroupDetailId, DateTime startDt, long userDomainKey)
+        {
+            return DbSet.Where(
+                ir =>
+                    ir.UserDomainKey == userDomainKey && !ir.IsDeleted && ir.ChildInsuranceRtId == null &&
+                    ir.HireGroupDetailId == hireGroupDetailId &&
+                    ir.StartDt <= startDt).Select(x => new WebApiAvailableInsurance()
+                    {
+                        InsuranceRtId = x.InsuranceRtId
+                    }).ToList();
+
+        }
+
         #endregion
     }
 }

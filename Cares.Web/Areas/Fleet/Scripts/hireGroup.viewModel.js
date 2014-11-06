@@ -121,18 +121,13 @@ define("hireGroup/hireGroup.viewModel",
                         selectedHireGroup().hireGroupUpGrade(new model.HireGroupUpGrade());
                         virtualIsChecked(hireGroup.isParent());
                         filteredHireGroupsForDdList.removeAll();
-                        _.each(hireGroupsForDdList(), function (item) {
-                            if (item.CompanyId === hireGroup.companyId())
-                                filteredHireGroupsForDdList.push(item);
-                        });
-                        filteredHireGroupsForDdList.valueHasMutated();
+                        //Parent Hiregroup
                         filteredParentHireGroups.removeAll();
                         _.each(parentHireGroups(), function (item) {
                             if (item.CompanyId === hireGroup.companyId())
                                 filteredParentHireGroups.push(item);
                         });
 
-                        //selectedtariffRateCopy(model.TariffRateCoppier(selectedtariffRate()));
                         getHireGroupById();
                         showHireGroupEditor();
                         e.stopImmediatePropagation();
@@ -165,6 +160,14 @@ define("hireGroup/hireGroup.viewModel",
                                     hireGroupUpGradeList.push(model.HireGroupUpGradeClientMapper(item));
                                 });
                                 hireGroupUpGradeList.valueHasMutated();
+
+                                //remove hire
+                                filteredHireGroupsForDdList.removeAll();
+                                _.each(data.HireGroups, function (item) {
+                                    if (item.CompanyId === selectedHireGroup().companyId() && item.HireGroupId !== selectedHireGroup().hireGroupId())
+                                        filteredHireGroupsForDdList.push(item);
+                                });
+                                filteredHireGroupsForDdList.valueHasMutated();
                                 isLoadingHireGroups(false);
                             },
                             error: function () {

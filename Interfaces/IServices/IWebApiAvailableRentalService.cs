@@ -14,5 +14,12 @@ namespace Cares.Interfaces.IServices
         /// </summary>
         IEnumerable<WebApiAvailaleHireGroup> GetAvailableHireGroupsWithRates(long operationWorkplaceId, DateTime startDateTime,
             DateTime endDateTime, long domainKey);
+
+        /// <summary>
+        /// Get available Services with rates for given location and duration
+        /// </summary>
+        IEnumerable<WebApiAvailableServices> GetAvailableServicesWithRates(long operationWorkplaceId, DateTime startDateTime,
+            DateTime endDateTime, long domainKey, long hireGroupDetailId);
+
     }
 }
