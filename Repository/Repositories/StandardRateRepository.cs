@@ -4,7 +4,6 @@ using System.Data.Entity;
 using System.Linq;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
-using Cares.Models.ReportModels;
 using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
 
