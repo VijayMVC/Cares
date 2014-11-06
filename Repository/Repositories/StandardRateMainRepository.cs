@@ -5,6 +5,7 @@ using System.Linq;
 using Cares.Interfaces.Repository;
 using Cares.Models.Common;
 using Cares.Models.DomainModels;
+using Cares.Models.ReportModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
 using Cares.Repository.BaseRepository;
@@ -52,6 +53,9 @@ namespace Cares.Repository.Repositories
         #endregion
 
         #region Public
+
+
+
 
         /// <summary>
         /// Get All Standard Rates Main for User Domain Key

@@ -1,4 +1,5 @@
 ﻿using Cares.Models.DomainModels;
+using Cares.Models.ReportModels;
 using ApiModels = Cares.Web.Models;
 
 namespace Cares.Web.ModelMappers
@@ -44,6 +45,28 @@ namespace Cares.Web.ModelMappers
                 StartDate = source.StandardRtStartDt,
                 RevisionNumber=source.RevisionNumber
 
+            };
+        }
+
+
+        public static StandardRateReportResponse CreateStandardRateReportResponse(this StandardRate source)
+        {
+            return new StandardRateReportResponse
+            {
+                TarrifTypeName = source.StandardRtMain.TariffTypeCode,
+                HireGroupName = source.HireGroupDetail.HireGroup.HireGroupName,
+                VehicleModel = source.HireGroupDetail.VehicleModel.VehicleModelName,
+                VehicleMake = source.HireGroupDetail.VehicleMake.VehicleMakeName,
+                VehicleCategory = source.HireGroupDetail.VehicleCategory.VehicleCategoryName,
+                AllowedMileage = source.AllowedMileage,
+                ExcessMileageCharges = source.ExcessMileageChrg,
+                ModelYear = source.HireGroupDetail.ModelYear,
+                StandradRate = source.StandardRt,
+                SREndDate = source.StandardRtEndDt,
+                SRStartDate = source.StandardRtStartDt,
+                StandradRateType = source.StandardRtMain.StandardRtMainCode,
+                RevesionNumber = source.RevisionNumber,
+                OperationName = "No name"
             };
         }
         #endregion

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cares.Models.DomainModels;
+using Cares.Models.ReportModels;
 
 namespace Cares.Interfaces.Repository
 {
@@ -23,5 +24,7 @@ namespace Cares.Interfaces.Repository
         /// Get Insurance Rate For RA Billing 
         /// </summary>
         IEnumerable<StandardRate> GetForRaBilling(string tariffTypeCode, long hireGroupDetailId, DateTime raRecCreatedDate);
+
+     
     }
 }

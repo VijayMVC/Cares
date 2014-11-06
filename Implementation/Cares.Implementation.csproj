@@ -136,6 +136,7 @@
     <Compile Include="ReportServices\MissingHireGroupService.cs" />
     <Compile Include="ReportServices\DailyActionService.cs" />
     <Compile Include="ReportServices\FleetReportService.cs" />
+    <Compile Include="ReportServices\StandardRateReportService.cs" />
     <Compile Include="Resources\BusinessPartner\BpMainType.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
