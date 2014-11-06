@@ -341,8 +341,18 @@ define("tariffRate/tariffRate.viewModel",
                                 tariffRates.remove(tariffRate);
                                 toastr.success(ist.resourceText.tariffRateDeleteSuccessMsg);
                             },
-                            error: function () {
-                                toastr.error(ist.resourceText.tariffRateDeleteFailedMsg);
+                            error: function (exceptionMessage, exceptionType) {
+
+                                if (exceptionType === ist.exceptionType.CaresGeneralException) {
+
+                                    toastr.error(exceptionMessage);
+
+                                } else {
+
+                                    toastr.error(ist.resourceText.tariffRateDeleteFailedMsg);
+
+                                }
+
                             }
                         });
                     },

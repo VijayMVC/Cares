@@ -147,4 +147,7 @@
   <data name="CodeDuplication" xml:space="preserve">
     <value>Standard Rate Main with the same code already exists. Please choose a different code!</value>
   </data>
+  <data name="StRateIsAssociatedWithHireGroupError" xml:space="preserve">
+    <value>Tariff Rate is associated with Hire Group</value>
+  </data>
 </root>

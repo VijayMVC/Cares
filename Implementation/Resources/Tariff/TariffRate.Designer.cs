@@ -149,5 +149,14 @@ namespace Cares.Implementation.Resources.Tariff {
                 return ResourceManager.GetString("StRateInvalidRangeEffectiveDate", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tariff Rate is associated with Hire Group.
+        /// </summary>
+        public static string StRateIsAssociatedWithHireGroupError {
+            get {
+                return ResourceManager.GetString("StRateIsAssociatedWithHireGroupError", resourceCulture);
+            }
+        }
     }
 }

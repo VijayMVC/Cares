@@ -7137,10 +7137,6 @@
             <End Role="ServiceRtMain" EntitySet="ServiceRtMains" />
             <End Role="ServiceRt" EntitySet="ServiceRts" />
           </AssociationSet>
-          <AssociationSet Name="RefStandardRt371" Association="DomainModels.RefStandardRt371">
-            <End Role="StandardRt" EntitySet="StandardRates" />
-            <End Role="StandardRt1" EntitySet="StandardRates" />
-          </AssociationSet>
           <EntitySet Name="StandardRateMains" EntityType="DomainModels.StandardRateMain" />
           <EntitySet Name="VehicleDisposalInfoes" EntityType="DomainModels.VehicleDisposalInfo" />
           <EntitySet Name="VehicleImageHireGroupDetails" EntityType="DomainModels.VehicleImageHireGroupDetail" />
@@ -7776,6 +7772,10 @@
             <End Role="AspNetUserLogin" EntitySet="UserLogins" />
           </AssociationSet>
           <EntitySet Name="WebApiUsers" EntityType="DomainModels.WebApiUser" />
+          <AssociationSet Name="RefStandardRt371" Association="DomainModels.RefStandardRt371">
+            <End Role="StandardRate" EntitySet="StandardRates" />
+            <End Role="StandardRate1" EntitySet="StandardRates" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Company">
           <Key>
@@ -10254,8 +10254,8 @@
           <Property Name="StandardRtStartDt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
           <NavigationProperty Name="HireGroupDetail" Relationship="DomainModels.RefHireGroupDetail377" FromRole="StandardRt" ToRole="HireGroupDetail" />
-          <NavigationProperty Name="ChildStandardRate" Relationship="DomainModels.RefStandardRt371" FromRole="StandardRt" ToRole="StandardRt1" />
           <NavigationProperty Name="StandardRtMain" Relationship="DomainModels.RefStandardRtMain148" FromRole="StandardRt" ToRole="StandardRtMain" />
+          <NavigationProperty Name="ChildStandardRate" Relationship="DomainModels.RefStandardRt371" FromRole="StandardRate1" ToRole="StandardRate" />
         </EntityType>
         <Association Name="RefOccupationType292">
           <End Type="DomainModels.OccupationType" Role="OccupationType" Multiplicity="0..1" />
@@ -10446,18 +10446,6 @@
             </Principal>
             <Dependent Role="ServiceRt">
               <PropertyRef Name="ServiceRtMainId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="RefStandardRt371">
-          <End Type="DomainModels.StandardRate" Role="StandardRt" Multiplicity="0..1" />
-          <End Type="DomainModels.StandardRate" Role="StandardRt1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="StandardRt">
-              <PropertyRef Name="StandardRtId" />
-            </Principal>
-            <Dependent Role="StandardRt1">
-              <PropertyRef Name="ChildStandardRtId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -13746,6 +13734,18 @@
           <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
         </EntityType>
+        <Association Name="RefStandardRt371">
+          <End Type="DomainModels.StandardRate" Role="StandardRate" Multiplicity="0..1" />
+          <End Type="DomainModels.StandardRate" Role="StandardRate1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StandardRate">
+              <PropertyRef Name="StandardRtId" />
+            </Principal>
+            <Dependent Role="StandardRate1">
+              <PropertyRef Name="ChildStandardRtId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

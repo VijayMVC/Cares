@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cares.Models.DomainModels;
+using Cares.Models.ResponseModels;
 
 namespace Cares.Interfaces.Repository
 {
@@ -30,5 +31,12 @@ namespace Cares.Interfaces.Repository
         /// Association check B/W Insurance Type and Insurance RT
         /// </summary>
         bool IsInsuranceTypeAssociatedWithInsuranceRt(long insuranceTypeId);
+
+        /// <summary>
+        /// Get Available Insurance Rate ForWebApi
+        /// </summary>
+        IEnumerable<WebApiAvailableInsurance> GetAvailableInsuranceRtForWebApi(long hireGroupDetailId, DateTime startDt,
+            long userDomainKey);
+
     }
 }

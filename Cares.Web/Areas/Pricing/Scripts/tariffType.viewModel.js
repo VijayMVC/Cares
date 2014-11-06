@@ -195,19 +195,19 @@ define("tariffType/tariffType.viewModel",
                         var flag = true;
                         var measurementUnitKey;
                         _.each(measurementUnits(), function (item) {
-                            if (item.MeasurementUnitId == addTariffType().measurementUnitId()) {
+                            if (item.MeasurementUnitId === addTariffType().measurementUnitId()) {
                                 measurementUnitKey = item.MeasurementUnitKey;
                             }
 
                         });
                         //For Minute
                         if (measurementUnitKey === 1) {
-                            if (addTariffType().durationFrom() <= 0 || addTariffType().durationFrom() > 59 || addTariffType().durationTo() <= 0 || addTariffType().durationTo() > 59
-                                ) {
+                            if (parseInt(addTariffType().durationFrom()) <= 0 || parseInt(addTariffType().durationFrom()) > 59 || parseInt(addTariffType().durationTo()) <= 0
+                                || parseInt(addTariffType().durationTo()) > 59) {
                                 toastr.error("Start From and End To values always between 1 to 59.");
                                 flag = false;
                             }
-                            else if (addTariffType().durationTo() < addTariffType().durationFrom()) {
+                            else if (parseInt(addTariffType().durationTo()) < parseInt(addTariffType().durationFrom())) {
                                 toastr.error("End To must greater than Start From.");
                                 flag = false;
                             }
@@ -215,12 +215,12 @@ define("tariffType/tariffType.viewModel",
                         }
                         //For Hours
                         if (measurementUnitKey === 2) {
-                            if (addTariffType().durationFrom() <= 0 || addTariffType().durationFrom() > 23 || addTariffType().durationTo() <= 0 || addTariffType().durationTo() > 23
-                               ) {
+                            if (parseInt(addTariffType().durationFrom()) <= 0 || parseInt(addTariffType().durationFrom()) > 23 || parseInt(addTariffType().durationTo()) <= 0
+                                || parseInt(addTariffType().durationTo()) > 23) {
                                 toastr.error("Start From and End To values always between 1 to 23.");
                                 flag = false;
                             }
-                            else if (addTariffType().durationTo() < addTariffType().durationFrom()) {
+                            else if (parseInt(addTariffType().durationTo()) < parseInt(addTariffType().durationFrom())) {
                                 toastr.error("End To must greater than Start From.");
                                 flag = false;
                             }
