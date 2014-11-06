@@ -153,7 +153,8 @@ namespace Cares.Web.ModelMappers
             return new HireGroupDataDetailResponse
                    {
                        HireGroupDetails = source.HireGroupDetails.Select(hg => hg.CreateFromForHireGroupDetail()),
-                       HireGroupUpGrades = source.HireGroupUpGrades.Select(hgUpGrade => hgUpGrade.CreateFrom())
+                       HireGroupUpGrades = source.HireGroupUpGrades.Select(hgUpGrade => hgUpGrade.CreateFrom()),
+                       HireGroups = source.HireGroups.Select(hr => hr.CreateFromHireGroupDropDown())
                    };
         }
         /// <summary>

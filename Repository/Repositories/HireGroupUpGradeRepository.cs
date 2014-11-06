@@ -35,12 +35,29 @@ namespace Cares.Repository.Repositories
 
         #endregion
         #region Public
+
+        /// <summary>
+        /// Find By Hire Group Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public IEnumerable<HireGroupUpGrade> FindByHireGroupId(long id)
         {
-            return DbSet.Where(hgUGrade => hgUGrade.HireGroupId == id);
+            return DbSet.Where(hgUGrade => hgUGrade.HireGroupId == id && hgUGrade.UserDomainKey == UserDomainKey).ToList();
+
+        }
+
+        /// <summary>
+        /// Find By Allowed Hire Group Id
+        /// </summary>
+        /// <param name="allowedHireGroupId"></param>
+        /// <returns></returns>
+        public IEnumerable<HireGroupUpGrade> FindByAllowedHireGroupId(long allowedHireGroupId)
+        {
+            return DbSet.Where(hgUGrade => hgUGrade.AllowedHireGroupId == allowedHireGroupId && hgUGrade.UserDomainKey == UserDomainKey).ToList();
         }
         #endregion
 
-       
+
     }
 }

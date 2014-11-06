@@ -95,8 +95,9 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public IEnumerable<HireGroup> GetHireGroupList()
         {
-            return DbSet.Where(hireGroup => hireGroup.UserDomainKey == UserDomainKey && !hireGroup.IsParent);
+            return DbSet.Where(hireGroup => hireGroup.UserDomainKey == UserDomainKey && !hireGroup.IsParent).ToList();
         }
+
 
         /// <summary>
         /// Load Dependencies

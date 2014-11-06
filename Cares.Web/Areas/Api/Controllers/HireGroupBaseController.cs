@@ -16,6 +16,7 @@ namespace Cares.Web.Areas.Api.Controllers
         #region Private
         private readonly IHireGroupService hireGroupService;
         #endregion
+        
         #region Constructors
         /// <summary>
         /// Constructor
@@ -27,6 +28,7 @@ namespace Cares.Web.Areas.Api.Controllers
         }
 
         #endregion
+        
         #region Public
         public ApiModels.HireGroupBaseResponse Get()
         {
