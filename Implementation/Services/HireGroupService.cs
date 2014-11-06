@@ -314,10 +314,25 @@ namespace Cares.Implementation.Services
         /// <returns></returns>
         public HireGroupDataDetailResponse FindHireGroupId(long id)
         {
+            IEnumerable<HireGroupUpGrade> hireGroupUpGrades = hireGroupUpGradeRepository.FindByAllowedHireGroupId(id);
+            List<HireGroup> hireGroups = hireGroupRepository.GetHireGroupList().ToList();
+            //List to delete hire group 
+            List<HireGroup> hireGroupDeleteList = (from hgUpGrade in hireGroupUpGrades from hg in hireGroups where hgUpGrade.HireGroupId == hg.HireGroupId select hg).ToList();
+            //Delete form Hire Group
+            foreach (var item in hireGroupDeleteList)
+            {
+                if (hireGroups.Any(hg => hg.HireGroupId == item.HireGroupId))
+                {
+                    hireGroups.Remove(item);
+                }
+
+            }
+
             return new HireGroupDataDetailResponse
                    {
                        HireGroupDetails = hireGroupDetailRepository.GetHireGroupDetailByHireGroupId(id),
-                       HireGroupUpGrades = hireGroupUpGradeRepository.FindByHireGroupId(id)
+                       HireGroupUpGrades = hireGroupUpGradeRepository.FindByHireGroupId(id),
+                       HireGroups = hireGroups
                    };
         }
 

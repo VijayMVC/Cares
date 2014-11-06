@@ -821,6 +821,18 @@
     <Compile Include="Reports\RentalAgreementReport.aspx.designer.cs">
       <DependentUpon>RentalAgreementReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\StandradRateDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StandradRateDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\StandradRateReport.aspx.cs">
+      <DependentUpon>StandradRateReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\StandradRateReport.aspx.designer.cs">
+      <DependentUpon>StandradRateReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\VehiclesReport.aspx.cs">
       <DependentUpon>VehiclesReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2119,6 +2131,7 @@
     <Content Include="Reports\DailyActionReport.aspx" />
     <Content Include="Reports\MissingHireGroupReport.aspx" />
     <Content Include="Reports\RentalAgreementReport.aspx" />
+    <Content Include="Reports\StandradRateReport.aspx" />
     <Content Include="Reports\VehiclesReport.aspx" />
     <Content Include="Resources\Images\favicon.ico" />
     <Content Include="Resources\Images\logo.jpg" />
@@ -2614,6 +2627,7 @@
     <Content Include="Areas\RentalAgreement\Views\Home\_VehicleMovementDialog.cshtml" />
     <Content Include="Areas\RentalAgreement\Views\Home\_DiscountsDialog.cshtml" />
     <Content Include="Areas\Reports\Views\Report\MissingHireGroupReport.cshtml" />
+    <Content Include="Areas\Reports\Views\Report\StandardRateReport.cshtml" />
     <None Include="Properties\PublishProfiles\cares.pubxml" />
     <Content Include="Areas\Reports\Views\Report\DailyActionReport.cshtml" />
     <Content Include="Areas\Reports\Views\Report\RentalAgreementReport.cshtml" />
@@ -2662,6 +2676,17 @@
     </None>
     <Content Include="Reports\RentalAgreementDS.xss">
       <DependentUpon>RentalAgreementDS.xsd</DependentUpon>
+    </Content>
+    <Content Include="Reports\StandradRateDS.xsc">
+      <DependentUpon>StandradRateDS.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\StandradRateDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StandradRateDS.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reports\StandradRateDS.xss">
+      <DependentUpon>StandradRateDS.xsd</DependentUpon>
     </Content>
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
@@ -2897,6 +2922,7 @@
     <EmbeddedResource Include="Reports\RDLC\MissingHireGroup.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DailyAction.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\RentalAgreement.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\StandardRate.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\Vehicle.rdlc" />
     <EmbeddedResource Include="Resources\BusinessPartner\BusinessLegalStatus.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

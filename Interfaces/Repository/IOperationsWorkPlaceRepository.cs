@@ -28,6 +28,11 @@ namespace Cares.Interfaces.Repository
         /// Get Operation Workplace by domainKey
         /// </summary>
         IEnumerable<OperationsWorkPlace> GetSalesBranchesByDomainKey(long domainKey);
+
+        /// <summary>
+        /// Association check b/n Operation Work Place and Fleet Pool
+        /// </summary>
+        bool IsOperationWorkPlaceAssociatedWithFleetPool(double fleetPollId);
     }
 }
  

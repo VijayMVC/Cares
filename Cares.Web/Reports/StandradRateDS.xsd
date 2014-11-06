@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="StandradRateDS" targetNamespace="http://tempuri.org/StandradRateDS.xsd" xmlns:mstns="http://tempuri.org/StandradRateDS.xsd" xmlns="http://tempuri.org/StandradRateDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="StandradRateDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="StandradRateDS" msprop:Generator_UserDSName="StandradRateDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="StandradRate" msprop:Generator_TableClassName="StandradRateDataTable" msprop:Generator_TableVarName="tableStandradRate" msprop:Generator_TablePropName="StandradRate" msprop:Generator_RowDeletingName="StandradRateRowDeleting" msprop:Generator_RowChangingName="StandradRateRowChanging" msprop:Generator_RowEvHandlerName="StandradRateRowChangeEventHandler" msprop:Generator_RowDeletedName="StandradRateRowDeleted" msprop:Generator_UserTableName="StandradRate" msprop:Generator_RowChangedName="StandradRateRowChanged" msprop:Generator_RowEvArgName="StandradRateRowChangeEvent" msprop:Generator_RowClassName="StandradRateRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="StandradRateType" msprop:Generator_ColumnVarNameInTable="columnStandradRateType" msprop:Generator_ColumnPropNameInRow="StandradRateType" msprop:Generator_ColumnPropNameInTable="StandradRateTypeColumn" msprop:Generator_UserColumnName="StandradRateType" type="xs:string" minOccurs="0" />
+              <xs:element name="OperationName" msprop:Generator_ColumnVarNameInTable="columnOperationName" msprop:Generator_ColumnPropNameInRow="OperationName" msprop:Generator_ColumnPropNameInTable="OperationNameColumn" msprop:Generator_UserColumnName="OperationName" type="xs:string" minOccurs="0" />
+              <xs:element name="TarrifTypeName" msprop:Generator_ColumnVarNameInTable="columnTarrifTypeName" msprop:Generator_ColumnPropNameInRow="TarrifTypeName" msprop:Generator_ColumnPropNameInTable="TarrifTypeNameColumn" msprop:Generator_UserColumnName="TarrifTypeName" type="xs:string" minOccurs="0" />
+              <xs:element name="HireGroupName" msprop:Generator_ColumnVarNameInTable="columnHireGroupName" msprop:Generator_ColumnPropNameInRow="HireGroupName" msprop:Generator_ColumnPropNameInTable="HireGroupNameColumn" msprop:Generator_UserColumnName="HireGroupName" type="xs:string" minOccurs="0" />
+              <xs:element name="VehicleMake" msprop:Generator_ColumnVarNameInTable="columnVehicleMake" msprop:Generator_ColumnPropNameInRow="VehicleMake" msprop:Generator_ColumnPropNameInTable="VehicleMakeColumn" msprop:Generator_UserColumnName="VehicleMake" type="xs:string" minOccurs="0" />
+              <xs:element name="VehicleModel" msprop:Generator_ColumnVarNameInTable="columnVehicleModel" msprop:Generator_ColumnPropNameInRow="VehicleModel" msprop:Generator_ColumnPropNameInTable="VehicleModelColumn" msprop:Generator_UserColumnName="VehicleModel" type="xs:string" minOccurs="0" />
+              <xs:element name="VehicleCategory" msprop:Generator_ColumnVarNameInTable="columnVehicleCategory" msprop:Generator_ColumnPropNameInRow="VehicleCategory" msprop:Generator_ColumnPropNameInTable="VehicleCategoryColumn" msprop:Generator_UserColumnName="VehicleCategory" type="xs:string" minOccurs="0" />
+              <xs:element name="ModelYear" msprop:Generator_ColumnVarNameInTable="columnModelYear" msprop:Generator_ColumnPropNameInRow="ModelYear" msprop:Generator_ColumnPropNameInTable="ModelYearColumn" msprop:Generator_UserColumnName="ModelYear" type="xs:string" minOccurs="0" />
+              <xs:element name="RevesionNumber" msprop:Generator_ColumnVarNameInTable="columnRevesionNumber" msprop:Generator_ColumnPropNameInRow="RevesionNumber" msprop:Generator_ColumnPropNameInTable="RevesionNumberColumn" msprop:Generator_UserColumnName="RevesionNumber" type="xs:string" minOccurs="0" />
+              <xs:element name="SRStartDate" msprop:Generator_ColumnVarNameInTable="columnSRStartDate" msprop:Generator_ColumnPropNameInRow="SRStartDate" msprop:Generator_ColumnPropNameInTable="SRStartDateColumn" msprop:Generator_UserColumnName="SRStartDate" type="xs:string" minOccurs="0" />
+              <xs:element name="SREndDate" msprop:Generator_ColumnVarNameInTable="columnSREndDate" msprop:Generator_ColumnPropNameInRow="SREndDate" msprop:Generator_ColumnPropNameInTable="SREndDateColumn" msprop:Generator_UserColumnName="SREndDate" type="xs:string" minOccurs="0" />
+              <xs:element name="StandradRate" msprop:Generator_ColumnVarNameInTable="columnStandradRate" msprop:Generator_ColumnPropNameInRow="StandradRate" msprop:Generator_ColumnPropNameInTable="StandradRateColumn" msprop:Generator_UserColumnName="StandradRate" type="xs:string" minOccurs="0" />
+              <xs:element name="AllowedMileage" msprop:Generator_ColumnVarNameInTable="columnAllowedMileage" msprop:Generator_ColumnPropNameInRow="AllowedMileage" msprop:Generator_ColumnPropNameInTable="AllowedMileageColumn" msprop:Generator_UserColumnName="AllowedMileage" type="xs:string" minOccurs="0" />
+              <xs:element name="ExcessMileageCharges" msprop:Generator_ColumnVarNameInTable="columnExcessMileageCharges" msprop:Generator_ColumnPropNameInRow="ExcessMileageCharges" msprop:Generator_ColumnPropNameInTable="ExcessMileageChargesColumn" msprop:Generator_UserColumnName="ExcessMileageCharges" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

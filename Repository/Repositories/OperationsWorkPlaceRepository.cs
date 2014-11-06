@@ -40,6 +40,15 @@ namespace Cares.Repository.Repositories
         
         #region Public
 
+
+        /// <summary>
+        /// Association check b/n Operation Work Place and Fleet Pool
+        /// </summary>
+        public bool IsOperationWorkPlaceAssociatedWithFleetPool(double fleetPollId)
+        {
+           return DbSet.Count(operationworkplace => operationworkplace.FleetPoolId == fleetPollId) > 0;
+        }
+
         /// <summary>
         /// Get All OperationsWorkplaces for Sales
         /// </summary>
@@ -57,6 +66,7 @@ namespace Cares.Repository.Repositories
             return operationsWorkPlaces.Select(operation => GetOperationWorkPlaceWithDetails(operation.OperationsWorkPlaceId)).ToList();
         }
 
+
         /// <summary>
         /// Get Operation Work Place With Details
         /// </summary>
@@ -66,6 +76,8 @@ namespace Cares.Repository.Repositories
                    .Include(opp => opp.FleetPool)
                    .FirstOrDefault(opp => opp.OperationsWorkPlaceId == id);
         }
+
+
         /// <summary>
         /// Get Operation Workplace by domainkey
         /// </summary>
@@ -73,6 +85,10 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(owp => owp.UserDomainKey == domainKey && owp.Operation.Department.DepartmentType == DepartmentTypes.Sales).OrderBy(owp => owp.LocationName);
         }
+
+
+        
+
 
         /// <summary>
         /// Get Employee Status for User Domain Key

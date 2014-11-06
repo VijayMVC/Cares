@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
+using Cares.Models.ReportModels;
 using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
 
@@ -36,9 +37,9 @@ namespace Cares.Repository.Repositories
         }
 
         #endregion
-        
         #region Public
-        
+
+
         /// <summary>
         /// Get All Standard Rates for User Domain Key
         /// </summary>
@@ -69,7 +70,7 @@ namespace Cares.Repository.Repositories
             return DbSet.Where(s => s.UserDomainKey == UserDomainKey && s.StandardRtMainId == standardRtMainId && s.ChildStandardRtId == null && s.HireGroupDetailId == hireGroupDetailId);
 
         }
-
+        
         /// <summary>
         /// Get For Ra Billing
         /// </summary>
