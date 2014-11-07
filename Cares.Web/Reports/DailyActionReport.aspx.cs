@@ -17,13 +17,10 @@ namespace Cares.Web.Reports
             if (!IsPostBack)
             {
                 dailyActionService = UnityWebActivator.Container.Resolve<IDailyActionService>();
-
-
                 IList<DailyActionReportResponse> loadFleets = dailyActionService.LoadDailyActionReportDetail();
-
                 dailyActionReport.ProcessingMode = ProcessingMode.Local;
                 dailyActionReport.LocalReport.ReportPath = Server.MapPath("~/Reports/RDLC/DailyAction.rdlc");
-                ReportDataSource reportDataSource = new ReportDataSource
+                var reportDataSource = new ReportDataSource
                 {
                     Name = "ReportDS",
                     Value = loadFleets
