@@ -26,10 +26,13 @@ namespace Cares.Web.Areas.Reports.Controllers
             return View();
         }
 
+         [SiteAuthorize(PermissionKey = "MissingHireGroupReport")]
         public ActionResult MissingHireGroupReport()
         {
             return View();
         }
+
+         [SiteAuthorize(PermissionKey = "StandardRateReport")]
         public ActionResult StandardRateReport()
         {
             return View();

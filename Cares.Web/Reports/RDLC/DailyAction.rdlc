@@ -6,67 +6,67 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>0.27504in</Width>
+              <Width>0.28308in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.52877in</Width>
+              <Width>0.53681in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.66866in</Width>
+              <Width>0.73261in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.71379in</Width>
+              <Width>0.72183in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.46951in</Width>
+              <Width>0.47755in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.37003in</Width>
+              <Width>0.37807in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.57714in</Width>
+              <Width>0.58518in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.56572in</Width>
+              <Width>0.73001in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.4303in</Width>
+              <Width>0.43834in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.42659in</Width>
+              <Width>0.62872in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.45339in</Width>
+              <Width>0.46143in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.44296in</Width>
+              <Width>0.451in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.49504in</Width>
+              <Width>0.50308in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.57837in</Width>
+              <Width>0.58641in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.48463in</Width>
+              <Width>0.49267in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.58879in</Width>
+              <Width>0.66975in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.47421in</Width>
+              <Width>0.48225in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.49504in</Width>
+              <Width>0.50308in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.39087in</Width>
+              <Width>0.39891in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.42213in</Width>
+              <Width>0.43017in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.37599in</Width>
+              <Width>0.38403in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -1697,10 +1697,9 @@ iif(Fields!InDate.Value &gt; Globals!ExecutionTime,Cint(DateDiff("D", Globals!Ex
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>ReportDS</DataSetName>
-        <Top>0.125in</Top>
-        <Left>0.02307in</Left>
+        <Top>0.03125in</Top>
         <Height>0.67708in</Height>
-        <Width>10.22697in</Width>
+        <Width>10.875in</Width>
         <ToolTip>Vehicles</ToolTip>
         <Style>
           <Border>
@@ -1709,10 +1708,10 @@ iif(Fields!InDate.Value &gt; Globals!ExecutionTime,Cint(DateDiff("D", Globals!Ex
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>3.26042in</Height>
+    <Height>1.39584in</Height>
     <Style />
   </Body>
-  <Width>10.39583in</Width>
+  <Width>10.875in</Width>
   <Page>
     <PageHeader>
       <Height>0.53125in</Height>
@@ -1774,7 +1773,7 @@ iif(Fields!InDate.Value &gt; Globals!ExecutionTime,Cint(DateDiff("D", Globals!Ex
           </Paragraphs>
           <rd:DefaultName>Textbox21</rd:DefaultName>
           <Top>0.12375in</Top>
-          <Left>8.35416in</Left>
+          <Left>9.09375in</Left>
           <Height>0.25in</Height>
           <Width>1.78125in</Width>
           <ZIndex>1</ZIndex>
@@ -1944,10 +1943,10 @@ iif(Fields!InDate.Value &gt; Globals!ExecutionTime,Cint(DateDiff("D", Globals!Ex
     </PageFooter>
     <PageHeight>8in</PageHeight>
     <PageWidth>11in</PageWidth>
-    <LeftMargin>0.25in</LeftMargin>
-    <RightMargin>0.25in</RightMargin>
-    <TopMargin>0.25in</TopMargin>
-    <BottomMargin>0.25in</BottomMargin>
+    <LeftMargin>0.05in</LeftMargin>
+    <RightMargin>0.05in</RightMargin>
+    <TopMargin>0.025in</TopMargin>
+    <BottomMargin>0.025in</BottomMargin>
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
