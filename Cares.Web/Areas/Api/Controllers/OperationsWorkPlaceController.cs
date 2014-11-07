@@ -35,7 +35,7 @@ namespace Cares.Web.Areas.Api.Controllers
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
             return 
-            operationsWorkPlaceService.GetOperationsWorkPlaceByWorkplaceId(workPlaceId).CreateFrommm();
+            operationsWorkPlaceService.GetOperationsWorkPlaceByWorkplaceId(workPlaceId).CreateFrom();
         }
         #endregion
     }
