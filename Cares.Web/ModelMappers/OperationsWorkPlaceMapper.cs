@@ -65,7 +65,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create entity from domain model
         /// </summary>
-        public static ApiModel.OperationsWorkPlace CreateFromm(this OperationsWorkPlace source)
+        public static ApiModel.OperationsWorkPlace CreateFromByOWPId(this OperationsWorkPlace source)
         {
             return new ApiModel.OperationsWorkPlace
             {
@@ -85,11 +85,11 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create from IEnumerable domainmodel
         /// </summary>
-        public static Models.OperationWorkplaceSearchByIdResponse CreateFrommm(this OperationWorkplaceSearchByIdResponse source)
+        public static Models.OperationWorkplaceSearchByIdResponse CreateFrom(this OperationWorkplaceSearchByIdResponse source)
         {
             return new Models.OperationWorkplaceSearchByIdResponse
             {
-                OperationWorkPlaces = source.OperationWorkPlaces.Select(opp => opp.CreateFromm())
+                OperationWorkPlaces = source.OperationWorkPlaces.Select(opp => opp.CreateFromByOWPId())
             };
         }
         #endregion
