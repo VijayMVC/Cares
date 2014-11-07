@@ -45,7 +45,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-          return  marketingChannelService.SearchMarketingChannel(request).CreateFromm();
+          return  marketingChannelService.SearchMarketingChannel(request).CreateFrom();
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return marketingChannelService.AddUpdateMarketingChannel(marketingChannel.CreateFrom()).CreateFromm();
+            return marketingChannelService.AddUpdateMarketingChannel(marketingChannel.CreateFrom()).CreateMarketingChannelFrom();
         }
 
         #endregion

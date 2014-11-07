@@ -12,7 +12,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity [dropdown]
         /// </summary>
-        public static Models.BusinessPartnerRelationshipTypeDropDown CreateFrommm(this BusinessPartnerRelationshipType source)
+        public static Models.BusinessPartnerRelationshipTypeDropDown CreateDropDownFrom(this BusinessPartnerRelationshipType source)
         {
             return new Models.BusinessPartnerRelationshipTypeDropDown
             {
@@ -24,7 +24,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static Models.BusinessPartnerRelationshipType CreateFromm(this BusinessPartnerRelationshipType source)
+        public static Models.BusinessPartnerRelationshipType CreatebPRelationTypeFrom(this BusinessPartnerRelationshipType source)
         {
             return new Models.BusinessPartnerRelationshipType
             {
@@ -44,14 +44,14 @@ namespace Cares.Web.ModelMappers
             return new Models.BusinessPartnerRelationTypeSearchRequestResponse
             {
                 TotalCount = source.TotalCount,
-                BusinessPartnerRelationshipTypes = source.BusinessPartnerRelationshipTypes.Select(bPRelationType => bPRelationType.CreateFromm())
+                BusinessPartnerRelationshipTypes = source.BusinessPartnerRelationshipTypes.Select(bPRelationType => bPRelationType.CreatebPRelationTypeFrom())
             };
         }
 
         /// <summary>
         ///  Create domain model from web model
         /// </summary>
-        public static BusinessPartnerRelationshipType CreateFromm(this Models.BusinessPartnerRelationshipType source)
+        public static BusinessPartnerRelationshipType CreateFrom(this Models.BusinessPartnerRelationshipType source)
         {
             return new BusinessPartnerRelationshipType
             {

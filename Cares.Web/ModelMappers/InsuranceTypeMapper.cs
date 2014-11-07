@@ -37,7 +37,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create  From Domain Model
         /// </summary>
-        public static InsuranceType CreateFromm(this Cares.Models.DomainModels.InsuranceType source)
+        public static InsuranceType CreateInsuranceTypeFrom(this Cares.Models.DomainModels.InsuranceType source)
         {
             return new InsuranceType
             {
@@ -51,7 +51,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create  From Web Model
         /// </summary>
-        public static Cares.Models.DomainModels.InsuranceType CreateFromm(this InsuranceType source)
+        public static Cares.Models.DomainModels.InsuranceType CreateFrom(this InsuranceType source)
         {
             return new Cares.Models.DomainModels.InsuranceType
             {
@@ -65,11 +65,11 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create From Search Search Domain Response 
         /// </summary>
-        public static InsuranceTypeSearchRequestResponse CreateFromm(this Cares.Models.ResponseModels.InsuranceTypeSearchRequestResponse source)
+        public static InsuranceTypeSearchRequestResponse CreateFrom(this Cares.Models.ResponseModels.InsuranceTypeSearchRequestResponse source)
         {
             return new InsuranceTypeSearchRequestResponse
             {
-                InsuranceTypes = source.InsuranceTypes.Select(insuranceType => insuranceType.CreateFromm()),
+                InsuranceTypes = source.InsuranceTypes.Select(insuranceType => insuranceType.CreateInsuranceTypeFrom()),
                 TotalCount = source.TotalCount
             };
         }

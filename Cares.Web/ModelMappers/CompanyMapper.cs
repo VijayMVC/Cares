@@ -88,7 +88,7 @@ namespace Cares.Web.ModelMappers
             {
                 ParrentCompanies = source.ParrentCompanies.Select(company => company.CreateFrom()),
                 OrgGroups = source.OrgGroups.Select(orgGroup => orgGroup.CreateFrom()),
-                BusinessSegments = source.BusinessSegments.Select(businessSegmen => businessSegmen.CreateFrom())
+                BusinessSegments = source.BusinessSegments.Select(businessSegmen => businessSegmen.CreateDropDownFrom())
             };
         }
         #endregion

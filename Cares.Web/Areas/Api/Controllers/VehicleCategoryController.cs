@@ -72,7 +72,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return vehicleCategoryService.SaveVehicleCategory(vehicleCategory.CreateFromm()).CreateFromm();
+            return vehicleCategoryService.SaveVehicleCategory(vehicleCategory.CreateFrom()).CreateVehicleCategoryFrom();
         }
 
         #endregion

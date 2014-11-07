@@ -42,7 +42,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int) HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return  vehicleModelService.SearchVehicleModel(request).CreateFromm();
+            return  vehicleModelService.SearchVehicleModel(request).CreateFrom();
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return vehicleModelService.AddUpdateVehicleModel(vehicleModel.CreateFromm()).CreateFromm();
+            return vehicleModelService.AddUpdateVehicleModel(vehicleModel.CreateFrom()).CreateVehicleModelFrom();
         }
         #endregion
     }

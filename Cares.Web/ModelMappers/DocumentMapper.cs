@@ -33,7 +33,7 @@ namespace Cares.Web.ModelMappers
         {
             return new Models.DocumentBaseDataResponse
             {
-                DocumentGroupDropDown = source.DocumentGroups.Select(docGroup => docGroup.CreateFromm())
+                DocumentGroupDropDown = source.DocumentGroups.Select(docGroup => docGroup.CreateDropDownFrom())
             };
         }
 

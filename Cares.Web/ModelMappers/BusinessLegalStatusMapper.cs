@@ -1,8 +1,7 @@
 ﻿
+using Cares.Web.Models;
 using System.Linq;
 using DomainModels = Cares.Models.DomainModels;
-using Cares.Web.Models;
-using CompanySearchRequestResponse = Cares.Models.ResponseModels.CompanySearchRequestResponse;
 
 namespace Cares.Web.ModelMappers
 {
@@ -45,7 +44,7 @@ namespace Cares.Web.ModelMappers
         {
             return new BusinessLegalStatusSearchRequestRespose
             {
-                BusinessLegalStatuses = source.BusinessLegalStatuses.Select(company => company.CreateFromm()),
+                BusinessLegalStatuses = source.BusinessLegalStatuses.Select(company => company.CreateBusinessLegalStatusFrom()),
                 TotalCount = source.TotalCount
             };
         }
@@ -53,7 +52,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         /// Crete From Domain model
         /// </summary>
-        public static BusinessLegalStatus CreateFromm(this DomainModels.BusinessLegalStatus source)
+        public static BusinessLegalStatus CreateBusinessLegalStatusFrom(this DomainModels.BusinessLegalStatus source)
         {
             return new BusinessLegalStatus
             {
@@ -67,7 +66,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         /// Crete From Web model
         /// </summary>
-        public static DomainModels.BusinessLegalStatus CreateFromm(this BusinessLegalStatus source)
+        public static DomainModels.BusinessLegalStatus CreateFrom(this BusinessLegalStatus source)
         {
             return new DomainModels.BusinessLegalStatus
             {

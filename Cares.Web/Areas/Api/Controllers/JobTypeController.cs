@@ -72,7 +72,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return jobTypeService.SaveJobType(jobType.CreateFrom()).CreateFromm();
+            return jobTypeService.SaveJobType(jobType.CreateFrom()).CreateJobTypeFrom();
         }
 
         #endregion

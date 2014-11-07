@@ -29,7 +29,7 @@ namespace Cares.Web.ModelMappers
         {
             return new Models.JobTypeSearchRequestResponse
             {
-                JobTypes = source.JobTypes.Select(jobType => jobType.CreateFromm()),
+                JobTypes = source.JobTypes.Select(jobType => jobType.CreateJobTypeFrom()),
                 TotalCount = source.TotalCount
             };
         }
@@ -51,7 +51,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         /// Crete From Domain model
         /// </summary>
-        public static JobType CreateFromm(this DomainModels.JobType source)
+        public static JobType CreateJobTypeFrom(this DomainModels.JobType source)
         {
             return new JobType
             {

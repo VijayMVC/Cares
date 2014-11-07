@@ -72,7 +72,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return workplaceTypeService.AddUpdateWorkPlaceType(workplaceType.CreateFrom()).CreateFromm();
+            return workplaceTypeService.AddUpdateWorkPlaceType(workplaceType.CreateFrom()).CreateFrom();
         }
 
         #endregion

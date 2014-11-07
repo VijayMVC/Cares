@@ -74,7 +74,7 @@ namespace Cares.Web.Areas.Api.Controllers
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
 
-            return subRegionService.SaveSubRegion(subRegion.CreateFrom()).CreateFromm();
+            return subRegionService.SaveSubRegion(subRegion.CreateFrom()).CreateFrom();
         }
 
         #endregion

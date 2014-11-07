@@ -72,7 +72,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return designationService.SaveDesignation(designation.CreateFrom()).CreateFromm();
+            return designationService.SaveDesignation(designation.CreateFrom()).CreateDesignationFrom();
         }
 
         #endregion

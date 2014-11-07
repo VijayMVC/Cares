@@ -57,7 +57,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity [dropdown]
         /// </summary>
-        public static Models.BusinessPartnerMainTypeDropDown CreateFromm(this BusinessPartnerMainType source)
+        public static Models.BusinessPartnerMainTypeDropDown CreateDropDownFrom(this BusinessPartnerMainType source)
         {
             return new Models.BusinessPartnerMainTypeDropDown
             {

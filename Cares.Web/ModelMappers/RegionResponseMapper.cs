@@ -17,7 +17,7 @@ namespace Cares.Web.ModelMappers
         {
             return new RegionResponse()
             {
-                ResponseRejions = source.Regions.Select(c => c.CreateFrom())
+                ResponseRejions = source.Regions.Select(c => c.CreateDropdownFrom())
             };
         }
 

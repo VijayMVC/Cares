@@ -25,7 +25,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         /// Create from domain model
         /// </summary>
-        public static VehicleMake CreateFromm(this Cares.Models.DomainModels.VehicleMake source)
+        public static VehicleMake CreateVehicleMakeFrom(this Cares.Models.DomainModels.VehicleMake source)
         {
             return new VehicleMake
             {
@@ -54,11 +54,11 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         /// Create from web model
         /// </summary>
-        public static VehicleMakeSearchRequestResponse CreateFromm(this Cares.Models.ResponseModels.VehicleMakeSearchRequestResponse source)
+        public static VehicleMakeSearchRequestResponse CreateFrom(this Cares.Models.ResponseModels.VehicleMakeSearchRequestResponse source)
         {
             return new VehicleMakeSearchRequestResponse
             {
-                VehicleMakes = source.VehicleMakes.Select(vehiclemake => vehiclemake.CreateFromm()),
+                VehicleMakes = source.VehicleMakes.Select(vehiclemake => vehiclemake.CreateVehicleMakeFrom()),
                 TotalCount = source.TotalCount
             };
         }

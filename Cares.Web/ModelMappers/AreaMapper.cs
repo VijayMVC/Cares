@@ -27,7 +27,7 @@ namespace Cares.Web.ModelMappers
         {
             return new ApiModel.AreaBaseDataResponse()
             {
-                Cities = source.Cities.Select(city => city.CreateFrom())
+                Cities = source.Cities.Select(city => city.CreateDropdownFrom())
             };
         }
 
@@ -39,14 +39,14 @@ namespace Cares.Web.ModelMappers
             return new ApiModel.AreaSearchRequestResponse
             {
                 TotalCount = source.TotalCount,
-                Areas = source.Areas.Select(area => area.CreateFromm())
+                Areas = source.Areas.Select(area => area.CreateAreaFrom())
             };
         }
 
         /// <summary>
         /// Create From Domain model
         /// </summary>
-        public static ApiModel.Area CreateFromm( this Area source)
+        public static ApiModel.Area CreateAreaFrom(this Area source)
         {
             return new ApiModel.Area
             {

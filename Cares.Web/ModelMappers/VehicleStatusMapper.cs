@@ -28,7 +28,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity [dropdown]
         /// </summary>
-        public static VehicleStatusDropDown CreateFromm(this Cares.Models.DomainModels.VehicleStatus source)
+        public static VehicleStatusDropDown CreateDropDownFrom(this Cares.Models.DomainModels.VehicleStatus source)
         {
             return new VehicleStatusDropDown
             {

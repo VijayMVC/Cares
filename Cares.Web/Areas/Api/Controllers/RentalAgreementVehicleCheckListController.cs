@@ -51,7 +51,7 @@ namespace Cares.Web.Areas.Api.Controllers
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
 
-            return vehicleCheckListService.GetForVehicle(request.VehicleId).Select(hg => hg.CreateFromm());
+            return vehicleCheckListService.GetForVehicle(request.VehicleId).Select(hg => hg.CreateFrom());
         }
 
         #endregion

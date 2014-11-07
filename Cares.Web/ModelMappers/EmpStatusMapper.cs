@@ -29,7 +29,7 @@ namespace Cares.Web.ModelMappers
         {
             return new EmpSearchRequestResponse
             {
-                EmployeeStatuses = source.EmployeeStatuses.Select(region => region.CreateFromm()),
+                EmployeeStatuses = source.EmployeeStatuses.Select(region => region.CreateEmpStatusFrom()),
                 TotalCount = source.TotalCount
             };
         }
@@ -37,7 +37,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create from domain model to web model
         /// </summary>
-        public static EmpStatus CreateFromm(this DomainModels.EmpStatus source)
+        public static EmpStatus CreateEmpStatusFrom(this DomainModels.EmpStatus source)
         {
             return new EmpStatus
             {

@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using Cares.Web.Models;
-using CompanySearchRequestResponse = Cares.Models.ResponseModels.CompanySearchRequestResponse;
 
 namespace Cares.Web.ModelMappers
 {
@@ -46,7 +45,7 @@ namespace Cares.Web.ModelMappers
         {
             return new VehicleCheckListSearchRequestResponse
             {
-                VehicleCheckLists = source.VehicleCheckLists.Select(vehicleCheckList=> vehicleCheckList.CreateFromm()),
+                VehicleCheckLists = source.VehicleCheckLists.Select(vehicleCheckList=> vehicleCheckList.CreateFrom()),
                 TotalCount = source.TotalCount
             };
         }
@@ -54,7 +53,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         /// Crete From Domain model
         /// </summary>
-        public static VehicleCheckList CreateFromm(this Cares.Models.DomainModels.VehicleCheckList source)
+        public static VehicleCheckList CreateFrom(this Cares.Models.DomainModels.VehicleCheckList source)
         {
             return new VehicleCheckList
             {

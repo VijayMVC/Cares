@@ -50,7 +50,7 @@
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.42708in</Height>
+              <Height>0.33333in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -1126,7 +1126,7 @@
         </TablixRowHierarchy>
         <DataSetName>StandradRate</DataSetName>
         <Top>0.02778in</Top>
-        <Height>0.67708in</Height>
+        <Height>0.58333in</Height>
         <Width>10.87401in</Width>
         <Style>
           <Border>

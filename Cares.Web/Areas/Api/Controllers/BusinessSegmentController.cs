@@ -69,7 +69,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return businessSegmentService.AddUpdateBusinessSegment(businessSegment.CreateFrom()).CreateFromm();
+            return businessSegmentService.AddUpdateBusinessSegment(businessSegment.CreateFrom()).CreateFrom();
         }
         #endregion
     }

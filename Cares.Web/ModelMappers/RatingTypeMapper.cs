@@ -18,7 +18,7 @@ namespace Cares.Web.ModelMappers
             return new Models.RatingTypeSearchRequestResponse
             {
                 TotalCount = source.TotalCount,
-                RatingTypes = source.RatingTypes.Select(city => city.CreateFromm())
+                RatingTypes = source.RatingTypes.Select(city => city.CreateBpRatingTypeFrom())
             };
         }
         /// <summary>
@@ -38,7 +38,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static Models.BpRatingType CreateFromm(this BpRatingType source)
+        public static Models.BpRatingType CreateBpRatingTypeFrom(this BpRatingType source)
         {
             return new Models.BpRatingType
             {

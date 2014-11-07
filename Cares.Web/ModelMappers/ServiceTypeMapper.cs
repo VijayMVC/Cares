@@ -53,7 +53,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from Domain model [dropdrown]
         /// </summary>
-        public static Models.ServiceTypeDropDown CreateFromm(this ServiceType source)
+        public static Models.ServiceTypeDropDown CreateDropDownFrom(this ServiceType source)
         {
             return new Models.ServiceTypeDropDown
             {

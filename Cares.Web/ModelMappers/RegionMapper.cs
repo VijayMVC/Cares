@@ -14,7 +14,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web dropdoen model from entity
         /// </summary>
-        public static ApiModel.RegionDropDown CreateFrom(this Region source)
+        public static ApiModel.RegionDropDown CreateDropdownFrom(this Region source)
         {
             return new ApiModel.RegionDropDown
             {
@@ -41,7 +41,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create from domain model to web model
         /// </summary>
-        public static ApiModel.Region CreateFromm(this Region source)
+        public static ApiModel.Region CreateFrom(this Region source)
         {
             return new ApiModel.Region
             {
@@ -76,7 +76,7 @@ namespace Cares.Web.ModelMappers
         {
             return new ApiModel.RegionSearchRequestResponse
             {
-                Regions = source.Regions.Select(region => region.CreateFromm()),
+                Regions = source.Regions.Select(region => region.CreateFrom()),
                 TotalCount = source.TotalCount
             };
         }
@@ -88,7 +88,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model[DropDown] from entity
         /// </summary>
-        public static ApiModel.SubRegionDropDown CreateFrom(this SubRegion source)
+        public static ApiModel.SubRegionDropDown CreateDropdownFrom(this SubRegion source)
         {
             return new ApiModel.SubRegionDropDown
             {
@@ -106,7 +106,7 @@ namespace Cares.Web.ModelMappers
         {
             return new ApiModel.SubRegionBaseDataResponse
             {
-                RegionsDropDowns = source.Regions.Select(region => region.CreateFrom())
+                RegionsDropDowns = source.Regions.Select(region => region.CreateDropdownFrom())
             };
         }
 
@@ -118,7 +118,7 @@ namespace Cares.Web.ModelMappers
         {
             return new ApiModel.SubRegionSearchRequestResponse
             {
-                SubRegions = source.SubRegions.Select(region => region.CreateFromm()),
+                SubRegions = source.SubRegions.Select(region => region.CreateFrom()),
                 TotalCount = source.TotalCount
             };
         }
@@ -126,7 +126,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create from domain model to web model
         /// </summary>
-        public static ApiModel.SubRegion CreateFromm(this SubRegion source)
+        public static ApiModel.SubRegion CreateFrom(this SubRegion source)
         {
             return new ApiModel.SubRegion
             {

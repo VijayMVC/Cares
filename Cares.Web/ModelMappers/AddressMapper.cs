@@ -79,10 +79,10 @@ namespace Cares.Web.ModelMappers
             return new ApiModel.AddressBaseResponse
             {
                 ResponseCountry=source.ResponseCountry.CreateFrom(),
-                ResponseCities = source.ResponseCities.Select(city => city.CreateFrom()),
+                ResponseCities = source.ResponseCities.Select(city => city.CreateDropdownFrom()),
                 ResponseAreas = source.ResponseAreas.Select(area => area.CreateFrom()),
-                ResponseRegions = source.ResponseRegions.Select(region => region.CreateFrom()),
-                ResponseSubRegions = source.ResponseSubRegions.Select(subregion => subregion.CreateFrom())
+                ResponseRegions = source.ResponseRegions.Select(region => region.CreateDropdownFrom()),
+                ResponseSubRegions = source.ResponseSubRegions.Select(subregion => subregion.CreateDropdownFrom())
             };
         }
     }

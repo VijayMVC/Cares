@@ -225,7 +225,7 @@ namespace Cares.Web.ModelMappers
                 Operations = source.Operations.Select(c => c.CreateFrom()).ToList(),
                 Locations = source.Locations.Select(c => c.CreateFromDropDown()).ToList(),
                 NRTTypes = source.NRTTypes.Select(c => c.CreateFrom()).ToList(),
-                VehicleStatuses = source.VehicleStatuses.Select(c => c.CreateFromm()).ToList(),
+                VehicleStatuses = source.VehicleStatuses.Select(c => c.CreateDropDownFrom()).ToList(),
             };
         }
         #endregion

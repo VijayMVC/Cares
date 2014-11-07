@@ -16,7 +16,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static ApiModel.BusinessSegmentDropDown CreateFrom(this BusinessSegment source)
+        public static ApiModel.BusinessSegmentDropDown CreateDropDownFrom(this BusinessSegment source)
         {
             return new ApiModel.BusinessSegmentDropDown
             {
@@ -32,7 +32,7 @@ namespace Cares.Web.ModelMappers
         {
             return new Models.BusinessSegmentSearchRequestResponse
             {
-                BusinessSegments = source.BusinessSegments.Select(bSeg => bSeg.CreateFromm()),
+                BusinessSegments = source.BusinessSegments.Select(bSeg => bSeg.CreateFrom()),
                 TotalCount = source.TotalCount
             };
         }
@@ -40,7 +40,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         /// Create from domain model
         /// </summary>
-        public static ApiModel.BusinessSegment CreateFromm(this BusinessSegment source)
+        public static ApiModel.BusinessSegment CreateFrom(this BusinessSegment source)
         {
             return new ApiModel.BusinessSegment
             {

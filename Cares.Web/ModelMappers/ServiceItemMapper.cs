@@ -32,7 +32,7 @@ namespace Cares.Web.ModelMappers
         {
             return new ServiceItemBaseDataResponse
             {
-                ServiceTypes = source.ServiceTypes.Select(serviceType => serviceType.CreateFromm())
+                ServiceTypes = source.ServiceTypes.Select(serviceType => serviceType.CreateDropDownFrom())
             };
         }
 

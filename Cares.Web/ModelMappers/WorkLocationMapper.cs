@@ -31,9 +31,9 @@ namespace Cares.Web.ModelMappers
             {
                 Companies = source.Companies.Select(company => company.CreateFrom()),
                 Countries = source.Countries.Select(country => country.CreateFrom()),
-                Regions = source.Regions.Select(region => region.CreateFrom()),
-                SubRegions = source.SubRegions.Select(subRegion => subRegion.CreateFrom()),
-                Cities = source.Cities.Select(city => city.CreateFrom()),
+                Regions = source.Regions.Select(region => region.CreateDropdownFrom()),
+                SubRegions = source.SubRegions.Select(subRegion => subRegion.CreateDropdownFrom()),
+                Cities = source.Cities.Select(city => city.CreateDropdownFrom()),
                 Areas = source.Areas.Select(area => area.CreateFrom()),
                 PhoneTypes = source.PhoneTypes.Select(phoneType => phoneType.CreateFrom())
             };

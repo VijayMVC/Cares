@@ -27,13 +27,13 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web Api search request response model 
         /// </summary>
-        public static ApiModel.MarketingChannelSearchRequestResponse CreateFromm(
+        public static ApiModel.MarketingChannelSearchRequestResponse CreateFrom(
             this MarketingChannelSearchRequestResponse source)
         {
             return new ApiModel.MarketingChannelSearchRequestResponse
             {
                 TotalCount = source.TotalCount,
-                MarketingChannels = source.MarketingChannels.Select(marketingchanel => marketingchanel.CreateFromm())
+                MarketingChannels = source.MarketingChannels.Select(marketingchanel => marketingchanel.CreateMarketingChannelFrom())
             };
 
         }
@@ -41,7 +41,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web Api model from domain entity 
         /// </summary>
-        public static ApiModel.MarketingChannel CreateFromm(this DomainModel.MarketingChannel source)
+        public static ApiModel.MarketingChannel CreateMarketingChannelFrom(this DomainModel.MarketingChannel source)
         {
             return new ApiModel.MarketingChannel
             {

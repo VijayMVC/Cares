@@ -29,7 +29,7 @@ namespace Cares.Web.ModelMappers
         {
             return new Models.DesignationSearchRequestResponse
             {
-                Designations = source.Designations.Select(designation => designation.CreateFromm()),
+                Designations = source.Designations.Select(designation => designation.CreateDesignationFrom()),
                 TotalCount = source.TotalCount
             };
         }
@@ -37,7 +37,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create from domain model to web model
         /// </summary>
-        public static Designation CreateFromm(this DomainModels.Designation source)
+        public static Designation CreateDesignationFrom(this DomainModels.Designation source)
         {
             return new Designation
             {

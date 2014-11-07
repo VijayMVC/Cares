@@ -71,7 +71,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return businessPartnerRelationTypeService.SaveBusinessPartnerRelationType(businessPartnerRelationshipType.CreateFromm()).CreateFromm();
+            return businessPartnerRelationTypeService.SaveBusinessPartnerRelationType(businessPartnerRelationshipType.CreateFrom()).CreatebPRelationTypeFrom();
         }
 
         #endregion

@@ -29,7 +29,7 @@ namespace Cares.Web.ModelMappers
         {
             return new DesignGradeSearchRequestResponse
             {
-                DesignGrades = source.DesignGrades.Select(region => region.CreateFromm()),
+                DesignGrades = source.DesignGrades.Select(region => region.CreateDesignGradeFrom()),
                 TotalCount = source.TotalCount
             };
         }
@@ -37,7 +37,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create from domain model to web model
         /// </summary>
-        public static DesignGrade CreateFromm(this DomainModels.DesignGrade source)
+        public static DesignGrade CreateDesignGradeFrom(this DomainModels.DesignGrade source)
         {
             return new DesignGrade
             {

@@ -26,7 +26,7 @@ namespace Cares.Web.ModelMappers
          /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static VehicleCategory CreateFromm(this Cares.Models.DomainModels.VehicleCategory source)
+        public static VehicleCategory CreateVehicleCategoryFrom(this Cares.Models.DomainModels.VehicleCategory source)
          {
              return new VehicleCategory
              {
@@ -40,7 +40,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create entity from web model
         /// </summary>
-        public static Cares.Models.DomainModels.VehicleCategory CreateFromm(this VehicleCategory source)
+        public static Cares.Models.DomainModels.VehicleCategory CreateFrom(this VehicleCategory source)
         {
             return new Cares.Models.DomainModels.VehicleCategory
             {
@@ -59,7 +59,7 @@ namespace Cares.Web.ModelMappers
         {
             return new VehicleCategorySearchRequestResponse
             {
-                VehicleCategories = source.VehicleCategories.Select(vehiclecategory => vehiclecategory.CreateFromm()),
+                VehicleCategories = source.VehicleCategories.Select(vehiclecategory => vehiclecategory.CreateVehicleCategoryFrom()),
                 TotalCount = source.TotalCount
             };
         }

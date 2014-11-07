@@ -20,7 +20,7 @@ namespace Cares.Web.ModelMappers
             return new Models.WorkplaceBaseDataResponse
             {
                 Companies = source.Companies.Select(company => company.CreateFrom()),
-                WorkPlaceTypes = source.WorkPlaceTypes.Select(workplce => workplce.CreateFrom()),
+                WorkPlaceTypes = source.WorkPlaceTypes.Select(workplce => workplce.CreateDropdownFrom()),
                 WorkLocations = source.WorkLocations.Select(workLocation => workLocation.CreateFrom()),
                 Operations = source.Operations.Select(opperation => opperation.CreateFrom()),
                 FleetPools = source.Fleetpools.Select(fleetPool => fleetPool.CreateFromm()),

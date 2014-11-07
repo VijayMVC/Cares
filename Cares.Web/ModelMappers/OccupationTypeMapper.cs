@@ -28,7 +28,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static ApiModel.OccupationType CreateFromm(this OccupationType source)
+        public static ApiModel.OccupationType CreateOccupationTypeFrom(this OccupationType source)
         {
             return new ApiModel.OccupationType
             {
@@ -47,7 +47,7 @@ namespace Cares.Web.ModelMappers
             return new ApiModel.OccupationTypeSearchRequestResponse
             {
                 TotalCount = source.TotalCount,
-               OccupationTypes = source.OccupationTypes.Select(occupationType => occupationType.CreateFromm())
+                OccupationTypes = source.OccupationTypes.Select(occupationType => occupationType.CreateOccupationTypeFrom())
             };
         }
 
@@ -56,7 +56,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create entity from web model [dropdown]
         /// </summary>
-        public static OccupationType CreateFrom(this ApiModel.OccupationTypeDropDown source)
+        public static OccupationType CreateFromOccupationTypeDropDown(this ApiModel.OccupationTypeDropDown source)
         {
             return new OccupationType
             {
@@ -68,7 +68,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create domain model from web
         /// </summary>
-        public static OccupationType CreateFromm(this ApiModel.OccupationType source)
+        public static OccupationType CreateFrom(this ApiModel.OccupationType source)
         {
             return new OccupationType
             {

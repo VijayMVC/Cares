@@ -72,7 +72,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return ratingTypeService.SaveRatingType(area.CreateFrom()).CreateFromm();
+            return ratingTypeService.SaveRatingType(area.CreateFrom()).CreateBpRatingTypeFrom();
         }
 
         #endregion

@@ -48,7 +48,7 @@ namespace Cares.Web.ModelMappers
         {
             return new Models.NrtTypeSearchRequestResponse
             {
-                NrtTypes = source.NrtTypes.Select(company => company.CreateFromm()),
+                NrtTypes = source.NrtTypes.Select(company => company.CreateNrtTypeFrom()),
                 TotalCount = source.TotalCount
             };
         }
@@ -56,7 +56,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         /// Crete From Domain model
         /// </summary>
-        public static NrtType CreateFromm(this DomainModels.NrtType source)
+        public static NrtType CreateNrtTypeFrom(this DomainModels.NrtType source)
         {
             return new NrtType
             {
@@ -78,7 +78,7 @@ namespace Cares.Web.ModelMappers
         {
             return new NrtTypeBaseDataResponse
             {
-                VehicleStatuses = source.VehicleStatuses.Select(vehicle => vehicle.CreateFromm())
+                VehicleStatuses = source.VehicleStatuses.Select(vehicle => vehicle.CreateDropDownFrom())
             };
         }
 

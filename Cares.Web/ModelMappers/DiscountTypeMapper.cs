@@ -30,7 +30,7 @@ namespace Cares.Web.ModelMappers
         {
             return new DiscountTypeSearchRequestResponse
             {
-                DiscountTypes = source.DiscountTypes.Select(discountType => discountType.CreateFromm()),
+                DiscountTypes = source.DiscountTypes.Select(discountType => discountType.CreateDiscountTypeFrom()),
                 TotalCount = source.TotalCount
             };
         }
@@ -38,7 +38,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create from domain model to web model
         /// </summary>
-        public static DiscountType CreateFromm(this Cares.Models.DomainModels.DiscountType source)
+        public static DiscountType CreateDiscountTypeFrom(this Cares.Models.DomainModels.DiscountType source)
         {
             return new DiscountType
             {

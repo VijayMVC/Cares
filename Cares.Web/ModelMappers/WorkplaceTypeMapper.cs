@@ -13,7 +13,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         /// Mapper from domain model to web dropdown
         /// </summary>
-        public static WorkplaceTypeDropDown CreateFrom(this Cares.Models.DomainModels.WorkPlaceType source)
+        public static WorkplaceTypeDropDown CreateDropdownFrom(this Cares.Models.DomainModels.WorkPlaceType source)
         {
             return new WorkplaceTypeDropDown
             {
@@ -30,7 +30,7 @@ namespace Cares.Web.ModelMappers
         {
             return new Models.WorkPlaceTypeSearchRequestResponse
             {
-                WorkPlaceTypes = source.WorkPlaceTypes.Select(workPlacetype => workPlacetype.CreateFromm()),
+                WorkPlaceTypes = source.WorkPlaceTypes.Select(workPlacetype => workPlacetype.CreateFrom()),
                 TotalCount = source.TotalCount
             };
         }
@@ -38,7 +38,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         /// Crete From  domain model  to  web model
         /// </summary>
-        public static WorkPlaceType CreateFromm(this Cares.Models.DomainModels.WorkPlaceType source)
+        public static WorkPlaceType CreateFrom(this Cares.Models.DomainModels.WorkPlaceType source)
         {
             return new WorkPlaceType
             {

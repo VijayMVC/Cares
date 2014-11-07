@@ -30,7 +30,7 @@ namespace Cares.Web.ModelMappers
         {
             return new MainteneceTypeGroupSearchRequestResponse
             {
-                MaintenanceTypeGroups = source.MaintenanceTypeGroups.Select(maintenanceTypeGroup => maintenanceTypeGroup.CreateFromm()),
+                MaintenanceTypeGroups = source.MaintenanceTypeGroups.Select(maintenanceTypeGroup => maintenanceTypeGroup.CreateFrom()),
                 TotalCount = source.TotalCount
             };
         }
@@ -38,7 +38,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         /// Crete From Domain model
         /// </summary>
-        public static MaintenanceTypeGroup CreateFromm(this Cares.Models.DomainModels.MaintenanceTypeGroup source)
+        public static MaintenanceTypeGroup CreateFrom(this Cares.Models.DomainModels.MaintenanceTypeGroup source)
         {
             return new MaintenanceTypeGroup
             {
@@ -52,7 +52,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         /// Crete From domain model to dropdown
         /// </summary>
-        public static MaintenanceTypeGroupDropDown CreateFrom(this Cares.Models.DomainModels.MaintenanceTypeGroup source)
+        public static MaintenanceTypeGroupDropDown CreateDropDownFrom(this Cares.Models.DomainModels.MaintenanceTypeGroup source)
         {
             return new MaintenanceTypeGroupDropDown
             {

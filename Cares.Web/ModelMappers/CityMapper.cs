@@ -13,7 +13,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity [dropdown]
         /// </summary>
-        public static ApiModel.CityDropDown CreateFrom(this City source)
+        public static ApiModel.CityDropDown CreateDropdownFrom(this City source)
         {
             return new ApiModel.CityDropDown
             {
@@ -28,7 +28,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         ///  Create web model from entity
         /// </summary>
-        public static ApiModel.City CreateFromm(this City source)
+        public static ApiModel.City CreateFrom(this City source)
         {
             return new ApiModel.City
             {
@@ -54,8 +54,8 @@ namespace Cares.Web.ModelMappers
             return new ApiModel.CityBaseDataResponse
             {
                 CountriyDropDowns = source.Countries.Select(country => country.CreateFrom()),
-                RegionDropDowns = source.Regions.Select(region => region.CreateFrom()),
-                SubRegionDowns = source.SubRegions.Select(subRegion => subRegion.CreateFrom())
+                RegionDropDowns = source.Regions.Select(region => region.CreateDropdownFrom()),
+                SubRegionDowns = source.SubRegions.Select(subRegion => subRegion.CreateDropdownFrom())
             };
         }
 
@@ -68,7 +68,7 @@ namespace Cares.Web.ModelMappers
             return new ApiModel.CitySearchRequestResponse
             {
                 TotalCount = source.TotalCount,
-                Cities = source.Cities.Select(city => city.CreateFromm())
+                Cities = source.Cities.Select(city => city.CreateFrom())
             };
         }
 

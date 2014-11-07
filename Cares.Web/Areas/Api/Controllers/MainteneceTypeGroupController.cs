@@ -71,7 +71,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return mainteneceTypeGroupService.SaveMaintenanceTypeGroup(maintenanceTypeGroup.CreateFrom()).CreateFromm();
+            return mainteneceTypeGroupService.SaveMaintenanceTypeGroup(maintenanceTypeGroup.CreateFrom()).CreateFrom();
         }
 
         #endregion

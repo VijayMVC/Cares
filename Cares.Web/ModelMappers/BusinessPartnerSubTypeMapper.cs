@@ -33,14 +33,14 @@ namespace Cares.Web.ModelMappers
         {
             return new Models.BusinessPartnerSubTypeSearchRequestResponse
             {
-                BusinessPartnerSubTypes = source.BusinessPartnerSubTypes.Select(businessPartnerSubType => businessPartnerSubType.CreateFromm()),
+                BusinessPartnerSubTypes = source.BusinessPartnerSubTypes.Select(businessPartnerSubType => businessPartnerSubType.CreateBusinessPartnerSubTypeFrom()),
                 TotalCount = source.TotalCount
             };
         }
         /// <summary>
         /// Crete From Domain model
         /// </summary>
-        public static BusinessPartnerSubType CreateFromm(this Cares.Models.DomainModels.BusinessPartnerSubType source)
+        public static BusinessPartnerSubType CreateBusinessPartnerSubTypeFrom(this Cares.Models.DomainModels.BusinessPartnerSubType source)
         {
             return new BusinessPartnerSubType
             {
@@ -61,7 +61,7 @@ namespace Cares.Web.ModelMappers
         {
             return new Models.BusinessPartnerSubTypeBaseDataResponse
             {
-                BusinessPartnerMainTypeDropDown = source.BusinessPartnerMainType.Select(businessPartnerMainType => businessPartnerMainType.CreateFromm())
+                BusinessPartnerMainTypeDropDown = source.BusinessPartnerMainType.Select(businessPartnerMainType => businessPartnerMainType.CreateDropDownFrom())
             };
         }
         #endregion

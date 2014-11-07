@@ -72,7 +72,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return discountTypeService.SaveDiscountType(discountType.CreateFrom()).CreateFromm();
+            return discountTypeService.SaveDiscountType(discountType.CreateFrom()).CreateDiscountTypeFrom();
         }
 
         #endregion

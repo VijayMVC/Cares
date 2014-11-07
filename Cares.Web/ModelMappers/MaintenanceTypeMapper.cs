@@ -30,7 +30,7 @@ namespace Cares.Web.ModelMappers
         {
             return new MaintenanceTypeBaseDataResponse
             {
-                MaintenanceTypeGroups = source.MaintenanceTypeGroups.Select(maintenanceGroup => maintenanceGroup.CreateFrom())
+                MaintenanceTypeGroups = source.MaintenanceTypeGroups.Select(maintenanceGroup => maintenanceGroup.CreateDropDownFrom())
             };
         }
 

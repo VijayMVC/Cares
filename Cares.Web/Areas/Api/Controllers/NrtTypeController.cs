@@ -66,7 +66,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return nrtTypeService.AddUpdateNtrType(request.CreateFrom()).CreateFromm();
+            return nrtTypeService.AddUpdateNtrType(request.CreateFrom()).CreateNrtTypeFrom();
         }   
         #endregion   
     }

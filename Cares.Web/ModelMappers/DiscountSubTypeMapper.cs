@@ -43,7 +43,7 @@ namespace Cares.Web.ModelMappers
         {
             return new DiscountSubTypeSearchRequestResponse
             {
-                DiscountSubTypes = source.DiscountSubTypes.Select(discountSubType => discountSubType.CreateFromm()),
+                DiscountSubTypes = source.DiscountSubTypes.Select(discountSubType => discountSubType.CreateDiscountSubTypeFrom()),
                 TotalCount = source.TotalCount
             };
         }
@@ -52,7 +52,7 @@ namespace Cares.Web.ModelMappers
         /// <summary>
         /// Crete From Domain model
         /// </summary>
-        public static DiscountSubType CreateFromm(this Cares.Models.DomainModels.DiscountSubType source)
+        public static DiscountSubType CreateDiscountSubTypeFrom(this Cares.Models.DomainModels.DiscountSubType source)
         {
             return new DiscountSubType
             {
