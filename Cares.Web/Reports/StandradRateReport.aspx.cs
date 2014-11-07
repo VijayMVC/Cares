@@ -13,10 +13,9 @@ namespace Cares.Web.Reports
 {
     public partial class StandradRateReport : System.Web.UI.Page
     {
+        IStandardRateReportService standardRateReportService;
         protected void Page_Load(object sender, EventArgs e)
         {
-            IStandardRateReportService standardRateReportService;
-
             if (!IsPostBack)
             {
                 standardRateReportService = UnityWebActivator.Container.Resolve<IStandardRateReportService>();

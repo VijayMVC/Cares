@@ -1075,7 +1075,7 @@ Hire-</Value>
         <Top>0.125in</Top>
         <Left>0.02307in</Left>
         <Height>0.67708in</Height>
-        <Width>10.37275in</Width>
+        <Width>10.37276in</Width>
         <ToolTip>Vehicles</ToolTip>
         <Style>
           <Border>
@@ -1084,7 +1084,7 @@ Hire-</Value>
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>4.5in</Height>
+    <Height>1.52083in</Height>
     <Style />
   </Body>
   <Width>10.43749in</Width>
@@ -1101,7 +1101,7 @@ Hire-</Value>
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Fleet Report</Value>
+                  <Value>Fleet Pool Report</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
                     <FontSize>11pt</FontSize>
@@ -1117,7 +1117,7 @@ Hire-</Value>
           <Top>0.12375in</Top>
           <Left>0.14583in</Left>
           <Height>0.33806in</Height>
-          <Width>1.125in</Width>
+          <Width>1.52083in</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1176,7 +1176,7 @@ Hire-</Value>
       </Style>
     </PageHeader>
     <PageFooter>
-      <Height>0.24008in</Height>
+      <Height>0.2in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -1321,8 +1321,8 @@ Hire-</Value>
     <PageWidth>11in</PageWidth>
     <LeftMargin>0.25in</LeftMargin>
     <RightMargin>0.25in</RightMargin>
-    <TopMargin>0.25in</TopMargin>
-    <BottomMargin>0.25in</BottomMargin>
+    <TopMargin>0.05in</TopMargin>
+    <BottomMargin>0.05in</BottomMargin>
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>

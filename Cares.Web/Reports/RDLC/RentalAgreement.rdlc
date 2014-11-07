@@ -7344,7 +7344,7 @@ Hours</Value>
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Rental Agreement</Value>
+                  <Value>Rental Agreement Report</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
                     <FontSize>11pt</FontSize>
@@ -7360,7 +7360,7 @@ Hours</Value>
           <Top>0.12375in</Top>
           <Left>0.14583in</Left>
           <Height>0.33806in</Height>
-          <Width>1.87601in</Width>
+          <Width>2.24511in</Width>
           <Style>
             <Border>
               <Style>None</Style>

@@ -1700,7 +1700,7 @@ iif(Fields!InDate.Value &gt; Globals!ExecutionTime,Cint(DateDiff("D", Globals!Ex
         <Top>0.125in</Top>
         <Left>0.02307in</Left>
         <Height>0.67708in</Height>
-        <Width>10.22693in</Width>
+        <Width>10.22697in</Width>
         <ToolTip>Vehicles</ToolTip>
         <Style>
           <Border>
@@ -1726,7 +1726,7 @@ iif(Fields!InDate.Value &gt; Globals!ExecutionTime,Cint(DateDiff("D", Globals!Ex
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Daily Action List</Value>
+                  <Value>Daily Action Report</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
                     <FontSize>11pt</FontSize>
@@ -1742,7 +1742,7 @@ iif(Fields!InDate.Value &gt; Globals!ExecutionTime,Cint(DateDiff("D", Globals!Ex
           <Top>0.12375in</Top>
           <Left>0.14583in</Left>
           <Height>0.33806in</Height>
-          <Width>1.33333in</Width>
+          <Width>1.60416in</Width>
           <Style>
             <Border>
               <Style>None</Style>

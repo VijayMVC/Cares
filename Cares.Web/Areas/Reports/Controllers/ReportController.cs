@@ -8,7 +8,7 @@ namespace Cares.Web.Areas.Reports.Controllers
     public class ReportController : BaseController
     {
         // GET: Reports/Report
-        [SiteAuthorize(PermissionKey = "FleetReport")]
+        [SiteAuthorize(PermissionKey = "FleetPoolReport")]
         public ActionResult FleetReport()
         {
             return View();
