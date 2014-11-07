@@ -77,6 +77,9 @@ amplify.request.decoders = {
                 } else {
                     error(xhr.responseText);
                 }
+            } else if (status === "nocontent") { // Added by ali : nocontent status is returned when no response is returned but operation is sucessful
+                success(data);
+
             } else {
                 error(xhr.responseText);
             }
