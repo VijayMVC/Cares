@@ -7,8 +7,8 @@ namespace Cares.Web.Models.ReportModels
 
         public string ChargedType { get; set; }
         public string ItemName { get; set; }
-        public DateTime ServiceStartDateTime { get; set; }
-        public DateTime ServiceEndDateTime { get; set; }
+        public string ServiceStartDateTime { get; set; }
+        public string ServiceEndDateTime { get; set; }
         public long ServiceChargedDays { get; set; }
         public long ServiceChargedHours { get; set; }
         public long ServiceChargedMinutes { get; set; }

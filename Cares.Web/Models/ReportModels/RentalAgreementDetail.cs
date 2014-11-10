@@ -12,8 +12,8 @@ namespace Cares.Web.Models.ReportModels
         public long RentalAgreementId { get; set; }
         public string Status { get; set; }
         public long RaOpenLocatoin { get; set; }
-        public DateTime StartDateTime { get; set; }
-        public DateTime ReturnDateTime { get; set; }
+        public string StartDateTime { get; set; }
+        public string ReturnDateTime { get; set; }
         public long RaCloseLocation { get; set; }      
         public double TotalVehicleCharge { get; set; }
         public double StandardDiscount { get; set; }

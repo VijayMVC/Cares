@@ -6773,7 +6773,7 @@
           <EntitySet Name="HireGroups" EntityType="DomainModels.HireGroup" />
           <EntitySet Name="HireGroupDetails" EntityType="DomainModels.HireGroupDetail" />
           <EntitySet Name="Operations" EntityType="DomainModels.Operation" />
-          <EntitySet Name="OperationsWorkPlaces1" EntityType="DomainModels.OperationsWorkPlace" />
+          <EntitySet Name="OperationsWorkPlaces" EntityType="DomainModels.OperationsWorkPlace" />
           <EntitySet Name="PaymentTerms" EntityType="DomainModels.PaymentTerm" />
           <EntitySet Name="Phones" EntityType="DomainModels.Phone" />
           <EntitySet Name="PhoneTypes" EntityType="DomainModels.PhoneType" />
@@ -6915,7 +6915,7 @@
             <End Role="EmpAuthOperationsWorkplace" EntitySet="EmpAuthOperationsWorkplaces" />
           </AssociationSet>
           <AssociationSet Name="RefOperationsWorkplace611" Association="DomainModels.RefOperationsWorkplace611">
-            <End Role="OperationsWorkplace" EntitySet="OperationsWorkPlaces1" />
+            <End Role="OperationsWorkplace" EntitySet="OperationsWorkPlaces" />
             <End Role="EmpAuthOperationsWorkplace" EntitySet="EmpAuthOperationsWorkplaces" />
           </AssociationSet>
           <AssociationSet Name="RefEmployee348" Association="DomainModels.RefEmployee348">
@@ -6956,7 +6956,7 @@
           </AssociationSet>
           <AssociationSet Name="RefFleetPool1913" Association="DomainModels.RefFleetPool1913">
             <End Role="FleetPool" EntitySet="FleetPools" />
-            <End Role="OperationsWorkplace" EntitySet="OperationsWorkPlaces1" />
+            <End Role="OperationsWorkplace" EntitySet="OperationsWorkPlaces" />
           </AssociationSet>
           <AssociationSet Name="RefOperation207" Association="DomainModels.RefOperation207">
             <End Role="Operation" EntitySet="Operations" />
@@ -6996,19 +6996,19 @@
           </AssociationSet>
           <AssociationSet Name="RefOperation2561" Association="DomainModels.RefOperation2561">
             <End Role="Operation" EntitySet="Operations" />
-            <End Role="OperationsWorkplace" EntitySet="OperationsWorkPlaces1" />
+            <End Role="OperationsWorkplace" EntitySet="OperationsWorkPlaces" />
           </AssociationSet>
           <AssociationSet Name="RefOperation257" Association="DomainModels.RefOperation257">
             <End Role="Operation" EntitySet="Operations" />
             <End Role="TariffType" EntitySet="TariffTypes" />
           </AssociationSet>
           <AssociationSet Name="RefOperationsWorkplace209" Association="DomainModels.RefOperationsWorkplace209">
-            <End Role="OperationsWorkplace" EntitySet="OperationsWorkPlaces1" />
+            <End Role="OperationsWorkplace" EntitySet="OperationsWorkPlaces" />
             <End Role="Vehicle" EntitySet="Vehicles" />
           </AssociationSet>
           <AssociationSet Name="RefWorkplace1811" Association="DomainModels.RefWorkplace1811">
             <End Role="Workplace" EntitySet="WorkPlaces1" />
-            <End Role="OperationsWorkplace" EntitySet="OperationsWorkPlaces1" />
+            <End Role="OperationsWorkplace" EntitySet="OperationsWorkPlaces" />
           </AssociationSet>
           <AssociationSet Name="RefPhoneType1941" Association="DomainModels.RefPhoneType1941">
             <End Role="PhoneType" EntitySet="PhoneTypes" />
@@ -7378,11 +7378,11 @@
             <End Role="BookingMain" EntitySet="BookingMains" />
           </AssociationSet>
           <AssociationSet Name="RefOperationsWorkplace436" Association="DomainModels.RefOperationsWorkplace436">
-            <End Role="OperationsWorkPlace" EntitySet="OperationsWorkPlaces1" />
+            <End Role="OperationsWorkPlace" EntitySet="OperationsWorkPlaces" />
             <End Role="BookingMain" EntitySet="BookingMains" />
           </AssociationSet>
           <AssociationSet Name="RefOperationsWorkplace437" Association="DomainModels.RefOperationsWorkplace437">
-            <End Role="OperationsWorkPlace" EntitySet="OperationsWorkPlaces1" />
+            <End Role="OperationsWorkPlace" EntitySet="OperationsWorkPlaces" />
             <End Role="BookingMain" EntitySet="BookingMains" />
           </AssociationSet>
           <AssociationSet Name="RefPaymentTerm494" Association="DomainModels.RefPaymentTerm494">
@@ -7482,11 +7482,11 @@
             <End Role="NRTMain" EntitySet="NrtMains1" />
           </AssociationSet>
           <AssociationSet Name="RefOperationsWorkplace590" Association="DomainModels.RefOperationsWorkplace590">
-            <End Role="OperationsWorkPlace" EntitySet="OperationsWorkPlaces1" />
+            <End Role="OperationsWorkPlace" EntitySet="OperationsWorkPlaces" />
             <End Role="NRTMain" EntitySet="NrtMains1" />
           </AssociationSet>
           <AssociationSet Name="RefOperationsWorkplace592" Association="DomainModels.RefOperationsWorkplace592">
-            <End Role="OperationsWorkPlace" EntitySet="OperationsWorkPlaces1" />
+            <End Role="OperationsWorkPlace" EntitySet="OperationsWorkPlaces" />
             <End Role="NRTMain" EntitySet="NrtMains1" />
           </AssociationSet>
           <AssociationSet Name="RefRAStatus607" Association="DomainModels.RefRAStatus607">
@@ -7506,7 +7506,7 @@
             <End Role="NRTVehicle" EntitySet="NrtVehicles1" />
           </AssociationSet>
           <AssociationSet Name="RefOperationsWorkplace598" Association="DomainModels.RefOperationsWorkplace598">
-            <End Role="OperationsWorkPlace" EntitySet="OperationsWorkPlaces1" />
+            <End Role="OperationsWorkPlace" EntitySet="OperationsWorkPlaces" />
             <End Role="NRTVehicleMovement" EntitySet="NrtVehicleMovements1" />
           </AssociationSet>
           <AssociationSet Name="RefVehicleStatus580" Association="DomainModels.RefVehicleStatus580">
@@ -7518,23 +7518,23 @@
             <End Role="RAMain" EntitySet="RaMains1" />
           </AssociationSet>
           <AssociationSet Name="RefOperationsWorkplace412" Association="DomainModels.RefOperationsWorkplace412">
-            <End Role="OperationsWorkPlace" EntitySet="OperationsWorkPlaces1" />
+            <End Role="OperationsWorkPlace" EntitySet="OperationsWorkPlaces" />
             <End Role="SeasonalDiscount" EntitySet="SeasonalDiscounts" />
           </AssociationSet>
           <AssociationSet Name="RefOperationsWorkplace498" Association="DomainModels.RefOperationsWorkplace498">
-            <End Role="OperationsWorkPlace" EntitySet="OperationsWorkPlaces1" />
+            <End Role="OperationsWorkPlace" EntitySet="OperationsWorkPlaces" />
             <End Role="RAMain" EntitySet="RaMains1" />
           </AssociationSet>
           <AssociationSet Name="RefOperationsWorkplace499" Association="DomainModels.RefOperationsWorkplace499">
-            <End Role="OperationsWorkPlace" EntitySet="OperationsWorkPlaces1" />
+            <End Role="OperationsWorkPlace" EntitySet="OperationsWorkPlaces" />
             <End Role="RAMain" EntitySet="RaMains1" />
           </AssociationSet>
           <AssociationSet Name="RefOperationsWorkplace519" Association="DomainModels.RefOperationsWorkplace519">
-            <End Role="OperationsWorkPlace" EntitySet="OperationsWorkPlaces1" />
+            <End Role="OperationsWorkPlace" EntitySet="OperationsWorkPlaces" />
             <End Role="VehicleMovement" EntitySet="VehicleMovements" />
           </AssociationSet>
           <AssociationSet Name="RefOperationsWorkplace558" Association="DomainModels.RefOperationsWorkplace558">
-            <End Role="OperationsWorkPlace" EntitySet="OperationsWorkPlaces1" />
+            <End Role="OperationsWorkPlace" EntitySet="OperationsWorkPlaces" />
             <End Role="StandardDiscount" EntitySet="StandardDiscounts" />
           </AssociationSet>
           <AssociationSet Name="RefPaymentTerm497" Association="DomainModels.RefPaymentTerm497">
@@ -14433,7 +14433,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="OperationsWorkPlaces1">
+          <EntitySetMapping Name="OperationsWorkPlaces">
             <EntityTypeMapping TypeName="DomainModels.OperationsWorkPlace">
               <MappingFragment StoreEntitySet="OperationsWorkplace">
                 <ScalarProperty Name="LocationName" ColumnName="LocationName" />

@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Cares.Interfaces.IReportServices;
 using Cares.Interfaces.Repository;
+using Cares.Models.DomainModels;
 using Cares.Models.ReportModels;
 using Cares.Repository.Repositories;
 
@@ -29,7 +31,7 @@ namespace Cares.Implementation.ReportServices
         #endregion
         #region Public
 
-        public IList<DailyActionReportResponse> LoadDailyActionReportDetail()
+        public IQueryable<RaHireGroup> LoadDailyActionReportDetail()
         {
             return rentalAgreementRepository.GetDailyActionReport();
 

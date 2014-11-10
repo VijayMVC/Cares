@@ -78,7 +78,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Record Last Updated By
         /// </summary>
-        public string RecLastUpdatedBy { get; set; }
+        public string RecLastUpdatedBy { get; set; }        
         
         #endregion
 

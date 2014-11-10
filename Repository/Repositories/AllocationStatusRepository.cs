@@ -44,8 +44,6 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.ToList();
         }
-
-
         #endregion
     }
 }

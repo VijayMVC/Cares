@@ -14,6 +14,7 @@ namespace Cares.Models.ReportModels
         public string CustomerName { get; set; }
         public string Nationality { get; set; }
         public string Mobile { get; set; }
+        public string OfficePhone { get; set; }
         public string HireGroup { get; set; }
         public string PlateNumber { get; set; }
         public string FleetPool { get; set; }
@@ -27,8 +28,8 @@ namespace Cares.Models.ReportModels
 
         public double AmountBalance { get; set; }
         public double AmountPaid { get; set; }
-        public DateTime InDate { get; set; }
-        public DateTime OutDate { get; set; }
+        public string InDate { get; set; }
+        public string OutDate { get; set; }
 
         #endregion
     }

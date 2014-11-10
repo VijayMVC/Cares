@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using Cares.Interfaces.Repository;
@@ -97,34 +98,10 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Daily Action Detail Report
         /// </summary>        
-        public IList<DailyActionReportResponse> GetDailyActionReport()
+        public IQueryable<RaHireGroup> GetDailyActionReport()
         {
-            var dailyActionDetailQuery = from raHireGroup in db.RaHireGroups                
-                select new DailyActionReportResponse
-                {
-                    RaNumber = raHireGroup.RaMain.RaMainId,
-                    RAStutus = raHireGroup.RaMain.RaStatus.RaStatusCode,
-                    CustomerName = raHireGroup.RaMain.BusinessPartner.BusinessPartnerName,
-                //    Nationality = raHireGroup.RaMain.BusinessPartner.BusinessPartnerAddressList != null ? raHireGroup.RaMain.BusinessPartner.BusinessPartnerAddressList.FirstOrDefault().Country.CountryName : string.Empty,
-                    Mobile = "Not Found!",
-                    HireGroup = raHireGroup.RaMain.RaHireGroups.FirstOrDefault().HireGroupDetail.HireGroup.HireGroupName,
-                    PlateNumber = raHireGroup.Vehicle.PlateNumber,
-                    FleetPool = raHireGroup.Vehicle.FleetPool.FleetPoolName,
-                    VehicleMake = raHireGroup.Vehicle.VehicleMake.VehicleMakeName,
-                    VehicleModel = raHireGroup.Vehicle.VehicleModel.VehicleModelName,
-                    Mileage=raHireGroup.Vehicle.InitialOdometer-raHireGroup.Vehicle.CurrentOdometer,
-                    ModelYear = raHireGroup.Vehicle.ModelYear,
-                    VehicleStatus = raHireGroup.Vehicle.VehicleStatus.VehicleStatusName,
-                    CurrentLocation = raHireGroup.Vehicle.OperationsWorkPlace.LocationCode,
-                    AmountBalance = raHireGroup.RaMain.Balance,
-                    AmountPaid = raHireGroup.RaMain.AmountPaid,
-                    InDate = raHireGroup.RaMain.StartDtTime,
-                    OutDate = raHireGroup.RaMain.EndDtTime
-                };
-            return dailyActionDetailQuery.OrderBy(raHireGroup => raHireGroup.HireGroup).ToList();
+            return db.RaHireGroups.Select(raHireGroup => raHireGroup);
         }
-
-       
         #endregion
     }
 }
