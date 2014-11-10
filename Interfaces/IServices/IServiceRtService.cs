@@ -33,8 +33,8 @@ namespace Cares.Interfaces.IServices
         /// <summary>
         /// Delete Service Rate
         /// </summary>
-        /// <param name="serviceRtMain"></param>
-        void DeleteServiceRate(ServiceRtMain serviceRtMain);
+        /// <param name="serviceRtMainId"></param>
+        void DeleteServiceRate(long serviceRtMainId);
 
         /// <summary>
         /// Get Service Rate By ID

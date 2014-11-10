@@ -75,7 +75,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            tariffRateService.DeleteTariffRate(tariffRateService.Find(standardRateMain.StandardRtMainId));
+            tariffRateService.DeleteTariffRate(standardRateMain.StandardRtMainId);
         }
 
         /// <summary>

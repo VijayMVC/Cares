@@ -186,10 +186,10 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Delete Additional Charge
         /// </summary>
-        /// <param name="additionalChargeType"></param>
-        public void DeleteAdditionalCharge(AdditionalChargeType additionalChargeType)
+        /// <param name="additionalChargeTypeId"></param>
+        public void DeleteAdditionalCharge(long additionalChargeTypeId)
         {
-            additionalChargeTypeRepository.Delete(additionalChargeType);
+            additionalChargeTypeRepository.Delete(additionalChargeTypeRepository.Find(additionalChargeTypeId));
             additionalChargeTypeRepository.SaveChanges();
         }
 
@@ -229,7 +229,7 @@ namespace Cares.Implementation.Services
         {
             if (additionalCharges != null)
             {
-                if (additionalCharges.Any(item => item.StartDt < DateTime.Now))
+                if (additionalCharges.Any(item => item.StartDt.Date < DateTime.Now.Date))
                 {
                     throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.AdditionalCharge.InvalidStartDate));
                 }

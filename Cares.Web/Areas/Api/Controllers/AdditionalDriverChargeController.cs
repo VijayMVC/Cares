@@ -74,7 +74,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            additionalDriverService.AdditionalDriverChargeDelete(additionalDriverService.FindById(additionalDriverCharge.AdditionalDriverChargeId));
+            additionalDriverService.AdditionalDriverChargeDelete(additionalDriverCharge.AdditionalDriverChargeId);
         }
 
         #endregion

@@ -71,7 +71,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            insuranceRateService.DeleteInsuranceRate(insuranceRateService.FindById(insuranceRtMain.InsuranceRtMainId));
+            insuranceRateService.DeleteInsuranceRate(insuranceRtMain.InsuranceRtMainId);
         }
         #endregion
     }
