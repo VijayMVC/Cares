@@ -112,23 +112,23 @@
                 <td class="category">
                     <span data-bind="text: vehicleCategory"></span>
                 </td>
-                <td class="col-md-1">
+                <td class="modelYear">
                     <span data-bind="text: modelYear"></span>
                 </td>
                 <td class="allowMileageTh">
-                    <input class="allowMileage" type="text" data-bind="value: allowMileage, validationTooltip: allowMileage" />
+                    <input class="allowMileage" type="text" data-bind="value: allowMileage, validationTooltip: allowMileage,disable :!isChecked()" />
                 </td>
                 <td class="accessMileage">
-                    <input class="excessMileageCharge" style="width: 70px;" type="text" data-bind="value: excessMileageCharge, validationTooltip: excessMileageCharge" />
+                    <input class="excessMileageCharge" style="width: 70px;" type="text" data-bind="value: excessMileageCharge, validationTooltip: excessMileageCharge,disable :!isChecked()" />
                 </td>
                 <td class="standardRate">
-                    <input class="standardRt" type="text" data-bind="value: standardRt, validationTooltip: standardRt" />
+                    <input class="standardRt" type="text" data-bind="value: standardRt, validationTooltip: standardRt,disable :!isChecked()" />
                 </td>
                 <td class="startDateTh">
-                    <input class="startDate" type="text" data-bind="datepicker: startDate, validationTooltip: startDate" />
+                    <input class="startDate" type="text" data-bind="datepicker: startDate, validationTooltip: startDate,disable :!isChecked()" />
                 </td>
                 <td class="endDateTh">
-                    <input class="endDate" type="text" data-bind="datepicker: endDate, validationTooltip: endDate" />
+                    <input class="endDate" type="text" data-bind="datepicker: endDate, validationTooltip: endDate,disable :!isChecked()" />
                 </td>
                 <td class="revisionNumber">
                     <span data-bind="text: revisionNumber"></span>

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
+using Cares.Models.Properties;
 using Cares.Models.ResponseModels;
 
 namespace Cares.Implementation.Services
@@ -16,6 +17,7 @@ namespace Cares.Implementation.Services
         private readonly IHireGroupDetailRepository hireGroupDetailRepository;
         private readonly IVehicleRepository vehicleRepository;
         private readonly IInsuranceRtRepository insuranceRtRepository;
+        private readonly IEmployeeRepository employeeRepository;
         #endregion
 
         #region Constructor
@@ -36,9 +38,14 @@ namespace Cares.Implementation.Services
             {
                 throw new ArgumentNullException("insuranceRtRepository");
             }
+            if (employeeRepository == null)
+            {
+                throw new ArgumentNullException("employeeRepository");
+            }
             this.hireGroupDetailRepository = hireGroupDetailRepository;
             this.vehicleRepository = vehicleRepository;
             this.insuranceRtRepository = insuranceRtRepository;
+            this.employeeRepository = employeeRepository;
         }
         #endregion
 
@@ -55,12 +62,17 @@ namespace Cares.Implementation.Services
             return vehicles;
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
         public IEnumerable<WebApiAvailableServices> GetAvailableServicesWithRates(long operationWorkplaceId, DateTime startDateTime, DateTime endDateTime,
-            long domainKey, long hireGroupDetailId)
+       long domainKey, long hireGroupDetailId)
         {
 
-            IEnumerable<WebApiAvailableInsurance> insurances=insuranceRtRepository.GetAvailableInsuranceRtForWebApi(hireGroupDetailId,startDateTime,domainKey);
-           return null;
+            IEnumerable<WebApiAvailableInsurance> insurances = insuranceRtRepository.GetAvailableInsuranceRtForWebApi(hireGroupDetailId, startDateTime, domainKey);
+            //IEnumerable<WebApiAvailableInsurance> insurances = employeeRepository.GetAllChauffers(operationWorkplaceId, startDateTime, endDateTime, domainKey);
+            return null;
         }
 
         #endregion

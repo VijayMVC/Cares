@@ -73,7 +73,7 @@ define("serviceRate/serviceRate.viewModel",
                         ko.applyBindings(view.viewModel, view.bindingRoot);
                         getBase();
                         // Set Pager
-                       pager(new pagination.Pagination({}, serviceRtMains, getServiceRates));
+                        pager(new pagination.Pagination({}, serviceRtMains, getServiceRates));
                         //Set Client Side Pager
                         clientPager(new clientPagination.Pagination({}, serviceRtItems, null));
                         getServiceRates();
@@ -162,6 +162,7 @@ define("serviceRate/serviceRate.viewModel",
                     },
                       //Create Service Rate
                     createServiceRate = function () {
+                        selectServiceRtItem(undefined);
                         filteredTariffTypes.removeAll();
                         var serviceRtMain = new model.ServiceRtMain();
                         // Select the newly added Service Rate
@@ -245,6 +246,7 @@ define("serviceRate/serviceRate.viewModel",
                      }, this),
                       //Edit Service Rate
                     onEditServiceRate = function (serviceRt, e) {
+                        selectServiceRtItem(undefined);
                         filteredTariffTypes.removeAll();
                         selectedServiceRtMain(serviceRt);
                         //selectedServiceRtMainCopy(model.InsuranceRtMainCopier(serviceRt));

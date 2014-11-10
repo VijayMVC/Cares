@@ -312,6 +312,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MaintenanceTypeGroup.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\FleetPool\Vehicle.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Vehicle.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\FleetPool\Vehicle.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Vehicle.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\FleetPool\VehicleCategory.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -873,6 +883,14 @@
     <EmbeddedResource Include="Resources\FleetPool\MaintenanceTypeGroup.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MaintenanceTypeGroup.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FleetPool\Vehicle.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Vehicle.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FleetPool\Vehicle.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Vehicle.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\FleetPool\VehicleCategory.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

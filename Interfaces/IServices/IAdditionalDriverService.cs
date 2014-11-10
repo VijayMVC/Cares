@@ -38,8 +38,8 @@ namespace Cares.Interfaces.IServices
         /// <summary>
         /// Additional Driver Charge Delete
         /// </summary>
-        /// <param name="additionalDriverCharge"></param>
-        void AdditionalDriverChargeDelete(AdditionalDriverCharge additionalDriverCharge);
+        /// <param name="additionalDriverChargeId"></param>
+        void AdditionalDriverChargeDelete(long additionalDriverChargeId);
 
         /// <summary>
         /// Find By Id

@@ -134,7 +134,6 @@ define("chaufferCharge/chaufferCharge.viewModel",
                             }
                         });
                     },
-
                     // Search 
                     search = function () {
                         pager().reset();
@@ -169,9 +168,9 @@ define("chaufferCharge/chaufferCharge.viewModel",
                     // Save Chauffer Charge Main
                     onSaveChaufferChargeMainCharge = function (chaufferCharge) {
                         if (doBeforeSave()) {
-                            if (chaufferCharge.chaufferChargeList().length!=0) {
-                                chaufferCharge.chaufferChargeList().removeAll();
-}
+                            if (chaufferCharge.chaufferChargeList().length !== 0) {
+                                chaufferCharge.chaufferChargeList([]);
+                            }
                             ko.utils.arrayPushAll(chaufferCharge.chaufferChargeList(), chaufferCharges());
                             saveChaufferChargeMain(chaufferCharge);
                         }
@@ -226,7 +225,7 @@ define("chaufferCharge/chaufferCharge.viewModel",
                             }
                         }
                     },
-                    // Do Before Logic
+                    //Do Before Logic
                    doBeforeChaufferCharge = function () {
                        var flag = true;
                        if (!addEditChaufferChargeMain().chaufferCharge().isValid()) {
@@ -235,7 +234,7 @@ define("chaufferCharge/chaufferCharge.viewModel",
                        }
                        return flag;
                    },
-                    // Save Additional Charge Main
+                    //Save Additional Charge Main
                    saveChaufferChargeMain = function (chaufferCharge) {
                        dataservice.saveChaufferCharge(model.CahufferChargeMainServerMapper(chaufferCharge), {
                            success: function (data) {
@@ -264,7 +263,7 @@ define("chaufferCharge/chaufferCharge.viewModel",
                            }
                        });
                    },
-                        //Edit Additional Charge
+                    //Edit Additional Charge
                    onEditChaufferChargeMain = function (chaufferChrg, e) {
                        //chaufferCharges.removeAll();
                        selectedChaufferChargeMain(chaufferChrg);
@@ -273,6 +272,7 @@ define("chaufferCharge/chaufferCharge.viewModel",
                        showAdditionalChargeEditor();
                        e.stopImmediatePropagation();
                    },
+                   //Edit Chauffeur Charge
                    onEditChaufferCharge = function (chaufferChrg) {
                        selectedChaufferCharge(chaufferChrg);
                        var chaufferCharge = new model.ChaufferCharge();
@@ -283,43 +283,44 @@ define("chaufferCharge/chaufferCharge.viewModel",
                        addEditChaufferChargeMain().chaufferCharge(chaufferCharge);
                        showUpdateCancelBtn(true);
                    },
-              departmentId = ko.computed(function () {
-                  if (addEditChaufferChargeMain() != undefined) {
-                      filteredDepartments.removeAll();
-                      _.each(departments(), function (item) {
-                          if (item.CompanyId === addEditChaufferChargeMain().companyId())
-                              filteredDepartments.push(item);
-                      });
-                      filteredDepartments.valueHasMutated();
-                  }
-              }, this),
-
-              operationId = ko.computed(function () {
-                  if (addEditChaufferChargeMain() != undefined) {
-                      filteredOperations.removeAll();
-                      _.each(operations(), function (item) {
-                          if (item.DepartmentId === addEditChaufferChargeMain().departmentId())
-                              filteredOperations.push(item);
-                      });
-                      filteredOperations.valueHasMutated();
-                  }
-              }, this),
-                tariffTypeId = ko.computed(function () {
-                    if (addEditChaufferChargeMain() != undefined) {
-                        filteredTariffTypes.removeAll();
-                        _.each(tariffTypes(), function (item) {
-                            if (item.OperationId === addEditChaufferChargeMain().operationId())
-                                filteredTariffTypes.push(item);
-                        });
-                        filteredTariffTypes.valueHasMutated();
-                    }
-                }, this),
-                        //Hide Update and cancel Button
-               hideUpdateCancelBtn = function () {
-                   showUpdateCancelBtn(false);
-                   selectedChaufferCharge(undefined);
-                   addEditChaufferChargeMain().chaufferCharge(new model.ChaufferCharge());
-               },
+                    departmentId = ko.computed(function () {
+                        if (addEditChaufferChargeMain() != undefined) {
+                            filteredDepartments.removeAll();
+                            _.each(departments(), function (item) {
+                                if (item.CompanyId === addEditChaufferChargeMain().companyId())
+                                    filteredDepartments.push(item);
+                            });
+                            filteredDepartments.valueHasMutated();
+                        }
+                    }, this),
+                    //
+                    operationId = ko.computed(function () {
+                        if (addEditChaufferChargeMain() != undefined) {
+                            filteredOperations.removeAll();
+                            _.each(operations(), function (item) {
+                                if (item.DepartmentId === addEditChaufferChargeMain().departmentId())
+                                    filteredOperations.push(item);
+                            });
+                            filteredOperations.valueHasMutated();
+                        }
+                    }, this),
+                    //
+                    tariffTypeId = ko.computed(function () {
+                        if (addEditChaufferChargeMain() != undefined) {
+                            filteredTariffTypes.removeAll();
+                            _.each(tariffTypes(), function (item) {
+                                if (item.OperationId === addEditChaufferChargeMain().operationId())
+                                    filteredTariffTypes.push(item);
+                            });
+                            filteredTariffTypes.valueHasMutated();
+                        }
+                    }, this),
+                     //Hide Update and cancel Button
+                    hideUpdateCancelBtn = function () {
+                        showUpdateCancelBtn(false);
+                        selectedChaufferCharge(undefined);
+                        addEditChaufferChargeMain().chaufferCharge(new model.ChaufferCharge());
+                    },
                      // Delete a Chauffer Charge
                    onDeleteChaufferChargeMain = function (chaufferChrg) {
                        if (!chaufferChrg.id()) {
@@ -332,7 +333,7 @@ define("chaufferCharge/chaufferCharge.viewModel",
                        });
                        confirmation.show();
                    },
-                        // Delete Additional Charge
+                    // Delete Additional Charge
                    deleteChaufferCharge = function (chaufferChrg) {
                        dataservice.deleteChaufferCharge(model.ChaufferChargeServerMapperForId(chaufferChrg), {
                            success: function () {
@@ -344,16 +345,17 @@ define("chaufferCharge/chaufferCharge.viewModel",
                            }
                        });
                    },
-                       onSelectedDesigGrade = function (desigGrade) {
-                           if (desigGrade.desigGradeId() != undefined) {
-                               _.each(desigGrades(), function (item) {
-                                   if (item.DesigGradeId === desigGrade.desigGradeId()) {
-                                       addEditChaufferChargeMain().chaufferCharge().desigGradeCodeName(item.DesigGradeCodeName);
-                                       addEditChaufferChargeMain().chaufferCharge().desigGradeId(desigGrade.desigGradeId());
-                                   }
-                               });
-                           }
-                       },
+                   //
+                   onSelectedDesigGrade = function (desigGrade) {
+                       if (desigGrade.desigGradeId() != undefined) {
+                           _.each(desigGrades(), function (item) {
+                               if (item.DesigGradeId === desigGrade.desigGradeId()) {
+                                   addEditChaufferChargeMain().chaufferCharge().desigGradeCodeName(item.DesigGradeCodeName);
+                                   addEditChaufferChargeMain().chaufferCharge().desigGradeId(desigGrade.desigGradeId());
+                               }
+                           });
+                       }
+                   },
                         // Show Additional Charge Editor
                    showAdditionalChargeEditor = function () {
                        isChaufferChargeEditorVisible(true);
@@ -386,7 +388,7 @@ define("chaufferCharge/chaufferCharge.viewModel",
                            }
                        });
                    };
-                // #endregion Service Calls
+                //#endregion Service Calls
 
                 return {
                     // Observables

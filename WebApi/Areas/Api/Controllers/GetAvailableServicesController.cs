@@ -10,7 +10,7 @@ namespace Cares.WebApi.Areas.Api.Controllers
     /// <summary>
     /// Get Available Services
     /// </summary>
-    public class GetAvailableServices : ApiController
+    public class GetAvailableServicesController : ApiController
     {
         #region Private
         private readonly IWebApiAvailableRentalService availableRentalService;
@@ -20,7 +20,7 @@ namespace Cares.WebApi.Areas.Api.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public GetAvailableServices(IWebApiAvailableRentalService availableRentalService)
+        public GetAvailableServicesController(IWebApiAvailableRentalService availableRentalService)
         {
             if (availableRentalService == null)
             {
@@ -30,26 +30,16 @@ namespace Cares.WebApi.Areas.Api.Controllers
         }
         #endregion
 
-        #region Public 
+        #region Public
         /// <summary>
-        /// Get Available HireGroup with their price
-        /// </summary>        
-        public IEnumerable<WebApiAvailaleHireGroup> Post(GetAvailableHireGroupsRequest request)
-        {
-            var returnList = availableRentalService.GetAvailableHireGroupsWithRates(request.OutLocationId, request.StartDateTime,
-                request.EndDateTime, request.DomainKey);
-            return returnList;
-        }
-
-        /// <summary>
-        /// Get Available HireGroup with their price
+        /// Get Available Services with their price
         /// </summary>        
         public IEnumerable<WebApiAvailableServices> Post(GetAvailableServicesRequest request)
         {
             var returnList = availableRentalService.GetAvailableServicesWithRates(request.OutLocationId, request.StartDateTime,
-                request.EndDateTime, request.DomainKey,request.HireGroupDetailId);
+                request.EndDateTime, request.DomainKey, request.HireGroupDetailId);
             return returnList;
-        } 
+        }
         #endregion
     }
 }

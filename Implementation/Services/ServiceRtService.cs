@@ -112,10 +112,9 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Delete Service Rate
         /// </summary>
-        /// <param name="serviceRtMain"></param>
-        public void DeleteServiceRate(ServiceRtMain serviceRtMain)
+        public void DeleteServiceRate(long serviceRtMainId)
         {
-            serviceRtMainRepository.Delete(serviceRtMain);
+            serviceRtMainRepository.Delete(serviceRtMainRepository.Find(serviceRtMainId));
             serviceRtMainRepository.SaveChanges();
         }
 

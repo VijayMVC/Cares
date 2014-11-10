@@ -210,7 +210,7 @@
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
     <Compile Include="Areas\Api\Controllers\GetAvailableHireGroupsController.cs" />
-    <Compile Include="Areas\Api\Controllers\GetAvailableServices.cs" />
+    <Compile Include="Areas\Api\Controllers\GetAvailableServicesController.cs" />
     <Compile Include="Areas\Api\Controllers\GetOperationWorkplaceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">

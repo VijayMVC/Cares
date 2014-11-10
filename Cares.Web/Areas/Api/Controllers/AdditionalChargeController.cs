@@ -72,7 +72,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            additionalChargeService.DeleteAdditionalCharge(additionalChargeService.FindById(additionalChargeType.AdditionalChargeTypeId));
+            additionalChargeService.DeleteAdditionalCharge(additionalChargeType.AdditionalChargeTypeId);
 
         }
 

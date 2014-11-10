@@ -15,7 +15,7 @@ namespace Cares.Interfaces.Repository
         /// <summary>
         /// Get fleet HireGroup Detail Report
         /// </summary>        
-        IList<RptFleetHireGroupDetail>  GetFleetReport();
+        IList<RptFleetHireGroupDetail> GetFleetReport();
 
         /// <summary>
         /// Get Missing Hire Groups Details 
@@ -58,7 +58,7 @@ namespace Cares.Interfaces.Repository
         /// Check Vehicle Plate Number Already Exist
         /// </summary>
         bool DuplicateVehiclePlateNumber(string plateNumber, long vehicleId);
-       
+
         /// <summary>
         /// Association check b/n vehicle and vehicle make
         /// </summary>
@@ -83,6 +83,12 @@ namespace Cares.Interfaces.Repository
         /// GetAvailable Vehicles for WebApi
         /// </summary>
         IEnumerable<WebApiAvailaleHireGroup> GetAvaibaleVehiclesForWebApi(IEnumerable<long> hireGroupDetailsIds, long domainKey);
+
+        /// <summary>
+        /// vehicle Palte Number validation check
+        /// </summary>
+        bool IsVehiclePlateNumberExists(string plateNumber, long vehicleId);
+
     }
 }
 
