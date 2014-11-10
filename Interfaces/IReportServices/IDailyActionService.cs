@@ -1,10 +1,10 @@
-﻿using Cares.Models.ReportModels;
-using System.Collections.Generic;
+﻿using Cares.Models.DomainModels;
+using System.Linq;
 
 namespace Cares.Interfaces.IReportServices
 {
     public interface IDailyActionService
     {
-        IList<DailyActionReportResponse> LoadDailyActionReportDetail();
+        IQueryable<RaHireGroup> LoadDailyActionReportDetail();
     }
 }

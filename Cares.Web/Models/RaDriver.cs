@@ -35,9 +35,19 @@ namespace Cares.Web.Models
         public DateTime StartDtTime { get; set; }
 
         /// <summary>
+        /// Start Date
+        /// </summary>
+        public string StartDtTimeForReport { get; set; }
+
+        /// <summary>
         /// End Date
         /// </summary>
         public DateTime EndDtTime { get; set; }
+
+        /// <summary>
+        /// End Date
+        /// </summary>
+        public string EndDtTimeForReport { get; set; }
 
         /// <summary>
         /// License Exp Date

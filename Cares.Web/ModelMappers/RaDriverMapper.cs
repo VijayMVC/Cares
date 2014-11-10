@@ -1,4 +1,5 @@
-﻿using Cares.Web.Models;
+﻿using System;
+using Cares.Web.Models;
 using DomainModels = Cares.Models.DomainModels;
 
 namespace Cares.Web.ModelMappers
@@ -32,7 +33,10 @@ namespace Cares.Web.ModelMappers
                 LicenseExpDt = source.LicenseExpDt,
                 LicenseNo = source.LicenseNo,
                 Rate = source.Rate,
-                TotalCharge = source.TotalCharge
+                TotalCharge = source.TotalCharge,
+                //Below Properties are for Reporting in order to format the dates 
+                StartDtTimeForReport = source.EndDtTime.ToString("dd-MMM-yy HH:mm"),
+                EndDtTimeForReport = source.StartDtTime.ToString("dd-MMM-yy HH:mm")
             };
            
         }
@@ -49,8 +53,8 @@ namespace Cares.Web.ModelMappers
                 ChargedDay = source.ChargedDay,
                 ChargedHour = source.ChargedHour,
                 ChargedMinute = source.ChargedMinute,
-                EndDtTime = source.EndDtTime,
-                StartDtTime = source.StartDtTime,
+                EndDtTime = Convert.ToDateTime(source.EndDtTime.ToString("dd-MMM-yy HH:mm")),
+                StartDtTime = Convert.ToDateTime(source.StartDtTime.ToString("dd-MMM-yy HH:mm")),
                 TariffType = source.TariffType,
                 ChaufferId = source.ChaufferId,
                 DesigGradeId = source.DesigGradeId,

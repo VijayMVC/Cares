@@ -10,8 +10,8 @@ namespace Cares.Web.Models.ReportModels
         public string Color { get; set; }
         public long ModelYear { get; set; }
         public string Category { get; set; }
-        public DateTime VehicelOutDateTime { get; set; }
-        public DateTime VehicelInDateTime { get; set; }
+        public string VehicelOutDateTime { get; set; }
+        public string VehicelInDateTime { get; set; }
         public long ChargedDay { get; set; }
         public long ChargedHour { get; set; }
         public long ChargedMint { get; set; }

@@ -17,8 +17,8 @@ namespace Cares.Web.ModelMappers
                 RentalAgreementId = rentalAgreement.RaMainId,
                 Status = rentalAgreement.RaStatus.RaStatusCode,
                 RaOpenLocatoin = rentalAgreement.OpenLocation,
-                StartDateTime = rentalAgreement.StartDtTime,
-                ReturnDateTime = rentalAgreement.EndDtTime,
+                StartDateTime = rentalAgreement.StartDtTime.ToString("dd-MMM-yy HH:mm"),
+                ReturnDateTime = rentalAgreement.EndDtTime.ToString("dd-MMM-yy HH:mm"),
                 RaCloseLocation = rentalAgreement.CloseLocation,
                 TotalVehicleCharge = rentalAgreement.TotalVehicleCharge,
                 StandardDiscount = rentalAgreement.StandardDiscount,
@@ -81,8 +81,8 @@ namespace Cares.Web.ModelMappers
                 ConsumedMint = CalculateConsumedDaysHoursMints(raHireGroup.GraceMinute + raHireGroup.ChargedMinute ,60, ref toalHours),
                 ConsumedHour = CalculateConsumedDaysHoursMints(raHireGroup.ChargedHour + raHireGroup.GraceHour+toalHours,24,ref totalDays),
                 ConsumedDay =  raHireGroup.GraceDay + raHireGroup.ChargedDay+ totalDays ,
-                VehicelOutDateTime = raHireGroup.VehicleMovements.Where(vehiclemovement => vehiclemovement.Status).Select(vehicle=>vehicle.DtTime).FirstOrDefault(),
-                VehicelInDateTime = raHireGroup.VehicleMovements.Where(vehiclemovement => vehiclemovement.Status == false).Select(vehicle => vehicle.DtTime).FirstOrDefault(),
+                VehicelOutDateTime =( raHireGroup.VehicleMovements.Where(vehiclemovement => vehiclemovement.Status).Select(vehicle=>vehicle.DtTime).FirstOrDefault()).ToString("dd-MMM-yy HH:mm"),
+                VehicelInDateTime = (raHireGroup.VehicleMovements.Where(vehiclemovement => vehiclemovement.Status == false).Select(vehicle => vehicle.DtTime).FirstOrDefault()).ToString("dd-MMM-yy HH:mm"),
                 TariffType = raHireGroup.TariffTypeCode,
                 StandardRate = raHireGroup.StandardRate,
                 ExcessMileageCharges = raHireGroup.ExcessMileageRt * raHireGroup.TotalExcMileage,
@@ -100,8 +100,8 @@ namespace Cares.Web.ModelMappers
         {
             return new RaAdditionaItemInfo
             {
-                ServiceStartDateTime = raServiceItem.StartDtTime,
-                ServiceEndDateTime = raServiceItem.EndDtTime,
+                ServiceStartDateTime = raServiceItem.StartDtTime.ToString("dd-MMM-yy HH:mm"),
+                ServiceEndDateTime = raServiceItem.EndDtTime.ToString("dd-MMM-yy HH:mm"),
                 ServiceChargedDays = raServiceItem.ChargedDay,
                 ServiceChargedHours = raServiceItem.ChargedHour,
                 ServiceChargedMinutes = raServiceItem.ChargedMinute,
