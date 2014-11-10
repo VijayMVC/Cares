@@ -2371,12 +2371,12 @@
       <DependentUpon>WorkLocation.css</DependentUpon>
     </Content>
     <Content Include="Areas\EmployeeManagement\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\EmployeeManagement\Views\DesignationGrade\Index.cshtml" />
+    <Content Include="Areas\EmployeeManagement\Views\Home\Index.cshtml" />
     <Content Include="Content\Vehicle.less" />
     <Content Include="Content\Vehicle.css.map">
       <DependentUpon>Vehicle.css</DependentUpon>
     </Content>
-    <Content Include="Areas\EmployeeManagement\Views\DesignationGrade\_EmployeeEditor.cshtml" />
+    <Content Include="Areas\EmployeeManagement\Views\Home\_EmployeeEditor.cshtml" />
     <Content Include="Areas\Organization\Views\Organization\WorkplaceType.cshtml" />
     <Content Include="Areas\Organization\Views\Organization\_WorkplaceTypeEditor.cshtml" />
     <Content Include="Content\WorkPlaceType.less" />
@@ -2422,26 +2422,26 @@
     </Content>
     <Content Include="Areas\Pricing\Views\Tariff\AdditionalDriver.cshtml" />
     <Content Include="Areas\Pricing\Views\Tariff\_AddtionalDriverChargeEditor.cshtml" />
-    <Content Include="Areas\EmployeeManagement\Views\DesignationGrade\DesignGrade.cshtml" />
-    <Content Include="Areas\EmployeeManagement\Views\DesignationGrade\_DesignGradeEditor.cshtml" />
+    <Content Include="Areas\EmployeeManagement\Views\Home\DesignGrade.cshtml" />
+    <Content Include="Areas\EmployeeManagement\Views\Home\_DesignGradeEditor.cshtml" />
     <Content Include="Content\DesignationGrade.less" />
     <Content Include="Content\DesignationGrade.css.map">
       <DependentUpon>DesignationGrade.css</DependentUpon>
     </Content>
-    <Content Include="Areas\EmployeeManagement\Views\DesignationGrade\EmployeeStatus.cshtml" />
-    <Content Include="Areas\EmployeeManagement\Views\DesignationGrade\_EmployeeStatusEditor.cshtml" />
+    <Content Include="Areas\EmployeeManagement\Views\Home\EmployeeStatus.cshtml" />
+    <Content Include="Areas\EmployeeManagement\Views\Home\_EmployeeStatusEditor.cshtml" />
     <Content Include="Content\EmpStatus.less" />
     <Content Include="Content\EmpStatus.css.map">
       <DependentUpon>EmpStatus.css</DependentUpon>
     </Content>
-    <Content Include="Areas\EmployeeManagement\Views\DesignationGrade\Designation.cshtml" />
-    <Content Include="Areas\EmployeeManagement\Views\DesignationGrade\_DesignationEditor.cshtml" />
+    <Content Include="Areas\EmployeeManagement\Views\Home\Designation.cshtml" />
+    <Content Include="Areas\EmployeeManagement\Views\Home\_DesignationEditor.cshtml" />
     <Content Include="Content\Designation.less" />
     <Content Include="Content\Designation.css.map">
       <DependentUpon>Designation.css</DependentUpon>
     </Content>
-    <Content Include="Areas\EmployeeManagement\Views\DesignationGrade\JobType.cshtml" />
-    <Content Include="Areas\EmployeeManagement\Views\DesignationGrade\_JobTypeEditor.cshtml" />
+    <Content Include="Areas\EmployeeManagement\Views\Home\JobType.cshtml" />
+    <Content Include="Areas\EmployeeManagement\Views\Home\_JobTypeEditor.cshtml" />
     <Content Include="Content\JobType.less" />
     <Content Include="Content\JobType.css.map">
       <DependentUpon>JobType.css</DependentUpon>
