@@ -8,7 +8,7 @@ namespace Cares.Web.Areas.EmployeeManagement.Controllers
     /// Designation Grade Controller
     /// </summary>
     [SiteAuthorize(PermissionKey = "Employee")]
-    public class DesignationGradeController : BaseController
+    public class HomeController : BaseController
     {
         // GET: EmployeeManagement
         [SiteAuthorize(PermissionKey = "Employee")]
