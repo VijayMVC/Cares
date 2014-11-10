@@ -35,7 +35,7 @@ namespace Cares.Interfaces.IServices
         /// <summary>
         /// Delete Standard Rate Main
         /// </summary>
-        void DeleteTariffRate(StandardRateMain standardRateMain);
+        void DeleteTariffRate(long standardRtMainId);
         
         /// <summary>
         /// Add Standard Rate Main

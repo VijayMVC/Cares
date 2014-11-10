@@ -162,10 +162,10 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Additional Driver Charge Delete
         /// </summary>
-        /// <param name="additionalDriverCharge"></param>
-        public void AdditionalDriverChargeDelete(AdditionalDriverCharge additionalDriverCharge)
+        /// <param name="additionalDriverChargeId"></param>
+        public void AdditionalDriverChargeDelete(long additionalDriverChargeId)
         {
-            additionalDriverChargeRepository.Delete(additionalDriverCharge);
+            additionalDriverChargeRepository.Delete(additionalDriverChargeRepository.Find((additionalDriverChargeId)));
             additionalDriverChargeRepository.SaveChanges();
         }
         #endregion

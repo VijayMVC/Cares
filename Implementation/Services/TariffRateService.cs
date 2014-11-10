@@ -230,9 +230,10 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Delete Tariff Rate
         /// </summary>
-        /// <param name="standardRateMain"></param>
-        public void DeleteTariffRate(StandardRateMain standardRateMain)
+        /// <param name="standardRtMainId"></param>
+        public void DeleteTariffRate(long standardRtMainId)
         {
+            StandardRateMain standardRateMain = standardRateMainRepository.Find(standardRtMainId);
             if (standardRateMain.StandardRates != null && standardRateMain.StandardRates.Count > 0)
             {
                 throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.TariffRate.StRateIsAssociatedWithHireGroupError));
