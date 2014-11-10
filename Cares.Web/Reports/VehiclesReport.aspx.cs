@@ -18,13 +18,10 @@ namespace Cares.Web.Reports
             if (!IsPostBack)
             {
                 fleetReportService = UnityWebActivator.Container.Resolve<IFleetReportService>();
-
-
                 IList<RptFleetHireGroupDetail> loadFleets = fleetReportService.LoadFleetHireGroupDetail();
-
                 VehicleReport.ProcessingMode = ProcessingMode.Local;
                 VehicleReport.LocalReport.ReportPath = Server.MapPath("~/Reports/RDLC/Vehicle.rdlc");
-                ReportDataSource reportDataSource = new ReportDataSource
+                var reportDataSource = new ReportDataSource
                 {
                     Name = "FleetDS",
                     Value = loadFleets

@@ -8,7 +8,7 @@ namespace Cares.Web.Areas.Reports.Controllers
     public class ReportController : BaseController
     {
         // GET: Reports/Report
-        [SiteAuthorize(PermissionKey = "FleetReport")]
+        [SiteAuthorize(PermissionKey = "FleetPoolReport")]
         public ActionResult FleetReport()
         {
             return View();
@@ -26,10 +26,13 @@ namespace Cares.Web.Areas.Reports.Controllers
             return View();
         }
 
+         [SiteAuthorize(PermissionKey = "MissingHireGroupReport")]
         public ActionResult MissingHireGroupReport()
         {
             return View();
         }
+
+         [SiteAuthorize(PermissionKey = "StandardRateReport")]
         public ActionResult StandardRateReport()
         {
             return View();

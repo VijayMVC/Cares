@@ -6,16 +6,16 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.21428in</Width>
+              <Width>1.32366in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.34524in</Width>
+              <Width>1.45462in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.49703in</Width>
+              <Width>1.60641in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.52678in</Width>
+              <Width>1.68816in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -150,6 +150,7 @@
                               <Value>=Fields!StartDateTime.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <Format>MMM dd, yyyy</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -293,6 +294,7 @@
                               <Value>=Fields!ReturnDateTime.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <Format>MMM dd, yyyy</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -501,7 +503,7 @@
         <Top>0.31125in</Top>
         <Left>4.8125in</Left>
         <Height>1.01042in</Height>
-        <Width>5.58333in</Width>
+        <Width>6.07283in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -512,10 +514,10 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.07291in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.07291in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -681,10 +683,9 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DriverInfo</DataSetName>
-        <Top>0.31125in</Top>
-        <Left>0.14583in</Left>
+        <Top>0.33903in</Top>
         <Height>0.5in</Height>
-        <Width>2in</Width>
+        <Width>2.14583in</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -696,16 +697,16 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.03979in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.23178in</Width>
+              <Width>1.27157in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.14378in</Width>
+              <Width>1.18357in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.92653in</Width>
+              <Width>0.96632in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -1149,9 +1150,8 @@
         </TablixRowHierarchy>
         <DataSetName>CustomerInfo</DataSetName>
         <Top>1.66195in</Top>
-        <Left>0.15916in</Left>
         <Height>0.75in</Height>
-        <Width>4.30209in</Width>
+        <Width>4.46125in</Width>
         <ZIndex>2</ZIndex>
         <ToolTip>RACustomerDS</ToolTip>
         <Style>
@@ -1164,16 +1164,16 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.14185in</Width>
+              <Width>1.26205in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.37228in</Width>
+              <Width>1.49248in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.55681in</Width>
+              <Width>1.67701in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.52108in</Width>
+              <Width>1.64128in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -1292,6 +1292,7 @@
                               <Value>=Fields!NID_DOE.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <Format>MMM dd, yyyy</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1431,6 +1432,7 @@
                               <Value>=Fields!LicenceDOE.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <Format>MMM dd, yyyy</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1570,6 +1572,7 @@
                               <Value>=Fields!PassportDOE.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <Format>MMM dd, yyyy</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1642,6 +1645,7 @@
                               <Value>=Fields!DOB.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <Format>MMM dd, yyyy</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1756,7 +1760,7 @@
         <Top>1.64111in</Top>
         <Left>4.8125in</Left>
         <Height>1in</Height>
-        <Width>5.59202in</Width>
+        <Width>6.07283in</Width>
         <ZIndex>3</ZIndex>
         <ToolTip>RACustomerDS</ToolTip>
         <Style>
@@ -1769,34 +1773,34 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>0.61608in</Width>
+              <Width>0.67962in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.82922in</Width>
+              <Width>0.89276in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.87882in</Width>
+              <Width>0.94236in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.05144in</Width>
+              <Width>1.11498in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.5354in</Width>
+              <Width>1.59894in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.05144in</Width>
+              <Width>1.11498in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.79102in</Width>
+              <Width>0.85456in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.07538in</Width>
+              <Width>1.13892in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.91092in</Width>
+              <Width>0.97446in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.51025in</Width>
+              <Width>1.57379in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -2497,9 +2501,8 @@
         </TablixRowHierarchy>
         <DataSetName>VehicleInfo</DataSetName>
         <Top>4.09029in</Top>
-        <Left>0.12695in</Left>
         <Height>0.5in</Height>
-        <Width>10.24997in</Width>
+        <Width>10.88533in</Width>
         <ZIndex>4</ZIndex>
         <Style>
           <Border>
@@ -2516,7 +2519,7 @@
               <TextRun>
                 <Value>Customer / Driver</Value>
                 <Style>
-                  <FontFamily>thoma</FontFamily>
+                  <FontFamily>tahoma</FontFamily>
                   <FontSize>9pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -2527,9 +2530,8 @@
         </Paragraphs>
         <rd:DefaultName>Textbox100</rd:DefaultName>
         <Top>0.03347in</Top>
-        <Left>0.15459in</Left>
         <Height>0.25in</Height>
-        <Width>1.99124in</Width>
+        <Width>2.14583in</Width>
         <ZIndex>5</ZIndex>
         <Style>
           <Border>
@@ -2551,7 +2553,7 @@
               <TextRun>
                 <Value>Agreement Detail</Value>
                 <Style>
-                  <FontFamily>thoma</FontFamily>
+                  <FontFamily>tahoma</FontFamily>
                   <FontSize>9pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -2564,7 +2566,7 @@
         <Top>0.04167in</Top>
         <Left>4.79613in</Left>
         <Height>0.25in</Height>
-        <Width>5.62424in</Width>
+        <Width>6.0892in</Width>
         <ZIndex>6</ZIndex>
         <Style>
           <Border>
@@ -2586,7 +2588,8 @@
               <TextRun>
                 <Value>Customer Documents</Value>
                 <Style>
-                  <FontFamily>thoma</FontFamily>
+                  <FontFamily>tahoma</FontFamily>
+                  <FontSize>9pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -2598,7 +2601,7 @@
         <Top>1.39111in</Top>
         <Left>4.8125in</Left>
         <Height>0.25in</Height>
-        <Width>5.60787in</Width>
+        <Width>6.07283in</Width>
         <ZIndex>7</ZIndex>
         <Style>
           <Border>
@@ -2621,6 +2624,7 @@
                 <Value>Customer Documents</Value>
                 <Style>
                   <FontFamily>tahoma</FontFamily>
+                  <FontSize>9pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -2630,9 +2634,8 @@
         </Paragraphs>
         <rd:DefaultName>Textbox100</rd:DefaultName>
         <Top>1.39111in</Top>
-        <Left>0.15459in</Left>
         <Height>0.25in</Height>
-        <Width>4.30208in</Width>
+        <Width>4.45667in</Width>
         <ZIndex>8</ZIndex>
         <Style>
           <Border>
@@ -2665,9 +2668,8 @@
         </Paragraphs>
         <rd:DefaultName>Textbox108</rd:DefaultName>
         <Top>2.71056in</Top>
-        <Left>0.15459in</Left>
         <Height>0.25in</Height>
-        <Width>10.25in</Width>
+        <Width>10.88533in</Width>
         <ZIndex>9</ZIndex>
         <Style>
           <Border>
@@ -2700,9 +2702,8 @@
         </Paragraphs>
         <rd:DefaultName>Textbox100</rd:DefaultName>
         <Top>3.79514in</Top>
-        <Left>0.14575in</Left>
         <Height>0.25in</Height>
-        <Width>10.30208in</Width>
+        <Width>10.88533in</Width>
         <ZIndex>10</ZIndex>
         <Style>
           <Border>
@@ -2719,37 +2720,37 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>0.9967in</Width>
+              <Width>1.05446in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.66007in</Width>
+              <Width>0.71783in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.79729in</Width>
+              <Width>0.85505in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.02795in</Width>
+              <Width>1.08571in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.9967in</Width>
+              <Width>1.05446in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.9967in</Width>
+              <Width>1.05446in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.78772in</Width>
+              <Width>0.84548in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.9967in</Width>
+              <Width>1.05446in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.9967in</Width>
+              <Width>1.05446in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.9967in</Width>
+              <Width>1.05446in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.9967in</Width>
+              <Width>1.05446in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -4585,9 +4586,8 @@
         </TablixRowHierarchy>
         <DataSetName>ServiceItemInfo</DataSetName>
         <Top>4.92015in</Top>
-        <Left>0.16246in</Left>
         <Height>1.36458in</Height>
-        <Width>10.24993in</Width>
+        <Width>10.88533in</Width>
         <ZIndex>11</ZIndex>
         <Style>
           <Border>
@@ -4615,9 +4615,8 @@
         </Paragraphs>
         <rd:DefaultName>Textbox85</rd:DefaultName>
         <Top>4.65973in</Top>
-        <Left>0.14575in</Left>
         <Height>0.25in</Height>
-        <Width>10.30208in</Width>
+        <Width>10.88533in</Width>
         <ZIndex>12</ZIndex>
         <Style>
           <Border>
@@ -4997,8 +4996,8 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>RentalAgreement</DataSetName>
-        <Top>6.34376in</Top>
-        <Left>3.93147in</Left>
+        <Top>6.35417in</Top>
+        <Left>4.21612in</Left>
         <Height>0.5in</Height>
         <Width>3.49082in</Width>
         <ZIndex>13</ZIndex>
@@ -5012,10 +5011,10 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.01208in</Width>
+              <Width>2.06216in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.9967in</Width>
+              <Width>1.04678in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -5955,16 +5954,9 @@
                       <rd:DefaultName>Textbox115</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
                           <Style>Solid</Style>
-                        </Border>
-                        <TopBorder>
-                          <Color>Black</Color>
                           <Width>2pt</Width>
-                        </TopBorder>
-                        <BottomBorder>
-                          <Style>None</Style>
-                        </BottomBorder>
+                        </Border>
                         <LeftBorder>
                           <Style>None</Style>
                         </LeftBorder>
@@ -6005,6 +5997,10 @@
                           <Color>Black</Color>
                           <Width>2pt</Width>
                         </TopBorder>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                          <Width>2pt</Width>
+                        </BottomBorder>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -6071,10 +6067,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>RentalAgreement</DataSetName>
-        <Top>6.59376in</Top>
-        <Left>7.43905in</Left>
+        <Top>6.61459in</Top>
+        <Left>7.77639in</Left>
         <Height>3.5in</Height>
-        <Width>3.00878in</Width>
+        <Width>3.10894in</Width>
         <ZIndex>14</ZIndex>
         <Style>
           <Border>
@@ -6101,10 +6097,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox156</rd:DefaultName>
-        <Top>6.34376in</Top>
-        <Left>7.43905in</Left>
+        <Top>6.34029in</Top>
+        <Left>7.77639in</Left>
         <Height>0.25in</Height>
-        <Width>3.00878in</Width>
+        <Width>3.10894in</Width>
         <ZIndex>15</ZIndex>
         <Style>
           <Border>
@@ -6121,49 +6117,49 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.04177in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.89268in</Width>
+              <Width>0.93445in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.82773in</Width>
+              <Width>0.8695in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.6875in</Width>
+              <Width>0.72927in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.75871in</Width>
+              <Width>0.80048in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.72551in</Width>
+              <Width>0.76728in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.67289in</Width>
+              <Width>0.71466in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.75926in</Width>
+              <Width>0.80103in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.68231in</Width>
+              <Width>0.72408in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.59869in</Width>
+              <Width>0.64046in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.66793in</Width>
+              <Width>0.7097in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.55134in</Width>
+              <Width>0.59311in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.4375in</Width>
+              <Width>0.47927in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.55208in</Width>
+              <Width>0.59385in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.44468in</Width>
+              <Width>0.48645in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -7316,9 +7312,8 @@ Hours</Value>
         </TablixRowHierarchy>
         <DataSetName>VehicleInfo</DataSetName>
         <Top>2.9757in</Top>
-        <Left>0.14578in</Left>
         <Height>0.75in</Height>
-        <Width>10.25881in</Width>
+        <Width>10.88533in</Width>
         <ZIndex>16</ZIndex>
         <Style>
           <Border>
@@ -7327,10 +7322,10 @@ Hours</Value>
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>10.15626in</Height>
+    <Height>10.31251in</Height>
     <Style />
   </Body>
-  <Width>10.49991in</Width>
+  <Width>10.88533in</Width>
   <Page>
     <PageHeader>
       <Height>0.46181in</Height>
@@ -7344,7 +7339,7 @@ Hours</Value>
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Rental Agreement</Value>
+                  <Value>Rental Agreement Report</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
                     <FontSize>11pt</FontSize>
@@ -7360,7 +7355,7 @@ Hours</Value>
           <Top>0.12375in</Top>
           <Left>0.14583in</Left>
           <Height>0.33806in</Height>
-          <Width>1.87601in</Width>
+          <Width>2.24511in</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -7419,7 +7414,7 @@ Hours</Value>
       </Style>
     </PageHeader>
     <PageFooter>
-      <Height>0.27133in</Height>
+      <Height>0.29216in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -7562,10 +7557,10 @@ Hours</Value>
     </PageFooter>
     <PageHeight>8in</PageHeight>
     <PageWidth>11in</PageWidth>
-    <LeftMargin>0.25in</LeftMargin>
-    <RightMargin>0.25in</RightMargin>
-    <TopMargin>0.25in</TopMargin>
-    <BottomMargin>0.25in</BottomMargin>
+    <LeftMargin>0.05in</LeftMargin>
+    <RightMargin>0.05in</RightMargin>
+    <TopMargin>0.025in</TopMargin>
+    <BottomMargin>0.025in</BottomMargin>
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>

@@ -13,16 +13,14 @@ namespace Cares.Web.Reports
 {
     public partial class StandradRateReport : System.Web.UI.Page
     {
+        IStandardRateReportService standardRateReportService;
         protected void Page_Load(object sender, EventArgs e)
         {
-            IStandardRateReportService standardRateReportService;
-
             if (!IsPostBack)
             {
                 standardRateReportService = UnityWebActivator.Container.Resolve<IStandardRateReportService>();
                 IEnumerable<StandardRate> standardRates = standardRateReportService.LoadStandardrateDetail();
                 IEnumerable<StandardRateReportResponse> standardRateReportResponses = standardRates.Select(standardRate => standardRate.CreateStandardRateReportResponse());
-
                 StRateReport.ProcessingMode = ProcessingMode.Local;
                 StRateReport.LocalReport.ReportPath = Server.MapPath("~/Reports/RDLC/StandardRate.rdlc");
                 var reportDataSource = new ReportDataSource

@@ -44,7 +44,10 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public override IEnumerable<StandardRate> GetAll()
         {
-            return DbSet.Where(vehicleModel => vehicleModel.UserDomainKey == UserDomainKey).ToList();
+            return DbSet.Where(standardRate => standardRate.UserDomainKey == UserDomainKey)
+                .OrderBy(standardRate => standardRate.StandardRtMain.StandardRtMainCode)
+                .ThenBy(standardRate => standardRate.HireGroupDetail.HireGroup.HireGroupName)
+                .ThenBy(standardRate => standardRate.StandardRtMain.TariffTypeCode).ToList();
         }
 
         /// <summary>

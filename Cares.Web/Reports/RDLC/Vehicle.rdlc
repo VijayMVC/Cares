@@ -6,43 +6,43 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.125in</Width>
+              <Width>1.16266in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.09027in</Width>
+              <Width>1.12793in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.75695in</Width>
+              <Width>0.79461in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.875in</Width>
+              <Width>0.91266in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.77083in</Width>
+              <Width>0.80849in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.64583in</Width>
+              <Width>0.68349in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.98835in</Width>
+              <Width>1.02601in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.59151in</Width>
+              <Width>0.62917in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.59151in</Width>
+              <Width>0.62917in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.80209in</Width>
+              <Width>0.83975in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.80209in</Width>
+              <Width>0.83975in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.44792in</Width>
+              <Width>0.48558in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.88541in</Width>
+              <Width>0.92307in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -1072,10 +1072,9 @@ Hire-</Value>
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>FleetDS</DataSetName>
-        <Top>0.125in</Top>
-        <Left>0.02307in</Left>
+        <Top>0.05556in</Top>
         <Height>0.67708in</Height>
-        <Width>10.37275in</Width>
+        <Width>10.86234in</Width>
         <ToolTip>Vehicles</ToolTip>
         <Style>
           <Border>
@@ -1084,13 +1083,13 @@ Hire-</Value>
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>4.5in</Height>
+    <Height>1.52083in</Height>
     <Style />
   </Body>
-  <Width>10.43749in</Width>
+  <Width>10.86234in</Width>
   <Page>
     <PageHeader>
-      <Height>0.53125in</Height>
+      <Height>0.54167in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -1101,7 +1100,7 @@ Hire-</Value>
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Fleet Report</Value>
+                  <Value>Fleet Pool Report</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
                     <FontSize>11pt</FontSize>
@@ -1115,9 +1114,9 @@ Hire-</Value>
           </Paragraphs>
           <rd:DefaultName>Textbox7</rd:DefaultName>
           <Top>0.12375in</Top>
-          <Left>0.14583in</Left>
-          <Height>0.33806in</Height>
-          <Width>1.125in</Width>
+          <Left>0.16442in</Left>
+          <Height>0.25in</Height>
+          <Width>1.52083in</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1149,7 +1148,7 @@ Hire-</Value>
           </Paragraphs>
           <rd:DefaultName>Textbox21</rd:DefaultName>
           <Top>0.12375in</Top>
-          <Left>8.43749in</Left>
+          <Left>9.08109in</Left>
           <Height>0.25in</Height>
           <Width>1.78125in</Width>
           <ZIndex>1</ZIndex>
@@ -1176,7 +1175,7 @@ Hire-</Value>
       </Style>
     </PageHeader>
     <PageFooter>
-      <Height>0.24008in</Height>
+      <Height>0.25556in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -1199,7 +1198,7 @@ Hire-</Value>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox17</rd:DefaultName>
-          <Left>0.02307in</Left>
+          <Left>0.04166in</Left>
           <Height>0.2in</Height>
           <Width>1.99877in</Width>
           <Style>
@@ -1245,7 +1244,7 @@ Hire-</Value>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox18</rd:DefaultName>
-          <Left>4.30655in</Left>
+          <Left>4.32514in</Left>
           <Height>0.2in</Height>
           <Width>2.27083in</Width>
           <ZIndex>1</ZIndex>
@@ -1292,7 +1291,8 @@ Hire-</Value>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox19</rd:DefaultName>
-          <Left>9.27083in</Left>
+          <Top>0.05556in</Top>
+          <Left>9.73734in</Left>
           <Height>0.2in</Height>
           <Width>1.125in</Width>
           <ZIndex>2</ZIndex>
@@ -1319,10 +1319,10 @@ Hire-</Value>
     </PageFooter>
     <PageHeight>8in</PageHeight>
     <PageWidth>11in</PageWidth>
-    <LeftMargin>0.25in</LeftMargin>
-    <RightMargin>0.25in</RightMargin>
-    <TopMargin>0.25in</TopMargin>
-    <BottomMargin>0.25in</BottomMargin>
+    <LeftMargin>0.05in</LeftMargin>
+    <RightMargin>0.05in</RightMargin>
+    <TopMargin>0.025in</TopMargin>
+    <BottomMargin>0.025in</BottomMargin>
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>

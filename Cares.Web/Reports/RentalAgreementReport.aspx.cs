@@ -21,7 +21,6 @@ namespace Cares.Web.Reports
                 RentalAgreementDetailResponse detailResponse = rentalAgreementReportDetail.CreteFrom();
                 rentalAgreementReportViewer.ProcessingMode = ProcessingMode.Local;
                 rentalAgreementReportViewer.LocalReport.ReportPath = Server.MapPath("~/Reports/RDLC/RentalAgreement.rdlc");
-
                 var rentalAgreementDataSource = new ReportDataSource
                 {
                     Name = "RentalAgreement",
@@ -69,7 +68,6 @@ namespace Cares.Web.Reports
                 rentalAgreementReportViewer.LocalReport.DataSources.Add(driverDataSource);
                 rentalAgreementReportViewer.LocalReport.DataSources.Add(additionChargeDataSource);
                 rentalAgreementReportViewer.LocalReport.DataSources.Add(hiregGroupInsurenceDataSet);
-
             }
         }
     }

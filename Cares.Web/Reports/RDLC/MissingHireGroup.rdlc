@@ -6,19 +6,19 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.45609in</Width>
+              <Width>1.4607in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.81002in</Width>
+              <Width>1.81463in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.03324in</Width>
+              <Width>1.03785in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.78545in</Width>
+              <Width>1.79006in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.46951in</Width>
+              <Width>0.47412in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -423,10 +423,9 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>MissingHireGroupDS</DataSetName>
-        <Top>0.125in</Top>
-        <Left>0.02307in</Left>
+        <Top>0.05556in</Top>
         <Height>0.67708in</Height>
-        <Width>6.55431in</Width>
+        <Width>6.57738in</Width>
         <ToolTip>Vehicles</ToolTip>
         <Style>
           <Border>
@@ -435,13 +434,13 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>3.26042in</Height>
+    <Height>2.04167in</Height>
     <Style />
   </Body>
   <Width>10.39583in</Width>
   <Page>
     <PageHeader>
-      <Height>0.53125in</Height>
+      <Height>0.52083in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -452,7 +451,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Daily Action List</Value>
+                  <Value>Missing Hire Group Report</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
                     <FontSize>11pt</FontSize>
@@ -468,7 +467,7 @@
           <Top>0.12375in</Top>
           <Left>0.14583in</Left>
           <Height>0.33806in</Height>
-          <Width>1.33333in</Width>
+          <Width>2.1875in</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -527,7 +526,7 @@
       </Style>
     </PageHeader>
     <PageFooter>
-      <Height>0.24008in</Height>
+      <Height>0.2505in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -670,10 +669,10 @@
     </PageFooter>
     <PageHeight>8in</PageHeight>
     <PageWidth>11in</PageWidth>
-    <LeftMargin>0.25in</LeftMargin>
-    <RightMargin>0.25in</RightMargin>
-    <TopMargin>0.25in</TopMargin>
-    <BottomMargin>0.25in</BottomMargin>
+    <LeftMargin>0.05in</LeftMargin>
+    <RightMargin>0.05in</RightMargin>
+    <TopMargin>0.025in</TopMargin>
+    <BottomMargin>0.025in</BottomMargin>
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
