@@ -209,10 +209,10 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Delete Chauffer Charge
         /// </summary>
-        /// <param name="chaufferChargeMain"></param>
-        public void DeleteAdditionalCharge(ChaufferChargeMain chaufferChargeMain)
+        /// <param name="chaufferChargeMainId"></param>
+        public void DeleteAdditionalCharge(long chaufferChargeMainId)
         {
-            chaufferChargeMainRepository.Delete(chaufferChargeMain);
+            chaufferChargeMainRepository.Delete(chaufferChargeMainRepository.Find(chaufferChargeMainId));
             chaufferChargeMainRepository.SaveChanges();
         }
 

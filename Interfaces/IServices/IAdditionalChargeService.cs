@@ -31,9 +31,9 @@ namespace Cares.Interfaces.IServices
         /// <summary>
         /// Delete Additional Charge
         /// </summary>
-        /// <param name="additionalChargeType"></param>
+        /// <param name="additionalDriverChargeId"></param>
         /// <returns></returns>
-        void DeleteAdditionalCharge(AdditionalChargeType additionalChargeType);
+        void DeleteAdditionalCharge(long additionalDriverChargeId);
 
         /// <summary>
         /// Find Additional Charge By Id

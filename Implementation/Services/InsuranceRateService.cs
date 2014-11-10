@@ -67,7 +67,7 @@ namespace Cares.Implementation.Services
         {
             return insuranceRtMainRepository.GetInsuranceRates(request);
         }
-        
+
         /// <summary>
         ///Get Hire Group Detail List
         /// </summary>
@@ -123,7 +123,7 @@ namespace Cares.Implementation.Services
 
             };
         }
-       
+
         /// <summary>
         /// Add/Edit Insurance Rate
         /// </summary>
@@ -187,7 +187,7 @@ namespace Cares.Implementation.Services
             #region Edit
             else
             {
-                ValidateInsuranceRate(insuranceRtMain,false);
+                ValidateInsuranceRate(insuranceRtMain, false);
                 insuranceRtMainDbVersion.RecLastUpdatedDt = DateTime.Now;
                 insuranceRtMainDbVersion.RecLastUpdatedBy = insuranceRtMainRepository.LoggedInUserIdentity;
                 insuranceRtMainDbVersion.StartDt = insuranceRtMain.StartDt;
@@ -260,10 +260,10 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Delete Insurance Rate
         /// </summary>
-        /// <param name="insuranceRtMain"></param>
-        public void DeleteInsuranceRate(InsuranceRtMain insuranceRtMain)
+        /// <param name="insuranceRtMainId"></param>
+        public void DeleteInsuranceRate(long insuranceRtMainId)
         {
-            insuranceRtMainRepository.Delete(insuranceRtMain);
+            insuranceRtMainRepository.Delete(insuranceRtMainRepository.Find((insuranceRtMainId)));
             insuranceRtMainRepository.SaveChanges();
         }
 

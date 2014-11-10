@@ -38,9 +38,9 @@ namespace Cares.Interfaces.IServices
         /// <summary>
         /// Delete Insurance Rate
         /// </summary>
-        /// <param name="insuranceRtMain"></param>
+        /// <param name="insuranceRtMainId"></param>
         /// 
-        void DeleteInsuranceRate(InsuranceRtMain insuranceRtMain);
+        void DeleteInsuranceRate(long insuranceRtMainId);
         
         /// <summary>
         /// Insurance Rate Main By ID

@@ -71,7 +71,7 @@ namespace Cares.Web.Areas.Api.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            serviceRtService.DeleteServiceRate(serviceRtService.FindById(serviceRtMainContent.ServiceRtMainId));
+            serviceRtService.DeleteServiceRate(serviceRtMainContent.ServiceRtMainId);
         }
         #endregion
     }

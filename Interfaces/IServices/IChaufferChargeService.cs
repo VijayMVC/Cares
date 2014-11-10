@@ -31,8 +31,8 @@ namespace Cares.Interfaces.IServices
         /// <summary>
         /// Delete Chauffer Charge
         /// </summary>
-        /// <param name="chaufferChargeMain"></param>
-        void DeleteAdditionalCharge(ChaufferChargeMain chaufferChargeMain);
+        /// <param name="chaufferChargeMainId"></param>
+        void DeleteAdditionalCharge(long chaufferChargeMainId);
 
         /// <summary>
         /// Find Chauffer Charge By Id
