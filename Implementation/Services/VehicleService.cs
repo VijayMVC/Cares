@@ -43,6 +43,7 @@ namespace Cares.Implementation.Services
         private readonly IVehicleCheckListItemRepository vehicleCheckListItemRepository;
         private readonly IVehicleImageRepository vehicleImageRepository;
         #endregion
+
         #region Constructors
 
         /// <summary>
@@ -61,7 +62,7 @@ namespace Cares.Implementation.Services
             {
                 throw new ArgumentNullException("vehicleRepository");
             }
-            
+
             this.vehicleRepository = vehicleRepository;
             this.operationRepository = operationRepository;
             this.fleetPoolRepository = fleetPoolRepository;
@@ -85,6 +86,7 @@ namespace Cares.Implementation.Services
         }
 
         #endregion
+
         #region Public
 
         /// <summary>
@@ -131,6 +133,11 @@ namespace Cares.Implementation.Services
         /// <returns></returns>
         public Vehicle SaveVehicle(Vehicle vehicle)
         {
+            //Check Vehicle Palte Number Duplication check
+            if (vehicleRepository.IsVehiclePlateNumberExists(vehicle.PlateNumber, vehicle.VehicleId))
+            {
+                throw new CaresException(Resources.FleetPool.Vehicle.CodeDuplication);
+            }
             Vehicle vehicleDbVersion = vehicleRepository.Find(vehicle.VehicleId);
             vehicle.VehicleCondition = "Not implemented";
 

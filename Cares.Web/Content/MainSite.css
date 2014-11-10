@@ -152,22 +152,58 @@
   margin-bottom: 20px;
   margin-top: 10px;
 }
-#tariffRateBinding #tariffRateEditor #hgRateFilterIcon {
+#tariffRateBinding #tariffRateEditor table thead tr .hireGroupTh {
+  width: 12%;
+}
+#tariffRateBinding #tariffRateEditor table thead tr .make {
+  width: 12%;
+}
+#tariffRateBinding #tariffRateEditor table thead tr .model {
+  width: 12%;
+}
+#tariffRateBinding #tariffRateEditor table thead tr .category {
+  width: 12%;
+}
+#tariffRateBinding #tariffRateEditor table thead tr .modelYear {
+  width: 8%;
+}
+#tariffRateBinding #tariffRateEditor table thead tr .allowMileageTh {
+  width: 8%;
+}
+#tariffRateBinding #tariffRateEditor table thead tr .accessMileage {
+  width: 7%;
+}
+#tariffRateBinding #tariffRateEditor table thead tr .standardRate {
+  width: 8%;
+}
+#tariffRateBinding #tariffRateEditor table thead tr .startDateTh {
+  width: 8%;
+}
+#tariffRateBinding #tariffRateEditor table thead tr .endDateTh {
+  width: 7%;
+}
+#tariffRateBinding #tariffRateEditor table thead tr .revisionNumber {
+  width: 2%;
+}
+#tariffRateBinding #tariffRateEditor table thead tr .chckBox {
+  width: 2%;
+}
+#tariffRateBinding #tariffRateEditor table #hgRateFilterIcon {
   margin-left: 15px;
 }
-#tariffRateBinding #tariffRateEditor .excessMileageCharge {
+#tariffRateBinding #tariffRateEditor table .excessMileageCharge {
   width: 70px;
 }
-#tariffRateBinding #tariffRateEditor .allowMileage {
+#tariffRateBinding #tariffRateEditor table .allowMileage {
   width: 70px;
 }
-#tariffRateBinding #tariffRateEditor .standardRt {
+#tariffRateBinding #tariffRateEditor table .standardRt {
   width: 70px;
 }
-#tariffRateBinding #tariffRateEditor .startDate {
+#tariffRateBinding #tariffRateEditor table .startDate {
   width: 90px;
 }
-#tariffRateBinding #tariffRateEditor .endDate {
+#tariffRateBinding #tariffRateEditor table .endDate {
   width: 90px;
 }
 #serviceRateBinding table thead tr .code {
@@ -188,12 +224,6 @@
 #serviceRateBinding #serviceRateEditor {
   margin-top: 15px;
 }
-#serviceRateBinding #serviceRateEditor .serviceRate {
-  width: 70px;
-}
-#serviceRateBinding #serviceRateEditor .startDate {
-  width: 90px;
-}
 #serviceRateBinding #serviceRateEditor .detailsContainer {
   width: 100%;
 }
@@ -202,6 +232,33 @@
   width: 85%;
   margin-bottom: 20px;
   margin-top: 10px;
+}
+#serviceRateBinding #serviceRateEditor .detailsContainer .serviceRateTxtBox {
+  width: 70px;
+}
+#serviceRateBinding #serviceRateEditor .detailsContainer .startDateTxtBox {
+  width: 90px;
+}
+#serviceRateBinding #serviceRateEditor .detailsContainer table thead tr .srCode {
+  width: 20%;
+}
+#serviceRateBinding #serviceRateEditor .detailsContainer table thead tr .srName {
+  width: 20%;
+}
+#serviceRateBinding #serviceRateEditor .detailsContainer table thead tr .srType {
+  width: 20%;
+}
+#serviceRateBinding #serviceRateEditor .detailsContainer table thead tr .srRate {
+  width: 10%;
+}
+#serviceRateBinding #serviceRateEditor .detailsContainer table thead tr .srStartDateTh {
+  width: 8%;
+}
+#serviceRateBinding #serviceRateEditor .detailsContainer table thead tr .srRevisionNumber {
+  width: 2%;
+}
+#serviceRateBinding #serviceRateEditor .detailsContainer table thead tr .srCheckBox {
+  width: 2%;
 }
 #insuranceRateBinding table thead tr .IRCode {
   width: 18%;
@@ -229,6 +286,42 @@
   width: 85%;
   margin-bottom: 20px;
   margin-top: 10px;
+}
+#insuranceRateBinding #insuranceRateEditor .detailsContainer table thead tr .insuranceType {
+  width: 14%;
+}
+#insuranceRateBinding #insuranceRateEditor .detailsContainer table thead tr .hireGroup {
+  width: 14%;
+}
+#insuranceRateBinding #insuranceRateEditor .detailsContainer table thead tr .make {
+  width: 14%;
+}
+#insuranceRateBinding #insuranceRateEditor .detailsContainer table thead tr .model {
+  width: 14%;
+}
+#insuranceRateBinding #insuranceRateEditor .detailsContainer table thead tr .category {
+  width: 14%;
+}
+#insuranceRateBinding #insuranceRateEditor .detailsContainer table thead tr .modelYear {
+  width: 10%;
+}
+#insuranceRateBinding #insuranceRateEditor .detailsContainer table thead tr .insuranceRateTh {
+  width: 8%;
+}
+#insuranceRateBinding #insuranceRateEditor .detailsContainer table thead tr .startDateTh {
+  width: 8%;
+}
+#insuranceRateBinding #insuranceRateEditor .detailsContainer table thead tr .revisionNumber {
+  width: 2%;
+}
+#insuranceRateBinding #insuranceRateEditor .detailsContainer table thead tr .chckBox {
+  width: 2%;
+}
+#insuranceRateBinding #insuranceRateEditor .detailsContainer table .insuranceRateIns {
+  width: 70px;
+}
+#insuranceRateBinding #insuranceRateEditor .detailsContainer table .startDateIns {
+  width: 90px;
 }
 #additionalDriverChargeBinding table thead tr .code {
   width: 18%;
@@ -1834,3 +1927,4 @@
   color: #00bfff;
 }
 /* Twitter Typeahead */
+/*# sourceMappingURL=MainSite.css.map */

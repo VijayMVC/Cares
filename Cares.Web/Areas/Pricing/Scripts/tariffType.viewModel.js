@@ -225,6 +225,13 @@ define("tariffType/tariffType.viewModel",
                                 flag = false;
                             }
                         }
+                        //For Hours
+                        if (measurementUnitKey === 3) {
+                            if (parseInt(addTariffType().durationTo()) < parseInt(addTariffType().durationFrom())) {
+                                toastr.error("End To must greater than Start From.");
+                                flag = false;
+                            }
+                        }
                         return flag;
                     },
                      // Save Tariff Type
