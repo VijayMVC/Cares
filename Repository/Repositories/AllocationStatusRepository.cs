@@ -42,10 +42,8 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public override IEnumerable<AllocationStatus> GetAll()
         {
-            return DbSet.Where(vs => vs.UserDomainKey == UserDomainKey).ToList();
+            return DbSet.ToList();
         }
-
-
         #endregion
     }
 }
