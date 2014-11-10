@@ -992,32 +992,54 @@ define("rentalAgreement/rentalAgreement.viewModel",
                             toastr.error("Failed to load customer. Error: " + response);
                         }
                     },
+                    // Is Existing Business Partner - Toggler if Existing checked then look for existing one
+                    isExistingBusinessPartner = ko.observable(false),
                     // Get Customer By Customer No
                     getCustomerByNo = function (customerNo) {
+                        if (!isExistingBusinessPartner()) {
+                            return;
+                        }
+
                         dataservice.getCustomerByNo({
                             BusinessPartnerId: customerNo
                         }, getCustomerCallbackHandler);
                     },
                     // Get Customer By Nic No
                     getCustomerByNicNo = function (nicNo) {
+                        if (!isExistingBusinessPartner()) {
+                            return;
+                        }
+
                         dataservice.getCustomerByNicNo({
                             NicNo: nicNo
                         }, getCustomerCallbackHandler);
                     },
                     // Get Customer By Passport No
                     getCustomerByPassportNo = function (passportNo) {
+                        if (!isExistingBusinessPartner()) {
+                            return;
+                        }
+
                         dataservice.getCustomerByPassportNo({
                             PassportNo: passportNo
                         }, getCustomerCallbackHandler);
                     },
                     // Get Customer By License No
                     getCustomerByLicenseNo = function (licenseNo) {
+                        if (!isExistingBusinessPartner()) {
+                            return;
+                        }
+
                         dataservice.getCustomerByLicenseNo({
                             LicenseNo: licenseNo
                         }, getCustomerCallbackHandler);
                     },
                     // Get Customer By Phone No
                     getCustomerByPhoneNo = function (phoneNo, type) {
+                        if (!isExistingBusinessPartner()) {
+                            return;
+                        }
+
                         dataservice.getCustomerByPhoneNo({
                             PhoneNo: phoneNo,
                             PhoneType: type
@@ -1058,6 +1080,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     plateNumbers: plateNumbers,
                     canEditBooking: canEditBooking,
                     isValidVehicleDuration: isValidVehicleDuration,
+                    isExistingBusinessPartner: isExistingBusinessPartner,
                     // Observables
                     // Utility Methods
                     initialize: initialize,
