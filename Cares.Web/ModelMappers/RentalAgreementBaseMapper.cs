@@ -23,7 +23,8 @@ namespace Cares.Web.ModelMappers
                 OperationsWorkPlaces = source.OperationsWorkPlaces.Select(op => op.CreateFrom()),
                 AllocationStatuses = source.AllocationStatuses.Select(op => op.CreateFrom()),
                 VehicleStatuses = source.VehicleStatuses.Select(op => op.CreateFrom()),
-                PaymentModes = source.PaymentModes.Select(pm => pm.CreateFromForLookup())
+                PaymentModes = source.PaymentModes.Select(pm => pm.CreateFromForLookup()),
+                DefaultSetting = source.DefaultSetting.CreateFrom()
             };
         }
 

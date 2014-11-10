@@ -136,7 +136,6 @@
           <Property Name="RecCreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="RecLastUpdatedDt" Type="datetime" Nullable="false" />
           <Property Name="RecLastUpdatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="Area">
           <Key>
@@ -747,6 +746,16 @@
           <Property Name="RecLastUpdatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="RecLastUpdatedDt" Type="datetime" Nullable="false" />
           <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DefaultSetting">
+          <Key>
+            <PropertyRef Name="DefaultSettingId" />
+          </Key>
+          <Property Name="DefaultSettingId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeId" Type="bigint" Nullable="false" />
+          <Property Name="DefaultOperationId" Type="bigint" />
+          <Property Name="DefaultOperationWorkplaceId" Type="bigint" />
+          <Property Name="DefaultPaymentTermId" Type="bigint" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -1608,7 +1617,6 @@
           <Property Name="RecCreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="RecLastUpdatedDt" Type="datetime" Nullable="false" />
           <Property Name="RecLastUpdatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="Phone">
           <Key>
@@ -5677,6 +5685,7 @@
           <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CreditLimit" EntityType="Self.CreditLimit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DefaultSetting" EntityType="Self.DefaultSetting" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DesigGrade" EntityType="Self.DesigGrade" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Designation" EntityType="Self.Designation" Schema="dbo" store:Type="Tables" />
@@ -7776,6 +7785,7 @@
             <End Role="StandardRate" EntitySet="StandardRates" />
             <End Role="StandardRate1" EntitySet="StandardRates" />
           </AssociationSet>
+          <EntitySet Name="DefaultSettings" EntityType="DomainModels.DefaultSetting" />
         </EntityContainer>
         <EntityType Name="Company">
           <Key>
@@ -8611,7 +8621,6 @@
           <Property Name="RecCreatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="RecLastUpdatedDt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="RecLastUpdatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
           <NavigationProperty Name="BusinessPartners" Relationship="DomainModels.RefPaymentTerm618" FromRole="PaymentTerm" ToRole="BPMain" />
           <NavigationProperty Name="BookingMains" Relationship="DomainModels.RefPaymentTerm494" FromRole="PaymentTerm" ToRole="BookingMain" />
           <NavigationProperty Name="RaMains" Relationship="DomainModels.RefPaymentTerm497" FromRole="PaymentTerm" ToRole="RAMain" />
@@ -13151,7 +13160,6 @@
           <Property Name="RecCreatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="RecLastUpdatedDt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="RecLastUpdatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
           <NavigationProperty Name="RaHireGroups" Relationship="DomainModels.RefAllocationStatus502" FromRole="AllocationStatu" ToRole="RAHireGroup" />
         </EntityType>
         <EntityType Name="PaymentMode">
@@ -13746,6 +13754,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="DefaultSetting">
+          <Key>
+            <PropertyRef Name="DefaultSettingId" />
+          </Key>
+          <Property Name="DefaultSettingId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="Int64" Nullable="false" />
+          <Property Name="DefaultOperationId" Type="Int64" />
+          <Property Name="DefaultOperationWorkplaceId" Type="Int64" />
+          <Property Name="DefaultPaymentTermId" Type="Int64" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -14441,7 +14459,6 @@
           <EntitySetMapping Name="PaymentTerms">
             <EntityTypeMapping TypeName="DomainModels.PaymentTerm">
               <MappingFragment StoreEntitySet="PaymentTerm">
-                <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
                 <ScalarProperty Name="RecLastUpdatedBy" ColumnName="RecLastUpdatedBy" />
                 <ScalarProperty Name="RecLastUpdatedDt" ColumnName="RecLastUpdatedDt" />
                 <ScalarProperty Name="RecCreatedBy" ColumnName="RecCreatedBy" />
@@ -16404,7 +16421,6 @@
           <EntitySetMapping Name="AllocationStatus1">
             <EntityTypeMapping TypeName="DomainModels.AllocationStatus">
               <MappingFragment StoreEntitySet="AllocationStatus">
-                <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
                 <ScalarProperty Name="RecLastUpdatedBy" ColumnName="RecLastUpdatedBy" />
                 <ScalarProperty Name="RecLastUpdatedDt" ColumnName="RecLastUpdatedDt" />
                 <ScalarProperty Name="RecCreatedBy" ColumnName="RecCreatedBy" />
@@ -16660,6 +16676,17 @@
                 <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DefaultSettings">
+            <EntityTypeMapping TypeName="DomainModels.DefaultSetting">
+              <MappingFragment StoreEntitySet="DefaultSetting">
+                <ScalarProperty Name="DefaultPaymentTermId" ColumnName="DefaultPaymentTermId" />
+                <ScalarProperty Name="DefaultOperationWorkplaceId" ColumnName="DefaultOperationWorkplaceId" />
+                <ScalarProperty Name="DefaultOperationId" ColumnName="DefaultOperationId" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="DefaultSettingId" ColumnName="DefaultSettingId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

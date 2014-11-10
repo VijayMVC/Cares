@@ -167,6 +167,7 @@
     <Compile Include="Common\WorkLocationByColumn.cs" />
     <Compile Include="Common\WorkplaceByColumn.cs" />
     <Compile Include="Common\WorkplaceTypeByColumn.cs" />
+    <Compile Include="DomainModels\DefaultSetting.cs" />
     <Compile Include="DomainModels\WebApiUser.cs" />
     <Compile Include="DomainModels\BookingAdditionalDriver.cs" />
     <Compile Include="DomainModels\BookingChauffeur.cs" />

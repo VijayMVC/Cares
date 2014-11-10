@@ -13,7 +13,7 @@
         <AssociationConnector Association="DomainModels.RefBusinessSegment1401" />
         <EntityTypeShape EntityType="DomainModels.AddressType" Width="1.5" PointX="13.375" PointY="48.5" />
         <EntityTypeShape EntityType="DomainModels.Area" Width="1.5" PointX="13.375" PointY="58.875" />
-        <EntityTypeShape EntityType="DomainModels.BusinessPartnerCompany" Width="1.5" PointX="12.625" PointY="12.375" />
+        <EntityTypeShape EntityType="DomainModels.BusinessPartnerCompany" Width="1.5" PointX="12.75" PointY="13.75" />
         <EntityTypeShape EntityType="DomainModels.BusinessPartnerIndividual" Width="1.5" PointX="15.625" PointY="4.5" />
         <EntityTypeShape EntityType="DomainModels.BusinessPartnerInType" Width="1.5" PointX="12.875" PointY="0.625" />
         <EntityTypeShape EntityType="DomainModels.BusinessPartner" Width="2.125" PointX="7.375" PointY="4.25" />
@@ -28,7 +28,7 @@
         <EntityTypeShape EntityType="DomainModels.DesignGrade" Width="1.5" PointX="10.375" PointY="67.375" />
         <EntityTypeShape EntityType="DomainModels.Designation" Width="1.5" PointX="10.375" PointY="19.375" />
         <EntityTypeShape EntityType="DomainModels.EmpAuthOperationsWorkplace" Width="1.5" PointX="21.375" PointY="21.75" />
-        <EntityTypeShape EntityType="DomainModels.EmpDocsInfo" Width="1.5" PointX="12.625" PointY="5.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="DomainModels.EmpDocsInfo" Width="1.5" PointX="12.75" PointY="4.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DomainModels.EmpJobInfo" Width="1.5" PointX="12.625" PointY="19.375" />
         <EntityTypeShape EntityType="DomainModels.EmpJobProg" Width="1.5" PointX="18.625" PointY="20.125" />
         <EntityTypeShape EntityType="DomainModels.Employee" Width="1.5" PointX="10.375" PointY="4.375" />
@@ -384,6 +384,7 @@
         <AssociationConnector Association="DomainModels.FK_BookingService_ServiceType1" />
         <EntityTypeShape EntityType="DomainModels.WebApiUser" Width="1.5" PointX="15.375" PointY="1.125" />
         <AssociationConnector Association="DomainModels.RefStandardRt371" />
+        <EntityTypeShape EntityType="DomainModels.DefaultSetting" Width="1.5" PointX="12.75" PointY="11.25" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

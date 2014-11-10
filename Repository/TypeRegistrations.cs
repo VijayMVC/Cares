@@ -128,6 +128,7 @@ namespace Cares.Repository
             unityContainer.RegisterType<IBookingMainRepository, BookingMainRepository>();
             unityContainer.RegisterType<IMenuRepository, MenuRepository>();
             unityContainer.RegisterType<IWebApiUserRepository, WebApiUserRepository>();
+            unityContainer.RegisterType<IDefaultSettingRepository, DefaultSettingRepository>();
         }
     }
 }

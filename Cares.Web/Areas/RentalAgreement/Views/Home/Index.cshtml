@@ -75,10 +75,10 @@
                         <div class="panel panel-default panelCustom">
                             <div class="panel-heading">
                                 <!-- ko if: driverName -->
-                                    <span data-bind="text: driverName"></span>
+                                <span data-bind="text: driverName"></span>
                                 <!-- /ko -->
                                 <!-- ko ifnot: driverName -->
-                                    <span>&nbsp;</span>
+                                <span>&nbsp;</span>
                                 <!-- /ko -->
                                 <a class="float-right" data-bind="click: $parent.removeRaDriver"><span class="glyphicon glyphicon-remove"></span></a>
                             </div>
@@ -321,17 +321,13 @@
                             Customer
                         </a>
                     </h4>
-                    <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-warning active" data-bind="css: { active: !rentalAgreement().id() || !rentalAgreement().businessPartner().id() }">
-                            <input type="radio" name="options" id="option1" autocomplete="off" data-bind="checked: isExistingBusinessPartner"> New
-                        </label>
-                        <label class="btn btn-success" data-bind="css: { active: rentalAgreement().id() || rentalAgreement().businessPartner().id() }">
-                            <input type="radio" name="options" id="option2" autocomplete="off" data-bind="checked: isExistingBusinessPartner"> Existing
-                        </label>
-                    </div>
                 </div>
                 <div id="collapseSix" class="panel-collapse collapse in">
                     <div class="panel-body customPanel">
+                        <div>
+                            <button type="button" id="onDutyBtn" class="btn btn-warning active" data-bind="click: setExistingFalse, css: { active: !isExistingBusinessPartner() }">New</button>
+                            <button type="button" id="offDutyBtn" class="btn btn-success" data-bind="click: setExistingTrue, css: { active: isExistingBusinessPartner }">Existing</button>
+                        </div><br />
                         <form id="customer" class="form-horizontal" data-bind="with: rentalAgreement().businessPartner">
                             <div class="form-group">
                                 <label for="customerNumber" class="control-label col-sm-2">Customer #</label>
@@ -641,19 +637,19 @@
             </div>
         </div>
     </div>
-    
+
     @Html.Partial("_HireGroupInsurancesDialog")
 
     @Html.Partial("_RaVehicleCheckListOutDialog")
 
     @Html.Partial("_RaVehicleCheckListInDialog")
-    
+
     @Html.Partial("_VehicleDialog")
 
     @Html.Partial("_ServiceItemDialog")
 
     @Html.Partial("_ChaufferDialog")
-    
+
     @Html.Partial("_AdditionalChargeDialog")
 
     @Html.Partial("_VehicleMovementDialog")

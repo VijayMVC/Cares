@@ -71,6 +71,8 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     },
                     // Main RA
                     rentalAgreement = ko.observable(model.RentalAgreement.Create({}, rentalAgreementModelCallbacks)),
+                    // Currently Logged In User Default Settings
+                    employeeDefaultSettings = ko.observable(),
                     // #region Arrays
                     // Operations
                     operations = ko.observableArray([]),
@@ -474,6 +476,17 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                 });
                                 ko.utils.arrayPushAll(paymentModes(), paymentModeItems);
                                 paymentModes.valueHasMutated();
+
+                                // Default Settings if any
+                                if (data.DefaultSetting) {
+                                    employeeDefaultSettings(data.DefaultSetting);
+
+                                    // Set Default Settings For RA for Current Employee
+                                    rentalAgreement().operationId(employeeDefaultSettings().DefaultOperationId || undefined);
+                                    rentalAgreement().openLocation(employeeDefaultSettings().DefaultOperationWorkplaceId || undefined);
+                                    rentalAgreement().closeLocation(employeeDefaultSettings().DefaultOperationWorkplaceId || undefined);
+                                    rentalAgreement().paymentTermId(employeeDefaultSettings().DefaultPaymentTermId || undefined);
+                                }
 
                                 // Run Sammy
                                 app.run();
@@ -992,8 +1005,16 @@ define("rentalAgreement/rentalAgreement.viewModel",
                             toastr.error("Failed to load customer. Error: " + response);
                         }
                     },
-                    // Is Existing Business Partner - Toggler if Existing checked then look for existing one
+                    // Is Existing
                     isExistingBusinessPartner = ko.observable(false),
+                    // Set Existing True
+                    setExistingTrue = function() {
+                        isExistingBusinessPartner(true);
+                    },
+                    // Set Existing False
+                    setExistingFalse = function() {
+                        isExistingBusinessPartner(false);
+                    },
                     // Get Customer By Customer No
                     getCustomerByNo = function (customerNo) {
                         if (!isExistingBusinessPartner()) {
@@ -1081,6 +1102,8 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     canEditBooking: canEditBooking,
                     isValidVehicleDuration: isValidVehicleDuration,
                     isExistingBusinessPartner: isExistingBusinessPartner,
+                    setExistingTrue: setExistingTrue,
+                    setExistingFalse: setExistingFalse,
                     // Observables
                     // Utility Methods
                     initialize: initialize,

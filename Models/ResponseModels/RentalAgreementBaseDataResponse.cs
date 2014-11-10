@@ -57,6 +57,11 @@ namespace Cares.Models.ResponseModels
         /// </summary>
         public IEnumerable<PaymentMode> PaymentModes { get; set; }
 
+        /// <summary>
+        /// Default Setting
+        /// </summary>
+        public DefaultSetting DefaultSetting { get; set; }
+
         #endregion
     }
 }

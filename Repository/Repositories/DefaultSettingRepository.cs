@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -9,15 +8,15 @@ using Microsoft.Practices.Unity;
 namespace Cares.Repository.Repositories
 {
     /// <summary>
-    /// Payment Term Repository
+    /// Default Setting Repository
     /// </summary>
-    public sealed class PaymentTermRepository : BaseRepository<PaymentTerm>, IPaymentTermRepository
+    public sealed class DefaultSettingRepository : BaseRepository<DefaultSetting>, IDefaultSettingRepository
     {
         #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>
-        public PaymentTermRepository(IUnityContainer container)
+        public DefaultSettingRepository(IUnityContainer container)
             : base(container)
         {
 
@@ -25,23 +24,25 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Primary database set
         /// </summary>
-        protected override IDbSet<PaymentTerm> DbSet
+        protected override IDbSet<DefaultSetting> DbSet
         {
             get
             {
-                return db.PaymentTerms;
+                return db.DefaultSettings;
             }
         }
         #endregion
        
         #region Public
-        /// <summary>
-        /// Get All Organization Groups for User Domain Key
-        /// </summary>
-        public override IEnumerable<PaymentTerm> GetAll()
-        {
-            return DbSet.ToList();
-        }
+        
         #endregion
+
+        /// <summary>
+        /// Get Default Settings For Current Logged In Employee
+        /// </summary>
+        public DefaultSetting GetForEmployee(long employeeId)
+        {
+            return DbSet.FirstOrDefault(ds => ds.EmployeeId == employeeId);
+        }
     }
 }

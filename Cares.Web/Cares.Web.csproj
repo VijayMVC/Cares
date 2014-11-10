@@ -420,6 +420,7 @@
     <Compile Include="ModelMappers\MainteneceTypeGroupMapper.cs" />
     <Compile Include="ModelMappers\NRTMapper.cs" />
     <Compile Include="ModelMappers\NrtQueueMapper.cs" />
+    <Compile Include="ModelMappers\DefaultSettingMapper.cs" />
     <Compile Include="ModelMappers\RaCustomerDocumentMapper.cs" />
     <Compile Include="ModelMappers\RaDriverMapper.cs" />
     <Compile Include="ModelMappers\NrtTypeMapper.cs" />
@@ -465,6 +466,7 @@
     <Compile Include="Models\PaymentMode.cs" />
     <Compile Include="Models\NrtQueueBaseResponse.cs" />
     <Compile Include="Models\NrtQueueSearchResponse.cs" />
+    <Compile Include="Models\DefaultSetting.cs" />
     <Compile Include="Models\RaMainForRaQueue.cs" />
     <Compile Include="Models\RaMainForRaQueueSearchResponse.cs" />
     <Compile Include="Models\GetRaVehicleCheckListRequest.cs" />
