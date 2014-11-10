@@ -337,7 +337,7 @@ define("tariffRate/tariffRate.viewModel",
                     // Delete Tariff Rate
                     deleteTariffRate = function (tariffRate) {
                         dataservice.deleteTariffRate(tariffRate.convertToServerData(), {
-                            success: function () {
+                            success: function (data) {
                                 tariffRates.remove(tariffRate);
                                 toastr.success(ist.resourceText.tariffRateDeleteSuccessMsg);
                             },
@@ -350,7 +350,6 @@ define("tariffRate/tariffRate.viewModel",
                                 } else {
 
                                     toastr.error(ist.resourceText.tariffRateDeleteFailedMsg);
-
                                 }
 
                             }

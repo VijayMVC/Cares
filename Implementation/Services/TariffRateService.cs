@@ -233,7 +233,7 @@ namespace Cares.Implementation.Services
         /// <param name="standardRateMain"></param>
         public void DeleteTariffRate(StandardRateMain standardRateMain)
         {
-            if (standardRateMain.StandardRates.Count > 0)
+            if (standardRateMain.StandardRates != null && standardRateMain.StandardRates.Count > 0)
             {
                 throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.TariffRate.StRateIsAssociatedWithHireGroupError));
             }

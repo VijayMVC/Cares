@@ -3,19 +3,19 @@
 */
 define("insuranceRate/insuranceRate.viewModel",
     ["jquery", "amplify", "ko", "insuranceRate/insuranceRate.dataservice", "insuranceRate/insuranceRate.model", "common/confirmation.viewModel", "common/pagination", "common/clientSidePagination"],
-    function ($, amplify, ko, dataservice, model, confirmation, pagination,clientPagination) {
+    function ($, amplify, ko, dataservice, model, confirmation, pagination, clientPagination) {
         var ist = window.ist || {};
         ist.insuranceRate = {
             viewModel: (function () {
                 var // the view 
                     view,
-                     // Active Insurance Rate Main
+                    // Active Insurance Rate Main
                     selectedInsuranceRtMain = ko.observable(),
                     //Active Insurance Rate Main Copy 
                     selectedInsuranceRtMainCopy = ko.observable(),
                     //For Edit, Insurance Rate Main Id
                     selectedInsuranceRtMainId = ko.observable(),
-                     //Selected Insurance Rate 
+                    //Selected Insurance Rate 
                     selectedInsuranceRt = ko.observable(),
                     // Show Filter Section
                     filterSectionVisilble = ko.observable(false),
@@ -24,11 +24,11 @@ define("insuranceRate/insuranceRate.viewModel",
                     operations = ko.observableArray([]),
                     //Tariff Types
                     tariffTypes = ko.observableArray([]),
-                     //Filtered Tariff Types
+                    //Filtered Tariff Types
                     filteredTariffTypes = ko.observableArray([]),
                     //Insurance Rate Main Array
                     insuranceRtMains = ko.observableArray([]),
-                     //Insurance Rates
+                    //Insurance Rates
                     insuranceRts = ko.observableArray([]),
                     //Insurance Type Rates
                     insuranceTypeRts = ko.observableArray([]),
@@ -62,6 +62,17 @@ define("insuranceRate/insuranceRate.viewModel",
                         }
                         return [];
                     }),
+                    ////List Of Records 
+                    //makeFiledsEditable = ko.computed(function () {
+                    //    if (selectedInsuranceRt() !== undefined) {
+                    //        if (selectedInsuranceRt().isChecked()) {
+                    //            isEditable(true);
+                    //        }
+                    //        //return clientPager().pagedRecords();
+                    //    }
+                    //    //return [];
+                    //}),
+
                     // Search Filter
                     searchFilter = ko.observable(),
                     //Operation Filter
@@ -103,7 +114,7 @@ define("insuranceRate/insuranceRate.viewModel",
                         if (selectedInsuranceRt() !== insuranceRt) {
                             selectedInsuranceRt(insuranceRt);
                         }
-                        isEditable(true);
+                        //isEditable(tr);
                     },
                      // Collapase filter section
                     collapseFilterSection = function () {
@@ -177,7 +188,7 @@ define("insuranceRate/insuranceRate.viewModel",
                     },
                       //Create Insurance Rate
                     createInsuranceRate = function () {
-                        //hireGroupDetails.removeAll();
+                        selectedInsuranceRt(undefined);
                         var insuranceRtMain = new model.InsuranceRtMain();
                         // Select the newly added Insurance Rate
                         selectedInsuranceRtMain(insuranceRtMain);
@@ -251,6 +262,7 @@ define("insuranceRate/insuranceRate.viewModel",
                     },
                       //Edit Insurance Rate
                     onEditInsuranceRate = function (insuranceRt, e) {
+                        selectedInsuranceRt(undefined);
                         selectedInsuranceRtMain(insuranceRt);
                         selectedInsuranceRtMainCopy(model.InsuranceRtMainCopier(insuranceRt));
                         getInsuranceTypeRate(insuranceRt);
@@ -347,7 +359,7 @@ define("insuranceRate/insuranceRate.viewModel",
                     initialize: initialize,
                     search: search,
                     pager: pager,
-                    clientPager:clientPager,
+                    clientPager: clientPager,
                     collapseFilterSection: collapseFilterSection,
                     showFilterSection: showFilterSection,
                     closeInsuranceRateEditor: closeInsuranceRateEditor,

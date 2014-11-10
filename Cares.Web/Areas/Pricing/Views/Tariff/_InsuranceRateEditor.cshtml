@@ -34,7 +34,6 @@
                     <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.InsuranceRate.EffectiveFrom + ">")' class="form-control" id="sDate" data-bind="datepicker: startDt, validationTooltip: startDt" />
                 </div>
             </div>
-
         </form>
     </div>
     <div class="panel panel-info searchFilterResultSection">
@@ -60,41 +59,40 @@
             </tbody>
         </table>
         <div class="well">
-
             <!-- ko with: clientPager -->
             @Html.Partial("~/Areas/Common/Views/Shared/_Pager.cshtml")
             <!-- /ko -->
         </div>
         <script id="editInsuranceTypeRtTemplate" type="text/html">
             <tr data-bind="css: { selectedRow: $data === $root.selectedInsuranceRt() }">
-                <td class="col-md-2">
+                <td>
                     <input type="checkbox" data-bind="checked: isChecked, disable :isChecked() && (virtualInsuranceRtId()!=0) " />
                 </td>
-                <td class="col-md-2">
+                <td class="insuranceType">
                     <span data-bind="text: insuranceTypeCodeName"></span>
                 </td>
-                <td class="col-md-2">
+                <td class="hireGroupTh">
                     <span data-bind="text: hireGroupDetailCodeName"></span>
                 </td>
-                <td class="col-md-2">
+                <td class="make">
                     <span data-bind="text: vehicleMakeCodeName"></span>
                 </td>
-                <td class="col-md-2">
+                <td class="model">
                     <span data-bind="text: vehicleModelCodeName"></span>
                 </td>
-                <td class="col-md-2">
+                <td class="category">
                     <span data-bind="text: vehicleCategoryCodeName"></span>
                 </td>
-                <td class="col-md-2">
+                <td class="modelYear">
                     <span data-bind="text: modelYear"></span>
                 </td>
-                <td class="col-md-2">
-                    <input type="text" data-bind="value: insuranceRate, validationTooltip: insuranceRate" />
+                <td class="insuranceRateTh">
+                    <input type="text" style="width: 70px;" data-bind="value: insuranceRate, validationTooltip: insuranceRate,disable :!isChecked()" />
                 </td>
-                <td class="col-md-2">
-                    <input type="text" data-bind="datepicker: startDate, validationTooltip: startDate" />
+                <td class="startDateTh">
+                    <input type="text" style="width: 70px;" data-bind="datepicker: startDate, validationTooltip: startDate,disable :!isChecked()" />
                 </td>
-                <td class="col-md-2">
+                <td class="revisionNumber">
                     <span data-bind="text: revisionNumber"></span>
                 </td>
             </tr>
@@ -102,15 +100,15 @@
         <script id="itemInsuranceTypeRtTemplate" type="text/html">
             <tr data-bind="click: $root.selectInsuranceRt, css: { selectedRow: $data === $root.selectedInsuranceRt() }">
                 <td><input type="checkbox" data-bind="checked: isChecked, disable :isChecked() && (virtualInsuranceRtId()!=0)" /></td>
-                <td data-bind="text: insuranceTypeCodeName"></td>
-                <td data-bind="text: hireGroupDetailCodeName"></td>
-                <td data-bind="text: vehicleMakeCodeName"></td>
-                <td data-bind="text: vehicleModelCodeName"></td>
-                <td data-bind="text: vehicleCategoryCodeName"></td>
-                <td data-bind="text: modelYear"></td>
+                <td class="insuranceType" data-bind="text: insuranceTypeCodeName"></td>
+                <td class="hireGroupTh" data-bind="text: hireGroupDetailCodeName"></td>
+                <td class="make" data-bind="text: vehicleMakeCodeName"></td>
+                <td class="model" data-bind="text: vehicleModelCodeName"></td>
+                <td class="category" data-bind="text: vehicleCategoryCodeName"></td>
+                <td class="modelYear" data-bind="text: modelYear"></td>
                 <td data-bind="text: insuranceRate"></td>
                 <td data-bind="dateString: startDate"></td>
-                <td data-bind="text: revisionNumber"></td>
+                <td class="revisionNumber" data-bind="text: revisionNumber"></td>
             </tr>
         </script>
     </div>

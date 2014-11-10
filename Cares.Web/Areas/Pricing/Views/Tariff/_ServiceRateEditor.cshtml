@@ -64,25 +64,25 @@
         </div>
         <script id="editServiceRtItemTemplate" type="text/html">
             <tr data-bind="css: { selectedRow: $data === $root.selectedServiceRtItem() }">
-                <td class="col-md-2">
+                <td class="srCheckBox">
                     <input type="checkbox" data-bind="checked: isChecked, disable :isChecked() && (virtualServiceRtId()!=0) " />
                 </td>
-                <td class="col-md-2">
+                <td class="srCode">
                     <span data-bind="text: serviceItemCode"></span>
                 </td>
-                <td class="col-md-2">
+                <td class="srName">
                     <span data-bind="text: serviceItemName"></span>
                 </td>
-                <td class="col-md-2">
+                <td class="srType">
                     <span data-bind="text: serviceTypeCodeName"></span>
                 </td>
-                <td class="col-md-2">
-                    <input type="text" class="serviceRate" data-bind="value: serviceRate, validationTooltip: serviceRate" />
+                <td class="srRate">
+                    <input type="text" style="width: 70px;" data-bind="value: serviceRate, validationTooltip: serviceRate,disable :!isChecked()" />
                 </td>
-                <td class="col-md-2">
-                    <input type="text" class="startDate" data-bind="datepicker: startDt, validationTooltip: startDt" />
+                <td class="srStartDateTh">
+                    <input type="text" style="width:90px;" data-bind="datepicker: startDt, validationTooltip: startDt,disable :!isChecked()" />
                 </td>
-                <td class="col-md-2">
+                <td class="srRevisionNumber">
                     <span data-bind="text: revisionNumber"></span>
                 </td>
             </tr>
