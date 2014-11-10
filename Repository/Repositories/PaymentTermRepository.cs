@@ -40,7 +40,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public override IEnumerable<PaymentTerm> GetAll()
         {
-            return DbSet.Where(paymentTerm => paymentTerm.UserDomainKey == UserDomainKey).ToList();
+            return DbSet.ToList();
         }
         #endregion
     }
