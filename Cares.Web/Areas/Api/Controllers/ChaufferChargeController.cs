@@ -66,6 +66,7 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Delete a Chauffer Charge
         /// </summary>
+        [ApiException]
         public void Delete(ChaufferChargeMain chaufferChargeMain)
         {
             if (chaufferChargeMain == null || !ModelState.IsValid)

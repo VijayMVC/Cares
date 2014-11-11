@@ -40,6 +40,7 @@ define("serviceRate/serviceRate.dataservice", function () {
                     amplify.request.define('deleteServiceRate', 'ajax', {
                         url: ist.siteUrl + '/Api/ServiceRt',
                         dataType: 'json',
+                        decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
                     isInitialized = true;

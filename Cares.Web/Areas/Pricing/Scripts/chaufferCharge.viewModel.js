@@ -340,8 +340,17 @@ define("chaufferCharge/chaufferCharge.viewModel",
                                chaufferChargeMains.remove(chaufferChrg);
                                toastr.success(ist.resourceText.chaufferChargeDeleteSuccessMsg);
                            },
-                           error: function () {
-                               toastr.error(ist.resourceText.chaufferChargeDeleteFailedMsg);
+                           error: function (exceptionMessage, exceptionType) {
+
+                               if (exceptionType === ist.exceptionType.CaresGeneralException) {
+
+                                   toastr.error(exceptionMessage);
+
+                               } else {
+
+                                   toastr.error(ist.resourceText.chaufferChargeDeleteFailedMsg);
+                               }
+
                            }
                        });
                    },

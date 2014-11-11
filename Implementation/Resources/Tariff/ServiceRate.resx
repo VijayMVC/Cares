@@ -132,4 +132,7 @@
   <data name="CodeDuplicationError" xml:space="preserve">
     <value>Service Rate with the same code already exists. Please choose a different code!</value>
   </data>
+  <data name="ServiceRateIsAssociatedWithOtherServiceRatesError" xml:space="preserve">
+    <value>Service Rate is associated with other Service Rates.</value>
+  </data>
 </root>
