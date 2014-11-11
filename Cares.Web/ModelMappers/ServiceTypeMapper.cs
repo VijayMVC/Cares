@@ -44,7 +44,7 @@ namespace Cares.Web.ModelMappers
             return new ServiceType
             {
                 ServiceTypeId = source.ServiceTypeId,
-                ServiceTypeCode = source.ServiceTypeCode,
+                ServiceTypeCode = source.ServiceTypeCode.Trim(),
                 ServiceTypeName = source.ServiceTypeName,
                 ServiceTypeDescription = source.ServiceTypeDescription
             };

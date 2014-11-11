@@ -56,7 +56,7 @@ namespace Cares.Web.ModelMappers
             return new DocumentGroup
             {
                 DocumentGroupId = source.DocumentGroupId,
-                DocumentGroupCode = source.DocumentGroupCode,
+                DocumentGroupCode = source.DocumentGroupCode.Trim(),
                 DocumentGroupName = source.DocumentGroupName,
                 DocumentGroupDescription = source.DocumentGroupDescription
             };
