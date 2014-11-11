@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Security.Cryptography;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
+using Cares.Models.ReportModels;
 using Cares.Models.ResponseModels;
 using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
@@ -37,6 +40,33 @@ namespace Cares.Repository.Repositories
         #endregion
 
         #region Public
+
+        /// <summary>
+        /// Get Insurance Rate Report data
+        /// </summary>
+        public IEnumerable<InsuranceRateReportResponse> GetInsuranceRateReportData()
+        {
+            var insuranceRateReportResponseQuery = from insuranceRt in db.InsuranceRts
+                join tarrifType in db.TariffTypes on
+                    new {insuranceRt.InsuranceRtMain.TariffTypeCode} equals new {tarrifType.TariffTypeCode}
+                select new InsuranceRateReportResponse
+                {
+                    InsuranceTypeCode = insuranceRt.InsuranceType.InsuranceTypeCode,
+                    OperationCode = tarrifType.Operation.OperationCode,
+                    TarrifTypeCode = insuranceRt.InsuranceRtMain.TariffTypeCode,
+                    HireGroupCode = insuranceRt.HireGroupDetail.HireGroup.HireGroupCode,
+                    VehicleMakeCode = insuranceRt.HireGroupDetail.VehicleMake.VehicleMakeCode,
+                    VehicleModelCode = insuranceRt.HireGroupDetail.VehicleModel.VehicleModelCode,
+                    VehicelCategoryCode = insuranceRt.HireGroupDetail.VehicleCategory.VehicleCategoryCode,
+                    ModelYear = insuranceRt.HireGroupDetail.ModelYear,
+                    RevisionNumber = insuranceRt.RevisionNumber,
+                    InsuranceRate = insuranceRt.InsuranceRate,
+                    StartDate = insuranceRt.StartDt
+                };
+            return insuranceRateReportResponseQuery.OrderBy(responseObject => responseObject.InsuranceTypeCode);
+
+        }
+
 
         /// <summary>
         /// Get All Insurance Rate for User Domain Key

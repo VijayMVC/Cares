@@ -54,6 +54,7 @@
     <Compile Include="Helpers\IRaDriverHelper.cs" />
     <Compile Include="Helpers\IRentalCharge.cs" />
     <Compile Include="Helpers\IBill.cs" />
+    <Compile Include="IReportServices\IInsuranceRateReportService.cs" />
     <Compile Include="IReportServices\IMissingHireGroupService.cs" />
     <Compile Include="IReportServices\IDailyActionService.cs" />
     <Compile Include="IReportServices\IFleetReportService.cs" />

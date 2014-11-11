@@ -79,6 +79,15 @@ namespace Cares.Implementation.Resources.Tariff {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Service Rate is associated with other Service Rates..
+        /// </summary>
+        public static string ServiceRateIsAssociatedWithOtherServiceRatesError {
+            get {
+                return ResourceManager.GetString("ServiceRateIsAssociatedWithOtherServiceRatesError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Service rate for the selected tariff type already exist..
         /// </summary>
         public static string ServiceRtByTariffExist {

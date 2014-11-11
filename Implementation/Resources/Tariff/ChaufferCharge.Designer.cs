@@ -88,6 +88,15 @@ namespace Cares.Implementation.Resources.Tariff {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Chauffeur Charge is associated with other chauffeur charges..
+        /// </summary>
+        public static string ChauffeurChargeIsAssociatedWithOtherChauffeueChargeError {
+            get {
+                return ResourceManager.GetString("ChauffeurChargeIsAssociatedWithOtherChauffeueChargeError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chauffeur Charge with the same code already exists. Please choose a different code!.
         /// </summary>
         public static string CodeDuplicationError {

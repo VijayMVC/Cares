@@ -51,7 +51,7 @@ namespace Cares.Implementation
             unityContainer.RegisterType<IHireGroupService, HireGroupService>();
             unityContainer.RegisterType<IOrganizationGroupService, OrganizationGroupService>();
             unityContainer.RegisterType<IVehicleService, VehicleService>();
-            unityContainer.RegisterType<IInsuranceRateService, InsuranceRateService>();
+            unityContainer.RegisterType<InsuranceRateReportService, InsuranceRateReportService>();
             unityContainer.RegisterType<IServiceRtService, ServiceRtService>();
             unityContainer.RegisterType<IRentalCharge, RentalCharge>();
             unityContainer.RegisterType<IRaDriverHelper, RaDriverHelper>();

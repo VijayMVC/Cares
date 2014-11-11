@@ -114,7 +114,12 @@ namespace Cares.Implementation.Services
         /// </summary>
         public void DeleteServiceRate(long serviceRtMainId)
         {
-            serviceRtMainRepository.Delete(serviceRtMainRepository.Find(serviceRtMainId));
+            ServiceRtMain serviceRtMain = serviceRtMainRepository.Find(serviceRtMainId);
+            if (serviceRtMain != null && serviceRtMain.ServiceRts.Count > 0)
+            {
+                throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.ServiceRate.ServiceRateIsAssociatedWithOtherServiceRatesError));
+            }
+            serviceRtMainRepository.Delete(serviceRtMain);
             serviceRtMainRepository.SaveChanges();
         }
 

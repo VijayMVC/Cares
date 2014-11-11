@@ -29,7 +29,7 @@ namespace Cares.Web.ModelMappers
             return new BpRatingType
             {
                 BpRatingTypeId = source.BpRatingTypeId,
-                BpRatingTypeCode = source.BpRatingTypeCode,
+                BpRatingTypeCode = source.BpRatingTypeCode.Trim(),
                 BpRatingTypeName = source.BpRatingTypeName,
                 BpRatingTypeDescription = source.BpRatingTypeDescription
             };

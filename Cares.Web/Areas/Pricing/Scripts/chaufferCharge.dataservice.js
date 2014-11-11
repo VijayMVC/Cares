@@ -40,6 +40,7 @@ define("chaufferCharge/chaufferCharge.dataservice", function () {
                     amplify.request.define('deleteChaufferCharge', 'ajax', {
                         url: ist.siteUrl + '/Api/ChaufferCharge',
                         dataType: 'json',
+                        decoder: amplify.request.decoders.istStatusDecoder,
                         type: 'DELETE'
                     });
                     isInitialized = true;
