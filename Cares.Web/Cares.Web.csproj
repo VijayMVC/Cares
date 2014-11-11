@@ -800,6 +800,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FleetDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reports\GrossSalesDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GrossSalesDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\GrossSalesReport.aspx.cs">
+      <DependentUpon>GrossSalesReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\GrossSalesReport.aspx.designer.cs">
+      <DependentUpon>GrossSalesReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\InsuranceRateDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2144,6 +2156,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Reports\DailyActionReport.aspx" />
+    <Content Include="Reports\GrossSalesReport.aspx" />
     <Content Include="Reports\InsuranceRateReport.aspx" />
     <Content Include="Reports\MissingHireGroupReport.aspx" />
     <Content Include="Reports\RentalAgreementReport.aspx" />
@@ -2681,6 +2694,17 @@
     <Content Include="Reports\InsuranceRateDS.xsc">
       <DependentUpon>InsuranceRateDS.xsd</DependentUpon>
     </Content>
+    <Content Include="Reports\GrossSalesDS.xsc">
+      <DependentUpon>GrossSalesDS.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\GrossSalesDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GrossSalesDS.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reports\GrossSalesDS.xss">
+      <DependentUpon>GrossSalesDS.xsd</DependentUpon>
+    </Content>
     <None Include="Reports\InsuranceRateDS.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -2950,6 +2974,7 @@
     <EmbeddedResource Include="Reports\RDLC\MissingHireGroup.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DailyAction.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\RentalAgreement.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\GrossSalesReport.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\StandardRate.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\InsuranceRate.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\Vehicle.rdlc" />
