@@ -3,6 +3,8 @@ var ist = {
     datePattern: "DD/MM/YY",
     shortDatePattern: "dd-M-yy",
     customShortDatePattern: "dd-mm-yy",
+    customShortDateWithFullYearPattern: "dd-mm-yyyy",
+    customLongDateWithFullYearPattern: "DD-MM-YYYY",
     timePattern: "HH:mm",
     hourPattern: "HH",
     minutePattern: "mm",
@@ -195,6 +197,35 @@ require(["ko", "knockout-validation"], function (ko) {
                     $(element).removeClass('errorFill');
                 }
             }
+        }
+    };
+
+    // jquery calendars picker binding. Usage: <input data-bind="calendarspicker: myDate, calendarspickerOptions: { instance: 'islamic' }" />. Source: Keith Wood
+    ko.bindingHandlers.calendarspicker = {
+        init: function (element, valueAccessor, allBindingsAccessor) {
+            //initialize datepicker with some optional options
+            // ReSharper disable DuplicatingLocalDeclaration
+            var options = allBindingsAccessor().calendarspickerOptions || {};
+            var calendar = $.calendars.instance(options.instance || 'islamic');
+            // ReSharper restore DuplicatingLocalDeclaration
+            $(element).calendarsPicker({
+                calendar: calendar,
+                dateFormat: ist.customShortDateWithFullYearPattern,
+                onSelect: function() {
+                    var observable = valueAccessor();
+                    observable($(this).val());
+                }
+            });
+
+            //handle disposal (if KO removes by the template binding)
+            ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
+                $(element).datepicker("destroy");
+            });
+
+        },
+        update: function (element, valueAccessor) {
+            var value = ko.utils.unwrapObservable(valueAccessor());
+            $(element).val(value);
         }
     };
 
@@ -441,6 +472,16 @@ modelYearsGlobal = [{ Id: 2001, Text: '2001' },
     { Id: 2006, Text: '2006' },
     { Id: 2007, Text: '2007' }
 ];
+
+// Date Conversion - e.g. Hijri to Gregorain
+// Used IN Rental Agreement
+function ConvertDates(dateTobeChanged, fromCalender, toCalender) {
+    var calender = $.calendars.instance(fromCalender);
+    var dateToBeChanged = calender.parseDate(ist.customShortDateWithFullYearPattern, dateTobeChanged);
+    calender = $.calendars.instance(toCalender);
+    var changedDate = calender.fromJD(dateToBeChanged.toJD());
+    return calender.formatDate(ist.customShortDateWithFullYearPattern, changedDate);
+}
 
 $(function() {
     // Fix for bootstrap popovers, sometimes they are left in the DOM when they shouldn't be.

@@ -1706,6 +1706,7 @@
     <Content Include="Content\BusinessSegment.min.css">
       <DependentUpon>BusinessSegment.css</DependentUpon>
     </Content>
+    <Content Include="Content\Calendar\jquery.calendars.picker.css" />
     <Content Include="Content\City.css">
       <DependentUpon>City.less</DependentUpon>
     </Content>
@@ -2761,6 +2762,16 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\button.js" />
+    <Content Include="Scripts\Calendar\jquery.calendars.islamic.js" />
+    <Content Include="Scripts\Calendar\jquery.calendars.islamic.min.js" />
+    <Content Include="Scripts\Calendar\jquery.calendars.js" />
+    <Content Include="Scripts\Calendar\jquery.calendars.min.js" />
+    <Content Include="Scripts\Calendar\jquery.calendars.picker.js" />
+    <Content Include="Scripts\Calendar\jquery.calendars.picker.min.js" />
+    <Content Include="Scripts\Calendar\jquery.calendars.plus.js" />
+    <Content Include="Scripts\Calendar\jquery.calendars.plus.min.js" />
+    <Content Include="Scripts\Calendar\jquery.plugin.js" />
+    <Content Include="Scripts\Calendar\jquery.plugin.min.js" />
     <Content Include="Scripts\carousel-rtl.js" />
     <Content Include="Scripts\collapse.js" />
     <Content Include="Scripts\jquery-ui-1.11.0.min.js" />

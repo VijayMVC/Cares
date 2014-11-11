@@ -774,11 +774,84 @@
                 }
             }),
             // Nic Expiry
-            nicExpiry = ko.observable(specifiedNicExpiry ? moment(specifiedNicExpiry).toDate() : undefined),
+            internalNicExpiry = ko.observable(specifiedNicExpiry ? moment(specifiedNicExpiry).toDate() : undefined),
+            // Nic Expiry
+            nicExpiry = ko.computed({
+                read: function () {
+                    return internalNicExpiry();
+                },
+                write: function (value) {
+                    if (!value || internalNicExpiry() === value) {
+                        return;
+                    }
+
+                    internalNicExpiry(value);
+                    if (callbacks && callbacks.OnNicExpiryChanged && typeof callbacks.OnNicExpiryChanged === "function" && businessPartner.isIndividual()) {
+                        callbacks.OnNicExpiryChanged(value);
+                    }
+                }
+            }),
+            // Internal Nic Expiry Hijri
+            internalNicExpiryHijri = ko.observable(specifiedNicExpiry ? ConvertDates(moment(specifiedNicExpiry).format(ist.customLongDateWithFullYearPattern),
+            'gregorian', 'islamic') : undefined),
+            // Nic Expiry Hijri
+            nicExpiryHijri = ko.computed({
+                read: function () {
+                    return internalNicExpiryHijri();
+                },
+                write: function (value) {
+                    if (!value || internalNicExpiryHijri() === value) {
+                        return;
+                    }
+
+                    internalNicExpiryHijri(value);
+                    if (callbacks && callbacks.OnNicExpiryHijriChanged && typeof callbacks.OnNicExpiryHijriChanged === "function" && businessPartner.isIndividual()) {
+                        callbacks.OnNicExpiryHijriChanged(value);
+                    }
+                }
+            }),
             // Passport Expiry
             passportExpiry = ko.observable(specifiedPassportExpiry ? moment(specifiedPassportExpiry).toDate() : undefined),
+            // Internal Passport Expiry Hijri
+            internalPassportExpiryHijri = ko.observable(specifiedPassportExpiry ? ConvertDates(moment(specifiedPassportExpiry).format(ist.customLongDateWithFullYearPattern),
+            'gregorian', 'islamic') : undefined),
+            // Passport Expiry Hijri
+            passportExpiryHijri = ko.computed({
+                read: function () {
+                    return internalPassportExpiryHijri();
+                },
+                write: function (value) {
+                    if (!value || internalPassportExpiryHijri() === value) {
+                        return;
+                    }
+
+                    internalPassportExpiryHijri(value);
+                    if (callbacks && callbacks.OnPassportExpiryHijriChanged && typeof callbacks.OnPassportExpiryHijriChanged === "function" && businessPartner.isIndividual()) {
+                        callbacks.OnPassportExpiryHijriChanged(value);
+                    }
+                }
+            }),
             // License Expiry
             licenseExpiry = ko.observable(specifiedLicenseExpiry ? moment(specifiedLicenseExpiry).toDate() : undefined),
+            // Internal Nic Expiry Hijri
+            internalLicenseExpiryHijri = ko.observable(specifiedLicenseExpiry ? ConvertDates(moment(specifiedLicenseExpiry).format(ist.customLongDateWithFullYearPattern),
+            'gregorian', 'islamic') : undefined),
+            // License Expiry Hijri
+            licenseExpiryHijri = ko.computed({
+                read: function () {
+                    return internalLicenseExpiryHijri();
+                },
+                write: function (value) {
+                    if (!value || internalLicenseExpiryHijri() === value) {
+                        return;
+                    }
+
+                    internalLicenseExpiryHijri(value);
+                    if (callbacks && callbacks.OnLicenseExpiryHijriChanged && typeof callbacks.OnLicenseExpiryHijriChanged === "function" && businessPartner.isIndividual()) {
+                        callbacks.OnLicenseExpiryHijriChanged(value);
+                    }
+                }
+            }),
             // Nic Number - Private
             internalNicNo = ko.observable(specifiedNicNumber || undefined),
             // Nic Number
@@ -876,8 +949,11 @@
             lastName: lastName,
             dateOfBirth: dateOfBirth,
             nicExpiry: nicExpiry,
+            nicExpiryHijri: nicExpiryHijri,
             passportExpiry: passportExpiry,
             licenseExpiry: licenseExpiry,
+            passportExpiryHijri: passportExpiryHijri,
+            licenseExpiryHijri: licenseExpiryHijri,
             nicNo: nicNo,
             passportNo: passportNo,
             licenseNo: licenseNo,

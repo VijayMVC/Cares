@@ -357,30 +357,39 @@
                             </div>
                             <div class="form-group">
                                 <label for="customerNic" class="control-label col-sm-2">NIC</label>
-                                <div class="col-md-5">
+                                <div class="col-md-3">
                                     <input type="text" class="form-control" placeholder="<NIC No.>" id="customerNic" data-bind="value: nicNo, enable: !$root.rentalAgreement().id()" />
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="text" class="form-control" placeholder="<NIC Expiry>" id="customerNicExpiry" data-bind="datepicker: nicExpiry, enable: !$root.rentalAgreement().id()" />
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" placeholder="<NIC Expiry HG>" id="customerNicExpiryHijri" data-bind="calendarspicker: nicExpiryHijri, calendarspickerOptions: { instance: 'islamic' }" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="customerPassport" class="control-label col-sm-2">Passport</label>
-                                <div class="col-md-5">
+                                <div class="col-md-3">
                                     <input type="text" class="form-control" placeholder="<Passport No.>" id="customerPassport" data-bind="value: passportNo, enable: !$root.rentalAgreement().id()" />
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="text" class="form-control" placeholder="<Passport Expiry>" id="customerPassportExpiry" data-bind="datepicker: passportExpiry, enable: !$root.rentalAgreement().id()" />
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" placeholder="<Passport Expiry HG>" id="customerPassportExpiryHijri" data-bind="calendarspicker: passportExpiryHijri, calendarspickerOptions: { instance: 'islamic' }" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="customerLicense" class="control-label col-sm-2">License</label>
 
-                                <div class="col-md-5">
+                                <div class="col-md-3">
                                     <input type="text" class="form-control" placeholder="<License No.>" id="customerLicense" data-bind="value: licenseNo, enable: !$root.rentalAgreement().id()" />
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="text" class="form-control" placeholder="<License Expiry>" id="customerLicenseExpiry" data-bind="datepicker: licenseExpiry, enable: !$root.rentalAgreement().id(), css: { 'errorFill': isLicenseExpired() }" />
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" placeholder="<License Expiry HG>" id="customerLicenseExpiryHijri" data-bind="calendarspicker: licenseExpiryHijri, calendarspickerOptions: { instance: 'islamic' }" />
                                 </div>
                             </div>
                             <div class="form-group">
