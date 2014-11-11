@@ -36,6 +36,13 @@ namespace IdentitySample.Controllers
         private void SetUserPermissions(string userEmail)
         {
             User userResult = UserManager.FindByEmail(userEmail);
+
+            // If Invalid Attempt
+            if (userResult == null)
+            {
+                return;
+            }
+
             IList<UserRole> aspUserroles = userResult.Roles.ToList();
             
             // If No role assigned
@@ -112,6 +119,7 @@ namespace IdentitySample.Controllers
             // To enable password failures to trigger lockout, change to shouldLockout: true
 
             var user = await UserManager.FindByNameAsync(model.Email);
+            
             if (user != null)
             {
                 if (!await UserManager.IsEmailConfirmedAsync(user.Id))

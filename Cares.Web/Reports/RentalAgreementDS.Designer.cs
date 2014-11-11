@@ -2085,9 +2085,9 @@ namespace Cares.Web.Reports {
             
             private global::System.Data.DataColumn columnChargedMinute;
             
-            private global::System.Data.DataColumn columnEndDtTime;
+            private global::System.Data.DataColumn columnEndDtTimeForReport;
             
-            private global::System.Data.DataColumn columnStartDtTime;
+            private global::System.Data.DataColumn columnStartDtTimeForReport;
             
             private global::System.Data.DataColumn columnRate;
             
@@ -2170,17 +2170,17 @@ namespace Cares.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn EndDtTimeColumn {
+            public global::System.Data.DataColumn EndDtTimeForReportColumn {
                 get {
-                    return this.columnEndDtTime;
+                    return this.columnEndDtTimeForReport;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn StartDtTimeColumn {
+            public global::System.Data.DataColumn StartDtTimeForReportColumn {
                 get {
-                    return this.columnStartDtTime;
+                    return this.columnStartDtTimeForReport;
                 }
             }
             
@@ -2245,7 +2245,7 @@ namespace Cares.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DriverInfoRow AddDriverInfoRow(string DriverName, string LiceneNo, string ChargedDay, string ChargedHour, string ChargedMinute, string EndDtTime, string StartDtTime, string Rate, string TotalCharge, string TariffType) {
+            public DriverInfoRow AddDriverInfoRow(string DriverName, string LiceneNo, string ChargedDay, string ChargedHour, string ChargedMinute, string EndDtTimeForReport, string StartDtTimeForReport, string Rate, string TotalCharge, string TariffType) {
                 DriverInfoRow rowDriverInfoRow = ((DriverInfoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         DriverName,
@@ -2253,8 +2253,8 @@ namespace Cares.Web.Reports {
                         ChargedDay,
                         ChargedHour,
                         ChargedMinute,
-                        EndDtTime,
-                        StartDtTime,
+                        EndDtTimeForReport,
+                        StartDtTimeForReport,
                         Rate,
                         TotalCharge,
                         TariffType};
@@ -2285,8 +2285,8 @@ namespace Cares.Web.Reports {
                 this.columnChargedDay = base.Columns["ChargedDay"];
                 this.columnChargedHour = base.Columns["ChargedHour"];
                 this.columnChargedMinute = base.Columns["ChargedMinute"];
-                this.columnEndDtTime = base.Columns["EndDtTime"];
-                this.columnStartDtTime = base.Columns["StartDtTime"];
+                this.columnEndDtTimeForReport = base.Columns["EndDtTimeForReport"];
+                this.columnStartDtTimeForReport = base.Columns["StartDtTimeForReport"];
                 this.columnRate = base.Columns["Rate"];
                 this.columnTotalCharge = base.Columns["TotalCharge"];
                 this.columnTariffType = base.Columns["TariffType"];
@@ -2305,10 +2305,10 @@ namespace Cares.Web.Reports {
                 base.Columns.Add(this.columnChargedHour);
                 this.columnChargedMinute = new global::System.Data.DataColumn("ChargedMinute", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnChargedMinute);
-                this.columnEndDtTime = new global::System.Data.DataColumn("EndDtTime", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEndDtTime);
-                this.columnStartDtTime = new global::System.Data.DataColumn("StartDtTime", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnStartDtTime);
+                this.columnEndDtTimeForReport = new global::System.Data.DataColumn("EndDtTimeForReport", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEndDtTimeForReport);
+                this.columnStartDtTimeForReport = new global::System.Data.DataColumn("StartDtTimeForReport", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStartDtTimeForReport);
                 this.columnRate = new global::System.Data.DataColumn("Rate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRate);
                 this.columnTotalCharge = new global::System.Data.DataColumn("TotalCharge", typeof(string), null, global::System.Data.MappingType.Element);
@@ -3120,9 +3120,9 @@ namespace Cares.Web.Reports {
             
             private global::System.Data.DataColumn columnInsuranceTypeCodeName;
             
-            private global::System.Data.DataColumn columnStartDtTime;
+            private global::System.Data.DataColumn columnStartDtTimeForReport;
             
-            private global::System.Data.DataColumn columnEndDtTime;
+            private global::System.Data.DataColumn columnEndDtTimeForReport;
             
             private global::System.Data.DataColumn columnTariffType;
             
@@ -3201,17 +3201,17 @@ namespace Cares.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn StartDtTimeColumn {
+            public global::System.Data.DataColumn StartDtTimeForReportColumn {
                 get {
-                    return this.columnStartDtTime;
+                    return this.columnStartDtTimeForReport;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn EndDtTimeColumn {
+            public global::System.Data.DataColumn EndDtTimeForReportColumn {
                 get {
-                    return this.columnEndDtTime;
+                    return this.columnEndDtTimeForReport;
                 }
             }
             
@@ -3260,7 +3260,7 @@ namespace Cares.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public InsuranceInfosRow AddInsuranceInfosRow(string ChargedDay, string ChargedHour, string ChargedMinute, string InsuranceRate, string InsuranceTypeCodeName, string StartDtTime, string EndDtTime, string TariffType) {
+            public InsuranceInfosRow AddInsuranceInfosRow(string ChargedDay, string ChargedHour, string ChargedMinute, string InsuranceRate, string InsuranceTypeCodeName, string StartDtTimeForReport, string EndDtTimeForReport, string TariffType) {
                 InsuranceInfosRow rowInsuranceInfosRow = ((InsuranceInfosRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ChargedDay,
@@ -3268,8 +3268,8 @@ namespace Cares.Web.Reports {
                         ChargedMinute,
                         InsuranceRate,
                         InsuranceTypeCodeName,
-                        StartDtTime,
-                        EndDtTime,
+                        StartDtTimeForReport,
+                        EndDtTimeForReport,
                         TariffType};
                 rowInsuranceInfosRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowInsuranceInfosRow);
@@ -3298,8 +3298,8 @@ namespace Cares.Web.Reports {
                 this.columnChargedMinute = base.Columns["ChargedMinute"];
                 this.columnInsuranceRate = base.Columns["InsuranceRate"];
                 this.columnInsuranceTypeCodeName = base.Columns["InsuranceTypeCodeName"];
-                this.columnStartDtTime = base.Columns["StartDtTime"];
-                this.columnEndDtTime = base.Columns["EndDtTime"];
+                this.columnStartDtTimeForReport = base.Columns["StartDtTimeForReport"];
+                this.columnEndDtTimeForReport = base.Columns["EndDtTimeForReport"];
                 this.columnTariffType = base.Columns["TariffType"];
             }
             
@@ -3316,10 +3316,10 @@ namespace Cares.Web.Reports {
                 base.Columns.Add(this.columnInsuranceRate);
                 this.columnInsuranceTypeCodeName = new global::System.Data.DataColumn("InsuranceTypeCodeName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnInsuranceTypeCodeName);
-                this.columnStartDtTime = new global::System.Data.DataColumn("StartDtTime", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnStartDtTime);
-                this.columnEndDtTime = new global::System.Data.DataColumn("EndDtTime", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEndDtTime);
+                this.columnStartDtTimeForReport = new global::System.Data.DataColumn("StartDtTimeForReport", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStartDtTimeForReport);
+                this.columnEndDtTimeForReport = new global::System.Data.DataColumn("EndDtTimeForReport", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEndDtTimeForReport);
                 this.columnTariffType = new global::System.Data.DataColumn("TariffType", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTariffType);
             }
@@ -5277,33 +5277,33 @@ namespace Cares.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string EndDtTime {
+            public string EndDtTimeForReport {
                 get {
                     try {
-                        return ((string)(this[this.tableDriverInfo.EndDtTimeColumn]));
+                        return ((string)(this[this.tableDriverInfo.EndDtTimeForReportColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'EndDtTime\' in table \'DriverInfo\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'EndDtTimeForReport\' in table \'DriverInfo\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDriverInfo.EndDtTimeColumn] = value;
+                    this[this.tableDriverInfo.EndDtTimeForReportColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string StartDtTime {
+            public string StartDtTimeForReport {
                 get {
                     try {
-                        return ((string)(this[this.tableDriverInfo.StartDtTimeColumn]));
+                        return ((string)(this[this.tableDriverInfo.StartDtTimeForReportColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'StartDtTime\' in table \'DriverInfo\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'StartDtTimeForReport\' in table \'DriverInfo\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDriverInfo.StartDtTimeColumn] = value;
+                    this[this.tableDriverInfo.StartDtTimeForReportColumn] = value;
                 }
             }
             
@@ -5417,26 +5417,26 @@ namespace Cares.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsEndDtTimeNull() {
-                return this.IsNull(this.tableDriverInfo.EndDtTimeColumn);
+            public bool IsEndDtTimeForReportNull() {
+                return this.IsNull(this.tableDriverInfo.EndDtTimeForReportColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetEndDtTimeNull() {
-                this[this.tableDriverInfo.EndDtTimeColumn] = global::System.Convert.DBNull;
+            public void SetEndDtTimeForReportNull() {
+                this[this.tableDriverInfo.EndDtTimeForReportColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsStartDtTimeNull() {
-                return this.IsNull(this.tableDriverInfo.StartDtTimeColumn);
+            public bool IsStartDtTimeForReportNull() {
+                return this.IsNull(this.tableDriverInfo.StartDtTimeForReportColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetStartDtTimeNull() {
-                this[this.tableDriverInfo.StartDtTimeColumn] = global::System.Convert.DBNull;
+            public void SetStartDtTimeForReportNull() {
+                this[this.tableDriverInfo.StartDtTimeForReportColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5998,33 +5998,33 @@ namespace Cares.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string StartDtTime {
+            public string StartDtTimeForReport {
                 get {
                     try {
-                        return ((string)(this[this.tableInsuranceInfos.StartDtTimeColumn]));
+                        return ((string)(this[this.tableInsuranceInfos.StartDtTimeForReportColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'StartDtTime\' in table \'InsuranceInfos\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'StartDtTimeForReport\' in table \'InsuranceInfos\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableInsuranceInfos.StartDtTimeColumn] = value;
+                    this[this.tableInsuranceInfos.StartDtTimeForReportColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string EndDtTime {
+            public string EndDtTimeForReport {
                 get {
                     try {
-                        return ((string)(this[this.tableInsuranceInfos.EndDtTimeColumn]));
+                        return ((string)(this[this.tableInsuranceInfos.EndDtTimeForReportColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'EndDtTime\' in table \'InsuranceInfos\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'EndDtTimeForReport\' in table \'InsuranceInfos\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableInsuranceInfos.EndDtTimeColumn] = value;
+                    this[this.tableInsuranceInfos.EndDtTimeForReportColumn] = value;
                 }
             }
             
@@ -6106,26 +6106,26 @@ namespace Cares.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsStartDtTimeNull() {
-                return this.IsNull(this.tableInsuranceInfos.StartDtTimeColumn);
+            public bool IsStartDtTimeForReportNull() {
+                return this.IsNull(this.tableInsuranceInfos.StartDtTimeForReportColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetStartDtTimeNull() {
-                this[this.tableInsuranceInfos.StartDtTimeColumn] = global::System.Convert.DBNull;
+            public void SetStartDtTimeForReportNull() {
+                this[this.tableInsuranceInfos.StartDtTimeForReportColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsEndDtTimeNull() {
-                return this.IsNull(this.tableInsuranceInfos.EndDtTimeColumn);
+            public bool IsEndDtTimeForReportNull() {
+                return this.IsNull(this.tableInsuranceInfos.EndDtTimeForReportColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetEndDtTimeNull() {
-                this[this.tableInsuranceInfos.EndDtTimeColumn] = global::System.Convert.DBNull;
+            public void SetEndDtTimeForReportNull() {
+                this[this.tableInsuranceInfos.EndDtTimeForReportColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

@@ -40,6 +40,11 @@ namespace Cares.Web.Models
         /// </summary>
         public IEnumerable<PaymentModeDropDown> PaymentModes { get; set; }
 
+        /// <summary>
+        /// Default Setting
+        /// </summary>
+        public DefaultSetting DefaultSetting { get; set; }
+
         #endregion
 
     }

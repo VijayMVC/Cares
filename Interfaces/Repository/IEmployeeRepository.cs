@@ -31,5 +31,10 @@ namespace Cares.Interfaces.Repository
         /// </summary>
         IEnumerable<Employee> GetAllChauffers(GetRaChaufferRequest request);
 
+        /// <summary>
+        /// Get Currently Logged In Employee
+        /// </summary>
+        Employee GetEmployee();
+
     }
 }

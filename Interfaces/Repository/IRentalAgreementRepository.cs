@@ -25,7 +25,7 @@ namespace Cares.Interfaces.Repository
         /// <summary>
         /// Daily Action Detail Report
         /// </summary>        
-        IList<DailyActionReportResponse> GetDailyActionReport();
+        IQueryable<RaHireGroup> GetDailyActionReport();
 
 
     }

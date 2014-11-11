@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.Http;
 using Cares.Interfaces.IServices;
 using Cares.Web.ModelMappers;
+using Cares.WebBase.Mvc;
 using RaMain = Cares.Web.Models.RaMain;
 
 namespace Cares.Web.Areas.Api.Controllers
@@ -42,6 +43,7 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Calculates Bill
         /// </summary>
+        [ApiException]
         public RaMain Post(RaMain request)
         {
             if (request == null)

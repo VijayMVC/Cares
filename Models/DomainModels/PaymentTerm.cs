@@ -61,11 +61,7 @@ namespace Cares.Models.DomainModels
         /// Record Last Updated By
         /// </summary>
         public string RecLastUpdatedBy { get; set; }
-        /// <summary>
-        /// User Domain Key
-        /// </summary>
-        public long UserDomainKey { get; set; }
-
+        
         /// <summary>
         /// Row Version
         /// </summary>

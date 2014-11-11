@@ -12,7 +12,7 @@
   <xs:element name="DailyAction" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DailyAction" msprop:Generator_UserDSName="DailyAction">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="DailyAction" msprop:Generator_TableClassName="DailyActionDataTable" msprop:Generator_TableVarName="tableDailyAction" msprop:Generator_TablePropName="_DailyAction" msprop:Generator_RowDeletingName="DailyActionRowDeleting" msprop:Generator_RowChangingName="DailyActionRowChanging" msprop:Generator_RowEvHandlerName="DailyActionRowChangeEventHandler" msprop:Generator_RowDeletedName="DailyActionRowDeleted" msprop:Generator_UserTableName="DailyAction" msprop:Generator_RowChangedName="DailyActionRowChanged" msprop:Generator_RowEvArgName="DailyActionRowChangeEvent" msprop:Generator_RowClassName="DailyActionRow">
+        <xs:element name="DailyAction" msprop:Generator_TableClassName="DailyActionDataTable" msprop:Generator_TableVarName="tableDailyAction" msprop:Generator_RowChangedName="DailyActionRowChanged" msprop:Generator_TablePropName="_DailyAction" msprop:Generator_RowDeletingName="DailyActionRowDeleting" msprop:Generator_RowChangingName="DailyActionRowChanging" msprop:Generator_RowEvHandlerName="DailyActionRowChangeEventHandler" msprop:Generator_RowDeletedName="DailyActionRowDeleted" msprop:Generator_RowClassName="DailyActionRow" msprop:Generator_UserTableName="DailyAction" msprop:Generator_RowEvArgName="DailyActionRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="RaNumber" msprop:Generator_ColumnVarNameInTable="columnRaNumber" msprop:Generator_ColumnPropNameInRow="RaNumber" msprop:Generator_ColumnPropNameInTable="RaNumberColumn" msprop:Generator_UserColumnName="RaNumber" type="xs:string" minOccurs="0" />
@@ -36,6 +36,7 @@
               <xs:element name="ODTD" msprop:Generator_ColumnVarNameInTable="columnODTD" msprop:Generator_ColumnPropNameInRow="ODTD" msprop:Generator_ColumnPropNameInTable="ODTDColumn" msprop:Generator_UserColumnName="ODTD" type="xs:string" minOccurs="0" />
               <xs:element name="ORTD" msprop:Generator_ColumnVarNameInTable="columnORTD" msprop:Generator_ColumnPropNameInRow="ORTD" msprop:Generator_ColumnPropNameInTable="ORTDColumn" msprop:Generator_UserColumnName="ORTD" type="xs:string" minOccurs="0" />
               <xs:element name="EDTR" msprop:Generator_ColumnVarNameInTable="columnEDTR" msprop:Generator_ColumnPropNameInRow="EDTR" msprop:Generator_ColumnPropNameInTable="EDTRColumn" msprop:Generator_UserColumnName="EDTR" type="xs:string" minOccurs="0" />
+              <xs:element name="OfficePhone" msprop:Generator_ColumnVarNameInTable="columnOfficePhone" msprop:Generator_ColumnPropNameInRow="OfficePhone" msprop:Generator_ColumnPropNameInTable="OfficePhoneColumn" msprop:Generator_UserColumnName="OfficePhone" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

@@ -119,6 +119,7 @@
     <Compile Include="Repository\IMenuRepository.cs" />
     <Compile Include="Repository\IPaymentModeRepositor.cs" />
     <Compile Include="Repository\IBookingMainRepository.cs" />
+    <Compile Include="Repository\IDefaultSettingRepository.cs" />
     <Compile Include="Repository\IRentalAgreementRepository.cs" />
     <Compile Include="Repository\IBusinessPartnerMainTypeRepository.cs" />
     <Compile Include="Repository\IChaufferReservationRepository.cs" />

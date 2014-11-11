@@ -321,6 +321,8 @@ namespace Cares.Web.Reports {
             
             private global::System.Data.DataColumn columnEDTR;
             
+            private global::System.Data.DataColumn columnOfficePhone;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public DailyActionDataTable() {
@@ -524,6 +526,14 @@ namespace Cares.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn OfficePhoneColumn {
+                get {
+                    return this.columnOfficePhone;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -580,7 +590,8 @@ namespace Cares.Web.Reports {
                         string InDate, 
                         string ODTD, 
                         string ORTD, 
-                        string EDTR) {
+                        string EDTR, 
+                        string OfficePhone) {
                 DailyActionRow rowDailyActionRow = ((DailyActionRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         RaNumber,
@@ -603,7 +614,8 @@ namespace Cares.Web.Reports {
                         InDate,
                         ODTD,
                         ORTD,
-                        EDTR};
+                        EDTR,
+                        OfficePhone};
                 rowDailyActionRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDailyActionRow);
                 return rowDailyActionRow;
@@ -647,6 +659,7 @@ namespace Cares.Web.Reports {
                 this.columnODTD = base.Columns["ODTD"];
                 this.columnORTD = base.Columns["ORTD"];
                 this.columnEDTR = base.Columns["EDTR"];
+                this.columnOfficePhone = base.Columns["OfficePhone"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -694,6 +707,8 @@ namespace Cares.Web.Reports {
                 base.Columns.Add(this.columnORTD);
                 this.columnEDTR = new global::System.Data.DataColumn("EDTR", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEDTR);
+                this.columnOfficePhone = new global::System.Data.DataColumn("OfficePhone", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOfficePhone);
                 this.ExtendedProperties.Add("Generator_TablePropName", "_DailyAction");
                 this.ExtendedProperties.Add("Generator_UserTableName", "DailyAction");
             }
@@ -1174,6 +1189,22 @@ namespace Cares.Web.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string OfficePhone {
+                get {
+                    try {
+                        return ((string)(this[this.tableDailyAction.OfficePhoneColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OfficePhone\' in table \'DailyAction\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDailyAction.OfficePhoneColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsRaNumberNull() {
                 return this.IsNull(this.tableDailyAction.RaNumberColumn);
             }
@@ -1422,6 +1453,18 @@ namespace Cares.Web.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetEDTRNull() {
                 this[this.tableDailyAction.EDTRColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsOfficePhoneNull() {
+                return this.IsNull(this.tableDailyAction.OfficePhoneColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetOfficePhoneNull() {
+                this[this.tableDailyAction.OfficePhoneColumn] = global::System.Convert.DBNull;
             }
         }
         

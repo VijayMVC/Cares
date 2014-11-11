@@ -6,67 +6,67 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>0.28308in</Width>
+              <Width>0.27217in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.53681in</Width>
+              <Width>0.5259in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.73261in</Width>
+              <Width>0.7217in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.72183in</Width>
+              <Width>0.7005in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.47755in</Width>
+              <Width>0.46664in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.37807in</Width>
+              <Width>0.36716in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.58518in</Width>
+              <Width>0.57427in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.73001in</Width>
+              <Width>0.7191in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.43834in</Width>
+              <Width>0.42743in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.62872in</Width>
+              <Width>0.58656in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.46143in</Width>
+              <Width>0.4401in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.451in</Width>
+              <Width>0.44009in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.50308in</Width>
+              <Width>0.46092in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.58641in</Width>
+              <Width>0.52341in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.49267in</Width>
+              <Width>0.48176in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.66975in</Width>
+              <Width>0.64842in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.48225in</Width>
+              <Width>0.69011in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.50308in</Width>
+              <Width>0.64842in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.39891in</Width>
+              <Width>0.388in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.43017in</Width>
+              <Width>0.41926in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.38403in</Width>
+              <Width>0.37312in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -1823,6 +1823,7 @@ iif(Fields!InDate.Value &gt; Globals!ExecutionTime,Cint(DateDiff("D", Globals!Ex
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox17</rd:DefaultName>
+          <Top>0in</Top>
           <Left>0.02307in</Left>
           <Height>0.2in</Height>
           <Width>1.99877in</Width>
@@ -1869,6 +1870,7 @@ iif(Fields!InDate.Value &gt; Globals!ExecutionTime,Cint(DateDiff("D", Globals!Ex
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox18</rd:DefaultName>
+          <Top>0in</Top>
           <Left>4.30655in</Left>
           <Height>0.2in</Height>
           <Width>2.27083in</Width>
@@ -1916,6 +1918,7 @@ iif(Fields!InDate.Value &gt; Globals!ExecutionTime,Cint(DateDiff("D", Globals!Ex
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox19</rd:DefaultName>
+          <Top>0in</Top>
           <Left>9.27083in</Left>
           <Height>0.2in</Height>
           <Width>1.125in</Width>
@@ -2055,6 +2058,10 @@ iif(Fields!InDate.Value &gt; Globals!ExecutionTime,Cint(DateDiff("D", Globals!Ex
         </Field>
         <Field Name="EDTR">
           <DataField>EDTR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OfficePhone">
+          <DataField>OfficePhone</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>

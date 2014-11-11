@@ -36,9 +36,18 @@ namespace Cares.Web.Models
         public DateTime StartDtTime { get; set; }
 
         /// <summary>
+        /// Start Datetime
+        /// </summary>
+        public string StartDtTimeForReport { get; set; }
+
+        /// <summary>
         /// End Datetime
         /// </summary>
         public DateTime EndDtTime { get; set; }
+        /// <summary>
+        /// End Datetime
+        /// </summary>
+        public string EndDtTimeForReport { get; set; }
 
         /// <summary>
         /// Insurance Rate
