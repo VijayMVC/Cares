@@ -470,6 +470,7 @@
     <Compile Include="Models\RaMainForRaQueue.cs" />
     <Compile Include="Models\RaMainForRaQueueSearchResponse.cs" />
     <Compile Include="Models\GetRaVehicleCheckListRequest.cs" />
+    <Compile Include="Models\ReportModels\GrossSalesReportResponse.cs" />
     <Compile Include="Models\ReportModels\InsuranceRateReportResponse.cs" />
     <Compile Include="Models\ReportModels\RaAdditionaItemInfo.cs" />
     <Compile Include="Models\MenuRight.cs" />
@@ -2658,6 +2659,7 @@
     <Content Include="Areas\Reports\Views\Report\MissingHireGroupReport.cshtml" />
     <Content Include="Areas\Reports\Views\Report\StandardRateReport.cshtml" />
     <Content Include="Areas\Reports\Views\Report\InsuranceRateReport.cshtml" />
+    <Content Include="Areas\Reports\Views\Report\GrossSalesReport.cshtml" />
     <None Include="Properties\PublishProfiles\cares.pubxml" />
     <Content Include="Areas\Reports\Views\Report\DailyActionReport.cshtml" />
     <Content Include="Areas\Reports\Views\Report\RentalAgreementReport.cshtml" />
@@ -2971,10 +2973,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\RDLC\GrossSales.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\MissingHireGroup.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DailyAction.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\RentalAgreement.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\GrossSalesReport.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\StandardRate.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\InsuranceRate.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\Vehicle.rdlc" />

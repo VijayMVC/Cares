@@ -6,5 +6,5 @@
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <rsweb:ReportViewer ID="grossSalesReport" runat="server" Width="100%" Font-Names="Verdana" Font-Size="8pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Height="600px"></rsweb:ReportViewer>    
- <asp:ScriptManager ID="grossSalesScriptManager" runat="server" ></asp:ScriptManager>                       
+ <asp:ScriptManager ID="grossSalesReportScriptManager" runat="server" ></asp:ScriptManager>                       
 </asp:Content>

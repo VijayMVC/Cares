@@ -27,6 +27,11 @@ namespace Cares.Interfaces.Repository
         /// </summary>        
         IQueryable<RaHireGroup> GetDailyActionReport();
 
+        /// <summary>
+        /// GetGrossSalesReport Data
+        /// </summary>
+        IEnumerable<GrossSalesReportResponse> GetGrossSalesReport();
+
 
     }
 }

@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Cryptography;
 using Cares.Interfaces.Repository;
 using Cares.Models.Common;
 using Cares.Models.DomainModels;
@@ -101,6 +102,28 @@ namespace Cares.Repository.Repositories
         public IQueryable<RaHireGroup> GetDailyActionReport()
         {
             return db.RaHireGroups.Select(raHireGroup => raHireGroup);
+        }
+
+        /// <summary>
+        /// GetGrossSalesReport Data
+        /// </summary>
+        public IEnumerable<GrossSalesReportResponse> GetGrossSalesReport()
+        {            
+            var query =
+                from raMain in
+                    DbSet.Where(ramain => ramain.StartDtTime.Month.Equals(10) && ramain.RaStatus.RaStatusId == 2)
+                select new GrossSalesReportResponse
+                {
+                    CompanyCode = raMain.BusinessPartner.Company.CompanyCode + "-"+raMain.BusinessPartner.Company.CompanyName,
+                    DepartmentCode = raMain.Operation.Department.DepartmentCode,
+                    OperationCode = raMain.Operation.OperationCode,
+                    MonthName = raMain.StartDtTime.Month,
+                    Year = raMain.StartDtTime.Year,
+                    TotalSales = raMain.NetBillAfterDiscount,
+                    CollectedAmount = raMain.AmountPaid,
+                    UnCollectedAmount = raMain.NetBillAfterDiscount - raMain.AmountPaid
+                };
+            return query.OrderBy(ramain => ramain.CollectedAmount).ToList();
         }
         #endregion
     }
