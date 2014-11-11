@@ -212,6 +212,11 @@ namespace Cares.Implementation.Services
         /// <param name="chaufferChargeMainId"></param>
         public void DeleteAdditionalCharge(long chaufferChargeMainId)
         {
+            ChaufferChargeMain chaufferChargeMain = chaufferChargeMainRepository.Find(chaufferChargeMainId);
+            if (chaufferChargeMain != null && chaufferChargeMain.ChaufferCharges.Count > 0)
+            {
+                throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.ChaufferCharge.ChauffeurChargeIsAssociatedWithOtherChauffeueChargeError));
+            }
             chaufferChargeMainRepository.Delete(chaufferChargeMainRepository.Find(chaufferChargeMainId));
             chaufferChargeMainRepository.SaveChanges();
         }

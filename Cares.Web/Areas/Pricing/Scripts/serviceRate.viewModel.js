@@ -273,8 +273,13 @@ define("serviceRate/serviceRate.viewModel",
                                 serviceRtMains.remove(serviceRt);
                                 toastr.success(ist.resourceText.serviceRateDeleteSuccessMsg);
                             },
-                            error: function () {
-                                toastr.error(ist.resourceText.serviceRateDeleteFailedMsg);
+                            error: function (exceptionMessage, exceptionType) {
+
+                                if (exceptionType === ist.exceptionType.CaresGeneralException) {
+                                    toastr.error(exceptionMessage);
+                                } else {
+                                    toastr.error(ist.resourceText.serviceRateDeleteFailedMsg);
+                                }
                             }
                         });
                     },

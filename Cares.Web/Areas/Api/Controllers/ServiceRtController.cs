@@ -47,7 +47,7 @@ namespace Cares.Web.Areas.Api.Controllers
             }
             return serviceRtService.LoadServiceRates((request)).CreateFrom();
         }
-        
+
         /// <summary>
         /// Update/Update a Service Rate
         /// </summary>
@@ -65,6 +65,7 @@ namespace Cares.Web.Areas.Api.Controllers
         /// <summary>
         /// Delete a Insurance Rate
         /// </summary>
+        [ApiException]
         public void Delete(ServiceRtMainContent serviceRtMainContent)
         {
             if (serviceRtMainContent == null || !ModelState.IsValid)

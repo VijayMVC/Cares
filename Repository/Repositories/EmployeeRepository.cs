@@ -132,6 +132,13 @@ namespace Cares.Repository.Repositories
                                 chaufferRes.EndDtTime >= request.StartDtTime))).ToList();
         }
 
+        /// <summary>
+        /// Get Currently Logged In Employee
+        /// </summary>
+        public Employee GetEmployee()
+        {
+            return DbSet.FirstOrDefault(employee => employee.UserDomainKey == UserDomainKey);
+        }
 
         #endregion
     }

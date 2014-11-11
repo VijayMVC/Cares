@@ -568,6 +568,11 @@ namespace Cares.Repository.BaseRepository
         /// </summary>
         public DbSet<WebApiUser> WebApiUsers { get; set; }
 
+        /// <summary>
+        /// Default Settings
+        /// </summary>
+        public DbSet<DefaultSetting> DefaultSettings { get; set; }
+
         #endregion
     }
 }

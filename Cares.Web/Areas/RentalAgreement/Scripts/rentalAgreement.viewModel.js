@@ -71,6 +71,8 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     },
                     // Main RA
                     rentalAgreement = ko.observable(model.RentalAgreement.Create({}, rentalAgreementModelCallbacks)),
+                    // Currently Logged In User Default Settings
+                    employeeDefaultSettings = ko.observable(),
                     // #region Arrays
                     // Operations
                     operations = ko.observableArray([]),
@@ -474,6 +476,17 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                 });
                                 ko.utils.arrayPushAll(paymentModes(), paymentModeItems);
                                 paymentModes.valueHasMutated();
+
+                                // Default Settings if any
+                                if (data.DefaultSetting) {
+                                    employeeDefaultSettings(data.DefaultSetting);
+
+                                    // Set Default Settings For RA for Current Employee
+                                    rentalAgreement().operationId(employeeDefaultSettings().DefaultOperationId || undefined);
+                                    rentalAgreement().openLocation(employeeDefaultSettings().DefaultOperationWorkplaceId || undefined);
+                                    rentalAgreement().closeLocation(employeeDefaultSettings().DefaultOperationWorkplaceId || undefined);
+                                    rentalAgreement().paymentTermId(employeeDefaultSettings().DefaultPaymentTermId || undefined);
+                                }
 
                                 // Run Sammy
                                 app.run();
@@ -992,32 +1005,62 @@ define("rentalAgreement/rentalAgreement.viewModel",
                             toastr.error("Failed to load customer. Error: " + response);
                         }
                     },
+                    // Is Existing
+                    isExistingBusinessPartner = ko.observable(false),
+                    // Set Existing True
+                    setExistingTrue = function() {
+                        isExistingBusinessPartner(true);
+                    },
+                    // Set Existing False
+                    setExistingFalse = function() {
+                        isExistingBusinessPartner(false);
+                    },
                     // Get Customer By Customer No
                     getCustomerByNo = function (customerNo) {
+                        if (!isExistingBusinessPartner()) {
+                            return;
+                        }
+
                         dataservice.getCustomerByNo({
                             BusinessPartnerId: customerNo
                         }, getCustomerCallbackHandler);
                     },
                     // Get Customer By Nic No
                     getCustomerByNicNo = function (nicNo) {
+                        if (!isExistingBusinessPartner()) {
+                            return;
+                        }
+
                         dataservice.getCustomerByNicNo({
                             NicNo: nicNo
                         }, getCustomerCallbackHandler);
                     },
                     // Get Customer By Passport No
                     getCustomerByPassportNo = function (passportNo) {
+                        if (!isExistingBusinessPartner()) {
+                            return;
+                        }
+
                         dataservice.getCustomerByPassportNo({
                             PassportNo: passportNo
                         }, getCustomerCallbackHandler);
                     },
                     // Get Customer By License No
                     getCustomerByLicenseNo = function (licenseNo) {
+                        if (!isExistingBusinessPartner()) {
+                            return;
+                        }
+
                         dataservice.getCustomerByLicenseNo({
                             LicenseNo: licenseNo
                         }, getCustomerCallbackHandler);
                     },
                     // Get Customer By Phone No
                     getCustomerByPhoneNo = function (phoneNo, type) {
+                        if (!isExistingBusinessPartner()) {
+                            return;
+                        }
+
                         dataservice.getCustomerByPhoneNo({
                             PhoneNo: phoneNo,
                             PhoneType: type
@@ -1058,6 +1101,9 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     plateNumbers: plateNumbers,
                     canEditBooking: canEditBooking,
                     isValidVehicleDuration: isValidVehicleDuration,
+                    isExistingBusinessPartner: isExistingBusinessPartner,
+                    setExistingTrue: setExistingTrue,
+                    setExistingFalse: setExistingFalse,
                     // Observables
                     // Utility Methods
                     initialize: initialize,

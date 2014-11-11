@@ -126,7 +126,6 @@ namespace Cares.Repository.Repositories
                         from vs in db.VehicleStatuses.Where(vs => vs.VehicleStatusId == v.VehicleStatusId && vs.AvailabilityCheck)
                         join fleetPool in db.FleetPools on v.FleetPoolId equals fleetPool.FleetPoolId
                         from owp in db.OperationsWorkPlaces.Where(owp => owp.FleetPoolId == fleetPool.FleetPoolId && owp.OperationsWorkPlaceId == request.OperationsWorkPlaceId)
-                        where owp.OperationsWorkPlaceId == request.OperationsWorkPlaceId
                         join vr in db.VehicleReservations on v.VehicleId equals vr.VehicleId into vehicleGroup
                         from vg in vehicleGroup.Where(vg => !(vg.EndDtTime >= request.StartDtTime && vg.StartDtTime <= request.EndDtTime)).DefaultIfEmpty()
                         orderby hireGroup.HireGroupCode, hireGroup.HireGroupName

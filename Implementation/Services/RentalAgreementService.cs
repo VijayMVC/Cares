@@ -33,6 +33,8 @@ namespace Cares.Implementation.Services
         private readonly IPaymentModeRepository paymentModeRepository;
         private readonly IRaStatusRepository raStatusRepository;
         private readonly IBookingMainRepository bookingMainRepository;
+        private readonly IEmployeeRepository employeeRepository;
+        private readonly IDefaultSettingRepository defaultSettingRepository;
 
         /// <summary>
         /// Add Vehicle Movements
@@ -1639,7 +1641,7 @@ namespace Cares.Implementation.Services
             IVehicleStatusRepository vehicleStatusRepository, IAlloactionStatusRepository alloactionStatusRepository, IRentalAgreementRepository rentalAgreementRepository,
             IBusinessPartnerRepository businessPartnerRepository, IPhoneRepository businessPartnerPhoneRepository, IAddressRepository businessPartnerAddressRepository,
             IVehicleRepository vehicleRepository, IPaymentModeRepository paymentModeRepository, IRaStatusRepository raStatusRepository, 
-            IBookingMainRepository bookingMainRepository)
+            IBookingMainRepository bookingMainRepository, IEmployeeRepository employeeRepository, IDefaultSettingRepository defaultSettingRepository)
         {
             if (paymentTermRepository == null)
             {
@@ -1654,20 +1656,62 @@ namespace Cares.Implementation.Services
             {
                 throw new ArgumentNullException("operationsWorkPlaceRepository");
             }
-            if (tariffTypeRepository == null) throw new ArgumentNullException("tariffTypeRepository");
-            if (bill == null) throw new ArgumentNullException("bill");
-            if (vehicleStatusRepository == null) throw new ArgumentNullException("vehicleStatusRepository");
-            if (alloactionStatusRepository == null) throw new ArgumentNullException("alloactionStatusRepository");
-            if (rentalAgreementRepository == null) throw new ArgumentNullException("rentalAgreementRepository");
-            if (businessPartnerRepository == null) throw new ArgumentNullException("businessPartnerRepository");
+            if (tariffTypeRepository == null)
+            {
+                throw new ArgumentNullException("tariffTypeRepository");
+            }
+            if (bill == null)
+            {
+                throw new ArgumentNullException("bill");
+            }
+            if (vehicleStatusRepository == null)
+            {
+                throw new ArgumentNullException("vehicleStatusRepository");
+            }
+            if (alloactionStatusRepository == null)
+            {
+                throw new ArgumentNullException("alloactionStatusRepository");
+            }
+            if (rentalAgreementRepository == null)
+            {
+                throw new ArgumentNullException("rentalAgreementRepository");
+            }
+            if (businessPartnerRepository == null)
+            {
+                throw new ArgumentNullException("businessPartnerRepository");
+            }
             if (businessPartnerPhoneRepository == null)
+            {
                 throw new ArgumentNullException("businessPartnerPhoneRepository");
+            }
             if (businessPartnerAddressRepository == null)
+            {
                 throw new ArgumentNullException("businessPartnerAddressRepository");
-            if (vehicleRepository == null) throw new ArgumentNullException("vehicleRepository");
-            if (paymentModeRepository == null) throw new ArgumentNullException("paymentModeRepository");
-            if (raStatusRepository == null) throw new ArgumentNullException("raStatusRepository");
-            if (bookingMainRepository == null) throw new ArgumentNullException("bookingMainRepository");
+            }
+            if (vehicleRepository == null)
+            {
+                throw new ArgumentNullException("vehicleRepository");
+            }
+            if (paymentModeRepository == null)
+            {
+                throw new ArgumentNullException("paymentModeRepository");
+            }
+            if (raStatusRepository == null)
+            {
+                throw new ArgumentNullException("raStatusRepository");
+            }
+            if (bookingMainRepository == null)
+            {
+                throw new ArgumentNullException("bookingMainRepository");
+            }
+            if (employeeRepository == null)
+            {
+                throw new ArgumentNullException("employeeRepository");
+            }
+            if (defaultSettingRepository == null)
+            {
+                throw new ArgumentNullException("defaultSettingRepository");
+            }
 
             this.paymentTermRepository = paymentTermRepository;
             this.operationRepository = operationRepository;
@@ -1683,6 +1727,8 @@ namespace Cares.Implementation.Services
             this.paymentModeRepository = paymentModeRepository;
             this.raStatusRepository = raStatusRepository;
             this.bookingMainRepository = bookingMainRepository;
+            this.employeeRepository = employeeRepository;
+            this.defaultSettingRepository = defaultSettingRepository;
         }
 
         #endregion
@@ -1694,6 +1740,14 @@ namespace Cares.Implementation.Services
         /// </summary>
         public RentalAgreementBaseDataResponse GetBaseData()
         {
+            Employee employee = employeeRepository.GetEmployee();
+            DefaultSetting defaultSetting = null;
+            if (employee != null)
+            {
+                defaultSetting = defaultSettingRepository.GetForEmployee(employee.EmployeeId);    
+            }
+            
+
             return new RentalAgreementBaseDataResponse
             {
                 PaymentTerms = paymentTermRepository.GetAll(),
@@ -1701,7 +1755,8 @@ namespace Cares.Implementation.Services
                 OperationsWorkPlaces = operationsWorkPlaceRepository.GetSalesOperationsWorkPlace(),
                 AllocationStatuses = alloactionStatusRepository.GetAll(),
                 VehicleStatuses = vehicleStatusRepository.GetAll(),
-                PaymentModes = paymentModeRepository.GetAll()
+                PaymentModes = paymentModeRepository.GetAll(),
+                DefaultSetting = defaultSetting
             };
         }
 

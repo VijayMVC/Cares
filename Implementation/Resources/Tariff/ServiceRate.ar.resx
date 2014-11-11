@@ -132,4 +132,7 @@
   <data name="CodeDuplicationError" xml:space="preserve">
     <value>سعر الخدمة مع نفس الرمز موجود بالفعل. يرجى اختيار رمز مختلف!</value>
   </data>
+  <data name="ServiceRateIsAssociatedWithOtherServiceRatesError" xml:space="preserve">
+    <value>ويرتبط معدل مع خدمة أسعار الخدمات الأخرى.</value>
+  </data>
 </root>

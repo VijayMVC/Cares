@@ -126,6 +126,9 @@
   <data name="ChaufferChargeInvalidRangeEffectiveDate" xml:space="preserve">
     <value>Start Date for Chauffeur Charge Rate should be Greater or Equal to the Chauffer charge Policy Start Date.</value>
   </data>
+  <data name="ChauffeurChargeIsAssociatedWithOtherChauffeueChargeError" xml:space="preserve">
+    <value>Chauffeur Charge is associated with other chauffeur charges.</value>
+  </data>
   <data name="CodeDuplicationError" xml:space="preserve">
     <value>Chauffeur Charge with the same code already exists. Please choose a different code!</value>
   </data>

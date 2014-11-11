@@ -173,6 +173,7 @@
     <Compile Include="Repositories\MenuRepository.cs" />
     <Compile Include="Repositories\PaymentModeRepository.cs" />
     <Compile Include="Repositories\BookingMainRepository.cs" />
+    <Compile Include="Repositories\DefaultSettingRepository.cs" />
     <Compile Include="Repositories\RentalAgreementRepository.cs" />
     <Compile Include="Repositories\BusinessPartnerMainTypeRepository.cs" />
     <Compile Include="Repositories\ChaufferChargeRepository.cs" />

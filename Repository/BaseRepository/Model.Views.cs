@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets589C19E519320C5CD01C1035DC12ED5405100B6508794D305C72F777E4BE9DD1))]
+[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySetsC6BA4A178F90DB6A48595BCE46AB8423B144D0F54A5B0D20F61EE1DE16A673F9))]
 
 namespace Edm_EntityMappingGeneratedViews
 {
@@ -17,19 +17,19 @@ namespace Edm_EntityMappingGeneratedViews
     /// <Summary>
     /// The type contains views for EntitySets and AssociationSets that were generated at design time.
     /// </Summary>
-    public sealed class ViewsForBaseEntitySets589C19E519320C5CD01C1035DC12ED5405100B6508794D305C72F777E4BE9DD1 : System.Data.Mapping.EntityViewContainer
+    public sealed class ViewsForBaseEntitySetsC6BA4A178F90DB6A48595BCE46AB8423B144D0F54A5B0D20F61EE1DE16A673F9 : System.Data.Mapping.EntityViewContainer
     {
         
         /// <Summary>
         /// The constructor stores the views for the extents and also the hash values generated based on the metadata and mapping closure and views.
         /// </Summary>
-        public ViewsForBaseEntitySets589C19E519320C5CD01C1035DC12ED5405100B6508794D305C72F777E4BE9DD1()
+        public ViewsForBaseEntitySetsC6BA4A178F90DB6A48595BCE46AB8423B144D0F54A5B0D20F61EE1DE16A673F9()
         {
             this.EdmEntityContainerName = "BaseDbContext";
             this.StoreEntityContainerName = "CaresModelStoreContainer";
-            this.HashOverMappingClosure = "3a96e12974300b30b4fcc6a9245eb720e371609a2685bd65597f90bd64897b3c";
-            this.HashOverAllExtentViews = "afcbb0e6dfd8498b2acd9d22a5a5e459a5487a0d2c230ebf6af2cd8e3f7c34fe";
-            this.ViewCount = 270;
+            this.HashOverMappingClosure = "50ec96c1603c251e24abd93de8a67b075f2ce04ba827a71667dd079a0808b7fb";
+            this.HashOverAllExtentViews = "897f5fb11de98b0159018c4dae4fe8d1c6c728e6dcbde6a050256c0d770b23dd";
+            this.ViewCount = 272;
         }
         
         /// <Summary>
@@ -1116,6 +1116,14 @@ namespace Edm_EntityMappingGeneratedViews
             if ((index == 269))
             {
                 return GetView269();
+            }
+            if ((index == 270))
+            {
+                return GetView270();
+            }
+            if ((index == 271))
+            {
+                return GetView271();
             }
             throw new System.IndexOutOfRangeException();
         }
@@ -9274,6 +9282,46 @@ namespace Edm_EntityMappingGeneratedViews
             T.UserDomainKey AS WebApiUser_UserDomainKey, 
             True AS _from0
         FROM CaresModelStoreContainer.WebApiUser AS T
+    ) AS T1");
+        }
+        
+        /// <Summary>
+        /// return view for CaresModelStoreContainer.DefaultSetting
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView270()
+        {
+            return new System.Collections.Generic.KeyValuePair<string, string>("CaresModelStoreContainer.DefaultSetting", @"
+    SELECT VALUE -- Constructing DefaultSetting
+        [CaresModel.Store.DefaultSetting](T1.DefaultSetting_DefaultSettingId, T1.DefaultSetting_EmployeeId, T1.DefaultSetting_DefaultOperationId, T1.DefaultSetting_DefaultOperationWorkplaceId, T1.DefaultSetting_DefaultPaymentTermId)
+    FROM (
+        SELECT 
+            T.DefaultSettingId AS DefaultSetting_DefaultSettingId, 
+            T.EmployeeId AS DefaultSetting_EmployeeId, 
+            T.DefaultOperationId AS DefaultSetting_DefaultOperationId, 
+            T.DefaultOperationWorkplaceId AS DefaultSetting_DefaultOperationWorkplaceId, 
+            T.DefaultPaymentTermId AS DefaultSetting_DefaultPaymentTermId, 
+            True AS _from0
+        FROM BaseDbContext.DefaultSettings AS T
+    ) AS T1");
+        }
+        
+        /// <Summary>
+        /// return view for BaseDbContext.DefaultSettings
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView271()
+        {
+            return new System.Collections.Generic.KeyValuePair<string, string>("BaseDbContext.DefaultSettings", @"
+    SELECT VALUE -- Constructing DefaultSettings
+        [DomainModels.DefaultSetting](T1.DefaultSetting_DefaultSettingId, T1.DefaultSetting_EmployeeId, T1.DefaultSetting_DefaultOperationId, T1.DefaultSetting_DefaultOperationWorkplaceId, T1.DefaultSetting_DefaultPaymentTermId)
+    FROM (
+        SELECT 
+            T.DefaultSettingId AS DefaultSetting_DefaultSettingId, 
+            T.EmployeeId AS DefaultSetting_EmployeeId, 
+            T.DefaultOperationId AS DefaultSetting_DefaultOperationId, 
+            T.DefaultOperationWorkplaceId AS DefaultSetting_DefaultOperationWorkplaceId, 
+            T.DefaultPaymentTermId AS DefaultSetting_DefaultPaymentTermId, 
+            True AS _from0
+        FROM CaresModelStoreContainer.DefaultSetting AS T
     ) AS T1");
         }
     }

@@ -20,7 +20,7 @@
                     <select class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '&lt;' + '@Cares.Web.Resources.Tariff.TariffRate.Operation' + '&gt;', value: operationFilter"></select>
                 </div>
                 <div class="col-xs-3">
-                    <select class="form-control" data-bind="options: $root.tariffTypes, optionsText: 'TariffTypeName', optionsValue: 'TariffTypeId', optionsCaption: '&lt;' +  '@Cares.Web.Resources.Tariff.TariffRate.TariffTypes' + '&gt;', value: tariffTypeFilter"></select>
+                    <select class="form-control" data-bind="options: $root.tariffTypes, optionsText: 'TariffTypeCodeName', optionsValue: 'TariffTypeId', optionsCaption: '&lt;' +  '@Cares.Web.Resources.Tariff.TariffRate.TariffTypes' + '&gt;', value: tariffTypeFilter"></select>
                 </div>
                 <button type="submit" class="btn btn-success" data-bind="click: search ">@Cares.Web.Resources.Shared.Common.Search</button>
                 <button type="submit" class="btn btn-default" data-bind="click: reset">@Cares.Web.Resources.Shared.Common.Reset</button>

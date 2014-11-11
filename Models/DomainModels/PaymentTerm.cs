@@ -61,7 +61,7 @@ namespace Cares.Models.DomainModels
         /// Record Last Updated By
         /// </summary>
         public string RecLastUpdatedBy { get; set; }
-
+        
         /// <summary>
         /// Row Version
         /// </summary>
