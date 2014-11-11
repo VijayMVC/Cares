@@ -30,10 +30,10 @@
                 <div class="col-md-2">
                     <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.TariffRate.StartEffectiveDate + ">")' class="form-control" id="startEffectiveDate" data-bind="datepicker: startEffectiveDate, validationTooltip: startEffectiveDate, disable :(tariffRateId()!=undefined)" />
                 </div>
-                <label for="endTypeEffectiveDate" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.TariffRate.EndEffectiveDate *</label>
+                @*<label for="endTypeEffectiveDate" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.TariffRate.EndEffectiveDate *</label>
                 <div class="col-md-2">
                     <input type="text" placeholder='@("<" + Cares.Web.Resources.Tariff.TariffRate.EndEffectiveDate + ">")' class="form-control" id="endTypeEffectiveDate" data-bind="datepicker: endEffectiveDate, validationTooltip: endEffectiveDate, disable :(tariffRateId()!=undefined)" />
-                </div>
+                </div>*@
             </div>
             <div class="form-group">
                 <label for="description" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.TariffRate.Description</label>
@@ -78,7 +78,7 @@
                 <tr>
                     <th> <span class="chckBox"></span></th>
                     <th> <span class="hireGroupTh">@Cares.Web.Resources.Tariff.TariffRate.Hire<br />@Cares.Web.Resources.Tariff.TariffRate.Group<span></span></span></th>
-                    <th> <span class="make">@Cares.Web.Resources.Tariff.TariffRate.Vehicle<br />@Cares.Web.Resources.Tariff.TariffRate.Make'<span></span></span></th>
+                    <th> <span class="make">@Cares.Web.Resources.Tariff.TariffRate.Vehicle<br />@Cares.Web.Resources.Tariff.TariffRate.Make<span></span></span></th>
                     <th> <span class="model">@Cares.Web.Resources.Tariff.TariffRate.Vehicle<br />@Cares.Web.Resources.Tariff.TariffRate.Model<span></span></span></th>
                     <th> <span class="category">@Cares.Web.Resources.Tariff.TariffRate.Vehicle<br />@Cares.Web.Resources.Tariff.TariffRate.Category<span></span></span></th>
                     <th> <span class="model">@Cares.Web.Resources.Tariff.TariffRate.Model<br />@Cares.Web.Resources.Tariff.TariffRate.Year<span></span></span></th>
@@ -86,7 +86,7 @@
                     <th> <span class="accessMileage">@Cares.Web.Resources.Tariff.TariffRate.Excess<br />@Cares.Web.Resources.Tariff.TariffRate.MileageCharge<span></span></span></th>
                     <th> <span class="standardRate">@Cares.Web.Resources.Tariff.TariffRate.Standard<br />@Cares.Web.Resources.Tariff.TariffRate.Rate<span></span></span></th>
                     <th> <span class="startDateTh">@Cares.Web.Resources.Tariff.TariffRate.Start<br />@Cares.Web.Resources.Tariff.TariffRate.Date<span></span></span></th>
-                    <th> <span class="endDateTh">@Cares.Web.Resources.Tariff.TariffRate.End<br />@Cares.Web.Resources.Tariff.TariffRate.Date<span></span></span></th>
+                    @*<th> <span class="endDateTh">@Cares.Web.Resources.Tariff.TariffRate.End<br />@Cares.Web.Resources.Tariff.TariffRate.Date<span></span></span></th>*@
                     <th> <span class="revisionNumber">@Cares.Web.Resources.Tariff.TariffRate.Revision<br />@Cares.Web.Resources.Tariff.TariffRate.Number<span></span></span></th>
                 </tr>
             </thead>
@@ -127,9 +127,9 @@
                 <td class="startDateTh">
                     <input class="startDate" type="text" data-bind="datepicker: startDate, validationTooltip: startDate,disable :!isChecked()" />
                 </td>
-                <td class="endDateTh">
+                @*<td class="endDateTh">
                     <input class="endDate" type="text" data-bind="datepicker: endDate, validationTooltip: endDate,disable :!isChecked()" />
-                </td>
+                </td>*@
                 <td class="revisionNumber">
                     <span data-bind="text: revisionNumber"></span>
                 </td>
@@ -147,7 +147,7 @@
                 <td data-bind="text: excessMileageCharge"></td>
                 <td data-bind="text: standardRt"></td>
                 <td data-bind="dateString: startDate"></td>
-                <td data-bind="dateString: endDate"></td>
+                @*<td data-bind="dateString: endDate"></td>*@
                 <td data-bind="text: revisionNumber"></td>
             </tr>
         </script>

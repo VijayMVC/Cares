@@ -229,7 +229,6 @@ define("tariffRate/tariffRate.viewModel",
                             selectedTariffRate().tariffRateDescription(selectedtariffRateCopy().tariffRateDescription());
                             selectedTariffRate().tariffRateCode(selectedtariffRateCopy().tariffRateCode());
                             selectedTariffRate().startEffectiveDate(selectedtariffRateCopy().startEffectiveDate());
-                            selectedTariffRate().endEffectiveDate(selectedtariffRateCopy().endEffectiveDate());
                             selectedTariffRate().tariffTypeCodeName(selectedtariffRateCopy().tariffTypeCodeName());
                             selectedTariffRate().tariffTypeId(selectedtariffRateCopy().tariffTypeId());
                             selectedTariffRate().operationCodeName(selectedtariffRateCopy().operationCodeName());
@@ -280,8 +279,7 @@ define("tariffRate/tariffRate.viewModel",
                                 if (selectedTariffRate().tariffRateId() > 0) {
                                     selectedtariffRateCopy(undefined);
                                     selectedTariffRate().startEffectiveDate(tariffRateData.startEffectiveDate()),
-                                    selectedTariffRate().endEffectiveDate(tariffRateData.endEffectiveDate()),
-                                    closeTariffRateEditor();
+                                     closeTariffRateEditor();
                                 } else {
                                     tariffRates.splice(0, 0, tariffRateData);
                                     closeTariffRateEditor();

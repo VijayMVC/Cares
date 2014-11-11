@@ -15,7 +15,7 @@ namespace Cares.Web.Models
         /// Hire Group Detail Id
         /// </summary>
         public long HireGroupDetailId { get; set; }
-       
+
         /// <summary>
         /// Child Standard Rate ID
         /// </summary>
@@ -57,10 +57,6 @@ namespace Cares.Web.Models
         /// </summary>
         public DateTime StartDate { get; set; }
         /// <summary>
-        /// End Date
-        /// </summary>
-        public DateTime EndDt { get; set; }
-        /// <summary>
         /// Standard rate main id
         /// </summary>
         public long StandardRtMainId { get; set; }
@@ -68,6 +64,6 @@ namespace Cares.Web.Models
         /// Revision Number
         /// </summary>
         public long RevisionNumber { get; set; }
-     
+
     }
 }

@@ -2227,7 +2227,6 @@
           <Property Name="RecCreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="RecLastUpdatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="HireGroupDetailID" Type="bigint" Nullable="false" />
-          <Property Name="StandardRtEndDt" Type="datetime" Nullable="false" />
           <Property Name="StandardRtStartDt" Type="datetime" Nullable="false" />
           <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
         </EntityType>
@@ -2241,7 +2240,6 @@
           <Property Name="StandardRtMainName" Type="nvarchar" MaxLength="255" />
           <Property Name="StandardRtMainDescription" Type="nvarchar" MaxLength="500" />
           <Property Name="StartDt" Type="datetime" Nullable="false" />
-          <Property Name="EndDt" Type="datetime" Nullable="false" />
           <Property Name="RowVersion" Type="bigint" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
@@ -10259,7 +10257,6 @@
           <Property Name="RecCreatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="RecLastUpdatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="HireGroupDetailId" Type="Int64" Nullable="false" />
-          <Property Name="StandardRtEndDt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="StandardRtStartDt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
           <NavigationProperty Name="HireGroupDetail" Relationship="DomainModels.RefHireGroupDetail377" FromRole="StandardRt" ToRole="HireGroupDetail" />
@@ -10468,7 +10465,6 @@
           <Property Name="StandardRtMainName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="StandardRtMainDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="StartDt" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="EndDt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="RowVersion" Type="Int64" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
@@ -15209,7 +15205,6 @@
               <MappingFragment StoreEntitySet="StandardRt">
                 <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
                 <ScalarProperty Name="StandardRtStartDt" ColumnName="StandardRtStartDt" />
-                <ScalarProperty Name="StandardRtEndDt" ColumnName="StandardRtEndDt" />
                 <ScalarProperty Name="HireGroupDetailId" ColumnName="HireGroupDetailID" />
                 <ScalarProperty Name="RecLastUpdatedBy" ColumnName="RecLastUpdatedBy" />
                 <ScalarProperty Name="RecCreatedBy" ColumnName="RecCreatedBy" />
@@ -15243,7 +15238,6 @@
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
-                <ScalarProperty Name="EndDt" ColumnName="EndDt" />
                 <ScalarProperty Name="StartDt" ColumnName="StartDt" />
                 <ScalarProperty Name="StandardRtMainDescription" ColumnName="StandardRtMainDescription" />
                 <ScalarProperty Name="StandardRtMainName" ColumnName="StandardRtMainName" />

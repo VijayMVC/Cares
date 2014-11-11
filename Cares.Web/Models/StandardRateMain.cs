@@ -13,30 +13,27 @@ namespace Cares.Web.Models
         /// Standard Rt Main Id
         /// </summary>
         public long StandardRtMainId { get; set; }
-          /// <summary>
+        /// <summary>
         /// Standard Rate Main Code
         /// </summary>
-         public string StandardRtMainCode { get; set; }
+        public string StandardRtMainCode { get; set; }
         /// <summary>
         /// Tariff Type Code
         /// </summary>
-         public string TariffTypeCode { get; set; }
-         /// <summary>
+        public string TariffTypeCode { get; set; }
+        /// <summary>
         ///Standard Rate Main Name
         /// </summary>
         public string StandardRtMainName { get; set; }
         /// <summary>
         /// Standard Rate Main Description
         /// </summary>
-          public string StandardRtMainDescription { get; set; }
+        public string StandardRtMainDescription { get; set; }
         /// <summary>
         /// Start Date
         /// </summary>
         public DateTime StartDt { get; set; }
-        /// <summary>
-        /// End Date
-        /// </summary>
-        public DateTime EndDt { get; set; }
+
         /// <summary>
         /// Operation Id
         /// </summary>

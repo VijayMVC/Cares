@@ -124,7 +124,7 @@
     <value>End Effective Date is greater than the start Effective Date of an existing Standard Rate.</value>
   </data>
   <data name="ExistingStandardRtOverlaps" xml:space="preserve">
-    <value>Another Standard Rate duration falls within the current defined Effective Start and End range</value>
+    <value>Another Standard Rate already exist with Start Effective Date.</value>
   </data>
   <data name="InvalidEndDate" xml:space="preserve">
     <value>End Effective Date must be greater than the Start Date.</value>
@@ -136,13 +136,13 @@
     <value>Start Effective Date is less than the End Effective Date of an existing Standard Rate.</value>
   </data>
   <data name="StRateInvalidEffectiveDates" xml:space="preserve">
-    <value>Start Date and End Date for Hire Groups Rate must be a current or future date.</value>
+    <value>Start Date for Hire Groups Rate must be a current or future date.</value>
   </data>
   <data name="StRateInvalidEndDate" xml:space="preserve">
     <value>End Date for Hire Groups Rate should be greater than their Start Date.</value>
   </data>
   <data name="StRateInvalidRangeEffectiveDate" xml:space="preserve">
-    <value>Start Date and End Date for Hire Groups Rate should be between the Start and Effective Date.</value>
+    <value>Start Date for Hire Groups Rate should be greater than Start Effective Date.</value>
   </data>
   <data name="CodeDuplication" xml:space="preserve">
     <value>Standard Rate Main with the same code already exists. Please choose a different code!</value>
