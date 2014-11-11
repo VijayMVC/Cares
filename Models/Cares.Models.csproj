@@ -325,6 +325,8 @@
     </Compile>
     <Compile Include="ReportModels\DailyActionReportResponse.cs" />
     <Compile Include="ReportModels\FleetHireGroupDetail.cs" />
+    <Compile Include="ReportModels\GrossSalesReportResponse.cs" />
+    <Compile Include="ReportModels\InsuranceRateReportResponse.cs" />
     <Compile Include="ReportModels\MissingHireGroupResponse.cs" />
     <Compile Include="ReportModels\StandardRateReportResponse.cs" />
     <Compile Include="RequestModels\AdditionalChargeSearchRequest.cs" />

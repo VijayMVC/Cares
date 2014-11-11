@@ -18,11 +18,29 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         OnNicChanged: function (value) {
                             getCustomerByNicNo(value);
                         },
+                        OnNicExpiryChanged: function (value) {
+                            view.onNicExpiryChanged(value);
+                        },
+                        OnNicExpiryHijriChanged: function (value) {
+                            view.onNicExpiryHijriChanged(value);
+                        },
                         OnPassportChanged: function (value) {
                             getCustomerByPassportNo(value);
                         },
+                        OnPassportExpiryChanged: function (value) {
+                            view.onPassportExpiryChanged(value);
+                        },
+                        OnPassportExpiryHijriChanged: function (value) {
+                            view.onPassportExpiryHijriChanged(value);
+                        },
                         OnLicenseChanged: function (value) {
                             getCustomerByLicenseNo(value);
+                        },
+                        OnLicenseExpiryChanged: function (value) {
+                            view.onLicenseExpiryChanged(value);
+                        },
+                        OnLicenseExpiryHijriChanged: function (value) {
+                            view.onLicenseExpiryHijriChanged(value);
                         },
                         OnPhoneChanged: function (value, type) {
                             getCustomerByPhoneNo(value, type);

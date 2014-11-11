@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using Cares.Models.ReportModels;
 using Cares.Web.Models;
 using DomainModels = Cares.Models.DomainModels;
 
@@ -119,6 +122,22 @@ namespace Cares.Web.ModelMappers
             return raMain;
         }
 
+
+
+        public static Models.ReportModels.GrossSalesReportResponse CreateGrossSalesDataFrom(this GrossSalesReportResponse source)
+        {
+            return new Models.ReportModels.GrossSalesReportResponse
+            {
+                    CompanyCode = source.CompanyCode,
+                    DepartmentCode = source.DepartmentCode,
+                    OperationCode = source.OperationCode,
+                    MonthName = new DateTime(2010, source.MonthName, 1).ToString("MMMM", CultureInfo.InvariantCulture), // To get the WORD form of month :p :p :)
+                    Year = source.Year,
+                    TotalSales = source.TotalSales,
+                    CollectedAmount = source.CollectedAmount,
+                    UnCollectedAmount = source.UnCollectedAmount
+            };
+        }
         #endregion
 
     }

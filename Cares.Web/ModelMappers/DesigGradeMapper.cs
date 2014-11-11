@@ -56,7 +56,7 @@ namespace Cares.Web.ModelMappers
             return new DomainModels.DesignGrade
             {
                 DesigGradeId = source.DesigGradeId,
-                DesigGradeCode = source.DesigGradeCode,
+                DesigGradeCode = source.DesigGradeCode.Trim(),
                 DesigGradeName = source.DesigGradeName,
                 DesigGradeDescription = source.DesigGradeDescription
             };

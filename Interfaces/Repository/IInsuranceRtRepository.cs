@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cares.Models.DomainModels;
+using Cares.Models.ReportModels;
 using Cares.Models.ResponseModels;
 
 namespace Cares.Interfaces.Repository
@@ -37,6 +38,13 @@ namespace Cares.Interfaces.Repository
         /// </summary>
         IEnumerable<WebApiAvailableInsurance> GetAvailableInsuranceRtForWebApi(long hireGroupDetailId, DateTime startDt,
             long userDomainKey);
+
+        /// <summary>
+        /// Get Insurance Rate Report data
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<InsuranceRateReportResponse> GetInsuranceRateReportData();
+
 
     }
 }

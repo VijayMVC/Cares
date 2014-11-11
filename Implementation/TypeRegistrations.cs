@@ -51,7 +51,7 @@ namespace Cares.Implementation
             unityContainer.RegisterType<IHireGroupService, HireGroupService>();
             unityContainer.RegisterType<IOrganizationGroupService, OrganizationGroupService>();
             unityContainer.RegisterType<IVehicleService, VehicleService>();
-            unityContainer.RegisterType<IInsuranceRateService, InsuranceRateService>();
+            unityContainer.RegisterType<InsuranceRateReportService, InsuranceRateReportService>();
             unityContainer.RegisterType<IServiceRtService, ServiceRtService>();
             unityContainer.RegisterType<IRentalCharge, RentalCharge>();
             unityContainer.RegisterType<IRaDriverHelper, RaDriverHelper>();
@@ -108,8 +108,8 @@ namespace Cares.Implementation
             unityContainer.RegisterType<IWebApiAuthenticationService, WebApiAuthenticationService>();
             unityContainer.RegisterType<IMissingHireGroupService, MissingHireGroupService>();
             unityContainer.RegisterType<IStandardRateReportService, StandardRateReportService>();
-
-
+            unityContainer.RegisterType<IInsuranceRateReportService, InsuranceRateReportService>();
+            unityContainer.RegisterType<IGrossSalesService, GrossSalesService>();
         }
     }
 }

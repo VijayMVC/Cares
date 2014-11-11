@@ -45,9 +45,9 @@ namespace Cares.Repository.Repositories
         public override IEnumerable<StandardRate> GetAll()
         {
             return DbSet.Where(standardRate => standardRate.UserDomainKey == UserDomainKey)
-                .OrderBy(standardRate => standardRate.StandardRtMain.StandardRtMainCode)
-                .ThenBy(standardRate => standardRate.HireGroupDetail.HireGroup.HireGroupName)
-                .ThenBy(standardRate => standardRate.StandardRtMain.TariffTypeCode).ToList();
+                .OrderBy(standardRate => standardRate.StandardRtMain.StandardRtMainCode);
+            //    .ThenBy(standardRate => standardRate.HireGroupDetail.HireGroup.HireGroupName)
+            //    .ThenBy(standardRate => standardRate.StandardRtMain.TariffTypeCode).ToList();
         }
 
         /// <summary>

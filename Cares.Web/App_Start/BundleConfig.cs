@@ -31,7 +31,12 @@ namespace Cares.Web
                 .Include("~/Scripts/toastr.js")
                 .Include("~/Scripts/require.js")
                 .Include("~/Scripts/amplify.js")
-                .Include("~/Scripts/respond.js"));
+                .Include("~/Scripts/respond.js")
+                .Include("~/Scripts/Calendar/jquery.plugin.js")
+                .Include("~/Scripts/Calendar/jquery.calendars.js")
+                .Include("~/Scripts/Calendar/jquery.calendars.plus.js")
+                .Include("~/Scripts/Calendar/jquery.calendars.picker.js")
+                .Include("~/Scripts/Calendar/jquery.calendars.islamic.js"));
             
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                  "~/Scripts/bootstrap.js"));
@@ -51,7 +56,8 @@ namespace Cares.Web
                       "~/Content/CSS/default.css",
                       "~/Content/CSS/components.css",
                       "~/Content/site.css",                      
-                      "~/Content/CSS/architecture.css"));
+                      "~/Content/CSS/architecture.css",
+                      "~/Content/Calendar/jquery.calendars.picker.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                                         "~/Content/themes/base/jquery.ui.core.css",

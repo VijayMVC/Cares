@@ -57,7 +57,7 @@ namespace Cares.Web.ModelMappers
             return new Document
             {
                 DocumentId = source.DocumentId,
-                DocumentCode = source.DocumentCode,
+                DocumentCode = source.DocumentCode.Trim(),
                 DocumentName = source.DocumentName,
                 DocumentDescription = source.DocumentDescription,
                 DocumentGroupId = source.DocumentGroupId,

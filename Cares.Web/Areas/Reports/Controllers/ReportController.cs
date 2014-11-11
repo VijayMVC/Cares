@@ -37,5 +37,17 @@ namespace Cares.Web.Areas.Reports.Controllers
         {
             return View();
         }
+
+         public ActionResult InsuranceRateReport()
+         {
+             return View();
+         }
+
+         public ActionResult GrossSalesReport()
+         {
+             return View();
+         }
+
+
     }
 }

@@ -101,6 +101,60 @@ define("rentalAgreement/rentalAgreement.view",
                 hideDiscountsDialog = function () {
                     $("#discountsDialog").modal("hide");
                 },
+                // On Nic Expiry Changed
+                onNicExpiryChanged = function(value) {
+                    if (!value) {
+                        $('#customerNicExpiryHijri').val("");
+                    }
+                    else {
+                        $('#customerNicExpiryHijri').val(ConvertDates(moment(value).format(ist.customLongDateWithFullYearPattern), 'gregorian', 'islamic'));
+                    }
+                },
+                // On Nic Expiry Hijri Changed
+                onNicExpiryHijriChanged = function (value) {
+                    if (!value) {
+                        $('#customerNicExpiry').val("");
+                    }
+                    else {
+                        $('#customerNicExpiry').val(ConvertDates(value, 'islamic', 'gregorian'));
+                    }
+                },
+                // On License Expiry Changed
+                onLicenseExpiryChanged = function (value) {
+                    if (!value) {
+                        $('#customerLicenseExpiryHijri').val("");
+                    }
+                    else {
+                        $('#customerLicenseExpiryHijri').val(ConvertDates(moment(value).format(ist.customLongDateWithFullYearPattern), 'gregorian', 'islamic'));
+                    }
+                },
+                // On License Expiry Hijri Changed
+                onLicenseExpiryHijriChanged = function (value) {
+                    if (!value) {
+                        $('#customerLicenseExpiry').val("");
+                    }
+                    else {
+                        $('#customerLicenseExpiry').val(ConvertDates(value, 'islamic', 'gregorian'));
+                    }
+                },
+                // On Passport Expiry Changed
+                onPassportExpiryChanged = function (value) {
+                    if (!value) {
+                        $('#customerPassportExpiryHijri').val("");
+                    }
+                    else {
+                        $('#customerPassportExpiryHijri').val(ConvertDates(moment(value).format(ist.customLongDateWithFullYearPattern), 'gregorian', 'islamic'));
+                    }
+                },
+                // On Passport Expiry Hijri Changed
+                onPassportExpiryHijriChanged = function (value) {
+                    if (!value) {
+                        $('#customerPassportExpiry').val("");
+                    }
+                    else {
+                        $('#customerPassportExpiry').val(ConvertDates(value, 'islamic', 'gregorian'));
+                    }
+                },
                 // Initialize
                 initialize = function () {
                     if (!bindingRoot) {
@@ -144,7 +198,7 @@ define("rentalAgreement/rentalAgreement.view",
                             viewModel.selectHireGroup(selected);
                         }
                     });
-                    
+
                 };
 
             initialize();
@@ -169,7 +223,13 @@ define("rentalAgreement/rentalAgreement.view",
                 showVehicleMovementDialog: showVehicleMovementDialog,
                 hideVehicleMovementDialog: hideVehicleMovementDialog,
                 showDiscountsDialog: showDiscountsDialog,
-                hideDiscountsDialog: hideDiscountsDialog
+                hideDiscountsDialog: hideDiscountsDialog,
+                onNicExpiryChanged: onNicExpiryChanged,
+                onNicExpiryHijriChanged: onNicExpiryHijriChanged,
+                onLicenseExpiryChanged: onLicenseExpiryChanged,
+                onLicenseExpiryHijriChanged: onLicenseExpiryHijriChanged,
+                onPassportExpiryChanged: onPassportExpiryChanged,
+                onPassportExpiryHijriChanged: onPassportExpiryHijriChanged,
             };
         })(rentalAgreementViewModel);
 
