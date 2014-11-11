@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Linq;
+using Cares.Models.ReportModels;
+using Cares.Web.Models.ReportModels;
 using DomainResponseModel = Cares.Models.ResponseModels;
 using DomainModels = Cares.Models.DomainModels;
 using ApiModel = Cares.Web.Models;
+using InsuranceRateReportResponse = Cares.Models.ReportModels.InsuranceRateReportResponse;
+
 namespace Cares.Web.ModelMappers
 {
     /// <summary>
@@ -11,10 +15,12 @@ namespace Cares.Web.ModelMappers
     public static class InsuranceRateMapper
     {
         #region Insurance Rate Base Response Mapper
+
         /// <summary>
         ///  Insurance Rate Base Response Mapper
         /// </summary>
-        public static ApiModel.InsuranceRateBaseResponse CreateFromBaseResponse(this DomainResponseModel.InsuranceRateBaseResponse source)
+        public static ApiModel.InsuranceRateBaseResponse CreateFromBaseResponse(
+            this DomainResponseModel.InsuranceRateBaseResponse source)
         {
             return new ApiModel.InsuranceRateBaseResponse
             {
@@ -22,13 +28,16 @@ namespace Cares.Web.ModelMappers
                 TariffTypes = source.TariffTypes.Select(tariffType => tariffType.CreateFromDropDown()),
             };
         }
+
         #endregion
 
         #region Insurance Rate Search Response Mapper
+
         /// <summary>
         ///  Tariff Type Base Response Mapper 
         /// </summary>
-        public static ApiModel.InsuranceRateSearchResponse CreateFromSearchResponse(this DomainResponseModel.InsuranceRateSearchResponse source)
+        public static ApiModel.InsuranceRateSearchResponse CreateFromSearchResponse(
+            this DomainResponseModel.InsuranceRateSearchResponse source)
         {
             return new ApiModel.InsuranceRateSearchResponse
             {
@@ -36,6 +45,7 @@ namespace Cares.Web.ModelMappers
                 TotalCount = source.TotalCount,
             };
         }
+
         #endregion
 
         #region insurance Rate
@@ -46,18 +56,19 @@ namespace Cares.Web.ModelMappers
         public static ApiModel.InsuranceRtMainContent CreateFrom(this DomainResponseModel.InsuranceRtMainContent source)
         {
             return new ApiModel.InsuranceRtMainContent
-                   {
-                       InsuranceRtMainId = source.InsuranceRtMainId,
-                       InsuranceRtMainCode = source.InsuranceRtMainCode,
-                       InsuranceRtName = source.InsuranceRtName,
-                       OperationCodeName = source.OperationCodeName,
-                       OperationId = source.OperationId,
-                       TariffTypeCodeName = source.TariffTypeCodeName,
-                       TariffTypeId = source.TariffTypeId,
-                       InsuranceRtMainDescription = source.InsuranceRtMainDescription,
-                       StartDt = source.StartDt,
-                   };
+            {
+                InsuranceRtMainId = source.InsuranceRtMainId,
+                InsuranceRtMainCode = source.InsuranceRtMainCode,
+                InsuranceRtName = source.InsuranceRtName,
+                OperationCodeName = source.OperationCodeName,
+                OperationId = source.OperationId,
+                TariffTypeCodeName = source.TariffTypeCodeName,
+                TariffTypeId = source.TariffTypeId,
+                InsuranceRtMainDescription = source.InsuranceRtMainDescription,
+                StartDt = source.StartDt,
+            };
         }
+
         /// <summary>
         ///  Insurance Rate Main Web to Domain Model
         /// </summary>
@@ -71,13 +82,18 @@ namespace Cares.Web.ModelMappers
                 InsuranceRtMainDescription = source.InsuranceRtMainDescription,
                 TariffTypeCode = source.TariffTypeId.ToString(),
                 StartDt = source.StartDt,
-                InsuranceRates = source.InsuranceRts!=null?source.InsuranceRts.Select(insuranceRt => insuranceRt.CreateFrom()).ToList():null
+                InsuranceRates =
+                    source.InsuranceRts != null
+                        ? source.InsuranceRts.Select(insuranceRt => insuranceRt.CreateFrom()).ToList()
+                        : null
             };
         }
+
         /// <summary>
         ///  Insurance Rate Detail Content Domain to web Model
         /// </summary>
-        public static ApiModel.InsuranceRtDetailContent CreateFrom(this DomainResponseModel.InsuranceRtDetailContent source)
+        public static ApiModel.InsuranceRtDetailContent CreateFrom(
+            this DomainResponseModel.InsuranceRtDetailContent source)
         {
             return new ApiModel.InsuranceRtDetailContent
             {
@@ -97,6 +113,7 @@ namespace Cares.Web.ModelMappers
                 RevisionNumber = source.RevisionNumber,
             };
         }
+
         /// <summary>
         ///  Web To entity
         /// </summary>
@@ -113,6 +130,7 @@ namespace Cares.Web.ModelMappers
                 RevisionNumber = source.RevisionNumber,
             };
         }
+
         /// <summary>
         ///  Insurance Rate Detail Content Domain to web Model
         /// </summary>
@@ -128,13 +146,34 @@ namespace Cares.Web.ModelMappers
                 InsuranceRate = source.InsuranceRate
             };
         }
+
+        public static Models.ReportModels.InsuranceRateReportResponse CreateReportFrom(this InsuranceRateReportResponse insuranceRt)
+        {
+            return new Models.ReportModels.InsuranceRateReportResponse
+            {
+                InsuranceTypeCode = insuranceRt.InsuranceTypeCode,
+                OperationCode = insuranceRt.OperationCode,
+                TarrifTypeCode = insuranceRt.TarrifTypeCode,
+                HireGroupCode = insuranceRt.HireGroupCode,
+                VehicleMakeCode = insuranceRt.VehicleMakeCode,
+                VehicleModelCode = insuranceRt.VehicleModelCode,
+                VehicelCategoryCode = insuranceRt.VehicelCategoryCode,
+                ModelYear = insuranceRt.ModelYear,
+                RevisionNumber = insuranceRt.RevisionNumber,
+                InsuranceRate = insuranceRt.InsuranceRate,
+                StartDate = insuranceRt.StartDate.ToString("dd-MMM-yy HH:mm")
+            };
+        }
+
         #endregion
+
         #region insurance Rate Detail Response Mapper
 
         /// <summary>
         ///  Insurance Rate Detail Content Domain to web Model
         /// </summary>
-        public static ApiModel.InsuranceRtDetailResponse CreateFrom(this DomainResponseModel.InsuranceRtDetailResponse source)
+        public static ApiModel.InsuranceRtDetailResponse CreateFrom(
+            this DomainResponseModel.InsuranceRtDetailResponse source)
         {
             return new ApiModel.InsuranceRtDetailResponse
             {

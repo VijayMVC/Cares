@@ -468,6 +468,7 @@
     <Compile Include="Models\RaMainForRaQueue.cs" />
     <Compile Include="Models\RaMainForRaQueueSearchResponse.cs" />
     <Compile Include="Models\GetRaVehicleCheckListRequest.cs" />
+    <Compile Include="Models\ReportModels\InsuranceRateReportResponse.cs" />
     <Compile Include="Models\ReportModels\RaAdditionaItemInfo.cs" />
     <Compile Include="Models\MenuRight.cs" />
     <Compile Include="Models\ReportModels\RaAdditionalChargeInfo.cs" />
@@ -796,6 +797,18 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FleetDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\InsuranceRateDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InsuranceRateDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\InsuranceRateReport.aspx.cs">
+      <DependentUpon>InsuranceRateReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\InsuranceRateReport.aspx.designer.cs">
+      <DependentUpon>InsuranceRateReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\MissingHireGroupDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -2129,6 +2142,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Reports\DailyActionReport.aspx" />
+    <Content Include="Reports\InsuranceRateReport.aspx" />
     <Content Include="Reports\MissingHireGroupReport.aspx" />
     <Content Include="Reports\RentalAgreementReport.aspx" />
     <Content Include="Reports\StandradRateReport.aspx" />
@@ -2628,6 +2642,7 @@
     <Content Include="Areas\RentalAgreement\Views\Home\_DiscountsDialog.cshtml" />
     <Content Include="Areas\Reports\Views\Report\MissingHireGroupReport.cshtml" />
     <Content Include="Areas\Reports\Views\Report\StandardRateReport.cshtml" />
+    <Content Include="Areas\Reports\Views\Report\InsuranceRateReport.cshtml" />
     <None Include="Properties\PublishProfiles\cares.pubxml" />
     <Content Include="Areas\Reports\Views\Report\DailyActionReport.cshtml" />
     <Content Include="Areas\Reports\Views\Report\RentalAgreementReport.cshtml" />
@@ -2660,6 +2675,17 @@
     </Content>
     <Content Include="Reports\MissingHireGroupDS.xsc">
       <DependentUpon>MissingHireGroupDS.xsd</DependentUpon>
+    </Content>
+    <Content Include="Reports\InsuranceRateDS.xsc">
+      <DependentUpon>InsuranceRateDS.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\InsuranceRateDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>InsuranceRateDS.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reports\InsuranceRateDS.xss">
+      <DependentUpon>InsuranceRateDS.xsd</DependentUpon>
     </Content>
     <None Include="Reports\MissingHireGroupDS.xsd">
       <SubType>Designer</SubType>
@@ -2923,6 +2949,7 @@
     <EmbeddedResource Include="Reports\RDLC\DailyAction.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\RentalAgreement.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\StandardRate.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\InsuranceRate.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\Vehicle.rdlc" />
     <EmbeddedResource Include="Resources\BusinessPartner\BusinessLegalStatus.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
