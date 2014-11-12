@@ -8,17 +8,17 @@ namespace Cares.Models.DomainModels
     public class StandardRate
     {
         #region Perssisted Properties
-        
+
         /// <summary>
         /// Standard Rate ID
         /// </summary>
         public long StandardRtId { get; set; }
-        
+
         /// <summary>
         /// User Domain Key
         /// </summary>
         public long UserDomainKey { get; set; }
-        
+
         /// <summary>
         /// Standard Rate Main ID
         /// </summary>
@@ -68,10 +68,6 @@ namespace Cares.Models.DomainModels
         /// </summary>
         public long HireGroupDetailId { get; set; }
         /// <summary>
-        /// Standard Rate End Date
-        /// </summary>
-        public DateTime StandardRtEndDt { get; set; }
-        /// <summary>
         /// Standard Rate Start Date
         /// </summary>
         public DateTime StandardRtStartDt { get; set; }
@@ -97,9 +93,9 @@ namespace Cares.Models.DomainModels
         public long RowVersion { get; set; }
 
         #endregion
-        
+
         #region Reference Properties
-        
+
         /// <summary>
         /// Hire Group Detail
         /// </summary>

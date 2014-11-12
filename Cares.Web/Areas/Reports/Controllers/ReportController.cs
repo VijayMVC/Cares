@@ -43,6 +43,11 @@ namespace Cares.Web.Areas.Reports.Controllers
              return View();
          }
 
+         public ActionResult GrossSalesReport()
+         {
+             return View();
+         }
+
 
     }
 }

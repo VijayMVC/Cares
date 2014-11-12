@@ -20,7 +20,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
              //Start From
              startEffectiveDate = ko.observable().extend({ required: true }),
              //End To
-             endEffectiveDate = ko.observable().extend({ required: true }),
+             //endEffectiveDate = ko.observable().extend({ required: true }),
              //Tariff Type Code Name
              tariffTypeCodeName = ko.observable(),
              //Tariff Type Id
@@ -37,12 +37,12 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
                      return moment(startEffectiveDate()).format(ist.datePattern);
                  }
              }),
-             // Formatted End Date for grid
-             formattedEndDate = ko.computed({
-                 read: function () {
-                     return moment(endEffectiveDate()).format(ist.datePattern);
-                 }
-             }),
+             //// Formatted End Date for grid
+             //formattedEndDate = ko.computed({
+             //    read: function () {
+             //        return moment(endEffectiveDate()).format(ist.datePattern);
+             //    }
+             //}),
              // Convert to server
              convertToServerData = function () {
                  return {
@@ -55,7 +55,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
                  operationId: operationId,
                  tariffTypeId: tariffTypeId,
                  startEffectiveDate: startEffectiveDate,
-                 endEffectiveDate: endEffectiveDate,
+                // endEffectiveDate: endEffectiveDate,
              }),
              // Is Valid
              isValid = ko.computed(function () {
@@ -69,7 +69,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
                  tariffRateDescription: tariffRateDescription,
                  operationId: operationId,
                  startEffectiveDate: startEffectiveDate,
-                 endEffectiveDate: endEffectiveDate,
+                // endEffectiveDate: endEffectiveDate,
                  tariffTypeId: tariffTypeId,
              }),
              // Has Changes
@@ -86,14 +86,14 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
              tariffRateCode: tariffRateCode,
              tariffRateName: tariffRateName,
              startEffectiveDate: startEffectiveDate,
-             endEffectiveDate: endEffectiveDate,
+            // endEffectiveDate: endEffectiveDate,
              convertToServerData: convertToServerData,
              tariffTypeCodeName: tariffTypeCodeName,
              tariffTypeId: tariffTypeId,
              operationCodeName: operationCodeName,
              tariffRateDescription: tariffRateDescription,
              formattedStartDate: formattedStartDate,
-             formattedEndDate: formattedEndDate,
+             //formattedEndDate: formattedEndDate,
              operationId: operationId,
              errors: errors,
              isValid: isValid,
@@ -138,7 +138,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             //Start Date
             startDate = ko.observable().extend({ required: true }),
             //End Date
-            endDate = ko.observable().extend({ required: true }),
+            //endDate = ko.observable().extend({ required: true }),
             //Check whether it is selected against Tariff Rate
             isChecked = ko.observable(false),
               // Errors
@@ -147,7 +147,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
                     excessMileageCharge: excessMileageCharge,
                     standardRt: standardRt,
                     startDate: startDate,
-                    endDate: endDate
+                    //endDate: endDate
                 }),
                 // Is Valid
                 isValid = ko.computed(function () {
@@ -182,7 +182,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             allowMileage: allowMileage,
             standardRt: standardRt,
             startDate: startDate,
-            endDate: endDate,
+            //endDate: endDate,
             isChecked: isChecked,
             errors: errors,
             isValid: isValid,
@@ -201,7 +201,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         tariffRate.tariffRateName(source.StandardRtMainName === null ? undefined : source.StandardRtMainName);
         tariffRate.tariffRateDescription(source.StandardRtMainDescription === null ? undefined : source.StandardRtMainDescription);
         tariffRate.startEffectiveDate(source.StartDt !== null ? moment(source.StartDt, ist.utcFormat).toDate() : undefined);
-        tariffRate.endEffectiveDate(source.EndDt !== null ? moment(source.EndDt, ist.utcFormat).toDate() : undefined);
+        //tariffRate.endEffectiveDate(source.EndDt !== null ? moment(source.EndDt, ist.utcFormat).toDate() : undefined);
         tariffRate.tariffTypeCodeName(source.TariffTypeCodeName === null ? undefined : source.TariffTypeCodeName);
         tariffRate.tariffTypeId(source.TariffTypeId === null ? undefined : source.TariffTypeId);
         tariffRate.operationCodeName(source.OperationCodeName === null ? undefined : source.OperationCodeName);
@@ -217,7 +217,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         tariffRate.tariffRateName(source.tariffRateName() === null ? undefined : source.tariffRateName());
         tariffRate.tariffRateDescription(source.tariffRateDescription() === null ? undefined : source.tariffRateDescription());
         tariffRate.startEffectiveDate(source.startEffectiveDate() === null ? undefined : source.startEffectiveDate());
-        tariffRate.endEffectiveDate(source.endEffectiveDate() === null ? undefined : source.endEffectiveDate());
+       // tariffRate.endEffectiveDate(source.endEffectiveDate() === null ? undefined : source.endEffectiveDate());
         tariffRate.tariffTypeCodeName(source.tariffTypeCodeName() === null ? undefined : source.tariffTypeCodeName());
         tariffRate.tariffTypeId(source.tariffTypeId() === null ? undefined : source.tariffTypeId());
         tariffRate.operationCodeName(source.operationCodeName() === null ? undefined : source.operationCodeName());
@@ -234,7 +234,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.StandardRtMainDescription = source.tariffRateDescription() === undefined ? null : source.tariffRateDescription();
         result.StandardRtMainName = source.tariffRateName() === undefined ? null : source.tariffRateName();
         result.StartDt = source.startEffectiveDate() === undefined || source.startEffectiveDate() === null ? undefined : moment(source.startEffectiveDate()).format(ist.utcFormat);
-        result.EndDt = source.endEffectiveDate() === undefined || source.endEffectiveDate() === null ? undefined : moment(source.endEffectiveDate()).format(ist.utcFormat);
+        //result.EndDt = source.endEffectiveDate() === undefined || source.endEffectiveDate() === null ? undefined : moment(source.endEffectiveDate()).format(ist.utcFormat);
         result.OperationId = source.operationId();
         result.TariffTypeId = source.tariffTypeId();
         result.HireGroupDetailsInStandardRtMain = [];
@@ -255,7 +255,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         result.ExcessMileageCharge = source.excessMileageCharge() === undefined ? null : source.excessMileageCharge();
         result.StandardRt = source.standardRt() === undefined ? null : source.standardRt();
         result.StartDate = source.startDate() === undefined || source.startDate() === null ? undefined : moment(source.startDate()).format(ist.utcFormat);
-        result.EndDt = source.endDate() === undefined || source.endDate() === null ? undefined : moment(source.endDate()).format(ist.utcFormat);
+        //result.EndDt = source.endDate() === undefined || source.endDate() === null ? undefined : moment(source.endDate()).format(ist.utcFormat);
         return result;
     };
     //Server To Client Mapper
@@ -275,7 +275,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         hireGroupDetail.excessMileageCharge(source.ExcessMileageCharge === null || source.ExcessMileageCharge === 0 ? undefined : source.ExcessMileageCharge);
         hireGroupDetail.standardRt(source.StandardRt === null || source.StandardRt === 0 ? undefined : source.StandardRt);
         hireGroupDetail.startDate(source.StartDate !== null ? moment(source.StartDate, ist.utcFormat).toDate() : undefined);
-        hireGroupDetail.endDate(source.EndDate !== null ? moment(source.EndDate, ist.utcFormat).toDate() : undefined);
+        //hireGroupDetail.endDate(source.EndDate !== null ? moment(source.EndDate, ist.utcFormat).toDate() : undefined);
         hireGroupDetail.isChecked(source.IsChecked === null ? false : source.IsChecked);
         hireGroupDetail.virtualHireGroupDetailId(source.IsChecked === true ? source.HireGroupDetailId : 0);
         return hireGroupDetail;

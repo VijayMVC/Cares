@@ -59,6 +59,7 @@
     <Folder Include="Properties" />
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Views\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\WorkplaceType.sql" />
@@ -204,5 +205,7 @@
     <Build Include="dbo\Tables\BookingAdditionalDriver.sql" />
     <Build Include="dbo\Tables\BookingPayment.sql" />
     <Build Include="dbo\Tables\WebApiUser.sql" />
+    <Build Include="dbo\Views\StandardRtView.sql" />
+    <Build Include="dbo\Views\StandardRtMainView.sql" />
   </ItemGroup>
 </Project>

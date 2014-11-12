@@ -151,6 +151,7 @@ namespace Cares.Implementation.Services
 
             ServiceRtMain serviceRtMainDbVersion = serviceRtMainRepository.Find(serviceRtMain.ServiceRtMainId);
             #region Add
+
             if (serviceRtMainDbVersion == null)
             {
                 ValidateServiceRt(serviceRtMain, true);
@@ -166,6 +167,7 @@ namespace Cares.Implementation.Services
                 serviceRtMain.RowVersion = 0;
 
                 //set child (Service Rate in Service Rate Main) properties
+
                 #region Service Rate in Service Rate Main
 
                 if (serviceRtMain.ServiceRts != null)
@@ -193,8 +195,15 @@ namespace Cares.Implementation.Services
             #endregion
 
             #region Edit
+
             else
             {
+                List<ServiceRt> serviceRts = new List<ServiceRt>();
+                if (serviceRtMainDbVersion.ServiceRts != null)
+                {
+                    serviceRts = serviceRtMainDbVersion.ServiceRts.ToList();
+                }
+
                 ValidateServiceRt(serviceRtMain, false);
                 serviceRtMainDbVersion.RecLastUpdatedDt = DateTime.Now;
                 serviceRtMainDbVersion.RecLastUpdatedBy = serviceRtMainRepository.LoggedInUserIdentity;
@@ -204,43 +213,52 @@ namespace Cares.Implementation.Services
                 {
                     foreach (ServiceRt serviceRt in serviceRtMain.ServiceRts)
                     {
-                        if (
-                            serviceRtMainDbVersion.ServiceRts.All(
-                                x => x.ServiceRtId != serviceRt.ServiceRtId) ||
-                            serviceRt.ServiceRtId == 0)
+                        serviceRt.IsActive = true;
+                        serviceRt.IsDeleted = false;
+                        serviceRt.IsPrivate = false;
+                        serviceRt.IsReadOnly = false;
+                        serviceRt.RecCreatedDt = DateTime.Now;
+                        serviceRt.RecLastUpdatedDt = DateTime.Now;
+                        serviceRt.RecCreatedBy = serviceRtMainRepository.LoggedInUserIdentity;
+                        serviceRt.RecLastUpdatedBy = serviceRtMainRepository.LoggedInUserIdentity;
+                        serviceRt.UserDomainKey = serviceRtMainRepository.UserDomainKey;
+
+                        if (serviceRtMainDbVersion.ServiceRts != null)
                         {
-                            // set properties
-                            serviceRt.IsActive = true;
-                            serviceRt.IsDeleted = false;
-                            serviceRt.IsPrivate = false;
-                            serviceRt.IsReadOnly = false;
-                            serviceRt.RecCreatedDt = DateTime.Now;
-                            serviceRt.RecLastUpdatedDt = DateTime.Now;
-                            serviceRt.RecCreatedBy = serviceRtMainRepository.LoggedInUserIdentity;
-                            serviceRt.RecLastUpdatedBy = serviceRtMainRepository.LoggedInUserIdentity;
-                            serviceRt.UserDomainKey = serviceRtMainRepository.UserDomainKey;
-                            serviceRt.ServiceRtMainId = serviceRtMain.ServiceRtMainId;
-                            serviceRtMainDbVersion.ServiceRts.Add(serviceRt);
+                            if (
+                                serviceRtMainDbVersion.ServiceRts.All(
+                                    x => x.ServiceRtId != serviceRt.ServiceRtId) ||
+                                serviceRt.ServiceRtId == 0)
+                            {
+                                // set properties
+                                serviceRtMainDbVersion.ServiceRts.Add(serviceRt);
+                            }
+                            else
+                            {
+                                foreach (var itemDb in serviceRts)
+                                {
+                                    if (itemDb.ServiceRtId == serviceRt.ServiceRtId)
+                                    {
+                                        if (itemDb.StartDt != serviceRt.StartDt || itemDb.ServiceRate != serviceRt.ServiceRate)
+                                        {
+                                            serviceRt.ServiceRtMainId = serviceRtMain.ServiceRtMainId;
+                                            long oldRecordId = serviceRt.ServiceRtId;
+                                            serviceRt.ServiceRtId = 0;
+                                            serviceRt.RevisionNumber = itemDb.RevisionNumber + 1;
+                                            serviceRtRepository.Add(serviceRt);
+                                            serviceRtRepository.SaveChanges();
+                                            ServiceRt oldServiceRt = serviceRtRepository.Find(oldRecordId);
+                                            oldServiceRt.ChildServiceRtId = serviceRt.ServiceRtId;
+                                            serviceRtRepository.SaveChanges();
+                                        }
+                                    }
+                                }
+                            }
                         }
                         else
                         {
-                            serviceRt.IsActive = true;
-                            serviceRt.IsDeleted = false;
-                            serviceRt.IsPrivate = false;
-                            serviceRt.IsReadOnly = false;
-                            serviceRt.RecCreatedDt = DateTime.Now;
-                            serviceRt.RecLastUpdatedDt = DateTime.Now;
-                            serviceRt.RecCreatedBy = serviceRtMainRepository.LoggedInUserIdentity;
-                            serviceRt.RecLastUpdatedBy = serviceRtMainRepository.LoggedInUserIdentity;
-                            serviceRt.UserDomainKey = serviceRtMainRepository.UserDomainKey;
                             serviceRt.ServiceRtMainId = serviceRtMain.ServiceRtMainId;
-                            long oldRecordId = serviceRt.ServiceRtId;
-                            serviceRt.ServiceRtId = 0;
-                            serviceRt.RevisionNumber = serviceRt.RevisionNumber + 1;
                             serviceRtRepository.Add(serviceRt);
-                            serviceRtRepository.SaveChanges();
-                            ServiceRt oldServiceRt = serviceRtRepository.Find(oldRecordId);
-                            oldServiceRt.ChildServiceRtId = serviceRt.ServiceRtId;
                             serviceRtRepository.SaveChanges();
                         }
 

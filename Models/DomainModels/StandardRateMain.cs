@@ -42,10 +42,6 @@ namespace Cares.Models.DomainModels
         /// </summary>
         public DateTime StartDt { get; set; }
         
-        /// <summary>
-        /// End Date
-        /// </summary>
-        public DateTime EndDt { get; set; }
         
         /// <summary>
         /// Is Active

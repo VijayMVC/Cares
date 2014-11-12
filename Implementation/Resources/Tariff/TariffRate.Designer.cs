@@ -88,7 +88,7 @@ namespace Cares.Implementation.Resources.Tariff {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Another Standard Rate duration falls within the current defined Effective Start and End range.
+        ///   Looks up a localized string similar to Another Standard Rate already exist with Start Effective Date..
         /// </summary>
         public static string ExistingStandardRtOverlaps {
             get {
@@ -124,7 +124,7 @@ namespace Cares.Implementation.Resources.Tariff {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start Date and End Date for Hire Groups Rate must be a current or future date..
+        ///   Looks up a localized string similar to Start Date for Hire Groups Rate must be a current or future date..
         /// </summary>
         public static string StRateInvalidEffectiveDates {
             get {
@@ -142,7 +142,7 @@ namespace Cares.Implementation.Resources.Tariff {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start Date and End Date for Hire Groups Rate should be between the Start and Effective Date..
+        ///   Looks up a localized string similar to Start Date for Hire Groups Rate should be greater than Start Effective Date..
         /// </summary>
         public static string StRateInvalidRangeEffectiveDate {
             get {

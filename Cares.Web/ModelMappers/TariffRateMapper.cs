@@ -45,7 +45,6 @@ namespace Cares.Web.ModelMappers
                         hireGroupDetail.ExcessMileageCharge = standardRate.ExcessMileageCharge;
                         hireGroupDetail.StandardRt = standardRate.StandardRt;
                         hireGroupDetail.StartDate = standardRate.StartDate;
-                        hireGroupDetail.EndDate = standardRate.EndDt;
                         hireGroupDetail.IsChecked = true;
                         hireGroupDetail.RevisionNumber = standardRate.RevisionNumber;
                     }
