@@ -110,6 +110,7 @@ namespace Cares.Implementation
             unityContainer.RegisterType<IStandardRateReportService, StandardRateReportService>();
             unityContainer.RegisterType<IInsuranceRateReportService, InsuranceRateReportService>();
             unityContainer.RegisterType<IGrossSalesService, GrossSalesService>();
+            unityContainer.RegisterType<IInsuranceRateService, InsuranceRateService>();
         }
     }
 }

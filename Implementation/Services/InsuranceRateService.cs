@@ -187,6 +187,11 @@ namespace Cares.Implementation.Services
             #region Edit
             else
             {
+                List<InsuranceRt> insuranceRts = new List<InsuranceRt>();
+                if (insuranceRtMainDbVersion.InsuranceRates != null)
+                {
+                    insuranceRts = insuranceRtMainDbVersion.InsuranceRates.ToList();
+                }
                 ValidateInsuranceRate(insuranceRtMain, false);
                 insuranceRtMainDbVersion.RecLastUpdatedDt = DateTime.Now;
                 insuranceRtMainDbVersion.RecLastUpdatedBy = insuranceRtMainRepository.LoggedInUserIdentity;
@@ -197,46 +202,45 @@ namespace Cares.Implementation.Services
                 {
                     foreach (InsuranceRt insuranceRt in insuranceRtMain.InsuranceRates)
                     {
+                        insuranceRt.IsActive = true;
+                        insuranceRt.IsDeleted = false;
+                        insuranceRt.IsPrivate = false;
+                        insuranceRt.IsReadOnly = false;
+                        insuranceRt.RecCreatedDt = DateTime.Now;
+                        insuranceRt.RecLastUpdatedDt = DateTime.Now;
+                        insuranceRt.RecCreatedBy = insuranceRtMainRepository.LoggedInUserIdentity;
+                        insuranceRt.RecLastUpdatedBy = insuranceRtMainRepository.LoggedInUserIdentity;
+                        insuranceRt.UserDomainKey = insuranceRtMainRepository.UserDomainKey;
+                        insuranceRt.InsuranceRtMainId = insuranceRtMain.InsuranceRtMainId;
+
                         if (
                             insuranceRtMainDbVersion.InsuranceRates.All(
                                 x => x.InsuranceRtId != insuranceRt.InsuranceRtId) ||
                             insuranceRt.InsuranceRtId == 0)
                         {
                             // set properties
-                            insuranceRt.IsActive = true;
-                            insuranceRt.IsDeleted = false;
-                            insuranceRt.IsPrivate = false;
-                            insuranceRt.IsReadOnly = false;
-                            insuranceRt.RecCreatedDt = DateTime.Now;
-                            insuranceRt.RecLastUpdatedDt = DateTime.Now;
-                            insuranceRt.RecCreatedBy = insuranceRtMainRepository.LoggedInUserIdentity;
-                            insuranceRt.RecLastUpdatedBy = insuranceRtMainRepository.LoggedInUserIdentity;
-                            insuranceRt.UserDomainKey = insuranceRtMainRepository.UserDomainKey;
-                            insuranceRt.InsuranceRtMainId = insuranceRtMain.InsuranceRtMainId;
                             insuranceRtMainDbVersion.InsuranceRates.Add(insuranceRt);
                         }
                         else
                         {
-                            insuranceRt.IsActive = true;
-                            insuranceRt.IsDeleted = false;
-                            insuranceRt.IsPrivate = false;
-                            insuranceRt.IsReadOnly = false;
-                            insuranceRt.RecCreatedDt = DateTime.Now;
-                            insuranceRt.RecLastUpdatedDt = DateTime.Now;
-                            insuranceRt.RecCreatedBy = insuranceRtMainRepository.LoggedInUserIdentity;
-                            insuranceRt.RecLastUpdatedBy = insuranceRtMainRepository.LoggedInUserIdentity;
-                            insuranceRt.UserDomainKey = insuranceRtMainRepository.UserDomainKey;
-                            insuranceRt.InsuranceRtMainId = insuranceRtMain.InsuranceRtMainId;
-                            long oldRecordId = insuranceRt.InsuranceRtId;
-                            insuranceRt.InsuranceRtId = 0;
-                            insuranceRt.RevisionNumber = insuranceRt.RevisionNumber + 1;
-                            insuranceRtRepository.Add(insuranceRt);
-                            insuranceRtRepository.SaveChanges();
-                            InsuranceRt oldInsuranceRt = insuranceRtRepository.Find(oldRecordId);
-                            oldInsuranceRt.ChildInsuranceRtId = insuranceRt.InsuranceRtId;
-                            insuranceRtRepository.SaveChanges();
+                            foreach (var itemDb in insuranceRts)
+                            {
+                                if (itemDb.InsuranceRtId == insuranceRt.InsuranceRtId)
+                                {
+                                    if (itemDb.StartDt != insuranceRt.StartDt || itemDb.InsuranceRate != insuranceRt.InsuranceRate)
+                                    {
+                                        long oldRecordId = insuranceRt.InsuranceRtId;
+                                        insuranceRt.InsuranceRtId = 0;
+                                        insuranceRt.RevisionNumber = insuranceRt.RevisionNumber + 1;
+                                        insuranceRtRepository.Add(insuranceRt);
+                                        insuranceRtRepository.SaveChanges();
+                                        InsuranceRt oldInsuranceRt = insuranceRtRepository.Find(oldRecordId);
+                                        oldInsuranceRt.ChildInsuranceRtId = insuranceRt.InsuranceRtId;
+                                        insuranceRtRepository.SaveChanges();
+                                    }
+                                }
+                            }
                         }
-
                     }
                 }
             }

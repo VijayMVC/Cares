@@ -253,10 +253,7 @@ namespace Cares.Implementation.Services
                                         }
                                     }
                                 }
-
-
                             }
-
                         }
                         else
                         {
