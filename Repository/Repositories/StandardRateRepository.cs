@@ -83,7 +83,7 @@ namespace Cares.Repository.Repositories
                     s =>
                         s.UserDomainKey == UserDomainKey && s.HireGroupDetailId == hireGroupDetailId &&
                         s.StandardRtStartDt <= raRecCreatedDate && s.StandardRtMain.TariffTypeCode == tariffTypeCode &&
-                        !s.IsDeleted).OrderByDescending(s => s.StandardRtStartDt).ToList();
+                        !s.IsDeleted).OrderByDescending(s => s.RevisionNumber).ToList();
         }
 
         #endregion

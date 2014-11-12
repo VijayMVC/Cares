@@ -58,7 +58,7 @@ namespace Cares.Repository.Repositories
                 DbSet.Include(cc => cc.ChaufferChargeMain).Where(
                     cChrg =>
                         cChrg.UserDomainKey == UserDomainKey && cChrg.DesigGradeId == desigGradeId && cChrg.ChaufferChargeMain.TariffTypeCode == tariffTypeCode &&
-                        !cChrg.IsDeleted && cChrg.StartDt <= raRecCreatedDt).OrderByDescending(adc => adc.StartDt).ToList();
+                        !cChrg.IsDeleted && cChrg.StartDt <= raRecCreatedDt).OrderByDescending(adc => adc.RowVersion).ToList();
         }
         
         /// <summary>

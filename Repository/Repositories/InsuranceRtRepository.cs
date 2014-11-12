@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Security.Cryptography;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
 using Cares.Models.ReportModels;
@@ -95,7 +93,7 @@ namespace Cares.Repository.Repositories
             return
                 DbSet.Include(ir => ir.InsuranceRtMain).Where(ir => ir.UserDomainKey == UserDomainKey && !ir.IsDeleted && ir.HireGroupDetailId == hireGroupDetailId &&
                         ir.StartDt <= raRecCreatedDate && ir.InsuranceTypeId == insuranceTypeId && ir.InsuranceRtMain.TariffTypeCode == tariffTypeCode)
-                        .OrderByDescending(ir => ir.StartDt).ToList();
+                        .OrderByDescending(ir => ir.RevisionNumber).ToList();
         }
 
         /// <summary>
@@ -124,7 +122,7 @@ namespace Cares.Repository.Repositories
                 ir =>
                     ir.UserDomainKey == userDomainKey && !ir.IsDeleted && ir.ChildInsuranceRtId == null &&
                     ir.HireGroupDetailId == hireGroupDetailId &&
-                    ir.StartDt <= startDt).Select(x => new WebApiAvailableInsurance()
+                    ir.StartDt <= startDt).Select(x => new WebApiAvailableInsurance
                     {
                         InsuranceRtId = x.InsuranceRtId
                     }).ToList();

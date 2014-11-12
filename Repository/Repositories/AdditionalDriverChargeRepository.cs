@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -128,7 +127,7 @@ namespace Cares.Repository.Repositories
                 DbSet.Where(
                     addDriverChrg =>
                         addDriverChrg.UserDomainKey == UserDomainKey && addDriverChrg.TariffTypeCode == tariffTypeCode &&
-                        !addDriverChrg.IsDeleted && addDriverChrg.StartDt <= raRecCreatedDt).OrderByDescending(adc => adc.StartDt).ToList();
+                        !addDriverChrg.IsDeleted && addDriverChrg.StartDt <= raRecCreatedDt).OrderByDescending(adc => adc.RevisionNumber).ToList();
         }
 
         #endregion

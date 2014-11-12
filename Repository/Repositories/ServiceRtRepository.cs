@@ -70,7 +70,7 @@ namespace Cares.Repository.Repositories
             return
                 DbSet.Include(se => se.ServiceRtMain).Where(serviceRt => serviceRt.UserDomainKey == UserDomainKey && serviceRt.ServiceItemId == serviceItemId &&
                                  serviceRt.StartDt <= raRecCreatedDate && !serviceRt.IsDeleted && serviceRt.ServiceRtMain.TariffTypeCode == tariffTypeCode)
-                                 .OrderByDescending(serviceRt => serviceRt.StartDt).ToList();
+                                 .OrderByDescending(serviceRt => serviceRt.RevisionNumber).ToList();
         }
 
         #endregion
