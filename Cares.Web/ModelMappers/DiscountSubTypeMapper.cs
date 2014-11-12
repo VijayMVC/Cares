@@ -59,7 +59,7 @@ namespace Cares.Web.ModelMappers
                 DiscountTypeId = source.DiscountTypeId,
                 DiscountTypeName = source.DiscountType.DiscountTypeName,
                 DiscountSubTypeName = source.DiscountSubTypeName,
-                DiscountSubTypeCode = source.DiscountSubTypeCode,
+                DiscountSubTypeCode = source.DiscountSubTypeCode.Trim(),
                 DiscountSubTypeId = source.DiscountSubTypeId,
                 DiscountSubTypeDescription = source.DiscountSubTypeDescription
             };
