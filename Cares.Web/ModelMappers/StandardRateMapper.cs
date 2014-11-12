@@ -15,16 +15,15 @@ namespace Cares.Web.ModelMappers
             return new StandardRate
             {
                 StandardRtId = source.StandardRtId,
-                ChildStandardRtId=source.ChildStandardRtId,
+                ChildStandardRtId = source.ChildStandardRtId,
                 StandardRtMainId = source.StandardRtMainId,
                 AllowedMileage = source.AllowMileage,
                 ExcessMileageChrg = source.ExcessMileageCharge,
                 StandardRt = source.StandardRt,
-                StandardRtEndDt = source.EndDt,
-                StandardRtStartDt=source.StartDate,
+                StandardRtStartDt = source.StartDate,
                 HireGroupDetailId = source.HireGroupDetailId,
                 RevisionNumber = source.RevisionNumber,
-                
+
             };
         }
         /// <summary>
@@ -41,9 +40,8 @@ namespace Cares.Web.ModelMappers
                 AllowMileage = source.AllowedMileage,
                 ExcessMileageCharge = source.ExcessMileageChrg,
                 StandardRt = source.StandardRt,
-                EndDt = source.StandardRtEndDt,
                 StartDate = source.StandardRtStartDt,
-                RevisionNumber=source.RevisionNumber
+                RevisionNumber = source.RevisionNumber
 
             };
         }
@@ -62,7 +60,6 @@ namespace Cares.Web.ModelMappers
                 ExcessMileageCharges = source.ExcessMileageChrg,
                 ModelYear = source.HireGroupDetail.ModelYear,
                 StandradRate = source.StandardRt,
-                SREndDate = source.StandardRtEndDt,
                 SRStartDate = source.StandardRtStartDt,
                 StandradRateType = source.StandardRtMain.StandardRtMainCode,
                 RevesionNumber = source.RevisionNumber,

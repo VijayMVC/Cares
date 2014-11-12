@@ -174,6 +174,12 @@ namespace Cares.Implementation.Services
             #region Edit
             else
             {
+                StandardRateMain standardRateMainDbVersion = standardRateMainRepository.Find(standardRateMain.StandardRtMainId);
+                List<StandardRate> standardRates = new List<StandardRate>();
+                if (standardRateMainDbVersion.StandardRates != null)
+                {
+                    standardRates = standardRateMainDbVersion.StandardRates.ToList();
+                }
                 StandardRateValidation(standardRateMain, false);
                 if (standardRateMain.StandardRates != null)
                 {
@@ -191,14 +197,24 @@ namespace Cares.Implementation.Services
                         standardRate.StandardRtMainId = standardRateMain.StandardRtMainId;
                         if (standardRate.StandardRtId > 0)
                         {
-                            long oldRecordId = standardRate.StandardRtId;
-                            standardRate.StandardRtId = 0;
-                            standardRate.RevisionNumber = standardRate.RevisionNumber + 1;
-                            standardRateRepository.Add(standardRate);
-                            standardRateRepository.SaveChanges();
-                            StandardRate oldStandardRate = standardRateRepository.Find(oldRecordId);
-                            oldStandardRate.ChildStandardRtId = standardRate.StandardRtId;
-                            standardRateRepository.SaveChanges();
+                            foreach (var dbItem in standardRates)
+                            {
+                                if (dbItem.StandardRtId == standardRate.StandardRtId)
+                                {
+                                    if (dbItem.AllowedMileage != standardRate.AllowedMileage || dbItem.StandardRtStartDt != standardRate.StandardRtStartDt
+                                        || dbItem.ExcessMileageChrg != standardRate.ExcessMileageChrg || dbItem.StandardRt != standardRate.StandardRt)
+                                    {
+                                        long oldRecordId = standardRate.StandardRtId;
+                                        standardRate.StandardRtId = 0;
+                                        standardRate.RevisionNumber = standardRate.RevisionNumber + 1;
+                                        standardRateRepository.Add(standardRate);
+                                        standardRateRepository.SaveChanges();
+                                        StandardRate oldStandardRate = standardRateRepository.Find(oldRecordId);
+                                        oldStandardRate.ChildStandardRtId = standardRate.StandardRtId;
+                                        standardRateRepository.SaveChanges();
+                                    }
+                                }
+                            }
                         }
                         else
                         {
@@ -218,7 +234,6 @@ namespace Cares.Implementation.Services
                StandardRtMainName = standardRateMain.StandardRtMainName,
                StandardRtMainDescription = standardRateMain.StandardRtMainDescription,
                StartDt = standardRateMain.StartDt,
-               EndDt = standardRateMain.EndDt,
                TariffTypeId = tariffType.TariffTypeId,
                TariffTypeCodeName = tariffType.TariffTypeCode + " - " + tariffType.TariffTypeName,
                OperationId = tariffType.OperationId,
@@ -281,29 +296,18 @@ namespace Cares.Implementation.Services
         private void StandardRateValidation(StandardRateMain standardRateMain, bool addFlag)
         {
             // ReSharper disable once JoinDeclarationAndInitializer
-            DateTime strMainStartDate, strMainEndDate, dbStartDate, dbEndDate;
+            DateTime strMainStartDate, dbStartDate;
             strMainStartDate = Convert.ToDateTime(standardRateMain.StartDt);
-            strMainEndDate = Convert.ToDateTime(standardRateMain.EndDt);
             if (addFlag)
             {
                 if (strMainStartDate.Date < DateTime.Now.Date)
                     throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.TariffRate.InvalidStartDate));
-                if (strMainEndDate.Date < strMainStartDate.Date)
-                    throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.TariffRate.InvalidEndDate));
                 IEnumerable<StandardRateMain> oStRateMain = FindByTariffTypeCode(standardRateMain.TariffTypeCode).Select(s => s);
                 foreach (var rateMain in oStRateMain)
                 {
                     dbStartDate = rateMain.StartDt;
-                    dbEndDate = rateMain.EndDt;
-
-                    if ((strMainStartDate <= dbStartDate) && ((dbEndDate) <= (strMainEndDate)))
+                    if ((strMainStartDate.Date == dbStartDate.Date))
                         throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.TariffRate.ExistingStandardRtOverlaps));
-                    if ((dbStartDate <= strMainStartDate) && ((strMainEndDate) <= (dbEndDate)))
-                        throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.TariffRate.CurrentStandardRtOverlaps));
-                    if ((dbStartDate <= strMainStartDate) && (strMainStartDate <= (dbEndDate)) && ((dbEndDate) <= (strMainEndDate)))
-                        throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.TariffRate.StartStandardRtDurationOverlaps));
-                    if ((strMainStartDate <= dbStartDate) && (dbStartDate <= (strMainEndDate)) && ((strMainEndDate) <= (dbEndDate)))
-                        throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.TariffRate.EndStandardRtDurationOverlaps));
                 }
             }
             if (standardRateMain.StandardRates != null)
@@ -311,12 +315,9 @@ namespace Cares.Implementation.Services
                 foreach (var standardRate in standardRateMain.StandardRates)
                 {
                     dbStartDate = Convert.ToDateTime(standardRate.StandardRtStartDt);
-                    dbEndDate = Convert.ToDateTime(standardRate.StandardRtEndDt);
-                    if (dbStartDate.Date < DateTime.Now.Date || dbEndDate.Date < DateTime.Now.Date)
+                    if (dbStartDate.Date < DateTime.Now.Date)
                         throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.TariffRate.StRateInvalidEffectiveDates));
-                    if (dbEndDate < dbStartDate)
-                        throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.TariffRate.StRateInvalidEndDate));
-                    if (dbStartDate < strMainStartDate || dbEndDate > strMainEndDate)
+                    if (dbStartDate < strMainStartDate)
                         throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Tariff.TariffRate.StRateInvalidRangeEffectiveDate));
                 }
             }

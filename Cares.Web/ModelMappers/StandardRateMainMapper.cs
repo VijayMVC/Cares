@@ -24,14 +24,14 @@ namespace Cares.Web.ModelMappers
                 StandardRtMainName = source.StandardRtMainName,
                 StartDt = source.StartDt,
                 EndDt = source.EndDt,
-                TariffTypeCodeName=source.TariffTypeCodeName,
+                TariffTypeCodeName = source.TariffTypeCodeName,
                 StandardRtMainDescription = source.StandardRtMainDescription,
                 OperationId = source.OperationId,
                 TariffTypeId = source.TariffTypeId,
                 OperationCodeName = source.OperationCodeName,
             };
         }
-        
+
         /// <summary>
         ///  Create entity from web model
         /// </summary>
@@ -42,11 +42,10 @@ namespace Cares.Web.ModelMappers
                 StandardRtMainId = source.StandardRtMainId,
                 StandardRtMainCode = source.StandardRtMainCode,
                 StandardRtMainName = source.StandardRtMainName,
-                TariffTypeCode= source.TariffTypeId.ToString(),
+                TariffTypeCode = source.TariffTypeId.ToString(),
                 StandardRtMainDescription = source.StandardRtMainDescription,
                 StartDt = source.StartDt,
-                EndDt = source.EndDt,
-                StandardRates = source.HireGroupDetailsInStandardRtMain!=null?source.HireGroupDetailsInStandardRtMain.Select(standardRate => standardRate.CreateFrom()).ToList():null
+                StandardRates = source.HireGroupDetailsInStandardRtMain != null ? source.HireGroupDetailsInStandardRtMain.Select(standardRate => standardRate.CreateFrom()).ToList() : null
             };
         }
 

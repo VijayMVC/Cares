@@ -38,7 +38,7 @@
                         <th class="tarrifrateOperation"> <span>@Cares.Web.Resources.Tariff.TariffRate.Operation<span></span></span></th>
                         <th class="tarrifrateType"> <span>@Cares.Web.Resources.Tariff.TariffRate.TariffType<span></span></span></th>
                         <th class="tarrifrateSEdate"> <span id="5">@Cares.Web.Resources.Tariff.TariffRate.StartEffectiveDate<span></span></span></th>
-                        <th class="tarrifrateEFDate"> <span id="6">@Cares.Web.Resources.Tariff.TariffRate.EndEffectiveDate<span></span></span></th>
+                        @*<th class="tarrifrateEFDate"> <span id="6">@Cares.Web.Resources.Tariff.TariffRate.EndEffectiveDate<span></span></span></th>*@
                     </tr>
                 </thead>
                 <tbody>
@@ -64,7 +64,7 @@
             <td data-bind="text: operationCodeName"></td>
             <td data-bind="text: tariffTypeCodeName"></td>
             <td data-bind="text: formattedStartDate"></td>
-            <td data-bind="text: formattedEndDate"></td>
+            @*<td data-bind="text: formattedEndDate"></td>*@
             <td>
                 <!-- ko template: { name: 'editActionTariffRateTemplate' } -->
                 <!-- /ko -->

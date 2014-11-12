@@ -124,7 +124,7 @@
     <value>نهاية التاريخ الفعلي أكبر من بداية التاريخ الفعلي لمعدل قياسي القائمة.</value>
   </data>
   <data name="ExistingStandardRtOverlaps" xml:space="preserve">
-    <value>تقع آخر مدة معدل قياسي ضمن تيار يعرف ابدأ فعالة ومجموعة النهاية.</value>
+    <value>آخر معدل قياسي موجودة بالفعل مع بداية التاريخ الفعلي.</value>
   </data>
   <data name="InvalidEndDate" xml:space="preserve">
     <value>نهاية التاريخ الفعلي يجب أن يكون أكبر من تاريخ البدء.</value>
@@ -142,7 +142,7 @@
     <value>يجب أن يكون تاريخ نهاية للتأجير المجموعات نسبة أكبر من تاريخ بدء بهم</value>
   </data>
   <data name="StRateInvalidRangeEffectiveDate" xml:space="preserve">
-    <value>بدء التسجيل ونهاية التسجيل للتأجير المجموعات أسعار يجب أن يكون بين البداية وتاريخ النفاذ.</value>
+    <value>التسجيل لتأجير المجموعات أسعار يجب أن يكون أكبر من بدء تاريخ السريان بدء.</value>
   </data>
   <data name="CodeDuplication" xml:space="preserve">
     <value>معدل قياسي الرئيسي مع نفس الرمز موجود بالفعل. يرجى اختيار رمز مختلف!</value>
