@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cares.Models.DomainModels;
+using Cares.Models.ReportModels;
+using Cares.Models.ResponseModels;
 
 namespace Cares.Interfaces.Repository
 {
@@ -50,7 +52,7 @@ namespace Cares.Interfaces.Repository
         /// <summary>
         /// Get available vehicles for WebApi
         /// </summary>
-        IEnumerable<long> GetAvailableVehicleInfoForWebApi(long operationWorkPlaceId, DateTime startDtTime,
+        IEnumerable<WebApiAvailableHireGroupsApiResponse> GetAvailableVehicleInfoForWebApi(long operationWorkPlaceId, DateTime startDtTime,
             DateTime endDtTime, long userDomainKey);
     }
 }

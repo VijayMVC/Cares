@@ -34,10 +34,10 @@ namespace Cares.WebApi.Areas.Api.Controllers
         /// <summary>
         /// Get Available Services with their price
         /// </summary>        
-        public IEnumerable<WebApiAvailableServices> Post(GetAvailableServicesRequest request)
+        public IEnumerable<WebApiAvailableInsurance> Post(GetAvailableServicesRequest request)
         {
             var returnList = availableRentalService.GetAvailableServicesWithRates(request.OutLocationId, request.StartDateTime,
-                request.EndDateTime, request.DomainKey, request.HireGroupDetailId);
+                request.EndDateTime, request.DomainKey, request.HireGroupDetailId, request.TarrifTypeCode);
             return returnList;
         }
         #endregion

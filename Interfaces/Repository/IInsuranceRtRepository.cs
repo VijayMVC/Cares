@@ -36,7 +36,7 @@ namespace Cares.Interfaces.Repository
         /// <summary>
         /// Get Available Insurance Rate ForWebApi
         /// </summary>
-        IEnumerable<WebApiAvailableInsurance> GetAvailableInsuranceRtForWebApi(long hireGroupDetailId, DateTime startDt,
+        IEnumerable<WebApiAvailableInsurance> GetAvailableInsuranceRtForWebApi(string tarrifTypeCode, DateTime startDt,
             long userDomainKey);
 
         /// <summary>

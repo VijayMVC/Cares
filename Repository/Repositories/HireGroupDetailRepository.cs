@@ -2,8 +2,14 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
+using System.Security.Cryptography;
+using System.Web.Security.AntiXss;
 using Cares.Interfaces.Repository;
+using Cares.Models.Common;
 using Cares.Models.DomainModels;
+using Cares.Models.ReportModels;
+using Cares.Models.ResponseModels;
 using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
 
@@ -153,27 +159,42 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// user domainKey
         /// </summary>
-        public IEnumerable<long> GetAvailableVehicleInfoForWebApi(long operationWorkPlaceId, DateTime startDtTime, DateTime endDtTime, long userDomainKey)
+        public IEnumerable<WebApiAvailableHireGroupsApiResponse> GetAvailableVehicleInfoForWebApi(
+            long operationWorkPlaceId, DateTime startDtTime, DateTime endDtTime, long userDomainKey)
         {
-            var query = from hireGroupDetail in DbSet
-                        join hireGroup in db.HireGroups on hireGroupDetail.HireGroupId equals hireGroup.HireGroupId
-                        join vc in db.VehicleCategories on hireGroupDetail.VehicleCategoryId equals vc.VehicleCategoryId
-                        join vm in db.VehicleMakes on hireGroupDetail.VehicleMakeId equals vm.VehicleMakeId
-                        join vmod in db.VehicleModels on hireGroupDetail.VehicleModelId equals vmod.VehicleModelId
-                        join v in db.Vehicles on new { vc.VehicleCategoryId, vm.VehicleMakeId, vmod.VehicleModelId, hireGroupDetail.ModelYear } equals
-                        new { v.VehicleCategoryId, v.VehicleMakeId, v.VehicleModelId, v.ModelYear }
-                        from vs in db.VehicleStatuses.Where(vs => vs.VehicleStatusId == v.VehicleStatusId &&
-                            vs.AvailabilityCheck && v.OperationsWorkPlaceId == operationWorkPlaceId)
-                        join vr in db.VehicleReservations on v.VehicleId equals vr.VehicleId into vehicleGroup
-                        from vg in vehicleGroup.Where(vg => !(vg.EndDtTime >= startDtTime && vg.StartDtTime <= endDtTime)).DefaultIfEmpty()
-                        orderby hireGroup.HireGroupCode, hireGroup.HireGroupName
-                        group hireGroupDetail by new
-                        {
-                            hireGroupDetail.HireGroupDetailId,                            
-                        } into finalHireGroup
-                        select finalHireGroup;
-
-            return query.SelectMany(hg => hg.Where(hgd => hgd.UserDomainKey == userDomainKey).Select(hgd => hgd.HireGroupDetailId)).Distinct().ToList();
+            #region Join
+            var query = from vehicle in db.Vehicles
+                join hgd in db.HireGroupDetails
+                    on new{ vehicle.VehicleModelId,  vehicle.VehicleMakeId, vehicle.VehicleCategoryId,vehicle.ModelYear} 
+                equals new{hgd.VehicleModelId,hgd.VehicleMakeId, hgd.VehicleCategoryId, hgd.ModelYear }
+                into hireGroups from hgd in hireGroups.DefaultIfEmpty()
+                   join vr in db.VehicleReservations on vehicle.VehicleId equals vr.VehicleId into vehicleGroup
+                   from vg in vehicleGroup.
+                Where(vg => !(vg.EndDtTime >= startDtTime && vg.StartDtTime <= endDtTime)).DefaultIfEmpty()
+            #endregion
+            #region Where
+                        where vehicle.VehicleStatusId==(int)VehicleStatusEnum.Available &&
+                vehicle.UserDomainKey==userDomainKey  && vehicle.OperationsWorkPlaceId== operationWorkPlaceId
+            #endregion
+            #region Select
+                        select new WebApiAvailableHireGroupsApiResponse
+                {
+                    Image= vehicle.VehicleImages.FirstOrDefault().Image,
+                    ModelYear = vehicle.ModelYear,
+                    VehicleCategory = vehicle.VehicleCategory.VehicleCategoryCode,
+                    VehicleMake = vehicle.VehicleMake.VehicleMakeCode,
+                    VehicleModel = vehicle.VehicleModel.VehicleModelCode,
+                    NumberPlate = vehicle.PlateNumber,
+                    StandardRate =  (hgd.StandardRates.Where(rate=> rate.StandardRtStartDt<=startDtTime).OrderBy(x=>x.StandardRtStartDt).FirstOrDefault().StandardRt)!=null ?
+                    (hgd.StandardRates.Where(rate=> rate.StandardRtStartDt<=startDtTime).OrderBy(x=>x.StandardRtStartDt).FirstOrDefault().StandardRt):0,
+                    HireGroupName = hgd.HireGroup!=null ? hgd.HireGroup.HireGroupCode: string.Empty,
+                    AllowedMileage = (hgd.StandardRates.
+                    Where(rate => rate.StandardRtStartDt <= startDtTime).OrderBy(x => x.StandardRtStartDt).FirstOrDefault().AllowedMileage) !=null ?
+                    (hgd.StandardRates.
+                    Where(rate => rate.StandardRtStartDt <= startDtTime).OrderBy(x => x.StandardRtStartDt).FirstOrDefault().AllowedMileage):0
+                };
+                        #endregion
+            return query.OrderBy(vehicle => vehicle.ModelYear).ToList();
         }
         #endregion
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Http;
 using Cares.Interfaces.IServices;
+using Cares.Models.ReportModels;
 using Cares.Models.ResponseModels;
 using Cares.WebApi.Models;
 
@@ -35,11 +36,10 @@ namespace Cares.WebApi.Areas.Api.Controllers
         /// <summary>
         /// Get Available HireGroup with their price
         /// </summary>        
-        public IEnumerable<WebApiAvailaleHireGroup> Post(GetAvailableHireGroupsRequest request)
+        public IEnumerable<WebApiAvailableHireGroupsApiResponse> Post(GetAvailableHireGroupsRequest request)
         {
-            var returnList = availableRentalService.GetAvailableHireGroupsWithRates(request.OutLocationId, request.StartDateTime,
+           return availableRentalService.GetAvailableHireGroupsWithRates(request.OutLocationId, request.StartDateTime,
                 request.EndDateTime, request.DomainKey);
-            return returnList;
         } 
         #endregion
 

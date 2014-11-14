@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Web.Security.AntiXss;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
 using Cares.Models.ReportModels;
@@ -116,17 +118,25 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get Available Insurance Rate ForWebApi
         /// </summary>
-        public IEnumerable<WebApiAvailableInsurance> GetAvailableInsuranceRtForWebApi(long hireGroupDetailId, DateTime startDt, long userDomainKey)
+       public IEnumerable<WebApiAvailableInsurance> GetAvailableInsuranceRtForWebApi(string tarrifTypeCode, DateTime startDt,
+            long userDomainKey)
         {
-            return DbSet.Where(
-                ir =>
-                    ir.UserDomainKey == userDomainKey && !ir.IsDeleted && ir.ChildInsuranceRtId == null &&
-                    ir.HireGroupDetailId == hireGroupDetailId &&
-                    ir.StartDt <= startDt).Select(x => new WebApiAvailableInsurance
-                    {
-                        InsuranceRtId = x.InsuranceRtId
-                    }).ToList();
+           
+            var query = from insurances in db.InsuranceRts
+                join
+                    insuranceRtMain in db.InsuranceRtMains on
+                    new {insurances.InsuranceRtMainId} equals new {insuranceRtMain.InsuranceRtMainId}
+                    where (insuranceRtMain.TariffTypeCode.Equals(tarrifTypeCode) && insurances.UserDomainKey == userDomainKey && insurances.StartDt <= startDt)
+                select new WebApiAvailableInsurance
+                {
+                    InsuranceRate = insuranceRtMain.InsuranceRates.
+                    Where(rate => rate.StartDt<=startDt).OrderBy(rate => rate.RevisionNumber).FirstOrDefault().InsuranceRate ,
+                    InsuranceTypeId = insurances.InsuranceTypeId,
+                    InsuranceTypeName = insurances.InsuranceType.InsuranceTypeName,
+                    TariffTypeName = insuranceRtMain.TariffTypeCode, // name is not available here
+                };
 
+            return query.OrderBy(insurances => insurances.TariffTypeName).ToList();
         }
 
         #endregion

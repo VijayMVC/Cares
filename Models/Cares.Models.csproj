@@ -104,6 +104,7 @@
   <ItemGroup>
     <Compile Include="CommonTypes\PhoneType.cs" />
     <Compile Include="CommonTypes\DepartmentType.cs" />
+    <Compile Include="Common\AvailableHireGroupWebApiByColumn.cs" />
     <Compile Include="Common\BookingQueueByColumn.cs" />
     <Compile Include="Common\NrtQueueByColumn.cs" />
     <Compile Include="Common\RaStatusEnum.cs" />
@@ -323,6 +324,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="ResponseModels\WebApiAvailableHireGroupsApiResponse.cs" />
     <Compile Include="ReportModels\DailyActionReportResponse.cs" />
     <Compile Include="ReportModels\FleetHireGroupDetail.cs" />
     <Compile Include="ReportModels\GrossSalesReportResponse.cs" />

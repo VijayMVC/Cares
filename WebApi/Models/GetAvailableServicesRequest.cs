@@ -27,6 +27,11 @@ namespace Cares.WebApi.Models
         public long HireGroupDetailId { get; set; }
 
         /// <summary>
+        /// Tarrif Type Id 
+        /// </summary>
+        public string TarrifTypeCode { get; set; }
+
+        /// <summary>
         /// Domain Key
         /// </summary>
         public long DomainKey { get; set; }
