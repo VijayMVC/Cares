@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cares.Models.DomainModels;
+using Cares.Models.ResponseModels;
 
 namespace Cares.Interfaces.Repository
 {
@@ -20,6 +21,9 @@ namespace Cares.Interfaces.Repository
         /// Get Chauffer Charge For Ra Billing
         /// </summary>
         IEnumerable<ChaufferCharge> GetForRaBilling(string tariffTypeCode, long desigGradeId, DateTime raRecCreatedDt);
+
+        IEnumerable<WebApiAvailableChauffer> GetAvailableChauffeurForWebApi(string tarrifTypeCode,
+            DateTime startDt,DateTime endDateTime, long userDomainKey);
 
     }
 }

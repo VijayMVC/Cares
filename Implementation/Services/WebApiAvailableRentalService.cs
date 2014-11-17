@@ -18,13 +18,15 @@ namespace Cares.Implementation.Services
         private readonly IHireGroupDetailRepository hireGroupDetailRepository;
         private readonly IVehicleRepository vehicleRepository;
         private readonly IInsuranceRtRepository insuranceRtRepository;
+        private readonly IChaufferChargeRepository chaufferChargeRepository;
+
         #endregion
 
         #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>
-        public WebApiAvailableRentalService(IHireGroupDetailRepository hireGroupDetailRepository, IVehicleRepository vehicleRepository, IInsuranceRtRepository insuranceRtRepository)
+        public WebApiAvailableRentalService(IChaufferChargeRepository chaufferChargeRepository, IHireGroupDetailRepository hireGroupDetailRepository, IVehicleRepository vehicleRepository, IInsuranceRtRepository insuranceRtRepository)
         {
             if (hireGroupDetailRepository == null)
             {
@@ -42,6 +44,7 @@ namespace Cares.Implementation.Services
             this.hireGroupDetailRepository = hireGroupDetailRepository;
             this.vehicleRepository = vehicleRepository;
             this.insuranceRtRepository = insuranceRtRepository;
+            this.chaufferChargeRepository = chaufferChargeRepository;
         }
         #endregion
 
@@ -59,14 +62,16 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// 
         /// </summary>
-        public IEnumerable<WebApiAvailableInsurance> GetAvailableServicesWithRates(long operationWorkplaceId, DateTime startDateTime, DateTime endDateTime,
+        public IEnumerable<WebApiAvailableChauffer> GetAvailableServicesWithRates(long operationWorkplaceId, DateTime startDateTime, DateTime endDateTime,
        long domainKey, long hireGroupDetailId, string tarrifTypeCode)
         {
-
             IEnumerable<WebApiAvailableInsurance> insurances = insuranceRtRepository.GetAvailableInsuranceRtForWebApi(tarrifTypeCode, startDateTime, domainKey);
-            //IEnumerable<WebApiAvailableInsurance> insurances = employeeRepository.GetAllChauffers(operationWorkplaceId, startDateTime, endDateTime, domainKey);
-            return insurances;
+            IEnumerable<WebApiAvailableChauffer> availableChauffeurForWebApi =
+            chaufferChargeRepository.GetAvailableChauffeurForWebApi(tarrifTypeCode, startDateTime,endDateTime, domainKey);
+            return availableChauffeurForWebApi;
         }
+
+
 
         #endregion
     }

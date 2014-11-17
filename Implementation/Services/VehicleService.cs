@@ -440,7 +440,6 @@ namespace Cares.Implementation.Services
             vehicleRepository.SaveChanges();
             #endregion
             Vehicle vehicleResponse = vehicleRepository.Find(vehicle.VehicleId);
-            vehicleRepository.LoadDependencies(vehicleResponse);
             return vehicleResponse;
         }
 

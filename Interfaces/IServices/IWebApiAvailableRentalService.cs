@@ -19,7 +19,7 @@ namespace Cares.Interfaces.IServices
         /// <summary>
         /// Get available Services with rates for given location and duration
         /// </summary>
-        IEnumerable<WebApiAvailableInsurance> GetAvailableServicesWithRates(long operationWorkplaceId, DateTime startDateTime,
+        IEnumerable<WebApiAvailableChauffer> GetAvailableServicesWithRates(long operationWorkplaceId, DateTime startDateTime,
             DateTime endDateTime, long domainKey, long hireGroupDetailId, string tarrifTypeCode);
 
     }

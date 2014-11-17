@@ -115,7 +115,8 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public AdditionalDriverCharge GetRevision(long additionalDriverChargeId)
         {
-            return DbSet.FirstOrDefault(addDriverChrg => addDriverChrg.ChildAdditionalDriverChargeId == additionalDriverChargeId && addDriverChrg.UserDomainKey == UserDomainKey);
+            return DbSet.FirstOrDefault(addDriverChrg => addDriverChrg.ChildAdditionalDriverChargeId == 
+                additionalDriverChargeId && addDriverChrg.UserDomainKey == UserDomainKey);
         }
 
         /// <summary>
@@ -130,6 +131,8 @@ namespace Cares.Repository.Repositories
                         !addDriverChrg.IsDeleted && addDriverChrg.StartDt <= raRecCreatedDt).OrderByDescending(adc => adc.RevisionNumber).ToList();
         }
 
+
+    
         #endregion
     }
 }
