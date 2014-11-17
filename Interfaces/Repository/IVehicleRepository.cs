@@ -41,18 +41,7 @@ namespace Cares.Interfaces.Repository
         /// <summary>
         /// Get Vehicle Info For NRT
         /// </summary>
-        /// <param name="operationWorkPlaceId"></param>
-        /// <param name="startDtTime"></param>
-        /// <param name="endDtTime"></param>
-        /// <returns></returns>
-        IEnumerable<Vehicle> GetVehicleInfoForNrt(long operationWorkPlaceId, DateTime startDtTime,
-            DateTime endDtTime);
-
-        /// <summary>
-        /// Load Dependencies
-        /// </summary>
-        void LoadDependencies(Vehicle vehicle);
-
+        IEnumerable<Vehicle> GetVehicleInfoForNrt(long operationWorkPlaceId, DateTime startDtTime, DateTime endDtTime);
 
         /// <summary>
         /// Check Vehicle Plate Number Already Exist
@@ -78,11 +67,6 @@ namespace Cares.Interfaces.Repository
         /// Association check b/n vehicle and vehicle Model
         /// </summary>
         bool IsVehicleModelAssociatedWithVehicle(long vehicleModelId);
-
-        /// <summary>
-        /// GetAvailable Vehicles for WebApi
-        /// </summary>
-        IEnumerable<WebApiAvailaleHireGroup> GetAvaibaleVehiclesForWebApi(IEnumerable<long> hireGroupDetailsIds, long domainKey);
 
         /// <summary>
         /// vehicle Palte Number validation check

@@ -496,7 +496,6 @@
     <Compile Include="ResponseModels\VehicleStatusSearchRequestResponse.cs" />
     <Compile Include="ResponseModels\WebApiAvailableInsurance.cs" />
     <Compile Include="ResponseModels\WebApiAvailableServices.cs" />
-    <Compile Include="ResponseModels\WebApiAvailaleHireGroup.cs" />
     <Compile Include="ResponseModels\WorkLocationBaseDataResponse.cs" />
     <Compile Include="ResponseModels\WorkLocationSerachRequestResponse.cs" />
     <Compile Include="ResponseModels\WorkplaceBaseDataResponse.cs" />
