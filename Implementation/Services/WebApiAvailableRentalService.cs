@@ -65,7 +65,7 @@ namespace Cares.Implementation.Services
         public IEnumerable<WebApiAvailableChauffer> GetAvailableServicesWithRates(long operationWorkplaceId, DateTime startDateTime, DateTime endDateTime,
        long domainKey, long hireGroupDetailId, string tarrifTypeCode)
         {
-            IEnumerable<WebApiAvailableInsurance> insurances = insuranceRtRepository.GetAvailableInsuranceRtForWebApi(tarrifTypeCode, startDateTime, domainKey);
+           // IEnumerable<WebApiAvailableInsurance> insurances = insuranceRtRepository.GetAvailableInsuranceRtForWebApi(tarrifTypeCode, startDateTime, domainKey);
             IEnumerable<WebApiAvailableChauffer> availableChauffeurForWebApi =
             chaufferChargeRepository.GetAvailableChauffeurForWebApi(tarrifTypeCode, startDateTime,endDateTime, domainKey);
             return availableChauffeurForWebApi;

@@ -18,5 +18,7 @@ namespace Cares.Models.ResponseModels
         /// Insurance Rate
         /// </summary>
         public double ChaufferChargeRate { get; set; }
+        
+        public string  DesignationGrade { get; set; }
     }
 }
