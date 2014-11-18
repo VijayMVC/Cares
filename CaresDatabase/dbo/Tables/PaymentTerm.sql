@@ -13,7 +13,8 @@
     [RecCreatedBy]           NVARCHAR (100) NOT NULL,
     [RecLastUpdatedDt]       DATETIME       NOT NULL,
     [RecLastUpdatedBy]       NVARCHAR (100) NOT NULL,
-    [UserDomainKey]          BIGINT         NOT NULL,
     CONSTRAINT [PK89_1_2_1_1_4] PRIMARY KEY NONCLUSTERED ([PaymentTermID] ASC)
 );
+
+
 
