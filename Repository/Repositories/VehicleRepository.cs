@@ -287,6 +287,7 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Count(v => v.PlateNumber.Trim().ToLower() == plateNumber.Trim().ToLower() && v.VehicleId != vehicleId) > 0;
         }
+
         #endregion
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Security.Cryptography;
 using Cares.Interfaces.Repository;
 using Cares.Models.Common;
 using Cares.Models.DomainModels;
@@ -115,7 +116,8 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public AdditionalDriverCharge GetRevision(long additionalDriverChargeId)
         {
-            return DbSet.FirstOrDefault(addDriverChrg => addDriverChrg.ChildAdditionalDriverChargeId == additionalDriverChargeId && addDriverChrg.UserDomainKey == UserDomainKey);
+            return DbSet.FirstOrDefault(addDriverChrg => addDriverChrg.ChildAdditionalDriverChargeId == 
+                additionalDriverChargeId && addDriverChrg.UserDomainKey == UserDomainKey);
         }
 
         /// <summary>
@@ -128,6 +130,19 @@ namespace Cares.Repository.Repositories
                     addDriverChrg =>
                         addDriverChrg.UserDomainKey == UserDomainKey && addDriverChrg.TariffTypeCode == tariffTypeCode &&
                         !addDriverChrg.IsDeleted && addDriverChrg.StartDt <= raRecCreatedDt).OrderByDescending(adc => adc.RevisionNumber).ToList();
+        }
+
+        public IEnumerable<WebApiAdditionalDriver> GetAdditionalDriversForWebApi(string tarrifTypeCode, long domainKey)
+        {
+            var query = from additionalDriverCharge in DbSet.Where(additionalDriver =>
+                additionalDriver.TariffTypeCode.Equals(tarrifTypeCode) && additionalDriver.UserDomainKey == domainKey)
+                select new WebApiAdditionalDriver
+                {
+                    TariffTypeCode = additionalDriverCharge.TariffTypeCode,
+                    Rate = additionalDriverCharge.AdditionalDriverChargeRate
+                };
+               
+            return query.OrderBy(additionalDriver => additionalDriver.Rate);
         }
 
         #endregion

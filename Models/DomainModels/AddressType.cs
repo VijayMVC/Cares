@@ -14,7 +14,7 @@ namespace Cares.Models.DomainModels
         /// <summary>
         /// Address Type Key
         /// </summary>
-        public int AddressTypeKey { get; set; }
+        public int? AddressTypeKey { get; set; }
         /// <summary>
         /// Address Type ID
         /// </summary>

@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Security.Cryptography;
 using Cares.Interfaces.Repository;
+using Cares.Models.Common;
 using Cares.Models.DomainModels;
+using Cares.Models.ResponseModels;
 using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
 
@@ -76,7 +79,31 @@ namespace Cares.Repository.Repositories
 
         }
 
-       
+            public IEnumerable<WebApiAvailableChauffer> GetAvailableChauffeurForWebApi(string tarrifTypeCode, DateTime startDt,DateTime endDateTime, long userDomainKey)
+            {
+                var query =
+                    db.Employees.Where(
+                        emp => emp.EmpJobProgs.Any(jobprog => jobprog.DesignationId == (int) DesignationEnum.Chauffer))
+                        .Select(employee => employee);
+                List<Employee> availableEmpos = query.OrderBy(emp => emp.EmpFName).ToList();
+
+                var final = from chauffer in (availableEmpos.Select(chauffer => chauffer).
+                    Where(chauffer => chauffer.ChaufferReservations.Any(abc => startDt > abc.EndDtTime && endDateTime < abc.StartDtTime)).ToList())
+                    join
+                        chuffferCharge in db.ChaufferCharges
+                        on new {chauffer.EmpJobInfo.DesigGradeId} equals new {chuffferCharge.DesigGradeId}
+                    where (chuffferCharge.ChaufferChargeMain.TariffTypeCode.Equals(tarrifTypeCode))
+                    select new WebApiAvailableChauffer
+                    {
+                        DesignationGrade = chauffer.EmpJobInfo.DesigGrade.DesigGradeCode,
+                        TariffTypeCode = chuffferCharge.ChaufferChargeMain.TariffTypeCode,
+                        ChaufferChargeRate = chuffferCharge.ChaufferChargeMain.ChaufferCharges.
+                        Where(rate=> rate.StartDt<=startDt).OrderBy(abc=>abc.RevisionNumber).FirstOrDefault().ChaufferChargeRate,
+                        RevisionNumber = chuffferCharge.ChaufferChargeMain.ChaufferCharges.
+                         Where(rate => rate.StartDt <= startDt).OrderBy(abc => abc.RevisionNumber).FirstOrDefault().RevisionNumber
+                    };
+                return final.OrderBy(abc => abc.TariffTypeCode).ToList();
+         }
         #endregion
     }
 }

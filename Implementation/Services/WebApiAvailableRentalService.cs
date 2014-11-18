@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
+using Cares.Models.DomainModels;
 using Cares.Models.Properties;
 using Cares.Models.ReportModels;
 using Cares.Models.ResponseModels;
@@ -18,13 +19,16 @@ namespace Cares.Implementation.Services
         private readonly IHireGroupDetailRepository hireGroupDetailRepository;
         private readonly IVehicleRepository vehicleRepository;
         private readonly IInsuranceRtRepository insuranceRtRepository;
+        private readonly IChaufferChargeRepository chaufferChargeRepository;
+        private readonly IAdditionalDriverChargeRepository additionalDriverChargeRepository;
+
         #endregion
 
         #region Constructor
         /// <summary>
         /// Constructor
         /// </summary>
-        public WebApiAvailableRentalService(IHireGroupDetailRepository hireGroupDetailRepository, IVehicleRepository vehicleRepository, IInsuranceRtRepository insuranceRtRepository)
+        public WebApiAvailableRentalService(IAdditionalDriverChargeRepository additionalDriverChargeRepository,IChaufferChargeRepository chaufferChargeRepository, IHireGroupDetailRepository hireGroupDetailRepository, IVehicleRepository vehicleRepository, IInsuranceRtRepository insuranceRtRepository)
         {
             if (hireGroupDetailRepository == null)
             {
@@ -38,10 +42,11 @@ namespace Cares.Implementation.Services
             {
                 throw new ArgumentNullException("insuranceRtRepository");
             }
-            
+            this.additionalDriverChargeRepository = additionalDriverChargeRepository;
             this.hireGroupDetailRepository = hireGroupDetailRepository;
             this.vehicleRepository = vehicleRepository;
             this.insuranceRtRepository = insuranceRtRepository;
+            this.chaufferChargeRepository = chaufferChargeRepository;
         }
         #endregion
 
@@ -56,18 +61,34 @@ namespace Cares.Implementation.Services
         }
 
 
+
         /// <summary>
-        /// 
+        /// Get avilable chauffers with rates
         /// </summary>
-        public IEnumerable<WebApiAvailableInsurance> GetAvailableServicesWithRates(long operationWorkplaceId, DateTime startDateTime, DateTime endDateTime,
+        public IEnumerable<WebApiAvailableChauffer> GetAvailableChauffersWithRates(long operationWorkplaceId, DateTime startDateTime, DateTime endDateTime,
        long domainKey, long hireGroupDetailId, string tarrifTypeCode)
         {
-
-            IEnumerable<WebApiAvailableInsurance> insurances = insuranceRtRepository.GetAvailableInsuranceRtForWebApi(tarrifTypeCode, startDateTime, domainKey);
-            //IEnumerable<WebApiAvailableInsurance> insurances = employeeRepository.GetAllChauffers(operationWorkplaceId, startDateTime, endDateTime, domainKey);
-            return insurances;
+                       return 
+            chaufferChargeRepository.GetAvailableChauffeurForWebApi(tarrifTypeCode, startDateTime,endDateTime, domainKey);
         }
 
+        /// <summary>
+        /// Get avilable chauffers with rates
+        /// </summary>
+        public IEnumerable<WebApiAdditionalDriver> GetAdditionalDriverWithRates(long domainKey, string tarrifTypeCode)
+        {
+           return additionalDriverChargeRepository.GetAdditionalDriversForWebApi(tarrifTypeCode, domainKey);
+
+        }
+
+        /// <summary>
+        /// Get avilable Insurences with rates
+        /// </summary>
+        public IEnumerable<WebApiAvailableInsurance> GetAvailableInsurencesWithRates(long domainKey, string tarrifTypeCode,
+            DateTime startDateTime)
+        {
+            return insuranceRtRepository.GetAvailableInsuranceRtForWebApi(tarrifTypeCode, startDateTime, domainKey);
+        }
         #endregion
     }
 }

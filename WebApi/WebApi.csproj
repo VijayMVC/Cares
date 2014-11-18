@@ -209,8 +209,10 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
+    <Compile Include="Areas\Api\Controllers\GetAdditionalDriverChargeController.cs" />
     <Compile Include="Areas\Api\Controllers\GetAvailableHireGroupsController.cs" />
-    <Compile Include="Areas\Api\Controllers\GetAvailableServicesController.cs" />
+    <Compile Include="Areas\Api\Controllers\GetAvailableChauffersRatesController.cs" />
+    <Compile Include="Areas\Api\Controllers\GetAvailableInsuranceRatesController.cs" />
     <Compile Include="Areas\Api\Controllers\GetOperationWorkplaceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -271,6 +273,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Api\Models\" />
+    <Folder Include="Areas\Api\Views\GetAdditionalDriverCharge\" />
+    <Folder Include="Areas\Api\Views\GetAvailableInsuranceRates\" />
     <Folder Include="Areas\Api\Views\GetOperationWorkplace\" />
     <Folder Include="Areas\Api\Views\Shared\" />
   </ItemGroup>
