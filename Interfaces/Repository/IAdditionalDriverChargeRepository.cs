@@ -32,5 +32,9 @@ namespace Cares.Interfaces.Repository
         /// </summary>
         IEnumerable<AdditionalDriverCharge> GetForRaBilling(string tariffTypeCode, DateTime raRecCreatedDt);
 
+        /// <summary>
+        /// Get the Availabe additional drivers under a time interval
+        /// </summary>
+        IEnumerable<WebApiAdditionalDriver> GetAdditionalDriversForWebApi(string tarrifTypeCode, long domainKey);
     }
 }
