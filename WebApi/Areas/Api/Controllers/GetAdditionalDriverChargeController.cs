@@ -9,7 +9,6 @@ namespace Cares.WebApi.Areas.Api.Controllers
 {
     public class GetAdditionalDriverChargeController : ApiController
     {
-
         #region Private
 
         private IWebApiAvailableRentalService WebApiAvailableRentalService;
@@ -18,13 +17,13 @@ namespace Cares.WebApi.Areas.Api.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public GetAdditionalDriverChargeController(IWebApiAvailableRentalService WebApiAvailableRentalService)
+        public GetAdditionalDriverChargeController(IWebApiAvailableRentalService webApiAvailableRentalService)
         {
-            if (WebApiAvailableRentalService == null)
+            if (webApiAvailableRentalService == null)
             {
-                throw new ArgumentNullException("WebApiAvailableRentalService");
+                throw new ArgumentNullException("webApiAvailableRentalService");
             }
-            this.WebApiAvailableRentalService = WebApiAvailableRentalService;
+            WebApiAvailableRentalService = webApiAvailableRentalService;
         }
         #endregion
         #region Public
@@ -36,7 +35,5 @@ namespace Cares.WebApi.Areas.Api.Controllers
             return WebApiAvailableRentalService.GetAdditionalDriverWithRates(request.DomainKey, request.TarrifTypeCode);
         }
         #endregion
-
-
     }
 }

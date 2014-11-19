@@ -17,7 +17,6 @@ namespace Cares.WebApi.Areas.Api.Controllers
         #region Private
         private readonly IWebApiAvailableRentalService availableRentalService;
         #endregion
-
         #region Constructor
         /// <summary>
         /// Constructor
@@ -31,7 +30,6 @@ namespace Cares.WebApi.Areas.Api.Controllers
             this.availableRentalService = availableRentalService;
         }
         #endregion
-
         #region Public 
         /// <summary>
         /// Get Available HireGroup with their price

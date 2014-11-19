@@ -15,26 +15,20 @@ namespace Cares.WebApp.Controllers
     /// Booking Controller
     /// </summary>
     public class BookingController : Controller
-    {
-        
+    {        
         private IWebApiService webApiService;
-
-
         public BookingController()
         {
             this.webApiService = new WebApiService();
         }
-
         // GET: Booking
         public ActionResult Index(BookingSearchRequest request)
-    {
+        {
             try
             {
-
                 if (request.OperationWorkPlaceCode != null && request.OperationWorkPlaceId != 0)
                 {
-
-                    BookingViewModel booking = new BookingViewModel()
+                    var booking = new BookingViewModel()
                     {
                         OperationWorkPlaceCode = request.OperationWorkPlaceCode,
                         OperationWorkPlaceId = request.OperationWorkPlaceId,
@@ -44,14 +38,10 @@ namespace Cares.WebApp.Controllers
                     TempData["Booking"] = booking;
                     CompleteBookingData.Booking = booking;
                     return RedirectToAction("HireGroup");
-
                 }
-              //  GetAvailableInsurancesRatesResults
                 GetOperationWorkplaceResult results = webApiService.GetOperationWorkplaceList(1);
                 ViewBag.OperationWorkPlaces = results;
                 return View();
-
-
             }
             catch (Exception exp)
             {
@@ -67,7 +57,7 @@ namespace Cares.WebApp.Controllers
         {
             if (collection["HireGroupDetailId"] != null)
             {
-                BookingViewModel bookingView = new BookingViewModel();
+                var bookingView = new BookingViewModel();
                 bookingView.HireGroupDetailId = Convert.ToInt64(collection["HireGroupDetailId"]);
                 bookingView.OperationWorkPlaceId = Convert.ToInt64(collection["OperationWorkPlaceId"]);
                 bookingView.OperationWorkPlaceCode = Convert.ToString(collection["OperationWorkPlaceCode"]);
@@ -78,8 +68,8 @@ namespace Cares.WebApp.Controllers
 
             }
             //hire group get
-            BookingViewModel bookingViewModel = TempData["Booking"] as BookingViewModel;
-            GetHireGroupRequest hireGroupRequest = new GetHireGroupRequest();
+            var bookingViewModel = TempData["Booking"] as BookingViewModel;
+            var hireGroupRequest = new GetHireGroupRequest();
             if (bookingViewModel != null)
             {
                 hireGroupRequest.StartDateTime = bookingViewModel.StartDt;
@@ -88,16 +78,14 @@ namespace Cares.WebApp.Controllers
                 hireGroupRequest.ReturnLocationId = bookingViewModel.OperationWorkPlaceId;
                 hireGroupRequest.DomainKey = 1;
             }
-            var result = webApiService.GetHireGroupList(hireGroupRequest).AvailableHireGroups.Select(x => x.CreateFrom());
+            var result = webApiService.GetHireGroupList(hireGroupRequest)
+                .AvailableHireGroups.Select(x => x.CreateFrom());
             ViewBag.BookingVM = TempData["Booking"] as BookingViewModel;
-
             return View(result.ToList());
         }
-
         /// <summary>
         ///  GET: Services
         /// </summary>
-        /// <returns></returns>
         public ActionResult Services(WebApiRequest request)
         {
             try
@@ -128,16 +116,16 @@ namespace Cares.WebApp.Controllers
         /// <summary>
         /// GET: Customer Info.
         /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
         public ActionResult CustomerInfo(ServicesViewModel request)
         {
-            BookingViewModel bookingView = new BookingViewModel();
-            bookingView.HireGroupDetailId = Convert.ToInt64(Request.Form["HireGroupDetailId"]);
-            bookingView.OperationWorkPlaceId = Convert.ToInt64(Request.Form["OperationWorkPlaceId"]);
-            bookingView.OperationWorkPlaceCode = Convert.ToString(Request.Form["OperationWorkPlaceCode"]);
-            bookingView.StartDt = Convert.ToDateTime(Request.Form["StartDt"]);
-            bookingView.EndDt = Convert.ToDateTime(Request.Form["EndDt"]);
+            var bookingView = new BookingViewModel
+            {
+                HireGroupDetailId = Convert.ToInt64(Request.Form["HireGroupDetailId"]),
+                OperationWorkPlaceId = Convert.ToInt64(Request.Form["OperationWorkPlaceId"]),
+                OperationWorkPlaceCode = Convert.ToString(Request.Form["OperationWorkPlaceCode"]),
+                StartDt = Convert.ToDateTime(Request.Form["StartDt"]),
+                EndDt = Convert.ToDateTime(Request.Form["EndDt"])
+            };
             ViewBag.BookingVM = bookingView;
             return View();
         }
@@ -145,17 +133,11 @@ namespace Cares.WebApp.Controllers
         /// <summary>
         /// Autocomplete 
         /// </summary>
-        /// <param name="location"></param>
-        /// <returns></returns>
         [WebMethod]
         [HttpPost]
         public JsonResult AutoCompleteLocation(string location)
-        {
-            //var result = (from r in cares.OperationsWorkplaces
-            //              where r.LocationName.ToLower().Contains(location.ToLower())
-            //              select new { r.OperationsWorkplaceID, r.LocationName }).Distinct().ToList();
-            //return Json(result, JsonRequestBehavior.AllowGet);
-            return null; //TODO: Ali Commected as no entities file now in the webapp
+        {           
+            return null; 
         }
     } 
 }
