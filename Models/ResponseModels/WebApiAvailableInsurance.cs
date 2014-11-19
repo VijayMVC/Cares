@@ -7,10 +7,6 @@ namespace Cares.Models.ResponseModels
     /// </summary>
     public class WebApiAvailableInsurance
     {
-        /// <summary>
-        /// Insurance Rate ID
-        /// </summary>
-        public long InsuranceRtId { get; set; }
         
         /// <summary>
         ///Tariff Type Name

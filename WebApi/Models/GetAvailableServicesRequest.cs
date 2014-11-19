@@ -16,11 +16,7 @@ namespace Cares.WebApi.Models
         /// Out Location OpeartionWorkplaceId
         /// </summary>
         public long OutLocationId { get; set; }
-        /// <summary>
-        /// Return Location Operation Workplace Id
-        /// </summary>
-        public long ReturnLocationId { get; set; }
-
+       
         /// <summary>
         /// Hire Group Detail Id
         /// </summary>

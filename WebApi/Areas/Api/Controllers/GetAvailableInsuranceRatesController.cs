@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
-using System.Web.Mvc;
-using Cares.Implementation.Services;
-using Cares.Interfaces.IServices;
+﻿using Cares.Interfaces.IServices;
 using Cares.Models.ResponseModels;
 using Cares.WebApi.Models;
+using System;
+using System.Collections.Generic;
+using System.Web.Http;
 
 namespace Cares.WebApi.Areas.Api.Controllers
 {
