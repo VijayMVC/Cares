@@ -13,7 +13,8 @@
     [RecCreatedBy]                NVARCHAR (100) NOT NULL,
     [RecLastUpdatedDt]            DATETIME       NOT NULL,
     [RecLastUpdatedBy]            NVARCHAR (100) NOT NULL,
-    [UserDomainKey]               BIGINT         NOT NULL,
     CONSTRAINT [PK89_1_2] PRIMARY KEY NONCLUSTERED ([AllocationStatusID] ASC)
 );
+
+
 

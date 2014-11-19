@@ -5,7 +5,6 @@
     [StandardRtMainName]        NVARCHAR (255) NULL,
     [StandardRtMainDescription] NVARCHAR (500) NULL,
     [StartDt]                   DATETIME       NOT NULL,
-    [EndDt]                     DATETIME       NOT NULL,
     [RowVersion]                BIGINT         NOT NULL,
     [IsActive]                  BIT            NOT NULL,
     [IsDeleted]                 BIT            NOT NULL,
@@ -18,4 +17,6 @@
     [UserDomainKey]             BIGINT         NOT NULL,
     CONSTRAINT [PK79] PRIMARY KEY NONCLUSTERED ([StandardRtMainID] ASC)
 );
+
+
 
