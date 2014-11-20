@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Web.Http;
-using Cares.Interfaces.IServices;
-using Cares.Models.ReportModels;
+﻿using Cares.Interfaces.IServices;
 using Cares.Models.ResponseModels;
 using Cares.WebApi.Models;
+using System;
+using System.Collections.Generic;
+using System.Web.Http;
 
 namespace Cares.WebApi.Areas.Api.Controllers
 {

@@ -118,40 +118,37 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// Get Available Insurance Rate ForWebApi
         /// </summary>
-       public IEnumerable<WebApiAvailableInsurance> GetAvailableInsuranceRtForWebApi(string tarrifTypeCode, DateTime startDt,
+        public IEnumerable<WebApiAvailableInsurance> GetAvailableInsuranceRtForWebApi(string tarrifTypeCode,
+            DateTime startDt,
             long userDomainKey)
         {
 
             var query = from insurances in db.InsuranceRts
-                        join
-                            insuranceRtMain in db.InsuranceRtMains on
-                            new { insurances.InsuranceRtMainId } equals new { insuranceRtMain.InsuranceRtMainId }
-                        where (insuranceRtMain.TariffTypeCode.Equals(tarrifTypeCode) && insurances.UserDomainKey == userDomainKey && insurances.StartDt <= startDt)
-                        select new WebApiAvailableInsurance
-                        {
-                            InsuranceRate = (insuranceRtMain.InsuranceRates.
-                            Where(rate => rate.StartDt <= startDt).OrderBy(rate => rate.RevisionNumber).FirstOrDefault().InsuranceRate) != null ?
-                            insuranceRtMain.InsuranceRates.
-                            Where(rate => rate.StartDt <= startDt).OrderBy(rate => rate.RevisionNumber).FirstOrDefault().InsuranceRate : 0,
-                            InsuranceTypeId = insurances.InsuranceTypeId,
-                            InsuranceTypeName = insurances.InsuranceType.InsuranceTypeName,
-                            TariffTypeName = insuranceRtMain.TariffTypeCode, // name is not available here
-                        };
-
-            //var query =
-            //    from insurances in
-            //        db.InsuranceRts.Where(insurace => insurace.InsuranceRtMain.TariffTypeCode.Equals(tarrifTypeCode)
-            //                                          && insurace.StartDt <= startDt)
-
-            //    select new WebApiAvailableInsurance
-            //    {
-            //        InsuranceRate = insurances.InsuranceRate
-
-            //    };
-
+                join
+                    insuranceRtMain in db.InsuranceRtMains on
+                    new {insurances.InsuranceRtMainId} equals new {insuranceRtMain.InsuranceRtMainId}
+                where
+                    (insuranceRtMain.TariffTypeCode.Equals(tarrifTypeCode) && insurances.UserDomainKey == userDomainKey &&
+                     insurances.StartDt <= startDt)
+                select new WebApiAvailableInsurance
+                {
+                    InsuranceRate = (insuranceRtMain.InsuranceRates.
+                        Where(rate => rate.StartDt <= startDt)
+                        .OrderBy(rate => rate.RevisionNumber)
+                        .FirstOrDefault()
+                        .InsuranceRate) != null
+                        ? insuranceRtMain.InsuranceRates.
+                            Where(rate => rate.StartDt <= startDt)
+                            .OrderBy(rate => rate.RevisionNumber)
+                            .FirstOrDefault()
+                            .InsuranceRate
+                        : 0,
+                    InsuranceTypeId = insurances.InsuranceTypeId,
+                    InsuranceTypeName = insurances.InsuranceType.InsuranceTypeName,
+                    TariffTypeName = insuranceRtMain.TariffTypeCode, // name is not available here
+                };
             return query.OrderBy(insurances => insurances.InsuranceRate).ToList();
         }
-
         #endregion
     }
 }

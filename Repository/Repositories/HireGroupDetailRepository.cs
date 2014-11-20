@@ -162,6 +162,11 @@ namespace Cares.Repository.Repositories
         public IEnumerable<WebApiAvailableHireGroupsApiResponse> GetAvailableVehicleInfoForWebApi(
             long operationWorkPlaceId, DateTime startDtTime, DateTime endDtTime, long userDomainKey)
         {
+            operationWorkPlaceId = 21;
+            startDtTime=new DateTime(2014,11,19);
+            endDtTime= new DateTime(2014,11,20);
+            userDomainKey = 1;
+
             #region Join
             var query = from vehicle in db.Vehicles
                 join hgd in db.HireGroupDetails
@@ -173,7 +178,7 @@ namespace Cares.Repository.Repositories
                 Where(vg => !(vg.EndDtTime >= startDtTime && vg.StartDtTime <= endDtTime)).DefaultIfEmpty()
             #endregion
             #region Where
-                        where vehicle.VehicleStatusId==(int)VehicleStatusEnum.Available &&
+                        where vehicle.VehicleStatus.VehicleStatusKey==(int)VehicleStatusEnum.Available &&
                 vehicle.UserDomainKey==userDomainKey  && vehicle.OperationsWorkPlaceId== operationWorkPlaceId
             #endregion
             #region Select

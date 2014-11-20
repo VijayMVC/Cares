@@ -78,39 +78,31 @@ namespace Cares.WebApp.Controllers
                 hireGroupRequest.ReturnLocationId = bookingViewModel.OperationWorkPlaceId;
                 hireGroupRequest.DomainKey = 1;
             }
-            var result = webApiService.GetHireGroupList(hireGroupRequest)
-                .AvailableHireGroups.Select(x => x.CreateFrom());
+            var result = webApiService.GetHireGroupList(hireGroupRequest)  .AvailableHireGroups.Select(x => x.CreateFrom());
             ViewBag.BookingVM = TempData["Booking"] as BookingViewModel;
             return View(result.ToList());
         }
+
         /// <summary>
         ///  GET: Services
         /// </summary>
         public ActionResult Services(WebApiRequest request)
         {
-            try
+            if (request.TarrifTypeCode != null)
             {
-                if (request.TarrifTypeCode != null)
+                var insurancesViewModel = new InsurancesViewModel
                 {
-                    var insurancesViewModel = new InsurancesViewModel
-                    {
-                        TarrifTypeCode = request.TarrifTypeCode,
-                        DomainKey = request.DomainKey,
-                        StartDateTime = request.StartDateTime
-                    };
-                    TempData["Insurances"] = insurancesViewModel;
-                    return RedirectToAction("HireGroup");
-                }
-                ViewBag.AvailableInsurancesRates = webApiService.GetAvailableInsurancesRates(request);
-                ViewBag.AdditionalDriverRates=webApiService.GetAdditionalDriverRates(request);
-                ViewBag.AvailableChauffersRates= webApiService.GetAvailableChauffersRates(request);
-                return View();
+                    TarrifTypeCode = request.TarrifTypeCode,
+                    DomainKey = request.DomainKey,
+                    StartDateTime = request.StartDateTime
+                };
+                TempData["Insurances"] = insurancesViewModel;
+                return RedirectToAction("HireGroup");
             }
-            catch (Exception exp)
-            {
-                string a = exp.Message;
-                throw;
-            }
+            ViewBag.AvailableInsurancesRates = webApiService.GetAvailableInsurancesRates(request);
+            ViewBag.AdditionalDriverRates = webApiService.GetAdditionalDriverRates(request);
+            ViewBag.AvailableChauffersRates = webApiService.GetAvailableChauffersRates(request);
+            return View();
         }
 
         /// <summary>

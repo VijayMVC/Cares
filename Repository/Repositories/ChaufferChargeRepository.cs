@@ -79,7 +79,7 @@ namespace Cares.Repository.Repositories
 
         }
 
-            public IEnumerable<WebApiAvailableChauffer> GetAvailableChauffeurForWebApi(string tarrifTypeCode, DateTime startDt,DateTime endDateTime, long userDomainKey)
+        public IEnumerable<WebApiAvailableChauffer> GetAvailableChauffeurForWebApi(string tarrifTypeCode, DateTime startDt,DateTime endDateTime, long userDomainKey)
             {
                 var query =
                     db.Employees.Where(
@@ -88,7 +88,8 @@ namespace Cares.Repository.Repositories
                 List<Employee> availableEmpos = query.OrderBy(emp => emp.EmpFName).ToList();
 
                 var final = from chauffer in (availableEmpos.Select(chauffer => chauffer).
-                    Where(chauffer => chauffer.ChaufferReservations.Any(abc => startDt > abc.EndDtTime && endDateTime < abc.StartDtTime)).ToList())
+                    Where(chauffer => chauffer.ChaufferReservations.OrderBy(date=>date.StartDtTime)
+                        .Any(reservationRec =>!( startDt <= reservationRec.EndDtTime && endDateTime >= reservationRec. StartDtTime))).ToList())
                     join
                         chuffferCharge in db.ChaufferCharges
                         on new {chauffer.EmpJobInfo.DesigGradeId} equals new {chuffferCharge.DesigGradeId}
