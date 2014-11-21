@@ -52,7 +52,7 @@ namespace Cares.Interfaces.Repository
         /// <summary>
         /// Get available vehicles for WebApi
         /// </summary>
-        IEnumerable<WebApiAvailableHireGroupsApiResponse> GetAvailableVehicleInfoForWebApi(long operationWorkPlaceId, DateTime startDtTime,
+        IEnumerable<WebApiAvailableHireGroupsApiResponse> GetAvailableHireGroupsForWebApi(long operationWorkPlaceId, DateTime startDtTime,
             DateTime endDtTime, long userDomainKey);
     }
 }

@@ -80,7 +80,7 @@ namespace Cares.Repository.Repositories
         }
 
         public IEnumerable<WebApiAvailableChauffer> GetAvailableChauffeurForWebApi(string tarrifTypeCode, DateTime startDt,DateTime endDateTime, long userDomainKey)
-            {
+        {
                 var query =
                     db.Employees.Where(
                         emp => emp.EmpJobProgs.Any(jobprog => jobprog.DesignationId == (int) DesignationEnum.Chauffer))
@@ -98,13 +98,18 @@ namespace Cares.Repository.Repositories
                     {
                         DesignationGrade = chauffer.EmpJobInfo.DesigGrade.DesigGradeCode,
                         TariffTypeCode = chuffferCharge.ChaufferChargeMain.TariffTypeCode,
-                        ChaufferChargeRate = chuffferCharge.ChaufferChargeMain.ChaufferCharges.
-                        Where(rate=> rate.StartDt<=startDt).OrderBy(abc=>abc.RevisionNumber).FirstOrDefault().ChaufferChargeRate,
-                        RevisionNumber = chuffferCharge.ChaufferChargeMain.ChaufferCharges.
-                         Where(rate => rate.StartDt <= startDt).OrderBy(abc => abc.RevisionNumber).FirstOrDefault().RevisionNumber
+                        ChaufferChargeRate =  chuffferCharge.ChaufferChargeMain.ChaufferCharges.
+                        Where(rate=> rate.StartDt<=startDt).OrderBy(abc=>abc.RevisionNumber).FirstOrDefault()!=null ? chuffferCharge.ChaufferChargeMain.ChaufferCharges.
+                        Where(rate=> rate.StartDt<=startDt).OrderBy(abc=>abc.RevisionNumber).FirstOrDefault().ChaufferChargeRate:0,
+
+                        RevisionNumber =  chuffferCharge.ChaufferChargeMain.ChaufferCharges.
+                         Where(rate => rate.StartDt <= startDt).OrderBy(abc => abc.RevisionNumber).FirstOrDefault()!=null ?
+                         chuffferCharge.ChaufferChargeMain.ChaufferCharges.
+                         Where(rate => rate.StartDt <= startDt).OrderBy(abc => abc.RevisionNumber).FirstOrDefault().RevisionNumber:0
                     };
                 return final.OrderBy(abc => abc.TariffTypeCode).ToList();
          }
         #endregion
     }
 }
+// look at it showoing some erros 

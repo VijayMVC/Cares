@@ -6,6 +6,7 @@ namespace Cares.Models.ResponseModels
 {
     public class WebApiAvailableHireGroupsApiResponse
     {
+        public long VehilceId { get; set; }
         public string NumberPlate { get; set; }
         public string VehicleMake { get; set; }
         public string VehicleModel { get; set; }

@@ -57,7 +57,7 @@ namespace Cares.Implementation.Services
         public IEnumerable<WebApiAvailableHireGroupsApiResponse> GetAvailableHireGroupsWithRates(long operationWorkplaceId, DateTime startDateTime,
             DateTime endDateTime, long domainKey)
         {
-           return hireGroupDetailRepository.GetAvailableVehicleInfoForWebApi(operationWorkplaceId, startDateTime, endDateTime, domainKey);
+           return hireGroupDetailRepository.GetAvailableHireGroupsForWebApi(operationWorkplaceId, startDateTime, endDateTime, domainKey);
         }
 
 

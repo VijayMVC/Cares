@@ -106,7 +106,7 @@ namespace Cares.WebApp.WebApi
             string requestContents = Newtonsoft.Json.JsonConvert.SerializeObject(request);
             HttpResponseMessage responseMessage = await PostHttpRequestAsync(requestContents, new Uri(GetHireGroupListUri)).ConfigureAwait(false);
             if (responseMessage.IsSuccessStatusCode)
-            {
+            { 
                 string stringContents = await responseMessage.Content.ReadAsStringAsync();
                 return new GetHireGroupResult()
                 {

@@ -159,14 +159,10 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// user domainKey
         /// </summary>
-        public IEnumerable<WebApiAvailableHireGroupsApiResponse> GetAvailableVehicleInfoForWebApi(
+        public IEnumerable<WebApiAvailableHireGroupsApiResponse> GetAvailableHireGroupsForWebApi(
             long operationWorkPlaceId, DateTime startDtTime, DateTime endDtTime, long userDomainKey)
         {
-            operationWorkPlaceId = 21;
-            startDtTime=new DateTime(2014,11,19);
-            endDtTime= new DateTime(2014,11,20);
-            userDomainKey = 1;
-
+           
             #region Join
             var query = from vehicle in db.Vehicles
                 join hgd in db.HireGroupDetails
@@ -175,7 +171,7 @@ namespace Cares.Repository.Repositories
                 into hireGroups from hgd in hireGroups.DefaultIfEmpty()
                    join vr in db.VehicleReservations on vehicle.VehicleId equals vr.VehicleId into vehicleGroup
                    from vg in vehicleGroup.
-                Where(vg => !(vg.EndDtTime >= startDtTime && vg.StartDtTime <= endDtTime)).DefaultIfEmpty()
+                Where(vg => (!(vg.EndDtTime >= startDtTime && vg.StartDtTime <= endDtTime))).DefaultIfEmpty()
             #endregion
             #region Where
                         where vehicle.VehicleStatus.VehicleStatusKey==(int)VehicleStatusEnum.Available &&
@@ -184,6 +180,7 @@ namespace Cares.Repository.Repositories
             #region Select
                         select new WebApiAvailableHireGroupsApiResponse
                 {
+                    VehilceId= vehicle.VehicleId,
                     Image= vehicle.VehicleImages.FirstOrDefault().Image,
                     ModelYear = vehicle.ModelYear,
                     VehicleCategory = vehicle.VehicleCategory.VehicleCategoryCode,

@@ -122,7 +122,6 @@ namespace Cares.Repository.Repositories
             DateTime startDt,
             long userDomainKey)
         {
-
             var query = from insurances in db.InsuranceRts
                 join
                     insuranceRtMain in db.InsuranceRtMains on
