@@ -181,19 +181,24 @@ namespace Cares.Repository.Repositories
                         select new WebApiAvailableHireGroupsApiResponse
                 {
                     VehilceId= vehicle.VehicleId,
+                    TariffTypeCode = (hgd.StandardRates.OrderBy(x => x.RevisionNumber).
+                    Where(rate => rate.StandardRtStartDt <= startDtTime).FirstOrDefault().StandardRtMain.TariffTypeCode),
+
                     Image= vehicle.VehicleImages.FirstOrDefault().Image,
                     ModelYear = vehicle.ModelYear,
-                    VehicleCategory = vehicle.VehicleCategory.VehicleCategoryCode,
-                    VehicleMake = vehicle.VehicleMake.VehicleMakeCode,
-                    VehicleModel = vehicle.VehicleModel.VehicleModelCode,
+                    VehicleCategoryName = vehicle.VehicleCategory.VehicleCategoryName,
+                    VehicleMakeName = vehicle.VehicleMake.VehicleMakeName,
+                    VehilceModelName = vehicle.VehicleModel.VehicleModelName,
                     NumberPlate = vehicle.PlateNumber,
-                    StandardRate =  (hgd.StandardRates.Where(rate=> rate.StandardRtStartDt<=startDtTime).OrderBy(x=>x.StandardRtStartDt).FirstOrDefault().StandardRt)!=null ?
-                    (hgd.StandardRates.Where(rate=> rate.StandardRtStartDt<=startDtTime).OrderBy(x=>x.StandardRtStartDt).FirstOrDefault().StandardRt):0,
+                    RentalCharge = (hgd.StandardRates.OrderBy(x => x.RevisionNumber).Where(rate => rate.StandardRtStartDt <= startDtTime).FirstOrDefault().StandardRt) != null ?
+                    (hgd.StandardRates.OrderBy(x => x.RevisionNumber).Where(rate => rate.StandardRtStartDt <= startDtTime).FirstOrDefault().StandardRt) : 0,
+
+                    HireGroupId = hgd.HireGroup != null ? hgd.HireGroup.HireGroupId : 0,
                     HireGroupName = hgd.HireGroup!=null ? hgd.HireGroup.HireGroupCode: string.Empty,
-                    AllowedMileage = (hgd.StandardRates.
-                    Where(rate => rate.StandardRtStartDt <= startDtTime).OrderBy(x => x.StandardRtStartDt).FirstOrDefault().AllowedMileage) !=null ?
-                    (hgd.StandardRates.
-                    Where(rate => rate.StandardRtStartDt <= startDtTime).OrderBy(x => x.StandardRtStartDt).FirstOrDefault().AllowedMileage):0
+                    AllowedMileage = (hgd.StandardRates.OrderBy(x => x.RevisionNumber).
+                    Where(rate => rate.StandardRtStartDt <= startDtTime).FirstOrDefault().AllowedMileage) !=null ?
+                    (hgd.StandardRates.OrderBy(x => x.RevisionNumber).
+                    Where(rate => rate.StandardRtStartDt <= startDtTime).FirstOrDefault().AllowedMileage):0
                 };
                         #endregion
             return query.OrderBy(vehicle => vehicle.ModelYear).ToList();

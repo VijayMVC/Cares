@@ -1,84 +1,158 @@
-﻿@model Cares.WebApp.ViewModel.ServicesViewModel
+﻿@using Cares.WebApp.Models
+@using Microsoft.Ajax.Utilities
+
 @{
-    ViewBag.Title = "Services";
+    ViewBag.Title = "Hire Group";
 }
-@using (Html.BeginForm("CustomerInfo", "Booking"))
-{
 
-    if (ViewBag.BookingVM != null)
-    {
-        @InputExtensions.Hidden(Html, "OperationWorkPlaceId", @ViewBag.BookingVM.OperationWorkPlaceId)
-        @InputExtensions.Hidden(Html, "OperationWorkPlaceCode", @ViewBag.BookingVM.OperationWorkPlaceCode)
-        @InputExtensions.Hidden(Html, "StartDt", @ViewBag.BookingVM.StartDt)
-        @InputExtensions.Hidden(Html, "EndDt", @ViewBag.BookingVM.EndDt)
-        @InputExtensions.Hidden(Html, "HireGroupDetailId", @ViewBag.BookingVM.HireGroupDetailId)
-
-    }
-    <input type="hidden" id="hiddenTab" name="hiddenTab" value="1" />
-
-    <div>
-        <div id="accordion">
-            <h3>Insurance Rate</h3>
-            <div>
-
-                @Html.DropDownList("SubmittedInsurances", new SelectList(@Model.Insurances, "InsuranceTypeId", "InsuranceTypeCode"), "SelectCategory", new { id = "ddlCategries", @class = "dropdown", multiple = "multiple", style = "width:150px;height:200px;" })
-
-
+<h3 class="page-header ">Step 3: Select Aditional Services </h3>
+<div class="well col-md-12">
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label for="" class="control-label h5 col-sm-3"><b>Pickup</b> </label>
+            <div class="col-md-3">
             </div>
-            <h3>Service Rate</h3>
-            <div>
-                <p>
-                    Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
-                    purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
-                    velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
-                    suscipit faucibus urna.
-                </p>
+            <label for="" class="control-label h5 col-sm-3"><b>Return</b></label>
+            <div class="col-md-3">
             </div>
-            <h3>Chauffeurs</h3>
-            <div>
-                <p>
-                    Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis.
-                    Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero
-                    ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis
-                    lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
-                </p>
-                <ul>
-                    <li>List item one</li>
-                    <li>List item two</li>
-                    <li>List item three</li>
-                </ul>
-            </div>
-            <h3>Drivers</h3>
-            <div>
-                <p>
-                    Cras dictum. Pellentesque habitant morbi tristique senectus et netus
-                    et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
-                    faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
-                    mauris vel est.
-                </p>
-                <p>
-                    Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus.
-                    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-                    inceptos himenaeos.
-                </p>
-            </div>
+
+        </div>
+        <div class="form-group">
+            <label for="" class="control-label h5 col-sm-3">Date/Time: </label>
+            <label for="" class="control-label h5 col-sm-3">@ViewBag.BookingVM.StartDt </label>
+            <label for="" class="control-label h5 col-sm-3">Date/Time: </label>
+            <label for="" class="control-label h5 col-sm-3">@ViewBag.BookingVM.EndDt </label>
+
+        </div>
+        <div class="form-group">
+            <label for="" class="control-label h5 col-sm-3">Location: </label>
+            <label for="" class="control-label h5 col-sm-3">@ViewBag.BookingVM.OperationWorkPlaceCode </label>
+            <label for="" class="control-label h5 col-sm-3">Location: </label>
+            <label for="" class="control-label h5 col-sm-3">@ViewBag.BookingVM.OperationWorkPlaceCode </label>
         </div>
     </div>
-    <div><input type="submit" class="btn btn-info" value="Continue" /></div>
-}
+</div>
+<h4 class="page-header ">Insurance Rates </h4>
+<div class="well col-md-12">
+    @foreach (var item in ViewBag.availableInsurancesRates )
+    {
+        using (Html.BeginForm())
+        {
+            if (ViewBag.BookingVM != null)
+            {
+                @InputExtensions.Hidden(Html, "OperationWorkPlaceId", @ViewBag.BookingVM.OperationWorkPlaceId)
+                @InputExtensions.Hidden(Html, "OperationWorkPlaceCode", @ViewBag.BookingVM.OperationWorkPlaceCode)
+                @InputExtensions.Hidden(Html, "StartDateTime", @ViewBag.BookingVM.StartDt)
+                @InputExtensions.Hidden(Html, "EndDateTime", @ViewBag.BookingVM.EndDt)
+              @*  @Html.Hidden("TariffTypeCode", @item.TariffTypeCode) *@
+            }
+            <table >
+                <tr>
+                    <td style="width: 80%">
+                        <table>
+                            <tr><td><input class="checkbox" type="checkbox" value="" /></td></tr>
+                            <tr>
+                                <td><b>Insurance Type Name : </b></td>
+                                <td> @item.InsuranceTypeName</td>
+                            </tr>
+                            <tr>
+                                <td><b>Insurance Rate : </b></td>
+                                <td> @item.InsuranceRate</td>
+                                @InputExtensions.Hidden(Html, "InsuranceTypeId", @item.InsuranceTypeId)
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <hr />
+        }
+    }
+</div>
+<h4 class="page-header ">    Additional Driver  </h4>
+<div class="well col-md-12">
+    @foreach (var item in ViewBag.additionalDriverRates)
+    {
+        using (Html.BeginForm())
+        {
+            if (ViewBag.BookingVM != null)
+            {
+                @InputExtensions.Hidden(Html, "OperationWorkPlaceId", @ViewBag.BookingVM.OperationWorkPlaceId)
+                @InputExtensions.Hidden(Html, "OperationWorkPlaceCode", @ViewBag.BookingVM.OperationWorkPlaceCode)
+                @InputExtensions.Hidden(Html, "StartDateTime", @ViewBag.BookingVM.StartDt)
+                @InputExtensions.Hidden(Html, "EndDateTime", @ViewBag.BookingVM.EndDt)
+                //  @Html.Hidden("TariffTypeCode", @item.TariffTypeCode)
+            }
+            <table>
+                <tr>
 
-<link href="~/Content/themes/base/accordion.css" rel="stylesheet" />
+                    <td style="width: 80%">
+                        <table>
+                            <tr><td><input class="checkbox" type="checkbox" value="" /></td></tr>
+                            <tr>
+                                <td><b>Additional Driver Charge Rate : </b></td>
+                                <td> @item.Rate</td>
+                            </tr>
+                            <tr>
+                                <td><b>Enter Driver Name : </b></td>
+                                <td> <input class="form-control" placeholder="Driver Name" type="text" /></td>
+                            </tr>
+                            <tr>
+                                <td><b>Enter License # : </b></td>
+                                <td> <input type="text" class="form-control" placeholder="License #" /></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <hr />
+        }
+    }
+</div>
+<h4 class="page-header "> Chauufer Rates  </h4>
+<div class="well col-md-12">
+    @foreach (var item in ViewBag.availableCahuffersRates)
+    {
+        using (Html.BeginForm())
+        {
+            if (ViewBag.BookingVM != null)
+            {
+                @InputExtensions.Hidden(Html, "OperationWorkPlaceId", @ViewBag.BookingVM.OperationWorkPlaceId)
+                @InputExtensions.Hidden(Html, "OperationWorkPlaceCode", @ViewBag.BookingVM.OperationWorkPlaceCode)
+                @InputExtensions.Hidden(Html, "StartDateTime", @ViewBag.BookingVM.StartDt)
+                @InputExtensions.Hidden(Html, "EndDateTime", @ViewBag.BookingVM.EndDt)
+                //  @Html.Hidden("TariffTypeCode", @item.TariffTypeCode)
+            }
+            <table>
+                <tr>
+
+                    <td style="width: 80%">
+                        <table>
+                            <tr><td><input class="checkbox" type="checkbox" value="" /></td></tr>
+                            <tr>
+                                <td><b>Designation Grade : </b></td>
+                                <td> @item.DesignationGrade</td>
+                            </tr>
+                            <tr>
+                                <td><b> Charge Rate : </b></td>
+                                <td> @item.ChaufferChargeRate</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <hr />
+        }
+    }
+</div>
+
+<input type="submit" class="btn btn-info" value="Continue" />
+<link href="~/Content/themes/App.css" rel="stylesheet" />
+
 @section scripts
 {
-
-    <script src="~/Scripts/jquery-2.1.0.min.js"></script>
     <script src="~/Scripts/jquery-ui.min-1.11.1.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            $("#accordion").accordion();
-        });
-    </script>
-
+    <script src="~/Scripts/jquery-ui-timepicker-addon.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 }
-
-

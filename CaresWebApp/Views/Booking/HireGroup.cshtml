@@ -22,7 +22,7 @@
             <label for="" class="control-label h5 col-sm-3">Date/Time: </label>
             <label for="" class="control-label h5 col-sm-3">@ViewBag.BookingVM.EndDt </label>
 
-        </div>
+        </div> 
         <div class="form-group">
             <label for="" class="control-label h5 col-sm-3">Location: </label>
             <label for="" class="control-label h5 col-sm-3">@ViewBag.BookingVM.OperationWorkPlaceCode </label>
@@ -41,8 +41,9 @@
             {
                 @InputExtensions.Hidden(Html, "OperationWorkPlaceId", @ViewBag.BookingVM.OperationWorkPlaceId)
                 @InputExtensions.Hidden(Html, "OperationWorkPlaceCode", @ViewBag.BookingVM.OperationWorkPlaceCode)
-                @InputExtensions.Hidden(Html, "StartDt", @ViewBag.BookingVM.StartDt)
-                @InputExtensions.Hidden(Html, "EndDt", @ViewBag.BookingVM.EndDt)
+                @InputExtensions.Hidden(Html, "StartDateTime", @ViewBag.BookingVM.StartDt)
+                @InputExtensions.Hidden(Html, "EndDateTime", @ViewBag.BookingVM.EndDt)
+                @Html.Hidden("TariffTypeCode", @item.TariffTypeCode)
             }
             @(Html.Hidden("HireGroupDetailId", @item.HireGroupDetailId))
             <table id=@item.HireGroupDetailId>
@@ -60,7 +61,7 @@
                                 </td>
                                 <td style="width: 30%;">
                                     <b>Rate:</b>
-                                    <label>12</label>
+                                    @Html.DisplayFor(modelItem => item.RentalCharge)
                                     @*<asp:Label Text='<%# Eval("StandardRate","{0:N0}") %>' runat="server" ID="Label5" />*@
                                 </td>
                             </tr>
@@ -71,6 +72,7 @@
                                 </td>
                                 <td>
                                     <b>Allowed Milage:</b>
+                                    @Html.DisplayFor(modelItem => item.AllowedMileage)
                                     @*<asp:Label Text='<%# Eval("AllowedMileage","{0:N0}") %>' runat="server" ID="Label6" />*@
                                 </td>
                             </tr>

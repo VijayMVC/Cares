@@ -41,6 +41,13 @@
         /// Vehicle Image source
         /// </summary>
         public string ImageSource { get; set; }
+        public double HireGroupId { get; set; }
+        public double AllowedMileage { get; set; }
+        public string HireGroupName { get; set; }
+        public long VehilceId { get; set; }
+        public string NumberPlate { get; set; }
+        public string TariffTypeCode { get; set; }
+
 
     }
 }

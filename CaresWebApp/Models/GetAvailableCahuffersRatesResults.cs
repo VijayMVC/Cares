@@ -6,7 +6,7 @@ namespace Cares.WebApp.Models
     {
         /// <summary>
         /// </summary>
-        public IList<WebApiAvailableChuffersRates> ApiAvailableChuffersRates { get; set; }
+        public IEnumerable<WebApiAvailableChuffersRates> ApiAvailableChuffersRates { get; set; }
 
         /// <summary>
         /// Error

@@ -108,9 +108,9 @@ namespace Cares.WebApp.WebApi
             if (responseMessage.IsSuccessStatusCode)
             { 
                 string stringContents = await responseMessage.Content.ReadAsStringAsync();
-                return new GetHireGroupResult()
+                return new GetHireGroupResult
                 {
-                    AvailableHireGroups = this.CreateResultForHireGroupsListRequest(stringContents)
+                    AvailableHireGroups = CreateResultForHireGroupsListRequest(stringContents)
                 };
 
             }
@@ -210,7 +210,7 @@ namespace Cares.WebApp.WebApi
 
         /// <summary>
         /// Get Available Insurances Rates 
-        /// </summary>
+        /// </summary> 
         public GetAvailableInsurancesRatesResults GetAvailableInsurancesRates(WebApiRequest webApiRequest)
         {
             return GetInsurancesRatesAsync(webApiRequest).Result;
@@ -221,9 +221,6 @@ namespace Cares.WebApp.WebApi
         }
         private async Task<GetAvailableInsurancesRatesResults> GetInsurancesRatesAsync(WebApiRequest request)
         {
-            request.DomainKey = 1;
-            request.TarrifTypeCode = "D";
-            request.StartDateTime = new DateTime(2014, 11, 09);
             string requestContents = Newtonsoft.Json.JsonConvert.SerializeObject(request);
             HttpResponseMessage responseMessage = await PostHttpRequestAsync(requestContents, new Uri(GetAvailableInsurancesRateUri)).ConfigureAwait(false);
             if (responseMessage.IsSuccessStatusCode)
@@ -257,7 +254,7 @@ namespace Cares.WebApp.WebApi
         {
 
             string orderContents = Newtonsoft.Json.JsonConvert.SerializeObject(request);
-            HttpResponseMessage responseMessage = await PostHttpRequestAsync(orderContents, new Uri(GetAvailableChauffersRatesUri));
+            HttpResponseMessage responseMessage = await PostHttpRequestAsync(orderContents, new Uri(GetAvailableChauffersRatesUri)).ConfigureAwait(false);
             if (responseMessage.IsSuccessStatusCode)
             {
                 string stringContents = await responseMessage.Content.ReadAsStringAsync();
@@ -282,6 +279,9 @@ namespace Cares.WebApp.WebApi
             return Newtonsoft.Json.JsonConvert.DeserializeObject<IList<WebApiAvailableChuffersRates>>(stringContents);
         }
 
+
+
+
         /// <summary>
         /// Get Additional Driver Rates
         /// </summary>
@@ -291,8 +291,6 @@ namespace Cares.WebApp.WebApi
         }
         private async Task<GetAdditionalDriverRatesResults> GetAdditioanalDriverRatesAsync(WebApiRequest request)
         {
-            request.TarrifTypeCode = "H";
-            request.DomainKey = 1;
             string orderContents = Newtonsoft.Json.JsonConvert.SerializeObject(request);
             HttpResponseMessage responseMessage = await PostHttpRequestAsync(orderContents, new Uri(GetAdditionalDriverChargeUri)).ConfigureAwait(false);
             if (responseMessage.IsSuccessStatusCode)

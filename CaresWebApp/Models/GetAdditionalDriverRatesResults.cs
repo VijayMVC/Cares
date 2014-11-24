@@ -6,7 +6,7 @@ namespace Cares.WebApp.Models
     {
         /// <summary>
         /// </summary>
-        public IList<WebApiAdditionalDriverRates> WebApiAdditionalDriverRates { get; set; }
+        public IEnumerable<WebApiAdditionalDriverRates> WebApiAdditionalDriverRates { get; set; }
 
         /// <summary>
         /// Error

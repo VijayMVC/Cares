@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Services;
@@ -57,12 +58,15 @@ namespace Cares.WebApp.Controllers
         {
             if (collection["HireGroupDetailId"] != null)
             {
-                var bookingView = new BookingViewModel();
-                bookingView.HireGroupDetailId = Convert.ToInt64(collection["HireGroupDetailId"]);
-                bookingView.OperationWorkPlaceId = Convert.ToInt64(collection["OperationWorkPlaceId"]);
-                bookingView.OperationWorkPlaceCode = Convert.ToString(collection["OperationWorkPlaceCode"]);
-                bookingView.StartDt = Convert.ToDateTime(collection["StartDt"]);
-                bookingView.EndDt = Convert.ToDateTime(collection["EndDt"]);
+                var bookingView = new BookingViewModel
+                {
+                    HireGroupDetailId = Convert.ToInt64(collection["HireGroupDetailId"]),
+                    OperationWorkPlaceId = Convert.ToInt64(collection["OperationWorkPlaceId"]),
+                    OperationWorkPlaceCode = Convert.ToString(collection["OperationWorkPlaceCode"]),
+                    StartDt = Convert.ToDateTime(collection["StartDateTime"]),
+                    EndDt = Convert.ToDateTime(collection["EndDateTime"]),
+                    TariffTypeCode = Convert.ToString(collection["TariffTypeCode"])
+                };
                 TempData["Booking"] = bookingView;
                 return RedirectToAction("Services");
 
@@ -78,30 +82,35 @@ namespace Cares.WebApp.Controllers
                 hireGroupRequest.ReturnLocationId = bookingViewModel.OperationWorkPlaceId;
                 hireGroupRequest.DomainKey = 1;
             }
-            var result = webApiService.GetHireGroupList(hireGroupRequest)  .AvailableHireGroups.Select(x => x.CreateFrom());
+            IEnumerable<HireGroupDetail> hireGroupDetails = webApiService.GetHireGroupList(hireGroupRequest)  .AvailableHireGroups.Select(x => x.CreateFrom());
             ViewBag.BookingVM = TempData["Booking"] as BookingViewModel;
-            return View(result.ToList());
+            return View(hireGroupDetails.ToList());
         }
 
         /// <summary>
         ///  GET: Services
         /// </summary>
-        public ActionResult Services(WebApiRequest request)
+        public ActionResult Services(FormCollection collection)
         {
-            if (request.TarrifTypeCode != null)
+            var bookingViewModel = TempData["Booking"] as BookingViewModel;
+            var hireGroupRequest = new WebApiRequest();
+            if (bookingViewModel != null)
             {
-                var insurancesViewModel = new InsurancesViewModel
-                {
-                    TarrifTypeCode = request.TarrifTypeCode,
-                    DomainKey = request.DomainKey,
-                    StartDateTime = request.StartDateTime
-                };
-                TempData["Insurances"] = insurancesViewModel;
-                return RedirectToAction("HireGroup");
+                hireGroupRequest.StartDateTime = bookingViewModel.StartDt;
+                hireGroupRequest.EndDateTime = bookingViewModel.EndDt;
+                hireGroupRequest.OutLocationId = bookingViewModel.OperationWorkPlaceId;
+                hireGroupRequest.DomainKey = 1;
+                hireGroupRequest.TarrifTypeCode = bookingViewModel.TariffTypeCode;
             }
-            ViewBag.AvailableInsurancesRates = webApiService.GetAvailableInsurancesRates(request);
-            ViewBag.AdditionalDriverRates = webApiService.GetAdditionalDriverRates(request);
-            ViewBag.AvailableChauffersRates = webApiService.GetAvailableChauffersRates(request);
+            var availableInsurancesRates = webApiService.GetAvailableInsurancesRates(hireGroupRequest).ApiAvailableInsurances;
+            var additionalDriverRates = webApiService.GetAdditionalDriverRates(hireGroupRequest).WebApiAdditionalDriverRates;
+            var availableCahuffersRates = webApiService.GetAvailableChauffersRates(hireGroupRequest).ApiAvailableChuffersRates;
+
+            ViewBag.availableInsurancesRates = availableInsurancesRates;
+            ViewBag.additionalDriverRates = additionalDriverRates;
+            ViewBag.availableCahuffersRates = availableCahuffersRates;
+
+            ViewBag.BookingVM = TempData["Booking"] as BookingViewModel;
             return View();
         }
 

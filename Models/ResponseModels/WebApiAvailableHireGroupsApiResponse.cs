@@ -8,12 +8,14 @@ namespace Cares.Models.ResponseModels
     {
         public long VehilceId { get; set; }
         public string NumberPlate { get; set; }
-        public string VehicleMake { get; set; }
-        public string VehicleModel { get; set; }
-        public string VehicleCategory { get; set; }
+        public string VehicleMakeName { get; set; }
+        public string VehilceModelName { get; set; }
+        public string VehicleCategoryName { get; set; }
         public long ModelYear { get; set; }
-        public double StandardRate { get; set; }
+        public string TariffTypeCode { get; set; }
+        public double RentalCharge { get; set; }
         public string HireGroupName { get; set; }
+        public double HireGroupId { get; set; }
         public double AllowedMileage { get; set; }
 
         /// <summary>

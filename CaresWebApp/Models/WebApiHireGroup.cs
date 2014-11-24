@@ -56,6 +56,13 @@ namespace Cares.WebApp.Models
         /// User domain key
         /// </summary>
         public long DomainKey { get; set; }
+        public double HireGroupId { get; set; }
+        public double AllowedMileage { get; set; }
+        public string HireGroupName { get; set; }
+        public long VehilceId { get; set; }
+        public string NumberPlate { get; set; }
+        public string TariffTypeCode { get; set; }
+
 
     }
 }

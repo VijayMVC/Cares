@@ -11,6 +11,11 @@ namespace Cares.WebApp.ModelsMapper
         {
             return new HireGroupDetail
             {
+                VehilceId = source.VehilceId,
+                NumberPlate = source.NumberPlate,
+                HireGroupId= source.HireGroupId,
+                HireGroupName = source.HireGroupName,
+                AllowedMileage = source.AllowedMileage,
                 HireGroupDetailId = source.HireGroupDetailId,
                 VehicleMakeName = source.VehicleMakeName,
                 VehilceModelName = source.VehilceModelName,
@@ -18,6 +23,7 @@ namespace Cares.WebApp.ModelsMapper
                 ModelYear = source.ModelYear,
                 RentalCharge = source.RentalCharge,
                 ImageSource = source.ImageSource,
+                TariffTypeCode = source.TariffTypeCode
             };
         }
     }

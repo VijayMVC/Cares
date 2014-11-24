@@ -28,5 +28,7 @@ namespace Cares.WebApp.Models
         /// Domain Key
         /// </summary>
         public long DomainKey { get; set; }
+        public string TariffTypeCode { get; set; }
+
     }
 }
