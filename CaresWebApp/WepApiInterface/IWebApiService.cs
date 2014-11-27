@@ -1,5 +1,4 @@
 ﻿using Cares.WebApp.Models;
-using Cares.WebApp.RequestModels;
 
 namespace Cares.WebApp.WepApiInterface
 {
@@ -20,18 +19,15 @@ namespace Cares.WebApp.WepApiInterface
         GetHireGroupResult GetHireGroupList(GetHireGroupRequest request);
 
         /// <summary>
-        /// Get Services List
-        /// </summary>
-        GetServicesResult GetServicesList(AvailableServicesRequest request);
-
-        /// <summary>
         /// Get Available Insurances Rates 
         /// </summary>
         GetAvailableInsurancesRatesResults GetAvailableInsurancesRates(WebApiRequest webApiRequest);
+        GetAvailableCahuffersRatesResults  GetAvailableChauffersRates(WebApiRequest webApiRequest);
+        GetAdditionalDriverRatesResults    GetAdditionalDriverRates(WebApiRequest webApiRequest);
 
-        GetAvailableCahuffersRatesResults GetAvailableChauffersRates(WebApiRequest webApiRequest);
-        GetAdditionalDriverRatesResults GetAdditionalDriverRates(WebApiRequest webApiRequest);
-
-
+        /// <summary>
+        /// To add the booking on server
+        /// </summary>
+        bool BookingMain(WebApiBookingMainRequest bookingMain);
     }
 }

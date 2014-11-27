@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Web.Security.AntiXss;
-using Cares.Interfaces.Repository;
+﻿using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
 using Cares.Models.ReportModels;
 using Cares.Models.ResponseModels;
 using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 
 namespace Cares.Repository.Repositories
 {
@@ -131,11 +129,10 @@ namespace Cares.Repository.Repositories
                      insurances.StartDt <= startDt)
                 select new WebApiAvailableInsurance
                 {
-                    InsuranceRate = (insuranceRtMain.InsuranceRates.
-                        Where(rate => rate.StartDt <= startDt)
+                    InsuranceRate = (insuranceRtMain.InsuranceRates
+                        .Where(rate => rate.StartDt <= startDt)
                         .OrderBy(rate => rate.RevisionNumber)
-                        .FirstOrDefault()
-                        .InsuranceRate) != null
+                        .FirstOrDefault()) != null
                         ? insuranceRtMain.InsuranceRates.
                             Where(rate => rate.StartDt <= startDt)
                             .OrderBy(rate => rate.RevisionNumber)

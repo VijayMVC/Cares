@@ -15,7 +15,7 @@ namespace Cares.Models.ResponseModels
         public string TariffTypeCode { get; set; }
         public double RentalCharge { get; set; }
         public string HireGroupName { get; set; }
-        public double HireGroupId { get; set; }
+        public long HireGroupDetailId { get; set; }
         public double AllowedMileage { get; set; }
 
         /// <summary>

@@ -12,8 +12,8 @@ namespace Cares.Repository.Repositories
     public sealed class BookingMainRepository : BaseRepository<BookingMain>, IBookingMainRepository
     {
         #region Private
-        #endregion
 
+        #endregion
         #region Constructor
         /// <summary>
         /// Constructor
@@ -35,7 +35,6 @@ namespace Cares.Repository.Repositories
         }
 
         #endregion
-
         #region Public
         #endregion
     }

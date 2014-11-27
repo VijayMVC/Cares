@@ -168,6 +168,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AdditionalChargeRepository.cs" />
     <Compile Include="Repositories\AdditionalChargeTypeRepository.cs" />
+    <Compile Include="Repositories\BookingBookingAdditionalDriverRepository.cs" />
+    <Compile Include="Repositories\BookingInsuranceRepository.cs" />
     <Compile Include="Repositories\BpSubTypeRepository.cs" />
     <Compile Include="Repositories\BusinessPartnerDocumentRepository.cs" />
     <Compile Include="Repositories\MenuRepository.cs" />

@@ -182,6 +182,10 @@
     </Compile>
     <Compile Include="ModelsMapper\AvailableHireGroupMapper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AdditionalDriverInfo.cs" />
+    <Compile Include="Models\AdditionalServicesRequstResponse.cs" />
+    <Compile Include="Models\BookingMainInfo.cs" />
+    <Compile Include="Models\WebApiBookingMainRequest.cs" />
     <Compile Include="Models\BookingViewModel.cs" />
     <Compile Include="Models\BookingSearchRequest.cs" />
     <Compile Include="Models\GetAdditionalDriverRatesResults.cs" />
@@ -213,7 +217,6 @@
       <DependentUpon>ApiResource.resx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModel\ServicesViewModel.cs" />
     <Compile Include="WebApi\WebApiService.cs" />
     <Compile Include="WepApiInterface\IWebApiService.cs" />
   </ItemGroup>
@@ -333,6 +336,7 @@
   <ItemGroup>
     <Folder Include="ApiController\" />
     <Folder Include="App_Data\" />
+    <Folder Include="ViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

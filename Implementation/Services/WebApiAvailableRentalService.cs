@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Cares.Interfaces.IServices;
+﻿using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
-using Cares.Models.DomainModels;
-using Cares.Models.Properties;
-using Cares.Models.ReportModels;
 using Cares.Models.ResponseModels;
+using System;
+using System.Collections.Generic;
 
 namespace Cares.Implementation.Services
 {
@@ -17,7 +13,6 @@ namespace Cares.Implementation.Services
     {
         #region Private
         private readonly IHireGroupDetailRepository hireGroupDetailRepository;
-        private readonly IVehicleRepository vehicleRepository;
         private readonly IInsuranceRtRepository insuranceRtRepository;
         private readonly IChaufferChargeRepository chaufferChargeRepository;
         private readonly IAdditionalDriverChargeRepository additionalDriverChargeRepository;
@@ -28,23 +23,20 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Constructor
         /// </summary>
-        public WebApiAvailableRentalService(IAdditionalDriverChargeRepository additionalDriverChargeRepository,IChaufferChargeRepository chaufferChargeRepository, IHireGroupDetailRepository hireGroupDetailRepository, IVehicleRepository vehicleRepository, IInsuranceRtRepository insuranceRtRepository)
+        public WebApiAvailableRentalService(IAdditionalDriverChargeRepository additionalDriverChargeRepository,IChaufferChargeRepository chaufferChargeRepository, IHireGroupDetailRepository hireGroupDetailRepository,
+            IInsuranceRtRepository insuranceRtRepository)
         {
             if (hireGroupDetailRepository == null)
             {
                 throw new ArgumentNullException("hireGroupDetailRepository");
             }
-            if (vehicleRepository == null)
-            {
-                throw new ArgumentNullException("vehicleRepository");
-            }
+           
             if (insuranceRtRepository == null)
             {
                 throw new ArgumentNullException("insuranceRtRepository");
             }
             this.additionalDriverChargeRepository = additionalDriverChargeRepository;
             this.hireGroupDetailRepository = hireGroupDetailRepository;
-            this.vehicleRepository = vehicleRepository;
             this.insuranceRtRepository = insuranceRtRepository;
             this.chaufferChargeRepository = chaufferChargeRepository;
         }
@@ -75,7 +67,7 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Get avilable chauffers with rates
         /// </summary>
-        public IEnumerable<WebApiAdditionalDriver> GetAdditionalDriverWithRates(long domainKey, string tarrifTypeCode)
+        public IEnumerable<WebApiAdditionalDriverResponse> GetAdditionalDriverWithRates(long domainKey, string tarrifTypeCode)
         {
            return additionalDriverChargeRepository.GetAdditionalDriversForWebApi(tarrifTypeCode, domainKey);
 

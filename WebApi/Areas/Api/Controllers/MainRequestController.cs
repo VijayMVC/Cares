@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace Cares.WebApi.Areas.Api.Controllers
 {
-    public class GetAdditionalDriverChargeController : ApiController
+    public class MainRequestController : ApiController
     {
         #region Private
 
@@ -17,7 +17,7 @@ namespace Cares.WebApi.Areas.Api.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public GetAdditionalDriverChargeController(IWebApiAvailableRentalService webApiAvailableRentalService)
+        public MainRequestController(IWebApiAvailableRentalService webApiAvailableRentalService)
         {
             if (webApiAvailableRentalService == null)
             {
@@ -30,8 +30,9 @@ namespace Cares.WebApi.Areas.Api.Controllers
         /// <summary>
         /// Get Available Services with their price
         /// </summary>        
-        public IEnumerable<WebApiAdditionalDriverResponse> Post(GetAvailableServicesRequest request)
+        public IEnumerable<WebApiAdditionalDriver> Post(BookingRequuest x)
         {
+            GetAvailableServicesRequest request = new GetAvailableServicesRequest();
             return WebApiAvailableRentalService.GetAdditionalDriverWithRates(request.DomainKey, request.TarrifTypeCode);
         }
         #endregion

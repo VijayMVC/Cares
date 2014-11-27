@@ -60,6 +60,7 @@
     <Compile Include="IReportServices\IDailyActionService.cs" />
     <Compile Include="IReportServices\IFleetReportService.cs" />
     <Compile Include="IReportServices\IStandardRateReportService.cs" />
+    <Compile Include="IServices\IBookingMainService.cs" />
     <Compile Include="IServices\IAdditionalChargeService.cs" />
     <Compile Include="IServices\IAddressBaseDataService.cs" />
     <Compile Include="IServices\IBusinessPartnerInTypeService.cs" />
@@ -91,6 +92,8 @@
     <Compile Include="IServices\IRaQueueService.cs" />
     <Compile Include="IServices\IWebApiAuthenticationService.cs" />
     <Compile Include="IServices\IWebApiAvailableRentalService.cs" />
+    <Compile Include="Repository\IBookingBookingAdditionalDriverRepository.cs" />
+    <Compile Include="Repository\IBookingInsuranceRepository.cs" />
     <Compile Include="Repository\IAdditionalChargeRepository.cs" />
     <Compile Include="Repository\IAdditionalChargeTypeRepository.cs" />
     <Compile Include="IServices\IDiscountTypeService.cs" />

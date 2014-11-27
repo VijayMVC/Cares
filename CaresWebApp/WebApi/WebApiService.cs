@@ -14,9 +14,9 @@ namespace Cares.WebApp.WebApi
     /// </summary>
     public sealed class WebApiService : ApiService, IWebApiService
     {
-        #region Private
+        #region Uris
         /// <summary>
-        ///Operation Workplace List Uri
+        ///Uris for different APIs
         /// </summary>
         private string GetOperationWorkplaceListUri
         {
@@ -25,10 +25,6 @@ namespace Cares.WebApp.WebApi
                 return ApiResource.WebApiBaseAddress + ApiResource.GetOperationWorkplace;
             }
         }
-
-        /// <summary>
-        ///Hire Group List Uri
-        /// </summary>
         private string GetHireGroupListUri
         {
             get
@@ -57,10 +53,13 @@ namespace Cares.WebApp.WebApi
                 return ApiResource.WebApiBaseAddress + ApiResource.GetAdditionalDriverCharge;
             }
         }
-
-        /// <summary>
-        ///Services List Uri
-        /// </summary>
+        private string SetBookingMaineUri
+        {
+            get
+            {
+                return ApiResource.WebApiBaseAddress + ApiResource.SetBookingMain;
+            }
+        }
         private string GetServicesListUri
         {
             get
@@ -68,7 +67,8 @@ namespace Cares.WebApp.WebApi
                 return ApiResource.WebApiBaseAddress + ApiResource.GetServices;
             }
         }
-
+        #endregion
+        #region Private
         /// <summary>
         /// Get Operation Workplace List 
         /// </summary>
@@ -78,7 +78,6 @@ namespace Cares.WebApp.WebApi
 
             string requestContents = Newtonsoft.Json.JsonConvert.SerializeObject(request);
             HttpResponseMessage responseMessage = await PostHttpRequestAsync(requestContents, new Uri(GetOperationWorkplaceListUri)).ConfigureAwait(false);
-            //HttpResponseMessage responseMessage = await GetHttpRequestAsync(new Uri(GetOperationWorkplaceListUri + "?domainKey=" + domainKey));
             if (responseMessage.IsSuccessStatusCode)
             {
                 string stringContents = await responseMessage.Content.ReadAsStringAsync();
@@ -99,8 +98,6 @@ namespace Cares.WebApp.WebApi
         /// <summary>
         /// Get Available HireGroup
         /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
         private async Task<GetHireGroupResult> GetHireGroupAsync(GetHireGroupRequest request)
         {
             string requestContents = Newtonsoft.Json.JsonConvert.SerializeObject(request);
@@ -127,8 +124,6 @@ namespace Cares.WebApp.WebApi
         /// <summary>
         /// Get Services
         /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
         private async Task<GetServicesResult> GetServicesAsync(AvailableServicesRequest request)
         {
             string orderContents = Newtonsoft.Json.JsonConvert.SerializeObject(request);
@@ -180,7 +175,6 @@ namespace Cares.WebApp.WebApi
             return results;
         }
         #endregion
-
         #region Public
 
 
@@ -200,13 +194,7 @@ namespace Cares.WebApp.WebApi
             return GetHireGroupAsync(request).Result;
         }
 
-        /// <summary>
-        /// Get Services List
-        /// </summary>
-        public GetServicesResult GetServicesList(AvailableServicesRequest request)
-        {
-            return GetServicesAsync(request).Result;
-        }
+
 
         /// <summary>
         /// Get Available Insurances Rates 
@@ -215,7 +203,7 @@ namespace Cares.WebApp.WebApi
         {
             return GetInsurancesRatesAsync(webApiRequest).Result;
         }
-        private IList<WebApiAvailableInsurancesRates> CreateResultForInsurancesListRequest(string stringContents)
+        private IEnumerable<WebApiAvailableInsurancesRates> CreateResultForInsurancesListRequest(string stringContents)
         {
             return Newtonsoft.Json.JsonConvert.DeserializeObject<IList<WebApiAvailableInsurancesRates>>(stringContents);
         }
@@ -226,7 +214,7 @@ namespace Cares.WebApp.WebApi
             if (responseMessage.IsSuccessStatusCode)
             {
                 string stringContents = await responseMessage.Content.ReadAsStringAsync();
-                IList<WebApiAvailableInsurancesRates> webApiAvailableInsurancesRateses = CreateResultForInsurancesListRequest(stringContents);
+                IEnumerable<WebApiAvailableInsurancesRates> webApiAvailableInsurancesRateses = CreateResultForInsurancesListRequest(stringContents);
                 return new GetAvailableInsurancesRatesResults
                 {
                     ApiAvailableInsurances = webApiAvailableInsurancesRateses
@@ -274,7 +262,7 @@ namespace Cares.WebApp.WebApi
                 };
             }
         }
-        private IList<WebApiAvailableChuffersRates> CreateResultForChauffersListRequest(string stringContents)
+        private IEnumerable<WebApiAvailableChuffersRates> CreateResultForChauffersListRequest(string stringContents)
         {
             return Newtonsoft.Json.JsonConvert.DeserializeObject<IList<WebApiAvailableChuffersRates>>(stringContents);
         }
@@ -296,7 +284,7 @@ namespace Cares.WebApp.WebApi
             if (responseMessage.IsSuccessStatusCode)
             {
                 string stringContents = await responseMessage.Content.ReadAsStringAsync();
-                IList<WebApiAdditionalDriverRates> resultForAdditionalDriverListRequest = CreateResultForAdditionalDriverListRequest(stringContents);
+                IEnumerable<WebApiAdditionalDriverRates> resultForAdditionalDriverListRequest = CreateResultForAdditionalDriverListRequest(stringContents);
                 return new GetAdditionalDriverRatesResults
                 {
                     WebApiAdditionalDriverRates = resultForAdditionalDriverListRequest
@@ -308,11 +296,31 @@ namespace Cares.WebApp.WebApi
                     Error = errorString
                 };
         }
-        private IList<WebApiAdditionalDriverRates> CreateResultForAdditionalDriverListRequest(string stringContents)
+        private IEnumerable<WebApiAdditionalDriverRates> CreateResultForAdditionalDriverListRequest(string stringContents)
         {
             return Newtonsoft.Json.JsonConvert.DeserializeObject<IList<WebApiAdditionalDriverRates>>(stringContents);
         }
 
+
+        /// <summary>
+        /// To add the booking on server
+        /// </summary>
+        public bool BookingMain(WebApiBookingMainRequest bookingMain)
+        {
+           return BookingMainAsync(bookingMain).Result;
+        }
+        private async Task<bool> BookingMainAsync(WebApiBookingMainRequest webApiRequest)
+        {
+            string orderContents = Newtonsoft.Json.JsonConvert.SerializeObject(webApiRequest);
+            HttpResponseMessage responseMessage = await PostHttpRequestAsync(orderContents, new Uri(SetBookingMaineUri)).ConfigureAwait(false);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                string stringContents = await responseMessage.Content.ReadAsStringAsync();
+                return true;
+            }
+            string errorString = await responseMessage.Content.ReadAsStringAsync();
+            return false;
+        }
         #endregion
     }
 }

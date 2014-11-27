@@ -33,6 +33,11 @@ namespace Cares.Interfaces.Repository
         /// Association check b/n Operation Work Place and Fleet Pool
         /// </summary>
         bool IsOperationWorkPlaceAssociatedWithFleetPool(double fleetPollId);
+
+        /// <summary>
+        /// Get operation id by operatoin workplace id
+        /// </summary>
+        long GetOperationIdByOperationWorkPlaceId(long operationWorkPlaceId);
     }
 }
  

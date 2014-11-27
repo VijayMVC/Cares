@@ -639,6 +639,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Vehicle.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\BookingMainService.cs" />
     <Compile Include="Services\AdditionalChargeService.cs" />
     <Compile Include="Services\AddressBaseDataService.cs" />
     <Compile Include="Services\AdditionalDriverService.cs" />

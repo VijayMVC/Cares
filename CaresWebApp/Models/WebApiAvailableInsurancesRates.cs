@@ -5,11 +5,6 @@ namespace Cares.WebApp.Models
     {
 
         /// <summary>
-        ///Tariff Type Name
-        /// </summary>
-        public string TariffTypeName { get; set; }
-
-        /// <summary>
         /// Insurance Type ID
         /// </summary>
         public short InsuranceTypeId { get; set; }

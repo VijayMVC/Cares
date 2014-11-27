@@ -135,6 +135,9 @@
   <data name="GetServices" xml:space="preserve">
     <value />
   </data>
+  <data name="SetBookingMain" xml:space="preserve">
+    <value>SetBookingMain</value>
+  </data>
   <data name="WebApiBaseAddress" xml:space="preserve">
     <value>https://localhost/WebApi/Api/</value>
   </data>

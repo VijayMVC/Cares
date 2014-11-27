@@ -132,11 +132,11 @@ namespace Cares.Repository.Repositories
                         !addDriverChrg.IsDeleted && addDriverChrg.StartDt <= raRecCreatedDt).OrderByDescending(adc => adc.RevisionNumber).ToList();
         }
 
-        public IEnumerable<WebApiAdditionalDriver> GetAdditionalDriversForWebApi(string tarrifTypeCode, long domainKey)
+        public IEnumerable<WebApiAdditionalDriverResponse> GetAdditionalDriversForWebApi(string tarrifTypeCode, long domainKey)
         {
             var query = from additionalDriverCharge in DbSet.Where(additionalDriver =>
                 additionalDriver.TariffTypeCode.Equals(tarrifTypeCode) && additionalDriver.UserDomainKey == domainKey)
-                select new WebApiAdditionalDriver
+                select new WebApiAdditionalDriverResponse
                 {
                     TariffTypeCode = additionalDriverCharge.TariffTypeCode,
                     Rate = additionalDriverCharge.AdditionalDriverChargeRate

@@ -29,6 +29,14 @@ namespace Cares.WebApp.Models
         /// </summary>
         public  long HireGroupDetailId { get; set; }
 
+        /// <summary>
+        /// Tarrif Type Code
+        /// </summary>
         public string TariffTypeCode { get; set; }
+
+        /// <summary>
+        /// Temporary field
+        /// </summary>
+        public long? ServiceId { get; set; }
     }
 }

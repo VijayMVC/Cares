@@ -1,8 +1,6 @@
-﻿using System;
+﻿using Cares.Models.ResponseModels;
+using System;
 using System.Collections.Generic;
-using Cares.Models.DomainModels;
-using Cares.Models.ReportModels;
-using Cares.Models.ResponseModels;
 
 namespace Cares.Interfaces.IServices
 {
@@ -27,7 +25,7 @@ namespace Cares.Interfaces.IServices
         /// <summary>
         /// Get avilable chauffers with rates
         /// </summary>
-        IEnumerable<WebApiAdditionalDriver> GetAdditionalDriverWithRates(
+        IEnumerable<WebApiAdditionalDriverResponse> GetAdditionalDriverWithRates(
             long domainKey, string tarrifTypeCode);
 
         /// <summary>
@@ -35,6 +33,8 @@ namespace Cares.Interfaces.IServices
         /// </summary>
         IEnumerable<WebApiAvailableInsurance> GetAvailableInsurencesWithRates(long domainKey, string tarrifTypeCode,
             DateTime startDateTime);
+
+     
 
     }
 }

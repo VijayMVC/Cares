@@ -573,6 +573,11 @@ namespace Cares.Repository.BaseRepository
         /// </summary>
         public DbSet<DefaultSetting> DefaultSettings { get; set; }
 
+
+        public DbSet<BookingIsurance> BookingIsurances { get; set; }
+        public DbSet<BookingAdditionalDriver> BookingAdditionalDrivers { get; set; }
+
+
         #endregion
     }
 }

@@ -3,7 +3,11 @@ namespace Cares.Models.ResponseModels
 {
     public class WebApiAvailableChauffer
     {
-       
+        /// <summary>
+        /// Employee ID 
+        /// </summary>
+        public long ChaufferId { get; set; }
+
         /// <summary>
         ///Tariff Type Name
         /// </summary>

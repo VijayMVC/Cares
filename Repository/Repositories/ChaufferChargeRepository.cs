@@ -96,13 +96,14 @@ namespace Cares.Repository.Repositories
                     where (chuffferCharge.ChaufferChargeMain.TariffTypeCode.Equals(tarrifTypeCode))
                     select new WebApiAvailableChauffer
                     {
+                        ChaufferId = chauffer.EmployeeId,
                         DesignationGrade = chauffer.EmpJobInfo.DesigGrade.DesigGradeCode,
                         TariffTypeCode = chuffferCharge.ChaufferChargeMain.TariffTypeCode,
                         ChaufferChargeRate =  chuffferCharge.ChaufferChargeMain.ChaufferCharges.
                         Where(rate=> rate.StartDt<=startDt).OrderBy(abc=>abc.RevisionNumber).FirstOrDefault()!=null ? chuffferCharge.ChaufferChargeMain.ChaufferCharges.
                         Where(rate=> rate.StartDt<=startDt).OrderBy(abc=>abc.RevisionNumber).FirstOrDefault().ChaufferChargeRate:0,
 
-                        RevisionNumber =  chuffferCharge.ChaufferChargeMain.ChaufferCharges.
+                         RevisionNumber =  chuffferCharge.ChaufferChargeMain.ChaufferCharges.
                          Where(rate => rate.StartDt <= startDt).OrderBy(abc => abc.RevisionNumber).FirstOrDefault()!=null ?
                          chuffferCharge.ChaufferChargeMain.ChaufferCharges.
                          Where(rate => rate.StartDt <= startDt).OrderBy(abc => abc.RevisionNumber).FirstOrDefault().RevisionNumber:0

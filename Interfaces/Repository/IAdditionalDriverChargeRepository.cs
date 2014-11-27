@@ -35,6 +35,6 @@ namespace Cares.Interfaces.Repository
         /// <summary>
         /// Get the Availabe additional drivers under a time interval
         /// </summary>
-        IEnumerable<WebApiAdditionalDriver> GetAdditionalDriversForWebApi(string tarrifTypeCode, long domainKey);
+        IEnumerable<WebApiAdditionalDriverResponse> GetAdditionalDriversForWebApi(string tarrifTypeCode, long domainKey);
     }
 }

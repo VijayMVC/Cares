@@ -4,6 +4,10 @@ namespace Cares.WebApp.Models
     public class WebApiAvailableChuffersRates
     {
         /// <summary>
+        /// Employee ID 
+        /// </summary>
+        public long ChaufferId { get; set; }
+        /// <summary>
         ///Tariff Type Name
         /// </summary>
         public string TariffTypeCode { get; set; }
@@ -18,6 +22,9 @@ namespace Cares.WebApp.Models
         /// </summary>
         public double ChaufferChargeRate { get; set; }
 
+        /// <summary>
+        /// Designation Grade
+        /// </summary>
         public string DesignationGrade { get; set; }
     }
 }

@@ -170,8 +170,8 @@ namespace Cares.Repository.Repositories
                 equals new{hgd.VehicleModelId,hgd.VehicleMakeId, hgd.VehicleCategoryId, hgd.ModelYear }
                 into hireGroups from hgd in hireGroups.DefaultIfEmpty()
                    join vr in db.VehicleReservations on vehicle.VehicleId equals vr.VehicleId into vehicleGroup
-                   from vg in vehicleGroup.
-                Where(vg => (!(vg.EndDtTime >= startDtTime && vg.StartDtTime <= endDtTime))).DefaultIfEmpty()
+                   from vg in vehicleGroup
+                  .Where(vg => (!(vg.EndDtTime >= startDtTime && vg.StartDtTime <= endDtTime)))
             #endregion
             #region Where
                         where vehicle.VehicleStatus.VehicleStatusKey==(int)VehicleStatusEnum.Available &&
@@ -193,7 +193,7 @@ namespace Cares.Repository.Repositories
                     RentalCharge = (hgd.StandardRates.OrderBy(x => x.RevisionNumber).Where(rate => rate.StandardRtStartDt <= startDtTime).FirstOrDefault().StandardRt) != null ?
                     (hgd.StandardRates.OrderBy(x => x.RevisionNumber).Where(rate => rate.StandardRtStartDt <= startDtTime).FirstOrDefault().StandardRt) : 0,
 
-                    HireGroupId = hgd.HireGroup != null ? hgd.HireGroup.HireGroupId : 0,
+                    HireGroupDetailId = hgd!=null? hgd.HireGroupDetailId :0 ,
                     HireGroupName = hgd.HireGroup!=null ? hgd.HireGroup.HireGroupCode: string.Empty,
                     AllowedMileage = (hgd.StandardRates.OrderBy(x => x.RevisionNumber).
                     Where(rate => rate.StandardRtStartDt <= startDtTime).FirstOrDefault().AllowedMileage) !=null ?

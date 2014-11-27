@@ -115,6 +115,15 @@ namespace Cares.WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SetBookingMain.
+        /// </summary>
+        public static string SetBookingMain {
+            get {
+                return ResourceManager.GetString("SetBookingMain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://localhost/WebApi/Api/.
         /// </summary>
         public static string WebApiBaseAddress {

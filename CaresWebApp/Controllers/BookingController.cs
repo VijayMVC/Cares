@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Services;
 using Cares.WebApp.Common;
 using Cares.WebApp.Models;
 using Cares.WebApp.ModelsMapper;
-using Cares.WebApp.ViewModel;
 using Cares.WebApp.WebApi;
 using Cares.WebApp.WepApiInterface;
 
@@ -20,9 +20,12 @@ namespace Cares.WebApp.Controllers
         private IWebApiService webApiService;
         public BookingController()
         {
-            this.webApiService = new WebApiService();
+            webApiService = new WebApiService();
         }
-        // GET: Booking
+
+        /// <summary>
+        /// Booking main screen
+        /// </summary>
         public ActionResult Index(BookingSearchRequest request)
         {
             try
@@ -51,9 +54,9 @@ namespace Cares.WebApp.Controllers
             }
         }
 
-        // GET: Hire Group 
-        //[WebMethod]
-        //[HttpPost]
+        /// <summary>
+        /// Hire Group Selection screen
+        /// </summary>
         public ActionResult HireGroup(FormCollection collection)
         {
             if (collection["HireGroupDetailId"] != null)
@@ -69,7 +72,6 @@ namespace Cares.WebApp.Controllers
                 };
                 TempData["Booking"] = bookingView;
                 return RedirectToAction("Services");
-
             }
             //hire group get
             var bookingViewModel = TempData["Booking"] as BookingViewModel;
@@ -88,36 +90,54 @@ namespace Cares.WebApp.Controllers
         }
 
         /// <summary>
-        ///  GET: Services
+        /// Services upon submition
         /// </summary>
+        [HttpPost]
+        public ActionResult Services(WebApiBookingMainRequest bookingMain)
+        {
+             webApiService.BookingMain(bookingMain);
+             return Json(new
+             {
+                 message = "Booking successfully saved!"
+             });
+        }
+
+        /// <summary>
+        /// Services upon rendering
+        /// </summary>
+        [HttpGet]
         public ActionResult Services(FormCollection collection)
         {
             var bookingViewModel = TempData["Booking"] as BookingViewModel;
-            var hireGroupRequest = new WebApiRequest();
             if (bookingViewModel != null)
             {
-                hireGroupRequest.StartDateTime = bookingViewModel.StartDt;
-                hireGroupRequest.EndDateTime = bookingViewModel.EndDt;
-                hireGroupRequest.OutLocationId = bookingViewModel.OperationWorkPlaceId;
-                hireGroupRequest.DomainKey = 1;
-                hireGroupRequest.TarrifTypeCode = bookingViewModel.TariffTypeCode;
+                var hireGroupRequest = new WebApiRequest
+                {
+                    StartDateTime = bookingViewModel.StartDt,
+                    EndDateTime = bookingViewModel.EndDt,
+                    OutLocationId = bookingViewModel.OperationWorkPlaceId,
+                    DomainKey = 1,
+                    TarrifTypeCode = bookingViewModel.TariffTypeCode
+                };
+                var additionalServicesRequstResponse = new AdditionalServicesRequstResponse
+                {
+                    WebApiAdditionalDriverRates =
+                        webApiService.GetAdditionalDriverRates(hireGroupRequest).WebApiAdditionalDriverRates,
+                    WebApiAvailableInsurancesRates =
+                        webApiService.GetAvailableInsurancesRates(hireGroupRequest).ApiAvailableInsurances,
+                    WebApiAvailableChuffersRates =
+                        webApiService.GetAvailableChauffersRates(hireGroupRequest).ApiAvailableChuffersRates
+                };
+                ViewBag.BookingVM = TempData["Booking"] as BookingViewModel;
+                return View(additionalServicesRequstResponse);
             }
-            var availableInsurancesRates = webApiService.GetAvailableInsurancesRates(hireGroupRequest).ApiAvailableInsurances;
-            var additionalDriverRates = webApiService.GetAdditionalDriverRates(hireGroupRequest).WebApiAdditionalDriverRates;
-            var availableCahuffersRates = webApiService.GetAvailableChauffersRates(hireGroupRequest).ApiAvailableChuffersRates;
-
-            ViewBag.availableInsurancesRates = availableInsurancesRates;
-            ViewBag.additionalDriverRates = additionalDriverRates;
-            ViewBag.availableCahuffersRates = availableCahuffersRates;
-
-            ViewBag.BookingVM = TempData["Booking"] as BookingViewModel;
             return View();
         }
 
         /// <summary>
         /// GET: Customer Info.
         /// </summary>
-        public ActionResult CustomerInfo(ServicesViewModel request)
+        public ActionResult CustomerInfo()
         {
             var bookingView = new BookingViewModel
             {

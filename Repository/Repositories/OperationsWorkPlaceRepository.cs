@@ -86,10 +86,16 @@ namespace Cares.Repository.Repositories
             return DbSet.Where(owp => owp.UserDomainKey == domainKey && owp.Operation.Department.DepartmentType == DepartmentTypes.Sales).OrderBy(owp => owp.LocationName);
         }
 
-
+        /// <summary>
+        /// Get operation id by operatoin workplace id
+        /// </summary>
+        public long GetOperationIdByOperationWorkPlaceId(long operationWorkPlaceId)
+        {
+            return
+                DbSet.Where(operationWorkPlace => operationWorkPlace.OperationsWorkPlaceId == operationWorkPlaceId)
+                    .Select(operation => operation.OperationId).FirstOrDefault();
+        }
         
-
-
         /// <summary>
         /// Get Employee Status for User Domain Key
         /// </summary>
