@@ -8,7 +8,7 @@ using Cares.WebApi.Models;
 namespace Cares.WebApi.Areas.Api.Controllers
 {
     /// <summary>
-    /// Get Available Services
+    /// Get Available chauffers Services
     /// </summary>
     public class GetAvailableChauffersRatesController : ApiController
     {
@@ -32,7 +32,7 @@ namespace Cares.WebApi.Areas.Api.Controllers
         /// <summary>
         /// Get Available Services with their price
         /// </summary>        
-        public IEnumerable<WebApiAvailableChauffer> Post(GetAvailableServicesRequest request)
+        public IEnumerable<WebApiAvailableChauffer> Post(WebApiGetAvailableServicesRequest request)
         {
             return availableRentalService.GetAvailableChauffersWithRates(request.OutLocationId, request.StartDateTime,
                 request.EndDateTime, request.DomainKey, request.HireGroupDetailId, request.TarrifTypeCode);

@@ -1,6 +1,9 @@
 ﻿
 namespace Cares.Models.ResponseModels
 {
+    /// <summary>
+    /// Available chauufers 
+    /// </summary>
     public class WebApiAvailableChauffer
     {
         /// <summary>
@@ -23,6 +26,9 @@ namespace Cares.Models.ResponseModels
         /// </summary>
         public double ChaufferChargeRate { get; set; }
         
+        /// <summary>
+        /// Chauffer designation grade
+        /// </summary>
         public string  DesignationGrade { get; set; }
     }
 }

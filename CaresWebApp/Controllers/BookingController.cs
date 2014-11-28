@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Services;
-using Cares.WebApp.Common;
+﻿using Cares.WebApp.Common;
 using Cares.WebApp.Models;
 using Cares.WebApp.ModelsMapper;
 using Cares.WebApp.WebApi;
 using Cares.WebApp.WepApiInterface;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Cares.WebApp.Controllers
 {
@@ -43,8 +41,7 @@ namespace Cares.WebApp.Controllers
                     CompleteBookingData.Booking = booking;
                     return RedirectToAction("HireGroup");
                 }
-                GetOperationWorkplaceResult results = webApiService.GetOperationWorkplaceList(1);
-                ViewBag.OperationWorkPlaces = results;
+                ViewBag.OperationWorkPlaces = webApiService.GetOperationWorkplaceList(1);
                 return View();
             }
             catch (Exception exp)
@@ -151,14 +148,5 @@ namespace Cares.WebApp.Controllers
             return View();
         }
 
-        /// <summary>
-        /// Autocomplete 
-        /// </summary>
-        [WebMethod]
-        [HttpPost]
-        public JsonResult AutoCompleteLocation(string location)
-        {           
-            return null; 
-        }
     } 
 }

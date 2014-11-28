@@ -5,7 +5,7 @@ namespace Cares.WebApi.Models
     /// <summary>
     /// Web Api Model for Getting Available HireGroup Reequest
     /// </summary>
-    public sealed class GetAvailableHireGroupsRequest
+    public sealed class WebApiGetAvailableHireGroupsRequest
     {
         /// <summary>
         /// Start Date Time

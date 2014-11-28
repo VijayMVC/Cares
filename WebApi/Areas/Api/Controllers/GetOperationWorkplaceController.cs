@@ -11,7 +11,7 @@ using Cares.WebApi.Models;
 namespace Cares.WebApi.Areas.Api.Controllers
 {
     /// <summary>
-    /// Get Operation Workplace
+    /// Get Operation Workplace Controller
     /// </summary>
     [Authorize] 
     public class GetOperationWorkplaceController : ApiController
@@ -31,13 +31,15 @@ namespace Cares.WebApi.Areas.Api.Controllers
         #endregion
         #region Public
 
-        public IEnumerable<WebApiOperationWorkplace> Post(GetOperationWorkplaceRequest request)
+        /// <summary>
+        /// Get list of operational work places 
+        /// </summary>
+        public IEnumerable<WebApiOperationWorkplace> Post(WebApiGetOperationWorkplaceRequest request)
         {
             if (!ModelState.IsValid || request == null || !request.DomainKey.HasValue)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            
             return
                 operationsWorkPlaceService.GetOperationsWorkPlacesByDomainKey(request.DomainKey.Value).Select(owp => owp.CreateFrom());
         }

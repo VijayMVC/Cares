@@ -6,7 +6,7 @@
     public sealed class WebApiOperationWorkplace
     {
         /// <summary>
-        /// Workplace name
+        /// Location name
         /// </summary>
         public string LocationName { get; set; }
 

@@ -30,7 +30,7 @@ namespace Cares.WebApi.Areas.Api.Controllers
         /// <summary>
         /// Get Available Services with their price
         /// </summary>        
-        public IEnumerable<WebApiAdditionalDriverResponse> Post(GetAvailableServicesRequest request)
+        public IEnumerable<WebApiAdditionalDriverResponse> Post(WebApiGetAvailableServicesRequest request)
         {
             return WebApiAvailableRentalService.GetAdditionalDriverWithRates(request.DomainKey, request.TarrifTypeCode);
         }

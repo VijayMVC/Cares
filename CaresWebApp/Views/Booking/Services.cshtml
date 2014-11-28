@@ -21,7 +21,7 @@
         </div>
         <div class="form-group">
             <label  class="control-label h5 col-sm-3">Location: </label>
-            <label class="control-label h5 col-sm-3">@ViewBag.BookingVM.OperationWorkPlaceCode </label>
+            <label  class="control-label h5 col-sm-3">@ViewBag.BookingVM.OperationWorkPlaceCode </label>
             <label  class="control-label h5 col-sm-3">Location: </label>
             <label  class="control-label h5 col-sm-3">@ViewBag.BookingVM.OperationWorkPlaceCode </label>
         </div>
@@ -68,15 +68,13 @@
         {
             <table>
                 <tr>
-
                     <td style="width: 80%">
                         <table>
-                            <tr><td><input class="drivercheckbox" id=@item.Rate type="checkbox" name="chahaderiver" /></td></tr>
+                            <tr><td><input class="drivercheckbox" id="drivercheckbox" type="checkbox" name="chahaderiver" /></td></tr>
                             <tr>
                                 <td><b>Additional Driver Charge Rate : </b></td>
                                 <td>@Html.DisplayFor(modelItem => item.Rate) </td>
                                 @InputExtensions.Hidden(Html, "AdditionalDriverChargeRate", @item.Rate)
-
                             </tr>
                             <tr>
                                 <td><b>Enter Driver Name : </b></td>
@@ -103,7 +101,6 @@
         {
             <table>
                 <tr>
-
                     <td style="width: 80%">
                         <table>
                             <tr><td><input class="chaufferRateCheckBox" id="@item.ChaufferId" type="checkbox" value="" /></td></tr>
@@ -128,17 +125,6 @@
     <div id="waitDiv" style="visibility: hidden"><p>It will worth the wait...</p></div>
 </form>
 <link href="~/Content/themes/App.css" rel="stylesheet" />
-
-
-
-@section scripts
-{
-    <script src="~/Scripts/jquery-ui.min-1.11.1.js"></script>
-    <script src="~/Scripts/jquery-ui-timepicker-addon.js"></script>
-    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-}
 <script>
     $(".drivercheckbox").click(function() {
         var val = $('#' + this.id).is(":checked");
@@ -148,9 +134,11 @@
             $('.driverControl').removeAttr('disabled');
         }
     });
-    $("#submitButton").click(function () {
+    $("#submitButton")  .click(function () {
         var insurancesTypeIndex = new Array(0);
         var chauffersIndex = new Array(0);
+        if (insurancesTypeIndex.length == 0 && chauffersIndex.length == 0 && document.getElementById('drivercheckbox').checked == false)
+            alert("No Additional Service attached!");
         var additionalDriver = {
             Name: $("#driverName").val(),
             LicenseNumber: $("#licenseNumber").val(),
@@ -176,6 +164,7 @@
             AdditionalDriver: additionalDriver,
             BookingMainInfo: bookingInfo
         };
+       
         document.getElementById('waitDiv').style.visibility = 'visible';
         $.ajax({
             type: "POST",
@@ -189,7 +178,15 @@
             error: function(jqXHR, textStatus, errorThrown) {
                 alert(jqXHR.status + " | " + textStatus + " | " + errorThrown);
             }
-    });
-
+        });
+        document.getElementById('waitDiv').style.visibility = 'hidden';
     }); 
 </script>
+@section scripts
+{
+    <script src="~/Scripts/jquery-ui.min-1.11.1.js"></script>
+    <script src="~/Scripts/jquery-ui-timepicker-addon.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

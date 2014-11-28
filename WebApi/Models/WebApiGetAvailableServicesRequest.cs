@@ -2,7 +2,10 @@
 
 namespace Cares.WebApi.Models
 {
-    public class GetAvailableServicesRequest
+    /// <summary>
+    /// Available services model
+    /// </summary>
+    public class WebApiGetAvailableServicesRequest
     {
         /// <summary>
         /// Start Date Time

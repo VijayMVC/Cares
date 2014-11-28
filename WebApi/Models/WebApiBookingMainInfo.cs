@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Cares.WebApi.Models
 {
-    public class BookingMainInfo
+    /// <summary>
+    /// API model
+    /// </summary>
+    public class WebApiBookingMainInfo
     {
         public long OperationWorkPlaceId { get; set; }
         public DateTime StartDateTime { get; set; }

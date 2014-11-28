@@ -2,6 +2,9 @@
 
 namespace Cares.WebApi.Models
 {
+    /// <summary>
+    /// Additional Driver Info model 
+    /// </summary>
     public class AdditionalDriverInfo
     {
         public string Name { get; set; }

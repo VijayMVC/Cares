@@ -28,7 +28,7 @@ namespace Cares.WebApi.Areas.Api.Controllers
         #region Public
 
         /// <summary>
-        /// Get Available Services with their price
+        /// Set Booking Main Request 
         /// </summary>        
         public bool Post(WebApiSetBookingRequest webApiRequest)
         {
@@ -36,7 +36,6 @@ namespace Cares.WebApi.Areas.Api.Controllers
                 (webApiRequest.AdditionalDriver).CreateFrom(), webApiRequest.BookingMainInfo.CreateFrom());
             return true;
         }
-        
         #endregion
     }
 }

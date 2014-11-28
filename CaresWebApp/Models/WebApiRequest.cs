@@ -19,11 +19,6 @@ namespace Cares.WebApp.Models
         public long OutLocationId { get; set; }
 
         /// <summary>
-        /// Hire Group Detail Id
-        /// </summary>
-        public long HireGroupDetailId { get; set; }
-
-        /// <summary>
         /// Tarrif Type Id 
         /// </summary>
         public string TarrifTypeCode { get; set; }

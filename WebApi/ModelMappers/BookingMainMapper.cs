@@ -17,9 +17,12 @@ namespace Cares.WebApi.ModelMappers
             };
         }
 
-       public static WebApiBookingMainInfo CreateFrom(this BookingMainInfo source)
+        /// <summary>
+        /// API booking model to cares booking model
+        /// </summary>
+       public static Cares.Models.ResponseModels.WebApiBookingMainInfo CreateFrom(this Models.WebApiBookingMainInfo source)
        {
-           return new WebApiBookingMainInfo
+           return new Cares.Models.ResponseModels.WebApiBookingMainInfo
            {
                HireGroupDetailId = source.HireGroupDetailId,
                OperationWorkPlaceId = source.OperationWorkPlaceId,

@@ -33,7 +33,7 @@ namespace Cares.WebApi.Areas.Api.Controllers
         /// <summary>
         /// Get Available HireGroup with their price
         /// </summary>        
-        public IEnumerable<WebApiAvailableHireGroupsApiResponse> Post(GetAvailableHireGroupsRequest request)
+        public IEnumerable<WebApiAvailableHireGroupsApiResponse> Post(WebApiGetAvailableHireGroupsRequest request)
         {
            return availableRentalService.GetAvailableHireGroupsWithRates(request.OutLocationId, request.StartDateTime,
                 request.EndDateTime, request.DomainKey);

@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Cares.WebApp.Models;
+using Cares.WebApp.Resources;
+using Cares.WebApp.WepApiInterface;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Cares.WebApp.Models;
-using Cares.WebApp.RequestModels;
-using Cares.WebApp.Resources;
-using Cares.WebApp.WepApiInterface;
 
 namespace Cares.WebApp.WebApi
 {
@@ -121,40 +120,13 @@ namespace Cares.WebApp.WebApi
             }
         }
 
-        /// <summary>
-        /// Get Services
-        /// </summary>
-        private async Task<GetServicesResult> GetServicesAsync(AvailableServicesRequest request)
-        {
-            string orderContents = Newtonsoft.Json.JsonConvert.SerializeObject(request);
-            HttpResponseMessage responseMessage = await PostHttpRequestAsync(orderContents, new Uri(GetServicesListUri));
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                string stringContents = await responseMessage.Content.ReadAsStringAsync();
-                return new GetServicesResult()
-                {
-                    Insurances = this.CreateResultForServicesListRequest(stringContents)
-                    //for service rate ,decide to see result of web service
-                };
-
-            }
-            else
-            {
-                string errorString = await responseMessage.Content.ReadAsStringAsync();
-                return new GetServicesResult
-                {
-                    Error = errorString
-                };
-            }
-        }
 
         /// <summary>
         /// Create Results for Operation Workplace
         /// </summary>
         private IList<WebApiOperationWorkplace> CreateResultForOperationWorkplaceListRequest(string stringContents)
         {
-            IList<WebApiOperationWorkplace> results = Newtonsoft.Json.JsonConvert.DeserializeObject<IList<WebApiOperationWorkplace>>(stringContents);
-            return results;
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<IList<WebApiOperationWorkplace>>(stringContents);
         }
 
         /// <summary>
@@ -162,18 +134,9 @@ namespace Cares.WebApp.WebApi
         /// </summary>
         private IList<WebApiHireGroup> CreateResultForHireGroupsListRequest(string stringContents)
         {
-            IList<WebApiHireGroup> results = Newtonsoft.Json.JsonConvert.DeserializeObject<IList<WebApiHireGroup>>(stringContents);
-            return results;
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<IList<WebApiHireGroup>>(stringContents);
         }
 
-        /// <summary>
-        /// Create Results for Services
-        /// </summary>
-        private IList<WebApiInsurance> CreateResultForServicesListRequest(string stringContents)
-        {
-            IList<WebApiInsurance> results = Newtonsoft.Json.JsonConvert.DeserializeObject<IList<WebApiInsurance>>(stringContents);
-            return results;
-        }
         #endregion
         #region Public
 
@@ -315,10 +278,10 @@ namespace Cares.WebApp.WebApi
             HttpResponseMessage responseMessage = await PostHttpRequestAsync(orderContents, new Uri(SetBookingMaineUri)).ConfigureAwait(false);
             if (responseMessage.IsSuccessStatusCode)
             {
-                string stringContents = await responseMessage.Content.ReadAsStringAsync();
+                await responseMessage.Content.ReadAsStringAsync();
                 return true;
             }
-            string errorString = await responseMessage.Content.ReadAsStringAsync();
+            await responseMessage.Content.ReadAsStringAsync();
             return false;
         }
         #endregion

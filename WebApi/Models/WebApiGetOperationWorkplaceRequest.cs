@@ -1,6 +1,9 @@
 ﻿namespace Cares.WebApi.Models
 {
-    public sealed class GetOperationWorkplaceRequest
+    /// <summary>
+    /// Operational Work Place 
+    /// </summary>
+    public sealed class WebApiGetOperationWorkplaceRequest
     {
         /// <summary>
         /// Domain Key

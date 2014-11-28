@@ -222,10 +222,10 @@
     <Compile Include="ModelMappers\BookingMainMapper.cs" />
     <Compile Include="ModelMappers\OperationWorkplaceMapper.cs" />
     <Compile Include="Models\AdditionalDriverInfo.cs" />
-    <Compile Include="Models\BookingMainInfo.cs" />
-    <Compile Include="Models\GetAvailableHireGroupsRequest.cs" />
-    <Compile Include="Models\GetAvailableServicesRequest.cs" />
-    <Compile Include="Models\GetOperationWorkplaceRequest.cs" />
+    <Compile Include="Models\WebApiBookingMainInfo.cs" />
+    <Compile Include="Models\WebApiGetAvailableHireGroupsRequest.cs" />
+    <Compile Include="Models\WebApiGetAvailableServicesRequest.cs" />
+    <Compile Include="Models\WebApiGetOperationWorkplaceRequest.cs" />
     <Compile Include="Models\WebApiOperationWorkplace.cs" />
     <Compile Include="Models\WebApiSetBookingRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -30,7 +30,7 @@ namespace Cares.WebApi.Areas.Api.Controllers
         /// <summary>
         /// Get Available Services with their price
         /// </summary>        
-        public IEnumerable<WebApiAvailableInsurance> Post(GetAvailableServicesRequest request)
+        public IEnumerable<WebApiAvailableInsurance> Post(WebApiGetAvailableServicesRequest request)
         {
             return webApiAvailableRentalService.GetAvailableInsurencesWithRates(request.DomainKey,
                 request.TarrifTypeCode, request.StartDateTime);

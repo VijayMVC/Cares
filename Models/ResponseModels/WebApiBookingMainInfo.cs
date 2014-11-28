@@ -2,6 +2,9 @@
 
 namespace Cares.Models.ResponseModels
 {
+    /// <summary>
+    /// cares model
+    /// </summary>
     public class WebApiBookingMainInfo
     {
         public long OperationWorkPlaceId { get; set; }
