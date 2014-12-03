@@ -126,7 +126,7 @@
 </form>
 <link href="~/Content/themes/App.css" rel="stylesheet" />
 <script>
-    $(".drivercheckbox").click(function() {
+    $(".drivercheckbox").click(function()  {
         var val = $('#' + this.id).is(":checked");
         if (val == false) {
             $('.driverControl').attr('disabled', 'disabled');
@@ -134,7 +134,7 @@
             $('.driverControl').removeAttr('disabled');
         }
     });
-    $("#submitButton")  .click(function () {
+    $("#submitButton")  .click(function() {
         var insurancesTypeIndex = new Array(0);
         var chauffersIndex = new Array(0);
         if (insurancesTypeIndex.length == 0 && chauffersIndex.length == 0 && document.getElementById('drivercheckbox').checked == false)

@@ -1,4 +1,5 @@
-﻿using Cares.WebApp.Models;
+﻿using System.Threading.Tasks;
+using Cares.WebApp.Models;
 
 namespace Cares.WebApp.WepApiInterface
 {
@@ -22,12 +23,18 @@ namespace Cares.WebApp.WepApiInterface
         /// Get Available Insurances Rates 
         /// </summary>
         GetAvailableInsurancesRatesResults GetAvailableInsurancesRates(WebApiRequest webApiRequest);
-        GetAvailableCahuffersRatesResults  GetAvailableChauffersRates(WebApiRequest webApiRequest);
+        GetAvailableChauffersRatesResults  GetAvailableChauffersRates(WebApiRequest webApiRequest);
         GetAdditionalDriverRatesResults    GetAdditionalDriverRates(WebApiRequest webApiRequest);
 
         /// <summary>
         /// To add the booking on server
         /// </summary>
-        bool BookingMain(WebApiBookingMainRequest bookingMain);
+        bool SaveBookingMain(WebApiBookingMainRequest bookingMain);
+
+
+        /// <summary>
+        /// Register user using APi
+        /// </summary>
+        Task<bool> RegisterUser(RegisterViewModel model);
     }
 }

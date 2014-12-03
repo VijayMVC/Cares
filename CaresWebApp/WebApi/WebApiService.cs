@@ -59,13 +59,14 @@ namespace Cares.WebApp.WebApi
                 return ApiResource.WebApiBaseAddress + ApiResource.SetBookingMain;
             }
         }
-        private string GetServicesListUri
+        private string RegisterUserUri
         {
             get
             {
-                return ApiResource.WebApiBaseAddress + ApiResource.GetServices;
+                return ApiResource.WebApiBaseAddress + ApiResource.RegisterUser;
             }
         }
+
         #endregion
         #region Private
         /// <summary>
@@ -197,11 +198,11 @@ namespace Cares.WebApp.WebApi
         /// <summary>
         /// Get Available Chauffers with chrage rates
         /// </summary>
-        public GetAvailableCahuffersRatesResults GetAvailableChauffersRates(WebApiRequest webApiRequest)
+        public GetAvailableChauffersRatesResults GetAvailableChauffersRates(WebApiRequest webApiRequest)
         {
             return GetChauffersRatesAsync(webApiRequest).Result;
         }
-        private async Task<GetAvailableCahuffersRatesResults> GetChauffersRatesAsync(WebApiRequest request)
+        private async Task<GetAvailableChauffersRatesResults> GetChauffersRatesAsync(WebApiRequest request)
         {
 
             string orderContents = Newtonsoft.Json.JsonConvert.SerializeObject(request);
@@ -209,7 +210,7 @@ namespace Cares.WebApp.WebApi
             if (responseMessage.IsSuccessStatusCode)
             {
                 string stringContents = await responseMessage.Content.ReadAsStringAsync();
-                return new GetAvailableCahuffersRatesResults
+                return new GetAvailableChauffersRatesResults
                 {
                     ApiAvailableChuffersRates = CreateResultForChauffersListRequest(stringContents)
                     //for service rate ,decide to see result of web service
@@ -219,7 +220,7 @@ namespace Cares.WebApp.WebApi
             else
             {
                 string errorString = await responseMessage.Content.ReadAsStringAsync();
-                return new GetAvailableCahuffersRatesResults
+                return new GetAvailableChauffersRatesResults
                 {
                     Error = errorString
                 };
@@ -268,7 +269,7 @@ namespace Cares.WebApp.WebApi
         /// <summary>
         /// To add the booking on server
         /// </summary>
-        public bool BookingMain(WebApiBookingMainRequest bookingMain)
+        public bool SaveBookingMain(WebApiBookingMainRequest bookingMain)
         {
            return BookingMainAsync(bookingMain).Result;
         }
@@ -276,6 +277,28 @@ namespace Cares.WebApp.WebApi
         {
             string orderContents = Newtonsoft.Json.JsonConvert.SerializeObject(webApiRequest);
             HttpResponseMessage responseMessage = await PostHttpRequestAsync(orderContents, new Uri(SetBookingMaineUri)).ConfigureAwait(false);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                await responseMessage.Content.ReadAsStringAsync();
+                return true;
+            }
+            await responseMessage.Content.ReadAsStringAsync();
+            return false;
+        }
+
+
+        /// <summary>
+        /// Register user using APi
+        /// </summary>
+        public Task<bool> RegisterUser(RegisterViewModel model)
+        {
+
+           return RegisterUserAsync(model);
+        }
+        private async Task<bool> RegisterUserAsync(RegisterViewModel model)
+        {
+            string orderContents = Newtonsoft.Json.JsonConvert.SerializeObject(model);
+            HttpResponseMessage responseMessage = await PostHttpRequestAsync(orderContents, new Uri(RegisterUserUri)).ConfigureAwait(false);
             if (responseMessage.IsSuccessStatusCode)
             {
                 await responseMessage.Content.ReadAsStringAsync();

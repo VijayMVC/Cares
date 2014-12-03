@@ -183,7 +183,7 @@ namespace Cares.Repository.BaseRepository
         public DbSet<Region> Regions { get; set; }
         public DbSet<BusinessPartnerDocument> BusinessPartnerDocuments { get; set; }
         public DbSet<RaCustomerDocument> RaCustomerDocuments { get; set; }
-
+       
 
         /// <summary>
         /// Regions DB Set
@@ -576,7 +576,9 @@ namespace Cares.Repository.BaseRepository
 
         public DbSet<BookingIsurance> BookingIsurances { get; set; }
         public DbSet<BookingAdditionalDriver> BookingAdditionalDrivers { get; set; }
-
+        public DbSet<CaresLicenseType> CaresLicenseTypes { get; set; }
+        public DbSet<DomainLicenseDetail> DomainLicenseDetails { get; set; }
+        public DbSet<LicenseDetailsDefault> LicenseDetailsDefault { get; set; }
 
         #endregion
     }

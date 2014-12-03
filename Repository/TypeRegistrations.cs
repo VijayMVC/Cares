@@ -131,8 +131,10 @@ namespace Cares.Repository
             unityContainer.RegisterType<IDefaultSettingRepository, DefaultSettingRepository>();
             unityContainer.RegisterType<IBookingInsuranceRepository, BookingInsuranceRepository>();
             unityContainer.RegisterType<IBookingBookingAdditionalDriverRepository, BookingBookingAdditionalDriverRepository>();
-
-
+            unityContainer.RegisterType<ICaresLicenseTypeRepository, CaresLicenseTypeRepository>();
+            unityContainer.RegisterType<IDomainLicenseDetailsRepository, DomainLicenseDetailsRepository>();
+            unityContainer.RegisterType<ILicenseDetailsDefaultRepository, LicenseDetailsDefaultRepository>();
+            unityContainer.RegisterType<IUserRepository, UserRepository>();
         }
     }
 }

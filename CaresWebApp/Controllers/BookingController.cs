@@ -92,7 +92,7 @@ namespace Cares.WebApp.Controllers
         [HttpPost]
         public ActionResult Services(WebApiBookingMainRequest bookingMain)
         {
-             webApiService.BookingMain(bookingMain);
+             webApiService.SaveBookingMain(bookingMain);
              return Json(new
              {
                  message = "Booking successfully saved!"

@@ -7,6 +7,12 @@
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
+    var accountTypes = new List<SelectListItem>()
+        {
+            new SelectListItem {Text = "Free",   Value = "1"},
+            new SelectListItem {Text = "Pro", Value = "2"},
+            new SelectListItem {Text = "Ultimate",   Value = "3"}
+        };
     @Html.AntiForgeryToken()
     <h4>Create a new account.</h4>
     <hr />
@@ -30,10 +36,23 @@
         </div>
     </div>
     <div class="form-group">
+        @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+         @Html.LabelFor(dropdown => dropdown.AccountType, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+           @Html.DropDownListFor(dropdown => dropdown.AccountType, accountTypes, "Select...", new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" class="btn btn-default" value="Register" />
         </div>
     </div>
+    @ViewBag.Link
 }
 
 @section Scripts {

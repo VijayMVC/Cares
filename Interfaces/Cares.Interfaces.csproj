@@ -69,6 +69,7 @@
     <Compile Include="IServices\IBusinessPartnerSubTypeService.cs" />
     <Compile Include="IServices\INrtQueueService.cs" />
     <Compile Include="IReportServices\IRentalAgreementReportService.cs" />
+    <Compile Include="IServices\IRegisterUserService.cs" />
     <Compile Include="IServices\IVehicleModelService.cs" />
     <Compile Include="IServices\ICreditLimitService.cs" />
     <Compile Include="IServices\IVehicleStatusService.cs" />
@@ -121,6 +122,9 @@
     <Compile Include="IServices\IWorkLocationService.cs" />
     <Compile Include="IServices\IWorkplaceService.cs" />
     <Compile Include="IServices\IWorkplaceTypeService.cs" />
+    <Compile Include="Repository\ICaresLicenseTypeRepository.cs" />
+    <Compile Include="Repository\IDomainLicenseDetailsRepository.cs" />
+    <Compile Include="Repository\ILicenseDetailsDefaultRepository.cs" />
     <Compile Include="Repository\IMenuRepository.cs" />
     <Compile Include="Repository\IPaymentModeRepositor.cs" />
     <Compile Include="Repository\IBookingMainRepository.cs" />
@@ -208,6 +212,7 @@
     <Compile Include="Repository\IInsuranceTypeRepository.cs" />
     <Compile Include="Repository\IStandardDiscountRepository.cs" />
     <Compile Include="Repository\ITransmissionTypeRepository.cs" />
+    <Compile Include="Repository\IUserRepository.cs" />
     <Compile Include="Repository\IVehcilceImageDetailRepository.cs" />
     <Compile Include="Repository\IVehicleCheckListItemRepository.cs" />
     <Compile Include="Repository\IVehicleCheckListRepository.cs" />
