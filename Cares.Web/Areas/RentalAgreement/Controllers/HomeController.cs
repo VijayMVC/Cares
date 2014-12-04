@@ -27,5 +27,12 @@ namespace Cares.Web.Areas.RentalAgreement.Controllers
         {
             return View();
         }
-	}
+
+
+       
+        public ActionResult Booking()
+        {
+            return View();
+        }
+    }
 }

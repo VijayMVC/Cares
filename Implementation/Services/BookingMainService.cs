@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
+using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
 
 namespace Cares.Implementation.Services
@@ -36,6 +37,15 @@ namespace Cares.Implementation.Services
 
         #endregion 
         #region Public
+
+        public BookingMainBaseResponse GetBaseData()
+        {
+            return new BookingMainBaseResponse
+            {
+                OperationWorkPlaces = operationsWorkPlaceRepository.GetSalesOperationsWorkPlace()
+            };
+        }
+
         /// <summary>
         /// Sumition of Main Booking 
         /// </summary>
@@ -48,6 +58,11 @@ namespace Cares.Implementation.Services
             SaveInsuranceRate(insurancesIndex, bookingMain);
             SaveAdditionalDriver(driverInfo, bookingMain);
             return true;
+        }
+
+        public BookingMainResponse LoadMainBookings(BookingMainSearchRequest request)
+        {
+            return bookingMainRepository.LoadMainBookings(request);
         }
 
         private BookingMain SaveBookingMain(WebApiBookingMainInfo source, long operationId)

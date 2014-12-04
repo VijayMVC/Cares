@@ -241,6 +241,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
     <Compile Include="Areas\Api\Controllers\AdditionalChargeBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\BookingMainBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\BookingMainController.cs" />
     <Compile Include="Areas\Api\Controllers\NrtQueueBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\NrtQueueController.cs" />
     <Compile Include="Areas\Api\Controllers\RaQueueBaseController.cs" />
@@ -397,6 +399,7 @@
     <Compile Include="Helper\CultureHelper.cs" />
     <Compile Include="ModelMappers\AdditionalChargeMapper.cs" />
     <Compile Include="ModelMappers\AdditionalDriverChargeMapper.cs" />
+    <Compile Include="ModelMappers\BookingMainMapper.cs" />
     <Compile Include="ModelMappers\BpMainTypeMapper.cs" />
     <Compile Include="ModelMappers\BusinessPartnerCompanyMapper.cs" />
     <Compile Include="ModelMappers\BusinessPartnerIndividualMapper.cs" />
@@ -462,6 +465,9 @@
     <Compile Include="Models\Area.cs" />
     <Compile Include="Models\AreaBaseDataResponse.cs" />
     <Compile Include="Models\AreaSearchRequestResponse.cs" />
+    <Compile Include="Models\BookingMain.cs" />
+    <Compile Include="Models\BookingMainBaseResponse.cs" />
+    <Compile Include="Models\BookingMainSearchResponse.cs" />
     <Compile Include="Models\NrtMainForNrtQueue.cs" />
     <Compile Include="Models\PaymentMode.cs" />
     <Compile Include="Models\NrtQueueBaseResponse.cs" />
@@ -1649,6 +1655,10 @@
     <Content Include="Areas\Pricing\Scripts\insuranceRate.viewModel.js" />
     <Content Include="Areas\Pricing\Scripts\tariffRate.viewModel.js" />
     <Content Include="Areas\Pricing\Scripts\insuranceRate.dataservice.js" />
+    <Content Include="Areas\RentalAgreement\Scripts\bookingMain.dataservice.js" />
+    <Content Include="Areas\RentalAgreement\Scripts\bookingMain.model.js" />
+    <Content Include="Areas\RentalAgreement\Scripts\bookingMain.view.js" />
+    <Content Include="Areas\RentalAgreement\Scripts\bookingMain.viewModel.js" />
     <Content Include="Areas\RentalAgreement\Scripts\raQueue.dataservice.js" />
     <Content Include="Areas\RentalAgreement\Scripts\raQueue.model.js" />
     <Content Include="Areas\RentalAgreement\Scripts\raQueue.view.js" />
@@ -2661,6 +2671,7 @@
     <Content Include="Areas\Reports\Views\Report\StandardRateReport.cshtml" />
     <Content Include="Areas\Reports\Views\Report\InsuranceRateReport.cshtml" />
     <Content Include="Areas\Reports\Views\Report\GrossSalesReport.cshtml" />
+    <Content Include="Areas\RentalAgreement\Views\Home\Booking.cshtml" />
     <None Include="Properties\PublishProfiles\cares.pubxml" />
     <Content Include="Areas\Reports\Views\Report\DailyActionReport.cshtml" />
     <Content Include="Areas\Reports\Views\Report\RentalAgreementReport.cshtml" />
@@ -2894,6 +2905,7 @@
   <ItemGroup>
     <Folder Include="App_Data\ProfileImages\" />
     <Folder Include="Areas\Api\Models\" />
+    <Folder Include="Areas\Api\Views\BookingMain\" />
     <Folder Include="Areas\Api\Views\BusinessSegment\" />
     <Folder Include="Areas\Api\Views\CompanyBase\" />
     <Folder Include="Areas\Api\Views\Company\" />

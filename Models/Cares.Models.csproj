@@ -105,6 +105,7 @@
     <Compile Include="CommonTypes\PhoneType.cs" />
     <Compile Include="CommonTypes\DepartmentType.cs" />
     <Compile Include="Common\AvailableHireGroupWebApiByColumn.cs" />
+    <Compile Include="Common\BookingMainByColumn.cs" />
     <Compile Include="Common\BookingQueueByColumn.cs" />
     <Compile Include="Common\NrtQueueByColumn.cs" />
     <Compile Include="Common\RaStatusEnum.cs" />
@@ -324,6 +325,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="RequestModels\BookingMainSearchRequest.cs" />
+    <Compile Include="ResponseModels\BookingMainBaseResponse.cs" />
+    <Compile Include="ResponseModels\BookingMainResponse.cs" />
     <Compile Include="ResponseModels\WebApiAdditionalDriverInfo.cs" />
     <Compile Include="ResponseModels\WebApiAdditionalDriverResponse.cs" />
     <Compile Include="ResponseModels\WebApiAvailableChauffer.cs" />
