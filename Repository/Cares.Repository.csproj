@@ -61,8 +61,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Private>True</Private>
@@ -172,6 +173,9 @@
     <Compile Include="Repositories\BookingInsuranceRepository.cs" />
     <Compile Include="Repositories\BpSubTypeRepository.cs" />
     <Compile Include="Repositories\BusinessPartnerDocumentRepository.cs" />
+    <Compile Include="Repositories\CaresLicenseTypeRepository.cs" />
+    <Compile Include="Repositories\DomainLicenseDetailsRepository.cs" />
+    <Compile Include="Repositories\LicenseDetailsDefaultRepository.cs" />
     <Compile Include="Repositories\MenuRepository.cs" />
     <Compile Include="Repositories\PaymentModeRepository.cs" />
     <Compile Include="Repositories\BookingMainRepository.cs" />
@@ -266,6 +270,7 @@
     <Compile Include="Repositories\SubRegionRepository.cs" />
     <Compile Include="Repositories\TariffTypeRepository.cs" />
     <Compile Include="Repositories\TransmissionTypeRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\UserRoleStore.cs" />
     <Compile Include="Repositories\UserStore.cs" />
     <Compile Include="Repositories\VehcilceImageDetailRepository.cs" />

@@ -221,6 +221,7 @@ namespace IdentitySample.Controllers
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
+
         {
             if (ModelState.IsValid)
             {
@@ -238,15 +239,12 @@ namespace IdentitySample.Controllers
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new {userId = user.Id, code = code},
                         protocol: Request.Url.Scheme);
                     await
-                        UserManager.SendEmailAsync(model.Email, "Confirm your account",
-                            "Please confirm your account by clicking this link: <a href=\"" + callbackUrl +
-                            "\">link</a><br>Your Password is:" + model.Password);
-                    ViewBag.Link = callbackUrl;
+                        UserManager.SendEmailAsync(model.Email, "Confirm your account","\">link</a><br>Your Password is:" + model.Password);
+                        ViewBag.Link = callbackUrl;
                     return View("DisplayEmail");
                 }
                 AddErrors(result);
             }
-
             // If we got this far, something failed, redisplay form
             return View(model);
         }

@@ -2,9 +2,13 @@
 
 namespace Cares.WebApp.Models
 {
+    /// <summary>
+    /// Available Insurances with Rates
+    /// </summary>
     public class GetAvailableInsurancesRatesResults
     {
         /// <summary>
+        /// List of Available Insurances with Rates
         /// </summary>
         public IEnumerable<WebApiAvailableInsurancesRates> ApiAvailableInsurances { get; set; }
 

@@ -2,6 +2,9 @@
 
 namespace Cares.WebApp.Models
 {
+    /// <summary>
+    /// Booking Main info 
+    /// </summary>
     public class BookingMainInfo
     {
         public long OperationWorkPlaceId { get; set; }

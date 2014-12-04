@@ -1,6 +1,9 @@
 ﻿
 namespace Cares.WebApp.Models
 {
+    /// <summary>
+    /// Available Chuffers Rates
+    /// </summary>
     public class WebApiAvailableChuffersRates
     {
         /// <summary>

@@ -100,8 +100,9 @@
     <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention">
       <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -647,6 +648,7 @@
     <Compile Include="Services\NrtQueueService.cs" />
     <Compile Include="Services\RaQueueService.cs" />
     <Compile Include="ReportServices\RentalAgreementReportService.cs" />
+    <Compile Include="Services\RegisterUserService.cs" />
     <Compile Include="Services\VehicleModelService.cs" />
     <Compile Include="Services\CreditLimitService.cs" />
     <Compile Include="Services\VehicleStatusService.cs" />

@@ -585,6 +585,24 @@
           <Property Name="RecLastUpdatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
         </EntityType>
+        <EntityType Name="CaresLicenseType">
+          <Key>
+            <PropertyRef Name="LicenseTypeId" />
+          </Key>
+          <Property Name="LicenseTypeId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Price" Type="float" Nullable="false" />
+          <Property Name="RowVersion" Type="bigint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsPrivate" Type="bit" Nullable="false" />
+          <Property Name="IsReadOnly" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="RecCreatedDt" Type="datetime" Nullable="false" />
+          <Property Name="RecCreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RecLastUpdatedDt" Type="datetime" Nullable="false" />
+          <Property Name="RecLastUpdatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
+        </EntityType>
         <EntityType Name="CategoryLog">
           <Key>
             <PropertyRef Name="CategoryLogID" />
@@ -889,6 +907,26 @@
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="IsPrivate" Type="bit" Nullable="false" />
           <Property Name="IsReadOnly" Type="bit" Nullable="false" />
+          <Property Name="RecCreatedDt" Type="datetime" Nullable="false" />
+          <Property Name="RecCreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RecLastUpdatedDt" Type="datetime" Nullable="false" />
+          <Property Name="RecLastUpdatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DomainLicenseDetails">
+          <Key>
+            <PropertyRef Name="DomainLicenseDetailsId" />
+          </Key>
+          <Property Name="DomainLicenseDetailsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RAPerMonth" Type="int" Nullable="false" />
+          <Property Name="Employee" Type="int" Nullable="false" />
+          <Property Name="Branches" Type="int" Nullable="false" />
+          <Property Name="FleetPools" Type="int" Nullable="false" />
+          <Property Name="Vehicles" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsPrivate" Type="bit" Nullable="false" />
+          <Property Name="IsReadOnly" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="RecCreatedDt" Type="datetime" Nullable="false" />
           <Property Name="RecCreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="RecLastUpdatedDt" Type="datetime" Nullable="false" />
@@ -1211,6 +1249,28 @@
           <Property Name="IsPrivate" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="IsReadOnly" Type="bit" Nullable="false" />
+          <Property Name="RecCreatedDt" Type="datetime" Nullable="false" />
+          <Property Name="RecCreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RecLastUpdatedDt" Type="datetime" Nullable="false" />
+          <Property Name="RecLastUpdatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LicenseDetailsDefault">
+          <Key>
+            <PropertyRef Name="LicenseDetailsId" />
+          </Key>
+          <Property Name="LicenseDetailsId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LicenseTypeId" Type="int" Nullable="false" />
+          <Property Name="RAPerMonth" Type="int" Nullable="false" />
+          <Property Name="Employee" Type="int" Nullable="false" />
+          <Property Name="Branches" Type="int" Nullable="false" />
+          <Property Name="FleetPools" Type="int" Nullable="false" />
+          <Property Name="Vehicles" Type="int" Nullable="false" />
+          <Property Name="RowVersion" Type="bigint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsPrivate" Type="bit" Nullable="false" />
+          <Property Name="IsReadOnly" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="RecCreatedDt" Type="datetime" Nullable="false" />
           <Property Name="RecCreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="RecLastUpdatedDt" Type="datetime" Nullable="false" />
@@ -3051,6 +3111,20 @@
             </Principal>
             <Dependent Role="VehicleImage">
               <PropertyRef Name="VehicleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LicenseDetailsDefault_fk">
+          <End Role="CaresLicenseType" Type="Self.CaresLicenseType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LicenseDetailsDefault" Type="Self.LicenseDetailsDefault" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CaresLicenseType">
+              <PropertyRef Name="LicenseTypeId" />
+            </Principal>
+            <Dependent Role="LicenseDetailsDefault">
+              <PropertyRef Name="LicenseTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5675,6 +5749,7 @@
           <EntitySet Name="BPSubType" EntityType="Self.BPSubType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BusinessLegalStatus" EntityType="Self.BusinessLegalStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BusinessSegment" EntityType="Self.BusinessSegment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CaresLicenseType" EntityType="Self.CaresLicenseType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CategoryLog" EntityType="Self.CategoryLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChaufferCharge" EntityType="Self.ChaufferCharge" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChaufferChargeMain" EntityType="Self.ChaufferChargeMain" Schema="dbo" store:Type="Tables" />
@@ -5691,6 +5766,7 @@
           <EntitySet Name="DiscountType" EntityType="Self.DiscountType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentGroup" EntityType="Self.DocumentGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DomainLicenseDetails" EntityType="Self.DomainLicenseDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmpAuthOperationsWorkplace" EntityType="Self.EmpAuthOperationsWorkplace" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmpDocsInfo" EntityType="Self.EmpDocsInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmpJobInfo" EntityType="Self.EmpJobInfo" Schema="dbo" store:Type="Tables" />
@@ -5706,6 +5782,7 @@
           <EntitySet Name="InsuranceRtMain" EntityType="Self.InsuranceRtMain" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InsuranceType" EntityType="Self.InsuranceType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobType" EntityType="Self.JobType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LicenseDetailsDefault" EntityType="Self.LicenseDetailsDefault" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LicenseType" EntityType="Self.LicenseType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LogCategory" EntityType="Self.LogCategory" Schema="dbo" store:Type="Tables" />
@@ -5858,6 +5935,10 @@
           <AssociationSet Name="FK_VehicleImage_Vehicle" Association="Self.FK_VehicleImage_Vehicle">
             <End Role="Vehicle" EntitySet="Vehicle" />
             <End Role="VehicleImage" EntitySet="VehicleImage" />
+          </AssociationSet>
+          <AssociationSet Name="LicenseDetailsDefault_fk" Association="Self.LicenseDetailsDefault_fk">
+            <End Role="CaresLicenseType" EntitySet="CaresLicenseType" />
+            <End Role="LicenseDetailsDefault" EntitySet="LicenseDetailsDefault" />
           </AssociationSet>
           <AssociationSet Name="RefAdditionalCharge400" Association="Self.RefAdditionalCharge400">
             <End Role="AdditionalCharge" EntitySet="AdditionalCharge" />
@@ -7784,6 +7865,13 @@
             <End Role="StandardRate1" EntitySet="StandardRates" />
           </AssociationSet>
           <EntitySet Name="DefaultSettings" EntityType="DomainModels.DefaultSetting" />
+          <EntitySet Name="LicenseDetailsDefaults" EntityType="DomainModels.LicenseDetailsDefault" />
+          <EntitySet Name="CaresLicenseTypes" EntityType="DomainModels.CaresLicenseType" />
+          <AssociationSet Name="LicenseDetailsDefault_fk" Association="DomainModels.LicenseDetailsDefault_fk">
+            <End Role="CaresLicenseType" EntitySet="CaresLicenseTypes" />
+            <End Role="LicenseDetailsDefault" EntitySet="LicenseDetailsDefaults" />
+          </AssociationSet>
+          <EntitySet Name="DomainLicenseDetails" EntityType="DomainModels.DomainLicenseDetail" />
         </EntityContainer>
         <EntityType Name="Company">
           <Key>
@@ -13760,6 +13848,82 @@
           <Property Name="DefaultOperationWorkplaceId" Type="Int64" />
           <Property Name="DefaultPaymentTermId" Type="Int64" />
         </EntityType>
+        <EntityType Name="LicenseDetailsDefault">
+          <Key>
+            <PropertyRef Name="LicenseDetailsDefaultId" />
+          </Key>
+          <Property Name="LicenseDetailsDefaultId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LicenseTypeId" Type="Int16" Nullable="false" />
+          <Property Name="RaPerMonth" Type="Int16" Nullable="false" />
+          <Property Name="Employee" Type="Int16" Nullable="false" />
+          <Property Name="Branches" Type="Int16" Nullable="false" />
+          <Property Name="FleetPools" Type="Int16" Nullable="false" />
+          <Property Name="Vehicles" Type="Int16" Nullable="false" />
+          <Property Name="RowVersion" Type="Int64" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsPrivate" Type="Boolean" Nullable="false" />
+          <Property Name="IsReadOnly" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="RecCreatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecCreatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RecLastUpdatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecLastUpdatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="CaresLicenseType" Relationship="DomainModels.LicenseDetailsDefault_fk" FromRole="LicenseDetailsDefault" ToRole="CaresLicenseType" />
+        </EntityType>
+        <EntityType Name="CaresLicenseType">
+          <Key>
+            <PropertyRef Name="LicenseTypeId" />
+          </Key>
+          <Property Name="LicenseTypeId" Type="Int16" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <Property Name="RowVersion" Type="Int64" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsPrivate" Type="Boolean" Nullable="false" />
+          <Property Name="IsReadOnly" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="RecCreatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecCreatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RecLastUpdatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecLastUpdatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="LicenseDetailsDefaults" Relationship="DomainModels.LicenseDetailsDefault_fk" FromRole="CaresLicenseType" ToRole="LicenseDetailsDefault" />
+        </EntityType>
+        <Association Name="LicenseDetailsDefault_fk">
+          <End Type="DomainModels.CaresLicenseType" Role="CaresLicenseType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DomainModels.LicenseDetailsDefault" Role="LicenseDetailsDefault" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CaresLicenseType">
+              <PropertyRef Name="LicenseTypeId" />
+            </Principal>
+            <Dependent Role="LicenseDetailsDefault">
+              <PropertyRef Name="LicenseTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DomainLicenseDetail">
+          <Key>
+            <PropertyRef Name="DomainLicenseDetailsId" />
+          </Key>
+          <Property Name="DomainLicenseDetailsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RaPerMonth" Type="Int32" Nullable="false" />
+          <Property Name="Employee" Type="Int32" Nullable="false" />
+          <Property Name="Branches" Type="Int32" Nullable="false" />
+          <Property Name="FleetPools" Type="Int32" Nullable="false" />
+          <Property Name="Vehicles" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsPrivate" Type="Boolean" Nullable="false" />
+          <Property Name="IsReadOnly" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="RecCreatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecCreatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RecLastUpdatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecLastUpdatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -16681,6 +16845,69 @@
                 <ScalarProperty Name="DefaultOperationId" ColumnName="DefaultOperationId" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="DefaultSettingId" ColumnName="DefaultSettingId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LicenseDetailsDefaults">
+            <EntityTypeMapping TypeName="DomainModels.LicenseDetailsDefault">
+              <MappingFragment StoreEntitySet="LicenseDetailsDefault">
+                <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
+                <ScalarProperty Name="RecLastUpdatedBy" ColumnName="RecLastUpdatedBy" />
+                <ScalarProperty Name="RecLastUpdatedDt" ColumnName="RecLastUpdatedDt" />
+                <ScalarProperty Name="RecCreatedBy" ColumnName="RecCreatedBy" />
+                <ScalarProperty Name="RecCreatedDt" ColumnName="RecCreatedDt" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsReadOnly" ColumnName="IsReadOnly" />
+                <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="Vehicles" ColumnName="Vehicles" />
+                <ScalarProperty Name="FleetPools" ColumnName="FleetPools" />
+                <ScalarProperty Name="Branches" ColumnName="Branches" />
+                <ScalarProperty Name="Employee" ColumnName="Employee" />
+                <ScalarProperty Name="RaPerMonth" ColumnName="RAPerMonth" />
+                <ScalarProperty Name="LicenseTypeId" ColumnName="LicenseTypeId" />
+                <ScalarProperty Name="LicenseDetailsDefaultId" ColumnName="LicenseDetailsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CaresLicenseTypes">
+            <EntityTypeMapping TypeName="DomainModels.CaresLicenseType">
+              <MappingFragment StoreEntitySet="CaresLicenseType">
+                <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
+                <ScalarProperty Name="RecLastUpdatedBy" ColumnName="RecLastUpdatedBy" />
+                <ScalarProperty Name="RecLastUpdatedDt" ColumnName="RecLastUpdatedDt" />
+                <ScalarProperty Name="RecCreatedBy" ColumnName="RecCreatedBy" />
+                <ScalarProperty Name="RecCreatedDt" ColumnName="RecCreatedDt" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsReadOnly" ColumnName="IsReadOnly" />
+                <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LicenseTypeId" ColumnName="LicenseTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DomainLicenseDetails">
+            <EntityTypeMapping TypeName="DomainModels.DomainLicenseDetail">
+              <MappingFragment StoreEntitySet="DomainLicenseDetails">
+                <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
+                <ScalarProperty Name="RecLastUpdatedBy" ColumnName="RecLastUpdatedBy" />
+                <ScalarProperty Name="RecLastUpdatedDt" ColumnName="RecLastUpdatedDt" />
+                <ScalarProperty Name="RecCreatedBy" ColumnName="RecCreatedBy" />
+                <ScalarProperty Name="RecCreatedDt" ColumnName="RecCreatedDt" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsReadOnly" ColumnName="IsReadOnly" />
+                <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Vehicles" ColumnName="Vehicles" />
+                <ScalarProperty Name="FleetPools" ColumnName="FleetPools" />
+                <ScalarProperty Name="Branches" ColumnName="Branches" />
+                <ScalarProperty Name="Employee" ColumnName="Employee" />
+                <ScalarProperty Name="RaPerMonth" ColumnName="RAPerMonth" />
+                <ScalarProperty Name="DomainLicenseDetailsId" ColumnName="DomainLicenseDetailsId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

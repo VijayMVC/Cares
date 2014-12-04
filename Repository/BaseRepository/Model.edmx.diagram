@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0c64bbf4dc9445619e056242daa0f9af" Name="Diagram1" ZoomLevel="74">
+      <Diagram DiagramId="0c64bbf4dc9445619e056242daa0f9af" Name="Diagram1" ZoomLevel="94">
         <EntityTypeShape EntityType="DomainModels.OrgGroup" Width="2.875" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DomainModels.Company" Width="1.5" PointX="4.75" PointY="0.75" />
         <AssociationConnector Association="DomainModels.RefCompany263" />
@@ -385,6 +385,10 @@
         <EntityTypeShape EntityType="DomainModels.WebApiUser" Width="1.5" PointX="15.375" PointY="1.125" />
         <AssociationConnector Association="DomainModels.RefStandardRt371" />
         <EntityTypeShape EntityType="DomainModels.DefaultSetting" Width="1.5" PointX="12.75" PointY="11.25" />
+        <EntityTypeShape EntityType="DomainModels.LicenseDetailsDefault" Width="3" PointX="3" PointY="32" />
+        <EntityTypeShape EntityType="DomainModels.CaresLicenseType" Width="1.5" PointX="0.75" PointY="32.375" />
+        <AssociationConnector Association="DomainModels.LicenseDetailsDefault_fk" />
+        <EntityTypeShape EntityType="DomainModels.DomainLicenseDetail" Width="2.375" PointX="27.375" PointY="29.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

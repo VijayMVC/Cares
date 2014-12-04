@@ -1,6 +1,9 @@
 ﻿
 namespace Cares.WebApp.Models
 {
+    /// <summary>
+    /// Available Insurances
+    /// </summary>
     public class WebApiAvailableInsurancesRates
     {
 

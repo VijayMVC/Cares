@@ -115,6 +115,15 @@ namespace Cares.WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to RegisterUser.
+        /// </summary>
+        public static string RegisterUser {
+            get {
+                return ResourceManager.GetString("RegisterUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SetBookingMain.
         /// </summary>
         public static string SetBookingMain {

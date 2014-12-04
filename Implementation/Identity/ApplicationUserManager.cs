@@ -34,7 +34,7 @@ namespace Cares.Implementation.Identity
         /// </summary>
         public override Task SendEmailAsync(string email, string subject, string body)
         {
-            
+             
             string fromAddress = ConfigurationManager.AppSettings["FromAddress"];
             string fromPwd = ConfigurationManager.AppSettings["FromPassword"];
             string fromDisplayName = ConfigurationManager.AppSettings["FromDisplayNameA"];
@@ -91,7 +91,7 @@ namespace Cares.Implementation.Identity
                 RequireNonLetterOrDigit = false,
                 RequireDigit = false,
                 RequireLowercase = false,
-                RequireUppercase = false,
+                RequireUppercase = false, 
             };
             // Configure user lockout defaults
             manager.UserLockoutEnabledByDefault = true;
