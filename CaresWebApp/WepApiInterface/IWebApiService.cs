@@ -32,9 +32,5 @@ namespace Cares.WebApp.WepApiInterface
         bool SaveBookingMain(WebApiBookingMainRequest bookingMain);
 
 
-        /// <summary>
-        /// Register user using APi
-        /// </summary>
-        Task<bool> RegisterUser(RegisterViewModel model);
     }
 }

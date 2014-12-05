@@ -78,20 +78,7 @@ namespace Cares.WebApp.Controllers
             return View();
         }
 
-        //
-        // POST: /Account/Register
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
-        {
-           
-            if (ModelState.IsValid)
-            {
-                webApiService.RegisterUser(model);
-            }
-            return View(model);
-        }
+      
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]

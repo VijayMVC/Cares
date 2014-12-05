@@ -59,13 +59,7 @@ namespace Cares.WebApp.WebApi
                 return ApiResource.WebApiBaseAddress + ApiResource.SetBookingMain;
             }
         }
-        private string RegisterUserUri
-        {
-            get
-            {
-                return ApiResource.WebApiBaseAddress + ApiResource.RegisterUser;
-            }
-        }
+       
 
         #endregion
         #region Private
@@ -286,27 +280,6 @@ namespace Cares.WebApp.WebApi
             return false;
         }
 
-
-        /// <summary>
-        /// Register user using APi
-        /// </summary>
-        public Task<bool> RegisterUser(RegisterViewModel model)
-        {
-
-           return RegisterUserAsync(model);
-        }
-        private async Task<bool> RegisterUserAsync(RegisterViewModel model)
-        {
-            string orderContents = Newtonsoft.Json.JsonConvert.SerializeObject(model);
-            HttpResponseMessage responseMessage = await PostHttpRequestAsync(orderContents, new Uri(RegisterUserUri)).ConfigureAwait(false);
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                await responseMessage.Content.ReadAsStringAsync();
-                return true;
-            }
-            await responseMessage.Content.ReadAsStringAsync();
-            return false;
-        }
         #endregion
     }
 }

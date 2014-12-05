@@ -20,6 +20,14 @@ namespace Cares.WebApi.Areas.Api.Controllers
         #region Private
         private IRegisterUserService registerUserService;
         private ApplicationUserManager _userManager;
+        /// <summary>
+        /// User Manager 
+        /// </summary>
+        private ApplicationUserManager UserManager
+        {
+            get { return _userManager ?? HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
+            set { _userManager = value; }
+        }
 
         #endregion
         #region Constructor
@@ -37,21 +45,14 @@ namespace Cares.WebApi.Areas.Api.Controllers
         #endregion
         #region Public
        
-        /// <summary>
-        /// User Manager 
-        /// </summary>
-        public ApplicationUserManager UserManager
-        {
-            get { return _userManager ?? HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
-            private set { _userManager = value; }
-        }
+       
 
         /// <summary>
         /// Register user using web api
         /// </summary>        
         public string Post(RegisterViewModel model)
         {
-             model.SelectedRole = "Employee";
+            model.SelectedRole = "Admin";
             if (ModelState.IsValid)
             {
                 double userDomainKey = registerUserService.AddLicenseDetail(model);
@@ -85,7 +86,7 @@ namespace Cares.WebApi.Areas.Api.Controllers
 
                 var url = new UrlHelper( HttpContext.Current.Request.RequestContext);
                 string action = url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code });
-                UserManager.SendEmailAsync(model.Email, "Confirm your account", "\">link</a><br>Your Password is:" + model.Password);
+                UserManager.SendEmailAsync(model.Email, "Confirm your account", "Please confirm your account by clicking this link : <a href="+action+">Confirm account</a> <br>Your Password is:" + model.Password);
                 return action;
             }
             return null;
