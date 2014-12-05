@@ -11,10 +11,11 @@ using System.Web.Http;
 using System.Web.Mvc;
 
 namespace Cares.WebApi.Areas.Api.Controllers
-{
+{    
     /// <summary>
-    /// Register usre controller
+    /// Register user controller
     /// </summary>
+    [System.Web.Http.Authorize]
     public class RegisterUserController : ApiController
     {
         #region Private

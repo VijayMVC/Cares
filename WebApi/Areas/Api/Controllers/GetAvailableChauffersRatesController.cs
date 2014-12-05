@@ -10,6 +10,7 @@ namespace Cares.WebApi.Areas.Api.Controllers
     /// <summary>
     /// Get Available chauffers Services
     /// </summary>
+    [Authorize]
     public class GetAvailableChauffersRatesController : ApiController
     {
         #region Private

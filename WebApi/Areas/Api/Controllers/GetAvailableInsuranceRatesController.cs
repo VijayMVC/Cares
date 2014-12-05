@@ -7,6 +7,7 @@ using System.Web.Http;
 
 namespace Cares.WebApi.Areas.Api.Controllers
 {
+    [Authorize]
     public class GetAvailableInsuranceRatesController : ApiController
     {
         #region Private
