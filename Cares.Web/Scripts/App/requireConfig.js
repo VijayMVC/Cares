@@ -67,6 +67,8 @@
             "vehicleCategory": ist.siteUrl + "/Areas/Fleet/Scripts",
             "vehicleModel": ist.siteUrl + "/Areas/Fleet/Scripts",
             "vehicleStatus": ist.siteUrl + "/Areas/Fleet/Scripts",
+            "bookingMain": ist.siteUrl + "/Areas/RentalAgreement/Scripts",
+
 
         }
     }); 
