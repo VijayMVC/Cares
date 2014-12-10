@@ -30,15 +30,14 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Add License Details and return user  domain key
         /// </summary>
-        public double AddLicenseDetail(RegisterViewModel userModel)
+        public void AddLicenseDetail(RegisterViewModel userModel, double domainkey)
         {
             LicenseDetailsDefault licenseDetailsDefaultById = licenseDetailsDefaultRepository.GetLicenseDetailsDefaultByTypeId(Convert.ToInt32(userModel.AccountType));
-            double maxUserDomainKey = userRepository.GetMaxUserDomainKey();
             #region Adding Domain License Details
 
             DomainLicenseDetail licenseDetailObject = domainLicenseDetailsRepository.Create();
-             
-            licenseDetailObject.UserDomainKey = Convert.ToInt64(maxUserDomainKey + 1);
+
+            licenseDetailObject.UserDomainKey = Convert.ToInt64(domainkey + 1);
             licenseDetailObject.RaPerMonth = licenseDetailsDefaultById.RaPerMonth;
             licenseDetailObject.Employee = licenseDetailsDefaultById.Employee;
             licenseDetailObject.Branches = licenseDetailsDefaultById.Branches;
@@ -57,6 +56,14 @@ namespace Cares.Implementation.Services
             #endregion
 
             return maxUserDomainKey;
+        }
+
+        /// <summary>
+        /// Gives the maximum domain key from the records
+        /// </summary>
+        public double GetMaxUserDomainKey()
+        {
+            return userRepository.GetMaxUserDomainKey();
         }
         #endregion
     }

@@ -56,7 +56,7 @@ namespace Cares.WebApi.Areas.Api.Controllers
             model.SelectedRole = "Admin";
             if (ModelState.IsValid)
             {
-                double userDomainKey = registerUserService.AddLicenseDetail(model);
+                double userDomainKey = registerUserService.GetMaxUserDomainKey();
                 var user = new User
                 {
                     PhoneNumber = model.PhoneNumber,
@@ -65,9 +65,10 @@ namespace Cares.WebApi.Areas.Api.Controllers
                     UserDomainKey = Convert.ToInt64(userDomainKey)
                 };
                 var url = AddUserSendEmail(user, model);
+                registerUserService.AddLicenseDetail(model,userDomainKey);
                 return url;
             }
-            return null;
+            return string.Empty;
         }
 
         /// <summary>
