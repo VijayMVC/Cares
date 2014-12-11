@@ -7,6 +7,11 @@ namespace Cares.Interfaces.IServices
         /// <summary>
         /// User Model
         /// </summary>
-        double AddLicenseDetail(RegisterViewModel userModel);
+        void AddLicenseDetail(RegisterViewModel userModel, double domainkey);
+
+        /// <summary>
+        /// Gives the maximum domain key from the records
+        /// </summary>
+        double GetMaxUserDomainKey();
     }
 }
