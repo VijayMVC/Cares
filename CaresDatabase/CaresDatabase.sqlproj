@@ -205,5 +205,9 @@
     <Build Include="dbo\Tables\BookingAdditionalDriver.sql" />
     <Build Include="dbo\Tables\BookingPayment.sql" />
     <Build Include="dbo\Tables\WebApiUser.sql" />
+    <Build Include="dbo\Tables\LicenseDetailsDefault.sql" />
+    <Build Include="dbo\Tables\DomainLicenseDetails.sql" />
+    <Build Include="dbo\Tables\DefaultSetting.sql" />
+    <Build Include="dbo\Tables\CaresLicenseType.sql" />
   </ItemGroup>
 </Project>
