@@ -65,10 +65,10 @@ namespace Cares.Repository.Repositories
             int fromRow = (request.PageNo - 1) * request.PageSize;
             int toRow = request.PageSize;
             Expression<Func<InsuranceType, bool>> query =
-                department =>
+                insuranceType =>
                     (string.IsNullOrEmpty(request.InsuranceTypeCodeNameText) ||
-                     (department.InsuranceTypeCode.Contains(request.InsuranceTypeCodeNameText)) ||
-                     (department.InsuranceTypeName.Contains(request.InsuranceTypeCodeNameText)));
+                     (insuranceType.InsuranceTypeCode.Contains(request.InsuranceTypeCodeNameText)) ||
+                     (insuranceType.InsuranceTypeName.Contains(request.InsuranceTypeCodeNameText))) && (insuranceType.UserDomainKey == UserDomainKey);
             rowCount = DbSet.Count(query);
             return request.IsAsc
                 ? DbSet.Where(query)

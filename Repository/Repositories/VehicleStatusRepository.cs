@@ -70,7 +70,7 @@ namespace Cares.Repository.Repositories
                 vehicleStatus =>
                     (string.IsNullOrEmpty(request.VehicleStatusCodeNameFilterText) ||
                      (vehicleStatus.VehicleStatusCode.Contains(request.VehicleStatusCodeNameFilterText)) ||
-                     (vehicleStatus.VehicleStatusName.Contains(request.VehicleStatusCodeNameFilterText)));
+                     (vehicleStatus.VehicleStatusName.Contains(request.VehicleStatusCodeNameFilterText))) && (vehicleStatus.UserDomainKey == UserDomainKey);
             rowCount = DbSet.Count(query);
             return request.IsAsc
                 ? DbSet.Where(query)

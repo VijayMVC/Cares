@@ -34,9 +34,7 @@ namespace Cares.Implementation.Services
         {
             LicenseDetailsDefault licenseDetailsDefaultById = licenseDetailsDefaultRepository.GetLicenseDetailsDefaultByTypeId(Convert.ToInt32(userModel.AccountType));
             #region Adding Domain License Details
-
             DomainLicenseDetail licenseDetailObject = domainLicenseDetailsRepository.Create();
-
             licenseDetailObject.UserDomainKey = Convert.ToInt64(domainkey + 1);
             licenseDetailObject.RaPerMonth = licenseDetailsDefaultById.RaPerMonth;
             licenseDetailObject.Employee = licenseDetailsDefaultById.Employee;
@@ -54,8 +52,6 @@ namespace Cares.Implementation.Services
             domainLicenseDetailsRepository.Add(licenseDetailObject);
             domainLicenseDetailsRepository.SaveChanges();
             #endregion
-
-            return maxUserDomainKey;
         }
 
         /// <summary>

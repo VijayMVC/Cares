@@ -68,7 +68,7 @@ namespace Cares.Repository.Repositories
             Expression<Func<VehicleMake, bool>> query =
                 vehicleMake =>
                     (string.IsNullOrEmpty(request.VehicleMakeCodeNameText) || (vehicleMake.VehicleMakeCode.Contains(request.VehicleMakeCodeNameText)) ||
-                     (vehicleMake.VehicleMakeName.Contains(request.VehicleMakeCodeNameText)));
+                     (vehicleMake.VehicleMakeName.Contains(request.VehicleMakeCodeNameText))) && (vehicleMake.UserDomainKey == UserDomainKey);
 
             rowCount = DbSet.Count(query);
             return request.IsAsc

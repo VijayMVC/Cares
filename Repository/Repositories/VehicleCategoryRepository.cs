@@ -68,7 +68,7 @@ namespace Cares.Repository.Repositories
             Expression<Func<VehicleCategory, bool>> query =
                 vehicleCategory =>
                     (string.IsNullOrEmpty(request.VehicleCategoryFilterText) || (vehicleCategory.VehicleCategoryName.Contains(request.VehicleCategoryFilterText)) ||
-                     (vehicleCategory.VehicleCategoryCode.Contains(request.VehicleCategoryFilterText))) ;
+                     (vehicleCategory.VehicleCategoryCode.Contains(request.VehicleCategoryFilterText))) && (vehicleCategory.UserDomainKey == UserDomainKey);
 
             rowCount = DbSet.Count(query);
             return request.IsAsc

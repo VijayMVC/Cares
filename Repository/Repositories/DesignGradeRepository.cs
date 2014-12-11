@@ -70,7 +70,7 @@ namespace Cares.Repository.Repositories
                 desigGrade =>
                     (string.IsNullOrEmpty(request.DesigGradeFilterText) ||
                      (desigGrade.DesigGradeCode.Contains(request.DesigGradeFilterText)) ||
-                     (desigGrade.DesigGradeName.Contains(request.DesigGradeFilterText))) ;
+                     (desigGrade.DesigGradeName.Contains(request.DesigGradeFilterText))) && (desigGrade.UserDomainKey == UserDomainKey);
             rowCount = DbSet.Count(query);
             return request.IsAsc
                 ? DbSet.Where(query)

@@ -77,7 +77,7 @@ namespace Cares.Repository.Repositories
                 documentGroup =>
                     (string.IsNullOrEmpty(request.DocumentGroupFilterText) ||
                      (documentGroup.DocumentGroupName.Contains(request.DocumentGroupFilterText)) ||
-                     (documentGroup.DocumentGroupCode.Contains(request.DocumentGroupFilterText)));
+                     (documentGroup.DocumentGroupCode.Contains(request.DocumentGroupFilterText))) && (documentGroup.UserDomainKey==UserDomainKey);
 
             rowCount = DbSet.Count(query);
             return request.IsAsc

@@ -70,7 +70,7 @@ namespace Cares.Repository.Repositories
                 empStatus =>
                     (string.IsNullOrEmpty(request.EmpFilterText) ||
                      (empStatus.EmpStatusCode.Contains(request.EmpFilterText)) ||
-                     (empStatus.EmpStatusName.Contains(request.EmpFilterText))) ;
+                     (empStatus.EmpStatusName.Contains(request.EmpFilterText))) && (empStatus.UserDomainKey == UserDomainKey);
 
             rowCount = DbSet.Count(query);
             return request.IsAsc

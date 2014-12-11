@@ -80,7 +80,7 @@ namespace Cares.Repository.Repositories
                 businessPartnerRelationshipType =>
                     (string.IsNullOrEmpty(request.BusinessPartnerRelationTypeFilterText) ||
                      (businessPartnerRelationshipType.BusinessPartnerRelationshpTypeCode.Contains(request.BusinessPartnerRelationTypeFilterText)) ||
-                     (businessPartnerRelationshipType.BusinessPartnerRelationshipTypeName.Contains(request.BusinessPartnerRelationTypeFilterText))) ;
+                     (businessPartnerRelationshipType.BusinessPartnerRelationshipTypeName.Contains(request.BusinessPartnerRelationTypeFilterText))) && (businessPartnerRelationshipType.UserDomainKey == UserDomainKey);
             rowCount = DbSet.Count(query);
             return request.IsAsc
                 ? DbSet.Where(query)

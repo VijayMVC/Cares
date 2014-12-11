@@ -74,10 +74,10 @@ namespace Cares.Repository.Repositories
             int fromRow = (request.PageNo - 1) * request.PageSize;
             int toRow = request.PageSize;
             Expression<Func<BusinessPartnerMainType, bool>> query =
-                city =>
+                bpMainType =>
                     (string.IsNullOrEmpty(request.BpMainTypeFilterText) ||
-                     (city.BusinessPartnerMainTypeName.Contains(request.BpMainTypeFilterText)) ||
-                     (city.BusinessPartnerMainTypeCode.Contains(request.BpMainTypeFilterText)));
+                     (bpMainType.BusinessPartnerMainTypeName.Contains(request.BpMainTypeFilterText)) ||
+                     (bpMainType.BusinessPartnerMainTypeCode.Contains(request.BpMainTypeFilterText))) && (bpMainType.UserDomainKey == UserDomainKey);
 
             rowCount = DbSet.Count(query);
             return request.IsAsc

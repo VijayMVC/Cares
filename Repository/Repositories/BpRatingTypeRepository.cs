@@ -68,7 +68,7 @@ namespace Cares.Repository.Repositories
                 bpRatingType =>
                     (string.IsNullOrEmpty(request.RatingTypeFilterText) ||
                      (bpRatingType.BpRatingTypeCode.Contains(request.RatingTypeFilterText)) ||
-                     (bpRatingType.BpRatingTypeName.Contains(request.RatingTypeFilterText)));
+                     (bpRatingType.BpRatingTypeName.Contains(request.RatingTypeFilterText))) && (bpRatingType.UserDomainKey == UserDomainKey);
 
             rowCount = DbSet.Count(query);
             return request.IsAsc

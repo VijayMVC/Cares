@@ -76,7 +76,7 @@ namespace Cares.Repository.Repositories
                 serviceItem =>
                     (string.IsNullOrEmpty(request.ServiceItemFilterText) || (serviceItem.ServiceItemCode.Contains(request.ServiceItemFilterText)) ||
                      (serviceItem.ServiceItemName.Contains(request.ServiceItemFilterText))) && (
-                         (!request.ServiceTypeId.HasValue || request.ServiceTypeId == serviceItem.ServiceTypeId) );
+                         (!request.ServiceTypeId.HasValue || request.ServiceTypeId == serviceItem.ServiceTypeId)) && (serviceItem.UserDomainKey == UserDomainKey);
 
             rowCount = DbSet.Count(query);
             return request.IsAsc

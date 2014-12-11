@@ -85,11 +85,11 @@ namespace Cares.Repository.Repositories
             int fromRow = (request.PageNo - 1) * request.PageSize;
             int toRow = request.PageSize;
             Expression<Func<Area, bool>> query =
-                city =>
+                area =>
                     (string.IsNullOrEmpty(request.AreaFilterText) ||
-                     (city.AreaCode.Contains(request.AreaFilterText)) ||
-                     (city.AreaName.Contains(request.AreaFilterText))) && (
-                         (!request.CityId.HasValue || request.CityId == city.CityId));
+                     (area.AreaCode.Contains(request.AreaFilterText)) ||
+                     (area.AreaName.Contains(request.AreaFilterText))) && (
+                         (!request.CityId.HasValue || request.CityId == area.CityId)) && (area.UserDomainKey == UserDomainKey);
 
             rowCount = DbSet.Count(query);
             return request.IsAsc

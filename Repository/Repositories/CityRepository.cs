@@ -106,7 +106,7 @@ namespace Cares.Repository.Repositories
                     (string.IsNullOrEmpty(request.CityFilterText) ||
                      (city.CityCode.Contains(request.CityFilterText)) ||
                      (city.CityName.Contains(request.CityFilterText))) && (
-                         (!request.CountryId.HasValue || request.CountryId == city.CountryId));
+                         (!request.CountryId.HasValue || request.CountryId == city.CountryId)) && (city.UserDomainKey == UserDomainKey);
 
             rowCount = DbSet.Count(query);
             return request.IsAsc

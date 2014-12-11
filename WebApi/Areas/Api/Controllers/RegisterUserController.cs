@@ -62,11 +62,11 @@ namespace Cares.WebApi.Areas.Api.Controllers
                     PhoneNumber = model.PhoneNumber,
                     UserName = model.Email, 
                     Email = model.Email, 
-                    UserDomainKey = Convert.ToInt64(userDomainKey)
+                    UserDomainKey = Convert.ToInt64(userDomainKey)+1   //giving the Max+1 domain key
                 };
                 var url = AddUserSendEmail(user, model);
                 registerUserService.AddLicenseDetail(model,userDomainKey);
-                return url;
+                return url.ToString();
             }
             return string.Empty;
         }
@@ -74,7 +74,7 @@ namespace Cares.WebApi.Areas.Api.Controllers
         /// <summary>
         /// Add User Crenditinals
         /// </summary>
-        private  string AddUserSendEmail(User user ,RegisterViewModel model)
+        private async Task<string> AddUserSendEmail(User user ,RegisterViewModel model)
         {
             var result = UserManager.Create(user, model.ConfirmPassword);
             if (result.Succeeded)
@@ -88,7 +88,7 @@ namespace Cares.WebApi.Areas.Api.Controllers
 
                 var url = new UrlHelper( HttpContext.Current.Request.RequestContext);
                 string action = url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code });
-                UserManager.SendEmailAsync(model.Email, "Confirm your account", "Please confirm your account by clicking this link : <a href="+action+">Confirm account</a> <br>Your Password is:" + model.Password);
+                await UserManager.SendEmailAsync(model.Email, "Confirm your account", "Please confirm your account by clicking this link : <a href="+action+">Confirm account</a> <br>Your Password is:" + model.Password);
                 return action;
             }
             return null;

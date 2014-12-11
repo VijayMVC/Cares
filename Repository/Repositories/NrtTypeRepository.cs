@@ -61,7 +61,7 @@ namespace Cares.Repository.Repositories
                 nrtType =>
                     (string.IsNullOrEmpty(request.NrtTypeFilterText) || (nrtType.NrtTypeCode.Contains(request.NrtTypeFilterText)) ||
                      (nrtType.NrtTypeName.Contains(request.NrtTypeFilterText))) && (
-                         (!request.VehhicleStatusId.HasValue || request.VehhicleStatusId == nrtType.VehicleStatusId) );
+                         (!request.VehhicleStatusId.HasValue || request.VehhicleStatusId == nrtType.VehicleStatusId)) && (nrtType.UserDomainKey == UserDomainKey);
 
             rowCount = DbSet.Count(query);
             return request.IsAsc

@@ -68,7 +68,7 @@ namespace Cares.Repository.Repositories
                 designation =>
                     (string.IsNullOrEmpty(request.DesignationFilterText) ||
                      (designation.DesignationCode.Contains(request.DesignationFilterText)) ||
-                     (designation.DesignationName.Contains(request.DesignationFilterText))) ;
+                     (designation.DesignationName.Contains(request.DesignationFilterText))) && (designation.UserDomainKey == UserDomainKey);
 
             rowCount = DbSet.Count(query);
             return request.IsAsc

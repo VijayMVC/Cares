@@ -73,7 +73,7 @@ namespace Cares.Repository.Repositories
                 discountType =>
                     (string.IsNullOrEmpty(request.DiscountTypeFilterText) ||
                      (discountType.DiscountTypeCode.Contains(request.DiscountTypeFilterText)) ||
-                     (discountType.DiscountTypeName.Contains(request.DiscountTypeFilterText))) ;
+                     (discountType.DiscountTypeName.Contains(request.DiscountTypeFilterText))) && (discountType.UserDomainKey == UserDomainKey);
 
             rowCount = DbSet.Count(query);
             return request.IsAsc

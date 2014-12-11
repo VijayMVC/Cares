@@ -70,7 +70,7 @@ namespace Cares.Repository.Repositories
                 occupationType =>
                     (string.IsNullOrEmpty(request.OccupationTypeCodeNameText) ||
                      (occupationType.OccupationTypeCode.Contains(request.OccupationTypeCodeNameText)) ||
-                     (occupationType.OccupationTypeName.Contains(request.OccupationTypeCodeNameText)));
+                     (occupationType.OccupationTypeName.Contains(request.OccupationTypeCodeNameText))) && (occupationType.UserDomainKey == UserDomainKey);
             rowCount = DbSet.Count(query);
             return request.IsAsc
                 ? DbSet.Where(query)

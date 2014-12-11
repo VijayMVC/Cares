@@ -47,7 +47,6 @@ namespace Cares.Repository.Repositories
             }
         }
         #endregion
-
         #region Public
         
         /// <summary>
@@ -68,7 +67,7 @@ namespace Cares.Repository.Repositories
             Expression<Func<ServiceType, bool>> query =
                 serviceType =>
                     (string.IsNullOrEmpty(request.ServiceTypeFilterText) || (serviceType.ServiceTypeCode.Contains(request.ServiceTypeFilterText)) ||
-                     (serviceType.ServiceTypeName.Contains(request.ServiceTypeFilterText)));
+                     (serviceType.ServiceTypeName.Contains(request.ServiceTypeFilterText))) && (serviceType.UserDomainKey == UserDomainKey);
 
             rowCount = DbSet.Count(query);
             return request.IsAsc

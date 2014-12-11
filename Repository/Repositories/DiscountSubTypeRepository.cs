@@ -69,7 +69,7 @@ namespace Cares.Repository.Repositories
                     (string.IsNullOrEmpty(request.DiscountSubTypeFilterText) ||
                      (discountsubType.DiscountSubTypeCode.Contains(request.DiscountSubTypeFilterText)) ||
                      (discountsubType.DiscountSubTypeName.Contains(request.DiscountSubTypeFilterText))) && (
-                         (!request.DiscountTypeId.HasValue || request.DiscountTypeId == discountsubType.DiscountTypeId));
+                         (!request.DiscountTypeId.HasValue || request.DiscountTypeId == discountsubType.DiscountTypeId)) && (discountsubType.UserDomainKey == UserDomainKey);
 
             rowCount = DbSet.Count(query);
             return request.IsAsc

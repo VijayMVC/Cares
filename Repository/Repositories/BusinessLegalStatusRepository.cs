@@ -68,7 +68,7 @@ namespace Cares.Repository.Repositories
                 businessLegalStatus =>
                     (string.IsNullOrEmpty(request.BusinessLegalStatusSearchText) ||
                      (businessLegalStatus.BusinessLegalStatusCode.Contains(request.BusinessLegalStatusSearchText)) ||
-                     (businessLegalStatus.BusinessLegalStatusName.Contains(request.BusinessLegalStatusSearchText)));
+                     (businessLegalStatus.BusinessLegalStatusName.Contains(request.BusinessLegalStatusSearchText))) && (businessLegalStatus.UserDomainKey == UserDomainKey);
             rowCount = DbSet.Count(query);
             return request.IsAsc
                 ? DbSet.Where(query)

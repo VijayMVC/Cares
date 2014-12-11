@@ -80,7 +80,8 @@ namespace Cares.Repository.Repositories
                     (string.IsNullOrEmpty(request.MaintenanceTypeCodeNameText) ||
                      (maintenanceType.MaintenanceTypeCode.Contains(request.MaintenanceTypeCodeNameText)) ||
                      (maintenanceType.MaintenanceTypeName.Contains(request.MaintenanceTypeCodeNameText))) &&
-                    (!request.MaintenanceTypeGroypId.HasValue || request.MaintenanceTypeGroypId == maintenanceType.MaintenanceTypeGroupId);
+                    (!request.MaintenanceTypeGroypId.HasValue || request.MaintenanceTypeGroypId == maintenanceType.MaintenanceTypeGroupId)
+                    && (maintenanceType.UserDomainKey == UserDomainKey);
             rowCount = DbSet.Count(query);
             return request.IsAsc
                 ? DbSet.Where(query)

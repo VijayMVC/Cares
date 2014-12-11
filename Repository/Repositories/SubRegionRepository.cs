@@ -81,7 +81,7 @@ namespace Cares.Repository.Repositories
                     (string.IsNullOrEmpty(request.SubRegionFilterText) ||
                      (subRegion.SubRegionCode.Contains(request.SubRegionFilterText)) ||
                      (subRegion.SubRegionName.Contains(request.SubRegionFilterText))) && (
-                         (!request.RegionId.HasValue || request.RegionId == subRegion.RegionId));
+                         (!request.RegionId.HasValue || request.RegionId == subRegion.RegionId)) && (subRegion.UserDomainKey == UserDomainKey);
 
             rowCount = DbSet.Count(query);
             return request.IsAsc

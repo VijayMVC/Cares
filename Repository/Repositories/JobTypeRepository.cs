@@ -68,7 +68,7 @@ namespace Cares.Repository.Repositories
                 jobType =>
                     (string.IsNullOrEmpty(request.JobTypeFilterText) ||
                      (jobType.JobTypeCode.Contains(request.JobTypeFilterText)) ||
-                     (jobType.JobTypeName.Contains(request.JobTypeFilterText)));
+                     (jobType.JobTypeName.Contains(request.JobTypeFilterText))) && (jobType.UserDomainKey == UserDomainKey);
 
             rowCount = DbSet.Count(query);
             return request.IsAsc

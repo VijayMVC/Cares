@@ -72,7 +72,7 @@ namespace Cares.Repository.Repositories
                 businessSeg =>
                     (string.IsNullOrEmpty(businessSegmentSearchRequest.BusinessSegmentFilterText) ||
                      (businessSeg.BusinessSegmentCode.Contains(businessSegmentSearchRequest.BusinessSegmentFilterText)) ||
-                     (businessSeg.BusinessSegmentName.Contains(businessSegmentSearchRequest.BusinessSegmentFilterText)));
+                     (businessSeg.BusinessSegmentName.Contains(businessSegmentSearchRequest.BusinessSegmentFilterText))) && (businessSeg.UserDomainKey == UserDomainKey);
 
             rowCount = DbSet.Count(query);
             return businessSegmentSearchRequest.IsAsc

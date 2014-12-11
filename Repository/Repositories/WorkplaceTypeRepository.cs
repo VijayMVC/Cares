@@ -72,7 +72,7 @@ namespace Cares.Repository.Repositories
                 workPlaceType =>
                     (string.IsNullOrEmpty(workplaceTypeSearchRequest.WorkplaceTypeFilterText) || 
                     (workPlaceType.WorkPlaceTypeCode.Contains(workplaceTypeSearchRequest.WorkplaceTypeFilterText)) ||
-                     (workPlaceType.WorkPlaceTypeName.Contains(workplaceTypeSearchRequest.WorkplaceTypeFilterText)));
+                     (workPlaceType.WorkPlaceTypeName.Contains(workplaceTypeSearchRequest.WorkplaceTypeFilterText))) && (workPlaceType.UserDomainKey == UserDomainKey);
 
             rowCount = DbSet.Count(query);
             return workplaceTypeSearchRequest.IsAsc

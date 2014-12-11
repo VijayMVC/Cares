@@ -75,7 +75,7 @@ namespace Cares.Repository.Repositories
                 marketingChannel =>
                     (string.IsNullOrEmpty(request.MarketingChannelFilterText) ||
                      (marketingChannel.MarketingChannelCode.Contains(request.MarketingChannelFilterText)) ||
-                     (marketingChannel.MarketingChannelName.Contains(request.MarketingChannelFilterText)));
+                     (marketingChannel.MarketingChannelName.Contains(request.MarketingChannelFilterText))) && (marketingChannel.UserDomainKey == UserDomainKey);
             rowCount = DbSet.Count(query);
             return request.IsAsc
                 ? DbSet.Where(query)

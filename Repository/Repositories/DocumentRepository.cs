@@ -72,7 +72,7 @@ namespace Cares.Repository.Repositories
                     (string.IsNullOrEmpty(request.DocumentCodeNameText) ||
                      (document.DocumentCode.Contains(request.DocumentCodeNameText)) ||
                      (document.DocumentName.Contains(request.DocumentCodeNameText))) &&
-                    (!request.DocumentGroypId.HasValue || request.DocumentGroypId == document.DocumentGroupId);
+                    (!request.DocumentGroypId.HasValue || request.DocumentGroypId == document.DocumentGroupId) && (document.UserDomainKey == UserDomainKey);
             rowCount = DbSet.Count(query);
             return request.IsAsc
                 ? DbSet.Where(query)

@@ -78,7 +78,7 @@ namespace Cares.Repository.Repositories
             Expression<Func<CreditLimit, bool>> query =
                 creditLimit =>
                     (!request.BpSubTypeId.HasValue || request.BpSubTypeId == creditLimit.BpSubTypeId) &&
-                    (!request.RatingTypeId.HasValue || request.RatingTypeId == creditLimit.BpRatingTypeId);
+                    (!request.RatingTypeId.HasValue || request.RatingTypeId == creditLimit.BpRatingTypeId) && (creditLimit.UserDomainKey == UserDomainKey);
             rowCount = DbSet.Count(query);
             return request.IsAsc
                 ? DbSet.Where(query)
