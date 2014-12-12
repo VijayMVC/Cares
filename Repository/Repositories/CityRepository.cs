@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
 using System.Linq.Expressions;
 using Cares.Interfaces.Repository;
@@ -67,7 +68,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public City Find(int id)
         {
-            return DbSet.Find(id);
+            return DbSet.FirstOrDefault(city => city.CityId==id && city.UserDomainKey==UserDomainKey);
         }
 
         /// <summary>
@@ -75,7 +76,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public IQueryable<City> GetCitiesByCountry(int countryId)
         {
-            return DbSet.Where(city => city.UserDomainKey == UserDomainKey && city.CountryId == countryId);
+            return DbSet.Where(city => city.UserDomainKey == UserDomainKey && city.CountryId == countryId && city.UserDomainKey==UserDomainKey);
         }
 
         /// <summary>
@@ -127,7 +128,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool DoesCityCodeExists(City city)
         {
-            return DbSet.Count(dbcity => dbcity.CityCode == city.CityCode && dbcity.CityId != city.CityId) > 0;
+            return DbSet.Count(dbcity =>dbcity.UserDomainKey==UserDomainKey &&  dbcity.CityCode == city.CityCode && dbcity.CityId != city.CityId) > 0;
         }
 
 

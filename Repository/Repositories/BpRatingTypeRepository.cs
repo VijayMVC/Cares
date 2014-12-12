@@ -89,7 +89,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
        public bool DoesRatingTypeCodeExist(BpRatingType rartingType)
         {
-            return DbSet.Count(dBratingtype => dBratingtype.BpRatingTypeId != rartingType.BpRatingTypeId && dBratingtype.BpRatingTypeCode==rartingType.BpRatingTypeCode) > 0;
+            return DbSet.Count(dBratingtype =>dBratingtype.UserDomainKey==UserDomainKey &&  dBratingtype.BpRatingTypeId != rartingType.BpRatingTypeId && dBratingtype.BpRatingTypeCode==rartingType.BpRatingTypeCode) > 0;
         }
         
         #endregion

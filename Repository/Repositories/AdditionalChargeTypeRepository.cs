@@ -71,7 +71,7 @@ namespace Cares.Repository.Repositories
                 s =>
                     ((string.IsNullOrEmpty(request.SearchString) ||
                       s.AdditionalChargeTypeCode.Contains(request.SearchString) ||
-                      s.AdditionalChargeTypeName.Contains(request.SearchString)));
+                      s.AdditionalChargeTypeName.Contains(request.SearchString))) && (s.UserDomainKey==UserDomainKey);
 
             IEnumerable<AdditionalChargeType> additionalChargeTypes = request.IsAsc ? DbSet.Where(query)
                                             .OrderBy(additionalChargeClause[request.AdditionalChargeOrderBy]).Skip(fromRow).Take(toRow).ToList()
@@ -87,7 +87,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsAdditionalChargeCodeExists(string additionalChargeTypeCode, long additionalChargeTypeId)
         {
-            return DbSet.Count(act => act.AdditionalChargeTypeCode.ToLower().Trim() == additionalChargeTypeCode.ToLower().Trim() && act.UserDomainKey == UserDomainKey && act.AdditionalChargeTypeId != additionalChargeTypeId) > 0;
+            return DbSet.Count(act =>act.UserDomainKey==UserDomainKey && act.AdditionalChargeTypeCode.ToLower().Trim() == additionalChargeTypeCode.ToLower().Trim() && act.UserDomainKey == UserDomainKey && act.AdditionalChargeTypeId != additionalChargeTypeId) > 0;
         }
         #endregion
     }

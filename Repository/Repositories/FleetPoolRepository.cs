@@ -66,7 +66,8 @@ namespace Cares.Repository.Repositories
                 fleet =>
                         (string.IsNullOrEmpty(request.FleetPoolSearchText) || fleet.FleetPoolCode.Contains(request.FleetPoolSearchText) ||fleet.FleetPoolName.Contains(request.FleetPoolSearchText))
                          && (!request.RegionId.HasValue || fleet.RegionId == request.RegionId.Value)
-                         && (!request.OperationId.HasValue || fleet.OperationId == request.OperationId.Value);
+                         && (!request.OperationId.HasValue || fleet.OperationId == request.OperationId.Value)
+                         && fleet.UserDomainKey==UserDomainKey;
 
             rowCount = DbSet.Count(query);
 
@@ -91,7 +92,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsFleetPoolCodeExists(FleetPool fleetPool)
         {
-            Expression<Func<FleetPool, bool>> query = fleet => fleet.FleetPoolCode.ToLower()==fleetPool.FleetPoolCode.ToLower() && fleet.FleetPoolId !=fleetPool.FleetPoolId;
+            Expression<Func<FleetPool, bool>> query = fleet => fleet.UserDomainKey == UserDomainKey && fleet.FleetPoolCode.ToLower() == fleetPool.FleetPoolCode.ToLower() && fleet.FleetPoolId != fleetPool.FleetPoolId;
             return DbSet.Count(query) > 0;
         }
 
@@ -101,7 +102,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsOperationAssocisiatedWithAnyFleetPool(long operationId)
         {
-            return DbSet.Count(fleetPool => fleetPool.OperationId == operationId) > 0;
+            return DbSet.Count(fleetPool => fleetPool.OperationId == operationId && fleetPool.UserDomainKey == UserDomainKey) > 0;
         }
 
 

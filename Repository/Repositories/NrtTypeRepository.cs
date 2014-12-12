@@ -61,7 +61,8 @@ namespace Cares.Repository.Repositories
                 nrtType =>
                     (string.IsNullOrEmpty(request.NrtTypeFilterText) || (nrtType.NrtTypeCode.Contains(request.NrtTypeFilterText)) ||
                      (nrtType.NrtTypeName.Contains(request.NrtTypeFilterText))) && (
-                         (!request.VehhicleStatusId.HasValue || request.VehhicleStatusId == nrtType.VehicleStatusId)) && (nrtType.UserDomainKey == UserDomainKey);
+                         (!request.VehhicleStatusId.HasValue || request.VehhicleStatusId == nrtType.VehicleStatusId)) &&
+                         (nrtType.UserDomainKey == UserDomainKey);
 
             rowCount = DbSet.Count(query);
             return request.IsAsc
@@ -91,7 +92,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsNrtTypeCodeExists(NrtType nrtType)
         {
-            return DbSet.Count(dBnrtType => dBnrtType.NrtTypeCode == nrtType.NrtTypeCode && dBnrtType.NrtTypeId != nrtType.NrtTypeId) > 0;
+            return DbSet.Count(dBnrtType =>dBnrtType.UserDomainKey==UserDomainKey &&  dBnrtType.NrtTypeCode == nrtType.NrtTypeCode && dBnrtType.NrtTypeId != nrtType.NrtTypeId) > 0;
         }
 
         /// <summary>
@@ -100,7 +101,7 @@ namespace Cares.Repository.Repositories
         public NrtType GetNrtTypeWithDetails(long nrtTypeId)
         {
             return DbSet.Include(nrtType => nrtType.VehicleStatus)
-                .FirstOrDefault(nrtType => nrtType.NrtTypeId == nrtTypeId);
+                .FirstOrDefault(nrtType => nrtType.NrtTypeId == nrtTypeId && nrtType.UserDomainKey == UserDomainKey);
         }
 
         /// <summary>
@@ -108,7 +109,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsVehicleStatusAssociatedWithNrtType(long vehicleStatusId)
         {
-            return DbSet.Count(nrttype => nrttype.VehicleStatusId == vehicleStatusId) > 0;
+            return DbSet.Count(nrttype => nrttype.VehicleStatusId == vehicleStatusId && nrttype.UserDomainKey == UserDomainKey) > 0;
         }
         #endregion
     }

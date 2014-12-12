@@ -49,7 +49,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public BusinessPartnerRelationship Find(int id)
         {
-            return DbSet.Find(id);
+            return DbSet.FirstOrDefault(businessPartnerRelationship => businessPartnerRelationship.BusinessPartnerRelationshipId == id && businessPartnerRelationship.UserDomainKey==UserDomainKey);
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Cares.Repository.Repositories
         {
             return
                 DbSet.Count(
-                    bPrelationship => bPrelationship.BusinessPartnerRelationshipTypeId == businessPartnerRelationshipId) >
+                    bPrelationship =>bPrelationship.UserDomainKey== UserDomainKey &&  bPrelationship.BusinessPartnerRelationshipTypeId == businessPartnerRelationshipId) >
                 0;
         }
         #endregion

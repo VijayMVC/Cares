@@ -66,7 +66,7 @@ namespace Cares.Repository.Repositories
         public SubRegion Find(int id)
         {
             return
-                DbSet.Find(id);
+                DbSet.FirstOrDefault(subregion => subregion.UserDomainKey==UserDomainKey && subregion.SubRegionId==id)
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool DoesSubRegionCodeExist(SubRegion subRegion)
         {
-            return (DbSet.Count(dbsubRegion => dbsubRegion.SubRegionId != subRegion.SubRegionId && dbsubRegion.SubRegionCode == subRegion.SubRegionCode) > 0);
+            return (DbSet.Count(dbsubRegion =>dbsubRegion.UserDomainKey==UserDomainKey && dbsubRegion.SubRegionId != subRegion.SubRegionId && dbsubRegion.SubRegionCode == subRegion.SubRegionCode) > 0);
         }
 
         /// <summary>

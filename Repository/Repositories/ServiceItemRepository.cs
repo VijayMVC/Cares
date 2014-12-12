@@ -62,7 +62,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsServiceItemAssociatedWithServiceType(long serviceTypeId)
         {
-           return DbSet.Count(serviceItem => serviceItem.ServiceTypeId == serviceTypeId) > 0;
+            return DbSet.Count(serviceItem => serviceItem.ServiceTypeId == serviceTypeId && serviceItem.UserDomainKey == UserDomainKey) > 0;
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Cares.Repository.Repositories
                 DbSet.Count(
                     dBserviceItem =>
                         dBserviceItem.ServiceItemId != serviceItem.ServiceItemId &&
-                        dBserviceItem.ServiceItemCode == serviceItem.ServiceItemCode) > 0;
+                        dBserviceItem.ServiceItemCode == serviceItem.ServiceItemCode && dBserviceItem.UserDomainKey == UserDomainKey) > 0;
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace Cares.Repository.Repositories
         public ServiceItem LoadServiceItemWithDetail(long serviceItemId)
         {
             return DbSet.Include(serviceItem => serviceItem.ServiceType)
-                .FirstOrDefault(serviceItem => serviceItem.ServiceItemId == serviceItemId);
+                .FirstOrDefault(serviceItem => serviceItem.ServiceItemId == serviceItemId && serviceItem.UserDomainKey == UserDomainKey);
         }
 
         #endregion

@@ -62,12 +62,12 @@ namespace Cares.Repository.Repositories
             Expression<Func<BookingMain, bool>> query =
                 s => (!request.BookingNumber.HasValue || s.BookingMainId == request.BookingNumber) && (!request.CloseLocationId.HasValue || s.CloseLocation == request.CloseLocationId)
                      && (!request.OpenLocationId.HasValue || s.OpenLocation == request.OpenLocationId) && (!request.StartDate.HasValue || s.StartDtTime == request.StartDate)
-                     && (!request.EndDate.HasValue || s.EndDtTime == request.EndDate) && (!request.StatusId.HasValue || s.BookingStatus.BookingStatusId == request.StatusId);
+                     && (!request.EndDate.HasValue || s.EndDtTime == request.EndDate) && (!request.StatusId.HasValue || s.BookingStatus.BookingStatusId == request.StatusId) &&(s.UserDomainKey==UserDomainKey);
 
             IEnumerable<BookingMain> bookingMain = request.IsAsc ? DbSet.Where(query)
                                             .OrderBy(bookingMainClause[request.BookingMainOrderBy]).Skip(fromRow).Take(toRow).ToList()
                                             : DbSet.Where(query)
-                                                .OrderByDescending(bookingMainClause[request.BookingMainOrderBy]).Skip(fromRow).Take(toRow).ToList();
+                                            .OrderByDescending(bookingMainClause[request.BookingMainOrderBy]).Skip(fromRow).Take(toRow).ToList();
 
             return new BookingMainResponse { BookingMains = bookingMain, TotalCount = DbSet.Count(query) };
         }

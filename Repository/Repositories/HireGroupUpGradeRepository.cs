@@ -54,7 +54,7 @@ namespace Cares.Repository.Repositories
         /// <returns></returns>
         public IEnumerable<HireGroupUpGrade> FindByAllowedHireGroupId(long allowedHireGroupId)
         {
-            return DbSet.Where(hgUGrade => hgUGrade.AllowedHireGroupId == allowedHireGroupId && hgUGrade.UserDomainKey == UserDomainKey).ToList();
+            return DbSet.Where(hgUGrade => hgUGrade.UserDomainKey == UserDomainKey && hgUGrade.AllowedHireGroupId == allowedHireGroupId && hgUGrade.UserDomainKey == UserDomainKey).ToList();
         }
         #endregion
 

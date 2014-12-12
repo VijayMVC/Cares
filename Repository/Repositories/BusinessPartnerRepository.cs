@@ -64,7 +64,8 @@ namespace Cares.Repository.Repositories
 
             Expression<Func<BusinessPartner, bool>> query =
                 s => ((!(businessPartnerSearchRequest.SelectOption.HasValue) || s.IsIndividual == businessPartnerSearchRequest.SelectOption) &&
-                    (string.IsNullOrEmpty(businessPartnerSearchRequest.SearchString) || s.BusinessPartnerName.Contains(businessPartnerSearchRequest.SearchString)));
+                    (string.IsNullOrEmpty(businessPartnerSearchRequest.SearchString) || s.BusinessPartnerName.Contains(businessPartnerSearchRequest.SearchString)))
+                    && (s.UserDomainKey==UserDomainKey);
 
             IEnumerable<BusinessPartner> businesspartners = businessPartnerSearchRequest.IsAsc ? DbSet.Where(query)
                                             .OrderBy(businessPartnerClause[businessPartnerSearchRequest.BusinessPartnerOrderBy]).Skip(fromRow).Take(toRow).ToList()
@@ -78,7 +79,8 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public BusinessPartner GetBusinessPartnerByName(string name, int id)
         {
-            return DbSet.FirstOrDefault(businessPartner => businessPartner.BusinessPartnerName == name && businessPartner.BusinessPartnerId == id);
+            return DbSet.FirstOrDefault(businessPartner =>  businessPartner.UserDomainKey==UserDomainKey && 
+                businessPartner.BusinessPartnerName == name && businessPartner.BusinessPartnerId == id);
         }
         /// <summary>
         /// Get All BusinessPartner for User Domain Key

@@ -42,7 +42,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public override IEnumerable<AllocationStatus> GetAll()
         {
-            return DbSet.ToList();
+            return DbSet.ToList();  // no domain key found
         }
         #endregion
     }

@@ -49,7 +49,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsEmpJobInfoAssociatedWithDesignGrade(long designGradeId)
         {
-            return DbSet.Count(empJobInfo => empJobInfo.DesigGradeId == designGradeId) > 0;
+            return DbSet.Count(empJobInfo => empJobInfo.DesigGradeId == designGradeId && empJobInfo.UserDomainKey == UserDomainKey) > 0;
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
        public bool IsEmpJobInfoAssociatedWithDesignation(long designationId)
         {
-            return DbSet.Count(empJobInfo => empJobInfo.DesignationId == designationId) > 0; 
+            return DbSet.Count(empJobInfo => empJobInfo.DesignationId == designationId && empJobInfo.UserDomainKey == UserDomainKey) > 0; 
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsEmpJobInfoAssociatedWithJobType(long jobTypeId)
         {
-            return DbSet.Count(empJobInfo => empJobInfo.JobTypeId == jobTypeId) > 0; 
+            return DbSet.Count(empJobInfo => empJobInfo.JobTypeId == jobTypeId && empJobInfo.UserDomainKey == UserDomainKey) > 0; 
         }
         #endregion
     }

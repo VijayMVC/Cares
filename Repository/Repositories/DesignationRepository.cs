@@ -89,7 +89,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool DoesDesignationCodeExist(Designation designation)
         {
-            return (DbSet.Count(dBdesignation => dBdesignation.DesignationId != designation.DesignationId && dBdesignation.DesignationCode == designation.DesignationCode) > 0);  
+            return (DbSet.Count(dBdesignation =>dBdesignation.UserDomainKey==UserDomainKey &&  dBdesignation.DesignationId != designation.DesignationId && dBdesignation.DesignationCode == designation.DesignationCode) > 0);  
         }
         #endregion
     }

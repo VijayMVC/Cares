@@ -41,7 +41,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public BusinessPartnerMainType Find(int id)
         {
-            return DbSet.Find(id);
+            return DbSet.FirstOrDefault(bpMainType => bpMainType.BusinessPartnerMainTypeId==id && bpMainType.UserDomainKey==UserDomainKey);
         }
 
         /// <summary>

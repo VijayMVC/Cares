@@ -69,7 +69,8 @@ namespace Cares.Repository.Repositories
                 vehicleCheckList =>
                     (string.IsNullOrEmpty(request.VehicleCheckListFilterText) ||
                      (vehicleCheckList.VehicleCheckListCode.Contains(request.VehicleCheckListFilterText)) ||
-                     (vehicleCheckList.VehicleCheckListName.Contains(request.VehicleCheckListFilterText))) && (vehicleCheckList.UserDomainKey == UserDomainKey);
+                     (vehicleCheckList.VehicleCheckListName.Contains(request.VehicleCheckListFilterText)))
+                     && (vehicleCheckList.UserDomainKey == UserDomainKey);
 
             rowCount = DbSet.Count(query);
             return request.IsAsc
@@ -94,7 +95,8 @@ namespace Cares.Repository.Repositories
                 DbSet.Count(
                     dbvehicleCheckList =>
                         dbvehicleCheckList.VehicleCheckListId != vehicleCheckList.VehicleCheckListId &&
-                        dbvehicleCheckList.VehicleCheckListCode == vehicleCheckList.VehicleCheckListCode) > 0;
+                        dbvehicleCheckList.VehicleCheckListCode == vehicleCheckList.VehicleCheckListCode &&
+                        dbvehicleCheckList.UserDomainKey == UserDomainKey) > 0;
         }
 
         #endregion

@@ -67,7 +67,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public List<string> GetDepartmentsTypes()
         {
-            IQueryable<Department> departments = DbSet.GroupBy(b => b.DepartmentType).Select(b => b.FirstOrDefault());
+            IQueryable<Department> departments = DbSet.Where(dept=> dept.UserDomainKey==UserDomainKey).GroupBy(b => b.DepartmentType).Select(b => b.FirstOrDefault());
             return departments.Select(dept => dept.DepartmentType).ToList();
         }
 
@@ -85,7 +85,7 @@ namespace Cares.Repository.Repositories
                      (department.DepartmentName.Contains(request.DepartmentFilterText)))  &&
                     (string.IsNullOrEmpty(request.DepartmentTypeText) ||
                      (department.DepartmentType.Contains(request.DepartmentTypeText))) &&
-                    (!request.CompanyId.HasValue || request.CompanyId == department.CompanyId);
+                    (!request.CompanyId.HasValue || request.CompanyId == department.CompanyId) && (department.UserDomainKey==UserDomainKey);
             rowCount = DbSet.Count(query);
             return request.IsAsc
                 ? DbSet.Where(query)
@@ -105,8 +105,8 @@ namespace Cares.Repository.Repositories
         /// </summary>
        public Department GetDepartmentWithDetails(long departmentId)
         {
-            return DbSet.Include(opp => opp.Company)
-                .FirstOrDefault(opp => opp.DepartmentId == departmentId);
+            return DbSet.Include(dept => dept.Company)
+                .FirstOrDefault(dept => dept.DepartmentId == departmentId && dept.UserDomainKey==UserDomainKey);
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
        public bool IsDepartmentCodeExists(Department dep)
         {
-            return DbSet.Count(department => department.DepartmentCode.ToLower() == dep.DepartmentCode.ToLower() &&
+            return DbSet.Count(department =>department.UserDomainKey==UserDomainKey &&  department.DepartmentCode.ToLower() == dep.DepartmentCode.ToLower() &&
             department.DepartmentId != dep.DepartmentId) > 0;
         }
 
@@ -123,7 +123,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsCompanyContainDepartment(long companyId)
         {
-            return DbSet.Count(department => department.CompanyId == companyId) > 0;
+            return DbSet.Count(department =>department.UserDomainKey==UserDomainKey &&  department.CompanyId == companyId) > 0;
         }
         #endregion
     }

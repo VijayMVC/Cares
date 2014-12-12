@@ -97,7 +97,7 @@ namespace Cares.Repository.Repositories
             return DbSet.Count(
                 dBdiscountType =>
                     dBdiscountType.DiscountTypeCode == discountType.DiscountTypeCode &&
-                    dBdiscountType.DiscountTypeId != discountType.DiscountTypeId) > 0;
+                    dBdiscountType.DiscountTypeId != discountType.DiscountTypeId && dBdiscountType.UserDomainKey == UserDomainKey) > 0;
         }
         #endregion
 

@@ -46,7 +46,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsOperationWorkPlaceAssociatedWithFleetPool(double fleetPollId)
         {
-           return DbSet.Count(operationworkplace => operationworkplace.FleetPoolId == fleetPollId) > 0;
+            return DbSet.Count(operationworkplace => operationworkplace.FleetPoolId == fleetPollId && operationworkplace.UserDomainKey == UserDomainKey) > 0;
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public IEnumerable<OperationsWorkPlace> GetSalesOperationsWorkPlace()
         {
-            return DbSet.Where(op => op.Operation.Department.DepartmentType == DepartmentTypes.Sales).ToList();
+            return DbSet.Where(op => op.Operation.Department.DepartmentType == DepartmentTypes.Sales && op.UserDomainKey==UserDomainKey).ToList();
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public IEnumerable<OperationsWorkPlace> GetWorkPlaceOperationByWorkPlaceId(long workplaceId)
         {
-            List<OperationsWorkPlace> operationsWorkPlaces = DbSet.Where(operation => operation.WorkPlaceId == workplaceId).ToList();
+            List<OperationsWorkPlace> operationsWorkPlaces = DbSet.Where(operation => operation.WorkPlaceId == workplaceId && operation.UserDomainKey == UserDomainKey).ToList();
             return operationsWorkPlaces.Select(operation => GetOperationWorkPlaceWithDetails(operation.OperationsWorkPlaceId)).ToList();
         }
 
@@ -74,7 +74,7 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Include(opp => opp.Operation)
                    .Include(opp => opp.FleetPool)
-                   .FirstOrDefault(opp => opp.OperationsWorkPlaceId == id);
+                   .FirstOrDefault(opp => opp.OperationsWorkPlaceId == id && opp.UserDomainKey == UserDomainKey);
         }
 
 
@@ -92,7 +92,7 @@ namespace Cares.Repository.Repositories
         public long GetOperationIdByOperationWorkPlaceId(long operationWorkPlaceId)
         {
             return
-                DbSet.Where(operationWorkPlace => operationWorkPlace.OperationsWorkPlaceId == operationWorkPlaceId)
+                DbSet.Where(operationWorkPlace => operationWorkPlace.OperationsWorkPlaceId == operationWorkPlaceId && operationWorkPlace.UserDomainKey == UserDomainKey)
                     .Select(operation => operation.OperationId).FirstOrDefault();
         }
         
@@ -101,7 +101,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public override IEnumerable<OperationsWorkPlace> GetAll()
         {
-            return DbSet.Where(oWorkPlace => oWorkPlace.UserDomainKey == UserDomainKey).ToList();
+            return DbSet.Where(oWorkPlace => oWorkPlace.UserDomainKey == UserDomainKey && oWorkPlace.UserDomainKey == UserDomainKey).ToList();
         }
         #endregion
     }

@@ -59,7 +59,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsServiceRtAssociatedWithServiceItemValidation(long serviceItemId)
         {
-            return DbSet.Count(serviceRt => serviceRt.ServiceItemId == serviceItemId) > 0;
+            return DbSet.Count(serviceRt => serviceRt.ServiceItemId == serviceItemId && serviceRt.UserDomainKey == UserDomainKey) > 0;
         }
 
         /// <summary>

@@ -72,7 +72,8 @@ namespace Cares.Repository.Repositories
                 workPlaceType =>
                     (string.IsNullOrEmpty(workplaceTypeSearchRequest.WorkplaceTypeFilterText) || 
                     (workPlaceType.WorkPlaceTypeCode.Contains(workplaceTypeSearchRequest.WorkplaceTypeFilterText)) ||
-                     (workPlaceType.WorkPlaceTypeName.Contains(workplaceTypeSearchRequest.WorkplaceTypeFilterText))) && (workPlaceType.UserDomainKey == UserDomainKey);
+                     (workPlaceType.WorkPlaceTypeName.Contains(workplaceTypeSearchRequest.WorkplaceTypeFilterText))) 
+                     && (workPlaceType.UserDomainKey == UserDomainKey);
 
             rowCount = DbSet.Count(query);
             return workplaceTypeSearchRequest.IsAsc
@@ -93,7 +94,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsWorkPlaceTypeCodeExists(WorkPlaceType workPlaceType)
         {
-            return DbSet.Count(dbworkPlaceType => dbworkPlaceType.WorkPlaceTypeCode.ToLower() == workPlaceType.WorkPlaceTypeCode.ToLower() && dbworkPlaceType.WorkPlaceTypeId != workPlaceType.WorkPlaceTypeId) > 0;
+            return DbSet.Count(dbworkPlaceType => dbworkPlaceType.UserDomainKey == UserDomainKey && dbworkPlaceType.WorkPlaceTypeCode.ToLower() == workPlaceType.WorkPlaceTypeCode.ToLower() && dbworkPlaceType.WorkPlaceTypeId != workPlaceType.WorkPlaceTypeId) > 0;
 
         }
 

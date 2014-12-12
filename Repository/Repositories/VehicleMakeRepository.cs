@@ -94,7 +94,8 @@ namespace Cares.Repository.Repositories
                 DbSet.Count(
                     vehiclemake =>
                         vehiclemake.VehicleMakeCode == vehicleMakeReq.VehicleMakeCode &&
-                        vehiclemake.VehicleMakeId != vehicleMakeReq.VehicleMakeId) > 0;
+                        vehiclemake.VehicleMakeId != vehicleMakeReq.VehicleMakeId
+                        && vehiclemake.UserDomainKey==UserDomainKey) > 0;
         }
         #endregion
     }

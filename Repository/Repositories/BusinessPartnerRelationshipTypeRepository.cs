@@ -65,7 +65,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public BusinessPartnerRelationshipType Find(int id)
         {
-            return DbSet.Find(id);
+            return DbSet.FirstOrDefault(businessPartnerRelationshipType => businessPartnerRelationshipType.UserDomainKey==UserDomainKey);
         }
 
         /// <summary>
@@ -80,7 +80,8 @@ namespace Cares.Repository.Repositories
                 businessPartnerRelationshipType =>
                     (string.IsNullOrEmpty(request.BusinessPartnerRelationTypeFilterText) ||
                      (businessPartnerRelationshipType.BusinessPartnerRelationshpTypeCode.Contains(request.BusinessPartnerRelationTypeFilterText)) ||
-                     (businessPartnerRelationshipType.BusinessPartnerRelationshipTypeName.Contains(request.BusinessPartnerRelationTypeFilterText))) && (businessPartnerRelationshipType.UserDomainKey == UserDomainKey);
+                     (businessPartnerRelationshipType.BusinessPartnerRelationshipTypeName.
+                     Contains(request.BusinessPartnerRelationTypeFilterText))) && (businessPartnerRelationshipType.UserDomainKey == UserDomainKey);
             rowCount = DbSet.Count(query);
             return request.IsAsc
                 ? DbSet.Where(query)
@@ -106,7 +107,8 @@ namespace Cares.Repository.Repositories
                     dbBusinessPartnerRelationshipType.BusinessPartnerRelationshipTypeId !=
                     businessPartnerRelationshipType.BusinessPartnerRelationshipTypeId &&
                     dbBusinessPartnerRelationshipType.BusinessPartnerRelationshpTypeCode ==
-                    businessPartnerRelationshipType.BusinessPartnerRelationshpTypeCode) > 0;
+                    businessPartnerRelationshipType.BusinessPartnerRelationshpTypeCode
+                    && dbBusinessPartnerRelationshipType.UserDomainKey == UserDomainKey ) > 0;
         }
         #endregion
     }

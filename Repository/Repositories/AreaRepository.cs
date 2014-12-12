@@ -110,7 +110,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool DoesAreaCodeExist(Area area)
         {
-            return DbSet.Count(dBarea => dBarea.AreaId != area.AreaId && dBarea.AreaCode==area.AreaCode) > 0;  
+            return DbSet.Count(dBarea => dBarea.AreaId != area.AreaId && dBarea.UserDomainKey == UserDomainKey  && dBarea.AreaCode == area.AreaCode) > 0;  
         }
 
 

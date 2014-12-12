@@ -73,7 +73,7 @@ namespace Cares.Repository.Repositories
                                                    (!request.OperationId.HasValue ||
                                                      tariffType.OperationId == request.OperationId.Value) &&
                                                     (!request.TariffTypeId.HasValue ||
-                                                     tariffType.TariffTypeId == request.TariffTypeId)) && !(tariffType.ChildTariffTypeId.HasValue)
+                                                     tariffType.TariffTypeId == request.TariffTypeId)) && !(tariffType.ChildTariffTypeId.HasValue) && (tariffType.UserDomainKey == UserDomainKey) && (seasonalDiscountMain.UserDomainKey == UserDomainKey)
                                                select new SeasonalDiscountMainContent
                                              {
                                                  SeasonalDiscountMainId = seasonalDiscountMain.SeasonalDiscountMainId,
@@ -109,7 +109,7 @@ namespace Cares.Repository.Repositories
         /// <returns></returns>
         public IEnumerable<SeasonalDiscountMain> LoadSeasonalDiscountMainByTariffTypeCode(string tariffTypeCode)
         {
-            return DbSet.Where(sDisMain => sDisMain.TariffTypeCode == tariffTypeCode).ToList();
+            return DbSet.Where(sDisMain => sDisMain.TariffTypeCode == tariffTypeCode && sDisMain.UserDomainKey == UserDomainKey).ToList();
         }
         #endregion
     }

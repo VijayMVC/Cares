@@ -67,9 +67,9 @@ namespace Cares.Repository.Repositories
         public IList<MissingHireGroupResponse> GetMissingHireGroups()
         {
             var missingHireGroupDetailQuery = from vehicle in db.Vehicles
-                                              where !(from hgd in db.HireGroupDetails
+                                              where ((!(from hgd in db.HireGroupDetails
                                                       select new { hgd.VehicleModelId, hgd.VehicleMakeId, hgd.VehicleCategoryId, hgd.ModelYear })
-                                                      .Contains(new { vehicle.VehicleModelId, vehicle.VehicleMakeId, vehicle.VehicleCategoryId, vehicle.ModelYear })
+                                                      .Contains(new { vehicle.VehicleModelId, vehicle.VehicleMakeId, vehicle.VehicleCategoryId, vehicle.ModelYear })) && vehicle.UserDomainKey == UserDomainKey)
                                               select new MissingHireGroupResponse
                                               {
                                                   NumberPlate = vehicle.PlateNumber,
@@ -87,6 +87,7 @@ namespace Cares.Repository.Repositories
                                             join hgd in db.HireGroupDetails on
                     new { vehicle.VehicleModelId, vehicle.VehicleMakeId, vehicle.VehicleCategoryId, vehicle.ModelYear }
                     equals new { hgd.VehicleModelId, hgd.VehicleMakeId, hgd.VehicleCategoryId, hgd.ModelYear }
+                                            where (vehicle.UserDomainKey == UserDomainKey)
                                             select new RptFleetHireGroupDetail
                                             {
                                                 HireGroupName = hgd.HireGroup.HireGroupName,
@@ -126,6 +127,7 @@ namespace Cares.Repository.Repositories
                         from owp in db.OperationsWorkPlaces.Where(owp => owp.FleetPoolId == fleetPool.FleetPoolId && owp.OperationsWorkPlaceId == request.OperationsWorkPlaceId)
                         join vr in db.VehicleReservations on v.VehicleId equals vr.VehicleId into vehicleGroup
                         from vg in vehicleGroup.Where(vg => !(vg.EndDtTime >= request.StartDtTime && vg.StartDtTime <= request.EndDtTime)).DefaultIfEmpty()
+                        where (hireGroup.UserDomainKey == UserDomainKey && hireGroupDetail.UserDomainKey == UserDomainKey && v.UserDomainKey == UserDomainKey)
                         orderby hireGroup.HireGroupCode, hireGroup.HireGroupName
                         group v by new
                         {
@@ -160,6 +162,7 @@ namespace Cares.Repository.Repositories
                            from hireGroup in db.HireGroups.Where(hg => hg.HireGroupId == hireGroupDetail.HireGroupId &&
                                (hireGroupDetail.HireGroupDetailId == request.HireGroupDetailId || request.HireGroupDetailId == 0) ||
                                (hireGroupUpgrade.AllowedHireGroupId == hg.HireGroupId))
+                           where (hireGroupDetail.UserDomainKey == UserDomainKey && hireGroupUpgrade.UserDomainKey == UserDomainKey)
                            select hireGroupDetail;
 
             var query = from hireGroupDetail in db.HireGroupDetails
@@ -211,7 +214,7 @@ namespace Cares.Repository.Repositories
                     || s.VehicleCategory.VehicleCategoryCode.Contains(request.HireGroupString) || s.VehicleCategory.VehicleCategoryName.Contains(request.HireGroupString))
                     && (request.OperationId == null || s.OperationsWorkPlace.Operation.OperationId == request.OperationId) &&
                      (request.FleetPoolId == null ||
-                      s.FleetPoolId == request.FleetPoolId);
+                      s.FleetPoolId == request.FleetPoolId) && s.UserDomainKey == UserDomainKey;
 
             IEnumerable<Vehicle> vehicles = request.IsAsc ? DbSet.Where(query)
                                             .OrderBy(vehicleOrderByClause[request.VehicleOrderBy]).Skip(fromRow).Take(toRow).ToList()
@@ -226,7 +229,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsVehicleMakeAssociatedWithVehicle(long vehicleMakeId)
         {
-            return DbSet.Count(vehicle => vehicle.VehicleMakeId == vehicleMakeId) > 0;
+            return DbSet.Count(vehicle => vehicle.VehicleMakeId == vehicleMakeId && vehicle.UserDomainKey == UserDomainKey) > 0;
         }
 
         /// <summary>
@@ -234,7 +237,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsVehicleCategoryAssociatedWithVehicle(long vehicleCategoryId)
         {
-            return DbSet.Count(vehicle => vehicle.VehicleCategoryId == vehicleCategoryId) > 0;
+            return DbSet.Count(vehicle => vehicle.VehicleCategoryId == vehicleCategoryId && vehicle.UserDomainKey == UserDomainKey) > 0;
         }
 
         /// <summary>
@@ -242,7 +245,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsVehicleStatusAssociatedWithVehicle(long vehicleStatusId)
         {
-            return DbSet.Count(vehicle => vehicle.VehicleStatusId == vehicleStatusId) > 0;
+            return DbSet.Count(vehicle => vehicle.VehicleStatusId == vehicleStatusId && vehicle.UserDomainKey == UserDomainKey) > 0;
 
         }
 
@@ -251,7 +254,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsVehicleModelAssociatedWithVehicle(long vehicleModelId)
         {
-            return DbSet.Count(vehicle => vehicle.VehicleModelId == vehicleModelId) > 0;
+            return DbSet.Count(vehicle => vehicle.VehicleModelId == vehicleModelId && vehicle.UserDomainKey == UserDomainKey) > 0;
 
         }
 
@@ -260,7 +263,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool DuplicateVehiclePlateNumber(string plateNumber, long vehiclId)
         {
-            return DbSet.Any(x => x.PlateNumber == plateNumber && x.VehicleId != vehiclId);
+            return DbSet.Any(x => x.PlateNumber == plateNumber && x.VehicleId != vehiclId && x.UserDomainKey == UserDomainKey);
         }
 
         /// <summary>
@@ -285,7 +288,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsVehiclePlateNumberExists(string plateNumber, long vehicleId)
         {
-            return DbSet.Count(v => v.PlateNumber.Trim().ToLower() == plateNumber.Trim().ToLower() && v.VehicleId != vehicleId) > 0;
+            return DbSet.Count(v =>v.UserDomainKey==UserDomainKey && v.PlateNumber.Trim().ToLower() == plateNumber.Trim().ToLower() && v.VehicleId != vehicleId) > 0;
         }
 
         #endregion

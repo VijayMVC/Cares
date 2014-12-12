@@ -39,7 +39,8 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsVehicleMaintenanceTypeFrequencyAssociatedMaintenanceType(long maintenanceTypeId)
         {
-            return DbSet.Count(vehiclemaintenece => vehiclemaintenece.MaintenanceTypeId == maintenanceTypeId) > 0;
+            return DbSet.Count(vehiclemaintenece => vehiclemaintenece.MaintenanceTypeId == maintenanceTypeId
+               && vehiclemaintenece.UserDomainKey == UserDomainKey) > 0;
         }
         #endregion
     }

@@ -57,7 +57,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsDocumentGroupAssocitedWithDocument(long documentGroupId)
         {
-            return DbSet.Count(dbdocument => dbdocument.DocumentGroupId == documentGroupId) > 0;
+            return DbSet.Count(dbdocument => dbdocument.DocumentGroupId == documentGroupId && dbdocument.UserDomainKey == UserDomainKey) > 0;
         }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace Cares.Repository.Repositories
         {
             return
                 DbSet.Count(
-                    dBdocument =>
+                    dBdocument => dBdocument.UserDomainKey==UserDomainKey &&
                         dBdocument.DocumentCode == document.DocumentCode && dBdocument.DocumentId != document.DocumentId) >
                 0;
         }
@@ -105,7 +105,7 @@ namespace Cares.Repository.Repositories
         public Document GetDocumentWithDetail(long documentId)
         {
             return DbSet.Include(document => document.DocumentGroup)
-               .FirstOrDefault(fleetPool => fleetPool.DocumentId == documentId);
+               .FirstOrDefault(fleetPool => fleetPool.DocumentId == documentId && fleetPool.UserDomainKey==UserDomainKey);
         }
         #endregion
     }

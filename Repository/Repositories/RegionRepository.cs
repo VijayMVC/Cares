@@ -61,7 +61,7 @@ namespace Cares.Repository.Repositories
 
         public IEnumerable<Region> GetRegions(int id)
         {
-            return DbSet.Where(region => region.CountryId == id);
+            return DbSet.Where(region => region.CountryId == id && region.UserDomainKey == UserDomainKey);
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public IEnumerable<Region> GetRegionsByCountry(int countryId)
         {
-            return DbSet.Where(region => region.CountryId == countryId);
+            return DbSet.Where(region => region.CountryId == countryId && region.UserDomainKey == UserDomainKey);
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public Region Find(int id)
         {
-            return DbSet.Find(id);
+            return DbSet.FirstOrDefault(region => region.UserDomainKey == UserDomainKey && region.RegionId==id);
         }
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool DoesRegionCodeExist(Region region)
         {
-          return  (DbSet.Count(dbregion => dbregion.RegionId != region.RegionId && dbregion.RegionCode == region.RegionCode)>0);
+          return  (DbSet.Count(dbregion => dbregion.RegionId != region.RegionId && dbregion.UserDomainKey==UserDomainKey && dbregion.RegionCode == region.RegionCode)>0);
         }
 
 

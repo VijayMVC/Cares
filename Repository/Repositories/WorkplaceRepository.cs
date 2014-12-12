@@ -69,7 +69,8 @@ namespace Cares.Repository.Repositories
                      (workplace.WorkPlaceCode.Contains(request.WorkplaceFilterText)) ||
                      (workplace.WorkPlaceName.Contains(request.WorkplaceFilterText)))  &&
                     (!request.CompanyId.HasValue || request.CompanyId == workplace.WorkLocation.CompanyId) &&
-                    (!request.WorkplaceTypeId.HasValue || request.WorkplaceTypeId == workplace.WorkPlaceTypeId);
+                    (!request.WorkplaceTypeId.HasValue || request.WorkplaceTypeId == workplace.WorkPlaceTypeId)
+                    && workplace.UserDomainKey == UserDomainKey;
             rowCount = DbSet.Count(query);
             return request.IsAsc
                 ? DbSet.Where(query)
@@ -94,7 +95,7 @@ namespace Cares.Repository.Repositories
                 .Include(opp => opp.OperationsWorkPlaces)
                 .Include(opp => opp.WorkPlaceType)
                 .Include(opp => opp.ParentWorkPlace)
-                .FirstOrDefault(opp => opp.WorkPlaceId == id);
+                .FirstOrDefault(opp => opp.WorkPlaceId == id && opp.UserDomainKey == UserDomainKey);
         }
 
         /// <summary>
@@ -111,7 +112,7 @@ namespace Cares.Repository.Repositories
         /// <returns></returns>
         public bool IsWorkPalceParrent(long workplaceId)
         {
-           return DbSet.Count(workplace => workplace.ParentWorkPlaceId == workplaceId)>0;
+           return DbSet.Count(workplace =>workplace.UserDomainKey==UserDomainKey &&  workplace.ParentWorkPlaceId == workplaceId)>0;
         }
 
         /// <summary>
@@ -119,7 +120,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool DoesWorkPlaceCodeExists(WorkPlace workplace)
         {
-            return (DbSet.Count(dbWorkplace => dbWorkplace.WorkPlaceCode == workplace.WorkPlaceCode && dbWorkplace.WorkPlaceId != workplace.WorkPlaceId) > 0);
+            return (DbSet.Count(dbWorkplace => dbWorkplace.UserDomainKey == UserDomainKey && dbWorkplace.WorkPlaceCode == workplace.WorkPlaceCode && dbWorkplace.WorkPlaceId != workplace.WorkPlaceId) > 0);
         }
         #endregion
     }

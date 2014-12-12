@@ -36,7 +36,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public LicenseDetailsDefault GetLicenseDetailsDefaultByTypeId(long licenseTypeId)
         {
-            return DbSet.FirstOrDefault(licenseDetailsDefault => licenseDetailsDefault.LicenseTypeId == licenseTypeId);
+            return DbSet.FirstOrDefault(licenseDetailsDefault => licenseDetailsDefault.UserDomainKey==UserDomainKey && licenseDetailsDefault.LicenseTypeId == licenseTypeId);
         }
         #endregion
     }

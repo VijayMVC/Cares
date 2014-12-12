@@ -57,7 +57,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsRatingTypeAssociatedWithCreditLimit(long ratingTypeId)
         {
-            return DbSet.Count(creidtlimit => creidtlimit.BpRatingTypeId == ratingTypeId) > 0;
+            return DbSet.Count(creidtlimit =>creidtlimit.UserDomainKey==UserDomainKey &&  creidtlimit.BpRatingTypeId == ratingTypeId) > 0;
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsBusinessPartnerSubTypeAssociatedWithCreditLimit(long businessPartnerSubTypeId)
         {
-            return DbSet.Count(creidtlimit => creidtlimit.BpSubTypeId == businessPartnerSubTypeId) > 0;            
+            return DbSet.Count(creidtlimit =>creidtlimit.UserDomainKey==UserDomainKey &&  creidtlimit.BpSubTypeId == businessPartnerSubTypeId) > 0;            
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Include(creditLimit => creditLimit.BpSubType)
                 .Include(creditLimit => creditLimit.BpRatingType)
-                .FirstOrDefault(creditLimit => creditLimit.CreditLimitId == creditLimitId); 
+                .FirstOrDefault(creditLimit => creditLimit.CreditLimitId == creditLimitId && creditLimit.UserDomainKey==UserDomainKey); 
         }
 
       

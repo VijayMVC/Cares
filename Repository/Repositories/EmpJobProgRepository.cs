@@ -48,7 +48,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsEmpJobProgressAssociatedWithDesignation(long designationId)
         {
-            return DbSet.Count(empJobPro => empJobPro.DesignationId == designationId) > 0;
+            return DbSet.Count(empJobPro => empJobPro.DesignationId == designationId && empJobPro.UserDomainKey == UserDomainKey) > 0;
         }
         #endregion
     }

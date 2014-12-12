@@ -72,7 +72,8 @@ namespace Cares.Repository.Repositories
                 businessSeg =>
                     (string.IsNullOrEmpty(businessSegmentSearchRequest.BusinessSegmentFilterText) ||
                      (businessSeg.BusinessSegmentCode.Contains(businessSegmentSearchRequest.BusinessSegmentFilterText)) ||
-                     (businessSeg.BusinessSegmentName.Contains(businessSegmentSearchRequest.BusinessSegmentFilterText))) && (businessSeg.UserDomainKey == UserDomainKey);
+                     (businessSeg.BusinessSegmentName.Contains(businessSegmentSearchRequest.BusinessSegmentFilterText))) && 
+                     (businessSeg.UserDomainKey == UserDomainKey);
 
             rowCount = DbSet.Count(query);
             return businessSegmentSearchRequest.IsAsc
@@ -94,7 +95,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsBusinessSegmentCodeExists(BusinessSegment businessSegment)
         {
-            return DbSet.Count(dbbusinessSegment=> dbbusinessSegment.BusinessSegmentCode.ToLower() == businessSegment.BusinessSegmentCode.ToLower() && dbbusinessSegment.BusinessSegmentId != businessSegment.BusinessSegmentId) > 0;
+            return DbSet.Count(dbbusinessSegment=>dbbusinessSegment.UserDomainKey==UserDomainKey &&  dbbusinessSegment.BusinessSegmentCode.ToLower() == businessSegment.BusinessSegmentCode.ToLower() && dbbusinessSegment.BusinessSegmentId != businessSegment.BusinessSegmentId) > 0;
 
         }
         #endregion

@@ -82,7 +82,7 @@ namespace Cares.Repository.Repositories
                      (workLocation.WorkLocationCode.Contains(request.WorkLocationFilterText)) ||
                      (workLocation.WorkLocationName.Contains(request.WorkLocationFilterText))) && 
                     (!request.CityId.HasValue || request.CityId == workLocation.Address.CityId) &&
-                    (!request.AreaId.HasValue || request.AreaId == workLocation.Address.AreaId)
+                    (!request.AreaId.HasValue || request.AreaId == workLocation.Address.AreaId) && workLocation.UserDomainKey == UserDomainKey
                     ;
 
             rowCount = DbSet.Count(query);
@@ -112,7 +112,7 @@ namespace Cares.Repository.Repositories
                 .Include(opp => opp.Address.City)
                 .Include(opp => opp.Address.Area)
                 .Include(opp => opp.Phones)
-                .FirstOrDefault(workLocation => workLocation.WorkLocationId == workLocationId);
+                .FirstOrDefault(workLocation =>workLocation.UserDomainKey==UserDomainKey && workLocation.WorkLocationId == workLocationId);
         }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool DoesWorkLocationCodeExists(WorkLocation workLocation)
         {
-            return (DbSet.Count(dbWorkLocation => workLocation.WorkLocationCode == dbWorkLocation.WorkLocationCode && dbWorkLocation.WorkLocationId != workLocation.WorkLocationId) > 0);
+            return (DbSet.Count(dbWorkLocation => dbWorkLocation.UserDomainKey == UserDomainKey && workLocation.WorkLocationCode == dbWorkLocation.WorkLocationCode && dbWorkLocation.WorkLocationId != workLocation.WorkLocationId) > 0);
         }
 
         #endregion

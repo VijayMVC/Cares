@@ -39,7 +39,8 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsInsuranceTypeAssociatedWithVehicleInsuranceInfo(long insuranceTypeId)
         {
-            return DbSet.Count(vehicleInsuranceInfo => vehicleInsuranceInfo.InsuranceTypeId == insuranceTypeId) > 0;
+            return DbSet.Count(vehicleInsuranceInfo => vehicleInsuranceInfo.InsuranceTypeId == insuranceTypeId
+                && vehicleInsuranceInfo.UserDomainKey == UserDomainKey) > 0;
         }
         #endregion
     }

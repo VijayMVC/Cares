@@ -92,7 +92,8 @@ namespace Cares.Repository.Repositories
             return
                 DbSet.Count(
                     dBjobtype =>
-                        dBjobtype.JobTypeId != jobType.JobTypeId && jobType.JobTypeCode == dBjobtype.JobTypeCode) > 0;
+                        dBjobtype.JobTypeId != jobType.JobTypeId && jobType.JobTypeCode == dBjobtype.JobTypeCode &&
+                        dBjobtype.UserDomainKey == UserDomainKey) > 0;
         }
 
         #endregion

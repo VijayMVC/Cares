@@ -91,7 +91,8 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Count(
                 dbvehicleCategory => dbvehicleCategory.VehicleCategoryCode == vehicleCategory.VehicleCategoryCode &&
-                                     dbvehicleCategory.VehicleCategoryId != vehicleCategory.VehicleCategoryId) > 0;
+                                     dbvehicleCategory.VehicleCategoryId != vehicleCategory.VehicleCategoryId &&
+                                     dbvehicleCategory.UserDomainKey == UserDomainKey) > 0;
         }
         #endregion
     }

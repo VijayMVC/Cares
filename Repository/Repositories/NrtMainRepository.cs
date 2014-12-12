@@ -60,7 +60,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsNrtMainAssociatedWithNrtType(long nrtTypeId)
         {
-            return DbSet.Count(nrtmain => nrtmain.NrtTypeId == nrtTypeId) > 0;
+            return DbSet.Count(nrtmain => nrtmain.UserDomainKey == UserDomainKey && nrtmain.NrtTypeId == nrtTypeId) > 0;
         }
 
         /// <summary>

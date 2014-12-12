@@ -61,7 +61,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public MarketingChannel Find(short id)
         {
-            return DbSet.Find(id);
+            return DbSet.FirstOrDefault(mc=>mc.UserDomainKey==UserDomainKey && mc.MarketingChannelId==id);
         }
 
         /// <summary>
@@ -75,7 +75,8 @@ namespace Cares.Repository.Repositories
                 marketingChannel =>
                     (string.IsNullOrEmpty(request.MarketingChannelFilterText) ||
                      (marketingChannel.MarketingChannelCode.Contains(request.MarketingChannelFilterText)) ||
-                     (marketingChannel.MarketingChannelName.Contains(request.MarketingChannelFilterText))) && (marketingChannel.UserDomainKey == UserDomainKey);
+                     (marketingChannel.MarketingChannelName.Contains(request.MarketingChannelFilterText))) &&
+                     (marketingChannel.UserDomainKey == UserDomainKey);
             rowCount = DbSet.Count(query);
             return request.IsAsc
                 ? DbSet.Where(query)
@@ -99,7 +100,8 @@ namespace Cares.Repository.Repositories
                 DbSet.Count(
                     dBmarketingChannel =>
                         dBmarketingChannel.MarketingChannelId != marketingChannel.MarketingChannelId &&
-                        dBmarketingChannel.MarketingChannelCode == marketingChannel.MarketingChannelCode) > 0;
+                        dBmarketingChannel.MarketingChannelCode == marketingChannel.MarketingChannelCode &&
+                        dBmarketingChannel.UserDomainKey == UserDomainKey) > 0;
         }
         #endregion
     }

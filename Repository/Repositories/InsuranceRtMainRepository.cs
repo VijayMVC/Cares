@@ -105,7 +105,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public IEnumerable<InsuranceRtMain> FindByTariffTypeCode(string tariffTypeCode)
         {
-            return DbSet.Where(insuranceRtMain => insuranceRtMain.UserDomainKey == UserDomainKey && insuranceRtMain.TariffTypeCode == tariffTypeCode).ToList();
+            return DbSet.Where(insuranceRtMain =>insuranceRtMain.UserDomainKey==UserDomainKey && insuranceRtMain.UserDomainKey == UserDomainKey && insuranceRtMain.TariffTypeCode == tariffTypeCode).ToList();
         }
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsInsuranceRtMainCodeExists(string insuranceRtMainCode, long insuranceRtMainId)
         {
-            return DbSet.Count(irm => irm.InsuranceRtMainCode.ToLower().Trim() == insuranceRtMainCode.ToLower().Trim() && irm.UserDomainKey == UserDomainKey && irm.InsuranceRtMainId != insuranceRtMainId) > 0;
+            return DbSet.Count(irm =>irm.UserDomainKey==UserDomainKey &&  irm.InsuranceRtMainCode.ToLower().Trim() == insuranceRtMainCode.ToLower().Trim() && irm.UserDomainKey == UserDomainKey && irm.InsuranceRtMainId != insuranceRtMainId) > 0;
         }
         #endregion
     }

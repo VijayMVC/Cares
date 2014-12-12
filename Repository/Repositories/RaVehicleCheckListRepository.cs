@@ -37,7 +37,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsRaVehicleCheckListAssociatedWithVehicleCheckList(long vehicleCheckListId)
         {
-            return DbSet.Count(raVehicleCheckList => raVehicleCheckList.VehicleCheckListId == vehicleCheckListId) > 0;
+            return DbSet.Count(raVehicleCheckList => raVehicleCheckList.VehicleCheckListId == vehicleCheckListId && raVehicleCheckList.UserDomainKey == UserDomainKey) > 0;
         }
         #endregion
 

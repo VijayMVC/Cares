@@ -44,7 +44,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsVehicleSubStatusAssociatedWithVehicleStatus(long vehicleStatusId)
         {
-            return DbSet.Count(vehiclesubstatus => vehiclesubstatus.VehicleStatusId == vehicleStatusId) > 0;
+            return DbSet.Count(vehiclesubstatus => vehiclesubstatus.VehicleStatusId == vehicleStatusId && vehiclesubstatus.UserDomainKey == UserDomainKey) > 0;
         }
         #endregion
     }

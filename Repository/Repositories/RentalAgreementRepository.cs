@@ -84,7 +84,7 @@ namespace Cares.Repository.Repositories
                 s => (!request.RaNumber.HasValue || s.RaMainId == request.RaNumber) && (!request.CloseLocationId.HasValue || s.CloseLocation == request.CloseLocationId)
                      && (!request.OpenLocationId.HasValue || s.OpenLocation == request.OpenLocationId) && (!request.StartDate.HasValue || s.StartDtTime == request.StartDate)
                      && (!request.EndDate.HasValue || s.EndDtTime == request.EndDate) && (!request.RaStatusId.HasValue || s.RaStatusId == request.RaStatusId)
-                     && (!request.PaymentTermId.HasValue || s.PaymentTermId == request.PaymentTermId);
+                     && (!request.PaymentTermId.HasValue || s.PaymentTermId == request.PaymentTermId) && s.UserDomainKey == UserDomainKey;
 
             IEnumerable<RaMain> raMains = request.IsAsc ? DbSet.Where(query)
                                             .OrderBy(raMainClause[request.RaQueueOrderBy]).Skip(fromRow).Take(toRow).ToList()
@@ -101,7 +101,7 @@ namespace Cares.Repository.Repositories
         /// </summary>        
         public IQueryable<RaHireGroup> GetDailyActionReport()
         {
-            return db.RaHireGroups.Select(raHireGroup => raHireGroup);
+            return db.RaHireGroups.Select(raHireGroup => raHireGroup).Where(rahiregroup => rahiregroup.UserDomainKey == UserDomainKey);
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace Cares.Repository.Repositories
         {            
             var query =
                 from raMain in
-                    DbSet.Where(ramain => ramain.StartDtTime.Month.Equals(10) && ramain.RaStatus.RaStatusId == 2)
+                    DbSet.Where(ramain => ramain.StartDtTime.Month.Equals(10) && ramain.RaStatus.RaStatusId == 2 && ramain.UserDomainKey == UserDomainKey)
                 select new GrossSalesReportResponse
                 {
                     CompanyCode = raMain.BusinessPartner.Company.CompanyCode + "-"+raMain.BusinessPartner.Company.CompanyName,

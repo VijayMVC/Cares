@@ -63,7 +63,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public BusinessPartnerMainType Find(int id)
         {
-            return DbSet.Find(id);
+            return DbSet.FirstOrDefault(bpmt => bpmt.UserDomainKey == UserDomainKey && bpmt.BusinessPartnerMainTypeId==id);
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace Cares.Repository.Repositories
         {
             return
                 DbSet.Count(
-                    bpMainType =>
+                    bpMainType => bpMainType.UserDomainKey==UserDomainKey && 
                         bpMainType.BusinessPartnerMainTypeCode == businessPartnerMainType.BusinessPartnerMainTypeCode &&
                         bpMainType.BusinessPartnerMainTypeId != businessPartnerMainType.BusinessPartnerMainTypeId) > 0;
         }

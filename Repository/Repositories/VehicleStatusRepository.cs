@@ -94,7 +94,7 @@ namespace Cares.Repository.Repositories
                 DbSet.Count(
                     dbvehicleStatus =>
                         dbvehicleStatus.VehicleStatusCode == vehicleStatus.VehicleStatusCode &&
-                        dbvehicleStatus.VehicleStatusId != vehicleStatus.VehicleStatusId) > 0;
+                        dbvehicleStatus.VehicleStatusId != vehicleStatus.VehicleStatusId && dbvehicleStatus.UserDomainKey == UserDomainKey) > 0;
         }
         #endregion
     }

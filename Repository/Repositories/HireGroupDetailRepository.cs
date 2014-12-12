@@ -69,7 +69,7 @@ namespace Cares.Repository.Repositories
                                (hireGroupDetail.VehicleCategory.VehicleCategoryCode.Contains(searchText) || hireGroupDetail.VehicleCategory.VehicleCategoryName.Contains(searchText)) ||
                                (hireGroupDetail.VehicleMake.VehicleMakeCode.Contains(searchText) || hireGroupDetail.VehicleMake.VehicleMakeName.Contains(searchText)) ||
                                (hireGroupDetail.VehicleModel.VehicleModelCode.Contains(searchText) || hireGroupDetail.VehicleModel.VehicleModelName.Contains(searchText))) &&
-                               (!isModelYear || hireGroupDetail.ModelYear == modelYear))
+                               (!isModelYear || hireGroupDetail.ModelYear == modelYear)) && hireGroup.UserDomainKey==UserDomainKey && v.UserDomainKey==UserDomainKey && vm.UserDomainKey==UserDomainKey && vc.UserDomainKey==UserDomainKey
                         orderby hireGroup.HireGroupCode, hireGroup.HireGroupName
                         group hireGroupDetail by new
                         {
@@ -114,7 +114,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public IEnumerable<HireGroupDetail> GetHireGroupDetailByHireGroupId(long hireGroupId)
         {
-            return DbSet.Where(h => h.HireGroupId == hireGroupId);
+            return DbSet.Where(h => h.HireGroupId == hireGroupId && h.UserDomainKey==UserDomainKey);
         }
 
         /// <summary>
@@ -175,7 +175,8 @@ namespace Cares.Repository.Repositories
             #endregion
             #region Where
                         where vehicle.VehicleStatus.VehicleStatusKey==(int)VehicleStatusEnum.Available &&
-                vehicle.UserDomainKey==userDomainKey  && vehicle.OperationsWorkPlaceId== operationWorkPlaceId
+                vehicle.UserDomainKey==userDomainKey  && vehicle.OperationsWorkPlaceId== operationWorkPlaceId && vehicle.UserDomainKey==UserDomainKey
+                && hgd.UserDomainKey==UserDomainKey
             #endregion
             #region Select
                         select new WebApiAvailableHireGroupsApiResponse

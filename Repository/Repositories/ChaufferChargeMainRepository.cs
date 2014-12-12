@@ -74,7 +74,8 @@ namespace Cares.Repository.Repositories
                                                  (!request.OperationId.HasValue ||
                                                    tariffType.OperationId == request.OperationId.Value) &&
                                                   (!request.TariffTypeId.HasValue ||
-                                                   tariffType.TariffTypeId == request.TariffTypeId)) && !(tariffType.ChildTariffTypeId.HasValue)
+                                                   tariffType.TariffTypeId == request.TariffTypeId)) && !(tariffType.ChildTariffTypeId.HasValue) && (chaufferChargeMain.UserDomainKey==UserDomainKey)
+                                                   && (chaufferChargeMain.UserDomainKey == UserDomainKey && tariffType.UserDomainKey == UserDomainKey)
                                              select new ChaufferChargeMainContent
                                              {
                                                  ChaufferChargeMainId = chaufferChargeMain.ChaufferChargeMainId,
@@ -109,7 +110,7 @@ namespace Cares.Repository.Repositories
         /// <returns></returns>
         public bool LoadChaufferChargeMainExist(string tariffTypeCode)
         {
-            return DbSet.Where(chaufferChrg => chaufferChrg.TariffTypeCode == tariffTypeCode).ToList().Count > 0;
+            return DbSet.Where(chaufferChrg =>chaufferChrg.UserDomainKey==UserDomainKey &&  chaufferChrg.TariffTypeCode == tariffTypeCode).ToList().Count > 0;
         }
 
         /// <summary>
@@ -117,7 +118,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsChauffeurChargeMainCodeExists(string chauffeurChargeMainCode, long chauffeurChargeMainId)
         {
-            return DbSet.Count(ccm => ccm.ChaufferChargeMainCode.ToLower().Trim() == chauffeurChargeMainCode.ToLower().Trim() && ccm.UserDomainKey == UserDomainKey && ccm.ChaufferChargeMainId != chauffeurChargeMainId) > 0;
+            return DbSet.Count(ccm =>ccm.UserDomainKey==UserDomainKey &&  ccm.ChaufferChargeMainCode.ToLower().Trim() == chauffeurChargeMainCode.ToLower().Trim() && ccm.UserDomainKey == UserDomainKey && ccm.ChaufferChargeMainId != chauffeurChargeMainId) > 0;
         }
         #endregion
     }

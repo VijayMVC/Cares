@@ -65,7 +65,7 @@ namespace Cares.Repository.Repositories
             Expression<Func<Employee, bool>> query =
                 s => (!searchRequest.CompanyId.HasValue || s.Company.CompanyId == searchRequest.CompanyId) && (!searchRequest.EmployeeStatusId.HasValue || s.EmpStatus.EmpStatusId == searchRequest.EmployeeStatusId) &&
                      (string.IsNullOrEmpty(searchRequest.SearchString) || s.EmpCode.Contains(searchRequest.SearchString) || s.EmpFName.Contains(searchRequest.SearchString)
-                     || s.EmpLName.Contains(searchRequest.SearchString) || s.EmpMName.Contains(searchRequest.SearchString));
+                     || s.EmpLName.Contains(searchRequest.SearchString) || s.EmpMName.Contains(searchRequest.SearchString)) && s.UserDomainKey==UserDomainKey;
 
             IEnumerable<Employee> employees = searchRequest.IsAsc ? DbSet.Where(query)
                                             .OrderBy(employeeClause[searchRequest.EmployeeOrderBy]).Skip(fromRow).Take(toRow).ToList()
@@ -80,7 +80,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public Employee GetEmployeeByName(string name, int id)
         {
-            return DbSet.FirstOrDefault(x => x.EmpFName == name && x.EmployeeId != id);
+            return DbSet.FirstOrDefault(x => x.EmpFName == name && x.EmployeeId != id && x.UserDomainKey==UserDomainKey);
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace Cares.Repository.Repositories
               DbSet.Include(emp => emp.Company)
                   .Include(emp => emp.EmpStatus)
                   .Include(emp => emp.Nationality)
-                  .FirstOrDefault(emp => emp.EmployeeId == empId);
+                  .FirstOrDefault(emp => emp.EmployeeId == empId && emp.UserDomainKey==UserDomainKey);
         }
 
         /// <summary>
@@ -129,7 +129,7 @@ namespace Cares.Repository.Repositories
             (employee.ChaufferReservations.Count == 0 ||
              !employee.ChaufferReservations.Any(
                  chaufferRes => chaufferRes.StartDtTime <= request.EndDtTime &&
-                                chaufferRes.EndDtTime >= request.StartDtTime))).ToList();
+                                chaufferRes.EndDtTime >= request.StartDtTime)) && employee.UserDomainKey==UserDomainKey).ToList();
         }
 
         /// <summary>

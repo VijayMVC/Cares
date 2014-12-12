@@ -39,7 +39,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsDocumentAssocitedWithBusinessPartnerDocument(long documentId)
         {
-            return DbSet.Count(businessPartnerdocs => businessPartnerdocs.DocumentId == documentId) > 0;
+            return DbSet.Count(businessPartnerdocs =>businessPartnerdocs.UserDomainKey==UserDomainKey && businessPartnerdocs.DocumentId == documentId) > 0;
         }
         #endregion
     }

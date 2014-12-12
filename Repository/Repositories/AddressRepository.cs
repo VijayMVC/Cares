@@ -48,7 +48,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public Address Find(int id)
         {
-           return DbSet.Find(id);
+            return DbSet.FirstOrDefault(address => address.UserDomainKey == UserDomainKey && address.AddressId==id);
         }
 
         /// <summary>

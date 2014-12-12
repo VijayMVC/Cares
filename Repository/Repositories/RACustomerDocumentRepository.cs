@@ -37,7 +37,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsDocumentAssocitedWithRaCustomerDocument(long documentId)
         {
-           return DbSet.Count(racustomerDocument => racustomerDocument.DocumentId == documentId) > 0;
+            return DbSet.Count(racustomerDocument => racustomerDocument.DocumentId == documentId && racustomerDocument.UserDomainKey == UserDomainKey) > 0;
 
         }
         #endregion

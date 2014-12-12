@@ -41,7 +41,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsServiceItemAssociatedWithRaServiceItem(long serviceItemId)
         {
-            return DbSet.Count(rAServiceItem => rAServiceItem.ServiceItemId == serviceItemId) > 0;
+            return DbSet.Count(rAServiceItem => rAServiceItem.ServiceItemId == serviceItemId && rAServiceItem.UserDomainKey == UserDomainKey) > 0;
         }
         #endregion
     }

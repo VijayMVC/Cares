@@ -68,7 +68,8 @@ namespace Cares.Repository.Repositories
                 businessLegalStatus =>
                     (string.IsNullOrEmpty(request.BusinessLegalStatusSearchText) ||
                      (businessLegalStatus.BusinessLegalStatusCode.Contains(request.BusinessLegalStatusSearchText)) ||
-                     (businessLegalStatus.BusinessLegalStatusName.Contains(request.BusinessLegalStatusSearchText))) && (businessLegalStatus.UserDomainKey == UserDomainKey);
+                     (businessLegalStatus.BusinessLegalStatusName.Contains(request.BusinessLegalStatusSearchText))) 
+                     && (businessLegalStatus.UserDomainKey == UserDomainKey);
             rowCount = DbSet.Count(query);
             return request.IsAsc
                 ? DbSet.Where(query)
@@ -91,7 +92,8 @@ namespace Cares.Repository.Repositories
            return DbSet.Count(
                 businessLegalStatus =>
                     businessLegalStatus.BusinessLegalStatusCode == request.BusinessLegalStatusCode &&
-                    businessLegalStatus.BusinessLegalStatusId != request.BusinessLegalStatusId) > 0;
+                    businessLegalStatus.BusinessLegalStatusId != request.BusinessLegalStatusId
+                    && businessLegalStatus.UserDomainKey == UserDomainKey) > 0;
         }
         #endregion
     }

@@ -94,7 +94,8 @@ namespace Cares.Repository.Repositories
                 DbSet.Count(
                     dBdesignGrade =>
                         dBdesignGrade.DesigGradeId != designGrade.DesigGradeId &&
-                        dBdesignGrade.DesigGradeCode == designGrade.DesigGradeCode) > 0;
+                        dBdesignGrade.DesigGradeCode == designGrade.DesigGradeCode
+                        && dBdesignGrade.UserDomainKey == UserDomainKey ) > 0;
         }
 
         #endregion

@@ -75,7 +75,7 @@ namespace Cares.Repository.Repositories
                 DbSet.Where(
                     addChrg =>
                         addChrg.ChildChaufferChargeId == null &&
-                        addChrg.ChaufferChargeMainId == chaufferChargeMainId).ToList();
+                        addChrg.ChaufferChargeMainId == chaufferChargeMainId && addChrg.UserDomainKey==UserDomainKey).ToList();
 
         }
 
@@ -83,7 +83,7 @@ namespace Cares.Repository.Repositories
         {
                 var query =
                     db.Employees.Where(
-                        emp => emp.EmpJobProgs.Any(jobprog => jobprog.DesignationId == (int) DesignationEnum.Chauffer))
+                        emp => emp.EmpJobProgs.Any(jobprog => jobprog.DesignationId == (int)DesignationEnum.Chauffer && jobprog.UserDomainKey==UserDomainKey))
                         .Select(employee => employee);
                 List<Employee> availableEmpos = query.OrderBy(emp => emp.EmpFName).ToList();
 
@@ -93,7 +93,7 @@ namespace Cares.Repository.Repositories
                     join
                         chuffferCharge in db.ChaufferCharges
                         on new {chauffer.EmpJobInfo.DesigGradeId} equals new {chuffferCharge.DesigGradeId}
-                    where (chuffferCharge.ChaufferChargeMain.TariffTypeCode.Equals(tarrifTypeCode))
+                            where (chauffer.UserDomainKey == UserDomainKey && chuffferCharge.ChaufferChargeMain.TariffTypeCode.Equals(tarrifTypeCode) && chuffferCharge.UserDomainKey == UserDomainKey)
                     select new WebApiAvailableChauffer
                     {
                         ChaufferId = chauffer.EmployeeId,

@@ -51,7 +51,7 @@ namespace Cares.WebApi.Areas.Api.Controllers
         /// <summary>
         /// Register user using web api
         /// </summary>        
-        public string Post(RegisterViewModel model)
+        public async Task<string> Post(RegisterViewModel model)
         {
             model.SelectedRole = "Admin";
             if (ModelState.IsValid)
@@ -64,17 +64,21 @@ namespace Cares.WebApi.Areas.Api.Controllers
                     Email = model.Email, 
                     UserDomainKey = Convert.ToInt64(userDomainKey)+1   //giving the Max+1 domain key
                 };
-                var url = AddUserSendEmail(user, model);
-                registerUserService.AddLicenseDetail(model,userDomainKey);
-                return url.ToString();
+                User addedUser = AddUser(user, model);
+                if (addedUser != null)
+                {
+                    registerUserService.AddLicenseDetail(model, userDomainKey);
+                    return await SendEmailToUser(addedUser, model);
+                }
+                return "Failed to add user.Something bad happended!";
             }
-            return string.Empty;
+            return "Given Data is corrupted!";
         }
 
         /// <summary>
-        /// Add User Crenditinals
+        /// Add User 
         /// </summary>
-        private async Task<string> AddUserSendEmail(User user ,RegisterViewModel model)
+        private User AddUser(User user, RegisterViewModel model)
         {
             var result = UserManager.Create(user, model.ConfirmPassword);
             if (result.Succeeded)
@@ -84,14 +88,21 @@ namespace Cares.WebApi.Areas.Api.Controllers
                 {
                     throw new InvalidOperationException(string.Format("Failed to add user to role {0}", model.SelectedRole));
                 }
-                var code =  UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-
-                var url = new UrlHelper( HttpContext.Current.Request.RequestContext);
-                string action = url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code });
-                await UserManager.SendEmailAsync(model.Email, "Confirm your account", "Please confirm your account by clicking this link : <a href="+action+">Confirm account</a> <br>Your Password is:" + model.Password);
-                return action;
+                return user;
             }
             return null;
+        }
+
+        /// <summary>
+        /// Send Email to User for confirmation
+        /// </summary>
+        private async Task<string> SendEmailToUser(User user, RegisterViewModel model)
+        {
+            var code = UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+            var url = new UrlHelper(HttpContext.Current.Request.RequestContext);
+            string action = url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code });
+            await UserManager.SendEmailAsync(model.Email, "Confirm your account", "Please confirm your account by clicking this link : <a href=" + action + ">Confirm account</a> <br>Your Password is:" + model.Password);
+            return url.ToString();
         }
 
         /// <summary>

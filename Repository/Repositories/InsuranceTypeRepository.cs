@@ -92,7 +92,8 @@ namespace Cares.Repository.Repositories
                 DbSet.Count(
                     dbinsuranceType =>
                         dbinsuranceType.InsuranceTypeCode == insuranceType.InsuranceTypeCode &&
-                        dbinsuranceType.InsuranceTypeId != insuranceType.InsuranceTypeId) > 0;
+                        dbinsuranceType.InsuranceTypeId != insuranceType.InsuranceTypeId &&
+                        dbinsuranceType.UserDomainKey == UserDomainKey) > 0;
         }
       
         #endregion

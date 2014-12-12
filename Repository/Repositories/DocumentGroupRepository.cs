@@ -63,7 +63,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public DocumentGroup Find(int id)
         {
-            return DbSet.Find(id);
+            return DbSet.FirstOrDefault(dg=> dg.UserDomainKey== UserDomainKey);
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace Cares.Repository.Repositories
                 DbSet.Count(
                     dbdocumentGroup =>
                         dbdocumentGroup.DocumentGroupCode == documentGroup.DocumentGroupCode &&
-                        dbdocumentGroup.DocumentGroupId != documentGroup.DocumentGroupId) > 0;
+                        dbdocumentGroup.DocumentGroupId != documentGroup.DocumentGroupId && dbdocumentGroup.UserDomainKey == UserDomainKey) > 0;
         }
 
         #endregion

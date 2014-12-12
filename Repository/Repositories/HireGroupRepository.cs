@@ -114,7 +114,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsHireGroupCodeExists(string hireGroupCode, long hireGroupId)
         {
-            return DbSet.Count(hg => hg.HireGroupCode.ToLower() == hireGroupCode.ToLower() && hg.UserDomainKey == UserDomainKey &
+            return DbSet.Count(hg =>hg.UserDomainKey==UserDomainKey && hg.HireGroupCode.ToLower() == hireGroupCode.ToLower() && hg.UserDomainKey == UserDomainKey &
                 hg.HireGroupId != hireGroupId) > 0;
         }
         #endregion

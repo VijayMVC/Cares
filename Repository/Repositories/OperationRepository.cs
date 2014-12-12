@@ -69,7 +69,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public ICollection<Operation> GetSalesOperation()
         {
-            return DbSet.Include(operation => operation.Department).Where(operation => operation.Department.DepartmentType == DepartmentTypes.Sales).ToList();
+            return DbSet.Include(operation => operation.Department).Where(operation => operation.UserDomainKey==UserDomainKey && operation.Department.DepartmentType == DepartmentTypes.Sales).ToList();
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace Cares.Repository.Repositories
                      (operation.OperationCode.Contains(request.OperationFilterText)) ||
                      (operation.OperationName.Contains(request.OperationFilterText))) &&
                     (string.IsNullOrEmpty(request.DepartmentTypeText) ||
-                     (operation.Department.DepartmentType.Contains(request.DepartmentTypeText)));
+                     (operation.Department.DepartmentType.Contains(request.DepartmentTypeText))) && operation.UserDomainKey==UserDomainKey;
 
             rowCount = DbSet.Count(query);
             return request.IsAsc
@@ -107,7 +107,7 @@ namespace Cares.Repository.Repositories
         public Operation GetOperationWithDetails(long id)
         {
             return DbSet.Include(opp => opp.Department)
-                .FirstOrDefault(opp => opp.OperationId == id);
+                .FirstOrDefault(opp => opp.OperationId == id && opp.UserDomainKey == UserDomainKey);
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsOperationCodeExists(Operation operation)
         {
-            return DbSet.Count(opp => opp.OperationCode==operation.OperationCode && opp.OperationId != operation.OperationId) > 0;
+            return DbSet.Count(opp =>opp.UserDomainKey==UserDomainKey &&  opp.OperationCode==operation.OperationCode && opp.OperationId != operation.OperationId) > 0;
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsDepartmentAssociatedWithAnyOperation(long departmentId)
         {
-            return DbSet.Count(opp => opp.DepartmentId == departmentId) > 0;
+            return DbSet.Count(opp => opp.DepartmentId == departmentId && opp.UserDomainKey == UserDomainKey) > 0;
         }
 
         #endregion

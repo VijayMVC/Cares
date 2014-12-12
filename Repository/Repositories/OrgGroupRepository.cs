@@ -61,7 +61,7 @@ namespace Cares.Repository.Repositories
                 orgGroup =>
                     (string.IsNullOrEmpty(request.OrgGroupText) ||
                      (orgGroup.OrgGroupCode.Contains(request.OrgGroupText)) ||
-                     (orgGroup.OrgGroupName.Contains(request.OrgGroupText))); 
+                     (orgGroup.OrgGroupName.Contains(request.OrgGroupText))) && orgGroup.UserDomainKey == UserDomainKey; 
                   
 
             rowCount = DbSet.Count(query);
@@ -91,7 +91,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsOrgGroupCodeExists(OrgGroup orgGroup)
         {
-            return DbSet.Count(orgG => orgG.OrgGroupCode == orgGroup.OrgGroupCode && orgGroup.OrgGroupId != orgG.OrgGroupId) > 0;
+            return DbSet.Count(orgG => orgG.OrgGroupCode == orgGroup.OrgGroupCode && orgG.UserDomainKey==UserDomainKey && orgGroup.OrgGroupId != orgG.OrgGroupId) > 0;
         }
         #endregion
     }

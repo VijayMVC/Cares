@@ -55,7 +55,7 @@ namespace Cares.Repository.Repositories
                 DbSet.Where(
                     addChrg =>
                         addChrg.ChildSeasonalDiscountId == null &&
-                        addChrg.SeasonalDiscountMainId == seasonalDiscountMainId).ToList();
+                        addChrg.SeasonalDiscountMainId == seasonalDiscountMainId && addChrg.UserDomainKey == UserDomainKey).ToList();
 
         }
 
@@ -64,7 +64,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsSeasonalDiscountAssociatedWithVehicleMake(long vehicleMakeId)
         {
-            return DbSet.Count(sessionlaDiscount => sessionlaDiscount.VehicleMakeId == vehicleMakeId) > 0;
+            return DbSet.Count(sessionlaDiscount => sessionlaDiscount.VehicleMakeId == vehicleMakeId && sessionlaDiscount.UserDomainKey == UserDomainKey) > 0;
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsSeasonalDiscountAssociatedWithVehicleCategory(long vehicleCategoryId)
         {
-            return DbSet.Count(sessionlaDiscount => sessionlaDiscount.VehicleCategoryId == vehicleCategoryId) > 0;
+            return DbSet.Count(sessionlaDiscount => sessionlaDiscount.VehicleCategoryId == vehicleCategoryId && sessionlaDiscount.UserDomainKey == UserDomainKey) > 0;
 
         }
 
@@ -81,7 +81,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsSeasonalDiscountAssociatedWithVehicleModel(long vehicleModelId)
         {
-            return DbSet.Count(sessionlaDiscount => sessionlaDiscount.VehicleModelId == vehicleModelId) > 0;
+            return DbSet.Count(sessionlaDiscount => sessionlaDiscount.VehicleModelId == vehicleModelId && sessionlaDiscount.UserDomainKey == UserDomainKey) > 0;
             
         }
 

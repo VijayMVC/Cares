@@ -95,7 +95,7 @@ namespace Cares.Repository.Repositories
                 DbSet.Count(
                     dbempStatus =>
                         dbempStatus.EmpStatusId != empStatus.EmpStatusId &&
-                        dbempStatus.EmpStatusCode == empStatus.EmpStatusCode) > 0;
+                        dbempStatus.EmpStatusCode == empStatus.EmpStatusCode && dbempStatus.UserDomainKey == UserDomainKey) > 0;
         }
         #endregion
     }

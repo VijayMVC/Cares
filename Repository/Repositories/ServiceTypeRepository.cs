@@ -92,7 +92,7 @@ namespace Cares.Repository.Repositories
                 DbSet.Count(
                     dBserviceType =>
                         dBserviceType.ServiceTypeId != serviceType.ServiceTypeId &&
-                        dBserviceType.ServiceTypeCode == serviceType.ServiceTypeCode) > 0;
+                        dBserviceType.ServiceTypeCode == serviceType.ServiceTypeCode && dBserviceType.UserDomainKey == UserDomainKey) > 0;
         }
 
         #endregion

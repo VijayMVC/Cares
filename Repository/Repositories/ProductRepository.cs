@@ -71,7 +71,7 @@ namespace Cares.Repository.Repositories
 
         public Product GetProductByName(string name, int id)
         {
-            return DbSet.FirstOrDefault(product => product.Name == name && product.Id != id);
+            return DbSet.FirstOrDefault(product => product.Name == name && product.Id != id );
         }
 
         public IQueryable<Product> GetProductsByCategory(int catId)

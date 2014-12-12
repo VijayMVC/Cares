@@ -75,7 +75,8 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public BusinessPartnerIndividual GetBusinessPartnerIndividualByName(string firstname, int id)
         {
-            return DbSet.FirstOrDefault(businessPartnerIndividual => businessPartnerIndividual.FirstName == firstname && businessPartnerIndividual.BusinessPartnerId == id);
+            return DbSet.FirstOrDefault(businessPartnerIndividual => businessPartnerIndividual.FirstName == firstname && businessPartnerIndividual.BusinessPartnerId == id 
+                && businessPartnerIndividual.UserDomainKey==UserDomainKey);
         }
         /// <summary>
         /// Get All Business Partner Individuals for User Domain Key
@@ -99,7 +100,7 @@ namespace Cares.Repository.Repositories
         public bool IsOccupationTypeAssociatedWithBusinessPartnerIndividual(long occupationTypeId)
         {
             return
-                DbSet.Count(businessPartnerIndividual => businessPartnerIndividual.OccupationTypeId == occupationTypeId) >
+                DbSet.Count(businessPartnerIndividual =>businessPartnerIndividual.UserDomainKey==UserDomainKey &&  businessPartnerIndividual.OccupationTypeId == occupationTypeId) >
                 0;
         }
         #endregion

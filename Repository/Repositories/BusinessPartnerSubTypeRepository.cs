@@ -69,7 +69,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public BusinessPartnerSubType Find(int id)
         {
-           return DbSet.Find(id);
+            return DbSet.FirstOrDefault(businessPartnerSubType => businessPartnerSubType.UserDomainKey==UserDomainKey);
         }
 
         /// <summary>
@@ -85,7 +85,9 @@ namespace Cares.Repository.Repositories
                     (string.IsNullOrEmpty(request.BusinessPartnerSubTypeCodeNameText) ||
                      (businessPartnerSubType.BusinessPartnerSubTypeCode.Contains(request.BusinessPartnerSubTypeCodeNameText)) ||
                      (businessPartnerSubType.BusinessPartnerSubTypeName.Contains(request.BusinessPartnerSubTypeCodeNameText))) &&
-                    (!request.BusinessPartnerMainTypeId.HasValue || request.BusinessPartnerMainTypeId == businessPartnerSubType.BusinessPartnerMainTypeId);
+                    (!request.BusinessPartnerMainTypeId.HasValue ||
+                    request.BusinessPartnerMainTypeId == businessPartnerSubType.BusinessPartnerMainTypeId)
+                    && businessPartnerSubType.UserDomainKey == UserDomainKey;
             rowCount = DbSet.Count(query);
             return request.IsAsc
                 ? DbSet.Where(query)
@@ -109,7 +111,8 @@ namespace Cares.Repository.Repositories
                 DbSet.Count(
                     bpSubType =>
                         bpSubType.BusinessPartnerSubTypeId != businessPartnerSubType.BusinessPartnerSubTypeId &&
-                        bpSubType.BusinessPartnerSubTypeCode == businessPartnerSubType.BusinessPartnerSubTypeCode) > 0;
+                        bpSubType.BusinessPartnerSubTypeCode == businessPartnerSubType.BusinessPartnerSubTypeCode
+                        && bpSubType.UserDomainKey == UserDomainKey) > 0;
         }
 
 
@@ -119,7 +122,7 @@ namespace Cares.Repository.Repositories
         public BusinessPartnerSubType LoadBusinessPartnerSubTypeWithDetail(long businessPartnerSubTypeId)
         {
             return DbSet.Include(businessPartnerSubType => businessPartnerSubType.BusinessPartnerMainType)
-               .FirstOrDefault(businessPartnerSubType => businessPartnerSubType.BusinessPartnerSubTypeId == businessPartnerSubTypeId);
+               .FirstOrDefault(businessPartnerSubType =>businessPartnerSubType.UserDomainKey==UserDomainKey &&  businessPartnerSubType.BusinessPartnerSubTypeId == businessPartnerSubTypeId);
         }
         #endregion
     }

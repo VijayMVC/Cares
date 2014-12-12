@@ -65,7 +65,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsMainteneceTypeGroupAssociatedWithMainteneceType(long mainteneceTypeGroupId)
         {
-            return DbSet.Count(mainteneceType => mainteneceType.MaintenanceTypeGroupId == mainteneceTypeGroupId) > 0;
+            return DbSet.Count(mainteneceType => mainteneceType.UserDomainKey == UserDomainKey && mainteneceType.MaintenanceTypeGroupId == mainteneceTypeGroupId) > 0;
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace Cares.Repository.Repositories
         public MaintenanceType LoadMaintenanceTypeWithDetail(long maintenanceTypeId)
         {
             return DbSet.Include(maintenanceType => maintenanceType.MaintenanceTypeGroup)
-               .FirstOrDefault(maintenanceType => maintenanceType.MaintenanceTypeId == maintenanceTypeId);
+               .FirstOrDefault(maintenanceType => maintenanceType.UserDomainKey==UserDomainKey && maintenanceType.MaintenanceTypeId == maintenanceTypeId);
         }
         #endregion
     }

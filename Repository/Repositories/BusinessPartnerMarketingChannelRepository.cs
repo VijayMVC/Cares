@@ -49,7 +49,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public BusinessPartnerMarketingChannel Find(int id)
         {
-            return DbSet.Find(id);
+            return DbSet.FirstOrDefault(bpMarktingChannel => bpMarktingChannel.UserDomainKey==UserDomainKey);
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsBpMarketingChannelAssociatedWithMarketingChannel(long marketingChannelId)
         {
-            return DbSet.Count(bPMarketingChannel => bPMarketingChannel.MarketingChannelId == marketingChannelId) > 0;
+            return DbSet.Count(bPMarketingChannel =>bPMarketingChannel.UserDomainKey==UserDomainKey &&  bPMarketingChannel.MarketingChannelId == marketingChannelId) > 0;
         }
         #endregion
     }

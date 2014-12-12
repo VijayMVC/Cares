@@ -70,7 +70,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsBusinessPartnerSubTypeAssociatedWithBusinessPartnerInType(long businessPartnerSubTypeId)
         {
-            return DbSet.Count(businessPartnerInType => businessPartnerInType.BusinessPartnerSubTypeId == businessPartnerSubTypeId) > 0;            
+            return DbSet.Count(businessPartnerInType =>businessPartnerInType.UserDomainKey==UserDomainKey &&  businessPartnerInType.BusinessPartnerSubTypeId == businessPartnerSubTypeId) > 0;            
             
         }
         #endregion

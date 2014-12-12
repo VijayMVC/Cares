@@ -94,7 +94,8 @@ namespace Cares.Repository.Repositories
                 DbSet.Count(
                     dboccupationType =>
                         dboccupationType.OccupationTypeId != occupationType.OccupationTypeId &&
-                        dboccupationType.OccupationTypeCode == occupationType.OccupationTypeCode) > 0;
+                        dboccupationType.OccupationTypeCode == occupationType.OccupationTypeCode &&
+                        dboccupationType.UserDomainKey == UserDomainKey) > 0;
         }
         #endregion
     }

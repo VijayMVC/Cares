@@ -40,7 +40,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsStandardDiscountAssociatedWithVehicleMake(long vehicleMakeId)
         {
-            return DbSet.Count(standardDicount => standardDicount.VehicleMakeId == vehicleMakeId) > 0;
+            return DbSet.Count(standardDicount => standardDicount.VehicleMakeId == vehicleMakeId && standardDicount.UserDomainKey == UserDomainKey) > 0;
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsStandardDiscountAssociatedWithVehicleCategory(long vehicleCategoryId)
         {
-            return DbSet.Count(standardDicount => standardDicount.VehicleCategoryId == vehicleCategoryId) > 0;
+            return DbSet.Count(standardDicount => standardDicount.VehicleCategoryId == vehicleCategoryId && standardDicount.UserDomainKey == UserDomainKey) > 0;
             
         }
 
@@ -58,7 +58,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsStandardDiscountAssociatedWithVehicleModel(long vehicleModelId)
         {
-            return DbSet.Count(standardDicount => standardDicount.VehicleModelId == vehicleModelId) > 0;
+            return DbSet.Count(standardDicount => standardDicount.VehicleModelId == vehicleModelId && standardDicount.UserDomainKey == UserDomainKey) > 0;
 
         }
         #endregion

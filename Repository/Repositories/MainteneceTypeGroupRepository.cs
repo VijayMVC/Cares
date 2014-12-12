@@ -59,14 +59,7 @@ namespace Cares.Repository.Repositories
             return DbSet.Where(city => city.UserDomainKey == UserDomainKey).ToList();
         }
 
-        /// <summary>
-        /// Find Maintenance Type Group By Id
-        /// </summary>
-        public MaintenanceTypeGroup Find(int id)
-        {
-            return DbSet.Find(id);
-        }
-
+       
         /// <summary>
         /// Search Maintenece Type Group
         /// </summary>
@@ -78,7 +71,8 @@ namespace Cares.Repository.Repositories
                 maintenanceTypeGroup =>
                     (string.IsNullOrEmpty(request.MainteneceTypeGroupFilterText) ||
                      (maintenanceTypeGroup.MaintenanceTypeGroupCode.Contains(request.MainteneceTypeGroupFilterText)) ||
-                     (maintenanceTypeGroup.MaintenanceTypeGroupName.Contains(request.MainteneceTypeGroupFilterText)));
+                     (maintenanceTypeGroup.MaintenanceTypeGroupName.Contains(request.MainteneceTypeGroupFilterText))) &&
+                     maintenanceTypeGroup.UserDomainKey==UserDomainKey;
 
             rowCount = DbSet.Count(query);
             return request.IsAsc
@@ -102,7 +96,7 @@ namespace Cares.Repository.Repositories
         {
             return
                 DbSet.Count(
-                    maintenanceTypeGroup =>
+                    maintenanceTypeGroup => maintenanceTypeGroup.UserDomainKey == UserDomainKey &&
                         maintenanceTypeGroup.MaintenanceTypeGroupCode == maintenanceTypeGroupReq.MaintenanceTypeGroupCode &&
                         maintenanceTypeGroup.MaintenanceTypeGroupId != maintenanceTypeGroupReq.MaintenanceTypeGroupId) > 0;
         }

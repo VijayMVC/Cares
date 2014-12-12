@@ -54,7 +54,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public DiscountSubType Find(int id)
         {
-            return DbSet.Find(id);
+            return DbSet.FirstOrDefault(discount => discount.DiscountSubTypeId==id && discount.UserDomainKey==UserDomainKey);
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace Cares.Repository.Repositories
         {
             return
                 DbSet.Count(
-                    dBDiscountSubType =>
+                    dBDiscountSubType => dBDiscountSubType.UserDomainKey==UserDomainKey && 
                         dBDiscountSubType.DiscountSubTypeId != discountSubType.DiscountSubTypeId &&  dBDiscountSubType.DiscountSubTypeCode == discountSubType.DiscountSubTypeCode) > 0;
         }
 
@@ -101,7 +101,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsDiscountSubTypeAssociatedWithDiscountType(long discountTypeId)
         {
-           return DbSet.Count(dBDiscountSubType => dBDiscountSubType.DiscountTypeId == discountTypeId) > 0;
+            return DbSet.Count(dBDiscountSubType => dBDiscountSubType.DiscountTypeId == discountTypeId && dBDiscountSubType.UserDomainKey == UserDomainKey) > 0;
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace Cares.Repository.Repositories
         public DiscountSubType GetDiscountSubTypeWithDetails(long discountTypeId)
         {
             return DbSet.Include(company => company.DiscountType)
-                .FirstOrDefault(fleetPool => fleetPool.DiscountSubTypeId == discountTypeId);
+                .FirstOrDefault(fleetPool => fleetPool.DiscountSubTypeId == discountTypeId && fleetPool.UserDomainKey==UserDomainKey);
         }
         #endregion
 

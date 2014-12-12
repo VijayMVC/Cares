@@ -65,7 +65,8 @@ namespace Cares.Repository.Repositories
                     (string.IsNullOrEmpty(request.CompanyText) || (company.CompanyCode.Contains(request.CompanyText)) ||
                      (company.CompanyName.Contains(request.CompanyText))) && (
                          (!request.BusinessSegmentId.HasValue || request.BusinessSegmentId == company.BusinessSegmentId) &&
-                         (!request.OrganizationGroupId.HasValue || request.OrganizationGroupId == company.OrgGroupId));
+                         (!request.OrganizationGroupId.HasValue || request.OrganizationGroupId == company.OrgGroupId)) && 
+                         (company.UserDomainKey==UserDomainKey);
 
             rowCount = DbSet.Count(query);
             return request.IsAsc
@@ -97,7 +98,7 @@ namespace Cares.Repository.Repositories
             return DbSet.Include(company => company.OrgGroup)
                 .Include(company => company.BusinessSegment)
                 .Include(company => company.ParentCompany)
-                .FirstOrDefault(fleetPool => fleetPool.CompanyId == id);
+                .FirstOrDefault(fleetPool => fleetPool.CompanyId == id && fleetPool.UserDomainKey==UserDomainKey);
         }
 
         /// <summary>
@@ -105,7 +106,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsCompanyCodeExists(Company cmpCompany)
         {
-            return DbSet.Count(company => company.CompanyCode.ToLower() == cmpCompany.CompanyCode.ToLower() && company.CompanyId != cmpCompany.CompanyId) > 0;
+            return DbSet.Count(company => company.UserDomainKey == UserDomainKey && company.CompanyCode.ToLower() == cmpCompany.CompanyCode.ToLower() && company.CompanyId != cmpCompany.CompanyId) > 0;
         }
 
         /// <summary>
@@ -113,7 +114,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsComapnyParent(long companyId)
         {
-            return DbSet.Count( cmp => cmp.ParentCompanyId == companyId) > 0;
+            return DbSet.Count( cmp =>cmp.UserDomainKey==UserDomainKey &&  cmp.ParentCompanyId == companyId) > 0;
         }
 
         /// <summary>
@@ -121,7 +122,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsOrgGroupContainCompany(long orgGroupId)
         {
-            return DbSet.Count(cmp => cmp.OrgGroupId == orgGroupId) > 0;
+            return DbSet.Count(cmp =>cmp.UserDomainKey== UserDomainKey &&  cmp.OrgGroupId == orgGroupId) > 0;
         }
 
         /// <summary>
@@ -129,7 +130,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public bool IsCompanyAssiciatedWithBusinessSegment(long businessSegId)
         {
-            return DbSet.Count(company => company.BusinessSegmentId == businessSegId) > 0;
+            return DbSet.Count(company =>company.UserDomainKey==UserDomainKey &&  company.BusinessSegmentId == businessSegId) > 0;
         }
         #endregion
     }
