@@ -1,4 +1,5 @@
-﻿using Cares.Interfaces.Repository;
+﻿using System.Linq;
+using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
 using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
@@ -29,7 +30,15 @@ namespace Cares.Repository.Repositories
         }
         #endregion
         #region Public
-        
+
+        /// <summary>
+        /// Get Domain License Detail By DomainKey
+        /// </summary>
+        public DomainLicenseDetail GetDomainLicenseDetailByDomainKey(double domainKey)
+        {
+
+            return DbSet.FirstOrDefault(domainLicenseDetail => domainLicenseDetail.UserDomainKey == domainKey);
+        }
         #endregion
     }
 }

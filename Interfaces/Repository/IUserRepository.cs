@@ -1,4 +1,5 @@
 ﻿using Cares.Models.DomainModels;
+using Cares.Models.IdentityModels;
 
 namespace Cares.Interfaces.Repository
 {

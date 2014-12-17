@@ -1,3 +1,5 @@
+using Cares.Models.IdentityModels;
+
 namespace Cares.Models.DomainModels
 {
     /// <summary>

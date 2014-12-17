@@ -66,7 +66,8 @@ namespace Cares.Repository.Repositories
         public SubRegion Find(int id)
         {
             return
-                DbSet.FirstOrDefault(subregion => subregion.UserDomainKey==UserDomainKey && subregion.SubRegionId==id)
+                DbSet.FirstOrDefault(
+                    subregion => subregion.UserDomainKey == UserDomainKey && subregion.SubRegionId == id);
         }
 
         /// <summary>

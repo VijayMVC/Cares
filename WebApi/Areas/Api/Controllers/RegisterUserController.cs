@@ -1,6 +1,7 @@
 ﻿using Cares.Implementation.Identity;
 using Cares.Interfaces.IServices;
 using Cares.Models.DomainModels;
+using Cares.Models.IdentityModels;
 using Cares.Models.IdentityModels.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;

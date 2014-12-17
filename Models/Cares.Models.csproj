@@ -69,6 +69,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -103,11 +104,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonTypes\CaresUserClaims.cs" />
+    <Compile Include="CommonTypes\DomainLicenseDetailClaim.cs" />
     <Compile Include="CommonTypes\PhoneType.cs" />
     <Compile Include="CommonTypes\DepartmentType.cs" />
     <Compile Include="Common\AvailableHireGroupWebApiByColumn.cs" />
     <Compile Include="Common\BookingMainByColumn.cs" />
     <Compile Include="Common\BookingQueueByColumn.cs" />
+    <Compile Include="Common\ClaimHelper.cs" />
+    <Compile Include="Common\ClaimParamters.cs" />
     <Compile Include="Common\NrtQueueByColumn.cs" />
     <Compile Include="Common\RaStatusEnum.cs" />
     <Compile Include="Common\CreditLimitByColumn.cs" />
@@ -116,6 +121,7 @@
     <Compile Include="Common\MainteneceTypeGroupByColumn.cs" />
     <Compile Include="Common\MarketingChannelByColumn.cs" />
     <Compile Include="Common\RaQueueByColumn.cs" />
+    <Compile Include="Common\SerializeHelper.cs" />
     <Compile Include="Common\VehicleCategoryByColumn.cs" />
     <Compile Include="Common\VehicleMakeByColumn.cs" />
     <Compile Include="Common\VehicleModelByColumn.cs" />

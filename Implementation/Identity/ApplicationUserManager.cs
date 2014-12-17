@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using Cares.Models.DomainModels;
+using Cares.Models.IdentityModels;
 using Cares.Repository.BaseRepository;
 using Cares.Repository.Repositories;
 using Microsoft.AspNet.Identity;

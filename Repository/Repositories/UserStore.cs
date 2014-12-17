@@ -10,6 +10,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Cares.Models.DomainModels;
+using Cares.Models.IdentityModels;
 using Cares.Repository.BaseRepository;
 using Microsoft.AspNet.Identity;
 

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Cares.Implementation.Identity;
 using Cares.Interfaces.IServices;
 using Cares.Models.DomainModels;
+using Cares.Models.IdentityModels;
 using Cares.Web.ViewModels.Common;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;

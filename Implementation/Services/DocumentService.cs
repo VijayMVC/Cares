@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading;
 using Cares.ExceptionHandling;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
+using Cares.Models.Common;
+using Cares.Models.CommonTypes;
 using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
@@ -119,6 +124,10 @@ namespace Cares.Implementation.Services
         /// </summary>
         public DocumentSearchRequestResponse SearchDocument(DocumentSearchRequest request)
         {
+          var v=  Thread.CurrentPrincipal.Identity;
+            IList<DomainLicenseDetailClaim> organisationClaimValues = 
+                ClaimHelper.GetClaimsByType<DomainLicenseDetailClaim>(CaresUserClaims.DomainLicenseDetail);
+        
             int rowCount;
             return new DocumentSearchRequestResponse
             {

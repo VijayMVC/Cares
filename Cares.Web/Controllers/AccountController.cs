@@ -18,6 +18,12 @@ using System.Web;
 using System.Web.Mvc;
 using System.Collections.Generic;
 using Cares.Models.DomainModels;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Cares.Models.CommonTypes;
+using Cares.Models.Common;
+using System.Threading;
+
 
 namespace IdentitySample.Controllers
 {
@@ -29,7 +35,7 @@ namespace IdentitySample.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private IMenuRightsService menuRightService;
-
+        private IDomainLicenseDetailsService domainLicenseDetailsService;
         /// <summary>
         /// Set User Permission
         /// </summary>
@@ -44,7 +50,7 @@ namespace IdentitySample.Controllers
             }
 
             IList<UserRole> aspUserroles = userResult.Roles.ToList();
-            
+
             // If No role assigned
             if (aspUserroles.Count == 0)
             {
@@ -57,13 +63,34 @@ namespace IdentitySample.Controllers
             Session["UserPermissionSet"] = permissionSet.Select(menuRight => menuRight.Menu.PermissionKey).ToList();
         }
 
+        public ClaimsIdentity SetCaresUserClaims(User user, ClaimsIdentity identity)
+        {
+            DomainLicenseDetail domainLicenseDetail =   domainLicenseDetailsService.GetDomainLicenseDetailsByDomainKey(user.UserDomainKey);
+            Claim DomainLicenseDetailClaim = new Claim(CaresUserClaims.DomainLicenseDetail,
+                                        ClaimHelper.Serialize(
+                                            new DomainLicenseDetailClaim
+                                            {
+                                                UserDomainKey = domainLicenseDetail.UserDomainKey,
+                                                Branches = domainLicenseDetail.Branches,
+                                                FleetPools = domainLicenseDetail.FleetPools,
+                                                Employee = domainLicenseDetail.Employee,
+                                                RaPerMonth = domainLicenseDetail.RaPerMonth,
+                                                Vehicles = domainLicenseDetail.Vehicles
+
+                                            }),
+                                        typeof(DomainLicenseDetailClaim).AssemblyQualifiedName);
+            identity.AddClaim(DomainLicenseDetailClaim);
+           
+            return identity;
+        }
         #endregion
 
         #region Constructor
 
-        public AccountController(IMenuRightsService menuRightService)
+        public AccountController(IMenuRightsService menuRightService, IDomainLicenseDetailsService domainLicenseDetailsService)
         {
             this.menuRightService = menuRightService;
+            this.domainLicenseDetailsService = domainLicenseDetailsService;
         }
 
         #endregion
@@ -119,7 +146,7 @@ namespace IdentitySample.Controllers
             // To enable password failures to trigger lockout, change to shouldLockout: true
 
             var user = await UserManager.FindByNameAsync(model.Email);
-            
+
             if (user != null)
             {
                 if (!await UserManager.IsEmailConfirmedAsync(user.Id))
@@ -131,25 +158,28 @@ namespace IdentitySample.Controllers
 
             // This doen't count login failures towards lockout only two factor authentication
             // To enable password failures to trigger lockout, change to shouldLockout: true
-            var result =
-                await
-                    SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe,
-                        shouldLockout: false);
-
-
-            SetUserPermissions(model.Email);
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe,  shouldLockout: false);
+            var manager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var identity =
+               await user.GenerateUserIdentityAsync(manager, DefaultAuthenticationTypes.ApplicationCookie);
 
             switch (result)
             {
                 case SignInStatus.Success:
-                {
+                    {
+                         SetCaresUserClaims(user, identity);
+                        identity.AddClaim(new Claim(CaresUserClaims.Name,"Naqvi"));
+                        Thread.CurrentPrincipal = new ClaimsPrincipal(identity);
+                       IList<DomainLicenseDetailClaim> organisationClaimValues =
+              ClaimHelper.GetClaimsByType<DomainLicenseDetailClaim>(CaresUserClaims.DomainLicenseDetail);
 
-                    return RedirectToAction("Region", "GeographicalHierarchy", new { area = "GeographicalHierarchy" });
-                }
+                        SetUserPermissions(model.Email);
+                        return RedirectToAction("Region", "GeographicalHierarchy", new { area = "GeographicalHierarchy" });
+                    }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new {ReturnUrl = returnUrl});
+                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl });
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
@@ -173,7 +203,7 @@ namespace IdentitySample.Controllers
                 ViewBag.Status = "For DEMO purposes the current " + provider + " code is: " +
                                  await UserManager.GenerateTwoFactorTokenAsync(user.Id, provider);
             }
-            return View(new VerifyCodeViewModel {Provider = provider, ReturnUrl = returnUrl});
+            return View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl });
         }
 
         //
@@ -221,7 +251,6 @@ namespace IdentitySample.Controllers
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
-
         {
             if (ModelState.IsValid)
             {
@@ -236,11 +265,11 @@ namespace IdentitySample.Controllers
                     }
 
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new {userId = user.Id, code = code},
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code },
                         protocol: Request.Url.Scheme);
                     await
-                        UserManager.SendEmailAsync(model.Email, "Confirm your account","\">link</a><br>Your Password is:" + model.Password);
-                        ViewBag.Link = callbackUrl;
+                        UserManager.SendEmailAsync(model.Email, "Confirm your account", "\">link</a><br>Your Password is:" + model.Password);
+                    ViewBag.Link = callbackUrl;
                     return View("DisplayEmail");
                 }
                 AddErrors(result);
@@ -287,7 +316,7 @@ namespace IdentitySample.Controllers
                 }
 
                 var code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                var callbackUrl = Url.Action("ResetPassword", "Account", new {userId = user.Id, code = code},
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code },
                     protocol: Request.Url.Scheme);
                 await
                     UserManager.SendEmailAsync(user.Id, "Reset Password",
@@ -359,7 +388,7 @@ namespace IdentitySample.Controllers
         {
             // Request a redirect to the external login provider
             return new ChallengeResult(provider,
-                Url.Action("ExternalLoginCallback", "Account", new {ReturnUrl = returnUrl}));
+                Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
         }
 
         //
@@ -374,8 +403,8 @@ namespace IdentitySample.Controllers
             }
             var userFactors = await UserManager.GetValidTwoFactorProvidersAsync(userId);
             var factorOptions =
-                userFactors.Select(purpose => new SelectListItem {Text = purpose, Value = purpose}).ToList();
-            return View(new SendCodeViewModel {Providers = factorOptions, ReturnUrl = returnUrl});
+                userFactors.Select(purpose => new SelectListItem { Text = purpose, Value = purpose }).ToList();
+            return View(new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl });
         }
 
         //
@@ -395,7 +424,7 @@ namespace IdentitySample.Controllers
             {
                 return View("Error");
             }
-            return RedirectToAction("VerifyCode", new {Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl});
+            return RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl });
         }
 
         //
@@ -408,7 +437,7 @@ namespace IdentitySample.Controllers
             {
                 return RedirectToAction("Login");
             }
-
+           
             // Sign in the user with this external login provider if the user already has a login
             var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
             switch (result)
@@ -418,14 +447,14 @@ namespace IdentitySample.Controllers
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new {ReturnUrl = returnUrl});
+                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl });
                 case SignInStatus.Failure:
                 default:
                     // If the user does not have an account, then prompt the user to create an account
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
                     return View("ExternalLoginConfirmation",
-                        new ExternalLoginConfirmationViewModel {Email = loginInfo.Email});
+                        new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
             }
         }
 
@@ -450,7 +479,7 @@ namespace IdentitySample.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new User {UserName = model.Email, Email = model.Email};
+                var user = new User { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
@@ -563,7 +592,7 @@ namespace IdentitySample.Controllers
 
             public override void ExecuteResult(ControllerContext context)
             {
-                var properties = new AuthenticationProperties {RedirectUri = RedirectUri};
+                var properties = new AuthenticationProperties { RedirectUri = RedirectUri };
                 if (UserId != null)
                 {
                     properties.Dictionary[XsrfKey] = UserId;

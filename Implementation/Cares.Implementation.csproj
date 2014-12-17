@@ -117,6 +117,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -645,6 +646,8 @@
     <Compile Include="Services\AddressBaseDataService.cs" />
     <Compile Include="Services\AdditionalDriverService.cs" />
     <Compile Include="Services\BusinessPartnerInTypeService.cs" />
+    <Compile Include="Services\ClaimsSecurityService.cs" />
+    <Compile Include="Services\DomainLicenseDetailsService.cs" />
     <Compile Include="Services\NrtQueueService.cs" />
     <Compile Include="Services\RaQueueService.cs" />
     <Compile Include="ReportServices\RentalAgreementReportService.cs" />

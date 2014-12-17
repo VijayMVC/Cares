@@ -6,6 +6,7 @@ using System.Web.Routing;
 using Cares.Implementation.Identity;
 using Cares.Interfaces.IServices;
 using Cares.Models.DomainModels;
+using Cares.Models.IdentityModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Practices.Unity;

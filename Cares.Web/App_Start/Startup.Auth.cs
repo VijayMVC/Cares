@@ -1,20 +1,19 @@
 ﻿using Cares.Implementation.Identity;
 using Cares.Models.IdentityModels;
+using IdentitySample.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using IdentitySample.Models;
-using Microsoft.Owin.Security.OAuth;
 using Owin;
 using System;
-using Cares.Models.DomainModels;
 
 namespace IdentitySample
 {
     public partial class Startup
     {
-        // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
+        
+
         public void ConfigureAuth(IAppBuilder app)
         {
             
@@ -36,11 +35,19 @@ namespace IdentitySample
                     // Enables the application to validate the security stamp when the user logs in.
                     // This is a security feature which is used when you change a password or add an external login to your account.  
                     OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, User>(
-                        validateInterval: TimeSpan.FromMinutes(30),
-                        regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager, DefaultAuthenticationTypes.ApplicationCookie))
+                        validateInterval: TimeSpan.FromMinutes(10),
+                        regenerateIdentity: (manager, user) =>
+                        {
+                           var identity = user.GenerateUserIdentityAsync(manager,DefaultAuthenticationTypes.ApplicationCookie);
+                            return identity;
+                        })
                 }
             });
-            app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
+           // identity.Result.AddClaim(new Claim(ClaimTypes.Country, "Pakistan"));
+        
+          
+            
+            //app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.
             app.UseTwoFactorSignInCookie(DefaultAuthenticationTypes.TwoFactorCookie, TimeSpan.FromMinutes(5));

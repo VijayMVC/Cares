@@ -113,6 +113,8 @@ namespace Cares.Implementation
             unityContainer.RegisterType<IInsuranceRateService, InsuranceRateService>();
             unityContainer.RegisterType<IBookingMainService, BookingMainService>();
             unityContainer.RegisterType<IRegisterUserService, RegisterUserService>();
+            unityContainer.RegisterType<IClaimsSecurityService, ClaimsSecurityService>();
+            unityContainer.RegisterType<IDomainLicenseDetailsService, DomainLicenseDetailsService>();
 
 
         }

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Security.Claims;
 using Cares.Implementation.Identity;
+using Cares.Interfaces.IServices;
 using Cares.Models.IdentityModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -14,6 +15,7 @@ using System.Threading.Tasks;
 using System.Web;
 using Cares.Models.DomainModels;
 using Microsoft.Owin.Security.OAuth;
+using Microsoft.Practices.Unity;
 
 namespace IdentitySample.Models
 {

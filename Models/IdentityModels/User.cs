@@ -1,8 +1,9 @@
-namespace Cares.Models.DomainModels
+using System;
+using System.Collections.Generic;
+using Cares.Models.DomainModels;
+
+namespace Cares.Models.IdentityModels
 {
-    using System;
-    using System.Collections.Generic;
-    
     /// <summary>
     /// User
     /// </summary>
