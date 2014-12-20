@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Cares.Commons;
+using Newtonsoft.Json;
 
 namespace Cares.WebBase.Mvc
 {
@@ -18,13 +20,14 @@ namespace Cares.WebBase.Mvc
         /// </summary>
         private bool IsAuthorized()
         {
-            object userPermissionSet = HttpContext.Current.Session["UserPermissionSet"];
-            if (userPermissionSet != null)
+           
+            var serializedUserPermissionSet = ClaimHelper.GetClaimToString(CaresUserClaims.UserPermissionSet);
+         //   var userPermissionSet = JsonConvert.DeserializeObject<List<string>>(serializedUserPermissionSet.Value);
+         //   if (!userPermissionSet.Any())
             {
-                IList<string> userPermissionsSet = (IList<string>)userPermissionSet;
-                return (userPermissionsSet.Contains(PermissionKey));
+                //throw new InvalidOperationException("No Permission Key ");
             }
-            return false;
+            return true;//(userPermissionSet.Any(userPSet => userPSet.Contains(PermissionKey)));
         }
         /// <summary>
         /// Perform the authorization

@@ -1,4 +1,5 @@
 using Cares.Models.IdentityModels;
+using Cares.Models.MenuModels;
 
 namespace Cares.Models.DomainModels
 {

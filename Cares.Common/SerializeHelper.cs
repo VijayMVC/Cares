@@ -1,7 +1,8 @@
 ﻿using System.IO;
 using System.Runtime.Serialization;
 using System.Xml;
-namespace Cares.Models.Common
+
+namespace Cares.Common
 {
     /// <summary>
     /// Use this helper to serialize and deserialize to and from a text representation

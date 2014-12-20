@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Cares.Models.MenuModels;
 
 namespace Cares.Models.DomainModels
 {

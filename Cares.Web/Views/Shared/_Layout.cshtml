@@ -68,9 +68,9 @@
                         {
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <span class="username username-hide-on-mobile">
-                                    Hi! @Session["LoggedInUser"]
+                                    Hi! @User.Identity.GetUserName()
                                     <span style="color: hsl(46, 49%, 43%)">
-                                        [@Session["Role"]]
+                                        [@User.Identity.GetType()]
                                     </span>
                                 </span>
                                 <i class="fa fa-angle-down"></i>

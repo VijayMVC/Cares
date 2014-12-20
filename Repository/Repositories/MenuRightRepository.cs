@@ -2,6 +2,7 @@
 using System.Linq;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
+using Cares.Models.MenuModels;
 using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
 

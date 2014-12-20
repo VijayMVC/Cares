@@ -1,10 +1,15 @@
 ﻿using System.Globalization;
+using System.Security.Principal;
 using System.Web.Routing;
 using System.Web.Security;
+using Cares.Commons;
 using Cares.Implementation.Identity;
 using Cares.Interfaces.IServices;
 using Cares.Models.IdentityModels;
 using Cares.Models.IdentityModels.ViewModels;
+using Cares.Models.MenuModels;
+using Cares.Web.ModelMappers;
+using Cares.WebBase.WebApi;
 using IdentitySample.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -23,6 +28,9 @@ using Microsoft.AspNet.Identity.Owin;
 using Cares.Models.CommonTypes;
 using Cares.Models.Common;
 using System.Threading;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Security.Claims;
+using Newtonsoft.Json;
 
 
 namespace IdentitySample.Controllers
@@ -36,61 +44,44 @@ namespace IdentitySample.Controllers
         private ApplicationUserManager _userManager;
         private IMenuRightsService menuRightService;
         private IDomainLicenseDetailsService domainLicenseDetailsService;
+        private IClaimsSecurityService claimsSecurityService;
         /// <summary>
         /// Set User Permission
         /// </summary>
-        private void SetUserPermissions(string userEmail)
+        private void SetUserPermissions(string userEmail, ClaimsIdentity identity)
         {
             User userResult = UserManager.FindByEmail(userEmail);
-
             // If Invalid Attempt
             if (userResult == null)
             {
                 return;
             }
-
             IList<UserRole> aspUserroles = userResult.Roles.ToList();
-
             // If No role assigned
             if (aspUserroles.Count == 0)
             {
                 return;
             }
-
             IEnumerable<MenuRight> permissionSet = menuRightService.FindMenuItemsByRoleId(aspUserroles[0].Id).ToList();
+            
+            IEnumerable<MenuRightClaims> UserMenuClaims = permissionSet.Select(ps => ps.CreateMenuRightClaims());
+            ClaimHelper.AddClaim(new Claim(CaresUserClaims.UserMenu, JsonConvert.SerializeObject(UserMenuClaims)), identity);
 
-            Session["UserMenu"] = permissionSet;
-            Session["UserPermissionSet"] = permissionSet.Select(menuRight => menuRight.Menu.PermissionKey).ToList();
-        }
+             IEnumerable<string> PermissionKeyClaims=permissionSet.Select(menuRight => menuRight.CreatePermissionKey());
+             ClaimHelper.AddClaim(new Claim(CaresUserClaims.UserPermissionSet, JsonConvert.SerializeObject(PermissionKeyClaims)), identity);
 
-        public ClaimsIdentity SetCaresUserClaims(User user, ClaimsIdentity identity)
-        {
-            DomainLicenseDetail domainLicenseDetail =   domainLicenseDetailsService.GetDomainLicenseDetailsByDomainKey(user.UserDomainKey);
-            Claim DomainLicenseDetailClaim = new Claim(CaresUserClaims.DomainLicenseDetail,
-                                        ClaimHelper.Serialize(
-                                            new DomainLicenseDetailClaim
-                                            {
-                                                UserDomainKey = domainLicenseDetail.UserDomainKey,
-                                                Branches = domainLicenseDetail.Branches,
-                                                FleetPools = domainLicenseDetail.FleetPools,
-                                                Employee = domainLicenseDetail.Employee,
-                                                RaPerMonth = domainLicenseDetail.RaPerMonth,
-                                                Vehicles = domainLicenseDetail.Vehicles
-
-                                            }),
-                                        typeof(DomainLicenseDetailClaim).AssemblyQualifiedName);
-            identity.AddClaim(DomainLicenseDetailClaim);
-           
-            return identity;
+          //  Session["UserMenu"] = permissionSet;
+           // Session["UserPermissionSet"] = permissionSet.Select(menuRight => menuRight.Menu.PermissionKey);
         }
         #endregion
 
         #region Constructor
 
-        public AccountController(IMenuRightsService menuRightService, IDomainLicenseDetailsService domainLicenseDetailsService)
+        public AccountController(IMenuRightsService menuRightService, IClaimsSecurityService claimsSecurityService, IDomainLicenseDetailsService domainLicenseDetailsService)
         {
             this.menuRightService = menuRightService;
             this.domainLicenseDetailsService = domainLicenseDetailsService;
+            this.claimsSecurityService = claimsSecurityService;
         }
 
         #endregion
@@ -145,8 +136,8 @@ namespace IdentitySample.Controllers
             // This doen't count login failures towards lockout only two factor authentication
             // To enable password failures to trigger lockout, change to shouldLockout: true
 
-            var user = await UserManager.FindByNameAsync(model.Email);
-
+            User user = await UserManager.FindByNameAsync(model.Email);
+            ClaimsIdentity identity = SignInManager.CreateUserIdentity(user);
             if (user != null)
             {
                 if (!await UserManager.IsEmailConfirmedAsync(user.Id))
@@ -159,22 +150,14 @@ namespace IdentitySample.Controllers
             // This doen't count login failures towards lockout only two factor authentication
             // To enable password failures to trigger lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe,  shouldLockout: false);
-            var manager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            var identity =
-               await user.GenerateUserIdentityAsync(manager, DefaultAuthenticationTypes.ApplicationCookie);
-
             switch (result)
             {
                 case SignInStatus.Success:
                     {
-                         SetCaresUserClaims(user, identity);
-                        identity.AddClaim(new Claim(CaresUserClaims.Name,"Naqvi"));
-                        Thread.CurrentPrincipal = new ClaimsPrincipal(identity);
-                       IList<DomainLicenseDetailClaim> organisationClaimValues =
-              ClaimHelper.GetClaimsByType<DomainLicenseDetailClaim>(CaresUserClaims.DomainLicenseDetail);
-
-                        SetUserPermissions(model.Email);
-                        return RedirectToAction("Region", "GeographicalHierarchy", new { area = "GeographicalHierarchy" });
+                        AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true}, identity);
+                        claimsSecurityService.AddClaimsToIdentity(user,identity);
+                        SetUserPermissions(model.Email, identity);
+                        return RedirectToAction("Document", "Home", new { area = "BusinessPartner" });
                     }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -254,7 +237,7 @@ namespace IdentitySample.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email, UserDomainKey = Session["UserDomainKey"] != null ? Convert.ToInt64(Session["UserDomainKey"]) : 0 };
+                var user = new User { UserName = model.Email, Email = model.Email /*, UserDomainKey = Session["UserDomainKey"] != null ? Convert.ToInt64(Session["UserDomainKey"]) : 0 */};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -506,7 +489,7 @@ namespace IdentitySample.Controllers
             return RedirectToAction("Login");
         }
 
-        //
+        
         // GET: /Account/ExternalLoginFailure
         [AllowAnonymous]
         public ActionResult ExternalLoginFailure()

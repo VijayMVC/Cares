@@ -1,14 +1,12 @@
-﻿using System.Linq;
-using Cares.Commons;
+﻿using System.Collections.Generic;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.CommonTypes;
 using Cares.Models.DomainModels;
-using Cares.Models.IdentityModels;
-using System.Collections.Generic;
 using System.Security.Claims;
+using Cares.Models.IdentityModels;
 
-namespace Cares.Implementation.Services
+namespace Cares.Common
 {
     /// <summary>
     /// Service that manages security claims
@@ -34,13 +32,13 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Add Organisation Claims
         /// </summary>
-        private void AddDomainLicenseDetailClaims(double domainKey, ClaimsIdentity identity)
+        private void AddDomainLicenseDetailClaims(double domainKey)
         {
                DomainLicenseDetail domainLicenseDetail =
                    domainLicenseDetailsRepository.GetDomainLicenseDetailByDomainKey(domainKey);
             if (domainLicenseDetail != null)
             {
-                var claim = new Claim(CaresUserClaims.DomainLicenseDetail,
+                ClaimHelper.AddClaim(new Claim(CaresUserClaims.DomainLicenseDetail,
                     ClaimHelper.Serialize(
                         new DomainLicenseDetailClaim
                         {
@@ -51,8 +49,7 @@ namespace Cares.Implementation.Services
                             RaPerMonth = domainLicenseDetail.RaPerMonth,
                             Vehicles = domainLicenseDetail.Vehicles
                         }),
-                    typeof (DomainLicenseDetailClaim).AssemblyQualifiedName);
-                    ClaimHelper.AddClaim(claim, identity);
+                    typeof(DomainLicenseDetailClaim).AssemblyQualifiedName));
             }
         }
         
@@ -61,10 +58,13 @@ namespace Cares.Implementation.Services
         /// </summary>
         public void AddClaimsToIdentity(User user, ClaimsIdentity identity)
         {
-            ClaimHelper.AddClaim(new Claim(CaresUserClaims.UserDomainKey, user.UserDomainKey.ToString()) , identity); //domainkey claim
-            ClaimHelper.AddClaim(new Claim(CaresUserClaims.Role, user.Roles.FirstOrDefault().Name), identity); // role claim
-            AddDomainLicenseDetailClaims(user.UserDomainKey, identity); // domain lecense detail claim
-            ClaimHelper.SetCurrentPrincipal(identity);
+            ClaimHelper.SetIdentity(identity);
+            ClaimHelper.AddClaim(new Claim(CaresUserClaims.UserDomainKey, user.UserDomainKey.ToString()));
+            AddDomainLicenseDetailClaims(user.UserDomainKey);
+            ClaimHelper.SetCurrentPrincipal();
+            IList<DomainLicenseDetailClaim> claim =
+               ClaimHelper.GetClaimsByType<DomainLicenseDetailClaim>(CaresUserClaims.DomainLicenseDetail);
+        
         }
         #endregion
     }

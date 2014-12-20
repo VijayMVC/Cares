@@ -1,4 +1,9 @@
-﻿using System;
+﻿using System.Security.Claims;
+using Cares.Commons;
+using Cares.Interfaces.Repository;
+using Cares.Models.DomainModels;
+using Microsoft.Practices.Unity;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity;
@@ -7,9 +12,6 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
-using Cares.Interfaces.Repository;
-using Cares.Models.DomainModels;
-using Microsoft.Practices.Unity;
 
 namespace Cares.Repository.BaseRepository
 {
@@ -55,7 +57,7 @@ namespace Cares.Repository.BaseRepository
         /// </summary>
         // ReSharper disable once InconsistentNaming
         public BaseDbContext db;
-
+       
         /// <summary>
         /// Create object instance
         /// </summary>
@@ -140,9 +142,15 @@ namespace Cares.Repository.BaseRepository
         /// </summary>        
         public long UserDomainKey
         {
+
             get
             {
-                return HttpContext.Current.Session["UserDomainKey"] != null ? Convert.ToInt64(HttpContext.Current.Session["UserDomainKey"]) : 1;
+                Claim domainKeyClaim = ClaimHelper.GetClaimToString(CaresUserClaims.UserDomainKey);
+                if (domainKeyClaim==null)
+                {
+                    throw new InvalidOperationException("Domain-Key claim not found.");
+                }
+                return Convert.ToInt64(domainKeyClaim.Value);
             }
         }
         /// <summary>
@@ -152,7 +160,13 @@ namespace Cares.Repository.BaseRepository
         {
             get
             {
-                return HttpContext.Current.Session["LoggedInUser"] != null ? HttpContext.Current.Session["LoggedInUser"].ToString() : "cares";
+                Claim domainKeyClaim = ClaimHelper.GetClaimToString(CaresUserClaims.Name);
+                if (domainKeyClaim == null)
+                {
+                    throw new InvalidOperationException("User Name claim not found.");
+                }
+                return (domainKeyClaim.Value);
+               // return HttpContext.Current.Session["LoggedInUser"] != null ? HttpContext.Current.Session["LoggedInUser"].ToString() : "cares";
             }
         }
 

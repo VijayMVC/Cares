@@ -13,7 +13,7 @@ namespace Cares.Models.IdentityModels
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             ClaimsIdentity userIdentity = await manager.CreateIdentityAsync(this, authenticationType);
-
+            userIdentity.AddClaim(new Claim("test","hell this all !"));
             // Add custom user claims here
             return userIdentity;
         }

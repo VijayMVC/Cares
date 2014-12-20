@@ -24,10 +24,10 @@ namespace IdentitySample.Models
         public ApplicationSignInManager(ApplicationUserManager userManager, IAuthenticationManager authenticationManager) :
             base(userManager, authenticationManager) { }
 
-        public override Task<ClaimsIdentity> CreateUserIdentityAsync(User user)
-        {
-            return user.GenerateUserIdentityAsync((ApplicationUserManager)UserManager, DefaultAuthenticationTypes.ApplicationCookie);
-        }
+        //public override Task<ClaimsIdentity> CreateUserIdentityAsync(User user)
+        //{
+        //    return user.GenerateUserIdentityAsync((ApplicationUserManager)UserManager, DefaultAuthenticationTypes.ApplicationCookie);
+        //}
 
         public static ApplicationSignInManager Create(IdentityFactoryOptions<ApplicationSignInManager> options, IOwinContext context)
         {

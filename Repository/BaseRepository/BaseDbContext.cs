@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Linq.Expressions;
 using Cares.Models.DomainModels;
 using Cares.Models.IdentityModels;
+using Cares.Models.MenuModels;
 using Microsoft.Practices.Unity;
 using Repository.BaseRepository;
 

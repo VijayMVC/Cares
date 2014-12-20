@@ -407,6 +407,7 @@
     <Compile Include="ModelMappers\BusinessPartnerResponseBaseDataMapper.cs" />
     <Compile Include="ModelMappers\BusinessPartnerResponseMapper.cs" />
     <Compile Include="ModelMappers\BusinessPartnerSubTypeMapper.cs" />
+    <Compile Include="ModelMappers\CaresUserClaimsMapper.cs" />
     <Compile Include="ModelMappers\ChaufferChargeMapper.cs" />
     <Compile Include="ModelMappers\DesigGradeMapper.cs" />
     <Compile Include="ModelMappers\DesignationMapper.cs" />
@@ -2978,6 +2979,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Cares.Commons\Cares.Commons.csproj">
+      <Project>{C495B1EB-AC68-44F5-B2FA-D36083EB7BEC}</Project>
+      <Name>Cares.Commons</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Implementation\Cares.Implementation.csproj">
       <Project>{42d2e6c0-74f1-46fb-b7ba-43251156275d}</Project>
       <Name>Cares.Implementation</Name>

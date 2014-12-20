@@ -1,5 +1,7 @@
 ﻿
-namespace Cares.Models.DomainModels
+using Cares.Models.DomainModels;
+
+namespace Cares.Models.MenuModels
 {
     /// <summary>
     /// MenuRights class for menu assoication with role
