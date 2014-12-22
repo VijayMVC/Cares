@@ -1,6 +1,9 @@
-﻿using Cares.ExceptionHandling;
+﻿using System.Linq;
+using Cares.Commons;
+using Cares.ExceptionHandling;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
+using Cares.Models.CommonTypes;
 using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
@@ -106,6 +109,14 @@ namespace Cares.Implementation.Services
              {
                  if (fleetPoolDbVersion == null) //Add Case
                  {
+                     int numberOfFleetPoolsByDomainKey = fleetPoolRepository.GetCountOfFleetPoolWithDomainKey();
+                     var domainLicenseDetailwithDomainKey = ClaimHelper.GetDeserializedClaims<DomainLicenseDetailClaim>(CaresUserClaims.DomainLicenseDetail).FirstOrDefault();
+                     if (domainLicenseDetailwithDomainKey != null)
+                         if (domainLicenseDetailwithDomainKey.FleetPools <= numberOfFleetPoolsByDomainKey)
+                             throw new InvalidOperationException("You can not add any further Fleet Pool under current domain!");
+                         else
+                             throw new InvalidOperationException("Domain License Detail user claim not found!");
+
                      fleetPool.IsActive = true;
                      fleetPool.IsDeleted = fleetPool.IsPrivate = fleetPool.IsReadOnly = false;
                      fleetPool.RecLastUpdatedBy = fleetPool.RecCreatedBy = fleetPoolRepository.LoggedInUserIdentity;

@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Cares.Commons;
 using Cares.ExceptionHandling;
 using Cares.Interfaces.Helpers;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.Common;
+using Cares.Models.CommonTypes;
 using Cares.Models.DomainModels;
 using Cares.Models.ResponseModels;
 
@@ -1778,6 +1780,14 @@ namespace Cares.Implementation.Services
         /// </summary>
         public RaMain SaveRentalAgreement(RaMain raMain)
         {
+            int numberOfRAsByDomainKey = rentalAgreementRepository.GetCountOfRAswithDomainKey();
+            var domainLicenseDetailwithDomainKey = ClaimHelper.GetDeserializedClaims<DomainLicenseDetailClaim>(CaresUserClaims.DomainLicenseDetail).FirstOrDefault();
+            if (domainLicenseDetailwithDomainKey != null)
+                if (domainLicenseDetailwithDomainKey.RaPerMonth <= numberOfRAsByDomainKey)
+                    throw new InvalidOperationException("You can not add any further Rental Agreement under current domain!");
+                else
+                    throw new InvalidOperationException("Domain License Detail user claim not found!");
+
             // Generate Bill
             raMain = GenerateBill(raMain);
 

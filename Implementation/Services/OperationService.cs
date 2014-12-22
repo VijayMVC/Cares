@@ -1,13 +1,12 @@
-﻿using System.Globalization;
-using Cares.ExceptionHandling;
+﻿using Cares.ExceptionHandling;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
-using Cares.Models.CommonTypes;
 using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 namespace Cares.Implementation.Services
 {
     /// <summary>

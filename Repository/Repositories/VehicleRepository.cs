@@ -291,6 +291,13 @@ namespace Cares.Repository.Repositories
             return DbSet.Count(v =>v.UserDomainKey==UserDomainKey && v.PlateNumber.Trim().ToLower() == plateNumber.Trim().ToLower() && v.VehicleId != vehicleId) > 0;
         }
 
+        /// <summary>
+        /// Get Count Of Vehicle With DomainKey
+        /// </summary>
+        public int GetCountOfVehicleWithDomainKey()
+        {
+            return DbSet.Count(vehicle => vehicle.UserDomainKey == UserDomainKey);
+        }
         #endregion
     }
 }

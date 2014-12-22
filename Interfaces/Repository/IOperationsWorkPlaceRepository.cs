@@ -38,6 +38,8 @@ namespace Cares.Interfaces.Repository
         /// Get operation id by operatoin workplace id
         /// </summary>
         long GetOperationIdByOperationWorkPlaceId(long operationWorkPlaceId);
+
+       
     }
 }
  

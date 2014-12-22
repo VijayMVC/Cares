@@ -28,6 +28,11 @@ namespace Cares.Interfaces.Repository
         /// To check the availbility of workplace code
         /// </summary>
         bool DoesWorkPlaceCodeExists(WorkPlace workplace);
+
+        /// <summary>
+        /// Get Total number of Operation Work place By DomainKey
+        /// </summary>
+        int GetCountOfOperationWorkplaceByDomainKey();
     }
 }
    

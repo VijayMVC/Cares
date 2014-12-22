@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using Cares.Commons;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.Common;
+using Cares.Models.CommonTypes;
 using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
@@ -145,6 +147,14 @@ namespace Cares.Implementation.Services
 
             if (vehicleDbVersion == null)
             {
+                int numberOfVehiclesByDomainKey = vehicleRepository.GetCountOfVehicleWithDomainKey();
+                var domainLicenseDetailwithDomainKey = ClaimHelper.GetDeserializedClaims<DomainLicenseDetailClaim>(CaresUserClaims.DomainLicenseDetail).FirstOrDefault();
+                if (domainLicenseDetailwithDomainKey != null)
+                    if (domainLicenseDetailwithDomainKey.Vehicles <= numberOfVehiclesByDomainKey)
+                        throw new InvalidOperationException("You can not add any further vehicle under current domain!");
+                    else
+                        throw new InvalidOperationException("Domain License Detail user claim not found!");
+
                 if (vehicleRepository.DuplicateVehiclePlateNumber(vehicle.PlateNumber, vehicle.VehicleId))
                 {
                     throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Vehicle.Vehicle.DuplicatePlateNumber));

@@ -140,6 +140,13 @@ namespace Cares.Repository.Repositories
             return DbSet.FirstOrDefault(employee => employee.UserDomainKey == UserDomainKey);
         }
 
+        /// <summary>
+        /// Gets number of employee with domain key 
+        /// </summary>
+        public int GetNumberOfEmployessByDomainKey()
+        {
+            return DbSet.Count(emp => emp.UserDomainKey == UserDomainKey );
+        }
         #endregion
     }
 }

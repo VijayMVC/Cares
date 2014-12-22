@@ -114,7 +114,13 @@ namespace Cares.Repository.Repositories
             return DbSet.Where(fp => fp.UserDomainKey == UserDomainKey).ToList();
         }
 
-    
+        /// <summary>
+        /// Get total Count Of Fleet Pools With DomainKey
+        /// </summary>
+        public int GetCountOfFleetPoolWithDomainKey()
+        {
+           return DbSet.Count(fleetpool => fleetpool.UserDomainKey == UserDomainKey);
+        }
         #endregion 
     }
 }

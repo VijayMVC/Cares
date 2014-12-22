@@ -125,6 +125,15 @@ namespace Cares.Repository.Repositories
                 };
             return query.OrderBy(ramain => ramain.CollectedAmount).ToList();
         }
+
+        /// <summary>
+        /// Get total number of rental agreements with domain key
+        /// </summary>
+        public int GetCountOfRAswithDomainKey()
+        {
+            return DbSet.Count(ra => ra.UserDomainKey == UserDomainKey);
+        }
+        
         #endregion
     }
 }

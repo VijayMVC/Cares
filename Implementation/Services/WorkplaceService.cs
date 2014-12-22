@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using Cares.Commons;
 using Cares.ExceptionHandling;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
+using Cares.Models.CommonTypes;
 using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
@@ -213,6 +215,14 @@ namespace Cares.Implementation.Services
             #region ADD
             else
             {
+                int numberOfworkplacesByDomainKey = workplaceRepository.GetCountOfOperationWorkplaceByDomainKey();
+                var domainLicenseDetailwithDomainKey = ClaimHelper.GetDeserializedClaims<DomainLicenseDetailClaim>(CaresUserClaims.DomainLicenseDetail).FirstOrDefault();
+                if (domainLicenseDetailwithDomainKey != null)
+                    if (domainLicenseDetailwithDomainKey.Branches <= numberOfworkplacesByDomainKey)
+                        throw new InvalidOperationException("You can not add any further workplace under current domain!");
+                    else
+                        throw new InvalidOperationException("Domain License Detail user claim not found!");
+
                 dbWorkPlace = workplaceRepository.Create();
                 SetWorkPlaceProperties(workPlaceRequest, dbWorkPlace);
                 if (workPlaceRequest.OperationsWorkPlaces != null)

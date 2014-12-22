@@ -103,6 +103,7 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(oWorkPlace => oWorkPlace.UserDomainKey == UserDomainKey && oWorkPlace.UserDomainKey == UserDomainKey).ToList();
         }
+
         #endregion
     }
 }

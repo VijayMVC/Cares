@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
+using Cares.Commons;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
+using Cares.Models.CommonTypes;
 
 namespace Cares.Implementation.Services
 {
@@ -209,6 +212,13 @@ namespace Cares.Implementation.Services
             #region Add
             if (empDbVersion == null)
             {
+                int numberOfEmployessByDomainKey = employeeRepository.GetNumberOfEmployessByDomainKey();
+                var domainLicenseDetailwithDomainKey = ClaimHelper.GetDeserializedClaims<DomainLicenseDetailClaim>(CaresUserClaims.DomainLicenseDetail).FirstOrDefault();
+                if (domainLicenseDetailwithDomainKey != null)
+                    if (domainLicenseDetailwithDomainKey.Employee <= numberOfEmployessByDomainKey)
+                        throw new InvalidOperationException("You can not add any further Employee under current domain!");
+                else
+                throw new InvalidOperationException("Domain License Detail user claim not found!");
 
                 employee.UserDomainKey = employeeRepository.UserDomainKey;
                 employee.IsActive = true;

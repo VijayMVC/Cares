@@ -36,5 +36,10 @@ namespace Cares.Interfaces.Repository
         /// </summary>
         Employee GetEmployee();
 
+        /// <summary>
+        /// Gets number of employee with domain key 
+        /// </summary>
+        int GetNumberOfEmployessByDomainKey();
+
     }
 }

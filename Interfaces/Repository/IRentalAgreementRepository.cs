@@ -32,6 +32,10 @@ namespace Cares.Interfaces.Repository
         /// </summary>
         IEnumerable<GrossSalesReportResponse> GetGrossSalesReport();
 
+        /// <summary>
+        /// Get total number of rental agreements with domain key
+        /// </summary>
+        int GetCountOfRAswithDomainKey();
 
     }
 }

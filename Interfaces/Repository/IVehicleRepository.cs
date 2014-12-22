@@ -73,6 +73,11 @@ namespace Cares.Interfaces.Repository
         /// </summary>
         bool IsVehiclePlateNumberExists(string plateNumber, long vehicleId);
 
+        /// <summary>
+        /// Get Count Of Vehicle With DomainKey
+        /// </summary>
+        int GetCountOfVehicleWithDomainKey();
+
     }
 }
 

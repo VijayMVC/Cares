@@ -122,6 +122,15 @@ namespace Cares.Repository.Repositories
         {
             return (DbSet.Count(dbWorkplace => dbWorkplace.UserDomainKey == UserDomainKey && dbWorkplace.WorkPlaceCode == workplace.WorkPlaceCode && dbWorkplace.WorkPlaceId != workplace.WorkPlaceId) > 0);
         }
+
+
+        /// <summary>
+        /// Get Total number of Operation Work place By DomainKey
+        /// </summary>
+        public int GetCountOfOperationWorkplaceByDomainKey()
+        {
+            return DbSet.Count(workplace => workplace.UserDomainKey == UserDomainKey);
+        }
         #endregion
     }
 }

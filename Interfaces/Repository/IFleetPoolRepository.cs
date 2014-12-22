@@ -30,5 +30,10 @@ namespace Cares.Interfaces.Repository
         /// To chechk does operation contain any fleetpool
         /// </summary>
         bool IsOperationAssocisiatedWithAnyFleetPool(long operationId);
+
+        /// <summary>
+        /// Get total Count Of Fleet Pools With DomainKey
+        /// </summary>
+        int GetCountOfFleetPoolWithDomainKey();
     }
 }
