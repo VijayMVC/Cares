@@ -490,7 +490,7 @@ namespace IdentitySample.Controllers
         }
 
         
-        // GET: /Account/ExternalLoginFailure
+        // GET: /Account/ExternalLoginFailuretl
         [AllowAnonymous]
         public ActionResult ExternalLoginFailure()
         {

@@ -11,7 +11,6 @@ using System.Data.Entity.Migrations;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Web;
 
 namespace Cares.Repository.BaseRepository
 {
@@ -148,6 +147,8 @@ namespace Cares.Repository.BaseRepository
                 Claim domainKeyClaim = ClaimHelper.GetClaimToString(CaresUserClaims.UserDomainKey);
                 if (domainKeyClaim==null)
                 {
+                  //  var c = HttpContext.Current.Session["UserDomainKey"];
+                  //  return Convert.ToInt64(c);
                     throw new InvalidOperationException("Domain-Key claim not found.");
                 }
                 return Convert.ToInt64(domainKeyClaim.Value);

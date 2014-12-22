@@ -9,7 +9,6 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Practices.Unity;
 using Newtonsoft.Json;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -72,7 +71,7 @@ namespace Cares.Web.Controllers
                     return;
                 }
 
-                var userRole=    HttpContext.GetOwinContext().Get<ApplicationRoleManager>().FindById(aspUserroles[0].Id).Name;
+                var userRole= HttpContext.GetOwinContext().Get<ApplicationRoleManager>().FindById(aspUserroles[0].Id).Name;
                 ClaimHelper.AddClaim(new Claim(CaresUserClaims.Role, userRole), identity);
                 Session["Role"] = userRole;
                 IEnumerable<MenuRight> permissionSet = MenuRightService.FindMenuItemsByRoleId(aspUserroles[0].Id).ToList();
@@ -84,8 +83,6 @@ namespace Cares.Web.Controllers
                 IEnumerable<string> PermissionKeyClaims = permissionSet.Select(menuRight => menuRight.CreatePermissionKey());
                 ClaimHelper.AddClaim(new Claim(CaresUserClaims.UserPermissionSet, JsonConvert.SerializeObject(PermissionKeyClaims)), identity);
                 ClaimHelper.SetCurrentPrincipal(identity);
-            //    Session["UserMenu"] = permissionSet;
-            //    Session["UserPermissionSet"] = permissionSet.Select(menuRight => menuRight.Menu.PermissionKey).ToList();
             }
         }
 

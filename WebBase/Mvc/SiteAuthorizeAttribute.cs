@@ -22,12 +22,12 @@ namespace Cares.WebBase.Mvc
         {
            
             var serializedUserPermissionSet = ClaimHelper.GetClaimToString(CaresUserClaims.UserPermissionSet);
-         //   var userPermissionSet = JsonConvert.DeserializeObject<List<string>>(serializedUserPermissionSet.Value);
-         //   if (!userPermissionSet.Any())
+            var userPermissionSet = JsonConvert.DeserializeObject<List<string>>(serializedUserPermissionSet.Value);
+            if (!userPermissionSet.Any())
             {
-                //throw new InvalidOperationException("No Permission Key ");
+                throw new InvalidOperationException("No Permission Key ");
             }
-            return true;//(userPermissionSet.Any(userPSet => userPSet.Contains(PermissionKey)));
+            return (userPermissionSet.Any(userPSet => userPSet.Contains(PermissionKey)));
         }
         /// <summary>
         /// Perform the authorization
