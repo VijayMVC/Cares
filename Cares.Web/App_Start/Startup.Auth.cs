@@ -1,19 +1,61 @@
-﻿using Cares.Implementation.Identity;
+﻿using System.Linq;
+using Cares.Commons;
+using Cares.Implementation.Identity;
+using Cares.Interfaces.IServices;
+using Cares.Models.DomainModels;
 using Cares.Models.IdentityModels;
+using Cares.Models.MenuModels;
 using IdentitySample.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
+using Microsoft.Practices.Unity;
+using Newtonsoft.Json;
 using Owin;
 using System;
-
+using System.Collections;
+using System.Security.Claims;
+using Cares.Web.ModelMappers;
 namespace IdentitySample
 {
     public partial class Startup
     {
-        
 
+        private void SetUserPermissions(User user, ClaimsIdentity identity)
+        {
+            
+            //User userResult = userManager.FindByEmail(userEmail);
+            var menuRightService = UnityConfig.UnityContainer.Resolve<IMenuRightsService>();
+            
+            // If Invalid Attempt
+            //if (userResult == null)
+            //{
+            //    return;
+            //}
+            System.Collections.Generic.IList<UserRole> aspUserroles = user.Roles.ToList();
+            // If No role assigned
+            if (aspUserroles.Count == 0)
+            {
+                return;
+            }
+            System.Collections.Generic.IEnumerable<MenuRight> permissionSet = menuRightService.FindMenuItemsByRoleId(aspUserroles[0].Id).ToList();
+
+            System.Collections.Generic.IEnumerable<MenuRight> UserMenuClaims = permissionSet.Select(ps => ps.CreateFrom());
+            ClaimHelper.AddClaim(new Claim(CaresUserClaims.UserMenu, JsonConvert.SerializeObject(UserMenuClaims)), identity);
+
+            System.Collections.Generic.IEnumerable<string> PermissionKeyClaims = permissionSet.Select(menuRight => menuRight.CreatePermissionKey());
+            ClaimHelper.AddClaim(new Claim(CaresUserClaims.UserPermissionSet, JsonConvert.SerializeObject(PermissionKeyClaims)), identity);
+
+            //  Session["UserMenu"] = permissionSet;
+            // Session["UserPermissionSet"] = permissionSet.Select(menuRight => menuRight.Menu.PermissionKey);
+        }
+
+        private void SetDomainLicenseClaims(ClaimsIdentity identity, User user)
+        {
+            var securityClaimsService = UnityConfig.UnityContainer.Resolve<IClaimsSecurityService>();
+            securityClaimsService.AddClaimsToIdentity(user.UserDomainKey, user.Roles.FirstOrDefault().Name, identity);
+        }
         public void ConfigureAuth(IAppBuilder app)
         {
             
@@ -39,6 +81,10 @@ namespace IdentitySample
                         regenerateIdentity: (manager, user) =>
                         {
                             var identity = user.GenerateUserIdentityAsync(manager, DefaultAuthenticationTypes.ApplicationCookie);
+                            //Add claims
+                            //SetUserPermissions(user, identity.Result);
+                            //SetDomainLicenseClaims(identity.Result, user);
+
                             return identity;
                         })
                 }
@@ -47,7 +93,7 @@ namespace IdentitySample
         
           
             
-            //app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
+            app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.
             app.UseTwoFactorSignInCookie(DefaultAuthenticationTypes.TwoFactorCookie, TimeSpan.FromMinutes(30));

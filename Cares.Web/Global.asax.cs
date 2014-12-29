@@ -78,16 +78,16 @@ namespace Cares.Web
             GlobalConfiguration.Configuration.DependencyResolver = new WebBase.UnityConfiguration.UnityDependencyResolver(container);
         }
 
-        public override void Init()
-        {
-            this.PostAuthenticateRequest += MvcApplication_PostAuthenticateRequest;
-            base.Init();
-        }
+        //public override void Init()
+        //{
+        //    this.PostAuthenticateRequest += MvcApplication_PostAuthenticateRequest;
+        //    base.Init();
+        //}
 
-        void MvcApplication_PostAuthenticateRequest(object sender, EventArgs e)
-        {
-            System.Web.HttpContext.Current.SetSessionStateBehavior(
-                SessionStateBehavior.Required);
-        }
+        //void MvcApplication_PostAuthenticateRequest(object sender, EventArgs e)
+        //{
+        //    System.Web.HttpContext.Current.SetSessionStateBehavior(
+        //        SessionStateBehavior.Required);
+        //}
     }
 }

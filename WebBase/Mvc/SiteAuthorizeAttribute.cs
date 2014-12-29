@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -21,7 +22,9 @@ namespace Cares.WebBase.Mvc
         private bool IsAuthorized()
         {
            
-            var serializedUserPermissionSet = ClaimHelper.GetClaimToString(CaresUserClaims.UserPermissionSet);
+            Claim serializedUserPermissionSet = ClaimHelper.GetClaimToString(CaresUserClaims.UserPermissionSet);
+            if(serializedUserPermissionSet == null)
+                return false;
             var userPermissionSet = JsonConvert.DeserializeObject<List<string>>(serializedUserPermissionSet.Value);
             if (!userPermissionSet.Any())
             {

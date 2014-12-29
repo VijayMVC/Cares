@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Globalization;
+using System.Linq;
 using Cares.Commons;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
@@ -34,7 +35,7 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Add Organisation Claims
         /// </summary>
-        private void AddDomainLicenseDetailClaims(double domainKey, ClaimsIdentity identity)
+        private void AddDomainLicenseDetailClaims(long domainKey, ClaimsIdentity identity)
         {
                DomainLicenseDetail domainLicenseDetail =
                    domainLicenseDetailsRepository.GetDomainLicenseDetailByDomainKey(domainKey);
@@ -59,12 +60,12 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Add claims to the identity
         /// </summary>
-        public void AddClaimsToIdentity(User user, ClaimsIdentity identity)
+        public void AddClaimsToIdentity(long domainKey, string defaultRoleName, ClaimsIdentity identity)
         {
-            ClaimHelper.AddClaim(new Claim(CaresUserClaims.UserDomainKey, user.UserDomainKey.ToString()) , identity); //domainkey claim
-            ClaimHelper.AddClaim(new Claim(CaresUserClaims.Role, user.Roles.FirstOrDefault().Name), identity); // role claim
-            AddDomainLicenseDetailClaims(user.UserDomainKey, identity); // domain lecense detail claim
-            ClaimHelper.SetCurrentPrincipal(identity);
+            ClaimHelper.AddClaim(new Claim(CaresUserClaims.UserDomainKey, domainKey.ToString(CultureInfo.InvariantCulture)), identity); //domainkey claim
+            ClaimHelper.AddClaim(new Claim(CaresUserClaims.Role, defaultRoleName), identity); // role claim
+            AddDomainLicenseDetailClaims(domainKey, identity); // domain lecense detail claim
+            //ClaimHelper.SetCurrentPrincipal(identity);
         }
         #endregion
     }

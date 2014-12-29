@@ -46,44 +46,40 @@ namespace Cares.Web.Controllers
         private void SetUserDetail()
         { 
             Claim domainKeyClaim = ClaimHelper.GetClaimToString(CaresUserClaims.UserDomainKey);
-            if (domainKeyClaim!=null)
+            if (domainKeyClaim != null)
             {
                 return;
             }
 
          //   Session["LoggedInUser"] = Session["UserDomainKey"] = string.Empty;
-            if (User.Identity.IsAuthenticated)
-            {
-                User result = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByEmail(User.Identity.Name);
+            //if (User.Identity.IsAuthenticated)
+            //{
+            //    User result = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByEmail(User.Identity.Name);
              
-                Session["LoggedInUser"] = result.UserName;
-                Session["UserDomainKey"] = result.UserDomainKey;
+            //    ClaimsIdentity identity = HttpContext.GetOwinContext().Authentication.User.Identities.FirstOrDefault();
+            //    ClaimHelper.AddClaim(new Claim(CaresUserClaims.UserDomainKey, result.UserDomainKey.ToString()), identity);
+            //    ClaimHelper.AddClaim(new Claim(CaresUserClaims.Name, result.UserName), identity);
 
+            //    IList<UserRole> aspUserroles = result.Roles.ToList();
+            //    // If No role assigned
+            //    if (aspUserroles.Count == 0)
+            //    {
+            //        return;
+            //    }
 
-                ClaimsIdentity identity = HttpContext.GetOwinContext().Authentication.User.Identities.FirstOrDefault();
-                ClaimHelper.AddClaim(new Claim(CaresUserClaims.UserDomainKey, result.UserDomainKey.ToString()), identity);
-                ClaimHelper.AddClaim(new Claim(CaresUserClaims.Name, result.UserName), identity);
-
-                IList<UserRole> aspUserroles = result.Roles.ToList();
-                // If No role assigned
-                if (aspUserroles.Count == 0)
-                {
-                    return;
-                }
-
-                var userRole= HttpContext.GetOwinContext().Get<ApplicationRoleManager>().FindById(aspUserroles[0].Id).Name;
-                ClaimHelper.AddClaim(new Claim(CaresUserClaims.Role, userRole), identity);
-                Session["Role"] = userRole;
-                IEnumerable<MenuRight> permissionSet = MenuRightService.FindMenuItemsByRoleId(aspUserroles[0].Id).ToList();
+            //    var userRole= HttpContext.GetOwinContext().Get<ApplicationRoleManager>().FindById(aspUserroles[0].Id).Name;
+            //    ClaimHelper.AddClaim(new Claim(CaresUserClaims.Role, userRole), identity);
+            //    Session["Role"] = userRole;
+            //    IEnumerable<MenuRight> permissionSet = MenuRightService.FindMenuItemsByRoleId(aspUserroles[0].Id).ToList();
 
               
-                IEnumerable<MenuRightClaims> UserMenuClaims = permissionSet.Select(ps => ps.CreateMenuRightClaims());
-                ClaimHelper.AddClaim(new Claim(CaresUserClaims.UserMenu, JsonConvert.SerializeObject(UserMenuClaims)), identity);
+            //    IEnumerable<MenuRightClaims> UserMenuClaims = permissionSet.Select(ps => ps.CreateMenuRightClaims());
+            //    ClaimHelper.AddClaim(new Claim(CaresUserClaims.UserMenu, JsonConvert.SerializeObject(UserMenuClaims)), identity);
 
-                IEnumerable<string> PermissionKeyClaims = permissionSet.Select(menuRight => menuRight.CreatePermissionKey());
-                ClaimHelper.AddClaim(new Claim(CaresUserClaims.UserPermissionSet, JsonConvert.SerializeObject(PermissionKeyClaims)), identity);
-                ClaimHelper.SetCurrentPrincipal(identity);
-            }
+            //    IEnumerable<string> PermissionKeyClaims = permissionSet.Select(menuRight => menuRight.CreatePermissionKey());
+            //    ClaimHelper.AddClaim(new Claim(CaresUserClaims.UserPermissionSet, JsonConvert.SerializeObject(PermissionKeyClaims)), identity);
+            //    ClaimHelper.SetCurrentPrincipal(identity);
+            //}
         }
 
         

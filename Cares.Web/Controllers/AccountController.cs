@@ -48,15 +48,15 @@ namespace IdentitySample.Controllers
         /// <summary>
         /// Set User Permission
         /// </summary>
-        private void SetUserPermissions(string userEmail, ClaimsIdentity identity)
+        private void SetUserPermissions(User user, ClaimsIdentity identity)
         {
-            User userResult = UserManager.FindByEmail(userEmail);
-            // If Invalid Attempt
-            if (userResult == null)
-            {
-                return;
-            }
-            IList<UserRole> aspUserroles = userResult.Roles.ToList();
+            //User userResult = UserManager.FindByEmail(userEmail);
+            //// If Invalid Attempt
+            //if (userResult == null)
+            //{
+            //    return;
+            //}
+            IList<UserRole> aspUserroles = user.Roles.ToList();
             // If No role assigned
             if (aspUserroles.Count == 0)
             {
@@ -64,8 +64,8 @@ namespace IdentitySample.Controllers
             }
             IEnumerable<MenuRight> permissionSet = menuRightService.FindMenuItemsByRoleId(aspUserroles[0].Id).ToList();
             
-            IEnumerable<MenuRightClaims> UserMenuClaims = permissionSet.Select(ps => ps.CreateMenuRightClaims());
-            ClaimHelper.AddClaim(new Claim(CaresUserClaims.UserMenu, JsonConvert.SerializeObject(UserMenuClaims)), identity);
+            //IEnumerable<MenuRight> UserMenuClaims = permissionSet.Select(ps => ps.CreateFrom());
+            //ClaimHelper.AddClaim(new Claim(CaresUserClaims.UserMenu, JsonConvert.SerializeObject(UserMenuClaims)), identity);
 
              IEnumerable<string> PermissionKeyClaims=permissionSet.Select(menuRight => menuRight.CreatePermissionKey());
              ClaimHelper.AddClaim(new Claim(CaresUserClaims.UserPermissionSet, JsonConvert.SerializeObject(PermissionKeyClaims)), identity);
@@ -137,7 +137,9 @@ namespace IdentitySample.Controllers
             // To enable password failures to trigger lockout, change to shouldLockout: true
 
             User user = await UserManager.FindByNameAsync(model.Email);
-            ClaimsIdentity identity = SignInManager.CreateUserIdentity(user);
+            ClaimsIdentity identity = await user.GenerateUserIdentityAsync(UserManager, DefaultAuthenticationTypes.ApplicationCookie);
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+            //ClaimsIdentity identity = SignInManager.CreateUserIdentity(user);
             if (user != null)
             {
                 if (!await UserManager.IsEmailConfirmedAsync(user.Id))
@@ -147,6 +149,7 @@ namespace IdentitySample.Controllers
                 }
             }
 
+            
             // This doen't count login failures towards lockout only two factor authentication
             // To enable password failures to trigger lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe,  shouldLockout: false);
@@ -154,10 +157,16 @@ namespace IdentitySample.Controllers
             {
                 case SignInStatus.Success:
                     {
-                        AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true}, identity);
-                        claimsSecurityService.AddClaimsToIdentity(user,identity);
-                        SetUserPermissions(model.Email, identity);
-                        return RedirectToAction("Document", "Home", new { area = "BusinessPartner" });
+                        claimsSecurityService.AddClaimsToIdentity(user.UserDomainKey, user.Roles.FirstOrDefault().Name, identity);
+                        SetUserPermissions(user, identity);  
+                        //identity.AddClaim((new Claim(CaresUserClaims.UserDomainKey, user.UserDomainKey.ToString())));
+                        //Thread.CurrentPrincipal = new ClaimsPrincipal(identity);
+                        //HttpContext.User = Thread.CurrentPrincipal;
+                        AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, identity);
+                        //var context = Request.GetOwinContext();
+                        //var authenticationManager = context.Authentication;
+                        //authenticationManager.SignIn(new AuthenticationProperties() { }, identity);
+                        return RedirectToLocal(returnUrl);//RedirectToAction("Document", "Home", new { area = "BusinessPartner" });
                     }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -167,6 +176,18 @@ namespace IdentitySample.Controllers
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
+            }
+        }
+        
+        private ActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home", new {area = "BusinessPartner"});
             }
         }
 
@@ -546,14 +567,7 @@ namespace IdentitySample.Controllers
             }
         }
 
-        private ActionResult RedirectToLocal(string returnUrl)
-        {
-            if (Url.IsLocalUrl(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            return RedirectToAction("Index", "Home");
-        }
+        
 
         internal class ChallengeResult : HttpUnauthorizedResult
         {

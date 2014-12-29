@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 using Cares.Commons;
+using Cares.Models.DomainModels;
 using Cares.Models.MenuModels;
 
 namespace Cares.Web.ModelMappers
@@ -31,13 +32,34 @@ namespace Cares.Web.ModelMappers
            return source.Menu.PermissionKey;
         }
 
-        public static MenuRightClaims CreateMenuRightClaims(this MenuRight source)
+        public static MenuRight CreateFrom(this MenuRight source)
         {
-            return new MenuRightClaims
+            return new MenuRight
             {
                 MenuRightId = source.MenuRightId,
                 MenuId = source.MenuId,
-                RoleId = source.RoleId
+                RoleId = source.RoleId,
+                Menu = source.Menu.CreateFrom()
+            };
+        }
+        /// <summary>
+        /// Mapper used for Converting Menu in Menu Right
+        /// </summary>
+        public static Menu CreateFrom(this Menu source)
+        {
+            return new Menu
+            {
+                IsRootItem = source.IsRootItem,
+                MenuId = source.MenuId,
+                MenuFunction = source.MenuFunction,
+                MenuImagePath = source.MenuImagePath,
+                MenuKey = source.MenuKey,
+                MenuTargetController = source.MenuTargetController,
+                MenuTitle = source.MenuTitle,
+                ParentItem = source.ParentItem != null ? source.ParentItem.CreateFrom() : null,
+                ParentMenuId = source.ParentMenuId,
+                PermissionKey = source.PermissionKey,
+                SortOrder = source.SortOrder
             };
         }
     }

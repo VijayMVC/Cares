@@ -1,6 +1,5 @@
 ﻿
 using System.Security.Claims;
-using Cares.Models.IdentityModels;
 
 namespace Cares.Interfaces.IServices
 {
@@ -13,7 +12,7 @@ namespace Cares.Interfaces.IServices
         /// <summary>
         /// Adds user claims to Identity
         /// </summary>
-        void AddClaimsToIdentity(User user , ClaimsIdentity identity);
+        void AddClaimsToIdentity(long domainKey, string defaultRole, ClaimsIdentity identity);
 
     }
 }
