@@ -187,6 +187,15 @@ namespace Cares.Web.Resources.FleetPool {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can not add any further Fleet Pool under current domain.
+        /// </summary>
+        public static string NoFleetPoolClaim {
+            get {
+                return ResourceManager.GetString("NoFleetPoolClaim", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Operation.
         /// </summary>
         public static string Operation {

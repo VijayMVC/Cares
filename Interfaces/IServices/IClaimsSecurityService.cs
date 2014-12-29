@@ -12,7 +12,7 @@ namespace Cares.Interfaces.IServices
         /// <summary>
         /// Adds user claims to Identity
         /// </summary>
-        void AddClaimsToIdentity(long domainKey, string defaultRole, ClaimsIdentity identity);
+        void AddClaimsToIdentity(long domainKey, string defaultRole, string userName, ClaimsIdentity identity);
 
     }
 }

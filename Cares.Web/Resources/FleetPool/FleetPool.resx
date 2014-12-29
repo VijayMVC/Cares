@@ -159,6 +159,9 @@
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="NoFleetPoolClaim" xml:space="preserve">
+    <value>You can not add any further Fleet Pool under current domain</value>
+  </data>
   <data name="Operation" xml:space="preserve">
     <value>Operation</value>
   </data>

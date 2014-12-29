@@ -150,10 +150,10 @@ namespace Cares.Implementation.Services
                 int numberOfVehiclesByDomainKey = vehicleRepository.GetCountOfVehicleWithDomainKey();
                 var domainLicenseDetailwithDomainKey = ClaimHelper.GetDeserializedClaims<DomainLicenseDetailClaim>(CaresUserClaims.DomainLicenseDetail).FirstOrDefault();
                 if (domainLicenseDetailwithDomainKey != null)
-                    if (domainLicenseDetailwithDomainKey.Vehicles <= numberOfVehiclesByDomainKey)
-                        throw new InvalidOperationException("You can not add any further vehicle under current domain!");
+                    if (domainLicenseDetailwithDomainKey.Vehicles < numberOfVehiclesByDomainKey)
+                        throw new CaresException(Resources.Vehicle.Vehicle.ExceedindDomainLimitForVehicleError);
                     else
-                        throw new InvalidOperationException("Domain License Detail user claim not found!");
+                        throw new InvalidOperationException(Resources.Vehicle.Vehicle.NoDomainLicenseDetailClaim);
 
                 if (vehicleRepository.DuplicateVehiclePlateNumber(vehicle.PlateNumber, vehicle.VehicleId))
                 {

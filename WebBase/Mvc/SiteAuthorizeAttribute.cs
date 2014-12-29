@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Cares.Commons;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Cares.Commons;
-using Newtonsoft.Json;
 
 namespace Cares.WebBase.Mvc
 {
@@ -28,7 +28,7 @@ namespace Cares.WebBase.Mvc
             var userPermissionSet = JsonConvert.DeserializeObject<List<string>>(serializedUserPermissionSet.Value);
             if (!userPermissionSet.Any())
             {
-                throw new InvalidOperationException("No Permission Key ");
+                return false;
             }
             return (userPermissionSet.Any(userPSet => userPSet.Contains(PermissionKey)));
         }

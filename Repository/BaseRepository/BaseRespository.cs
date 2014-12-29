@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 using Cares.Commons;
+using Cares.ExceptionHandling;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
 using Microsoft.Practices.Unity;
@@ -141,15 +142,12 @@ namespace Cares.Repository.BaseRepository
         /// </summary>        
         public long UserDomainKey
         {
-
             get
             {
                 Claim domainKeyClaim = ClaimHelper.GetClaimToString(CaresUserClaims.UserDomainKey);
                 if (domainKeyClaim==null)
                 {
-                  //  var c = HttpContext.Current.Session["UserDomainKey"];
-                  //  return Convert.ToInt64(c);
-                    throw new InvalidOperationException("Domain-Key claim not found.");
+                    throw new InvalidOperationException("Domain-Key claim not found!");
                 }
                 return Convert.ToInt64(domainKeyClaim.Value);
             }
@@ -164,10 +162,9 @@ namespace Cares.Repository.BaseRepository
                 Claim domainKeyClaim = ClaimHelper.GetClaimToString(CaresUserClaims.Name);
                 if (domainKeyClaim == null)
                 {
-                    throw new InvalidOperationException("User Name claim not found.");
+                    throw new InvalidOperationException("User Domain Name claim not found!");
                 }
                 return (domainKeyClaim.Value);
-               // return HttpContext.Current.Session["LoggedInUser"] != null ? HttpContext.Current.Session["LoggedInUser"].ToString() : "cares";
             }
         }
 

@@ -1783,10 +1783,10 @@ namespace Cares.Implementation.Services
             int numberOfRAsByDomainKey = rentalAgreementRepository.GetCountOfRAswithDomainKey();
             var domainLicenseDetailwithDomainKey = ClaimHelper.GetDeserializedClaims<DomainLicenseDetailClaim>(CaresUserClaims.DomainLicenseDetail).FirstOrDefault();
             if (domainLicenseDetailwithDomainKey != null)
-                if (domainLicenseDetailwithDomainKey.RaPerMonth <= numberOfRAsByDomainKey)
-                    throw new InvalidOperationException("You can not add any further Rental Agreement under current domain!");
+                if (domainLicenseDetailwithDomainKey.RaPerMonth < numberOfRAsByDomainKey)
+                    throw new CaresException(Resources.RentalAgreement.RentalAgreement.ExceedingDomainLimitForRAError);
                 else
-                    throw new InvalidOperationException("Domain License Detail user claim not found!");
+                    throw new InvalidOperationException(Resources.RentalAgreement.RentalAgreement.NoDomainLicenseDetailClaim);
 
             // Generate Bill
             raMain = GenerateBill(raMain);

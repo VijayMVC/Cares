@@ -117,13 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DuplicatePlateNumber" xml:space="preserve">
-    <value>نفس السيارة مع رقم لوحة موجود بالفعل.</value>
-  </data>
-  <data name="ExceedindDomainLimitForVehicleError" xml:space="preserve">
-    <value>لا يمكنك إضافة أي مركبة أخرى في إطار المجال الحالي </value>
+  <data name="ExceedingDomainLimitForEmployeeError" xml:space="preserve">
+    <value>You can not add any further Employee under current domain!</value>
   </data>
   <data name="NoDomainLicenseDetailClaim" xml:space="preserve">
-    <value>الترخيص التفاصيل مطالبة المستخدم المجال لم يتم العثور على</value>
+    <value>Domain License Detail user claim not found</value>
   </data>
 </root>

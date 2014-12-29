@@ -61,6 +61,24 @@ namespace Cares.Implementation.Resources.Organization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can not add any further workplace under current domain!.
+        /// </summary>
+        public static string ExceedingDomainLimitForWpError {
+            get {
+                return ResourceManager.GetString("ExceedingDomainLimitForWpError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Domain License Detail user claim not found.
+        /// </summary>
+        public static string NoDomainLicenseDetailClaim {
+            get {
+                return ResourceManager.GetString("NoDomainLicenseDetailClaim", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Workplace is associated with other workplace.
         /// </summary>
         public static string WorkplaceIsAssociatedwWithOtherWorkplace {

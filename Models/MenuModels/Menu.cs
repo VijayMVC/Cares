@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Cares.Models.MenuModels;
 
-namespace Cares.Models.DomainModels
+namespace Cares.Models.MenuModels
 {
     /// <summary>
     /// MainMenu class for dynamic menu population from database

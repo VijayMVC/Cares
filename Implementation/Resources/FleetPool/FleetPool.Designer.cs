@@ -61,6 +61,15 @@ namespace Cares.Implementation.Resources.FleetPool {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can not add any further Fleet Pool under current domain.
+        /// </summary>
+        public static string ExceedingDomainLimitForFleetPoolError {
+            get {
+                return ResourceManager.GetString("ExceedingDomainLimitForFleetPoolError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fleet Pool is associated with Operation Work Place .
         /// </summary>
         public static string FleetPoolIsAssociatedWithOperationWorkPlaceError {
@@ -75,6 +84,15 @@ namespace Cares.Implementation.Resources.FleetPool {
         public static string FleetPoolWithSameCodeAlreadyExistsError {
             get {
                 return ResourceManager.GetString("FleetPoolWithSameCodeAlreadyExistsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Domain License Detail user claim not found.
+        /// </summary>
+        public static string NoDomainLicenseDetailClaim {
+            get {
+                return ResourceManager.GetString("NoDomainLicenseDetailClaim", resourceCulture);
             }
         }
     }

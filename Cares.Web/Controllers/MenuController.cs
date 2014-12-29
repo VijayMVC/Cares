@@ -29,19 +29,12 @@ namespace Cares.Web.Controllers
         /// </summary>
         [ChildActionOnly]
         public ActionResult LoadMenu()
-        {
-            //Claim menuItemClaim = ClaimHelper.GetClaimToString(CaresUserClaims.UserMenu);
-            //if (menuItemClaim == null)
-            //{
-            //    return View(new MenuViewModel());
-            //}
+        {            
             User user = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByEmailAsync(User.Identity.Name).Result;
             IList<MenuRight> menuItems;
 
             if (user.Roles == null || user.Roles.Count < 1)
                 return View(new MenuViewModel());
-
-
             // ReSharper disable PossibleNullReferenceException
             if (user.Roles.Any(roles => roles.Name == CaresApplicationRoles.SystemAdministrator))
             {
@@ -55,9 +48,8 @@ namespace Cares.Web.Controllers
             {
                 menuItems = user.Roles.FirstOrDefault().MenuRights.ToList();
             }
-            // ReSharper enable PossibleNullReferenceException
-
-            MenuViewModel menuVM = new MenuViewModel
+            // ReSharper disable once InconsistentNaming
+            var menuVM = new MenuViewModel
             {
                 MenuRights = menuItems,
                 MenuHeaders = menuItems.Where(menu => menu.Menu.IsRootItem)

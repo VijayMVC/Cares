@@ -218,10 +218,10 @@ namespace Cares.Implementation.Services
                 int numberOfworkplacesByDomainKey = workplaceRepository.GetCountOfOperationWorkplaceByDomainKey();
                 var domainLicenseDetailwithDomainKey = ClaimHelper.GetDeserializedClaims<DomainLicenseDetailClaim>(CaresUserClaims.DomainLicenseDetail).FirstOrDefault();
                 if (domainLicenseDetailwithDomainKey != null)
-                    if (domainLicenseDetailwithDomainKey.Branches <= numberOfworkplacesByDomainKey)
-                        throw new InvalidOperationException("You can not add any further workplace under current domain!");
+                    if (domainLicenseDetailwithDomainKey.Branches < numberOfworkplacesByDomainKey)
+                        throw new CaresException(Resources.Organization.Workplace.ExceedingDomainLimitForWpError);
                     else
-                        throw new InvalidOperationException("Domain License Detail user claim not found!");
+                        throw new InvalidOperationException(Resources.Organization.Workplace.NoDomainLicenseDetailClaim);
 
                 dbWorkPlace = workplaceRepository.Create();
                 SetWorkPlaceProperties(workPlaceRequest, dbWorkPlace);

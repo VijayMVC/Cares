@@ -1,12 +1,9 @@
-﻿using System.Globalization;
-using System.Linq;
-using Cares.Commons;
+﻿using Cares.Commons;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.CommonTypes;
 using Cares.Models.DomainModels;
-using Cares.Models.IdentityModels;
-using System.Collections.Generic;
+using System.Globalization;
 using System.Security.Claims;
 
 namespace Cares.Implementation.Services
@@ -60,12 +57,12 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Add claims to the identity
         /// </summary>
-        public void AddClaimsToIdentity(long domainKey, string defaultRoleName, ClaimsIdentity identity)
+        public void AddClaimsToIdentity(long domainKey, string defaultRoleName, string userName, ClaimsIdentity identity)
         {
             ClaimHelper.AddClaim(new Claim(CaresUserClaims.UserDomainKey, domainKey.ToString(CultureInfo.InvariantCulture)), identity); //domainkey claim
             ClaimHelper.AddClaim(new Claim(CaresUserClaims.Role, defaultRoleName), identity); // role claim
+            ClaimHelper.AddClaim(new Claim(CaresUserClaims.Name, userName), identity); // user name
             AddDomainLicenseDetailClaims(domainKey, identity); // domain lecense detail claim
-            //ClaimHelper.SetCurrentPrincipal(identity);
         }
         #endregion
     }

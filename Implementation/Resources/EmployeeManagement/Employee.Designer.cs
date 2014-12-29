@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Cares.Implementation.Resources.Vehicle {
+namespace Cares.Implementation.Resources.EmployeeManagement {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace Cares.Implementation.Resources.Vehicle {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Vehicle {
+    public class Employee {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Vehicle() {
+        internal Employee() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Cares.Implementation.Resources.Vehicle {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Cares.Implementation.Resources.Vehicle.Vehicle", typeof(Vehicle).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Cares.Implementation.Resources.EmployeeManagement.Employee", typeof(Employee).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,20 +61,11 @@ namespace Cares.Implementation.Resources.Vehicle {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vehicle with same plate number already exists..
+        ///   Looks up a localized string similar to You can not add any further Employee under current domain!.
         /// </summary>
-        public static string DuplicatePlateNumber {
+        public static string ExceedingDomainLimitForEmployeeError {
             get {
-                return ResourceManager.GetString("DuplicatePlateNumber", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You can not add any further vehicle under current domain!.
-        /// </summary>
-        public static string ExceedindDomainLimitForVehicleError {
-            get {
-                return ResourceManager.GetString("ExceedindDomainLimitForVehicleError", resourceCulture);
+                return ResourceManager.GetString("ExceedingDomainLimitForEmployeeError", resourceCulture);
             }
         }
         

@@ -1,8 +1,8 @@
-﻿using System.Data.Entity;
-using Cares.Interfaces.Repository;
-using Cares.Models.DomainModels;
+﻿using Cares.Interfaces.Repository;
+using Cares.Models.MenuModels;
 using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
+using System.Data.Entity;
 
 namespace Cares.Repository.Repositories
 {

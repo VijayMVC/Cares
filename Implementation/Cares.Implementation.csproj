@@ -252,6 +252,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DesignationGrade.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\EmployeeManagement\Employee.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Employee.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\EmployeeManagement\EmpStatus.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -840,6 +845,11 @@
     <EmbeddedResource Include="Resources\EmployeeManagement\DesignationGrade.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>DesignationGrade.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\EmployeeManagement\Employee.ar.resx" />
+    <EmbeddedResource Include="Resources\EmployeeManagement\Employee.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Employee.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\EmployeeManagement\EmpStatus.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

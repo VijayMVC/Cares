@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using Cares.Commons;
+﻿using Cares.Commons;
+using Cares.ExceptionHandling;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
+using Cares.Models.CommonTypes;
 using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Models.ResponseModels;
-using Cares.Models.CommonTypes;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Cares.Implementation.Services
 {
@@ -215,11 +215,10 @@ namespace Cares.Implementation.Services
                 int numberOfEmployessByDomainKey = employeeRepository.GetNumberOfEmployessByDomainKey();
                 var domainLicenseDetailwithDomainKey = ClaimHelper.GetDeserializedClaims<DomainLicenseDetailClaim>(CaresUserClaims.DomainLicenseDetail).FirstOrDefault();
                 if (domainLicenseDetailwithDomainKey != null)
-                    if (domainLicenseDetailwithDomainKey.Employee <= numberOfEmployessByDomainKey)
-                        throw new InvalidOperationException("You can not add any further Employee under current domain!");
+                    if (domainLicenseDetailwithDomainKey.Employee < numberOfEmployessByDomainKey)
+                        throw new CaresException(Resources.Vehicle.Vehicle.ExceedindDomainLimitForVehicleError);
                 else
-                throw new InvalidOperationException("Domain License Detail user claim not found!");
-
+                        throw new InvalidOperationException(Resources.Vehicle.Vehicle.NoDomainLicenseDetailClaim);
                 employee.UserDomainKey = employeeRepository.UserDomainKey;
                 employee.IsActive = true;
                 employee.IsReadOnly = employee.IsPrivate = employee.IsDeleted = false;

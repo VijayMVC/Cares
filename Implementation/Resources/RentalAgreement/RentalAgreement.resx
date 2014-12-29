@@ -183,4 +183,10 @@
   <data name="VehicleNotFound" xml:space="preserve">
     <value>Vehicle with Id {0} not found.</value>
   </data>
+  <data name="ExceedingDomainLimitForRAError" xml:space="preserve">
+    <value>You can not add any further Rental Agreement under current domain!</value>
+  </data>
+  <data name="NoDomainLicenseDetailClaim" xml:space="preserve">
+    <value>Domain License Detail user claim not found</value>
+  </data>
 </root>

@@ -157,16 +157,10 @@ namespace IdentitySample.Controllers
             {
                 case SignInStatus.Success:
                     {
-                        claimsSecurityService.AddClaimsToIdentity(user.UserDomainKey, user.Roles.FirstOrDefault().Name, identity);
+                        claimsSecurityService.AddClaimsToIdentity(user.UserDomainKey, user.Roles.FirstOrDefault().Name, user.UserName, identity);
                         SetUserPermissions(user, identity);  
-                        //identity.AddClaim((new Claim(CaresUserClaims.UserDomainKey, user.UserDomainKey.ToString())));
-                        //Thread.CurrentPrincipal = new ClaimsPrincipal(identity);
-                        //HttpContext.User = Thread.CurrentPrincipal;
-                        AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, identity);
-                        //var context = Request.GetOwinContext();
-                        //var authenticationManager = context.Authentication;
-                        //authenticationManager.SignIn(new AuthenticationProperties() { }, identity);
-                        return RedirectToLocal(returnUrl);//RedirectToAction("Document", "Home", new { area = "BusinessPartner" });
+                        AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, identity);                       
+                        return RedirectToLocal(returnUrl);
                     }
                 case SignInStatus.LockedOut:
                     return View("Lockout");

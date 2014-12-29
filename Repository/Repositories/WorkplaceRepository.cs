@@ -1,5 +1,6 @@
 ﻿using Cares.Interfaces.Repository;
 using Cares.Models.Common;
+using Cares.Models.CommonTypes;
 using Cares.Models.DomainModels;
 using Cares.Models.RequestModels;
 using Cares.Repository.BaseRepository;
@@ -129,7 +130,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public int GetCountOfOperationWorkplaceByDomainKey()
         {
-            return DbSet.Count(workplace => workplace.UserDomainKey == UserDomainKey);
+            return DbSet.Count(workplace => workplace.UserDomainKey == UserDomainKey && workplace.WorkPlaceType.WorkPlaceTypeCode== DepartmentTypes.Sales);
         }
         #endregion
     }

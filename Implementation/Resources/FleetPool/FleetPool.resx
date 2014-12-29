@@ -117,10 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ExceedingDomainLimitForFleetPoolError" xml:space="preserve">
+    <value>You can not add any further Fleet Pool under current domain</value>
+  </data>
   <data name="FleetPoolIsAssociatedWithOperationWorkPlaceError" xml:space="preserve">
     <value>Fleet Pool is associated with Operation Work Place </value>
   </data>
   <data name="FleetPoolWithSameCodeAlreadyExistsError" xml:space="preserve">
     <value>Fleet Pool with same code already exists</value>
+  </data>
+  <data name="NoDomainLicenseDetailClaim" xml:space="preserve">
+    <value>Domain License Detail user claim not found</value>
   </data>
 </root>

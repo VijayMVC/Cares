@@ -159,6 +159,9 @@
   <data name="Name" xml:space="preserve">
     <value>اسم</value>
   </data>
+  <data name="NoFleetPoolClaim" xml:space="preserve">
+    <value>لا يمكنك إضافة أي أسطول بركة أخرى بموجب المجال الحالي</value>
+  </data>
   <data name="Operation" xml:space="preserve">
     <value>عملية</value>
   </data>

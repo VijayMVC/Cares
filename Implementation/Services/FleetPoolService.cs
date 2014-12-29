@@ -112,11 +112,10 @@ namespace Cares.Implementation.Services
                      int numberOfFleetPoolsByDomainKey = fleetPoolRepository.GetCountOfFleetPoolWithDomainKey();
                      var domainLicenseDetailwithDomainKey = ClaimHelper.GetDeserializedClaims<DomainLicenseDetailClaim>(CaresUserClaims.DomainLicenseDetail).FirstOrDefault();
                      if (domainLicenseDetailwithDomainKey != null)
-                         if (domainLicenseDetailwithDomainKey.FleetPools <= numberOfFleetPoolsByDomainKey)
-                             throw new InvalidOperationException("You can not add any further Fleet Pool under current domain!");
+                         if (domainLicenseDetailwithDomainKey.FleetPools < numberOfFleetPoolsByDomainKey)
+                             throw new CaresException(Resources.FleetPool.FleetPool.ExceedingDomainLimitForFleetPoolError);
                          else
-                             throw new InvalidOperationException("Domain License Detail user claim not found!");
-
+                             throw new InvalidOperationException(Resources.FleetPool.FleetPool.NoDomainLicenseDetailClaim);
                      fleetPool.IsActive = true;
                      fleetPool.IsDeleted = fleetPool.IsPrivate = fleetPool.IsReadOnly = false;
                      fleetPool.RecLastUpdatedBy = fleetPool.RecCreatedBy = fleetPoolRepository.LoggedInUserIdentity;

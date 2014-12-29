@@ -117,10 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ExceedingDomainLimitForFleetPoolError" xml:space="preserve">
+    <value>لا يمكنك إضافة أي أسطول بركة أخرى بموجب المجال الحالي</value>
+  </data>
   <data name="FleetPoolIsAssociatedWithOperationWorkPlaceError" xml:space="preserve">
     <value>ويرتبط أسطول بركة مع عملية مكان العمل</value>
   </data>
   <data name="FleetPoolWithSameCodeAlreadyExistsError" xml:space="preserve">
     <value>أسطول بركة مع نفس رمز موجود بالفعل</value>
+  </data>
+  <data name="NoDomainLicenseDetailClaim" xml:space="preserve">
+    <value>الترخيص التفاصيل مطالبة المستخدم المجال لم يتم العثور على</value>
   </data>
 </root>
