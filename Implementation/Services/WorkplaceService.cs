@@ -215,13 +215,17 @@ namespace Cares.Implementation.Services
             #region ADD
             else
             {
-                int numberOfworkplacesByDomainKey = workplaceRepository.GetCountOfOperationWorkplaceByDomainKey();
+                var numberOfExistedworkplacesByDomainKey = workplaceRepository.GetCountOfOperationWorkplaceByDomainKey();
                 var domainLicenseDetailwithDomainKey = ClaimHelper.GetDeserializedClaims<DomainLicenseDetailClaim>(CaresUserClaims.DomainLicenseDetail).FirstOrDefault();
                 if (domainLicenseDetailwithDomainKey != null)
-                    if (domainLicenseDetailwithDomainKey.Branches < numberOfworkplacesByDomainKey)
+                    if (domainLicenseDetailwithDomainKey.Branches <= numberOfExistedworkplacesByDomainKey)
+                    {
                         throw new CaresException(Resources.Organization.Workplace.ExceedingDomainLimitForWpError);
+                    }
                     else
+                    {
                         throw new InvalidOperationException(Resources.Organization.Workplace.NoDomainLicenseDetailClaim);
+                    }
 
                 dbWorkPlace = workplaceRepository.Create();
                 SetWorkPlaceProperties(workPlaceRequest, dbWorkPlace);

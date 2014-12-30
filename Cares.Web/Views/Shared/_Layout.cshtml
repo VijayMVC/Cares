@@ -1,4 +1,6 @@
 ﻿@using Microsoft.AspNet.Identity
+@using Cares.Commons
+
 <!DOCTYPE html>
 <html lang="@Cares.Web.Helper.CultureHelper.GetCurrentNeutralCulture()" dir="@(Cares.Web.Helper.CultureHelper.IsRighToLeft() ? "rtl" : "ltr")">
 <head>
@@ -69,12 +71,17 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <span class="username username-hide-on-mobile">
                                     Hi! @User.Identity.GetUserName()
+                                    <span>[</span>
                                     <span style="color: hsl(46, 49%, 45%)">
-                                    
+                                        @if (@ClaimHelper.GetClaimToString(CaresUserClaims.Role) != null)
+                                        {
+                                            @ClaimHelper.GetClaimToString(CaresUserClaims.Role).Value
+                                        }
+                                        </span>
+                                        <span>]</span>
                                     </span>
-                                </span>
-                                <i class="fa fa-angle-down"></i>
-                            </a>
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
                         }
                         <ul class="dropdown-menu">
                             <li>

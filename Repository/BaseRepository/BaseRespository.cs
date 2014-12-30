@@ -1,6 +1,4 @@
-﻿using System.Security.Claims;
-using Cares.Commons;
-using Cares.ExceptionHandling;
+﻿using Cares.Commons;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
 using Microsoft.Practices.Unity;
@@ -12,6 +10,7 @@ using System.Data.Entity.Migrations;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Claims;
 
 namespace Cares.Repository.BaseRepository
 {
@@ -177,6 +176,5 @@ namespace Cares.Repository.BaseRepository
         }
 
         #endregion
-
     }
 }

@@ -21,10 +21,11 @@ namespace Cares.WebBase.Mvc
         /// </summary>
         private bool IsAuthorized()
         {
-           
             Claim serializedUserPermissionSet = ClaimHelper.GetClaimToString(CaresUserClaims.UserPermissionSet);
-            if(serializedUserPermissionSet == null)
+            if (serializedUserPermissionSet == null)
+            {
                 return false;
+            }
             var userPermissionSet = JsonConvert.DeserializeObject<List<string>>(serializedUserPermissionSet.Value);
             if (!userPermissionSet.Any())
             {

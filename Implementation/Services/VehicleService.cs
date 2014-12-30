@@ -147,13 +147,17 @@ namespace Cares.Implementation.Services
 
             if (vehicleDbVersion == null)
             {
-                int numberOfVehiclesByDomainKey = vehicleRepository.GetCountOfVehicleWithDomainKey();
+                var numberOfExistedVehiclesByDomainKey = vehicleRepository.GetCountOfVehicleWithDomainKey();
                 var domainLicenseDetailwithDomainKey = ClaimHelper.GetDeserializedClaims<DomainLicenseDetailClaim>(CaresUserClaims.DomainLicenseDetail).FirstOrDefault();
                 if (domainLicenseDetailwithDomainKey != null)
-                    if (domainLicenseDetailwithDomainKey.Vehicles < numberOfVehiclesByDomainKey)
+                    if (domainLicenseDetailwithDomainKey.Vehicles <= numberOfExistedVehiclesByDomainKey)
+                    {
                         throw new CaresException(Resources.Vehicle.Vehicle.ExceedindDomainLimitForVehicleError);
+                    }
                     else
+                    {
                         throw new InvalidOperationException(Resources.Vehicle.Vehicle.NoDomainLicenseDetailClaim);
+                    }
 
                 if (vehicleRepository.DuplicateVehiclePlateNumber(vehicle.PlateNumber, vehicle.VehicleId))
                 {

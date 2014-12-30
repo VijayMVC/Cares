@@ -1780,13 +1780,17 @@ namespace Cares.Implementation.Services
         /// </summary>
         public RaMain SaveRentalAgreement(RaMain raMain)
         {
-            int numberOfRAsByDomainKey = rentalAgreementRepository.GetCountOfRAswithDomainKey();
+            var numberOfExistedRAsByDomainKey = rentalAgreementRepository.GetCountOfRAswithDomainKey();
             var domainLicenseDetailwithDomainKey = ClaimHelper.GetDeserializedClaims<DomainLicenseDetailClaim>(CaresUserClaims.DomainLicenseDetail).FirstOrDefault();
             if (domainLicenseDetailwithDomainKey != null)
-                if (domainLicenseDetailwithDomainKey.RaPerMonth < numberOfRAsByDomainKey)
+                if (domainLicenseDetailwithDomainKey.RaPerMonth <= numberOfExistedRAsByDomainKey)
+                {
                     throw new CaresException(Resources.RentalAgreement.RentalAgreement.ExceedingDomainLimitForRAError);
+                }
                 else
+                {
                     throw new InvalidOperationException(Resources.RentalAgreement.RentalAgreement.NoDomainLicenseDetailClaim);
+                }
 
             // Generate Bill
             raMain = GenerateBill(raMain);

@@ -50,28 +50,25 @@ namespace IdentitySample.Controllers
         /// </summary>
         private void SetUserPermissions(User user, ClaimsIdentity identity)
         {
-            //User userResult = UserManager.FindByEmail(userEmail);
-            //// If Invalid Attempt
-            //if (userResult == null)
-            //{
-            //    return;
-            //}
-            IList<UserRole> aspUserroles = user.Roles.ToList();
-            // If No role assigned
-            if (aspUserroles.Count == 0)
+            IList<MenuRight> menuRights;
+            if (user.Roles == null || user.Roles.Count < 1)
             {
                 return;
             }
-            IEnumerable<MenuRight> permissionSet = menuRightService.FindMenuItemsByRoleId(aspUserroles[0].Id).ToList();
-            
-            //IEnumerable<MenuRight> UserMenuClaims = permissionSet.Select(ps => ps.CreateFrom());
-            //ClaimHelper.AddClaim(new Claim(CaresUserClaims.UserMenu, JsonConvert.SerializeObject(UserMenuClaims)), identity);
-
-             IEnumerable<string> PermissionKeyClaims=permissionSet.Select(menuRight => menuRight.CreatePermissionKey());
+            if (user.Roles.Any(roles => roles.Name == CaresApplicationRoles.SystemAdministrator))
+            {
+                menuRights = user.Roles.FirstOrDefault(roles => roles.Name == CaresApplicationRoles.SystemAdministrator).MenuRights.ToList();
+            }
+            else if (user.Roles.Any(roles => roles.Name == CaresApplicationRoles.Admin))
+            {
+                menuRights = user.Roles.FirstOrDefault(roles => roles.Name == CaresApplicationRoles.Admin).MenuRights.ToList();
+            }
+            else
+            {
+                menuRights = user.Roles.FirstOrDefault().MenuRights.ToList();
+            }
+             IEnumerable<string> PermissionKeyClaims=menuRights.Select(menuRight => menuRight.CreatePermissionKey());
              ClaimHelper.AddClaim(new Claim(CaresUserClaims.UserPermissionSet, JsonConvert.SerializeObject(PermissionKeyClaims)), identity);
-
-          //  Session["UserMenu"] = permissionSet;
-           // Session["UserPermissionSet"] = permissionSet.Select(menuRight => menuRight.Menu.PermissionKey);
         }
         #endregion
 
@@ -139,7 +136,6 @@ namespace IdentitySample.Controllers
             User user = await UserManager.FindByNameAsync(model.Email);
             ClaimsIdentity identity = await user.GenerateUserIdentityAsync(UserManager, DefaultAuthenticationTypes.ApplicationCookie);
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-            //ClaimsIdentity identity = SignInManager.CreateUserIdentity(user);
             if (user != null)
             {
                 if (!await UserManager.IsEmailConfirmedAsync(user.Id))
@@ -148,11 +144,9 @@ namespace IdentitySample.Controllers
                     return View();
                 }
             }
-
-            
             // This doen't count login failures towards lockout only two factor authentication
             // To enable password failures to trigger lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe,  shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -163,12 +157,19 @@ namespace IdentitySample.Controllers
                         return RedirectToLocal(returnUrl);
                     }
                 case SignInStatus.LockedOut:
+                {
                     return View("Lockout");
+                }
                 case SignInStatus.RequiresVerification:
+                {
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl });
+                }
                 case SignInStatus.Failure:
+
                 default:
+                {
                     ModelState.AddModelError("", "Invalid login attempt.");
+                }
                     return View(model);
             }
         }
@@ -252,7 +253,7 @@ namespace IdentitySample.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email /*, UserDomainKey = Session["UserDomainKey"] != null ? Convert.ToInt64(Session["UserDomainKey"]) : 0 */};
+                var user = new User { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

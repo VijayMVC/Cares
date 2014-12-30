@@ -1,4 +1,5 @@
-﻿using Cares.Commons;
+﻿using System;
+using Cares.Commons;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.CommonTypes;
@@ -30,7 +31,7 @@ namespace Cares.Implementation.Services
 
 
         /// <summary>
-        /// Add Organisation Claims
+        /// Add Domain License Detail Claims
         /// </summary>
         private void AddDomainLicenseDetailClaims(long domainKey, ClaimsIdentity identity)
         {
@@ -52,17 +53,22 @@ namespace Cares.Implementation.Services
                     typeof (DomainLicenseDetailClaim).AssemblyQualifiedName);
                     ClaimHelper.AddClaim(claim, identity);
             }
+            else
+            {
+                throw new InvalidOperationException("No Domain License Detail data found!");
+            }
         }
         
         /// <summary>
-        /// Add claims to the identity
+        /// Add  general claims 
         /// </summary>
         public void AddClaimsToIdentity(long domainKey, string defaultRoleName, string userName, ClaimsIdentity identity)
         {
-            ClaimHelper.AddClaim(new Claim(CaresUserClaims.UserDomainKey, domainKey.ToString(CultureInfo.InvariantCulture)), identity); //domainkey claim
-            ClaimHelper.AddClaim(new Claim(CaresUserClaims.Role, defaultRoleName), identity); // role claim
-            ClaimHelper.AddClaim(new Claim(CaresUserClaims.Name, userName), identity); // user name
-            AddDomainLicenseDetailClaims(domainKey, identity); // domain lecense detail claim
+            ClaimHelper.AddClaim(new Claim(CaresUserClaims.UserDomainKey, domainKey.
+                ToString(CultureInfo.InvariantCulture)), identity);                              //domainkey claim
+            ClaimHelper.AddClaim(new Claim(CaresUserClaims.Role, defaultRoleName), identity);   // role claim
+            ClaimHelper.AddClaim(new Claim(CaresUserClaims.Name, userName), identity);         // user name claim
+            AddDomainLicenseDetailClaims(domainKey, identity);                                // domain license detail claim
         }
         #endregion
     }

@@ -32,9 +32,10 @@ namespace Cares.Web.Controllers
         {            
             User user = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByEmailAsync(User.Identity.Name).Result;
             IList<MenuRight> menuItems;
-
             if (user.Roles == null || user.Roles.Count < 1)
+            {
                 return View(new MenuViewModel());
+            }
             // ReSharper disable PossibleNullReferenceException
             if (user.Roles.Any(roles => roles.Name == CaresApplicationRoles.SystemAdministrator))
             {

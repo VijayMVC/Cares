@@ -203,8 +203,6 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Add/Edit Employee
         /// </summary>
-        /// <param name="employee"></param>
-        /// <returns></returns>
         public Employee SaveEmployee(Employee employee)
         {
             Employee empDbVersion = employeeRepository.Find(employee.EmployeeId);
@@ -212,13 +210,18 @@ namespace Cares.Implementation.Services
             #region Add
             if (empDbVersion == null)
             {
-                int numberOfEmployessByDomainKey = employeeRepository.GetNumberOfEmployessByDomainKey();
+                var numberOfExistedEmployessByDomainKey = employeeRepository.GetNumberOfEmployessByDomainKey();
                 var domainLicenseDetailwithDomainKey = ClaimHelper.GetDeserializedClaims<DomainLicenseDetailClaim>(CaresUserClaims.DomainLicenseDetail).FirstOrDefault();
                 if (domainLicenseDetailwithDomainKey != null)
-                    if (domainLicenseDetailwithDomainKey.Employee < numberOfEmployessByDomainKey)
-                        throw new CaresException(Resources.Vehicle.Vehicle.ExceedindDomainLimitForVehicleError);
-                else
-                        throw new InvalidOperationException(Resources.Vehicle.Vehicle.NoDomainLicenseDetailClaim);
+                    if (domainLicenseDetailwithDomainKey.Employee <= numberOfExistedEmployessByDomainKey)
+                    {
+                        throw new CaresException(
+                            Resources.EmployeeManagement.Employee.ExceedingDomainLimitForEmployeeError);
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException(Resources.EmployeeManagement.Employee.NoDomainLicenseDetailClaim);
+                    }
                 employee.UserDomainKey = employeeRepository.UserDomainKey;
                 employee.IsActive = true;
                 employee.IsReadOnly = employee.IsPrivate = employee.IsDeleted = false;

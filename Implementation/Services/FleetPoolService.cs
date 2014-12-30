@@ -109,13 +109,18 @@ namespace Cares.Implementation.Services
              {
                  if (fleetPoolDbVersion == null) //Add Case
                  {
-                     int numberOfFleetPoolsByDomainKey = fleetPoolRepository.GetCountOfFleetPoolWithDomainKey();
+                     var numberOfExistedFleetPoolsByDomainKey = fleetPoolRepository.GetCountOfFleetPoolWithDomainKey();
                      var domainLicenseDetailwithDomainKey = ClaimHelper.GetDeserializedClaims<DomainLicenseDetailClaim>(CaresUserClaims.DomainLicenseDetail).FirstOrDefault();
                      if (domainLicenseDetailwithDomainKey != null)
-                         if (domainLicenseDetailwithDomainKey.FleetPools < numberOfFleetPoolsByDomainKey)
-                             throw new CaresException(Resources.FleetPool.FleetPool.ExceedingDomainLimitForFleetPoolError);
+                         if (domainLicenseDetailwithDomainKey.FleetPools <= numberOfExistedFleetPoolsByDomainKey)
+                         {
+                             throw new CaresException(
+                                 Resources.FleetPool.FleetPool.ExceedingDomainLimitForFleetPoolError);
+                         }
                          else
+                         {
                              throw new InvalidOperationException(Resources.FleetPool.FleetPool.NoDomainLicenseDetailClaim);
+                         }
                      fleetPool.IsActive = true;
                      fleetPool.IsDeleted = fleetPool.IsPrivate = fleetPool.IsReadOnly = false;
                      fleetPool.RecLastUpdatedBy = fleetPool.RecCreatedBy = fleetPoolRepository.LoggedInUserIdentity;

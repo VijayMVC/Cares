@@ -3,9 +3,8 @@ using System.Security.Claims;
 
 namespace Cares.Interfaces.IServices
 {
-
     /// <summary>
-    /// Service that adds security claims to the 
+    /// Service that adds security claims to the identity
     /// </summary>
     public interface IClaimsSecurityService
     {

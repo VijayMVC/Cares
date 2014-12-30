@@ -36,19 +36,13 @@ namespace IdentitySample
                         validateInterval: TimeSpan.FromMinutes(30),
                         regenerateIdentity: (manager, user) =>
                         {
-                            var identity = user.GenerateUserIdentityAsync(manager, DefaultAuthenticationTypes.ApplicationCookie);
-                            //Add claims
-                            //SetUserPermissions(user, identity.Result);
-                            //SetDomainLicenseClaims(identity.Result, user);
-
+                            var identity = user.GenerateUserIdentityAsync(manager, DefaultAuthenticationTypes.ApplicationCookie);                         
                             return identity;
                         })
                 }
             });
            // identity.Result.AddClaim(new Claim(ClaimTypes.Country, "Pakistan"));
         
-          
-            
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.
