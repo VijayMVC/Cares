@@ -287,7 +287,11 @@ namespace IdentitySample.Controllers
                 return View("Error");
             }
             var result = await UserManager.ConfirmEmailAsync(userId, code);
-            return View(result.Succeeded ? "ConfirmEmail" : "Error");
+            if (result.Succeeded)
+            {
+                return View("Login");
+            }
+            return View("Error");
         }
 
         //

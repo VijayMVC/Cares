@@ -1,6 +1,7 @@
-﻿using Cares.Implementation.Identity;
+﻿using System.Configuration;
+using System.Linq;
+using Cares.Implementation.Identity;
 using Cares.Interfaces.IServices;
-using Cares.Models.DomainModels;
 using Cares.Models.IdentityModels;
 using Cares.Models.IdentityModels.ViewModels;
 using Microsoft.AspNet.Identity;
@@ -65,32 +66,39 @@ namespace Cares.WebApi.Areas.Api.Controllers
                     Email = model.Email, 
                     UserDomainKey = Convert.ToInt64(userDomainKey)+1   //giving the Max+1 domain key
                 };
-                User addedUser = AddUser(user, model);
+                string errorString;
+                User addedUser = AddUser(user, model, out errorString);
                 if (addedUser != null)
                 {
                     registerUserService.AddLicenseDetail(model, userDomainKey);
                     return await SendEmailToUser(addedUser, model);
                 }
-                return "Failed to add user.Something bad happended!";
+                if (!string.IsNullOrEmpty(errorString))
+                {
+                    throw new Exception(errorString);
+                }                
             }
-            return "Given Data is corrupted!";
+            throw new Exception("Failed to register. Something bad happended. Please try again later!");
         }
 
         /// <summary>
         /// Add User 
         /// </summary>
-        private User AddUser(User user, RegisterViewModel model)
+        private User AddUser(User user, RegisterViewModel model, out string error)
         {
+            error = string.Empty;
             var result = UserManager.Create(user, model.ConfirmPassword);
             if (result.Succeeded)
             {
-                var addUserToRoleResult =  UserManager.AddToRole(user.Id, model.SelectedRole);
+                var addUserToRoleResult = UserManager.AddToRole(user.Id, model.SelectedRole);
                 if (!addUserToRoleResult.Succeeded)
                 {
-                    throw new InvalidOperationException(string.Format("Failed to add user to role {0}", model.SelectedRole));
+                    throw new InvalidOperationException(string.Format("Failed to add user to role {0}",
+                        model.SelectedRole));
                 }
                 return user;
             }
+            error = result.Errors.FirstOrDefault();
             return null;
         }
 
@@ -99,11 +107,17 @@ namespace Cares.WebApi.Areas.Api.Controllers
         /// </summary>
         private async Task<string> SendEmailToUser(User user, RegisterViewModel model)
         {
-            var code = UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-            var url = new UrlHelper(HttpContext.Current.Request.RequestContext);
-            string action = url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code });
-            await UserManager.SendEmailAsync(model.Email, "Confirm your account", "Please confirm your account by clicking this link : <a href=" + action + ">Confirm account</a> <br>Your Password is:" + model.Password);
-            return url.ToString();
+            Task<string> code = UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+            UrlHelper url = new UrlHelper(HttpContext.Current.Request.RequestContext);
+
+            string action = url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code.Result });
+            if (action != null)
+            {
+                action = action.Replace("/WebApi", "");
+                string complateLine = ConfigurationManager.AppSettings["CaresSiteAddress"] + action;
+                await UserManager.SendEmailAsync(model.Email, "Confirm your account", "Please confirm your account by clicking this link : <a href=" + complateLine + ">Confirm account</a> <br>Your Password is:" + model.Password);
+            }
+            return "Success";
         }
 
         /// <summary>
