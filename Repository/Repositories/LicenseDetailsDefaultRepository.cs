@@ -7,6 +7,9 @@ using Microsoft.Practices.Unity;
 
 namespace Cares.Repository.Repositories
 {
+    /// <summary>
+    /// License Details Default Repository
+    /// </summary>
     public class LicenseDetailsDefaultRepository : BaseRepository<LicenseDetailsDefault>, ILicenseDetailsDefaultRepository
     {
         #region Constructor
@@ -36,7 +39,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public LicenseDetailsDefault GetLicenseDetailsDefaultByTypeId(long licenseTypeId)
         {
-            return DbSet.FirstOrDefault(licenseDetailsDefault => licenseDetailsDefault.UserDomainKey==UserDomainKey && licenseDetailsDefault.LicenseTypeId == licenseTypeId);
+            return DbSet.FirstOrDefault(licenseDetailsDefault => licenseDetailsDefault.LicenseTypeId == licenseTypeId);
         }
         #endregion
     }

@@ -111,6 +111,9 @@
     <Reference Include="RestSharp">
       <HintPath>..\packages\RestSharp.103.4\lib\net4\RestSharp.dll</HintPath>
     </Reference>
+    <Reference Include="SendGrid.SmtpApi">
+      <HintPath>..\CaresAssemblies\SendGrid.SmtpApi.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />

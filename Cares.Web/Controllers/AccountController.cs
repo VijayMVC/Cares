@@ -282,12 +282,17 @@ namespace IdentitySample.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
+            code = HttpUtility.UrlDecode(code);
             if (userId == null || code == null)
             {
                 return View("Error");
             }
             var result = await UserManager.ConfirmEmailAsync(userId, code);
-            return View(result.Succeeded ? "ConfirmEmail" : "Error");
+            if (result.Succeeded)
+            {
+                return View("Login");
+            }
+            return View("Error");
         }
 
         //
