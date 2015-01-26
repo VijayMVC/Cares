@@ -11,7 +11,6 @@
     [RecLastUpdatedBy]   NVARCHAR (100) NOT NULL,
     [RecCreatedBy]       NVARCHAR (100) NOT NULL,
     [RecCreatedDt]       DATETIME       NOT NULL,
-    [UserDomainKey]      BIGINT         NOT NULL,
     CONSTRAINT [PK25] PRIMARY KEY NONCLUSTERED ([CountryID] ASC)
 );
 
