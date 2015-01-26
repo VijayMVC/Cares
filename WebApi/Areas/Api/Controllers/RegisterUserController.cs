@@ -1,9 +1,12 @@
 ﻿using System.Configuration;
+using System.IO;
 using System.Linq;
+using Cares.ExceptionHandling;
 using Cares.Implementation.Identity;
 using Cares.Interfaces.IServices;
 using Cares.Models.IdentityModels;
 using Cares.Models.IdentityModels.ViewModels;
+using Cares.WebBase.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
@@ -31,56 +34,6 @@ namespace Cares.WebApi.Areas.Api.Controllers
             get { return _userManager ?? HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
             set { _userManager = value; }
         }
-
-        #endregion
-        #region Constructor
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public RegisterUserController(IRegisterUserService registerUserService)
-        {
-            if (registerUserService == null)
-            {
-                throw new ArgumentNullException("registerUserService");
-            }
-            this.registerUserService = registerUserService;
-        }
-        #endregion
-        #region Public
-       
-       
-
-        /// <summary>
-        /// Register user using web api
-        /// </summary>        
-        public async Task<string> Post(RegisterViewModel model)
-        {
-            model.SelectedRole = "Admin";
-            if (ModelState.IsValid)
-            {
-                double userDomainKey = registerUserService.GetMaxUserDomainKey();
-                var user = new User
-                {
-                    PhoneNumber = model.PhoneNumber,
-                    UserName = model.Email, 
-                    Email = model.Email, 
-                    UserDomainKey = Convert.ToInt64(userDomainKey)+1   //giving the Max+1 domain key
-                };
-                string errorString;
-                User addedUser = AddUser(user, model, out errorString);
-                if (addedUser != null)
-                {
-                    registerUserService.AddLicenseDetail(model, userDomainKey);
-                    return await SendEmailToUser(addedUser, model);
-                }
-                if (!string.IsNullOrEmpty(errorString))
-                {
-                    throw new Exception(errorString);
-                }                
-            }
-            throw new Exception("Failed to register. Something bad happended. Please try again later!");
-        }
-
         /// <summary>
         /// Add User 
         /// </summary>
@@ -105,21 +58,84 @@ namespace Cares.WebApi.Areas.Api.Controllers
         /// <summary>
         /// Send Email to User for confirmation
         /// </summary>
-        private async Task<string> SendEmailToUser(User user, RegisterViewModel model)
+        private string SendEmailToUser(User user, RegisterViewModel model)
         {
-            Task<string> code = UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-            UrlHelper url = new UrlHelper(HttpContext.Current.Request.RequestContext);
+            string tempCode = UserManager.GenerateEmailConfirmationTokenAsync(user.Id).Result;
+            tempCode = HttpUtility.UrlEncode(tempCode);
+            //UrlHelper url = new UrlHelper(HttpContext.Current.Request.RequestContext);
 
-            string action = url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code.Result });
-            if (action != null)
-            {
-                action = action.Replace("/WebApi", "");
-                string complateLine = ConfigurationManager.AppSettings["CaresSiteAddress"] + action;
-                await UserManager.SendEmailAsync(model.Email, "Confirm your account", "Please confirm your account by clicking this link : <a href=" + complateLine + ">Confirm account</a> <br>Your Password is:" + model.Password);
-            }
+            //string action = url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = tempCode });
+            string action = @"/Account/ConfirmEmail?userId=" + user.Id + "&code=" + tempCode;
+
+            //    action = action.Replace("/CaresWebApi", "");
+            string completeAddress = ConfigurationManager.AppSettings["CaresSiteAddress"] + action;
+            //email template text = ReplacementText
+            string emailBody = GetEmailTemplate();
+            //completeAddress = HttpUtility.UrlEncode(completeAddress);
+            emailBody = emailBody.Replace("ReplacementText", completeAddress);
+
+            UserManager.SendEmailSendGrid(model.Email, "Confimr your CaReS subscription", emailBody);
+
             return "Success";
         }
 
+        private string GetEmailTemplate()
+        {            
+            string emailHtml = File.ReadAllText(ConfigurationManager.AppSettings["ApplicationHostingPath"] + @"\Content\emailTemplate.html");
+            return emailHtml;
+        }
+        #endregion
+        #region Constructor
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public RegisterUserController(IRegisterUserService registerUserService)
+        {
+            if (registerUserService == null)
+            {
+                throw new ArgumentNullException("registerUserService");
+            }
+            this.registerUserService = registerUserService;
+        }
+        #endregion
+        #region Public
+       
+       
+
+        /// <summary>
+        /// Register user using web api
+        /// </summary>
+        [ApiException]        
+        public string Post(RegisterViewModel model)
+        {
+            model.SelectedRole = "Admin";
+            if (ModelState.IsValid)
+            {
+                double userDomainKey = registerUserService.GetMaxUserDomainKey();
+                var user = new User
+                {
+                    PhoneNumber = model.PhoneNumber,
+                    UserName = model.Email, 
+                    Email = model.Email, 
+                    UserDomainKey = Convert.ToInt64(userDomainKey)+1   //giving the Max+1 domain key
+                };
+                string errorString;
+                User addedUser = AddUser(user, model, out errorString);
+                if (addedUser != null)
+                {
+                    registerUserService.AddLicenseDetail(model, userDomainKey);
+                    return SendEmailToUser(addedUser, model);
+                }
+                if (!string.IsNullOrEmpty(errorString))
+                {
+                    throw new CaresException(errorString);
+                }                
+            }
+            throw new CaresException("Failed to register!");
+        }
+
+        
+        
         /// <summary>
         /// Confirm User's email address
         /// </summary>
