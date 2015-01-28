@@ -1,0 +1,33 @@
+﻿@model  IEnumerable<Cares.Web.Models.UserManagement>
+@{
+    ViewBag.Title = "User Management";
+}
+<h2>Users</h2>
+@Html.AntiForgeryToken()
+@Html.ValidationSummary("", new { @class = "text-danger" })
+<p>
+    @Html.ActionLink("Create New User", "CreateUser")
+</p>
+<table class="table">
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserRole)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditUser", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "DeleteUser", new { id = item.Id })
+            </td>
+        </tr>
+    <tr>
+        
+    </tr>
+    }
+
+
+</table>

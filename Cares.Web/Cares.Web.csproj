@@ -432,6 +432,7 @@
     <Compile Include="Areas\Reports\ReportsAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\VehicleImageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -728,6 +729,8 @@
     <Compile Include="Models\TransmissionType.cs" />
     <Compile Include="Models\HireGroupDetail.cs" />
     <Compile Include="Models\TransmissionTypeDropDown.cs" />
+    <Compile Include="Models\UserManagement.cs" />
+    <Compile Include="Models\UserModelForEditUser.cs" />
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Models\VehicleBaseDataResponse.cs" />
     <Compile Include="Models\VehicleCategory.cs" />
@@ -2942,6 +2945,11 @@
     <Content Include="Views\Shared\_BlankLayout.cshtml" />
     <Content Include="Views\Shared\Reports.Master" />
     <Content Include="Views\RolesAdmin\RightsManagement.cshtml" />
+    <Content Include="Views\RolesAdmin\UsersManagement.cshtml" />
+    <Content Include="Views\RolesAdmin\CreateUser.cshtml" />
+    <Content Include="Views\RolesAdmin\EditUser.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -4,6 +4,7 @@ using Cares.Models.DomainModels;
 using Cares.Models.IdentityModels;
 using Cares.Models.IdentityModels.ViewModels;
 using Cares.Web.Controllers;
+using Cares.Web.Models;
 using IdentitySample.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -17,6 +18,8 @@ using System.Collections.Generic;
 using Cares.Web.ViewModels.RightsManagement;
 using Cares.Models.MenuModels;
 using MenuRightModel = Cares.Web.Models.MenuRight;
+using Cares.Commons;
+using System;
 
 namespace IdentitySample.Controllers
 {
@@ -277,6 +280,130 @@ namespace IdentitySample.Controllers
                         }).ToList();
             viewModel.SelectedRoleId = RoleId;
             return View(viewModel);
+        }
+        /// <summary>
+        /// List downs all users for domain key
+        /// </summary>
+         [Authorize(Roles = "Admin")]
+        public ActionResult UsersManagement()
+        {
+            var domainKeyClaim = ClaimHelper.GetClaimToString(CaresUserClaims.UserDomainKey);
+            if (domainKeyClaim == null)
+            {
+                throw new InvalidOperationException("Domain-Key claim not found!");
+            }
+            var domainkey= System.Convert.ToInt64(domainKeyClaim.Value);
+            var allUsers= UserManager.Users.ToList();
+            var model = allUsers.Where(user => user.UserDomainKey == domainkey).Select(user => new UserManagement
+            {
+                DomainKey = user.UserDomainKey,
+                Id = user.Id,
+                PhoneNumber = user.PhoneNumber,
+                UserEmail = user.Email,
+                UserRole = user.Roles.FirstOrDefault().Name
+            });
+            return View(model);
+        }
+
+        /// <summary>
+        /// Creates new user model 
+        /// </summary>
+         [Authorize(Roles = "Admin")]
+        public ActionResult CreateUser()
+        {
+            var roles = RoleManager.Roles.ToList();
+            ViewBag.UserRoles = roles;
+            return View(new UserManagement());
+        }
+
+        /// <summary>
+        /// Deletes user for User id
+        /// </summary>
+         [Authorize(Roles = "Admin")]
+        public ActionResult DeleteUser(string Id)
+        {
+            var user = UserManager.FindById(Id);
+           if (user == null)
+                throw new InvalidOperationException("User does not exists!");
+            UserManager.Delete(user);
+            return RedirectToAction("UsersManagement");
+        }
+
+        /// <summary>
+        /// Adds new user 
+        /// </summary>
+        [HttpPost]
+        public ActionResult CreateUser(UserManagement model)
+        {
+            if (model == null)
+                throw new InvalidOperationException("User Does not exists!");
+            var domainKeyClaim = ClaimHelper.GetClaimToString(CaresUserClaims.UserDomainKey);
+            if (domainKeyClaim == null)
+            {
+                throw new InvalidOperationException("Domain-Key claim not found!");
+            }
+            var domainkey = System.Convert.ToInt64(domainKeyClaim.Value);
+            var user = new User
+            {
+                PhoneNumber = model.PhoneNumber,
+                UserName = model.UserEmail,
+                Email = model.UserEmail,
+                UserDomainKey = domainkey
+            };
+            var status = AddUserToUserManager(user, model);
+            if (status==null)
+                return RedirectToAction("UsersManagement");
+
+            var roles = RoleManager.Roles.ToList();
+            ViewBag.UserRoles = roles;
+            ViewBag.UserError = status;
+            return View(new UserManagement());
+        }
+        /// <summary>
+        /// Add User 
+        /// </summary>
+        private string AddUserToUserManager(User user, UserManagement model)
+        {
+            var result = UserManager.Create(user, model.Password);
+            if (result.Succeeded)
+            {
+                var addUserToRoleResult = UserManager.AddToRole(user.Id, model.UserRole);
+                if (!addUserToRoleResult.Succeeded)
+                {
+                    throw new InvalidOperationException(string.Format("Failed to add user to role {0}",
+                        model.UserRole));
+                }
+            }
+            return result.Errors.FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Edits user for user id 
+        /// </summary>
+        public ActionResult EditUser(string id)
+        {
+            var roles = RoleManager.Roles.ToList();
+            var user=UserManager.FindById(id);
+            return View(new UserModelForEditUser
+            {
+                Roles = roles,
+                SelectedRole = user.Roles.FirstOrDefault().Id,
+                UserEmail = user.Email,
+                UserId = user.Id
+            });
+        }
+
+        /// <summary>
+        /// Updates edited user
+        /// </summary>
+        [HttpPost]
+        public ActionResult EditUser(UserModelForEditUser model)
+        {
+            var selectedRole = RoleManager.Roles.FirstOrDefault(role => role.Id == model.SelectedRole).Name;
+            var user = UserManager.FindById(model.UserId);
+            UserManager.RemoveFromRole(model.UserId, user.Roles.FirstOrDefault().Name);
+            UserManager.AddToRole(model.UserId, selectedRole);
+            return RedirectToAction("UsersManagement");
         }
     }
 }

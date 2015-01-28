@@ -1,0 +1,58 @@
+﻿@model Cares.Web.Models.UserModelForEditUser
+
+@{
+    ViewBag.Title = "Edit User";
+}
+
+<h2>Edit User</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserEmail, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.UserEmail, new { @readonly = true, @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.UserEmail)
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SelectedRole, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(n => n.SelectedRole, new SelectList(Model.Roles, "Id", "Name", 1), "--Select Role--", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SelectedRole)
+            </div>
+        </div>
+        <div class="form-group">
+           <p>@ViewBag.EditUserError</p>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" id="addUser" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <p>@ViewBag.UserError</p>
+            </div>
+        </div>
+    </div>
+    @Html.HiddenFor(model => model.UserId)
+}
+
+<div>
+    @Html.ActionLink("Back to List", "UsersManagement")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
