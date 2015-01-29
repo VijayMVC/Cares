@@ -21,8 +21,15 @@ namespace Cares.WebBase.Mvc
         /// </summary>
         private bool IsAuthorized(HttpContextBase httpContext)
         {
+            if (httpContext.User != null && ClaimHelper.GetClaimToString(CaresUserClaims.UserDomainKey) == null)
+            {
+                httpContext.User = null;
+                return false;
+            }
+
             if (httpContext.User != null && (httpContext.User.IsInRole("Admin") || httpContext.User.IsInRole("SystemAdministrator")))
-                return true;
+                return true;            
+
             Claim serializedUserPermissionSet = ClaimHelper.GetClaimToString(CaresUserClaims.UserPermissionSet);
             if (serializedUserPermissionSet == null)
             {
@@ -51,7 +58,7 @@ namespace Cares.WebBase.Mvc
         /// </summary>
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
-            if (!filterContext.HttpContext.User.Identity.IsAuthenticated)
+            if (filterContext.HttpContext.User == null || !filterContext.HttpContext.User.Identity.IsAuthenticated)
             {
                 base.HandleUnauthorizedRequest(filterContext);
             }

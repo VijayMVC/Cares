@@ -104,7 +104,7 @@ namespace IdentitySample.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            if (!User.Identity.IsAuthenticated)
+            if (!User.Identity.IsAuthenticated || ClaimHelper.GetClaimToString(CaresUserClaims.UserDomainKey) == null) 
             {
                 ViewBag.ReturnUrl = returnUrl;
                 return View();
