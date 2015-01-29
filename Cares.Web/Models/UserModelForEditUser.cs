@@ -8,9 +8,10 @@ namespace Cares.Web.Models
     /// </summary>
     public class UserModelForEditUser
     {
-        public string UserId { get; set; }
+        public string id { get; set; }
         public string UserEmail { get; set; }
         public string SelectedRole { get; set; }
+        public string PhoneNumber { get; set; }
         public IEnumerable<UserRole> Roles { get; set; } 
     }
 }

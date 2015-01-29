@@ -2910,11 +2910,6 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\UsersAdmin\Index.cshtml" />
-    <Content Include="Views\UsersAdmin\Edit.cshtml" />
-    <Content Include="Views\UsersAdmin\Details.cshtml" />
-    <Content Include="Views\UsersAdmin\Delete.cshtml" />
-    <Content Include="Views\UsersAdmin\Create.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\RolesAdmin\Index.cshtml" />
     <Content Include="Views\RolesAdmin\Edit.cshtml" />
@@ -2944,11 +2939,12 @@
     <Content Include="Views\Shared\_BlankLayout.cshtml" />
     <Content Include="Views\Shared\Reports.Master" />
     <Content Include="Views\RolesAdmin\RightsManagement.cshtml" />
-    <Content Include="Views\RolesAdmin\UsersManagement.cshtml" />
-    <Content Include="Views\RolesAdmin\CreateUser.cshtml" />
-    <Content Include="Views\RolesAdmin\EditUser.cshtml">
+    <Content Include="Views\UsersAdmin\Index.cshtml" />
+    <Content Include="Views\UsersAdmin\CreateUser.cshtml" />
+    <Content Include="Views\UsersAdmin\EditUser.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Views\UsersAdmin\ViewUserDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

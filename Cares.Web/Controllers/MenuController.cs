@@ -19,7 +19,7 @@ namespace Cares.Web.Controllers
         /// <summary>
         /// Menu Controller Constructure
         /// </summary>
-// ReSharper disable once EmptyConstructor
+        // ReSharper disable once EmptyConstructor
         public MenuController()
         {
         }
@@ -29,14 +29,14 @@ namespace Cares.Web.Controllers
         /// </summary>
         [ChildActionOnly]
         public ActionResult LoadMenu()
-        {            
+        {
             User user = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByEmailAsync(User.Identity.Name).Result;
             IList<MenuRight> menuItems;
-            if (user.Roles == null || user.Roles.Count < 1)
+            if (user == null || user.Roles == null || (user.Roles != null && user.Roles.Count < 1))
             {
                 return View(new MenuViewModel());
             }
-            // ReSharper disable PossibleNullReferenceException
+            //  ReSharper disable PossibleNullReferenceException
             if (user.Roles.Any(roles => roles.Name == CaresApplicationRoles.SystemAdministrator))
             {
                 menuItems = user.Roles.FirstOrDefault(roles => roles.Name == CaresApplicationRoles.SystemAdministrator).MenuRights.ToList();

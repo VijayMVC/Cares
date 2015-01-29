@@ -24,7 +24,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Password, new { @class = "form-control" })
+                @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Password)
             </div>
         </div>
@@ -58,7 +58,7 @@
     </div>
 }
 <div>
-    @Html.ActionLink("Back to List", "UsersManagement")
+    @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {

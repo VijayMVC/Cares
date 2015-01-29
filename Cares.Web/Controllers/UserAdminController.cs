@@ -1,6 +1,7 @@
 ﻿using Cares.Implementation.Identity;
 using Cares.Models.IdentityModels;
 using Cares.Models.IdentityModels.ViewModels;
+using Cares.WebBase.Mvc;
 using IdentitySample.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -14,22 +15,21 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Cares.Models.DomainModels;
+using Cares.Web.Models;
+using Cares.Commons;
 
 namespace IdentitySample.Controllers
 {
-    [Authorize(Roles = "Admin")]
+
+    /// <summary>
+    /// User Management Controller 
+    /// </summary>
+    [SiteAuthorize()]
     public class UsersAdminController : Controller
     {
         public UsersAdminController()
         {
         }
-
-        public UsersAdminController(ApplicationUserManager userManager, ApplicationRoleManager roleManager)
-        {
-            UserManager = userManager;
-            RoleManager = roleManager;
-        }
-
         private ApplicationUserManager _userManager;
         public ApplicationUserManager UserManager
         {
@@ -42,7 +42,6 @@ namespace IdentitySample.Controllers
                 _userManager = value;
             }
         }
-
         private ApplicationRoleManager _roleManager;
         public ApplicationRoleManager RoleManager
         {
@@ -56,187 +55,146 @@ namespace IdentitySample.Controllers
             }
         }
 
-        //
-        // GET: /Users/
-        public async Task<ActionResult> Index()
+        /// <summary>
+        /// List downs all users for domain key
+        /// </summary>
+        [SiteAuthorize()]
+        public ActionResult Index()
         {
-            return View(await UserManager.Users.ToListAsync());
-        }
-
-        //
-        // GET: /Users/Details/5
-        public async Task<ActionResult> Details(string id)
-        {
-            if (id == null)
+            var domainKeyClaim = ClaimHelper.GetClaimToString(CaresUserClaims.UserDomainKey);
+            if (domainKeyClaim == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                throw new InvalidOperationException("Domain-Key claim not found!");
             }
-            var user = await UserManager.FindByIdAsync(id);
-
-            ViewBag.RoleNames = await UserManager.GetRolesAsync(user.Id);
-
-            return View(user);
-        }
-
-        //
-        // GET: /Users/Create
-        public async Task<ActionResult> Create()
-        {
-            //Get the list of Roles
-            ViewBag.RoleId = new SelectList(await RoleManager.Roles.ToListAsync(), "Name", "Name");
-            return View();
-        }
-
-        //
-        // POST: /Users/Create
-        [HttpPost]
-        public async Task<ActionResult> Create(RegisterViewModel userViewModel, params string[] selectedRoles)
-        {
-            if (ModelState.IsValid)
+            var domainkey = System.Convert.ToInt64(domainKeyClaim.Value);
+            var allUsers = UserManager.Users.ToList();
+            var model = allUsers.Where(user => user.UserDomainKey == domainkey).Select(user => new UserManagement
             {
-                var user = new User { UserName = userViewModel.Email, Email = userViewModel.Email };
-                var adminresult = await UserManager.CreateAsync(user, userViewModel.Password);
-
-                //Add User to the selected Roles 
-                if (adminresult.Succeeded)
-                {
-                    if (selectedRoles != null)
-                    {
-                        var result = await UserManager.AddToRolesAsync(user.Id, selectedRoles);
-                        if (!result.Succeeded)
-                        {
-                            ModelState.AddModelError("", result.Errors.First());
-                            ViewBag.RoleId = new SelectList(await RoleManager.Roles.ToListAsync(), "Name", "Name");
-                            return View();
-                        }
-                    }
-                }
-                else
-                {
-                    ModelState.AddModelError("", adminresult.Errors.First());
-                    ViewBag.RoleId = new SelectList(RoleManager.Roles, "Name", "Name");
-                    return View();
-
-                }
-                return RedirectToAction("Index");
-            }
-            ViewBag.RoleId = new SelectList(RoleManager.Roles, "Name", "Name");
-            return View();
-        }
-
-        //
-        // GET: /Users/Edit/1
-        public async Task<ActionResult> Edit(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var user = await UserManager.FindByIdAsync(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-
-            var userRoles = await UserManager.GetRolesAsync(user.Id);
-
-            return View(new EditUserViewModel()
-            {
+                DomainKey = user.UserDomainKey,
                 Id = user.Id,
-                Email = user.Email,
-                RolesList = RoleManager.Roles.ToList().Select(x => new SelectListItem()
+                PhoneNumber = user.PhoneNumber,
+                UserEmail = user.Email,
+                UserRole = user.Roles.FirstOrDefault().Name
+            });
+            return View(model);
+        }
+
+        /// <summary>
+        /// Creates new user model 
+        /// </summary>
+        public ActionResult CreateUser()
+        {
+            var roles = RoleManager.Roles.Where(role => role.Name != "SystemAdministrator").ToList();
+            ViewBag.UserRoles = roles;
+            return View(new UserManagement());
+        }
+
+        /// <summary>
+        /// Deletes user for User id
+        /// </summary>
+        public ActionResult DeleteUser(string Id)
+        {
+            var user = UserManager.FindById(Id);
+            if (user == null)
+                throw new InvalidOperationException("User does not exists!");
+            UserManager.Delete(user);
+            return RedirectToAction("Index");
+        }
+
+        /// <summary>
+        /// Adds new user 
+        /// </summary>
+        [HttpPost]
+        public ActionResult CreateUser(UserManagement model)
+        {
+            if (model == null)
+                throw new InvalidOperationException("User Does not exists!");
+            var domainKeyClaim = ClaimHelper.GetClaimToString(CaresUserClaims.UserDomainKey);
+            if (domainKeyClaim == null)
+            {
+                throw new InvalidOperationException("Domain-Key claim not found!");
+            }
+            var domainkey = System.Convert.ToInt64(domainKeyClaim.Value);
+            var user = new User
+            {
+                PhoneNumber = model.PhoneNumber,
+                UserName = model.UserEmail,
+                Email = model.UserEmail,
+                UserDomainKey = domainkey
+            };
+            var status = AddUserToUserManager(user, model);
+            if (status == null)
+                return RedirectToAction("Index");
+
+            var roles = RoleManager.Roles.Where(role => role.Name != "SystemAdministrator").ToList(); ;
+            ViewBag.UserRoles = roles;
+            ViewBag.UserError = status;
+            return View(new UserManagement());
+        }
+
+        /// <summary>
+        /// Add User 
+        /// </summary>
+        private string AddUserToUserManager(User user, UserManagement model)
+        {
+            var result = UserManager.Create(user, model.Password);
+            if (result.Succeeded)
+            {
+                var addUserToRoleResult = UserManager.AddToRole(user.Id, model.UserRole);
+                if (!addUserToRoleResult.Succeeded)
                 {
-                    Selected = userRoles.Contains(x.Name),
-                    Text = x.Name,
-                    Value = x.Name
-                })
+                    throw new InvalidOperationException(string.Format("Failed to add user to role {0}",
+                        model.UserRole));
+                }
+            }
+            return result.Errors.FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Edits user for user id 
+        /// </summary>
+        public ActionResult EditUser(string id)
+        {
+            var roles = RoleManager.Roles.Where(role => role.Name != "SystemAdministrator").ToList();
+            var user = UserManager.FindById(id);
+            return View(new UserModelForEditUser
+            {
+                Roles = roles,
+                SelectedRole = user.Roles.FirstOrDefault().Id,
+                UserEmail = user.Email,
+                id = user.Id
             });
         }
 
-        //
-        // POST: /Users/Edit/5
+        /// <summary>
+        /// Updates edited user
+        /// </summary>
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Email,Id")] EditUserViewModel editUser, params string[] selectedRole)
+        public ActionResult EditUser(UserModelForEditUser model)
         {
-            if (ModelState.IsValid)
-            {
-                var user = await UserManager.FindByIdAsync(editUser.Id);
-                if (user == null)
-                {
-                    return HttpNotFound();
-                }
-
-                user.UserName = editUser.Email;
-                user.Email = editUser.Email;
-
-                var userRoles = await UserManager.GetRolesAsync(user.Id);
-
-                selectedRole = selectedRole ?? new string[] { };
-
-                var result = await UserManager.AddToRolesAsync(user.Id, selectedRole.Except(userRoles).ToArray<string>());
-
-                if (!result.Succeeded)
-                {
-                    ModelState.AddModelError("", result.Errors.First());
-                    return View();
-                }
-                result = await UserManager.RemoveFromRolesAsync(user.Id, userRoles.Except(selectedRole).ToArray<string>());
-
-                if (!result.Succeeded)
-                {
-                    ModelState.AddModelError("", result.Errors.First());
-                    return View();
-                }
-                return RedirectToAction("Index");
-            }
-            ModelState.AddModelError("", "Something failed.");
-            return View();
+            var selectedRole = RoleManager.Roles.FirstOrDefault(role => role.Id == model.SelectedRole).Name;
+            var user = UserManager.FindById(model.id);
+            UserManager.RemoveFromRole(model.id, user.Roles.FirstOrDefault().Name);
+            UserManager.AddToRole(model.id, selectedRole);
+            return RedirectToAction("Index");
         }
 
-        //
-        // GET: /Users/Delete/5
-        public async Task<ActionResult> Delete(string id)
+        /// <summary>
+        /// View user details
+        /// </summary>
+        public ActionResult ViewUserDetail(string id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var user = await UserManager.FindByIdAsync(id);
+            var user = UserManager.FindById(id);
             if (user == null)
+                throw new InvalidOperationException("User Not found!");
+            var userModel = new UserModelForEditUser
             {
-                return HttpNotFound();
-            }
-            return View(user);
-        }
-
-        //
-        // POST: /Users/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(string id)
-        {
-            if (ModelState.IsValid)
-            {
-                if (id == null)
-                {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                }
-
-                var user = await UserManager.FindByIdAsync(id);
-                if (user == null)
-                {
-                    return HttpNotFound();
-                }
-                var result = await UserManager.DeleteAsync(user);
-                if (!result.Succeeded)
-                {
-                    ModelState.AddModelError("", result.Errors.First());
-                    return View();
-                }
-                return RedirectToAction("Index");
-            }
-            return View();
+                id = user.Id,
+                UserEmail = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                SelectedRole = user.Roles.FirstOrDefault().Name
+            };
+            return View(userModel);
         }
     }
 }
