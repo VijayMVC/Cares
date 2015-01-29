@@ -24,7 +24,7 @@ namespace IdentitySample.Controllers
     /// <summary>
     /// User Management Controller 
     /// </summary>
-    [SiteAuthorize()]
+    [SiteAuthorize( PermissionKey = "**ThisMakesNoSenseIKnow**")]
     public class UsersAdminController : Controller
     {
         public UsersAdminController()
@@ -58,7 +58,6 @@ namespace IdentitySample.Controllers
         /// <summary>
         /// List downs all users for domain key
         /// </summary>
-        [SiteAuthorize()]
         public ActionResult Index()
         {
             var domainKeyClaim = ClaimHelper.GetClaimToString(CaresUserClaims.UserDomainKey);
