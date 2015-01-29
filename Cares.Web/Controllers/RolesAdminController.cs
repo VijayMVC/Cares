@@ -220,7 +220,7 @@ namespace IdentitySample.Controllers
         {
             UserMenuResponse userMenuRights = menuRightsService.GetRoleMenuRights(string.Empty);
             RightsManagementViewModel viewModel = new RightsManagementViewModel();
-            viewModel.Roles = userMenuRights.Roles.ToList();
+            viewModel.Roles = userMenuRights.Roles.Where(role => role.Name != "SystemAdministrator").ToList();
             viewModel.Rights =
                 userMenuRights.Menus.Select(
                     m =>
