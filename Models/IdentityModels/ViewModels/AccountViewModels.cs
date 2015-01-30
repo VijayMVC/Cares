@@ -88,6 +88,19 @@ namespace Cares.Models.IdentityModels.ViewModels
 
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
+
+
+        [Required]
+        [Display(Name = "Company Name")]
+        public string CompanyName { get; set; }
+
+        [Required]
+        [Display(Name = "Address")]
+        public string CompanyAddress { get; set; }
+
+        [Required]
+        [Display(Name = "Country")]
+        public string CountryName { get; set; }
     }
 
     public class ResetPasswordViewModel
