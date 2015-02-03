@@ -1,8 +1,13 @@
-﻿#rentalAgreementBinding {
+﻿@extraColor: #DDDDDD;
+@driverColor: #89C4F4;
+@chaufferColor: #F0AD4E;
+
+#rentalAgreementBinding {
     color: gray;
 
     .popover {
-        max-width: none;
+        min-width: 33%;
+        min-height: 200px;
     }
 
     .well {
@@ -52,6 +57,8 @@
             }
         }
     }
+
+
 
     #raPanels {
         width: 28.9%;
@@ -108,39 +115,31 @@
             }
         }
 
-        .panel-body
-        {
+        .panel-body {
             padding: 8px;
 
-            .panelCustom
-            {
+            .panelCustom {
                 border-radius: 12px !important;
 
-                .panel-heading
-                {
+                .panel-heading {
                     border-radius: 10px !important;
                 }
 
-                .clearBoth
-                {
+                .clearBoth {
                     clear: both;
                 }
             }
         }
 
-        .formGroupCustom
-        {
+        .formGroupCustom {
             margin-right: 0;
             margin-left: 0;
 
-            hr
-            {
+            hr {
                 margin-top: 5px;
                 margin-bottom: 5px;
             }
-
         }
-
     }
 
     .panel-heading {
@@ -159,7 +158,7 @@
         }
     }
 
-    a.headingLink {
+    a.headingLink :hover {
         text-decoration: underline;
     }
 
@@ -190,49 +189,41 @@
             margin-top: 5px;
         }
 
-        #collapseSeven
-        {
-            .panel-body
-            {
+        #collapseSeven {
+            .panel-body {
                 padding: 8px;
 
-                .panelCustom
-                {
+                .panelCustom {
                     border-radius: 12px !important;
 
-                    .panel-heading
-                    {
+                    .panel-heading {
                         border-radius: 10px !important;
                     }
 
-                    .clearBoth
-                    {
+                    .clearBoth {
                         clear: both;
                     }
                 }
             }
 
-            .formGroupCustom
-            {
+            .formGroupCustom {
                 margin-right: 0;
                 margin-left: 0;
                 margin-bottom: 0;
                 border-radius: 10px !important;
                 background-color: silver;
 
-                hr
-                {
+                hr {
                     margin-top: 5px;
                     margin-bottom: 5px;
                 }
-
             }
         }
 
         #vehicle {
             margin-top: .5%;
             min-height: 268px;
-            
+
             #vehicleMovementTemplate_popoverContent {
                 width: 500px;
             }
@@ -317,6 +308,74 @@
                 div {
                     border-bottom: 1px solid black;
                 }
+            }
+        }
+    }
+
+
+
+    .popoverContents{
+
+        min-height: 150px;
+        position: relative;
+        .no-record-found{
+             position: absolute;
+             height: 75px;
+             bottom: 0;
+             width:100%;
+             text-align: center;
+         }
+         .clearBoth {
+            clear: both;
+        }
+        hr{
+            margin: 10px 0 !important;
+        }
+        .formGroupCustom {
+            margin-right: 0;
+            margin-left: 0;
+        }
+        .popover-panel {
+            border: 1px solid @extraColor;
+            -moz-border-radius: 5px 5px 5px 5px !important;
+            -webkit-border-radius: 5px 5px 5px 5px !important;
+            border-radius: 5px 5px 5px 5px !important;
+
+            .popover-panel-heading{
+                padding-left: 5px;
+                background-color: @extraColor;
+                font-size: 10pt;
+                font-weight: bold;
+                color: white;
+                .heading-text{
+                    margin-left: 5px;
+                }
+               
+                a{
+                    cursor: pointer;
+                }
+            }
+
+        }
+       
+    }
+
+    #extraPopoverContents {
+        
+    }
+    #driverPopoverContents {
+        .popover-panel {
+            border: 1px solid @driverColor;
+            .popover-panel-heading{
+                 background-color: @driverColor;
+            }
+        }
+    }
+    #chaufferPopoverContents {
+        .popover-panel {
+            border: 1px solid @chaufferColor;
+            .popover-panel-heading{
+                 background-color: @chaufferColor;
             }
         }
     }

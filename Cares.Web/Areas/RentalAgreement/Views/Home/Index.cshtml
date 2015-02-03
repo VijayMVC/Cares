@@ -7,311 +7,16 @@
 
 <div class="row" id="rentalAgreementBinding">
     <div class="row">
-        <button class="btn btn-primary" data-bind="click: openRentalAgreement, visible: canOpen">Open Agreement</button>
-        <button class="btn btn-primary" data-bind="click: updateRentalAgreement, visible: canUpdate">Update Agreement</button>
-        <button class="btn" data-bind="click: closeRentalAgreement, visible: canClose">Close Agreement</button>
-    </div><br />
-    <div id="raPanels">
-        <div class="panel-group" id="accordion">
-            <div class="panel panel-default">
-                <div id="extrasHeading" class="panel-heading">
-                    <h4 class="panel-title">
-                        <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                            Extras
-                        </a>
-                        <a id="addExtrasPopoverLink" class="glyphicon glyphicon-chevron-right float-right" data-bind="click: openExtrasDialog, attr:{ title: 'Add Extras' }"></a>
-                    </h4>
-                </div>
-                <div id="collapseOne" class="panel-collapse collapse">
-                    <div class="panel-body" data-bind="with: rentalAgreement">
-                        <!-- ko foreach: rentalAgreementServiceItems -->
-                        <div class="panel panel-default panelCustom">
-                            <div class="panel-heading">
-                                <span data-bind="text: serviceItemCodeName"></span>
-                                <a class="float-right" data-bind="click: $parent.removeRaServiceItem"><span class="glyphicon glyphicon-remove"></span></a>
-                            </div>
-                            <div class="panel-collapse">
-                                <form class="form-horizontal">
-                                    <div class="form-group formGroupCustom">
-                                        <div>
-                                            <label class="control-label col-md-4">
-                                                Start Date
-                                            </label>
-                                            <label class="control-label col-md-4">
-                                                End Date
-                                            </label>
-                                            <label class="control-label col-md-2">
-                                                Qty
-                                            </label>
-                                        </div>
-                                        <br />
-                                        <hr />
-                                        <div class="clearBoth">
-                                            <div class="col-md-4"><input id="startDt" type="text" class="form-control" data-bind="datetimepicker: start, validationDependsOn: internalStartDateTime, css:{ 'errorFillWithValidation': isInvalidPeriod }" /></div>
-                                            <div class="col-md-4"><input id="endDt" type="text" class="form-control" data-bind="datetimepicker: end, validationDependsOn: internalEndDateTime, css:{ 'errorFillWithValidation': isInvalidPeriod }" /></div>
-                                            <div class="col-sm-2"><input type="text" id="qty" class="form-control" data-bind="value: quantity, validationTooltip: quantity" /></div>
-                                        </div>
-                                    </div>
-                                </form>
+        <button class="btn btn-primary float-left" data-bind="click: openRentalAgreement, visible: canOpen">Open Agreement</button>
+        <button class="btn btn-primary float-left" data-bind="click: updateRentalAgreement, visible: canUpdate">Update Agreement</button>
+        <button class="btn float-left" data-bind="click: closeRentalAgreement, visible: canClose">Close Agreement</button>
+        <button class="btn float-left margin-left" data-bind="bootstrapPopover:{elementNode: 'extraPopover', html: true, popoverId: 'extraPopoverContents'} ">Extras</button>
+        <button class="btn btn-info float-left margin-left" data-bind="bootstrapPopover:{elementNode: 'driverPopover', html: true, popoverId: 'driverPopoverContents'} ">Drivers</button>
+        <button type="button" class="btn btn-warning float-left margin-left" data-bind="bootstrapPopover:{elementNode: 'chaufferPopover', html: true, popoverId: 'chaufferPopoverContents'} ">Chauffers</button>
 
-                            </div>
-                        </div>
-                        <!-- /ko -->
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div id="driversHeading" class="panel-heading">
-                    <h4 class="panel-title">
-                        <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                            Drivers
-                        </a>
-                        <a class="float-right" data-bind="click: $root.addDriverToRentalAgreement.bind($data, $data, 'collapseTwo')"><span class="glyphicon glyphicon-plus"></span></a>
-                    </h4>
-                </div>
-                <div id="collapseTwo" class="panel-collapse collapse">
-                    <div class="panel-body" data-bind="with: rentalAgreement">
-                        <!-- ko foreach: raDrivers -->
-                        <div class="panel panel-default panelCustom">
-                            <div class="panel-heading">
-                                <!-- ko if: driverName -->
-                                <span data-bind="text: driverName"></span>
-                                <!-- /ko -->
-                                <!-- ko ifnot: driverName -->
-                                <span>&nbsp;</span>
-                                <!-- /ko -->
-                                <a class="float-right" data-bind="click: $parent.removeRaDriver"><span class="glyphicon glyphicon-remove"></span></a>
-                            </div>
-                            <div class="panel-collapse">
-                                <form class="form-horizontal">
-                                    <div class="form-group formGroupCustom">
-                                        <div>
-                                            <label class="control-label col-md-4">
-                                                Name
-                                            </label>
-                                        </div>
-                                        <br />
-                                        <hr />
-                                        <div class="clearBoth">
-                                            <div class="col-md-5">
-                                                <input type="text" class="form-control" data-bind="value: driverName, validationTooltip: driverName" />
-                                            </div>
-                                        </div>
-                                        <br />
-                                        <div class="clearBoth">
-                                            <label class="control-label col-md-4">
-                                                License No
-                                            </label>
-                                            <label class="control-label col-md-4">
-                                                License Expiry
-                                            </label>
-                                        </div>
-                                        <br />
-                                        <hr />
-                                        <div class="clearBoth">
-                                            <div class="col-md-4"><input type="text" class="form-control" data-bind="value: licenseNo, validationTooltip: licenseNo" /></div>
-                                            <div class="col-md-4"><input type="text" class="form-control" data-bind="datetimepicker: licenseExpDt, validationDependsOn: internalLicenseExpDateTime, css: { 'errorFillWithValidation': isLicenseExpired() }" /></div>
-                                        </div>
-                                        <br />
-                                        <div class="clearBoth">
-                                            <label class="control-label col-md-4">
-                                                Start Date
-                                            </label>
-                                            <label class="control-label col-md-4">
-                                                End Date
-                                            </label>
-                                        </div>
-                                        <br />
-                                        <hr />
-                                        <div class="clearBoth">
-                                            <div class="col-md-4"><input id="startDt" type="text" class="form-control" data-bind="datetimepicker: start, validationDependsOn: internalStartDateTime, css: { 'errorFillWithValidation': isInvalidPeriod() }" /></div>
-                                            <div class="col-md-4"><input id="endDt" type="text" class="form-control" data-bind="datetimepicker: end, validationDependsOn: internalEndDateTime, css: { 'errorFillWithValidation': isInvalidPeriod() }" /></div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <!-- /ko -->
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div id="chauffersHeading" class="panel-heading">
-                    <h4 class="panel-title">
-                        <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                            Chauffers
-                        </a>
-                        <a id="addChauffersPopoverLink" class="glyphicon glyphicon-chevron-right float-right" data-bind="click: openChaufferDialog, attr:{ title: 'Add Chauffers' }"></a>
-                    </h4>
-                </div>
-                <div id="collapseThree" class="panel-collapse collapse">
-                    <div class="panel-body" data-bind="with: rentalAgreement">
-                        <!-- ko foreach: raChauffers -->
-                        <div class="panel panel-default panelCustom">
-                            <div class="panel-heading">
-                                <span data-bind="text: driverName"></span>
-                                <a class="float-right" data-bind="click: $parent.removeRaDriver"><span class="glyphicon glyphicon-remove"></span></a>
-                            </div>
-                            <div class="panel-collapse">
-                                <form class="form-horizontal">
-                                    <div class="form-group formGroupCustom">
-                                        <div>
-                                            <label class="control-label col-md-4">
-                                                License No
-                                            </label>
-                                            <label class="control-label col-md-4">
-                                                License Expiry
-                                            </label>
-                                        </div>
-                                        <br />
-                                        <hr />
-                                        <div class="clearBoth">
-                                            <div class="col-md-4"><input type="text" class="form-control" data-bind="value: licenseNo, enable: false" /></div>
-                                            <div class="col-md-4"><input type="text" class="form-control" data-bind="datetimepicker: licenseExpDt, validationDependsOn: internalLicenseExpDateTime, enable: false, css: { 'errorFillWithValidation': isLicenseExpired() }" /></div>
-                                        </div>
-                                        <br />
-                                        <div class="clearBoth">
-                                            <label class="control-label col-md-4">
-                                                Start Date
-                                            </label>
-                                            <label class="control-label col-md-4">
-                                                End Date
-                                            </label>
-                                        </div>
-                                        <br />
-                                        <hr />
-                                        <div class="clearBoth">
-                                            <div class="col-md-4"><input id="startDt" type="text" class="form-control" data-bind="datetimepicker: start, validationDependsOn: internalStartDateTime, css: { 'errorFillWithValidation': isInvalidPeriod() }" /></div>
-                                            <div class="col-md-4"><input id="endDt" type="text" class="form-control" data-bind="datetimepicker: end, validationDependsOn: internalEndDateTime, css: { 'errorFillWithValidation': isInvalidPeriod() }" /></div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <!-- /ko -->
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div id="discountsHeading" class="panel-heading">
-                    <h4 class="panel-title">
-                        <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
-                            Discounts
-                        </a>
-                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="click: openDiscountsDialog, attr:{ title: 'Add Discounts' }"></a>
-                    </h4>
-                </div>
-                <div id="collapseFour" class="panel-collapse collapse">
-                    <div class="panel-body">
-
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div id="damagesHeading" class="panel-heading">
-                    <h4 class="panel-title">
-                        <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
-                            Damages
-                        </a>
-                        <a id="addDamagesPopoverLink" class="glyphicon glyphicon-chevron-right float-right" data-bind="click: openAddChargesDialog, visible: rentalAgreement().id(), attr:{ title: 'Add Damages' }"></a>
-                    </h4>
-                </div>
-                <div id="collapseFive" class="panel-collapse collapse">
-                    <div class="panel-body" data-bind="with: $root.rentalAgreement">
-                        <!-- ko foreach: rentalAgreementAdditionalCharges -->
-                        <div class="panel panel-default panelCustom">
-                            <div class="panel-heading">
-                                <span data-bind="text: additionalChargeTypeCodeName"></span>
-                                <a class="float-right" data-bind="click: $parent.removeRaAdditionalCharge"><span class="glyphicon glyphicon-remove"></span></a>
-                            </div>
-                            <div class="panel-collapse">
-                                <form class="form-horizontal">
-                                    <div class="form-group formGroupCustom">
-                                        <div>
-                                            <label class="control-label col-sm-4">Plate No.</label>
-                                            <label class="control-label col-sm-4">Rate</label>
-                                            <label class="control-label col-sm-4">Qty</label>
-                                        </div>
-                                        <br />
-                                        <hr />
-                                        <div class="clearBoth">
-                                            <div class="col-md-4">
-                                                <select id="plateNumber" class="form-control" data-bind="options: $root.plateNumbers, value: plateNumber, validationTooltip: plateNumber"></select>
-                                            </div>
-                                            <div class="col-md-4"><input id="rate" type="text" class="form-control" data-bind="value: additionalChargeRate, validationTooltip: additionalChargeRate" /></div>
-                                            <div class="col-md-4"><input type="text" class="form-control" data-bind="value: quantity, validationTooltip: quantity" /></div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <!-- /ko -->
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div id="paymentsHeading" class="panel-heading">
-                    <h4 class="panel-title">
-                        <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseRaPayment">
-                            Payments
-                        </a>
-                        <a class="float-right" data-bind="click: $root.addPaymentToRentalAgreement.bind($data, $data, 'collapseRaPayment')"><span class="glyphicon glyphicon-plus"></span></a>
-                    </h4>
-                </div>
-                <div id="collapseRaPayment" class="panel-collapse collapse">
-                    <div class="panel-body" data-bind="with: rentalAgreement">
-                        <!-- ko foreach: raPayments -->
-                        <div class="panel panel-default panelCustom">
-                            <div class="panel-heading">
-                                <span>&nbsp;</span>
-                                <a class="float-right" data-bind="click: $parent.removeRaPayment"><span class="glyphicon glyphicon-remove"></span></a>
-                            </div>
-                            <div class="panel-collapse">
-                                <form class="form-horizontal">
-                                    <div class="form-group formGroupCustom">
-                                        <div>
-                                            <label class="control-label col-sm-3">Mode</label>
-                                            <label class="control-label col-sm-3">Date</label>
-                                            <label class="control-label col-sm-3">Amount</label>
-                                        </div>
-                                        <br />
-                                        <hr />
-                                        <div class="clearBoth">
-                                            <div class="col-sm-3">
-                                                <select class="form-control" id="paymentMode" data-bind="options: $root.paymentModes, optionsCaption: '<Payment Mode>', optionsText: 'codeName', optionsValue: 'id', value: paymentModeId"></select>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <input type="text" class="form-control" data-bind="datetimepicker: paymentDt" />
-                                            </div>
-                                            <div class="col-md-3"><input type="text" class="form-control" data-bind="value: paymentAmount" /></div>
-                                        </div>
-                                        <br />
-                                        <div class="clearBoth">
-                                            <label class="control-label col-sm-3">By</label>
-                                            <label class="control-label col-sm-3">Chk No</label>
-                                            <label class="control-label col-sm-3">Bank</label>
-                                        </div>
-                                        <br />
-                                        <hr />
-                                        <div class="clearBoth">
-                                            <div class="col-md-3">
-                                                <input type="text" class="form-control" data-bind="value: paidBy" />
-                                            </div>
-                                            <div class="col-md-3"><input type="text" class="form-control" data-bind="value: checkNumber" /></div>
-                                            <div class="col-md-3">
-                                                <input type="text" class="form-control" data-bind="value: bank" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <!-- /ko -->
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
+    <br />
+
     <div id="raMain">
         <div class="panel-group" id="accordion2">
             <div class="panel panel-default">
@@ -647,6 +352,365 @@
         </div>
     </div>
 
+    <div class="popover" id="extraPopover">
+        <div id="extraPopoverContents" class="popoverContents">
+            <div id="extrasHeading">
+                <button id="addExtrasPopoverLink"  type="button" class="btn btn-link float-right clearBoth" data-bind="click: openExtrasDialog">Add Extras</button>
+            </div>
+            <div data-bind="visible: $root.rentalAgreement().rentalAgreementServiceItems().length > 0" class="clearBoth">
+                <!-- ko foreach: $root.rentalAgreement().rentalAgreementServiceItems -->
+                <div class="margin-top-20 clearBoth popover-panel">
+                    <div class="popover-panel-heading">
+                        <span data-bind="text: serviceItemCodeName"></span>
+                        <a class="float-right" data-bind="click: $root.rentalAgreement().removeRaServiceItem"><span class="glyphicon glyphicon-remove"></span></a>
+                    </div>
+                    <div class="margin-top-10">
+                        <form class="form-horizontal">
+                            <div class="form-group formGroupCustom">
+                                <div>
+                                    <label class="control-label col-md-4">
+                                        Start Date
+                                    </label>
+                                    <label class="control-label col-md-4">
+                                        End Date
+                                    </label>
+                                    <label class="control-label col-md-2">
+                                        Qty
+                                    </label>
+                                </div>
+                                <br />
+                                <hr />
+                                <div class="clearBoth">
+                                    <div class="col-md-4"><input id="startDt" type="text" class="form-control" data-bind="datetimepicker: start, validationDependsOn: internalStartDateTime, css:{ 'errorFillWithValidation': isInvalidPeriod }" /></div>
+                                    <div class="col-md-4"><input id="endDt" type="text" class="form-control" data-bind="datetimepicker: end, validationDependsOn: internalEndDateTime, css:{ 'errorFillWithValidation': isInvalidPeriod }" /></div>
+                                    <div class="col-sm-2"><input type="text" id="qty" class="form-control" data-bind="value: quantity, validationTooltip: quantity" /></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- /ko -->
+            </div>
+            <div class="clearBoth no-record-found" data-bind="visible: $root.rentalAgreement().rentalAgreementServiceItems().length === 0">
+                <h1>No Service Added Yet.</h1> 
+            </div>
+        </div>
+    </div>
+    
+    <div id="driverPopover" class="popover">
+        <div id="driverPopoverContents" class="popoverContents">
+            <div id="extrasHeading">
+                <button id="addDriverLink" type="button" class="btn btn-link float-right clearBoth" data-bind="click: $root.addDriverToRentalAgreement">Add New</button>
+            </div>
+            <div data-bind="visible: $root.rentalAgreement().raDrivers().length > 0" class="clearBoth">
+                <!-- ko foreach: $root.rentalAgreement().raDrivers -->
+                <div class="margin-top-20 clearBoth popover-panel">
+                    <div class="popover-panel-heading">
+                        <!-- ko if: driverName -->
+                        <span data-bind="text: driverName"></span>
+                        <!-- /ko -->
+                        <!-- ko ifnot: driverName -->
+                        <span>&nbsp;</span>
+                        <!-- /ko -->
+                        <a class="float-right" data-bind="click: $root.rentalAgreement().removeRaDriver"><span class="glyphicon glyphicon-remove"></span></a>
+                        
+                    </div>
+                    <div class="margin-top-10">
+                        <form class="form-horizontal">
+                            <div class="form-group formGroupCustom">
+                                <div>
+                                    <label class="control-label col-md-4">
+                                        Name
+                                    </label>
+                                </div>
+                                <br />
+                                <hr />
+                                <div class="clearBoth">
+                                    <div class="col-md-5">
+                                        <input type="text" class="form-control" data-bind="value: driverName, validationTooltip: driverName" />
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="clearBoth">
+                                    <label class="control-label col-md-4">
+                                        License No
+                                    </label>
+                                    <label class="control-label col-md-4">
+                                        License Expiry
+                                    </label>
+                                </div>
+                                <br />
+                                <hr />
+                                <div class="clearBoth">
+                                    <div class="col-md-4"><input type="text" class="form-control" data-bind="value: licenseNo, validationTooltip: licenseNo" /></div>
+                                    <div class="col-md-4"><input type="text" class="form-control" data-bind="datetimepicker: licenseExpDt, validationDependsOn: internalLicenseExpDateTime, css: { 'errorFillWithValidation': isLicenseExpired() }" /></div>
+                                </div>
+                                <br />
+                                <div class="clearBoth">
+                                    <label class="control-label col-md-4">
+                                        Start Date
+                                    </label>
+                                    <label class="control-label col-md-4">
+                                        End Date
+                                    </label>
+                                </div>
+                                <br />
+                                <hr />
+                                <div class="clearBoth">
+                                    <div class="col-md-4"><input id="startDt" type="text" class="form-control" data-bind="datetimepicker: start, validationDependsOn: internalStartDateTime, css: { 'errorFillWithValidation': isInvalidPeriod() }" /></div>
+                                    <div class="col-md-4"><input id="endDt" type="text" class="form-control" data-bind="datetimepicker: end, validationDependsOn: internalEndDateTime, css: { 'errorFillWithValidation': isInvalidPeriod() }" /></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- /ko -->
+            </div>
+            <div class="clearBoth no-record-found" data-bind="visible: $root.rentalAgreement().raDrivers().length === 0">
+                <h1>No Driver Added Yet.</h1>
+            </div>
+        </div>
+    </div>
+    
+    <div class="popover" id="chaufferPopover">
+        <div id="chaufferPopoverContents" class="popoverContents">
+            <div id="chaufferHeading">
+                <button id="addChaufferPopoverLink" type="button" class="btn btn-link float-right clearBoth" data-bind="click: openChaufferDialog">Add Chauffer</button>
+            </div>
+            <div data-bind="visible: $root.rentalAgreement().raChauffers().length > 0" class="clearBoth">
+                <!-- ko foreach: $root.rentalAgreement().raChauffers -->
+                <div class="margin-top-20 clearBoth popover-panel">
+                    <div class="popover-panel-heading">
+                        <span data-bind="text: driverName"></span>
+                        <a class="float-right" data-bind="click: $root.rentalAgreement().removeRaDriver"><span class="glyphicon glyphicon-remove"></span></a>
+                    </div>
+                    <div class="margin-top-10">
+                        <form class="form-horizontal">
+                            <div class="form-group formGroupCustom">
+                                <div>
+                                    <label class="control-label col-md-4">
+                                        License No
+                                    </label>
+                                    <label class="control-label col-md-4">
+                                        License Expiry
+                                    </label>
+                                </div>
+                                <br />
+                                <hr />
+                                <div class="clearBoth">
+                                    <div class="col-md-4"><input type="text" class="form-control" data-bind="value: licenseNo, enable: false" /></div>
+                                    <div class="col-md-4"><input type="text" class="form-control" data-bind="datetimepicker: licenseExpDt, validationDependsOn: internalLicenseExpDateTime, enable: false, css: { 'errorFillWithValidation': isLicenseExpired() }" /></div>
+                                </div>
+                                <br />
+                                <div class="clearBoth">
+                                    <label class="control-label col-md-4">
+                                        Start Date
+                                    </label>
+                                    <label class="control-label col-md-4">
+                                        End Date
+                                    </label>
+                                </div>
+                                <br />
+                                <hr />
+                                <div class="clearBoth">
+                                    <div class="col-md-4"><input id="startDt" type="text" class="form-control" data-bind="datetimepicker: start, validationDependsOn: internalStartDateTime, css: { 'errorFillWithValidation': isInvalidPeriod() }" /></div>
+                                    <div class="col-md-4"><input id="endDt" type="text" class="form-control" data-bind="datetimepicker: end, validationDependsOn: internalEndDateTime, css: { 'errorFillWithValidation': isInvalidPeriod() }" /></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- /ko -->
+            </div>
+            <div class="clearBoth no-record-found" data-bind="visible: $root.rentalAgreement().raChauffers().length === 0">
+                <h1>No Chauffer Added Yet.</h1>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="raPanels">
+        <div class="panel-group" id="accordion">
+
+            
+            <div class="panel panel-default">
+                <div id="chauffersHeading" class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                            Chauffers
+                        </a>
+                        <a id="addChauffersPopoverLink" class="glyphicon glyphicon-chevron-right float-right" data-bind="click: openChaufferDialog, attr:{ title: 'Add Chauffers' }"></a>
+                    </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse">
+                    <div class="panel-body" data-bind="with: rentalAgreement">
+                        <!-- ko foreach: raChauffers -->
+                        <div class="panel panel-default panelCustom">
+                            <div class="panel-heading">
+                                <span data-bind="text: driverName"></span>
+                                <a class="float-right" data-bind="click: $parent.removeRaDriver"><span class="glyphicon glyphicon-remove"></span></a>
+                            </div>
+                            <div class="panel-collapse">
+                                <form class="form-horizontal">
+                                    <div class="form-group formGroupCustom">
+                                        <div>
+                                            <label class="control-label col-md-4">
+                                                License No
+                                            </label>
+                                            <label class="control-label col-md-4">
+                                                License Expiry
+                                            </label>
+                                        </div>
+                                        <br />
+                                        <hr />
+                                        <div class="clearBoth">
+                                            <div class="col-md-4"><input type="text" class="form-control" data-bind="value: licenseNo, enable: false" /></div>
+                                            <div class="col-md-4"><input type="text" class="form-control" data-bind="datetimepicker: licenseExpDt, validationDependsOn: internalLicenseExpDateTime, enable: false, css: { 'errorFillWithValidation': isLicenseExpired() }" /></div>
+                                        </div>
+                                        <br />
+                                        <div class="clearBoth">
+                                            <label class="control-label col-md-4">
+                                                Start Date
+                                            </label>
+                                            <label class="control-label col-md-4">
+                                                End Date
+                                            </label>
+                                        </div>
+                                        <br />
+                                        <hr />
+                                        <div class="clearBoth">
+                                            <div class="col-md-4"><input id="startDt" type="text" class="form-control" data-bind="datetimepicker: start, validationDependsOn: internalStartDateTime, css: { 'errorFillWithValidation': isInvalidPeriod() }" /></div>
+                                            <div class="col-md-4"><input id="endDt" type="text" class="form-control" data-bind="datetimepicker: end, validationDependsOn: internalEndDateTime, css: { 'errorFillWithValidation': isInvalidPeriod() }" /></div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- /ko -->
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div id="discountsHeading" class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                            Discounts
+                        </a>
+                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="click: openDiscountsDialog, attr:{ title: 'Add Discounts' }"></a>
+                    </h4>
+                </div>
+                <div id="collapseFour" class="panel-collapse collapse">
+                    <div class="panel-body">
+
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div id="damagesHeading" class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                            Damages
+                        </a>
+                        <a id="addDamagesPopoverLink" class="glyphicon glyphicon-chevron-right float-right" data-bind="click: openAddChargesDialog, visible: rentalAgreement().id(), attr:{ title: 'Add Damages' }"></a>
+                    </h4>
+                </div>
+                <div id="collapseFive" class="panel-collapse collapse">
+                    <div class="panel-body" data-bind="with: $root.rentalAgreement">
+                        <!-- ko foreach: rentalAgreementAdditionalCharges -->
+                        <div class="panel panel-default panelCustom">
+                            <div class="panel-heading">
+                                <span data-bind="text: additionalChargeTypeCodeName"></span>
+                                <a class="float-right" data-bind="click: $parent.removeRaAdditionalCharge"><span class="glyphicon glyphicon-remove"></span></a>
+                            </div>
+                            <div class="panel-collapse">
+                                <form class="form-horizontal">
+                                    <div class="form-group formGroupCustom">
+                                        <div>
+                                            <label class="control-label col-sm-4">Plate No.</label>
+                                            <label class="control-label col-sm-4">Rate</label>
+                                            <label class="control-label col-sm-4">Qty</label>
+                                        </div>
+                                        <br />
+                                        <hr />
+                                        <div class="clearBoth">
+                                            <div class="col-md-4">
+                                                <select id="plateNumber" class="form-control" data-bind="options: $root.plateNumbers, value: plateNumber, validationTooltip: plateNumber"></select>
+                                            </div>
+                                            <div class="col-md-4"><input id="rate" type="text" class="form-control" data-bind="value: additionalChargeRate, validationTooltip: additionalChargeRate" /></div>
+                                            <div class="col-md-4"><input type="text" class="form-control" data-bind="value: quantity, validationTooltip: quantity" /></div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- /ko -->
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div id="paymentsHeading" class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseRaPayment">
+                            Payments
+                        </a>
+                        <a class="float-right" data-bind="click: $root.addPaymentToRentalAgreement.bind($data, $data, 'collapseRaPayment')"><span class="glyphicon glyphicon-plus"></span></a>
+                    </h4>
+                </div>
+                <div id="collapseRaPayment" class="panel-collapse collapse">
+                    <div class="panel-body" data-bind="with: rentalAgreement">
+                        <!-- ko foreach: raPayments -->
+                        <div class="panel panel-default panelCustom">
+                            <div class="panel-heading">
+                                <span>&nbsp;</span>
+                                <a class="float-right" data-bind="click: $parent.removeRaPayment"><span class="glyphicon glyphicon-remove"></span></a>
+                            </div>
+                            <div class="panel-collapse">
+                                <form class="form-horizontal">
+                                    <div class="form-group formGroupCustom">
+                                        <div>
+                                            <label class="control-label col-sm-3">Mode</label>
+                                            <label class="control-label col-sm-3">Date</label>
+                                            <label class="control-label col-sm-3">Amount</label>
+                                        </div>
+                                        <br />
+                                        <hr />
+                                        <div class="clearBoth">
+                                            <div class="col-sm-3">
+                                                <select class="form-control" id="paymentMode" data-bind="options: $root.paymentModes, optionsCaption: '<Payment Mode>', optionsText: 'codeName', optionsValue: 'id', value: paymentModeId"></select>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="text" class="form-control" data-bind="datetimepicker: paymentDt" />
+                                            </div>
+                                            <div class="col-md-3"><input type="text" class="form-control" data-bind="value: paymentAmount" /></div>
+                                        </div>
+                                        <br />
+                                        <div class="clearBoth">
+                                            <label class="control-label col-sm-3">By</label>
+                                            <label class="control-label col-sm-3">Chk No</label>
+                                            <label class="control-label col-sm-3">Bank</label>
+                                        </div>
+                                        <br />
+                                        <hr />
+                                        <div class="clearBoth">
+                                            <div class="col-md-3">
+                                                <input type="text" class="form-control" data-bind="value: paidBy" />
+                                            </div>
+                                            <div class="col-md-3"><input type="text" class="form-control" data-bind="value: checkNumber" /></div>
+                                            <div class="col-md-3">
+                                                <input type="text" class="form-control" data-bind="value: bank" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- /ko -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     @Html.Partial("_HireGroupInsurancesDialog")
 
     @Html.Partial("_RaVehicleCheckListOutDialog")
@@ -671,5 +735,10 @@
 {
     <script type="text/javascript">
         require(["rentalAgreement/rentalAgreement.view"]);
+        //$(document).ready(function () {
+        //    $('.popover').click(function () {
+        //        return false; // Do nothing
+        //    });
+        //});
     </script>
 }

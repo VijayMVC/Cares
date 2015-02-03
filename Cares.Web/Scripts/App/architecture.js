@@ -379,7 +379,7 @@ require(["ko", "knockout-validation"], function (ko) {
             var options = valueAccessor();
             // ReSharper restore DuplicatingLocalDeclaration
             var node = $("#" + options.elementNode);
-            var defaultOptions = { trigger: 'click', content: node.html() };
+            var defaultOptions = { trigger: 'click', content: node.html() ,placement:"bottom" };
             options = $.extend(true, {}, defaultOptions, options);
             $(element).popover(options);
             $(element).click(function () {
@@ -394,11 +394,14 @@ require(["ko", "knockout-validation"], function (ko) {
                 ko.cleanNode(popOver);
                 ko.applyBindingsToDescendants(childBindingContext, popOver);
             });
-            $(window).click(function (event) {
-                if (event.target != $(element)[0] && event.target.className.search(options.popoverId) < 0) {
-                    $(element).popover('hide');
-                }
-            });
+            //$(window).click(function (event) {
+            //    var 
+            //       isPopover = $(event.target).is('[data-toggle=popover]'),
+            //       inPopover = $(event.target).closest('.popover').length > 0;
+            //        //hide only if clicked on button or inside popover
+            //        if (!isPopover && !inPopover)
+            //           $(element).popover('hide');
+            //});
         }
     }
 
