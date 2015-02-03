@@ -19,8 +19,17 @@ namespace Cares.WebBase.Mvc
         /// <summary>
         /// Check if user is authorized on a given permissionKey
         /// </summary>
-        private bool IsAuthorized()
+        private bool IsAuthorized(HttpContextBase httpContext)
         {
+            if (httpContext.User != null && ClaimHelper.GetClaimToString(CaresUserClaims.UserDomainKey) == null)
+            {
+                httpContext.User = null;
+                return false;
+            }
+
+            if (httpContext.User != null && (httpContext.User.IsInRole("Admin") || httpContext.User.IsInRole("SystemAdministrator")))
+                return true;            
+
             Claim serializedUserPermissionSet = ClaimHelper.GetClaimToString(CaresUserClaims.UserPermissionSet);
             if (serializedUserPermissionSet == null)
             {
@@ -42,14 +51,14 @@ namespace Cares.WebBase.Mvc
             {
                 throw new ArgumentNullException("httpContext");
             }
-            return IsAuthorized();
+            return IsAuthorized(httpContext);
         }
         /// <summary>
         /// Redirects request to unauthroized request page
         /// </summary>
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
-            if (!filterContext.HttpContext.User.Identity.IsAuthenticated)
+            if (filterContext.HttpContext.User == null || !filterContext.HttpContext.User.Identity.IsAuthenticated)
             {
                 base.HandleUnauthorizedRequest(filterContext);
             }
@@ -61,6 +70,10 @@ namespace Cares.WebBase.Mvc
                             new { area = "", controller = "UnauthorizedRequest", action = "Index" }));
             }
         }        
-        public string PermissionKey { get; set; }        
+        /// <summary>
+        /// Permission Key attribute to be set on caller method
+        /// </summary>
+        public string PermissionKey { get; set; }
+
     }
 }

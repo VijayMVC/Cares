@@ -28,7 +28,7 @@ namespace Cares.Implementation.Services
         #region Public
 
         /// <summary>
-        /// Add License Details and return user  domain key
+        /// Add License Details and return user domain key
         /// </summary>
         public void AddLicenseDetail(RegisterViewModel userModel, double domainkey)
         {

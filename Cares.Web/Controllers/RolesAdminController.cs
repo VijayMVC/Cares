@@ -4,6 +4,7 @@ using Cares.Models.DomainModels;
 using Cares.Models.IdentityModels;
 using Cares.Models.IdentityModels.ViewModels;
 using Cares.Web.Controllers;
+using Cares.Web.Models;
 using IdentitySample.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -15,15 +16,17 @@ using System.Web;
 using System.Web.Mvc;
 using System.Collections.Generic;
 using Cares.Web.ViewModels.RightsManagement;
+using Cares.Web.ViewModels.RightsManagement;
 using Cares.Models.MenuModels;
 using MenuRightModel = Cares.Web.Models.MenuRight;
+using Cares.Commons;
+using System;
 
 namespace IdentitySample.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "SystemAdministrator")]
     public class RolesAdminController : Controller
     {
-
         private IMenuRightsService menuRightsService;
         public RolesAdminController()
         {
@@ -63,15 +66,17 @@ namespace IdentitySample.Controllers
             }
         }
 
-        //
-        // GET: /Roles/
+        /// <summary>
+        /// Get All Roles
+        /// </summary>
         public ActionResult Index()
         {
-            return View(RoleManager.Roles.Where(role => !role.Name.ToLower().Equals("admin")));
+            return View(RoleManager.Roles.Where(role => role.Name.ToLower() != "admin" && role.Name.ToLower() != "systemadministrator"));
         }
 
-        //
-        // GET: /Roles/Details/5
+        /// <summary>
+        /// Gets Roles Details
+        /// </summary>
         public async Task<ActionResult> Details(string id)
         {
             if (id == null)
@@ -96,21 +101,24 @@ namespace IdentitySample.Controllers
             return View(role);
         }
 
-        //
-        // GET: /Roles/Create
+       /// <summary>
+       /// Flash
+       /// </summary>
+       /// <returns></returns>
         public ActionResult Create()
         {
             return View();
         }
 
-        //
-        // POST: /Roles/Create
+        /// <summary>
+        /// Saves Newly created Role
+        /// </summary>
         [HttpPost]
         public async Task<ActionResult> Create(RoleViewModel roleViewModel)
         {
             if (ModelState.IsValid)
             {
-                var role = new UserRole{ Name = roleViewModel.Name };
+                var role = new UserRole { Name = roleViewModel.Name };
                 var roleresult = await RoleManager.CreateAsync(role);
                 if (!roleresult.Succeeded)
                 {
@@ -122,7 +130,7 @@ namespace IdentitySample.Controllers
             return View();
         }
 
-        //
+       
         // GET: /Roles/Edit/Admin
         public async Task<ActionResult> Edit(string id)
         {
@@ -208,14 +216,11 @@ namespace IdentitySample.Controllers
             return View();
         }
 
-        [Authorize (Roles = "Admin")]
         public ActionResult RightsManagement()
         {
-
             UserMenuResponse userMenuRights = menuRightsService.GetRoleMenuRights(string.Empty);
             RightsManagementViewModel viewModel = new RightsManagementViewModel();
-
-            viewModel.Roles = userMenuRights.Roles.ToList();
+            viewModel.Roles = userMenuRights.Roles.Where(role => role.Name != "SystemAdministrator").ToList();
             viewModel.Rights =
                 userMenuRights.Menus.Select(
                     m =>
@@ -230,7 +235,6 @@ namespace IdentitySample.Controllers
             return View(viewModel);
         }
 
-        [Authorize(Roles = "Admin")]
         public ActionResult PostRightsManagement(string roleValue, string selectedList)
         {
 
@@ -255,7 +259,6 @@ namespace IdentitySample.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public ActionResult RightsManagement(FormCollection collection)
         {
             string RoleId = collection.Get("SelectedRoleId");
@@ -278,5 +281,6 @@ namespace IdentitySample.Controllers
             viewModel.SelectedRoleId = RoleId;
             return View(viewModel);
         }
+
     }
 }

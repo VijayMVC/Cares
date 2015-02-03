@@ -742,7 +742,6 @@
           <Property Name="RecLastUpdatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="RecCreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="RecCreatedDt" Type="datetime" Nullable="false" />
-          <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="CreditLimit">
           <Key>
@@ -8280,7 +8279,6 @@
           <NavigationProperty Name="Regions" Relationship="DomainModels.RefCountry41" FromRole="Country" ToRole="Region" />
           <NavigationProperty Name="Employees" Relationship="DomainModels.RefNationality355" FromRole="Country" ToRole="Employee" />
           <NavigationProperty Name="Addresses" Relationship="DomainModels.RefCountry1971" FromRole="Country" ToRole="Address" />
-          <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -14261,7 +14259,6 @@
           <EntitySetMapping Name="Countries">
             <EntityTypeMapping TypeName="DomainModels.Country">
               <MappingFragment StoreEntitySet="Country">
-                <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
                 <ScalarProperty Name="RecCreatedDt" ColumnName="RecCreatedDt" />
                 <ScalarProperty Name="RecCreatedBy" ColumnName="RecCreatedBy" />
                 <ScalarProperty Name="RecLastUpdatedBy" ColumnName="RecLastUpdatedBy" />

@@ -1,8 +1,12 @@
-﻿using Cares.Implementation.Identity;
+﻿using System.Configuration;
+using System.IO;
+using System.Linq;
+using Cares.ExceptionHandling;
+using Cares.Implementation.Identity;
 using Cares.Interfaces.IServices;
-using Cares.Models.DomainModels;
 using Cares.Models.IdentityModels;
 using Cares.Models.IdentityModels.ViewModels;
+using Cares.WebBase.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
@@ -30,7 +34,56 @@ namespace Cares.WebApi.Areas.Api.Controllers
             get { return _userManager ?? HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
             set { _userManager = value; }
         }
+        /// <summary>
+        /// Add User 
+        /// </summary>
+        private User AddUser(User user, RegisterViewModel model, out string error)
+        {
+            error = string.Empty;
+            var result = UserManager.Create(user, model.ConfirmPassword);
+            if (result.Succeeded)
+            {
+                var addUserToRoleResult = UserManager.AddToRole(user.Id, model.SelectedRole);
+                if (!addUserToRoleResult.Succeeded)
+                {
+                    throw new InvalidOperationException(string.Format("Failed to add user to role {0}",
+                        model.SelectedRole));
+                }
+                return user;
+            }
+            error = result.Errors.FirstOrDefault();
+            return null;
+        }
 
+        /// <summary>
+        /// Send Email to User for confirmation
+        /// </summary>
+        private string SendEmailToUser(User user, RegisterViewModel model)
+        {
+            string tempCode = UserManager.GenerateEmailConfirmationTokenAsync(user.Id).Result;
+            tempCode = HttpUtility.UrlEncode(tempCode);
+            //UrlHelper url = new UrlHelper(HttpContext.Current.Request.RequestContext);
+
+            //string action = url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = tempCode });
+            string action = @"/Account/ConfirmEmail?userId=" + user.Id + "&code=" + tempCode;
+
+            //    action = action.Replace("/CaresWebApi", "");
+            string completeAddress = ConfigurationManager.AppSettings["CaresSiteAddress"] + action;
+            //email template text = ReplacementText
+            string emailBody = GetEmailTemplate();
+            //completeAddress = HttpUtility.UrlEncode(completeAddress);
+            emailBody = emailBody.Replace("ReplacementText", completeAddress);
+
+            UserManager.SendEmailSendGrid(model.Email, "Confimr your CaReS subscription", emailBody);
+
+            return "Success";
+        }
+
+        private string GetEmailTemplate()
+        {            
+            string emailHtml = File.ReadAllText(ConfigurationManager.AppSettings["ApplicationHostingPath"] + @"\Content\emailTemplate.html");
+            return emailHtml;
+        }
         #endregion
         #region Constructor
         /// <summary>
@@ -51,8 +104,9 @@ namespace Cares.WebApi.Areas.Api.Controllers
 
         /// <summary>
         /// Register user using web api
-        /// </summary>        
-        public async Task<string> Post(RegisterViewModel model)
+        /// </summary>
+        [ApiException]        
+        public string Post(RegisterViewModel model)
         {
             model.SelectedRole = "Admin";
             if (ModelState.IsValid)
@@ -65,47 +119,23 @@ namespace Cares.WebApi.Areas.Api.Controllers
                     Email = model.Email, 
                     UserDomainKey = Convert.ToInt64(userDomainKey)+1   //giving the Max+1 domain key
                 };
-                User addedUser = AddUser(user, model);
+                string errorString;
+                User addedUser = AddUser(user, model, out errorString);
                 if (addedUser != null)
                 {
                     registerUserService.AddLicenseDetail(model, userDomainKey);
-                    return await SendEmailToUser(addedUser, model);
+                    return SendEmailToUser(addedUser, model);
                 }
-                return "Failed to add user.Something bad happended!";
-            }
-            return "Given Data is corrupted!";
-        }
-
-        /// <summary>
-        /// Add User 
-        /// </summary>
-        private User AddUser(User user, RegisterViewModel model)
-        {
-            var result = UserManager.Create(user, model.ConfirmPassword);
-            if (result.Succeeded)
-            {
-                var addUserToRoleResult =  UserManager.AddToRole(user.Id, model.SelectedRole);
-                if (!addUserToRoleResult.Succeeded)
+                if (!string.IsNullOrEmpty(errorString))
                 {
-                    throw new InvalidOperationException(string.Format("Failed to add user to role {0}", model.SelectedRole));
-                }
-                return user;
+                    throw new CaresException(errorString);
+                }                
             }
-            return null;
+            throw new CaresException("Failed to register!");
         }
 
-        /// <summary>
-        /// Send Email to User for confirmation
-        /// </summary>
-        private async Task<string> SendEmailToUser(User user, RegisterViewModel model)
-        {
-            var code = UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-            var url = new UrlHelper(HttpContext.Current.Request.RequestContext);
-            string action = url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code });
-            await UserManager.SendEmailAsync(model.Email, "Confirm your account", "Please confirm your account by clicking this link : <a href=" + action + ">Confirm account</a> <br>Your Password is:" + model.Password);
-            return url.ToString();
-        }
-
+        
+        
         /// <summary>
         /// Confirm User's email address
         /// </summary>

@@ -14,7 +14,7 @@ namespace IdentitySample
 
         public void ConfigureAuth(IAppBuilder app)
         {
-            
+
             // Configure the db context, user manager and role manager to use a single instance per request
             //app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
@@ -33,16 +33,16 @@ namespace IdentitySample
                     // Enables the application to validate the security stamp when the user logs in.
                     // This is a security feature which is used when you change a password or add an external login to your account.  
                     OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, User>(
-                        validateInterval: TimeSpan.FromMinutes(30),
+                        validateInterval: TimeSpan.FromMinutes(10),
                         regenerateIdentity: (manager, user) =>
                         {
-                            var identity = user.GenerateUserIdentityAsync(manager, DefaultAuthenticationTypes.ApplicationCookie);                         
+                            var identity = user.GenerateUserIdentityAsync(manager, DefaultAuthenticationTypes.ApplicationCookie);
                             return identity;
                         })
                 }
             });
-           // identity.Result.AddClaim(new Claim(ClaimTypes.Country, "Pakistan"));
-        
+            // identity.Result.AddClaim(new Claim(ClaimTypes.Country, "Pakistan"));
+
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.

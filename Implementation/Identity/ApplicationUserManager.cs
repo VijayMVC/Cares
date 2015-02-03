@@ -2,9 +2,12 @@
 // Licensed under the Apache License, Version 2.0.  See LICENSE.txt in the project root for license information.
 
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 using System.Net;
 using System.Net.Mail;
+using System.Threading;
 using System.Threading.Tasks;
 using Cares.Models.DomainModels;
 using Cares.Models.IdentityModels;
@@ -14,6 +17,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Practices.Unity;
+using SendGrid.SmtpApi;
 
 namespace Cares.Implementation.Identity
 {
@@ -63,6 +67,54 @@ namespace Cares.Implementation.Identity
 
             return client.SendMailAsync(oEmail);
 
+        }
+
+        string XsmtpapiHeaderAsJson()
+        {
+            var header = new Header();
+
+            var uniqueArgs = new Dictionary<string, string> {
+				{
+					"cares",
+					"invitation"
+				},				
+			};
+            header.AddUniqueArgs(uniqueArgs);
+
+            return header.JsonString();
+        }
+        public void SendEmailSendGrid(string emailTo, string subject, string body)
+        {
+            SmtpClient client = new SmtpClient();
+            client.Port = int.Parse(ConfigurationManager.AppSettings["SendGridSmtpPort"]);
+            client.Host = ConfigurationManager.AppSettings["SendGridSmtpServer"];
+            client.Timeout = 10000;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+            
+            MailMessage mail = new MailMessage();
+            mail.From = new MailAddress(ConfigurationManager.AppSettings["SendGridFromEmail"], ConfigurationManager.AppSettings["SendGridFromName"]);
+            mail.Subject = subject;
+            mail.Body = body;
+            client.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["SendGridUserName"], ConfigurationManager.AppSettings["SendGridPassword"]);
+            mail.IsBodyHtml = true;
+            string xmstpapiJson = XsmtpapiHeaderAsJson();
+            mail.To.Add(new MailAddress(emailTo));
+
+            mail.Headers.Add("X-SMTPAPI", xmstpapiJson);
+            //client.SendAsync(mail, null);
+            client.SendCompleted += (sender, error) =>
+            {
+                if (error.Error != null)
+                {
+                    throw new WarningException(string.Format("Email Failed to send. Email Invite to : {0}", mail.To));
+                }
+                client.Dispose();
+                mail.Dispose();
+            };
+            ThreadPool.QueueUserWorkItem(o => client.SendAsync(mail, Tuple.Create(client, mail)));
+        
+            
         }
 
         /// <summary>

@@ -40,7 +40,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public override IEnumerable<Country> GetAll()
         {
-            return DbSet.Where(country => country.UserDomainKey == UserDomainKey).ToList();
+            return DbSet.Select(country => country).ToList();
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public Country Find(int id)
         {
-            return DbSet.FirstOrDefault(country => country.UserDomainKey == UserDomainKey && country.CountryId == id);
+            return DbSet.FirstOrDefault(country =>  country.CountryId == id);
         }
         #endregion
     }

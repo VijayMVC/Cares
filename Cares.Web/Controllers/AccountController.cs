@@ -104,7 +104,7 @@ namespace IdentitySample.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            if (!User.Identity.IsAuthenticated)
+            if (!User.Identity.IsAuthenticated || ClaimHelper.GetClaimToString(CaresUserClaims.UserDomainKey) == null) 
             {
                 ViewBag.ReturnUrl = returnUrl;
                 return View();
@@ -282,12 +282,17 @@ namespace IdentitySample.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
+            code = HttpUtility.UrlDecode(code);
             if (userId == null || code == null)
             {
                 return View("Error");
             }
             var result = await UserManager.ConfirmEmailAsync(userId, code);
-            return View(result.Succeeded ? "ConfirmEmail" : "Error");
+            if (result.Succeeded)
+            {
+                return View("Login");
+            }
+            return View("Error");
         }
 
         //

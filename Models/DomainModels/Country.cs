@@ -70,10 +70,7 @@ namespace Cares.Models.DomainModels
         /// </summary>
         public string RecLastUpdatedBy { get; set; }
         
-        /// <summary>
-        /// User Domain Key
-        /// </summary>
-        public long UserDomainKey { get; set; }
+    
 
         #endregion
 
