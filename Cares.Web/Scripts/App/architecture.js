@@ -375,6 +375,7 @@ require(["ko", "knockout-validation"], function (ko) {
     // Used to show popover
     ko.bindingHandlers.bootstrapPopover = {
         init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+
             // ReSharper disable DuplicatingLocalDeclaration
             var options = valueAccessor();
             // ReSharper restore DuplicatingLocalDeclaration
@@ -383,9 +384,15 @@ require(["ko", "knockout-validation"], function (ko) {
             options = $.extend(true, {}, defaultOptions, options);
             $(element).popover(options);
             $(element).click(function () {
+                $('.popover').hide();
+                $(element).popover('show');
                 var popOver = $("#" + options.popoverId);
+                
                 if (popOver) {
+                   
                     popOver = popOver[0];
+                    
+                    
                 }
                 var childBindingContext = bindingContext.createChildContext(viewModel);
                 if (!popOver) {
@@ -404,6 +411,27 @@ require(["ko", "knockout-validation"], function (ko) {
             //});
         }
     }
+
+
+    ko.bindingHandlers.bootstrapSwitchOn = {
+        init: function (element, valueAccessor, allBindingsAccessor, viewModel) {
+            var $elem = $(element);
+            var switchOptions = allBindingsAccessor().switchOptions || {};
+            var defaultValue = ko.utils.unwrapObservable(valueAccessor());
+            $elem.bootstrapSwitch(switchOptions);
+            $elem.on('switchChange.bootstrapSwitch', function (e, data) {
+                valueAccessor()(data);
+            }); // Update the model when changed.
+        },
+        update: function (element, valueAccessor, allBindingsAccessor, viewModel) {
+            var vStatus = $(element).bootstrapSwitch('state');
+            var vmStatus = ko.utils.unwrapObservable(valueAccessor());
+            if (vStatus != vmStatus) {
+                $(element).bootstrapSwitch('setState.bootstrapSwitch', vmStatus);
+            }
+        }
+    };
+
 
     // Fix for bootstrap popovers, sometimes they are left in the DOM when they shouldn't be.
     $('body').on('hidden.bs.popover', function () {

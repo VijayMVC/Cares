@@ -182,6 +182,9 @@
             margin-top: 5px;
         }*/
 }
+#rentalAgreementBinding #raMain .twitter-typeahead {
+  width: 98.5%;
+}
 #rentalAgreementBinding #raMain #collapseSeven .panel-body {
   padding: 8px;
 }
@@ -263,7 +266,7 @@
   }
 }
 #rentalAgreementBinding #raBilling #ra #rentalAgreementHireGroup {
-  width: 339px;
+  width: 100%;
 }
 #rentalAgreementBinding #billing {
   margin-top: .5%;

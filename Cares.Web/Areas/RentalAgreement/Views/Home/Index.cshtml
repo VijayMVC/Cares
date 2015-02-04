@@ -108,8 +108,12 @@
                         </a>
                     </h4>
                     <div class="float-right display-block">
-                        <input type="checkbox" class="float-right" data-bind="bootstrapSwitchOn: $root.isExistingBusinessPartner, switchOptions: { onText: 'Existing', offText: 'New', size: 'mini', state: $root.isExistingBusinessPartner()}" />
+                        <input type="checkbox" class="float-right" data-bind="bootstrapSwitchOn: $root.isExistingBusinessPartner, switchOptions: { onText: 'Existing', offText: 'New', size: 'mini',offColor: 'info', state: $root.isExistingBusinessPartner()}" />
                     </div>
+                    <div class="float-right display-block margin-right">
+                        <input type="checkbox" class="float-right" data-bind="bootstrapSwitchOn: $root.rentalAgreement().businessPartner().isIndividual, switchOptions: { onText: 'Company', offText: 'Individual', size: 'mini', offColor:'info',state: $root.rentalAgreement().businessPartner().isIndividual()}" />
+                    </div>
+                    
                 </div>
 
                 <div id="collapseSix" class="panel-collapse collapse in">
@@ -120,13 +124,8 @@
                                 <div class="col-md-2">
                                     <input type="text" class="form-control" placeholder="<Customer #>" id="customerNumber" data-bind="value: customerNo, enable: !$root.rentalAgreement().id()" />
                                 </div>
-                                <label for="isCustomerIndividual" id="isIndividualLabel" class="control-label col-sm-3">Is Individual</label>
-                                @* ReSharper disable UnknownCssClass *@
-                                <div class="col-md-1 checkBoxCol">
-                                    @* ReSharper restore UnknownCssClass *@
-                                    <input type="checkbox" class="form-control" id="isCustomerIndividual" data-bind="checked: isIndividual, enable: !$root.rentalAgreement().id()" />
-                                </div>
-                                <div class="col-md-4">
+                               
+                                <div class="col-md-7">
                                     <select class="form-control" id="customerPaymentTerm" data-bind="options: $root.paymentTerms, optionsCaption: '<Payment Term>', optionsText: 'codeName', optionsValue: 'id', value: paymentTermId, enable: !$root.rentalAgreement().id(), validationTooltip: paymentTermId"></select>
                                 </div>
                             </div>

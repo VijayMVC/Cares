@@ -39,10 +39,14 @@ namespace Cares.Web
                 .Include("~/Scripts/Calendar/jquery.calendars.islamic.js"));
             
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                 "~/Scripts/bootstrap.js"));
+                 "~/Scripts/bootstrap.js")
+                 //.Include("~/Scripts/bootstrap-switch.js")
+                 );
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css"));
+                "~/Content/bootstrap.css")
+                //.Include("~/Content/bootstrap-switch.css")
+                );
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap-rtl").Include(
            "~/Scripts/bootstrap-rtl.js"));
