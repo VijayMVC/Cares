@@ -486,6 +486,9 @@
 #rentalAgreementBinding {
   color: gray;
 }
+#rentalAgreementBinding .margin-button {
+  margin-left: 10px;
+}
 #rentalAgreementBinding .popover {
   min-width: 33%;
   min-height: 200px;
@@ -645,33 +648,33 @@
 #rentalAgreementBinding a.glyphicon {
   text-decoration: none;
 }
-#rentalAgreementBinding #raMain {
-  width: 36.5%;
-  float: left;
-  margin-left: .5%;
-  margin-right: .5%;
+#rentalAgreementBinding #customer {
+  height: 237px;
 }
-#rentalAgreementBinding #raMain #customer {
-  min-height: 173px;
-}
-#rentalAgreementBinding #raMain #customer #isIndividualLabel {
+#rentalAgreementBinding #customer #isIndividualLabel {
   width: 18%;
   margin-left: 11px;
 }
-#rentalAgreementBinding #raMain #customer label.col-sm-2 {
+#rentalAgreementBinding #customer label.col-sm-2 {
   width: 20%;
 }
-#rentalAgreementBinding #raMain #accordion3 {
-  margin-top: 5px;
+#rentalAgreementBinding #raMain {
+  width: 49.5%;
+  float: left;
+  margin-left: .5%;
+  margin-right: .5%;
+  /*#accordion3 {
+            margin-top: 5px;
+        }*/
 }
 #rentalAgreementBinding #raMain #collapseSeven .panel-body {
   padding: 8px;
 }
 #rentalAgreementBinding #raMain #collapseSeven .panel-body .panelCustom {
-  border-radius: 12px !important;
+  border-radius: 5px !important;
 }
 #rentalAgreementBinding #raMain #collapseSeven .panel-body .panelCustom .panel-heading {
-  border-radius: 10px !important;
+  border-radius: 5px 5px 0 0 !important;
 }
 #rentalAgreementBinding #raMain #collapseSeven .panel-body .panelCustom .clearBoth {
   clear: both;
@@ -680,8 +683,8 @@
   margin-right: 0;
   margin-left: 0;
   margin-bottom: 0;
-  border-radius: 10px !important;
-  background-color: silver;
+  /*border-radius: 10px !important;
+                background-color: silver;*/
 }
 #rentalAgreementBinding #raMain #collapseSeven .formGroupCustom hr {
   margin-top: 5px;
@@ -689,7 +692,7 @@
 }
 #rentalAgreementBinding #raMain #vehicle {
   margin-top: .5%;
-  min-height: 268px;
+  min-height: 505px;
 }
 #rentalAgreementBinding #raMain #vehicle #vehicleMovementTemplate_popoverContent {
   width: 500px;
@@ -700,14 +703,17 @@
   vertical-align: super;
 }
 #rentalAgreementBinding #raBilling {
-  width: 33.5%;
+  width: 49.5%;
   float: left;
 }
-#rentalAgreementBinding #raBilling #accordion5 {
+#rentalAgreementBinding #raBilling .display-block {
+  display: inline-block;
+}
+#rentalAgreementBinding #raBilling #accordion2 {
   margin-top: 5px;
 }
 #rentalAgreementBinding #raBilling #ra {
-  min-height: 236px;
+  min-height: 175px;
 }
 #rentalAgreementBinding #raBilling #ra label.col-sm-2 {
   width: 16.5%;
@@ -744,18 +750,18 @@
 #rentalAgreementBinding #raBilling #ra #rentalAgreementHireGroup {
   width: 339px;
 }
-#rentalAgreementBinding #raBilling #billing {
+#rentalAgreementBinding #billing {
   margin-top: .5%;
   min-height: 105px;
 }
-#rentalAgreementBinding #raBilling #billing .Bold {
+#rentalAgreementBinding #billing .Bold {
   font-weight: bold;
 }
-#rentalAgreementBinding #raBilling #billing div.form-group {
+#rentalAgreementBinding #billing div.form-group {
   margin-right: 0;
   margin-left: 0;
 }
-#rentalAgreementBinding #raBilling #billing div.form-group div {
+#rentalAgreementBinding #billing div.form-group div {
   border-bottom: 1px solid black;
 }
 #rentalAgreementBinding .popoverContents {
@@ -799,19 +805,74 @@
   cursor: pointer;
 }
 #rentalAgreementBinding #driverPopoverContents .popover-panel {
-  border: 1px solid #89c4f4;
+  border-color: #89c4f4;
 }
 #rentalAgreementBinding #driverPopoverContents .popover-panel .popover-panel-heading {
   background-color: #89c4f4;
 }
 #rentalAgreementBinding #chaufferPopoverContents .popover-panel {
-  border: 1px solid #f0ad4e;
+  border-color: #f0ad4e;
 }
 #rentalAgreementBinding #chaufferPopoverContents .popover-panel .popover-panel-heading {
   background-color: #f0ad4e;
 }
+#rentalAgreementBinding #discountPopoverContents .popover-panel {
+  border-color: #45b6af;
+}
+#rentalAgreementBinding #discountPopoverContents .popover-panel .popover-panel-heading {
+  background-color: #45b6af;
+}
+#rentalAgreementBinding #damagePopoverContents .popover-panel {
+  border-color: #f3565d;
+}
+#rentalAgreementBinding #damagePopoverContents .popover-panel .popover-panel-heading {
+  background-color: #f3565d;
+}
+#rentalAgreementBinding #paymentPopoverContents .popover-panel {
+  border-color: #6b6f59;
+}
+#rentalAgreementBinding #paymentPopoverContents .popover-panel .popover-panel-heading {
+  background-color: #6b6f59;
+}
 #raQueueBinding .txtBox {
   width: 142px;
+}
+.btn-custom {
+  color: #ffffff;
+  background-color: #6b6f59;
+  border-color: #6b6f59;
+}
+.btn-custom:hover,
+.btn-custom:focus,
+.btn-custom:active,
+.btn-custom.active,
+.open .dropdown-toggle.btn-custom {
+  color: #ffffff;
+  background-color: #6b6f59;
+  border-color: #6b6f59;
+}
+.btn-custom:active,
+.btn-custom.active,
+.open .dropdown-toggle.btn-custom {
+  background-image: none;
+}
+.btn-custom.disabled,
+.btn-custom[disabled],
+fieldset[disabled] .btn-custom,
+.btn-custom.disabled:hover,
+.btn-custom[disabled]:hover,
+fieldset[disabled] .btn-custom:hover,
+.btn-custom.disabled:focus,
+.btn-custom[disabled]:focus,
+fieldset[disabled] .btn-custom:focus,
+.btn-custom.disabled:active,
+.btn-custom[disabled]:active,
+fieldset[disabled] .btn-custom:active,
+.btn-custom.disabled.active,
+.btn-custom[disabled].active,
+fieldset[disabled] .btn-custom.active {
+  background-color: #6b6f59;
+  border-color: #6b6f59;
 }
 #companyBinding table thead tr .CompanyCodeH {
   width: 15%;

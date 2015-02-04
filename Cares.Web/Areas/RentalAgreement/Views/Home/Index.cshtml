@@ -10,29 +10,110 @@
         <button class="btn btn-primary float-left" data-bind="click: openRentalAgreement, visible: canOpen">Open Agreement</button>
         <button class="btn btn-primary float-left" data-bind="click: updateRentalAgreement, visible: canUpdate">Update Agreement</button>
         <button class="btn float-left" data-bind="click: closeRentalAgreement, visible: canClose">Close Agreement</button>
-        <button class="btn float-left margin-left" data-bind="bootstrapPopover:{elementNode: 'extraPopover', html: true, popoverId: 'extraPopoverContents'} ">Extras</button>
-        <button class="btn btn-info float-left margin-left" data-bind="bootstrapPopover:{elementNode: 'driverPopover', html: true, popoverId: 'driverPopoverContents'} ">Drivers</button>
-        <button type="button" class="btn btn-warning float-left margin-left" data-bind="bootstrapPopover:{elementNode: 'chaufferPopover', html: true, popoverId: 'chaufferPopoverContents'} ">Chauffers</button>
+
+        <div class="float-left margin-left">
+            <button class="btn float-left" data-bind="bootstrapPopover:{elementNode: 'extraPopover', html: true, popoverId: 'extraPopoverContents'} ">Extras</button>
+            <button class="btn btn-info float-left margin-button" data-bind="bootstrapPopover:{elementNode: 'driverPopover', html: true, popoverId: 'driverPopoverContents'} ">Drivers</button>
+            <button type="button" class="btn btn-warning float-left margin-button" data-bind="bootstrapPopover:{elementNode: 'chaufferPopover', html: true, popoverId: 'chaufferPopoverContents'} ">Chauffers</button>
+            <button type="button" class="btn btn-success float-left margin-button" data-bind="bootstrapPopover:{elementNode: 'discountPopover', html: true, popoverId: 'discountPopoverContents'} ">Discounts</button>
+            <button type="button" class="btn btn-danger float-left margin-button" data-bind="bootstrapPopover:{elementNode: 'damagePopover', html: true, popoverId: 'damagePopoverContents'} ">Damages</button>
+            <button type="button" class="btn btn-custom float-left margin-button" data-bind="bootstrapPopover:{elementNode: 'paymentPopover', html: true, popoverId: 'paymentPopoverContents'} ">Payments</button>
+            <button type="button" class="btn btn-custom float-left margin-button" data-bind="bootstrapPopover:{elementNode: 'billingPopover', html: true, popoverId: 'billingPopoverContents'} ">Billing</button>
+
+        </div>
 
     </div>
     <br />
 
-    <div id="raMain">
-        <div class="panel-group" id="accordion2">
+    <div id="raBilling">
+        <div class="panel-group" id="accordion4">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
+                        <a class="headingLink" data-toggle="collapse" data-parent="#accordion4" href="#collapseEight">
+                            Rental Agreement
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseEight" class="panel-collapse collapse in">
+                    <div class="panel-body customPanel">
+                        <form id="ra" class="form-horizontal" data-bind="with: rentalAgreement">
+                            <div class="form-group">
+                                <label for="rentalAgreementNumber" class="control-label col-sm-2">RA #</label>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" placeholder="<RA #>" id="rentalAgreementNumber" data-bind="enable: false, value: id" />
+                                </div>
+                                <label for="rentalAgreementBookingNumber" class="control-label col-sm-2 notFirstColumn">Booking #</label>
+                                <div class="col-md-3" id="bookingNumberControl">
+                                    <input type="text" class="form-control" placeholder="<Booking No>" id="rentalAgreementBookingNumber" data-bind="enable: $root.canEditBooking, value: raBookingId" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="rentalAgreementDuration" class="control-label col-sm-2">Duration</label>
+                                <div class="col-md-2 input-small">
+                                    <input type="text" class="form-control" placeholder="<Days>" id="rentalAgreementDuration" data-bind="value: days, enable: !id()" />
+                                </div>
+                                <div class="col-md-2 input-small">
+                                    <input type="text" class="form-control" placeholder="<Hours>" id="rentalAgreementHours" data-bind="value: hours, enable: !id()" />
+                                </div>
+                                <div class="col-md-2 input-small">
+                                    <input type="text" class="form-control" placeholder="<Mins>" id="rentalAgreementMins" data-bind="value: minutes, enable: !id()" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="rentalAgreementStartDate" class="control-label col-sm-2"></label>
+                                <div class="col-md-4 dateTimeControl">
+                                    <input type="text" class="form-control dateControl" placeholder="<Start Date>" id="rentalAgreementStartDate" data-bind="datetimepicker: start, enable: !id(), css:{ 'errorFill': isInvalidPeriod() }" />
+                                </div>
+                                <div class="col-md-4 dateTimeControl">
+                                    <input type="text" class="form-control dateControl" placeholder="<End Date>" id="rentalAgreementEndDate" data-bind="datetimepicker: end, enable: !id(), css:{ 'errorFill': isInvalidPeriod() }" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="rentalAgreementOperation" class="control-label col-sm-2">Operation</label>
+                                <div class="col-md-4">
+                                    <select class="form-control" id="rentalAgreementOperation" data-bind="options: $root.operations, optionsCaption: '<Operation>', optionsText: 'codeName', optionsValue: 'id', value: operationId, enable: !id(), validationTooltip: operationId"></select>
+                                </div>
+                                <label for="rentalAgreementOperation" id="rentalPaymentTermLabel" class="control-label col-sm-2 notFirstColumn">Payment</label>
+                                <div class="col-md-4" id="rentalPaymentTermControl">
+                                    <select class="form-control" id="rentalAgreementPaymentTerm" data-bind="options: $root.paymentTerms, optionsCaption: '<Payment Term>', optionsText: 'codeName', optionsValue: 'id', value: paymentTermId, enable: !id(), validationTooltip: paymentTermId"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="rentalAgreementOutLocation" class="control-label col-sm-2">Location</label>
+                                <div class="col-md-5">
+                                    <select class="form-control" id="rentalAgreementOutLocation" data-bind="options: $root.availableLocations, optionsCaption: '<Out Location>', optionsText: 'code', optionsValue: 'id', value: openLocation, enable: !id(), validationDependsOn: internalOpenLocation"></select>
+                                </div>
+                                <div class="col-md-4" id="returnLocationControl">
+                                    <select class="form-control" id="rentalAgreementReturnLocation" data-bind="options: $root.availableLocations, optionsCaption: '<Return Location>', optionsText: 'code', optionsValue: 'id', value: closeLocation, enable: !id()"></select>
+                                </div>
+                            </div>
+                            <div class="form-group" data-bind="with: $parent">
+                                <label for="rentalAgreementHireGroup" class="control-label col-sm-2">Hire Group</label>
+                                <div class="col-md-9 rentalHireGroupControl">
+                                    <input type="text" class="form-control" placeholder="<Hire Group>" id="rentalAgreementHireGroup" data-bind="enable: canLookForHireGroups, value: hireGroupText" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-group" id="accordion2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title display-block">
                         <a class="headingLink" data-toggle="collapse" data-parent="#accordion2" href="#collapseSix">
                             Customer
                         </a>
                     </h4>
+                    <div class="float-right display-block">
+                        <input type="checkbox" class="float-right" data-bind="bootstrapSwitchOn: $root.isExistingBusinessPartner, switchOptions: { onText: 'Existing', offText: 'New', size: 'mini', state: $root.isExistingBusinessPartner()}" />
+                    </div>
                 </div>
+
                 <div id="collapseSix" class="panel-collapse collapse in">
                     <div class="panel-body customPanel">
-                        <div>
-                            <button type="button" id="onDutyBtn" class="btn btn-warning active" data-bind="click: setExistingFalse, css: { active: !isExistingBusinessPartner() }">New</button>
-                            <button type="button" id="offDutyBtn" class="btn btn-success" data-bind="click: setExistingTrue, css: { active: isExistingBusinessPartner }">Existing</button>
-                        </div><br />
                         <form id="customer" class="form-horizontal" data-bind="with: rentalAgreement().businessPartner">
                             <div class="form-group">
                                 <label for="customerNumber" class="control-label col-sm-2">Customer #</label>
@@ -149,6 +230,9 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div id="raMain">
+        
         <div class="panel-group" id="accordion3">
             <div class="panel panel-default">
                 <div id="addVehiclesHeading" class="panel-heading">
@@ -217,145 +301,12 @@
             </div>
         </div>
     </div>
-    <div id="raBilling">
-        <div class="panel-group" id="accordion4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a class="headingLink" data-toggle="collapse" data-parent="#accordion4" href="#collapseEight">
-                            Rental Agreement
-                        </a>
-                    </h4>
-                </div>
-                <div id="collapseEight" class="panel-collapse collapse in">
-                    <div class="panel-body customPanel">
-                        <form id="ra" class="form-horizontal" data-bind="with: rentalAgreement">
-                            <div class="form-group">
-                                <label for="rentalAgreementNumber" class="control-label col-sm-2">RA #</label>
-                                <div class="col-md-2">
-                                    <input type="text" class="form-control" placeholder="<RA #>" id="rentalAgreementNumber" data-bind="enable: false, value: id" />
-                                </div>
-                                <label for="rentalAgreementBookingNumber" class="control-label col-sm-2 notFirstColumn">Booking #</label>
-                                <div class="col-md-3" id="bookingNumberControl">
-                                    <input type="text" class="form-control" placeholder="<Booking No>" id="rentalAgreementBookingNumber" data-bind="enable: $root.canEditBooking, value: raBookingId" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="rentalAgreementDuration" class="control-label col-sm-2">Duration</label>
-                                <div class="col-md-2 input-small">
-                                    <input type="text" class="form-control" placeholder="<Days>" id="rentalAgreementDuration" data-bind="value: days, enable: !id()" />
-                                </div>
-                                <div class="col-md-2 input-small">
-                                    <input type="text" class="form-control" placeholder="<Hours>" id="rentalAgreementHours" data-bind="value: hours, enable: !id()" />
-                                </div>
-                                <div class="col-md-2 input-small">
-                                    <input type="text" class="form-control" placeholder="<Mins>" id="rentalAgreementMins" data-bind="value: minutes, enable: !id()" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="rentalAgreementStartDate" class="control-label col-sm-2"></label>
-                                <div class="col-md-4 dateTimeControl">
-                                    <input type="text" class="form-control dateControl" placeholder="<Start Date>" id="rentalAgreementStartDate" data-bind="datetimepicker: start, enable: !id(), css:{ 'errorFill': isInvalidPeriod() }" />
-                                </div>
-                                <div class="col-md-4 dateTimeControl">
-                                    <input type="text" class="form-control dateControl" placeholder="<End Date>" id="rentalAgreementEndDate" data-bind="datetimepicker: end, enable: !id(), css:{ 'errorFill': isInvalidPeriod() }" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="rentalAgreementOperation" class="control-label col-sm-2">Operation</label>
-                                <div class="col-md-4">
-                                    <select class="form-control" id="rentalAgreementOperation" data-bind="options: $root.operations, optionsCaption: '<Operation>', optionsText: 'codeName', optionsValue: 'id', value: operationId, enable: !id(), validationTooltip: operationId"></select>
-                                </div>
-                                <label for="rentalAgreementOperation" id="rentalPaymentTermLabel" class="control-label col-sm-2 notFirstColumn">Payment</label>
-                                <div class="col-md-4" id="rentalPaymentTermControl">
-                                    <select class="form-control" id="rentalAgreementPaymentTerm" data-bind="options: $root.paymentTerms, optionsCaption: '<Payment Term>', optionsText: 'codeName', optionsValue: 'id', value: paymentTermId, enable: !id(), validationTooltip: paymentTermId"></select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="rentalAgreementOutLocation" class="control-label col-sm-2">Location</label>
-                                <div class="col-md-5">
-                                    <select class="form-control" id="rentalAgreementOutLocation" data-bind="options: $root.availableLocations, optionsCaption: '<Out Location>', optionsText: 'code', optionsValue: 'id', value: openLocation, enable: !id(), validationDependsOn: internalOpenLocation"></select>
-                                </div>
-                                <div class="col-md-4" id="returnLocationControl">
-                                    <select class="form-control" id="rentalAgreementReturnLocation" data-bind="options: $root.availableLocations, optionsCaption: '<Return Location>', optionsText: 'code', optionsValue: 'id', value: closeLocation, enable: !id()"></select>
-                                </div>
-                            </div>
-                            <div class="form-group" data-bind="with: $parent">
-                                <label for="rentalAgreementHireGroup" class="control-label col-sm-2">Hire Group</label>
-                                <div class="col-md-9 rentalHireGroupControl">
-                                    <input type="text" class="form-control" placeholder="<Hire Group>" id="rentalAgreementHireGroup" data-bind="enable: canLookForHireGroups, value: hireGroupText" />
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="panel-group" id="accordion5">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a class="headingLink" data-toggle="collapse" data-parent="#accordion5" href="#collapseNine">
-                            Billing
-                        </a>
-                    </h4>
-                </div>
-                <div id="collapseNine" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                        <form id="billing" class="form-horizontal" data-bind="with: rentalAgreement().billing">
-                            <div class="form-group">
-                                <div>
-                                    <span>Vehicle Charge</span>
-                                    <span class="float-right" data-bind="text: vehicleCharge"></span>
-                                </div>
-                                <div>
-                                    <span class="Bold">Net Billing</span>
-                                    <span class="float-right" data-bind="text: netBilling"></span>
-                                </div>
-                                <div>
-                                    <span>Excess Mileage</span>
-                                    <span class="float-right" data-bind="text: excessMileage"></span>
-                                </div>
-                                <div>
-                                    <span>Service Charge</span>
-                                    <span class="float-right" data-bind="text: serviceCharge"></span>
-                                </div>
-                                <div>
-                                    <span>Insurance Charge</span>
-                                    <span class="float-right" data-bind="text: insuranceCharge"></span>
-                                </div>
-                                <div>
-                                    <span>Driver Charge</span>
-                                    <span class="float-right" data-bind="text: driverCharge"></span>
-                                </div>
-                                <div>
-                                    <span>Additional Charge</span>
-                                    <span class="float-right" data-bind="text: additionalCharge"></span>
-                                </div>
-                                <div>
-                                    <span class="Bold">Total Charges</span>
-                                    <span class="float-right" data-bind="text: totalCharges"></span>
-                                </div>
-                                <div>
-                                    <span class="Bold">Amount Paid</span>
-                                    <span class="float-right" data-bind="text: amountPaid"></span>
-                                </div>
-                                <div>
-                                    <span class="Bold">Balance</span>
-                                    <span class="float-right" data-bind="text: balance"></span>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <div class="popover" id="extraPopover">
         <div id="extraPopoverContents" class="popoverContents">
             <div id="extrasHeading">
-                <button id="addExtrasPopoverLink"  type="button" class="btn btn-link float-right clearBoth" data-bind="click: openExtrasDialog">Add Extras</button>
+                <button id="addExtrasPopoverLink" type="button" class="btn btn-link float-right clearBoth" data-bind="click: openExtrasDialog">Add Extras</button>
             </div>
             <div data-bind="visible: $root.rentalAgreement().rentalAgreementServiceItems().length > 0" class="clearBoth">
                 <!-- ko foreach: $root.rentalAgreement().rentalAgreementServiceItems -->
@@ -392,11 +343,11 @@
                 <!-- /ko -->
             </div>
             <div class="clearBoth no-record-found" data-bind="visible: $root.rentalAgreement().rentalAgreementServiceItems().length === 0">
-                <h1>No Service Added Yet.</h1> 
+                <h1>No Service Added Yet.</h1>
             </div>
         </div>
     </div>
-    
+
     <div id="driverPopover" class="popover">
         <div id="driverPopoverContents" class="popoverContents">
             <div id="extrasHeading">
@@ -413,7 +364,7 @@
                         <span>&nbsp;</span>
                         <!-- /ko -->
                         <a class="float-right" data-bind="click: $root.rentalAgreement().removeRaDriver"><span class="glyphicon glyphicon-remove"></span></a>
-                        
+
                     </div>
                     <div class="margin-top-10">
                         <form class="form-horizontal">
@@ -471,7 +422,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="popover" id="chaufferPopover">
         <div id="chaufferPopoverContents" class="popoverContents">
             <div id="chaufferHeading">
@@ -528,185 +479,170 @@
         </div>
     </div>
 
-
-    <div id="raPanels">
-        <div class="panel-group" id="accordion">
-
-            
-            <div class="panel panel-default">
-                <div id="chauffersHeading" class="panel-heading">
-                    <h4 class="panel-title">
-                        <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                            Chauffers
-                        </a>
-                        <a id="addChauffersPopoverLink" class="glyphicon glyphicon-chevron-right float-right" data-bind="click: openChaufferDialog, attr:{ title: 'Add Chauffers' }"></a>
-                    </h4>
-                </div>
-                <div id="collapseThree" class="panel-collapse collapse">
-                    <div class="panel-body" data-bind="with: rentalAgreement">
-                        <!-- ko foreach: raChauffers -->
-                        <div class="panel panel-default panelCustom">
-                            <div class="panel-heading">
-                                <span data-bind="text: driverName"></span>
-                                <a class="float-right" data-bind="click: $parent.removeRaDriver"><span class="glyphicon glyphicon-remove"></span></a>
-                            </div>
-                            <div class="panel-collapse">
-                                <form class="form-horizontal">
-                                    <div class="form-group formGroupCustom">
-                                        <div>
-                                            <label class="control-label col-md-4">
-                                                License No
-                                            </label>
-                                            <label class="control-label col-md-4">
-                                                License Expiry
-                                            </label>
-                                        </div>
-                                        <br />
-                                        <hr />
-                                        <div class="clearBoth">
-                                            <div class="col-md-4"><input type="text" class="form-control" data-bind="value: licenseNo, enable: false" /></div>
-                                            <div class="col-md-4"><input type="text" class="form-control" data-bind="datetimepicker: licenseExpDt, validationDependsOn: internalLicenseExpDateTime, enable: false, css: { 'errorFillWithValidation': isLicenseExpired() }" /></div>
-                                        </div>
-                                        <br />
-                                        <div class="clearBoth">
-                                            <label class="control-label col-md-4">
-                                                Start Date
-                                            </label>
-                                            <label class="control-label col-md-4">
-                                                End Date
-                                            </label>
-                                        </div>
-                                        <br />
-                                        <hr />
-                                        <div class="clearBoth">
-                                            <div class="col-md-4"><input id="startDt" type="text" class="form-control" data-bind="datetimepicker: start, validationDependsOn: internalStartDateTime, css: { 'errorFillWithValidation': isInvalidPeriod() }" /></div>
-                                            <div class="col-md-4"><input id="endDt" type="text" class="form-control" data-bind="datetimepicker: end, validationDependsOn: internalEndDateTime, css: { 'errorFillWithValidation': isInvalidPeriod() }" /></div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <!-- /ko -->
-                    </div>
-                </div>
+    <div id="discountPopover" class="popover">
+        <div id="discountPopoverContents" class="popoverContents">
+            <div id="discountHeading">
+                <button id="addDiscountPopoverLink" type="button" class="btn btn-link float-right clearBoth" data-bind="click: openDiscountsDialog">Add Discounts</button>
             </div>
-            <div class="panel panel-default">
-                <div id="discountsHeading" class="panel-heading">
-                    <h4 class="panel-title">
-                        <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
-                            Discounts
-                        </a>
-                        <a class="glyphicon glyphicon-chevron-right float-right" data-bind="click: openDiscountsDialog, attr:{ title: 'Add Discounts' }"></a>
-                    </h4>
-                </div>
-                <div id="collapseFour" class="panel-collapse collapse">
-                    <div class="panel-body">
+            <div class="clearBoth">
+            </div>
 
-                    </div>
-                </div>
+            <div class="clearBoth no-record-found">
+                <h1>No Discount Added Yet.</h1>
             </div>
-            <div class="panel panel-default">
-                <div id="damagesHeading" class="panel-heading">
-                    <h4 class="panel-title">
-                        <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
-                            Damages
-                        </a>
-                        <a id="addDamagesPopoverLink" class="glyphicon glyphicon-chevron-right float-right" data-bind="click: openAddChargesDialog, visible: rentalAgreement().id(), attr:{ title: 'Add Damages' }"></a>
-                    </h4>
-                </div>
-                <div id="collapseFive" class="panel-collapse collapse">
-                    <div class="panel-body" data-bind="with: $root.rentalAgreement">
-                        <!-- ko foreach: rentalAgreementAdditionalCharges -->
-                        <div class="panel panel-default panelCustom">
-                            <div class="panel-heading">
-                                <span data-bind="text: additionalChargeTypeCodeName"></span>
-                                <a class="float-right" data-bind="click: $parent.removeRaAdditionalCharge"><span class="glyphicon glyphicon-remove"></span></a>
-                            </div>
-                            <div class="panel-collapse">
-                                <form class="form-horizontal">
-                                    <div class="form-group formGroupCustom">
-                                        <div>
-                                            <label class="control-label col-sm-4">Plate No.</label>
-                                            <label class="control-label col-sm-4">Rate</label>
-                                            <label class="control-label col-sm-4">Qty</label>
-                                        </div>
-                                        <br />
-                                        <hr />
-                                        <div class="clearBoth">
-                                            <div class="col-md-4">
-                                                <select id="plateNumber" class="form-control" data-bind="options: $root.plateNumbers, value: plateNumber, validationTooltip: plateNumber"></select>
-                                            </div>
-                                            <div class="col-md-4"><input id="rate" type="text" class="form-control" data-bind="value: additionalChargeRate, validationTooltip: additionalChargeRate" /></div>
-                                            <div class="col-md-4"><input type="text" class="form-control" data-bind="value: quantity, validationTooltip: quantity" /></div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <!-- /ko -->
-                    </div>
-                </div>
+        </div>
+    </div>
+
+    <div id="damagePopover" class="popover">
+        <div id="damagePopoverContents" class="popoverContents">
+            <div id="damageHeading">
+                <button id="addDamagePopoverLink" type="button" class="btn btn-link float-right clearBoth" data-bind="click: openAddChargesDialog, visible: rentalAgreement().id()">Add Damages</button>
             </div>
-            <div class="panel panel-default">
-                <div id="paymentsHeading" class="panel-heading">
-                    <h4 class="panel-title">
-                        <a class="headingLink" data-toggle="collapse" data-parent="#accordion" href="#collapseRaPayment">
-                            Payments
-                        </a>
-                        <a class="float-right" data-bind="click: $root.addPaymentToRentalAgreement.bind($data, $data, 'collapseRaPayment')"><span class="glyphicon glyphicon-plus"></span></a>
-                    </h4>
-                </div>
-                <div id="collapseRaPayment" class="panel-collapse collapse">
-                    <div class="panel-body" data-bind="with: rentalAgreement">
-                        <!-- ko foreach: raPayments -->
-                        <div class="panel panel-default panelCustom">
-                            <div class="panel-heading">
-                                <span>&nbsp;</span>
-                                <a class="float-right" data-bind="click: $parent.removeRaPayment"><span class="glyphicon glyphicon-remove"></span></a>
-                            </div>
-                            <div class="panel-collapse">
-                                <form class="form-horizontal">
-                                    <div class="form-group formGroupCustom">
-                                        <div>
-                                            <label class="control-label col-sm-3">Mode</label>
-                                            <label class="control-label col-sm-3">Date</label>
-                                            <label class="control-label col-sm-3">Amount</label>
-                                        </div>
-                                        <br />
-                                        <hr />
-                                        <div class="clearBoth">
-                                            <div class="col-sm-3">
-                                                <select class="form-control" id="paymentMode" data-bind="options: $root.paymentModes, optionsCaption: '<Payment Mode>', optionsText: 'codeName', optionsValue: 'id', value: paymentModeId"></select>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <input type="text" class="form-control" data-bind="datetimepicker: paymentDt" />
-                                            </div>
-                                            <div class="col-md-3"><input type="text" class="form-control" data-bind="value: paymentAmount" /></div>
-                                        </div>
-                                        <br />
-                                        <div class="clearBoth">
-                                            <label class="control-label col-sm-3">By</label>
-                                            <label class="control-label col-sm-3">Chk No</label>
-                                            <label class="control-label col-sm-3">Bank</label>
-                                        </div>
-                                        <br />
-                                        <hr />
-                                        <div class="clearBoth">
-                                            <div class="col-md-3">
-                                                <input type="text" class="form-control" data-bind="value: paidBy" />
-                                            </div>
-                                            <div class="col-md-3"><input type="text" class="form-control" data-bind="value: checkNumber" /></div>
-                                            <div class="col-md-3">
-                                                <input type="text" class="form-control" data-bind="value: bank" />
-                                            </div>
-                                        </div>
+            <div data-bind="visible: $root.rentalAgreement().rentalAgreementAdditionalCharges().length > 0" class="clearBoth">
+                <!-- ko foreach: $root.rentalAgreement().rentalAgreementAdditionalCharges -->
+                <div class="margin-top-20 clearBoth popover-panel">
+                    <div class="popover-panel-heading">
+                        <span data-bind="text: additionalChargeTypeCodeName"></span>
+                        <a class="float-right" data-bind="click: $root.rentalAgreement().removeRaAdditionalCharge"><span class="glyphicon glyphicon-remove"></span></a>
+                    </div>
+                    <div class="margin-top-10">
+                        <form class="form-horizontal">
+                            <div class="form-group formGroupCustom">
+                                <div>
+                                    <label class="control-label col-sm-4">Plate No.</label>
+                                    <label class="control-label col-sm-4">Rate</label>
+                                    <label class="control-label col-sm-4">Qty</label>
+                                </div>
+                                <br />
+                                <hr />
+                                <div class="clearBoth">
+                                    <div class="col-md-4">
+                                        <select id="plateNumber" class="form-control" data-bind="options: $root.plateNumbers, value: plateNumber, validationTooltip: plateNumber"></select>
                                     </div>
-                                </form>
+                                    <div class="col-md-4"><input id="rate" type="text" class="form-control" data-bind="value: additionalChargeRate, validationTooltip: additionalChargeRate" /></div>
+                                    <div class="col-md-4"><input type="text" class="form-control" data-bind="value: quantity, validationTooltip: quantity" /></div>
+                                </div>
                             </div>
-                        </div>
-                        <!-- /ko -->
+                        </form>
+                    </div>
+
+                </div>
+                <!-- /ko -->
+
+            </div>
+            <div class="clearBoth no-record-found" data-bind="visible: $root.rentalAgreement().rentalAgreementAdditionalCharges=== null || $root.rentalAgreement().rentalAgreementAdditionalCharges().length === 0">
+                <h1>No Damage Added Yet.</h1>
+            </div>
+        </div>
+    </div>
+
+    <div id="paymentPopover" class="popover">
+        <div id="paymentPopoverContents" class="popoverContents">
+            <div id="paymentHeading">
+                <button id="addPaymentPopoverLink" type="button" class="btn btn-link float-right clearBoth" data-bind="click: $root.addPaymentToRentalAgreement">Add Payment</button>
+            </div>
+            <div data-bind="visible: $root.rentalAgreement().raPayments().length > 0" class="clearBoth">
+                <!-- ko foreach: $root.rentalAgreement().raPayments -->
+                <div class="margin-top-20 clearBoth popover-panel">
+                    <div class="popover-panel-heading">
+                        <span>&nbsp;</span>
+                        <a class="float-right" data-bind="click: $root.rentalAgreement().removeRaPayment"><span class="glyphicon glyphicon-remove"></span></a>
+                    </div>
+                    <div class="margin-top-10">
+                        <form class="form-horizontal">
+                            <div class="form-group formGroupCustom">
+                                <div>
+                                    <label class="control-label col-sm-3">Mode</label>
+                                    <label class="control-label col-sm-3">Date</label>
+                                    <label class="control-label col-sm-3">Amount</label>
+                                </div>
+                                <br />
+                                <hr />
+                                <div class="clearBoth">
+                                    <div class="col-sm-3">
+                                        <select class="form-control" id="paymentMode" data-bind="options: $root.paymentModes, optionsCaption: '<Payment Mode>', optionsText: 'codeName', optionsValue: 'id', value: paymentModeId"></select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" data-bind="datetimepicker: paymentDt" />
+                                    </div>
+                                    <div class="col-md-3"><input type="text" class="form-control" data-bind="value: paymentAmount" /></div>
+                                </div>
+                                <br />
+                                <div class="clearBoth">
+                                    <label class="control-label col-sm-3">By</label>
+                                    <label class="control-label col-sm-3">Chk No</label>
+                                    <label class="control-label col-sm-3">Bank</label>
+                                </div>
+                                <br />
+                                <hr />
+                                <div class="clearBoth">
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" data-bind="value: paidBy" />
+                                    </div>
+                                    <div class="col-md-3"><input type="text" class="form-control" data-bind="value: checkNumber" /></div>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" data-bind="value: bank" />
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
+                <!-- /ko -->
+            </div>
+            <div class="clearBoth no-record-found" data-bind="visible: $root.rentalAgreement().raPayments().length === 0">
+                <h1>No Payment Added Yet.</h1>
+            </div>
+        </div>
+    </div>
+
+    <div id="billingPopover" class="popover">
+        <div id="billingPopoverContents" class="popoverContents">
+            <div class="panel-body">
+                <form id="billing" class="form-horizontal" data-bind="with: rentalAgreement().billing">
+                    <div class="form-group">
+                        <div>
+                            <span>Vehicle Charge</span>
+                            <span class="float-right" data-bind="text: vehicleCharge"></span>
+                        </div>
+                        <div>
+                            <span class="Bold">Net Billing</span>
+                            <span class="float-right" data-bind="text: netBilling"></span>
+                        </div>
+                        <div>
+                            <span>Excess Mileage</span>
+                            <span class="float-right" data-bind="text: excessMileage"></span>
+                        </div>
+                        <div>
+                            <span>Service Charge</span>
+                            <span class="float-right" data-bind="text: serviceCharge"></span>
+                        </div>
+                        <div>
+                            <span>Insurance Charge</span>
+                            <span class="float-right" data-bind="text: insuranceCharge"></span>
+                        </div>
+                        <div>
+                            <span>Driver Charge</span>
+                            <span class="float-right" data-bind="text: driverCharge"></span>
+                        </div>
+                        <div>
+                            <span>Additional Charge</span>
+                            <span class="float-right" data-bind="text: additionalCharge"></span>
+                        </div>
+                        <div>
+                            <span class="Bold">Total Charges</span>
+                            <span class="float-right" data-bind="text: totalCharges"></span>
+                        </div>
+                        <div>
+                            <span class="Bold">Amount Paid</span>
+                            <span class="float-right" data-bind="text: amountPaid"></span>
+                        </div>
+                        <div>
+                            <span class="Bold">Balance</span>
+                            <span class="float-right" data-bind="text: balance"></span>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
