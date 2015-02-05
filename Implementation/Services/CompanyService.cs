@@ -32,7 +32,7 @@ namespace Cares.Implementation.Services
                 dbVersion.RecLastUpdatedBy = organizationGroupRepository.LoggedInUserIdentity;
             dbVersion.RecCreatedDt = dbVersion.RecLastUpdatedDt = DateTime.Now;
             dbVersion.RowVersion = 0;
-            dbVersion.UserDomainKey = 1;
+            dbVersion.UserDomainKey = organizationGroupRepository.UserDomainKey;
             dbVersion.CompanyCode = companyRequest.CompanyCode;
             dbVersion.CompanyName = companyRequest.CompanyName;
             dbVersion.CompanyDescription = companyRequest.CompanyDescription;

@@ -12,49 +12,55 @@ namespace Cares.Implementation.Services
     /// <summary>
     /// Organization Group  Service
     /// </summary>
-   public sealed class OrganizationGroupService : IOrganizationGroupService
-   {
-       #region Private       
+    public sealed class OrganizationGroupService : IOrganizationGroupService
+    {
+        #region Private       
+
         private readonly IOrganizationGroupRepository organizationGroupRepository;
         private readonly ICompanyRepository companyRepository;
-
-       /// <summary>
-        /// Set OrgGroup Properties for insertion
-       /// </summary>
+        /// <summary>
+        /// Set newly added org group properties
+        /// </summary>
         private void SetOrgGroupProperties(OrgGroup requestOrgGroup)
         {
             requestOrgGroup.RecCreatedBy =
                 requestOrgGroup.RecLastUpdatedBy = organizationGroupRepository.LoggedInUserIdentity;
             requestOrgGroup.RecCreatedDt = requestOrgGroup.RecLastUpdatedDt = DateTime.Now;
+            requestOrgGroup.UserDomainKey = organizationGroupRepository.UserDomainKey;
             requestOrgGroup.RowVersion = 0;
-            requestOrgGroup.UserDomainKey = 1;
+            organizationGroupRepository.Add(requestOrgGroup);
         }
-
-       /// <summary>
-        /// UpdateOrgGroupProperties for updation
-       /// </summary>
+        /// <summary>
+        /// set to be updated Org Group Properties
+        /// </summary>
         private void UpdateOrgGroupProperties(OrgGroup requestOrgGroup, OrgGroup dbVersion)
         {
-            requestOrgGroup.RecLastUpdatedBy = organizationGroupRepository.LoggedInUserIdentity;
-            requestOrgGroup.RecLastUpdatedDt = DateTime.Now;
-            requestOrgGroup.RowVersion = dbVersion.RowVersion + 1;
-            requestOrgGroup.RecCreatedBy = dbVersion.RecCreatedBy;
-            requestOrgGroup.RecCreatedDt = dbVersion.RecCreatedDt;
+            dbVersion.OrgGroupCode = requestOrgGroup.OrgGroupCode;
+            dbVersion.OrgGroupName = requestOrgGroup.OrgGroupName;
+            dbVersion.OrgGroupDescription = requestOrgGroup.OrgGroupDescription;
+            dbVersion.RecLastUpdatedBy = organizationGroupRepository.LoggedInUserIdentity;
+            dbVersion.RecLastUpdatedDt = DateTime.Now;
+            dbVersion.RowVersion = dbVersion.RowVersion + 1;
+            organizationGroupRepository.Update(dbVersion);
         }
-
         #endregion
-       #region Constructors
-       /// <summary>
-       /// constuctor
-       /// </summary>
-        public OrganizationGroupService(IOrganizationGroupRepository organizationGroupRepository, ICompanyRepository companyRepository)
+
+        #region Constructors
+
+        /// <summary>
+        /// constuctor
+        /// </summary>
+        public OrganizationGroupService(IOrganizationGroupRepository organizationGroupRepository,
+            ICompanyRepository companyRepository)
         {
             this.organizationGroupRepository = organizationGroupRepository;
             this.companyRepository = companyRepository;
         }
 
         #endregion
-       #region Public
+
+        #region Public
+
         /// <summary>
         /// Search/Get Organization Group
         /// </summary>
@@ -83,10 +89,11 @@ namespace Cares.Implementation.Services
                 }
                 else
                     throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                              "OrgGroup with Id {0} not found!", orgGroupId));
+                        "OrgGroup with Id {0} not found!", orgGroupId));
             }
-            else 
-                throw new CaresException(Resources.Organization.OrganizationGroup.OrganizationGroupIsAssociatedWithCompanyError);
+            else
+                throw new CaresException(
+                    Resources.Organization.OrganizationGroup.OrganizationGroupIsAssociatedWithCompanyError);
         }
 
         /// <summary>
@@ -99,17 +106,18 @@ namespace Cares.Implementation.Services
             if (!organizationGroupRepository.IsOrgGroupCodeExists(requestOrgGroup))
             {
                 if (dbVersion != null)
+                {
                     UpdateOrgGroupProperties(requestOrgGroup, dbVersion);
+                }
                 else
+                {
                     SetOrgGroupProperties(requestOrgGroup);
-                organizationGroupRepository.Update(requestOrgGroup);
+                }                
                 organizationGroupRepository.SaveChanges();
                 return organizationGroupRepository.Find(requestOrgGroup.OrgGroupId);
             }
             throw new CaresException(Resources.Organization.OrganizationGroup.OrganizationGroupWithSameCodeAlreadyExists);
         }
-
-     
         #endregion
-   }
+    }
 }
