@@ -95,19 +95,23 @@ namespace Cares.Implementation.Services
             {
                 if (dbVersion != null)
                 {
-                    department.RecLastUpdatedBy = departmentRepository.LoggedInUserIdentity;
-                    department.RecLastUpdatedDt = DateTime.Now;
-                    department.RecCreatedBy = dbVersion.RecCreatedBy;
-                    department.RecCreatedDt = dbVersion.RecCreatedDt;
-                    department.UserDomainKey = dbVersion.UserDomainKey;
+                    dbVersion.CompanyId = department.CompanyId;
+                    dbVersion.DepartmentCode = department.DepartmentCode;
+                    dbVersion.DepartmentName = department.DepartmentName;
+                    dbVersion.DepartmentDescription = department.DepartmentDescription;
+                    dbVersion.RecLastUpdatedBy = departmentRepository.LoggedInUserIdentity;
+                    dbVersion.RecLastUpdatedDt = DateTime.Now;
+                    dbVersion.RowVersion = dbVersion.RowVersion + 1;
+                    departmentRepository.Update(dbVersion);
                 }
                 else
                 {
                     department.RecCreatedBy = department.RecLastUpdatedBy = departmentRepository.LoggedInUserIdentity;
                     department.RecCreatedDt = department.RecLastUpdatedDt = DateTime.Now;
-                    department.UserDomainKey = 1;
+                    department.UserDomainKey = departmentRepository.UserDomainKey;
+                    departmentRepository.Add(department);
                 }
-                departmentRepository.Update(department);
+                
                 departmentRepository.SaveChanges();
                 // To Load the proprties
                 return departmentRepository.GetDepartmentWithDetails(department.DepartmentId);

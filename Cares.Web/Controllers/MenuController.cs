@@ -36,6 +36,8 @@ namespace Cares.Web.Controllers
             {
                 return View(new MenuViewModel());
             }
+
+
             //  ReSharper disable PossibleNullReferenceException
             if (user.Roles.Any(roles => roles.Name == CaresApplicationRoles.SystemAdministrator))
             {
@@ -57,5 +59,7 @@ namespace Cares.Web.Controllers
             };
             return View(menuVM);
         }
+
+        
     }
 }
