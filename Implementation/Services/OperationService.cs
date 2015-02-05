@@ -101,19 +101,24 @@ namespace Cares.Implementation.Services
             {
                 if (dbVersion != null)
                 {
-                    operation.RecLastUpdatedBy = operationRepository.LoggedInUserIdentity;
-                    operation.RecLastUpdatedDt = DateTime.Now;
-                    operation.RecCreatedBy = dbVersion.RecCreatedBy;
-                    operation.RecCreatedDt = dbVersion.RecCreatedDt;
-                    operation.UserDomainKey = dbVersion.UserDomainKey;
+                    dbVersion.RecLastUpdatedBy = operationRepository.LoggedInUserIdentity;
+                    dbVersion.RecLastUpdatedDt = DateTime.Now;
+                    dbVersion.RowVersion = dbVersion.RowVersion + 1;
+                    dbVersion.OperationCode = operation.OperationCode;
+                    dbVersion.OperationName = operation.OperationName;
+                    dbVersion.OperationDescription = operation.OperationDescription;
+                    dbVersion.DepartmentId = operation.DepartmentId;
+                    operationRepository.Update(dbVersion);
                 }
                 else
                 {
                     operation.RecCreatedBy = operation.RecLastUpdatedBy = operationRepository.LoggedInUserIdentity;
                     operation.RecCreatedDt = operation.RecLastUpdatedDt = DateTime.Now;
-                    operation.UserDomainKey = 1;
+                    operation.UserDomainKey = operationRepository.UserDomainKey;
+                    operation.RowVersion = 0;
+                    operationRepository.Add(operation);
                 }
-                operationRepository.Update(operation);
+                
                 operationRepository.SaveChanges();
                 // To Load the proprties
                 return operationRepository.GetOperationWithDetails(operation.OperationId);

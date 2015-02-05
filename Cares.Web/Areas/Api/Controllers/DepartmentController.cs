@@ -46,6 +46,7 @@ namespace Cares.Web.Areas.Api.Controllers
         /// Delete Departments
         /// </summary>
         [ApiException]
+        [HttpDelete]
         public Boolean Delete(Models.Department request)
         {
             if (Request == null || !ModelState.IsValid)

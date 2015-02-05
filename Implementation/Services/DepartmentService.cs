@@ -102,7 +102,7 @@ namespace Cares.Implementation.Services
                     dbVersion.RecLastUpdatedBy = departmentRepository.LoggedInUserIdentity;
                     dbVersion.RecLastUpdatedDt = DateTime.Now;
                     dbVersion.RowVersion = dbVersion.RowVersion + 1;
-                    departmentRepository.Update(department);
+                    departmentRepository.Update(dbVersion);
                 }
                 else
                 {
