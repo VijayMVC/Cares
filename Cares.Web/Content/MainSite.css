@@ -617,9 +617,13 @@
   padding: 8px;
 }
 #rentalAgreementBinding #raPanels .panel-body .panelCustom {
+  -moz-border-radius: 12px !important;
+  -webkit-border-radius: 12px !important;
   border-radius: 12px !important;
 }
 #rentalAgreementBinding #raPanels .panel-body .panelCustom .panel-heading {
+  -moz-border-radius: 10px !important;
+  -webkit-border-radius: 10px !important;
   border-radius: 10px !important;
 }
 #rentalAgreementBinding #raPanels .panel-body .panelCustom .clearBoth {
@@ -658,6 +662,9 @@
 #rentalAgreementBinding #customer label.col-sm-2 {
   width: 20%;
 }
+#rentalAgreementBinding .twitter-typeahead {
+  width: 100% !important;
+}
 #rentalAgreementBinding #raMain {
   width: 49.5%;
   float: left;
@@ -667,16 +674,17 @@
             margin-top: 5px;
         }*/
 }
-#rentalAgreementBinding #raMain .twitter-typeahead {
-  width: 98.5%;
-}
 #rentalAgreementBinding #raMain #collapseSeven .panel-body {
   padding: 8px;
 }
 #rentalAgreementBinding #raMain #collapseSeven .panel-body .panelCustom {
+  -moz-border-radius: 5px !important;
+  -webkit-border-radius: 5px !important;
   border-radius: 5px !important;
 }
 #rentalAgreementBinding #raMain #collapseSeven .panel-body .panelCustom .panel-heading {
+  -moz-border-radius: 5px 5px 0 0 !important;
+  -webkit-border-radius: 5px 5px 0 0 !important;
   border-radius: 5px 5px 0 0 !important;
 }
 #rentalAgreementBinding #raMain #collapseSeven .panel-body .panelCustom .clearBoth {
@@ -701,8 +709,8 @@
   width: 500px;
 }
 #rentalAgreementBinding #raMain #vehicleImage {
-  max-width: 90px;
-  max-height: 55px;
+  max-width: 200px;
+  max-height: 150px;
   vertical-align: super;
 }
 #rentalAgreementBinding #raBilling {
@@ -729,13 +737,13 @@
 }
 @media (min-width: 992px) {
   #rentalAgreementBinding #raBilling #ra .dateTimeControl {
-    width: 39.2%;
+    width: 39%;
   }
   #rentalAgreementBinding #raBilling #ra #bookingNumberControl {
-    width: 43%;
+    width: 43.2%;
   }
   #rentalAgreementBinding #raBilling #ra #rentalPaymentTermControl {
-    width: 28.5%;
+    width: 29%;
     padding-left: 0;
   }
   #rentalAgreementBinding #raBilling #ra #returnLocationControl {
@@ -797,9 +805,14 @@
 #rentalAgreementBinding .popoverContents .popover-panel .popover-panel-heading {
   padding-left: 5px;
   background-color: #dddddd;
+  height: 25px;
+  padding-top: 5px;
   font-size: 10pt;
   font-weight: bold;
   color: white;
+}
+#rentalAgreementBinding .popoverContents .popover-panel .popover-panel-heading .margin-right {
+  margin-right: 5px;
 }
 #rentalAgreementBinding .popoverContents .popover-panel .popover-panel-heading .heading-text {
   margin-left: 5px;
@@ -1963,7 +1976,7 @@ fieldset[disabled] .btn-custom.active {
   margin-left: 4%;
 }
 .margin-right {
-  margin-right: 4%;
+  margin-right: 3%;
 }
 .pageHeaderSection {
   width: 93%;

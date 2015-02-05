@@ -12,13 +12,13 @@
         <button class="btn float-left" data-bind="click: closeRentalAgreement, visible: canClose">Close Agreement</button>
 
         <div class="float-left margin-left">
-            <button class="btn float-left" data-bind="bootstrapPopover:{elementNode: 'extraPopover', html: true, popoverId: 'extraPopoverContents'} ">Extras</button>
-            <button class="btn btn-info float-left margin-button" data-bind="bootstrapPopover:{elementNode: 'driverPopover', html: true, popoverId: 'driverPopoverContents'} ">Drivers</button>
-            <button type="button" class="btn btn-warning float-left margin-button" data-bind="bootstrapPopover:{elementNode: 'chaufferPopover', html: true, popoverId: 'chaufferPopoverContents'} ">Chauffers</button>
-            <button type="button" class="btn btn-success float-left margin-button" data-bind="bootstrapPopover:{elementNode: 'discountPopover', html: true, popoverId: 'discountPopoverContents'} ">Discounts</button>
-            <button type="button" class="btn btn-danger float-left margin-button" data-bind="bootstrapPopover:{elementNode: 'damagePopover', html: true, popoverId: 'damagePopoverContents'} ">Damages</button>
-            <button type="button" class="btn btn-custom float-left margin-button" data-bind="bootstrapPopover:{elementNode: 'paymentPopover', html: true, popoverId: 'paymentPopoverContents'} ">Payments</button>
-            <button type="button" class="btn btn-custom float-left margin-button" data-bind="bootstrapPopover:{elementNode: 'billingPopover', html: true, popoverId: 'billingPopoverContents'} ">Billing</button>
+            <button class="btn float-left" id="extraPopoverButton" data-bind="bootstrapPopover:{elementNode: 'extraPopover', html: true, popoverId: 'extraPopoverContents'} ">Extras <span class="badge" data-bind="text: $root.rentalAgreement().rentalAgreementServiceItems().length,visible: $root.rentalAgreement().rentalAgreementServiceItems().length > 0"></span></button>
+            <button class="btn btn-info float-left margin-button" id="driverPopoverButton" data-bind="bootstrapPopover:{elementNode: 'driverPopover', html: true, popoverId: 'driverPopoverContents'} ">Drivers <span class="badge" data-bind="visible: $root.rentalAgreement().raDrivers().length > 0, text:$root.rentalAgreement().raDrivers().length"></span></button>
+            <button type="button" class="btn btn-warning float-left margin-button" id="chaufferPopoverButton" data-bind="bootstrapPopover:{elementNode: 'chaufferPopover', html: true, popoverId: 'chaufferPopoverContents'} ">Chauffers <span class="badge" data-bind="visible: $root.rentalAgreement().raChauffers().length > 0 ,text: $root.rentalAgreement().raChauffers().length"></span></button>
+            <button type="button" class="btn btn-success float-left margin-button" id="discountPopoverButton" data-bind="bootstrapPopover:{elementNode: 'discountPopover', html: true, popoverId: 'discountPopoverContents'} ">Discounts <span class="badge" data-bind="visible: false"></span></button>
+            <button type="button" class="btn btn-danger float-left margin-button" id="damagePopoverButton" data-bind="bootstrapPopover:{elementNode: 'damagePopover', html: true, popoverId: 'damagePopoverContents'} ">Damages <span class="badge" data-bind="visible: $root.rentalAgreement().rentalAgreementAdditionalCharges().length > 0, text: $root.rentalAgreement().rentalAgreementAdditionalCharges().length"></span></button>
+            <button type="button" class="btn btn-custom float-left margin-button" id="paymentPopoverButton" data-bind="bootstrapPopover:{elementNode: 'paymentPopover', html: true, popoverId: 'paymentPopoverContents'} ">Payments <span class="badge" data-bind="visible: $root.rentalAgreement().raPayments().length > 0, text: $root.rentalAgreement().raPayments().length"></span></button>
+            <button type="button" class="btn btn-custom float-left margin-button" id="billingPopoverButton" data-bind="bootstrapPopover:{elementNode: 'billingPopover', html: true, popoverId: 'billingPopoverContents'} ">Billing <span class="badge" data-bind="visible: $root.rentalAgreement().billing().balance > 0 ,text: $root.rentalAgreement().billing().balance"></span></button>
 
         </div>
 
@@ -107,7 +107,7 @@
                             Customer
                         </a>
                     </h4>
-                    <div class="float-right display-block">
+                    <div class="float-right display-block margin-right">
                         <input type="checkbox" class="float-right" data-bind="bootstrapSwitchOn: $root.isExistingBusinessPartner, switchOptions: { onText: 'Existing', offText: 'New', size: 'mini',offColor: 'info', state: $root.isExistingBusinessPartner()}" />
                     </div>
                     <div class="float-right display-block margin-right">
@@ -258,7 +258,7 @@
                                         <br />
                                         <!-- ko with: vehicle -->
                                         <div class="clearBoth">
-                                            <div class="col-md-3">
+                                            <div class="col-md-3 full-height-content">
                                                 <img id="vehicleImage" src="#" alt="" data-bind="attr:{ src: image }" />
                                             </div>
                                             <div class="col-md-9">
@@ -312,7 +312,7 @@
                 <div class="margin-top-20 clearBoth popover-panel">
                     <div class="popover-panel-heading">
                         <span data-bind="text: serviceItemCodeName"></span>
-                        <a class="float-right" data-bind="click: $root.rentalAgreement().removeRaServiceItem"><span class="glyphicon glyphicon-remove"></span></a>
+                        <a class="float-right margin-right" data-bind="click: $root.rentalAgreement().removeRaServiceItem"><span class="glyphicon glyphicon-remove"></span></a>
                     </div>
                     <div class="margin-top-10">
                         <form class="form-horizontal">

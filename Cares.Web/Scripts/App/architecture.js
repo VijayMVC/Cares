@@ -384,8 +384,9 @@ require(["ko", "knockout-validation"], function (ko) {
             options = $.extend(true, {}, defaultOptions, options);
             $(element).popover(options);
             $(element).click(function () {
-                $('.popover').hide();
-                $(element).popover('show');
+                var buttons = $("[id*='PopoverButton']");
+                buttons.not(this).popover('hide');
+                //$(element).popover('show');
                 var popOver = $("#" + options.popoverId);
                 
                 if (popOver) {

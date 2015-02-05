@@ -6,9 +6,11 @@
 @paymentColor: #6B6F59;
 #rentalAgreementBinding {
     color: gray;
-    .margin-button{
+
+    .margin-button {
         margin-left: 10px;
     }
+
     .popover {
         min-width: 33%;
         min-height: 200px;
@@ -123,9 +125,13 @@
             padding: 8px;
 
             .panelCustom {
+                -moz-border-radius: 12px !important;
+                -webkit-border-radius: 12px !important;
                 border-radius: 12px !important;
 
                 .panel-heading {
+                    -moz-border-radius: 10px !important;
+                    -webkit-border-radius: 10px !important;
                     border-radius: 10px !important;
                 }
 
@@ -170,40 +176,44 @@
         text-decoration: none;
     }
 
-    
-        #customer {
-            height: 237px;
 
-            #isIndividualLabel {
-                width: 18%;
-                margin-left: 11px;
-            }
+    #customer {
+        height: 237px;
 
-            label.col-sm-2 {
-                width: 20%;
-            }
+        #isIndividualLabel {
+            width: 18%;
+            margin-left: 11px;
         }
+
+        label.col-sm-2 {
+            width: 20%;
+        }
+    }
+
+    .twitter-typeahead {
+        width: 100% !important;
+    }
+
     #raMain {
         width: 49.5%;
         float: left;
         margin-left: .5%;
         margin-right: .5%;
-        .twitter-typeahead{
-            width: 98.5%;
-        }
-
         /*#accordion3 {
             margin-top: 5px;
         }*/
-
         #collapseSeven {
             .panel-body {
                 padding: 8px;
 
                 .panelCustom {
+                    -moz-border-radius: 5px !important;
+                    -webkit-border-radius: 5px !important;
                     border-radius: 5px !important;
 
                     .panel-heading {
+                        -moz-border-radius: 5px 5px 0 0 !important;
+                        -webkit-border-radius: 5px 5px 0 0 !important;
                         border-radius: 5px 5px 0 0 !important;
                     }
 
@@ -219,7 +229,6 @@
                 margin-bottom: 0;
                 /*border-radius: 10px !important;
                 background-color: silver;*/
-
                 hr {
                     margin-top: 5px;
                     margin-bottom: 5px;
@@ -237,8 +246,8 @@
         }
 
         #vehicleImage {
-            max-width: 90px;
-            max-height: 55px;
+            max-width: 200px;
+            max-height: 150px;
             vertical-align: super;
         }
     }
@@ -247,12 +256,14 @@
         width: 49.5%;
         float: left;
 
-        .display-block{
+        .display-block {
             display: inline-block;
         }
+
         #accordion2 {
             margin-top: 5px;
         }
+
         #ra {
             min-height: 175px;
 
@@ -270,15 +281,15 @@
 
             @media (min-width: 992px) {
                 .dateTimeControl {
-                    width: 39.2%;
+                    width: 39%;
                 }
 
                 #bookingNumberControl {
-                    width: 43%;
+                    width: 43.2%;
                 }
 
                 #rentalPaymentTermControl {
-                    width: 28.5%;
+                    width: 29%;
                     padding-left: 0;
                 }
 
@@ -301,90 +312,99 @@
                 width: 100%;
             }
         }
-
-       
     }
 
 
-     #billing {
-            margin-top: .5%;
-            min-height: 105px;
+    #billing {
+        margin-top: .5%;
+        min-height: 105px;
 
-            .Bold {
-                font-weight: bold;
-            }
+        .Bold {
+            font-weight: bold;
+        }
 
-            div.form-group {
-                margin-right: 0;
-                margin-left: 0;
+        div.form-group {
+            margin-right: 0;
+            margin-left: 0;
 
-                div {
-                    border-bottom: 1px solid black;
-                }
+            div {
+                border-bottom: 1px solid black;
             }
         }
-    .popoverContents{
+    }
 
+    .popoverContents {
         min-height: 150px;
         position: relative;
-        .no-record-found{
-             position: absolute;
-             height: 75px;
-             bottom: 0;
-             width:100%;
-             text-align: center;
-         }
-         .clearBoth {
+
+        .no-record-found {
+            position: absolute;
+            height: 75px;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .clearBoth {
             clear: both;
         }
-        hr{
+
+        hr {
             margin: 10px 0 !important;
         }
+
         .formGroupCustom {
             margin-right: 0;
             margin-left: 0;
         }
+
         .popover-panel {
             border: 1px solid @extraColor;
             -moz-border-radius: 5px 5px 5px 5px !important;
             -webkit-border-radius: 5px 5px 5px 5px !important;
             border-radius: 5px 5px 5px 5px !important;
 
-            .popover-panel-heading{
+            .popover-panel-heading {
                 padding-left: 5px;
                 background-color: @extraColor;
+                height: 25px;
+                padding-top: 5px;
                 font-size: 10pt;
                 font-weight: bold;
                 color: white;
-                .heading-text{
+                .margin-right{
+                    margin-right: 5px;
+                }
+                .heading-text {
                     margin-left: 5px;
                 }
-               
-                a{
+
+                a {
                     cursor: pointer;
                 }
             }
-
         }
-       
     }
 
     #extraPopoverContents {
-        
     }
+
     #driverPopoverContents {
         .popover-panel {
             border-color: @driverColor;
-            .popover-panel-heading{
-                 background-color: @driverColor;
+
+            .popover-panel-heading {
+                background-color: @driverColor;
             }
         }
     }
+
     #chaufferPopoverContents {
         .popover-panel {
             border-color: @chaufferColor;
-            .popover-panel-heading{
-                 background-color: @chaufferColor;
+
+            .popover-panel-heading {
+                background-color: @chaufferColor;
             }
         }
     }
@@ -392,28 +412,31 @@
     #discountPopoverContents {
         .popover-panel {
             border-color: @discountColor;
-            .popover-panel-heading{
-                 background-color: @discountColor;
+
+            .popover-panel-heading {
+                background-color: @discountColor;
             }
         }
     }
-    #damagePopoverContents{
-         .popover-panel {
+
+    #damagePopoverContents {
+        .popover-panel {
             border-color: @damageColor;
-            .popover-panel-heading{
-                 background-color: @damageColor;
+
+            .popover-panel-heading {
+                background-color: @damageColor;
             }
         }
-
     }
-    #paymentPopoverContents{
-         .popover-panel {
+
+    #paymentPopoverContents {
+        .popover-panel {
             border-color: @paymentColor;
-            .popover-panel-heading{
-                 background-color: @paymentColor;
+
+            .popover-panel-heading {
+                background-color: @paymentColor;
             }
         }
-
     }
 }
 
