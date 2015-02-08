@@ -41,10 +41,8 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public override IEnumerable<FuelType> GetAll()
         {
-            return DbSet.Where(ft => ft.UserDomainKey == UserDomainKey).ToList();
+            return DbSet.ToList();
         }
-
-
         #endregion
     }
 }

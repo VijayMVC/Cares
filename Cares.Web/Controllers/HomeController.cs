@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace IdentitySample.Controllers
+namespace Cares.Web.Controllers
 {
     public class HomeController : Controller
     {
@@ -23,6 +23,9 @@ namespace IdentitySample.Controllers
 
             return View();
         }
-       
+        public ActionResult Welcome()
+        {
+            return View();
+        }
     }
 }

@@ -7,11 +7,11 @@
     </div>
     <form class="form-horizontal">
         <div class="form-group">
-            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.WorkLocationCode*</label>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.WorkLocationCode *</label>
             <div class="col-md-2">
                 <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.Organization.WorkLocation.WorkLocationCode + ">")"  data-bind="value:code" />
             </div>
-            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.WorkLocationName*</label>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.WorkLocationName *</label>
             <div class="col-md-2">
                 <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.Organization.WorkLocation.WorkLocationName + ">")"  data-bind="value:name" />
             </div>
@@ -21,12 +21,12 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.Company*</label>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.Company *</label>
             <div class="col-md-2">
                 <select class="form-control" id="companyEditorDropDown" data-bind="options: $root.baseCompaniesList, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId',enable:$root.isWorklocationCreateMode ,  optionsCaption:'&lt;' +'@Cares.Web.Resources.Organization.WorkLocation.Company'+'&gt;',value : companyId "></select>
             </div>
 
-            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.Country*</label>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.Country *</label>
             <div class="col-md-2">
                 <select class="form-control" data-bind="options: $root.baseCountriesList, optionsText: 'CountryCodeName', optionsValue: 'CountryId', optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.WorkLocation.Country '+'&gt;', value:countryId, event{change:$root.onCountryChanged }"></select>
             </div>
@@ -55,7 +55,7 @@
             <div class="col-md-2">
                 <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.Organization.WorkLocation.ContactPerson + ">")" id="tariffTypeCode" data-bind="value:contatctPerson" />
             </div>
-            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.StreetAddress*</label>
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.StreetAddress *</label>
             <div class="col-md-2">
                 <input type="text" class="form-control" placeholder="@("<" + Cares.Web.Resources.Organization.WorkLocation.StreetAddress + ">")" id="tariffTypeCode" data-bind="value:streatAdress" />
             </div>
@@ -90,30 +90,34 @@
                 <!--bind here-->
                 <form class="form-horizontal">
                     <div class="addToBtnDiv row">
-                        <button class="btn  btn-info addToBtn"  id="saveBtn" data-bind="click: $root.onAddPhone ">@Cares.Web.Resources.Shared.Common.Add</button>
+
                     </div>
                     <div class="form-group">
-                        <label for="" class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.PhoneType*:</label>
+                        <label for="" class="control-label h5 col-sm-2" id="phoneType">@Cares.Web.Resources.Organization.WorkLocation.PhoneType *</label>
                         <div class="col-md-2">
                             <select class="form-control" data-bind="options: $root.basePhoneTypesList, optionsText: 'PhoneTypeCodeName', optionsValue: 'PhoneTypeId',  optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.WorkLocation.PhoneType '+'&gt;' , value :$root.selectedPhoneTypeString"></select>
                         </div>
-                        <label for="" class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.PhoneNumber*:</label>
+                        <label for="" class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.PhoneNumber *</label>
                         <div class="col-md-2">
                             <input type="text" class="form-control" onkeypress="return onlyNumbers(this)" placeholder="@("<" + @Cares.Web.Resources.Organization.WorkLocation.PhoneNumber + ">")" data-bind="value:phoneNumber" />
                         </div>
-                        <label for="" class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.IsDefault:</label>
-                        <div class="col-md-2">
-                            <input type="checkbox" class="form-control" placeholder="@("<" + @Cares.Web.Resources.Organization.WorkLocation.IsDefault + ">")" data-bind="value:isDefault" />
+                        <label for="" class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.IsDefault</label>
+                        <div class="col-md-1">
+                            <input type="checkbox" class="form-control" id="defaultCheckbox" placeholder="@("<" + @Cares.Web.Resources.Organization.WorkLocation.IsDefault + ">")" data-bind="value:isDefault" />
+                        </div>
+
+                        <div class="col-md-1 float-right" id="addButtonContainer">
+                            <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onAddPhone ">@Cares.Web.Resources.Shared.Common.Add</button>
                         </div>
                     </div>
                 </form>
                 <!--here -->
-                <table  class="table table-condensed">
+                <table  class="table table-condensed" id="phoneTable">
                     <thead>
                         <tr>
                             <th> <span>@Cares.Web.Resources.Organization.WorkLocation.PhoneType<span></span></span></th>
                             <th> <span>@Cares.Web.Resources.Organization.WorkLocation.PhoneNumber<span></span></span></th>
-                            <th> <span>@Cares.Web.Resources.Organization.WorkLocation.IsDefault<span></span></span></th>
+                            <th id="isDefaultHeader"> <span>@Cares.Web.Resources.Organization.WorkLocation.IsDefault<span></span></span></th>
 
                         </tr>
                     </thead>

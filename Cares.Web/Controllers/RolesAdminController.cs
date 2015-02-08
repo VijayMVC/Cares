@@ -5,7 +5,6 @@ using Cares.Models.IdentityModels;
 using Cares.Models.IdentityModels.ViewModels;
 using Cares.Web.Controllers;
 using Cares.Web.Models;
-using IdentitySample.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -22,7 +21,7 @@ using MenuRightModel = Cares.Web.Models.MenuRight;
 using Cares.Commons;
 using System;
 
-namespace IdentitySample.Controllers
+namespace Cares.Web.Controllers
 {
     [Authorize(Roles = "SystemAdministrator")]
     public class RolesAdminController : Controller

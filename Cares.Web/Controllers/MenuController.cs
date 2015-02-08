@@ -30,26 +30,25 @@ namespace Cares.Web.Controllers
         [ChildActionOnly]
         public ActionResult LoadMenu()
         {
+            //return View(new MenuViewModel());
             User user = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByEmailAsync(User.Identity.Name).Result;
             IList<MenuRight> menuItems;
             if (user == null || user.Roles == null || (user.Roles != null && user.Roles.Count < 1))
             {
                 return View(new MenuViewModel());
             }
-
-
             //  ReSharper disable PossibleNullReferenceException
             if (user.Roles.Any(roles => roles.Name == CaresApplicationRoles.SystemAdministrator))
             {
-                menuItems = user.Roles.FirstOrDefault(roles => roles.Name == CaresApplicationRoles.SystemAdministrator).MenuRights.ToList();
+                menuItems = user.Roles.FirstOrDefault(roles => roles.Name == CaresApplicationRoles.SystemAdministrator).MenuRights.OrderBy(menu => menu.Menu.SortOrder).ToList();
             }
             else if (user.Roles.Any(roles => roles.Name == CaresApplicationRoles.Admin))
             {
-                menuItems = user.Roles.FirstOrDefault(roles => roles.Name == CaresApplicationRoles.Admin).MenuRights.ToList();
+                menuItems = user.Roles.FirstOrDefault(roles => roles.Name == CaresApplicationRoles.Admin).MenuRights.OrderBy(menu => menu.Menu.SortOrder).ToList();
             }
             else
             {
-                menuItems = user.Roles.FirstOrDefault().MenuRights.ToList();
+                menuItems = user.Roles.FirstOrDefault().MenuRights.OrderBy(menu => menu.Menu.SortOrder).ToList();
             }
             // ReSharper disable once InconsistentNaming
             var menuVM = new MenuViewModel

@@ -2,7 +2,6 @@
 using Cares.Models.IdentityModels;
 using Cares.Models.IdentityModels.ViewModels;
 using Cares.WebBase.Mvc;
-using IdentitySample.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -18,7 +17,7 @@ using Cares.Models.DomainModels;
 using Cares.Web.Models;
 using Cares.Commons;
 
-namespace IdentitySample.Controllers
+namespace Cares.Web.Controllers
 {
 
     /// <summary>

@@ -2,7 +2,7 @@
 using Microsoft.Owin;
 
 
-namespace IdentitySample
+namespace Cares.Web
 {
     public partial class Startup
     {

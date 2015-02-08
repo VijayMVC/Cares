@@ -2,7 +2,6 @@
 using Cares.Models.DomainModels;
 using Cares.Models.IdentityModels;
 using Cares.Models.IdentityModels.ViewModels;
-using IdentitySample.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -12,7 +11,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.Owin.Security.OAuth;
 
-namespace IdentitySample.Controllers
+namespace Cares.Web.Controllers
 {
     [Authorize]
     public class ManageController : Controller
