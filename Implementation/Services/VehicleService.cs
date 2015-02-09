@@ -242,6 +242,21 @@ namespace Cares.Implementation.Services
                 }
                 #endregion
 
+                #region Vehicle Image
+                if (vehicle.VehicleImages != null)
+                {
+                    foreach (var item in vehicle.VehicleImages)
+                    {
+                        item.VehicleImageCode = DateTime.Now.ToString("yyyyMMddHHmmss");
+                        item.UserDomainKey = vehicleRepository.UserDomainKey;
+                        item.IsReadOnly = item.IsPrivate = vehicle.IsDeleted = false;
+                        item.RecLastUpdatedDt = item.RecCreatedDt = DateTime.Now;
+                        item.RecLastUpdatedBy = item.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
+                        item.RowVersion = 0;
+                    }
+                }
+                #endregion
+
                 vehicleRepository.Add(vehicle);
 
             }
@@ -447,6 +462,48 @@ namespace Cares.Implementation.Services
                         vehicleCheckListItemRepository.SaveChanges();
                     }
                 }
+
+                #endregion
+
+
+
+                #region Vehicle Images
+
+                //Add  Vehicle Images
+                if (vehicle.VehicleImages != null)
+                {
+                    foreach (var item in vehicle.VehicleImages)
+                    {
+                        if (
+                            vehicleDbVersion.VehicleImages.All(
+                                x =>
+                                    x.VehicleImageId != item.VehicleImageId ||
+                                    item.VehicleImageId == 0))
+                        {
+                            item.VehicleImageCode = DateTime.Now.ToString("yyyyMMddHHmmss");
+                            item.UserDomainKey = vehicleRepository.UserDomainKey;
+                            item.RecLastUpdatedDt = item.RecCreatedDt = DateTime.Now;
+                            item.RecLastUpdatedBy = item.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
+                            item.RowVersion = 0;
+
+                            vehicleDbVersion.VehicleImages.Add(item);
+                        }
+                    }
+                }
+                //find missing items
+                List<VehicleImage> missingImageItems = vehicleDbVersion.VehicleImages.Where(dbversionCheckListItem => vehicle.VehicleImages != null && vehicle.VehicleImages.All(x => x.VehicleImageId != dbversionCheckListItem.VehicleImageId)).ToList();
+                //remove missing items
+                foreach (VehicleImage missingImageItem in missingImageItems)
+                {
+                    VehicleImage dbVersionMissingItem = vehicleDbVersion.VehicleImages.First(x => x.VehicleImageId == missingImageItem.VehicleImageId);
+                    if (dbVersionMissingItem.VehicleImageId > 0)
+                    {
+                        vehicleDbVersion.VehicleImages.Remove(dbVersionMissingItem);
+                        vehicleImageRepository.Delete(dbVersionMissingItem);
+                        vehicleImageRepository.SaveChanges();
+                    }
+                }
+
 
                 #endregion
 

@@ -87,7 +87,7 @@ function readURL(input) {
                 }
             };
             img.src = reader.result;
-
+            ist.vehicle.viewModel.addVehicleItem().vehicleImage().imageUrl(img.src);
         };
         reader.readAsDataURL(input.files[0]);
     }

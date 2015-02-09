@@ -765,18 +765,17 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
     // ReSharper disable once InconsistentNaming
     var VehicleImage = function () {
         var // Reference to this object
-            self,
             // Unique key
             id = ko.observable(),
             //Image URL
             imageUrl = ko.observable();
 
 
-        self = {
+       return {
             id: id,
             imageUrl: imageUrl,
         };
-        return self;
+        
     }
 
     // Vehicle Detail Factory
@@ -837,6 +836,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         });
         // Vehicle Check List Items
         // from client to server
+        result.VehicleImages = [];
+        result.VehicleImages.push({ VehicleImageId: 0, ImageSource: source.vehicleImage().imageUrl() });
         result.VehicleCheckListItems = [];
         _.each(source.checkListItemListInVehicle(), function (item) {
             result.VehicleCheckListItems.push(CheckListItemServerMapper(item));

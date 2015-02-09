@@ -155,7 +155,8 @@ define("vehicle/vehicle.viewModel",
                                 });
 
                                 _.each(data.VehicleImages, function (item) {
-                                    vehicleImage(item.ImageSource);
+                                    addVehicleItem().vehicleImage().id(item.VehicleImageId);
+                                    addVehicleItem().vehicleImage().imageUrl(item.ImageSource);
                                 });
                                 
                                 isLoadingVehicles(false);
