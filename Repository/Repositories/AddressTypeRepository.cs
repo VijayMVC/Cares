@@ -57,7 +57,7 @@ namespace Cares.Repository.Repositories
         /// </summary>    
         public short GetAddressTypeIdByAddressTypeKey(long addressTypeKey)
         {
-            return DbSet.Where(addresstype => addresstype.AddressTypeKey == addressTypeKey && addresstype.UserDomainKey == UserDomainKey)
+            return DbSet.Where(addresstype => addresstype.AddressTypeKey == addressTypeKey)
                 .Select(addresstype => addresstype.AddressTypeId).FirstOrDefault();
         }
 

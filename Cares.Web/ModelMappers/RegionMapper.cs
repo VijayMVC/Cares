@@ -20,7 +20,7 @@ namespace Cares.Web.ModelMappers
             {
                 RegionId = source.RegionId,
                 RegionCodeName = source.RegionCode +" - "+ source.RegionName,
-                Country = source.Country != null ? source.Country.CountryCode + " - " + source.Country.CountryName : string.Empty,
+                Country = source.Country != null ? source.Country.CountryName + " - (" + source.Country.CountryCode + ")": string.Empty,
                 CountryId = source.CountryId
             };
         }

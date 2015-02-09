@@ -997,6 +997,28 @@
   width: 100%;
   margin-bottom: 15px;
 }
+#WorkLocationBinding #WorkplaceEditor #phoneType {
+  margin-left: -40px;
+}
+#WorkLocationBinding #WorkplaceEditor #addButtonContainer {
+  margin-right: 10px;
+}
+#WorkLocationBinding #WorkplaceEditor #phoneTable {
+  margin: 10px;
+  width: 68%;
+  margin-left: 26px;
+  margin-top: 28px;
+}
+#WorkLocationBinding #WorkplaceEditor #defaultCheckbox {
+  height: 18px;
+  margin-top: 7px;
+}
+#WorkLocationBinding #WorkplaceEditor #saveBtn {
+  width: 80px;
+}
+#WorkLocationBinding #WorkplaceEditor #isDefaultHeader {
+  width: 14%;
+}
 #WorkPlaceTypeBinding table thead tr .ttypesearchButton {
   margin-left: 5px;
 }

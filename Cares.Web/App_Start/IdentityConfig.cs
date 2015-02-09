@@ -17,7 +17,7 @@ using Cares.Models.DomainModels;
 using Microsoft.Owin.Security.OAuth;
 using Microsoft.Practices.Unity;
 
-namespace IdentitySample.Models
+namespace Cares.Web
 {
     public class ApplicationSignInManager : SignInManager<User, string>
     {

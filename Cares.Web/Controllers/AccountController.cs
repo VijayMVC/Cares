@@ -10,7 +10,6 @@ using Cares.Models.IdentityModels.ViewModels;
 using Cares.Models.MenuModels;
 using Cares.Web.ModelMappers;
 using Cares.WebBase.WebApi;
-using IdentitySample.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -33,7 +32,7 @@ using System.Security.Claims;
 using Newtonsoft.Json;
 
 
-namespace IdentitySample.Controllers
+namespace Cares.Web.Controllers
 {
     [Authorize]
     public class AccountController : Controller
@@ -134,6 +133,11 @@ namespace IdentitySample.Controllers
             // To enable password failures to trigger lockout, change to shouldLockout: true
 
             User user = await UserManager.FindByNameAsync(model.Email);
+            if (user == null)
+            {
+                ModelState.AddModelError("", "Error! Invalid email.");
+                return View(model);
+            }
             ClaimsIdentity identity = await user.GenerateUserIdentityAsync(UserManager, DefaultAuthenticationTypes.ApplicationCookie);
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
             if (user != null)

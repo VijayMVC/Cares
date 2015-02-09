@@ -2945,6 +2945,7 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Views\UsersAdmin\ViewUserDetail.cshtml" />
+    <Content Include="Views\Shared\Welcome.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
