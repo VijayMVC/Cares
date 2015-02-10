@@ -133,7 +133,7 @@ namespace Cares.Web.Resources.Vehicle {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CheckList Item.
+        ///   Looks up a localized string similar to Checklist Item.
         /// </summary>
         public static string CheckListItem {
             get {
@@ -664,7 +664,7 @@ namespace Cares.Web.Resources.Vehicle {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OtherDetails.
+        ///   Looks up a localized string similar to Other Details.
         /// </summary>
         public static string OtherDetails {
             get {
@@ -871,7 +871,7 @@ namespace Cares.Web.Resources.Vehicle {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vehicle Check List.
+        ///   Looks up a localized string similar to Vehicle Checklist.
         /// </summary>
         public static string VehicleCheckList {
             get {
@@ -880,7 +880,7 @@ namespace Cares.Web.Resources.Vehicle {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vehicle delete to failed..
+        ///   Looks up a localized string similar to Failed to delete vehicle..
         /// </summary>
         public static string VehicleDeleteErrorMsg {
             get {
@@ -889,7 +889,7 @@ namespace Cares.Web.Resources.Vehicle {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vehicle successfully delete..
+        ///   Looks up a localized string similar to Vehicle successfully deleted..
         /// </summary>
         public static string VehicleDeleteSuccessMsg {
             get {
@@ -898,7 +898,7 @@ namespace Cares.Web.Resources.Vehicle {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vehicle Detail.
+        ///   Looks up a localized string similar to Vehicle Details.
         /// </summary>
         public static string VehicleDetail {
             get {
@@ -907,7 +907,7 @@ namespace Cares.Web.Resources.Vehicle {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vehicle Detail load to failed..
+        ///   Looks up a localized string similar to Failed to load Vehicle details..
         /// </summary>
         public static string VehicleDetailFailedMsg {
             get {
@@ -925,7 +925,7 @@ namespace Cares.Web.Resources.Vehicle {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vehicles load to failed..
+        ///   Looks up a localized string similar to Failed to load vehicles..
         /// </summary>
         public static string VehicleLoadFailedMsg {
             get {
@@ -979,7 +979,7 @@ namespace Cares.Web.Resources.Vehicle {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vehicle save to failed..
+        ///   Looks up a localized string similar to Failed to save vehicle..
         /// </summary>
         public static string VehicleSaveErrorMsg {
             get {
@@ -988,7 +988,7 @@ namespace Cares.Web.Resources.Vehicle {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vehicle successfully save..
+        ///   Looks up a localized string similar to Vehicle successfully saved..
         /// </summary>
         public static string VehicleSaveSuccessMsg {
             get {

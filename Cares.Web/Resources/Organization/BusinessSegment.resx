@@ -124,7 +124,7 @@
     <value>Business Segment successfully deleted!</value>
   </data>
   <data name="BusinessSegmentDetails" xml:space="preserve">
-    <value>Business Segment Detail</value>
+    <value>Business Segment Details</value>
   </data>
   <data name="BusinessSegmentLabel" xml:space="preserve">
     <value>Business Segment</value>
@@ -136,7 +136,7 @@
     <value>Failed to delete Business Segment!</value>
   </data>
   <data name="BusinessSegmentSaveSuccessMessage" xml:space="preserve">
-    <value>Business Segment successfully added!</value>
+    <value>Business Segment successfully saved!</value>
   </data>
   <data name="Code" xml:space="preserve">
     <value>Code</value>

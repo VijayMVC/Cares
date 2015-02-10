@@ -47,7 +47,7 @@ namespace Cares.Implementation.Services
         /// </summary>
         private void AddNewFleetPool(FleetPool fleetPool)
         {
-            int numberOfExistedFleetPoolsByDomainKey = fleetPoolRepository.GetCountOfFleetPoolWithDomainKey();
+            int currentCount = fleetPoolRepository.GetCountOfFleetPoolWithDomainKey();
             DomainLicenseDetailClaim allowedFleetPools =
                 ClaimHelper.GetDeserializedClaims<DomainLicenseDetailClaim>(CaresUserClaims.DomainLicenseDetail)
                     .FirstOrDefault();
@@ -55,7 +55,7 @@ namespace Cares.Implementation.Services
             {
                 throw new InvalidOperationException(Resources.FleetPool.FleetPool.NoDomainLicenseDetailClaim);
             }
-            if (allowedFleetPools.FleetPools >= numberOfExistedFleetPoolsByDomainKey)
+            if (allowedFleetPools.FleetPools <= currentCount)
             {
                 throw new CaresException(Resources.FleetPool.FleetPool.ExceedingDomainLimitForFleetPoolError);
             }

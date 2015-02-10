@@ -124,7 +124,7 @@
     <value>Description</value>
   </data>
   <data name="DuplicateCodeError" xml:space="preserve">
-    <value>Organization Group with same code already exists</value>
+    <value>Organization Group with same code already exists!</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
@@ -133,25 +133,25 @@
     <value>Organization Group Code</value>
   </data>
   <data name="OrganizationGroupDeleteFailError" xml:space="preserve">
-    <value>Organization Group failed to delete!</value>
+    <value>Failed to delete organization group</value>
   </data>
   <data name="OrganizationGroupDeleteSuccessMessage" xml:space="preserve">
     <value>Organization Group successfully deleted!</value>
   </data>
   <data name="OrganizationGroupDetail" xml:space="preserve">
-    <value>Organization Group Detail</value>
+    <value>Organization Group Details</value>
   </data>
   <data name="OrganizationGroupLabel" xml:space="preserve">
     <value>Organization Group</value>
   </data>
   <data name="OrganizationGroupLoadFailError" xml:space="preserve">
-    <value>Organization Group failed to load!</value>
+    <value>Failed to load organization group!</value>
   </data>
   <data name="OrganizationGroupName" xml:space="preserve">
     <value>Organization Group Name</value>
   </data>
   <data name="OrganizationGroupSaveFailError" xml:space="preserve">
-    <value>Organization Group failed to save!</value>
+    <value>Failed to save organization group!</value>
   </data>
   <data name="OrganizationGroupSaveSuccessMessage" xml:space="preserve">
     <value>Organization Group successfully saved!</value>

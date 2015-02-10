@@ -3363,6 +3363,7 @@
     <EmbeddedResource Include="Resources\Organization\Workplace.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Workplace.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Organization\WorkplaceType.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -3503,6 +3504,7 @@
     <EmbeddedResource Include="Resources\Vehicle\Vehicle.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Vehicle.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

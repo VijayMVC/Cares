@@ -136,7 +136,7 @@
     <value>Description</value>
   </data>
   <data name="FailedToDeleteBusinessLegalStatusError" xml:space="preserve">
-    <value>Failed to delete Business Legal Status !</value>
+    <value>Failed to delete Business Legal Status!</value>
   </data>
   <data name="FailedToLoadBusinessLegalStatusesError" xml:space="preserve">
     <value>Failed to load Business Legal Statuses!</value>

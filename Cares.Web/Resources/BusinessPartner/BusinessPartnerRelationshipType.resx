@@ -136,13 +136,13 @@
     <value>Description</value>
   </data>
   <data name="FailedToDeleteBusinessPartnerRelationshipTypeError" xml:space="preserve">
-    <value>Failed to delete Business Partner Relationship Type</value>
+    <value>Failed to delete Business Partner Relationship Type!</value>
   </data>
   <data name="FailedToLoadBusinessPartnerRelationshipTypesError" xml:space="preserve">
-    <value>Failed to load Business Partner Relationship Types</value>
+    <value>Failed to load Business Partner Relationship Types!</value>
   </data>
   <data name="FailedToSaveBusinessPartnerRelationshipTypeError" xml:space="preserve">
-    <value>Failed to save Business Partner Relationship Type</value>
+    <value>Failed to save Business Partner Relationship Type!</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>

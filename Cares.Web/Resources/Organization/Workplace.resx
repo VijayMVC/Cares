@@ -145,37 +145,37 @@
     <value>Work Location</value>
   </data>
   <data name="WorkplaceCode" xml:space="preserve">
-    <value> Code</value>
+    <value>Code</value>
   </data>
   <data name="WorkPlaceDeleteFailError" xml:space="preserve">
     <value>Failed to delete workplace!</value>
   </data>
   <data name="WorkPlaceDeleteSuccessMessage" xml:space="preserve">
-    <value>WorkPlace deleted sucessfully!</value>
+    <value>Workplace deleted sucessfully!</value>
   </data>
   <data name="WorkplaceLabel" xml:space="preserve">
     <value>Workplace</value>
   </data>
   <data name="WorkPlaceLoadBaseFailError" xml:space="preserve">
-    <value>Failed to load WorkPlace base data</value>
+    <value>Failed to load workplace base data!</value>
   </data>
   <data name="WorkPlaceLoadFailError" xml:space="preserve">
-    <value>Failed to load WorkPlace</value>
+    <value>Failed to load Workplace</value>
   </data>
   <data name="WorkplaceName" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="WorkPlaceSaveFailError" xml:space="preserve">
-    <value>WorkPlace failed to save !</value>
+    <value>Failed to save workplace</value>
   </data>
   <data name="WorkPlaceSaveSuccessMessage" xml:space="preserve">
-    <value>WorkPlace saved successfully!</value>
+    <value>Workplace saved successfully!</value>
   </data>
   <data name="WorkplaceType" xml:space="preserve">
     <value>Workplace Type</value>
   </data>
   <data name="WorkPlaceDetail" xml:space="preserve">
-    <value>Work Place Detail</value>
+    <value>Workplace details</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>

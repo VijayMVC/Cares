@@ -40,7 +40,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public override IEnumerable<Country> GetAll()
         {
-            return DbSet.Select(country => country).ToList();
+            return DbSet.Select(country => country).OrderBy(country => country.CountryName).ToList();
         }
 
         /// <summary>

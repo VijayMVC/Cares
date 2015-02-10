@@ -142,7 +142,7 @@
     <value>Chasis Number</value>
   </data>
   <data name="CheckListItem" xml:space="preserve">
-    <value>CheckList Item</value>
+    <value>Checklist Item</value>
   </data>
   <data name="Color" xml:space="preserve">
     <value>Color</value>
@@ -319,7 +319,7 @@
     <value>Operation</value>
   </data>
   <data name="OtherDetails" xml:space="preserve">
-    <value>OtherDetails</value>
+    <value>Other Details</value>
   </data>
   <data name="PlateNumber" xml:space="preserve">
     <value>Plate #</value>
@@ -388,25 +388,25 @@
     <value>Vehicle Category</value>
   </data>
   <data name="VehicleCheckList" xml:space="preserve">
-    <value>Vehicle Check List</value>
+    <value>Vehicle Checklist</value>
   </data>
   <data name="VehicleDeleteErrorMsg" xml:space="preserve">
-    <value>Vehicle delete to failed.</value>
+    <value>Failed to delete vehicle.</value>
   </data>
   <data name="VehicleDeleteSuccessMsg" xml:space="preserve">
-    <value>Vehicle successfully delete.</value>
+    <value>Vehicle successfully deleted.</value>
   </data>
   <data name="VehicleDetail" xml:space="preserve">
-    <value>Vehicle Detail</value>
+    <value>Vehicle Details</value>
   </data>
   <data name="VehicleDetailFailedMsg" xml:space="preserve">
-    <value>Vehicle Detail load to failed.</value>
+    <value>Failed to load Vehicle details.</value>
   </data>
   <data name="VehicleLabel" xml:space="preserve">
     <value>Vehicle</value>
   </data>
   <data name="VehicleLoadFailedMsg" xml:space="preserve">
-    <value>Vehicles load to failed.</value>
+    <value>Failed to load vehicles.</value>
   </data>
   <data name="VehicleMake" xml:space="preserve">
     <value>Vehicle Make</value>
@@ -424,10 +424,10 @@
     <value>Vehicles</value>
   </data>
   <data name="VehicleSaveErrorMsg" xml:space="preserve">
-    <value>Vehicle save to failed.</value>
+    <value>Failed to save vehicle.</value>
   </data>
   <data name="VehicleSaveSuccessMsg" xml:space="preserve">
-    <value>Vehicle successfully save.</value>
+    <value>Vehicle successfully saved.</value>
   </data>
   <data name="Year" xml:space="preserve">
     <value>Year</value>

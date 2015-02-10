@@ -130,27 +130,27 @@
     <value>Search</value>
   </data>
   <data name="WorkPlaceNature" xml:space="preserve">
-    <value>Work Place Nature</value>
+    <value>Workplace Nature</value>
   </data>
   <data name="WorkPlaceTypeDeleteFailError" xml:space="preserve">
-    <value>Failed to delete WorkPlace</value>
+    <value>Failed to delete Workplace Type!</value>
   </data>
   <data name="WorkPlaceTypeDeleteSuccessMessage" xml:space="preserve">
-    <value>WorkPlace successfully deleted</value>
+    <value>Workplace successfully deleted!</value>
   </data>
   <data name="WorkplaceTypeDetail" xml:space="preserve">
-    <value>Workplace Type Detail</value>
+    <value>Workplace Type Details</value>
   </data>
   <data name="WorkplaceTypeLabel" xml:space="preserve">
     <value>Workplace Type</value>
   </data>
   <data name="WorkPlaceTypeLoadFailError" xml:space="preserve">
-    <value>Failed to load WorkPlace</value>
+    <value>Failed to load Workplace Types!</value>
   </data>
   <data name="WorkPlaceTypeSaveFailError" xml:space="preserve">
-    <value>Failed to save WorkPlace</value>
+    <value>Failed to save Workplace Type!</value>
   </data>
   <data name="WorkPlaceTypeSaveSuccessMessage" xml:space="preserve">
-    <value>Work Place successfully saved!</value>
+    <value>Workplace successfully saved!</value>
   </data>
 </root>
