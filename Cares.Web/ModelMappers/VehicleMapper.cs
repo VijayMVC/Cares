@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Cares.Web.Models;
 using DomainModels = Cares.Models.DomainModels;
 using ResponseModel = Cares.Models.ResponseModels;
@@ -175,7 +176,8 @@ namespace Cares.Web.ModelMappers
                        VehicleDepreciation = source.VehicleDepreciation.CreateFrom(),
                        VehicleDisposalInfo = source.VehicleDisposalInfo.CreateFrom(),
                        VehicleMaintenanceTypeFrequencies = source.VehicleMaintenanceTypeFrequency != null ? source.VehicleMaintenanceTypeFrequency.Select(vm => vm.CreateFrom()).ToList() : null,
-                       VehicleCheckListItems = source.VehicleCheckListItems != null ? source.VehicleCheckListItems.Select(vm => vm.CreateFrom()).ToList() : null
+                       VehicleCheckListItems = source.VehicleCheckListItems != null ? source.VehicleCheckListItems.Select(vm => vm.CreateFrom()).ToList() : null,
+                       VehicleImages = source.VehicleImages != null ? source.VehicleImages.Select(mt => mt.CreateFrom()).ToList() : null,
                    };
         }
 
@@ -233,10 +235,26 @@ namespace Cares.Web.ModelMappers
         /// <returns></returns>
         public static VehicleImage CreateFrom(this DomainModels.VehicleImage source)
         {
+
             return new VehicleImage
             {
                 VehicleImageId = source.VehicleImageId,
                 Image = source.Image,
+            };
+        }
+
+        /// <summary>
+        /// Create entity from web model
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static DomainModels.VehicleImage CreateFrom(this VehicleImage source)
+        {
+           
+            return new DomainModels.VehicleImage
+            {
+                VehicleImageId = source.VehicleImageId,
+                Image = source.Image
             };
         }
         #endregion
