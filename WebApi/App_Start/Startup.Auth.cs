@@ -1,5 +1,5 @@
 ﻿using Cares.Implementation.Identity;
-using IdentitySample.Models;
+
 using Owin;
 
 namespace Cares.WebApi

@@ -40,7 +40,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public override IEnumerable <MeasurementUnit> GetAll()
         {
-            return DbSet.Where(measurementUnit => measurementUnit.UserDomainKey == UserDomainKey).ToList();
+            return DbSet.ToList();
         }
         #endregion
     }

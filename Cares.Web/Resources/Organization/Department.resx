@@ -124,25 +124,25 @@
     <value>Comapny</value>
   </data>
   <data name="DepartmentBaseLoadFailError" xml:space="preserve">
-    <value>Department base-data loading failed!</value>
+    <value>Failed to load department base data!</value>
   </data>
   <data name="DepartmentCode" xml:space="preserve">
     <value>Department Code</value>
   </data>
   <data name="DepartmentDeleteFailError" xml:space="preserve">
-    <value>Department deletion failed !</value>
+    <value>Failed to delete department</value>
   </data>
   <data name="DepartmentDeleteSuccessMessage" xml:space="preserve">
     <value>Department successfully deleted!</value>
   </data>
   <data name="DepartmentDetail" xml:space="preserve">
-    <value>Department Detail</value>
+    <value>Department Details</value>
   </data>
   <data name="DepartmentLabel" xml:space="preserve">
     <value>Department</value>
   </data>
   <data name="DepartmentLoadFailError" xml:space="preserve">
-    <value>Department loading failed!</value>
+    <value>Failed to load departents</value>
   </data>
   <data name="DepartmentName" xml:space="preserve">
     <value>Department Name</value>

@@ -496,13 +496,51 @@ function handleSorting(tableId, sortOn, sortAsc, callback) {
     });
 }
 //Model Year
-modelYearsGlobal = [{ Id: 2001, Text: '2001' },
+modelYearsGlobal = [
+    { Id: 1980, Text: '1980' },
+    { Id: 1981, Text: '1981' },
+    { Id: 1982, Text: '1982' },
+    { Id: 1983, Text: '1983' },
+    { Id: 1984, Text: '1984' },
+    { Id: 1985, Text: '1985' },
+    { Id: 1986, Text: '1986' },
+    { Id: 1987, Text: '1987' },
+    { Id: 1988, Text: '1988' },
+    { Id: 1989, Text: '1989' },
+    { Id: 1990, Text: '1990' },
+
+    { Id: 1991, Text: '1991' },
+    { Id: 1992, Text: '1992' },
+    { Id: 1993, Text: '1993' },
+    { Id: 1994, Text: '1994' },
+    { Id: 1995, Text: '1995' },
+    { Id: 1996, Text: '1996' },
+    { Id: 1997, Text: '1997' },
+    { Id: 1998, Text: '1998' },
+    { Id: 1999, Text: '1999' },
+    { Id: 2000, Text: '2000' },
+
+    { Id: 2001, Text: '2001' },
     { Id: 2002, Text: '2002' },
     { Id: 2003, Text: '2003' },
     { Id: 2004, Text: '2004' },
     { Id: 2005, Text: '2005' },
     { Id: 2006, Text: '2006' },
-    { Id: 2007, Text: '2007' }
+    { Id: 2007, Text: '2007' },
+    { Id: 2008, Text: '2008' },
+    { Id: 2009, Text: '2009' },
+    { Id: 2010, Text: '2010' },
+
+    { Id: 2011, Text: '2011' },
+    { Id: 2012, Text: '2012' },
+    { Id: 2013, Text: '2013' },
+    { Id: 2014, Text: '2014' },
+    { Id: 2015, Text: '2015' },
+    { Id: 2016, Text: '2016' },
+    { Id: 2017, Text: '2017' },
+    { Id: 2018, Text: '2018' },
+    { Id: 2019, Text: '2019' },
+    { Id: 2020, Text: '2020' }
 ];
 
 // Date Conversion - e.g. Hijri to Gregorain

@@ -34,69 +34,133 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Updates the db instance with user data for add/update operation
         /// </summary>
-        private void SetUpdateedProperties(WorkLocation dbvWorkLocation, WorkLocation upDatedWorkLocation , String operation)
+        private void SetUpdatedWorkLocationProperties(WorkLocation dbvWorkLocation, WorkLocation upDatedWorkLocation)
         {
-            if (operation.Equals("update"))
-            {
-                dbvWorkLocation.RecLastUpdatedBy = workLocationRepository.LoggedInUserIdentity;
-                dbvWorkLocation.RecLastUpdatedDt = DateTime.Now;
-                dbvWorkLocation.WorkLocationCode = upDatedWorkLocation.WorkLocationCode;
-                dbvWorkLocation.WorkLocationName = upDatedWorkLocation.WorkLocationName;
-                dbvWorkLocation.WorkLocationDescription = upDatedWorkLocation.WorkLocationDescription;
+            dbvWorkLocation.Address.RecLastUpdatedBy = dbvWorkLocation.RecLastUpdatedBy = workLocationRepository.LoggedInUserIdentity;
+            dbvWorkLocation.Address.RecLastUpdatedDt = dbvWorkLocation.RecLastUpdatedDt = DateTime.Now;
+            dbvWorkLocation.Address.RowVersion = dbvWorkLocation.Address.RowVersion + 1;
+            dbvWorkLocation.RowVersion = dbvWorkLocation.RowVersion + 1;
 
-                dbvWorkLocation.Address.ContactPerson = upDatedWorkLocation.Address.ContactPerson;
-                dbvWorkLocation.Address.StreetAddress = upDatedWorkLocation.Address.StreetAddress;
+            dbvWorkLocation.WorkLocationCode = upDatedWorkLocation.WorkLocationCode;
+            dbvWorkLocation.WorkLocationName = upDatedWorkLocation.WorkLocationName;
+            dbvWorkLocation.WorkLocationDescription = upDatedWorkLocation.WorkLocationDescription;
 
-                dbvWorkLocation.Address.EmailAddress = upDatedWorkLocation.Address.EmailAddress;
-                dbvWorkLocation.Address.WebPage = upDatedWorkLocation.Address.WebPage;
-                dbvWorkLocation.Address.ZipCode = upDatedWorkLocation.Address.ZipCode;
+            dbvWorkLocation.Address.ContactPerson = upDatedWorkLocation.Address.ContactPerson;
+            dbvWorkLocation.Address.StreetAddress = upDatedWorkLocation.Address.StreetAddress;
 
-                dbvWorkLocation.Address.POBox = upDatedWorkLocation.Address.POBox;
-                dbvWorkLocation.Address.CountryId = upDatedWorkLocation.Address.CountryId;
-                dbvWorkLocation.Address.RegionId = upDatedWorkLocation.Address.RegionId;
+            dbvWorkLocation.Address.EmailAddress = upDatedWorkLocation.Address.EmailAddress;
+            dbvWorkLocation.Address.WebPage = upDatedWorkLocation.Address.WebPage;
+            dbvWorkLocation.Address.ZipCode = upDatedWorkLocation.Address.ZipCode;
 
-                dbvWorkLocation.Address.SubRegionId = upDatedWorkLocation.Address.SubRegionId;
-                dbvWorkLocation.Address.CityId = upDatedWorkLocation.Address.CityId;
-                dbvWorkLocation.Address.AreaId = upDatedWorkLocation.Address.AreaId;
-            }
-            else
-            {
-                dbvWorkLocation.Address = new Address
-                {
-                    ContactPerson = upDatedWorkLocation.Address.ContactPerson,
-                    StreetAddress = upDatedWorkLocation.Address.StreetAddress,
-                    EmailAddress = upDatedWorkLocation.Address.EmailAddress,
-                    WebPage = upDatedWorkLocation.Address.WebPage,
-                    ZipCode = upDatedWorkLocation.Address.ZipCode,
-                    POBox = upDatedWorkLocation.Address.POBox,
-                    AddressTypeId = addressTypeRepository.GetAddressTypeIdByAddressTypeKey(1),
-                    CountryId = upDatedWorkLocation.Address.CountryId,
-                    RegionId = upDatedWorkLocation.Address.RegionId,
-                    SubRegionId = upDatedWorkLocation.Address.SubRegionId,
-                    CityId = upDatedWorkLocation.Address.CityId,
-                    AreaId = upDatedWorkLocation.Address.AreaId,
-                    RecCreatedBy = workLocationRepository.LoggedInUserIdentity,
-                    RecCreatedDt = DateTime.Now,
-                    RecLastUpdatedDt = DateTime.Now,
-                    RecLastUpdatedBy = workLocationRepository.LoggedInUserIdentity,
-                };
-                dbvWorkLocation.RecCreatedBy = dbvWorkLocation.RecLastUpdatedBy = workLocationRepository.LoggedInUserIdentity;
+            dbvWorkLocation.Address.POBox = upDatedWorkLocation.Address.POBox;
+            dbvWorkLocation.Address.CountryId = upDatedWorkLocation.Address.CountryId;
+            dbvWorkLocation.Address.RegionId = upDatedWorkLocation.Address.RegionId;
 
-                dbvWorkLocation.RecCreatedDt =  DateTime.Now;
-                dbvWorkLocation.RecLastUpdatedDt = DateTime.Now;
-                dbvWorkLocation.UserDomainKey = workLocationRepository.UserDomainKey;
-                dbvWorkLocation.CompanyId = upDatedWorkLocation.CompanyId;
-                dbvWorkLocation.WorkLocationCode = upDatedWorkLocation.WorkLocationCode;
-                dbvWorkLocation.WorkLocationName = upDatedWorkLocation.WorkLocationName;
-                dbvWorkLocation.WorkLocationDescription = upDatedWorkLocation.WorkLocationDescription;
-               
-            }
+            dbvWorkLocation.Address.SubRegionId = upDatedWorkLocation.Address.SubRegionId;
+            dbvWorkLocation.Address.CityId = upDatedWorkLocation.Address.CityId;
+            dbvWorkLocation.Address.AreaId = upDatedWorkLocation.Address.AreaId;
         }
+        /// <summary>
+        /// Update Worklocation
+        /// </summary>
+        private void UpdateWorkLocation(WorkLocation workLocationRequest, WorkLocation dbWorkLocation)
+        {
+            IEnumerable<Phone> dBVersionPhones = phoneRepository.GetPhonesByWorkLocationId(dbWorkLocation.WorkLocationId);
+            SetUpdatedWorkLocationProperties(dbWorkLocation, workLocationRequest);
+            // ReSharper disable PossibleMultipleEnumeration
+            if (dBVersionPhones.Any())
+            {
+                foreach (Phone dBVersionPhone in dBVersionPhones.ToList())
+                // ReSharper restore PossibleMultipleEnumeration
+                {
+                    if (workLocationRequest.Phones == null || workLocationRequest.Phones.FirstOrDefault(ph => ph.PhoneId == dBVersionPhone.PhoneId) == null)
+                    {
+                        DeletePhone(dBVersionPhone.PhoneId);
+                    }
+                }
+            }
+            if (workLocationRequest.Phones == null)
+                workLocationRequest.Phones = new Collection<Phone>();
 
+            IList<Phone> newlyAddedPhoneList = workLocationRequest.Phones.Where(ph => ph.PhoneId == 0).ToList();
+            foreach (Phone newPhone in newlyAddedPhoneList)
+            {
+                newPhone.RecCreatedBy = newPhone.RecLastUpdatedBy = phoneRepository.LoggedInUserIdentity;
+                newPhone.RecCreatedDt = newPhone.RecLastUpdatedDt = DateTime.Now;
+                newPhone.UserDomainKey = phoneRepository.UserDomainKey;
+                newPhone.RowVersion = 0;
+                newPhone.IsActive = true;
+                newPhone.IsDeleted = false;
+                newPhone.IsPrivate = false;
+                dbWorkLocation.Phones.Add(newPhone);
+            }
+            workLocationRepository.Update(dbWorkLocation);
+        }
+        /// <summary>
+        /// Add Worklocation
+        /// </summary>
+        private WorkLocation AddWorkLocation(WorkLocation workLocationRequest)
+        {
+            WorkLocation dbWorkLocation = workLocationRepository.Create();
+            SetInsertedWorkLocationProperties(dbWorkLocation, workLocationRequest);
+            if (workLocationRequest.Phones != null)
+            {
+                dbWorkLocation.Phones = new List<Phone>();
+                foreach (Phone phone in workLocationRequest.Phones)
+                {
+                    phone.RecCreatedBy = phone.RecLastUpdatedBy = phoneRepository.LoggedInUserIdentity;
+                    phone.RecCreatedDt = phone.RecLastUpdatedDt = DateTime.Now;
+                    phone.UserDomainKey = workLocationRepository.UserDomainKey;
+                    phone.RowVersion = 0;
+                    phone.IsActive = true;
+                    phone.IsDeleted = false;
+                    phone.IsPrivate = false;
+                    phone.IsReadOnly = false;
+                    dbWorkLocation.Phones.Add(phone);
+                }
+            }
+            workLocationRepository.Add(dbWorkLocation);
+            return dbWorkLocation;
+        }
+        /// <summary>
+        /// Set Inserted Worklocation properties
+        /// </summary>
+        private void SetInsertedWorkLocationProperties(WorkLocation dbWorkLocation, WorkLocation workLocationRequest)
+        {
+
+            dbWorkLocation.Address = new Address
+            {
+                ContactPerson = workLocationRequest.Address.ContactPerson,
+                StreetAddress = workLocationRequest.Address.StreetAddress,
+                EmailAddress = workLocationRequest.Address.EmailAddress,
+                WebPage = workLocationRequest.Address.WebPage,
+                ZipCode = workLocationRequest.Address.ZipCode,
+                POBox = workLocationRequest.Address.POBox,
+                AddressTypeId = addressTypeRepository.GetAddressTypeIdByAddressTypeKey(1),
+                CountryId = workLocationRequest.Address.CountryId,
+                RegionId = workLocationRequest.Address.RegionId,
+                SubRegionId = workLocationRequest.Address.SubRegionId,
+                CityId = workLocationRequest.Address.CityId,
+                AreaId = workLocationRequest.Address.AreaId,
+                RecCreatedBy = workLocationRepository.LoggedInUserIdentity,
+                RecCreatedDt = DateTime.Now,
+                RecLastUpdatedDt = DateTime.Now,
+                RecLastUpdatedBy = workLocationRepository.LoggedInUserIdentity,
+                RowVersion = 0
+            };
+            dbWorkLocation.RecCreatedBy = dbWorkLocation.RecLastUpdatedBy = workLocationRepository.LoggedInUserIdentity;
+            dbWorkLocation.RecLastUpdatedDt = dbWorkLocation.RecCreatedDt = DateTime.Now;
+            dbWorkLocation.RowVersion = 0;
+            dbWorkLocation.UserDomainKey = workLocationRepository.UserDomainKey;
+            dbWorkLocation.CompanyId = workLocationRequest.CompanyId;
+            dbWorkLocation.WorkLocationCode = workLocationRequest.WorkLocationCode;
+            dbWorkLocation.WorkLocationName = workLocationRequest.WorkLocationName;
+            dbWorkLocation.WorkLocationDescription = workLocationRequest.WorkLocationDescription;
+
+        }
         /// <summary>
         /// Deletion of Phone with iD
         /// </summary>
-        /// <param name="phoneId"></param>
         private void DeletePhone(long phoneId)
         {
             Phone phone = phoneRepository.Find(phoneId);
@@ -132,7 +196,6 @@ namespace Cares.Implementation.Services
 
         #endregion
         #region Public
-
         /// <summary>
         /// Load Work Location Base Data
         /// </summary>
@@ -149,7 +212,6 @@ namespace Cares.Implementation.Services
                 PhoneTypes = phoneTypeRepository.GetAll()
             };
         }
-
         /// <summary>
         /// Search Work Locations
         /// </summary>
@@ -163,7 +225,6 @@ namespace Cares.Implementation.Services
 
             };
         }
-
         /// <summary>
         /// Delete Work Location
         /// </summary>
@@ -177,10 +238,8 @@ namespace Cares.Implementation.Services
                 workLocationRepository.SaveChanges();
             }
             else
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                              "WorkLocation with Id {0} not found!", workLocationId));
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, "WorkLocation with Id {0} not found!", workLocationId));
         }
-
         /// <summary>
         /// Save / Update Work Location
         /// </summary>
@@ -191,98 +250,16 @@ namespace Cares.Implementation.Services
                 throw new CaresException(Resources.Organization.WorkLocation.WorkLocationWithSameCodeExistsError); 
 
             WorkLocation dbWorkLocation = workLocationRepository.Find(workLocationRequest.WorkLocationId);
-            bool isFind = false;
-            bool phonesAdded = false;
 
-            #region Edit
             if (dbWorkLocation != null)
             {
-                IEnumerable<Phone> dBVersionPhones = phoneRepository.GetPhonesByWorkLocationId(dbWorkLocation.WorkLocationId);
-                SetUpdateedProperties(dbWorkLocation, workLocationRequest, "update");
-                #region Phones already exists in DB
-                // ReSharper disable once PossibleMultipleEnumeration
-                if (dBVersionPhones.Any())
-                {
-                    // check for every phone in DB
-                    foreach (Phone dBPhone in dBVersionPhones)
-                    {
-                        //If DbPhone matches to any of request phone than dont delete it else delete 
-                        if (workLocationRequest.Phones!=null)
-                        {
-                            if (workLocationRequest.Phones.Any(reqPhone => reqPhone.PhoneId == dBPhone.PhoneId))
-                                isFind = true;
-                        }
-                        else
-                            DeletePhone(dBPhone.PhoneId);
-                        if (!isFind)
-                            DeletePhone(dBPhone.PhoneId);
-                        isFind = false;
-                    }
-                }
-                #endregion
-                #region Adding New Phones First Time
-                else
-                {
-                    if (workLocationRequest.Phones==null)
-                    workLocationRequest.Phones=new Collection<Phone>();
-
-                    foreach (var newPhone in workLocationRequest.Phones)
-                    {
-                        newPhone.RecCreatedBy = newPhone.RecLastUpdatedBy = phoneRepository.LoggedInUserIdentity;
-                        newPhone.RecCreatedDt = newPhone.RecLastUpdatedDt = DateTime.Now;
-                        newPhone.UserDomainKey = 1;
-                        newPhone.IsActive = true;
-                        newPhone.IsDeleted = false;
-                        newPhone.IsPrivate = false;
-                        dbWorkLocation.Phones.Add(newPhone);
-                        phonesAdded = true;
-                    }
-                }
-                #endregion
-                #region Adding Phones when there are more phones in request thatn in DB
-                if (workLocationRequest.Phones != null && workLocationRequest.Phones.Count > dBVersionPhones.Count() && phonesAdded==false)
-                foreach (var newPhonee in workLocationRequest.Phones)
-                {
-                    if (newPhonee.PhoneId == 0)
-                    {
-                        newPhonee.RecCreatedBy = newPhonee.RecLastUpdatedBy = phoneRepository.LoggedInUserIdentity;
-                        newPhonee.RecCreatedDt = newPhonee.RecLastUpdatedDt = DateTime.Now;
-                        newPhonee.UserDomainKey = 1;
-                        newPhonee.IsActive = true;
-                        newPhonee.IsDeleted = false;
-                        newPhonee.IsPrivate = false;
-                        dbWorkLocation.Phones.Add(newPhonee);
-                    }
-                }
-                #endregion
-                workLocationRepository.Update(dbWorkLocation);
+                UpdateWorkLocation(workLocationRequest, dbWorkLocation);
             }
-            #endregion
-            #region ADD
             else
             {
-                dbWorkLocation = workLocationRepository.Create();
-                SetUpdateedProperties(dbWorkLocation, workLocationRequest, "insert");
-                
-                if (workLocationRequest.Phones != null)
-                {
-                    dbWorkLocation.Phones = new List<Phone>();
-                    foreach (var phone in (workLocationRequest.Phones))
-                    {
-                        phone.RecCreatedBy = phone.RecLastUpdatedBy = phoneRepository.LoggedInUserIdentity;
-                        phone.RecCreatedDt = phone.RecLastUpdatedDt = DateTime.Now;
-                        phone.UserDomainKey = 1;
-                        phone.IsActive = true;
-                        phone.IsDeleted = false;
-                        phone.IsPrivate = false;
-                        dbWorkLocation.Phones.Add(phone);
-                    }
-                }
-                workLocationRepository.Add(dbWorkLocation);
+                dbWorkLocation = AddWorkLocation(workLocationRequest);
             }
-            #endregion
 
-            //phoneRepository.SaveChanges();
             workLocationRepository.SaveChanges();
             // Get detailed object of worklocation
             return workLocationRepository.GetWorkLocationWithDetails(dbWorkLocation.WorkLocationId);

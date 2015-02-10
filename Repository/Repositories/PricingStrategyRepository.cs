@@ -41,9 +41,8 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public override IEnumerable<PricingStrategy> GetAll()
         {
-            return DbSet.Where(pricingStrategy => pricingStrategy.UserDomainKey == UserDomainKey).ToList();
+            return DbSet.ToList();
         }
-
         #endregion
     }
 }

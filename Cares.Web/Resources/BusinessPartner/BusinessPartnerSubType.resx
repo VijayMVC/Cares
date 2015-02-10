@@ -139,16 +139,16 @@
     <value>Description</value>
   </data>
   <data name="FailedToDeleteBusinessPartnerSubTypeError" xml:space="preserve">
-    <value>Failed to delete Business Partner Sub Type</value>
+    <value>Failed to delete Business Partner Sub Type!</value>
   </data>
   <data name="FailedToloadBaseDataError" xml:space="preserve">
     <value>Failed to load Base Data!</value>
   </data>
   <data name="FailedToLoadBusinessPartnerSubTypesError" xml:space="preserve">
-    <value>Failed to load Business Partner Sub Types</value>
+    <value>Failed to load Business Partner Sub Types!</value>
   </data>
   <data name="FailedToSaveBusinessPartnerSubTypeError" xml:space="preserve">
-    <value>Failed to save Business Partner Sub Type</value>
+    <value>Failed to save Business Partner Sub Type!</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>

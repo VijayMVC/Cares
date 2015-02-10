@@ -172,31 +172,31 @@
     <value> Code</value>
   </data>
   <data name="WorkLocationDeleteFailError" xml:space="preserve">
-    <value>Work Location failed to delete</value>
+    <value>Failed to delete Work Location!</value>
   </data>
   <data name="WorkLocationDeleteSuccessMessage" xml:space="preserve">
-    <value>Work Location successfully deleted</value>
+    <value>Work Location successfully deleted!</value>
   </data>
   <data name="WorkLocationDetail" xml:space="preserve">
-    <value>Work Location Detail</value>
+    <value>Work Location Details</value>
   </data>
   <data name="WorkLocationLabel" xml:space="preserve">
     <value>Work Location</value>
   </data>
   <data name="WorkLocationLoadBaseFailError" xml:space="preserve">
-    <value>Work Location base data failed to load</value>
+    <value>Failed to load Work Location base data!</value>
   </data>
   <data name="WorkLocationLoadFailError" xml:space="preserve">
-    <value>Work Location failed to load</value>
+    <value>Failed to load Work Location!</value>
   </data>
   <data name="WorkLocationName" xml:space="preserve">
     <value> Name</value>
   </data>
   <data name="WorkLocationSaveFailError" xml:space="preserve">
-    <value>Work Location failed to save</value>
+    <value>Failed to save Work Location!</value>
   </data>
   <data name="WorkLocationSaveSuccessMessage" xml:space="preserve">
-    <value>Work Location successfully saved</value>
+    <value>Work Location successfully saved!</value>
   </data>
   <data name="ZipCode" xml:space="preserve">
     <value>Zip Code</value>

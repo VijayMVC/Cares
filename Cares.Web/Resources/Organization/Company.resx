@@ -163,7 +163,7 @@
     <value>UAN</value>
   </data>
   <data name="CompanyBaseLoadFailError" xml:space="preserve">
-    <value>Failed to load company base-data!</value>
+    <value>Failed to load company base data!</value>
   </data>
   <data name="CompanyDeleteFailError" xml:space="preserve">
     <value>Failed to delete company!</value>

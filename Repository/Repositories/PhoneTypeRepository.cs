@@ -41,7 +41,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public override IEnumerable<PhoneType> GetAll()
         {
-            return DbSet.Where(phoneTypes => phoneTypes.UserDomainKey == UserDomainKey).ToList();
+            return DbSet.ToList();
         }
       
         #endregion
