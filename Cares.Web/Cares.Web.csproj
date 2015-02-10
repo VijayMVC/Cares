@@ -1886,6 +1886,9 @@
     <Content Include="Content\Images\arrow-down-small.png" />
     <Content Include="Content\Images\arrow-up-small.png" />
     <Content Include="Content\Images\cares-logo.png" />
+    <Content Include="Content\Images\checklist_in.png" />
+    <Content Include="Content\Images\checklist_out.png" />
+    <Content Include="Content\Images\vehiclemovement.png" />
     <Content Include="Content\Images\logo-big.png" />
     <Content Include="Content\Images\logo-invert.png" />
     <Content Include="Content\Images\logo.png" />
@@ -1919,6 +1922,7 @@
     <Content Include="Content\Images\sidebar_toggler_icon_grey.png" />
     <Content Include="Content\Images\sidebar_toggler_icon_light.png" />
     <Content Include="Content\Images\sidebar_toggler_icon_light2.png" />
+    <Content Include="Content\Images\insurance_checklist.png" />
     <Content Include="Content\Images\syncfusion-icons-white.png" />
     <Content Include="Content\Images\syncfusion-icons.png" />
     <Content Include="Content\Images\up-arrow-small.png" />
@@ -1927,6 +1931,7 @@
     <Content Include="Content\Images\delete.png" />
     <Content Include="Content\Images\edit.png" />
     <Content Include="Content\Images\spinner.gif" />
+    <Content Include="Content\Images\vehicle_movment.png" />
     <Content Include="Content\InsuranceType.css">
       <DependentUpon>InsuranceType.less</DependentUpon>
     </Content>

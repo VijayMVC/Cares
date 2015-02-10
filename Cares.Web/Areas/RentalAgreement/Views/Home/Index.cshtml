@@ -18,7 +18,7 @@
             <button type="button" class="btn btn-success float-left margin-button" id="discountPopoverButton" data-bind="bootstrapPopover:{elementNode: 'discountPopover', html: true, popoverId: 'discountPopoverContents'} ">Discounts <span class="badge" data-bind="visible: false"></span></button>
             <button type="button" class="btn btn-danger float-left margin-button" id="damagePopoverButton" data-bind="bootstrapPopover:{elementNode: 'damagePopover', html: true, popoverId: 'damagePopoverContents'} ">Damages <span class="badge" data-bind="visible: $root.rentalAgreement().rentalAgreementAdditionalCharges().length > 0, text: $root.rentalAgreement().rentalAgreementAdditionalCharges().length"></span></button>
             <button type="button" class="btn btn-custom float-left margin-button" id="paymentPopoverButton" data-bind="bootstrapPopover:{elementNode: 'paymentPopover', html: true, popoverId: 'paymentPopoverContents'} ">Payments <span class="badge" data-bind="visible: $root.rentalAgreement().raPayments().length > 0, text: $root.rentalAgreement().raPayments().length"></span></button>
-            <button type="button" class="btn btn-custom float-left margin-button" id="billingPopoverButton" data-bind="bootstrapPopover:{elementNode: 'billingPopover', html: true, popoverId: 'billingPopoverContents'} ">Billing <span class="badge" data-bind="visible: $root.rentalAgreement().billing().balance > 0 ,text: $root.rentalAgreement().billing().balance"></span></button>
+            <button type="button" class="btn btn-billing float-left margin-button" id="billingPopoverButton" data-bind="bootstrapPopover:{elementNode: 'billingPopover', html: true, popoverId: 'billingPopoverContents'} ">Billing <span class="badge" data-bind="visible: $root.rentalAgreement().billing().balance > 0 ,text: $root.rentalAgreement().billing().balance"></span></button>
 
         </div>
 
@@ -111,7 +111,7 @@
                         <input type="checkbox" class="float-right" data-bind="bootstrapSwitchOn: $root.isExistingBusinessPartner, switchOptions: { onText: 'Existing', offText: 'New', size: 'mini',offColor: 'info', state: $root.isExistingBusinessPartner()}" />
                     </div>
                     <div class="float-right display-block margin-right">
-                        <input type="checkbox" class="float-right" data-bind="bootstrapSwitchOn: $root.rentalAgreement().businessPartner().isIndividual, switchOptions: { onText: 'Company', offText: 'Individual', size: 'mini', offColor:'info',state: $root.rentalAgreement().businessPartner().isIndividual()}" />
+                        <input type="checkbox" class="float-right" data-bind="bootstrapSwitchOn: $root.rentalAgreement().businessPartner().isIndividual, switchOptions: { onText: 'Individual', offText: 'Company', size: 'mini', offColor:'info',state: $root.rentalAgreement().businessPartner().isIndividual()}" />
                     </div>
                     
                 </div>
@@ -249,7 +249,8 @@
                             <div class="panel panel-default panelCustom" data-bind="click: $root.selectRaHireGroup">
                                 <div class="panel-heading">
                                     <!-- ko with: vehicle -->
-                                    <span data-bind="text: plateNumber"></span>
+                                    <span class="font-em-1-3" data-bind="text: plateNumber"></span>
+                                    <span class="font-em-1-3 margin-left"  data-bind="text: vehicleMakeModel"></span>
                                     <!-- /ko -->
                                     <a class="float-right" data-bind="click: $parent.removeRaHireGroup, visible: canRemove"><span class="glyphicon glyphicon-remove"></span></a>
                                 </div>
@@ -258,36 +259,54 @@
                                         <br />
                                         <!-- ko with: vehicle -->
                                         <div class="clearBoth">
-                                            <div class="col-md-3 full-height-content">
+                                            <div class="col-md-3">
                                                 <img id="vehicleImage" src="#" alt="" data-bind="attr:{ src: image }" />
                                             </div>
                                             <div class="col-md-9">
-                                                <span data-bind="text: $parent.hireGroup"></span>
-                                                <span>-</span>
-                                                <span data-bind="text: vehicleCategory"></span>
-                                                <span>|</span>
-                                                <span data-bind="text: vehicleMake"></span>
-                                                <span>|</span>
-                                                <span data-bind="text: vehicleModel"></span>
-                                                <span>|</span>
-                                                <span data-bind="text: modelYear"></span>
+                                                <div>
+                                                    <h3 data-bind="text: vehicleCategory" class="display-block"></h3>
+                                                    <div class="float-right">
+                                                        <div class="display-block col-sm-2">
+                                                            <a id="vehicleMovementPopoverLink" data-bind="click: $root.openVehicleMovementDialog, attr: { title: 'Movement Details' }">
+                                                                <img src="~/Content/Images/vehicle_movment.png" />
+                                                            </a>
+                                                        </div>
+                                                        <div class="display-block col-sm-2">
+                                                            <a id="insurancePopoverLink" data-bind="click: $root.openRaHireGroupInsuranceDialog, attr: { title: 'Insurances' }">
+                                                                <img src="~/Content/Images/insurance_checklist.png" />
+                                                            </a>
+                                                        </div>
+                                                        <div class="display-block col-sm-2">
+                                                            <a  data-bind="click: function(data, e){ $root.addVehicleCheckListsOutToRa($parent, e); }, attr: { title: 'CheckList Out' }">
+                                                                <img src="~/Content/Images/checklist_out.png" />
+                                                            </a>
+                                                        </div>
+                                                        <div class="display-block col-sm-2">
+                                                            <a  data-bind="click: function(data, e){ $root.addVehicleCheckListsInToRa($parent, e); }, attr: { title: 'CheckList In' }">
+                                                                <img src="~/Content/Images/checklist_in.png" />
+                                                            </a>
+                                                        </div>
+
+                                                    </div>
+                                                    
+                                                    <hr />
+                                                </div>
+                                                <div class="float-left bold col-md-3">
+                                                    Hire Group:
+                                                </div>
+                                                <div class="float-left  col-md-4" data-bind="text: $parent.hireGroup"></div>
+                                                <div class="float-left clearBoth bold  col-md-3">
+                                                    Transmission:
+                                                </div>
+                                                <div class="float-left  col-md-4" data-bind="text: transmissionType"></div>
+                                                <div class="float-left clearBoth bold  col-md-3">Fuel: </div>
+                                                <div class="float-left  col-md-4" data-bind="text: fuelType"></div>
+                                                <div class="float-left clearBoth bold  col-md-3">Model: </div>
+                                                <div class="float-left  col-md-4" data-bind="text: vehicleModelName"></div>
+                                                <div class="float-left clearBoth bold  col-md-3">Year:</div>
+                                                <div class="float-left  col-md-4" data-bind="text: modelYear"></div>
                                             </div>
-                                            <div class="col-sm-2">
-                                                <a id="vehicleMovementPopoverLink" class="glyphicon glyphicon-road" data-bind="click: $root.openVehicleMovementDialog, attr: { title: 'Movement Details' }">
-                                                </a>
-                                            </div>
-                                            <div class="col-sm-2">
-                                                <a id="insurancePopoverLink" class="insurancePopoverLink glyphicon glyphicon-briefcase" data-bind="click: $root.openRaHireGroupInsuranceDialog, attr: { title: 'Insurances' }">
-                                                </a>
-                                            </div>
-                                            <div class="col-sm-2">
-                                                <a class="glyphicon glyphicon-export" data-bind="click: function(data, e){ $root.addVehicleCheckListsOutToRa($parent, e); }, attr: { title: 'CheckList Out' }">
-                                                </a>
-                                            </div>
-                                            <div class="col-sm-2">
-                                                <a class="glyphicon glyphicon-import" data-bind="click: function(data, e){ $root.addVehicleCheckListsInToRa($parent, e); }, attr: { title: 'CheckList In' }">
-                                                </a>
-                                            </div>
+
                                         </div>
                                         <!-- /ko -->
                                     </div>

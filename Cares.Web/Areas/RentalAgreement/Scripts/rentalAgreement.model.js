@@ -6,14 +6,16 @@
     // ReSharper disable InconsistentNaming
     Vehicle = function (specifiedId, specifiedName, specifiedCode, specifiedPlateNumber, specifiedCurrentOdometer, specifiedVehicleCategoryId,
         specifiedVehicleCategoryCodeName, specifiedVehicleMakeId, specifiedVehicleMakeCodeName, specifiedVehicleModelId, specifiedVehicleModelCodeName,
-        specifiedVehicleStatusId, specifiedVehicleStatusCodeName, specifiedModelYear, specifiedImage, specifiedFuelLevel, specifiedTankSize) {
+        specifiedVehicleStatusId, specifiedVehicleStatusCodeName, specifiedModelYear, specifiedImage, specifiedFuelLevel, specifiedTankSize, specifiedTransmission, specifiedFuelType) {
         // ReSharper restore InconsistentNaming
 
         var
             // Plate Number
             plateNumber = ko.observable(specifiedPlateNumber),
-            // Tank Size
-            tankSize = ko.observable(specifiedTankSize);
+            vehicleMakeName = specifiedVehicleMakeCodeName ? specifiedVehicleMakeCodeName.split('-')[1] : "",
+            vehicleModelName = specifiedVehicleModelCodeName ? specifiedVehicleModelCodeName.split('-')[1] : "";
+        // Tank Size
+            var tankSize = ko.observable(specifiedTankSize);
 
         return {
             id: specifiedId,
@@ -25,14 +27,18 @@
             vehicleCategory: specifiedVehicleCategoryCodeName,
             vehicleMakeId: specifiedVehicleMakeId,
             vehicleMake: specifiedVehicleMakeCodeName,
+            vehicleMakeModel: vehicleMakeName + " - " + vehicleModelName,
             vehicleModelId: specifiedVehicleModelId,
             vehicleModel: specifiedVehicleModelCodeName,
+            vehicleModelName: vehicleModelName,
             vehicleStatusId: specifiedVehicleStatusId,
             vehicleStatus: specifiedVehicleStatusCodeName,
             modelYear: specifiedModelYear,
             image: specifiedImage,
             fuelLevel: specifiedFuelLevel,
-            tankSize: tankSize
+            tankSize: tankSize,
+            fuelType: specifiedFuelType,
+            transmissionType: specifiedTransmission
         };
     },
 
@@ -1929,7 +1935,7 @@
         source.VehicleCategory ? source.VehicleCategory.VehicleCategoryCodeName : undefined, source.VehicleMakeId,
         source.VehicleMake ? source.VehicleMake.VehicleMakeCodeName : undefined, source.VehicleModelId,
         source.VehicleModel ? source.VehicleModel.VehicleModelCodeName : undefined, source.VehicleStatusId, source.VehicleStatusCodeName, source.ModelYear,
-        source.ImageSource, source.FuelLevel, source.TankSize);
+        source.ImageSource, source.FuelLevel, source.TankSize, source.TransmissionType ? source.TransmissionType.TransmissionTypeName : null, source.FuelType? source.FuelType.FuelTypeName: null);
     };
 
     // Payment Term Factory
