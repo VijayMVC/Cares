@@ -358,6 +358,10 @@
 #rentalAgreementBinding #driverPopoverContents .popover-panel .popover-panel-heading {
   background-color: #89c4f4;
 }
+#rentalAgreementBinding #driverPopoverContents .popover-panel .popover-panel-heading a {
+  margin-right: 5px;
+  margin-top: -2px;
+}
 #rentalAgreementBinding #chaufferPopoverContents .popover-panel {
   border-color: #f0ad4e;
 }

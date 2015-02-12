@@ -8,8 +8,8 @@
 <div class="row" id="rentalAgreementBinding">
     <div class="row">
         <button class="btn btn-primary float-left" data-bind="click: openRentalAgreement, visible: canOpen">Open Agreement</button>
-        <button class="btn btn-primary float-left" data-bind="click: updateRentalAgreement, visible: canUpdate">Update Agreement</button>
-        <button class="btn float-left" data-bind="click: closeRentalAgreement, visible: canClose">Close Agreement</button>
+        <button class="btn btn-primary float-left" data-bind="click: updateRentalAgreement, visible: canUpdate" style="display: none">Update Agreement</button>
+        <button class="btn float-left" data-bind="click: closeRentalAgreement, visible: canClose" style="display: none">Close Agreement</button>
 
         <div class="float-left margin-left">
             <button class="btn float-left" id="extraPopoverButton" data-bind="bootstrapPopover:{elementNode: 'extraPopover', html: true, popoverId: 'extraPopoverContents'} ">Extras <span class="badge" data-bind="text: $root.rentalAgreement().rentalAgreementServiceItems().length,visible: $root.rentalAgreement().rentalAgreementServiceItems().length > 0"></span></button>
@@ -369,7 +369,7 @@
 
     <div id="driverPopover" class="popover">
         <div id="driverPopoverContents" class="popoverContents">
-            <div id="extrasHeading">
+            <div id="driverHeading">
                 <button id="closeDriverPopoverLink" type="button" class="btn btn-link float-right " data-bind="click: function(){ hidePopover('driverPopoverButton')}">Close</button>
                 <button id="addDriverLink" type="button" class="btn btn-link float-right" data-bind="click: $root.addDriverToRentalAgreement">Add New</button>
             </div>
@@ -397,7 +397,7 @@
                                 <br />
                                 <hr />
                                 <div class="clearBoth">
-                                    <div class="col-md-5">
+                                    <div class="col-md-5 margin-bottom-10">
                                         <input type="text" class="form-control" data-bind="value: driverName, validationTooltip: driverName" />
                                     </div>
                                 </div>
@@ -413,8 +413,8 @@
                                 <br />
                                 <hr />
                                 <div class="clearBoth">
-                                    <div class="col-md-4"><input type="text" class="form-control" data-bind="value: licenseNo, validationTooltip: licenseNo" /></div>
-                                    <div class="col-md-4"><input type="text" class="form-control" data-bind="datetimepicker: licenseExpDt, validationDependsOn: internalLicenseExpDateTime, css: { 'errorFillWithValidation': isLicenseExpired() }" /></div>
+                                    <div class="col-md-4 margin-bottom-10"><input type="text" class="form-control" data-bind="value: licenseNo, validationTooltip: licenseNo" /></div>
+                                    <div class="col-md-4 margin-bottom-10"><input type="text" class="form-control" data-bind="datetimepicker: licenseExpDt, validationDependsOn: internalLicenseExpDateTime, css: { 'errorFillWithValidation': isLicenseExpired() }" /></div>
                                 </div>
                                 <br />
                                 <div class="clearBoth">
@@ -428,8 +428,8 @@
                                 <br />
                                 <hr />
                                 <div class="clearBoth">
-                                    <div class="col-md-4"><input id="startDt" type="text" class="form-control" data-bind="datetimepicker: start, validationDependsOn: internalStartDateTime, css: { 'errorFillWithValidation': isInvalidPeriod() }" /></div>
-                                    <div class="col-md-4"><input id="endDt" type="text" class="form-control" data-bind="datetimepicker: end, validationDependsOn: internalEndDateTime, css: { 'errorFillWithValidation': isInvalidPeriod() }" /></div>
+                                    <div class="col-md-4 margin-bottom-10"><input id="startDt" type="text" class="form-control" data-bind="datetimepicker: start, validationDependsOn: internalStartDateTime, css: { 'errorFillWithValidation': isInvalidPeriod() }" /></div>
+                                    <div class="col-md-4 margin-bottom-10"><input id="endDt" type="text" class="form-control" data-bind="datetimepicker: end, validationDependsOn: internalEndDateTime, css: { 'errorFillWithValidation': isInvalidPeriod() }" /></div>
                                 </div>
                             </div>
                         </form>
