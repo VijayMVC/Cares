@@ -96,6 +96,9 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     operations = ko.observableArray([]),
                     // Locations
                     locations = ko.observableArray([]),
+                    // Show Filter Section
+                    vehicleFilterSectionVisilble = ko.observable(true),
+                    chaufferFilterSectionVisilble = ko.observable(true),
                     // available locations
                     availableLocations = ko.computed(function () {
                         if (!rentalAgreement().operationId()) {
@@ -106,6 +109,22 @@ define("rentalAgreement/rentalAgreement.viewModel",
                             return location.operationId === rentalAgreement().operationId();
                         });
                     }),
+                    //Show filter section
+                    showVehicleFilterSection = function () {
+                        vehicleFilterSectionVisilble(true);
+                    },
+                      // Collapase filter section
+                    collapseVehicleFilterSection = function () {
+                        vehicleFilterSectionVisilble(false);
+                    },
+                     //Show filter section
+                    showChaufferFilterSection = function () {
+                        chaufferFilterSectionVisilble(true);
+                    },
+                      // Collapase filter section
+                    collapseChaufferFilterSection = function () {
+                        chaufferFilterSectionVisilble(false);
+                    },
                     // payment terms
                     paymentTerms = ko.observableArray([]),
                     // payment modes
@@ -407,6 +426,9 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     // Hide Vehicle Movement Dialog
                     hideVehicleMovementDialog = function() {
                         view.hideVehicleMovementDialog();
+                    },
+                    hidePopover = function(elemId) {
+                        view.closePopover(elemId);
                     },
                     // Open Discounts Dialog
                     openDiscountsDialog = function () {
@@ -1162,7 +1184,14 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     openVehicleMovementDialog: openVehicleMovementDialog,
                     hideVehicleMovementDialog: hideVehicleMovementDialog,
                     openDiscountsDialog: openDiscountsDialog,
-                    addDiscountsToRentalAgreement: addDiscountsToRentalAgreement
+                    addDiscountsToRentalAgreement: addDiscountsToRentalAgreement,
+                    hidePopover: hidePopover,
+                    showVehicleFilterSection: showVehicleFilterSection,
+                    vehicleFilterSectionVisilble: vehicleFilterSectionVisilble,
+                    collapseVehicleFilterSection: collapseVehicleFilterSection,
+                    showChaufferFilterSection: showChaufferFilterSection,
+                    collapseChaufferFilterSection: collapseChaufferFilterSection,
+                    chaufferFilterSectionVisilble: chaufferFilterSectionVisilble
                     // Utility Methods
                 };
             })()

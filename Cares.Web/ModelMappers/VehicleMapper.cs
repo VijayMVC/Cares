@@ -33,7 +33,7 @@ namespace Cares.Web.ModelMappers
                 VehicleStatusId = source.VehicleStatusId,
                 VehicleStatus = source.VehicleStatus != null ? source.VehicleStatus.CreateFrom() : new VehicleStatus(),
                 ModelYear = source.ModelYear,
-                Image = image != null ? image.Image : new byte[] { }
+                Image = image != null ? image.Image : null
             };
 
 

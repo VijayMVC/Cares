@@ -385,6 +385,21 @@
 #raQueueBinding .txtBox {
   width: 142px;
 }
+#vehicleDialog,
+#chaufferDialog {
+  /*.control-label,.form-control,#btn-searchVehicle{
+        margin-top: 10px;
+    }*/
+}
+#vehicleDialog .btn-search,
+#chaufferDialog .btn-search {
+  line-height: 0.8 !important;
+}
+#vehicleDialog .header-toolsSection,
+#chaufferDialog .header-toolsSection {
+  margin-top: 0;
+  float: right;
+}
 .btn-custom {
   color: #ffffff;
   background-color: #6b6f59;

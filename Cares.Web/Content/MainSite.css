@@ -870,6 +870,21 @@
 #raQueueBinding .txtBox {
   width: 142px;
 }
+#vehicleDialog,
+#chaufferDialog {
+  /*.control-label,.form-control,#btn-searchVehicle{
+        margin-top: 10px;
+    }*/
+}
+#vehicleDialog .btn-search,
+#chaufferDialog .btn-search {
+  line-height: 0.8 !important;
+}
+#vehicleDialog .header-toolsSection,
+#chaufferDialog .header-toolsSection {
+  margin-top: 0;
+  float: right;
+}
 .btn-custom {
   color: #ffffff;
   background-color: #6b6f59;
@@ -2051,8 +2066,33 @@ fieldset[disabled] .btn-billing.active {
 .margin-left {
   margin-left: 4%;
 }
+.margin-left-10 {
+  margin-left: 10px !important;
+}
 .margin-right {
   margin-right: 3%;
+}
+.margin-top-15 {
+  margin-top: 15px;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.modal-dialog {
+  width: 900px;
+}
+.modal-dialog .modal-header {
+  background-color: #3F5567;
+}
+.modal-dialog .modal-header .modal-title {
+  color: #FFFFFF;
+}
+.modal-dialog .modal-body {
+  padding: 10px;
+}
+.modal-dialog .modal-footer {
+  padding: 10px 20px 20px;
+  margin-top: 2px;
 }
 .pageHeaderSection {
   width: 93%;
