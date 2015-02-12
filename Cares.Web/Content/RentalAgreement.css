@@ -1,6 +1,10 @@
 ﻿#rentalAgreementBinding {
   color: gray;
 }
+#rentalAgreementBinding .row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
 #rentalAgreementBinding .margin-button {
   margin-left: 10px;
 }

@@ -52,6 +52,7 @@
                                 <tr>
                                     <th>&nbsp;</th>
                                     <th>Plate Number</th>
+                                    <th>Category</th>
                                     <th>Make</th>
                                     <th>Model</th>
                                     <th>Model Year</th>
@@ -64,6 +65,7 @@
                                 <tr data-bind="click: $root.selectVehicle" class="cursor-pointer">
                                     <td><img src="#" alt="" data-bind="attr:{ src: image }" /></td>
                                     <td data-bind="text: plateNumber"></td>
+                                    <td data-bind="text: vehicleCategory"></td>
                                     <td data-bind="text: vehicleMake"></td>
                                     <td data-bind="text: vehicleModel"></td>
                                     <td data-bind="text: modelYear"></td>

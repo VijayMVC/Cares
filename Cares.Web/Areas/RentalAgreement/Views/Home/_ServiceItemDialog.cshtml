@@ -5,31 +5,38 @@
                 <h2 class="modal-title" id="myModalLabel">Select Insurances</h2>
             </div>
             <div class="modal-body">
-                <div>
-                    <form class="form-horizontal">
-                        <div>
-                            <table class="table table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Service Item Code</th>
-                                        <th>Service Item</th>
-                                        <th>Service Type</th>
-                                    </tr>
-                                </thead>
-                                <tbody data-bind="foreach: serviceItems">
-                                    <tr>
-                                        <td>
-                                            <input type="checkbox" class="addExtrasTemplate_popoverContent_isSelected" data-bind="checked: isSelected" />
-                                        </td>
-                                        <td data-bind="text: code"></td>
-                                        <td data-bind="text: name"></td>
-                                        <td data-bind="text: serviceTypeCodeName"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </form>
+                <div class="row">
+                    <div class="well">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Service Item Code</th>
+                                    <th>Service Item</th>
+                                    <th>Service Type</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- ko foreach: serviceItems -->
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="addExtrasTemplate_popoverContent_isSelected" data-bind="checked: isSelected" />
+                                    </td>
+                                    <td data-bind="text: code"></td>
+                                    <td data-bind="text: name"></td>
+                                    <td data-bind="text: serviceTypeCodeName"></td>
+                                </tr>
+                                <!-- /ko -->
+                                <!-- ko if: serviceItems().length === 0 -->
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td colspan="3"> No Record(s) to display yet.</td>
+                                </tr>
+                                <!-- /ko -->
+                            </tbody>
+                        </table>
+                        
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
