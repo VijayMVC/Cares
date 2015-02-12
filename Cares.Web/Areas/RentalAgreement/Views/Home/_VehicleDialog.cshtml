@@ -62,7 +62,7 @@
                                 <!-- ko foreach: vehicles -->
 
                                 <tr data-bind="click: $root.selectVehicle" class="cursor-pointer">
-                                    <td><img src="#" alt="" width="45" height="30" data-bind="attr:{ src: image }" /></td>
+                                    <td><img src="#" alt="" data-bind="attr:{ src: image }" /></td>
                                     <td data-bind="text: plateNumber"></td>
                                     <td data-bind="text: vehicleMake"></td>
                                     <td data-bind="text: vehicleModel"></td>
@@ -70,7 +70,10 @@
                                 </tr>
                                 <!-- /ko -->
                                 <!-- ko if: vehicles().length === 0 -->
-                                <tr><td colspan="5">No record(s) to display yet. </td></tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td colspan="4">No record(s) to display yet. </td>
+                                </tr>
                                 <!-- /ko -->
 
                             </tbody>

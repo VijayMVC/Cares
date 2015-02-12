@@ -870,11 +870,20 @@
 #raQueueBinding .txtBox {
   width: 142px;
 }
-#vehicleDialog,
-#chaufferDialog {
-  /*.control-label,.form-control,#btn-searchVehicle{
-        margin-top: 10px;
-    }*/
+#vehicleDialog img {
+  height: 30px;
+  width: 45px;
+  -moz-transition: -moz-transform 0.5s ease-in;
+  -webkit-transition: -webkit-transform 0.5s ease-in;
+  -o-transition: -o-transform 0.5s ease-in;
+  transition: -moz-transform 0.5s ease-in;
+}
+#vehicleDialog img:hover {
+  -moz-transform: scale(3);
+  -webkit-transform: scale(3);
+  -o-transform: scale(3);
+  -ms-transform: scale(3);
+  transform: scale(3);
 }
 #vehicleDialog .btn-search,
 #chaufferDialog .btn-search {
