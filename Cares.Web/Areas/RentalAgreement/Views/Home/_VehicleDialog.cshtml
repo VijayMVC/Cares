@@ -50,8 +50,8 @@
                         <table class="table table-condensed">
                             <thead>
                                 <tr>
+                                    <th>&nbsp;</th>
                                     <th>Plate Number</th>
-                                    <th>Hire Group</th>
                                     <th>Make</th>
                                     <th>Model</th>
                                     <th>Model Year</th>
@@ -62,8 +62,8 @@
                                 <!-- ko foreach: vehicles -->
 
                                 <tr data-bind="click: $root.selectVehicle" class="cursor-pointer">
+                                    <td><img src="#" alt="" width="45" height="30" data-bind="attr:{ src: image }" /></td>
                                     <td data-bind="text: plateNumber"></td>
-                                    <td data-bind="text: code"></td>
                                     <td data-bind="text: vehicleMake"></td>
                                     <td data-bind="text: vehicleModel"></td>
                                     <td data-bind="text: modelYear"></td>
