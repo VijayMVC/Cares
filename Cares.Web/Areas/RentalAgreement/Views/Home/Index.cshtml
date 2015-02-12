@@ -246,7 +246,7 @@
                     <div class="panel-body customPanel">
                         <form id="vehicle" class="form-horizontal" data-bind="with: rentalAgreement">
                             <!-- ko foreach: rentalAgreementHireGroups -->
-                            <div class="panel panel-default panelCustom" data-bind="click: $root.selectRaHireGroup">
+                            <div class="panel panel-default panelCustom" data-bind="click: $root.selectRaHireGroup, visible: $root.isLoaded" style="display: none">
                                 <div class="panel-heading">
                                     <!-- ko with: vehicle -->
                                     <span class="font-em-1-3" data-bind="text: plateNumber"></span>

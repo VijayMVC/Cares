@@ -97,6 +97,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     // Locations
                     locations = ko.observableArray([]),
                     // Show Filter Section
+                    isLoaded = ko.observable(true),
                     vehicleFilterSectionVisilble = ko.observable(true),
                     chaufferFilterSectionVisilble = ko.observable(true),
                     // available locations
@@ -1191,7 +1192,8 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     collapseVehicleFilterSection: collapseVehicleFilterSection,
                     showChaufferFilterSection: showChaufferFilterSection,
                     collapseChaufferFilterSection: collapseChaufferFilterSection,
-                    chaufferFilterSectionVisilble: chaufferFilterSectionVisilble
+                    chaufferFilterSectionVisilble: chaufferFilterSectionVisilble,
+                    isLoaded: isLoaded
                     // Utility Methods
                 };
             })()
