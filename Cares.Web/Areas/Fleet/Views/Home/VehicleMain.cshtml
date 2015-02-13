@@ -37,6 +37,7 @@
             <table id="vehicleTable" class="table table-condensed">
                 <thead>
                     <tr>
+                        <th>&nbsp;</th>
                         <th class="vPlateNumber"> <span id="1">@Cares.Web.Resources.Vehicle.Vehicle.PlateNumber<span class="icon-up"></span></span></th>
                         <th class="vName"> <span id="2">@Cares.Web.Resources.Vehicle.Vehicle.VehicleLabel @Cares.Web.Resources.Vehicle.Vehicle.Name<span></span></span></th>
                         <th class="vModel"> <span>@Cares.Web.Resources.Vehicle.Vehicle.Model<br />@Cares.Web.Resources.Vehicle.Vehicle.Year<span></span></span></th>
@@ -67,6 +68,7 @@
     </script>
     <script id="itemVehicleTemplate" type="text/html">
         <tr>
+            <td><img src="#" data-bind="attr:{src: vehicleImage().imageUrl}"/></td>
             <td data-bind="text: plateNumber"></td>
             <td data-bind="text: vehicleName"></td>
             <td data-bind="text: modelYear"></td>

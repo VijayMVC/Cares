@@ -1,4 +1,6 @@
-﻿namespace Cares.Web.Models
+﻿using System;
+
+namespace Cares.Web.Models
 {
     /// <summary>
     /// Vehicle List View content
@@ -60,5 +62,23 @@
         /// Location
         /// </summary>
         public string Location { get; set; }
+
+        public byte[] Image { get; set; }
+        /// <summary>
+        /// Vehicle Image source
+        /// </summary>
+        public string ImageSource
+        {
+            get
+            {
+                if (Image == null)
+                {
+                    return string.Empty;
+                }
+
+                string base64 = Convert.ToBase64String(Image);
+                return string.Format("data:{0};base64,{1}", "image/jpg", base64);
+            }
+        }
     }
 }
