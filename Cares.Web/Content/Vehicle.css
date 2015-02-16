@@ -1,19 +1,4 @@
-﻿#vehicleBinding #vehicleDialog img {
-  height: 30px;
-  width: 45px;
-  -moz-transition: -moz-transform 0.5s ease-in;
-  -webkit-transition: -webkit-transform 0.5s ease-in;
-  -o-transition: -o-transform 0.5s ease-in;
-  transition: -moz-transform 0.5s ease-in;
-}
-#vehicleBinding #vehicleDialog img:hover {
-  -moz-transform: scale(3);
-  -webkit-transform: scale(3);
-  -o-transform: scale(3);
-  -ms-transform: scale(3);
-  transform: scale(3);
-}
-#vehicleBinding .vehicleThumbnail img {
+﻿#vehicleBinding .vehicleThumbnail img {
   height: 30px;
   width: 45px;
   -moz-transition: -moz-transform 0.5s ease-in;
@@ -29,10 +14,10 @@
   transform: scale(3);
 }
 #vehicleBinding table thead tr .vImage {
-  width: 10%;
+  width: 7%;
 }
 #vehicleBinding table thead tr .vPlateNumber {
-  width: 5%;
+  width: 8%;
 }
 #vehicleBinding table thead tr .vName {
   width: 10%;
