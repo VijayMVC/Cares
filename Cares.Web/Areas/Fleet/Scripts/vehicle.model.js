@@ -29,6 +29,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             fleetPoolCodeName = ko.observable(),
             //Operation Code NAme
             operationCodeName = ko.observable(),
+             //Vehicle Image
+            vehicleImage = ko.observable(new VehicleImage()),
             //Location
             location = ko.observable();
 
@@ -43,6 +45,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             vehicleStatusCodeName: vehicleStatusCodeName,
             fleetPoolCodeName: fleetPoolCodeName,
             operationCodeName: operationCodeName,
+            vehicleImage: vehicleImage,
             location: location
         };
         return self;
@@ -895,6 +898,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
     // ReSharper disable once InconsistentNaming
     var VehicleClientMapper = function (source) {
         var vehicle = new Vehicle();
+        vehicle.vehicleImage().imageUrl(source.ImageSource);
         vehicle.vehicleId(source.VehicleId === null ? undefined : source.VehicleId);
         vehicle.vehicleName(source.VehicleName === null ? undefined : source.VehicleName);
         vehicle.plateNumber(source.PlateNumber === null ? undefined : source.PlateNumber);
