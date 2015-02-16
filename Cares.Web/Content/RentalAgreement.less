@@ -11,8 +11,14 @@
        margin-left: 0 !important;
        margin-right: 0 !important;
    }
+  
     .margin-button {
         margin-left: 10px;
+        margin-right: 0;
+    }
+    html[dir="rtl"] .margin-button {
+        margin-right: 10px;
+        margin-left: 0;
     }
     .display-block {
             display: inline-block;
@@ -63,6 +69,7 @@
             text-align: left;
         }
 
+        
         .checkBoxCol {
             width: 4.5%;
 
@@ -72,8 +79,6 @@
             }
         }
     }
-
-
 
     #raPanels {
         width: 28.9%;
@@ -309,8 +314,9 @@
                 #rentalPaymentTermControl {
                     width: 29%;
                     padding-left: 0;
+                    
                 }
-
+                
                 #returnLocationControl {
                     width: 36.4%;
                 }
