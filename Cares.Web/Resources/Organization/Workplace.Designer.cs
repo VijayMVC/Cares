@@ -115,7 +115,7 @@ namespace Cares.Web.Resources.Organization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Operations.
+        ///   Looks up a localized string similar to Operation.
         /// </summary>
         public static string Operations {
             get {

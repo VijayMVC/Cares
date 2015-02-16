@@ -1028,6 +1028,7 @@
     <EmbeddedResource Include="Resources\Organization\Workplace.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Workplace.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Organization\WorkPlaceType.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

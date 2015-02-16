@@ -297,14 +297,14 @@ define("workplace/workplace.viewModel",
                     ko.utils.arrayPushAll(baseOperationsList(), baseDataFromServer.Operations);
                     baseOperationsList.valueHasMutated();
                 },
-                workPalceClientToServerMapper = function (operation) {
-                    debugger;
-                    _.each(operationsTabList(), function (item) {
-                            var v = item.convertToServerData();
-                            operation.OperationsWorkPlaces.push(v);
-                        });
+                workPalceClientToServerMapper = function(operation) {
+                        operation.OperationsWorkPlaces.removeAll();
+                        _.each(operationsTabList(), function (item) {
+                                var v = item.convertToServerData();
+                                operation.OperationsWorkPlaces.push(v);
+                            });
                         return operation.convertToServerData();
-                },
+                    },
                 getWorkplaceOperations = function(workPlaceId) {
                     dataservice.getWorkplaceOperations(
                     {

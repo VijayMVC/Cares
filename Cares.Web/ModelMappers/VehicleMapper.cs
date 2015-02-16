@@ -73,6 +73,7 @@ namespace Cares.Web.ModelMappers
         /// </summary>
         public static VehicleListViewContent CreateFromListViewContent(this DomainModels.Vehicle source)
         {
+            DomainModels.VehicleImage image = source.VehicleImages != null ? source.VehicleImages.FirstOrDefault() : new DomainModels.VehicleImage();
 
             return new VehicleListViewContent
             {
@@ -82,6 +83,7 @@ namespace Cares.Web.ModelMappers
                 CurrentOdometer = source.CurrentOdometer,
                 FuelLevel = source.FuelLevel,
                 ModelYear = source.ModelYear,
+                Image = image != null ? image.Image : new byte[] { },
                 Location = source.OperationsWorkPlace != null ? source.OperationsWorkPlace.LocationCode : string.Empty,
                 VehicleMakeCodeName = source.VehicleMake != null ? source.VehicleMake.VehicleMakeCode + " - " + source.VehicleMake.VehicleMakeName : string.Empty,
                 VehicleStatusCodeName = source.VehicleStatus != null ? source.VehicleStatus.VehicleStatusCode + " - " + source.VehicleStatus.VehicleStatusName : string.Empty,
