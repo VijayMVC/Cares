@@ -95,7 +95,6 @@ namespace Cares.Repository.Repositories
                 DbSet.Where(operationWorkPlace => operationWorkPlace.OperationsWorkPlaceId == operationWorkPlaceId && operationWorkPlace.UserDomainKey == UserDomainKey)
                     .Select(operation => operation.OperationId).FirstOrDefault();
         }
-        
         /// <summary>
         /// Get Employee Status for User Domain Key
         /// </summary>
@@ -103,7 +102,13 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Where(oWorkPlace => oWorkPlace.UserDomainKey == UserDomainKey && oWorkPlace.UserDomainKey == UserDomainKey).ToList();
         }
-
+        /// <summary>
+        /// Returns count of branches in other workplaces
+        /// </summary>
+        public int GetCountofBranchesInOtherWorkplaces(long workplaceId)
+        {
+            return DbSet.Count(opwp => opwp.UserDomainKey == UserDomainKey && opwp.WorkPlaceId != workplaceId);
+        }
         #endregion
     }
 }

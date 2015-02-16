@@ -39,7 +39,11 @@ namespace Cares.Interfaces.Repository
         /// </summary>
         long GetOperationIdByOperationWorkPlaceId(long operationWorkPlaceId);
 
-       
+        /// <summary>
+        /// Returns count of branches in other workplaces
+        /// </summary>
+        int GetCountofBranchesInOtherWorkplaces(long workplaceId);
+
     }
 }
  

@@ -108,7 +108,7 @@ namespace Cares.Web.Controllers
                 ViewBag.ReturnUrl = returnUrl;
                 return View();
             }
-            return RedirectToAction("Region", "GeographicalHierarchy", new { area = "GeographicalHierarchy" });
+            return RedirectToAction("Welcome", "Home", new { area = "" });
         }
 
         public ApplicationSignInManager SignInManager
@@ -186,7 +186,7 @@ namespace Cares.Web.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home", new {area = "BusinessPartner"});
+                return RedirectToAction("Welcome", "Home", new {area = ""});
             }
         }
 
