@@ -7,9 +7,18 @@
 @billingColor:  hsl(0, 100%, 82%); 
 #rentalAgreementBinding {
     color: gray;
-
+   .row{
+       margin-left: 0 !important;
+       margin-right: 0 !important;
+   }
+  
     .margin-button {
         margin-left: 10px;
+        margin-right: 0;
+    }
+    html[dir="rtl"] .margin-button {
+        margin-right: 10px;
+        margin-left: 0;
     }
     .display-block {
             display: inline-block;
@@ -60,6 +69,7 @@
             text-align: left;
         }
 
+        
         .checkBoxCol {
             width: 4.5%;
 
@@ -69,8 +79,6 @@
             }
         }
     }
-
-
 
     #raPanels {
         width: 28.9%;
@@ -306,8 +314,9 @@
                 #rentalPaymentTermControl {
                     width: 29%;
                     padding-left: 0;
+                    
                 }
-
+                
                 #returnLocationControl {
                     width: 36.4%;
                 }
@@ -410,6 +419,10 @@
 
             .popover-panel-heading {
                 background-color: @driverColor;
+                a{
+                    margin-right: 5px;
+                    margin-top: -2px;
+                }
             }
         }
     }
@@ -469,6 +482,37 @@
     }
 }
 
+#vehicleDialog{
+     img {
+        height: 30px;
+        width: 45px;
+        -moz-transition: -moz-transform 0.5s ease-in;
+        -webkit-transition: -webkit-transform 0.5s ease-in;
+        -o-transition: -o-transform 0.5s ease-in;
+        transition: -moz-transform 0.5s ease-in;
+    }
+
+     img:hover {
+        -moz-transform: scale(3);
+        -webkit-transform: scale(3);
+        -o-transform: scale(3);
+        -ms-transform: scale(3);
+        transform: scale(3);
+    }
+}
+
+#vehicleDialog, #chaufferDialog {
+    
+
+    .btn-search {
+        line-height: 0.8 !important;
+    }
+
+    .header-toolsSection {
+        margin-top: 0;
+        float: right;
+    }
+}
 .btn-custom {
   color: #ffffff;
   background-color: @paymentColor;

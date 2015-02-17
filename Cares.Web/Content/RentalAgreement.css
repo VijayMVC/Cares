@@ -1,8 +1,17 @@
 ﻿#rentalAgreementBinding {
   color: gray;
 }
+#rentalAgreementBinding .row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
 #rentalAgreementBinding .margin-button {
   margin-left: 10px;
+  margin-right: 0;
+}
+#rentalAgreementBinding html[dir="rtl"] .margin-button {
+  margin-right: 10px;
+  margin-left: 0;
 }
 #rentalAgreementBinding .display-block {
   display: inline-block;
@@ -358,6 +367,10 @@
 #rentalAgreementBinding #driverPopoverContents .popover-panel .popover-panel-heading {
   background-color: #89c4f4;
 }
+#rentalAgreementBinding #driverPopoverContents .popover-panel .popover-panel-heading a {
+  margin-right: 5px;
+  margin-top: -2px;
+}
 #rentalAgreementBinding #chaufferPopoverContents .popover-panel {
   border-color: #f0ad4e;
 }
@@ -384,6 +397,30 @@
 }
 #raQueueBinding .txtBox {
   width: 142px;
+}
+#vehicleDialog img {
+  height: 30px;
+  width: 45px;
+  -moz-transition: -moz-transform 0.5s ease-in;
+  -webkit-transition: -webkit-transform 0.5s ease-in;
+  -o-transition: -o-transform 0.5s ease-in;
+  transition: -moz-transform 0.5s ease-in;
+}
+#vehicleDialog img:hover {
+  -moz-transform: scale(3);
+  -webkit-transform: scale(3);
+  -o-transform: scale(3);
+  -ms-transform: scale(3);
+  transform: scale(3);
+}
+#vehicleDialog .btn-search,
+#chaufferDialog .btn-search {
+  line-height: 0.8 !important;
+}
+#vehicleDialog .header-toolsSection,
+#chaufferDialog .header-toolsSection {
+  margin-top: 0;
+  float: right;
 }
 .btn-custom {
   color: #ffffff;

@@ -2,38 +2,44 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">@Cares.Web.Resources.Shared.Common.Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">CheckList In</h4>
+                <h2 class="modal-title" id="myModalLabel">CheckList In</h2>
             </div>
             <div class="modal-body">
-                <div>
-                    <form class="form-horizontal">
-                        <div>
-                            <table class="table table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Name</th>
-                                        <th>Is Interior</th>
-                                        <th>Comments</th>
-                                    </tr>
-                                </thead>
-                                <tbody data-bind="foreach: $root.selectedRaHireGroup().raVehicleCheckListsIn">
-                                    <tr>
-                                        <td>
-                                            <input type="checkbox" data-bind="checked: isSelected" />
-                                        </td>
-                                        <td data-bind="text: vehicleCheckListCodeName"></td>
-                                        <td data-bind="text: isInterior">
-                                        <td data-bind="text: comments"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </form>
+                <div class="row">
+                    <div class="well">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Name</th>
+                                    <th>Is Interior</th>
+                                    <th>Comments</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- ko foreach: $root.selectedRaHireGroup().raVehicleCheckListsIn -->
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" data-bind="checked: isSelected" />
+                                    </td>
+                                    <td data-bind="text: vehicleCheckListCodeName"></td>
+                                    <td data-bind="text: isInterior">
+                                    <td data-bind="text: comments"></td>
+                                </tr>
+                                <!-- /ko -->
+                                <!-- ko if: $root.selectedRaHireGroup().raVehicleCheckListsIn().length === 0 -->
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td colspan="3">No record(s) to display yet. </td>
+                                </tr>
+                                <!-- /ko -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn" data-dismiss="modal">@Cares.Web.Resources.Shared.Common.Close</button>
             </div>
         </div>
     </div>

@@ -492,8 +492,17 @@
 #rentalAgreementBinding {
   color: gray;
 }
+#rentalAgreementBinding .row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
 #rentalAgreementBinding .margin-button {
   margin-left: 10px;
+  margin-right: 0;
+}
+#rentalAgreementBinding html[dir="rtl"] .margin-button {
+  margin-right: 10px;
+  margin-left: 0;
 }
 #rentalAgreementBinding .display-block {
   display: inline-block;
@@ -849,6 +858,10 @@
 #rentalAgreementBinding #driverPopoverContents .popover-panel .popover-panel-heading {
   background-color: #89c4f4;
 }
+#rentalAgreementBinding #driverPopoverContents .popover-panel .popover-panel-heading a {
+  margin-right: 5px;
+  margin-top: -2px;
+}
 #rentalAgreementBinding #chaufferPopoverContents .popover-panel {
   border-color: #f0ad4e;
 }
@@ -875,6 +888,30 @@
 }
 #raQueueBinding .txtBox {
   width: 142px;
+}
+#vehicleDialog img {
+  height: 30px;
+  width: 45px;
+  -moz-transition: -moz-transform 0.5s ease-in;
+  -webkit-transition: -webkit-transform 0.5s ease-in;
+  -o-transition: -o-transform 0.5s ease-in;
+  transition: -moz-transform 0.5s ease-in;
+}
+#vehicleDialog img:hover {
+  -moz-transform: scale(3);
+  -webkit-transform: scale(3);
+  -o-transform: scale(3);
+  -ms-transform: scale(3);
+  transform: scale(3);
+}
+#vehicleDialog .btn-search,
+#chaufferDialog .btn-search {
+  line-height: 0.8 !important;
+}
+#vehicleDialog .header-toolsSection,
+#chaufferDialog .header-toolsSection {
+  margin-top: 0;
+  float: right;
 }
 .btn-custom {
   color: #ffffff;
@@ -2061,17 +2098,117 @@ fieldset[disabled] .btn-billing.active {
 .float-right {
   float: right;
 }
+html[dir="rtl"] .float-left {
+  float: right;
+}
+html[dir="rtl"] .float-right {
+  float: left;
+}
 .collapse-filter {
   margin-top: 10px;
 }
 .create-new-icon {
   margin-left: 10px;
 }
-.margin-left {
+html[dir="ltr"] .margin-left {
   margin-left: 4%;
+}
+html[dir="rtl"] .margin-left {
+  margin-right: 4%;
+}
+.margin-left-10 {
+  margin-left: 10px !important;
+}
+html[dir="rtl"] .margin-left-10 {
+  margin-right: 10px !important;
 }
 .margin-right {
   margin-right: 3%;
+}
+html[dir="rtl"] .margin-right {
+  margin-left: 3%;
+}
+.margin-top-15 {
+  margin-top: 15px;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+html[dir="rtl"] .form-group label {
+  font-weight: normal;
+  text-align: right !important;
+}
+html[dir="rtl"] .col-xs-1,
+html[dir="rtl"] .col-xs-2,
+html[dir="rtl"] .col-xs-3,
+html[dir="rtl"] .col-xs-4,
+html[dir="rtl"] .col-xs-5,
+html[dir="rtl"] .col-xs-6,
+html[dir="rtl"] .col-xs-7,
+.col-xs-8,
+html[dir="rtl"] .col-xs-9,
+html[dir="rtl"] .col-xs-10,
+html[dir="rtl"] .col-xs-11,
+html[dir="rtl"] .col-xs-12,
+html[dir="rtl"] .col-sm-1,
+html[dir="rtl"] .col-sm-2,
+.col-sm-3,
+html[dir="rtl"] .col-sm-4,
+html[dir="rtl"] .col-sm-5,
+html[dir="rtl"] .col-sm-6,
+html[dir="rtl"] .col-sm-7,
+html[dir="rtl"] .col-sm-8,
+html[dir="rtl"] .col-sm-9,
+.col-sm-10,
+html[dir="rtl"] .col-sm-11,
+html[dir="rtl"] .col-sm-12,
+html[dir="rtl"] .col-md-1,
+html[dir="rtl"] .col-md-2,
+html[dir="rtl"] .col-md-3,
+html[dir="rtl"] .col-md-4,
+.col-md-5,
+html[dir="rtl"] .col-md-6,
+html[dir="rtl"] .col-md-7,
+html[dir="rtl"] .col-md-8,
+html[dir="rtl"] .col-md-9,
+html[dir="rtl"] .col-md-10,
+html[dir="rtl"] .col-md-11,
+.col-md-12,
+html[dir="rtl"] .col-lg-1,
+html[dir="rtl"] .col-lg-2,
+html[dir="rtl"] .col-lg-3,
+html[dir="rtl"] .col-lg-4,
+html[dir="rtl"] .col-lg-5,
+html[dir="rtl"] .col-lg-6,
+.col-lg-7,
+html[dir="rtl"] .col-lg-8,
+html[dir="rtl"] .col-lg-9,
+html[dir="rtl"] .col-lg-10,
+html[dir="rtl"] .col-lg-11,
+html[dir="rtl"] .col-lg-12 {
+  padding-right: 8px !important;
+  padding-left: 0 !important;
+}
+.modal-dialog {
+  width: 900px;
+}
+.modal-dialog .well {
+  -moz-border-radius: 5px !important;
+  -webkit-border-radius: 5px !important;
+  border-radius: 5px !important;
+}
+.modal-dialog .modal-header {
+  background-color: #3F5567;
+}
+.modal-dialog .modal-header .modal-title {
+  color: #FFFFFF;
+}
+.modal-dialog .modal-body {
+  padding: 10px;
+}
+.modal-dialog .modal-footer {
+  padding: 10px 20px 20px;
+  margin-top: 2px;
 }
 .pageHeaderSection {
   width: 93%;

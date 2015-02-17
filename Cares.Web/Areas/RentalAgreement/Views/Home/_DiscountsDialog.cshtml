@@ -3,30 +3,38 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">@Cares.Web.Resources.Shared.Common.Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">Discounts</h4>
+                <h2 class="modal-title" id="myModalLabel">Discounts</h2>
             </div>
             <div class="modal-body">
-                <div>
-                    <form class="form-horizontal">
-                        <div>
-                            <table class="table table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th>Plate Number</th>
-                                        <th>Hire Group</th>
-                                        <th>Vehicle Make</th>
-                                        <th>Vehicle Model</th>
-                                        <th>Vehicle Category</th>
-                                        <th>Model Year</th>
-                                        <th>Discount Code</th>
-                                        <th>Tariff Type</th>
-                                        <th>Disount Percentage</th>
-                                    </tr>
-                                </thead>
-                                <tbody data-bind="foreach: raDiscounts"></tbody>
-                            </table>
-                        </div>
-                    </form>
+                <div class="row">
+                    <div class="well">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Plate Number</th>
+                                    <th>Hire Group</th>
+                                    <th>Vehicle Make</th>
+                                    <th>Vehicle Model</th>
+                                    <th>Vehicle Category</th>
+                                    <th>Model Year</th>
+                                    <th>Discount Code</th>
+                                    <th>Tariff Type</th>
+                                    <th>Disount Percentage</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- ko foreach: chauffers -->
+                                <tr>
+                                    <td colspan="9">&nbsp;</td>
+                                </tr>
+                                <!-- /ko -->
+                                
+                                <!-- ko if: raDiscounts().length === 0 -->
+                                <tr><td colspan="9">No record(s) to display yet. </td></tr>
+                                <!-- /ko -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -34,6 +42,7 @@
                         data-bind="click: addDiscountsToRentalAgreement.bind($data, $data, 'collapseFour')">
                     Add
                 </button>
+                <button type="button" class="btn" data-dismiss="modal">@Cares.Web.Resources.Shared.Common.Close</button>
             </div>
         </div>
     </div>

@@ -2,28 +2,40 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">@Cares.Web.Resources.Shared.Common.Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">Chauffers</h4>
+                <h2 class="modal-title" id="myModalLabel">Select Chauffer</h2>
             </div>
             <div class="modal-body">
-                <div>
-                    <form class="form-horizontal">
-                        <div class="form-group" data-bind="with: chaufferFilter">
-                            <label class="control-label col-sm-3">Chauffer Out Dt</label>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control" data-bind="datetimepicker: start" />
+                <div class="header-toolsSection">
+                    <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !chaufferFilterSectionVisilble(), click: showChaufferFilterSection" title='@Cares.Web.Resources.Shared.Common.ShowFilter'></a>
+                </div>
+                <div class="row" data-bind="visible: chaufferFilterSectionVisilble">
+                    <div class="well">
+                        <form class="form-horizontal">
+                            <div class="form-group" data-bind="with: chaufferFilter">
+                                <label class="control-label col-sm-2 margin-top-10">Chauffer Out Dt</label>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control margin-top-10" data-bind="datetimepicker: start" />
+                                </div>
+                                <label class="control-label col-sm-2 margin-top-10">Chauffer In Dt</label>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control margin-top-10" data-bind="datetimepicker: end" />
+                                </div>
+                                <div class="col-sm-2">
+                                    <button class="btn btn-success btn-search margin-top-10"
+                                            data-bind="click: $root.searchChauffers, enable: $root.canSearchChauffers">
+                                        Search
+                                    </button>
+                                </div>
+                                <div>
+                                    <a href="#" class="glyphicon glyphicon-resize-small collapse-filter margin-top-15 margin-left-10" data-bind="click: $root.collapseChaufferFilterSection" title='@Cares.Web.Resources.Shared.Common.HideSection'></a>
+                                </div>
                             </div>
-                            <label class="control-label col-sm-3">Chauffer In Dt</label>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control" data-bind="datetimepicker: end" />
-                            </div>
-                            <div class="col-md-4">
-                                <button class="btn btn-success"
-                                        data-bind="click: $root.searchChauffers, enable: $root.canSearchChauffers">
-                                    Search
-                                </button>
-                            </div>
-                        </div>
+
+                        </form>
+                    </div>
+                </div>
+                <div class="row margin-top-20">
+                    <div class="well">
                         <div class="form-group">
                             <table class="table table-condensed">
                                 <thead>
@@ -35,7 +47,9 @@
                                         <th>License Expiry</th>
                                     </tr>
                                 </thead>
-                                <tbody data-bind="foreach: chauffers">
+                                <tbody>
+                                    <!-- ko if: chauffers().length > 0 -->
+                                    <!-- ko foreach: chauffers -->
                                     <tr>
                                         <td>
                                             <input type="checkbox" class="addChaufferTemplate_popoverContent_isSelected" data-bind="checked: isSelected" />
@@ -45,17 +59,24 @@
                                         <td data-bind="text: licenseNo"></td>
                                         <td data-bind="dateString: licenseDt, datePattern: 'DD-MM-YY HH:mm'"></td>
                                     </tr>
+                                    <!-- /ko -->
+                                    <!-- /ko -->
+                                    <!-- ko if: chauffers().length === 0 -->
+                                    <tr><td colspan="5">No record(s) to display yet. </td></tr>
+                                    <!-- /ko -->
                                 </tbody>
                             </table>
 
                         </div>
-                    </form>
+                    </div>
                 </div>
+                
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary" data-bind="click: addChauffersToRentalAgreement.bind($data, $data, 'collapseThree')">
                     Add
                 </button>
+                <button type="button" class="btn" data-dismiss="modal">@Cares.Web.Resources.Shared.Common.Close</button>
             </div>
         </div>
     </div>
