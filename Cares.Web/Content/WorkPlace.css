@@ -2,25 +2,22 @@
   margin-left: 5px;
 }
 #WorkPlaceBinding table thead tr .WPcode {
-  width: 10%;
+  width: 15%;
 }
 #WorkPlaceBinding table thead tr .WPname {
-  width: 10%;
-}
-#WorkPlaceBinding table thead tr .WPDescription {
   width: 15%;
 }
 #WorkPlaceBinding table thead tr .WPType {
   width: 15%;
 }
 #WorkPlaceBinding table thead tr .WPCompany {
-  width: 10%;
+  width: 15%;
 }
 #WorkPlaceBinding table thead tr .WPLocation {
-  width: 15%;
+  width: 20%;
 }
 #WorkPlaceBinding table thead tr .WPParent {
-  width: 15%;
+  width: 16%;
 }
 #WorkPlaceBinding #WorkplaceEditor {
   margin-top: 15px;
@@ -36,9 +33,10 @@
 }
 #WorkPlaceBinding #WorkplaceEditor .addToBtn {
   float: right;
+  width: 80px;
 }
-#WorkPlaceBinding #WorkplaceEditor .addToBtnDiv {
-  width: 100%;
-  margin-bottom: 15px;
+#WorkPlaceBinding #WorkplaceEditor .locationEditor {
+  margin-left: 20px;
+  margin-right: 20px;
 }
 /*# sourceMappingURL=WorkPlace.css.map */

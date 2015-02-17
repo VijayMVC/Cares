@@ -56,10 +56,10 @@
   width: 14%;
 }
 #tariffRateBinding table thead tr .tarrifrateSEdate {
-  width: 15%;
+  width: 35%;
 }
 #tariffRateBinding table thead tr .tarrifrateEFDate {
-  width: 15%;
+  width: 35%;
 }
 #tariffRateBinding #tariffRateEditor {
   margin-top: 15px;
@@ -72,6 +72,9 @@
   width: 85%;
   margin-bottom: 20px;
   margin-top: 10px;
+}
+#tariffRateBinding #tariffRateEditor .rateFilterTool {
+  margin-top: 15px;
 }
 #tariffRateBinding #tariffRateEditor table thead tr .hireGroupTh {
   width: 12%;
@@ -89,10 +92,10 @@
   width: 8%;
 }
 #tariffRateBinding #tariffRateEditor table thead tr .allowMileageTh {
-  width: 8%;
+  width: 9%;
 }
 #tariffRateBinding #tariffRateEditor table thead tr .accessMileage {
-  width: 7%;
+  width: 10%;
 }
 #tariffRateBinding #tariffRateEditor table thead tr .standardRate {
   width: 8%;
@@ -104,28 +107,31 @@
   width: 7%;
 }
 #tariffRateBinding #tariffRateEditor table thead tr .revisionNumber {
-  width: 2%;
+  width: 3%;
 }
 #tariffRateBinding #tariffRateEditor table thead tr .chckBox {
-  width: 2%;
-}
-#tariffRateBinding #tariffRateEditor table #hgRateFilterIcon {
-  margin-left: 15px;
+  width: 3%;
 }
 #tariffRateBinding #tariffRateEditor table .excessMileageCharge {
-  width: 70px;
+  width: 100%;
 }
 #tariffRateBinding #tariffRateEditor table .allowMileage {
-  width: 70px;
+  width: 100%;
 }
 #tariffRateBinding #tariffRateEditor table .standardRt {
-  width: 70px;
+  width: 100%;
 }
 #tariffRateBinding #tariffRateEditor table .startDate {
-  width: 90px;
+  width: 100%;
 }
 #tariffRateBinding #tariffRateEditor table .endDate {
-  width: 90px;
+  width: 100%;
+}
+#tariffRateBinding #tariffRateEditor #hgRateFilterIcon {
+  margin-left: 15px;
+}
+#tariffRateBinding #tariffRateEditor #rateHearderFilterSection {
+  margin-left: 15px;
 }
 #serviceRateBinding table thead tr .code {
   width: 18%;
@@ -170,7 +176,7 @@
   width: 20%;
 }
 #serviceRateBinding #serviceRateEditor .detailsContainer table thead tr .srRate {
-  width: 15%;
+  width: 10%;
 }
 #serviceRateBinding #serviceRateEditor .detailsContainer table thead tr .srStartDateTh {
   width: 8%;

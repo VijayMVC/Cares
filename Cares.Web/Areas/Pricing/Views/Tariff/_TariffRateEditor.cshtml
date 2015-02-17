@@ -17,7 +17,7 @@
                 </div>
                 <label for="operation" class="control-label h5 col-sm-2">@Cares.Web.Resources.Tariff.TariffRate.Operation *</label>
                 <div class="col-md-2">
-                    <select id="operation" class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '&lt;' + '@(Cares.Web.Resources.Tariff.TariffRate.Operation )' + '&gt;' , value: operationId, validationTooltip: operationId, disable :(tariffRateId()!=undefined)"></select>
+                    <select id="operation" class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '&lt;' + '@(Cares.Web.Resources.Tariff.TariffRate.Operation )' + '&gt;' , value: operationId, validationTooltip: operationId"></select>
                 </div>
             </div>
             <div class="form-group">
@@ -47,8 +47,8 @@
     <div class="panel panel-info searchFilterResultSection">
         <div class="panel-heading">@Cares.Web.Resources.Tariff.TariffRate.HireGroupRate</div>
         <div class="row">
-            <h3 class="page-header float-left pageHeaderSection"></h3>
-            <div class="header-toolsSection">
+            <h3 class="page-header float-left pageHeaderSection" id="rateHearderFilterSection"></h3>
+            <div class="header-toolsSection rateFilterTool">
                 <a href="#" class="glyphicon glyphicon-filter" id="hgRateFilterIcon" data-bind="visible: !$root.filterSectionVisilble(), click: $root.showFilterSection" title=@Cares.Web.Resources.Shared.Common.ShowFilter style="display: none"></a>
             </div>
         </div>
@@ -76,18 +76,18 @@
         <table id="hireGroupRate" class="table table-condensed">
             <thead>
                 <tr>
-                    <th> <span class="chckBox"></span></th>
-                    <th> <span class="hireGroupTh">@Cares.Web.Resources.Tariff.TariffRate.Hire<br />@Cares.Web.Resources.Tariff.TariffRate.Group<span></span></span></th>
-                    <th> <span class="make">@Cares.Web.Resources.Tariff.TariffRate.Vehicle<br />@Cares.Web.Resources.Tariff.TariffRate.Make<span></span></span></th>
-                    <th> <span class="model">@Cares.Web.Resources.Tariff.TariffRate.Vehicle<br />@Cares.Web.Resources.Tariff.TariffRate.Model<span></span></span></th>
-                    <th> <span class="category">@Cares.Web.Resources.Tariff.TariffRate.Vehicle<br />@Cares.Web.Resources.Tariff.TariffRate.Category<span></span></span></th>
-                    <th> <span class="model">@Cares.Web.Resources.Tariff.TariffRate.Model<br />@Cares.Web.Resources.Tariff.TariffRate.Year<span></span></span></th>
-                    <th> <span class="allowMileageTh">@Cares.Web.Resources.Tariff.TariffRate.Allowed<br />@Cares.Web.Resources.Tariff.TariffRate.Mileage<span></span></span></th>
-                    <th> <span class="accessMileage">@Cares.Web.Resources.Tariff.TariffRate.Excess<br />@Cares.Web.Resources.Tariff.TariffRate.MileageCharge<span></span></span></th>
-                    <th> <span class="standardRate">@Cares.Web.Resources.Tariff.TariffRate.Standard<br />@Cares.Web.Resources.Tariff.TariffRate.Rate<span></span></span></th>
-                    <th> <span class="startDateTh">@Cares.Web.Resources.Tariff.TariffRate.Start<br />@Cares.Web.Resources.Tariff.TariffRate.Date<span></span></span></th>
+                    <th class="chckBox"> <span></span></th>
+                    <th class="hireGroupTh"> <span>@Cares.Web.Resources.Tariff.TariffRate.Hire<br />@Cares.Web.Resources.Tariff.TariffRate.Group<span></span></span></th>
+                    <th class="make"> <span>@Cares.Web.Resources.Tariff.TariffRate.Vehicle<br />@Cares.Web.Resources.Tariff.TariffRate.Make<span></span></span></th>
+                    <th class="model"> <span>@Cares.Web.Resources.Tariff.TariffRate.Vehicle<br />@Cares.Web.Resources.Tariff.TariffRate.Model<span></span></span></th>
+                    <th class="category"> <span>@Cares.Web.Resources.Tariff.TariffRate.Vehicle<br />@Cares.Web.Resources.Tariff.TariffRate.Category<span></span></span></th>
+                    <th class="modelYear"> <span>@Cares.Web.Resources.Tariff.TariffRate.Model<br />@Cares.Web.Resources.Tariff.TariffRate.Year<span></span></span></th>
+                    <th class="allowMileageTh"> <span>@Cares.Web.Resources.Tariff.TariffRate.Allowed<br />@Cares.Web.Resources.Tariff.TariffRate.Mileage<span></span></span></th>
+                    <th class="accessMileage"> <span>@Cares.Web.Resources.Tariff.TariffRate.Excess<br />@Cares.Web.Resources.Tariff.TariffRate.MileageCharge<span></span></span></th>
+                    <th class="standardRate"> <span>@Cares.Web.Resources.Tariff.TariffRate.Standard<br />@Cares.Web.Resources.Tariff.TariffRate.Rate<span></span></span></th>
+                    <th class="startDateTh"> <span>@Cares.Web.Resources.Tariff.TariffRate.Start<br />@Cares.Web.Resources.Tariff.TariffRate.Date<span></span></span></th>
                     @*<th> <span class="endDateTh">@Cares.Web.Resources.Tariff.TariffRate.End<br />@Cares.Web.Resources.Tariff.TariffRate.Date<span></span></span></th>*@
-                    <th> <span class="revisionNumber">@Cares.Web.Resources.Tariff.TariffRate.Revision<br />@Cares.Web.Resources.Tariff.TariffRate.Number<span></span></span></th>
+                    <th class="revisionNumber"> <span>@Cares.Web.Resources.Tariff.TariffRate.Revision<br />@Cares.Web.Resources.Tariff.TariffRate.Number<span></span></span></th>
                 </tr>
             </thead>
             <tbody>
@@ -115,16 +115,16 @@
                 <td class="modelYear">
                     <span data-bind="text: modelYear"></span>
                 </td>
-                <td class="allowMileageTh">
+                <td >
                     <input class="allowMileage" type="text" data-bind="value: allowMileage, validationTooltip: allowMileage,disable :!isChecked()" />
                 </td>
-                <td class="accessMileage">
-                    <input class="excessMileageCharge" style="width: 70px;" type="text" data-bind="value: excessMileageCharge, validationTooltip: excessMileageCharge,disable :!isChecked()" />
+                <td >
+                    <input class="excessMileageCharge" type="text" data-bind="value: excessMileageCharge, validationTooltip: excessMileageCharge,disable :!isChecked()" />
                 </td>
-                <td class="standardRate">
+                <td >
                     <input class="standardRt" type="text" data-bind="value: standardRt, validationTooltip: standardRt,disable :!isChecked()" />
                 </td>
-                <td class="startDateTh">
+                <td >
                     <input class="startDate" type="text" data-bind="datepicker: startDate, validationTooltip: startDate,disable :!isChecked()" />
                 </td>
                 @*<td class="endDateTh">
