@@ -114,15 +114,16 @@
 }
 #tariffTypeBinding #tariffTypeEditor {
   margin-top: 15px;
-}
-#tariffTypeBinding #tariffTypeEditor .detailsContainer {
-  width: 100%;
-}
-#tariffTypeBinding #tariffTypeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer {
+            width: 100%;
+
+            .detailsHeaderSection {
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #tariffRateBinding table thead tr .tarrifratecode {
   width: 15%;
@@ -144,15 +145,16 @@
 }
 #tariffRateBinding #tariffRateEditor {
   margin-top: 15px;
-}
-#tariffRateBinding #tariffRateEditor .detailsContainer {
-  width: 100%;
-}
-#tariffRateBinding #tariffRateEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer {
+            width: 100%;
+
+            .detailsHeaderSection {
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #tariffRateBinding #tariffRateEditor .rateFilterTool {
   margin-top: 15px;
@@ -235,12 +237,6 @@
 #serviceRateBinding #serviceRateEditor .detailsContainer {
   width: 100%;
 }
-#serviceRateBinding #serviceRateEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
-}
 #serviceRateBinding #serviceRateEditor .detailsContainer .serviceRateTxtBox {
   width: 70px;
 }
@@ -288,12 +284,12 @@
 }
 #insuranceRateBinding #insuranceRateEditor .detailsContainer {
   width: 100%;
-}
-#insuranceRateBinding #insuranceRateEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsHeaderSection {
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }*/
 }
 #insuranceRateBinding #insuranceRateEditor .detailsContainer table thead tr .insuranceType {
   width: 14%;
@@ -351,15 +347,16 @@
 }
 #additionalDriverChargeBinding #additionalDriverChargeEditor {
   margin-top: 15px;
-}
-#additionalDriverChargeBinding #additionalDriverChargeEditor .detailsContainer {
-  width: 100%;
-}
-#additionalDriverChargeBinding #additionalDriverChargeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer {
+            width: 100%;
+
+            .detailsHeaderSection {
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #additionalChargeBinding table thead tr .Code {
   width: 25%;
@@ -375,6 +372,16 @@
 }
 #additionalChargeBinding #additionalChargeEditor {
   margin-top: 15px;
+  /*.detailsContainer {
+            width: 100%;
+
+            .detailsHeaderSection {
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #additionalChargeBinding #additionalChargeEditor .addToBtn {
   float: right;
@@ -388,15 +395,6 @@
   margin-top: 30px;
   margin-left: 5px;
   margin-right: 5px;
-}
-#additionalChargeBinding #additionalChargeEditor .detailsContainer {
-  width: 100%;
-}
-#additionalChargeBinding #additionalChargeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
 }
 #chaufferChargeBinding table thead tr .Code {
   width: 10%;
@@ -421,6 +419,16 @@
 }
 #chaufferChargeBinding #chaufferChargeEditor {
   margin-top: 15px;
+  /*.detailsContainer {
+            width: 100%;
+
+            .detailsHeaderSection {
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #chaufferChargeBinding #chaufferChargeEditor .addToBtn {
   float: right;
@@ -434,15 +442,6 @@
   margin-top: 30px;
   margin-left: 5px;
   margin-right: 5px;
-}
-#chaufferChargeBinding #chaufferChargeEditor .detailsContainer {
-  width: 100%;
-}
-#chaufferChargeBinding #chaufferChargeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
 }
 #seasonalDiscountBinding table thead tr .Code {
   width: 8%;
@@ -467,6 +466,16 @@
 }
 #seasonalDiscountBinding #seasonalDiscountEditor {
   margin-top: 15px;
+  /*.detailsContainer {
+            width: 100%;
+
+            .detailsHeaderSection {
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #seasonalDiscountBinding #seasonalDiscountEditor .addToBtn {
   float: right;
@@ -481,15 +490,6 @@
   margin-left: 5px;
   margin-right: 5px;
   margin-bottom: 10px;
-}
-#seasonalDiscountBinding #seasonalDiscountEditor .detailsContainer {
-  width: 100%;
-}
-#seasonalDiscountBinding #seasonalDiscountEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
 }
 #rentalAgreementBinding {
   color: gray;
@@ -1603,15 +1603,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #DiscountSubTypeBinding #DiscountSubTypeEditor {
   margin-top: 15px;
-}
-#DiscountSubTypeBinding #DiscountSubTypeEditor .detailsContainer {
-  width: 100%;
-}
-#DiscountSubTypeBinding #DiscountSubTypeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #ServiceTypeBinding table thead tr .ServiceTypeCode {
   width: 33%;
@@ -1624,15 +1624,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #ServiceTypeBinding #ServiceTypeEditor {
   margin-top: 15px;
-}
-#ServiceTypeBinding #ServiceTypeEditor .detailsContainer {
-  width: 100%;
-}
-#ServiceTypeBinding #ServiceTypeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #ServiceItemBinding table thead tr .ServiceItemCode {
   width: 25%;
@@ -2002,15 +2002,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #InsuranceTypeBinding #insuranceTypeEditor {
   margin-top: 15px;
-}
-#InsuranceTypeBinding #insuranceTypeEditor .detailsContainer {
-  width: 100%;
-}
-#InsuranceTypeBinding #insuranceTypeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #VehicleMakeBinding table thead tr .VehicleCode {
   width: 33%;

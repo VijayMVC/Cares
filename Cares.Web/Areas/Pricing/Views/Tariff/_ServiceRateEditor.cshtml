@@ -2,7 +2,7 @@
 <div class="well col-md-12" id="serviceRateEditor" data-bind="visible: isServiceRtEditorVisible" style="display: none;">
     <div data-bind="with: selectedServiceRtMain">
         <div class="detailsContainer">
-            <h3 class="page-header detailsHeaderSection">@Cares.Web.Resources.Tariff.ServiceRate.ServiceRateDetail</h3>
+            <h3 class="page-header detailsHeaderSection float-left">@Cares.Web.Resources.Tariff.ServiceRate.ServiceRateDetail</h3>
             <button class="btn btn-info" id="saveBtn" data-bind="click:$root.onSaveServiceRate,enable: hasChanges, css: { 'btn-warning': hasChanges }">@Cares.Web.Resources.Shared.Common.Save</button>
             <button class="btn btn-default" id="saveBtn" data-bind="click: $root.closeServiceRateEditor">@Cares.Web.Resources.Shared.Common.Cancel</button>
         </div>
