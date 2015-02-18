@@ -9,14 +9,14 @@
 }
 #VehicleStatusBinding #VehicleStatusEditor {
   margin-top: 15px;
-}
-#VehicleStatusBinding #VehicleStatusEditor .detailsContainer {
-  width: 100%;
-}
-#VehicleStatusBinding #VehicleStatusEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 /*# sourceMappingURL=VehicleStatus.css.map */

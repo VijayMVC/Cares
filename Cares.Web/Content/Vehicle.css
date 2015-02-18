@@ -45,15 +45,15 @@
 }
 #vehicleBinding #vehicleEditor {
   margin-top: 15px;
-}
-#vehicleBinding #vehicleEditor .detailsContainer {
-  width: 100%;
-}
-#vehicleBinding #vehicleEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer {
+            width: 100%;
+
+            .detailsHeaderSection {
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #vehicleBinding #vehicleEditor .addToBtn {
   float: right;

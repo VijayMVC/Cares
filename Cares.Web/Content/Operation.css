@@ -18,15 +18,16 @@
 }
 #OperationBinding #OperationEditor {
   margin-top: 15px;
-}
-#OperationBinding #OperationEditor .detailsContainer {
-  width: 100%;
-}
-#OperationBinding #OperationEditor .detailsContainer .detailsHeaderSection {
-  /*float: left;*/
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
-  display: inline-block;
+  /*.detailsContainer {
+        width: 100%;
+
+        .detailsHeaderSection {
+           
+            width: 85%;
+            margin-bottom: 20px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+    }*/
 }
 /*# sourceMappingURL=Operation.css.map */

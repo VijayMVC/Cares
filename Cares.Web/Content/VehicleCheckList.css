@@ -12,14 +12,14 @@
 }
 #VehicleCheckListBinding #VehicleCheckListEditor {
   margin-top: 15px;
-}
-#VehicleCheckListBinding #VehicleCheckListEditor .detailsContainer {
-  width: 100%;
-}
-#VehicleCheckListBinding #VehicleCheckListEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 /*# sourceMappingURL=VehicleCheckList.css.map */

@@ -1,9 +1,1 @@
-{
-  "version": 3,
-  "file": "VehicleModel.css",
-  "sources": [
-    "VehicleModel.less"
-  ],
-  "names": [],
-  "mappings": "AAAA,oBAEI,MACI,MACI,GAEI;EACI,UAAA;;AAPpB,oBAEI,MACI,MACI,GAKI;EACI,UAAA;;AAVpB,oBAEI,MACI,MACI,GAQI;EACI,UAAA;;AAbpB,oBAmBK;EACG,gBAAA;;AApBR,oBAmBK,oBAEG;EACI,WAAA;;AAtBZ,oBAmBK,oBAEG,kBAEI;EACI,WAAA;EACA,UAAA;EACA,mBAAA;EACA,gBAAA"
-}
+﻿{"version":3,"sources":["VehicleModel.less"],"names":[],"mappings":"AAAA,oBAEI,MACI,MACI,GAEI;EACI,UAAA;;AAPpB,oBAEI,MACI,MACI,GAKI;EACI,UAAA;;AAVpB,oBAEI,MACI,MACI,GAQI;EACI,UAAA;;AAbpB,oBAmBK;EACG,gBAAA","file":"VehicleModel.css"}

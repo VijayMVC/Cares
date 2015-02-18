@@ -21,16 +21,16 @@
 }
 #WorkPlaceBinding #WorkplaceEditor {
   margin-top: 15px;
-}
-#WorkPlaceBinding #WorkplaceEditor .detailsContainer {
-  width: 100%;
-}
-#WorkPlaceBinding #WorkplaceEditor .detailsContainer .detailsHeaderSection {
-  /*float: left;*/
-  display: inline-block;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer {
+            width: 100%;
+
+            .detailsHeaderSection {
+                display: inline-block;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #WorkPlaceBinding #WorkplaceEditor .addToBtn {
   float: right;

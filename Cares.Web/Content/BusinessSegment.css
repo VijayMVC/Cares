@@ -12,15 +12,14 @@
 }
 #BusinessSegmentBinding #BusinessSegmentEditor {
   margin-top: 15px;
-}
-#BusinessSegmentBinding #BusinessSegmentEditor .detailsContainer {
-  width: 100%;
-}
-#BusinessSegmentBinding #BusinessSegmentEditor .detailsContainer .detailsHeaderSection {
-  /*float: left;*/
-  display: inline-block;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                display: inline-block;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 /*# sourceMappingURL=BusinessSegment.css.map */

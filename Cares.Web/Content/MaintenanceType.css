@@ -12,14 +12,14 @@
 }
 #MaintenanceTypeBinding #MaintenanceTypeEditor {
   margin-top: 15px;
-}
-#MaintenanceTypeBinding #MaintenanceTypeEditor .detailsContainer {
-  width: 100%;
-}
-#MaintenanceTypeBinding #MaintenanceTypeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 /*# sourceMappingURL=MaintenanceType.css.map */
