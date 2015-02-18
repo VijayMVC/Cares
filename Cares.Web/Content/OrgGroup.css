@@ -17,7 +17,7 @@
   width: 100%;
 }
 #OrgGroupBinding #_OrgGroupEditor .detailsContainer .detailsHeaderSection {
-  float: left;
+  /*float: left;*/
   width: 85%;
   margin-bottom: 20px;
   margin-top: 10px;

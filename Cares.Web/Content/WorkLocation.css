@@ -32,8 +32,9 @@
   width: 100%;
 }
 #WorkLocationBinding #WorkplaceEditor .detailsContainer .detailsHeaderSection {
-  float: left;
+  /*float: left;*/
   width: 85%;
+  display: inline-block;
   margin-bottom: 20px;
   margin-top: 10px;
 }

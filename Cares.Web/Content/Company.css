@@ -23,7 +23,7 @@
   width: 100%;
 }
 #companyBinding #CompanyEditor .detailsContainer .detailsHeaderSection {
-  float: left;
+  /*float: left;*/
   width: 85%;
   margin-bottom: 20px;
   margin-top: 10px;

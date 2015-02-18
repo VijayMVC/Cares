@@ -1012,7 +1012,7 @@ fieldset[disabled] .btn-billing.active {
   width: 100%;
 }
 #companyBinding #CompanyEditor .detailsContainer .detailsHeaderSection {
-  float: left;
+  /*float: left;*/
   width: 85%;
   margin-bottom: 20px;
   margin-top: 10px;
@@ -1042,10 +1042,11 @@ fieldset[disabled] .btn-billing.active {
   width: 100%;
 }
 #OperationBinding #OperationEditor .detailsContainer .detailsHeaderSection {
-  float: left;
+  /*float: left;*/
   width: 85%;
   margin-bottom: 20px;
   margin-top: 10px;
+  display: inline-block;
 }
 #OrgGroupBinding table thead tr .ttypesearchButton {
   margin-left: 5px;
@@ -1066,7 +1067,7 @@ fieldset[disabled] .btn-billing.active {
   width: 100%;
 }
 #OrgGroupBinding #_OrgGroupEditor .detailsContainer .detailsHeaderSection {
-  float: left;
+  /*float: left;*/
   width: 85%;
   margin-bottom: 20px;
   margin-top: 10px;
@@ -1099,7 +1100,8 @@ fieldset[disabled] .btn-billing.active {
   width: 100%;
 }
 #WorkPlaceBinding #WorkplaceEditor .detailsContainer .detailsHeaderSection {
-  float: left;
+  /*float: left;*/
+  display: inline-block;
   width: 85%;
   margin-bottom: 20px;
   margin-top: 10px;
@@ -1225,8 +1227,9 @@ fieldset[disabled] .btn-billing.active {
   width: 100%;
 }
 #WorkLocationBinding #WorkplaceEditor .detailsContainer .detailsHeaderSection {
-  float: left;
+  /*float: left;*/
   width: 85%;
+  display: inline-block;
   margin-bottom: 20px;
   margin-top: 10px;
 }
@@ -1281,7 +1284,8 @@ fieldset[disabled] .btn-billing.active {
   width: 100%;
 }
 #WorkPlaceTypeBinding #WorkPlaceTypeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
+  /*float: left;*/
+  display: inline-block;
   width: 85%;
   margin-bottom: 20px;
   margin-top: 10px;
@@ -1305,7 +1309,8 @@ fieldset[disabled] .btn-billing.active {
   width: 100%;
 }
 #BusinessSegmentBinding #BusinessSegmentEditor .detailsContainer .detailsHeaderSection {
-  float: left;
+  /*float: left;*/
+  display: inline-block;
   width: 85%;
   margin-bottom: 20px;
   margin-top: 10px;
@@ -2098,35 +2103,20 @@ fieldset[disabled] .btn-billing.active {
 .float-right {
   float: right;
 }
-html[dir="rtl"] .float-left {
-  float: right;
-}
-html[dir="rtl"] .float-right {
-  float: left;
-}
 .collapse-filter {
   margin-top: 10px;
 }
 .create-new-icon {
   margin-left: 10px;
 }
-html[dir="ltr"] .margin-left {
-  margin-left: 4%;
-}
-html[dir="rtl"] .margin-left {
-  margin-right: 4%;
-}
 .margin-left-10 {
   margin-left: 10px !important;
-}
-html[dir="rtl"] .margin-left-10 {
-  margin-right: 10px !important;
 }
 .margin-right {
   margin-right: 3%;
 }
-html[dir="rtl"] .margin-right {
-  margin-left: 3%;
+.margin-right-20 {
+  margin-right: 20px;
 }
 .margin-top-15 {
   margin-top: 15px;
@@ -2295,4 +2285,30 @@ html[dir="rtl"] .col-lg-12 {
   color: #00bfff;
 }
 /* Twitter Typeahead */
+/*RTL IMPLEMENTATION*/
+html[dir="rtl"] .form-horizontal .form-group {
+  margin-left: 0;
+  margin-right: 0;
+}
+html[dir="rtl"] .float-left {
+  float: right;
+}
+html[dir="rtl"] .float-right {
+  float: left;
+}
+html[dir="ltr"] .margin-left {
+  margin-left: 4%;
+}
+html[dir="rtl"] .margin-right {
+  margin-left: 3%;
+}
+html[dir="rtl"] .margin-left-10 {
+  margin-right: 10px !important;
+}
+html[dir="rtl"] .margin-left {
+  margin-right: 4%;
+}
+html[dir="rtl"] .margin-right-20 {
+  margin-left: 20px;
+}
 /*# sourceMappingURL=MainSite.css.map */

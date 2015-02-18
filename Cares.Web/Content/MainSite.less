@@ -52,12 +52,7 @@
 .float-right {
     float: right;
 }
-html[dir="rtl"] .float-left {
-    float: right;
-}
-html[dir="rtl"] .float-right {
-    float: left;
-}
+
 .collapse-filter {
     margin-top: 10px;
 }
@@ -66,27 +61,21 @@ html[dir="rtl"] .float-right {
     margin-left: 10px;
 }
 
-html[dir="ltr"] .margin-left{
-    margin-left: 4%;
-}
 
-html[dir="rtl"] .margin-left { 
-    margin-right: 4%;
-}
 
 .margin-left-10 {
   margin-left: 10px !important;
 }
-html[dir="rtl"] .margin-left-10 {
-    margin-right: 10px !important;
-}
+
+
 .margin-right{
     margin-right: 3%;
 }
 
-html[dir="rtl"] .margin-right{
-    margin-left: 3%;
-} 
+.margin-right-20{
+    margin-right: 20px;
+}
+
 .margin-top-15{
     margin-top: 15px;
 }
@@ -229,3 +218,34 @@ html[dir="rtl"] .margin-right{
     color:deepskyblue
 }
 /* Twitter Typeahead */
+
+/*RTL IMPLEMENTATION*/
+html[dir="rtl"] .form-horizontal .form-group {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+html[dir="rtl"] .float-left {
+    float: right;
+}
+html[dir="rtl"] .float-right {
+    float: left;
+}
+
+html[dir="ltr"] .margin-left{
+    margin-left: 4%;
+}
+
+html[dir="rtl"] .margin-right{
+    margin-left: 3%;
+} 
+html[dir="rtl"] .margin-left-10 {
+    margin-right: 10px !important;
+}
+html[dir="rtl"] .margin-left { 
+    margin-right: 4%;
+}
+
+html[dir="rtl"] .margin-right-20{
+    margin-left: 20px;
+}
