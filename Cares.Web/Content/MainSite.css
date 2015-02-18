@@ -1337,7 +1337,8 @@ fieldset[disabled] .btn-billing.active {
   width: 100%;
 }
 #RegionBinding #RegionEditor .detailsContainer .detailsHeaderSection {
-  float: left;
+  /*float: left;*/
+  display: inline-block;
   width: 85%;
   margin-bottom: 20px;
   margin-top: 10px;
@@ -1405,7 +1406,8 @@ fieldset[disabled] .btn-billing.active {
   width: 100%;
 }
 #SubRegionBinding #SubRegionEditor .detailsContainer .detailsHeaderSection {
-  float: left;
+  /*float: left;*/
+  display: inline-block;
   width: 85%;
   margin-bottom: 20px;
   margin-top: 10px;
@@ -1465,7 +1467,8 @@ fieldset[disabled] .btn-billing.active {
   width: 100%;
 }
 #AreaBinding #AreaEditor .detailsContainer .detailsHeaderSection {
-  float: left;
+  /*float: left;*/
+  display: inline-block;
   width: 85%;
   margin-bottom: 20px;
   margin-top: 10px;
