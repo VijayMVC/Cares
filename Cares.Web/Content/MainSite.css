@@ -1756,15 +1756,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #bPMainTypeBinding #bPMainTypeEditor {
   margin-top: 15px;
-}
-#bPMainTypeBinding #bPMainTypeEditor .detailsContainer {
-  width: 100%;
-}
-#bPMainTypeBinding #bPMainTypeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #DocumentBinding table thead tr .documentCode {
   width: 25%;

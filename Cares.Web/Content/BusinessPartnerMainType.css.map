@@ -1,9 +1,1 @@
-{
-  "version": 3,
-  "file": "BusinessPartnerMainType.css",
-  "sources": [
-    "BusinessPartnerMainType.less"
-  ],
-  "names": [],
-  "mappings": "AAAA,kBAEI,MACI,MACI,GAEI;EACI,UAAA;;AAPpB,kBAEI,MACI,MACI,GAKI;EACI,UAAA;;AAVpB,kBAEI,MACI,MACI,GAQI;EACI,UAAA;;AAbpB,kBAoBI;EACI,gBAAA;;AArBR,kBAoBI,kBAEI;EACI,WAAA;;AAvBZ,kBAoBI,kBAEI,kBAEI;EACI,WAAA;EACA,UAAA;EACA,mBAAA;EACA,gBAAA"
-}
+﻿{"version":3,"sources":["BusinessPartnerMainType.less"],"names":[],"mappings":"AAAA,kBAEI,MACI,MACI,GAEI;EACI,UAAA;;AAPpB,kBAEI,MACI,MACI,GAKI;EACI,UAAA;;AAVpB,kBAEI,MACI,MACI,GAQI;EACI,UAAA;;AAbpB,kBAoBI;EACI,gBAAA","file":"BusinessPartnerMainType.css"}
