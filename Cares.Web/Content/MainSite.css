@@ -1432,15 +1432,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #CityBinding #CityEditor {
   margin-top: 15px;
-}
-#CityBinding #CityEditor .detailsContainer {
-  width: 100%;
-}
-#CityBinding #CityEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #AreaBinding table thead tr .ttypesearchButton {
   margin-left: 5px;
@@ -1483,15 +1483,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #DesignGradeBinding #designationGradeEditor {
   margin-top: 15px;
-}
-#DesignGradeBinding #designationGradeEditor .detailsContainer {
-  width: 100%;
-}
-#DesignGradeBinding #designationGradeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #EmployeeStatusBinding table thead tr .ttypesearchButton {
   margin-left: 5px;
@@ -1510,15 +1510,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #EmployeeStatusBinding #EmployeeStatusEditor {
   margin-top: 15px;
-}
-#EmployeeStatusBinding #EmployeeStatusEditor .detailsContainer {
-  width: 100%;
-}
-#EmployeeStatusBinding #EmployeeStatusEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #DesignationBinding table thead tr .ttypesearchButton {
   margin-left: 5px;
@@ -1534,15 +1534,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #DesignationBinding #DesignationEditor {
   margin-top: 15px;
-}
-#DesignationBinding #DesignationEditor .detailsContainer {
-  width: 100%;
-}
-#DesignationBinding #DesignationEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #JobTypeBinding table thead tr .ttypesearchButton {
   margin-left: 5px;
@@ -1558,15 +1558,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #JobTypeBinding #JobTypeEditor {
   margin-top: 15px;
-}
-#JobTypeBinding #JobTypeEditor .detailsContainer {
-  width: 100%;
-}
-#JobTypeBinding #JobTypeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #DiscountTypeBinding table thead tr .DTcode {
   width: 33%;
@@ -1579,15 +1579,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #DiscountTypeBinding #DiscountTypeEditor {
   margin-top: 15px;
-}
-#DiscountTypeBinding #DiscountTypeEditor .detailsContainer {
-  width: 100%;
-}
-#DiscountTypeBinding #DiscountTypeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #DiscountSubTypeBinding table thead tr .DiscountSubTypeCode {
   width: 25%;
@@ -1648,15 +1648,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #ServiceItemBinding #ServiceItemEditor {
   margin-top: 15px;
-}
-#ServiceItemBinding #ServiceItemEditor .detailsContainer {
-  width: 100%;
-}
-#ServiceItemBinding #ServiceItemEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #NrtTypeBinding table thead tr .NrtTypeCode {
   width: 25%;
@@ -1735,15 +1735,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #documentGroupBinding #documentGroupEditor {
   margin-top: 15px;
-}
-#documentGroupBinding #documentGroupEditor .detailsContainer {
-  width: 100%;
-}
-#documentGroupBinding #documentGroupEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #bPMainTypeBinding table thead tr .bPMainTypeCode {
   width: 33%;
@@ -1780,15 +1780,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #DocumentBinding #DocumentEditor {
   margin-top: 15px;
-}
-#DocumentBinding #DocumentEditor .detailsContainer {
-  width: 100%;
-}
-#DocumentBinding #DocumentEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #RatingTypeBinding table thead tr .ratingTypeCode {
   width: 33%;
@@ -1801,15 +1801,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #RatingTypeBinding #ratingTypeEditor {
   margin-top: 15px;
-}
-#RatingTypeBinding #ratingTypeEditor .detailsContainer {
-  width: 100%;
-}
-#RatingTypeBinding #ratingTypeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #BusinessLegalStatusBinding table thead tr .businessLegalStatusCode {
   width: 33%;
@@ -1822,15 +1822,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #BusinessLegalStatusBinding #BusinessLegalStatusBindingEditor {
   margin-top: 15px;
-}
-#BusinessLegalStatusBinding #BusinessLegalStatusBindingEditor .detailsContainer {
-  width: 100%;
-}
-#BusinessLegalStatusBinding #BusinessLegalStatusBindingEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #OccupationTypeBinding table thead tr .occupationTypeCode {
   width: 33%;
@@ -1843,15 +1843,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #OccupationTypeBinding #OccupationTypeEditor {
   margin-top: 15px;
-}
-#OccupationTypeBinding #OccupationTypeEditor .detailsContainer {
-  width: 100%;
-}
-#OccupationTypeBinding #OccupationTypeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #BusinessPartnerRelationshipTypeBinding table thead tr .bpRelationshipTypeCode {
   width: 33%;
@@ -1864,15 +1864,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #BusinessPartnerRelationshipTypeBinding #BusinessPartnerRelationshipTypeEditor {
   margin-top: 15px;
-}
-#BusinessPartnerRelationshipTypeBinding #BusinessPartnerRelationshipTypeEditor .detailsContainer {
-  width: 100%;
-}
-#BusinessPartnerRelationshipTypeBinding #BusinessPartnerRelationshipTypeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #BusinessPartnerSubTypeBinding table thead tr .businessPartnerSubTypeCode {
   width: 25%;
@@ -1888,15 +1888,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #BusinessPartnerSubTypeBinding #BusinessPartnerSubTypeEditor {
   margin-top: 15px;
-}
-#BusinessPartnerSubTypeBinding #BusinessPartnerSubTypeEditor .detailsContainer {
-  width: 100%;
-}
-#BusinessPartnerSubTypeBinding #BusinessPartnerSubTypeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #CreditLimitBinding table thead tr .creditLimitSubType {
   width: 20%;
@@ -1915,15 +1915,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #CreditLimitBinding #CreditLimitEditor {
   margin-top: 15px;
-}
-#CreditLimitBinding #CreditLimitEditor .detailsContainer {
-  width: 100%;
-}
-#CreditLimitBinding #CreditLimitEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #MarketingChannelBinding table thead tr .MarketingChannelCode {
   width: 33%;
@@ -1936,15 +1936,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #MarketingChannelBinding #MarketingChannelEditor {
   margin-top: 15px;
-}
-#MarketingChannelBinding #MarketingChannelEditor .detailsContainer {
-  width: 100%;
-}
-#MarketingChannelBinding #MarketingChannelEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #MaintenanceTypeGroupBinding table thead tr .maintenanceTypeGroupCode {
   width: 33%;

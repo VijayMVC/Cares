@@ -1,9 +1,1 @@
-{
-  "version": 3,
-  "file": "ServiceItem.css",
-  "sources": [
-    "ServiceItem.less"
-  ],
-  "names": [],
-  "mappings": "AAAA,mBAGI,MACI,MACI,GACI;EACI,UAAA;;AAPpB,mBAGI,MACI,MACI,GAIG;EACK,UAAA;;AAVpB,mBAGI,MACI,MACI,GAOG;EACK,UAAA;;AAbpB,mBAGI,MACI,MACI,GAUG;EACK,UAAA;;AAhBpB,mBAuBC;EAEO,gBAAA;;AAzBR,mBAuBC,mBAGO;EACI,WAAA;;AA3BZ,mBAuBC,mBAGO,kBAEI;EACI,WAAA;EACA,UAAA;EACA,mBAAA;EACA,gBAAA"
-}
+﻿{"version":3,"sources":["ServiceItem.less"],"names":[],"mappings":"AAAA,mBAGI,MACI,MACI,GACI;EACI,UAAA;;AAPpB,mBAGI,MACI,MACI,GAIG;EACK,UAAA;;AAVpB,mBAGI,MACI,MACI,GAOG;EACK,UAAA;;AAbpB,mBAGI,MACI,MACI,GAUG;EACK,UAAA;;AAhBpB,mBAuBC;EAEO,gBAAA","file":"ServiceItem.css"}

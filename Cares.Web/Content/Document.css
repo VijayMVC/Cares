@@ -12,14 +12,14 @@
 }
 #DocumentBinding #DocumentEditor {
   margin-top: 15px;
-}
-#DocumentBinding #DocumentEditor .detailsContainer {
-  width: 100%;
-}
-#DocumentBinding #DocumentEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 /*# sourceMappingURL=Document.css.map */

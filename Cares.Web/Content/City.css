@@ -21,14 +21,14 @@
 }
 #CityBinding #CityEditor {
   margin-top: 15px;
-}
-#CityBinding #CityEditor .detailsContainer {
-  width: 100%;
-}
-#CityBinding #CityEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 /*# sourceMappingURL=City.css.map */

@@ -12,14 +12,14 @@
 }
 #BusinessPartnerSubTypeBinding #BusinessPartnerSubTypeEditor {
   margin-top: 15px;
-}
-#BusinessPartnerSubTypeBinding #BusinessPartnerSubTypeEditor .detailsContainer {
-  width: 100%;
-}
-#BusinessPartnerSubTypeBinding #BusinessPartnerSubTypeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 /*# sourceMappingURL=BusinessPartnerSubType.css.map */

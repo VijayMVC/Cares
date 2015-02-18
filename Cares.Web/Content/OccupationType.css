@@ -9,14 +9,14 @@
 }
 #OccupationTypeBinding #OccupationTypeEditor {
   margin-top: 15px;
-}
-#OccupationTypeBinding #OccupationTypeEditor .detailsContainer {
-  width: 100%;
-}
-#OccupationTypeBinding #OccupationTypeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 /*# sourceMappingURL=OccupationType.css.map */

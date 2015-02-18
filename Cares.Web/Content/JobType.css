@@ -12,14 +12,14 @@
 }
 #JobTypeBinding #JobTypeEditor {
   margin-top: 15px;
-}
-#JobTypeBinding #JobTypeEditor .detailsContainer {
-  width: 100%;
-}
-#JobTypeBinding #JobTypeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 /*# sourceMappingURL=JobType.css.map */
