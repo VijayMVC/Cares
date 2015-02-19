@@ -817,7 +817,7 @@ Page sidebar
 /* IE8 fix */
 .ie8 .page-sidebar {
   width: 235px;
-  float: left;
+  /*float: left;*/
   position: relative;
   margin-right: -100%;
 }
@@ -1142,13 +1142,20 @@ Page sidebar
   margin-right: 6px;
 }
 
+html[dir='ltr'] .margin-right-minus-100 {
+    margin-right: -100%;
+}
+html[dir='rtl'] .margin-right-minus-100 {
+    margin-left: -100% !important;
+}
+
 @media (min-width: 992px) {
   /* 992px */
   .page-sidebar {
     width: 235px;
-    float: left;
+    /*float: left;*/
     position: relative;
-    margin-right: -100%;
+    /*margin-right: -100%;*/
   }
   .page-full-width .page-sidebar {
     display: none !important;
@@ -1218,11 +1225,16 @@ Page sidebar
   .page-sidebar-closed .page-sidebar .page-sidebar-menu.page-sidebar-menu-closed > li:hover > a > .selected {
     display: none;
   }
+  html[dir='ltr'] .left-46 {
+      left: 46px;
+  }
+  html[dir='rtl'] .left-46 {
+      right: 46px;
+  }
   .page-sidebar-closed .page-sidebar .page-sidebar-menu.page-sidebar-menu-closed > li:hover > .sub-menu {
     width: 210px;
     position: absolute;
     z-index: 2000;
-    left: 46px;
     margin-top: 0;
     top: 100%;
     display: block !important;
@@ -2074,6 +2086,12 @@ Page content
   margin-left: 0px !important;
 }
 
+html[dir=ltr] .margin-left-235 {
+    margin-left: 235px;
+}
+html[dir=rtl] .margin-left-235 {
+    margin-right: 235px;
+}
 @media (min-width: 992px) {
   /* 992px */
   /* Page content */
@@ -2082,7 +2100,7 @@ Page content
     width: 100%;
   }
   .page-content-wrapper .page-content {
-    margin-left: 235px;
+    
     margin-top: 0px;
     min-height: 600px;
     padding: 25px 20px 10px 20px;
@@ -2105,8 +2123,11 @@ Page content
     margin-left: 0 !important;
     margin-right: 45px !important;
   }
-  .page-sidebar-closed .page-content-wrapper .page-content {
+  html[dir=ltr] .page-sidebar-closed .page-content-wrapper .page-content {
     margin-left: 45px !important;
+  }
+  html[dir=rtl] .page-sidebar-closed .page-content-wrapper .page-content {
+    margin-right: 45px !important;
   }
   .page-sidebar-closed.page-sidebar-hide .page-content-wrapper .page-content {
     margin-left: 0 !important;
