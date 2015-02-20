@@ -68,29 +68,29 @@ namespace Cares.Repository.Repositories
             int toRow = request.PageSize;
 
             var getInsuranceRateQuery = from addDriverChrg in DbSet
-                                        join tariffType in db.TariffTypes on addDriverChrg.TariffTypeCode equals tariffType.TariffTypeCode
-                                        where
-                                            (!addDriverChrg.ChildAdditionalDriverChargeId.HasValue &&
-                                            (!request.OperationId.HasValue ||
-                                              tariffType.OperationId == request.OperationId.Value) &&
-                                             (!request.TariffTypeId.HasValue ||
-                                              tariffType.TariffTypeId == request.TariffTypeId) && addDriverChrg.UserDomainKey == UserDomainKey && tariffType.UserDomainKey == UserDomainKey)
-                                        select new AdditionalDriverChargeSearchContent
-                                        {
-                                            AdditionalDriverChargeId = addDriverChrg.AdditionalDriverChargeId,
-                                            TariffTypeCode = tariffType.TariffTypeCode,
-                                            TariffTypeCodeName = tariffType.TariffTypeCode + " - " + tariffType.TariffTypeName,
-                                            AdditionalDriverChargeRate = addDriverChrg.AdditionalDriverChargeRate,
-                                            StartDt = addDriverChrg.StartDt,
-                                            CompanyCodeName = tariffType.Operation.Department.Company.CompanyCode + " - " + tariffType.Operation.Department.Company.CompanyName,
-                                            OperationCodeName = tariffType.Operation.OperationCode + " - " + tariffType.Operation.OperationName,
-                                            RevisionNumber = addDriverChrg.RevisionNumber,
-                                            CompanyId = tariffType.Operation.Department.Company.CompanyId,
-                                            DepartmentId = tariffType.Operation.Department.DepartmentId,
-                                            OperationId = tariffType.Operation.OperationId,
-                                            TariffTypeId = tariffType.TariffTypeId,
-                                            ChildAdditionalDriverChargeId = addDriverChrg.ChildAdditionalDriverChargeId,
-                                        };
+                join tariffType in db.TariffTypes.Where(tt => tt.UserDomainKey == UserDomainKey) on addDriverChrg.TariffTypeCode equals tariffType.TariffTypeCode
+                where
+                    (!addDriverChrg.ChildAdditionalDriverChargeId.HasValue &&
+                    (!request.OperationId.HasValue ||
+                        tariffType.OperationId == request.OperationId.Value) &&
+                        (!request.TariffTypeId.HasValue ||
+                        tariffType.TariffTypeId == request.TariffTypeId) && addDriverChrg.UserDomainKey == UserDomainKey && tariffType.UserDomainKey == UserDomainKey)
+                select new AdditionalDriverChargeSearchContent
+                {
+                    AdditionalDriverChargeId = addDriverChrg.AdditionalDriverChargeId,
+                    TariffTypeCode = tariffType.TariffTypeCode,
+                    TariffTypeCodeName = tariffType.TariffTypeCode + " - " + tariffType.TariffTypeName,
+                    AdditionalDriverChargeRate = addDriverChrg.AdditionalDriverChargeRate,
+                    StartDt = addDriverChrg.StartDt,
+                    CompanyCodeName = tariffType.Operation.Department.Company.CompanyCode + " - " + tariffType.Operation.Department.Company.CompanyName,
+                    OperationCodeName = tariffType.Operation.OperationCode + " - " + tariffType.Operation.OperationName,
+                    RevisionNumber = addDriverChrg.RevisionNumber,
+                    CompanyId = tariffType.Operation.Department.Company.CompanyId,
+                    DepartmentId = tariffType.Operation.Department.DepartmentId,
+                    OperationId = tariffType.Operation.OperationId,
+                    TariffTypeId = tariffType.TariffTypeId,
+                    ChildAdditionalDriverChargeId = addDriverChrg.ChildAdditionalDriverChargeId,
+                };
 
             IEnumerable<AdditionalDriverChargeSearchContent> additionalDriverCharges = request.IsAsc
                 ? getInsuranceRateQuery.OrderBy(additionalDriverChargeClause[request.AdditionalDriverChargeByOrder])

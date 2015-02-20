@@ -45,7 +45,7 @@ namespace Cares.Repository.Repositories
         public IEnumerable<InsuranceRateReportResponse> GetInsuranceRateReportData()
         {
             var insuranceRateReportResponseQuery = from insuranceRt in db.InsuranceRts
-                join tarrifType in db.TariffTypes on
+                    join tarrifType in db.TariffTypes.Where(tt => tt.UserDomainKey == UserDomainKey) on
                     new {insuranceRt.InsuranceRtMain.TariffTypeCode} equals new {tarrifType.TariffTypeCode}
                                                    where (insuranceRt.UserDomainKey == UserDomainKey && tarrifType.UserDomainKey == UserDomainKey)
                 select new InsuranceRateReportResponse
