@@ -214,6 +214,7 @@
     <Compile Include="Repository\IInsuranceTypeRepository.cs" />
     <Compile Include="Repository\IStandardDiscountRepository.cs" />
     <Compile Include="Repository\ITransmissionTypeRepository.cs" />
+    <Compile Include="Repository\IUserDetailsRepository.cs" />
     <Compile Include="Repository\IUserRepository.cs" />
     <Compile Include="Repository\IVehcilceImageDetailRepository.cs" />
     <Compile Include="Repository\IVehicleCheckListItemRepository.cs" />

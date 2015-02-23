@@ -13,5 +13,10 @@ namespace Cares.Interfaces.IServices
         /// Gives the maximum domain key from the records
         /// </summary>
         double GetMaxUserDomainKey();
+        
+        /// <summary>
+        /// Saves user details provided while signup
+        /// </summary>
+        void SaveUserDetails(Models.IdentityModels.User addedUser, RegisterViewModel model);
     }
 }

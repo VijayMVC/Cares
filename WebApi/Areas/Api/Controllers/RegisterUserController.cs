@@ -124,6 +124,7 @@ namespace Cares.WebApi.Areas.Api.Controllers
                 if (addedUser != null)
                 {
                     registerUserService.AddLicenseDetail(model, userDomainKey);
+                    registerUserService.SaveUserDetails(addedUser, model);
                     return SendEmailToUser(addedUser, model);
                 }
                 if (!string.IsNullOrEmpty(errorString))

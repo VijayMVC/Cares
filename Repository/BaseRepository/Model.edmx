@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CaresModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CaresModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AdditionalCharge">
           <Key>
             <PropertyRef Name="AdditionalChargeID" />
@@ -2366,6 +2366,16 @@
           <Property Name="TransmissionTypeName" Type="nvarchar" MaxLength="255" />
           <Property Name="TransmissionTypeCode" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserDetails">
+          <Key>
+            <PropertyRef Name="UserDetailId" />
+          </Key>
+          <Property Name="UserDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="CountryName" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="AccountType" Type="nvarchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="Vehicle">
           <Key>
@@ -5832,6 +5842,7 @@
           <EntitySet Name="SubRegion" EntityType="Self.SubRegion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TariffType" EntityType="Self.TariffType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransmissionType" EntityType="Self.TransmissionType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vehicle" EntityType="Self.Vehicle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VehicleCategory" EntityType="Self.VehicleCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VehicleCheckList" EntityType="Self.VehicleCheckList" Schema="dbo" store:Type="Tables" />
@@ -7871,6 +7882,7 @@
             <End Role="LicenseDetailsDefault" EntitySet="LicenseDetailsDefaults" />
           </AssociationSet>
           <EntitySet Name="DomainLicenseDetails" EntityType="DomainModels.DomainLicenseDetail" />
+          <EntitySet Name="UserDetails" EntityType="DomainModels.UserDetail" />
         </EntityContainer>
         <EntityType Name="Company">
           <Key>
@@ -13922,6 +13934,16 @@
           <Property Name="RecLastUpdatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
         </EntityType>
+        <EntityType Name="UserDetail">
+          <Key>
+            <PropertyRef Name="UserDetailId" />
+          </Key>
+          <Property Name="UserDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AccountType" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -16905,6 +16927,17 @@
                 <ScalarProperty Name="Employee" ColumnName="Employee" />
                 <ScalarProperty Name="RaPerMonth" ColumnName="RAPerMonth" />
                 <ScalarProperty Name="DomainLicenseDetailsId" ColumnName="DomainLicenseDetailsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserDetails">
+            <EntityTypeMapping TypeName="DomainModels.UserDetail">
+              <MappingFragment StoreEntitySet="UserDetails">
+                <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="UserDetailId" ColumnName="UserDetailId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
