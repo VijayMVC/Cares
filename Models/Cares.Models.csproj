@@ -120,6 +120,7 @@
     <Compile Include="Common\MainteneceTypeGroupByColumn.cs" />
     <Compile Include="Common\MarketingChannelByColumn.cs" />
     <Compile Include="Common\RaQueueByColumn.cs" />
+    <Compile Include="Common\UserDetail.cs" />
     <Compile Include="Common\VehicleCategoryByColumn.cs" />
     <Compile Include="Common\VehicleMakeByColumn.cs" />
     <Compile Include="Common\VehicleModelByColumn.cs" />

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq.Expressions;
+using Cares.Models.Common;
 using Cares.Models.DomainModels;
 using Cares.Models.IdentityModels;
 using Cares.Models.MenuModels;
@@ -581,6 +582,7 @@ namespace Cares.Repository.BaseRepository
         public DbSet<CaresLicenseType> CaresLicenseTypes { get; set; }
         public DbSet<DomainLicenseDetail> DomainLicenseDetails { get; set; }
         public DbSet<LicenseDetailsDefault> LicenseDetailsDefault { get; set; }
+        public DbSet<UserDetail> UserDetails { get; set; }
 
         #endregion
     }
