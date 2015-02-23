@@ -15,14 +15,14 @@
 }
 #AreaBinding #AreaEditor {
   margin-top: 15px;
-}
-#AreaBinding #AreaEditor .detailsContainer {
-  width: 100%;
-}
-#AreaBinding #AreaEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                display: inline-block;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 /*# sourceMappingURL=Area.css.map */

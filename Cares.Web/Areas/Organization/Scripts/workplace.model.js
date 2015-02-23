@@ -53,7 +53,7 @@
                         CompanyId:companyId(),
                         WorkLocationId:workLocationId(),
                         ParentWorkPlaceId: parentWorkPlaceId(),
-                        OperationsWorkPlaces:OperationsWorkPlaces()
+                        OperationsWorkPlaces: OperationsWorkPlaces()
                     };
                 };
             return {
@@ -96,7 +96,7 @@
     var
        // operation Workplace entity
        // ReSharper disable InconsistentNaming
-       operationWorkplace = function (specifiedoperationsWorkPlaceId, specifiedLocationCode, specifiedLocationName, specifiedDescription, specifiedoperationId, specifiedoperationName,
+       operationWorkplace = function (specifiedoperationsWorkPlaceId, specifiedLocationCode, specifiedLocationName, specifiedoperationId, specifiedoperationName,
           specifiedfleelPoolId, specifiedfleelPoolName, specifiedcostCenter, specifiedWorkPlaceId) {
            var
                 parentWorkPlaceId = ko.observable(specifiedWorkPlaceId),
@@ -104,7 +104,6 @@
                 operationsWorkPlaceId = ko.observable(specifiedoperationsWorkPlaceId),
                 locationCode = ko.observable(specifiedLocationCode).extend({ required: true }),
                 locationName = ko.observable(specifiedLocationName).extend({ required: true }),
-                locationDescription = ko.observable(specifiedDescription),
                 operationId = ko.observable(specifiedoperationId),
                 operationName = ko.observable(specifiedoperationName),
                 fleelPoolId = ko.observable(specifiedfleelPoolId),
@@ -146,7 +145,6 @@
            return {
                locationCode: locationCode,
                locationName: locationName,
-               locationDescription:locationDescription,
                operationId:operationId,
                operationName:operationName,
                fleelPoolId:fleelPoolId,
@@ -164,7 +162,7 @@
        };
     // operation Workplace Server to Client Mapper
     var operationWorkplaceServertoClientMapper = function (itemFromServer) {
-        var pob = new operationWorkplace(itemFromServer.OperationsWorkPlaceId, itemFromServer.LocationCode, itemFromServer.LocationName, "-",
+        var pob = new operationWorkplace(itemFromServer.OperationsWorkPlaceId, itemFromServer.LocationCode, itemFromServer.LocationName, 
             itemFromServer.OperationId, itemFromServer.OperationName,
           itemFromServer.FleetPoolId, itemFromServer.FleetPoolName, itemFromServer.CostCenter, itemFromServer.WorkPlaceId);
         return pob;

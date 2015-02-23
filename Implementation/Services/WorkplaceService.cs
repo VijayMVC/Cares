@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using Cares.Commons;
@@ -31,25 +30,41 @@ namespace Cares.Implementation.Services
         private readonly IOperationsWorkPlaceRepository operationsWorkPlaceRepository;
 
         /// <summary>
-        /// Set WorkPlace Properties in Insertion Case
+        /// Set WorkPlace Properties
         /// </summary>
-        private void SetWorkPlaceProperties(WorkPlace workPlaceRequest, WorkPlace dbWorkPlace)
+        private void SetNewlyAddedWorkPlaceProperties(WorkPlace workPlaceRequest, WorkPlace dbWorkPlace)
         {
-            dbWorkPlace.RecLastUpdatedBy = workplaceRepository.LoggedInUserIdentity;
-            dbWorkPlace.RecLastUpdatedDt = DateTime.Now;
             dbWorkPlace.WorkPlaceCode = workPlaceRequest.WorkPlaceCode;
             dbWorkPlace.WorkPlaceName = workPlaceRequest.WorkPlaceName;
             dbWorkPlace.WorkPlaceDescription = workPlaceRequest.WorkPlaceDescription;
             dbWorkPlace.WorkPlaceTypeId = workPlaceRequest.WorkPlaceTypeId;
             dbWorkPlace.WorkLocationId = workPlaceRequest.WorkLocationId;
             dbWorkPlace.ParentWorkPlaceId = workPlaceRequest.ParentWorkPlaceId;
-
             dbWorkPlace.RecCreatedBy = dbWorkPlace.RecLastUpdatedBy = workplaceRepository.LoggedInUserIdentity;
             dbWorkPlace.RecCreatedDt = DateTime.Now;
             dbWorkPlace.RecLastUpdatedDt = DateTime.Now;
-            dbWorkPlace.UserDomainKey = 1;
+            dbWorkPlace.UserDomainKey = operationsWorkPlaceRepository.UserDomainKey;
         }
-
+        /// <summary>
+        /// Insert new location to Loaction list
+        /// </summary>
+        private void AddNewLocationToOperationWorkplaceList(OperationsWorkPlace toBeAdded, ICollection<OperationsWorkPlace> locations)
+        {
+            OperationsWorkPlace newLocation = operationsWorkPlaceRepository.Create();
+            newLocation.IsActive = true;
+            newLocation.IsDeleted = newLocation.IsPrivate = newLocation.IsReadOnly = false;
+            newLocation.RecCreatedBy = newLocation.RecLastUpdatedBy = operationsWorkPlaceRepository.LoggedInUserIdentity;
+            newLocation.RecCreatedDt = newLocation.RecLastUpdatedDt = DateTime.Now;
+            newLocation.UserDomainKey = operationsWorkPlaceRepository.UserDomainKey;
+            newLocation.RowVersion = 0;
+            newLocation.LocationCode = toBeAdded.LocationCode;
+            newLocation.LocationName = toBeAdded.LocationName;
+            newLocation.OperationId = toBeAdded.OperationId;
+            newLocation.FleetPoolId = toBeAdded.FleetPoolId;
+            newLocation.CostCenter = toBeAdded.CostCenter;
+            newLocation.WorkPlaceId = toBeAdded.WorkPlaceId;
+            locations.Add(newLocation);
+        }
         /// <summary>
         /// Update Work Place Properties in Updation case
         /// </summary>
@@ -57,6 +72,7 @@ namespace Cares.Implementation.Services
         {
             dbWorkPlace.RecLastUpdatedBy = workplaceRepository.LoggedInUserIdentity;
             dbWorkPlace.RecLastUpdatedDt = DateTime.Now;
+            dbWorkPlace.RowVersion = dbWorkPlace.RowVersion + 1;
             dbWorkPlace.WorkPlaceCode = workPlaceRequest.WorkPlaceCode;
             dbWorkPlace.WorkPlaceName = workPlaceRequest.WorkPlaceName;
             dbWorkPlace.WorkPlaceDescription = workPlaceRequest.WorkPlaceDescription;
@@ -64,22 +80,116 @@ namespace Cares.Implementation.Services
             dbWorkPlace.WorkLocationId = workPlaceRequest.WorkLocationId;
             dbWorkPlace.ParentWorkPlaceId = workPlaceRequest.ParentWorkPlaceId;
         }
-
         /// <summary>
-        /// Deletion of Operations with iD
+        /// Validate Workplace and its associated locations - 
         /// </summary>
-        private void DeleteOperation(long? operationsWorkPlaceId)
+        private void ValidateWorkplace(WorkPlace workPlaceRequest)
         {
-            if (operationsWorkPlaceId != null)
+            if (workplaceRepository.WorkplaceCodeDuplicated(workPlaceRequest))
             {
-                OperationsWorkPlace operationsWorkPlace = operationsWorkPlaceRepository.Find((long)operationsWorkPlaceId);
-                if (operationsWorkPlace != null)
+                throw new CaresException(Resources.Organization.Workplace.WorkPlaceWithSameCodeExistsAlready);
+            }
+
+            if (workPlaceRequest.OperationsWorkPlaces != null && workPlaceRequest.OperationsWorkPlaces.Any())
+            {
+                if (workPlaceRequest.OperationsWorkPlaces.GroupBy(opwp => opwp.LocationCode).Any(group => group.Count() > 1))
                 {
-                    operationsWorkPlaceRepository.Delete(operationsWorkPlace);
+                    OperationsWorkPlace duplicatedLocationCode = workPlaceRequest.OperationsWorkPlaces.GroupBy(opwp => opwp.LocationCode)
+                            .Where(group => group.Count() > 1).Select(operationsWorkPlaces => operationsWorkPlaces.FirstOrDefault()).FirstOrDefault();
+                    string duplicatedCode = string.Empty;
+                    if (duplicatedLocationCode != null)
+                    {
+                        duplicatedCode = duplicatedLocationCode.LocationCode;
+                    }
+                    throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Organization.Workplace.LocationCodeDuplicated, duplicatedCode));
+                }
+
+                IList<OperationsWorkPlace> existingWorkplaces = operationsWorkPlaceRepository.GetAll().Where(location => location.WorkPlaceId != workPlaceRequest.WorkPlaceId).ToList();
+
+                foreach (OperationsWorkPlace currentWorkPlaceLocation in workPlaceRequest.OperationsWorkPlaces)
+                {
+                    if (existingWorkplaces.Any(otherWorhplace => otherWorhplace.LocationCode == currentWorkPlaceLocation.LocationCode))
+                    {
+                        throw new CaresException(string.Format(CultureInfo.InvariantCulture,
+                            Resources.Organization.Workplace.LocationCodeDuplicated, currentWorkPlaceLocation.LocationCode));
+                    }
+                }
+            }
+            if (workPlaceRequest.OperationsWorkPlaces != null && workPlaceRequest.OperationsWorkPlaces.Any(opwp => opwp.OperationsWorkPlaceId == 0))// if a new branch is to be added                
+            {
+                int numberOfExistedworkplacesByDomainKey = operationsWorkPlaceRepository.GetCountofBranchesInOtherWorkplaces(workPlaceRequest.WorkPlaceId);
+                DomainLicenseDetailClaim licenseDetails = ClaimHelper.GetDeserializedClaims<DomainLicenseDetailClaim>(CaresUserClaims.DomainLicenseDetail).FirstOrDefault();
+                if (licenseDetails == null)
+                {
+                    throw new InvalidOperationException(Resources.Organization.Workplace.NoDomainLicenseDetailClaim);
+                }
+                if (licenseDetails.Branches <= (numberOfExistedworkplacesByDomainKey + workPlaceRequest.OperationsWorkPlaces.Count))
+                {
+                    throw new CaresException(Resources.Organization.Workplace.ExceedingDomainLimitForWpError);
                 }
             }
         }
-
+        /// <summary>
+        /// Add workplace and all associated locations
+        /// </summary>
+        private WorkPlace AddWorkplace(WorkPlace workPlaceRequest, WorkPlace dbWorkPlace)
+        {
+            SetNewlyAddedWorkPlaceProperties(workPlaceRequest, dbWorkPlace);
+            if (workPlaceRequest.OperationsWorkPlaces != null && workPlaceRequest.OperationsWorkPlaces.Any())
+            {
+                foreach (OperationsWorkPlace toBeAddedLocation in workPlaceRequest.OperationsWorkPlaces)
+                {
+                    AddNewLocationToOperationWorkplaceList(toBeAddedLocation, dbWorkPlace.OperationsWorkPlaces);
+                }
+            }
+            workplaceRepository.Add(dbWorkPlace);
+            return dbWorkPlace;
+        }
+        /// <summary>
+        /// Update workplace in the database - updates its locations as well
+        /// </summary>
+        private void UpdateWorkplace(WorkPlace workPlaceRequest, WorkPlace dbWorkPlace)
+        {
+            // Updating Workplace Properties
+            UpdateWorkPlaceProperties(workPlaceRequest, dbWorkPlace);
+            //Remove existing items that are removed in the request
+            if (dbWorkPlace.OperationsWorkPlaces != null && dbWorkPlace.OperationsWorkPlaces.Any())
+            {
+                List<OperationsWorkPlace> dbOperationWorkplaces = dbWorkPlace.OperationsWorkPlaces.ToList();
+                if (workPlaceRequest.OperationsWorkPlaces == null)
+                {
+                    workPlaceRequest.OperationsWorkPlaces = new List<OperationsWorkPlace>();
+                }
+                List<OperationsWorkPlace> toBeRemovedOperationsWorkPlaces = dbOperationWorkplaces.Where(
+                    i => workPlaceRequest.OperationsWorkPlaces.All(j => i.OperationsWorkPlaceId != j.OperationsWorkPlaceId)).ToList();
+                foreach (OperationsWorkPlace currentRemoveItem in toBeRemovedOperationsWorkPlaces.ToList())
+                {
+                    DeleteLocationByLocationId(currentRemoveItem.OperationsWorkPlaceId);
+                    //dbWorkPlace.OperationsWorkPlaces.Remove(
+                    //    dbWorkPlace.OperationsWorkPlaces.FirstOrDefault(
+                    //        current => current.OperationsWorkPlaceId == currentRemoveItem.OperationsWorkPlaceId));
+                }
+            }
+            if (workPlaceRequest.OperationsWorkPlaces.Any())
+            {
+                //Insert newly added locations
+                foreach (
+                    OperationsWorkPlace toBeAddedLocation in
+                        workPlaceRequest.OperationsWorkPlaces.Where(it => it.OperationsWorkPlaceId == 0))
+                {
+                    AddNewLocationToOperationWorkplaceList(toBeAddedLocation, dbWorkPlace.OperationsWorkPlaces);
+                }
+            }
+            workplaceRepository.Update(dbWorkPlace);
+        }
+        /// <summary>
+        /// Deletes Operations workplace by OperationWorkplaceId
+        /// </summary>
+        private void DeleteLocationByLocationId(long opertionWorkplaceId)
+        {
+            var location = operationsWorkPlaceRepository.Find(opertionWorkplaceId);
+            operationsWorkPlaceRepository.Delete(location);
+        }
         #endregion
         #region Constructor
 
@@ -130,130 +240,29 @@ namespace Cares.Implementation.Services
                 TotalCount = rowCount
             };
         }
-
         /// <summary>
-        /// Save WorkPlace
+        /// Saves WorkPlace
         /// </summary>
         public WorkPlace SaveWorkPlace(WorkPlace workPlaceRequest)
-        {
-            // Check the availability of workplace code
-            if (workplaceRepository.DoesWorkPlaceCodeExists(workPlaceRequest))
-                throw new CaresException(Resources.Organization.Workplace.WorkPlaceWithSameCodeExistsAlready);
-
+        {            
+            ValidateWorkplace(workPlaceRequest);
             WorkPlace dbWorkPlace = workplaceRepository.Find(workPlaceRequest.WorkPlaceId);
-            bool isFind = false;
-            bool isOperationInserted = false;
-
-            #region Edit
             if (dbWorkPlace != null)
-            {
-                IEnumerable<OperationsWorkPlace> dBVersionOperationsWorkPlace = operationsWorkPlaceRepository.GetWorkPlaceOperationByWorkPlaceId(dbWorkPlace.WorkPlaceId);
-                // Updating object properties
-                UpdateWorkPlaceProperties(workPlaceRequest, dbWorkPlace);
-
-                #region Operation already exists in DB
-                // ReSharper disable once PossibleMultipleEnumeration
-                if (dBVersionOperationsWorkPlace.Any())
-                {
-                    // check for every dBOperationsWorkPlace in DB
-                    foreach (OperationsWorkPlace dBOperationsWorkPlace in dBVersionOperationsWorkPlace)
-                    {
-                        //If dBOperationsWorkPlace matches to any of request operation than dont delete it else delete 
-                        if (workPlaceRequest.OperationsWorkPlaces != null)
-                        {
-                            if (workPlaceRequest.OperationsWorkPlaces.Any(reqOpp => reqOpp.OperationsWorkPlaceId == dBOperationsWorkPlace.OperationsWorkPlaceId))
-                                isFind = true;
-                        }
-                        else
-                            DeleteOperation(dBOperationsWorkPlace.OperationsWorkPlaceId);
-                        if (!isFind)
-                            DeleteOperation(dBOperationsWorkPlace.OperationsWorkPlaceId);
-                        isFind = false;
-                    }
-                }
-                #endregion
-                #region Adding New Operation
-                else
-                {
-                    if (workPlaceRequest.OperationsWorkPlaces==null)
-                        workPlaceRequest.OperationsWorkPlaces= new Collection<OperationsWorkPlace>();
-                    foreach (var newOperation in workPlaceRequest.OperationsWorkPlaces)
-                    {
-                        newOperation.RecCreatedBy = newOperation.RecLastUpdatedBy = operationRepository.LoggedInUserIdentity;
-                        newOperation.RecCreatedDt = newOperation.RecLastUpdatedDt = DateTime.Now;
-                        newOperation.UserDomainKey = 1;
-                        newOperation.IsActive = true;
-                        newOperation.IsDeleted = false;
-                        newOperation.IsPrivate = false;
-                        dbWorkPlace.OperationsWorkPlaces.Add(newOperation);
-                        isOperationInserted = true;
-                    }
-                }
-                #endregion
-                #region Adding Operation when there are more Operation in request thatn in DB
-                if (workPlaceRequest.OperationsWorkPlaces != null && (workPlaceRequest.OperationsWorkPlaces.Count > dBVersionOperationsWorkPlace.Count()) &&
-                    isOperationInserted==false)
-
-                    foreach (var newOperation in workPlaceRequest.OperationsWorkPlaces)
-                    {
-                        if (newOperation.OperationsWorkPlaceId == 0)
-                        {
-                            newOperation.RecCreatedBy = newOperation.RecLastUpdatedBy = operationRepository.LoggedInUserIdentity;
-                            newOperation.RecCreatedDt = newOperation.RecLastUpdatedDt = DateTime.Now;
-                            newOperation.UserDomainKey = 1;
-                            newOperation.IsActive = true;
-                            newOperation.IsDeleted = false;
-                            newOperation.IsPrivate = false;
-                            dbWorkPlace.OperationsWorkPlaces.Add(newOperation);
-                        }
-                    }
-
-                #endregion
-                workplaceRepository.Update(dbWorkPlace);
+            {                
+                UpdateWorkplace(workPlaceRequest, dbWorkPlace);
             }
-            #endregion
-            #region ADD
             else
             {
-                var numberOfExistedworkplacesByDomainKey = workplaceRepository.GetCountOfOperationWorkplaceByDomainKey();
-                var domainLicenseDetailwithDomainKey = ClaimHelper.GetDeserializedClaims<DomainLicenseDetailClaim>(CaresUserClaims.DomainLicenseDetail).FirstOrDefault();
-                if (domainLicenseDetailwithDomainKey != null)
-                    if (domainLicenseDetailwithDomainKey.Branches <= numberOfExistedworkplacesByDomainKey)
-                    {
-                        throw new CaresException(Resources.Organization.Workplace.ExceedingDomainLimitForWpError);
-                    }
-                    else
-                    {
-                        throw new InvalidOperationException(Resources.Organization.Workplace.NoDomainLicenseDetailClaim);
-                    }
-
                 dbWorkPlace = workplaceRepository.Create();
-                SetWorkPlaceProperties(workPlaceRequest, dbWorkPlace);
-                if (workPlaceRequest.OperationsWorkPlaces != null)
-                {
-                    dbWorkPlace.OperationsWorkPlaces= new Collection<OperationsWorkPlace>();
-                    foreach (var operation in (workPlaceRequest.OperationsWorkPlaces))
-                    {
-                        operation.RecCreatedBy = operation.RecLastUpdatedBy = workplaceRepository.LoggedInUserIdentity;
-                        operation.RecCreatedDt = operation.RecLastUpdatedDt = DateTime.Now;
-                        operation.UserDomainKey = 1;
-                        operation.IsActive = true;
-                        operation.IsDeleted = false;
-                        operation.IsPrivate = false;
-                        dbWorkPlace.OperationsWorkPlaces.Add(operation);
-                    }
-                }
-                workplaceRepository.Add(dbWorkPlace);
+                dbWorkPlace = AddWorkplace(workPlaceRequest, dbWorkPlace);
             }
-            #endregion
             workplaceRepository.SaveChanges();
-            // To Load the proprties
+            
             return  workplaceRepository.GetWorkplaceWithDetails(dbWorkPlace.WorkPlaceId);
         }
 
-     
         /// <summary>
-        /// Delete workplace
+        /// Deletes workplace
         /// </summary>
         public void DeleteWorkPlace(long workPlaceid)
         {

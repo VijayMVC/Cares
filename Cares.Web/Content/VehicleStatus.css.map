@@ -1,9 +1,1 @@
-{
-  "version": 3,
-  "file": "VehicleStatus.css",
-  "sources": [
-    "VehicleStatus.less"
-  ],
-  "names": [],
-  "mappings": "AAAA,qBAEI,MACI,MACI,GAEI;EACI,UAAA;;AAPpB,qBAEI,MACI,MACI,GAKI;EACI,UAAA;;AAVpB,qBAEI,MACI,MACI,GAQI;EACI,UAAA;;AAbpB,qBAmBK;EACG,gBAAA;;AApBR,qBAmBK,qBAEG;EACI,WAAA;;AAtBZ,qBAmBK,qBAEG,kBAEI;EACI,WAAA;EACA,UAAA;EACA,mBAAA;EACA,gBAAA"
-}
+﻿{"version":3,"sources":["VehicleStatus.less"],"names":[],"mappings":"AAAA,qBAEI,MACI,MACI,GAEI;EACI,UAAA;;AAPpB,qBAEI,MACI,MACI,GAKI;EACI,UAAA;;AAVpB,qBAEI,MACI,MACI,GAQI;EACI,UAAA;;AAbpB,qBAmBK;EACG,gBAAA","file":"VehicleStatus.css"}

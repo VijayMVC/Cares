@@ -61,14 +61,68 @@
     margin-left: 10px;
 }
 
-.margin-left{
 
-    margin-left: 4%;
+
+.margin-left-10 {
+  margin-left: 10px !important;
 }
 
-.margin-right{
 
+.margin-right{
     margin-right: 3%;
+}
+
+.margin-right-20{
+    margin-right: 20px;
+}
+
+.margin-top-15{
+    margin-top: 15px;
+}
+.cursor-pointer{
+    cursor: pointer;
+}
+
+   html[dir="rtl"] .form-group label{
+            font-weight: normal;
+            text-align: right !important;
+        }
+   html[dir="rtl"] .col-xs-1,html[dir="rtl"] .col-xs-2, html[dir="rtl"] .col-xs-3, html[dir="rtl"] .col-xs-4, html[dir="rtl"] .col-xs-5, html[dir="rtl"] .col-xs-6, html[dir="rtl"] .col-xs-7,
+        .col-xs-8, html[dir="rtl"] .col-xs-9, html[dir="rtl"] .col-xs-10, html[dir="rtl"] .col-xs-11, html[dir="rtl"] .col-xs-12, html[dir="rtl"] .col-sm-1, html[dir="rtl"] .col-sm-2,
+        .col-sm-3, html[dir="rtl"] .col-sm-4, html[dir="rtl"] .col-sm-5, html[dir="rtl"] .col-sm-6, html[dir="rtl"] .col-sm-7, html[dir="rtl"] .col-sm-8, html[dir="rtl"] .col-sm-9,
+        .col-sm-10, html[dir="rtl"] .col-sm-11, html[dir="rtl"] .col-sm-12, html[dir="rtl"] .col-md-1, html[dir="rtl"] .col-md-2, html[dir="rtl"] .col-md-3, html[dir="rtl"] .col-md-4,
+        .col-md-5, html[dir="rtl"] .col-md-6, html[dir="rtl"] .col-md-7, html[dir="rtl"] .col-md-8, html[dir="rtl"] .col-md-9, html[dir="rtl"] .col-md-10, html[dir="rtl"] .col-md-11,
+        .col-md-12, html[dir="rtl"] .col-lg-1, html[dir="rtl"] .col-lg-2, html[dir="rtl"] .col-lg-3, html[dir="rtl"] .col-lg-4, html[dir="rtl"] .col-lg-5, html[dir="rtl"] .col-lg-6,
+        .col-lg-7, html[dir="rtl"] .col-lg-8, html[dir="rtl"] .col-lg-9, html[dir="rtl"] .col-lg-10, html[dir="rtl"] .col-lg-11, html[dir="rtl"] .col-lg-12 {
+            padding-right: 8px !important;
+            padding-left: 0 !important;
+        }
+
+.modal-dialog {
+    width: 900px;
+
+    .well {
+        -moz-border-radius: 5px !important;
+        -webkit-border-radius: 5px !important;
+        border-radius: 5px !important;
+    }
+
+    .modal-header {
+        background-color: #3F5567;
+
+        .modal-title {
+            color: #FFFFFF;
+        }
+    }
+
+    .modal-body {
+        padding: 10px;
+    }
+
+    .modal-footer {
+        padding: 10px 20px 20px;
+        margin-top: 2px;
+    }
 }
 
 
@@ -77,6 +131,16 @@
     margin-bottom: 0;
     margin-top: 15px;
 }
+
+.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                display: inline-block;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }
 
 .header-toolsSection {
     margin-top: 20px;
@@ -164,3 +228,34 @@
     color:deepskyblue
 }
 /* Twitter Typeahead */
+
+/*RTL IMPLEMENTATION*/
+html[dir="rtl"] .form-horizontal .form-group {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+html[dir="rtl"] .float-left {
+    float: right;
+}
+html[dir="rtl"] .float-right {
+    float: left;
+}
+
+html[dir="ltr"] .margin-left{
+    margin-left: 4%;
+}
+
+html[dir="rtl"] .margin-right{
+    margin-left: 3%;
+} 
+html[dir="rtl"] .margin-left-10 {
+    margin-right: 10px !important;
+}
+html[dir="rtl"] .margin-left { 
+    margin-right: 4%;
+}
+
+html[dir="rtl"] .margin-right-20{
+    margin-left: 20px;
+}

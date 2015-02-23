@@ -9,14 +9,14 @@
 }
 #MaintenanceTypeGroupBinding #MaintenanceTypeGroupEditor {
   margin-top: 15px;
-}
-#MaintenanceTypeGroupBinding #MaintenanceTypeGroupEditor .detailsContainer {
-  width: 100%;
-}
-#MaintenanceTypeGroupBinding #MaintenanceTypeGroupEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 /*# sourceMappingURL=MaintenanceTypeGroup.css.map */

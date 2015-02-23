@@ -2,77 +2,80 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">@Cares.Web.Resources.Shared.Common.Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">Vehicle Movements</h4>
+                <h2 class="modal-title" id="myModalLabel">Vehicle Movements</h2>
             </div>
             <div class="modal-body">
-                <div>
-                    <form class="form-horizontal" data-bind="with: $root.selectedRaHireGroup">
-                        <div class="form-group" data-bind="with: vehicle">
-                            <label class="control-label col-sm-2">Plate #</label>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control vehicleMovementTemplate_popoverContent_plateNo" data-bind="value: plateNumber" />
+                <div class="row">
+                    <div class="well">
+                        <form class="form-horizontal" data-bind="with: $root.selectedRaHireGroup">
+                            <div class="form-group" data-bind="with: vehicle">
+                                <label class="control-label col-sm-2 margin-top-10">Plate #</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control margin-top-10 vehicleMovementTemplate_popoverContent_plateNo" data-bind="value: plateNumber" />
+                                </div>
+                                <label class="control-label col-sm-2 margin-top-10">Tank Size</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control margin-top-10 vehicleMovementTemplate_popoverContent_tankSize" data-bind="value: tankSize" />
+                                </div>
                             </div>
-                            <label class="control-label col-sm-2">Tank Size</label>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control vehicleMovementTemplate_popoverContent_tankSize" data-bind="value: tankSize" />
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Out Dt/Time</label>
+                                <div class="col-md-3" data-bind="with: vehicleMovementOut">
+                                    <input type="text" class="form-control vehicleMovementTemplate_popoverContent_outDtTime" data-bind="datetimepicker: start, enable: false" />
+                                </div>
+                                <label class="control-label col-sm-2">In Dt/Time</label>
+                                <div class="col-md-3" data-bind="with: vehicleMovementIn">
+                                    <input type="text" class="form-control vehicleMovementTemplate_popoverContent_inDtTime" data-bind="datetimepicker: start" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-sm-2">Out Dt/Time</label>
-                            <div class="col-md-3" data-bind="with: vehicleMovementOut">
-                                <input type="text" class="form-control vehicleMovementTemplate_popoverContent_outDtTime" data-bind="datetimepicker: start, enable: false" />
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Out Location</label>
+                                <div class="col-md-3" data-bind="with: vehicleMovementOut">
+                                    <select class="form-control vehicleMovementTemplate_popoverContent_outLocation" data-bind="options: $root.availableLocations, optionsCaption: '<Operation>', optionsText: 'code', optionsValue: 'id', value: operationsWorkPlaceId, enable: false"></select>
+                                </div>
+                                <label class="control-label col-sm-2">In Location</label>
+                                <div class="col-md-3" data-bind="with: vehicleMovementIn">
+                                    <select class="form-control vehicleMovementTemplate_popoverContent_inLocation" data-bind="options: $root.availableLocations, optionsCaption: '<Operation>', optionsText: 'code', optionsValue: 'id', value: operationsWorkPlaceId"></select>
+                                </div>
                             </div>
-                            <label class="control-label col-sm-2">In Dt/Time</label>
-                            <div class="col-md-3" data-bind="with: vehicleMovementIn">
-                                <input type="text" class="form-control vehicleMovementTemplate_popoverContent_inDtTime" data-bind="datetimepicker: start" />
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Odometer Out</label>
+                                <div class="col-md-3" data-bind="with: vehicleMovementOut">
+                                    <input type="text" class="form-control vehicleMovementTemplate_popoverContent_odometerOut" data-bind="value: odometer, enable: false" />
+                                </div>
+                                <label class="control-label col-sm-2">Odometer In</label>
+                                <div class="col-md-3" data-bind="with: vehicleMovementIn">
+                                    <input type="text" class="form-control vehicleMovementTemplate_popoverContent_odometerIn" data-bind="value: odometer" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-sm-2">Out Location</label>
-                            <div class="col-md-3" data-bind="with: vehicleMovementOut">
-                                <select class="form-control vehicleMovementTemplate_popoverContent_outLocation" data-bind="options: $root.availableLocations, optionsCaption: '<Operation>', optionsText: 'code', optionsValue: 'id', value: operationsWorkPlaceId, enable: false"></select>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Fuel Out</label>
+                                <div class="col-md-3" data-bind="with: vehicleMovementOut">
+                                    <input type="text" class="form-control vehicleMovementTemplate_popoverContent_fuelOut" data-bind="value: fuelLevel, enable: false" />
+                                </div>
+                                <label class="control-label col-sm-2">Fuel In</label>
+                                <div class="col-md-3" data-bind="with: vehicleMovementIn">
+                                    <input type="text" class="form-control vehicleMovementTemplate_popoverContent_fuelIn" data-bind="value: fuelLevel" />
+                                </div>
                             </div>
-                            <label class="control-label col-sm-2">In Location</label>
-                            <div class="col-md-3" data-bind="with: vehicleMovementIn">
-                                <select class="form-control vehicleMovementTemplate_popoverContent_inLocation" data-bind="options: $root.availableLocations, optionsCaption: '<Operation>', optionsText: 'code', optionsValue: 'id', value: operationsWorkPlaceId"></select>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Vehicle Status</label>
+                                <div class="col-md-3" data-bind="with: vehicleMovementOut">
+                                    <select class="form-control vehicleMovementTemplate_popoverContent_vehicleStatusOut" data-bind="options: $root.vehicleStatuses, optionsCaption: '<Status>', optionsText: 'codeName', optionsValue: 'id', value: vehicleStatusId, enable: false"></select>
+                                </div>
+                                <label class="control-label col-sm-2">Vehicle Status</label>
+                                <div class="col-md-3" data-bind="with: vehicleMovementIn">
+                                    <select class="form-control vehicleMovementTemplate_popoverContent_vehicleStatusIn" data-bind="options: $root.vehicleStatuses, optionsCaption: '<Status>', optionsText: 'codeName', optionsValue: 'id', value: vehicleStatusId"></select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-sm-2">Odometer Out</label>
-                            <div class="col-md-3" data-bind="with: vehicleMovementOut">
-                                <input type="text" class="form-control vehicleMovementTemplate_popoverContent_odometerOut" data-bind="value: odometer, enable: false" />
-                            </div>
-                            <label class="control-label col-sm-2">Odometer In</label>
-                            <div class="col-md-3" data-bind="with: vehicleMovementIn">
-                                <input type="text" class="form-control vehicleMovementTemplate_popoverContent_odometerIn" data-bind="value: odometer" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-sm-2">Fuel Out</label>
-                            <div class="col-md-3" data-bind="with: vehicleMovementOut">
-                                <input type="text" class="form-control vehicleMovementTemplate_popoverContent_fuelOut" data-bind="value: fuelLevel, enable: false" />
-                            </div>
-                            <label class="control-label col-sm-2">Fuel In</label>
-                            <div class="col-md-3" data-bind="with: vehicleMovementIn">
-                                <input type="text" class="form-control vehicleMovementTemplate_popoverContent_fuelIn" data-bind="value: fuelLevel" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-sm-2">Vehicle Status</label>
-                            <div class="col-md-3" data-bind="with: vehicleMovementOut">
-                                <select class="form-control vehicleMovementTemplate_popoverContent_vehicleStatusOut" data-bind="options: $root.vehicleStatuses, optionsCaption: '<Status>', optionsText: 'codeName', optionsValue: 'id', value: vehicleStatusId, enable: false"></select>
-                            </div>
-                            <label class="control-label col-sm-2">Vehicle Status</label>
-                            <div class="col-md-3" data-bind="with: vehicleMovementIn">
-                                <select class="form-control vehicleMovementTemplate_popoverContent_vehicleStatusIn" data-bind="options: $root.vehicleStatuses, optionsCaption: '<Status>', optionsText: 'codeName', optionsValue: 'id', value: vehicleStatusId"></select>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+                    
 
                 </div>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn" data-dismiss="modal">@Cares.Web.Resources.Shared.Common.Close</button>
             </div>
         </div>
     </div>

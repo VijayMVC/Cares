@@ -9,14 +9,13 @@
 }
 #VehicleModelBinding #VehicleModelEditor {
   margin-top: 15px;
-}
-#VehicleModelBinding #VehicleModelEditor .detailsContainer {
-  width: 100%;
-}
-#VehicleModelBinding #VehicleModelEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 /*# sourceMappingURL=VehicleModel.css.map */

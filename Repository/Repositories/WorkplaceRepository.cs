@@ -119,19 +119,20 @@ namespace Cares.Repository.Repositories
         /// <summary>
         /// To check the availbility of workplace code
         /// </summary>
-        public bool DoesWorkPlaceCodeExists(WorkPlace workplace)
+        public bool WorkplaceCodeDuplicated(WorkPlace workplace)
         {
-            return (DbSet.Count(dbWorkplace => dbWorkplace.UserDomainKey == UserDomainKey && dbWorkplace.WorkPlaceCode == workplace.WorkPlaceCode && dbWorkplace.WorkPlaceId != workplace.WorkPlaceId) > 0);
+            return DbSet.Any(dbWorkplace => dbWorkplace.UserDomainKey == UserDomainKey && dbWorkplace.WorkPlaceCode == workplace.WorkPlaceCode && dbWorkplace.WorkPlaceId != workplace.WorkPlaceId);
         }
-
-
         /// <summary>
-        /// Get Total number of Operation Work place By DomainKey
+        /// Get the Find the workplace and get all associated operation workplaces with it
         /// </summary>
-        public int GetCountOfOperationWorkplaceByDomainKey()
+        public override WorkPlace Find(long id)
         {
-            return DbSet.Count(workplace => workplace.UserDomainKey == UserDomainKey && workplace.WorkPlaceType.WorkPlaceTypeCode== DepartmentTypes.Sales);
+            return
+                DbSet.Include(workplace => workplace.OperationsWorkPlaces)
+                    .FirstOrDefault(workplace => workplace.UserDomainKey == UserDomainKey && workplace.WorkPlaceId == id);
         }
+
         #endregion
     }
 }

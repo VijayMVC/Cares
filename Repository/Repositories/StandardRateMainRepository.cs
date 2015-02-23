@@ -74,13 +74,13 @@ namespace Cares.Repository.Repositories
             int toRow = tariffRateRequest.PageSize;
 
             var getTariffRateQuery = from tariffRate in DbSet
-                                     join tariffType in db.TariffTypes on tariffRate.TariffTypeCode equals tariffType.TariffTypeCode
+                                     join tariffType in db.TariffTypes.Where(tt => tt.UserDomainKey == UserDomainKey) on tariffRate.TariffTypeCode equals tariffType.TariffTypeCode 
                                      where
                                          ((string.IsNullOrEmpty(tariffRateRequest.SearchString) || tariffRate.StandardRtMainCode.Contains(tariffRateRequest.SearchString) || tariffRate.StandardRtMainName.Contains(tariffRateRequest.SearchString)) &&
                                          (!tariffRateRequest.OperationId.HasValue ||
                                            tariffType.OperationId == tariffRateRequest.OperationId.Value) &&
                                           (!tariffRateRequest.TariffTypeId.HasValue ||
-                                           tariffType.TariffTypeId == tariffRateRequest.TariffTypeId)) && !(tariffType.ChildTariffTypeId.HasValue && tariffRate.UserDomainKey == UserDomainKey)
+                                           tariffType.TariffTypeId == tariffRateRequest.TariffTypeId)) && !(tariffType.ChildTariffTypeId.HasValue && tariffRate.UserDomainKey == UserDomainKey && tariffType.UserDomainKey == UserDomainKey)
                                      select new TariffRateContent
                                      {
                                          StandardRtMainId = tariffRate.StandardRtMainId,

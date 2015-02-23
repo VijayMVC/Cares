@@ -1932,6 +1932,7 @@
     <Content Include="Content\Images\edit.png" />
     <Content Include="Content\Images\spinner.gif" />
     <Content Include="Content\Images\vehicle_movment.png" />
+    <Content Include="Content\Images\vehicle_notavailable.png" />
     <Content Include="Content\InsuranceType.css">
       <DependentUpon>InsuranceType.less</DependentUpon>
     </Content>

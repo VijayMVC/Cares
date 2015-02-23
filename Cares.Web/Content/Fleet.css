@@ -18,15 +18,16 @@
 }
 #FleetPoolEditor {
   margin-top: 15px;
-}
-#FleetPoolEditor .detailsContainer {
-  width: 100%;
-}
-#FleetPoolEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer {
+        width: 100%;
+
+        .detailsHeaderSection {
+            display: inline-block;
+            width: 85%;
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
+    }*/
 }
 #hireGroupBinding table thead tr .code {
   width: 15%;
@@ -48,6 +49,16 @@
 }
 #hireGroupBinding #hireGroupEditor {
   margin-top: 15px;
+  /*.detailsContainer {
+            width: 100%;
+
+            .detailsHeaderSection {
+                display: inline-block;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #hireGroupBinding #hireGroupEditor .addToBtn {
   float: right;
@@ -55,15 +66,6 @@
 #hireGroupBinding #hireGroupEditor .addToBtnDiv {
   width: 100%;
   margin-bottom: 15px;
-}
-#hireGroupBinding #hireGroupEditor .detailsContainer {
-  width: 100%;
-}
-#hireGroupBinding #hireGroupEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
 }
 #hireGroupBinding #hireGroupEditor table thead tr .make {
   width: 15%;

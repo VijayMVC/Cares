@@ -12,14 +12,14 @@
 }
 #DesignationBinding #DesignationEditor {
   margin-top: 15px;
-}
-#DesignationBinding #DesignationEditor .detailsContainer {
-  width: 100%;
-}
-#DesignationBinding #DesignationEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 /*# sourceMappingURL=Designation.css.map */

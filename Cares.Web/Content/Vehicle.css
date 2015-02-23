@@ -1,8 +1,26 @@
-﻿#vehicleBinding table thead tr .vPlateNumber {
-  width: 10%;
+﻿#vehicleBinding .vehicleThumbnail img {
+  height: 30px;
+  width: 45px;
+  -moz-transition: -moz-transform 0.5s ease-in;
+  -webkit-transition: -webkit-transform 0.5s ease-in;
+  -o-transition: -o-transform 0.5s ease-in;
+  transition: -moz-transform 0.5s ease-in;
+}
+#vehicleBinding .vehicleThumbnail img:hover {
+  -moz-transform: scale(3);
+  -webkit-transform: scale(3);
+  -o-transform: scale(3);
+  -ms-transform: scale(3);
+  transform: scale(3);
+}
+#vehicleBinding table thead tr .vImage {
+  width: 7%;
+}
+#vehicleBinding table thead tr .vPlateNumber {
+  width: 8%;
 }
 #vehicleBinding table thead tr .vName {
-  width: 15%;
+  width: 10%;
 }
 #vehicleBinding table thead tr .vModel {
   width: 8%;
@@ -27,15 +45,15 @@
 }
 #vehicleBinding #vehicleEditor {
   margin-top: 15px;
-}
-#vehicleBinding #vehicleEditor .detailsContainer {
-  width: 100%;
-}
-#vehicleBinding #vehicleEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer {
+            width: 100%;
+
+            .detailsHeaderSection {
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #vehicleBinding #vehicleEditor .addToBtn {
   float: right;

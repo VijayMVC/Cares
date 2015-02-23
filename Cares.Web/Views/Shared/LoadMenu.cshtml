@@ -18,7 +18,7 @@
                     <span class="toSelect"></span>
                     <span class="arrow open"></span>
                 </a>
-                <ul class="sub-menu" role="menu">
+                <ul class="sub-menu left-46" role="menu">
                     @{
             IList<MenuRight> menuRightchildList = Model.MenuRights.Where(menuright => menuright.Menu.ParentItem != null &&
                                                                           menuright.Menu.ParentItem.MenuId == header.Menu.MenuId).ToList();

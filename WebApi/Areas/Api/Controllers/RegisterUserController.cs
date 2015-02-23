@@ -74,7 +74,7 @@ namespace Cares.WebApi.Areas.Api.Controllers
             //completeAddress = HttpUtility.UrlEncode(completeAddress);
             emailBody = emailBody.Replace("ReplacementText", completeAddress);
 
-            UserManager.SendEmailSendGrid(model.Email, "Confimr your CaReS subscription", emailBody);
+            UserManager.SendEmailSendGrid(model.Email, "Confirm your CaReS subscription!", emailBody);
 
             return "Success";
         }

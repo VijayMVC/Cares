@@ -18,15 +18,16 @@
 }
 #FleetPoolEditor {
   margin-top: 15px;
-}
-#FleetPoolEditor .detailsContainer {
-  width: 100%;
-}
-#FleetPoolEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer {
+        width: 100%;
+
+        .detailsHeaderSection {
+            display: inline-block;
+            width: 85%;
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
+    }*/
 }
 #hireGroupBinding table thead tr .code {
   width: 15%;
@@ -48,6 +49,16 @@
 }
 #hireGroupBinding #hireGroupEditor {
   margin-top: 15px;
+  /*.detailsContainer {
+            width: 100%;
+
+            .detailsHeaderSection {
+                display: inline-block;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #hireGroupBinding #hireGroupEditor .addToBtn {
   float: right;
@@ -55,15 +66,6 @@
 #hireGroupBinding #hireGroupEditor .addToBtnDiv {
   width: 100%;
   margin-bottom: 15px;
-}
-#hireGroupBinding #hireGroupEditor .detailsContainer {
-  width: 100%;
-}
-#hireGroupBinding #hireGroupEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
 }
 #hireGroupBinding #hireGroupEditor table thead tr .make {
   width: 15%;
@@ -112,15 +114,16 @@
 }
 #tariffTypeBinding #tariffTypeEditor {
   margin-top: 15px;
-}
-#tariffTypeBinding #tariffTypeEditor .detailsContainer {
-  width: 100%;
-}
-#tariffTypeBinding #tariffTypeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer {
+            width: 100%;
+
+            .detailsHeaderSection {
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #tariffRateBinding table thead tr .tarrifratecode {
   width: 15%;
@@ -135,22 +138,26 @@
   width: 14%;
 }
 #tariffRateBinding table thead tr .tarrifrateSEdate {
-  width: 15%;
+  width: 35%;
 }
 #tariffRateBinding table thead tr .tarrifrateEFDate {
-  width: 15%;
+  width: 35%;
 }
 #tariffRateBinding #tariffRateEditor {
   margin-top: 15px;
+  /*.detailsContainer {
+            width: 100%;
+
+            .detailsHeaderSection {
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
-#tariffRateBinding #tariffRateEditor .detailsContainer {
-  width: 100%;
-}
-#tariffRateBinding #tariffRateEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+#tariffRateBinding #tariffRateEditor .rateFilterTool {
+  margin-top: 15px;
 }
 #tariffRateBinding #tariffRateEditor table thead tr .hireGroupTh {
   width: 12%;
@@ -168,10 +175,10 @@
   width: 8%;
 }
 #tariffRateBinding #tariffRateEditor table thead tr .allowMileageTh {
-  width: 8%;
+  width: 9%;
 }
 #tariffRateBinding #tariffRateEditor table thead tr .accessMileage {
-  width: 7%;
+  width: 10%;
 }
 #tariffRateBinding #tariffRateEditor table thead tr .standardRate {
   width: 8%;
@@ -183,28 +190,31 @@
   width: 7%;
 }
 #tariffRateBinding #tariffRateEditor table thead tr .revisionNumber {
-  width: 2%;
+  width: 3%;
 }
 #tariffRateBinding #tariffRateEditor table thead tr .chckBox {
-  width: 2%;
-}
-#tariffRateBinding #tariffRateEditor table #hgRateFilterIcon {
-  margin-left: 15px;
+  width: 3%;
 }
 #tariffRateBinding #tariffRateEditor table .excessMileageCharge {
-  width: 70px;
+  width: 100%;
 }
 #tariffRateBinding #tariffRateEditor table .allowMileage {
-  width: 70px;
+  width: 100%;
 }
 #tariffRateBinding #tariffRateEditor table .standardRt {
-  width: 70px;
+  width: 100%;
 }
 #tariffRateBinding #tariffRateEditor table .startDate {
-  width: 90px;
+  width: 100%;
 }
 #tariffRateBinding #tariffRateEditor table .endDate {
-  width: 90px;
+  width: 100%;
+}
+#tariffRateBinding #tariffRateEditor #hgRateFilterIcon {
+  margin-left: 15px;
+}
+#tariffRateBinding #tariffRateEditor #rateHearderFilterSection {
+  margin-left: 15px;
 }
 #serviceRateBinding table thead tr .code {
   width: 18%;
@@ -226,12 +236,6 @@
 }
 #serviceRateBinding #serviceRateEditor .detailsContainer {
   width: 100%;
-}
-#serviceRateBinding #serviceRateEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
 }
 #serviceRateBinding #serviceRateEditor .detailsContainer .serviceRateTxtBox {
   width: 70px;
@@ -280,12 +284,12 @@
 }
 #insuranceRateBinding #insuranceRateEditor .detailsContainer {
   width: 100%;
-}
-#insuranceRateBinding #insuranceRateEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsHeaderSection {
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }*/
 }
 #insuranceRateBinding #insuranceRateEditor .detailsContainer table thead tr .insuranceType {
   width: 14%;
@@ -343,15 +347,16 @@
 }
 #additionalDriverChargeBinding #additionalDriverChargeEditor {
   margin-top: 15px;
-}
-#additionalDriverChargeBinding #additionalDriverChargeEditor .detailsContainer {
-  width: 100%;
-}
-#additionalDriverChargeBinding #additionalDriverChargeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer {
+            width: 100%;
+
+            .detailsHeaderSection {
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #additionalChargeBinding table thead tr .Code {
   width: 25%;
@@ -367,6 +372,16 @@
 }
 #additionalChargeBinding #additionalChargeEditor {
   margin-top: 15px;
+  /*.detailsContainer {
+            width: 100%;
+
+            .detailsHeaderSection {
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #additionalChargeBinding #additionalChargeEditor .addToBtn {
   float: right;
@@ -380,15 +395,6 @@
   margin-top: 30px;
   margin-left: 5px;
   margin-right: 5px;
-}
-#additionalChargeBinding #additionalChargeEditor .detailsContainer {
-  width: 100%;
-}
-#additionalChargeBinding #additionalChargeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
 }
 #chaufferChargeBinding table thead tr .Code {
   width: 10%;
@@ -413,6 +419,16 @@
 }
 #chaufferChargeBinding #chaufferChargeEditor {
   margin-top: 15px;
+  /*.detailsContainer {
+            width: 100%;
+
+            .detailsHeaderSection {
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #chaufferChargeBinding #chaufferChargeEditor .addToBtn {
   float: right;
@@ -426,15 +442,6 @@
   margin-top: 30px;
   margin-left: 5px;
   margin-right: 5px;
-}
-#chaufferChargeBinding #chaufferChargeEditor .detailsContainer {
-  width: 100%;
-}
-#chaufferChargeBinding #chaufferChargeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
 }
 #seasonalDiscountBinding table thead tr .Code {
   width: 8%;
@@ -459,6 +466,16 @@
 }
 #seasonalDiscountBinding #seasonalDiscountEditor {
   margin-top: 15px;
+  /*.detailsContainer {
+            width: 100%;
+
+            .detailsHeaderSection {
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #seasonalDiscountBinding #seasonalDiscountEditor .addToBtn {
   float: right;
@@ -474,20 +491,20 @@
   margin-right: 5px;
   margin-bottom: 10px;
 }
-#seasonalDiscountBinding #seasonalDiscountEditor .detailsContainer {
-  width: 100%;
-}
-#seasonalDiscountBinding #seasonalDiscountEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
-}
 #rentalAgreementBinding {
   color: gray;
 }
+#rentalAgreementBinding .row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
 #rentalAgreementBinding .margin-button {
   margin-left: 10px;
+  margin-right: 0;
+}
+#rentalAgreementBinding html[dir="rtl"] .margin-button {
+  margin-right: 10px;
+  margin-left: 0;
 }
 #rentalAgreementBinding .display-block {
   display: inline-block;
@@ -843,6 +860,10 @@
 #rentalAgreementBinding #driverPopoverContents .popover-panel .popover-panel-heading {
   background-color: #89c4f4;
 }
+#rentalAgreementBinding #driverPopoverContents .popover-panel .popover-panel-heading a {
+  margin-right: 5px;
+  margin-top: -2px;
+}
 #rentalAgreementBinding #chaufferPopoverContents .popover-panel {
   border-color: #f0ad4e;
 }
@@ -869,6 +890,30 @@
 }
 #raQueueBinding .txtBox {
   width: 142px;
+}
+#vehicleDialog img {
+  height: 30px;
+  width: 45px;
+  -moz-transition: -moz-transform 0.5s ease-in;
+  -webkit-transition: -webkit-transform 0.5s ease-in;
+  -o-transition: -o-transform 0.5s ease-in;
+  transition: -moz-transform 0.5s ease-in;
+}
+#vehicleDialog img:hover {
+  -moz-transform: scale(3);
+  -webkit-transform: scale(3);
+  -o-transform: scale(3);
+  -ms-transform: scale(3);
+  transform: scale(3);
+}
+#vehicleDialog .btn-search,
+#chaufferDialog .btn-search {
+  line-height: 0.8 !important;
+}
+#vehicleDialog .header-toolsSection,
+#chaufferDialog .header-toolsSection {
+  margin-top: 0;
+  float: right;
 }
 .btn-custom {
   color: #ffffff;
@@ -964,15 +1009,14 @@ fieldset[disabled] .btn-billing.active {
 }
 #companyBinding #CompanyEditor {
   margin-top: 15px;
-}
-#companyBinding #CompanyEditor .detailsContainer {
-  width: 100%;
-}
-#companyBinding #CompanyEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #OperationBinding table thead tr .ttypesearchButton {
   margin-left: 5px;
@@ -994,15 +1038,17 @@ fieldset[disabled] .btn-billing.active {
 }
 #OperationBinding #OperationEditor {
   margin-top: 15px;
-}
-#OperationBinding #OperationEditor .detailsContainer {
-  width: 100%;
-}
-#OperationBinding #OperationEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer {
+        width: 100%;
+
+        .detailsHeaderSection {
+           
+            width: 85%;
+            margin-bottom: 20px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+    }*/
 }
 #OrgGroupBinding table thead tr .ttypesearchButton {
   margin-left: 5px;
@@ -1018,64 +1064,80 @@ fieldset[disabled] .btn-billing.active {
 }
 #OrgGroupBinding #_OrgGroupEditor {
   margin-top: 15px;
-}
-#OrgGroupBinding #_OrgGroupEditor .detailsContainer {
-  width: 100%;
-}
-#OrgGroupBinding #_OrgGroupEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #WorkPlaceBinding table thead tr .ttypesearchButton {
   margin-left: 5px;
 }
 #WorkPlaceBinding table thead tr .WPcode {
-  width: 12%;
+  width: 15%;
 }
 #WorkPlaceBinding table thead tr .WPname {
-  width: 12%;
-}
-#WorkPlaceBinding table thead tr .WPDescription {
-  width: 21%;
+  width: 15%;
 }
 #WorkPlaceBinding table thead tr .WPType {
   width: 15%;
 }
 #WorkPlaceBinding table thead tr .WPCompany {
-  width: 10%;
+  width: 15%;
 }
 #WorkPlaceBinding table thead tr .WPLocation {
-  width: 15%;
+  width: 20%;
 }
 #WorkPlaceBinding table thead tr .WPParent {
-  width: 15%;
+  width: 16%;
 }
 #WorkPlaceBinding #WorkplaceEditor {
   margin-top: 15px;
-}
-#WorkPlaceBinding #WorkplaceEditor .detailsContainer {
-  width: 100%;
-}
-#WorkPlaceBinding #WorkplaceEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer {
+            width: 100%;
+
+            .detailsHeaderSection {
+                display: inline-block;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #WorkPlaceBinding #WorkplaceEditor .addToBtn {
   float: right;
+  width: 80px;
 }
-#WorkPlaceBinding #WorkplaceEditor .addToBtnDiv {
-  width: 100%;
-  margin-bottom: 15px;
+#WorkPlaceBinding #WorkplaceEditor .locationEditor {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+#vehicleBinding .vehicleThumbnail img {
+  height: 30px;
+  width: 45px;
+  -moz-transition: -moz-transform 0.5s ease-in;
+  -webkit-transition: -webkit-transform 0.5s ease-in;
+  -o-transition: -o-transform 0.5s ease-in;
+  transition: -moz-transform 0.5s ease-in;
+}
+#vehicleBinding .vehicleThumbnail img:hover {
+  -moz-transform: scale(3);
+  -webkit-transform: scale(3);
+  -o-transform: scale(3);
+  -ms-transform: scale(3);
+  transform: scale(3);
+}
+#vehicleBinding table thead tr .vImage {
+  width: 7%;
 }
 #vehicleBinding table thead tr .vPlateNumber {
-  width: 10%;
+  width: 8%;
 }
 #vehicleBinding table thead tr .vName {
-  width: 15%;
+  width: 10%;
 }
 #vehicleBinding table thead tr .vModel {
   width: 8%;
@@ -1100,15 +1162,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #vehicleBinding #vehicleEditor {
   margin-top: 15px;
-}
-#vehicleBinding #vehicleEditor .detailsContainer {
-  width: 100%;
-}
-#vehicleBinding #vehicleEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer {
+            width: 100%;
+
+            .detailsHeaderSection {
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #vehicleBinding #vehicleEditor .addToBtn {
   float: right;
@@ -1136,43 +1198,41 @@ fieldset[disabled] .btn-billing.active {
   margin-left: 5px;
 }
 #WorkLocationBinding table thead tr .WLcode {
-  width: 12%;
+  width: 15%;
 }
 #WorkLocationBinding table thead tr .WLname {
-  width: 12%;
-}
-#WorkLocationBinding table thead tr .WLDescription {
-  width: 16%;
+  width: 15%;
 }
 #WorkLocationBinding table thead tr .WLCompany {
   width: 10%;
 }
 #WorkLocationBinding table thead tr .WLCountry {
-  width: 10%;
+  width: 15%;
 }
 #WorkLocationBinding table thead tr .WLregion {
-  width: 10%;
+  width: 12%;
 }
 #WorkLocationBinding table thead tr .WLSubregion {
   width: 10%;
 }
 #WorkLocationBinding table thead tr .WLCity {
-  width: 10%;
+  width: 11%;
 }
 #WorkLocationBinding table thead tr .WLArea {
-  width: 10%;
+  width: 12%;
 }
 #WorkLocationBinding #WorkplaceEditor {
   margin-top: 15px;
-}
-#WorkLocationBinding #WorkplaceEditor .detailsContainer {
-  width: 100%;
-}
-#WorkLocationBinding #WorkplaceEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer {
+        width: 100%;
+
+        .detailsHeaderSection {
+            width: 85%;
+            display: inline-block;
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
+                    }*/
 }
 #WorkLocationBinding #WorkplaceEditor .addToBtn {
   float: right;
@@ -1220,15 +1280,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #WorkPlaceTypeBinding #WorkPlaceTypeEditor {
   margin-top: 15px;
-}
-#WorkPlaceTypeBinding #WorkPlaceTypeEditor .detailsContainer {
-  width: 100%;
-}
-#WorkPlaceTypeBinding #WorkPlaceTypeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                display: inline-block;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #BusinessSegmentBinding table thead tr .ttypesearchButton {
   margin-left: 5px;
@@ -1244,15 +1304,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #BusinessSegmentBinding #BusinessSegmentEditor {
   margin-top: 15px;
-}
-#BusinessSegmentBinding #BusinessSegmentEditor .detailsContainer {
-  width: 100%;
-}
-#BusinessSegmentBinding #BusinessSegmentEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                display: inline-block;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #RegionBinding table thead tr .ttypesearchButton {
   margin-left: 5px;
@@ -1271,15 +1331,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #RegionBinding #RegionEditor {
   margin-top: 15px;
-}
-#RegionBinding #RegionEditor .detailsContainer {
-  width: 100%;
-}
-#RegionBinding #RegionEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                display: inline-block;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #employeeBinding table thead tr .code {
   width: 11%;
@@ -1339,15 +1399,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #SubRegionBinding #SubRegionEditor {
   margin-top: 15px;
-}
-#SubRegionBinding #SubRegionEditor .detailsContainer {
-  width: 100%;
-}
-#SubRegionBinding #SubRegionEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                display: inline-block;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #CityBinding table thead tr .ttypesearchButton {
   margin-left: 5px;
@@ -1372,15 +1432,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #CityBinding #CityEditor {
   margin-top: 15px;
-}
-#CityBinding #CityEditor .detailsContainer {
-  width: 100%;
-}
-#CityBinding #CityEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #AreaBinding table thead tr .ttypesearchButton {
   margin-left: 5px;
@@ -1399,15 +1459,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #AreaBinding #AreaEditor {
   margin-top: 15px;
-}
-#AreaBinding #AreaEditor .detailsContainer {
-  width: 100%;
-}
-#AreaBinding #AreaEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                display: inline-block;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #DesignGradeBinding table thead tr .ttypesearchButton {
   margin-left: 5px;
@@ -1423,15 +1483,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #DesignGradeBinding #designationGradeEditor {
   margin-top: 15px;
-}
-#DesignGradeBinding #designationGradeEditor .detailsContainer {
-  width: 100%;
-}
-#DesignGradeBinding #designationGradeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #EmployeeStatusBinding table thead tr .ttypesearchButton {
   margin-left: 5px;
@@ -1450,15 +1510,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #EmployeeStatusBinding #EmployeeStatusEditor {
   margin-top: 15px;
-}
-#EmployeeStatusBinding #EmployeeStatusEditor .detailsContainer {
-  width: 100%;
-}
-#EmployeeStatusBinding #EmployeeStatusEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #DesignationBinding table thead tr .ttypesearchButton {
   margin-left: 5px;
@@ -1474,15 +1534,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #DesignationBinding #DesignationEditor {
   margin-top: 15px;
-}
-#DesignationBinding #DesignationEditor .detailsContainer {
-  width: 100%;
-}
-#DesignationBinding #DesignationEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #JobTypeBinding table thead tr .ttypesearchButton {
   margin-left: 5px;
@@ -1498,15 +1558,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #JobTypeBinding #JobTypeEditor {
   margin-top: 15px;
-}
-#JobTypeBinding #JobTypeEditor .detailsContainer {
-  width: 100%;
-}
-#JobTypeBinding #JobTypeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #DiscountTypeBinding table thead tr .DTcode {
   width: 33%;
@@ -1519,15 +1579,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #DiscountTypeBinding #DiscountTypeEditor {
   margin-top: 15px;
-}
-#DiscountTypeBinding #DiscountTypeEditor .detailsContainer {
-  width: 100%;
-}
-#DiscountTypeBinding #DiscountTypeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #DiscountSubTypeBinding table thead tr .DiscountSubTypeCode {
   width: 25%;
@@ -1543,15 +1603,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #DiscountSubTypeBinding #DiscountSubTypeEditor {
   margin-top: 15px;
-}
-#DiscountSubTypeBinding #DiscountSubTypeEditor .detailsContainer {
-  width: 100%;
-}
-#DiscountSubTypeBinding #DiscountSubTypeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #ServiceTypeBinding table thead tr .ServiceTypeCode {
   width: 33%;
@@ -1564,15 +1624,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #ServiceTypeBinding #ServiceTypeEditor {
   margin-top: 15px;
-}
-#ServiceTypeBinding #ServiceTypeEditor .detailsContainer {
-  width: 100%;
-}
-#ServiceTypeBinding #ServiceTypeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #ServiceItemBinding table thead tr .ServiceItemCode {
   width: 25%;
@@ -1588,15 +1648,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #ServiceItemBinding #ServiceItemEditor {
   margin-top: 15px;
-}
-#ServiceItemBinding #ServiceItemEditor .detailsContainer {
-  width: 100%;
-}
-#ServiceItemBinding #ServiceItemEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #NrtTypeBinding table thead tr .NrtTypeCode {
   width: 25%;
@@ -1654,15 +1714,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #VehicleCheckListBinding #VehicleCheckListEditor {
   margin-top: 15px;
-}
-#VehicleCheckListBinding #VehicleCheckListEditor .detailsContainer {
-  width: 100%;
-}
-#VehicleCheckListBinding #VehicleCheckListEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #documentGroupBinding table thead tr .documentGroupCode {
   width: 33%;
@@ -1675,15 +1735,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #documentGroupBinding #documentGroupEditor {
   margin-top: 15px;
-}
-#documentGroupBinding #documentGroupEditor .detailsContainer {
-  width: 100%;
-}
-#documentGroupBinding #documentGroupEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #bPMainTypeBinding table thead tr .bPMainTypeCode {
   width: 33%;
@@ -1696,15 +1756,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #bPMainTypeBinding #bPMainTypeEditor {
   margin-top: 15px;
-}
-#bPMainTypeBinding #bPMainTypeEditor .detailsContainer {
-  width: 100%;
-}
-#bPMainTypeBinding #bPMainTypeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #DocumentBinding table thead tr .documentCode {
   width: 25%;
@@ -1720,15 +1780,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #DocumentBinding #DocumentEditor {
   margin-top: 15px;
-}
-#DocumentBinding #DocumentEditor .detailsContainer {
-  width: 100%;
-}
-#DocumentBinding #DocumentEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #RatingTypeBinding table thead tr .ratingTypeCode {
   width: 33%;
@@ -1741,15 +1801,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #RatingTypeBinding #ratingTypeEditor {
   margin-top: 15px;
-}
-#RatingTypeBinding #ratingTypeEditor .detailsContainer {
-  width: 100%;
-}
-#RatingTypeBinding #ratingTypeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #BusinessLegalStatusBinding table thead tr .businessLegalStatusCode {
   width: 33%;
@@ -1762,15 +1822,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #BusinessLegalStatusBinding #BusinessLegalStatusBindingEditor {
   margin-top: 15px;
-}
-#BusinessLegalStatusBinding #BusinessLegalStatusBindingEditor .detailsContainer {
-  width: 100%;
-}
-#BusinessLegalStatusBinding #BusinessLegalStatusBindingEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #OccupationTypeBinding table thead tr .occupationTypeCode {
   width: 33%;
@@ -1783,15 +1843,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #OccupationTypeBinding #OccupationTypeEditor {
   margin-top: 15px;
-}
-#OccupationTypeBinding #OccupationTypeEditor .detailsContainer {
-  width: 100%;
-}
-#OccupationTypeBinding #OccupationTypeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #BusinessPartnerRelationshipTypeBinding table thead tr .bpRelationshipTypeCode {
   width: 33%;
@@ -1804,15 +1864,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #BusinessPartnerRelationshipTypeBinding #BusinessPartnerRelationshipTypeEditor {
   margin-top: 15px;
-}
-#BusinessPartnerRelationshipTypeBinding #BusinessPartnerRelationshipTypeEditor .detailsContainer {
-  width: 100%;
-}
-#BusinessPartnerRelationshipTypeBinding #BusinessPartnerRelationshipTypeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #BusinessPartnerSubTypeBinding table thead tr .businessPartnerSubTypeCode {
   width: 25%;
@@ -1828,15 +1888,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #BusinessPartnerSubTypeBinding #BusinessPartnerSubTypeEditor {
   margin-top: 15px;
-}
-#BusinessPartnerSubTypeBinding #BusinessPartnerSubTypeEditor .detailsContainer {
-  width: 100%;
-}
-#BusinessPartnerSubTypeBinding #BusinessPartnerSubTypeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #CreditLimitBinding table thead tr .creditLimitSubType {
   width: 20%;
@@ -1855,15 +1915,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #CreditLimitBinding #CreditLimitEditor {
   margin-top: 15px;
-}
-#CreditLimitBinding #CreditLimitEditor .detailsContainer {
-  width: 100%;
-}
-#CreditLimitBinding #CreditLimitEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #MarketingChannelBinding table thead tr .MarketingChannelCode {
   width: 33%;
@@ -1876,15 +1936,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #MarketingChannelBinding #MarketingChannelEditor {
   margin-top: 15px;
-}
-#MarketingChannelBinding #MarketingChannelEditor .detailsContainer {
-  width: 100%;
-}
-#MarketingChannelBinding #MarketingChannelEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #MaintenanceTypeGroupBinding table thead tr .maintenanceTypeGroupCode {
   width: 33%;
@@ -1897,15 +1957,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #MaintenanceTypeGroupBinding #MaintenanceTypeGroupEditor {
   margin-top: 15px;
-}
-#MaintenanceTypeGroupBinding #MaintenanceTypeGroupEditor .detailsContainer {
-  width: 100%;
-}
-#MaintenanceTypeGroupBinding #MaintenanceTypeGroupEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #MaintenanceTypeBinding table thead tr .maintenanceTypeCode {
   width: 25%;
@@ -1921,15 +1981,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #MaintenanceTypeBinding #MaintenanceTypeEditor {
   margin-top: 15px;
-}
-#MaintenanceTypeBinding #MaintenanceTypeEditor .detailsContainer {
-  width: 100%;
-}
-#MaintenanceTypeBinding #MaintenanceTypeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #InsuranceTypeBinding table thead tr .InsuranceTypeCode {
   width: 33%;
@@ -1942,15 +2002,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #InsuranceTypeBinding #insuranceTypeEditor {
   margin-top: 15px;
-}
-#InsuranceTypeBinding #insuranceTypeEditor .detailsContainer {
-  width: 100%;
-}
-#InsuranceTypeBinding #insuranceTypeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #VehicleMakeBinding table thead tr .VehicleCode {
   width: 33%;
@@ -1963,15 +2023,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #VehicleMakeBinding #VehicleMakeEditor {
   margin-top: 15px;
-}
-#VehicleMakeBinding #VehicleMakeEditor .detailsContainer {
-  width: 100%;
-}
-#VehicleMakeBinding #VehicleMakeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #VehicleCategoryBinding table thead tr .VehicleCategoryCode {
   width: 33%;
@@ -1985,15 +2045,6 @@ fieldset[disabled] .btn-billing.active {
 #VehicleCategoryBinding #VehicleCategoryEditor {
   margin-top: 15px;
 }
-#VehicleCategoryBinding #VehicleCategoryEditor .detailsContainer {
-  width: 100%;
-}
-#VehicleCategoryBinding #VehicleCategoryEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
-}
 #VehicleModelBinding table thead tr .VehicleModelCode {
   width: 33%;
 }
@@ -2005,15 +2056,14 @@ fieldset[disabled] .btn-billing.active {
 }
 #VehicleModelBinding #VehicleModelEditor {
   margin-top: 15px;
-}
-#VehicleModelBinding #VehicleModelEditor .detailsContainer {
-  width: 100%;
-}
-#VehicleModelBinding #VehicleModelEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 #VehicleStatusBinding table thead tr .VehicleStatusCode {
   width: 33%;
@@ -2026,15 +2076,15 @@ fieldset[disabled] .btn-billing.active {
 }
 #VehicleStatusBinding #VehicleStatusEditor {
   margin-top: 15px;
-}
-#VehicleStatusBinding #VehicleStatusEditor .detailsContainer {
-  width: 100%;
-}
-#VehicleStatusBinding #VehicleStatusEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 .float-left {
   float: left;
@@ -2048,16 +2098,110 @@ fieldset[disabled] .btn-billing.active {
 .create-new-icon {
   margin-left: 10px;
 }
-.margin-left {
-  margin-left: 4%;
+.margin-left-10 {
+  margin-left: 10px !important;
 }
 .margin-right {
   margin-right: 3%;
+}
+.margin-right-20 {
+  margin-right: 20px;
+}
+.margin-top-15 {
+  margin-top: 15px;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+html[dir="rtl"] .form-group label {
+  font-weight: normal;
+  text-align: right !important;
+}
+html[dir="rtl"] .col-xs-1,
+html[dir="rtl"] .col-xs-2,
+html[dir="rtl"] .col-xs-3,
+html[dir="rtl"] .col-xs-4,
+html[dir="rtl"] .col-xs-5,
+html[dir="rtl"] .col-xs-6,
+html[dir="rtl"] .col-xs-7,
+.col-xs-8,
+html[dir="rtl"] .col-xs-9,
+html[dir="rtl"] .col-xs-10,
+html[dir="rtl"] .col-xs-11,
+html[dir="rtl"] .col-xs-12,
+html[dir="rtl"] .col-sm-1,
+html[dir="rtl"] .col-sm-2,
+.col-sm-3,
+html[dir="rtl"] .col-sm-4,
+html[dir="rtl"] .col-sm-5,
+html[dir="rtl"] .col-sm-6,
+html[dir="rtl"] .col-sm-7,
+html[dir="rtl"] .col-sm-8,
+html[dir="rtl"] .col-sm-9,
+.col-sm-10,
+html[dir="rtl"] .col-sm-11,
+html[dir="rtl"] .col-sm-12,
+html[dir="rtl"] .col-md-1,
+html[dir="rtl"] .col-md-2,
+html[dir="rtl"] .col-md-3,
+html[dir="rtl"] .col-md-4,
+.col-md-5,
+html[dir="rtl"] .col-md-6,
+html[dir="rtl"] .col-md-7,
+html[dir="rtl"] .col-md-8,
+html[dir="rtl"] .col-md-9,
+html[dir="rtl"] .col-md-10,
+html[dir="rtl"] .col-md-11,
+.col-md-12,
+html[dir="rtl"] .col-lg-1,
+html[dir="rtl"] .col-lg-2,
+html[dir="rtl"] .col-lg-3,
+html[dir="rtl"] .col-lg-4,
+html[dir="rtl"] .col-lg-5,
+html[dir="rtl"] .col-lg-6,
+.col-lg-7,
+html[dir="rtl"] .col-lg-8,
+html[dir="rtl"] .col-lg-9,
+html[dir="rtl"] .col-lg-10,
+html[dir="rtl"] .col-lg-11,
+html[dir="rtl"] .col-lg-12 {
+  padding-right: 8px !important;
+  padding-left: 0 !important;
+}
+.modal-dialog {
+  width: 900px;
+}
+.modal-dialog .well {
+  -moz-border-radius: 5px !important;
+  -webkit-border-radius: 5px !important;
+  border-radius: 5px !important;
+}
+.modal-dialog .modal-header {
+  background-color: #3F5567;
+}
+.modal-dialog .modal-header .modal-title {
+  color: #FFFFFF;
+}
+.modal-dialog .modal-body {
+  padding: 10px;
+}
+.modal-dialog .modal-footer {
+  padding: 10px 20px 20px;
+  margin-top: 2px;
 }
 .pageHeaderSection {
   width: 93%;
   margin-bottom: 0;
   margin-top: 15px;
+}
+.detailsContainer {
+  width: 100%;
+}
+.detailsContainer .detailsHeaderSection {
+  display: inline-block;
+  width: 85%;
+  margin-bottom: 20px;
+  margin-top: 10px;
 }
 .header-toolsSection {
   margin-top: 20px;
@@ -2139,4 +2283,30 @@ fieldset[disabled] .btn-billing.active {
   color: #00bfff;
 }
 /* Twitter Typeahead */
+/*RTL IMPLEMENTATION*/
+html[dir="rtl"] .form-horizontal .form-group {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+html[dir="rtl"] .float-left {
+  float: right;
+}
+html[dir="rtl"] .float-right {
+  float: left;
+}
+html[dir="ltr"] .margin-left {
+  margin-left: 4%;
+}
+html[dir="rtl"] .margin-right {
+  margin-left: 3%;
+}
+html[dir="rtl"] .margin-left-10 {
+  margin-right: 10px !important;
+}
+html[dir="rtl"] .margin-left {
+  margin-right: 4%;
+}
+html[dir="rtl"] .margin-right-20 {
+  margin-left: 20px;
+}
 /*# sourceMappingURL=MainSite.css.map */

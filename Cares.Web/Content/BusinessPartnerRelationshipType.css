@@ -9,14 +9,14 @@
 }
 #BusinessPartnerRelationshipTypeBinding #BusinessPartnerRelationshipTypeEditor {
   margin-top: 15px;
-}
-#BusinessPartnerRelationshipTypeBinding #BusinessPartnerRelationshipTypeEditor .detailsContainer {
-  width: 100%;
-}
-#BusinessPartnerRelationshipTypeBinding #BusinessPartnerRelationshipTypeEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 /*# sourceMappingURL=BusinessPartnerRelationshipType.css.map */

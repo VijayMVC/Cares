@@ -15,14 +15,14 @@
 }
 #CreditLimitBinding #CreditLimitEditor {
   margin-top: 15px;
-}
-#CreditLimitBinding #CreditLimitEditor .detailsContainer {
-  width: 100%;
-}
-#CreditLimitBinding #CreditLimitEditor .detailsContainer .detailsHeaderSection {
-  float: left;
-  width: 85%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
 }
 /*# sourceMappingURL=CreditLimit.css.map */

@@ -2,68 +2,90 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">@Cares.Web.Resources.Shared.Common.Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">Vehicles</h4>
+                <h2 class="modal-title" id="myModalLabel">Select Vehicle</h2>
             </div>
             <div class="modal-body">
-                <div>
-                    <form class="form-horizontal">
-                        <div class="form-group">
-                            <label class="control-label col-sm-2">Start Dt/Time</label>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control vehicleTemplate_popoverContent_outDtTime" data-bind="datetimepicker: vehicleStartDtFilter, css:{ 'errorFill': !isValidVehicleDuration() }" />
-                            </div>
-                            <label class="control-label col-sm-2">End Dt/Time</label>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control vehicleTemplate_popoverContent_inDtTime" data-bind="datetimepicker: vehicleEndDtFilter, css:{ 'errorFill': !isValidVehicleDuration() }" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-sm-2">Allocation Status</label>
-                            <div class="col-md-3">
-                                <select class="form-control vehicleTemplate_popoverContent_allocationStatus" data-bind="options: $root.allocationStatuses, optionsCaption: '<Status>', optionsText: 'codeName', optionsValue: 'id', value: vehicleAllocationStatusFilter"></select>
-                            </div>
-                            <label class="control-label col-sm-2">Out Location</label>
-                            <div class="col-md-3">
-                                <select class="form-control vehicleTemplate_popoverContent_outLocation" data-bind="options: $root.availableLocations, optionsCaption: '<Location>', optionsText: 'code', optionsValue: 'id', value: vehicleOperationsWorkPlaceFilter"></select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-4">
-                                <button class="btn btn-success vehicleTemplate_popoverContent_searchVehicleButton"
-                                        data-bind="click: searchVehicles, enable: $root.canSearchVehicles">
-                                    Search
-                                </button>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <table class="table table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th>Plate Number</th>
-                                        <th>Hire Group</th>
-                                        <th>Make</th>
-                                        <th>Model</th>
-                                        <th>Model Year</th>
-                                    </tr>
-                                </thead>
-                                <tbody data-bind="foreach: vehicles">
-                                    <tr data-bind="click: $root.selectVehicle">
-                                        <td data-bind="text: plateNumber"></td>
-                                        <td data-bind="text: code"></td>
-                                        <td data-bind="text: vehicleMake"></td>
-                                        <td data-bind="text: vehicleModel"></td>
-                                        <td data-bind="text: modelYear"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                <div class="header-toolsSection">
+                    <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !vehicleFilterSectionVisilble(), click: showVehicleFilterSection" title='@Cares.Web.Resources.Shared.Common.ShowFilter'></a>
+                </div>
+                <div class="row" data-bind="visible: vehicleFilterSectionVisilble">
+                    <div class="well">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 margin-top-10">Start Dt/Time</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control vehicleTemplate_popoverContent_outDtTime margin-top-10" data-bind="datetimepicker: vehicleStartDtFilter, css:{ 'errorFill': !isValidVehicleDuration() }" />
+                                </div>
+                                <label class="control-label col-sm-2 margin-top-10">End Dt/Time</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control vehicleTemplate_popoverContent_inDtTime margin-top-10" data-bind="datetimepicker: vehicleEndDtFilter, css:{ 'errorFill': !isValidVehicleDuration() }" />
+                                </div>
+                                <div class="col-sm-1 margin-left">
+                                    <button id="btn-searchVehicle" class="btn btn-success btn-search margin-top-10 float-right vehicleTemplate_popoverContent_searchVehicleButton"
+                                            data-bind="click: searchVehicles, enable: $root.canSearchVehicles">
+                                        Search
+                                    </button>
+                                </div>
+                                <div>
+                                    <a href="#" class="glyphicon glyphicon-resize-small collapse-filter margin-top-15 margin-left-10" data-bind="click: collapseVehicleFilterSection" title='@Cares.Web.Resources.Shared.Common.HideSection'></a>
+                                </div>
 
-                        </div>
-                    </form>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Allocation Status</label>
+                                <div class="col-md-3">
+                                    <select class="form-control vehicleTemplate_popoverContent_allocationStatus" data-bind="options: $root.allocationStatuses, optionsCaption: '<Status>', optionsText: 'codeName', optionsValue: 'id', value: vehicleAllocationStatusFilter"></select>
+                                </div>
+                                <label class="control-label col-sm-2">Out Location</label>
+                                <div class="col-md-3">
+                                    <select class="form-control vehicleTemplate_popoverContent_outLocation" data-bind="options: $root.availableLocations, optionsCaption: '<Location>', optionsText: 'code', optionsValue: 'id', value: vehicleOperationsWorkPlaceFilter"></select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                <div class="row margin-top-20">
+                    <div class="well form-group">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>&nbsp;</th>
+                                    <th>Plate Number</th>
+                                    <th>Category</th>
+                                    <th>Make</th>
+                                    <th>Model</th>
+                                    <th>Model Year</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                <!-- ko foreach: vehicles -->
+
+                                <tr data-bind="click: $root.selectVehicle" class="cursor-pointer">
+                                    <td><img src="#" alt="" data-bind="attr:{ src: image }" /></td>
+                                    <td data-bind="text: plateNumber"></td>
+                                    <td data-bind="text: vehicleCategory"></td>
+                                    <td data-bind="text: vehicleMake"></td>
+                                    <td data-bind="text: vehicleModel"></td>
+                                    <td data-bind="text: modelYear"></td>
+                                </tr>
+                                <!-- /ko -->
+                                <!-- ko if: vehicles().length === 0 -->
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td colspan="4">No record(s) to display yet. </td>
+                                </tr>
+                                <!-- /ko -->
+
+                            </tbody>
+                        </table>
+
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
-                
+                <button type="button" class="btn" data-dismiss="modal">@Cares.Web.Resources.Shared.Common.Close</button>
             </div>
         </div>
     </div>

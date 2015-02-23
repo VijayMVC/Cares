@@ -1,7 +1,7 @@
 ﻿
 <div class="well col-md-12" id="WorkplaceEditor" data-bind="visible: isWorkPlaceEditorVisible , with:selectedWorkPlace" style="display: none;">
     <div class="float-left detailsContainer">
-        <h3 class="page-header detailsHeaderSection">@Cares.Web.Resources.Organization.Workplace.WorkPlaceDetail</h3>
+        <h3 class="page-header detailsHeaderSection float-left">@Cares.Web.Resources.Organization.Workplace.WorkPlaceDetail</h3>
         <button class="btn  btn-info" data-bind="click:$root.onSaveWorkPlace">@Cares.Web.Resources.Shared.Common.Save</button>
         <button class="btn  btn-default" data-bind="click:$root.onCancelSaveWorkPlace">@Cares.Web.Resources.Shared.Common.Cancel</button>
     </div>
@@ -28,18 +28,18 @@
 
             <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.Company*</label>
             <div class="col-md-2">
-                <select class="form-control" id="baseCompniesList" data-bind="options: $root.baseCompniesList, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.Workplace.Company '+'&gt;', value:companyId, event: { change : $root.filterWorkLocations}"></select>
+                <select class="form-control" id="baseCompniesList" data-bind="options: $root.baseCompniesList, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.Workplace.Company'+'&gt;', value:companyId, event: { change : $root.filterWorkLocations}"></select>
             </div>
 
             <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.WorkLocation*</label>
             <div class="col-md-2">
-                <select class="form-control" data-bind="options: $root.filteredBaseWorkLocationsList, optionsText: 'WorkLocationCodeName', optionsValue: 'WorkLocationId', optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.Workplace.WorkLocation '+'&gt;', value:workLocationId"></select>
+                <select class="form-control" data-bind="options: $root.filteredBaseWorkLocationsList, optionsText: 'WorkLocationCodeName', optionsValue: 'WorkLocationId', optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.Workplace.WorkLocation'+'&gt;', value:workLocationId"></select>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.ParentWorkplace</label>
             <div class="col-md-2">
-                <select class="form-control" data-bind="options: $root.filteredParentWorkPlaceList, optionsText: 'WorkPlaceCodeName', optionsValue: 'WorkPlaceId',  optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.Workplace.ParentWorkplace '+'&gt;', value:parentWorkPlaceId"></select>
+                <select class="form-control" data-bind="options: $root.filteredParentWorkPlaceList, optionsText: 'WorkPlaceCodeName', optionsValue: 'WorkPlaceId',  optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.Workplace.ParentWorkplace'+'&gt;', value:parentWorkPlaceId"></select>
             </div>
         </div>
     </form>
@@ -50,14 +50,11 @@
             <li class="active"><a href="#detail" role="tab" data-toggle="tab">@Cares.Web.Resources.Organization.Workplace.Operations</a></li>
         </ul> tabs -->
         <!-- Tab panes -->
-        <div class="tab-content">
+        <div class="tab-content locationEditor">
             <br />
             <!-- first tab - Detail-->
             <div class="tab-pane active" id="detail" data-bind="with:tabDetail">
                 <form class="form-horizontal">
-                    <div class="addToBtnDiv row">
-                        <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onAddOperation ">@Cares.Web.Resources.Shared.Common.Add</button>
-                    </div>
                     <div class="form-group">
                         <label for="" class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.LocationCode*</label>
                         <div class="col-md-2">
@@ -67,20 +64,19 @@
                         <div class="col-md-2">
                             <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Workplace.LocationName+">")"  data-bind="value:locationName" />
                         </div>
-                        <label for="" class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.Description</label>
-                        <div class="col-md-2">
-                            <input type="text" class="form-control" placeholder="@("<"+Cares.Web.Resources.Organization.Workplace.Description+">")"  data-bind="value:locationDescription" />
+                        <div class="col-md-2 float-right" id="locationAddButton">
+                            <button class="btn  btn-info addToBtn" id="saveBtn" data-bind="click: $root.onAddOperation ">@Cares.Web.Resources.Shared.Common.Add</button>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="" class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.Operations*</label>
                         <div class="col-md-2">
-                            <select class="form-control" data-bind="options: $root.baseOperationsList, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.Workplace.Operations '+'&gt;', value:$root.operationDropDownId"></select>
+                            <select class="form-control" data-bind="options: $root.baseOperationsList, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.Workplace.Operations'+'&gt;', value:$root.operationDropDownId"></select>
                         </div>
 
                         <label for="" class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.FleetPool</label>
                         <div class="col-md-2">
-                            <select class="form-control" data-bind="options: $root.baseFleetPoolList, optionsText: 'FleetPoolCodeName', optionsValue: 'FleetPoolId', optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.Workplace.FleetPool '+'&gt;', value:$root.fleelPoolDropDownId"></select>
+                            <select class="form-control" data-bind="options: $root.baseFleetPoolList, optionsText: 'FleetPoolCodeName', optionsValue: 'FleetPoolId', optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.Workplace.FleetPool'+'&gt;', value:$root.fleelPoolDropDownId"></select>
                         </div>
 
                         <label for="" class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.Workplace.CostCenter*</label>
@@ -96,7 +92,6 @@
                         <tr>
                             <th> <span>@Cares.Web.Resources.Organization.Workplace.LocationCode<span></span></span></th>
                             <th> <span>@Cares.Web.Resources.Organization.Workplace.LocationName<span></span></span></th>
-                            <th> <span>@Cares.Web.Resources.Organization.Workplace.Description<span></span></span></th>
                             <th> <span>@Cares.Web.Resources.Organization.Workplace.Operations<span></span></span></th>
                             <th> <span>@Cares.Web.Resources.Organization.Workplace.FleetPool<span></span></span></th>
                             <th> <span>@Cares.Web.Resources.Organization.Workplace.CostCenter<span></span></span></th>
@@ -114,8 +109,7 @@
                 <script id="itemWorkplaceDetailTemplate" type="text/html">
                     <tr>
                         <td data-bind="text: locationCode"></td>
-                        <td data-bind="text: locationName"></td>
-                        <td data-bind="text: locationDescription"></td>
+                        <td data-bind="text: locationName"></td>                        
                         <td data-bind="text: operationName"></td>
                         <td data-bind="text: fleelPoolName"></td>
                         <td data-bind="text: costCenter"></td>

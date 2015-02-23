@@ -69,26 +69,26 @@ namespace Cares.Repository.Repositories
             int toRow = serviceRateSearchRequest.PageSize;
 
             var getInsuranceRateQuery = from serviceRtMain in DbSet
-                                        join tariffType in db.TariffTypes on serviceRtMain.TariffTypeCode equals tariffType.TariffTypeCode
-                                        where
-                                            ((string.IsNullOrEmpty(serviceRateSearchRequest.SearchString) || serviceRtMain.ServiceRtMainCode.Contains(serviceRateSearchRequest.SearchString) || serviceRtMain.ServiceRtMainName.Contains(serviceRateSearchRequest.SearchString)) &&
-                                            (!serviceRateSearchRequest.OperationId.HasValue ||
-                                              tariffType.OperationId == serviceRateSearchRequest.OperationId.Value) &&
-                                             (!serviceRateSearchRequest.TariffTypeId.HasValue ||
-                                              tariffType.TariffTypeId == serviceRateSearchRequest.TariffTypeId)) && !(tariffType.ChildTariffTypeId.HasValue && serviceRtMain.UserDomainKey == UserDomainKey
-                                              && tariffType.UserDomainKey == UserDomainKey)
-                                        select new ServiceRtMainContent
-                                        {
-                                            ServiceRtMainId = serviceRtMain.ServiceRtMainId,
-                                            ServiceRtMainCode = serviceRtMain.ServiceRtMainCode,
-                                            ServiceRtMainName = serviceRtMain.ServiceRtMainName,
-                                            ServiceRtMainDescription = serviceRtMain.ServiceRtMainDescription,
-                                            StartDt = serviceRtMain.StartDt,
-                                            TariffTypeId = tariffType.TariffTypeId,
-                                            TariffTypeCodeName = tariffType.TariffTypeCode + " - " + tariffType.TariffTypeName,
-                                            OperationId = tariffType.OperationId,
-                                            OperationCodeName = tariffType.Operation.OperationCode + " - " + tariffType.Operation.OperationName,
-                                        };
+                    join tariffType in db.TariffTypes.Where(tt => tt.UserDomainKey == UserDomainKey) on serviceRtMain.TariffTypeCode equals tariffType.TariffTypeCode
+                    where
+                        ((string.IsNullOrEmpty(serviceRateSearchRequest.SearchString) || serviceRtMain.ServiceRtMainCode.Contains(serviceRateSearchRequest.SearchString) || serviceRtMain.ServiceRtMainName.Contains(serviceRateSearchRequest.SearchString)) &&
+                        (!serviceRateSearchRequest.OperationId.HasValue ||
+                            tariffType.OperationId == serviceRateSearchRequest.OperationId.Value) &&
+                            (!serviceRateSearchRequest.TariffTypeId.HasValue ||
+                            tariffType.TariffTypeId == serviceRateSearchRequest.TariffTypeId)) && !(tariffType.ChildTariffTypeId.HasValue && serviceRtMain.UserDomainKey == UserDomainKey
+                            && tariffType.UserDomainKey == UserDomainKey)
+                    select new ServiceRtMainContent
+                    {
+                        ServiceRtMainId = serviceRtMain.ServiceRtMainId,
+                        ServiceRtMainCode = serviceRtMain.ServiceRtMainCode,
+                        ServiceRtMainName = serviceRtMain.ServiceRtMainName,
+                        ServiceRtMainDescription = serviceRtMain.ServiceRtMainDescription,
+                        StartDt = serviceRtMain.StartDt,
+                        TariffTypeId = tariffType.TariffTypeId,
+                        TariffTypeCodeName = tariffType.TariffTypeCode + " - " + tariffType.TariffTypeName,
+                        OperationId = tariffType.OperationId,
+                        OperationCodeName = tariffType.Operation.OperationCode + " - " + tariffType.Operation.OperationName,
+                    };
 
             IEnumerable<ServiceRtMainContent> insuranceRtMains = serviceRateSearchRequest.IsAsc
                 ? getInsuranceRateQuery.OrderBy(serviceRateClause[serviceRateSearchRequest.ServiceRateByOrder])
