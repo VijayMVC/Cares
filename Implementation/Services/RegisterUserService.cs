@@ -16,13 +16,15 @@ namespace Cares.Implementation.Services
         private ILicenseDetailsDefaultRepository licenseDetailsDefaultRepository;
         private IDomainLicenseDetailsRepository domainLicenseDetailsRepository;
         private IUserRepository userRepository;
+        private IUserDetailsRepository userDetailsRepository;
 
         public RegisterUserService(ILicenseDetailsDefaultRepository licenseDetailsDefaultRepository, IDomainLicenseDetailsRepository domainLicenseDetailsRepository,
-            IUserRepository userRepository)
+            IUserRepository userRepository, IUserDetailsRepository userDetailsRepository)
         {
             this.licenseDetailsDefaultRepository = licenseDetailsDefaultRepository;
             this.domainLicenseDetailsRepository = domainLicenseDetailsRepository;
             this.userRepository = userRepository;
+            this.userDetailsRepository = userDetailsRepository;
         }
         #endregion
         #region Public
@@ -60,6 +62,14 @@ namespace Cares.Implementation.Services
         public double GetMaxUserDomainKey()
         {
             return userRepository.GetMaxUserDomainKey();
+        }
+
+        /// <summary>
+        /// Saves user details provided while signup
+        /// </summary>
+        public void SaveUserDetails(Models.IdentityModels.User addedUser, RegisterViewModel model)
+        {
+            userDetailsRepository.SaveUserDetails(addedUser, model);
         }
         #endregion
     }

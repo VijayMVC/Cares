@@ -135,6 +135,7 @@ namespace Cares.Repository
             unityContainer.RegisterType<IDomainLicenseDetailsRepository, DomainLicenseDetailsRepository>();
             unityContainer.RegisterType<ILicenseDetailsDefaultRepository, LicenseDetailsDefaultRepository>();
             unityContainer.RegisterType<IUserRepository, UserRepository>();
+            unityContainer.RegisterType<IUserDetailsRepository, UserDetailsRepository>();
         }
     }
 }
