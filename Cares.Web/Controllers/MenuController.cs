@@ -30,7 +30,7 @@ namespace Cares.Web.Controllers
         [ChildActionOnly]
         public ActionResult LoadMenu()
         {
-            return View(new MenuViewModel());
+            //return View(new MenuViewModel());
             User user = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByEmailAsync(User.Identity.Name).Result;
             IList<MenuRight> menuItems;
             if (user == null || user.Roles == null || (user.Roles != null && user.Roles.Count < 1))
