@@ -389,7 +389,8 @@
         <AssociationConnector Association="DomainModels.RefCountry291" />
         <AssociationConnector Association="DomainModels.RefCountry41" />
         <AssociationConnector Association="DomainModels.RefNationality355" />
-        <EntityTypeShape EntityType="DomainModels.UserDetail" Width="1.5" PointX="2.875" PointY="43.25" />
+        <EntityTypeShape EntityType="DomainModels.UserDetail" Width="1.5" PointX="5.625" PointY="62.5" />
+        <AssociationConnector Association="DomainModels.FK_UserDetails_AspNetUsers" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

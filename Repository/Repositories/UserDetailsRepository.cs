@@ -40,8 +40,9 @@ namespace Cares.Repository.Repositories
                 CompanyName = model.CompanyName,
                 AccountType = model.AccountType,
                 Address = model.CompanyAddress,
-                CountryName = model.CountryName
-            });
+                CountryName = model.CountryName,
+                UserId = addedUser.Id
+            });            
         }
     }
 }

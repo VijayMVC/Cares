@@ -2376,6 +2376,7 @@
           <Property Name="CountryName" Type="nvarchar" MaxLength="40" Nullable="false" />
           <Property Name="Address" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="AccountType" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="Vehicle">
           <Key>
@@ -3096,6 +3097,18 @@
             </Principal>
             <Dependent Role="HireGroup">
               <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserDetails_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserDetails">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5938,6 +5951,10 @@
             <End Role="Company" EntitySet="Company" />
             <End Role="HireGroup" EntitySet="HireGroup" />
           </AssociationSet>
+          <AssociationSet Name="FK_UserDetails_AspNetUsers" Association="Self.FK_UserDetails_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UserDetails" EntitySet="UserDetails" />
+          </AssociationSet>
           <AssociationSet Name="FK_Vehicle_VehicleStatus" Association="Self.FK_Vehicle_VehicleStatus">
             <End Role="VehicleStatus" EntitySet="VehicleStatus" />
             <End Role="Vehicle" EntitySet="Vehicle" />
@@ -7883,6 +7900,10 @@
           </AssociationSet>
           <EntitySet Name="DomainLicenseDetails" EntityType="DomainModels.DomainLicenseDetail" />
           <EntitySet Name="UserDetails" EntityType="DomainModels.UserDetail" />
+          <AssociationSet Name="FK_UserDetails_AspNetUsers" Association="DomainModels.FK_UserDetails_AspNetUsers">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserDetail" EntitySet="UserDetails" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Company">
           <Key>
@@ -13761,6 +13782,7 @@
           <NavigationProperty Name="Claims" Relationship="DomainModels.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
           <NavigationProperty Name="Logins" Relationship="DomainModels.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
           <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="UserDetails" Relationship="DomainModels.FK_UserDetails_AspNetUsers" FromRole="User" ToRole="UserDetail" />
         </EntityType>
         <Association Name="FK_dbo_MenuRight_dbo_AspNetRoles_Role_Id">
           <End Type="DomainModels.UserRole" Role="AspNetRole" Multiplicity="0..1" />
@@ -13943,7 +13965,21 @@
           <Property Name="CountryName" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="AccountType" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="DomainModels.FK_UserDetails_AspNetUsers" FromRole="UserDetail" ToRole="User" />
         </EntityType>
+        <Association Name="FK_UserDetails_AspNetUsers">
+          <End Type="DomainModels.User" Role="User" Multiplicity="1" />
+          <End Type="DomainModels.UserDetail" Role="UserDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserDetail">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -16933,6 +16969,7 @@
           <EntitySetMapping Name="UserDetails">
             <EntityTypeMapping TypeName="DomainModels.UserDetail">
               <MappingFragment StoreEntitySet="UserDetails">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="AccountType" ColumnName="AccountType" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="CountryName" ColumnName="CountryName" />
