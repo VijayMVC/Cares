@@ -1,6 +1,6 @@
 ﻿using Cares.Models.IdentityModels;
 
-namespace Cares.Models.Common
+namespace Cares.Models.DomainModels
 {
     public class UserDetail
     {

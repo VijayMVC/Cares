@@ -69,7 +69,13 @@ namespace Cares.Implementation.Services
         /// </summary>
         public void SaveUserDetails(Models.IdentityModels.User addedUser, RegisterViewModel model)
         {
-            userDetailsRepository.SaveUserDetails(addedUser, model);
+            UserDetail user = userDetailsRepository.Create();
+            user.AccountType = model.AccountType;
+            user.Address = model.CompanyAddress;
+            user.CompanyName = model.CompanyName;
+            user.UserId = addedUser.Id;
+            userDetailsRepository.Add(user);
+            userDetailsRepository.SaveChanges();
         }
         #endregion
     }

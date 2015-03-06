@@ -21,10 +21,10 @@ namespace Cares.Models.IdentityModels
         public DateTime? LockoutEndDateUtc { get; set; }
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
-        public long UserDomainKey { get; set; }
-    
+        public long UserDomainKey { get; set; }    
         public virtual ICollection<UserClaim> Claims { get; set; }
         public virtual ICollection<UserLogin> Logins { get; set; }
         public virtual ICollection<UserRole> Roles { get; set; }
+        public virtual ICollection<UserDetail> UserDetails { get; set; }
     }
 }

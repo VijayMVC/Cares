@@ -1,7 +1,6 @@
 ﻿using System.Data.Entity;
 using Cares.Interfaces.Repository;
-using Cares.Models.Common;
-using Cares.Models.IdentityModels;
+using Cares.Models.DomainModels;
 using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
 
@@ -29,20 +28,6 @@ namespace Cares.Repository.Repositories
             }
         }
 
-        #endregion
-        /// <summary>
-        /// Saves user details provided while signup
-        /// </summary>
-        public void SaveUserDetails(User addedUser, Models.IdentityModels.ViewModels.RegisterViewModel model)
-        {
-            DbSet.Add(new UserDetail
-            {
-                CompanyName = model.CompanyName,
-                AccountType = model.AccountType,
-                Address = model.CompanyAddress,
-                CountryName = model.CountryName,
-                UserId = addedUser.Id
-            });            
-        }
+        #endregion        
     }
 }
