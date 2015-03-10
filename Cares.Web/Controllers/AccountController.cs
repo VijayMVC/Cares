@@ -44,6 +44,7 @@ namespace Cares.Web.Controllers
         private IMenuRightsService menuRightService;
         private IDomainLicenseDetailsService domainLicenseDetailsService;
         private IClaimsSecurityService claimsSecurityService;
+        private IRegisterUserService registerUserService;
         /// <summary>
         /// Set User Permission
         /// </summary>
@@ -73,11 +74,13 @@ namespace Cares.Web.Controllers
 
         #region Constructor
 
-        public AccountController(IMenuRightsService menuRightService, IClaimsSecurityService claimsSecurityService, IDomainLicenseDetailsService domainLicenseDetailsService)
+        public AccountController(IMenuRightsService menuRightService, IClaimsSecurityService claimsSecurityService, 
+            IDomainLicenseDetailsService domainLicenseDetailsService, IRegisterUserService registerUserService)
         {
             this.menuRightService = menuRightService;
             this.domainLicenseDetailsService = domainLicenseDetailsService;
             this.claimsSecurityService = claimsSecurityService;
+            this.registerUserService = registerUserService;
         }
 
         #endregion
@@ -291,9 +294,10 @@ namespace Cares.Web.Controllers
             {
                 return View("Error");
             }
-            var result = await UserManager.ConfirmEmailAsync(userId, code);
+            IdentityResult result = await UserManager.ConfirmEmailAsync(userId, code);
             if (result.Succeeded)
             {
+                registerUserService.SetupUserDefaultData(userId);
                 return View("Login");
             }
             return View("Error");

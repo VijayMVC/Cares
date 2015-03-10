@@ -1,4 +1,5 @@
-﻿using Cares.Models.IdentityModels.ViewModels;
+﻿using System;
+using Cares.Models.IdentityModels.ViewModels;
 
 namespace Cares.Interfaces.IServices
 {
@@ -18,5 +19,10 @@ namespace Cares.Interfaces.IServices
         /// Saves user details provided while signup
         /// </summary>
         void SaveUserDetails(Models.IdentityModels.User addedUser, RegisterViewModel model);
+
+        /// <summary>
+        /// Setup User default data
+        /// </summary>
+        void SetupUserDefaultData(string userId);
     }
 }

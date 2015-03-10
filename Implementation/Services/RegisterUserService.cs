@@ -73,10 +73,21 @@ namespace Cares.Implementation.Services
             user.AccountType = model.AccountType;
             user.Address = model.CompanyAddress;
             user.CompanyName = model.CompanyName;
+            user.CountryName = model.CountryName;
             user.UserId = addedUser.Id;
             userDetailsRepository.Add(user);
             userDetailsRepository.SaveChanges();
         }
+
+        public void SetupUserDefaultData(string userId)
+        {
+            UserDetail userDetails = userDetailsRepository.FindByUserId(userId);
+            if (userDetails != null)
+            {
+                //implementation to be done for executing sp
+            }
+        }
+
         #endregion
     }
 }

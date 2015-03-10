@@ -7,6 +7,9 @@ namespace Cares.Interfaces.Repository
     /// </summary>
     public interface IUserDetailsRepository : IBaseRepository<UserDetail, long>
     {
-        
+        /// <summary>
+        /// Finds user details by user id
+        /// </summary>
+        UserDetail FindByUserId(string userId);
     }
 }

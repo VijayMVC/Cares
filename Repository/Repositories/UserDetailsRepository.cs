@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Linq;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
 using Cares.Repository.BaseRepository;
@@ -28,6 +29,12 @@ namespace Cares.Repository.Repositories
             }
         }
 
-        #endregion        
+        #endregion
+        #region Public
+        public UserDetail FindByUserId(string userId)
+        {
+            return DbSet.FirstOrDefault(userDetails => userDetails.UserId == userId);
+        }
+        #endregion
     }
 }

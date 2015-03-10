@@ -32,6 +32,7 @@ namespace Cares.WebApi.Areas.Api.Controllers
         private ApplicationUserManager UserManager
         {
             get { return _userManager ?? HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
+            // ReSharper disable once UnusedMember.Local
             set { _userManager = value; }
         }
         /// <summary>
@@ -146,6 +147,7 @@ namespace Cares.WebApi.Areas.Api.Controllers
             {
                
             }
+            // ReSharper disable once UnusedVariable
             var result = await UserManager.ConfirmEmailAsync(userId, code);
             return null;
         }
