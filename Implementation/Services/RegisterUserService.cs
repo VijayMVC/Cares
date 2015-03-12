@@ -1,6 +1,7 @@
 ﻿using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
+using Cares.Models.IdentityModels;
 using Cares.Models.IdentityModels.ViewModels;
 using System;
 
@@ -13,11 +14,13 @@ namespace Cares.Implementation.Services
     {
         #region Private
 
-        private ILicenseDetailsDefaultRepository licenseDetailsDefaultRepository;
-        private IDomainLicenseDetailsRepository domainLicenseDetailsRepository;
-        private IUserRepository userRepository;
-        private IUserDetailsRepository userDetailsRepository;
-
+        private readonly ILicenseDetailsDefaultRepository licenseDetailsDefaultRepository;
+        private readonly IDomainLicenseDetailsRepository domainLicenseDetailsRepository;
+        private readonly IUserRepository userRepository;
+        private readonly IUserDetailsRepository userDetailsRepository;
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public RegisterUserService(ILicenseDetailsDefaultRepository licenseDetailsDefaultRepository, IDomainLicenseDetailsRepository domainLicenseDetailsRepository,
             IUserRepository userRepository, IUserDetailsRepository userDetailsRepository)
         {
@@ -67,7 +70,7 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Saves user details provided while signup
         /// </summary>
-        public void SaveUserDetails(Models.IdentityModels.User addedUser, RegisterViewModel model)
+        public void SaveUserDetails(User addedUser, RegisterViewModel model)
         {
             UserDetail user = userDetailsRepository.Create();
             user.AccountType = model.AccountType;
@@ -78,16 +81,22 @@ namespace Cares.Implementation.Services
             userDetailsRepository.Add(user);
             userDetailsRepository.SaveChanges();
         }
-
+        /// <summary>
+        /// Executes store procedure for copying default data for newly registered user
+        /// </summary>
         public void SetupUserDefaultData(string userId)
         {
             UserDetail userDetails = userDetailsRepository.FindByUserId(userId);
             if (userDetails != null)
             {
-                //implementation to be done for executing sp
+                User user = userRepository.FindUserById(userId);
+                if (user == null)
+                {
+                    throw new Exception("User not found!");
+                }
+                userDetailsRepository.CopyUserDefaultData(userId, user.UserDomainKey);
             }
         }
-
         #endregion
     }
 }

@@ -11,5 +11,10 @@ namespace Cares.Interfaces.Repository
         /// Finds user details by user id
         /// </summary>
         UserDetail FindByUserId(string userId);
+
+        /// <summary>
+        /// Executes the procedure for creating default data
+        /// </summary>
+        void CopyUserDefaultData(string userId, long domainKey);
     }
 }

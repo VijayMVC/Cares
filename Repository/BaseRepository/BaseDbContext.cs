@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Infrastructure;
 using System.Linq.Expressions;
 using Cares.Models.DomainModels;
 using Cares.Models.IdentityModels;
@@ -582,6 +584,16 @@ namespace Cares.Repository.BaseRepository
         public DbSet<DomainLicenseDetail> DomainLicenseDetails { get; set; }
         public DbSet<LicenseDetailsDefault> LicenseDetailsDefault { get; set; }
         public DbSet<UserDetail> UserDetails { get; set; }
+
+        /// <summary>
+        /// Execute store procedure for creating d
+        /// </summary>
+        public void ExecuteCreateDefaultData(string userId, long userDomainKey)
+        {
+            ObjectParameter domainkKeyParameter = new ObjectParameter("domainKey", userDomainKey);
+            ObjectParameter userIdParameter = new ObjectParameter("userId", userId);
+            ((IObjectContextAdapter) this).ObjectContext.ExecuteFunction("copyDefaultData", domainkKeyParameter, userIdParameter);            
+        }
 
         #endregion
     }

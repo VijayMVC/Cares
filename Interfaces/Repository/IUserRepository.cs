@@ -1,5 +1,4 @@
-﻿using Cares.Models.DomainModels;
-using Cares.Models.IdentityModels;
+﻿using Cares.Models.IdentityModels;
 
 namespace Cares.Interfaces.Repository
 {
@@ -9,5 +8,10 @@ namespace Cares.Interfaces.Repository
         /// To get the maximum user domain key
         /// </summary>
         double GetMaxUserDomainKey();
+
+        /// <summary>
+        /// Finds user by user id
+        /// </summary>
+        User FindUserById(string userId);
     }
 }

@@ -7,6 +7,9 @@ using Microsoft.Practices.Unity;
 
 namespace Cares.Repository.Repositories
 {
+    /// <summary>
+    /// User details repository related to Registerd user details
+    /// </summary>
     public class UserDetailsRepository : BaseRepository<UserDetail>, IUserDetailsRepository
     {
         #region Constructor
@@ -31,10 +34,22 @@ namespace Cares.Repository.Repositories
 
         #endregion
         #region Public
+        /// <summary>
+        /// Finds the User details by user id
+        /// </summary>
         public UserDetail FindByUserId(string userId)
         {
             return DbSet.FirstOrDefault(userDetails => userDetails.UserId == userId);
         }
+
+        /// <summary>
+        /// Executes 
+        /// </summary>
+        public void CopyUserDefaultData(string userId, long domainKey)
+        {
+            db.ExecuteCreateDefaultData(userId, domainKey);
+        }
+
         #endregion
     }
 }

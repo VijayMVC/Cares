@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CaresModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CaresModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AdditionalCharge">
           <Key>
             <PropertyRef Name="AdditionalChargeID" />
@@ -5738,6 +5738,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="copyDefaultData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="domainKey" Type="bigint" Mode="In" />
+          <Parameter Name="userId" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="CaresModelStoreContainer">
           <EntitySet Name="AdditionalCharge" EntityType="Self.AdditionalCharge" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdditionalChargeType" EntityType="Self.AdditionalChargeType" Schema="dbo" store:Type="Tables" />
@@ -7904,6 +7908,10 @@
             <End Role="User" EntitySet="Users" />
             <End Role="UserDetail" EntitySet="UserDetails" />
           </AssociationSet>
+          <FunctionImport Name="copyDefaultData">
+            <Parameter Name="domainKey" Mode="In" Type="Int64" />
+            <Parameter Name="userId" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Company">
           <Key>
@@ -16978,6 +16986,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="copyDefaultData" FunctionName="CaresModel.Store.copyDefaultData" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
