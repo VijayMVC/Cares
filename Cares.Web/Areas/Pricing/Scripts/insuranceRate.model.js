@@ -144,6 +144,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             // True if the booking has been changed
             // ReSharper disable InconsistentNaming
             dirtyFlag = new ko.dirtyFlag({
+                insuranceRate: insuranceRate,
+                startDate: startDate
             }),
             // Has Changes
             hasChanges = ko.computed(function () {
@@ -230,6 +232,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         insuranceTypeRt.isChecked(source.IsChecked === null ? false : source.IsChecked);
         insuranceTypeRt.virtualIsChecked(source.IsChecked === null ? false : source.IsChecked);
         insuranceTypeRt.revisionNumber(source.RevisionNumber === null ? 0 : source.RevisionNumber);
+        insuranceTypeRt.dirtyFlag.reset();
         return insuranceTypeRt;
     };
     //Client To Server Mapper

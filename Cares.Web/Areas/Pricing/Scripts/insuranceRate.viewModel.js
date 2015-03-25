@@ -200,7 +200,7 @@ define("insuranceRate/insuranceRate.viewModel",
                         if (doBeforeSave()) {
                             insuranceRt.insuranceRts.removeAll();
                             _.each(insuranceTypeRts(), function (item) {
-                                if (item.isChecked() === true && doBeforeSaveForInsuranceRtDetail(item)) {
+                                if (item.isChecked() === true && doBeforeSaveForInsuranceRtDetail(item) && item.hasChanges()) {
                                     insuranceRt.insuranceRts.push(item);
                                 }
                             });
