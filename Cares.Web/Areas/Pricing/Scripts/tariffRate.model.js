@@ -158,6 +158,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
                 dirtyFlag = new ko.dirtyFlag({
                     allowMileage: allowMileage,
                     excessMileageCharge: excessMileageCharge,
+                    standardRt: standardRt,
+                    startDate: startDate,
                 }),
                 // Has Changes
                 hasChanges = ko.computed(function () {
@@ -278,6 +280,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         //hireGroupDetail.endDate(source.EndDate !== null ? moment(source.EndDate, ist.utcFormat).toDate() : undefined);
         hireGroupDetail.isChecked(source.IsChecked === null ? false : source.IsChecked);
         hireGroupDetail.virtualHireGroupDetailId(source.IsChecked === true ? source.HireGroupDetailId : 0);
+        hireGroupDetail.dirtyFlag.reset();
         return hireGroupDetail;
     };
     return {

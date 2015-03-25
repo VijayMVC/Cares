@@ -256,7 +256,7 @@ define("tariffRate/tariffRate.viewModel",
                         if (doBeforeSave()) {
                             tariffRate.hireGroupDetailsInStandardRtMain.removeAll();
                             _.each(hireGroupDetails(), function (item) {
-                                if (item.isChecked() === true && doBeforeSaveForHireGroupDetail(item)) {
+                                if (item.isChecked() === true && doBeforeSaveForHireGroupDetail(item) && item.hasChanges()) {
                                     tariffRate.hireGroupDetailsInStandardRtMain.push(item);
                                 }
                             });
