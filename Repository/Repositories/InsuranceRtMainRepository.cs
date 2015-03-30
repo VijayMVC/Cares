@@ -69,7 +69,7 @@ namespace Cares.Repository.Repositories
             int toRow = insuranceRateSearchRequest.PageSize;
 
             var getInsuranceRateQuery = from insuranceRtMain in DbSet
-                                        join tariffType in db.TariffTypes on insuranceRtMain.TariffTypeCode equals tariffType.TariffTypeCode
+                                        join tariffType in db.TariffTypes.Where(tt => tt.UserDomainKey == UserDomainKey) on insuranceRtMain.TariffTypeCode equals tariffType.TariffTypeCode
                                         where
                                             ((string.IsNullOrEmpty(insuranceRateSearchRequest.SearchString) || insuranceRtMain.InsuranceRtMainCode.Contains(insuranceRateSearchRequest.SearchString) || insuranceRtMain.InsuranceRtMainName.Contains(insuranceRateSearchRequest.SearchString)) &&
                                             (!insuranceRateSearchRequest.OperationId.HasValue ||
