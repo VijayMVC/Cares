@@ -845,7 +845,9 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         });
         // Vehicle Check List Items
         // from client to server
-        result.VehicleImages = source.vehicleImage().imageUrl() ? (result.VehicleImages.push({ VehicleImageId: 0, ImageSource: source.vehicleImage().imageUrl() })) : [];
+        result.VehicleImages = [];
+        if (source.vehicleImage().imageUrl()) 
+            result.VehicleImages.push({ VehicleImageId: 0, ImageSource: source.vehicleImage().imageUrl() });
         result.VehicleCheckListItems = [];
         _.each(source.checkListItemListInVehicle(), function (item) {
             result.VehicleCheckListItems.push(CheckListItemServerMapper(item));

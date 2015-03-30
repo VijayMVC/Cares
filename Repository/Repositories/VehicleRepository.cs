@@ -123,8 +123,8 @@ namespace Cares.Repository.Repositories
                         join v in db.Vehicles on new { vc.VehicleCategoryId, vm.VehicleMakeId, vmod.VehicleModelId, hireGroupDetail.ModelYear } equals
                         new { v.VehicleCategoryId, v.VehicleMakeId, v.VehicleModelId, v.ModelYear }
                         from vs in db.VehicleStatuses.Where(vs => vs.VehicleStatusId == v.VehicleStatusId && vs.AvailabilityCheck)
-                        join fleetPool in db.FleetPools on v.FleetPoolId equals fleetPool.FleetPoolId
-                        from owp in db.OperationsWorkPlaces.Where(owp => owp.FleetPoolId == fleetPool.FleetPoolId && owp.OperationsWorkPlaceId == request.OperationsWorkPlaceId)
+                        //join fleetPool in db.FleetPools on v.FleetPoolId equals fleetPool.FleetPoolId
+                        from owp in db.OperationsWorkPlaces.Where(owp => owp.OperationsWorkPlaceId == request.OperationsWorkPlaceId) //owp.FleetPoolId == fleetPool.FleetPoolId &&
                         join vr in db.VehicleReservations on v.VehicleId equals vr.VehicleId into vehicleGroup
                         from vg in vehicleGroup.Where(vg => !(vg.EndDtTime >= request.StartDtTime && vg.StartDtTime <= request.EndDtTime)).DefaultIfEmpty()
                         where (hireGroup.UserDomainKey == UserDomainKey && hireGroupDetail.UserDomainKey == UserDomainKey && v.UserDomainKey == UserDomainKey)
