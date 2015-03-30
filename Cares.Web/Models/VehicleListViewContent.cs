@@ -44,6 +44,17 @@ namespace Cares.Web.Models
         public string VehicleMakeCodeName { get; set; }
 
         /// <summary>
+        /// Vehicle Model Code Name
+        /// </summary>
+        public string VehicleModelCodeName { get; set; }
+
+        /// <summary>
+        /// Vehicle Category Code Name
+        /// </summary>
+        public string VehicleCategoryCodeName { get; set; }
+
+
+        /// <summary>
         /// Vehicle Statud Code Name
         /// </summary>
         public string VehicleStatusCodeName { get; set; }

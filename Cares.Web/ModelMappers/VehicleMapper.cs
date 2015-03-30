@@ -86,6 +86,8 @@ namespace Cares.Web.ModelMappers
                 Image = image != null ? image.Image : new byte[] { },
                 Location = source.OperationsWorkPlace != null ? source.OperationsWorkPlace.LocationCode : string.Empty,
                 VehicleMakeCodeName = source.VehicleMake != null ? source.VehicleMake.VehicleMakeCode + " - " + source.VehicleMake.VehicleMakeName : string.Empty,
+                VehicleModelCodeName = source.VehicleModel != null ? source.VehicleModel.VehicleModelCode + " - " + source.VehicleModel.VehicleModelName : string.Empty,
+                VehicleCategoryCodeName = source.VehicleCategory != null ? source.VehicleCategory.VehicleCategoryCode + " - " + source.VehicleCategory.VehicleCategoryName : string.Empty,
                 VehicleStatusCodeName = source.VehicleStatus != null ? source.VehicleStatus.VehicleStatusCode + " - " + source.VehicleStatus.VehicleStatusName : string.Empty,
                 FleetPoolCodeName = source.FleetPool != null ? source.FleetPool.FleetPoolCode + " - " + source.FleetPool.FleetPoolName : string.Empty,
                 OperationCodeName = source.OperationsWorkPlace != null ? source.OperationsWorkPlace.Operation.OperationCode + " - " + source.OperationsWorkPlace.Operation.OperationName : string.Empty,

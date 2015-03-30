@@ -56,7 +56,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public override IEnumerable<VehicleStatus> GetAll()
         {
-            return DbSet.Where(vs => vs.UserDomainKey == UserDomainKey).ToList();
+            return DbSet.OrderBy(vs => vs.VehicleStatusCode).ToList();
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Cares.Repository.Repositories
                 vehicleStatus =>
                     (string.IsNullOrEmpty(request.VehicleStatusCodeNameFilterText) ||
                      (vehicleStatus.VehicleStatusCode.Contains(request.VehicleStatusCodeNameFilterText)) ||
-                     (vehicleStatus.VehicleStatusName.Contains(request.VehicleStatusCodeNameFilterText))) && (vehicleStatus.UserDomainKey == UserDomainKey);
+                     (vehicleStatus.VehicleStatusName.Contains(request.VehicleStatusCodeNameFilterText)));
             rowCount = DbSet.Count(query);
             return request.IsAsc
                 ? DbSet.Where(query)

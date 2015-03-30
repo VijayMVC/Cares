@@ -23,6 +23,10 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             modelYear = ko.observable(),
             //Vehicle Make Code Name
             vehicleMakeCodeName = ko.observable(),
+            // Vehicle Model Code Name
+            vehicleModelCodeName = ko.observable(),
+            // Vehicle Category Code Name
+            vehicleCategoryCodeName = ko.observable(),
             //Vehicle Status Code Name
             vehicleStatusCodeName = ko.observable(),
             //Fleet Pool Code Name
@@ -42,6 +46,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
             fuelLevel: fuelLevel,
             modelYear: modelYear,
             vehicleMakeCodeName: vehicleMakeCodeName,
+            vehicleModelCodeName: vehicleModelCodeName,
+            vehicleCategoryCodeName: vehicleCategoryCodeName,
             vehicleStatusCodeName: vehicleStatusCodeName,
             fleetPoolCodeName: fleetPoolCodeName,
             operationCodeName: operationCodeName,
@@ -839,8 +845,7 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         });
         // Vehicle Check List Items
         // from client to server
-        result.VehicleImages = [];
-        result.VehicleImages.push({ VehicleImageId: 0, ImageSource: source.vehicleImage().imageUrl() });
+        result.VehicleImages = source.vehicleImage().imageUrl() ? (result.VehicleImages.push({ VehicleImageId: 0, ImageSource: source.vehicleImage().imageUrl() })) : [];
         result.VehicleCheckListItems = [];
         _.each(source.checkListItemListInVehicle(), function (item) {
             result.VehicleCheckListItems.push(CheckListItemServerMapper(item));
@@ -905,6 +910,8 @@ define(["ko", "underscore", "underscore-ko"], function (ko) {
         vehicle.currentOdometer(source.CurrentOdometer === null ? undefined : source.CurrentOdometer);
         vehicle.modelYear(source.ModelYear === null ? undefined : source.ModelYear);
         vehicle.vehicleMakeCodeName(source.VehicleMakeCodeName === null ? undefined : source.VehicleMakeCodeName);
+        vehicle.vehicleModelCodeName(source.VehicleModelCodeName === null ? undefined : source.VehicleModelCodeName);
+        vehicle.vehicleCategoryCodeName(source.VehicleCategoryCodeName === null ? undefined : source.VehicleCategoryCodeName);
         vehicle.vehicleStatusCodeName(source.VehicleStatusCodeName === null ? undefined : source.VehicleStatusCodeName);
         vehicle.fleetPoolCodeName(source.FleetPoolCodeName === null ? undefined : source.FleetPoolCodeName);
         vehicle.operationCodeName(source.OperationCodeName === null ? undefined : source.OperationCodeName);

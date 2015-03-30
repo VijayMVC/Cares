@@ -385,7 +385,7 @@
     <value>Useful Period Start Date</value>
   </data>
   <data name="VehicleCategory" xml:space="preserve">
-    <value>Vehicle Category</value>
+    <value>Category</value>
   </data>
   <data name="VehicleCheckList" xml:space="preserve">
     <value>Vehicle Checklist</value>
@@ -409,10 +409,10 @@
     <value>Failed to load vehicles.</value>
   </data>
   <data name="VehicleMake" xml:space="preserve">
-    <value>Vehicle Make</value>
+    <value>Make</value>
   </data>
   <data name="VehicleModel" xml:space="preserve">
-    <value>Vehicle Model</value>
+    <value>Model</value>
   </data>
   <data name="VehicleName" xml:space="preserve">
     <value>Vehicle Name</value>
@@ -432,4 +432,5 @@
   <data name="Year" xml:space="preserve">
     <value>Year</value>
   </data>
+  
 </root>

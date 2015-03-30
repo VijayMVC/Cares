@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Cares.Interfaces.IServices;
 using Microsoft.Practices.EnterpriseLibrary.Logging;
@@ -15,7 +16,16 @@ namespace Cares.Implementation.Services
         /// </summary>
         public void Write(string message, string category, int priority, int eventId, TraceEventType severity, string title)
         {
-            Logger.Write(message, category, priority, eventId, severity, title);
+            try
+            {
+                Logger.Write(message, category, priority, eventId, severity, title);
+            }
+            catch (Exception ex)
+            {
+                string a = ex.Message;
+
+                throw;
+            }
         }
 
         /// <summary>
@@ -23,7 +33,17 @@ namespace Cares.Implementation.Services
         /// </summary>
         public void Write(object message, string category, int priority, int eventId, TraceEventType severity, string title, IDictionary<string, object> properties)
         {
-            Logger.Write(message, category, priority, eventId, severity, title, properties);
+            try
+            {
+                Logger.Write(message, category, priority, eventId, severity, title, properties);
+            }
+            catch (Exception ex)
+            {
+                string a = ex.Message;
+
+                throw;
+            }
+            
         }
     }
 }

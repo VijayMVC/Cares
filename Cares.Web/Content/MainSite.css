@@ -1140,13 +1140,13 @@ fieldset[disabled] .btn-billing.active {
   width: 10%;
 }
 #vehicleBinding table thead tr .vModel {
-  width: 8%;
+  width: 6%;
 }
 #vehicleBinding table thead tr .vFuelLevel {
   width: 6%;
 }
 #vehicleBinding table thead tr .vCurrentOdemeter {
-  width: 6%;
+  width: 7%;
 }
 #vehicleBinding table thead tr .vLocation {
   width: 13%;

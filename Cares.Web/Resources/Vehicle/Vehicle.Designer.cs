@@ -862,7 +862,7 @@ namespace Cares.Web.Resources.Vehicle {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vehicle Category.
+        ///   Looks up a localized string similar to Category.
         /// </summary>
         public static string VehicleCategory {
             get {
@@ -934,7 +934,7 @@ namespace Cares.Web.Resources.Vehicle {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vehicle Make.
+        ///   Looks up a localized string similar to Make.
         /// </summary>
         public static string VehicleMake {
             get {
@@ -943,7 +943,7 @@ namespace Cares.Web.Resources.Vehicle {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vehicle Model.
+        ///   Looks up a localized string similar to Model.
         /// </summary>
         public static string VehicleModel {
             get {

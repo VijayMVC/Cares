@@ -39,15 +39,17 @@
                     <tr>
                         <th class="vImage">&nbsp;</th>
                         <th class="vPlateNumber"> <span id="1">@Cares.Web.Resources.Vehicle.Vehicle.PlateNumber<span class="icon-up"></span></span></th>
-                        <th class="vName"> <span id="2">@Cares.Web.Resources.Vehicle.Vehicle.VehicleLabel @Cares.Web.Resources.Vehicle.Vehicle.Name<span></span></span></th>
+                        <th class="vMake"> <span>@Cares.Web.Resources.Vehicle.Vehicle.VehicleLabel<br />@Cares.Web.Resources.Vehicle.Vehicle.Make<span></span></span></th>
+                        <th class="vMake"> <span>@Cares.Web.Resources.Vehicle.Vehicle.VehicleLabel<br />@Cares.Web.Resources.Vehicle.Vehicle.Model<span></span></span></th>
+                        <th class="vMake"> <span>@Cares.Web.Resources.Vehicle.Vehicle.VehicleLabel<br />@Cares.Web.Resources.Vehicle.Vehicle.VehicleCategory<span></span></span></th>
+                        @*<th class="vName"> <span id="2">@Cares.Web.Resources.Vehicle.Vehicle.VehicleLabel @Cares.Web.Resources.Vehicle.Vehicle.Name<span></span></span></th>*@
                         <th class="vModel"> <span>@Cares.Web.Resources.Vehicle.Vehicle.Model<br />@Cares.Web.Resources.Vehicle.Vehicle.Year<span></span></span></th>
                         <th class="vFuelLevel"> <span>@Cares.Web.Resources.Vehicle.Vehicle.Fuel<br />@Cares.Web.Resources.Vehicle.Vehicle.Level<span></span></span></th>
                         <th class="vCurrentOdemeter"> <span>@Cares.Web.Resources.Vehicle.Vehicle.Current<br />@Cares.Web.Resources.Vehicle.Vehicle.Odometer<span></span></span></th>
                         <th class="vLocation"> <span>@Cares.Web.Resources.Vehicle.Vehicle.Location<span></span></span></th>
-                        <th class="vMake"> <span>@Cares.Web.Resources.Vehicle.Vehicle.VehicleLabel<br />@Cares.Web.Resources.Vehicle.Vehicle.Make<span></span></span></th>
+
                         <th class="vStatus"> <span>@Cares.Web.Resources.Vehicle.Vehicle.VehicleLabel<br />@Cares.Web.Resources.Vehicle.Vehicle.Status<span></span></span></th>
                         <th class="operation"> <span>@Cares.Web.Resources.Vehicle.Vehicle.Operation<span></span></span></th>
-
                     </tr>
                 </thead>
                 <tbody>
@@ -68,14 +70,17 @@
     </script>
     <script id="itemVehicleTemplate" type="text/html">
         <tr>
-            <td class="vehicleThumbnail"><img src="#" data-bind="attr:{src: vehicleImage().imageUrl}"/></td>
+            <td class="vehicleThumbnail"><img src="#" data-bind="attr:{src: vehicleImage().imageUrl}" /></td>
             <td data-bind="text: plateNumber"></td>
-            <td data-bind="text: vehicleName"></td>
+            <td data-bind="text: vehicleMakeCodeName"></td>
+            <td data-bind="text: vehicleModelCodeName"></td>
+            <td data-bind="text: vehicleCategoryCodeName"></td>
+            @*<td data-bind="text: vehicleName"></td>*@
             <td data-bind="text: modelYear"></td>
             <td data-bind="text: fuelLevel"></td>
             <td data-bind="text: currentOdometer"></td>
             <td data-bind="text: location"></td>
-            <td data-bind="text: vehicleMakeCodeName"></td>
+
             <td data-bind="text: vehicleStatusCodeName"></td>
             <td data-bind="text: operationCodeName"></td>
             <td>

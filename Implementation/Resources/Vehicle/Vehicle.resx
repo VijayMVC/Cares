@@ -118,12 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DuplicatePlateNumber" xml:space="preserve">
-    <value>Vehicle with same plate number already exists.</value>
+    <value>Vehicle with Plate# number already exists.</value>
   </data>
   <data name="ExceedindDomainLimitForVehicleError" xml:space="preserve">
-    <value>You can not add any further vehicle under current domain!</value>
+    <value>You can not add any further vehicle under current License!</value>
   </data>
   <data name="NoDomainLicenseDetailClaim" xml:space="preserve">
-    <value>Domain License Detail user claim not found</value>
+    <value>License details not found. If problem persists, please contact administrator.</value>
   </data>
 </root>

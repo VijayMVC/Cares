@@ -147,21 +147,24 @@ namespace Cares.Implementation.Services
 
             if (vehicleDbVersion == null)
             {
-                var numberOfExistedVehiclesByDomainKey = vehicleRepository.GetCountOfVehicleWithDomainKey();
-                var domainLicenseDetailwithDomainKey = ClaimHelper.GetDeserializedClaims<DomainLicenseDetailClaim>(CaresUserClaims.DomainLicenseDetail).FirstOrDefault();
-                if (domainLicenseDetailwithDomainKey != null)
-                    if (domainLicenseDetailwithDomainKey.Vehicles <= numberOfExistedVehiclesByDomainKey)
-                    {
-                        throw new CaresException(Resources.Vehicle.Vehicle.ExceedindDomainLimitForVehicleError);
-                    }
-                    else
-                    {
-                        throw new InvalidOperationException(Resources.Vehicle.Vehicle.NoDomainLicenseDetailClaim);
-                    }
+                int numberOfExistedVehiclesByDomainKey = vehicleRepository.GetCountOfVehicleWithDomainKey();
+                DomainLicenseDetailClaim domainLicenseDetailwithDomainKey =
+                    ClaimHelper.GetDeserializedClaims<DomainLicenseDetailClaim>(CaresUserClaims.DomainLicenseDetail)
+                        .FirstOrDefault();
+                if (domainLicenseDetailwithDomainKey == null)
+                {
+                    throw new InvalidOperationException(Resources.Vehicle.Vehicle.NoDomainLicenseDetailClaim);
+                }
+                if (domainLicenseDetailwithDomainKey.Vehicles <= numberOfExistedVehiclesByDomainKey)
+                {
+                    throw new CaresException(Resources.Vehicle.Vehicle.ExceedindDomainLimitForVehicleError);
+                }
+
 
                 if (vehicleRepository.DuplicateVehiclePlateNumber(vehicle.PlateNumber, vehicle.VehicleId))
                 {
-                    throw new CaresException(string.Format(CultureInfo.InvariantCulture, Resources.Vehicle.Vehicle.DuplicatePlateNumber));
+                    throw new CaresException(string.Format(CultureInfo.InvariantCulture,
+                        Resources.Vehicle.Vehicle.DuplicatePlateNumber));
                 }
                 vehicle.UserDomainKey = vehicleRepository.UserDomainKey;
                 vehicle.IsActive = true;
@@ -172,48 +175,66 @@ namespace Cares.Implementation.Services
                 vehicle.VehicleCode = "CaresVehicle";
 
                 #region Other detail
+
                 vehicle.VehicleOtherDetail.UserDomainKey = vehicleRepository.UserDomainKey;
                 vehicle.VehicleOtherDetail.IsActive = true;
-                vehicle.VehicleOtherDetail.IsReadOnly = vehicle.VehicleOtherDetail.IsPrivate = vehicle.VehicleOtherDetail.IsDeleted = false;
+                vehicle.VehicleOtherDetail.IsReadOnly =
+                    vehicle.VehicleOtherDetail.IsPrivate = vehicle.VehicleOtherDetail.IsDeleted = false;
                 vehicle.VehicleOtherDetail.RecLastUpdatedDt = vehicle.VehicleOtherDetail.RecCreatedDt = DateTime.Now;
-                vehicle.VehicleOtherDetail.RecLastUpdatedBy = vehicle.VehicleOtherDetail.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
+                vehicle.VehicleOtherDetail.RecLastUpdatedBy =
+                    vehicle.VehicleOtherDetail.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
                 vehicle.VehicleOtherDetail.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
                 vehicle.VehicleOtherDetail.RecLastUpdatedBy = vehicleRepository.LoggedInUserIdentity;
                 vehicle.VehicleOtherDetail.RowVersion = 0;
+
                 #endregion
 
                 #region Purchase Info
+
                 vehicle.VehiclePurchaseInfo.UserDomainKey = vehicleRepository.UserDomainKey;
                 vehicle.VehiclePurchaseInfo.RecLastUpdatedDt = vehicle.VehiclePurchaseInfo.RecCreatedDt = DateTime.Now;
-                vehicle.VehiclePurchaseInfo.RecLastUpdatedBy = vehicle.VehiclePurchaseInfo.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
+                vehicle.VehiclePurchaseInfo.RecLastUpdatedBy =
+                    vehicle.VehiclePurchaseInfo.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
                 vehicle.VehiclePurchaseInfo.RowVersion = 0;
+
                 #endregion
 
                 #region Leased Info
+
                 vehicle.VehicleLeasedInfo.UserDomainKey = vehicleRepository.UserDomainKey;
                 vehicle.VehicleLeasedInfo.RecLastUpdatedDt = vehicle.VehicleLeasedInfo.RecCreatedDt = DateTime.Now;
-                vehicle.VehicleLeasedInfo.RecLastUpdatedBy = vehicle.VehicleLeasedInfo.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
+                vehicle.VehicleLeasedInfo.RecLastUpdatedBy =
+                    vehicle.VehicleLeasedInfo.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
                 vehicle.VehicleLeasedInfo.RowVersion = 0;
+
                 #endregion
 
                 #region Insurance Info
+
                 vehicle.VehicleInsuranceInfo.UserDomainKey = vehicleRepository.UserDomainKey;
                 vehicle.VehicleInsuranceInfo.RecLastUpdatedDt = vehicle.VehicleInsuranceInfo.RecCreatedDt = DateTime.Now;
-                vehicle.VehicleInsuranceInfo.RecLastUpdatedBy = vehicle.VehicleInsuranceInfo.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
+                vehicle.VehicleInsuranceInfo.RecLastUpdatedBy =
+                    vehicle.VehicleInsuranceInfo.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
                 vehicle.VehicleInsuranceInfo.RowVersion = 0;
+
                 #endregion
 
                 #region Dericiation Info
+
                 vehicle.VehicleDepreciation.UserDomainKey = vehicleRepository.UserDomainKey;
                 vehicle.VehicleDepreciation.RecLastUpdatedDt = vehicle.VehicleDepreciation.RecCreatedDt = DateTime.Now;
-                vehicle.VehicleDepreciation.RecLastUpdatedBy = vehicle.VehicleDepreciation.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
+                vehicle.VehicleDepreciation.RecLastUpdatedBy =
+                    vehicle.VehicleDepreciation.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
                 vehicle.VehicleDepreciation.RowVersion = 0;
+
                 #endregion
 
                 #region Disposal Info
+
                 vehicle.VehicleDisposalInfo.UserDomainKey = vehicleRepository.UserDomainKey;
                 vehicle.VehicleDisposalInfo.RecLastUpdatedDt = vehicle.VehicleDisposalInfo.RecCreatedDt = DateTime.Now;
-                vehicle.VehicleDisposalInfo.RecLastUpdatedBy = vehicle.VehicleDisposalInfo.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
+                vehicle.VehicleDisposalInfo.RecLastUpdatedBy =
+                    vehicle.VehicleDisposalInfo.RecCreatedBy = vehicleRepository.LoggedInUserIdentity;
                 vehicle.VehicleDisposalInfo.RowVersion = 0;
                 //Vehicle Maintenance Type Frequency Items
                 if (vehicle.VehicleMaintenanceTypeFrequencies != null)
@@ -226,9 +247,11 @@ namespace Cares.Implementation.Services
                         item.RowVersion = 0;
                     }
                 }
+
                 #endregion
 
                 #region Vehicle Check List Item List
+
                 if (vehicle.VehicleCheckListItems != null)
                 {
                     foreach (var item in vehicle.VehicleCheckListItems)
@@ -240,12 +263,14 @@ namespace Cares.Implementation.Services
                         item.RowVersion = 0;
                     }
                 }
+
                 #endregion
 
                 #region Vehicle Image
+
                 if (vehicle.VehicleImages != null)
                 {
-                    foreach (var item in vehicle.VehicleImages)
+                    foreach (VehicleImage item in vehicle.VehicleImages)
                     {
                         item.VehicleImageCode = DateTime.Now.ToString("yyyyMMddHHmmss");
                         item.UserDomainKey = vehicleRepository.UserDomainKey;
@@ -255,14 +280,16 @@ namespace Cares.Implementation.Services
                         item.RowVersion = 0;
                     }
                 }
+
                 #endregion
 
                 vehicleRepository.Add(vehicle);
 
             }
-            #endregion
+                #endregion
 
-            #region Edit
+                #region Edit
+
             else
             {
 
@@ -289,6 +316,7 @@ namespace Cares.Implementation.Services
                 vehicleDbVersion.VehicleCondition = vehicle.VehicleCondition;
 
                 #region Vehicle other Detail
+
                 vehicleDbVersion.VehicleOtherDetail.NumberOfDoors = vehicle.VehicleOtherDetail.NumberOfDoors;
                 vehicleDbVersion.VehicleOtherDetail.HorsePower_CC = vehicle.VehicleOtherDetail.HorsePower_CC;
                 vehicleDbVersion.VehicleOtherDetail.NumberOfCylinders = vehicle.VehicleOtherDetail.NumberOfCylinders;
@@ -304,20 +332,26 @@ namespace Cares.Implementation.Services
                 vehicleDbVersion.VehicleOtherDetail.BackWheelSize = vehicle.VehicleOtherDetail.BackWheelSize;
                 vehicleDbVersion.VehicleOtherDetail.RecLastUpdatedBy = vehicleRepository.LoggedInUserIdentity;
                 vehicleDbVersion.VehicleOtherDetail.RecLastUpdatedDt = DateTime.Now;
+
                 #endregion
 
                 #region Vehicle Purchase Info
+
                 vehicleDbVersion.VehiclePurchaseInfo.PurchaseDate = vehicle.VehiclePurchaseInfo.PurchaseDate;
-                vehicleDbVersion.VehiclePurchaseInfo.PurchaseDescription = vehicle.VehiclePurchaseInfo.PurchaseDescription;
+                vehicleDbVersion.VehiclePurchaseInfo.PurchaseDescription =
+                    vehicle.VehiclePurchaseInfo.PurchaseDescription;
                 vehicleDbVersion.VehiclePurchaseInfo.PurchasedFrom = vehicle.VehiclePurchaseInfo.PurchasedFrom;
-                vehicleDbVersion.VehiclePurchaseInfo.PurchaseOrderNumber = vehicle.VehiclePurchaseInfo.PurchaseOrderNumber;
+                vehicleDbVersion.VehiclePurchaseInfo.PurchaseOrderNumber =
+                    vehicle.VehiclePurchaseInfo.PurchaseOrderNumber;
                 vehicleDbVersion.VehiclePurchaseInfo.PurchaseCost = vehicle.VehiclePurchaseInfo.PurchaseCost;
                 vehicleDbVersion.VehiclePurchaseInfo.IsUsedVehicle = vehicle.VehiclePurchaseInfo.IsUsedVehicle;
                 vehicleDbVersion.VehiclePurchaseInfo.RecLastUpdatedBy = vehicleRepository.LoggedInUserIdentity;
                 vehicleDbVersion.VehiclePurchaseInfo.RecLastUpdatedDt = DateTime.Now;
+
                 #endregion
 
                 #region Vehicle Leased Info
+
                 vehicleDbVersion.VehicleLeasedInfo.DownPayment = vehicle.VehicleLeasedInfo.DownPayment;
                 vehicleDbVersion.VehicleLeasedInfo.LeasedStartDate = vehicle.VehicleLeasedInfo.LeasedStartDate;
                 vehicleDbVersion.VehicleLeasedInfo.LeasedFinishDate = vehicle.VehicleLeasedInfo.LeasedFinishDate;
@@ -332,9 +366,11 @@ namespace Cares.Implementation.Services
                 vehicleDbVersion.VehicleLeasedInfo.BPMainId = vehicle.VehicleLeasedInfo.BPMainId;
                 vehicleDbVersion.VehicleLeasedInfo.RecLastUpdatedBy = vehicleRepository.LoggedInUserIdentity;
                 vehicleDbVersion.VehicleLeasedInfo.RecLastUpdatedDt = DateTime.Now;
+
                 #endregion
 
                 #region Vehicle Insurance Info
+
                 vehicleDbVersion.VehicleInsuranceInfo.InsuranceAgent = vehicle.VehicleInsuranceInfo.InsuranceAgent;
                 vehicleDbVersion.VehicleInsuranceInfo.CoverageLimit = vehicle.VehicleInsuranceInfo.CoverageLimit;
                 vehicleDbVersion.VehicleInsuranceInfo.RenewalDate = vehicle.VehicleInsuranceInfo.RenewalDate;
@@ -346,30 +382,40 @@ namespace Cares.Implementation.Services
                 vehicleDbVersion.VehicleInsuranceInfo.InsuredValue = vehicle.VehicleInsuranceInfo.InsuredValue;
                 vehicleDbVersion.VehicleInsuranceInfo.RecLastUpdatedBy = vehicleRepository.LoggedInUserIdentity;
                 vehicleDbVersion.VehicleInsuranceInfo.RecLastUpdatedDt = DateTime.Now;
+
                 #endregion
 
                 #region Vehicle Dereciation Info
-                vehicleDbVersion.VehicleDepreciation.UsefulPeriodStartDate = vehicle.VehicleDepreciation.UsefulPeriodStartDate;
-                vehicleDbVersion.VehicleDepreciation.FirstMonthDepAmount = vehicle.VehicleDepreciation.FirstMonthDepAmount;
+
+                vehicleDbVersion.VehicleDepreciation.UsefulPeriodStartDate =
+                    vehicle.VehicleDepreciation.UsefulPeriodStartDate;
+                vehicleDbVersion.VehicleDepreciation.FirstMonthDepAmount =
+                    vehicle.VehicleDepreciation.FirstMonthDepAmount;
                 vehicleDbVersion.VehicleDepreciation.MonthlyDepAmount = vehicle.VehicleDepreciation.MonthlyDepAmount;
                 vehicleDbVersion.VehicleDepreciation.LastMonthDepAmount = vehicle.VehicleDepreciation.LastMonthDepAmount;
                 vehicleDbVersion.VehicleDepreciation.ResidualValue = vehicle.VehicleDepreciation.ResidualValue;
-                vehicleDbVersion.VehicleDepreciation.UsefulPeriodEndDate = vehicle.VehicleDepreciation.UsefulPeriodEndDate;
+                vehicleDbVersion.VehicleDepreciation.UsefulPeriodEndDate =
+                    vehicle.VehicleDepreciation.UsefulPeriodEndDate;
                 vehicleDbVersion.VehicleDepreciation.RecLastUpdatedBy = vehicleRepository.LoggedInUserIdentity;
                 vehicleDbVersion.VehicleDepreciation.RecLastUpdatedDt = DateTime.Now;
+
                 #endregion
 
                 #region Vehicle Disposal Info
+
                 vehicleDbVersion.VehicleDisposalInfo.SaleDate = vehicle.VehicleDisposalInfo.SaleDate;
                 vehicleDbVersion.VehicleDisposalInfo.SalePrice = vehicle.VehicleDisposalInfo.SalePrice;
                 vehicleDbVersion.VehicleDisposalInfo.SoldTo = vehicle.VehicleDisposalInfo.SoldTo;
-                vehicleDbVersion.VehicleDisposalInfo.DisposalDescription = vehicle.VehicleDisposalInfo.DisposalDescription;
+                vehicleDbVersion.VehicleDisposalInfo.DisposalDescription =
+                    vehicle.VehicleDisposalInfo.DisposalDescription;
                 vehicleDbVersion.VehicleDisposalInfo.BPMainId = vehicle.VehicleDisposalInfo.BPMainId;
                 vehicleDbVersion.VehicleDisposalInfo.RecLastUpdatedBy = vehicleRepository.LoggedInUserIdentity;
                 vehicleDbVersion.VehicleDisposalInfo.RecLastUpdatedDt = DateTime.Now;
+
                 #endregion
 
                 #region Vehicle Maintenance Type Frequency Items
+
                 //Add vehicle maintenenace items
                 if (vehicle.VehicleMaintenanceTypeFrequencies != null)
                 {
@@ -392,9 +438,15 @@ namespace Cares.Implementation.Services
                 }
                 //find missing items
                 List<VehicleMaintenanceTypeFrequency> missingItems = new List<VehicleMaintenanceTypeFrequency>();
-                foreach (VehicleMaintenanceTypeFrequency dbversionItemeMaintenanceTypeFrequency in vehicleDbVersion.VehicleMaintenanceTypeFrequencies)
+                foreach (
+                    VehicleMaintenanceTypeFrequency dbversionItemeMaintenanceTypeFrequency in
+                        vehicleDbVersion.VehicleMaintenanceTypeFrequencies)
                 {
-                    if (vehicle.VehicleMaintenanceTypeFrequencies != null && vehicle.VehicleMaintenanceTypeFrequencies.All(x => x.MaintenanceTypeFrequencyId != dbversionItemeMaintenanceTypeFrequency.MaintenanceTypeFrequencyId))
+                    if (vehicle.VehicleMaintenanceTypeFrequencies != null &&
+                        vehicle.VehicleMaintenanceTypeFrequencies.All(
+                            x =>
+                                x.MaintenanceTypeFrequencyId !=
+                                dbversionItemeMaintenanceTypeFrequency.MaintenanceTypeFrequencyId))
                     {
                         missingItems.Add(dbversionItemeMaintenanceTypeFrequency);
                     }
@@ -406,7 +458,11 @@ namespace Cares.Implementation.Services
                 //remove missing items
                 foreach (VehicleMaintenanceTypeFrequency missingMaintenanceTypeFrequency in missingItems)
                 {
-                    VehicleMaintenanceTypeFrequency dbVersionMissingItem = vehicleDbVersion.VehicleMaintenanceTypeFrequencies.First(x => x.MaintenanceTypeFrequencyId == missingMaintenanceTypeFrequency.MaintenanceTypeFrequencyId);
+                    VehicleMaintenanceTypeFrequency dbVersionMissingItem =
+                        vehicleDbVersion.VehicleMaintenanceTypeFrequencies.First(
+                            x =>
+                                x.MaintenanceTypeFrequencyId ==
+                                missingMaintenanceTypeFrequency.MaintenanceTypeFrequencyId);
                     if (dbVersionMissingItem.MaintenanceTypeFrequencyId > 0)
                     {
                         vehicleDbVersion.VehicleMaintenanceTypeFrequencies.Remove(dbVersionMissingItem);
@@ -418,6 +474,7 @@ namespace Cares.Implementation.Services
                 #endregion
 
                 #region Vehicle CheckList Items
+
                 //Add  Vehicle CheckList Items
                 if (vehicle.VehicleCheckListItems != null)
                 {
@@ -442,7 +499,9 @@ namespace Cares.Implementation.Services
                 List<VehicleCheckListItem> missingCheckListItems = new List<VehicleCheckListItem>();
                 foreach (VehicleCheckListItem dbversionCheckListItem in vehicleDbVersion.VehicleCheckListItems)
                 {
-                    if (vehicle.VehicleCheckListItems != null && vehicle.VehicleCheckListItems.All(x => x.VehicleCheckListItemId != dbversionCheckListItem.VehicleCheckListItemId))
+                    if (vehicle.VehicleCheckListItems != null &&
+                        vehicle.VehicleCheckListItems.All(
+                            x => x.VehicleCheckListItemId != dbversionCheckListItem.VehicleCheckListItemId))
                     {
                         missingCheckListItems.Add(dbversionCheckListItem);
                     }
@@ -454,7 +513,9 @@ namespace Cares.Implementation.Services
                 //remove missing items
                 foreach (VehicleCheckListItem missingCheckListItem in missingCheckListItems)
                 {
-                    VehicleCheckListItem dbVersionMissingItem = vehicleDbVersion.VehicleCheckListItems.First(x => x.VehicleCheckListItemId == missingCheckListItem.VehicleCheckListItemId);
+                    VehicleCheckListItem dbVersionMissingItem =
+                        vehicleDbVersion.VehicleCheckListItems.First(
+                            x => x.VehicleCheckListItemId == missingCheckListItem.VehicleCheckListItemId);
                     if (dbVersionMissingItem.VehicleCheckListItemId > 0)
                     {
                         vehicleDbVersion.VehicleCheckListItems.Remove(dbVersionMissingItem);
@@ -491,11 +552,17 @@ namespace Cares.Implementation.Services
                     }
                 }
                 //find missing items
-                List<VehicleImage> missingImageItems = vehicleDbVersion.VehicleImages.Where(dbversionCheckListItem => vehicle.VehicleImages != null && vehicle.VehicleImages.All(x => x.VehicleImageId != dbversionCheckListItem.VehicleImageId)).ToList();
+                List<VehicleImage> missingImageItems =
+                    vehicleDbVersion.VehicleImages.Where(
+                        dbversionCheckListItem =>
+                            vehicle.VehicleImages != null &&
+                            vehicle.VehicleImages.All(x => x.VehicleImageId != dbversionCheckListItem.VehicleImageId))
+                        .ToList();
                 //remove missing items
                 foreach (VehicleImage missingImageItem in missingImageItems)
                 {
-                    VehicleImage dbVersionMissingItem = vehicleDbVersion.VehicleImages.First(x => x.VehicleImageId == missingImageItem.VehicleImageId);
+                    VehicleImage dbVersionMissingItem =
+                        vehicleDbVersion.VehicleImages.First(x => x.VehicleImageId == missingImageItem.VehicleImageId);
                     if (dbVersionMissingItem.VehicleImageId > 0)
                     {
                         vehicleDbVersion.VehicleImages.Remove(dbVersionMissingItem);

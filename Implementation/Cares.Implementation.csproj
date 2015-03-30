@@ -1171,6 +1171,7 @@
     <EmbeddedResource Include="Resources\Vehicle\Vehicle.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Vehicle.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
