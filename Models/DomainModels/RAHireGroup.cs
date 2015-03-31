@@ -210,5 +210,11 @@ namespace Cares.Models.DomainModels
         public virtual ICollection<VehicleMovement> VehicleMovements { get; set; }
 
         #endregion
+
+        public short? AllocationStatusKey
+        {
+            get;
+            set;
+        }
     }
 }

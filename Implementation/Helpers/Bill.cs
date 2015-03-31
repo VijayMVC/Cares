@@ -89,7 +89,7 @@ namespace Cares.Implementation.Helpers
         /// </summary>
         private static RaHireGroup GetDesiredHireGroup(List<RaHireGroup> raHireGroupList)
         {
-            return raHireGroupList.Find(item => (item.AllocationStatusId == (short)AllocationStatusEnum.Desired));
+            return raHireGroupList.Find(item => (item.AllocationStatusKey == (short)AllocationStatusEnum.Desired));
         }
 
         /// <summary>

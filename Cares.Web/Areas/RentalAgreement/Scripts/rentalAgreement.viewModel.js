@@ -182,6 +182,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     vehicleOperationsWorkPlaceFilter = ko.observable(),
                     // Vehicle Allocation Status Filter
                     vehicleAllocationStatusFilter = ko.observable(),
+                    vehicleAllocationStatusFiltered = ko.observable(),
                     // select Hire Group
                     selectHireGroup = function (hireGroup) {
                         if (selectedHireGroup() !== hireGroup) {
@@ -200,7 +201,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                 HireGroupDetailId: selectedHireGroup().id,
                                 HireGroupDetail: { HireGroup: selectedHireGroup().code },
                                 AllocationStatusKey: allocationStatus.desired,
-                                AllocationStatusId: vehicleAllocationStatusFilter(),
+                                AllocationStatusId: vehicleAllocationStatusFiltered(),
                                 RaMainId: rentalAgreement().id(),
                                 Vehicle: vehicle,
                                 VehicleMovements: [
@@ -672,6 +673,8 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                 vehiclePager().totalCount(data.TotalCount);
                                 ko.utils.arrayPushAll(vehicles(), vehicleItems);
                                 vehicles.valueHasMutated();
+                                vehicleAllocationStatusFilter(allocationStatusItem.id);
+                                vehicleAllocationStatusFiltered(allocationStatusItem.id);
                             },
                             error: function (response) {
                                 toastr.error("Failed to load vehicles. Error: " + response);
