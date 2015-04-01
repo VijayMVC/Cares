@@ -812,20 +812,21 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     validateBeforeSave = function () {
                         // Validate Validation Errors
                         if (!validateErrors()) {
-                            return;
+                            return false;
                         }
 
                         // Chauffers Overlap
                         if (validateChauffers()) {
                             toastr.info("Selected Chauffers are overlapping, please adjust their duration!");
-                            return;
+                            return false;
                         }
 
                         // Validate Hire Group
                         if (rentalAgreement().rentalAgreementHireGroups().length === 0) {
                             toastr.info("Vehicle not selected");
-                            return;
+                            return false;
                         }
+                        return true;
                     },
                     // Can Update Rental Agreement
                     canUpdate = ko.computed(function () {

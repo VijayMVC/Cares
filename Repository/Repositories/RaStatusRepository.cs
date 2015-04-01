@@ -51,7 +51,7 @@ namespace Cares.Repository.Repositories
         /// <returns></returns>
         public RaStatus FindByStatusKey(short statusKey)
         {
-            return DbSet.FirstOrDefault(ra => ra.UserDomainKey == UserDomainKey && ra.RaStatusKey == statusKey);
+            return DbSet.FirstOrDefault(ra => ra.RaStatusKey == statusKey); //ra.UserDomainKey == UserDomainKey &&
         }
         #endregion
     }

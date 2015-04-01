@@ -11,6 +11,7 @@ using Cares.Models.Common;
 using Cares.Models.CommonTypes;
 using Cares.Models.DomainModels;
 using Cares.Models.ResponseModels;
+using PhoneType = Cares.Models.DomainModels.PhoneType;
 
 namespace Cares.Implementation.Services
 {
@@ -37,6 +38,7 @@ namespace Cares.Implementation.Services
         private readonly IBookingMainRepository bookingMainRepository;
         private readonly IEmployeeRepository employeeRepository;
         private readonly IDefaultSettingRepository defaultSettingRepository;
+        private readonly IPhoneTypeRepository phoneTypeRepository;
 
         /// <summary>
         /// Add Vehicle Movements
@@ -442,8 +444,15 @@ namespace Cares.Implementation.Services
         /// </summary>
         private void AddBusinessPartnerPhones(BusinessPartner businessPartner)
         {
+            IEnumerable<PhoneType> phoneTypes = phoneTypeRepository.GetAll().ToList();
             foreach (Phone item in businessPartner.BusinessPartnerPhoneNumbers)
             {
+               //Because we are getting Phone Type code or Phone type key from client. Thats why we need to get the actual id here.
+                PhoneType type = phoneTypes.FirstOrDefault(x => x.PhoneTypeCode == item.PhoneTypeId.ToString(CultureInfo.InvariantCulture));
+                if (type!= null)
+                {
+                    item.PhoneTypeId = type.PhoneTypeId;
+                }
                 item.IsActive = true;
                 item.RecCreatedDt = item.RecLastUpdatedDt = DateTime.Now;
                 item.RecCreatedBy = item.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
@@ -1643,7 +1652,7 @@ namespace Cares.Implementation.Services
             IVehicleStatusRepository vehicleStatusRepository, IAlloactionStatusRepository alloactionStatusRepository, IRentalAgreementRepository rentalAgreementRepository,
             IBusinessPartnerRepository businessPartnerRepository, IPhoneRepository businessPartnerPhoneRepository, IAddressRepository businessPartnerAddressRepository,
             IVehicleRepository vehicleRepository, IPaymentModeRepository paymentModeRepository, IRaStatusRepository raStatusRepository, 
-            IBookingMainRepository bookingMainRepository, IEmployeeRepository employeeRepository, IDefaultSettingRepository defaultSettingRepository)
+            IBookingMainRepository bookingMainRepository, IEmployeeRepository employeeRepository, IDefaultSettingRepository defaultSettingRepository, IPhoneTypeRepository phoneTypeRepository)
         {
             if (paymentTermRepository == null)
             {
@@ -1714,7 +1723,10 @@ namespace Cares.Implementation.Services
             {
                 throw new ArgumentNullException("defaultSettingRepository");
             }
-
+            if (phoneTypeRepository == null)
+            {
+                throw new ArgumentNullException("phoneTypeRepository");
+            }
             this.paymentTermRepository = paymentTermRepository;
             this.operationRepository = operationRepository;
             this.operationsWorkPlaceRepository = operationsWorkPlaceRepository;
@@ -1731,6 +1743,7 @@ namespace Cares.Implementation.Services
             this.bookingMainRepository = bookingMainRepository;
             this.employeeRepository = employeeRepository;
             this.defaultSettingRepository = defaultSettingRepository;
+            this.phoneTypeRepository = phoneTypeRepository;
         }
 
         #endregion
@@ -1783,14 +1796,16 @@ namespace Cares.Implementation.Services
             var numberOfExistedRAsByDomainKey = rentalAgreementRepository.GetCountOfRAswithDomainKey();
             var domainLicenseDetailwithDomainKey = ClaimHelper.GetDeserializedClaims<DomainLicenseDetailClaim>(CaresUserClaims.DomainLicenseDetail).FirstOrDefault();
             if (domainLicenseDetailwithDomainKey != null)
+            {
                 if (domainLicenseDetailwithDomainKey.RaPerMonth <= numberOfExistedRAsByDomainKey)
                 {
                     throw new CaresException(Resources.RentalAgreement.RentalAgreement.ExceedingDomainLimitForRAError);
                 }
-                else
-                {
-                    throw new InvalidOperationException(Resources.RentalAgreement.RentalAgreement.NoDomainLicenseDetailClaim);
-                }
+            }
+            else
+            {
+                throw new InvalidOperationException(Resources.RentalAgreement.RentalAgreement.NoDomainLicenseDetailClaim);
+            }
 
             // Generate Bill
             raMain = GenerateBill(raMain);
