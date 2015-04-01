@@ -35,20 +35,20 @@ namespace Cares.Implementation.Helpers
             TimeSpan ChargeSpan;
             TimeSpan GraceSpan;
             //convert rental duration to minutes for standardization
-            float RentalDurationInMinutes = GetDurationInMinutes(dtSpan, Convert.ToInt32(TariffType.MeasurementUnitId));
+            float RentalDurationInMinutes = GetDurationInMinutes(dtSpan, Convert.ToInt32(TariffType.MeasurementUnit.MeasurementUnitKey));
             //convert tariff type FromDuration to Minute for standardization
-            float TariffDurationFrom = GetDurationInMinutes(TariffType.DurationFrom, Convert.ToInt32(TariffType.MeasurementUnitId));
+            float TariffDurationFrom = GetDurationInMinutes(TariffType.DurationFrom, Convert.ToInt32(TariffType.MeasurementUnit.MeasurementUnitKey));
             //convert tariff type ToDuration to Minute for standardization
-            float TariffDurationTo = GetDurationInMinutes(TariffType.DurationTo, Convert.ToInt32(TariffType.MeasurementUnitId));
+            float TariffDurationTo = GetDurationInMinutes(TariffType.DurationTo, Convert.ToInt32(TariffType.MeasurementUnit.MeasurementUnitKey));
             //convert tariff type GracePeriod to Minute for standardization
-            float TariffGracePeriod = GetDurationInMinutes((float)TariffType.GracePeriod, Convert.ToInt32(TariffType.MeasurementUnitId));
+            float TariffGracePeriod = GetDurationInMinutes((float)TariffType.GracePeriod, Convert.ToInt32(TariffType.MeasurementUnit.MeasurementUnitKey));
             //set rental charge object common parameters
             oRentalCharge = new RaHireGroup();
             oRentalCharge.RentalChargeStartDate = StartDate;
             oRentalCharge.RentalChargeEndDate = EndDate;
             oRentalCharge.TariffTypeCode = this.TariffType.TariffTypeCode;
             //condition 1: if rental duration lies between From and To
-            if (RentalDurationInMinutes >= TariffDurationFrom && RentalDurationInMinutes <= TariffDurationTo)
+            if (RentalDurationInMinutes >= TariffDurationFrom && RentalDurationInMinutes <= (TariffDurationTo + TariffGracePeriod))
             {
                 oRentalCharge.StandardRate = (float)tSTrate.StandardRt;
                 oRentalCharge.TotalStandardCharge = (float)tSTrate.StandardRt;
@@ -81,7 +81,7 @@ namespace Cares.Implementation.Helpers
                     GraceSpan = new TimeSpan(0, 0, 0, 0);
                 }
                 ChargeSpan = new TimeSpan(dtSpan.Days - GraceSpan.Days, dtSpan.Hours - GraceSpan.Hours, dtSpan.Minutes - GraceSpan.Minutes, 0);
-                float ChargeDuration = GetDurationInMinutes(ChargeSpan, Convert.ToInt32(this.TariffType.MeasurementUnitId));
+                float ChargeDuration = GetDurationInMinutes(ChargeSpan, Convert.ToInt32(this.TariffType.MeasurementUnit.MeasurementUnitKey));
                 oRentalCharge.TotalStandardCharge = (float)Math.Round(((float)Math.Ceiling(Convert.ToDouble((ChargeDuration / TariffDurationTo)))) * tSTrate.StandardRt, base.DecimalRounding, MidpointRounding.AwayFromZero);
                 oRentalCharge.StandardRate = tSTrate.StandardRt;
                 //excess milage charge for edit case
@@ -111,13 +111,13 @@ namespace Cares.Implementation.Helpers
             TimeSpan dtSpan = EndDate - StartDate;
 
             //convert rental duration to minutes for standardization
-            float InsDurationInMinutes = GetDurationInMinutes(dtSpan, Convert.ToInt32(TariffType.MeasurementUnitId));
+            float InsDurationInMinutes = GetDurationInMinutes(dtSpan, Convert.ToInt32(TariffType.MeasurementUnit.MeasurementUnitKey));
             //convert tariff type FromDuration to Minute for standardization
-            float TariffDurationFrom = GetDurationInMinutes(TariffType.DurationFrom, Convert.ToInt32(TariffType.MeasurementUnitId));
+            float TariffDurationFrom = GetDurationInMinutes(TariffType.DurationFrom, Convert.ToInt32(TariffType.MeasurementUnit.MeasurementUnitKey));
             //convert tariff type ToDuration to Minute for standardization
-            float TariffDurationTo = GetDurationInMinutes(TariffType.DurationTo, Convert.ToInt32(TariffType.MeasurementUnitId));
+            float TariffDurationTo = GetDurationInMinutes(TariffType.DurationTo, Convert.ToInt32(TariffType.MeasurementUnit.MeasurementUnitKey));
             //convert tariff type GracePeriod to Minute for standardization
-            float TariffGracePeriod = GetDurationInMinutes((float)TariffType.GracePeriod, Convert.ToInt32(TariffType.MeasurementUnitId));
+            float TariffGracePeriod = GetDurationInMinutes((float)TariffType.GracePeriod, Convert.ToInt32(TariffType.MeasurementUnit.MeasurementUnitKey));
             //set rental charge object common parameters
             oInsuranceCharge = new RaHireGroupInsurance();
             oInsuranceCharge.TariffType = this.TariffType.TariffTypeCode;
@@ -132,7 +132,7 @@ namespace Cares.Implementation.Helpers
             }
             else
             {
-                float ChargeDuration = GetDurationInMinutes(dtSpan, Convert.ToInt32(this.TariffType.MeasurementUnitId));
+                float ChargeDuration = GetDurationInMinutes(dtSpan, Convert.ToInt32(this.TariffType.MeasurementUnit.MeasurementUnitKey));
                 oInsuranceCharge.InsuranceCharge = (float)Math.Round(((float)Math.Ceiling(Convert.ToDouble((ChargeDuration / TariffDurationTo)))) * InsRate.InsuranceRate, base.DecimalRounding, MidpointRounding.AwayFromZero);
                 oInsuranceCharge.InsuranceRate = InsRate.InsuranceRate;
                 //excess milage charge for edit case
@@ -153,13 +153,13 @@ namespace Cares.Implementation.Helpers
             TimeSpan dtSpan = EndDate - StartDate;
 
             //convert rental duration to minutes for standardization
-            float SIDurationInMinutes = GetDurationInMinutes(dtSpan, Convert.ToInt32(TariffType.MeasurementUnitId));
+            float SIDurationInMinutes = GetDurationInMinutes(dtSpan, Convert.ToInt32(TariffType.MeasurementUnit.MeasurementUnitKey));
             //convert tariff type FromDuration to Minute for standardization
-            float TariffDurationFrom = GetDurationInMinutes(TariffType.DurationFrom, Convert.ToInt32(TariffType.MeasurementUnitId));
+            float TariffDurationFrom = GetDurationInMinutes(TariffType.DurationFrom, Convert.ToInt32(TariffType.MeasurementUnit.MeasurementUnitKey));
             //convert tariff type ToDuration to Minute for standardization
-            float TariffDurationTo = GetDurationInMinutes(TariffType.DurationTo, Convert.ToInt32(TariffType.MeasurementUnitId));
+            float TariffDurationTo = GetDurationInMinutes(TariffType.DurationTo, Convert.ToInt32(TariffType.MeasurementUnit.MeasurementUnitKey));
             //convert tariff type GracePeriod to Minute for standardization
-            float TariffGracePeriod = GetDurationInMinutes((float)TariffType.GracePeriod, Convert.ToInt32(TariffType.MeasurementUnitId));
+            float TariffGracePeriod = GetDurationInMinutes((float)TariffType.GracePeriod, Convert.ToInt32(TariffType.MeasurementUnit.MeasurementUnitKey));
             //set rental charge object common parameters
             oRASICharge = new RaServiceItem();
             oRASICharge.TariffType = this.TariffType.TariffTypeCode;
@@ -174,7 +174,7 @@ namespace Cares.Implementation.Helpers
             }
             else
             {
-                float ChargeDuration = GetDurationInMinutes(dtSpan, Convert.ToInt32(TariffType.MeasurementUnitId));
+                float ChargeDuration = GetDurationInMinutes(dtSpan, Convert.ToInt32(TariffType.MeasurementUnit.MeasurementUnitKey));
                 oRASICharge.ServiceCharge = (float)Math.Round(((float)Math.Ceiling(Convert.ToDouble((ChargeDuration / TariffDurationTo)))) * ServiceItemRate.ServiceRate * ItemQuantity, base.DecimalRounding, MidpointRounding.AwayFromZero);
                 oRASICharge.ServiceRate = ServiceItemRate.ServiceRate;
                 //excess milage charge for edit case
@@ -195,13 +195,13 @@ namespace Cares.Implementation.Helpers
             TimeSpan dtSpan = EndDate - StartDate;
 
             //convert rental duration to minutes for standardization
-            float AddDrvDurationInMinutes = GetDurationInMinutes(dtSpan, Convert.ToInt32(TariffType.MeasurementUnitId));
+            float AddDrvDurationInMinutes = GetDurationInMinutes(dtSpan, Convert.ToInt32(TariffType.MeasurementUnit.MeasurementUnitKey));
             //convert tariff type FromDuration to Minute for standardization
-            float TariffDurationFrom = GetDurationInMinutes(TariffType.DurationFrom, Convert.ToInt32(TariffType.MeasurementUnitId));
+            float TariffDurationFrom = GetDurationInMinutes(TariffType.DurationFrom, Convert.ToInt32(TariffType.MeasurementUnit.MeasurementUnitKey));
             //convert tariff type ToDuration to Minute for standardization
-            float TariffDurationTo = GetDurationInMinutes(TariffType.DurationTo, Convert.ToInt32(TariffType.MeasurementUnitId));
+            float TariffDurationTo = GetDurationInMinutes(TariffType.DurationTo, Convert.ToInt32(TariffType.MeasurementUnit.MeasurementUnitKey));
             //convert tariff type GracePeriod to Minute for standardization
-            float TariffGracePeriod = GetDurationInMinutes((float)TariffType.GracePeriod, Convert.ToInt32(TariffType.MeasurementUnitId));
+            float TariffGracePeriod = GetDurationInMinutes((float)TariffType.GracePeriod, Convert.ToInt32(TariffType.MeasurementUnit.MeasurementUnitKey));
             //set rental charge object common parameters
             oRADriver = new RaDriver();
             oRADriver.TariffType = this.TariffType.TariffTypeCode;
@@ -216,7 +216,7 @@ namespace Cares.Implementation.Helpers
             }
             else
             {
-                float ChargeDuration = GetDurationInMinutes(dtSpan, Convert.ToInt32(TariffType.MeasurementUnitId));
+                float ChargeDuration = GetDurationInMinutes(dtSpan, Convert.ToInt32(TariffType.MeasurementUnit.MeasurementUnitKey));
                 oRADriver.TotalCharge = (float)Math.Round(((float)Math.Ceiling(Convert.ToDouble((ChargeDuration / TariffDurationTo)))) * AddDrvRate.AdditionalDriverChargeRate, base.DecimalRounding, MidpointRounding.AwayFromZero);
                 oRADriver.Rate = AddDrvRate.AdditionalDriverChargeRate;
                 //excess milage charge for edit case
@@ -237,13 +237,13 @@ namespace Cares.Implementation.Helpers
             TimeSpan dtSpan = EndDate - StartDate;
 
             //convert rental duration to minutes for standardization
-            float ChaufferDurationInMinutes = GetDurationInMinutes(dtSpan, Convert.ToInt32(TariffType.MeasurementUnitId));
+            float ChaufferDurationInMinutes = GetDurationInMinutes(dtSpan, Convert.ToInt32(TariffType.MeasurementUnit.MeasurementUnitKey));
             //convert tariff type FromDuration to Minute for standardization
-            float TariffDurationFrom = GetDurationInMinutes(TariffType.DurationFrom, Convert.ToInt32(TariffType.MeasurementUnitId));
+            float TariffDurationFrom = GetDurationInMinutes(TariffType.DurationFrom, Convert.ToInt32(TariffType.MeasurementUnit.MeasurementUnitKey));
             //convert tariff type ToDuration to Minute for standardization
-            float TariffDurationTo = GetDurationInMinutes(TariffType.DurationTo, Convert.ToInt32(TariffType.MeasurementUnitId));
+            float TariffDurationTo = GetDurationInMinutes(TariffType.DurationTo, Convert.ToInt32(TariffType.MeasurementUnit.MeasurementUnitKey));
             //convert tariff type GracePeriod to Minute for standardization
-            float TariffGracePeriod = GetDurationInMinutes((float)TariffType.GracePeriod, Convert.ToInt32(TariffType.MeasurementUnitId));
+            float TariffGracePeriod = GetDurationInMinutes((float)TariffType.GracePeriod, Convert.ToInt32(TariffType.MeasurementUnit.MeasurementUnitKey));
             //set rental charge object common parameters
             oRADriver = new RaDriver();
             oRADriver.TariffType = TariffType.TariffTypeCode;
@@ -258,7 +258,7 @@ namespace Cares.Implementation.Helpers
             }
             else
             {
-                float ChargeDuration = GetDurationInMinutes(dtSpan, Convert.ToInt32(TariffType.MeasurementUnitId));
+                float ChargeDuration = GetDurationInMinutes(dtSpan, Convert.ToInt32(TariffType.MeasurementUnit.MeasurementUnitKey));
                 oRADriver.TotalCharge = (float)Math.Round(((float)Math.Ceiling(Convert.ToDouble((ChargeDuration / TariffDurationTo)))) * ChfRate.ChaufferChargeRate, base.DecimalRounding, MidpointRounding.AwayFromZero);
                 oRADriver.Rate = ChfRate.ChaufferChargeRate;
                 //excess milage charge for edit case
