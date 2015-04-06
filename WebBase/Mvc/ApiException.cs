@@ -1,6 +1,10 @@
-﻿using System.Net.Http;
+﻿using System.Diagnostics;
+using System.Net.Http;
 using System.Web.Http.Filters;
 using Cares.ExceptionHandling;
+using Cares.Interfaces.IServices;
+using Cares.WebBase.UnityConfiguration;
+using Microsoft.Practices.Unity;
 using Newtonsoft.Json;
 
 namespace Cares.WebBase.Mvc
@@ -10,6 +14,25 @@ namespace Cares.WebBase.Mvc
     /// </summary>
     public class ApiException : ActionFilterAttribute
     {
+        #region Private
+
+        // ReSharper disable InconsistentNaming
+        private static ILogger caresLogger;
+        // ReSharper restore InconsistentNaming
+        /// <summary>
+        /// Get Configured logger
+        /// </summary>
+        // ReSharper disable InconsistentNaming
+        private static ILogger CaresLogger
+        // ReSharper restore InconsistentNaming
+        {
+            get
+            {
+                if (caresLogger != null) return caresLogger;
+                caresLogger = (UnityConfig.GetConfiguredContainer()).Resolve<ILogger>();
+                return caresLogger;
+            }
+        }
         /// <summary>
         /// Set status code and contents of the Application exception
         /// </summary>
@@ -25,16 +48,44 @@ namespace Cares.WebBase.Mvc
                 Content = new StringContent(JsonConvert.SerializeObject(contents))                
             };
         }
-
+        /// <summary>
+        /// Set General Exception
+        /// </summary>
+        private void SetGeneralExceptionApplicationResponse(HttpActionExecutedContext filterContext)
+        {
+            CaresExceptionContent contents = new CaresExceptionContent
+            {
+                Message = "There is some problem while performing this operation. " + filterContext.Exception.InnerException.Message                
+            };
+            filterContext.Response = new HttpResponseMessage
+            {
+                StatusCode = System.Net.HttpStatusCode.BadRequest,
+                Content = new StringContent(JsonConvert.SerializeObject(contents))
+            };
+        }
+        #endregion
+        #region Public
         /// <summary>
         /// Exception Handler for api calls; apply this attribute for all the Api calls
         /// </summary>
         public override void OnActionExecuted(HttpActionExecutedContext filterContext)
         {
+            if (filterContext.Exception == null)
+            {
+                return;
+            }
             if (filterContext.Exception is CaresException)
             {
                 SetApplicationResponse(filterContext);
+                CaresLogger.Write(filterContext.Exception, LoggerCategories.Error, -1, 0, TraceEventType.Warning, "Web Api Exception - CaReS Exception", null);
+            }
+            else
+            {
+                SetGeneralExceptionApplicationResponse(filterContext);
+                CaresLogger.Write(filterContext.Exception, LoggerCategories.Error, -1, 0, TraceEventType.Warning, "Web Api Exception - General", null);
             }
         }
+
+        #endregion
     }
 }
