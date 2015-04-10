@@ -95,7 +95,7 @@
                     <div class="form-group">
                         <label for="" class="control-label h5 col-sm-2" id="phoneType">@Cares.Web.Resources.Organization.WorkLocation.PhoneType *</label>
                         <div class="col-md-2">
-                            <select class="form-control" data-bind="options: $root.basePhoneTypesList, optionsText: 'PhoneTypeCodeName', optionsValue: 'PhoneTypeId',  optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.WorkLocation.PhoneType '+'&gt;' , value :$root.selectedPhoneTypeString"></select>
+                            <select class="form-control" data-bind="options: $root.basePhoneTypesList, optionsText: 'PhoneTypeCodeName', optionsValue: 'PhoneTypeId',  optionsCaption:'&lt;' + '@Cares.Web.Resources.Organization.WorkLocation.PhoneType '+'&gt;' , value :phoneTypeId"></select>
                         </div>
                         <label for="" class="control-label h5 col-sm-2">@Cares.Web.Resources.Organization.WorkLocation.PhoneNumber *</label>
                         <div class="col-md-2">
@@ -133,7 +133,7 @@
                     <tr>
                         <td data-bind="text: phoneTypeName"></td>
                         <td data-bind="text: phoneNumber"></td>
-                        <td data-bind="text: isDefault"></td>
+                        <td data-bind="text: isDefault ? 'Yes' : 'No'"></td>
                         <td>
                             <!-- ko template: { name: 'deleteActionOpeartionTemplate' } -->
                             <!-- /ko -->

@@ -130,17 +130,17 @@ define("workLocation/workLocation.viewModel",
                     onAddPhone = function(phoneDetail) {
                         if (dobeforePhone()) {
                             var selectedPhoneType = basePhoneTypesList.find(function(temp) {
-                                if (temp.PhoneTypeId == selectedPhoneTypeString() && selectedPhoneTypeString() != 'undefined')
+                                if (selectedWorkLocation().phoneDetail() && temp.PhoneTypeId == selectedWorkLocation().phoneDetail().phoneTypeId())
                                     return temp.PhoneTypeCodeName;
                                 else return "";
                             });
                             phoneDetail.phoneTypeName(selectedPhoneType.PhoneTypeCodeName);
                             if (phoneDetail.isDefault())
-                                phoneDetail.isDefault('True');
+                                phoneDetail.isDefault('Yes');
                             else
-                                phoneDetail.isDefault('False');
+                                phoneDetail.isDefault('No');
 
-                            phoneDetail.phoneTypeId(selectedPhoneTypeString());
+                            phoneDetail.phoneTypeId(selectedWorkLocation().phoneDetail().phoneTypeId());
                             phonesList.push(phoneDetail);
                             selectedPhoneTypeString(undefined);
 

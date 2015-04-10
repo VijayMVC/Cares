@@ -148,15 +148,16 @@
         // ReSharper disable InconsistentNaming
         phone = function(specifiedId, specifiedphoneTypeId, specifiedphoneTypeName, specifiedphoneNumber, specifiedisDefault, specifiedworkLocationId) {
             var
-                id = ko.observable(specifiedId),
-                phoneTypeId = ko.observable(specifiedphoneTypeId),
-                phoneTypeName = ko.observable(specifiedphoneTypeName).extend({ required: true }),
+                id = ko.observable(specifiedId),    
+                phoneTypeId = ko.observable(specifiedphoneTypeId).extend({ required: true }),
+                phoneTypeName = ko.observable(specifiedphoneTypeName),
                 isDefault = ko.observable(specifiedisDefault),
                 phoneNumber = ko.observable(specifiedphoneNumber).extend({ required: true }),
                 workLocationId = ko.observable(specifiedworkLocationId),
 
                 errors = ko.validation.group({
                     phoneNumber: phoneNumber,
+                    phoneTypeId: phoneTypeId
                 }),
                 // Is Valid
                 isValid = ko.computed(function() {
@@ -177,7 +178,7 @@
                 convertToServerData = function() {
                     return {
                         PhoneId: id(),
-                        IsDefault: isDefault(),
+                        IsDefault: isDefault() === 'Yes' ? true: false,
                         PhoneNumber: phoneNumber(),
                         PhoneTypeId: phoneTypeId()
                     };
