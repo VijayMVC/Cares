@@ -67,7 +67,7 @@ namespace Cares.Repository.Repositories
             int fromRow = (request.PageNo - 1) * request.PageSize;
             int toRow = request.PageSize;
 
-            var getInsuranceRateQuery = from addDriverChrg in DbSet
+            var getInsuranceRateQuery = from addDriverChrg in DbSet.Where(adc => adc.UserDomainKey == UserDomainKey)
                 join tariffType in db.TariffTypes.Where(tt => tt.UserDomainKey == UserDomainKey) on addDriverChrg.TariffTypeCode equals tariffType.TariffTypeCode
                 where
                     (!addDriverChrg.ChildAdditionalDriverChargeId.HasValue &&

@@ -1,5 +1,6 @@
 ﻿using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
+using Cares.Models.IdentityModels;
 using Cares.Models.ReportModels;
 using Cares.Models.ResponseModels;
 using Cares.Repository.BaseRepository;
@@ -44,7 +45,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public IEnumerable<InsuranceRateReportResponse> GetInsuranceRateReportData()
         {
-            var insuranceRateReportResponseQuery = from insuranceRt in db.InsuranceRts
+            var insuranceRateReportResponseQuery = from insuranceRt in db.InsuranceRts.Where(ir => ir.UserDomainKey == UserDomainKey)
                     join tarrifType in db.TariffTypes.Where(tt => tt.UserDomainKey == UserDomainKey) on
                     new {insuranceRt.InsuranceRtMain.TariffTypeCode} equals new {tarrifType.TariffTypeCode}
                                                    where (insuranceRt.UserDomainKey == UserDomainKey && tarrifType.UserDomainKey == UserDomainKey)

@@ -110,6 +110,11 @@
     <Compile Include="Mvc\ValidateFilterAttribute.cs" />
     <Compile Include="Mvc\WebApiAuthenticationChecker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\GeneralErrors.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GeneralErrors.resx</DependentUpon>
+    </Compile>
     <Compile Include="TypeRegistrations.cs" />
     <Compile Include="UnityConfiguration\UnityConfig.cs" />
     <Compile Include="UnityConfiguration\UnityControllerActivator.cs" />
@@ -125,7 +130,16 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\GeneralErrors.ar.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\GeneralErrors.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GeneralErrors.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cares.Commons\Cares.Commons.csproj">
       <Project>{C495B1EB-AC68-44F5-B2FA-D36083EB7BEC}</Project>

@@ -3,6 +3,7 @@ using System.Linq.Expressions;
 using Cares.Interfaces.Repository;
 using Cares.Models.Common;
 using Cares.Models.DomainModels;
+using Cares.Models.IdentityModels;
 using Cares.Models.RequestModels;
 using Cares.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
@@ -121,6 +122,13 @@ namespace Cares.Repository.Repositories
         public bool DoesWorkLocationCodeExists(WorkLocation workLocation)
         {
             return (DbSet.Count(dbWorkLocation => dbWorkLocation.UserDomainKey == UserDomainKey && workLocation.WorkLocationCode == dbWorkLocation.WorkLocationCode && dbWorkLocation.WorkLocationId != workLocation.WorkLocationId) > 0);
+        }
+        /// <summary>
+        /// Finds a worklocation and all its respective workplaces
+        /// </summary>
+        public override WorkLocation Find(long id)
+        {
+            return DbSet.Include(wl => wl.Workplaces).FirstOrDefault(wl => wl.WorkLocationId == id && wl.UserDomainKey == UserDomainKey);
         }
 
         #endregion

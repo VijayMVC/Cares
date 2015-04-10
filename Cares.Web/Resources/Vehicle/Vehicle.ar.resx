@@ -214,6 +214,9 @@
     <value>الوقود</value>
   </data>
   <data name="FuelLevel" xml:space="preserve">
+    <value>مستوى الوقود </value>
+  </data>
+  <data name="FuelLevelPercent" xml:space="preserve">
     <value>مستوى الوقود (٪)</value>
   </data>
   <data name="FuelType" xml:space="preserve">

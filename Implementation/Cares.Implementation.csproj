@@ -1016,10 +1016,12 @@
     <EmbeddedResource Include="Resources\Organization\WorkLocation.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>WorkLocation.ar.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Organization\WorkLocation.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>WorkLocation.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Organization\Workplace.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

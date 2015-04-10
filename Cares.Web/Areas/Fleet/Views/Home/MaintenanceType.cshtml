@@ -32,10 +32,10 @@
             <table id="MaintenanceTypeTable" class="table table-condensed">
                 <thead>
                     <tr>
-                        <th class="maintenanceTypeCode"> <span id="1">@Cares.Web.Resources.FleetPool.MaintenanceType.Code<span class="icon-up"></span></span></th>
-                        <th class="maintenanceTypeName"> <span id="2">@Cares.Web.Resources.FleetPool.MaintenanceType.Name<span></span></span></th>
+                        <th class="maintenanceTypeCode th-pointer"> <span id="1">@Cares.Web.Resources.FleetPool.MaintenanceType.Code<span class="icon-up"></span></span></th>
+                        <th class="maintenanceTypeName th-pointer"> <span id="2">@Cares.Web.Resources.FleetPool.MaintenanceType.Name<span></span></span></th>
+                        <th class="maintenanceTypeGroup th-pointer"> <span id="3">@Cares.Web.Resources.FleetPool.MaintenanceType.MaintenanceTypeGroup<span></span></span></th>
                         <th class="maintenanceTypeDiscription"> <span>@Cares.Web.Resources.FleetPool.MaintenanceType.Description<span></span></span></th>
-                        <th class="maintenanceTypeGroup"> <span id="3">@Cares.Web.Resources.FleetPool.MaintenanceType.MaintenanceTypeGroup<span></span></span></th>
                         <th> <span></span></th>
                         <th> <span></span></th>
                     </tr>
@@ -61,8 +61,8 @@
         <tr>
             <td data-bind="text: code"></td>
             <td data-bind="text: name"></td>
-            <td data-bind="text: description"></td>
             <td data-bind="text: maintenanceTypeGroupName"></td>
+            <td data-bind="text: description"></td>
             <td>
                 <!-- ko template: { name: 'editActionMaintenanceTypeTemplate' } -->
                 <!-- /ko -->

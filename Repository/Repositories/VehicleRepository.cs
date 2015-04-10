@@ -28,7 +28,11 @@ namespace Cares.Repository.Repositories
              new Dictionary<VehicleOrderByColumn, Func<Vehicle, object>>
                     {
                         { VehicleOrderByColumn.PlateNumber, c => c.PlateNumber },
-                        { VehicleOrderByColumn.VehicleName, c => c.VehicleName },
+                        { VehicleOrderByColumn.VehicleMake, c => c.VehicleMake.VehicleMakeCode },
+                        { VehicleOrderByColumn.VehicleModel, c => c.VehicleModel.VehicleModelCode },
+                        { VehicleOrderByColumn.VehicleCategory, c => c.VehicleCategory.VehicleCategoryCode },
+                        { VehicleOrderByColumn.VehicleModelYear, c => c.ModelYear },
+                        { VehicleOrderByColumn.VehicleStatus, c => c.VehicleStatus.VehicleStatusCode },
                         
                     };
 

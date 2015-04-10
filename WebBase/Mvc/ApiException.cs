@@ -40,7 +40,7 @@ namespace Cares.WebBase.Mvc
         {
             CaresExceptionContent contents = new CaresExceptionContent
             {
-                Message = filterContext.Exception.Message                
+                Message = filterContext.Exception.Message    
             };
             filterContext.Response = new HttpResponseMessage
             {
@@ -55,7 +55,7 @@ namespace Cares.WebBase.Mvc
         {
             CaresExceptionContent contents = new CaresExceptionContent
             {
-                Message = "There is some problem while performing this operation. " + filterContext.Exception.InnerException.Message                
+                Message = Resources.GeneralErrors.ErrorPerformingOperation
             };
             filterContext.Response = new HttpResponseMessage
             {

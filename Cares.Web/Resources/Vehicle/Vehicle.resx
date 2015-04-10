@@ -214,6 +214,9 @@
     <value>Fuel</value>
   </data>
   <data name="FuelLevel" xml:space="preserve">
+    <value>Fuel Level</value>
+  </data>
+  <data name="FuelLevelPercent" xml:space="preserve">
     <value>Fuel Level (%)</value>
   </data>
   <data name="FuelType" xml:space="preserve">

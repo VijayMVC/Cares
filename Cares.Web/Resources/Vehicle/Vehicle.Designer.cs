@@ -349,11 +349,20 @@ namespace Cares.Web.Resources.Vehicle {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fuel Level (%).
+        ///   Looks up a localized string similar to Fuel Level.
         /// </summary>
         public static string FuelLevel {
             get {
                 return ResourceManager.GetString("FuelLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fuel Level (%).
+        /// </summary>
+        public static string FuelLevelPercent {
+            get {
+                return ResourceManager.GetString("FuelLevelPercent", resourceCulture);
             }
         }
         

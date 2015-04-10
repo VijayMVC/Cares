@@ -231,6 +231,10 @@ namespace Cares.Implementation.Services
         public void DeleteWorkLocation(long workLocationId)
         {
             WorkLocation dBworkLocation = workLocationRepository.Find(workLocationId);
+            if (dBworkLocation != null && dBworkLocation.Workplaces.Any())
+            {
+                throw new CaresException(Resources.Organization.WorkLocation.WorkLocationDeleteFailedWorkplaceExists);
+            }
             if (dBworkLocation != null)
             {
                 addressRepository.Delete(dBworkLocation.Address);
@@ -238,7 +242,9 @@ namespace Cares.Implementation.Services
                 workLocationRepository.SaveChanges();
             }
             else
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, "WorkLocation with Id {0} not found!", workLocationId));
+            {
+                throw new InvalidOperationException(Resources.Organization.WorkLocation.WorklocationNotFoundInDatabase);
+            }
         }
         /// <summary>
         /// Save / Update Work Location

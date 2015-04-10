@@ -117,13 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="WorkLocationWithSameCodeExistsError" xml:space="preserve">
-    <value>الموقع العمل مع نفس رمز موجود بالفعل</value>
-  </data>
-  <data name="WorkLocationDeleteFailedWorkplaceExists" xml:space="preserve">
-    <value>عمل الموقع لا يمكن حذفها، كما يتم استخدامه في مكان العمل</value>
-  </data>
-  <data name="WorklocationNotFoundInDatabase" xml:space="preserve">
-    <value>عمل الموقع لم يتم العثور في قاعدة البيانات</value>
+  <data name="ErrorPerformingOperation" xml:space="preserve">
+    <value>There is some problem while performing this operation.</value>
   </data>
 </root>

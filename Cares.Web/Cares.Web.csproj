@@ -3511,6 +3511,7 @@
     <EmbeddedResource Include="Resources\Vehicle\Vehicle.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Vehicle.ar.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Vehicle\Vehicle.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

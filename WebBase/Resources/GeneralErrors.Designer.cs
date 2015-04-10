@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Cares.Implementation.Resources.Organization {
+namespace Cares.WebBase.Resources {
     using System;
     
     
@@ -22,24 +22,24 @@ namespace Cares.Implementation.Resources.Organization {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class WorkLocation {
+    internal class GeneralErrors {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal WorkLocation() {
+        internal GeneralErrors() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Cares.Implementation.Resources.Organization.WorkLocation", typeof(WorkLocation).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Cares.WebBase.Resources.GeneralErrors", typeof(GeneralErrors).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace Cares.Implementation.Resources.Organization {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,29 +61,11 @@ namespace Cares.Implementation.Resources.Organization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Work Location cannot be deleted, as it is being used in Workplace..
+        ///   Looks up a localized string similar to There is some problem while performing this operation..
         /// </summary>
-        public static string WorkLocationDeleteFailedWorkplaceExists {
+        internal static string ErrorPerformingOperation {
             get {
-                return ResourceManager.GetString("WorkLocationDeleteFailedWorkplaceExists", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Work Location not found in database..
-        /// </summary>
-        public static string WorklocationNotFoundInDatabase {
-            get {
-                return ResourceManager.GetString("WorklocationNotFoundInDatabase", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Work Location with same code already exists..
-        /// </summary>
-        public static string WorkLocationWithSameCodeExistsError {
-            get {
-                return ResourceManager.GetString("WorkLocationWithSameCodeExistsError", resourceCulture);
+                return ResourceManager.GetString("ErrorPerformingOperation", resourceCulture);
             }
         }
     }

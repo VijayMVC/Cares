@@ -23,7 +23,9 @@ textarea {
 .field-validation-error {
     color: #b94a48;
 }
-
+.th-pointer {
+    cursor: pointer;
+}
 .field-validation-valid {
     display: none;
 }

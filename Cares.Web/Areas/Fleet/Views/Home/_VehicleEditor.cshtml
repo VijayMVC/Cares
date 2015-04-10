@@ -56,16 +56,26 @@
             <div class="col-md-2">
                 <div style="margin: 10px" data-bind="slider: fuelLevel, sliderOptions: {min: undefined, max: 100, range: 'min', step: 1}"></div>
             </div>
+            
+            <label class="control-label h5 col-sm-2">@Cares.Web.Resources.Vehicle.Vehicle.FuelLevelPercent * </label>            
+            <div class="col-md-2">
+                <input type="text" class="form-control" id="fuelLevelPercent" data-bind="value:fuelLevel" readonly="readonly" />
+            </div>
+
+        </div>
+        <div class="form-group">
+            
             <label for="vMake" class="control-label h5 col-sm-2">@Cares.Web.Resources.Vehicle.Vehicle.VehicleMake *  </label>
             <div class="col-md-2">
                 <select id="vMake" class="form-control" data-bind="options: $root.vehicleMakes, optionsText: 'VehicleMakeCodeName', optionsValue: 'VehicleMakeId', optionsCaption:'&lt;' + '@Cares.Web.Resources.Vehicle.Vehicle.VehicleMake' + '&gt;', value: vehicleMakeId, validationTooltip: vehicleMakeId"></select>
             </div>
-        </div>
-        <div class="form-group">
+
             <label for="vModel" class="control-label h5 col-sm-2">@Cares.Web.Resources.Vehicle.Vehicle.VehicleModel * </label>
             <div class="col-md-2">
                 <select id="vModel" class="form-control" data-bind="options: $root.vehicleModels, optionsText: 'VehicleModelCodeName', optionsValue: 'VehicleModeld', optionsCaption: 'Vehicle Model', value:vehicleModelId "></select>
-            </div>
+            </div>            
+        </div>
+        <div class="form-group">
             <label for="vCategory" class="control-label h5 col-sm-2">@Cares.Web.Resources.Vehicle.Vehicle.VehicleCategory * </label>
             <div class="col-md-2">
                 <select id="vCategory" class="form-control" data-bind="options: $root.vehicleCategories, optionsText: 'VehicleCategoryCodeName', optionsValue: 'VehicleCategoryId', optionsCaption: '&lt;' + '@Cares.Web.Resources.Vehicle.Vehicle.VehicleCategory' + '&gt;', value: vehicleCategoryId "></select>
